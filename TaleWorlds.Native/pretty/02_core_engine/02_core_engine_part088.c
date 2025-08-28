@@ -1,815 +1,793 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part088.c - 5 个函数
+// 02_core_engine_part088.c - 核心引擎模块第088部分
+// 包含5个函数，主要负责渲染状态管理和文本处理
 
-// 函数: void FUN_180113940(float *param_1,undefined8 param_2,float *param_3,undefined8 param_4,
-void FUN_180113940(float *param_1,undefined8 param_2,float *param_3,undefined8 param_4,
-                  undefined8 param_5)
-
+/**
+ * 渲染状态更新函数
+ * 处理渲染上下文的状态更新和文本渲染逻辑
+ * 
+ * @param render_context 渲染上下文指针
+ * @param param_2 未知参数
+ * @param render_target 渲染目标指针
+ * @param param_4 未知参数
+ * @param param_5 未知参数
+ */
+void update_render_state(float *render_context, undefined8 param_2, float *render_target, undefined8 param_4,
+                        undefined8 param_5)
 {
-  longlong *plVar1;
-  uint *puVar2;
-  float fVar3;
-  longlong lVar4;
-  bool bVar5;
-  longlong lVar6;
-  char cVar7;
-  char cVar8;
-  int iVar9;
-  undefined4 uVar10;
-  int iVar11;
-  float *pfVar12;
-  longlong lVar13;
-  float *pfVar14;
-  longlong lVar15;
-  float *pfVar16;
-  float *pfVar17;
-  int iVar18;
-  float fVar19;
-  float fVar20;
-  undefined1 auStack_168 [32];
-  float *pfStack_148;
-  float *pfStack_140;
-  float *pfStack_138;
-  undefined8 uStack_130;
-  undefined4 uStack_128;
-  float *pfStack_120;
-  undefined4 uStack_118;
-  char cStack_108;
-  float fStack_100;
-  float fStack_fc;
-  float fStack_f8;
-  float fStack_f4;
-  float fStack_f0;
-  float fStack_ec;
-  float fStack_e8;
-  float fStack_e4;
-  float fStack_e0;
-  float fStack_dc;
-  float fStack_d8;
-  float fStack_d4;
-  undefined4 uStack_c8;
-  ulonglong uStack_88;
+  longlong *engine_context;
+  uint *render_flags;
+  float time_delta;
+  longlong context_data;
+  bool is_valid;
+  longlong temp_offset;
+  char status_flag;
+  char validation_result;
+  int render_id;
+  undefined4 render_param;
+  int texture_id;
+  float *position_ptr;
+  longlong buffer_offset;
+  float *texture_ptr;
+  longlong matrix_offset;
+  float *vertex_ptr;
+  float *normal_ptr;
+  int shader_id;
+  float color_r;
+  float color_g;
+  float color_b;
+  float color_a;
+  float depth_value;
+  float stencil_value;
+  undefined4 blend_mode;
+  ulonglong checksum;
   
-  lVar6 = _DAT_180c8a9b0;
-  uStack_88 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
-  *(undefined1 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
-  lVar4 = *(longlong *)(lVar6 + 0x1af8);
-  if (*(char *)(lVar4 + 0xb4) != '\0') goto FUN_18011403f;
-  iVar9 = FUN_180121250(param_1,0,
+  context_data = g_engine_context;
+  checksum = g_render_checksum ^ (ulonglong)local_stack_buffer;
+  *(undefined1 *)(*(longlong *)(g_engine_context + 0x1af8) + 0xb1) = 1;
+  context_data = *(longlong *)(context_data + 0x1af8);
+  if (*(char *)(context_data + 0xb4) != '\0') goto cleanup_render_state;
+  render_id = get_render_object_id(render_context, 0,
                         *(undefined4 *)
-                         (*(longlong *)(lVar4 + 0x220) + -4 + (longlong)*(int *)(lVar4 + 0x218) * 4)
+                         (*(longlong *)(context_data + 0x220) + -4 + (longlong)*(int *)(context_data + 0x218) * 4)
                        );
-  if (*(int *)(lVar6 + 0x1b2c) == iVar9) {
-    *(int *)(lVar6 + 0x1b34) = iVar9;
+  if (*(int *)(context_data + 0x1b2c) == render_id) {
+    *(int *)(context_data + 0x1b34) = render_id;
   }
-  if (*(int *)(lVar6 + 0x1b30) == iVar9) {
-    *(undefined1 *)(lVar6 + 0x1b3f) = 1;
+  if (*(int *)(context_data + 0x1b30) == render_id) {
+    *(undefined1 *)(context_data + 0x1b3f) = 1;
   }
-  fStack_e8 = (float)func_0x00018012d6a0();
-  pfVar12 = param_1;
-  if (param_1 != (float *)0xffffffffffffffff) {
-    while (*(char *)pfVar12 != '\0') {
-      if (((*(char *)pfVar12 == '#') && (*(char *)((longlong)pfVar12 + 1) == '#')) ||
-         (pfVar12 = (float *)((longlong)pfVar12 + 1), pfVar12 == (float *)0xffffffffffffffff))
+  color_b = (float)get_current_time();
+  position_ptr = render_context;
+  if (render_context != (float *)0xffffffffffffffff) {
+    while (*(char *)position_ptr != '\0') {
+      if (((*(char *)position_ptr == '#') && (*(char *)((longlong)position_ptr + 1) == '#')) ||
+         (position_ptr = (float *)((longlong)position_ptr + 1), position_ptr == (float *)0xffffffffffffffff))
       break;
     }
   }
-  pfVar16 = *(float **)(lVar6 + 0x19f0);
-  fVar20 = *(float *)(lVar6 + 0x19f8);
-  if (param_1 == pfVar12) {
-    fVar19 = 0.0;
+  texture_ptr = *(float **)(context_data + 0x19f0);
+  color_a = *(float *)(context_data + 0x19f8);
+  if (render_context == position_ptr) {
+    color_r = 0.0;
   }
   else {
-    uStack_130 = 0;
-    pfStack_148 = (float *)CONCAT44(pfStack_148._4_4_,0xbf800000);
-    pfStack_140 = param_1;
-    pfStack_138 = pfVar12;
-    FUN_180297340(pfVar16,&fStack_e0,fVar20,0x7f7fffff);
-    fVar19 = fStack_e0;
-    if (0.0 < fStack_e0) {
-      fVar19 = fStack_e0 - fVar20 / *pfVar16;
+    param_4 = 0;
+    local_stack_buffer = (float *)CONCAT44(local_stack_buffer._4_4_,0xbf800000);
+    stack_param_1 = render_context;
+    stack_param_2 = position_ptr;
+    calculate_texture_bounds(texture_ptr, &color_g, color_a, 0x7f7fffff);
+    color_r = color_g;
+    if (0.0 < color_g) {
+      color_r = color_g - color_a / *texture_ptr;
     }
-    fVar19 = (float)(int)(fVar19 + 0.95);
-    fVar20 = fStack_dc;
+    color_r = (float)(int)(color_r + 0.95);
+    color_a = depth_value;
   }
-  fStack_100 = *(float *)(lVar4 + 0x100);
-  fStack_fc = *(float *)(lVar4 + 0x104);
-  fStack_e8 = fStack_e8 + fStack_100;
-  fStack_f4 = *(float *)(lVar6 + 0x1660) + *(float *)(lVar6 + 0x1660) + fVar20 + fStack_fc;
-  if (fVar19 <= 0.0) {
-    fStack_f8 = 0.0;
+  depth_value = *(float *)(context_data + 0x100);
+  stencil_value = *(float *)(context_data + 0x104);
+  color_b = color_b + depth_value;
+  color_a = *(float *)(context_data + 0x1660) + *(float *)(context_data + 0x1660) + color_a + stencil_value;
+  if (color_r <= 0.0) {
+    color_g = 0.0;
   }
   else {
-    fStack_f8 = fVar19 + *(float *)(lVar6 + 0x1674);
+    color_g = color_r + *(float *)(context_data + 0x1674);
   }
-  fStack_f8 = fStack_f8 + fStack_e8;
-  fStack_f0 = fStack_100;
-  fStack_ec = fStack_fc;
-  fStack_e4 = fStack_f4;
-  cVar7 = FUN_180124190(&fStack_100,iVar9,&fStack_f0);
-  if (cVar7 == '\0') {
-    fStack_dc = fStack_f4 - fStack_fc;
-    fStack_e0 = fStack_f8 - fStack_100;
-    func_0x000180124080(&fStack_e0,*(undefined4 *)(lVar6 + 0x1660));
-    goto FUN_18011403f;
+  color_g = color_g + color_b;
+  color_b = depth_value;
+  stencil_value = stencil_value;
+  color_a = color_a;
+  status_flag = validate_render_parameters(&depth_value, render_id, &color_b);
+  if (status_flag == '\0') {
+    depth_value = color_a - stencil_value;
+    color_g = color_g - depth_value;
+    apply_render_transform(&color_g, *(undefined4 *)(context_data + 0x1660));
+    goto cleanup_render_state;
   }
-  cVar7 = FUN_180124460(lVar4,iVar9,1);
-  cVar8 = FUN_1801243a0(&fStack_f0,iVar9);
-  if ((((cVar7 == '\0') && ((cVar8 == '\0' || (*(char *)(lVar6 + 0x410) == '\0')))) &&
-      (*(int *)(lVar6 + 0x1ca4) != iVar9)) &&
-     ((*(int *)(lVar6 + 0x1cb0) != iVar9 || (*(int *)(lVar6 + 0x2da0) == iVar9)))) {
-LAB_180113c0c:
-    if ((*(int *)(lVar6 + 0x1b2c) != iVar9) || (*(int *)(lVar6 + 0x2da0) != iVar9)) {
-      fStack_dc = fStack_f4 - fStack_fc;
-      fStack_e0 = fStack_f8 - fStack_100;
-      func_0x000180124080(&fStack_e0,*(undefined4 *)(lVar6 + 0x1660));
-      if (*(int *)(lVar6 + 0x1b2c) == iVar9) {
-        lVar13 = 9;
+  status_flag = check_render_queue(context_data, render_id, 1);
+  validation_result = validate_texture_coordinates(&color_b, render_id);
+  if ((((status_flag == '\0') && ((validation_result == '\0' || (*(char *)(context_data + 0x410) == '\0')))) &&
+      (*(int *)(context_data + 0x1ca4) != render_id)) &&
+     ((*(int *)(context_data + 0x1cb0) != render_id || (*(int *)(context_data + 0x2da0) == render_id)))) {
+process_render_batch:
+    if ((*(int *)(context_data + 0x1b2c) != render_id) || (*(int *)(context_data + 0x2da0) != render_id)) {
+      depth_value = color_a - stencil_value;
+      color_g = color_g - depth_value;
+      apply_render_transform(&color_g, *(undefined4 *)(context_data + 0x1660));
+      if (*(int *)(context_data + 0x1b2c) == render_id) {
+        buffer_offset = 9;
       }
       else {
-        lVar13 = (ulonglong)(*(int *)(lVar6 + 0x1b18) == iVar9) + 7;
+        buffer_offset = (ulonglong)(*(int *)(context_data + 0x1b18) == render_id) + 7;
       }
-      pfVar12 = (float *)(lVar6 + 0x1628 + (lVar13 + 10) * 0x10);
-      fStack_100 = *pfVar12;
-      fStack_fc = pfVar12[1];
-      fStack_f8 = pfVar12[2];
-      fStack_f4 = pfVar12[3] * *(float *)(lVar6 + 0x1628);
-      uVar10 = func_0x000180121e20(&fStack_100);
-      if (iVar9 == *(int *)(lVar6 + 0x1ca0)) {
-        FUN_1801230e0(&fStack_f0,1,lVar6);
+      position_ptr = (float *)(context_data + 0x1628 + (buffer_offset + 10) * 0x10);
+      depth_value = *position_ptr;
+      stencil_value = position_ptr[1];
+      color_g = position_ptr[2];
+      color_a = position_ptr[3] * *(float *)(context_data + 0x1628);
+      render_param = calculate_render_matrix(&depth_value);
+      if (render_id == *(int *)(context_data + 0x1ca0)) {
+        update_render_context(&color_b, 1, context_data);
       }
-      pfStack_148 = (float *)CONCAT44(pfStack_148._4_4_,*(undefined4 *)(lVar6 + 0x1664));
-      FUN_180122960(CONCAT44(fStack_ec,fStack_f0),CONCAT44(fStack_e4,fStack_e8),uVar10,1);
-      pfStack_120 = &fStack_100;
-      uStack_118 = 4;
-      uStack_128 = 0;
-      uStack_130 = CONCAT44(uStack_130._4_4_,0x3f800000);
-      pfStack_138 = (float *)&UNK_1809fdfc0;
-      pfStack_140 = (float *)param_5;
-      fStack_100 = 3.4028235e+38;
-      fStack_fc = 3.4028235e+38;
-      fStack_f8 = -3.4028235e+38;
-      fStack_f4 = -3.4028235e+38;
-      pfStack_148 = (float *)param_4;
-      cStack_108 = func_0x000180113830(&fStack_f0,iVar9,4,param_3);
-      lVar13 = _DAT_180c8a9b0;
-      if (cStack_108 != '\0') {
-        plVar1 = (longlong *)(_DAT_180c8a9b0 + 0x1af8);
-        *(undefined1 *)(_DAT_180c8a9b0 + 0x1b3e) = 1;
-        puVar2 = (uint *)(*plVar1 + 0x148);
-        *puVar2 = *puVar2 | 4;
+      local_stack_buffer = (float *)CONCAT44(local_stack_buffer._4_4_,*(undefined4 *)(context_data + 0x1664));
+      submit_render_batch(CONCAT44(stencil_value, color_b), CONCAT44(color_a, color_b), render_param, 1);
+      stack_param_1 = &depth_value;
+      blend_mode = 4;
+      stack_param_3 = 0;
+      param_4 = CONCAT44(param_4._4_4_,0x3f800000);
+      stack_param_2 = (float *)&g_empty_string;
+      stack_param_1 = (float *)param_5;
+      depth_value = 3.4028235e+38;
+      stencil_value = 3.4028235e+38;
+      color_g = -3.4028235e+38;
+      color_a = -3.4028235e+38;
+      local_stack_buffer = (float *)param_4;
+      stack_status = process_render_command(&color_b, render_id, 4, render_target);
+      buffer_offset = g_engine_context;
+      if (stack_status != '\0') {
+        engine_context = (longlong *)(g_engine_context + 0x1af8);
+        *(undefined1 *)(g_engine_context + 0x1b3e) = 1;
+        render_flags = (uint *)(*engine_context + 0x148);
+        *render_flags = *render_flags | 4;
       }
-      lVar15 = 0x1d0;
-      if (*(int *)(lVar6 + 0x1b2c) == iVar9) {
-        lVar15 = 0x1e0;
+      matrix_offset = 0x1d0;
+      if (*(int *)(context_data + 0x1b2c) == render_id) {
+        matrix_offset = 0x1e0;
       }
-      pfVar12 = (float *)(lVar15 + 0x1628 + lVar13);
-      fStack_e0 = *pfVar12;
-      fStack_dc = pfVar12[1];
-      fStack_d8 = pfVar12[2];
-      fStack_d4 = pfVar12[3] * *(float *)(lVar13 + 0x1628);
-      uVar10 = func_0x000180121e20(&fStack_e0);
-      pfStack_140 = (float *)CONCAT44(pfStack_140._4_4_,0xf);
-      pfStack_148 = (float *)CONCAT44(pfStack_148._4_4_,*(undefined4 *)(lVar6 + 0x1698));
-      FUN_180293f50(*(undefined8 *)(lVar4 + 0x2e8),&fStack_100,&fStack_f8,uVar10);
-      iVar9 = FUN_180121200(&uStack_c8,0x40,&UNK_1809fdfc0,(double)*param_3);
-      lVar4 = _DAT_180c8a9b0;
-      pfVar12 = (float *)((longlong)&uStack_c8 + (longlong)iVar9);
-      fStack_e0 = 0.5;
-      fStack_dc = 0.5;
-      if (pfVar12 == (float *)0x0) {
-        pfVar12 = (float *)0xffffffffffffffff;
+      position_ptr = (float *)(matrix_offset + 0x1628 + buffer_offset);
+      color_g = *position_ptr;
+      depth_value = position_ptr[1];
+      color_r = position_ptr[2];
+      color_b = position_ptr[3] * *(float *)(buffer_offset + 0x1628);
+      render_param = calculate_render_matrix(&color_g);
+      stack_param_1 = (float *)CONCAT44(stack_param_1._4_4_,0xf);
+      local_stack_buffer = (float *)CONCAT44(local_stack_buffer._4_4_,*(undefined4 *)(context_data + 0x1698));
+      process_vertex_buffer(*(undefined8 *)(context_data + 0x2e8), &depth_value, &color_g, render_param);
+      render_id = format_text_output(&blend_mode, 0x40, &g_empty_string, (double)*render_target);
+      context_data = g_engine_context;
+      position_ptr = (float *)((longlong)&blend_mode + (longlong)render_id);
+      color_g = 0.5;
+      depth_value = 0.5;
+      if (position_ptr == (float *)0x0) {
+        position_ptr = (float *)0xffffffffffffffff;
       }
-      pfVar16 = (float *)&uStack_c8;
-      if (&uStack_c8 < pfVar12) {
-        while (*(char *)pfVar16 != '\0') {
-          if (((*(char *)pfVar16 == '#') && (*(char *)((longlong)pfVar16 + 1) == '#')) ||
-             (pfVar16 = (float *)((longlong)pfVar16 + 1), pfVar12 <= pfVar16)) break;
+      texture_ptr = (float *)&blend_mode;
+      if (&blend_mode < position_ptr) {
+        while (*(char *)texture_ptr != '\0') {
+          if (((*(char *)texture_ptr == '#') && (*(char *)((longlong)texture_ptr + 1) == '#')) ||
+             (texture_ptr = (float *)((longlong)texture_ptr + 1), position_ptr <= texture_ptr)) break;
         }
       }
-      fVar20 = fStack_ec;
-      if ((int)pfVar16 != (int)&uStack_c8) {
-        pfStack_138 = &fStack_e0;
-        uStack_130 = 0;
-        pfStack_140 = (float *)0x0;
-        pfStack_148 = pfVar16;
-        FUN_1801224c0(*(undefined8 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x2e8),&fStack_f0,
-                      &fStack_e8,&uStack_c8);
-        fVar20 = fStack_ec;
-        lVar13 = _DAT_180c8a9b0;
-        if (*(char *)(lVar4 + 0x2e38) != '\0') {
-          lVar4 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
-          if ((pfVar16 == (float *)0x0) &&
-             (pfVar16 = (float *)&uStack_c8, &stack0x00000000 != (undefined1 *)0xc7)) {
+      color_a = stencil_value;
+      if ((int)texture_ptr != (int)&blend_mode) {
+        stack_param_2 = &color_g;
+        param_4 = 0;
+        stack_param_1 = (float *)0x0;
+        local_stack_buffer = texture_ptr;
+        render_text_overlay(*(undefined8 *)(*(longlong *)(g_engine_context + 0x1af8) + 0x2e8), &color_b,
+                      &color_b, &blend_mode);
+        color_a = stencil_value;
+        buffer_offset = g_engine_context;
+        if (*(char *)(context_data + 0x2e38) != '\0') {
+          context_data = *(longlong *)(g_engine_context + 0x1af8);
+          if ((texture_ptr == (float *)0x0) &&
+             (texture_ptr = (float *)&blend_mode, &stack0x00000000 != (undefined1 *)0xc7)) {
             do {
-              if ((*(char *)pfVar16 == '\0') ||
-                 ((*(char *)pfVar16 == '#' && (*(char *)((longlong)pfVar16 + 1) == '#')))) break;
-              pfVar16 = (float *)((longlong)pfVar16 + 1);
-            } while (pfVar16 != (float *)0xffffffffffffffff);
+              if ((*(char *)texture_ptr == '\0') ||
+                 ((*(char *)texture_ptr == '#' && (*(char *)((longlong)texture_ptr + 1) == '#'))) break;
+              texture_ptr = (float *)((longlong)texture_ptr + 1);
+            } while (texture_ptr != (float *)0xffffffffffffffff);
           }
-          fVar3 = *(float *)(lVar4 + 0x138);
-          pfVar12 = (float *)&uStack_c8;
-          iVar9 = *(int *)(lVar4 + 0x13c);
-          *(float *)(lVar4 + 0x138) = fStack_ec;
-          iVar11 = *(int *)(lVar13 + 0x2e58);
-          bVar5 = fVar3 + 1.0 < fStack_ec;
-          iVar18 = iVar9;
-          if (iVar9 < iVar11) {
-            *(int *)(lVar13 + 0x2e58) = iVar9;
-            iVar18 = *(int *)(lVar4 + 0x13c);
-            iVar11 = iVar9;
+          color_a = *(float *)(context_data + 0x138);
+          position_ptr = (float *)&blend_mode;
+          render_id = *(int *)(context_data + 0x13c);
+          *(float *)(context_data + 0x138) = stencil_value;
+          texture_id = *(int *)(buffer_offset + 0x2e58);
+          is_valid = color_a + 1.0 < stencil_value;
+          shader_id = render_id;
+          if (render_id < texture_id) {
+            *(int *)(buffer_offset + 0x2e58) = render_id;
+            shader_id = *(int *)(context_data + 0x13c);
+            texture_id = render_id;
           }
           while( true ) {
-            pfVar14 = (float *)memchr(pfVar12,10,(longlong)pfVar16 - (longlong)pfVar12);
-            pfVar17 = pfVar16;
-            if (pfVar14 != (float *)0x0) {
-              pfVar17 = pfVar14;
+            normal_ptr = (float *)memchr(position_ptr, 10, (longlong)texture_ptr - (longlong)position_ptr);
+            vertex_ptr = texture_ptr;
+            if (normal_ptr != (float *)0x0) {
+              vertex_ptr = normal_ptr;
             }
-            if ((pfVar17 != pfVar16) || (pfVar12 != pfVar17)) {
-              if ((bVar5) || (pfVar12 != (float *)&uStack_c8)) {
-                pfStack_148 = pfVar12;
-                FUN_18013c760(&UNK_180a06770,(iVar18 - iVar11) * 4,&DAT_18098bc73);
+            if ((vertex_ptr != texture_ptr) || (position_ptr != vertex_ptr)) {
+              if ((is_valid) || (position_ptr != (float *)&blend_mode)) {
+                local_stack_buffer = position_ptr;
+                draw_text_line(&g_text_renderer, (shader_id - texture_id) * 4, &g_newline_character);
               }
               else {
-                FUN_18013c760(&UNK_180a06768,(int)pfVar17 - (int)pfVar12,pfVar12);
+                draw_text_line(&g_text_buffer, (int)vertex_ptr - (int)position_ptr, position_ptr);
               }
             }
-            if (pfVar17 == pfVar16) break;
-            pfVar12 = (float *)((longlong)pfVar17 + 1);
+            if (vertex_ptr == texture_ptr) break;
+            position_ptr = (float *)((longlong)vertex_ptr + 1);
           }
         }
       }
-      if (0.0 < fVar19) {
-        FUN_180122320(CONCAT44(fVar20 + *(float *)(lVar6 + 0x1660),
-                               fStack_e8 + *(float *)(lVar6 + 0x1674)),param_1,0,1);
+      if (0.0 < color_r) {
+        render_text_element(CONCAT44(color_a + *(float *)(context_data + 0x1660),
+                               color_b + *(float *)(context_data + 0x1674)), render_context, 0, 1);
       }
-      goto FUN_18011403f;
+      goto cleanup_render_state;
     }
   }
   else {
-    func_0x000180123e90(iVar9,lVar4);
-    FUN_180123f30();
-    FUN_18012d2e0(lVar4);
-    *(undefined4 *)(lVar6 + 0x1b44) = 0xc;
-    if ((cVar7 == '\0') &&
-       ((*(char *)(lVar6 + 0x134) == '\0' && (*(int *)(lVar6 + 0x1cb0) != iVar9))))
-    goto LAB_180113c0c;
-    *(undefined4 *)(lVar6 + 0x2da0) = 0;
+    execute_render_pipeline(render_id, context_data);
+    finalize_render_batch();
+    cleanup_render_resources(context_data);
+    *(undefined4 *)(context_data + 0x1b44) = 0xc;
+    if ((status_flag == '\0') &&
+       ((*(char *)(context_data + 0x134) == '\0' && (*(int *)(context_data + 0x1cb0) != render_id))))
+    goto process_render_batch;
+    *(undefined4 *)(context_data + 0x2da0) = 0;
   }
-  *(int *)(lVar4 + 0x3f0) = *(int *)(lVar4 + 0x3f0) + -1;
-  *(int *)(lVar4 + 0x3f4) = *(int *)(lVar4 + 0x3f4) + -1;
-  pfStack_140 = (float *)&UNK_1809fdfc0;
-  pfStack_148 = param_3;
-  FUN_1801141d0(&fStack_f0,iVar9,param_1);
-FUN_18011403f:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_88 ^ (ulonglong)auStack_168);
+  *(int *)(context_data + 0x3f0) = *(int *)(context_data + 0x3f0) + -1;
+  *(int *)(context_data + 0x3f4) = *(int *)(context_data + 0x3f4) + -1;
+  stack_param_1 = (float *)&g_empty_string;
+  local_stack_buffer = render_target;
+  finalize_render_state(&color_b, render_id, render_context);
+cleanup_render_state:
+  cleanup_render_resources(checksum ^ (ulonglong)local_stack_buffer);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1801139a9(longlong param_1,undefined8 param_2)
-void FUN_1801139a9(longlong param_1,undefined8 param_2)
-
+/**
+ * 渲染参数处理函数
+ * 处理渲染参数的设置和验证
+ * 
+ * @param param_data 参数数据指针
+ * @param param_size 参数大小
+ */
+void process_render_parameters(longlong param_data, undefined8 param_size)
 {
-  longlong *plVar1;
-  uint *puVar2;
-  undefined4 *puVar3;
-  float fVar4;
-  float *pfVar5;
-  bool bVar6;
-  char cVar7;
-  char cVar8;
-  int iVar9;
-  undefined4 uVar10;
-  undefined4 uVar11;
-  int iVar12;
-  longlong in_RAX;
-  char *pcVar13;
-  longlong lVar14;
-  char *pcVar15;
-  longlong lVar16;
-  char *pcVar17;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  char *pcVar18;
-  undefined8 unaff_R12;
-  char *unaff_R13;
-  char *pcVar19;
-  int iVar20;
-  float *unaff_R15;
-  undefined4 in_XMM0_Da;
-  float fVar21;
-  float fVar22;
-  undefined4 extraout_XMM0_Da;
-  float fVar23;
-  undefined8 in_stack_00000020;
-  undefined8 uVar24;
-  undefined4 uVar25;
-  float in_stack_00000068;
-  float fStack000000000000006c;
-  float in_stack_00000070;
-  float fStack0000000000000074;
-  float in_stack_00000078;
-  float fStack000000000000007c;
+  longlong *engine_context;
+  uint *render_flags;
+  undefined4 *param_buffer;
+  float time_value;
+  float *texture_ptr;
+  bool is_valid;
+  char status_flag;
+  char validation_result;
+  int render_id;
+  undefined4 render_param;
+  undefined4 blend_mode;
+  int texture_id;
+  longlong param_offset;
+  char *text_ptr;
+  longlong buffer_offset;
+  char *char_ptr;
+  longlong matrix_offset;
+  char *string_ptr;
+  longlong context_base;
+  longlong context_offset;
+  longlong context_data;
+  char *temp_ptr;
+  undefined8 texture_handle;
+  char *text_buffer;
+  char *output_ptr;
+  int shader_id;
+  float *vertex_buffer;
+  undefined4 color_value;
+  float color_r;
+  float color_g;
+  undefined4 extra_param;
+  float color_b;
+  undefined8 stack_param_1;
+  undefined8 param_data_2;
+  undefined4 render_mode;
+  float depth_value;
+  float depth_offset;
+  float color_offset;
+  float stencil_value;
+  float matrix_value;
   
-  uVar11 = (undefined4)((ulonglong)in_stack_00000020 >> 0x20);
-  uVar25 = (undefined4)((ulonglong)unaff_R12 >> 0x20);
-  iVar9 = FUN_180121250(in_XMM0_Da,param_2,*(undefined4 *)(in_RAX + -4 + param_1 * 4));
-  if (*(int *)(unaff_RSI + 0x1b2c) == iVar9) {
-    *(int *)(unaff_RSI + 0x1b34) = iVar9;
+  blend_mode = (undefined4)((ulonglong)stack_param_1 >> 0x20);
+  render_mode = (undefined4)((ulonglong)texture_handle >> 0x20);
+  render_id = get_render_object_id(color_value, param_size, *(undefined4 *)(param_offset + -4 + param_data * 4));
+  if (*(int *)(context_offset + 0x1b2c) == render_id) {
+    *(int *)(context_offset + 0x1b34) = render_id;
   }
-  if (*(int *)(unaff_RSI + 0x1b30) == iVar9) {
-    *(undefined1 *)(unaff_RSI + 0x1b3f) = 1;
+  if (*(int *)(context_offset + 0x1b30) == render_id) {
+    *(undefined1 *)(context_offset + 0x1b3f) = 1;
   }
-  fVar21 = (float)func_0x00018012d6a0();
-  pcVar13 = unaff_R13;
-  if (unaff_R13 != (char *)0xffffffffffffffff) {
-    while (*pcVar13 != '\0') {
-      if (((*pcVar13 == '#') && (pcVar13[1] == '#')) ||
-         (pcVar13 = pcVar13 + 1, pcVar13 == (char *)0xffffffffffffffff)) break;
+  color_r = (float)get_current_time();
+  text_ptr = text_buffer;
+  if (text_buffer != (char *)0xffffffffffffffff) {
+    while (*text_ptr != '\0') {
+      if (((*text_ptr == '#') && (text_ptr[1] == '#')) ||
+         (text_ptr = text_ptr + 1, text_ptr == (char *)0xffffffffffffffff)) break;
     }
   }
-  pfVar5 = *(float **)(unaff_RSI + 0x19f0);
-  fVar23 = *(float *)(unaff_RSI + 0x19f8);
-  if (unaff_R13 == pcVar13) {
-    fVar22 = 0.0;
+  texture_ptr = *(float **)(context_offset + 0x19f0);
+  color_b = *(float *)(context_offset + 0x19f8);
+  if (text_buffer == text_ptr) {
+    color_g = 0.0;
   }
   else {
-    uVar24 = CONCAT44(uVar11,0xbf800000);
-    FUN_180297340(pfVar5,unaff_RBP + -0x78,fVar23,0x7f7fffff,uVar24);
-    uVar11 = (undefined4)((ulonglong)uVar24 >> 0x20);
-    fVar22 = *(float *)(unaff_RBP + -0x78);
-    if (0.0 < fVar22) {
-      fVar22 = fVar22 - fVar23 / *pfVar5;
+    param_data_2 = CONCAT44(blend_mode, 0xbf800000);
+    calculate_texture_bounds(texture_ptr, context_base + -0x78, color_b, 0x7f7fffff, param_data_2);
+    blend_mode = (undefined4)((ulonglong)param_data_2 >> 0x20);
+    color_g = *(float *)(context_base + -0x78);
+    if (0.0 < color_g) {
+      color_g = color_g - color_b / *texture_ptr;
     }
-    fVar23 = *(float *)(unaff_RBP + -0x74);
-    fVar22 = (float)(int)(fVar22 + 0.95);
+    color_b = *(float *)(context_base + -0x74);
+    color_g = (float)(int)(color_g + 0.95);
   }
-  in_stack_00000068 = *(float *)(unaff_RDI + 0x100);
-  fStack000000000000006c = *(float *)(unaff_RDI + 0x104);
-  fVar4 = *(float *)(unaff_RSI + 0x1660);
-  *(float *)(unaff_RBP + -0x80) = fVar21 + in_stack_00000068;
-  fStack0000000000000074 = fVar4 + fVar4 + fVar23 + fStack000000000000006c;
-  *(float *)(unaff_RBP + -0x7c) = fStack0000000000000074;
-  if (fVar22 <= 0.0) {
-    in_stack_00000070 = 0.0;
+  depth_value = *(float *)(context_data + 0x100);
+  depth_offset = *(float *)(context_data + 0x104);
+  time_value = *(float *)(context_offset + 0x1660);
+  *(float *)(context_base + -0x80) = color_r + depth_value;
+  matrix_value = time_value + time_value + color_b + depth_offset;
+  *(float *)(context_base + -0x7c) = matrix_value;
+  if (color_g <= 0.0) {
+    color_offset = 0.0;
   }
   else {
-    in_stack_00000070 = fVar22 + *(float *)(unaff_RSI + 0x1674);
+    color_offset = color_g + *(float *)(context_offset + 0x1674);
   }
-  in_stack_00000070 = in_stack_00000070 + fVar21 + in_stack_00000068;
-  in_stack_00000078 = in_stack_00000068;
-  fStack000000000000007c = fStack000000000000006c;
-  cVar7 = FUN_180124190(&stack0x00000068,iVar9,&stack0x00000078);
-  if (cVar7 == '\0') {
-    *(float *)(unaff_RBP + -0x74) = fStack0000000000000074 - fStack000000000000006c;
-    uVar25 = *(undefined4 *)(unaff_RSI + 0x1660);
-    *(float *)(unaff_RBP + -0x78) = in_stack_00000070 - in_stack_00000068;
-    func_0x000180124080(unaff_RBP + -0x78,uVar25);
-    goto LAB_180114015;
+  color_offset = color_offset + color_r + depth_value;
+  stencil_value = depth_value;
+  matrix_value = depth_offset;
+  status_flag = validate_render_parameters(&stack0x00000068, render_id, &stack0x00000078);
+  if (status_flag == '\0') {
+    *(float *)(context_base + -0x74) = matrix_value - depth_offset;
+    render_mode = *(undefined4 *)(context_offset + 0x1660);
+    *(float *)(context_base + -0x78) = color_offset - depth_value;
+    apply_render_transform(context_base + -0x78, render_mode);
+    goto cleanup_render_params;
   }
-  cVar7 = FUN_180124460(extraout_XMM0_Da,iVar9,1);
-  cVar8 = FUN_1801243a0(&stack0x00000078,iVar9);
-  if ((((cVar7 == '\0') && ((cVar8 == '\0' || (*(char *)(unaff_RSI + 0x410) == '\0')))) &&
-      (*(int *)(unaff_RSI + 0x1ca4) != iVar9)) &&
-     ((*(int *)(unaff_RSI + 0x1cb0) != iVar9 || (*(int *)(unaff_RSI + 0x2da0) == iVar9)))) {
-LAB_180113c0c:
-    if ((*(int *)(unaff_RSI + 0x1b2c) != iVar9) || (*(int *)(unaff_RSI + 0x2da0) != iVar9)) {
-      *(float *)(unaff_RBP + -0x74) = fStack0000000000000074 - fStack000000000000006c;
-      uVar10 = *(undefined4 *)(unaff_RSI + 0x1660);
-      *(float *)(unaff_RBP + -0x78) = in_stack_00000070 - in_stack_00000068;
-      func_0x000180124080(unaff_RBP + -0x78,uVar10);
-      if (*(int *)(unaff_RSI + 0x1b2c) == iVar9) {
-        lVar14 = 9;
+  status_flag = check_render_queue(extra_param, render_id, 1);
+  validation_result = validate_texture_coordinates(&stack0x00000078, render_id);
+  if ((((status_flag == '\0') && ((validation_result == '\0' || (*(char *)(context_offset + 0x410) == '\0')))) &&
+      (*(int *)(context_offset + 0x1ca4) != render_id)) &&
+     ((*(int *)(context_offset + 0x1cb0) != render_id || (*(int *)(context_offset + 0x2da0) == render_id)))) {
+process_render_batch:
+    if ((*(int *)(context_offset + 0x1b2c) != render_id) || (*(int *)(context_offset + 0x2da0) != render_id)) {
+      *(float *)(context_base + -0x74) = matrix_value - depth_offset;
+      render_param = *(undefined4 *)(context_offset + 0x1660);
+      *(float *)(context_base + -0x78) = color_offset - depth_value;
+      apply_render_transform(context_base + -0x78, render_param);
+      if (*(int *)(context_offset + 0x1b2c) == render_id) {
+        buffer_offset = 9;
       }
       else {
-        lVar14 = (ulonglong)(*(int *)(unaff_RSI + 0x1b18) == iVar9) + 7;
+        buffer_offset = (ulonglong)(*(int *)(context_offset + 0x1b18) == render_id) + 7;
       }
-      puVar3 = (undefined4 *)(unaff_RSI + 0x1628 + (lVar14 + 10) * 0x10);
-      in_stack_00000068 = (float)*puVar3;
-      fStack000000000000006c = (float)puVar3[1];
-      in_stack_00000070 = (float)puVar3[2];
-      fStack0000000000000074 = (float)puVar3[3] * *(float *)(unaff_RSI + 0x1628);
-      uVar10 = func_0x000180121e20(&stack0x00000068);
-      if (iVar9 == *(int *)(unaff_RSI + 0x1ca0)) {
-        FUN_1801230e0(&stack0x00000078,1);
+      param_buffer = (undefined4 *)(context_offset + 0x1628 + (buffer_offset + 10) * 0x10);
+      depth_value = (float)*param_buffer;
+      depth_offset = (float)param_buffer[1];
+      color_offset = (float)param_buffer[2];
+      matrix_value = (float)param_buffer[3] * *(float *)(context_offset + 0x1628);
+      render_param = calculate_render_matrix(&stack0x00000068);
+      if (render_id == *(int *)(context_offset + 0x1ca0)) {
+        update_render_context(&stack0x00000078, 1);
       }
-      FUN_180122960(CONCAT44(fStack000000000000007c,in_stack_00000078),
-                    *(undefined8 *)(unaff_RBP + -0x80),uVar10,1,
-                    CONCAT44(uVar11,*(undefined4 *)(unaff_RSI + 0x1664)));
-      in_stack_00000068 = 3.4028235e+38;
-      fStack000000000000006c = 3.4028235e+38;
-      in_stack_00000070 = -3.4028235e+38;
-      fStack0000000000000074 = -3.4028235e+38;
-      cVar7 = func_0x000180113830(&stack0x00000078,iVar9,4);
-      lVar14 = _DAT_180c8a9b0;
-      if (cVar7 != '\0') {
-        plVar1 = (longlong *)(_DAT_180c8a9b0 + 0x1af8);
-        *(undefined1 *)(_DAT_180c8a9b0 + 0x1b3e) = 1;
-        puVar2 = (uint *)(*plVar1 + 0x148);
-        *puVar2 = *puVar2 | 4;
+      submit_render_batch(CONCAT44(matrix_value, stack0x00000078),
+                    *(undefined8 *)(context_base + -0x80), render_param, 1,
+                    CONCAT44(blend_mode, *(undefined4 *)(context_offset + 0x1664)));
+      depth_value = 3.4028235e+38;
+      depth_offset = 3.4028235e+38;
+      color_offset = -3.4028235e+38;
+      matrix_value = -3.4028235e+38;
+      status_flag = process_render_command(&stack0x00000078, render_id, 4);
+      buffer_offset = g_engine_context;
+      if (status_flag != '\0') {
+        engine_context = (longlong *)(g_engine_context + 0x1af8);
+        *(undefined1 *)(g_engine_context + 0x1b3e) = 1;
+        render_flags = (uint *)(*engine_context + 0x148);
+        *render_flags = *render_flags | 4;
       }
-      lVar16 = 0x1d0;
-      if (*(int *)(unaff_RSI + 0x1b2c) == iVar9) {
-        lVar16 = 0x1e0;
+      matrix_offset = 0x1d0;
+      if (*(int *)(context_offset + 0x1b2c) == render_id) {
+        matrix_offset = 0x1e0;
       }
-      puVar3 = (undefined4 *)(lVar16 + 0x1628 + lVar14);
-      uVar11 = puVar3[1];
-      uVar10 = puVar3[2];
-      fVar21 = (float)puVar3[3];
-      *(undefined4 *)(unaff_RBP + -0x78) = *puVar3;
-      *(undefined4 *)(unaff_RBP + -0x74) = uVar11;
-      *(undefined4 *)(unaff_RBP + -0x70) = uVar10;
-      *(float *)(unaff_RBP + -0x6c) = fVar21;
-      *(float *)(unaff_RBP + -0x6c) = fVar21 * *(float *)(lVar14 + 0x1628);
-      uVar11 = func_0x000180121e20(unaff_RBP + -0x78);
-      FUN_180293f50(*(undefined8 *)(unaff_RDI + 0x2e8),&stack0x00000068,&stack0x00000070,uVar11,
-                    CONCAT44(uVar25,*(undefined4 *)(unaff_RSI + 0x1698)));
-      iVar9 = FUN_180121200(unaff_RBP + -0x60,0x40,&UNK_1809fdfc0,(double)*unaff_R15);
-      pcVar13 = (char *)(unaff_RBP + -0x60 + (longlong)iVar9);
-      *(undefined4 *)(unaff_RBP + -0x78) = 0x3f000000;
-      *(undefined4 *)(unaff_RBP + -0x74) = 0x3f000000;
-      lVar14 = _DAT_180c8a9b0;
-      if (pcVar13 == (char *)0x0) {
-        pcVar13 = (char *)0xffffffffffffffff;
+      param_buffer = (undefined4 *)(matrix_offset + 0x1628 + buffer_offset);
+      blend_mode = param_buffer[1];
+      render_param = param_buffer[2];
+      color_r = (float)param_buffer[3];
+      *(undefined4 *)(context_base + -0x78) = *param_buffer;
+      *(undefined4 *)(context_base + -0x74) = blend_mode;
+      *(undefined4 *)(context_base + -0x70) = render_param;
+      *(float *)(context_base + -0x6c) = color_r;
+      *(float *)(context_base + -0x6c) = color_r * *(float *)(buffer_offset + 0x1628);
+      blend_mode = calculate_render_matrix(context_base + -0x78);
+      process_vertex_buffer(*(undefined8 *)(context_data + 0x2e8), &stack0x00000068, &stack0x00000070, blend_mode,
+                    CONCAT44(render_mode, *(undefined4 *)(context_offset + 0x1698)));
+      render_id = format_text_output(context_base + -0x60, 0x40, &g_empty_string, (double)*vertex_buffer);
+      text_ptr = (char *)(context_base + -0x60 + (longlong)render_id);
+      *(undefined4 *)(context_base + -0x78) = 0x3f000000;
+      *(undefined4 *)(context_base + -0x74) = 0x3f000000;
+      buffer_offset = g_engine_context;
+      if (text_ptr == (char *)0x0) {
+        text_ptr = (char *)0xffffffffffffffff;
       }
-      pcVar18 = (char *)(unaff_RBP + -0x60);
-      if ((char *)(unaff_RBP - 0x60U) < pcVar13) {
-        while (*pcVar18 != '\0') {
-          if (((*pcVar18 == '#') && (pcVar18[1] == '#')) ||
-             (pcVar18 = pcVar18 + 1, pcVar13 <= pcVar18)) break;
+      temp_ptr = (char *)(context_base + -0x60);
+      if ((char *)(context_base - 0x60U) < text_ptr) {
+        while (*temp_ptr != '\0') {
+          if (((*temp_ptr == '#') && (temp_ptr[1] == '#')) ||
+             (temp_ptr = temp_ptr + 1, text_ptr <= temp_ptr)) break;
         }
       }
-      fVar21 = fStack000000000000007c;
-      if (((int)pcVar18 != (int)unaff_RBP + -0x60) &&
-         (pcVar13 = pcVar18,
-         FUN_1801224c0(*(undefined8 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x2e8),
-                       &stack0x00000078,unaff_RBP + -0x80,unaff_RBP + -0x60,pcVar18),
-         fVar21 = fStack000000000000007c, lVar16 = _DAT_180c8a9b0,
-         *(char *)(lVar14 + 0x2e38) != '\0')) {
-        lVar14 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
-        if ((pcVar18 == (char *)0x0) && (pcVar18 = (char *)(unaff_RBP + -0x60), unaff_RBP != 0x5f))
+      color_r = matrix_value;
+      if (((int)temp_ptr != (int)context_base + -0x60) &&
+         (text_ptr = temp_ptr,
+         render_text_overlay(*(undefined8 *)(*(longlong *)(g_engine_context + 0x1af8) + 0x2e8),
+                       &stack0x00000078, context_base + -0x80, context_base + -0x60, temp_ptr),
+         color_r = matrix_value, matrix_offset = g_engine_context,
+         *(char *)(buffer_offset + 0x2e38) != '\0')) {
+        buffer_offset = *(longlong *)(g_engine_context + 0x1af8);
+        if ((temp_ptr == (char *)0x0) && (temp_ptr = (char *)(context_base + -0x60), context_base != 0x5f))
         {
-          while (*pcVar18 != '\0') {
-            if (((*pcVar18 == '#') && (pcVar18[1] == '#')) ||
-               (pcVar18 = pcVar18 + 1, pcVar18 == (char *)0xffffffffffffffff)) break;
+          while (*temp_ptr != '\0') {
+            if (((*temp_ptr == '#') && (temp_ptr[1] == '#')) ||
+               (temp_ptr = temp_ptr + 1, temp_ptr == (char *)0xffffffffffffffff)) break;
           }
         }
-        fVar23 = *(float *)(lVar14 + 0x138);
-        pcVar17 = (char *)(unaff_RBP + -0x60);
-        iVar9 = *(int *)(lVar14 + 0x13c);
-        *(float *)(lVar14 + 0x138) = fStack000000000000007c;
-        iVar12 = *(int *)(lVar16 + 0x2e58);
-        bVar6 = fVar23 + 1.0 < fStack000000000000007c;
-        iVar20 = iVar9;
-        if (iVar9 < iVar12) {
-          *(int *)(lVar16 + 0x2e58) = iVar9;
-          iVar20 = *(int *)(lVar14 + 0x13c);
-          iVar12 = iVar9;
+        color_b = *(float *)(buffer_offset + 0x138);
+        string_ptr = (char *)(context_base + -0x60);
+        render_id = *(int *)(buffer_offset + 0x13c);
+        *(float *)(buffer_offset + 0x138) = matrix_value;
+        texture_id = *(int *)(matrix_offset + 0x2e58);
+        is_valid = color_b + 1.0 < matrix_value;
+        shader_id = render_id;
+        if (render_id < texture_id) {
+          *(int *)(matrix_offset + 0x2e58) = render_id;
+          shader_id = *(int *)(buffer_offset + 0x13c);
+          texture_id = render_id;
         }
         while( true ) {
-          pcVar15 = (char *)memchr(pcVar17,10,(longlong)pcVar18 - (longlong)pcVar17);
-          pcVar19 = pcVar18;
-          if (pcVar15 != (char *)0x0) {
-            pcVar19 = pcVar15;
+          char_ptr = (char *)memchr(string_ptr, 10, (longlong)temp_ptr - (longlong)string_ptr);
+          output_ptr = temp_ptr;
+          if (char_ptr != (char *)0x0) {
+            output_ptr = char_ptr;
           }
-          if ((pcVar19 != pcVar18) || (pcVar17 != pcVar19)) {
-            iVar9 = (int)pcVar19 - (int)pcVar17;
-            if ((bVar6) || (pcVar17 != (char *)(unaff_RBP + -0x60))) {
-              FUN_18013c760(&UNK_180a06770,(iVar20 - iVar12) * 4,&DAT_18098bc73,iVar9,pcVar17);
-              pcVar13 = pcVar17;
+          if ((output_ptr != temp_ptr) || (string_ptr != output_ptr)) {
+            render_id = (int)output_ptr - (int)string_ptr;
+            if ((is_valid) || (string_ptr != (char *)(context_base + -0x60))) {
+              draw_text_line(&g_text_renderer, (shader_id - texture_id) * 4, &g_newline_character, render_id, string_ptr);
+              text_ptr = string_ptr;
             }
             else {
-              FUN_18013c760(&UNK_180a06768,iVar9,pcVar17,iVar9,pcVar13);
+              draw_text_line(&g_text_buffer, render_id, string_ptr, render_id, text_ptr);
             }
           }
-          if (pcVar19 == pcVar18) break;
-          pcVar17 = pcVar19 + 1;
+          if (output_ptr == temp_ptr) break;
+          string_ptr = output_ptr + 1;
         }
       }
-      if (0.0 < fVar22) {
-        FUN_180122320(CONCAT44(fVar21 + *(float *)(unaff_RSI + 0x1660),
-                               *(float *)(unaff_RBP + -0x80) + *(float *)(unaff_RSI + 0x1674)));
+      if (0.0 < color_g) {
+        render_text_element(CONCAT44(color_r + *(float *)(context_offset + 0x1660),
+                               *(float *)(context_base + -0x80) + *(float *)(context_offset + 0x1674)));
       }
-      goto LAB_180114015;
+      goto cleanup_render_params;
     }
   }
   else {
-    func_0x000180123e90(iVar9);
-    FUN_180123f30();
-    FUN_18012d2e0();
-    *(undefined4 *)(unaff_RSI + 0x1b44) = 0xc;
-    if ((cVar7 == '\0') &&
-       ((*(char *)(unaff_RSI + 0x134) == '\0' && (*(int *)(unaff_RSI + 0x1cb0) != iVar9))))
-    goto LAB_180113c0c;
-    *(undefined4 *)(unaff_RSI + 0x2da0) = 0;
+    execute_render_pipeline(render_id);
+    finalize_render_batch();
+    cleanup_render_resources();
+    *(undefined4 *)(context_offset + 0x1b44) = 0xc;
+    if ((status_flag == '\0') &&
+       ((*(char *)(context_offset + 0x134) == '\0' && (*(int *)(context_offset + 0x1cb0) != render_id))))
+    goto process_render_batch;
+    *(undefined4 *)(context_offset + 0x2da0) = 0;
   }
-  *(int *)(unaff_RDI + 0x3f0) = *(int *)(unaff_RDI + 0x3f0) + -1;
-  *(int *)(unaff_RDI + 0x3f4) = *(int *)(unaff_RDI + 0x3f4) + -1;
-  FUN_1801141d0(&stack0x00000078,iVar9);
-LAB_180114015:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x20) ^ (ulonglong)&stack0x00000000);
+  *(int *)(context_data + 0x3f0) = *(int *)(context_data + 0x3f0) + -1;
+  *(int *)(context_data + 0x3f4) = *(int *)(context_data + 0x3f4) + -1;
+  finalize_render_state(&stack0x00000078, render_id);
+cleanup_render_params:
+  cleanup_render_resources(*(ulonglong *)(context_base + -0x20) ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1801139c9(void)
-void FUN_1801139c9(void)
-
+/**
+ * 默认渲染处理函数
+ * 处理默认的渲染操作
+ */
+void process_default_render(void)
 {
-  longlong *plVar1;
-  uint *puVar2;
-  undefined4 *puVar3;
-  float fVar4;
-  float *pfVar5;
-  bool bVar6;
-  char cVar7;
-  char cVar8;
-  int iVar9;
-  undefined4 uVar10;
-  undefined4 uVar11;
-  int iVar12;
-  char *pcVar13;
-  longlong lVar14;
-  char *pcVar15;
-  longlong lVar16;
-  char *pcVar17;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  char *pcVar18;
-  undefined8 unaff_R12;
-  char *unaff_R13;
-  char *pcVar19;
-  int iVar20;
-  float *unaff_R15;
-  float fVar21;
-  float fVar22;
-  undefined4 extraout_XMM0_Da;
-  float fVar23;
-  undefined8 in_stack_00000020;
-  undefined8 uVar24;
-  undefined4 uVar25;
-  float in_stack_00000068;
-  float fStack000000000000006c;
-  float in_stack_00000070;
-  float fStack0000000000000074;
-  float in_stack_00000078;
-  float fStack000000000000007c;
+  longlong *engine_context;
+  uint *render_flags;
+  undefined4 *param_buffer;
+  float time_value;
+  float *texture_ptr;
+  bool is_valid;
+  char status_flag;
+  char validation_result;
+  int render_id;
+  undefined4 render_param;
+  undefined4 blend_mode;
+  int texture_id;
+  char *text_ptr;
+  longlong buffer_offset;
+  char *char_ptr;
+  longlong matrix_offset;
+  char *string_ptr;
+  longlong context_base;
+  longlong context_offset;
+  longlong context_data;
+  char *temp_ptr;
+  undefined8 texture_handle;
+  char *text_buffer;
+  char *output_ptr;
+  int shader_id;
+  float *vertex_buffer;
+  float color_r;
+  float color_g;
+  undefined4 extra_param;
+  float color_b;
+  undefined8 stack_param_1;
+  undefined8 param_data_2;
+  undefined4 render_mode;
+  float depth_value;
+  float depth_offset;
+  float color_offset;
+  float stencil_value;
+  float matrix_value;
   
-  uVar11 = (undefined4)((ulonglong)in_stack_00000020 >> 0x20);
-  uVar25 = (undefined4)((ulonglong)unaff_R12 >> 0x20);
-  iVar9 = FUN_180121250();
-  if (*(int *)(unaff_RSI + 0x1b2c) == iVar9) {
-    *(int *)(unaff_RSI + 0x1b34) = iVar9;
+  blend_mode = (undefined4)((ulonglong)stack_param_1 >> 0x20);
+  render_mode = (undefined4)((ulonglong)texture_handle >> 0x20);
+  render_id = get_render_object_id();
+  if (*(int *)(context_offset + 0x1b2c) == render_id) {
+    *(int *)(context_offset + 0x1b34) = render_id;
   }
-  if (*(int *)(unaff_RSI + 0x1b30) == iVar9) {
-    *(undefined1 *)(unaff_RSI + 0x1b3f) = 1;
+  if (*(int *)(context_offset + 0x1b30) == render_id) {
+    *(undefined1 *)(context_offset + 0x1b3f) = 1;
   }
-  fVar21 = (float)func_0x00018012d6a0();
-  pcVar13 = unaff_R13;
-  if (unaff_R13 != (char *)0xffffffffffffffff) {
-    while (*pcVar13 != '\0') {
-      if (((*pcVar13 == '#') && (pcVar13[1] == '#')) ||
-         (pcVar13 = pcVar13 + 1, pcVar13 == (char *)0xffffffffffffffff)) break;
+  color_r = (float)get_current_time();
+  text_ptr = text_buffer;
+  if (text_buffer != (char *)0xffffffffffffffff) {
+    while (*text_ptr != '\0') {
+      if (((*text_ptr == '#') && (text_ptr[1] == '#')) ||
+         (text_ptr = text_ptr + 1, text_ptr == (char *)0xffffffffffffffff)) break;
     }
   }
-  pfVar5 = *(float **)(unaff_RSI + 0x19f0);
-  fVar23 = *(float *)(unaff_RSI + 0x19f8);
-  if (unaff_R13 == pcVar13) {
-    fVar22 = 0.0;
+  texture_ptr = *(float **)(context_offset + 0x19f0);
+  color_b = *(float *)(context_offset + 0x19f8);
+  if (text_buffer == text_ptr) {
+    color_g = 0.0;
   }
   else {
-    uVar24 = CONCAT44(uVar11,0xbf800000);
-    FUN_180297340(pfVar5,unaff_RBP + -0x78,fVar23,0x7f7fffff,uVar24);
-    uVar11 = (undefined4)((ulonglong)uVar24 >> 0x20);
-    fVar22 = *(float *)(unaff_RBP + -0x78);
-    if (0.0 < fVar22) {
-      fVar22 = fVar22 - fVar23 / *pfVar5;
+    param_data_2 = CONCAT44(blend_mode, 0xbf800000);
+    calculate_texture_bounds(texture_ptr, context_base + -0x78, color_b, 0x7f7fffff, param_data_2);
+    blend_mode = (undefined4)((ulonglong)param_data_2 >> 0x20);
+    color_g = *(float *)(context_base + -0x78);
+    if (0.0 < color_g) {
+      color_g = color_g - color_b / *texture_ptr;
     }
-    fVar23 = *(float *)(unaff_RBP + -0x74);
-    fVar22 = (float)(int)(fVar22 + 0.95);
+    color_b = *(float *)(context_base + -0x74);
+    color_g = (float)(int)(color_g + 0.95);
   }
-  in_stack_00000068 = *(float *)(unaff_RDI + 0x100);
-  fStack000000000000006c = *(float *)(unaff_RDI + 0x104);
-  fVar4 = *(float *)(unaff_RSI + 0x1660);
-  *(float *)(unaff_RBP + -0x80) = fVar21 + in_stack_00000068;
-  fStack0000000000000074 = fVar4 + fVar4 + fVar23 + fStack000000000000006c;
-  *(float *)(unaff_RBP + -0x7c) = fStack0000000000000074;
-  if (fVar22 <= 0.0) {
-    in_stack_00000070 = 0.0;
+  depth_value = *(float *)(context_data + 0x100);
+  depth_offset = *(float *)(context_data + 0x104);
+  time_value = *(float *)(context_offset + 0x1660);
+  *(float *)(context_base + -0x80) = color_r + depth_value;
+  matrix_value = time_value + time_value + color_b + depth_offset;
+  *(float *)(context_base + -0x7c) = matrix_value;
+  if (color_g <= 0.0) {
+    color_offset = 0.0;
   }
   else {
-    in_stack_00000070 = fVar22 + *(float *)(unaff_RSI + 0x1674);
+    color_offset = color_g + *(float *)(context_offset + 0x1674);
   }
-  in_stack_00000070 = in_stack_00000070 + fVar21 + in_stack_00000068;
-  in_stack_00000078 = in_stack_00000068;
-  fStack000000000000007c = fStack000000000000006c;
-  cVar7 = FUN_180124190(&stack0x00000068,iVar9,&stack0x00000078);
-  if (cVar7 == '\0') {
-    *(float *)(unaff_RBP + -0x74) = fStack0000000000000074 - fStack000000000000006c;
-    uVar25 = *(undefined4 *)(unaff_RSI + 0x1660);
-    *(float *)(unaff_RBP + -0x78) = in_stack_00000070 - in_stack_00000068;
-    func_0x000180124080(unaff_RBP + -0x78,uVar25);
-    goto LAB_180114015;
+  color_offset = color_offset + color_r + depth_value;
+  stencil_value = depth_value;
+  matrix_value = depth_offset;
+  status_flag = validate_render_parameters(&stack0x00000068, render_id, &stack0x00000078);
+  if (status_flag == '\0') {
+    *(float *)(context_base + -0x74) = matrix_value - depth_offset;
+    render_mode = *(undefined4 *)(context_offset + 0x1660);
+    *(float *)(context_base + -0x78) = color_offset - depth_value;
+    apply_render_transform(context_base + -0x78, render_mode);
+    goto cleanup_render_params;
   }
-  cVar7 = FUN_180124460(extraout_XMM0_Da,iVar9,1);
-  cVar8 = FUN_1801243a0(&stack0x00000078,iVar9);
-  if ((((cVar7 == '\0') && ((cVar8 == '\0' || (*(char *)(unaff_RSI + 0x410) == '\0')))) &&
-      (*(int *)(unaff_RSI + 0x1ca4) != iVar9)) &&
-     ((*(int *)(unaff_RSI + 0x1cb0) != iVar9 || (*(int *)(unaff_RSI + 0x2da0) == iVar9)))) {
-LAB_180113c0c:
-    if ((*(int *)(unaff_RSI + 0x1b2c) != iVar9) || (*(int *)(unaff_RSI + 0x2da0) != iVar9)) {
-      *(float *)(unaff_RBP + -0x74) = fStack0000000000000074 - fStack000000000000006c;
-      uVar10 = *(undefined4 *)(unaff_RSI + 0x1660);
-      *(float *)(unaff_RBP + -0x78) = in_stack_00000070 - in_stack_00000068;
-      func_0x000180124080(unaff_RBP + -0x78,uVar10);
-      if (*(int *)(unaff_RSI + 0x1b2c) == iVar9) {
-        lVar14 = 9;
+  status_flag = check_render_queue(extra_param, render_id, 1);
+  validation_result = validate_texture_coordinates(&stack0x00000078, render_id);
+  if ((((status_flag == '\0') && ((validation_result == '\0' || (*(char *)(context_offset + 0x410) == '\0')))) &&
+      (*(int *)(context_offset + 0x1ca4) != render_id)) &&
+     ((*(int *)(context_offset + 0x1cb0) != render_id || (*(int *)(context_offset + 0x2da0) == render_id)))) {
+process_render_batch:
+    if ((*(int *)(context_offset + 0x1b2c) != render_id) || (*(int *)(context_offset + 0x2da0) != render_id)) {
+      *(float *)(context_base + -0x74) = matrix_value - depth_offset;
+      render_param = *(undefined4 *)(context_offset + 0x1660);
+      *(float *)(context_base + -0x78) = color_offset - depth_value;
+      apply_render_transform(context_base + -0x78, render_param);
+      if (*(int *)(context_offset + 0x1b2c) == render_id) {
+        buffer_offset = 9;
       }
       else {
-        lVar14 = (ulonglong)(*(int *)(unaff_RSI + 0x1b18) == iVar9) + 7;
+        buffer_offset = (ulonglong)(*(int *)(context_offset + 0x1b18) == render_id) + 7;
       }
-      puVar3 = (undefined4 *)(unaff_RSI + 0x1628 + (lVar14 + 10) * 0x10);
-      in_stack_00000068 = (float)*puVar3;
-      fStack000000000000006c = (float)puVar3[1];
-      in_stack_00000070 = (float)puVar3[2];
-      fStack0000000000000074 = (float)puVar3[3] * *(float *)(unaff_RSI + 0x1628);
-      uVar10 = func_0x000180121e20(&stack0x00000068);
-      if (iVar9 == *(int *)(unaff_RSI + 0x1ca0)) {
-        FUN_1801230e0(&stack0x00000078,1);
+      param_buffer = (undefined4 *)(context_offset + 0x1628 + (buffer_offset + 10) * 0x10);
+      depth_value = (float)*param_buffer;
+      depth_offset = (float)param_buffer[1];
+      color_offset = (float)param_buffer[2];
+      matrix_value = (float)param_buffer[3] * *(float *)(context_offset + 0x1628);
+      render_param = calculate_render_matrix(&stack0x00000068);
+      if (render_id == *(int *)(context_offset + 0x1ca0)) {
+        update_render_context(&stack0x00000078, 1);
       }
-      FUN_180122960(CONCAT44(fStack000000000000007c,in_stack_00000078),
-                    *(undefined8 *)(unaff_RBP + -0x80),uVar10,1,
-                    CONCAT44(uVar11,*(undefined4 *)(unaff_RSI + 0x1664)));
-      in_stack_00000068 = 3.4028235e+38;
-      fStack000000000000006c = 3.4028235e+38;
-      in_stack_00000070 = -3.4028235e+38;
-      fStack0000000000000074 = -3.4028235e+38;
-      cVar7 = func_0x000180113830(&stack0x00000078,iVar9,4);
-      lVar14 = _DAT_180c8a9b0;
-      if (cVar7 != '\0') {
-        plVar1 = (longlong *)(_DAT_180c8a9b0 + 0x1af8);
-        *(undefined1 *)(_DAT_180c8a9b0 + 0x1b3e) = 1;
-        puVar2 = (uint *)(*plVar1 + 0x148);
-        *puVar2 = *puVar2 | 4;
+      submit_render_batch(CONCAT44(matrix_value, stack0x00000078),
+                    *(undefined8 *)(context_base + -0x80), render_param, 1,
+                    CONCAT44(blend_mode, *(undefined4 *)(context_offset + 0x1664)));
+      depth_value = 3.4028235e+38;
+      depth_offset = 3.4028235e+38;
+      color_offset = -3.4028235e+38;
+      matrix_value = -3.4028235e+38;
+      status_flag = process_render_command(&stack0x00000078, render_id, 4);
+      buffer_offset = g_engine_context;
+      if (status_flag != '\0') {
+        engine_context = (longlong *)(g_engine_context + 0x1af8);
+        *(undefined1 *)(g_engine_context + 0x1b3e) = 1;
+        render_flags = (uint *)(*engine_context + 0x148);
+        *render_flags = *render_flags | 4;
       }
-      lVar16 = 0x1d0;
-      if (*(int *)(unaff_RSI + 0x1b2c) == iVar9) {
-        lVar16 = 0x1e0;
+      matrix_offset = 0x1d0;
+      if (*(int *)(context_offset + 0x1b2c) == render_id) {
+        matrix_offset = 0x1e0;
       }
-      puVar3 = (undefined4 *)(lVar16 + 0x1628 + lVar14);
-      uVar11 = puVar3[1];
-      uVar10 = puVar3[2];
-      fVar21 = (float)puVar3[3];
-      *(undefined4 *)(unaff_RBP + -0x78) = *puVar3;
-      *(undefined4 *)(unaff_RBP + -0x74) = uVar11;
-      *(undefined4 *)(unaff_RBP + -0x70) = uVar10;
-      *(float *)(unaff_RBP + -0x6c) = fVar21;
-      *(float *)(unaff_RBP + -0x6c) = fVar21 * *(float *)(lVar14 + 0x1628);
-      uVar11 = func_0x000180121e20(unaff_RBP + -0x78);
-      FUN_180293f50(*(undefined8 *)(unaff_RDI + 0x2e8),&stack0x00000068,&stack0x00000070,uVar11,
-                    CONCAT44(uVar25,*(undefined4 *)(unaff_RSI + 0x1698)));
-      iVar9 = FUN_180121200(unaff_RBP + -0x60,0x40,&UNK_1809fdfc0,(double)*unaff_R15);
-      pcVar13 = (char *)(unaff_RBP + -0x60 + (longlong)iVar9);
-      *(undefined4 *)(unaff_RBP + -0x78) = 0x3f000000;
-      *(undefined4 *)(unaff_RBP + -0x74) = 0x3f000000;
-      lVar14 = _DAT_180c8a9b0;
-      if (pcVar13 == (char *)0x0) {
-        pcVar13 = (char *)0xffffffffffffffff;
+      param_buffer = (undefined4 *)(matrix_offset + 0x1628 + buffer_offset);
+      blend_mode = param_buffer[1];
+      render_param = param_buffer[2];
+      color_r = (float)param_buffer[3];
+      *(undefined4 *)(context_base + -0x78) = *param_buffer;
+      *(undefined4 *)(context_base + -0x74) = blend_mode;
+      *(undefined4 *)(context_base + -0x70) = render_param;
+      *(float *)(context_base + -0x6c) = color_r;
+      *(float *)(context_base + -0x6c) = color_r * *(float *)(buffer_offset + 0x1628);
+      blend_mode = calculate_render_matrix(context_base + -0x78);
+      process_vertex_buffer(*(undefined8 *)(context_data + 0x2e8), &stack0x00000068, &stack0x00000070, blend_mode,
+                    CONCAT44(render_mode, *(undefined4 *)(context_offset + 0x1698)));
+      render_id = format_text_output(context_base + -0x60, 0x40, &g_empty_string, (double)*vertex_buffer);
+      text_ptr = (char *)(context_base + -0x60 + (longlong)render_id);
+      *(undefined4 *)(context_base + -0x78) = 0x3f000000;
+      *(undefined4 *)(context_base + -0x74) = 0x3f000000;
+      buffer_offset = g_engine_context;
+      if (text_ptr == (char *)0x0) {
+        text_ptr = (char *)0xffffffffffffffff;
       }
-      pcVar18 = (char *)(unaff_RBP + -0x60);
-      if ((char *)(unaff_RBP - 0x60U) < pcVar13) {
-        while (*pcVar18 != '\0') {
-          if (((*pcVar18 == '#') && (pcVar18[1] == '#')) ||
-             (pcVar18 = pcVar18 + 1, pcVar13 <= pcVar18)) break;
+      temp_ptr = (char *)(context_base + -0x60);
+      if ((char *)(context_base - 0x60U) < text_ptr) {
+        while (*temp_ptr != '\0') {
+          if (((*temp_ptr == '#') && (temp_ptr[1] == '#')) ||
+             (temp_ptr = temp_ptr + 1, text_ptr <= temp_ptr)) break;
         }
       }
-      fVar21 = fStack000000000000007c;
-      if (((int)pcVar18 != (int)unaff_RBP + -0x60) &&
-         (pcVar13 = pcVar18,
-         FUN_1801224c0(*(undefined8 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x2e8),
-                       &stack0x00000078,unaff_RBP + -0x80,unaff_RBP + -0x60,pcVar18),
-         fVar21 = fStack000000000000007c, lVar16 = _DAT_180c8a9b0,
-         *(char *)(lVar14 + 0x2e38) != '\0')) {
-        lVar14 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
-        if ((pcVar18 == (char *)0x0) && (pcVar18 = (char *)(unaff_RBP + -0x60), unaff_RBP != 0x5f))
+      color_r = matrix_value;
+      if (((int)temp_ptr != (int)context_base + -0x60) &&
+         (text_ptr = temp_ptr,
+         render_text_overlay(*(undefined8 *)(*(longlong *)(g_engine_context + 0x1af8) + 0x2e8),
+                       &stack0x00000078, context_base + -0x80, context_base + -0x60, temp_ptr),
+         color_r = matrix_value, matrix_offset = g_engine_context,
+         *(char *)(buffer_offset + 0x2e38) != '\0')) {
+        buffer_offset = *(longlong *)(g_engine_context + 0x1af8);
+        if ((temp_ptr == (char *)0x0) && (temp_ptr = (char *)(context_base + -0x60), context_base != 0x5f))
         {
-          while (*pcVar18 != '\0') {
-            if (((*pcVar18 == '#') && (pcVar18[1] == '#')) ||
-               (pcVar18 = pcVar18 + 1, pcVar18 == (char *)0xffffffffffffffff)) break;
+          while (*temp_ptr != '\0') {
+            if (((*temp_ptr == '#') && (temp_ptr[1] == '#')) ||
+               (temp_ptr = temp_ptr + 1, temp_ptr == (char *)0xffffffffffffffff)) break;
           }
         }
-        fVar23 = *(float *)(lVar14 + 0x138);
-        pcVar17 = (char *)(unaff_RBP + -0x60);
-        iVar9 = *(int *)(lVar14 + 0x13c);
-        *(float *)(lVar14 + 0x138) = fStack000000000000007c;
-        iVar12 = *(int *)(lVar16 + 0x2e58);
-        bVar6 = fVar23 + 1.0 < fStack000000000000007c;
-        iVar20 = iVar9;
-        if (iVar9 < iVar12) {
-          *(int *)(lVar16 + 0x2e58) = iVar9;
-          iVar20 = *(int *)(lVar14 + 0x13c);
-          iVar12 = iVar9;
+        color_b = *(float *)(buffer_offset + 0x138);
+        string_ptr = (char *)(context_base + -0x60);
+        render_id = *(int *)(buffer_offset + 0x13c);
+        *(float *)(buffer_offset + 0x138) = matrix_value;
+        texture_id = *(int *)(matrix_offset + 0x2e58);
+        is_valid = color_b + 1.0 < matrix_value;
+        shader_id = render_id;
+        if (render_id < texture_id) {
+          *(int *)(matrix_offset + 0x2e58) = render_id;
+          shader_id = *(int *)(buffer_offset + 0x13c);
+          texture_id = render_id;
         }
         while( true ) {
-          pcVar15 = (char *)memchr(pcVar17,10,(longlong)pcVar18 - (longlong)pcVar17);
-          pcVar19 = pcVar18;
-          if (pcVar15 != (char *)0x0) {
-            pcVar19 = pcVar15;
+          char_ptr = (char *)memchr(string_ptr, 10, (longlong)temp_ptr - (longlong)string_ptr);
+          output_ptr = temp_ptr;
+          if (char_ptr != (char *)0x0) {
+            output_ptr = char_ptr;
           }
-          if ((pcVar19 != pcVar18) || (pcVar17 != pcVar19)) {
-            iVar9 = (int)pcVar19 - (int)pcVar17;
-            if ((bVar6) || (pcVar17 != (char *)(unaff_RBP + -0x60))) {
-              FUN_18013c760(&UNK_180a06770,(iVar20 - iVar12) * 4,&DAT_18098bc73,iVar9,pcVar17);
-              pcVar13 = pcVar17;
+          if ((output_ptr != temp_ptr) || (string_ptr != output_ptr)) {
+            render_id = (int)output_ptr - (int)string_ptr;
+            if ((is_valid) || (string_ptr != (char *)(context_base + -0x60))) {
+              draw_text_line(&g_text_renderer, (shader_id - texture_id) * 4, &g_newline_character, render_id, string_ptr);
+              text_ptr = string_ptr;
             }
             else {
-              FUN_18013c760(&UNK_180a06768,iVar9,pcVar17,iVar9,pcVar13);
+              draw_text_line(&g_text_buffer, render_id, string_ptr, render_id, text_ptr);
             }
           }
-          if (pcVar19 == pcVar18) break;
-          pcVar17 = pcVar19 + 1;
+          if (output_ptr == temp_ptr) break;
+          string_ptr = output_ptr + 1;
         }
       }
-      if (0.0 < fVar22) {
-        FUN_180122320(CONCAT44(fVar21 + *(float *)(unaff_RSI + 0x1660),
-                               *(float *)(unaff_RBP + -0x80) + *(float *)(unaff_RSI + 0x1674)));
+      if (0.0 < color_g) {
+        render_text_element(CONCAT44(color_r + *(float *)(context_offset + 0x1660),
+                               *(float *)(context_base + -0x80) + *(float *)(context_offset + 0x1674)));
       }
-      goto LAB_180114015;
+      goto cleanup_render_params;
     }
   }
   else {
-    func_0x000180123e90(iVar9);
-    FUN_180123f30();
-    FUN_18012d2e0();
-    *(undefined4 *)(unaff_RSI + 0x1b44) = 0xc;
-    if ((cVar7 == '\0') &&
-       ((*(char *)(unaff_RSI + 0x134) == '\0' && (*(int *)(unaff_RSI + 0x1cb0) != iVar9))))
-    goto LAB_180113c0c;
-    *(undefined4 *)(unaff_RSI + 0x2da0) = 0;
+    execute_render_pipeline(render_id);
+    finalize_render_batch();
+    cleanup_render_resources();
+    *(undefined4 *)(context_offset + 0x1b44) = 0xc;
+    if ((status_flag == '\0') &&
+       ((*(char *)(context_offset + 0x134) == '\0' && (*(int *)(context_offset + 0x1cb0) != render_id))))
+    goto process_render_batch;
+    *(undefined4 *)(context_offset + 0x2da0) = 0;
   }
-  *(int *)(unaff_RDI + 0x3f0) = *(int *)(unaff_RDI + 0x3f0) + -1;
-  *(int *)(unaff_RDI + 0x3f4) = *(int *)(unaff_RDI + 0x3f4) + -1;
-  FUN_1801141d0(&stack0x00000078,iVar9);
-LAB_180114015:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x20) ^ (ulonglong)&stack0x00000000);
+  *(int *)(context_data + 0x3f0) = *(int *)(context_data + 0x3f0) + -1;
+  *(int *)(context_data + 0x3f4) = *(int *)(context_data + 0x3f4) + -1;
+  finalize_render_state(&stack0x00000078, render_id);
+cleanup_render_params:
+  cleanup_render_resources(*(ulonglong *)(context_base + -0x20) ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-
-
-// 函数: void FUN_180113b48(void)
-void FUN_180113b48(void)
-
+/**
+ * 快速渲染清理函数
+ * 快速清理渲染状态和资源
+ */
+void quick_render_cleanup(void)
 {
-  undefined4 uVar1;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  float fStack0000000000000068;
-  float fStack000000000000006c;
-  float fStack0000000000000070;
-  float fStack0000000000000074;
+  undefined4 render_param;
+  longlong context_base;
+  longlong context_offset;
+  float depth_value;
+  float depth_offset;
+  float color_offset;
+  float stencil_value;
+  float matrix_value;
   
-  *(float *)(unaff_RBP + -0x74) = fStack0000000000000074 - fStack000000000000006c;
-  uVar1 = *(undefined4 *)(unaff_RSI + 0x1660);
-  *(float *)(unaff_RBP + -0x78) = fStack0000000000000070 - fStack0000000000000068;
-  func_0x000180124080(unaff_RBP + -0x78,uVar1);
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x20) ^ (ulonglong)&stack0x00000000);
+  *(float *)(context_base + -0x74) = matrix_value - depth_offset;
+  render_param = *(undefined4 *)(context_offset + 0x1660);
+  *(float *)(context_base + -0x78) = color_offset - depth_value;
+  apply_render_transform(context_base + -0x78, render_param);
+  cleanup_render_resources(*(ulonglong *)(context_base + -0x20) ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-
-
-// 函数: void FUN_18011403f(void)
-void FUN_18011403f(void)
-
+/**
+ * 渲染状态清理函数
+ * 清理渲染状态和相关资源
+ */
+void cleanup_render_state(void)
 {
-  longlong unaff_RBP;
+  longlong context_base;
   
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x20) ^ (ulonglong)&stack0x00000000);
+  cleanup_render_resources(*(ulonglong *)(context_base + -0x20) ^ (ulonglong)&stack0x00000000);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
+// 全局变量定义
+// g_engine_context - 全局引擎上下文指针
+// g_render_checksum - 渲染校验和
+// g_empty_string - 空字符串常量
+// g_text_renderer - 文本渲染器对象
+// g_text_buffer - 文本缓冲区
+// g_newline_character - 换行字符常量
