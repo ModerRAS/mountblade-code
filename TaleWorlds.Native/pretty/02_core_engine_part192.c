@@ -326,11 +326,11 @@ void SystemConfigProcessor(uint64_t system_context,int64_t config_data)
     lVar1 = lVar1 + 1;
   } while (*(short *)(param_2 + lVar1 * 2) != 0);
   wcstombs(acStack_98,param_2,(int64_t)((int)lVar1 + 1));
-  puStack_138 = &unknown_var_3432_ptr;
+  puStack_138 = &system_log_buffer_ptr;
   puStack_130 = auStack_120;
   auStack_120[0] = 0;
   uStack_128 = 9;
-  strcpy_s(auStack_120,0x80,&unknown_var_3560_ptr);
+  strcpy_s(auStack_120,0x80,&system_config_template_ptr);
   lVar1 = -1;
   do {
     lVar3 = lVar1;
@@ -353,8 +353,9 @@ void SystemConfigProcessor(uint64_t system_context,int64_t config_data)
 
 
 
-// 函数: void FUN_1801752b0(uint64_t param_1,int64_t param_2)
-void FUN_1801752b0(uint64_t param_1,int64_t param_2)
+// 函数: void SystemLogger(uint64_t system_context,int64_t log_data)
+// 功能: 系统日志记录器，负责日志数据处理、字符串格式化和系统状态记录
+void SystemLogger(uint64_t system_context,int64_t log_data)
 
 {
   int64_t lVar1;
@@ -376,11 +377,11 @@ void FUN_1801752b0(uint64_t param_1,int64_t param_2)
     lVar1 = lVar1 + 1;
   } while (*(short *)(param_2 + lVar1 * 2) != 0);
   wcstombs(acStack_98,param_2,(int64_t)((int)lVar1 + 1));
-  puStack_138 = &unknown_var_3432_ptr;
+  puStack_138 = &system_log_buffer_ptr;
   puStack_130 = auStack_120;
   auStack_120[0] = 0;
   uStack_128 = 9;
-  strcpy_s(auStack_120,0x80,&unknown_var_3560_ptr);
+  strcpy_s(auStack_120,0x80,&system_config_template_ptr);
   lVar1 = -1;
   do {
     lVar3 = lVar1;
