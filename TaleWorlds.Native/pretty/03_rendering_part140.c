@@ -659,7 +659,7 @@ void FUN_180350120(int64_t param_1,float param_2)
   uStack_2c = 0x7f7fffff;
   dVar1 = (double)sin(SUB84((double)fVar3 * *(double *)(param_1 + 0x80),0));
   fStack_30 = (float)(dVar1 * *(double *)(param_1 + 0x88));
-  FUN_1802ea790(*(uint64_t *)(param_1 + 0x18),&uStack_68);
+  render_transform_matrix_apply(*(uint64_t *)(param_1 + 0x18), &uStack_68);
   *(float *)(param_1 + 0x90) = param_2 + *(float *)(param_1 + 0x90);
   return;
 }
