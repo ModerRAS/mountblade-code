@@ -505,143 +505,145 @@ void initialize_resource_manager(longlong *context_ptr)
 
 
 
-undefined8 * FUN_1800590b0(undefined8 *param_1,undefined1 *param_2,longlong param_3)
+// 函数: 查找资源节点
+resource_node_t *find_resource_node(resource_node_t *root_node, uint8_t *found_flag, resource_search_context_t *search_context)
 
 {
-  byte bVar1;
-  bool bVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
-  uint uVar5;
-  byte *pbVar6;
-  longlong lVar7;
+  uint8_t byte1;
+  bool comparison_result;
+  resource_node_t *current_node;
+  resource_node_t *previous_node;
+  uint uint_val;
+  uint8_t *byte_ptr;
+  longlong length_diff;
   
-  bVar2 = true;
-  puVar4 = (undefined8 *)param_1[2];
-  puVar3 = param_1;
-  while (puVar4 != (undefined8 *)0x0) {
-    puVar3 = puVar4;
-    if (*(int *)(puVar4 + 6) == 0) {
-      bVar2 = false;
+  comparison_result = true;
+  current_node = (resource_node_t *)root_node[2];
+  previous_node = root_node;
+  while (current_node != (resource_node_t *)0x0) {
+    previous_node = current_node;
+    if (*(int *)(current_node + 6) == 0) {
+      comparison_result = false;
 LAB_1800590e2:
-      puVar4 = (undefined8 *)*puVar4;
+      current_node = (resource_node_t *)*current_node;
     }
     else {
-      if (*(int *)(param_3 + 0x10) == 0) {
-        bVar2 = true;
+      if (*(int *)(search_context + 0x10) == 0) {
+        comparison_result = true;
       }
       else {
-        pbVar6 = (byte *)puVar4[5];
-        lVar7 = *(longlong *)(param_3 + 8) - (longlong)pbVar6;
+        byte_ptr = (uint8_t *)current_node[5];
+        length_diff = *(longlong *)(search_context + 8) - (longlong)byte_ptr;
         do {
-          bVar1 = *pbVar6;
-          uVar5 = (uint)pbVar6[lVar7];
-          if (bVar1 != uVar5) break;
-          pbVar6 = pbVar6 + 1;
-        } while (uVar5 != 0);
-        bVar2 = 0 < (int)(bVar1 - uVar5);
+          byte1 = *byte_ptr;
+          uint_val = (uint)byte_ptr[length_diff];
+          if (byte1 != uint_val) break;
+          byte_ptr = byte_ptr + 1;
+        } while (uint_val != 0);
+        comparison_result = 0 < (int)(byte1 - uint_val);
       }
-      if (!bVar2) goto LAB_1800590e2;
-      puVar4 = (undefined8 *)puVar4[1];
+      if (!comparison_result) goto LAB_1800590e2;
+      current_node = (resource_node_t *)current_node[1];
     }
   }
-  puVar4 = puVar3;
-  if (bVar2) {
-    if (puVar3 == (undefined8 *)param_1[1]) {
-      *param_2 = 1;
-      return puVar3;
+  current_node = previous_node;
+  if (comparison_result) {
+    if (previous_node == (resource_node_t *)root_node[1]) {
+      *found_flag = 1;
+      return previous_node;
     }
-    puVar4 = (undefined8 *)func_0x00018066b9a0(puVar3);
+    current_node = (resource_node_t *)remove_resource_node(previous_node);
   }
-  if (*(int *)(param_3 + 0x10) != 0) {
-    if (*(int *)(puVar4 + 6) != 0) {
-      pbVar6 = *(byte **)(param_3 + 8);
-      lVar7 = puVar4[5] - (longlong)pbVar6;
+  if (*(int *)(search_context + 0x10) != 0) {
+    if (*(int *)(current_node + 6) != 0) {
+      byte_ptr = *(uint8_t **)(search_context + 8);
+      length_diff = current_node[5] - (longlong)byte_ptr;
       do {
-        bVar1 = *pbVar6;
-        uVar5 = (uint)pbVar6[lVar7];
-        if (bVar1 != uVar5) break;
-        pbVar6 = pbVar6 + 1;
-      } while (uVar5 != 0);
-      if ((int)(bVar1 - uVar5) < 1) goto LAB_1800591a6;
+        byte1 = *byte_ptr;
+        uint_val = (uint)byte_ptr[length_diff];
+        if (byte1 != uint_val) break;
+        byte_ptr = byte_ptr + 1;
+      } while (uint_val != 0);
+      if ((int)(byte1 - uint_val) < 1) goto LAB_1800591a6;
     }
-    *param_2 = 1;
-    return puVar3;
+    *found_flag = 1;
+    return previous_node;
   }
 LAB_1800591a6:
-  *param_2 = 0;
-  return puVar4;
+  *found_flag = 0;
+  return current_node;
 }
 
 
 
 
 
-// 函数: void FUN_1800591c0(longlong *param_1)
-void FUN_1800591c0(longlong *param_1)
+// 函数: 清理资源池
+void cleanup_resource_pool(resource_pool_t *pool)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong pool_end;
+  longlong current_resource;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x548) {
-    FUN_1800594b0(lVar2);
+  pool_end = pool[1];
+  for (current_resource = *pool; current_resource != pool_end; current_resource = current_resource + 0x548) {
+    cleanup_resource_entry(current_resource);
   }
-  if (*param_1 == 0) {
+  if (*pool == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  free_memory_pool();
 }
 
 
 
 
 
-// 函数: void FUN_180059230(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180059230(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: 初始化资源管理器实例
+void initialize_resource_manager_instance(resource_manager_t *manager, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
-  FUN_1800593f0(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  initialize_resource_manager_internal(manager,*(undefined8 *)(manager + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
 
 
-longlong FUN_180059250(longlong param_1,longlong param_2,longlong param_3)
+// 函数: 复制资源数据
+longlong copy_resource_data(resource_data_t *src_start, resource_data_t *src_end, resource_data_t *dst)
 
 {
-  uint uVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  uint data_size;
+  resource_data_t *src_entry;
+  longlong entry_count;
+  ulonglong size_ulong;
   
-  lVar3 = param_2 - param_1 >> 5;
-  if (0 < lVar3) {
-    plVar2 = (longlong *)(param_1 + 8);
-    param_1 = param_3 - param_1;
+  entry_count = src_end - src_start >> 5;
+  if (0 < entry_count) {
+    src_entry = (resource_data_t *)(src_start + 8);
+    src_start = dst - src_start;
     do {
-      uVar1 = *(uint *)(plVar2 + 1);
-      uVar4 = (ulonglong)uVar1;
-      if (*plVar2 != 0) {
-        FUN_1806277c0(param_3,uVar4);
+      data_size = *(uint *)(src_entry + 1);
+      size_ulong = (ulonglong)data_size;
+      if (*src_entry != 0) {
+        allocate_resource_memory(dst,size_ulong);
       }
-      if (uVar1 != 0) {
+      if (data_size != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(*(undefined8 *)(param_1 + (longlong)plVar2),*plVar2,uVar4);
+        memcpy(*(undefined8 *)(src_start + (longlong)src_entry),*src_entry,size_ulong);
       }
-      *(undefined4 *)(param_1 + 8 + (longlong)plVar2) = 0;
-      if (*(longlong *)(param_1 + (longlong)plVar2) != 0) {
-        *(undefined1 *)(uVar4 + *(longlong *)(param_1 + (longlong)plVar2)) = 0;
+      *(undefined4 *)(src_start + 8 + (longlong)src_entry) = 0;
+      if (*(longlong *)(src_start + (longlong)src_entry) != 0) {
+        *(undefined1 *)(size_ulong + *(longlong *)(src_start + (longlong)src_entry)) = 0;
       }
-      lVar3 = lVar3 + -1;
-      *(undefined4 *)(param_1 + 0x14 + (longlong)plVar2) = *(undefined4 *)((longlong)plVar2 + 0x14);
-      param_3 = param_3 + 0x20;
-      plVar2 = plVar2 + 4;
-    } while (0 < lVar3);
+      entry_count = entry_count + -1;
+      *(undefined4 *)(src_start + 0x14 + (longlong)src_entry) = *(undefined4 *)((longlong)src_entry + 0x14);
+      dst = dst + 0x20;
+      src_entry = src_entry + 4;
+    } while (0 < entry_count);
   }
-  return param_3;
+  return dst;
 }
 
 

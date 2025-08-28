@@ -865,8 +865,12 @@ void 初始化线程池资源(undefined8 param1,longlong config_ptr)
 
 
 
-// 函数: void FUN_180061be0(longlong *param_1)
-void FUN_180061be0(longlong *param_1)
+/**
+ * 处理线程池任务类型4
+ * 处理线程池中类型4的任务，包括任务的创建、执行和清理
+ * @param task_ptr 任务指针
+ */
+void 处理线程池任务类型4(longlong *task_ptr)
 
 {
   undefined8 *puVar1;
@@ -946,8 +950,12 @@ void FUN_180061be0(longlong *param_1)
 
 
 
-// 函数: void FUN_180061db0(longlong *param_1)
-void FUN_180061db0(longlong *param_1)
+/**
+ * 处理线程池任务类型3
+ * 处理线程池中类型3的任务，包括任务的创建、执行和清理
+ * @param task_ptr 任务指针
+ */
+void 处理线程池任务类型3(longlong *task_ptr)
 
 {
   undefined8 *puVar1;
@@ -1025,8 +1033,11 @@ void FUN_180061db0(longlong *param_1)
 
 
 
-// 函数: void FUN_180061f80(void)
-void FUN_180061f80(void)
+/**
+ * 执行核心线程池函数
+ * 执行线程池的核心功能函数
+ */
+void 执行核心线程池函数(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -1037,11 +1048,18 @@ void FUN_180061f80(void)
 
 
 
-// 函数: void FUN_1800622d0(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
-void FUN_1800622d0(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
+/**
+ * 执行线程池任务包装器1
+ * 执行线程池任务的包装器函数1
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ */
+void 执行线程池任务包装器1(undefined8 param1,undefined8 param2,undefined4 param3,undefined8 param4)
 
 {
-  FUN_180061f80(param_1,param_2,0xffffffff00000000,param_3,param_4,&stack0x00000028);
+  FUN_180061f80(param1,param2,0xffffffff00000000,param3,param4,&stack0x00000028);
   return;
 }
 
@@ -1049,8 +1067,15 @@ void FUN_1800622d0(undefined8 param_1,undefined8 param_2,undefined4 param_3,unde
 
 
 
-// 函数: void FUN_180062300(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180062300(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 执行线程池任务包装器2
+ * 执行线程池任务的包装器函数2
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ */
+void 执行线程池任务包装器2(undefined8 param1,undefined8 param2,undefined8 param3,undefined8 param4)
 
 {
   undefined8 uStackX_18;
@@ -1066,8 +1091,15 @@ void FUN_180062300(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 
 
-// 函数: void FUN_180062340(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180062340(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 执行线程池任务包装器3
+ * 执行线程池任务的包装器函数3
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ */
+void 执行线程池任务包装器3(undefined8 param1,undefined8 param2,undefined8 param3,undefined8 param4)
 
 {
   undefined8 uStackX_20;
@@ -1081,8 +1113,11 @@ void FUN_180062340(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 
 
-// 函数: void FUN_180062380(void)
-void FUN_180062380(void)
+/**
+ * 执行线程池任务包装器4
+ * 执行线程池任务的包装器函数4
+ */
+void 执行线程池任务包装器4(void)
 
 {
   FUN_180061f80();
@@ -1093,8 +1128,11 @@ void FUN_180062380(void)
 
 
 
-// 函数: void FUN_1800623b0(void)
-void FUN_1800623b0(void)
+/**
+ * 执行线程池任务包装器5
+ * 执行线程池任务的包装器函数5
+ */
+void 执行线程池任务包装器5(void)
 
 {
   FUN_180061f80();
@@ -1107,8 +1145,12 @@ void FUN_1800623b0(void)
 
 
 
-// 函数: void FUN_1800623e0(longlong *param_1)
-void FUN_1800623e0(longlong *param_1)
+/**
+ * 处理线程池任务类型6
+ * 处理线程池中类型6的任务，包括任务的创建、执行和清理
+ * @param task_ptr 任务指针
+ */
+void 处理线程池任务类型6(longlong *task_ptr)
 
 {
   undefined8 *puVar1;
@@ -1151,8 +1193,11 @@ void FUN_1800623e0(longlong *param_1)
 
 
 
-// 函数: void FUN_1800624c0(void)
-void FUN_1800624c0(void)
+/**
+ * 初始化时间相关资源
+ * 初始化时间相关的资源和数据结构
+ */
+void 初始化时间相关资源(void)
 
 {
   undefined1 auStack_208 [48];

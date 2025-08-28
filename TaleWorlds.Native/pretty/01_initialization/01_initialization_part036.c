@@ -547,375 +547,498 @@ create_file_table_entry(longlong file_table_manager, longlong *file_entry, undef
 
 
 
-undefined8 FUN_180068a90(ulonglong *param_1,undefined8 *param_2)
+// 函数: 查找可用内存块
+// 功能: 在内存池中查找可用的内存块，优先选择最小的合适块以减少内存碎片
+// 参数: param_1 - 内存池管理器指针
+//       param_2 - 输出参数，返回找到的内存块信息
+// 返回: 1表示找到可用块，0表示未找到
+undefined8 find_available_memory_block(ulonglong *memory_pool_manager, undefined8 *block_info)
 
 {
-  longlong *plVar1;
-  ulonglong *puVar2;
-  longlong lVar3;
-  longlong lVar4;
-  char cVar5;
-  bool bVar6;
-  ulonglong uVar7;
-  ulonglong uVar8;
-  ulonglong uVar9;
-  ulonglong uVar10;
-  ulonglong uVar11;
-  ulonglong uVar12;
-  ulonglong uVar13;
-  ulonglong uVar14;
+  longlong *block_ptr;
+  ulonglong *allocation_counter;
+  longlong allocation_size;
+  longlong block_offset;
+  char has_available_block;
+  bool allocation_success;
+  ulonglong current_block;
+  ulonglong best_block;
+  ulonglong best_size;
+  ulonglong current_size;
+  ulonglong block_head;
+  ulonglong available_count;
+  ulonglong smallest_size;
+  ulonglong block_address;
   
-  uVar11 = *param_1;
-  uVar10 = 0;
-  uVar8 = uVar10;
-  uVar12 = uVar10;
-  uVar14 = uVar10;
+  block_head = *memory_pool_manager;
+  best_block = 0;
+  best_size = 0;
+  current_size = 0;
+  available_count = 0;
+  
+  // 遍历内存池，寻找最佳匹配的内存块（最多检查3个块）
   do {
-    uVar9 = uVar8;
-    if (uVar11 == 0) break;
-    uVar7 = *(longlong *)(uVar11 + 0x20) - *(longlong *)(uVar11 + 0x28);
-    if ((ulonglong)(*(longlong *)(uVar11 + 0x28) - *(longlong *)(uVar11 + 0x20)) <
+    current_block = best_block;
+    if (block_head == 0) break;
+    
+    // 计算当前块的可用大小
+    current_size = *(longlong *)(block_head + 0x20) - *(longlong *)(block_head + 0x28);
+    if ((ulonglong)(*(longlong *)(block_head + 0x28) - *(longlong *)(block_head + 0x20)) <
         0x8000000000000001) {
-      uVar7 = uVar10;
+      current_size = 0;
     }
-    uVar13 = uVar12;
-    if ((uVar7 != 0) && (uVar14 = uVar14 + 1, uVar9 = uVar11, uVar13 = uVar7, uVar7 <= uVar12)) {
-      uVar9 = uVar8;
-      uVar13 = uVar12;
+    
+    smallest_size = best_size;
+    if ((current_size != 0) && (available_count = available_count + 1, 
+        current_block = block_head, smallest_size = current_size, current_size <= best_size)) {
+      current_block = best_block;
+      smallest_size = best_size;
     }
-    plVar1 = (longlong *)(uVar11 + 8);
-    uVar11 = *plVar1 - 8;
-    if (*plVar1 == 0) {
-      uVar11 = uVar10;
+    
+    block_ptr = (longlong *)(block_head + 8);
+    block_head = *block_ptr - 8;
+    if (*block_ptr == 0) {
+      block_head = 0;
     }
-    uVar8 = uVar9;
-    uVar12 = uVar13;
-  } while (uVar14 < 3);
-  if (uVar14 != 0) {
-    cVar5 = FUN_180068ce0(uVar9,param_2);
-    if (cVar5 != '\0') {
-      return 1;
+    best_block = current_block;
+    best_size = smallest_size;
+  } while (available_count < 3);
+  
+  if (available_count != 0) {
+    // 检查最佳候选块是否可用
+    has_available_block = check_memory_block_availability(current_block, block_info);
+    if (has_available_block != '\0') {
+      return 1;  // 找到可用块
     }
-    uVar11 = *param_1;
-    while (uVar11 != 0) {
-      if (uVar11 != uVar9) {
-        lVar4 = *(longlong *)(uVar11 + 0x38);
-        if (*(char *)(uVar11 + 0x48) == '\0') {
-          if ((ulonglong)((*(longlong *)(uVar11 + 0x30) - lVar4) - *(longlong *)(uVar11 + 0x20)) <
-              0x8000000000000001) goto LAB_180068c92;
+    
+    // 如果最佳块不可用，继续搜索其他块
+    block_head = *memory_pool_manager;
+    while (block_head != 0) {
+      if (block_head != current_block) {
+        block_offset = *(longlong *)(block_head + 0x38);
+        if (*(char *)(block_head + 0x48) == '\0') {
+          // 处理普通内存块
+          if ((ulonglong)((*(longlong *)(block_head + 0x30) - block_offset) - 
+              *(longlong *)(block_head + 0x20)) < 0x8000000000000001) goto allocation_failed;
+          
+          // 尝试分配内存
           LOCK();
-          plVar1 = (longlong *)(uVar11 + 0x30);
-          lVar3 = *plVar1;
-          *plVar1 = *plVar1 + 1;
+          block_ptr = (longlong *)(block_head + 0x30);
+          allocation_size = *block_ptr;
+          *block_ptr = *block_ptr + 1;
           UNLOCK();
-          if ((ulonglong)((lVar3 - *(longlong *)(uVar11 + 0x20)) - lVar4) < 0x8000000000000001)
-          goto LAB_180068c87;
+          
+          if ((ulonglong)((allocation_size - *(longlong *)(block_head + 0x20)) - block_offset) < 
+              0x8000000000000001) goto increment_counter;
+          
+          // 分配位图内存
           LOCK();
-          puVar2 = (ulonglong *)(uVar11 + 0x28);
-          uVar8 = *puVar2;
-          *puVar2 = *puVar2 + 1;
+          allocation_counter = (ulonglong *)(block_head + 0x28);
+          block_address = *allocation_counter;
+          *allocation_counter = *allocation_counter + 1;
           UNLOCK();
-          plVar1 = *(longlong **)(uVar11 + 0x60);
-          lVar3 = *(longlong *)
-                   (plVar1[3] +
-                   (((uVar8 & 0xffffffffffffffe0) - **(longlong **)(plVar1[3] + plVar1[1] * 8) >> 5)
-                    + plVar1[1] & *plVar1 - 1U) * 8);
-          lVar4 = *(longlong *)(lVar3 + 8);
-          *param_2 = *(undefined8 *)(lVar4 + (ulonglong)((uint)uVar8 & 0x1f) * 8);
+          
+          block_ptr = *(longlong **)(block_head + 0x60);
+          allocation_size = *(longlong *)
+                   (block_ptr[3] +
+                   (((block_address & 0xffffffffffffffe0) - **(longlong **)(block_ptr[3] + block_ptr[1] * 8) >> 5)
+                    + block_ptr[1] & *block_ptr - 1U) * 8);
+          block_offset = *(longlong *)(allocation_size + 8);
+          *block_info = *(undefined8 *)(block_offset + (ulonglong)((uint)block_address & 0x1f) * 8);
+          
+          // 更新位图引用计数
           LOCK();
-          plVar1 = (longlong *)(lVar4 + 0x108);
-          lVar4 = *plVar1;
-          *plVar1 = *plVar1 + 1;
+          block_ptr = (longlong *)(block_offset + 0x108);
+          block_offset = *block_ptr;
+          *block_ptr = *block_ptr + 1;
           UNLOCK();
-          if (lVar4 == 0x1f) {
-            *(undefined8 *)(lVar3 + 8) = 0;
-            func_0x000180060c10(*(undefined8 *)(uVar11 + 0x50));
+          
+          if (block_offset == 0x1f) {
+            *(undefined8 *)(allocation_size + 8) = 0;
+            release_bitmap_memory(*(undefined8 *)(block_head + 0x50));
           }
-          bVar6 = true;
+          allocation_success = true;
         }
         else {
+          // 处理大内存块
           if (0x8000000000000000 <
-              (ulonglong)((*(longlong *)(uVar11 + 0x30) - lVar4) - *(longlong *)(uVar11 + 0x20))) {
+              (ulonglong)((*(longlong *)(block_head + 0x30) - block_offset) - 
+              *(longlong *)(block_head + 0x20))) {
+            
             LOCK();
-            plVar1 = (longlong *)(uVar11 + 0x30);
-            lVar3 = *plVar1;
-            *plVar1 = *plVar1 + 1;
+            block_ptr = (longlong *)(block_head + 0x30);
+            allocation_size = *block_ptr;
+            *block_ptr = *block_ptr + 1;
             UNLOCK();
-            if (0x8000000000000000 < (ulonglong)((lVar3 - *(longlong *)(uVar11 + 0x20)) - lVar4)) {
+            
+            if (0x8000000000000000 < (ulonglong)((allocation_size - *(longlong *)(block_head + 0x20)) - block_offset)) {
               LOCK();
-              puVar2 = (ulonglong *)(uVar11 + 0x28);
-              uVar8 = *puVar2;
-              *puVar2 = *puVar2 + 1;
+              allocation_counter = (ulonglong *)(block_head + 0x28);
+              block_address = *allocation_counter;
+              *allocation_counter = *allocation_counter + 1;
               UNLOCK();
-              plVar1 = *(longlong **)(uVar11 + 0x58);
-              uVar12 = (ulonglong)((uint)uVar8 & 0x1f);
-              lVar4 = *(longlong *)
-                       (plVar1[2] + 8 +
-                       (((uVar8 & 0xffffffffffffffe0) - *(longlong *)(plVar1[2] + plVar1[1] * 0x10)
-                        >> 5) + plVar1[1] & *plVar1 - 1U) * 0x10);
-              *param_2 = *(undefined8 *)(lVar4 + uVar12 * 8);
-              *(undefined1 *)((lVar4 - uVar12) + 0x12f) = 1;
-              bVar6 = true;
-              goto LAB_180068c94;
+              
+              block_ptr = *(longlong **)(block_head + 0x58);
+              current_size = (ulonglong)((uint)block_address & 0x1f);
+              allocation_size = *(longlong *)
+                       (block_ptr[2] + 8 +
+                       (((block_address & 0xffffffffffffffe0) - *(longlong *)(block_ptr[2] + block_ptr[1] * 0x10)
+                        >> 5) + block_ptr[1] & *block_ptr - 1U) * 0x10);
+              *block_info = *(undefined8 *)(allocation_size + current_size * 8);
+              *(undefined1 *)((allocation_size - current_size) + 0x12f) = 1;
+              allocation_success = true;
+              goto allocation_succeeded;
             }
-LAB_180068c87:
+increment_counter:
             LOCK();
-            *(longlong *)(uVar11 + 0x38) = *(longlong *)(uVar11 + 0x38) + 1;
+            *(longlong *)(block_head + 0x38) = *(longlong *)(block_head + 0x38) + 1;
             UNLOCK();
           }
-LAB_180068c92:
-          bVar6 = false;
+allocation_failed:
+          allocation_success = false;
         }
-LAB_180068c94:
-        if (bVar6) {
-          return 1;
+allocation_succeeded:
+        if (allocation_success) {
+          return 1;  // 分配成功
         }
       }
-      plVar1 = (longlong *)(uVar11 + 8);
-      uVar11 = *plVar1 - 8;
-      if (*plVar1 == 0) {
-        uVar11 = uVar10;
+      
+      // 移动到下一个块
+      block_ptr = (longlong *)(block_head + 8);
+      block_head = *block_ptr - 8;
+      if (*block_ptr == 0) {
+        block_head = 0;
       }
     }
   }
-  return 0;
+  return 0;  // 未找到可用块
 }
 
 
 
-undefined8 FUN_180068ce0(longlong param_1,undefined8 *param_2)
+// 函数: 检查内存块可用性并尝试分配
+// 功能: 检查指定的内存块是否可用，如果可用则进行分配操作
+// 参数: param_1 - 内存块指针
+//       param_2 - 输出参数，返回分配的内存地址
+// 返回: 1表示分配成功，0表示分配失败
+undefined8 check_memory_block_availability(longlong memory_block, undefined8 *allocated_address)
 
 {
-  longlong *plVar1;
-  ulonglong *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
-  longlong lVar5;
-  ulonglong uVar6;
+  longlong *allocation_ptr;
+  ulonglong *allocation_counter;
+  longlong allocation_size;
+  ulonglong allocation_index;
+  longlong bitmap_base;
+  ulonglong bit_index;
   
-  if (*(char *)(param_1 + 0x48) == '\0') {
+  if (*(char *)(memory_block + 0x48) == '\0') {
+    // 处理普通内存块
     if ((ulonglong)
-        ((*(longlong *)(param_1 + 0x30) - *(longlong *)(param_1 + 0x38)) -
-        *(longlong *)(param_1 + 0x20)) < 0x8000000000000001) {
-      return 0;
+        ((*(longlong *)(memory_block + 0x30) - *(longlong *)(memory_block + 0x38)) -
+        *(longlong *)(memory_block + 0x20)) < 0x8000000000000001) {
+      return 0;  // 内存块已满
     }
+    
+    // 增加分配计数器
     LOCK();
-    plVar1 = (longlong *)(param_1 + 0x30);
-    lVar3 = *plVar1;
-    *plVar1 = *plVar1 + 1;
+    allocation_ptr = (longlong *)(memory_block + 0x30);
+    allocation_size = *allocation_ptr;
+    *allocation_ptr = *allocation_ptr + 1;
     UNLOCK();
+    
     if (0x8000000000000000 <
-        (ulonglong)((lVar3 - *(longlong *)(param_1 + 0x20)) - *(longlong *)(param_1 + 0x38))) {
+        (ulonglong)((allocation_size - *(longlong *)(memory_block + 0x20)) - *(longlong *)(memory_block + 0x38))) {
+      // 分配位图索引
       LOCK();
-      puVar2 = (ulonglong *)(param_1 + 0x28);
-      uVar4 = *puVar2;
-      *puVar2 = *puVar2 + 1;
+      allocation_counter = (ulonglong *)(memory_block + 0x28);
+      allocation_index = *allocation_counter;
+      *allocation_counter = *allocation_counter + 1;
       UNLOCK();
-      plVar1 = *(longlong **)(param_1 + 0x60);
-      lVar5 = *(longlong *)
-               (plVar1[3] +
-               (((uVar4 & 0xffffffffffffffe0) - **(longlong **)(plVar1[3] + plVar1[1] * 8) >> 5) +
-                plVar1[1] & *plVar1 - 1U) * 8);
-      lVar3 = *(longlong *)(lVar5 + 8);
-      *param_2 = *(undefined8 *)(lVar3 + (ulonglong)((uint)uVar4 & 0x1f) * 8);
+      
+      // 计算位图位置
+      allocation_ptr = *(longlong **)(memory_block + 0x60);
+      bitmap_base = *(longlong *)
+               (allocation_ptr[3] +
+               (((allocation_index & 0xffffffffffffffe0) - **(longlong **)(allocation_ptr[3] + allocation_ptr[1] * 8) >> 5) +
+                allocation_ptr[1] & *allocation_ptr - 1U) * 8);
+      allocation_size = *(longlong *)(bitmap_base + 8);
+      *allocated_address = *(undefined8 *)(allocation_size + (ulonglong)((uint)allocation_index & 0x1f) * 8);
+      
+      // 更新位图引用计数
       LOCK();
-      plVar1 = (longlong *)(lVar3 + 0x108);
-      lVar3 = *plVar1;
-      *plVar1 = *plVar1 + 1;
+      allocation_ptr = (longlong *)(allocation_size + 0x108);
+      allocation_size = *allocation_ptr;
+      *allocation_ptr = *allocation_ptr + 1;
       UNLOCK();
-      if (lVar3 == 0x1f) {
-        *(undefined8 *)(lVar5 + 8) = 0;
-        func_0x000180060c10(*(undefined8 *)(param_1 + 0x50));
+      
+      if (allocation_size == 0x1f) {
+        *(undefined8 *)(bitmap_base + 8) = 0;
+        release_bitmap_memory(*(undefined8 *)(memory_block + 0x50));
       }
-      return 1;
+      return 1;  // 分配成功
     }
   }
   else {
+    // 处理大内存块
     if ((ulonglong)
-        ((*(longlong *)(param_1 + 0x30) - *(longlong *)(param_1 + 0x38)) -
-        *(longlong *)(param_1 + 0x20)) < 0x8000000000000001) {
-      return 0;
+        ((*(longlong *)(memory_block + 0x30) - *(longlong *)(memory_block + 0x38)) -
+        *(longlong *)(memory_block + 0x20)) < 0x8000000000000001) {
+      return 0;  // 内存块已满
     }
+    
+    // 增加分配计数器
     LOCK();
-    plVar1 = (longlong *)(param_1 + 0x30);
-    lVar3 = *plVar1;
-    *plVar1 = *plVar1 + 1;
+    allocation_ptr = (longlong *)(memory_block + 0x30);
+    allocation_size = *allocation_ptr;
+    *allocation_ptr = *allocation_ptr + 1;
     UNLOCK();
+    
     if (0x8000000000000000 <
-        (ulonglong)((lVar3 - *(longlong *)(param_1 + 0x20)) - *(longlong *)(param_1 + 0x38))) {
+        (ulonglong)((allocation_size - *(longlong *)(memory_block + 0x20)) - *(longlong *)(memory_block + 0x38))) {
+      // 分配大内存块索引
       LOCK();
-      puVar2 = (ulonglong *)(param_1 + 0x28);
-      uVar4 = *puVar2;
-      *puVar2 = *puVar2 + 1;
+      allocation_counter = (ulonglong *)(memory_block + 0x28);
+      allocation_index = *allocation_counter;
+      *allocation_counter = *allocation_counter + 1;
       UNLOCK();
-      plVar1 = *(longlong **)(param_1 + 0x58);
-      uVar6 = (ulonglong)((uint)uVar4 & 0x1f);
-      lVar3 = *(longlong *)
-               (plVar1[2] + 8 +
-               (((uVar4 & 0xffffffffffffffe0) - *(longlong *)(plVar1[2] + plVar1[1] * 0x10) >> 5) +
-                plVar1[1] & *plVar1 - 1U) * 0x10);
-      *param_2 = *(undefined8 *)(lVar3 + uVar6 * 8);
-      *(undefined1 *)((lVar3 - uVar6) + 0x12f) = 1;
-      return 1;
+      
+      // 计算大内存块位置
+      allocation_ptr = *(longlong **)(memory_block + 0x58);
+      bit_index = (ulonglong)((uint)allocation_index & 0x1f);
+      allocation_size = *(longlong *)
+               (allocation_ptr[2] + 8 +
+               (((allocation_index & 0xffffffffffffffe0) - *(longlong *)(allocation_ptr[2] + allocation_ptr[1] * 0x10) >> 5) +
+                allocation_ptr[1] & *allocation_ptr - 1U) * 0x10);
+      *allocated_address = *(undefined8 *)(allocation_size + bit_index * 8);
+      *(undefined1 *)((allocation_size - bit_index) + 0x12f) = 1;
+      return 1;  // 分配成功
     }
   }
+  
+  // 内存块已满，增加失败计数器
   LOCK();
-  *(longlong *)(param_1 + 0x38) = *(longlong *)(param_1 + 0x38) + 1;
+  *(longlong *)(memory_block + 0x38) = *(longlong *)(memory_block + 0x38) + 1;
   UNLOCK();
-  return 0;
+  return 0;  // 分配失败
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_180068ec0(longlong *param_1,longlong *param_2,int param_3,undefined8 param_4)
+// 函数: 内存管理操作
+// 功能: 根据操作类型执行不同的内存管理任务，包括释放、复制和移动内存块
+// 参数: param_1 - 目标内存块指针
+//       param_2 - 源内存块指针
+//       param_3 - 操作类型 (0=释放, 1=复制构造, 2=移动, 3=获取, 4=引用)
+//       param_4 - 清理标志
+// 返回: 操作结果或内存块指针
+longlong memory_management_operation(longlong *target_block, longlong *source_block, int operation_type, undefined8 cleanup_flag)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  code *pcVar3;
+  longlong result;
+  longlong source_value;
+  code *callback_func;
   
-  if (param_3 == 3) {
-    lVar2 = 0x180bfd400;
+  if (operation_type == 3) {
+    result = 0x180bfd400;  // 返回默认内存管理器
   }
-  else if (param_3 == 4) {
-    lVar2 = *param_1;
+  else if (operation_type == 4) {
+    result = *target_block;  // 返回当前块
   }
   else {
-    if (param_3 == 0) {
-      lVar2 = *param_1;
-      if (lVar2 != 0) {
-        if (*(code **)(lVar2 + 0x10) != (code *)0x0) {
-          (**(code **)(lVar2 + 0x10))(lVar2,0,0,param_4,0xfffffffffffffffe);
+    if (operation_type == 0) {
+      // 释放内存块
+      result = *target_block;
+      if (result != 0) {
+        if (*(code **)(result + 0x10) != (code *)0x0) {
+          // 调用析构回调
+          (**(code **)(result + 0x10))(result, 0, 0, cleanup_flag, 0xfffffffffffffffe);
         }
-                    // WARNING: Subroutine does not return
-        FUN_18064e900(lVar2);
+        // WARNING: 子函数不返回
+        deallocate_memory_block(result);
       }
     }
     else {
-      if (param_3 == 1) {
-        lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x20,8,DAT_180bf65bc);
-        lVar2 = *param_2;
-        *(undefined8 *)(lVar1 + 0x10) = 0;
-        *(code **)(lVar1 + 0x18) = _guard_check_icall;
-        if (lVar1 != lVar2) {
-          pcVar3 = *(code **)(lVar2 + 0x10);
-          if (pcVar3 != (code *)0x0) {
-            (*pcVar3)(lVar1,lVar2,1);
-            pcVar3 = *(code **)(lVar2 + 0x10);
+      if (operation_type == 1) {
+        // 复制构造内存块
+        result = allocate_memory_block(_DAT_180c8ed18, 0x20, 8, DAT_180bf65bc);
+        source_value = *source_block;
+        *(undefined8 *)(result + 0x10) = 0;
+        *(code **)(result + 0x18) = _guard_check_icall;
+        if (result != source_value) {
+          callback_func = *(code **)(source_value + 0x10);
+          if (callback_func != (code *)0x0) {
+            // 调用复制回调
+            (*callback_func)(result, source_value, 1);
+            callback_func = *(code **)(source_value + 0x10);
           }
-          *(code **)(lVar1 + 0x10) = pcVar3;
-          *(undefined8 *)(lVar1 + 0x18) = *(undefined8 *)(lVar2 + 0x18);
+          *(code **)(result + 0x10) = callback_func;
+          *(undefined8 *)(result + 0x18) = *(undefined8 *)(source_value + 0x18);
         }
-        *param_1 = lVar1;
+        *target_block = result;
         return 0;
       }
-      if (param_3 == 2) {
-        *param_1 = *param_2;
-        *param_2 = 0;
+      if (operation_type == 2) {
+        // 移动内存块
+        *target_block = *source_block;
+        *source_block = 0;
         return 0;
       }
     }
-    lVar2 = 0;
+    result = 0;
   }
-  return lVar2;
+  return result;
 }
 
 
 
+// 函数: 初始化文件读取上下文
+// 功能: 为文件读取操作初始化上下文结构，设置文件路径和基本信息
+// 参数: param_1 - 文件读取上下文指针
+//       param_2 - 文件信息指针
+//       param_3 - 保留参数
+//       param_4 - 保留参数
+// 返回: 初始化后的文件读取上下文指针
 undefined8 *
-FUN_180068ff0(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+initialize_file_read_context(undefined8 *file_context, longlong file_info, undefined8 param_3, undefined8 param_4)
 
 {
-  undefined *puVar1;
+  undefined *file_path;
   
-  *param_1 = &UNK_18098bcb0;
-  param_1[1] = 0;
-  *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_1809feda8;
-  param_1[1] = param_1 + 3;
-  *(undefined4 *)(param_1 + 2) = 0;
-  *(undefined1 *)(param_1 + 3) = 0;
-  *(undefined4 *)(param_1 + 2) = *(undefined4 *)(param_2 + 0x10);
-  puVar1 = &DAT_18098bc73;
-  if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
-    puVar1 = *(undefined **)(param_2 + 8);
+  // 初始化基本字段
+  *file_context = &UNK_18098bcb0;  // 设置默认路径
+  file_context[1] = 0;               // 清理偏移量
+  *(undefined4 *)(file_context + 2) = 0;  // 清理大小
+  
+  *file_context = &UNK_1809feda8;  // 设置路径缓冲区
+  file_context[1] = file_context + 3;  // 设置路径指针
+  *(undefined4 *)(file_context + 2) = 0;  // 清理路径长度
+  *(undefined1 *)(file_context + 3) = 0;  // 路径终止符
+  
+  // 复制文件大小
+  *(undefined4 *)(file_context + 2) = *(undefined4 *)(file_info + 0x10);
+  
+  // 复制文件路径
+  file_path = &DAT_18098bc73;  // 默认路径
+  if (*(undefined **)(file_info + 8) != (undefined *)0x0) {
+    file_path = *(undefined **)(file_info + 8);  // 使用指定路径
   }
-  strcpy_s(param_1[1],0x100,puVar1,param_4,0xfffffffffffffffe);
-  return param_1;
+  strcpy_s(file_context[1], 0x100, file_path, param_4, 0xfffffffffffffffe);
+  
+  return file_context;
 }
 
 
 
-undefined8 * FUN_180069070(undefined8 *param_1)
+// 函数: 初始化内存管理器
+// 功能: 初始化内存管理器的各个字段，包括回调函数和安全检查
+// 参数: param_1 - 内存管理器指针
+// 返回: 初始化后的内存管理器指针
+undefined8 * initialize_memory_manager(undefined8 *memory_manager)
 
 {
-  *param_1 = &UNK_18098bcb0;
-  param_1[1] = 0;
-  *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_1809feda8;
-  param_1[1] = param_1 + 3;
-  *(undefined4 *)(param_1 + 2) = 0;
-  *(undefined1 *)(param_1 + 3) = 0;
-  param_1[0x2b] = 0;
-  param_1[0x2c] = _guard_check_icall;
-  param_1[0x2f] = 0;
-  param_1[0x30] = _guard_check_icall;
-  param_1[0x27] = 0xffffffffffffffff;
-  param_1[0x24] = 0xffffffffffffffff;
-  param_1[0x23] = 0xffffffffffffffff;
-  param_1[0x25] = 0;
-  param_1[0x26] = 0;
-  *(undefined1 *)(param_1 + 0x28) = 0;
-  return param_1;
+  // 初始化基本字段
+  *memory_manager = &UNK_18098bcb0;  // 设置默认值
+  memory_manager[1] = 0;               // 清理计数器
+  *(undefined4 *)(memory_manager + 2) = 0;  // 清理标志
+  
+  *memory_manager = &UNK_1809feda8;  // 设置数据缓冲区
+  memory_manager[1] = memory_manager + 3;  // 设置数据指针
+  *(undefined4 *)(memory_manager + 2) = 0;  // 清理数据长度
+  *(undefined1 *)(memory_manager + 3) = 0;  // 数据终止符
+  
+  // 初始化回调函数和安全检查
+  memory_manager[0x2b] = 0;           // 清理回调1
+  memory_manager[0x2c] = _guard_check_icall;  // 设置安全检查
+  memory_manager[0x2f] = 0;           // 清理回调2
+  memory_manager[0x30] = _guard_check_icall;  // 设置安全检查
+  
+  // 初始化引用计数和大小限制
+  memory_manager[0x27] = 0xffffffffffffffff;  // 最大引用计数
+  memory_manager[0x24] = 0xffffffffffffffff;  // 最大大小
+  memory_manager[0x23] = 0xffffffffffffffff;  // 最大块数
+  memory_manager[0x25] = 0;           // 当前引用计数
+  memory_manager[0x26] = 0;           // 当前大小
+  *(undefined1 *)(memory_manager + 0x28) = 0;  // 当前块数
+  
+  return memory_manager;
 }
 
 
 
 
 
-// 函数: void FUN_180069130(longlong param_1,longlong param_2)
-void FUN_180069130(longlong param_1,longlong param_2)
+// 函数: 复制回调函数
+// 功能: 将源对象的回调函数复制到目标对象，并执行回调操作
+// 参数: param_1 - 目标对象指针
+//       param_2 - 源对象指针
+void copy_callback_functions(longlong target_object, longlong source_object)
 
 {
-  code *pcVar1;
+  code *callback_func;
   
-  pcVar1 = *(code **)(param_2 + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(param_1,param_2,2);
-    pcVar1 = *(code **)(param_2 + 0x10);
+  // 获取源对象的回调函数
+  callback_func = *(code **)(source_object + 0x10);
+  if (callback_func != (code *)0x0) {
+    // 执行回调操作（类型2）
+    (*callback_func)(target_object, source_object, 2);
+    callback_func = *(code **)(source_object + 0x10);
   }
-  *(code **)(param_1 + 0x10) = pcVar1;
-  *(undefined8 *)(param_1 + 0x18) = *(undefined8 *)(param_2 + 0x18);
-  *(code **)(param_2 + 0x18) = _guard_check_icall;
-  *(undefined8 *)(param_2 + 0x10) = 0;
+  
+  // 复制回调函数和数据
+  *(code **)(target_object + 0x10) = callback_func;
+  *(undefined8 *)(target_object + 0x18) = *(undefined8 *)(source_object + 0x18);
+  
+  // 清理源对象的回调函数
+  *(code **)(source_object + 0x18) = _guard_check_icall;
+  *(undefined8 *)(source_object + 0x10) = 0;
   return;
 }
 
 
 
-longlong FUN_180069190(longlong param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: 释放文件信息
+// 功能: 释放文件信息结构，根据标志决定是否实际释放内存
+// 参数: param_1 - 文件信息指针
+//       param_2 - 释放标志（位0表示是否释放内存）
+//       param_3 - 保留参数
+//       param_4 - 保留参数
+// 返回: 文件信息指针
+longlong release_file_info(longlong file_info, ulonglong release_flags, undefined8 param_3, undefined8 param_4)
 
 {
-  *(undefined **)(param_1 + 8) = &UNK_18098bcb0;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x128,param_3,param_4,0xfffffffffffffffe);
+  // 设置默认文件路径
+  *(undefined **)(file_info + 8) = &UNK_18098bcb0;
+  
+  // 根据标志决定是否释放内存
+  if ((release_flags & 1) != 0) {
+    free(file_info, 0x128, param_3, param_4, 0xfffffffffffffffe);
   }
-  return param_1;
+  return file_info;
 }
 
 
 
+// 函数: 释放内存块
+// 功能: 释放内存块，根据标志决定是否实际释放内存
+// 参数: param_1 - 内存块指针
+//       param_2 - 释放标志（位0表示是否释放内存）
+//       param_3 - 保留参数
+//       param_4 - 保留参数
+// 返回: 内存块指针
 undefined8 *
-FUN_1800691e0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+release_memory_block(undefined8 *memory_block, ulonglong release_flags, undefined8 param_3, undefined8 param_4)
 
 {
-  *param_1 = &UNK_18098bcb0;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x118,param_3,param_4,0xfffffffffffffffe);
+  // 设置默认值
+  *memory_block = &UNK_18098bcb0;
+  
+  // 根据标志决定是否释放内存
+  if ((release_flags & 1) != 0) {
+    free(memory_block, 0x118, param_3, param_4, 0xfffffffffffffffe);
   }
-  return param_1;
+  return memory_block;
 }
 
 

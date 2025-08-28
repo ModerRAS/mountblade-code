@@ -869,7 +869,7 @@ undefined8 * copy_and_initialize_data_structure(undefined8 *dest, longlong src)
   *(undefined4 *)(src + 0x10) = 0; // 清空源数据
   *(undefined8 *)(param_2 + 8) = 0;
   *(undefined8 *)(param_2 + 0x18) = 0;
-  param_1[4] = &UNK_18098bcb0;
+  memory_ptr[4] = &UNK_18098bcb0; // 设置内存标记
   param_1[5] = 0;
   *(undefined4 *)(param_1 + 6) = 0;
   param_1[4] = &UNK_180a3c3e0;
@@ -1003,12 +1003,16 @@ LAB_18005ccff:
 
 
 
+// 函数: undefined8 * allocate_and_initialize_memory(undefined8 *memory_ptr, ulonglong flags, undefined8 param_3, undefined8 param_4)
+// 功能: 分配和初始化内存
+// 参数: memory_ptr - 内存指针，flags - 分配标志，param_3, param_4 - 分配参数
+// 返回: 初始化后的内存指针
 undefined8 *
-FUN_18005cdb0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+allocate_and_initialize_memory(undefined8 *memory_ptr, ulonglong flags, undefined8 param_3, undefined8 param_4)
 
 {
-  param_1[4] = &UNK_18098bcb0;
-  *param_1 = &UNK_18098bdc8;
+  memory_ptr[4] = &UNK_18098bcb0; // 设置内存标记
+  *memory_ptr = &UNK_18098bdc8; // 设置虚函数表
   *param_1 = &UNK_180a21720;
   *param_1 = &UNK_180a21690;
   if ((param_2 & 1) != 0) {
@@ -1028,7 +1032,7 @@ undefined8 * FUN_18005ce30(undefined8 *param_1,undefined8 *param_2)
   *param_1 = &UNK_180a21690;
   *param_1 = &UNK_180a21720;
   *(undefined4 *)(param_1 + 1) = 0;
-  *param_1 = &UNK_18098bdc8;
+  *memory_ptr = &UNK_18098bdc8; // 设置虚函数表
   LOCK();
   *(undefined1 *)(param_1 + 2) = 0;
   UNLOCK();
@@ -1090,18 +1094,22 @@ undefined8 * FUN_18005ce30(undefined8 *param_1,undefined8 *param_2)
 
 
 
-undefined4 FUN_18005cf50(longlong param_1)
+// 函数: undefined4 get_value_with_mutex_lock(longlong mutex_context)
+// 功能: 在互斥锁保护下获取值
+// 参数: mutex_context - 包含互斥锁的上下文
+// 返回: 获取的值
+undefined4 get_value_with_mutex_lock(longlong mutex_context)
 
 {
   int iVar1;
   undefined4 uVar2;
   
-  iVar1 = _Mtx_lock(param_1 + 0x9f0);
+  iVar1 = _Mtx_lock(mutex_context + 0x9f0); // 获取互斥锁
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
   }
   uVar2 = FUN_1800b2bd0();
-  iVar1 = _Mtx_unlock(param_1 + 0x9f0);
+  iVar1 = _Mtx_unlock(mutex_context + 0x9f0); // 释放互斥锁
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
   }
@@ -1112,7 +1120,10 @@ undefined4 FUN_18005cf50(longlong param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18005cfc0(void)
+// 函数: int get_multi_thread_values(void)
+// 功能: 在多线程环境下获取多个值
+// 返回: 获取的值的总和
+int get_multi_thread_values(void)
 
 {
   longlong lVar1;
@@ -1123,7 +1134,7 @@ int FUN_18005cfc0(void)
   int iVar6;
   int iVar7;
   
-  lVar2 = _DAT_180c86930;
+  lVar2 = _DAT_180c86930; // 获取全局上下文
   lVar1 = _DAT_180c86930 + 0x770;
   iVar3 = _Mtx_lock(lVar1);
   if (iVar3 != 0) {
@@ -1162,8 +1173,10 @@ int FUN_18005cfc0(void)
 
 
 
-// 函数: void FUN_18005d0e0(ulonglong param_1,longlong param_2)
-void FUN_18005d0e0(ulonglong param_1,longlong param_2)
+// 函数: void format_value_to_buffer(ulonglong value, longlong buffer)
+// 功能: 将数值格式化并输出到缓冲区
+// 参数: value - 要格式化的数值，buffer - 输出缓冲区
+void format_value_to_buffer(ulonglong value, longlong buffer)
 
 {
   char cVar1;
@@ -1187,8 +1200,8 @@ void FUN_18005d0e0(ulonglong param_1,longlong param_2)
   
   iVar7 = -1;
   iVar8 = -1;
-  uVar2 = (uint)param_1;
-  uVar3 = param_1 & 0xffffffff;
+  uVar2 = (uint)value; // 获取数值的低32位
+  uVar3 = value & 0xffffffff; // 获取数值的低32位
   while (uVar2 != 0) {
     iVar8 = iVar8 + 1;
     uVar2 = (uint)uVar3 >> 1;

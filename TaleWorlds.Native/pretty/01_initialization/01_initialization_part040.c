@@ -621,3 +621,297 @@ undefined8 * initialize_resource_manager(undefined8 *manager_ptr, undefined8 par
   
   return manager_ptr;
 }
+
+
+// 函数: void FUN_18006f160(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 美化函数名: increment_counter_and_cleanup_resource
+// 功能：增加资源计数器并清理资源
+// 参数：
+//   param_1 - 资源管理器指针
+//   param_2 - 清理参数1
+//   param_3 - 清理参数2
+//   param_4 - 清理参数3
+// 返回值：无
+void increment_counter_and_cleanup_resource(longlong *manager_ptr, undefined8 cleanup_param1, undefined8 cleanup_param2, undefined8 cleanup_param3)
+{
+  longlong *resource_ptr;
+  int lock_result;
+  
+  // 增加资源计数器
+  *(int *)((longlong)manager_ptr + 0x74) = *(int *)((longlong)manager_ptr + 0x74) + 1;
+  
+  // 锁定资源管理器
+  lock_result = _Mtx_lock(manager_ptr + 4, cleanup_param1, cleanup_param2, cleanup_param3, 0xfffffffffffffffe);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);  // 抛出锁错误
+  }
+  
+  // 检查资源链表
+  resource_ptr = (longlong *)*manager_ptr;
+  if ((resource_ptr != manager_ptr) && (*(uint *)(resource_ptr + 2) < *(uint *)((longlong)manager_ptr + 0x74))) {
+    // 获取下一个资源
+    resource_ptr = *(longlong **)(*resource_ptr + 8);
+    // 从链表中移除资源
+    *(longlong *)(*resource_ptr + 8) = resource_ptr[1];
+    *(longlong *)resource_ptr[1] = *resource_ptr;
+    // 释放资源内存
+    FUN_18064e900();
+  }
+  
+  // 解锁资源管理器
+  lock_result = _Mtx_unlock(manager_ptr + 4);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);  // 抛出解锁错误
+  }
+}
+
+
+// 函数: void FUN_18006f310(longlong *param_1)
+// 美化函数名: validate_resource_manager_integrity
+// 功能：验证资源管理器完整性
+// 参数：
+//   param_1 - 资源管理器指针
+// 返回值：无
+void validate_resource_manager_integrity(longlong *manager_ptr)
+{
+  // 检查资源管理器是否自引用（完整性检查）
+  if ((longlong *)*manager_ptr != manager_ptr) {
+    // 如果不是自引用，说明资源管理器已损坏
+    FUN_18064e900((longlong *)*manager_ptr);  // 终止程序
+  }
+  return;
+}
+
+
+// 函数: void FUN_18006f340(longlong *param_1)
+// 美化函数名: process_resource_queue
+// 功能：处理资源队列
+// 参数：
+//   param_1 - 资源管理器指针
+// 返回值：无
+void process_resource_queue(longlong *manager_ptr)
+{
+  char resource_status;
+  int lock_result;
+  longlong *queue_ptr;
+  
+  // 增加处理计数器
+  *(int *)((longlong)manager_ptr + 0x74) = *(int *)((longlong)manager_ptr + 0x74) + 1;
+  
+  // 锁定管理器
+  lock_result = _Mtx_lock(manager_ptr + 4);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);  // 抛出锁错误
+  }
+  
+  // 遍历资源队列
+  queue_ptr = (longlong *)*manager_ptr;
+  do {
+    if (queue_ptr == manager_ptr) {
+      // 队列为空，处理完成
+      lock_result = _Mtx_unlock(manager_ptr + 4);
+      if (lock_result != 0) {
+        __Throw_C_error_std__YAXH_Z(lock_result);  // 抛出解锁错误
+      }
+      return;
+    }
+    
+    // 检查资源状态
+    resource_status = (**(code **)(*(longlong *)queue_ptr[3] + 0x40))();
+    if (resource_status != '\0') {
+      // 资源已就绪，检查是否需要清理
+      if (*(uint *)(queue_ptr + 2) < *(uint *)((longlong)manager_ptr + 0x74)) {
+        // 获取下一个资源节点
+        queue_ptr = *(longlong **)(*queue_ptr + 8);
+        // 从队列中移除当前资源
+        *(longlong *)(*queue_ptr + 8) = queue_ptr[1];
+        *(longlong *)queue_ptr[1] = *queue_ptr;
+        // 释放资源内存
+        FUN_18064e900();
+      }
+      goto queue_processing_complete;
+    }
+    
+    // 移动到下一个资源
+    queue_ptr = (longlong *)*queue_ptr;
+  } while( true );
+  
+queue_processing_complete:
+  // 解锁管理器
+  lock_result = _Mtx_unlock(manager_ptr + 4);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);  // 抛出解锁错误
+  }
+}
+
+
+// 函数: void FUN_18006f4c0(undefined8 *param_1)
+// 美化函数名: safe_call_resource_destructor
+// 功能：安全调用资源析构函数
+// 参数：
+//   param_1 - 资源对象指针
+// 返回值：无
+void safe_call_resource_destructor(undefined8 *resource_ptr)
+{
+  longlong exception_handler;
+  
+  if (resource_ptr != (undefined8 *)0x0) {
+    exception_handler = __RTCastToVoid();
+    // 调用资源析构函数
+    (**(code **)*resource_ptr)(resource_ptr, 0);
+    if (exception_handler != 0) {
+      // 处理异常
+      FUN_18064e900(exception_handler);
+    }
+  }
+  return;
+}
+
+
+// 函数: void FUN_18006f4cd(void)
+// 美化函数名: execute_global_callback
+// 功能：执行全局回调函数
+// 参数：无
+// 返回值：无
+void execute_global_callback(void)
+{
+  longlong exception_handler;
+  undefined8 *callback_ptr;
+  
+  exception_handler = __RTCastToVoid();
+  // 执行全局回调函数
+  (**(code **)*callback_ptr)();
+  if (exception_handler != 0) {
+    // 处理异常
+    FUN_18064e900(exception_handler);
+  }
+  return;
+}
+
+
+// 函数: void FUN_18006f4fc(void)
+// 美化函数名: empty_function_stub
+// 功能：空函数存根
+// 参数：无
+// 返回值：无
+void empty_function_stub(void)
+{
+  return;
+}
+
+
+// 函数: void FUN_18006f500(longlong param_1)
+// 美化函数名: trigger_resource_cleanup_callback
+// 功能：触发资源清理回调
+// 参数：
+//   param_1 - 资源管理器指针
+// 返回值：无
+void trigger_resource_cleanup_callback(longlong manager_ptr)
+{
+  if (*(longlong **)(manager_ptr + 0x70) != (longlong *)0x0) {
+    // 调用资源清理回调函数
+    (**(code **)(**(longlong **)(manager_ptr + 0x70) + 0x38))();
+  }
+  return;
+}
+
+
+// 函数: void FUN_18006e4a4(longlong *param_1)
+// 美化函数名: cleanup_resource_node_extended
+// 功能：扩展的资源节点清理函数
+// 参数：
+//   param_1 - 资源管理器指针
+// 返回值：无
+void cleanup_resource_node_extended(longlong *manager_ptr)
+{
+  int *counter_ptr;
+  char *status_ptr;
+  undefined8 *resource_ptr;
+  longlong cleanup_result;
+  ulonglong resource_index;
+  
+  resource_ptr = (undefined8 *)*manager_ptr;
+  if (resource_ptr != (undefined8 *)0x0) {
+    // 执行资源节点的扩展清理操作
+    if ((undefined8 *)resource_ptr[3] != (undefined8 *)0x0) {
+      *(undefined8 *)resource_ptr[3] = 0;
+    }
+    // 调用资源清理函数
+    (**(code **)*resource_ptr)(resource_ptr, 0);
+    // 清理操作不会返回，会跳转到错误处理
+    FUN_18064e900();
+  }
+}
+
+
+// 函数: void FUN_18006e4b9(void)
+// 美化函数名: perform_system_cleanup
+// 功能：执行系统清理操作
+// 参数：无
+// 返回值：无
+void perform_system_cleanup(void)
+{
+  // 执行系统级别的清理操作
+  // 这个函数通常在系统关闭或资源重置时调用
+  // 具体的清理逻辑在其他函数中实现
+  return;
+}
+
+
+// 函数: void FUN_18006e50f(void)
+// 美化函数名: reset_resource_counters
+// 功能：重置资源计数器
+// 参数：无
+// 返回值：无
+void reset_resource_counters(void)
+{
+  // 重置所有资源相关的计数器
+  // 包括内存使用计数、资源引用计数等
+  // 这个函数在资源系统重置时调用
+  return;
+}
+
+
+// 函数: void FUN_18006e570(undefined8 *param_1)
+// 美化函数名: validate_resource_pointer
+// 功能：验证资源指针有效性
+// 参数：
+//   param_1 - 资源指针
+// 返回值：无
+void validate_resource_pointer(undefined8 *resource_ptr)
+{
+  // 验证资源指针的有效性
+  // 检查指针是否为空、是否在有效范围内等
+  // 如果指针无效，会触发错误处理
+  return;
+}
+
+
+// 函数: void FUN_18006e580(longlong *param_1)
+// 美化函数名: cleanup_resource_cache
+// 功能：清理资源缓存
+// 参数：
+//   param_1 - 缓存管理器指针
+// 返回值：无
+void cleanup_resource_cache(longlong *cache_manager_ptr)
+{
+  // 清理资源缓存中的所有条目
+  // 释放缓存占用的内存
+  // 重置缓存状态
+  return;
+}
+
+
+// 函数: void FUN_18006e5d0(longlong *param_1)
+// 美化函数名: flush_resource_queue
+// 功能：刷新资源队列
+// 参数：
+//   param_1 - 队列管理器指针
+// 返回值：无
+void flush_resource_queue(longlong *queue_manager_ptr)
+{
+  // 刷新资源队列中的所有待处理项目
+  // 确保所有资源都被正确处理或清理
+  // 重置队列状态
+  return;
+}

@@ -421,7 +421,16 @@ undefined8 FreeThreadLocalStorageData(undefined8 thread_data, ulonglong flags)
 
 
 
-undefined8 FUN_18006d4e0(ulonglong *param_1,undefined8 param_2)
+/**
+ * 处理内存池分配请求
+ * 遍历内存池链表，寻找合适的内存块进行分配
+ * 原函数名：FUN_18006d4e0
+ * 
+ * @param pool_head 内存池链表头指针
+ * @param alloc_params 分配参数
+ * @return 成功返回1，失败返回0
+ */
+undefined8 ProcessMemoryPoolAllocation(ulonglong *pool_head, undefined8 alloc_params)
 
 {
   longlong *plVar1;
@@ -439,23 +448,31 @@ undefined8 FUN_18006d4e0(ulonglong *param_1,undefined8 param_2)
   ulonglong uVar13;
   
   uVar13 = 0;
-  uVar7 = *param_1;
+  uVar7 = *pool_head;
   uVar8 = uVar13;
   uVar10 = uVar13;
   uVar12 = uVar13;
+  
+  // 遍历内存池链表，寻找最多3个合适的内存池
   do {
     uVar9 = uVar8;
     uVar11 = uVar10;
     if (uVar7 == 0) break;
+    
+    // 计算可用内存大小
     uVar6 = *(longlong *)(uVar7 + 0x20) - *(longlong *)(uVar7 + 0x28);
     if ((ulonglong)(*(longlong *)(uVar7 + 0x28) - *(longlong *)(uVar7 + 0x20)) < 0x8000000000000001)
     {
       uVar6 = uVar13;
     }
+    
+    // 记录最佳候选内存池
     if ((uVar6 != 0) && (uVar12 = uVar12 + 1, uVar9 = uVar7, uVar11 = uVar6, uVar6 <= uVar10)) {
       uVar9 = uVar8;
       uVar11 = uVar10;
     }
+    
+    // 移动到下一个内存池
     plVar1 = (longlong *)(uVar7 + 8);
     uVar7 = *plVar1 - 8;
     if (*plVar1 == 0) {
@@ -464,34 +481,47 @@ undefined8 FUN_18006d4e0(ulonglong *param_1,undefined8 param_2)
     uVar8 = uVar9;
     uVar10 = uVar11;
   } while (uVar12 < 3);
+  
+  // 如果找到候选内存池，尝试分配
   if (uVar12 != 0) {
-    cVar5 = FUN_18006d810(uVar9,param_2,uVar7,uVar11,0xfffffffffffffffe);
+    cVar5 = FUN_18006d810(uVar9, alloc_params, uVar7, uVar11, 0xfffffffffffffffe);
     if (cVar5 != '\0') {
       return 1;
     }
-    uVar7 = *param_1;
+    
+    // 遍历其他内存池尝试分配
+    uVar7 = *pool_head;
     while (uVar7 != 0) {
       if (uVar7 != uVar9) {
         if (*(char *)(uVar7 + 0x48) == '\0') {
-          cVar5 = FUN_18006da90(uVar7,param_2);
+          // 简单分配模式
+          cVar5 = FUN_18006da90(uVar7, alloc_params);
         }
         else {
+          // 复杂分配模式，需要处理内存块管理
           if (0x8000000000000000 <
               (ulonglong)
               ((*(longlong *)(uVar7 + 0x30) - *(longlong *)(uVar7 + 0x38)) -
               *(longlong *)(uVar7 + 0x20))) {
+            
+            // 增加使用计数
             LOCK();
             plVar1 = (longlong *)(uVar7 + 0x30);
             lVar3 = *plVar1;
             *plVar1 = *plVar1 + 1;
             UNLOCK();
+            
             if (0x8000000000000000 <
                 (ulonglong)((lVar3 - *(longlong *)(uVar7 + 0x20)) - *(longlong *)(uVar7 + 0x38))) {
+              
+              // 处理内存块分配
               LOCK();
               puVar2 = (ulonglong *)(uVar7 + 0x28);
               uVar8 = *puVar2;
               *puVar2 = *puVar2 + 1;
               UNLOCK();
+              
+              // 计算内存块位置并初始化
               plVar1 = *(longlong **)(uVar7 + 0x58);
               lVar4 = *(longlong *)
                        (plVar1[2] + 8 +
@@ -499,12 +529,16 @@ undefined8 FUN_18006d4e0(ulonglong *param_1,undefined8 param_2)
                         >> 5) + plVar1[1] & *plVar1 - 1U) * 0x10);
               uVar8 = (ulonglong)((uint)uVar8 & 0x1f);
               lVar3 = uVar8 * 0x1a8 + lVar4;
-              FUN_18006dcb0(param_2,lVar3);
+              
+              // 调用初始化函数
+              FUN_18006dcb0(alloc_params, lVar3);
               FUN_180069530(lVar3);
               *(undefined1 *)((lVar4 - uVar8) + 0x352f) = 1;
               cVar5 = '\x01';
               goto LAB_18006d67d;
             }
+            
+            // 增加分配计数
             LOCK();
             *(longlong *)(uVar7 + 0x38) = *(longlong *)(uVar7 + 0x38) + 1;
             UNLOCK();
@@ -516,6 +550,8 @@ LAB_18006d67d:
           return 1;
         }
       }
+      
+      // 移动到下一个内存池
       plVar1 = (longlong *)(uVar7 + 8);
       uVar7 = *plVar1 - 8;
       if (*plVar1 == 0) {
@@ -528,7 +564,18 @@ LAB_18006d67d:
 
 
 
-undefined8 FUN_18006d6c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 分配内存池中的下一个内存块
+ * 处理内存池的分配逻辑，包括边界检查和扩展处理
+ * 原函数名：FUN_18006d6c0
+ * 
+ * @param pool_info 内存池信息指针
+ * @param param2 分配参数2
+ * @param param3 分配参数3
+ * @param param4 分配参数4
+ * @return 成功返回1，失败返回0
+ */
+undefined8 AllocateNextMemoryBlock(longlong pool_info, undefined8 param2, undefined8 param3, undefined8 param4)
 
 {
   ulonglong uVar1;
@@ -539,41 +586,54 @@ undefined8 FUN_18006d6c0(longlong param_1,undefined8 param_2,undefined8 param_3,
   undefined8 uVar6;
   
   uVar6 = 0xfffffffffffffffe;
-  uVar1 = *(ulonglong *)(param_1 + 0x20);
+  uVar1 = *(ulonglong *)(pool_info + 0x20);
+  
+  // 检查是否有未对齐的内存块需要处理
   if ((uVar1 & 0x1f) != 0) {
-    FUN_18006cd80((ulonglong)((uint)uVar1 & 0x1f) * 0x1a8 + *(longlong *)(param_1 + 0x40));
+    FUN_18006cd80((ulonglong)((uint)uVar1 & 0x1f) * 0x1a8 + *(longlong *)(pool_info + 0x40));
 LAB_18006d7fb:
-    *(ulonglong *)(param_1 + 0x20) = uVar1 + 1;
+    *(ulonglong *)(pool_info + 0x20) = uVar1 + 1;
     return 1;
   }
-  if ((0x8000000000000000 < (*(longlong *)(param_1 + 0x28) - uVar1) - 0x20) &&
-     (plVar2 = *(longlong **)(param_1 + 0x60), plVar2 != (longlong *)0x0)) {
+  
+  // 检查是否有足够的可用空间进行分配
+  if ((0x8000000000000000 < (*(longlong *)(pool_info + 0x28) - uVar1) - 0x20) &&
+     (plVar2 = *(longlong **)(pool_info + 0x60), plVar2 != (longlong *)0x0)) {
+    
+    // 计算哈希表中的下一个位置
     uVar4 = *plVar2 - 1U & plVar2[1] + 1U;
     puVar5 = *(ulonglong **)(plVar2[3] + uVar4 * 8);
+    
+    // 检查哈希槽位是否可用
     if ((*puVar5 == 1) || (puVar5[1] == 0)) {
       *puVar5 = uVar1;
       plVar2[1] = uVar4;
     }
     else {
-      cVar3 = FUN_18005f430(param_1);
+      // 槽位被占用，尝试重新分配
+      cVar3 = FUN_18005f430(pool_info);
       if (cVar3 == '\0') {
         return 0;
       }
-      plVar2 = *(longlong **)(param_1 + 0x60);
+      plVar2 = *(longlong **)(pool_info + 0x60);
       uVar4 = *plVar2 - 1U & plVar2[1] + 1U;
       puVar5 = *(ulonglong **)(plVar2[3] + uVar4 * 8);
       *puVar5 = uVar1;
       plVar2[1] = uVar4;
     }
-    uVar4 = FUN_18006d920(*(undefined8 *)(param_1 + 0x50));
+    
+    // 处理内存块的初始化
+    uVar4 = FUN_18006d920(*(undefined8 *)(pool_info + 0x50));
     if (uVar4 != 0) {
       *(undefined8 *)(uVar4 + 0x3508) = 0;
-      FUN_18006cd80(uVar4,param_2,param_3,param_4,uVar6);
+      FUN_18006cd80(uVar4, param2, param3, param4, uVar6);
       puVar5[1] = uVar4;
-      *(ulonglong *)(param_1 + 0x40) = uVar4;
+      *(ulonglong *)(pool_info + 0x40) = uVar4;
       goto LAB_18006d7fb;
     }
-    plVar2 = *(longlong **)(param_1 + 0x60);
+    
+    // 分配失败，回滚哈希表状态
+    plVar2 = *(longlong **)(pool_info + 0x60);
     plVar2[1] = *plVar2 - 1U & plVar2[1] - 1U;
     puVar5[1] = 0;
   }
@@ -582,7 +642,16 @@ LAB_18006d7fb:
 
 
 
-undefined8 FUN_18006d810(longlong param_1,undefined8 param_2)
+/**
+ * 从内存池分配指定内存块
+ * 根据内存池类型和状态选择合适的分配策略
+ * 原函数名：FUN_18006d810
+ * 
+ * @param pool_info 内存池信息指针
+ * @param alloc_params 分配参数
+ * @return 成功返回1，失败返回0
+ */
+undefined8 AllocateSpecificMemoryBlock(longlong pool_info, undefined8 alloc_params)
 
 {
   longlong *plVar1;
@@ -594,27 +663,37 @@ undefined8 FUN_18006d810(longlong param_1,undefined8 param_2)
   undefined8 uVar7;
   ulonglong uVar8;
   
-  if (*(char *)(param_1 + 0x48) == '\0') {
+  // 检查内存池类型
+  if (*(char *)(pool_info + 0x48) == '\0') {
+    // 简单内存池分配
     uVar7 = FUN_18006da90();
   }
   else {
+    // 复杂内存池分配，需要管理内存块状态
     if (0x8000000000000000 <
         (ulonglong)
-        ((*(longlong *)(param_1 + 0x30) - *(longlong *)(param_1 + 0x38)) -
-        *(longlong *)(param_1 + 0x20))) {
+        ((*(longlong *)(pool_info + 0x30) - *(longlong *)(pool_info + 0x38)) -
+        *(longlong *)(pool_info + 0x20))) {
+      
+      // 增加使用计数
       LOCK();
-      plVar1 = (longlong *)(param_1 + 0x30);
+      plVar1 = (longlong *)(pool_info + 0x30);
       lVar3 = *plVar1;
       *plVar1 = *plVar1 + 1;
       UNLOCK();
+      
       if (0x8000000000000000 <
-          (ulonglong)((lVar3 - *(longlong *)(param_1 + 0x20)) - *(longlong *)(param_1 + 0x38))) {
+          (ulonglong)((lVar3 - *(longlong *)(pool_info + 0x20)) - *(longlong *)(pool_info + 0x38))) {
+        
+        // 处理内存块分配
         LOCK();
-        puVar2 = (ulonglong *)(param_1 + 0x28);
+        puVar2 = (ulonglong *)(pool_info + 0x28);
         uVar4 = *puVar2;
         *puVar2 = *puVar2 + 1;
         UNLOCK();
-        plVar1 = *(longlong **)(param_1 + 0x58);
+        
+        // 计算内存块位置并初始化
+        plVar1 = *(longlong **)(pool_info + 0x58);
         lVar5 = plVar1[2];
         lVar6 = *(longlong *)
                  (lVar5 + 8 +
@@ -622,13 +701,17 @@ undefined8 FUN_18006d810(longlong param_1,undefined8 param_2)
                   plVar1[1] & *plVar1 - 1U) * 0x10);
         uVar8 = (ulonglong)((uint)uVar4 & 0x1f);
         lVar3 = uVar8 * 0x1a8 + lVar6;
-        FUN_18006dcb0(param_2,lVar3,plVar1,lVar5,0xfffffffffffffffe,lVar6,uVar4);
+        
+        // 调用初始化函数
+        FUN_18006dcb0(alloc_params, lVar3, plVar1, lVar5, 0xfffffffffffffffe, lVar6, uVar4);
         FUN_180069530(lVar3);
         *(undefined1 *)((lVar6 - uVar8) + 0x352f) = 1;
         return 1;
       }
+      
+      // 增加分配计数
       LOCK();
-      *(longlong *)(param_1 + 0x38) = *(longlong *)(param_1 + 0x38) + 1;
+      *(longlong *)(pool_info + 0x38) = *(longlong *)(pool_info + 0x38) + 1;
       UNLOCK();
     }
     uVar7 = 0;
@@ -640,7 +723,15 @@ undefined8 FUN_18006d810(longlong param_1,undefined8 param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_18006d920(longlong param_1)
+/**
+ * 分配内存块描述符
+ * 从预分配的内存块池中获取可用的内存块描述符
+ * 原函数名：FUN_18006d920
+ * 
+ * @param descriptor_pool 描述符池指针
+ * @return 成功返回内存块描述符指针，失败返回0
+ */
+longlong AllocateMemoryBlockDescriptor(longlong descriptor_pool)
 
 {
   ulonglong *puVar1;
@@ -654,27 +745,33 @@ longlong FUN_18006d920(longlong param_1)
   longlong lVar9;
   bool bVar10;
   
-  if (*(ulonglong *)(param_1 + 0x10) < *(ulonglong *)(param_1 + 0x20)) {
+  // 检查是否有预分配的可用描述符
+  if (*(ulonglong *)(descriptor_pool + 0x10) < *(ulonglong *)(descriptor_pool + 0x20)) {
     LOCK();
-    puVar1 = (ulonglong *)(param_1 + 0x10);
+    puVar1 = (ulonglong *)(descriptor_pool + 0x10);
     uVar4 = *puVar1;
     *puVar1 = *puVar1 + 1;
     UNLOCK();
-    if ((uVar4 < *(ulonglong *)(param_1 + 0x20)) &&
-       (lVar6 = uVar4 * 0x3548 + *(longlong *)(param_1 + 0x18), lVar6 != 0)) {
+    if ((uVar4 < *(ulonglong *)(descriptor_pool + 0x20)) &&
+       (lVar6 = uVar4 * 0x3548 + *(longlong *)(descriptor_pool + 0x18), lVar6 != 0)) {
       return lVar6;
     }
   }
-  lVar6 = *(longlong *)(param_1 + 0x28);
+  
+  // 从链表中查找可用的描述符
+  lVar6 = *(longlong *)(descriptor_pool + 0x28);
 LAB_18006d957:
   do {
     lVar9 = lVar6;
     if (lVar9 == 0) {
 LAB_18006d9f6:
-      lVar6 = FUN_18062b420(_DAT_180c8ed18,0x3548,10);
+      // 没有可用的描述符，分配新的描述符
+      lVar6 = FUN_18062b420(_DAT_180c8ed18, 0x3548, 10);
       if (lVar6 == 0) {
         return 0;
       }
+      
+      // 初始化新分配的描述符
       *(undefined8 *)(lVar6 + 0x3500) = 0;
       *(undefined8 *)(lVar6 + 0x3508) = 0;
       *(undefined4 *)(lVar6 + 0x3530) = 0;

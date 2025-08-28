@@ -26,87 +26,87 @@ void DeserializeObjectArray(longlong *object_manager, longlong *data_stream)
   longlong offset;
   longlong *current_object;
   
-  uVar3 = **(uint **)(param_2 + 8);
-  puVar9 = *(uint **)(param_2 + 8) + 1;
-  *(uint **)(param_2 + 8) = puVar9;
-  if (uVar3 != 0) {
-    (**(code **)(*param_1 + 0x18))(param_1,puVar9,uVar3);
-    *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar3;
-    puVar9 = *(uint **)(param_2 + 8);
+  string_length = **(uint **)(data_stream + 8);
+  string_data = *(uint **)(data_stream + 8) + 1;
+  *(uint **)(data_stream + 8) = string_data;
+  if (string_length != 0) {
+    (**(code **)(*object_manager + 0x18))(object_manager,string_data,string_length);
+    *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + (ulonglong)string_length;
+    string_data = *(uint **)(data_stream + 8);
   }
-  lVar8 = (longlong)(int)*puVar9;
-  *(uint **)(param_2 + 8) = puVar9 + 1;
-  plVar1 = param_1 + 4;
-  FUN_180074b30(plVar1,lVar8);
-  lVar5 = *(longlong *)(param_2 + 8);
-  lVar7 = 0;
-  lVar11 = lVar7;
-  if (0 < lVar8) {
+  object_count = (longlong)(int)*string_data;
+  *(uint **)(data_stream + 8) = string_data + 1;
+  object_array = object_manager + 4;
+  ResizeObjectArray(object_array, object_count);
+  current_pos = *(longlong *)(data_stream + 8);
+  zero_value = 0;
+  offset = zero_value;
+  if (0 < object_count) {
     do {
-      lVar10 = *plVar1;
-      *(int **)(param_2 + 8) = (int *)(lVar5 + 8);
-      iVar4 = *(int *)(lVar5 + 8);
-      plVar12 = (longlong *)(lVar10 + lVar11);
-      *(longlong *)(param_2 + 8) = lVar5 + 0xc;
-      if (0 < iVar4) {
-        *(short *)(plVar12 + 2) = (short)iVar4;
-        if (plVar12[1] != 0) {
+      base_address = *object_array;
+      *(int **)(data_stream + 8) = (int *)(current_pos + 8);
+      array_size = *(int *)(current_pos + 8);
+      current_object = (longlong *)(base_address + offset);
+      *(longlong *)(data_stream + 8) = current_pos + 0xc;
+      if (0 < array_size) {
+        *(short *)(current_object + 2) = (short)array_size;
+        if (current_object[1] != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          HandleMemoryAllocationError();
         }
-        plVar12[1] = 0;
-        if (*plVar12 == 0) {
-          *plVar12 = 0;
-          if ((ulonglong)*(ushort *)(plVar12 + 2) == 0) {
-            uVar6 = 0;
-            lVar5 = lVar7;
+        current_object[1] = 0;
+        if (*current_object == 0) {
+          *current_object = 0;
+          if ((ulonglong)*(ushort *)(current_object + 2) == 0) {
+            alloc_size = 0;
+            current_pos = zero_value;
           }
           else {
-            lVar5 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(plVar12 + 2) * 4,4);
-            uVar6 = (ulonglong)*(ushort *)(plVar12 + 2);
+            lVar5 = AllocateMemory(GLOBAL_MEMORY_POOL,(ulonglong)*(ushort *)(current_object + 2) * 4,4);
+            alloc_size = (ulonglong)*(ushort *)(current_object + 2);
           }
-          plVar12[1] = lVar5;
-          if (uVar6 != 0) {
-            lVar7 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 4,4);
+          current_object[1] = current_pos;
+          if (alloc_size != 0) {
+            zero_value = AllocateMemory(GLOBAL_MEMORY_POOL,alloc_size << 4,4);
           }
-          *plVar12 = lVar7;
+          *current_object = zero_value;
                     // WARNING: Subroutine does not return
-          memcpy(plVar12[1],*(undefined8 *)(param_2 + 8),(longlong)(iVar4 * 4));
+          memcpy(current_object[1],*(undefined8 *)(data_stream + 8),(longlong)(array_size * 4));
         }
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      lVar10 = *plVar1;
-      piVar2 = (int *)(lVar5 + 0x14);
-      *(int **)(param_2 + 8) = piVar2;
-      lVar5 = lVar5 + 0x18;
-      iVar4 = *piVar2;
-      lVar10 = lVar10 + lVar11;
-      *(longlong *)(param_2 + 8) = lVar5;
-      if (0 < iVar4) {
-        *(short *)(lVar10 + 0x22) = (short)iVar4;
-        if (*(longlong *)(lVar10 + 0x1a) != 0) {
+      base_address = *object_array;
+      data_ptr = (int *)(current_pos + 0x14);
+      *(int **)(data_stream + 8) = data_ptr;
+      current_pos = current_pos + 0x18;
+      array_size = *data_ptr;
+      base_address = base_address + offset;
+      *(longlong *)(data_stream + 8) = current_pos;
+      if (0 < array_size) {
+        *(short *)(base_address + 0x22) = (short)array_size;
+        if (*(longlong *)(base_address + 0x1a) != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          HandleMemoryAllocationError();
         }
-        *(undefined8 *)(lVar10 + 0x1a) = 0;
-        if (*(longlong *)(lVar10 + 0x12) == 0) {
-          *(undefined8 *)(lVar10 + 0x12) = 0;
-          if ((ulonglong)*(ushort *)(lVar10 + 0x22) == 0) {
-            uVar6 = 0;
-            lVar5 = lVar7;
+        *(undefined8 *)(base_address + 0x1a) = 0;
+        if (*(longlong *)(base_address + 0x12) == 0) {
+          *(undefined8 *)(base_address + 0x12) = 0;
+          if ((ulonglong)*(ushort *)(base_address + 0x22) == 0) {
+            alloc_size = 0;
+            current_pos = zero_value;
           }
           else {
-            lVar5 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(lVar10 + 0x22) * 4,4);
+            lVar5 = AllocateMemory(GLOBAL_MEMORY_POOL,(ulonglong)*(ushort *)(base_address + 0x22) * 4,4);
             uVar6 = (ulonglong)*(ushort *)(lVar10 + 0x22);
           }
-          *(longlong *)(lVar10 + 0x1a) = lVar5;
-          if (uVar6 != 0) {
-            lVar7 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 4,4);
+          *(longlong *)(base_address + 0x1a) = current_pos;
+          if (alloc_size != 0) {
+            zero_value = AllocateMemory(GLOBAL_MEMORY_POOL,alloc_size << 4,4);
           }
-          *(longlong *)(lVar10 + 0x12) = lVar7;
+          *(longlong *)(base_address + 0x12) = zero_value;
                     // WARNING: Subroutine does not return
-          memcpy(*(undefined8 *)(lVar10 + 0x1a),*(undefined8 *)(param_2 + 8),(longlong)(iVar4 * 4));
+          memcpy(*(undefined8 *)(base_address + 0x1a),*(undefined8 *)(data_stream + 8),(longlong)(array_size * 4));
         }
                     // WARNING: Subroutine does not return
         FUN_18064e900();
@@ -135,7 +135,7 @@ void DeserializeObjectArray(longlong *object_manager, longlong *data_stream)
           lVar5 = lVar7;
         }
         else {
-          lVar5 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)((longlong)param_1 + 0x62) * 4,
+          lVar5 = AllocateMemory(GLOBAL_MEMORY_POOL,(ulonglong)*(ushort *)((longlong)object_manager + 0x62) * 4,
                                 4);
           uVar6 = (ulonglong)*(ushort *)((longlong)param_1 + 0x62);
         }
@@ -167,7 +167,7 @@ void DeserializeObjectArray(longlong *object_manager, longlong *data_stream)
       lVar5 = lVar7;
     }
     else {
-      lVar5 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(param_1 + 10) * 4,4);
+      lVar5 = AllocateMemory(GLOBAL_MEMORY_POOL,(ulonglong)*(ushort *)(object_manager + 10) * 4,4);
       uVar6 = (ulonglong)*(ushort *)(param_1 + 10);
     }
     param_1[9] = lVar5;
@@ -215,82 +215,82 @@ void DeserializeObjectArrayVariant(longlong *object_manager)
   uVar3 = *in_RAX;
   puVar9 = in_RAX + 1;
   *(uint **)(unaff_RDI + 8) = puVar9;
-  if (uVar3 != 0) {
-    (**(code **)(*param_1 + 0x18))(param_1,puVar9,uVar3);
+  if (string_length != 0) {
+    (**(code **)(*object_manager + 0x18))(object_manager,string_data,string_length);
     *(longlong *)(unaff_RDI + 8) = *(longlong *)(unaff_RDI + 8) + (ulonglong)uVar3;
     puVar9 = *(uint **)(unaff_RDI + 8);
   }
-  lVar8 = (longlong)(int)*puVar9;
+  object_count = (longlong)(int)*string_data;
   *(uint **)(unaff_RDI + 8) = puVar9 + 1;
-  plVar1 = param_1 + 4;
-  FUN_180074b30(plVar1,lVar8);
+  object_array = object_manager + 4;
+  ResizeObjectArray(object_array, object_count);
   lVar5 = *(longlong *)(unaff_RDI + 8);
-  lVar7 = 0;
-  lVar11 = lVar7;
-  if (0 < lVar8) {
+  zero_value = 0;
+  offset = zero_value;
+  if (0 < object_count) {
     do {
-      lVar10 = *plVar1;
+      base_address = *object_array;
       *(int **)(unaff_RDI + 8) = (int *)(lVar5 + 8);
-      iVar4 = *(int *)(lVar5 + 8);
-      plVar12 = (longlong *)(lVar10 + lVar11);
+      array_size = *(int *)(current_pos + 8);
+      current_object = (longlong *)(base_address + offset);
       *(longlong *)(unaff_RDI + 8) = lVar5 + 0xc;
-      if (0 < iVar4) {
-        *(short *)(plVar12 + 2) = (short)iVar4;
-        if (plVar12[1] != 0) {
+      if (0 < array_size) {
+        *(short *)(current_object + 2) = (short)array_size;
+        if (current_object[1] != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          HandleMemoryAllocationError();
         }
-        plVar12[1] = 0;
-        if (*plVar12 == 0) {
-          *plVar12 = 0;
-          if ((ulonglong)*(ushort *)(plVar12 + 2) == 0) {
-            uVar6 = 0;
-            lVar5 = lVar7;
+        current_object[1] = 0;
+        if (*current_object == 0) {
+          *current_object = 0;
+          if ((ulonglong)*(ushort *)(current_object + 2) == 0) {
+            alloc_size = 0;
+            current_pos = zero_value;
           }
           else {
-            lVar5 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(plVar12 + 2) * 4,4);
-            uVar6 = (ulonglong)*(ushort *)(plVar12 + 2);
+            lVar5 = AllocateMemory(GLOBAL_MEMORY_POOL,(ulonglong)*(ushort *)(current_object + 2) * 4,4);
+            alloc_size = (ulonglong)*(ushort *)(current_object + 2);
           }
-          plVar12[1] = lVar5;
-          if (uVar6 != 0) {
-            lVar7 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 4,4);
+          current_object[1] = current_pos;
+          if (alloc_size != 0) {
+            zero_value = AllocateMemory(GLOBAL_MEMORY_POOL,alloc_size << 4,4);
           }
-          *plVar12 = lVar7;
+          *current_object = zero_value;
                     // WARNING: Subroutine does not return
           memcpy(plVar12[1],*(undefined8 *)(unaff_RDI + 8),(longlong)(iVar4 * 4));
         }
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      lVar10 = *plVar1;
-      piVar2 = (int *)(lVar5 + 0x14);
+      base_address = *object_array;
+      data_ptr = (int *)(current_pos + 0x14);
       *(int **)(unaff_RDI + 8) = piVar2;
-      lVar5 = lVar5 + 0x18;
-      iVar4 = *piVar2;
-      lVar10 = lVar10 + lVar11;
+      current_pos = current_pos + 0x18;
+      array_size = *data_ptr;
+      base_address = base_address + offset;
       *(longlong *)(unaff_RDI + 8) = lVar5;
-      if (0 < iVar4) {
-        *(short *)(lVar10 + 0x22) = (short)iVar4;
-        if (*(longlong *)(lVar10 + 0x1a) != 0) {
+      if (0 < array_size) {
+        *(short *)(base_address + 0x22) = (short)array_size;
+        if (*(longlong *)(base_address + 0x1a) != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          HandleMemoryAllocationError();
         }
-        *(undefined8 *)(lVar10 + 0x1a) = 0;
-        if (*(longlong *)(lVar10 + 0x12) == 0) {
-          *(undefined8 *)(lVar10 + 0x12) = 0;
-          if ((ulonglong)*(ushort *)(lVar10 + 0x22) == 0) {
-            uVar6 = 0;
-            lVar5 = lVar7;
+        *(undefined8 *)(base_address + 0x1a) = 0;
+        if (*(longlong *)(base_address + 0x12) == 0) {
+          *(undefined8 *)(base_address + 0x12) = 0;
+          if ((ulonglong)*(ushort *)(base_address + 0x22) == 0) {
+            alloc_size = 0;
+            current_pos = zero_value;
           }
           else {
-            lVar5 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(lVar10 + 0x22) * 4,4);
+            lVar5 = AllocateMemory(GLOBAL_MEMORY_POOL,(ulonglong)*(ushort *)(base_address + 0x22) * 4,4);
             uVar6 = (ulonglong)*(ushort *)(lVar10 + 0x22);
           }
-          *(longlong *)(lVar10 + 0x1a) = lVar5;
-          if (uVar6 != 0) {
-            lVar7 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 4,4);
+          *(longlong *)(base_address + 0x1a) = current_pos;
+          if (alloc_size != 0) {
+            zero_value = AllocateMemory(GLOBAL_MEMORY_POOL,alloc_size << 4,4);
           }
-          *(longlong *)(lVar10 + 0x12) = lVar7;
+          *(longlong *)(base_address + 0x12) = zero_value;
                     // WARNING: Subroutine does not return
           memcpy(*(undefined8 *)(lVar10 + 0x1a),*(undefined8 *)(unaff_RDI + 8),(longlong)(iVar4 * 4)
                 );
@@ -322,7 +322,7 @@ void DeserializeObjectArrayVariant(longlong *object_manager)
           lVar5 = lVar7;
         }
         else {
-          lVar5 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)((longlong)param_1 + 0x62) * 4,
+          lVar5 = AllocateMemory(GLOBAL_MEMORY_POOL,(ulonglong)*(ushort *)((longlong)object_manager + 0x62) * 4,
                                 4);
           uVar6 = (ulonglong)*(ushort *)((longlong)param_1 + 0x62);
         }
@@ -354,7 +354,7 @@ void DeserializeObjectArrayVariant(longlong *object_manager)
       lVar5 = lVar7;
     }
     else {
-      lVar5 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(param_1 + 10) * 4,4);
+      lVar5 = AllocateMemory(GLOBAL_MEMORY_POOL,(ulonglong)*(ushort *)(object_manager + 10) * 4,4);
       uVar6 = (ulonglong)*(ushort *)(param_1 + 10);
     }
     param_1[9] = lVar5;
@@ -417,12 +417,12 @@ void BatchDeserializeObjects(longlong data_start)
           uVar2 = unaff_RSI;
         }
         else {
-          uVar2 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)(ushort)puVar6[2] * 4,4);
+          uVar2 = AllocateMemory(GLOBAL_MEMORY_POOL,(ulonglong)(ushort)current_object[2] * 4,4);
           uVar5 = (ulonglong)(ushort)puVar6[2];
         }
         puVar6[1] = uVar2;
         if (uVar5 != 0) {
-          unaff_RSI = FUN_18062b420(_DAT_180c8ed18,uVar5 << 4,4);
+          zero_value = AllocateMemory(GLOBAL_MEMORY_POOL,alloc_size << 4,4);
         }
         *puVar6 = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -450,12 +450,12 @@ void BatchDeserializeObjects(longlong data_start)
           uVar2 = unaff_RSI;
         }
         else {
-          uVar2 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(lVar4 + 0x22) * 4,4);
+          uVar2 = AllocateMemory(GLOBAL_MEMORY_POOL,(ulonglong)*(ushort *)(object_offset + 0x22) * 4,4);
           uVar5 = (ulonglong)*(ushort *)(lVar4 + 0x22);
         }
         *(ulonglong *)(lVar4 + 0x1a) = uVar2;
         if (uVar5 != 0) {
-          unaff_RSI = FUN_18062b420(_DAT_180c8ed18,uVar5 << 4,4);
+          zero_value = AllocateMemory(GLOBAL_MEMORY_POOL,alloc_size << 4,4);
         }
         *(ulonglong *)(lVar4 + 0x12) = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -488,12 +488,12 @@ void BatchDeserializeObjects(longlong data_start)
           uVar2 = unaff_RSI;
         }
         else {
-          uVar2 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4,4);
+          uVar2 = AllocateMemory(GLOBAL_MEMORY_POOL,(ulonglong)*(ushort *)(target_object + 0x62) * 4,4);
           uVar5 = (ulonglong)*(ushort *)(unaff_R15 + 0x62);
         }
         *(ulonglong *)(unaff_R15 + 0x5a) = uVar2;
         if (uVar5 != 0) {
-          unaff_RSI = FUN_18062b420(_DAT_180c8ed18,uVar5 << 4,4);
+          zero_value = AllocateMemory(GLOBAL_MEMORY_POOL,alloc_size << 4,4);
         }
         *(ulonglong *)(unaff_R15 + 0x52) = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -519,7 +519,7 @@ void BatchDeserializeObjects(longlong data_start)
       uVar2 = unaff_RSI;
     }
     else {
-      uVar2 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4,4);
+      uVar2 = AllocateMemory(GLOBAL_MEMORY_POOL,(ulonglong)*(ushort *)(target_object + 0x50) * 4,4);
       uVar5 = (ulonglong)*(ushort *)(unaff_R15 + 0x50);
     }
     *(ulonglong *)(unaff_R15 + 0x48) = uVar2;
@@ -576,12 +576,12 @@ void DeserializeSingleObject(longlong data_start)
           uVar2 = unaff_RSI;
         }
         else {
-          uVar2 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4,4);
+          uVar2 = AllocateMemory(GLOBAL_MEMORY_POOL,(ulonglong)*(ushort *)(target_object + 0x62) * 4,4);
           uVar3 = (ulonglong)*(ushort *)(unaff_R15 + 0x62);
         }
         *(undefined8 *)(unaff_R15 + 0x5a) = uVar2;
-        if (uVar3 != 0) {
-          unaff_RSI = FUN_18062b420(_DAT_180c8ed18,uVar3 << 4,4);
+        if (string_length != 0) {
+          zero_value = AllocateMemory(GLOBAL_MEMORY_POOL,alloc_size << 4,4);
         }
         *(undefined8 *)(unaff_R15 + 0x52) = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -607,11 +607,11 @@ void DeserializeSingleObject(longlong data_start)
       uVar2 = unaff_RSI;
     }
     else {
-      uVar2 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4,4);
+      uVar2 = AllocateMemory(GLOBAL_MEMORY_POOL,(ulonglong)*(ushort *)(target_object + 0x50) * 4,4);
       uVar3 = (ulonglong)*(ushort *)(unaff_R15 + 0x50);
     }
     *(undefined8 *)(unaff_R15 + 0x48) = uVar2;
-    if (uVar3 != 0) {
+    if (string_length != 0) {
       unaff_RSI = FUN_18062b420(_DAT_180c8ed18,uVar3 << 4,4);
     }
     *(undefined8 *)(unaff_R15 + 0x40) = unaff_RSI;
@@ -657,12 +657,12 @@ void FinalizeObjectArrayProcessing(void)
       uVar1 = unaff_RSI;
     }
     else {
-      uVar1 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4,4);
+      alloc_result = AllocateMemory(GLOBAL_MEMORY_POOL,(ulonglong)*(ushort *)(target_object + 0x50) * 4,4);
       uVar2 = (ulonglong)*(ushort *)(unaff_R15 + 0x50);
     }
     *(undefined8 *)(unaff_R15 + 0x48) = uVar1;
     if (uVar2 != 0) {
-      unaff_RSI = FUN_18062b420(_DAT_180c8ed18,uVar2 << 4,4);
+      zero_value = AllocateMemory(GLOBAL_MEMORY_POOL,alloc_size << 4,4);
     }
     *(undefined8 *)(unaff_R15 + 0x40) = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -711,7 +711,7 @@ void InitializeObjectFromStream(longlong object_target, longlong data_source)
   ulonglong stack_cookie;
   
   uStack_d8 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
+  stack_cookie = STACK_COOKIE ^ (ulonglong)stack_buffer_1;
   piVar4 = *(int **)(param_2 + 8);
   iVar2 = *piVar4;
   *(int **)(param_2 + 8) = piVar4 + 1;
@@ -725,21 +725,21 @@ void InitializeObjectFromStream(longlong object_target, longlong data_source)
   puVar12 = (undefined1 *)(*(longlong *)(param_2 + 8) + 0x10);
   *(undefined1 **)(param_2 + 8) = puVar12;
   *(undefined1 *)(param_1 + 0x28) = *puVar12;
-  lVar5 = *(longlong *)(param_2 + 8);
+  current_pos = *(longlong *)(data_stream + 8);
   *(undefined4 **)(param_2 + 8) = (undefined4 *)(lVar5 + 1);
   if (iVar2 == 0) {
-    puStack_c8 = &UNK_1809fcc28;
+    stack_ptr_1 = &GLOBAL_STRING_POOL;
     puStack_c0 = auStack_b0;
     uStack_b8 = 0;
     auStack_b0[0] = 0;
-    uVar3 = **(uint **)(param_2 + 8);
+    string_length = **(uint **)(data_stream + 8);
     puVar1 = *(uint **)(param_2 + 8) + 1;
     *(uint **)(param_2 + 8) = puVar1;
-    if (uVar3 != 0) {
-      FUN_180049910(&puStack_c8,puVar1,uVar3);
-      *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar3;
+    if (string_length != 0) {
+      ProcessStringData(&stack_ptr_1,string_data,string_length);
+      *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + (ulonglong)string_length;
     }
-    puStack_c8 = &UNK_18098bcb0;
+    stack_ptr_1 = &GLOBAL_DATA_BUFFER;
     puVar13 = *(undefined4 **)(param_2 + 8);
   }
   else {
@@ -762,7 +762,7 @@ void InitializeObjectFromStream(longlong object_target, longlong data_source)
   *(undefined4 *)(param_1 + 0x34) = *puVar13;
   *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + 4;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_f8);
+  ValidateStackCookie(stack_cookie ^ (ulonglong)stack_buffer_1);
 }
 
 
@@ -783,9 +783,9 @@ undefined8 * CreateObjectInstance(undefined8 vtable_ptr, longlong template_data)
   undefined8 template_field;
   undefined8 *new_object;
   
-  puVar2 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x38,8,3,0xfffffffffffffffe);
-  *puVar2 = &UNK_1809ffa18;
-  *puVar2 = &UNK_1809ff9a8;
+  new_object = (undefined8 *)AllocateObjectMemory(GLOBAL_MEMORY_POOL,0x38,8,3,0xfffffffffffffffe);
+  *new_object = &OBJECT_VTABLE_1;
+  *new_object = &OBJECT_VTABLE_2;
   *(undefined8 *)((longlong)puVar2 + 0x2c) = 0;
   *(undefined4 *)((longlong)puVar2 + 0x34) = 0;
   *(undefined1 *)(puVar2 + 5) = 0;
@@ -830,15 +830,15 @@ void InitializeObjectManager(longlong object_ptr)
   undefined *default_handler;
   
   if (*(char *)(*(longlong *)(param_1 + 0x20) + 0x28) == '\0') {
-    plVar3 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0xc0,0x10,4,0xfffffffffffffffe);
-    *plVar3 = (longlong)&UNK_180a21690;
-    *plVar3 = (longlong)&UNK_180a21720;
+    new_manager = (longlong *)AllocateObjectMemory(GLOBAL_MEMORY_POOL,0xc0,0x10,4,0xfffffffffffffffe);
+    *new_manager = (longlong)&MANAGER_VTABLE_1;
+    *new_manager = (longlong)&MANAGER_VTABLE_2;
     *(undefined4 *)(plVar3 + 1) = 0;
-    *plVar3 = (longlong)&UNK_180a02e68;
-    plVar3[2] = (longlong)&UNK_18098bcb0;
+    *new_manager = (longlong)&MANAGER_VTABLE_3;
+    new_manager[2] = (longlong)&GLOBAL_DATA_BUFFER;
     plVar3[3] = 0;
     *(undefined4 *)(plVar3 + 4) = 0;
-    plVar3[2] = (longlong)&UNK_1809fcc28;
+    new_manager[2] = (longlong)&GLOBAL_STRING_POOL;
     plVar3[3] = (longlong)(plVar3 + 5);
     *(undefined4 *)(plVar3 + 4) = 0;
     *(undefined1 *)(plVar3 + 5) = 0;
@@ -846,7 +846,7 @@ void InitializeObjectManager(longlong object_ptr)
     *(undefined4 *)(plVar3 + 1) = 0;
     *(undefined2 *)(plVar3 + 0x16) = 0;
     plVar3[0x15] = 0;
-    *plVar3 = (longlong)&UNK_180a13a28;
+    *new_manager = (longlong)&MANAGER_VTABLE_4;
     plVar3[0x15] = 0;
     *(undefined1 *)(plVar3 + 0x17) = 0;
     (**(code **)(*plVar3 + 0x28))(plVar3);
@@ -857,17 +857,17 @@ void InitializeObjectManager(longlong object_ptr)
     }
     *(longlong *)(*(longlong *)(param_1 + 0xb0) + 0xa8) = param_1;
     plVar4 = (longlong *)(*(longlong *)(param_1 + 0xb0) + 0x10);
-    puVar5 = &DAT_18098bc73;
+    default_handler = &DEFAULT_EVENT_HANDLER;
     if (*(undefined **)(param_1 + 0x70) != (undefined *)0x0) {
       puVar5 = *(undefined **)(param_1 + 0x70);
     }
     (**(code **)(*plVar4 + 0x10))(plVar4,puVar5);
     *(undefined1 *)(*(longlong *)(param_1 + 0xb0) + 0xb1) = 1;
-    lVar1 = _DAT_180c86930;
+    table_address = GLOBAL_OBJECT_TABLE;
     plVar4 = *(longlong **)(param_1 + 0xb0);
     iVar2 = (**(code **)(*plVar4 + 0x60))(plVar4);
     *(undefined1 *)((longlong)plVar4 + 0xb2) = 1;
-    FUN_1802abe00((longlong)iVar2 * 0x98 + lVar1 + 8,plVar4);
+    RegisterObjectManager((longlong)manager_id * 0x98 + table_address + 8,new_manager);
   }
   return;
 }
@@ -895,7 +895,7 @@ void CleanupObjectManager(longlong object_ptr)
     if (plStackX_8 != (longlong *)0x0) {
       (**(code **)(*plStackX_8 + 0x28))();
     }
-    FUN_1800b55b0();
+    CleanupMemoryManager();
     pplStackX_10 = *(longlong ***)(param_1 + 0xb0);
     *(undefined8 *)(param_1 + 0xb0) = 0;
     if (pplStackX_10 != (longlong **)0x0) {
