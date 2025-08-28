@@ -24,7 +24,7 @@
  * 
  * @version 2.0
  * @date 2025-08-28
- * @author Claude Code - Claude Code
+ * @author Claude Code
  */
 
 /* ============================================================================
