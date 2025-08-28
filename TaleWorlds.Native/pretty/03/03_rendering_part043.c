@@ -24,7 +24,7 @@ extern int64_t SYSTEM_DATA_MANAGER_B;  // 内存分配器句柄
 
 // 函数声明
 void FUN_18028e550(int64_t param_1, int param_2, int64_t param_3, float param_4);
-void FUN_1808fc050(int64_t param_1);
+void SystemSecurityChecker(int64_t param_1);
 void FUN_180059ba0(void *param_1, int64_t param_2);
 void *func_0x000180120ce0(int64_t param_1, int64_t param_2);
 void memset(void *dest, int value, int64_t count);
@@ -321,7 +321,7 @@ void setup_rendering_buffer(int *buffer_config, int64_t buffer_ptr, int buffer_s
   if (buffer_config[1] < 1) {
     if (buffer_ptr_local == large_buffer) {
       // 错误处理
-      FUN_1808fc050(checksum ^ (uint64_t)stack_buffer);
+      SystemSecurityChecker(checksum ^ (uint64_t)stack_buffer);
     }
     if ((buffer_ptr_local != (int8_t *)0x0) && (SYSTEM_DATA_MANAGER_A != 0)) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
@@ -394,7 +394,7 @@ void configure_rendering_context(int *context_config, int64_t context_ptr, int c
   if (context_config[1] < 1) {
     if (local_buffer == &stack0x00000050) {
       // 错误处理
-      FUN_1808fc050(stack_checksum ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(stack_checksum ^ (uint64_t)&stack0x00000000);
     }
     if ((local_buffer != (int8_t *)0x0) && (SYSTEM_DATA_MANAGER_A != 0)) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
@@ -464,7 +464,7 @@ void setup_rendering_pipeline(int *pipeline_config, int64_t pipeline_ptr, int pi
   if (pipeline_config[1] <= reg_bx) {
     if (local_buffer == &stack0x00000050) {
       // 错误处理
-      FUN_1808fc050(stack_checksum ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(stack_checksum ^ (uint64_t)&stack0x00000000);
     }
     if ((local_buffer != (int8_t *)0x0) && (SYSTEM_DATA_MANAGER_A != 0)) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
@@ -516,7 +516,7 @@ void release_rendering_resources(void)
   }
   
   // 清理栈
-  FUN_1808fc050(stack_param2 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(stack_param2 ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数: void free_rendering_buffer(void)

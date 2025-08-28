@@ -270,7 +270,7 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
             do {
               bit_count = (int)checksum_value;
               if (*(int64_t *)uint_pointer == 0) {
-                base_address = FUN_18062b420(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X28000,0x25);
+                base_address = CoreMemoryPoolAllocator(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X28000,0x25);
                 LOCK();
                 allocation_success = *(int64_t *)((int64_t)resource_pointer + ((int64_t)bit_count * 2 + 2) * 4) == 0;
                 if (allocation_success) {
@@ -285,7 +285,7 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
                 else {
                   if (base_address != 0) {
                     // 警告：子函数不返回
-                    FUN_18064e900(base_address);
+                    CoreMemoryPoolInitializer(base_address);
                   }
                   do {
                   } while (*string_pointer != '\0');
@@ -315,7 +315,7 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
             do {
               bit_count = (int)checksum_value;
               if (*resource_array == 0) {
-                temp_address = FUN_18062b420(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0XD8000,0x25);
+                temp_address = CoreMemoryPoolAllocator(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0XD8000,0x25);
                 buffer_pointer = (int64_t *)(base_address + 0x1290 + (int64_t)bit_count * 8);
                 LOCK();
                 allocation_success = *buffer_pointer == 0;
@@ -332,7 +332,7 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
                 else {
                   if (temp_address != 0) {
                     // 警告：子函数不返回
-                    FUN_18064e900();
+                    CoreMemoryPoolInitializer();
                   }
                   do {
                   } while (*string_pointer != '\0');
@@ -371,7 +371,7 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
         temp_var_9 = RENDERING_SYSTEM_BUFFER_SIZE_0X28000;
         temp_long_6 = render_context + 0x988;
         temp_long_5 = (int64_t)item_count * RENDERING_SYSTEM_SIZE_0X50;
-        temp_var = FUN_18062b1e0(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X100,8,3);
+        temp_var = CoreMemoryPoolReallocator(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X100,8,3);
         resource_array = (int64_t *)FUN_18005ce30(temp_var,&temp_var_1);
         temp_pointer_3 = (int64_t **)resource_array;
         if (resource_array != (int64_t *)0x0) {
@@ -398,7 +398,7 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
         temp_var_11 = RENDERING_SYSTEM_BUFFER_SIZE_0XD8000;
         temp_long_7 = render_context + 0x1290;
         temp_long_6 = (int64_t)item_count * RENDERING_SYSTEM_SIZE_0X1B0;
-        temp_var = FUN_18062b1e0(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X100,8,3);
+        temp_var = CoreMemoryPoolReallocator(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X100,8,3);
         resource_array = (int64_t *)FUN_18005ce30(temp_var,&temp_var_3);
         temp_var_pointer = (void **)resource_array;
         if (resource_array != (int64_t *)0x0) {
@@ -423,7 +423,7 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
   *(int32_t *)(data_context + 0x124b8) = 0;
 LAB_1803084bf:
                     // 警告：子函数不返回
-  FUN_1808fc050(stack_checksum ^ (uint64_t)security_buffer);
+  SystemSecurityChecker(stack_checksum ^ (uint64_t)security_buffer);
 }
 
 // 渲染系统数据处理器
@@ -447,7 +447,7 @@ void rendering_system_data_processor(uint *data_pointer, int32_t *data_value)
   resource_index = lock_value >> RENDERING_SYSTEM_SHIFT_0XB;
   checksum_value = (uint64_t)resource_index;
   if (*(int64_t *)(data_pointer + (uint64_t)resource_index * 2 + 2) == 0) {
-    memory_block = FUN_18062b420(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X2000,0x18);
+    memory_block = CoreMemoryPoolAllocator(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X2000,0x18);
     LOCK();
     allocation_success = *(int64_t *)(data_pointer + checksum_value * 2 + 2) == 0;
     if (allocation_success) {
@@ -462,7 +462,7 @@ void rendering_system_data_processor(uint *data_pointer, int32_t *data_value)
     else {
       if (memory_block != 0) {
                     // 警告：子函数不返回
-        FUN_18064e900();
+        CoreMemoryPoolInitializer();
       }
       do {
       } while (*(char *)(checksum_value + RENDERING_SYSTEM_SIZE_0X40 + (int64_t)data_pointer) != '\0');
@@ -687,12 +687,12 @@ int64_t rendering_system_memory_manager(int64_t *memory_pointer, int64_t *target
   if (operation_type == 0) {
     if (*memory_pointer != 0) {
                     // 警告：子函数不返回
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
   }
   else {
     if (operation_type == 1) {
-      target_data = (uint64_t *)FUN_18062b1e0(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X38,8,DAT,0xfffffffffffffffe);
+      target_data = (uint64_t *)CoreMemoryPoolReallocator(_DAT,RENDERING_SYSTEM_BUFFER_SIZE_0X38,8,DAT,0xfffffffffffffffe);
       source_pointer = (uint64_t *)*target_pointer;
       temp_var = source_pointer[1];
       *target_data = *source_pointer;
@@ -958,8 +958,8 @@ void rendering_system_extended_processor(int64_t *source_pointer, uint64_t param
 // - 依赖FUN_180308a90进行数据同步
 // - 依赖FUN_1803090c0进行数据处理
 // - 依赖FUN_180306d20进行资源操作
-// - 依赖_FUN_18062b420进行内存分配
-// - 依赖_FUN_18064e900进行资源清理
+// - 依赖_CoreMemoryPoolAllocator进行内存分配
+// - 依赖_CoreMemoryPoolInitializer进行资源清理
 //
 // 注意事项：
 // - 部分函数不返回，直接调用清理函数

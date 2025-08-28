@@ -118,7 +118,7 @@ void FUN_1803fad40(int64_t *param_1,int64_t param_2)
     (**(code **)(*plStack_1b8 + 0x38))();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_1e8);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_1e8);
 }
 
 
@@ -477,7 +477,7 @@ void FUN_1803fb0e0(uint64_t *param_1,uint64_t param_2,void **param_3,int32_t par
     puStack_240 = &system_data_buffer_ptr;
     if (lStack_238 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
     lStack_238 = 0;
     uStack_228 = uStack_228 & 0xffffffff00000000;
@@ -494,7 +494,7 @@ void FUN_1803fb0e0(uint64_t *param_1,uint64_t param_2,void **param_3,int32_t par
   (**(code **)(*system_system_data_memory + 0x20))();
   puStack_118 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_78 ^ (uint64_t)auStack_2b8);
+  SystemSecurityChecker(uStack_78 ^ (uint64_t)auStack_2b8);
 }
 
 
@@ -609,7 +609,7 @@ void FUN_1803fbab0(int64_t param_1,int64_t param_2)
   }
   puStack_c8 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_168);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_168);
 }
 
 
@@ -816,10 +816,10 @@ void FUN_1803fbd40(int64_t param_1,uint64_t param_2,uint64_t param_3)
       (**(code **)(*plStack_158 + 0x38))();
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_88 ^ (uint64_t)auStack_1b8);
+    SystemSecurityChecker(uStack_88 ^ (uint64_t)auStack_1b8);
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreMemoryPoolInitializer();
 }
 
 
@@ -919,7 +919,7 @@ void FUN_1803fc260(uint64_t *param_1,int32_t param_2,int32_t param_3)
   }
   puStack_88 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_168);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_168);
 }
 
 

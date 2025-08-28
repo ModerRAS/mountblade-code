@@ -834,7 +834,7 @@ LAB_18046ebfe:
   FUN_18048ff50(param_1,uStack_528,uStack_52c,uStack_538 + 1);
   MXCSR = uStack_530;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_100 ^ (uint64_t)auStack_5b8);
+  SystemSecurityChecker(uStack_100 ^ (uint64_t)auStack_5b8);
 }
 
 

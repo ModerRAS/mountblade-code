@@ -245,7 +245,7 @@ LAB_180410f7e:
     lVar16 = lVar16 + 1;
     if (lStack0000000000000040 <= lVar16) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000088 ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(in_stack_00000088 ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }
@@ -398,7 +398,7 @@ void RenderingData_OptimizeBatch(int64_t param_1,int64_t *param_2,uint param_3)
     uStack_110 = uStack_110 - 1;
     if (uStack_110 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_c8 ^ (uint64_t)auStack_158);
+      SystemSecurityChecker(uStack_c8 ^ (uint64_t)auStack_158);
     }
   } while( true );
 }
@@ -597,7 +597,7 @@ void RenderingData_ProcessOptimized(int64_t param_1,int64_t *param_2,uint64_t pa
     uStack0000000000000048 = uStack0000000000000048 - 1;
     if (uStack0000000000000048 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000090 ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(in_stack_00000090 ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }
@@ -850,7 +850,7 @@ void RenderingState_ProcessData(int64_t param_1,int64_t param_2,int64_t *param_3
     } while (lVar3 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_138);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_138);
 }
 
 
@@ -1055,7 +1055,7 @@ void RenderingState_Finalize(int64_t param_1,int64_t param_2,int64_t *param_3,in
     } while (lVar4 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x10) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x10) ^ (uint64_t)&stack0x00000000);
 }
 
 /* ============================================================================

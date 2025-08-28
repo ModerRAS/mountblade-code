@@ -309,7 +309,7 @@ void RenderingSystem_AdvancedVectorProcessing(uint64_t render_context, int64_t v
   }
   
   // 调用渲染结束函数
-  FUN_1808fc050(*(uint64_t *)(transform_offset + 0x70) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(transform_offset + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数：渲染系统向量归一化处理
@@ -375,7 +375,7 @@ void RenderingSystem_VectorNormalization(void)
   }
   
   // 调用渲染结束函数
-  FUN_1808fc050(*(uint64_t *)(transform_offset + 0x70) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(transform_offset + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数：渲染系统简化向量归一化
@@ -435,7 +435,7 @@ void RenderingSystem_SimplifiedVectorNormalization(void)
   }
   
   // 调用渲染结束函数
-  FUN_1808fc050(*(uint64_t *)(transform_offset + 0x70) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(transform_offset + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数：渲染系统角度缩放处理
@@ -453,7 +453,7 @@ void RenderingSystem_AngleScaling(void)
   *(float *)(render_offset + 0xc) = (1.0f / angle_sum) * *(float *)(render_offset + 0xc);
   
   // 调用渲染结束函数
-  FUN_1808fc050(*(uint64_t *)(transform_offset + 0x70) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(transform_offset + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数：渲染系统快速排序算法

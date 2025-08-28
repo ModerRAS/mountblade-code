@@ -19,7 +19,7 @@ void FUN_18082ed00(int *param_1,uint64_t param_2,uint64_t param_3,int param_4)
     FUN_1808fd200(param_1,0xffffffffffffff0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(GET_SECURITY_COOKIE());
+  SystemSecurityChecker(GET_SECURITY_COOKIE());
 }
 
 

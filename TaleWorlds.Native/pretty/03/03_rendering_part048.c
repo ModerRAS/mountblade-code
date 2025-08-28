@@ -1102,7 +1102,7 @@ void execute_float_interpolation_render(int64_t param1, int64_t param2, int para
         }
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_c0 ^ (uint64_t)auStack_f8);
+    SystemSecurityChecker(uStack_c0 ^ (uint64_t)auStack_f8);
 }
 
 /* ================================= 函数别名 ================================= */

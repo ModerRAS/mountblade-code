@@ -291,7 +291,7 @@ realloc_buffer:
     }
     
     // 清理并退出
-    FUN_1808fc050(stream_offset ^ (uint64_t)stack_guard);
+    SystemSecurityChecker(stream_offset ^ (uint64_t)stack_guard);
 }
 
 
@@ -582,7 +582,7 @@ realloc_buffer:
     batch_size = batch_index;
     if ((uint64_t)(render_buffer[8] - batch_data >> 4) <= (uint64_t)(int64_t)batch_index) {
       // 清理并退出
-      FUN_1808fc050(material_offset ^ (uint64_t)&stack_guard);
+      SystemSecurityChecker(material_offset ^ (uint64_t)&stack_guard);
     }
   } while( true );
 }
@@ -598,7 +598,7 @@ void RenderingSystemInitializer(void)
   uint64_t stack_parameter;
   
   // 初始化渲染系统并设置堆栈保护
-  FUN_1808fc050(stack_parameter ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(stack_parameter ^ (uint64_t)&stack0x00000000);
 }
 
 

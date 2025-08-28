@@ -280,16 +280,16 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
           resource_array1 = (int64_t **)temp_array1;
           if (temp_array1[0] != 0) {
             // 内存清理和退出
-            FUN_18064e900();
+            CoreMemoryPoolInitializer();
           }
         }
       }
       resource_array1 = &temp_resource2;
       if (temp_resource2 != (int64_t *)0x0) {
-        FUN_18064e900();
+        CoreMemoryPoolInitializer();
       }
       if (temp_array2[0] != 0) {
-        FUN_18064e900();
+        CoreMemoryPoolInitializer();
       }
     }
     else if (current_state == 1) {
@@ -691,7 +691,7 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
   }
   
   // 安全退出
-  FUN_1808fc050(security_hash ^ (uint64_t)security_buffer);
+  SystemSecurityChecker(security_hash ^ (uint64_t)security_buffer);
 }
 
 /**
@@ -852,7 +852,7 @@ void rendering_system_manage_resources(int64_t render_context, int64_t *resource
   }
   
   // 安全退出
-  FUN_1808fc050(security_hash ^ (uint64_t)security_buffer);
+  SystemSecurityChecker(security_hash ^ (uint64_t)security_buffer);
 }
 
 /**

@@ -86,7 +86,7 @@ void process_rendering_index_buffer(int64_t render_context, uint64_t *data_ptr, 
     *(int *)(render_context + 0x48) = *(int *)(render_context + 0x48) + (vertex_count & 0xffff);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_80 ^ (uint64_t)&uStack_88);
+  SystemSecurityChecker(uStack_80 ^ (uint64_t)&uStack_88);
 }
 
 /**
@@ -236,7 +236,7 @@ void initialize_rendering_data_buffer(int64_t render_context, uint64_t param_2, 
     FUN_18011dc70((int *)(render_context + 0x80), param_6 + 1 + *(int *)(render_context + 0x80));
     if (-1 < param_6) {
                     // WARNING: Subroutine does not return
-      FUN_1808fd400();
+      AdvancedSystemController();
     }
   }
   return;
@@ -254,7 +254,7 @@ void process_rendering_data_buffer(void)
   FUN_18011dc70();
   if (-1 < in_stack_000000a8) {
                     // WARNING: Subroutine does not return
-    FUN_1808fd400();
+    AdvancedSystemController();
   }
   return;
 }
@@ -267,7 +267,7 @@ void process_rendering_data_buffer(void)
 void allocate_rendering_memory(void)
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd400();
+  AdvancedSystemController();
 }
 
 /**

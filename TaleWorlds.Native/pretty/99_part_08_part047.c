@@ -540,7 +540,7 @@ LAB_1805a8fbe:
       UNLOCK();
       uVar13 = uVar5 >> 6;
       if (*(int64_t *)(param_1 + 0x290 + (uint64_t)uVar13 * 8) == 0) {
-        lVar15 = FUN_18062b420(system_memory_pool_ptr,0x900,8);
+        lVar15 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x900,8);
         plVar3 = (int64_t *)(param_1 + 0x290 + (uint64_t)uVar13 * 8);
         LOCK();
         bVar25 = *plVar3 == 0;
@@ -550,7 +550,7 @@ LAB_1805a8fbe:
         UNLOCK();
         if ((!bVar25) && (lVar15 != 0)) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreMemoryPoolInitializer();
         }
       }
       lVar15 = *(int64_t *)(param_1 + 0x290 + (uint64_t)uVar13 * 8);
@@ -771,7 +771,7 @@ LAB_1805a8fbe:
       UNLOCK();
       uVar10 = uVar4 >> 6;
       if (*(int64_t *)(unaff_R15 + 0x290 + (uint64_t)uVar10 * 8) == 0) {
-        lVar11 = FUN_18062b420(system_memory_pool_ptr,0x900,8);
+        lVar11 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x900,8);
         plVar3 = (int64_t *)(unaff_R15 + 0x290 + (uint64_t)uVar10 * 8);
         LOCK();
         bVar15 = *plVar3 == 0;
@@ -781,7 +781,7 @@ LAB_1805a8fbe:
         UNLOCK();
         if ((!bVar15) && (lVar11 != 0)) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreMemoryPoolInitializer();
         }
       }
       lVar11 = *(int64_t *)(unaff_R15 + 0x290 + (uint64_t)uVar10 * 8);
@@ -878,7 +878,7 @@ LAB_1805a9559:
         rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(*(int32_t *)(param_5 + 0x34));
+      AdvancedSystemController(*(int32_t *)(param_5 + 0x34));
     }
   }
   return;
@@ -907,7 +907,7 @@ void FUN_1805a95a3(void)
     rsqrtss(ZEXT416((uint)fVar1),ZEXT416((uint)fVar1));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(int32_t *)(unaff_R15 + 0x34));
+  AdvancedSystemController(*(int32_t *)(unaff_R15 + 0x34));
 }
 
 

@@ -228,7 +228,7 @@ void FUN_1805dbed0(int64_t param_1)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(int32_t *)(*(int64_t *)(**(int64_t **)(param_1 + 0x20) + 0x20) + 0x34));
+  AdvancedSystemController(*(int32_t *)(*(int64_t *)(**(int64_t **)(param_1 + 0x20) + 0x20) + 0x34));
 }
 
 

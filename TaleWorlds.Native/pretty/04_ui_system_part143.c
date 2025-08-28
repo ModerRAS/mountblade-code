@@ -68,7 +68,7 @@ LAB_18074e436:
     if (iVar4 != 0) {
 LAB_18074f826:
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0xca0) ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0xca0) ^ (uint64_t)&stack0x00000000);
     }
     if (0 < iStack000000000000003c) {
       lVar10 = CONCAT44(unaff_000000ac,unaff_R13D);
@@ -273,7 +273,7 @@ void FUN_18074f865(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0xca0) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0xca0) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -287,7 +287,7 @@ void FUN_18074f89e(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0xca0) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0xca0) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -709,7 +709,7 @@ int32_t FUN_180750190(int64_t param_1,int64_t *param_2,char param_3)
   param_2[2] = 0;
   if ((int)param_2[7] == 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2,&system_string1_ptr,0x93a,1);
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2,&system_string1_ptr,0x93a,1);
   }
   *(int *)(param_1 + 0xe4) = *(int *)(param_1 + 0xe4) + -1;
   if (param_3 == '\0') {
@@ -729,7 +729,7 @@ uint64_t FUN_180750240(int64_t param_1)
   if ((*(int64_t *)(param_1 + 0x108) != 0) &&
      (((*(int *)(param_1 + 0x110) != 0 && (*(int *)(param_1 + 0x110) != 2)) ||
       (*(char *)(param_1 + 0x5c) != '\0')))) {
-    FUN_180768360(*(uint64_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0x108) + 0x10) + 0x168));
+    SystemStateManager(*(uint64_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0x108) + 0x10) + 0x168));
     lVar1 = *(int64_t *)(param_1 + 0x108);
     plVar2 = (int64_t *)(lVar1 + 0x18);
     **(int64_t **)(lVar1 + 0x20) = *plVar2;
@@ -737,7 +737,7 @@ uint64_t FUN_180750240(int64_t param_1)
     *(int64_t **)(lVar1 + 0x20) = plVar2;
     *plVar2 = (int64_t)plVar2;
                     // WARNING: Subroutine does not return
-    FUN_180768400(*(uint64_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0x108) + 0x10) + 0x168));
+    SystemConfigManager(*(uint64_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0x108) + 0x10) + 0x168));
   }
   return 0;
 }

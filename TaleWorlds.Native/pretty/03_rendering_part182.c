@@ -679,7 +679,7 @@ LAB_180377829:
                         uVar12 = (uVar12 ^ uVar12 << 5) - 1;
                         uStack_3b8._0_4_ = uVar22;
                     // WARNING: Subroutine does not return
-                        FUN_1808fd400(uVar12,(float)uVar12 * 1.4629181e-09);
+                        AdvancedSystemController(uVar12,(float)uVar12 * 1.4629181e-09);
                       }
 LAB_18037777e:
                       uVar12 = uVar12 ^ uVar12 << 0xd;
@@ -767,7 +767,7 @@ LAB_18037777e:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_e8 ^ (uint64_t)auStack_3e8);
+  SystemSecurityChecker(uStack_e8 ^ (uint64_t)auStack_3e8);
 }
 
 

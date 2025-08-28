@@ -49,7 +49,7 @@ void render_system_buffer_reallocator(int64_t *buffer_context, uint64_t config_o
     }
   }
   // 分配新的缓冲区空间
-  stack_offset18 = FUN_18062b420(system_memory_pool_ptr, stack_offset20 * 0x128, (char)buffer_context[3]);
+  stack_offset18 = CoreMemoryPoolAllocator(system_memory_pool_ptr, stack_offset20 * 0x128, (char)buffer_context[3]);
   buffer_end = buffer_context[1];
   buffer_start = *buffer_context;
 LAB_18030cb58:
@@ -122,7 +122,7 @@ LAB_18030cb58:
     return;
   }
   // 释放旧缓冲区
-  FUN_18064e900(buffer_start);
+  CoreMemoryPoolInitializer(buffer_start);
 }
 
 /**
@@ -289,7 +289,7 @@ uint64_t * render_system_advanced_resource_manager(uint64_t *resource_context)
   *(int8_t *)(resource_context + 0x3a) = 0;
   resource_context[0x3b] = 0;
   // 分配资源管理内存
-  temp_ptr3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x20, 8, 3);
+  temp_ptr3 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x20, 8, 3);
   *temp_ptr3 = 0;
   temp_ptr3[1] = 0;
   temp_ptr3[2] = 0;
@@ -324,7 +324,7 @@ uint64_t * render_system_advanced_resource_manager(uint64_t *resource_context)
     if (buffer_size == 0) goto LAB_18030d0ba;
   }
   // 重新分配缓冲区
-  temp_ptr5 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, buffer_size * 8, *(int8_t *)(render_system_data_buffer + 0x30));
+  temp_ptr5 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, buffer_size * 8, *(int8_t *)(render_system_data_buffer + 0x30));
   temp_ptr3 = *(uint64_t **)(global_data + 0x20);
   temp_ptr6 = *(uint64_t **)(global_data + 0x18);
 LAB_18030d0ba:
@@ -340,7 +340,7 @@ LAB_18030d0ba:
     return resource_context;
   }
   // 释放旧缓冲区
-  FUN_18064e900();
+  CoreMemoryPoolInitializer();
 }
 
 /**
@@ -431,14 +431,14 @@ void render_system_resource_cleaner(uint64_t *resource_context)
     if (resource_handle != 0) {
       FUN_180057830(resource_handle);
       // 释放资源
-      FUN_18064e900(resource_handle);
+      CoreMemoryPoolInitializer(resource_handle);
     }
   }
   temp_ptr2 = (uint64_t *)resource_context[0x39];
   if (temp_ptr2 != (uint64_t *)0x0) {
     FUN_18004b790(temp_ptr1, *temp_ptr2);
     // 释放资源
-    FUN_18064e900(temp_ptr2);
+    CoreMemoryPoolInitializer(temp_ptr2);
   }
   // 重置链表指针
   *temp_ptr1 = temp_ptr1;
@@ -457,10 +457,10 @@ void render_system_resource_cleaner(uint64_t *resource_context)
         *(int64_t *)(resource_handle + 0x10) = *(int64_t *)(resource_handle + 8);
         if (*(int64_t *)(resource_handle + 8) != 0) {
           // 释放资源
-          FUN_18064e900();
+          CoreMemoryPoolInitializer();
         }
         // 释放资源
-        FUN_18064e900(resource_handle);
+        CoreMemoryPoolInitializer(resource_handle);
       }
       temp_index = (int)temp_counter + 1;
       temp_counter = (uint64_t)temp_index;
@@ -472,10 +472,10 @@ void render_system_resource_cleaner(uint64_t *resource_context)
   if (resource_ptr != (int64_t *)0x0) {
     if (*resource_ptr != 0) {
       // 释放资源
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
     // 释放资源
-    FUN_18064e900(resource_ptr);
+    CoreMemoryPoolInitializer(resource_ptr);
   }
   resource_context[0x22] = 0;
   FUN_18004b730(temp_ptr1);
@@ -489,7 +489,7 @@ void render_system_resource_cleaner(uint64_t *resource_context)
   resource_context[0x1e] = &system_data_buffer_ptr;
   if (resource_context[0x1f] != 0) {
     // 释放资源
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   resource_context[0x1f] = 0;
   *(int32_t *)(resource_context + 0x21) = 0;
@@ -498,7 +498,7 @@ void render_system_resource_cleaner(uint64_t *resource_context)
   resource_context[0x15] = &system_data_buffer_ptr;
   if (resource_context[0x16] != 0) {
     // 释放资源
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   resource_context[0x16] = 0;
   *(int32_t *)(resource_context + 0x18) = 0;
@@ -506,7 +506,7 @@ void render_system_resource_cleaner(uint64_t *resource_context)
   resource_context[0x11] = &system_data_buffer_ptr;
   if (resource_context[0x12] != 0) {
     // 释放资源
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   resource_context[0x12] = 0;
   *(int32_t *)(resource_context + 0x14) = 0;
@@ -545,7 +545,7 @@ uint64_t render_system_render_object_creator(int64_t render_context)
   int64_t *stack_ptr8;
   
   // 分配渲染对象内存
-  render_obj = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 200, 8, 3, 0xfffffffffffffffe);
+  render_obj = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr, 200, 8, 3, 0xfffffffffffffffe);
   FUN_180049830(render_obj);
   *render_obj = (int64_t)&unknown_var_5304_ptr;
   render_obj[0x18] = render_context;
@@ -864,7 +864,7 @@ void render_system_data_structure_manager(int64_t render_context, int64_t *data_
   data_ptr4 = (int64_t *)0x0;
   if (*data_ptr6 != data_ptr6[1]) goto LAB_18030d811;
   // 分配新的数据结构
-  stack_ptr8 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x28, 8, CONCAT71((int7)((uint64_t)data_ptr6 >> 8), 3));
+  stack_ptr8 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x28, 8, CONCAT71((int7)((uint64_t)data_ptr6 >> 8), 3));
   stack_ptr10 = stack_ptr8 + 1;
   *stack_ptr10 = 0;
   stack_ptr8[2] = 0;
@@ -882,7 +882,7 @@ void render_system_data_structure_manager(int64_t render_context, int64_t *data_
   if (data_start == 0) {
     data_start = 1;
 LAB_18030d7a4:
-    data_ptr4 = (int64_t *)FUN_18062b420(system_memory_pool_ptr, data_start * 8, (char)temp_ptr1[3]);
+    data_ptr4 = (int64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, data_start * 8, (char)temp_ptr1[3]);
     data_ptr6 = (int64_t *)temp_ptr1[1];
     data_ptr5 = (int64_t *)*temp_ptr1;
   }
@@ -897,7 +897,7 @@ LAB_18030d7a4:
   *data_ptr4 = (int64_t)stack_ptr8;
   if (*temp_ptr1 != 0) {
     // 释放旧数据
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   *temp_ptr1 = (uint64_t)data_ptr4;
   temp_ptr1[1] = (uint64_t)(data_ptr4 + 1);
@@ -949,10 +949,10 @@ LAB_18030d811:
       return;
     }
     // 释放数据结构
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   // 释放数据结构
-  FUN_18064e900();
+  CoreMemoryPoolInitializer();
 }
 
 // WARNING: 全局变量起始地址与较小符号重叠
@@ -1027,7 +1027,7 @@ void render_system_advanced_render_controller(uint64_t render_id, int64_t render
         *(float *)(temp_long4 + 0x244) = (float)((uint)temp_float2 >> 0x18) * 0.003921569;
         if (*(int64_t *)(temp_long4 + 0x2c8) == 0) {
           *(uint *)(temp_long4 + 0x100) = *(uint *)(temp_long4 + 0x100) | 8;
-          temp_var5 = FUN_18062b1e0(system_memory_pool_ptr, 0xd0, 4, 9);
+          temp_var5 = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0xd0, 4, 9);
           // 初始化渲染缓冲区
           memset(temp_var5, 0, 0xd0);
         }
@@ -1080,7 +1080,7 @@ void render_system_advanced_render_controller(uint64_t render_id, int64_t render
     FUN_18022d470(*render_object, &temp_stack_98);
     if (stack_70 != 0) {
       // 释放渲染对象
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
   }
   return;

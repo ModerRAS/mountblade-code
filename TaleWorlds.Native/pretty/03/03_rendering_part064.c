@@ -95,7 +95,7 @@ void render_system_initialize_buffer(int64_t context)
     // 检查缓冲区是否已经初始化
     if (*(int64_t *)(context + 0xd0) == 0) {
         // 分配4KB缓冲区并清零
-        buffer_ptr = FUN_18062b1e0(global_render_context, RENDER_BUFFER_SIZE_4K, 8, 3);
+        buffer_ptr = CoreMemoryPoolReallocator(global_render_context, RENDER_BUFFER_SIZE_4K, 8, 3);
         memset(buffer_ptr, 0, RENDER_BUFFER_SIZE_4K);
     }
 }
@@ -113,7 +113,7 @@ void render_system_allocate_memory(uint64_t memory_ptr)
     uint64_t allocated_memory;
     
     // 分配4KB内存并清零
-    allocated_memory = FUN_18062b1e0(memory_ptr, RENDER_BUFFER_SIZE_4K);
+    allocated_memory = CoreMemoryPoolReallocator(memory_ptr, RENDER_BUFFER_SIZE_4K);
     memset(allocated_memory, 0, RENDER_BUFFER_SIZE_4K);
 }
 
@@ -1144,7 +1144,7 @@ uint64_t *render_system_create_string_buffer(int64_t param1, uint64_t *string_bu
     *(int32_t *)(string_buffer + 2) = 0;
     
     // 调用缓冲区初始化函数
-    FUN_1806277c0(string_buffer, RENDERER_CONFIG_BASIC, param3, param4, 0, 0xfffffffffffffffe);
+    CoreMemoryPoolProcessor(string_buffer, RENDERER_CONFIG_BASIC, param3, param4, 0, 0xfffffffffffffffe);
     
     // 设置缓冲区数据
     buffer_data = (int32_t *)string_buffer[1];
@@ -1159,7 +1159,7 @@ uint64_t *render_system_create_string_buffer(int64_t param1, uint64_t *string_bu
     
     // 如果存在上下文数据且字符串长度大于0，则复制字符串数据
     if ((context_data != 0) && (0 < *(int *)(context_data + 0x4e8))) {
-        FUN_1806277c0(string_buffer, *(int *)(string_buffer + 2) + *(int *)(context_data + 0x4e8));
+        CoreMemoryPoolProcessor(string_buffer, *(int *)(string_buffer + 2) + *(int *)(context_data + 0x4e8));
         // WARNING: Subroutine does not return
         memcpy((uint64_t)*(uint *)(string_buffer + 2) + string_buffer[1], 
                *(uint64_t *)(context_data + 0x4e0),
@@ -1240,9 +1240,9 @@ int64_t render_system_process_render_data(int64_t *render_obj, uint64_t param2)
     if (render_obj[0xda] == 0) goto LAB_180301ce4;
     
     // 创建字符串缓冲区
-    string_buffer = (int32_t *)FUN_18062b420(global_render_context, 0x18, 0x13);
+    string_buffer = (int32_t *)CoreMemoryPoolAllocator(global_render_context, 0x18, 0x13);
     *(int8_t *)string_buffer = 0;
-    buffer_size = FUN_18064e990(string_buffer);
+    buffer_size = CoreMemoryPoolCleaner(string_buffer);
     
     // 设置字符串缓冲区数据
     *string_buffer = RENDER_MAGIC_NUMBER_1;  // "Slgr"
@@ -1258,8 +1258,8 @@ int64_t render_system_process_render_data(int64_t *render_obj, uint64_t param2)
     if (0 < string_length) {
         // 检查缓冲区大小是否足够
         if ((string_length != -0x17) && (buffer_size < string_length + 0x18U)) {
-            string_buffer = (int32_t *)FUN_18062b8b0(global_render_context, string_buffer, string_length + 0x18U, 0x10, 0x13);
-            FUN_18064e990(string_buffer);
+            string_buffer = (int32_t *)DataValidator(global_render_context, string_buffer, string_length + 0x18U, 0x10, 0x13);
+            CoreMemoryPoolCleaner(string_buffer);
             string_length = *(int *)(extended_data + 0x4e8);
         }
         // WARNING: Subroutine does not return
@@ -1330,7 +1330,7 @@ int64_t render_system_process_render_data(int64_t *render_obj, uint64_t param2)
                 // 检查处理结果
                 if (temp_result2 != 0) {
                     // WARNING: Subroutine does not return
-                    FUN_18064e900();
+                    CoreMemoryPoolInitializer();
                 }
             }
 LAB_180301bf4:
@@ -1364,14 +1364,14 @@ LAB_180301c02:
         // 检查处理结果
         if (temp_result1 != 0) {
             // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreMemoryPoolInitializer();
         }
     }
     
     // 释放字符串缓冲区
     if (string_buffer != (int32_t *)0x0) {
         // WARNING: Subroutine does not return
-        FUN_18064e900(string_buffer);
+        CoreMemoryPoolInitializer(string_buffer);
     }
 LAB_180301ce4:
     // 重置扩展数据指针

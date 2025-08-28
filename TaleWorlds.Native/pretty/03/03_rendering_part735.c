@@ -96,7 +96,7 @@ extern void EnterCriticalSection(void* cs);
 extern void LeaveCriticalSection(void* cs);
 extern void* malloc(size_t size);
 extern void free(void* ptr);
-extern void FUN_1808fc050(uint64_t param);
+extern void SystemSecurityChecker(uint64_t param);
 extern void func_0x000180029620(void* param1, ...);
 extern void func_0x0001800296e1(void);
 extern void func_0x00018002acc0(uint64_t param1, ...);
@@ -596,7 +596,7 @@ void FUN_18069c080(int64_t param_1, uint64_t param_2, uint64_t param_3, int8_t *
     (*texture_processor)(param_8, (int64_t)param_9, param_3, &uStack_40);
     
     // 验证安全cookie
-    FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer);
+    SystemSecurityChecker(security_cookie ^ (uint64_t)stack_buffer);
 }
 
 // ============================================================================
@@ -647,7 +647,7 @@ void FUN_18069c200(int64_t param_1, uint64_t param_2, int8_t *param_3, int param
     (*texture_processor)(param_5, (int64_t)param_6, param_2, data_chunk);
     
     // 验证安全cookie
-    FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer);
+    SystemSecurityChecker(security_cookie ^ (uint64_t)stack_buffer);
 }
 
 // ============================================================================

@@ -141,7 +141,7 @@ void RenderingSystem_WriteResourceData(int64_t resource_context, int64_t file_co
   
   // 清理缓冲区
   if (((char)write_flag == '\0') && (buffer_ptr != 0)) {
-    FUN_18064e900(buffer_ptr);
+    CoreMemoryPoolInitializer(buffer_ptr);
   }
   return;
 }
@@ -206,7 +206,7 @@ void RenderingSystem_ReadResourceData(int64_t resource_context, int64_t file_con
   do {
     if (list_size == 0) {
       if (((char)buffer_flag == '\0') && (current_pos != 0)) {
-        FUN_18064e900(current_pos);
+        CoreMemoryPoolInitializer(current_pos);
       }
       return;
     }
@@ -225,7 +225,7 @@ void RenderingSystem_ReadResourceData(int64_t resource_context, int64_t file_con
       do {
         // 创建资源节点
         next_resource = (uint64_t *)0x0;
-        resource_block = (int32_t *)FUN_18062b1e0(RENDERING_ALLOCATOR_ADDRESS, RENDERING_RESOURCE_MAGIC_NUMBER, 8, 3);
+        resource_block = (int32_t *)CoreMemoryPoolReallocator(RENDERING_ALLOCATOR_ADDRESS, RENDERING_RESOURCE_MAGIC_NUMBER, 8, 3);
         resource_ptr = (int64_t *)(resource_block + 0x22);
         
         // 初始化资源结构
@@ -299,7 +299,7 @@ void RenderingSystem_ReadResourceData(int64_t resource_context, int64_t file_con
             current_pos = 1;
             // 重新分配内存
             next_resource = (uint64_t *)
-                     FUN_18062b420(RENDERING_ALLOCATOR_ADDRESS, current_pos * 8, *(int8_t *)(resource_data + 8));
+                     CoreMemoryPoolAllocator(RENDERING_ALLOCATOR_ADDRESS, current_pos * 8, *(int8_t *)(resource_data + 8));
             list_start = (uint64_t *)resource_data[6];
             list_end = (uint64_t *)resource_data[5];
           }
@@ -307,7 +307,7 @@ void RenderingSystem_ReadResourceData(int64_t resource_context, int64_t file_con
             current_pos = current_pos * 2;
             if (current_pos != 0) {
               next_resource = (uint64_t *)
-                       FUN_18062b420(RENDERING_ALLOCATOR_ADDRESS, current_pos * 8, *(int8_t *)(resource_data + 8));
+                       CoreMemoryPoolAllocator(RENDERING_ALLOCATOR_ADDRESS, current_pos * 8, *(int8_t *)(resource_data + 8));
             }
             else {
               next_resource = (uint64_t *)0x0;
@@ -321,7 +321,7 @@ void RenderingSystem_ReadResourceData(int64_t resource_context, int64_t file_con
           
           *next_resource = resource_block;
           if (resource_data[5] != 0) {
-            FUN_18064e900();
+            CoreMemoryPoolInitializer();
           }
           
           resource_data[5] = next_resource;
@@ -455,7 +455,7 @@ void RenderingSystem_ProcessResourceChunk(int64_t resource_context, int64_t file
   
   // 清理缓冲区
   if (((char)write_flag == '\0') && (buffer_ptr != 0)) {
-    FUN_18064e900(buffer_ptr);
+    CoreMemoryPoolInitializer(buffer_ptr);
   }
   return;
 }
@@ -526,7 +526,7 @@ void RenderingSystem_HandleResourceFile(int64_t resource_context, int64_t file_c
   do {
     if (list_size == 0) {
       if (((char)buffer_flag == '\0') && (current_pos != 0)) {
-        FUN_18064e900(current_pos);
+        CoreMemoryPoolInitializer(current_pos);
       }
       return;
     }
@@ -545,7 +545,7 @@ void RenderingSystem_HandleResourceFile(int64_t resource_context, int64_t file_c
       
       do {
         // 创建资源块
-        resource_block = (int32_t *)FUN_18062b1e0(RENDERING_ALLOCATOR_ADDRESS, RENDERING_DATA_BLOCK_SIZE, 8, 3);
+        resource_block = (int32_t *)CoreMemoryPoolReallocator(RENDERING_ALLOCATOR_ADDRESS, RENDERING_DATA_BLOCK_SIZE, 8, 3);
         resource_node = (int64_t *)(resource_block + 10);
         
         // 初始化资源结构
@@ -627,7 +627,7 @@ void RenderingSystem_HandleResourceFile(int64_t resource_context, int64_t file_c
             current_pos = 1;
             // 重新分配内存
             next_resource = (uint64_t *)
-                     FUN_18062b420(RENDERING_ALLOCATOR_ADDRESS, current_pos * 8, *(int8_t *)(resource_data + 8));
+                     CoreMemoryPoolAllocator(RENDERING_ALLOCATOR_ADDRESS, current_pos * 8, *(int8_t *)(resource_data + 8));
             list_start = (uint64_t *)resource_data[6];
             list_end = (uint64_t *)resource_data[5];
           }
@@ -635,7 +635,7 @@ void RenderingSystem_HandleResourceFile(int64_t resource_context, int64_t file_c
             current_pos = current_pos * 2;
             if (current_pos != 0) {
               next_resource = (uint64_t *)
-                       FUN_18062b420(RENDERING_ALLOCATOR_ADDRESS, current_pos * 8, *(int8_t *)(resource_data + 8));
+                       CoreMemoryPoolAllocator(RENDERING_ALLOCATOR_ADDRESS, current_pos * 8, *(int8_t *)(resource_data + 8));
             }
             else {
               next_resource = (uint64_t *)0x0;
@@ -649,7 +649,7 @@ void RenderingSystem_HandleResourceFile(int64_t resource_context, int64_t file_c
           
           *next_resource = resource_block;
           if (resource_data[5] != 0) {
-            FUN_18064e900();
+            CoreMemoryPoolInitializer();
           }
           
           resource_data[5] = next_resource;
@@ -745,7 +745,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
   buffer_size = 0xfffffffffffffffe;
   
   // 创建资源表
-  resource_ptr = (int64_t *)FUN_18062b1e0(RENDERING_ALLOCATOR_ADDRESS, RENDERING_HASH_TABLE_SIZE, 8, 3);
+  resource_ptr = (int64_t *)CoreMemoryPoolReallocator(RENDERING_ALLOCATOR_ADDRESS, RENDERING_HASH_TABLE_SIZE, 8, 3);
   FUN_180049830(resource_ptr);
   
   *resource_ptr = (int64_t)&RENDERING_FILE_POINTER_ADDRESS;
@@ -793,7 +793,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
                     (uint64_t)*(uint *)(resource_context + 0xa00),
                     *(int32_t *)(resource_context + 0xa08), 1);
       
-      hash_entry = (uint *)FUN_18062b420(RENDERING_ALLOCATOR_ADDRESS, 0x18, *(int8_t *)(resource_context + 0xa1c));
+      hash_entry = (uint *)CoreMemoryPoolAllocator(RENDERING_ALLOCATOR_ADDRESS, 0x18, *(int8_t *)(resource_context + 0xa1c));
       *hash_entry = resource_id;
       hash_entry[2] = 0;
       hash_entry[3] = 0;
@@ -851,7 +851,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
           } while (*(uint **)hash_entry != (uint *)0x0);
           
           if (temp_ptr != (uint *)0x0) {
-            FUN_18064e900(temp_ptr);
+            CoreMemoryPoolInitializer(temp_ptr);
           }
         }
       }
@@ -868,14 +868,14 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
         if (table_size == 0) {
           table_size = 1;
           // 重新分配内存
-          table_data = (uint64_t *)FUN_18062b420(RENDERING_ALLOCATOR_ADDRESS, table_size * 8, (char)resource_ptr[0x1b]);
+          table_data = (uint64_t *)CoreMemoryPoolAllocator(RENDERING_ALLOCATOR_ADDRESS, table_size * 8, (char)resource_ptr[0x1b]);
           resource_info = (uint64_t *)resource_ptr[0x19];
           next_resource = (uint64_t *)*hash_table;
         }
         else {
           table_size = table_size * 2;
           if (table_size != 0) {
-            table_data = (uint64_t *)FUN_18062b420(RENDERING_ALLOCATOR_ADDRESS, table_size * 8, (char)resource_ptr[0x1b]);
+            table_data = (uint64_t *)CoreMemoryPoolAllocator(RENDERING_ALLOCATOR_ADDRESS, table_size * 8, (char)resource_ptr[0x1b]);
           }
           else {
             table_data = (uint64_t *)0x0;
@@ -889,7 +889,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
         
         *table_data = resource_data;
         if (*hash_table != 0) {
-          FUN_18064e900();
+          CoreMemoryPoolInitializer();
         }
         
         *hash_table = (uint64_t)table_data;
@@ -903,7 +903,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
   
   // 清理哈希缓冲区
   if (hash_buffer != (uint *)0x0) {
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   
   // 解锁资源互斥锁
@@ -946,7 +946,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
                     (uint64_t)*(uint *)(resource_context + 0x6c8),
                     *(int32_t *)(resource_context + 0x6d0), 1);
       
-      hash_entry = (uint *)FUN_18062b420(RENDERING_ALLOCATOR_ADDRESS, 0x18, *(int8_t *)(resource_context + 0x6e4));
+      hash_entry = (uint *)CoreMemoryPoolAllocator(RENDERING_ALLOCATOR_ADDRESS, 0x18, *(int8_t *)(resource_context + 0x6e4));
       *hash_entry = resource_id;
       hash_entry[2] = 0;
       hash_entry[3] = 0;
@@ -980,7 +980,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
       if (hash_entry != *(uint **)(list_ptr + list_ptr * 8)) {
         if (*(int64_t *)(hash_entry + 2) != 0) {
           *(void **)(*(int64_t *)(hash_entry + 2) + 0x50) = &RENDERING_RESOURCE_TABLE_ADDRESS;
-          FUN_18064e900();
+          CoreMemoryPoolInitializer();
         }
         
         hash_entry[2] = 0;
@@ -1010,7 +1010,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
           } while (*(uint **)hash_entry != (uint *)0x0);
           
           if (temp_ptr != (uint *)0x0) {
-            FUN_18064e900(temp_ptr);
+            CoreMemoryPoolInitializer(temp_ptr);
           }
         }
       }
@@ -1036,9 +1036,9 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
     table_entry = *(int64_t **)(hash_ptr + 2);
     if (table_entry != (int64_t *)0x0) {
       if (*table_entry == 0) {
-        FUN_18064e900(table_entry);
+        CoreMemoryPoolInitializer(table_entry);
       }
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
     
     hash_ptr[2] = 0;
@@ -1068,7 +1068,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
       } while (*(uint **)hash_ptr != (uint *)0x0);
       
       if (temp_entry != (uint *)0x0) {
-        FUN_18064e900(temp_entry);
+        CoreMemoryPoolInitializer(temp_entry);
       }
     }
   }
@@ -1110,10 +1110,10 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
         *(uint64_t *)(table_size + 0x20) = 0;
         *(int32_t *)(table_size + 0x30) = 0;
         *buffer_ptr8 = &RENDERING_RESOURCE_TABLE_ADDRESS;
-        FUN_18064e900(table_size);
+        CoreMemoryPoolInitializer(table_size);
       }
       
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
     
     temp_ptr = (uint64_t *)func_0x00018066bd70(temp_ptr);
@@ -1155,7 +1155,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
     next_resource = *(uint64_t **)(resource_context + 0x828);
     if (next_resource != (uint64_t *)0x0) {
       FUN_18004b790(resource_info, *next_resource);
-      FUN_18064e900(next_resource);
+      CoreMemoryPoolInitializer(next_resource);
     }
     
     *resource_info = resource_info;
@@ -1171,7 +1171,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
       FUN_18066ba00(next_resource, table_data);
       
       if (next_resource != (uint64_t *)0x0) {
-        FUN_18064e900(next_resource);
+        CoreMemoryPoolInitializer(next_resource);
       }
     }
   }
@@ -1181,5 +1181,5 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
     return;
   }
   
-  FUN_18064e900(hash_ptr);
+  CoreMemoryPoolInitializer(hash_ptr);
 }

@@ -220,7 +220,7 @@ void rendering_system_advanced_initialize(uint64_t *render_context, int init_par
   
   // 清理初始化状态
   *(uint64_t *)((int64_t)render_context + 0x1c3c) = 0;
-  FUN_1808fc050(local_stack_var_4 ^ (uint64_t)local_stack_array_1);
+  SystemSecurityChecker(local_stack_var_4 ^ (uint64_t)local_stack_array_1);
 }
 
 /**
@@ -281,7 +281,7 @@ void rendering_system_advanced_cleanup(uint64_t *render_context, uint64_t param_
   }
   else {
     // 分配内存用于资源转移
-    local_long_2 = FUN_18062b420(system_memory_pool_ptr, local_long_2 * 8, *(uint *)(render_context + 0x375) & 0xff, param_4, local_var_1);
+    local_long_2 = CoreMemoryPoolAllocator(system_memory_pool_ptr, local_long_2 * 8, *(uint *)(render_context + 0x375) & 0xff, param_4, local_var_1);
   }
   
   // 转移资源数据
@@ -292,7 +292,7 @@ void rendering_system_advanced_cleanup(uint64_t *render_context, uint64_t param_
   
   // 释放转移后的内存
   if (local_long_2 != 0) {
-    FUN_18064e900(local_long_2);
+    CoreMemoryPoolInitializer(local_long_2);
   }
   
   // 执行回调函数
@@ -319,9 +319,9 @@ void rendering_system_advanced_cleanup(uint64_t *render_context, uint64_t param_
     if (render_context[1] == 0) {
       return;
     }
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
-  FUN_18064e900();
+  CoreMemoryPoolInitializer();
 }
 
 /**
@@ -371,7 +371,7 @@ void rendering_system_advanced_data_processor(int64_t render_context, uint64_t p
   }
   else {
     // 分配内存用于数据处理
-    local_long_1 = FUN_18062b420(system_memory_pool_ptr, local_long_2 * 0x38, render_system_control_config & 0xff, param_4, 0, 0xfffffffffffffffe);
+    local_long_1 = CoreMemoryPoolAllocator(system_memory_pool_ptr, local_long_2 * 0x38, render_system_control_config & 0xff, param_4, 0, 0xfffffffffffffffe);
   }
   
   // 处理数据块
@@ -404,7 +404,7 @@ void rendering_system_advanced_data_processor(int64_t render_context, uint64_t p
     local_stack_var_1 = 0;
     do {
       // 分配队列内存
-      local_var_1 = FUN_18062b1e0(system_memory_pool_ptr, 0x560, 8, 3, local_var_2);
+      local_var_1 = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x560, 8, 3, local_var_2);
       local_long_2 = local_stack_var_1 + local_stack_var_2;
       
       // 处理队列数据
@@ -433,7 +433,7 @@ void rendering_system_advanced_data_processor(int64_t render_context, uint64_t p
           local_long_2 = 1;
         LAB_1803075e0:
           local_ptr_3 = (uint64_t *)
-                   FUN_18062b420(system_memory_pool_ptr, local_long_2 * 8, *(int8_t *)(render_context + 0x1ba8));
+                   CoreMemoryPoolAllocator(system_memory_pool_ptr, local_long_2 * 8, *(int8_t *)(render_context + 0x1ba8));
           local_ptr_5 = *(uint64_t **)(render_context + 0x1b98);
           local_ptr_4 = *(uint64_t **)(render_context + 0x1b90);
         }
@@ -449,7 +449,7 @@ void rendering_system_advanced_data_processor(int64_t render_context, uint64_t p
         }
         *local_ptr_3 = local_var_1;
         if (*(int64_t *)(render_context + 0x1b90) != 0) {
-          FUN_18064e900();
+          CoreMemoryPoolInitializer();
         }
         *(uint64_t **)(render_context + 0x1b90) = local_ptr_3;
         *(uint64_t **)(render_context + 0x1b98) = local_ptr_3 + 1;

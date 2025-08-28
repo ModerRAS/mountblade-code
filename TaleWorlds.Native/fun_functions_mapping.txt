@@ -1,0 +1,20 @@
+# 高频FUN_函数映射表
+FUN_18064e900=CoreEngine_MemoryPoolManager
+FUN_1808fc050=System_Initializer
+FUN_18062b420=CoreEngine_MemoryAllocator
+FUN_1805a3b20=System_StringProcessor
+FUN_1805b7ac0=System_StatusChecker
+FUN_1808fcb90=System_Initializer2
+FUN_180541920=Render_Processor
+FUN_180542260=Render_SceneProcessor
+FUN_180541c60=Render_ContextManager
+FUN_180541de0=Render_ParameterHandler
+FUN_180542440=Render_BufferManager
+FUN_180542620=Render_StateManager
+FUN_1805427a0=Render_Configurator
+FUN_180542920=Render_Controller
+FUN_180542aa0=Render_Validator
+FUN_180542c20=Render_Optimizer
+FUN_180542da0=Render_Cleanup
+FUN_180542f20=Render_Finalizer
+FUN_1805430a0=Render_Initializer

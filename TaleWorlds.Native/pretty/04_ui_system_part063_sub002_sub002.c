@@ -156,7 +156,7 @@ typedef struct {
 #define UISystem_DataReader FUN_180699e30
 #define UISystem_CleanupHandler FUN_18069bb20
 #define UISystem_StateManager FUN_18069ba40
-#define UISystem_SecurityChecker FUN_1808fc050
+#define UISystem_SecurityChecker SystemSecurityChecker
 #define UISystem_Initializer FUN_180699f40
 #define UISystem_Finalizer FUN_18069ec80
 

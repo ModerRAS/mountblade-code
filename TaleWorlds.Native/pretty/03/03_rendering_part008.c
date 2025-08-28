@@ -1007,5 +1007,5 @@ void process_rendering_system(int64_t render_manager,int64_t data_buffer)
   
   // 执行最终的栈保护检查
   // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_118);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_118);
 }

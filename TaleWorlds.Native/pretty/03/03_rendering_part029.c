@@ -666,7 +666,7 @@ void initialize_rendering_system(void) {
 #define process_material_batch FUN_1803310f0
 #define process_sub_object_data FUN_1803269f0
 #define setup_shadow_rendering FUN_1803276a0
-#define allocate_render_data FUN_18062b1e0
+#define allocate_render_data CoreMemoryPoolReallocator
 #define create_render_object FUN_180339110
 #define process_material_path FUN_180627ae0
 #define initialize_scene_object FUN_180284720
@@ -676,9 +676,9 @@ void initialize_rendering_system(void) {
 #define cleanup_texture_array FUN_180274db0
 #define setup_texture_array FUN_1803263e0
 #define compare_texture_data FUN_180327250
-#define handle_texture_error FUN_18064e900
-#define handle_memory_error FUN_18064e900
-#define handle_security_cleanup FUN_1808fc050
+#define handle_texture_error CoreMemoryPoolInitializer
+#define handle_memory_error CoreMemoryPoolInitializer
+#define handle_security_cleanup SystemSecurityChecker
 #define compare_material_data func_0x000180274d30
 #define compare_sub_object_data FUN_180327250
 #define initialize_texture_buffer strcpy_s

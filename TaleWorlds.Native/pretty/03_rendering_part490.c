@@ -268,7 +268,7 @@ LAB_18052bb8d:
             strcpy_s(auStack_130,0x80,&unknown_var_6992_ptr);
             FUN_1800c1520(render_system_data_memory,&fStack_1a0,&puStack_148);
             puStack_148 = &system_state_ptr;
-            uVar16 = FUN_18062b1e0(system_memory_pool_ptr,0x168,8,3);
+            uVar16 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x168,8,3);
             plVar17 = (int64_t *)FUN_1802ac390(uVar16);
             if (plVar17 != (int64_t *)0x0) {
               plStack_1a8 = plVar17;
@@ -331,7 +331,7 @@ LAB_18052bb8d:
   }
 LAB_18052b9a0:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_98 ^ (uint64_t)auStack_1c8);
+  SystemSecurityChecker(uStack_98 ^ (uint64_t)auStack_1c8);
 }
 
 
@@ -577,7 +577,7 @@ LAB_18052c185:
   }
 LAB_18052c420:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_68 ^ (uint64_t)auStack_1c8);
+  SystemSecurityChecker(uStack_68 ^ (uint64_t)auStack_1c8);
 }
 
 

@@ -602,7 +602,7 @@ void rendering_parameter_processor_advanced(int64_t param_context, uint64_t *out
         *param_4 = *(int32_t *)(param_context + 0x2c);
     }
     // 执行安全检查（该函数不返回）
-    FUN_1808fc050(security_cookie ^ (uint64_t)param_stack);
+    SystemSecurityChecker(security_cookie ^ (uint64_t)param_stack);
 }
 
 /**
@@ -765,7 +765,7 @@ void rendering_parameter_processor_extended(int64_t param_context, uint64_t *out
         *output_param_ptr = *(int32_t *)(param_context + 0x2c);
     }
     // 执行安全检查（该函数不返回）
-    FUN_1808fc050(*(uint64_t *)(param_block_ptr + 0x14) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t *)(param_block_ptr + 0x14) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -929,7 +929,7 @@ void rendering_parameter_processor_optimized(int64_t param_context, uint64_t *ou
         *output_param_ptr = *(int32_t *)(resource_base_ptr + 0x2c);
     }
     // 执行安全检查（该函数不返回）
-    FUN_1808fc050(*(uint64_t *)(param_block_ptr + 0x14) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t *)(param_block_ptr + 0x14) ^ (uint64_t)&stack0x00000000);
 }
 
 // 警告：以'_'开头的全局变量与相同地址的较小符号重叠

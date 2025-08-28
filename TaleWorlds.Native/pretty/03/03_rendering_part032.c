@@ -63,7 +63,7 @@ void insert_rendering_data_item(uint64_t *data_struct_ptr, uint64_t *data_item_p
   }
   
   // 分配新内存
-  dest_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, capacity << 4, (char)data_struct_ptr[3]);
+  dest_ptr = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, capacity << 4, (char)data_struct_ptr[3]);
   current_ptr = (uint64_t *)data_struct_ptr[1];
   source_ptr = (uint64_t *)*data_struct_ptr;
   buffer_ptr = dest_ptr;
@@ -93,7 +93,7 @@ copy_data:
     return;
   }
   // 错误处理
-  FUN_18064e900();
+  CoreMemoryPoolInitializer();
 }
 
 /**
@@ -133,7 +133,7 @@ void reserve_rendering_buffer(int64_t *buffer_ptr, uint64_t reserve_size)
     }
     
     // 分配新缓冲区
-    new_buffer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, required_size << 4, (char)buffer_ptr[3]);
+    new_buffer = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, required_size << 4, (char)buffer_ptr[3]);
     buffer_end = (uint64_t *)buffer_ptr[1];
     buffer_start = (uint64_t *)*buffer_ptr;
     temp_ptr = new_buffer;
@@ -177,7 +177,7 @@ void reserve_rendering_buffer(int64_t *buffer_ptr, uint64_t reserve_size)
       iter_ptr = (int64_t *)*buffer_ptr;
     }
     if (iter_ptr != (int64_t *)0x0) {
-      FUN_18064e900(iter_ptr);
+      CoreMemoryPoolInitializer(iter_ptr);
     }
     
     // 更新指针
@@ -282,16 +282,16 @@ void cleanup_rendering_resources_type1(int64_t resource_ptr)
       current_resource = *(uint64_t **)(resource_array_ptr + resource_index * 8);
       if (current_resource != (uint64_t *)0x0) {
         if (current_resource[4] != 0) {
-          FUN_18064e900();
+          CoreMemoryPoolInitializer();
         }
         *current_resource = &system_data_buffer_ptr;
         if (current_resource[1] == 0) {
           current_resource[1] = 0;
           *(int32_t *)(current_resource + 3) = 0;
           *current_resource = &system_state_ptr;
-          FUN_18064e900(current_resource);
+          CoreMemoryPoolInitializer(current_resource);
         }
-        FUN_18064e900();
+        CoreMemoryPoolInitializer();
       }
       *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
@@ -300,7 +300,7 @@ void cleanup_rendering_resources_type1(int64_t resource_ptr)
   }
   *(uint64_t *)(resource_ptr + 0x18) = 0;
   if ((1 < resource_count) && (*(int64_t *)(resource_ptr + 8) != 0)) {
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   return;
 }
@@ -329,16 +329,16 @@ void cleanup_rendering_resources_type2(int64_t resource_ptr)
       current_resource = *(uint64_t **)(resource_array_ptr + resource_index * 8);
       if (current_resource != (uint64_t *)0x0) {
         if (current_resource[4] != 0) {
-          FUN_18064e900();
+          CoreMemoryPoolInitializer();
         }
         *current_resource = &system_data_buffer_ptr;
         if (current_resource[1] == 0) {
           current_resource[1] = 0;
           *(int32_t *)(current_resource + 3) = 0;
           *current_resource = &system_state_ptr;
-          FUN_18064e900(current_resource);
+          CoreMemoryPoolInitializer(current_resource);
         }
-        FUN_18064e900();
+        CoreMemoryPoolInitializer();
       }
       *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
@@ -347,7 +347,7 @@ void cleanup_rendering_resources_type2(int64_t resource_ptr)
   }
   *(uint64_t *)(resource_ptr + 0x18) = 0;
   if ((1 < resource_count) && (*(int64_t *)(resource_ptr + 8) != 0)) {
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   return;
 }
@@ -376,16 +376,16 @@ void cleanup_rendering_resources_type3(int64_t resource_ptr)
       current_resource = *(uint64_t **)(resource_array_ptr + resource_index * 8);
       if (current_resource != (uint64_t *)0x0) {
         if (current_resource[4] != 0) {
-          FUN_18064e900();
+          CoreMemoryPoolInitializer();
         }
         *current_resource = &system_data_buffer_ptr;
         if (current_resource[1] == 0) {
           current_resource[1] = 0;
           *(int32_t *)(current_resource + 3) = 0;
           *current_resource = &system_state_ptr;
-          FUN_18064e900(current_resource);
+          CoreMemoryPoolInitializer(current_resource);
         }
-        FUN_18064e900();
+        CoreMemoryPoolInitializer();
       }
       *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
@@ -394,7 +394,7 @@ void cleanup_rendering_resources_type3(int64_t resource_ptr)
   }
   *(uint64_t *)(resource_ptr + 0x18) = 0;
   if ((1 < resource_count) && (*(int64_t *)(resource_ptr + 8) != 0)) {
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   return;
 }
@@ -510,16 +510,16 @@ void cleanup_rendering_resources_type4(int64_t resource_ptr)
       current_resource = *(uint64_t **)(resource_array_ptr + resource_index * 8);
       if (current_resource != (uint64_t *)0x0) {
         if (current_resource[4] != 0) {
-          FUN_18064e900();
+          CoreMemoryPoolInitializer();
         }
         *current_resource = &system_data_buffer_ptr;
         if (current_resource[1] == 0) {
           current_resource[1] = 0;
           *(int32_t *)(current_resource + 3) = 0;
           *current_resource = &system_state_ptr;
-          FUN_18064e900(current_resource);
+          CoreMemoryPoolInitializer(current_resource);
         }
-        FUN_18064e900();
+        CoreMemoryPoolInitializer();
       }
       *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
@@ -528,7 +528,7 @@ void cleanup_rendering_resources_type4(int64_t resource_ptr)
   }
   *(uint64_t *)(resource_ptr + 0x20) = 0;
   if ((1 < resource_count) && (*(int64_t *)(resource_ptr + 0x10) != 0)) {
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   return;
 }
@@ -1015,8 +1015,8 @@ uint64_t calculate_rendering_distance(int64_t param1, uint64_t param2, float *po
 }
 
 // 辅助函数声明（在其他文件中实现）
-void FUN_18062b420(uint64_t allocator, uint64_t size, char flags);
-void FUN_18064e900(void);
+void CoreMemoryPoolAllocator(uint64_t allocator, uint64_t size, char flags);
+void CoreMemoryPoolInitializer(void);
 void FUN_18007b240(int64_t param1, int64_t param2, char param3, int8_t param4);
 void memset(void *ptr, int value, size_t num);
 void free(void *ptr, size_t size, uint64_t param3, uint64_t param4, uint64_t param5);

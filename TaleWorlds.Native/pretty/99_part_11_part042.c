@@ -321,7 +321,7 @@ void FUN_1807a903c(int32_t param_1,float param_2,int32_t param_3,int32_t param_4
   }
 LAB_1807a9a7b:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000170 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000170 ^ (uint64_t)&stack0x00000000);
 }
 
 

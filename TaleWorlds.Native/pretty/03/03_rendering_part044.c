@@ -167,7 +167,7 @@ void render_data_processor(void *render_context, int64_t data_ptr, int *vertex_d
     output_buffer = (render_vertex_t *)func_0x000180120ce0(((int64_t)sum_y + 1) * sizeof(render_vertex_t));
     if (output_buffer == (render_vertex_t *)0x0) {
         // 内存分配失败，触发错误处理
-        FUN_1808fc050(stack_cookie ^ (uint64_t)(temp_flags));
+        SystemSecurityChecker(stack_cookie ^ (uint64_t)(temp_flags));
     }
     
     sum_x = 0;

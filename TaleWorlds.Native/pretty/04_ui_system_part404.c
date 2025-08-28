@@ -46,7 +46,7 @@ void FUN_18088e970(int64_t param_1,int64_t *param_2,int32_t param_3)
   }
   puStack_158 = auStack_138;
                     // WARNING: Subroutine does not return
-  FUN_180749ef0(param_3,iVar7,uVar6,uVar2);
+  DataTransformer(param_3,iVar7,uVar6,uVar2);
 }
 
 
@@ -238,7 +238,7 @@ uint64_t FUN_18088ee20(uint64_t param_1,uint64_t param_2)
   
   uVar2 = FUN_18088f710(param_1,auStackX_18);
   if ((int)uVar2 == 0) {
-    iVar1 = FUN_18010cbc0(auStackX_18[0],&unknown_var_4576_ptr,param_2);
+    iVar1 = AdvancedSystemOptimizer(auStackX_18[0],&unknown_var_4576_ptr,param_2);
     uVar2 = 0;
     if (iVar1 != 1) {
       uVar2 = 0x13;
@@ -258,7 +258,7 @@ uint64_t FUN_18088ee60(uint64_t param_1,uint64_t param_2)
   
   uVar2 = FUN_18088f710(param_1,auStackX_18);
   if ((int)uVar2 == 0) {
-    iVar1 = FUN_18010cbc0(auStackX_18[0],&unknown_var_2208_ptr,param_2);
+    iVar1 = AdvancedSystemOptimizer(auStackX_18[0],&unknown_var_2208_ptr,param_2);
     uVar2 = 0;
     if (iVar1 != 1) {
       uVar2 = 0x13;
@@ -496,7 +496,7 @@ uint64_t FUN_18088f010(uint64_t param_1,uint64_t param_2)
   
   uVar2 = FUN_18088f710(param_1,auStackX_18);
   if ((int)uVar2 == 0) {
-    iVar1 = FUN_18010cbc0(auStackX_18[0],&unknown_var_9020_ptr,param_2);
+    iVar1 = AdvancedSystemOptimizer(auStackX_18[0],&unknown_var_9020_ptr,param_2);
     uVar2 = 0;
     if (iVar1 != 1) {
       uVar2 = 0x13;
@@ -519,13 +519,13 @@ void FUN_18088f050(uint64_t param_1,int64_t param_2)
   
   iVar1 = FUN_18088f710(param_1,auStackX_20);
   if ((iVar1 == 0) && (iVar1 = FUN_18088f710(auStackX_20,&uStackX_18), iVar1 == 0)) {
-    iVar1 = FUN_18010cbc0(uStackX_18,&unknown_var_7592_ptr,param_2,param_2 + 4,param_2 + 8);
+    iVar1 = AdvancedSystemOptimizer(uStackX_18,&unknown_var_7592_ptr,param_2,param_2 + 4,param_2 + 8);
     if (((iVar1 == 3) ||
         (((iVar1 = FUN_18088eea0(&uStackX_18,param_2), iVar1 == 0 &&
           (iVar1 = FUN_18088eea0(&uStackX_18,param_2 + 4), iVar1 == 0)) &&
          (iVar1 = FUN_18088eea0(&uStackX_18,param_2 + 8), iVar1 == 0)))) &&
        (iVar1 = FUN_18088f710(auStackX_20,&uStackX_18), iVar1 == 0)) {
-      iVar1 = FUN_18010cbc0(uStackX_18,&unknown_var_7592_ptr,param_2 + 0xc,param_2 + 0x10,param_2 + 0x14);
+      iVar1 = AdvancedSystemOptimizer(uStackX_18,&unknown_var_7592_ptr,param_2 + 0xc,param_2 + 0x10,param_2 + 0x14);
       if (((iVar1 == 3) ||
           (((iVar1 = FUN_18088eea0(&uStackX_18,param_2 + 0xc), iVar1 == 0 &&
             (iVar1 = FUN_18088eea0(&uStackX_18,param_2 + 0x10), iVar1 == 0)) &&
@@ -552,13 +552,13 @@ void FUN_18088f06b(void)
   
   iVar1 = FUN_18088f710(&stack0x00000068,&stack0x00000060);
   if (iVar1 == 0) {
-    iVar1 = FUN_18010cbc0(in_stack_00000060,&unknown_var_7592_ptr);
+    iVar1 = AdvancedSystemOptimizer(in_stack_00000060,&unknown_var_7592_ptr);
     if (((iVar1 == 3) ||
         (((iVar1 = FUN_18088eea0(&stack0x00000060), iVar1 == 0 &&
           (iVar1 = FUN_18088eea0(&stack0x00000060,unaff_RBX + 4), iVar1 == 0)) &&
          (iVar1 = FUN_18088eea0(&stack0x00000060,unaff_RBX + 8), iVar1 == 0)))) &&
        (iVar1 = FUN_18088f710(&stack0x00000068,&stack0x00000060), iVar1 == 0)) {
-      iVar1 = FUN_18010cbc0(in_stack_00000060,&unknown_var_7592_ptr,unaff_RBX + 0xc,unaff_RBX + 0x10,
+      iVar1 = AdvancedSystemOptimizer(in_stack_00000060,&unknown_var_7592_ptr,unaff_RBX + 0xc,unaff_RBX + 0x10,
                             unaff_RBX + 0x14);
       if (((iVar1 == 3) ||
           (((iVar1 = FUN_18088eea0(&stack0x00000060,unaff_RBX + 0xc), iVar1 == 0 &&
@@ -588,7 +588,7 @@ void FUN_18088f0f7(void)
   if (iVar1 != 0) {
     return;
   }
-  iVar1 = FUN_18010cbc0(in_stack_00000060,&unknown_var_7592_ptr,unaff_RBX + 0xc,unaff_RBX + 0x10,
+  iVar1 = AdvancedSystemOptimizer(in_stack_00000060,&unknown_var_7592_ptr,unaff_RBX + 0xc,unaff_RBX + 0x10,
                         unaff_RBX + 0x14);
   if (iVar1 != 3) {
     iVar1 = FUN_18088eea0(&stack0x00000060,unaff_RBX + 0xc);
@@ -677,7 +677,7 @@ void FUN_18088f1a0(uint64_t param_1,int64_t param_2)
     puStack_60 = auStack_1c;
     puStack_68 = auStack_1e;
     puStack_70 = auStack_20;
-    FUN_18010cbc0(uStack_28,&unknown_var_7608_ptr,param_2,param_2 + 4);
+    AdvancedSystemOptimizer(uStack_28,&unknown_var_7608_ptr,param_2,param_2 + 4);
     *(int8_t *)(param_2 + 8) = auStack_20[0];
     *(int8_t *)(param_2 + 9) = auStack_1e[0];
     *(int8_t *)(param_2 + 10) = auStack_1c[0];
@@ -688,7 +688,7 @@ void FUN_18088f1a0(uint64_t param_1,int64_t param_2)
     *(int8_t *)(param_2 + 0xf) = auStack_12[0];
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (uint64_t)auStack_98);
+  SystemSecurityChecker(uStack_10 ^ (uint64_t)auStack_98);
 }
 
 
@@ -730,13 +730,13 @@ uint64_t FUN_18088f310(uint64_t param_1,uint64_t *param_2)
     *param_2 = 0;
     uVar2 = FUN_18088f710(auStackX_18,&uStackX_20);
     if ((int)uVar2 == 0) {
-      iVar1 = FUN_18010cbc0(uStackX_20,&unknown_var_2208_ptr,param_2);
+      iVar1 = AdvancedSystemOptimizer(uStackX_20,&unknown_var_2208_ptr,param_2);
       if (iVar1 != 1) {
         return 0x13;
       }
       uVar2 = FUN_18088f710(auStackX_18,&uStackX_20);
       if ((int)uVar2 == 0) {
-        iVar1 = FUN_18010cbc0(uStackX_20,&unknown_var_2208_ptr,(int64_t)param_2 + 4);
+        iVar1 = AdvancedSystemOptimizer(uStackX_20,&unknown_var_2208_ptr,(int64_t)param_2 + 4);
         if (iVar1 != 1) {
           return 0x13;
         }
@@ -758,7 +758,7 @@ uint64_t FUN_18088f3a0(uint64_t param_1,int64_t param_2)
   
   uVar2 = FUN_18088f710(param_1,auStackX_18);
   if ((int)uVar2 == 0) {
-    iVar1 = FUN_18010cbc0(auStackX_18[0],&unknown_var_7592_ptr,param_2,param_2 + 4,param_2 + 8);
+    iVar1 = AdvancedSystemOptimizer(auStackX_18[0],&unknown_var_7592_ptr,param_2,param_2 + 4,param_2 + 8);
     if ((iVar1 == 3) ||
        (((uVar2 = FUN_18088eea0(auStackX_18,param_2), (int)uVar2 == 0 &&
          (uVar2 = FUN_18088eea0(auStackX_18,param_2 + 4), (int)uVar2 == 0)) &&
@@ -778,7 +778,7 @@ uint64_t FUN_18088f3c0(uint64_t param_1)
   uint64_t uVar2;
   int64_t unaff_RBX;
   
-  iVar1 = FUN_18010cbc0(param_1,&unknown_var_7592_ptr);
+  iVar1 = AdvancedSystemOptimizer(param_1,&unknown_var_7592_ptr);
   if (iVar1 != 3) {
     uVar2 = FUN_18088eea0(&stack0x00000050);
     if ((int)uVar2 != 0) {
@@ -818,7 +818,7 @@ uint64_t FUN_18088f430(uint64_t param_1,uint64_t param_2)
   
   uVar2 = FUN_18088f710(param_1,auStackX_18);
   if ((int)uVar2 == 0) {
-    iVar1 = FUN_18010cbc0(auStackX_18[0],&unknown_var_7284_ptr,param_2);
+    iVar1 = AdvancedSystemOptimizer(auStackX_18[0],&unknown_var_7284_ptr,param_2);
     uVar2 = 0;
     if (iVar1 != 1) {
       uVar2 = 0x13;
@@ -893,7 +893,7 @@ uint64_t FUN_18088f530(uint64_t param_1,int64_t param_2,int param_3)
         if ((int)uVar2 != 0) {
           return uVar2;
         }
-        iVar1 = FUN_18010cbc0(auStack_18[0],&unknown_var_4576_ptr,param_2 + (int64_t)iVar3 * 4);
+        iVar1 = AdvancedSystemOptimizer(auStack_18[0],&unknown_var_4576_ptr,param_2 + (int64_t)iVar3 * 4);
         if (iVar1 != 1) {
           return 0x13;
         }
@@ -924,7 +924,7 @@ uint64_t FUN_18088f54e(void)
       if ((int)uVar2 != 0) {
         return uVar2;
       }
-      iVar1 = FUN_18010cbc0(uStackX_20,&unknown_var_4576_ptr,unaff_RSI + (int64_t)iVar3 * 4);
+      iVar1 = AdvancedSystemOptimizer(uStackX_20,&unknown_var_4576_ptr,unaff_RSI + (int64_t)iVar3 * 4);
       if (iVar1 != 1) {
         return 0x13;
       }
@@ -1042,7 +1042,7 @@ uint64_t FUN_18088f620(uint64_t param_1,int64_t param_2,int param_3)
         if ((int)uVar3 != 0) {
           return uVar3;
         }
-        iVar2 = FUN_18010cbc0(uStack_20,&unknown_var_2208_ptr,puVar1);
+        iVar2 = AdvancedSystemOptimizer(uStack_20,&unknown_var_2208_ptr,puVar1);
         if (iVar2 != 1) {
           return 0x13;
         }
@@ -1050,7 +1050,7 @@ uint64_t FUN_18088f620(uint64_t param_1,int64_t param_2,int param_3)
         if ((int)uVar3 != 0) {
           return uVar3;
         }
-        iVar2 = FUN_18010cbc0(auStack_18[0],&unknown_var_2208_ptr,(int64_t)puVar1 + 4);
+        iVar2 = AdvancedSystemOptimizer(auStack_18[0],&unknown_var_2208_ptr,(int64_t)puVar1 + 4);
         if (iVar2 != 1) {
           return 0x13;
         }
@@ -1090,7 +1090,7 @@ uint64_t FUN_18088f643(void)
       if ((int)uVar3 != 0) {
         return uVar3;
       }
-      iVar2 = FUN_18010cbc0(in_stack_00000028,&unknown_var_2208_ptr,puVar1);
+      iVar2 = AdvancedSystemOptimizer(in_stack_00000028,&unknown_var_2208_ptr,puVar1);
       if (iVar2 != 1) {
         return 0x13;
       }
@@ -1098,7 +1098,7 @@ uint64_t FUN_18088f643(void)
       if ((int)uVar3 != 0) {
         return uVar3;
       }
-      iVar2 = FUN_18010cbc0(in_stack_00000030,&unknown_var_2208_ptr,(int64_t)puVar1 + 4);
+      iVar2 = AdvancedSystemOptimizer(in_stack_00000030,&unknown_var_2208_ptr,(int64_t)puVar1 + 4);
       if (iVar2 != 1) {
         return 0x13;
       }

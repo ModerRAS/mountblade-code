@@ -508,7 +508,7 @@ int64_t * FUN_1800763c0(int64_t *param_1,int64_t *param_2)
   int32_t uVar21;
   
   plStackX_10 = param_2;
-  uVar18 = FUN_18062b1e0(system_memory_pool_ptr,0x300,0x10,9,0,0xfffffffffffffffe);
+  uVar18 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x300,0x10,9,0,0xfffffffffffffffe);
   plVar19 = (int64_t *)FUN_180075030(uVar18,0,0);
   *param_2 = (int64_t)plVar19;
   if (plVar19 != (int64_t *)0x0) {
@@ -709,7 +709,7 @@ void FUN_180076760(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     *(int16_t *)(plStack_38 + 0x18) = 0;
     if (plStack_38[0x17] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
     plStack_38[0x17] = 0;
     FUN_180085530(plStack_38[0x16]);

@@ -335,7 +335,7 @@ LAB_180416ed4:
                 }
                 
                 // 设置版本参数
-                FUN_18010cbc0(pcVar8, puVar6, aiStackX_20);
+                AdvancedSystemOptimizer(pcVar8, puVar6, aiStackX_20);
                 
 LAB_180416f25:
                 // 处理默认值
@@ -380,7 +380,7 @@ LAB_180416f88:
 LAB_180416fa0:
                 // 设置默认值
                 if ((param_1 + 100 != 0) && (lVar5 != 0)) {
-                    FUN_18010cbc0(lVar5, &system_config_6430, param_1 + 100);
+                    AdvancedSystemOptimizer(lVar5, &system_config_6430, param_1 + 100);
                 }
                 
                 // 处理曲线乘数
@@ -425,7 +425,7 @@ LAB_180417020:
 LAB_180417038:
                 // 设置曲线乘数
                 if ((param_1 + 0x60 != 0) && (lVar5 != 0)) {
-                    FUN_18010cbc0(lVar5, &system_config_6430, param_1 + 0x60);
+                    AdvancedSystemOptimizer(lVar5, &system_config_6430, param_1 + 0x60);
                 }
                 
                 // 处理关键帧数据
@@ -512,7 +512,7 @@ LAB_1804175d5:
                                                             lVar5 = puVar9[1];
                                                         }
                                                         // 设置时间值
-                                                        FUN_18010cbc0(lVar5, &system_config_6430, afStack_80);
+                                                        AdvancedSystemOptimizer(lVar5, &system_config_6430, afStack_80);
                                                         break;
                                                     }
                                                     lVar5 = (int64_t)&unknown_var_5276_ptr - (int64_t)pcVar8;
@@ -552,7 +552,7 @@ LAB_180417650:
                                                             lVar5 = puVar9[1];
                                                         }
                                                         // 设置值
-                                                        FUN_18010cbc0(lVar5, &system_config_6430, afStack_88);
+                                                        AdvancedSystemOptimizer(lVar5, &system_config_6430, afStack_88);
                                                         break;
                                                     }
                                                     lVar5 = (int64_t)&unknown_var_3692_ptr - (int64_t)pcVar8;
@@ -716,7 +716,7 @@ LAB_1804171a0:
                                                 lVar5 = puVar9[1];
                                             }
                                             // 设置时间值
-                                            FUN_18010cbc0(lVar5, &system_config_6430, afStack_88);
+                                            AdvancedSystemOptimizer(lVar5, &system_config_6430, afStack_88);
                                             break;
                                         }
                                         lVar5 = (int64_t)&unknown_var_5276_ptr - (int64_t)pcVar8;
@@ -756,7 +756,7 @@ LAB_180417224:
                                                 lVar5 = puVar9[1];
                                             }
                                             // 设置值
-                                            FUN_18010cbc0(lVar5, &system_config_6430, afStack_80);
+                                            AdvancedSystemOptimizer(lVar5, &system_config_6430, afStack_80);
                                             break;
                                         }
                                         lVar5 = (int64_t)&unknown_var_3692_ptr - (int64_t)pcVar8;
@@ -836,7 +836,7 @@ LAB_180417341:
                                                 lVar5 = puVar9[1];
                                             }
                                             // 设置时间值
-                                            FUN_18010cbc0(lVar5, &system_config_6430, afStack_88);
+                                            AdvancedSystemOptimizer(lVar5, &system_config_6430, afStack_88);
                                             break;
                                         }
                                         lVar5 = (int64_t)&unknown_var_5276_ptr - (int64_t)pcVar8;
@@ -876,7 +876,7 @@ LAB_1804173c4:
                                                 lVar5 = puVar9[1];
                                             }
                                             // 设置值
-                                            FUN_18010cbc0(lVar5, &system_config_6430, afStack_80);
+                                            AdvancedSystemOptimizer(lVar5, &system_config_6430, afStack_80);
                                             break;
                                         }
                                         lVar5 = (int64_t)&unknown_var_3692_ptr - (int64_t)pcVar8;
@@ -1014,7 +1014,7 @@ LAB_180270c78:
 LAB_180270c93:
     // 设置基础值
     if ((param_1 + 4 != 0) && (lVar3 != 0)) {
-        FUN_18010cbc0(lVar3, &system_config_6430, param_1 + 4);
+        AdvancedSystemOptimizer(lVar3, &system_config_6430, param_1 + 4);
     }
     
     // 查找偏置参数
@@ -1032,7 +1032,7 @@ LAB_180270c93:
 LAB_180270d29:
             // 设置偏置值
             if ((param_1 != 0) && (lVar3 != 0)) {
-                FUN_18010cbc0(lVar3, &system_config_6430, param_1);
+                AdvancedSystemOptimizer(lVar3, &system_config_6430, param_1);
             }
             return;  // 参数配置完成，返回
         }

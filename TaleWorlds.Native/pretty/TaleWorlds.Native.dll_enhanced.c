@@ -243,9 +243,9 @@ extern uint8_t global_state_5056;    /** 系统缓存指针 */
  * ============================================================================ */
 
 /** 内存管理工具函数 */
-extern uint8_t FUN_18008d070;    /** 内存分配函数 */
-extern uint8_t FUN_18008f0d0;    /** 内存管理函数 */
-extern uint8_t FUN_18008f140;    /** 内存操作函数 */
+extern uint8_t NetworkDataProcessor;    /** 内存分配函数 */
+extern uint8_t NetworkConnectionManager;    /** 内存管理函数 */
+extern uint8_t NetworkProtocolHandler;    /** 内存操作函数 */
 
 /** 系统工具函数 */
 extern uint8_t FUN_1809fcc58;    /** 系统工具函数1 */

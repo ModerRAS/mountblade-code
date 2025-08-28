@@ -32,7 +32,7 @@ void FUN_1807f93ae(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4
   }
   *(uint64_t *)(unaff_RBX + 0x78) = CONCAT44(unaff_000000bc,unaff_R15D);
                     // WARNING: Subroutine does not return
-  FUN_180768400();
+  SystemConfigManager();
 }
 
 
@@ -49,7 +49,7 @@ void FUN_1807f943f(void)
   
   *(uint64_t *)(unaff_RBX + 0x78) = unaff_R15;
                     // WARNING: Subroutine does not return
-  FUN_180768400();
+  SystemConfigManager();
 }
 
 
@@ -78,7 +78,7 @@ void FUN_1807f945a(void)
    (uint64_t)*(uint *)(*(int64_t *)(unaff_RBX + 8) + 0x116b8) * 2) * 8) = unaff_R15;
   FUN_1807f84f0();
                     // WARNING: Subroutine does not return
-  FUN_180768400();
+  SystemConfigManager();
 }
 
 
@@ -124,21 +124,21 @@ void FUN_1807f9550(int64_t param_1,int64_t param_2,int32_t param_3,int32_t param
   iVar5 = *(int *)(param_2 + 0x116b8);
   lVar9 = (int64_t)iVar5;
   uVar3 = *(uint64_t *)(lVar9 * 8 + 0x180c36c90);
-  FUN_180768360(uVar3);
+  SystemStateManager(uVar3);
   if ((param_8 == 0) ||
      (iVar4 = FUN_1807f8750(param_1,param_2,param_3,param_4,param_5,param_6,param_7,
                             CONCAT44(uVar10,param_8),param_9,param_10,param_11,param_12), iVar4 != 0
      )) {
 LAB_1807f9847:
                     // WARNING: Subroutine does not return
-    FUN_180768400(uVar3);
+    SystemConfigManager(uVar3);
   }
   *(int *)(param_1 + 0xa8) = param_8 + -1;
   lVar8 = lVar9 * 2;
   if ((*(int64_t *)((lVar8 + param_8) * 8 + 0x180c36c08) == 0) &&
      (iVar4 = FUN_1807682e0((lVar8 + param_8) * 8 + 0x180c36c08,0), iVar4 != 0)) goto LAB_1807f9847;
   uVar3 = *(uint64_t *)((*(int *)(param_1 + 0xa8) + lVar8) * 8 + 0x180c36c10);
-  FUN_180768360(uVar3);
+  SystemStateManager(uVar3);
   iVar4 = *(int *)(param_1 + 0xa8);
   lVar1 = lVar8 + iVar4;
   lVar6 = lVar1 * 0x18;
@@ -173,7 +173,7 @@ LAB_1807f9847:
         *(int64_t *)(lVar8 * 0x10 + 0x180c36b10) = lVar9;
         if (lVar9 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_180768400(uVar3);
+          SystemConfigManager(uVar3);
         }
       }
       *(uint64_t *)(param_1 + 0x78) = *(uint64_t *)(lVar8 * 0x10 + 0x180c36b10);
@@ -186,11 +186,11 @@ LAB_1807f9847:
   } while (iVar5 < 2);
   if (iVar5 != 2) {
                     // WARNING: Subroutine does not return
-    FUN_180768400(uVar3);
+    SystemConfigManager(uVar3);
   }
 LAB_1807f982b:
                     // WARNING: Subroutine does not return
-  FUN_180768400(uVar3);
+  SystemConfigManager(uVar3);
 }
 
 
@@ -855,7 +855,7 @@ void FUN_1807f9960(uint64_t param_1,uint64_t param_2,int32_t param_3,int32_t *pa
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(GET_SECURITY_COOKIE());
+  SystemSecurityChecker(GET_SECURITY_COOKIE());
 }
 
 

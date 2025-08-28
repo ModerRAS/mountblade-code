@@ -835,7 +835,7 @@ void render_system_resource_handler(int64_t render_context, int64_t target_conte
     // 处理成功
     process_result = func_0x000180225d90(*(int32_t *)(target_context + RENDER_SYSTEM_DATA_OFFSET));
     process_result = process_result * transform_value_1 * texture_size;
-    processed_texture_data = FUN_18062b1e0(render_system_global_context, process_result, 0x10, 3);
+    processed_texture_data = CoreMemoryPoolReallocator(render_system_global_context, process_result, 0x10, 3);
     
     if (param_6 != (int *)0x0) {
       *param_6 = process_result;

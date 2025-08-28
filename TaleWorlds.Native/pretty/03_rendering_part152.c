@@ -187,10 +187,10 @@ typedef struct {
 #define RenderingSystem_DataSampler FUN_1802a11e0
 
 /** 渲染系统内存池分配器 */
-#define RenderingSystem_MemoryPoolAllocator FUN_18062b420
+#define RenderingSystem_MemoryPoolAllocator CoreMemoryPoolAllocator
 
 /** 渲染系统内存清理器 */
-#define RenderingSystem_MemoryCleaner FUN_18064e900
+#define RenderingSystem_MemoryCleaner CoreMemoryPoolInitializer
 
 /** 渲染系统纹理管理器 */
 #define RenderingSystem_TextureManager FUN_1802e9fa0
@@ -199,7 +199,7 @@ typedef struct {
 #define RenderingSystem_RenderPipelineInitializer FUN_18046a8c0
 
 /** 渲染系统内存分配器 */
-#define RenderingSystem_MemoryAllocator FUN_18062b1e0
+#define RenderingSystem_MemoryAllocator CoreMemoryPoolReallocator
 
 /** 渲染系统资源管理器 */
 #define RenderingSystem_ResourceManager FUN_180275090
@@ -268,7 +268,7 @@ typedef struct {
 #define RenderingSystem_ArrayManager FUN_180180730
 
 /** 渲染系统安全检查器 */
-#define RenderingSystem_SecurityChecker FUN_1808fc050
+#define RenderingSystem_SecurityChecker SystemSecurityChecker
 
 /** 渲染系统内存管理器 */
 #define RenderingSystem_MemoryManager FUN_180627020

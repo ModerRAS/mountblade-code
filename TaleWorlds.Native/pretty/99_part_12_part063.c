@@ -43,7 +43,7 @@ void FUN_1807f5fd0(int64_t param_1,int64_t param_2,int param_3)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_158);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_158);
 }
 
 
@@ -156,7 +156,7 @@ void FUN_1807f6294(void)
     FUN_18076b390();
   }
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
+  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
 }
 
 
@@ -171,7 +171,7 @@ void FUN_1807f6918(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x1090) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1090) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -398,11 +398,11 @@ LAB_1807f6ef1:
     if (lVar5 == 0) {
       (**(code **)(*unaff_R15 + 0x28))();
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
+  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
 }
 
 
@@ -452,7 +452,7 @@ uint64_t FUN_1807f7430(int64_t param_1)
     return 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x208),
+  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x208),
                 &unknown_var_4304_ptr,0x309,1);
 }
 
@@ -481,7 +481,7 @@ void FUN_1807f74b0(int64_t param_1,uint64_t param_2,int32_t *param_3)
     memset(param_1 + 0x1280,0,0x1000);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_898);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_898);
 }
 
 

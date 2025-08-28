@@ -752,7 +752,7 @@ void rendering_system_advanced_render_control(int64_t render_context, int64_t re
     }
     
     // 执行最终渲染操作
-    FUN_1808fc050(security_hash ^ (uint64_t)security_stack);
+    SystemSecurityChecker(security_hash ^ (uint64_t)security_stack);
   }
   
   // 清理渲染资源
@@ -761,10 +761,10 @@ void rendering_system_advanced_render_control(int64_t render_context, int64_t re
   data_ptr = (uint64_t *)0x0;
   buffer_param = 0;
   
-  vertex_data = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+  vertex_data = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 0x13);
   *(int8_t *)vertex_data = 0;
   data_ptr = vertex_data;
-  mode_param = FUN_18064e990(vertex_data);
+  mode_param = CoreMemoryPoolCleaner(vertex_data);
   buffer_data = CONCAT44(buffer_data._4_4_, mode_param);
   *vertex_data = 0x616d776f64616873;
   vertex_data[1] = 0x68706172675f70;
@@ -784,7 +784,7 @@ void rendering_system_advanced_render_control(int64_t render_context, int64_t re
   }
   
   buffer_ptr = &system_data_buffer_ptr;
-  FUN_18064e900(vertex_data);
+  CoreMemoryPoolInitializer(vertex_data);
 }
 
 // 函数别名定义

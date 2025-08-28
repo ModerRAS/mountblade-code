@@ -170,9 +170,9 @@ typedef struct {
 
 /** 渲染系统辅助函数别名 */
 #define RenderingSystemMathCalculator FUN_1802a11e0           // 渲染系统数学计算器
-#define RenderingSystemMemoryAllocator FUN_18062b420           // 渲染系统内存分配器
-#define RenderingSystemMemoryDeallocator FUN_18064e900         // 渲染系统内存释放器
-#define RenderingSystemRandomGenerator FUN_1808fd400          // 渲染系统随机数生成器
+#define RenderingSystemMemoryAllocator CoreMemoryPoolAllocator           // 渲染系统内存分配器
+#define RenderingSystemMemoryDeallocator CoreMemoryPoolInitializer         // 渲染系统内存释放器
+#define RenderingSystemRandomGenerator AdvancedSystemController          // 渲染系统随机数生成器
 #define RenderingSystemSystemCaller FUN_18046da60             // 渲染系统系统调用器
 #define RenderingSystemDataValidator FUN_180062300            // 渲染系统数据验证器
 #define RenderingSystemConditionChecker FUN_1803723f0         // 渲染系统条件检查器

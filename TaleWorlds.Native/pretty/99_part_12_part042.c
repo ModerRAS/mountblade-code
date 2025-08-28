@@ -472,7 +472,7 @@ void DataStreamProcessor(SystemHandle handle, int param2, int64_t param3, int64_
     }
     
     // 安全清理
-    FUN_1808fc050(securityVar ^ (UnsignedLongInt)stackBuffer);
+    SystemSecurityChecker(securityVar ^ (UnsignedLongInt)stackBuffer);
 }
 
 /**
@@ -730,7 +730,7 @@ void TransformOperationProcessor(void)
     }
     
     // 安全清理
-    FUN_1808fc050(securityVar ^ (UnsignedLongInt)&stack0x00000000);
+    SystemSecurityChecker(securityVar ^ (UnsignedLongInt)&stack0x00000000);
 }
 
 /**
@@ -956,7 +956,7 @@ void AdvancedDataProcessor(void)
     } while (targetDim != 0);
     
     // 安全清理
-    FUN_1808fc050(securityVar ^ (UnsignedLongInt)&stack0x00000000);
+    SystemSecurityChecker(securityVar ^ (UnsignedLongInt)&stack0x00000000);
 }
 
 /**
@@ -974,7 +974,7 @@ void SystemCallProcessor(void)
     securityVar = GET_SECURITY_COOKIE() ^ (UnsignedLongInt)&stack0x00000000;
     
     // 执行系统调用
-    FUN_1808fc050(securityVar);
+    SystemSecurityChecker(securityVar);
 }
 
 /**
@@ -992,7 +992,7 @@ void MemoryManagerProcessor(void)
     securityVar = GET_SECURITY_COOKIE() ^ (UnsignedLongInt)&stack0x00000000;
     
     // 执行内存管理操作
-    FUN_1808fc050(securityVar);
+    SystemSecurityChecker(securityVar);
 }
 
 // ==================== 辅助函数 ====================

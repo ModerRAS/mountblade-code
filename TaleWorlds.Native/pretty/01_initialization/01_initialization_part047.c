@@ -991,7 +991,7 @@ void update_object_dependencies(int64_t object_ptr, int64_t *dependency_ptr)
     }
     
     // 释放现有依赖资源
-    FUN_180080810(object_ptr + 0x1b8);
+    RenderingSystem_ResourceAllocator(object_ptr + 0x1b8);
     resource_handle = *(int64_t *)(object_ptr + 0x1b8);
     
     if (resource_handle != 0) {

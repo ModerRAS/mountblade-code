@@ -144,7 +144,7 @@ int system_initialize_function(uint32 init_type, void_ptr param_block)
     _Mtx_init_in_situ(0x180c91910, 2, param_block, 0xfffffffffffffffe, 0xfffffffffffffffe);
     
     /* 执行系统初始化 */
-    int64_t init_result = FUN_1808fc7d0(FUN_1809417c0);
+    int64_t init_result = SystemInitializationVerifier(SystemStateProvider);
     return (init_result != 0) - 1;
 }
 
@@ -178,7 +178,7 @@ void system_string_processor(uint32 string_type, char *buffer, uint32 buffer_siz
     
     /* 执行字符串处理 */
     strcpy_s(stack_buffer, 0x80, &unknown_var_5216_ptr, in_R9, 0xfffffffffffffffe);
-    init_system_file = FUN_180623800(&stack_ptr_a0);
+    init_system_file = SystemFileInitializer(&stack_ptr_a0);
 }
 
 /* ============================================================================
@@ -197,7 +197,7 @@ void system_string_processor(uint32 string_type, char *buffer, uint32 buffer_siz
  */
 void register_system_core_components(void)
 {
-    system_register_base_function(0x40afa5469b6ac06d, FUN_1802285e0, 3, &unknown_var_5056_ptr);
+    system_register_base_function(0x40afa5469b6ac06d, SystemComponentRegistrarA, 3, &unknown_var_5056_ptr);
 }
 
 /**
@@ -212,7 +212,7 @@ void register_system_core_components(void)
  */
 void register_system_network_components(void)
 {
-    system_register_base_function(0x43330a43fcdb3653, FUN_18025cc00, 1, &unknown_var_7584_ptr);
+    system_register_base_function(0x43330a43fcdb3653, SystemComponentRegistrarB, 1, &unknown_var_7584_ptr);
 }
 
 /**
@@ -227,7 +227,7 @@ void register_system_network_components(void)
  */
 void register_system_graphics_components(void)
 {
-    system_register_base_function(0x431d7c8d7c475be2, FUN_18025c000, 4, &unknown_var_7608_ptr);
+    system_register_base_function(0x431d7c8d7c475be2, SystemComponentRegistrarC, 4, &unknown_var_7608_ptr);
 }
 
 /**
@@ -257,7 +257,7 @@ void register_system_audio_components(void)
  */
 void register_system_input_components(void)
 {
-    system_register_base_function(0x49086ba08ab981a7, FUN_18025d270, 0, &unknown_var_7656_ptr);
+    system_register_base_function(0x49086ba08ab981a7, SystemComponentRegistrarD, 0, &unknown_var_7656_ptr);
 }
 
 /**
@@ -317,7 +317,7 @@ void register_system_utility_components(void)
  */
 void register_system_communication_components(void)
 {
-    system_register_base_function(0x449bafe9b77ddd3c, FUN_18025d510, 0, &unknown_var_7776_ptr);
+    system_register_base_function(0x449bafe9b77ddd3c, SystemComponentRegistrarE, 0, &unknown_var_7776_ptr);
 }
 
 /**
@@ -332,7 +332,7 @@ void register_system_communication_components(void)
  */
 void register_system_data_components(void)
 {
-    system_register_base_function(0x45425dc186a5d575, FUN_18025e330, 0, &unknown_var_7824_ptr);
+    system_register_base_function(0x45425dc186a5d575, SystemComponentRegistrarF, 0, &unknown_var_7824_ptr);
 }
 
 /**
@@ -377,7 +377,7 @@ void register_system_physics_components(void)
  */
 void register_system_animation_components(void)
 {
-    system_register_base_function(0x40db4257e97d3df8, FUN_1802633c0, 4, &unknown_var_7896_ptr);
+    system_register_base_function(0x40db4257e97d3df8, SystemComponentRegistrarG, 4, &unknown_var_7896_ptr);
 }
 
 /**
@@ -392,7 +392,7 @@ void register_system_animation_components(void)
  */
 void register_system_script_components(void)
 {
-    system_register_base_function(0x4e33c4803e67a08f, FUN_180262b00, 3, &unknown_var_7920_ptr);
+    system_register_base_function(0x4e33c4803e67a08f, SystemComponentRegistrarH, 3, &unknown_var_7920_ptr);
 }
 
 /**
@@ -407,7 +407,7 @@ void register_system_script_components(void)
  */
 void register_system_ai_components(void)
 {
-    system_register_base_function(0x40afa5469b6ac06d, FUN_1802285e0, 3, &unknown_var_5056_ptr);
+    system_register_base_function(0x40afa5469b6ac06d, SystemComponentRegistrarA, 3, &unknown_var_5056_ptr);
 }
 
 /**
@@ -422,7 +422,7 @@ void register_system_ai_components(void)
  */
 void register_system_resource_components(void)
 {
-    system_register_base_function(0x43330a43fcdb3653, FUN_18025cc00, 1, &unknown_var_7584_ptr);
+    system_register_base_function(0x43330a43fcdb3653, SystemComponentRegistrarB, 1, &unknown_var_7584_ptr);
 }
 
 /**
@@ -437,7 +437,7 @@ void register_system_resource_components(void)
  */
 void register_system_config_components(void)
 {
-    system_register_base_function(0x431d7c8d7c475be2, FUN_18025c000, 4, &unknown_var_7608_ptr);
+    system_register_base_function(0x431d7c8d7c475be2, SystemComponentRegistrarC, 4, &unknown_var_7608_ptr);
 }
 
 /**
@@ -467,7 +467,7 @@ void register_system_monitoring_components(void)
  */
 void register_system_debugging_components(void)
 {
-    system_register_base_function(0x49086ba08ab981a7, FUN_18025d270, 0, &unknown_var_7656_ptr);
+    system_register_base_function(0x49086ba08ab981a7, SystemComponentRegistrarD, 0, &unknown_var_7656_ptr);
 }
 
 /**
@@ -527,7 +527,7 @@ void register_system_utility_components_backup(void)
  */
 void register_system_communication_components_backup(void)
 {
-    system_register_base_function(0x449bafe9b77ddd3c, FUN_18025d510, 0, &unknown_var_7776_ptr);
+    system_register_base_function(0x449bafe9b77ddd3c, SystemComponentRegistrarE, 0, &unknown_var_7776_ptr);
 }
 
 /**
@@ -542,7 +542,7 @@ void register_system_communication_components_backup(void)
  */
 void register_system_data_components_backup(void)
 {
-    system_register_base_function(0x45425dc186a5d575, FUN_18025e330, 0, &unknown_var_7824_ptr);
+    system_register_base_function(0x45425dc186a5d575, SystemComponentRegistrarF, 0, &unknown_var_7824_ptr);
 }
 
 /**
@@ -587,7 +587,7 @@ void register_system_physics_components_backup(void)
  */
 void register_system_animation_components_backup(void)
 {
-    system_register_base_function(0x40db4257e97d3df8, FUN_1802633c0, 4, &unknown_var_7896_ptr);
+    system_register_base_function(0x40db4257e97d3df8, SystemComponentRegistrarG, 4, &unknown_var_7896_ptr);
 }
 
 /**
@@ -602,7 +602,7 @@ void register_system_animation_components_backup(void)
  */
 void register_system_script_components_backup(void)
 {
-    system_register_base_function(0x4e33c4803e67a08f, FUN_180262b00, 3, &unknown_var_7920_ptr);
+    system_register_base_function(0x4e33c4803e67a08f, SystemComponentRegistrarH, 3, &unknown_var_7920_ptr);
 }
 
 /**
@@ -617,7 +617,7 @@ void register_system_script_components_backup(void)
  */
 void register_system_ai_components_backup(void)
 {
-    system_register_base_function(0x40afa5469b6ac06d, FUN_1802285e0, 3, &unknown_var_5056_ptr);
+    system_register_base_function(0x40afa5469b6ac06d, SystemComponentRegistrarA, 3, &unknown_var_5056_ptr);
 }
 
 /**
@@ -632,7 +632,7 @@ void register_system_ai_components_backup(void)
  */
 void register_system_resource_components_backup(void)
 {
-    system_register_base_function(0x43330a43fcdb3653, FUN_18025cc00, 1, &unknown_var_7584_ptr);
+    system_register_base_function(0x43330a43fcdb3653, SystemComponentRegistrarB, 1, &unknown_var_7584_ptr);
 }
 
 /**
@@ -647,7 +647,7 @@ void register_system_resource_components_backup(void)
  */
 void register_system_config_components_backup(void)
 {
-    system_register_base_function(0x431d7c8d7c475be2, FUN_18025c000, 4, &unknown_var_7608_ptr);
+    system_register_base_function(0x431d7c8d7c475be2, SystemComponentRegistrarC, 4, &unknown_var_7608_ptr);
 }
 
 /**
@@ -677,7 +677,7 @@ void register_system_monitoring_components_backup(void)
  */
 void register_system_debugging_components_backup(void)
 {
-    system_register_base_function(0x49086ba08ab981a7, FUN_18025d270, 0, &unknown_var_7656_ptr);
+    system_register_base_function(0x49086ba08ab981a7, SystemComponentRegistrarD, 0, &unknown_var_7656_ptr);
 }
 
 /**
@@ -737,7 +737,7 @@ void register_system_utility_components_third(void)
  */
 void register_system_communication_components_third(void)
 {
-    system_register_base_function(0x449bafe9b77ddd3c, FUN_18025d510, 0, &unknown_var_7776_ptr);
+    system_register_base_function(0x449bafe9b77ddd3c, SystemComponentRegistrarE, 0, &unknown_var_7776_ptr);
 }
 
 /**
@@ -752,7 +752,7 @@ void register_system_communication_components_third(void)
  */
 void register_system_data_components_third(void)
 {
-    system_register_base_function(0x45425dc186a5d575, FUN_18025e330, 0, &unknown_var_7824_ptr);
+    system_register_base_function(0x45425dc186a5d575, SystemComponentRegistrarF, 0, &unknown_var_7824_ptr);
 }
 
 /**
@@ -797,7 +797,7 @@ void register_system_physics_components_third(void)
  */
 void register_system_animation_components_third(void)
 {
-    system_register_base_function(0x40db4257e97d3df8, FUN_1802633c0, 4, &unknown_var_7896_ptr);
+    system_register_base_function(0x40db4257e97d3df8, SystemComponentRegistrarG, 4, &unknown_var_7896_ptr);
 }
 
 /**
@@ -812,7 +812,7 @@ void register_system_animation_components_third(void)
  */
 void register_system_script_components_third(void)
 {
-    system_register_base_function(0x4e33c4803e67a08f, FUN_180262b00, 3, &unknown_var_7920_ptr);
+    system_register_base_function(0x4e33c4803e67a08f, SystemComponentRegistrarH, 3, &unknown_var_7920_ptr);
 }
 
 /**
@@ -827,7 +827,7 @@ void register_system_script_components_third(void)
  */
 void register_system_ai_components_third(void)
 {
-    system_register_base_function(0x40afa5469b6ac06d, FUN_1802285e0, 3, &unknown_var_5056_ptr);
+    system_register_base_function(0x40afa5469b6ac06d, SystemComponentRegistrarA, 3, &unknown_var_5056_ptr);
 }
 
 /**
@@ -842,7 +842,7 @@ void register_system_ai_components_third(void)
  */
 void register_system_resource_components_third(void)
 {
-    system_register_base_function(0x43330a43fcdb3653, FUN_18025cc00, 1, &unknown_var_7584_ptr);
+    system_register_base_function(0x43330a43fcdb3653, SystemComponentRegistrarB, 1, &unknown_var_7584_ptr);
 }
 
 /**
@@ -857,7 +857,7 @@ void register_system_resource_components_third(void)
  */
 void register_system_config_components_third(void)
 {
-    system_register_base_function(0x431d7c8d7c475be2, FUN_18025c000, 4, &unknown_var_7608_ptr);
+    system_register_base_function(0x431d7c8d7c475be2, SystemComponentRegistrarC, 4, &unknown_var_7608_ptr);
 }
 
 /**
@@ -887,7 +887,7 @@ void register_system_monitoring_components_third(void)
  */
 void register_system_debugging_components_third(void)
 {
-    system_register_base_function(0x49086ba08ab981a7, FUN_18025d270, 0, &unknown_var_7656_ptr);
+    system_register_base_function(0x49086ba08ab981a7, SystemComponentRegistrarD, 0, &unknown_var_7656_ptr);
 }
 
 /** @} */
@@ -1001,7 +1001,7 @@ int system_initialization_main(void)
 int system_initialization_verify(void)
 {
     /* 执行系统初始化验证 */
-    int64_t verify_result = FUN_1808fc7d0(FUN_1809417c0);
+    int64_t verify_result = SystemInitializationVerifier(SystemStateProvider);
     return (verify_result != 0) - 1;
 }
 

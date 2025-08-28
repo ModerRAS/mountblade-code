@@ -269,7 +269,7 @@ void FUN_1805735c0(int64_t param_1,int64_t param_2,int64_t param_3,float *param_
         fVar51 = 1.5707964;
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(fVar63 * fVar51);
+      AdvancedSystemController(fVar63 * fVar51);
     }
     fVar64 = 0.0;
     fStack_684 = 0.0;
@@ -1075,7 +1075,7 @@ LAB_180574cc4:
     } while (lVar35 < 0x20);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_e8 ^ (uint64_t)auStack_748);
+  SystemSecurityChecker(uStack_e8 ^ (uint64_t)auStack_748);
 }
 
 

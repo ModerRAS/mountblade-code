@@ -31,7 +31,7 @@ void FUN_180543290(int64_t param_1,byte *param_2,int64_t param_3)
     uVar5 = FUN_1804bc2d0(0x180c95de0,*(int32_t *)(param_2 + 0x24),
                           *(int32_t *)(param_2 + 0x20),*(int32_t *)(param_3 + 0x53c),
                           *(int32_t *)(param_2 + 8));
-    uVar6 = FUN_18062b1e0(system_memory_pool_ptr,0x3d0,8,0x16);
+    uVar6 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
     ppppplVar7 = (int64_t *****)FUN_180275090(uVar6);
     if (ppppplVar7 != (int64_t *****)0x0) {
       (*(code *)(*ppppplVar7)[5])(ppppplVar7);

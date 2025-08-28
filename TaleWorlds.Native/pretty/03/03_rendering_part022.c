@@ -228,7 +228,7 @@ LAB_18027c801:
       stack_buffer_ptr = (byte *)0x0;
       buffer_size = 0;
       stack_render_ptr = render_obj_ptr;
-      FUN_1806277c0(&stack_render_ptr, *(int32_t *)(long_val2 + 0x10));
+      CoreMemoryPoolProcessor(&stack_render_ptr, *(int32_t *)(long_val2 + 0x10));
       if (0 < *(int *)(long_val2 + 0x10)) {
         render_obj_ptr = &system_buffer_ptr;
         if (*(void **)(long_val2 + 8) != (void *)0x0) {
@@ -301,7 +301,7 @@ LAB_18027c801:
               int_val = 0x10;
             }
             stack_char_ptr2 = data_ptr;
-            data_ptr = (int8_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)int_val, 0x13);
+            data_ptr = (int8_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, (int64_t)int_val, 0x13);
             *data_ptr = 0;
             ulong_val = (uint64_t)data_ptr & 0xffffffffffc00000;
             if (ulong_val == 0) {
@@ -431,9 +431,9 @@ LAB_18027cd98:
                       int_val2 = 0x10;
                     }
                     stack_char_ptr2 = (int8_t *)
-                                 FUN_18062b420(system_memory_pool_ptr, (int64_t)int_val2, 0x13);
+                                 CoreMemoryPoolAllocator(system_memory_pool_ptr, (int64_t)int_val2, 0x13);
                     *stack_char_ptr2 = 0;
-                    uint_val = FUN_18064e990(stack_char_ptr2);
+                    uint_val = CoreMemoryPoolCleaner(stack_char_ptr2);
                     stack_ulong2 = CONCAT44(stack_ulong2._4_4_, uint_val);
                     if (0 < *(int *)(long_val2 + 0x10)) {
                       render_obj_ptr = &system_buffer_ptr;
@@ -473,7 +473,7 @@ LAB_18027cd98:
                   FUN_180630b20(render_context_ptr, mesh_data_ptr, &unknown_var_6864_ptr, data_ptr);
                   stack_data_ptr = &system_data_buffer_ptr;
                   if (stack_char_ptr2 != (int8_t *)0x0) {
-                    FUN_18064e900();
+                    CoreMemoryPoolInitializer();
                   }
                   stack_char_ptr2 = (int8_t *)0x0;
                   stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
@@ -612,7 +612,7 @@ LAB_18027cd98:
           else if (buffer_size == 0) goto LAB_18027cd22;
           stack_data_ptr = &system_data_buffer_ptr;
           if (stack_char_ptr2 != (int8_t *)0x0) {
-            FUN_18064e900();
+            CoreMemoryPoolInitializer();
           }
           stack_char_ptr2 = (int8_t *)0x0;
           stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
@@ -625,7 +625,7 @@ LAB_18027cd98:
       }
       stack_render_ptr = &system_data_buffer_ptr;
       if (stack_buffer_ptr != (byte *)0x0) {
-        FUN_18064e900();
+        CoreMemoryPoolInitializer();
       }
       stack_buffer_ptr = (byte *)0x0;
       buffer_capacity = buffer_capacity & 0xffffffff00000000;
@@ -716,7 +716,7 @@ void export_material_data(int64_t mesh_data_ptr)
 LAB_18027d492:
   file_offset = FUN_180629a40(path_buffer, &temp_ptr, 0, index);
   if (path_ptr != (void *)0x0) {
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   
   // 创建MMD文件路径
@@ -729,25 +729,25 @@ LAB_18027d492:
   *(uint64_t *)(file_offset + 0x18) = 0;
   temp_ptr = &system_data_buffer_ptr;
   if (temp_size != 0) {
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   temp_size = 0;
   temp_data = 0;
   temp_ptr = &system_state_ptr;
   file_size = path_length + 4;
-  FUN_1806277c0(path_buffer, file_size);
+  CoreMemoryPoolProcessor(path_buffer, file_size);
   *(int32_t *)(path_ptr + path_length) = 0x646d6d2f;  // "/mmd"
   *(int8_t *)((int64_t)(path_ptr + path_length) + 4) = 0;
   path_length = file_size;
   FUN_180628380(path_buffer, *(int32_t *)(mesh_data_ptr + 0x324));
   index = path_length + 4;
-  FUN_1806277c0(path_buffer, index);
+  CoreMemoryPoolProcessor(path_buffer, index);
   *(int32_t *)(path_ptr + path_length) = 0x646d6d2e;  // ".mmd"
   *(int8_t *)((int64_t)(path_ptr + path_length) + 4) = 0;
   path_length = index;
   
   // 创建文件句柄
-  file_handle = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, 3);
+  file_handle = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x18, 8, 3);
   data_ptr = &system_buffer_ptr;
   if (path_ptr != (void *)0x0) {
     data_ptr = path_ptr;
@@ -781,7 +781,7 @@ LAB_18027d492:
       file_offset = temp_size;
       header_array[0] = *(int *)(temp_size + 0x60);
       fwrite(header_array, 4, 1, file_handle[1]);
-      buffer_ptr = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, (int64_t)header_array[0] << 2, 0x10);
+      buffer_ptr = (int32_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr, (int64_t)header_array[0] << 2, 0x10);
       index = 0;
       if (0 < header_array[0]) {
         mesh_offset = 0;
@@ -796,7 +796,7 @@ LAB_18027d492:
       fwrite(buffer_ptr, 4, (int64_t)header_array[0], file_handle[1]);
       file_offset = file_pos;
       if (buffer_ptr != (int32_t *)0x0) {
-        FUN_18064e900(buffer_ptr);
+        CoreMemoryPoolInitializer(buffer_ptr);
       }
       
       // 清理网格引用
@@ -855,5 +855,5 @@ LAB_18027d773:
     SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
     UNLOCK();
   }
-  FUN_18064e900(file_handle);
+  CoreMemoryPoolInitializer(file_handle);
 }

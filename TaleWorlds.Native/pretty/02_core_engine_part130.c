@@ -333,7 +333,7 @@ LAB_18012f381:
       uStack_78 = uVar4;
 LAB_18012f4b4:
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_68 ^ (uint64_t)&uStack_78);
+      SystemSecurityChecker(uStack_68 ^ (uint64_t)&uStack_78);
     }
   } while( true );
 }

@@ -181,7 +181,7 @@ LAB_1803bd024:
                   if (pcStack_68 != (char *)0x0) {
                     pcVar17 = pcStack_68;
                   }
-                  FUN_18010cbc0(pcVar17,&unknown_var_4576_ptr,aiStackX_8);
+                  AdvancedSystemOptimizer(pcVar17,&unknown_var_4576_ptr,aiStackX_8);
                   pcVar12 = (char *)(uint64_t)((uVar14 | 0xf0) ^ 0xf0 | aiStackX_8[0] << 4);
                 }
                 else if ((int)uStack_40 == 6) {

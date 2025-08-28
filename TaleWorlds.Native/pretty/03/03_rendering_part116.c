@@ -266,7 +266,7 @@ void RenderingSystem_AdvancedSerializeData(int64_t *render_context, int64_t data
         if (offset == 0) {
           offset = 1;
 LAB_180338b93:
-          qword_ptr3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, offset << 6, (char)render_context[0x2d]);
+          qword_ptr3 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, offset << 6, (char)render_context[0x2d]);
           qword_ptr2 = (uint64_t *)*flag_ptr;
           qword_ptr = (uint64_t *)render_context[0x2b];
         }
@@ -291,7 +291,7 @@ LAB_180338b93:
         *(int32_t *)(qword_ptr3 + 7) = temp_data3;
         *(int32_t *)((int64_t)qword_ptr3 + 0x3c) = stack_data_40;
         if (*flag_ptr != 0) {
-          FUN_18064e900();
+          CoreMemoryPoolInitializer();
         }
         *flag_ptr = (uint64_t)qword_ptr3;
         render_context[0x2c] = (int64_t)(qword_ptr3 + offset * 8);
@@ -311,14 +311,14 @@ LAB_180338b93:
       array_size = 0;
     }
     else {
-      array_size = FUN_18062b420(system_memory_pool_ptr, total_size, (char)render_context[0x31]);
+      array_size = CoreMemoryPoolAllocator(system_memory_pool_ptr, total_size, (char)render_context[0x31]);
       offset = render_context[0x2e];
     }
     if (offset != render_context[0x2f]) {
       memmove(array_size, offset, render_context[0x2f] - offset);
     }
     if (offset != 0) {
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
     render_context[0x2e] = array_size;
     render_context[0x30] = array_size + total_size;
@@ -339,7 +339,7 @@ LAB_180338b93:
         if ((int64_t)byte_ptr3 - (int64_t)byte_ptr2 == 0) {
           offset = 1;
 LAB_180338d21:
-          byte_ptr = (int8_t *)FUN_18062b420(system_memory_pool_ptr, offset, (char)render_context[0x31]);
+          byte_ptr = (int8_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, offset, (char)render_context[0x31]);
           byte_ptr2 = (int8_t *)render_context[0x2e];
           byte_ptr3 = (int8_t *)render_context[0x2f];
         }
@@ -353,7 +353,7 @@ LAB_180338d21:
         }
         *byte_ptr = data_byte;
         if (render_context[0x2e] != 0) {
-          FUN_18064e900();
+          CoreMemoryPoolInitializer();
         }
         render_context[0x2e] = (int64_t)byte_ptr;
         render_context[0x30] = (int64_t)(byte_ptr + offset);

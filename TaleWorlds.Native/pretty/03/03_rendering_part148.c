@@ -249,7 +249,7 @@ void FUN_18035ce30(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t
     }
     
     // 分配渲染资源
-    uVar7 = FUN_18062b1e0(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_664, 8, 3);
+    uVar7 = CoreMemoryPoolReallocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_664, 8, 3);
     plVar9 = (int64_t *)FUN_1802f5f70(uVar7);
     plVar8 = (int64_t *)FUN_1802ed2b0(*(uint64_t *)(param_1 + 0x18), &plStackX_8, 0, 0);
     plVar8 = (int64_t *)*plVar8;
@@ -331,7 +331,7 @@ void FUN_18035ce30(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t
     }
     
     // 分配渲染资源
-    uVar7 = FUN_18062b1e0(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_664, 8, 3);
+    uVar7 = CoreMemoryPoolReallocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_664, 8, 3);
     plVar8 = (int64_t *)FUN_1802f5f70(uVar7);
     plVar9 = (int64_t *)FUN_1802ed2b0(*(uint64_t *)(param_1 + 0x18), &plStackX_8, 0, 0);
     plVar9 = (int64_t *)*plVar9;
@@ -520,7 +520,7 @@ void FUN_18035d260(uint64_t param_1)
   puStack_d8 = &system_state_ptr;
   
   // 栈保护检查和退出
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_118);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_118);
 }
 
 /**
@@ -570,7 +570,7 @@ void FUN_18035d370(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
     }
     
     // 分配渲染资源
-    uVar7 = FUN_18062b1e0(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_664, 8, 3);
+    uVar7 = CoreMemoryPoolReallocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_664, 8, 3);
     plVar9 = (int64_t *)FUN_1802f5f70(uVar7);
     plVar8 = (int64_t *)FUN_1802ed2b0(param_1[3], &plStackX_8, 0, 0);
     plVar8 = (int64_t *)*plVar8;
@@ -652,7 +652,7 @@ void FUN_18035d370(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
     }
     
     // 分配渲染资源
-    uVar7 = FUN_18062b1e0(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_664, 8, 3);
+    uVar7 = CoreMemoryPoolReallocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_664, 8, 3);
     plVar8 = (int64_t *)FUN_1802f5f70(uVar7);
     plVar9 = (int64_t *)FUN_1802ed2b0(param_1[3], &plStackX_8, 0, 0);
     plVar9 = (int64_t *)*plVar9;
@@ -797,10 +797,10 @@ void FUN_18035d3f0(uint64_t *param_1)
   uStack_70 = 0;
   
   // 分配字符串资源
-  puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_16, MEMORY_ALLOCATION_SIZE_19);
+  puVar3 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_16, MEMORY_ALLOCATION_SIZE_19);
   *(int8_t *)puVar3 = 0;
   puStack_78 = puVar3;
-  uVar2 = FUN_18064e990(puVar3);
+  uVar2 = CoreMemoryPoolCleaner(puVar3);
   uStack_68 = CONCAT44(uStack_68._4_4_, uVar2);
   
   // 设置字符串数据
@@ -814,7 +814,7 @@ void FUN_18035d3f0(uint64_t *param_1)
   puStack_80 = &system_data_buffer_ptr;
   
   // 清理字符串资源
-  FUN_18064e900(puVar3);
+  CoreMemoryPoolInitializer(puVar3);
 }
 
 /**
@@ -851,7 +851,7 @@ uint64_t *FUN_18035d5e0(uint64_t *param_1, uint param_2, uint64_t param_3, uint6
   // 清理材质资源
   param_1[0x13] = &system_data_buffer_ptr;
   if (param_1[0x14] != 0) {
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   param_1[0x14] = 0;
   *(int32_t *)(param_1 + 0x16) = 0;
@@ -860,7 +860,7 @@ uint64_t *FUN_18035d5e0(uint64_t *param_1, uint param_2, uint64_t param_3, uint6
   // 清理纹理资源
   param_1[0xf] = &system_data_buffer_ptr;
   if (param_1[0x10] != 0) {
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   param_1[0x10] = 0;
   *(int32_t *)(param_1 + 0x12) = 0;
@@ -894,7 +894,7 @@ void FUN_18035d710(uint64_t param_1, uint64_t param_2)
   uint64_t uStack_68;
   
   // 分配渲染资源
-  puVar4 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_200, 8, 3);
+  puVar4 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_200, 8, 3);
   uVar5 = 0xfffffffffffffffe;
   puVar3 = puVar4;
   FUN_1803456e0(puVar4, param_2, param_1);
@@ -927,10 +927,10 @@ void FUN_18035d710(uint64_t param_1, uint64_t param_2)
   uStack_70 = 0;
   
   // 分配字符串资源
-  puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_16, MEMORY_ALLOCATION_SIZE_19);
+  puVar3 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_16, MEMORY_ALLOCATION_SIZE_19);
   *(int8_t *)puVar3 = 0;
   puStack_78 = puVar3;
-  uVar2 = FUN_18064e990(puVar3);
+  uVar2 = CoreMemoryPoolCleaner(puVar3);
   uStack_68 = CONCAT44(uStack_68._4_4_, uVar2);
   
   // 设置字符串数据
@@ -944,7 +944,7 @@ void FUN_18035d710(uint64_t param_1, uint64_t param_2)
   puStack_80 = &system_data_buffer_ptr;
   
   // 清理字符串资源
-  FUN_18064e900(puVar3);
+  CoreMemoryPoolInitializer(puVar3);
 }
 
 /**
@@ -1017,7 +1017,7 @@ void FUN_18035d760(uint64_t param_1)
   appuStack_160[0] = apuStack_88;
   
   // 栈保护检查和退出
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_188);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_188);
 }
 
 /**
@@ -1169,10 +1169,10 @@ void FUN_18035dac0(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t
     
     // 分配参数资源
     puVar4 = (int32_t *)
-             FUN_18062b420(system_memory_pool_ptr, (int)lVar3 + 0xb, &unknown_var_3699_ptr, param_4, 0xfffffffffffffffe);
+             CoreMemoryPoolAllocator(system_memory_pool_ptr, (int)lVar3 + 0xb, &unknown_var_3699_ptr, param_4, 0xfffffffffffffffe);
     *(int8_t *)puVar4 = 0;
     puStack_58 = puVar4;
-    uVar2 = FUN_18064e990(puVar4);
+    uVar2 = CoreMemoryPoolCleaner(puVar4);
     
     // 设置参数数据
     *puVar4 = 0x65687053;
@@ -1187,7 +1187,7 @@ void FUN_18035dac0(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t
     
     // 清理参数资源
     if (puStack_58 != (int32_t *)0x0) {
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
     puStack_58 = (int32_t *)0x0;
     uStack_48 = (uint64_t)uStack_48._4_4_ << 0x20;
@@ -1198,10 +1198,10 @@ void FUN_18035dac0(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t
     uStack_30 = 0;
     
     // 分配第二组参数资源
-    puVar4 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_16, MEMORY_ALLOCATION_SIZE_19, param_4, uVar5);
+    puVar4 = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_16, MEMORY_ALLOCATION_SIZE_19, param_4, uVar5);
     *(int8_t *)puVar4 = 0;
     puStack_38 = puVar4;
-    uVar2 = FUN_18064e990(puVar4);
+    uVar2 = CoreMemoryPoolCleaner(puVar4);
     uStack_28 = CONCAT44(uStack_28._4_4_, uVar2);
     
     // 设置第二组参数数据
@@ -1214,7 +1214,7 @@ void FUN_18035dac0(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t
     
     // 清理第二组参数资源
     if (puStack_38 != (int32_t *)0x0) {
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
   }
   return;

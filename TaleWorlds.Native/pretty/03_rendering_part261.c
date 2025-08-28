@@ -243,7 +243,7 @@ void FUN_1804120af(uint64_t param_1,uint64_t param_2,int param_3)
   }
 FUN_180412b34:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(unaff_RBP[0x21] ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(unaff_RBP[0x21] ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -499,7 +499,7 @@ void FUN_180412123(int64_t param_1)
   free(in_stack_00000048);
 LAB_180412ad4:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(unaff_RBP[0x21] ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(unaff_RBP[0x21] ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -513,7 +513,7 @@ void FUN_180412b34(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -527,7 +527,7 @@ void FUN_180412b4c(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -545,7 +545,7 @@ void FUN_180412b68(void)
   free();
   free(in_stack_00000048);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -568,7 +568,7 @@ void FUN_180412b8f(void)
     free();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -582,7 +582,7 @@ void FUN_180412bb8(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&stack0x00000000);
 }
 
 

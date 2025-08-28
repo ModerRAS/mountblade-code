@@ -269,7 +269,7 @@ time_value_processing:
                                             if (render_state_ptr4[1] != 0) {
                                                 temp_long2 = render_state_ptr4[1];
                                             }
-                                            FUN_18010cbc0(temp_long2, &DAT, &stack_uint1);
+                                            AdvancedSystemOptimizer(temp_long2, &DAT, &stack_uint1);
                                             break;
                                         }
                                         
@@ -301,7 +301,7 @@ time_value_processing:
                                     if (temp_long2 == 0) {
                                         temp_long2 = 1;
 curve_buffer_expansion:
-                                        uint_ptr1 = (int32_t *)FUN_18062b420(_DAT);
+                                        uint_ptr1 = (int32_t *)CoreMemoryPoolAllocator(_DAT);
                                         uint_ptr3 = *(int32_t **)(param_1 + 200);
                                         uint_ptr2 = *(int32_t **)(param_1 + 0xca);
                                     }
@@ -325,7 +325,7 @@ curve_buffer_expansion:
                                     
                                     // 更新指针
                                     if (*(int64_t *)(param_1 + 200) != 0) {
-                                        FUN_18064e900();
+                                        CoreMemoryPoolInitializer();
                                     }
                                     *(int32_t **)(param_1 + 200) = uint_ptr1;
                                     *(int32_t **)(param_1 + 0xca) = uint_ptr1 + 5;
@@ -391,7 +391,7 @@ alpha_channel_processing:
                                             if (string_ptr3 <= string_ptr1) {
 alpha_value_processing:
                                                 // 处理透明度数值
-                                                FUN_18010cbc0();
+                                                AdvancedSystemOptimizer();
                                                 break;
                                             }
                                             
@@ -428,7 +428,7 @@ alpha_value_processing:
                                             if (string_ptr3 <= string_ptr1) {
 value_processing:
                                                 // 处理数值
-                                                FUN_18010cbc0();
+                                                AdvancedSystemOptimizer();
                                                 break;
                                             }
                                             
@@ -454,7 +454,7 @@ value_processing:
                                         if (temp_long2 == 0) {
                                             temp_long2 = 1;
 alpha_buffer_expansion:
-                                            render_state_ptr1 = (uint64_t *)FUN_18062b420(_DAT, temp_long2 * 8);
+                                            render_state_ptr1 = (uint64_t *)CoreMemoryPoolAllocator(_DAT, temp_long2 * 8);
                                             render_state_ptr3 = *(uint64_t **)(param_1 + 0xd0);
                                             render_state_ptr4 = *(uint64_t **)(param_1 + 0xd2);
                                         }
@@ -474,7 +474,7 @@ alpha_buffer_expansion:
                                         
                                         // 更新指针
                                         if (*(int64_t *)(param_1 + 0xd0) != 0) {
-                                            FUN_18064e900();
+                                            CoreMemoryPoolInitializer();
                                         }
                                         *(uint64_t **)(param_1 + 0xd0) = render_state_ptr1;
                                         *(uint64_t **)(param_1 + 0xd4) = render_state_ptr1 + temp_long2;
@@ -646,7 +646,7 @@ alpha_curve_value_extraction:
                                                 if (string_ptr3 <= string_ptr1) {
 alpha_time_processing:
                                                     // 处理透明度时间
-                                                    FUN_18010cbc0();
+                                                    AdvancedSystemOptimizer();
                                                     break;
                                                 }
                                                 
@@ -683,7 +683,7 @@ alpha_time_processing:
                                                 if (string_ptr3 <= string_ptr1) {
 alpha_value_extraction:
                                                     // 提取透明度数值
-                                                    FUN_18010cbc0();
+                                                    AdvancedSystemOptimizer();
                                                     break;
                                                 }
                                                 
@@ -709,7 +709,7 @@ alpha_value_extraction:
                                             if (temp_long2 == 0) {
                                                 temp_long2 = 1;
 alpha_buffer_processing:
-                                                render_state_ptr1 = (uint64_t *)FUN_18062b420(_DAT, temp_long2 * 8);
+                                                render_state_ptr1 = (uint64_t *)CoreMemoryPoolAllocator(_DAT, temp_long2 * 8);
                                                 render_state_ptr3 = *(uint64_t **)(param_1 + 0xd0);
                                                 render_state_ptr4 = *(uint64_t **)(param_1 + 0xd2);
                                             }
@@ -729,7 +729,7 @@ alpha_buffer_processing:
                                             
                                             // 更新指针
                                             if (*(int64_t *)(param_1 + 0xd0) != 0) {
-                                                FUN_18064e900();
+                                                CoreMemoryPoolInitializer();
                                             }
                                             *(uint64_t **)(param_1 + 0xd0) = render_state_ptr1;
                                             *(uint64_t **)(param_1 + 0xd4) = render_state_ptr1 + temp_long2;

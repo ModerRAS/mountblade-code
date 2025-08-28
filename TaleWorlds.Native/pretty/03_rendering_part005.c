@@ -92,10 +92,10 @@ typedef struct {
 // 作用：初始化曲线数据结构
 #define curve_initializer FUN_180270bf0
 
-// 原始函数：FUN_18010cbc0
+// 原始函数：AdvancedSystemOptimizer
 // 功能：字符串转换器
 // 作用：将字符串转换为数值或其他格式
-#define string_converter FUN_18010cbc0
+#define string_converter AdvancedSystemOptimizer
 
 // 原始函数：FUN_180631850
 // 功能：数据提取器

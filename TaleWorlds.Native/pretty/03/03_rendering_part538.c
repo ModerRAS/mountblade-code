@@ -100,7 +100,7 @@ RingBuffer* InitializeRingBuffer(size_t capacity)
   }
   
   // 分配缓冲区内存
-  void* buffer = FUN_18062b420(g_render_context.global_allocator, 
+  void* buffer = CoreMemoryPoolAllocator(g_render_context.global_allocator, 
                                actual_capacity * MEMORY_ALIGNMENT, 3);
   if (!buffer) {
     return NULL;
@@ -145,7 +145,7 @@ int RingBufferPush(RingBuffer* ring_buffer, void* data)
     }
     
     // 重新分配更大的缓冲区
-    void* new_buffer = FUN_18062b420(g_render_context.global_allocator,
+    void* new_buffer = CoreMemoryPoolAllocator(g_render_context.global_allocator,
                                     new_capacity * MEMORY_ALIGNMENT, 3);
     if (!new_buffer) {
       return 0;
@@ -156,7 +156,7 @@ int RingBufferPush(RingBuffer* ring_buffer, void* data)
     
     // 释放旧缓冲区
     if (ring_buffer->buffer) {
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
     
     // 更新缓冲区信息
@@ -216,7 +216,7 @@ void CopyRenderData(RenderBuffer* dest, RenderBuffer* src, size_t count)
     // 分配新缓冲区
     void* new_data = NULL;
     if (new_capacity > 0) {
-      new_data = FUN_18062b420(g_render_context.global_allocator,
+      new_data = CoreMemoryPoolAllocator(g_render_context.global_allocator,
                              new_capacity * MEMORY_ALIGNMENT, (char)dest->flags);
     }
     
@@ -233,7 +233,7 @@ void CopyRenderData(RenderBuffer* dest, RenderBuffer* src, size_t count)
     
     // 释放旧缓冲区
     if (dest->data) {
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
     
     // 更新目标缓冲区
@@ -298,7 +298,7 @@ void ProcessRenderBuffer(RenderBuffer* buffer_info, void* data_source)
       source_size = current_end;
       current_end = elements_needed;
       if (new_capacity != 0) {
-        current_end = FUN_18062b420(system_memory_pool_ptr, new_capacity * 8, (char)buffer_ptr[3]);
+        current_end = CoreMemoryPoolAllocator(system_memory_pool_ptr, new_capacity * 8, (char)buffer_ptr[3]);
         buffer_start = *buffer_ptr;
         source_size = buffer_ptr[1];
       }
@@ -312,7 +312,7 @@ void ProcessRenderBuffer(RenderBuffer* buffer_info, void* data_source)
       }
       if (*buffer_ptr != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreMemoryPoolInitializer();
       }
       *buffer_ptr = current_end;
       buffer_ptr[2] = current_end + new_capacity * 8;
@@ -379,7 +379,7 @@ void ReallocateRenderBuffer(size_t min_size, size_t current_size, size_t extra_s
   }
   source_offset = source_offset;
   if (new_capacity != 0) {
-    source_offset = FUN_18062b420(system_memory_pool_ptr, new_capacity * 8, (char)buffer_info[3]);
+    source_offset = CoreMemoryPoolAllocator(system_memory_pool_ptr, new_capacity * 8, (char)buffer_info[3]);
     current_size = *buffer_info;
     source_end = buffer_info[1];
   }
@@ -409,7 +409,7 @@ void ReallocateRenderBuffer(size_t min_size, size_t current_size, size_t extra_s
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreMemoryPoolInitializer();
 }
 
 
@@ -665,7 +665,7 @@ void CleanupRenderObject(RenderObject* render_object)
   // 清理深度模板状态
   render_object[0x32] = &system_data_buffer_ptr;
   if (render_object[0x33] != 0) {
-    FUN_18064e900(); // 释放资源
+    CoreMemoryPoolInitializer(); // 释放资源
   }
   render_object[0x33] = 0;
   *(int32_t *)(render_object + 0x35) = 0;
@@ -674,7 +674,7 @@ void CleanupRenderObject(RenderObject* render_object)
   // 清理混合状态
   render_object[0x2e] = &system_data_buffer_ptr;
   if (render_object[0x2f] != 0) {
-    FUN_18064e900(); // 释放资源
+    CoreMemoryPoolInitializer(); // 释放资源
   }
   render_object[0x2f] = 0;
   *(int32_t *)(render_object + 0x31) = 0;
@@ -682,13 +682,13 @@ void CleanupRenderObject(RenderObject* render_object)
   
   // 清理渲染状态
   if (render_object[0x2a] != 0) {
-    FUN_18064e900(); // 释放资源
+    CoreMemoryPoolInitializer(); // 释放资源
   }
   
   // 清理采样器状态
   render_object[0x23] = &system_data_buffer_ptr;
   if (render_object[0x24] != 0) {
-    FUN_18064e900(); // 释放资源
+    CoreMemoryPoolInitializer(); // 释放资源
   }
   render_object[0x24] = 0;
   *(int32_t *)(render_object + 0x26) = 0;
@@ -697,7 +697,7 @@ void CleanupRenderObject(RenderObject* render_object)
   // 清理常量缓冲区
   render_object[0x1f] = &system_data_buffer_ptr;
   if (render_object[0x20] != 0) {
-    FUN_18064e900(); // 释放资源
+    CoreMemoryPoolInitializer(); // 释放资源
   }
   render_object[0x20] = 0;
   *(int32_t *)(render_object + 0x22) = 0;
@@ -706,7 +706,7 @@ void CleanupRenderObject(RenderObject* render_object)
   // 清理索引缓冲区
   render_object[0x1b] = &system_data_buffer_ptr;
   if (render_object[0x1c] != 0) {
-    FUN_18064e900(); // 释放资源
+    CoreMemoryPoolInitializer(); // 释放资源
   }
   render_object[0x1c] = 0;
   *(int32_t *)(render_object + 0x1e) = 0;
@@ -715,7 +715,7 @@ void CleanupRenderObject(RenderObject* render_object)
   // 清理顶点缓冲区
   render_object[0x17] = &system_data_buffer_ptr;
   if (render_object[0x18] != 0) {
-    FUN_18064e900(); // 释放资源
+    CoreMemoryPoolInitializer(); // 释放资源
   }
   render_object[0x18] = 0;
   *(int32_t *)(render_object + 0x1a) = 0;
@@ -724,7 +724,7 @@ void CleanupRenderObject(RenderObject* render_object)
   // 清理着色器参数
   render_object[0x13] = &system_data_buffer_ptr;
   if (render_object[0x14] != 0) {
-    FUN_18064e900(); // 释放资源
+    CoreMemoryPoolInitializer(); // 释放资源
   }
   render_object[0x14] = 0;
   *(int32_t *)(render_object + 0x16) = 0;
@@ -733,7 +733,7 @@ void CleanupRenderObject(RenderObject* render_object)
   // 清理材质参数
   render_object[0xf] = &system_data_buffer_ptr;
   if (render_object[0x10] != 0) {
-    FUN_18064e900(); // 释放资源
+    CoreMemoryPoolInitializer(); // 释放资源
   }
   render_object[0x10] = 0;
   *(int32_t *)(render_object + 0x12) = 0;
@@ -742,7 +742,7 @@ void CleanupRenderObject(RenderObject* render_object)
   // 清理纹理
   render_object[0xb] = &system_data_buffer_ptr;
   if (render_object[0xc] != 0) {
-    FUN_18064e900(); // 释放资源
+    CoreMemoryPoolInitializer(); // 释放资源
   }
   render_object[0xc] = 0;
   *(int32_t *)(render_object + 0xe) = 0;
@@ -771,7 +771,7 @@ RenderContext* CreateRenderContext(RenderContext* parent_context)
   void* default_name;
   
   // 分配渲染上下文内存
-  context = (RenderContext*)FUN_18062b1e0(system_memory_pool_ptr, 0x208, 8, 4, 0xfffffffffffffffe);
+  context = (RenderContext*)CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x208, 8, 4, 0xfffffffffffffffe);
   FUN_18034dd90(); // 初始化上下文
   
   // 初始化渲染状态对象
@@ -1123,7 +1123,7 @@ RenderObject* CloneRenderObject(uint64_t allocator, RenderObject* source_object)
   RenderObject* cloned_object;
   
   // 分配新的渲染对象内存
-  object_ptr = FUN_18062b1e0(system_memory_pool_ptr, RENDER_OBJECT_SIZE, 8, 0x1a);
+  object_ptr = CoreMemoryPoolReallocator(system_memory_pool_ptr, RENDER_OBJECT_SIZE, 8, 0x1a);
   if (!object_ptr) {
     return NULL;
   }

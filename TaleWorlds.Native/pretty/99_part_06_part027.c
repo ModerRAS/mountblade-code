@@ -27,9 +27,9 @@
   - FUN_180627c50: 数据处理函数
   - FUN_180631000: 系统配置函数
   - FUN_180631b90: 参数处理函数
-  - FUN_18064e900: 资源清理函数
+  - CoreMemoryPoolInitializer: 资源清理函数
   - FUN_1800b6de0: 数据管理函数
-  - FUN_18062b420: 内存分配函数
+  - CoreMemoryPoolAllocator: 内存分配函数
   - FUN_180275090: 对象创建函数
   - FUN_180275a60: 对象管理函数
   - FUN_1802759e0: 系统处理函数
@@ -179,9 +179,9 @@ typedef struct {
 #define SystemDataProcessor FUN_180627c50
 #define SystemConfigValidator FUN_180631000
 #define SystemParameterHandler FUN_180631b90
-#define SystemResourceCleaner FUN_18064e900
+#define SystemResourceCleaner CoreMemoryPoolInitializer
 #define SystemDataManager FUN_1800b6de0
-#define SystemMemoryAllocator FUN_18062b420
+#define SystemMemoryAllocator CoreMemoryPoolAllocator
 #define SystemObjectCreator FUN_180275090
 #define SystemObjectManager FUN_180275a60
 #define SystemSystemProcessor FUN_1802759e0

@@ -270,7 +270,7 @@ LAB_180280958:
     param_10 = param_10 + 0x10;
     if ((uint64_t)(param_4[8] - lVar29 >> 4) <= (uint64_t)(int64_t)(int)param_6) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(param_18 ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(param_18 ^ (uint64_t)&stack0x00000000);
     }
     unaff_EDI = *(uint *)(lVar29 + 8 + param_10);
     unaff_RBP = *(int64_t *)(lVar29 + param_10);
@@ -477,7 +477,7 @@ void transform_3d_matrices(int64_t *param_1,int64_t *param_2)
         if (lVar34 == 0) {
           lVar34 = 1;
 LAB_180280e02:
-          plVar28 = (int64_t *)FUN_18062b420(system_memory_pool_ptr,lVar34 << 4,(char)param_1[10]);
+          plVar28 = (int64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,lVar34 << 4,(char)param_1[10]);
           plVar33 = (int64_t *)param_1[8];
           plVar31 = (int64_t *)param_1[7];
           plVar32 = plVar28;
@@ -513,7 +513,7 @@ LAB_180280e02:
         }
         if (plVar31 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900(plVar31);
+          CoreMemoryPoolInitializer(plVar31);
         }
         param_1[7] = (int64_t)plVar32;
         param_1[8] = (int64_t)(plVar28 + 2);
@@ -801,7 +801,7 @@ LAB_18028135c:
   *(int32_t *)(param_1 + 0x310) = *(int32_t *)(param_3 + 0x1c0);
   UNLOCK();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_128);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_128);
 }
 
 

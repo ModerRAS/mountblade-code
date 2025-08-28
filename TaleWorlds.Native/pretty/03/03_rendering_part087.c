@@ -404,11 +404,11 @@ apply_parameters:
         (**(code **)(*render_system_data_texture + 0x20))();
         
         // 清理资源
-        FUN_1808fc050(memory_checksum ^ (uint64_t)stack_protector);
+        SystemSecurityChecker(memory_checksum ^ (uint64_t)stack_protector);
     }
     
     // 完成处理
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
 }
 
 /**
@@ -484,11 +484,11 @@ void render_system_parameter_processor(uint64_t *render_context, int64_t texture
     FUN_1806279c0(&data_target, texture_data + 0x10);
     texture_size = data_size;
     texture_count = data_size + 1;
-    FUN_1806277c0(&data_target, texture_count);
+    CoreMemoryPoolProcessor(&data_target, texture_count);
     *(int16_t *)(data_source + data_size) = 0x5f;
     param_index = texture_size + 0x11;
     data_size = texture_count;
-    FUN_1806277c0(&data_target, param_index);
+    CoreMemoryPoolProcessor(&data_target, param_index);
     texture_ptr = (int32_t *)(data_source + data_size);
     *texture_ptr = 0x746c6966;
     texture_ptr[1] = 0x64657265;
@@ -536,11 +536,11 @@ void render_system_parameter_processor(uint64_t *render_context, int64_t texture
         data_target = &system_state_ptr;
         
         // 清理资源
-        FUN_1808fc050(checksum ^ (uint64_t)param_buffer);
+        SystemSecurityChecker(checksum ^ (uint64_t)param_buffer);
     }
     
     // 完成处理
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
 }
 
 /**
@@ -646,7 +646,7 @@ void render_system_texture_allocator(uint64_t *texture_handle, int32_t texture_f
     } while (texture_coord < 32.0);
     
     // 分配纹理内存
-    texture_data = FUN_18062b1e0(system_memory_pool_ptr, RENDER_MEMORY_POOL_SIZE, RENDER_MEMORY_BLOCK_SIZE, 
+    texture_data = CoreMemoryPoolReallocator(system_memory_pool_ptr, RENDER_MEMORY_POOL_SIZE, RENDER_MEMORY_BLOCK_SIZE, 
                                   CONCAT71((uint7)(uint3)((uint)buffer_x >> 8), 3));
     texture_manager = (int64_t *)FUN_18023a2e0(texture_data, 0);
     *texture_handle = texture_manager;
@@ -665,7 +665,7 @@ void render_system_texture_allocator(uint64_t *texture_handle, int32_t texture_f
     if (texture_type._1_1_ == '\0') {
         if (((char)texture_type == '\0') && (float_ptr != (float *)0x0)) {
             // 清理资源
-            FUN_18064e900();
+            CoreMemoryPoolInitializer();
         }
         float_ptr = (float *)0x0;
         texture_offset = 0;
@@ -673,7 +673,7 @@ void render_system_texture_allocator(uint64_t *texture_handle, int32_t texture_f
     }
     
     // 完成分配
-    FUN_1808fc050(checksum ^ (uint64_t)stack_buffer);
+    SystemSecurityChecker(checksum ^ (uint64_t)stack_buffer);
 }
 
 /**

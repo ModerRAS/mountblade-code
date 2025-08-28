@@ -487,7 +487,7 @@ void execute_render_callbacks(int64_t *callback_list)
         return;
     }
     // 注意：此函数不会返回
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
 }
 
 /**
@@ -502,7 +502,7 @@ void cleanup_render_object_state(int64_t render_obj)
     *(uint64_t *)(render_obj + 0x168) = &system_data_buffer_ptr;
     if (*(int64_t *)(render_obj + 0x170) != 0) {
         // 注意：此函数不会返回
-        FUN_18064e900();
+        CoreMemoryPoolInitializer();
     }
     *(uint64_t *)(render_obj + 0x170) = 0;
     *(uint32_t *)(render_obj + 0x180) = 0;
@@ -512,7 +512,7 @@ void cleanup_render_object_state(int64_t render_obj)
     *(uint64_t *)(render_obj + 0x148) = &system_data_buffer_ptr;
     if (*(int64_t *)(render_obj + 0x150) != 0) {
         // 注意：此函数不会返回
-        FUN_18064e900();
+        CoreMemoryPoolInitializer();
     }
     *(uint64_t *)(render_obj + 0x150) = 0;
     *(uint32_t *)(render_obj + 0x160) = 0;
@@ -756,7 +756,7 @@ void destroy_render_object(uint64_t *render_obj)
     render_obj[0x3e] = &system_data_buffer_ptr;
     if (render_obj[0x3f] != 0) {
         // 注意：此函数不会返回
-        FUN_18064e900();
+        CoreMemoryPoolInitializer();
     }
     render_obj[0x3f] = 0;
     *(uint32_t *)(render_obj + 0x41) = 0;
@@ -957,7 +957,7 @@ uint64_t * create_render_object_copy(uint64_t param1, uint64_t *render_obj_ptr)
     int64_t *created_obj;
     
     // 分配新对象内存
-    new_obj = FUN_18062b1e0(system_memory_pool_ptr, 0x3d0, 8, 0x16, 0, 0xfffffffffffffffe);
+    new_obj = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x3d0, 8, 0x16, 0, 0xfffffffffffffffe);
     created_obj = (int64_t *)FUN_180275090(new_obj);
     *render_obj_ptr = created_obj;
     

@@ -449,7 +449,7 @@ static void rendering_write_pixel_data(float *pixel_color, uint batch_index) {
 static void rendering_execute_post_processing_pipeline(uint64_t security_cookie) {
   // 渲染后处理逻辑
   // 包括清理资源、更新状态等操作
-  FUN_1808fc050(security_cookie);
+  SystemSecurityChecker(security_cookie);
 }
 
 // 技术说明：

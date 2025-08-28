@@ -141,7 +141,7 @@ void ProcessResourceAllocation(void* context, uint64_t resource_id,
     
     /* 分配内存 */
     if (required_size != 0) {
-        allocated_memory = FUN_18062b420(g_resource_context.global_pool, 
+        allocated_memory = CoreMemoryPoolAllocator(g_resource_context.global_pool, 
                                         required_size * RESOURCE_ALIGNMENT, 
                                         allocation_flags & RESOURCE_FLAGS_MASK);
     }
@@ -215,7 +215,7 @@ void ProcessResourceAllocation(void* context, uint64_t resource_id,
     
     /* 释放临时内存 */
     if (allocated_memory != NULL) {
-        FUN_18064e900();
+        CoreMemoryPoolInitializer();
     }
     
     /* 释放线程锁 */
@@ -505,7 +505,7 @@ uint32_t ProcessPipelineResource(void* device, void* resource,
         }
         else {
             /* 创建管线对象 */
-            void* pipeline_memory = FUN_18062b1e0(g_resource_context.global_pool, 
+            void* pipeline_memory = CoreMemoryPoolReallocator(g_resource_context.global_pool, 
                                                   RESOURCE_POOL_SIZE, RESOURCE_ALIGNMENT, 3);
             pipeline_object = (void*)FUN_1802ac390(pipeline_memory);
             FUN_1802ae9a0(pipeline_object, *(uint64_t*)(device + 0x2d8));
@@ -775,7 +775,7 @@ uint32_t ProcessBufferResources(void* device, void* resource,
                     FUN_18039f2b0(resource, buffer_interface);
                     
                     if (buffer_start != NULL) {
-                        FUN_18064e900();
+                        CoreMemoryPoolInitializer();
                     }
                 }
             }
@@ -1024,7 +1024,7 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
                 resource_offset = (uint64_t)buffer_resource - (uint64_t)array_start >> 6;
                 
                 if ((resource_offset == 0) || (resource_offset = resource_offset * 2, resource_offset != 0)) {
-                    resource_allocator = (void*)FUN_18062b420(g_resource_context.global_pool, 
+                    resource_allocator = (void*)CoreMemoryPoolAllocator(g_resource_context.global_pool, 
                                                              resource_offset << 6, (char)resource_context[45]);
                     buffer_resource = (void*)resource_context[43];
                     array_start = (void*)resource_context[42];
@@ -1065,7 +1065,7 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
                 
                 /* 释放旧数组 */
                 if (resource_context[42] != 0) {
-                    FUN_18064e900();
+                    CoreMemoryPoolInitializer();
                 }
                 
                 /* 更新数组指针 */
@@ -1097,7 +1097,7 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
                 buffer_name = (void*)resource_context[46];
                 if (((uint64_t)shader_resource - (uint64_t)buffer_name == 0) ||
                     (resource_offset = ((uint64_t)shader_resource - (uint64_t)buffer_name) * 2, resource_offset != 0)) {
-                    texture_name = (void*)FUN_18062b420(g_resource_context.global_pool, 
+                    texture_name = (void*)CoreMemoryPoolAllocator(g_resource_context.global_pool, 
                                                         resource_offset, (char)resource_context[49]);
                     shader_resource = (void*)resource_context[47];
                     buffer_name = (void*)resource_context[46];
@@ -1113,7 +1113,7 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
                 *texture_name = *(char*)(resource_allocator + resource_offset);
                 
                 if (resource_context[46] != 0) {
-                    FUN_18064e900();
+                    CoreMemoryPoolInitializer();
                 }
                 
                 /* 更新数组指针 */

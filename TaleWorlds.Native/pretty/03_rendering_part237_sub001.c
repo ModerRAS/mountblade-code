@@ -507,7 +507,7 @@ void FUN_18039eda0(uint64_t param_1,uint64_t param_2,int64_t *param_3)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreMemoryPoolInitializer();
 }
 
 

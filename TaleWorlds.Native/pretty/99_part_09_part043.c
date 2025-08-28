@@ -429,7 +429,7 @@ LAB_1805d185c:
   }
   if (*(char *)((int64_t)param_1 + 0x26c) != '\0') {
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(float *)(param_1 + 0x4d) -
+    AdvancedSystemController(*(float *)(param_1 + 0x4d) -
                   *(float *)(*(int64_t *)(*(int64_t *)param_1[0x33] + 0x20) + 0x34));
   }
 LAB_1805d1a6a:
@@ -493,7 +493,7 @@ LAB_1805d1bc2:
       if (lVar16 == param_1[0x2b8]) {
         if (param_1[0x2b7] != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900(param_1[0x2b7],lVar15);
+          CoreMemoryPoolInitializer(param_1[0x2b7],lVar15);
         }
         lVar15 = param_1[0x2b9];
         param_1[0x2b9] = lVar15 + 8;

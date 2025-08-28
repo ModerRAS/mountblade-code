@@ -329,7 +329,7 @@ expand_queue:
         transform_count = transform_count + 0x10;
         if ((uint64_t)(queue_data[8] - batch_offset >> 4) <= (uint64_t)(int64_t)(int)texture_data) {
             // 错误处理：堆栈溢出保护
-            FUN_1808fc050(camera_param ^ (uint64_t)&stack0x00000000);
+            SystemSecurityChecker(camera_param ^ (uint64_t)&stack0x00000000);
         }
         
         unaff_render_state = *(uint*)(batch_offset + 8 + transform_count);
@@ -503,7 +503,7 @@ void apply_render_matrix_transformations(int64_t* target_context, int64_t* sourc
                 if (transform_offset == 0) {
                     transform_offset = 1;
 expand_render_queue:
-                    world_matrix = (int64_t*)FUN_18062b420(system_memory_pool_ptr, transform_offset << 4, (char)target_context[10]);
+                    world_matrix = (int64_t*)CoreMemoryPoolAllocator(system_memory_pool_ptr, transform_offset << 4, (char)target_context[10]);
                     camera_matrix = (int64_t*)target_context[8];
                     matrix_ptr = (int64_t*)target_context[7];
                     object_data = world_matrix;
@@ -542,7 +542,7 @@ expand_render_queue:
                 
                 if (matrix_ptr != (int64_t*)0x0) {
                     // 释放旧队列内存
-                    FUN_18064e900(matrix_ptr);
+                    CoreMemoryPoolInitializer(matrix_ptr);
                 }
                 
                 target_context[7] = (int64_t)object_data;
@@ -842,7 +842,7 @@ material_processing_complete:
     UNLOCK();
     
     // 错误处理和清理
-    FUN_1808fc050(checksum ^ (uint64_t)material_buffer);
+    SystemSecurityChecker(checksum ^ (uint64_t)material_buffer);
 }
 
 //============================================================================

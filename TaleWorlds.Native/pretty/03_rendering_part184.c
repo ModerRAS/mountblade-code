@@ -559,7 +559,7 @@ LAB_180377829:
                       uVar25 = uVar25 ^ uVar25 >> 0x11;
                       uVar25 = (uVar25 ^ uVar25 << 5) - 1;
                     // WARNING: Subroutine does not return
-                      FUN_1808fd400(uVar25,(float)uVar25 * 1.4629181e-09);
+                      AdvancedSystemController(uVar25,(float)uVar25 * 1.4629181e-09);
                     }
 LAB_18037777e:
                     uVar25 = uVar25 ^ uVar25 << 0xd;

@@ -30,13 +30,13 @@
 #define RenderingSystem_StateManager FUN_18035a770
 #define RenderingSystem_InternalProcessor FUN_180389090
 #define RenderingSystem_CleanupHandler FUN_180358b30
-#define RenderingSystem_MemoryAllocator FUN_18062b1e0
+#define RenderingSystem_MemoryAllocator CoreMemoryPoolReallocator
 #define RenderingSystem_ObjectInitializer FUN_1802e6b00
 #define RenderingSystem_ObjectCleanup FUN_180170ac0
 #define RenderingSystem_ConfigLoader FUN_1802ea790
 #define RenderingSystem_DataProcessor FUN_180198b90
 #define RenderingSystem_FlagUpdater FUN_1802ee810
-#define RenderingSystem_ComponentProcessor FUN_1808fc050
+#define RenderingSystem_ComponentProcessor SystemSecurityChecker
 
 // 全局变量引用
 extern uint64_t GET_SECURITY_COOKIE();

@@ -282,7 +282,7 @@ void rendering_system_calculate_collision_parameters(
     stack_protection_c0 = stack_protection_f0;
     
     /* 调用系统清理函数 */
-    FUN_1808fc050(stack_protection_b8 ^ (uint64_t)&stack_protection_108);
+    SystemSecurityChecker(stack_protection_b8 ^ (uint64_t)&stack_protection_108);
 }
 
 /**
@@ -430,20 +430,20 @@ void rendering_system_process_render_pipeline(
                     cpu_time = 0.0;
                     pipeline_config = (int32_t *)0x0;
                     frame_time = 0.0;
-                    index_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+                    index_buffer = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 0x13);
                     *(int8_t *)index_buffer = 0;
                     pipeline_config = index_buffer;
-                    gpu_time = (float)FUN_18064e990(index_buffer);
+                    gpu_time = (float)CoreMemoryPoolCleaner(index_buffer);
                     *index_buffer = 0x6e696150;
                     *(int8_t *)(index_buffer + 1) = 0;
                     frame_time = 5.60519e-45;
                     render_system_config_render = FUN_180571e20(&system_memory_60c0, &render_settings);
                     render_settings = &system_data_buffer_ptr;
-                    FUN_18064e900(index_buffer);
+                    CoreMemoryPoolInitializer(index_buffer);
                 }
                 FUN_180508510(render_context, render_system_config_render, 2, 0);
             }
-            FUN_1808fd400();
+            AdvancedSystemController();
         }
         
         /* 初始化渲染参数 */
@@ -498,7 +498,7 @@ void rendering_system_process_render_pipeline(
                 *(int32_t *)(*(int64_t *)(frame_buffer_ptr + 0x738) + 0xa4) =
                      *(int32_t *)(*(int64_t *)(frame_buffer_ptr + 0x6e0) + 0x14a8);
                 FUN_180516f50(frame_buffer_ptr, &render_settings);
-                FUN_1808fd400();
+                AdvancedSystemController();
             }
         } else {
             is_high_quality = true;
@@ -615,16 +615,16 @@ void rendering_system_process_render_pipeline(
                     cpu_time = 0.0;
                     pipeline_config = (int32_t *)0x0;
                     frame_time = 0.0;
-                    index_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+                    index_buffer = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 0x13);
                     *(int8_t *)index_buffer = 0;
                     pipeline_config = index_buffer;
-                    gpu_time = (float)FUN_18064e990(index_buffer);
+                    gpu_time = (float)CoreMemoryPoolCleaner(index_buffer);
                     *index_buffer = 0x6e696150;
                     *(int8_t *)(index_buffer + 1) = 0;
                     frame_time = 5.60519e-45;
                     render_system_config_render = FUN_180571e20(&system_memory_60c0, &render_settings);
                     render_settings = &system_data_buffer_ptr;
-                    FUN_18064e900(index_buffer);
+                    CoreMemoryPoolInitializer(index_buffer);
                 }
                 FUN_180508510(render_context, render_system_config_render, 2);
             }

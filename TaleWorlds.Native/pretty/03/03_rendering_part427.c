@@ -242,7 +242,7 @@ LAB_18049ce60:
       batch_param1 = texture_data3;
       batch_param1 = texture_data4;
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(security_hash ^ (uint64_t)batch_index_ptr);
+      SystemSecurityChecker(security_hash ^ (uint64_t)batch_index_ptr);
     }
   } while( true );
 }
@@ -266,7 +266,7 @@ void rendering_system_initialize_texture_handler(uint64_t param1, uint64_t param
   int32_t alloc_size;
   uint64_t alloc_context;
   
-  texture_manager = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x78,8,3,0xfffffffffffffffe);
+  texture_manager = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x78,8,3,0xfffffffffffffffe);
   texture_ptr = texture_manager;
   FUN_1803456e0(texture_ptr,param2,param1);
   *texture_ptr = &unknown_var_2720_ptr;
@@ -275,10 +275,10 @@ void rendering_system_initialize_texture_handler(uint64_t param1, uint64_t param
   alloc_context = 0;
   alloc_ptr = (uint64_t *)0x0;
   alloc_size = 0;
-  texture_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+  texture_ptr = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
   *(int8_t *)texture_ptr = 0;
   alloc_ptr = texture_ptr;
-  texture_config = FUN_18064e990(texture_ptr);
+  texture_config = CoreMemoryPoolCleaner(texture_ptr);
   alloc_context = CONCAT44(alloc_context._4_4_,texture_config);
   *texture_ptr = 0x20726574736c6f48;
   *(int32_t *)(texture_ptr + 1) = 0x65646e49;
@@ -287,7 +287,7 @@ void rendering_system_initialize_texture_handler(uint64_t param1, uint64_t param
   FUN_1803460a0(texture_manager,&init_stack_ptr,texture_manager + 0xe,4);
   init_stack_ptr = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(texture_ptr);
+  CoreMemoryPoolInitializer(texture_ptr);
 }
 
 /**
@@ -329,7 +329,7 @@ void rendering_system_process_texture_data(uint64_t param1)
   data_array[0] = &system_state_ptr;
   process_ptr = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_hash ^ (uint64_t)texture_buffer);
+  SystemSecurityChecker(security_hash ^ (uint64_t)texture_buffer);
 }
 
 /**
@@ -379,7 +379,7 @@ void rendering_system_cleanup_texture_manager(uint64_t param1, uint64_t param2)
   int32_t alloc_size;
   uint64_t alloc_context;
   
-  manager_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x118,8,3);
+  manager_ptr = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x118,8,3);
   resource_data = 0xfffffffffffffffe;
   resource_ptr = manager_ptr;
   FUN_1803456e0(manager_ptr,param2,param1);
@@ -424,10 +424,10 @@ void rendering_system_cleanup_texture_manager(uint64_t param1, uint64_t param2)
   alloc_context = 0;
   alloc_ptr = (uint64_t *)0x0;
   alloc_size = 0;
-  texture_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+  texture_ptr = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
   *(int8_t *)texture_ptr = 0;
   alloc_ptr = texture_ptr;
-  manager_config = FUN_18064e990(texture_ptr);
+  manager_config = CoreMemoryPoolCleaner(texture_ptr);
   alloc_context = CONCAT44(alloc_context._4_4_,manager_config);
   *texture_ptr = 0x656d614e6873654d;
   *(int8_t *)(texture_ptr + 1) = 0;
@@ -435,7 +435,7 @@ void rendering_system_cleanup_texture_manager(uint64_t param1, uint64_t param2)
   FUN_1803460a0(manager_ptr,&cleanup_stack_ptr,texture_ptr,0,resource_data);
   cleanup_stack_ptr = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(texture_ptr);
+  CoreMemoryPoolInitializer(texture_ptr);
 }
 
 /**
@@ -457,7 +457,7 @@ void rendering_system_initialize_shader_manager(uint64_t param1, uint64_t param2
   int32_t alloc_size;
   uint64_t alloc_context;
   
-  shader_manager = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x78,8,3,0xfffffffffffffffe);
+  shader_manager = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x78,8,3,0xfffffffffffffffe);
   shader_ptr = shader_manager;
   FUN_1803456e0(shader_ptr,param2,param1);
   *shader_ptr = &unknown_var_4704_ptr;
@@ -465,10 +465,10 @@ void rendering_system_initialize_shader_manager(uint64_t param1, uint64_t param2
   alloc_context = 0;
   alloc_ptr = (uint64_t *)0x0;
   alloc_size = 0;
-  shader_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+  shader_ptr = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
   *(int8_t *)shader_ptr = 0;
   alloc_ptr = shader_ptr;
-  shader_config = FUN_18064e990(shader_ptr);
+  shader_config = CoreMemoryPoolCleaner(shader_ptr);
   alloc_context = CONCAT44(alloc_context._4_4_,shader_config);
   *shader_ptr = 0x20646c6975626552;
   *(int32_t *)(shader_ptr + 1) = 0x64697247;
@@ -477,7 +477,7 @@ void rendering_system_initialize_shader_manager(uint64_t param1, uint64_t param2
   FUN_1803460a0(shader_manager,&init_stack_ptr,0,0xb);
   init_stack_ptr = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(shader_ptr);
+  CoreMemoryPoolInitializer(shader_ptr);
 }
 
 /**
@@ -494,7 +494,7 @@ uint64_t * rendering_system_create_shader_object(uint64_t param1, int32_t param2
 {
   uint64_t *shader_ptr;
   
-  shader_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0xb8,8,0x1a,0xfffffffffffffffe);
+  shader_ptr = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xb8,8,0x1a,0xfffffffffffffffe);
   FUN_1802565b0(shader_ptr,param1,param2);
   *shader_ptr = &unknown_var_2496_ptr;
   shader_ptr[0x16] = 0;
@@ -576,7 +576,7 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   data_context = 0;
   data_ptr = (int8_t *)0x0;
   data_size = 0;
-  FUN_1806277c0(&stack_ptr,string_size);
+  CoreMemoryPoolProcessor(&stack_ptr,string_size);
   if (0 < string_size) {
     init_ptr = &system_buffer_ptr;
     if (alloc_ptr3 != (void *)0x0) {
@@ -595,21 +595,21 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   data_param = 0;
   alloc_ptr2 = &system_state_ptr;
   init_flag = data_size + 8;
-  FUN_1806277c0(&stack_ptr,init_flag);
+  CoreMemoryPoolProcessor(&stack_ptr,init_flag);
   *(uint64_t *)(data_ptr + data_size) = 0x2f73656c75646f4d;
   *(int8_t *)((int64_t)(data_ptr + data_size) + 8) = 0;
   data_size = init_flag;
   if (0 < render_system_texture) {
-    FUN_1806277c0(&stack_ptr,init_flag + render_system_texture);
+    CoreMemoryPoolProcessor(&stack_ptr,init_flag + render_system_texture);
                     // WARNING: Subroutine does not return
     memcpy(data_ptr + data_size,render_system_texture,(int64_t)(render_system_texture + 1));
   }
   process_flag = process_flag + 9;
-  FUN_1806277c0(&stack_ptr,(uint64_t)process_flag);
+  CoreMemoryPoolProcessor(&stack_ptr,(uint64_t)process_flag);
   *(int16_t *)(data_ptr + data_size) = 0x2f;
   data_size = process_flag;
   if (data_ptr != (int8_t *)0x0) {
-    FUN_1806277c0(&system_buffer_24f0,process_flag);
+    CoreMemoryPoolProcessor(&system_buffer_24f0,process_flag);
   }
   if (process_flag != 0) {
                     // WARNING: Subroutine does not return
@@ -624,13 +624,13 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   stack_ptr = &system_data_buffer_ptr;
   if (data_ptr != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   data_ptr = (int8_t *)0x0;
   data_context = (uint64_t)data_context._4_4_ << 0x20;
   stack_ptr = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_hash ^ (uint64_t)init_buffer,0);
+  SystemSecurityChecker(security_hash ^ (uint64_t)init_buffer,0);
 }
 
 /**
@@ -667,10 +667,10 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
     alloc_context = 0;
     alloc_ptr = (uint64_t *)0x0;
     alloc_size = 0;
-    data_ptr = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,param4,texture_data);
+    data_ptr = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13,param4,texture_data);
     *(int8_t *)data_ptr = 0;
     alloc_ptr = (uint64_t *)data_ptr;
-    data_config = FUN_18064e990(data_ptr);
+    data_config = CoreMemoryPoolCleaner(data_ptr);
     *data_ptr = 0x6974614e;
     *(int16_t *)(data_ptr + 1) = 0x6576;
     *(int8_t *)((int64_t)data_ptr + 6) = 0;
@@ -680,7 +680,7 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
     process_stack_ptr = &system_data_buffer_ptr;
     if (alloc_ptr != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
     alloc_ptr = (uint64_t *)0x0;
     alloc_context = (uint64_t)alloc_context._4_4_ << 0x20;
@@ -689,10 +689,10 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
     alloc_context2 = 0;
     alloc_ptr2 = (uint64_t *)0x0;
     alloc_size2 = 0;
-    texture_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+    texture_ptr = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
     *(int8_t *)texture_ptr = 0;
     alloc_ptr2 = texture_ptr;
-    data_config = FUN_18064e990(texture_ptr);
+    data_config = CoreMemoryPoolCleaner(texture_ptr);
     *texture_ptr = 0x616c7069746c754d;
     *(int32_t *)(texture_ptr + 1) = 0x726579;
     alloc_size2 = 0xb;
@@ -701,7 +701,7 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
     alloc_stack_ptr = &system_data_buffer_ptr;
     if (alloc_ptr2 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
     alloc_ptr2 = (uint64_t *)0x0;
     alloc_context2 = (uint64_t)alloc_context2._4_4_ << 0x20;
@@ -710,10 +710,10 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
     alloc_context = 0;
     alloc_ptr = (uint64_t *)0x0;
     alloc_size = 0;
-    texture_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+    texture_ptr = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
     *(int8_t *)texture_ptr = 0;
     alloc_ptr = texture_ptr;
-    data_config = FUN_18064e990(texture_ptr);
+    data_config = CoreMemoryPoolCleaner(texture_ptr);
     *texture_ptr = 0x43786f42646e6153;
     *(int32_t *)(texture_ptr + 1) = 0x65726f;
     alloc_size = 0xb;
@@ -722,7 +722,7 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
     process_stack_ptr = &system_data_buffer_ptr;
     if (alloc_ptr != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
     alloc_ptr = (uint64_t *)0x0;
     alloc_context = (uint64_t)alloc_context._4_4_ << 0x20;
@@ -731,10 +731,10 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
     alloc_context2 = 0;
     alloc_ptr2 = (uint64_t *)0x0;
     alloc_size2 = 0;
-    texture_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+    texture_ptr = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
     *(int8_t *)texture_ptr = 0;
     alloc_ptr2 = texture_ptr;
-    data_config = FUN_18064e990(texture_ptr);
+    data_config = CoreMemoryPoolCleaner(texture_ptr);
     *texture_ptr = 0x786f42646e6153;
     alloc_size2 = 7;
     alloc_context2._0_4_ = data_config;
@@ -742,7 +742,7 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
     alloc_stack_ptr = &system_data_buffer_ptr;
     if (alloc_ptr2 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
     alloc_ptr2 = (uint64_t *)0x0;
     alloc_context2 = (uint64_t)alloc_context2._4_4_ << 0x20;
@@ -751,10 +751,10 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
     alloc_context = 0;
     alloc_ptr = (uint64_t *)0x0;
     alloc_size = 0;
-    texture_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+    texture_ptr = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
     *(int8_t *)texture_ptr = 0;
     alloc_ptr = texture_ptr;
-    data_config = FUN_18064e990(texture_ptr);
+    data_config = CoreMemoryPoolCleaner(texture_ptr);
     *texture_ptr = 0x61426d6f74737543;
     *(int32_t *)(texture_ptr + 1) = 0x656c7474;
     *(int8_t *)((int64_t)texture_ptr + 0xc) = 0;
@@ -764,7 +764,7 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
     process_stack_ptr = &system_data_buffer_ptr;
     if (alloc_ptr != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
     alloc_ptr = (uint64_t *)0x0;
     alloc_context = (uint64_t)alloc_context._4_4_ << 0x20;
@@ -773,10 +773,10 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
     alloc_context2 = 0;
     alloc_ptr2 = (uint64_t *)0x0;
     alloc_size2 = 0;
-    texture_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+    texture_ptr = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
     *(int8_t *)texture_ptr = 0;
     alloc_ptr2 = texture_ptr;
-    data_config = FUN_18064e990(texture_ptr);
+    data_config = CoreMemoryPoolCleaner(texture_ptr);
     alloc_context2 = CONCAT44(alloc_context2._4_4_,data_config);
     *texture_ptr = 0x646f4d79726f7453;
     *(int16_t *)(texture_ptr + 1) = 0x65;
@@ -785,7 +785,7 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
     alloc_stack_ptr = &system_data_buffer_ptr;
     if (alloc_ptr2 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
   }
   return;
@@ -851,7 +851,7 @@ void rendering_system_update_texture_cache(void)
             FUN_18005e6a0(manager_data,cache_stack_ptr,0);
           }
         }
-        cache_entry_ptr = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr,0xd0,8,3,cache_param);
+        cache_entry_ptr = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xd0,8,3,cache_param);
         cache_stack_ptr2 = cache_entry_ptr;
         FUN_180049830(cache_entry_ptr);
         *cache_entry_ptr = (int64_t)&unknown_var_8024_ptr;
@@ -949,7 +949,7 @@ void rendering_system_update_render_cache(void)
         FUN_18005e6a0(manager_data,&in_stack_00000030,0);
       }
     }
-    cache_entry_ptr = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr,0xd0,8,3,cache_param);
+    cache_entry_ptr = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xd0,8,3,cache_param);
     in_stack_00000040 = cache_entry_ptr;
     FUN_180049830(cache_entry_ptr);
     *cache_entry_ptr = (int64_t)&unknown_var_8024_ptr;
@@ -1045,7 +1045,7 @@ void rendering_system_setup_render_pipeline(void)
   FUN_1802567b0(render_system_data_texture[0x15],&system_buffer_d688,&unknown_var_9616_ptr,rendering_system_create_shader_object,0xfffffffffffffffe);
   config_ptr = (int32_t *)FUN_18008d660(render_system_data_texture + 0x1c,&system_buffer_d688);
   *config_ptr = 1;
-  resource_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x38,8,3);
+  resource_ptr = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x38,8,3);
   resource_ptr[1] = 0;
   resource_ptr[2] = 0;
   resource_ptr[3] = 0;

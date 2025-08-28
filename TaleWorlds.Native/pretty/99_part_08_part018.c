@@ -64,7 +64,7 @@ void FUN_1804f17b0(int64_t param_1,int64_t param_2,int32_t *param_3)
   uStack_58 = 0xfffffffffffffffe;
   uVar12 = 0;
   plStackX_10 = (int64_t *)0x0;
-  uVar8 = FUN_18062b1e0(system_memory_pool_ptr,0x2f0,0x10,3);
+  uVar8 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x2f0,0x10,3);
   plVar9 = (int64_t *)FUN_1802e6b00(uVar8,3);
   if (plVar9 != (int64_t *)0x0) {
     plStackX_8 = plVar9;
@@ -93,7 +93,7 @@ void FUN_1804f17b0(int64_t param_1,int64_t param_2,int32_t *param_3)
     } while ((uint64_t)(int64_t)(int)(iVar13 + 1U) < (uint64_t)(plVar9[0x39] - plVar9[0x38] >> 3)
             );
   }
-  uVar8 = FUN_18062b1e0(system_memory_pool_ptr,0x9b0,0x10,3);
+  uVar8 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x9b0,0x10,3);
   plVar10 = (int64_t *)
             FUN_18053f6c0(uVar8,*(int64_t *)(*(int64_t *)(param_1 + 0x18) + 0x3c0) + 0x10);
   pplStackX_18 = (int64_t **)plVar10;
@@ -122,7 +122,7 @@ void FUN_1804f17b0(int64_t param_1,int64_t param_2,int32_t *param_3)
   if (plStackX_8 != (int64_t *)0x0) {
     (**(code **)(*plStackX_8 + 0x38))();
   }
-  uVar8 = FUN_18062b1e0(system_memory_pool_ptr,0x240,0x10,3);
+  uVar8 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x240,0x10,3);
   lVar11 = FUN_1802fb490(uVar8);
   FUN_1802eeb00(plVar9,lVar11);
   *(int32_t *)(lVar11 + 0x3c) = 0x3f800000;

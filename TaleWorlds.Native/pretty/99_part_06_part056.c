@@ -62,7 +62,7 @@ LAB_1803df3b7:
     lVar5 = 0;
 LAB_1803df3d2:
     if ((pfVar1 != (float *)0x0) && (lVar5 != 0)) {
-      FUN_18010cbc0(lVar5,&system_data_6430,pfVar1);
+      AdvancedSystemOptimizer(lVar5,&system_data_6430,pfVar1);
     }
   }
   else {
@@ -109,7 +109,7 @@ LAB_1803df474:
         if (puVar3[1] != 0) {
           lVar5 = puVar3[1];
         }
-        FUN_18010cbc0(lVar5,&system_data_6430,afStackX_8);
+        AdvancedSystemOptimizer(lVar5,&system_data_6430,afStackX_8);
         fVar9 = afStackX_8[0];
         if (afStackX_8[0] <= 0.2) {
           fVar9 = 0.2;
@@ -169,7 +169,7 @@ LAB_1803df550:
   lVar5 = 0;
 LAB_1803df56b:
   if ((param_1 + 0xf4 != 0) && (lVar5 != 0)) {
-    FUN_18010cbc0(lVar5,&system_data_6430,param_1 + 0xf4);
+    AdvancedSystemOptimizer(lVar5,&system_data_6430,param_1 + 0xf4);
   }
   pcVar7 = "flicker_magnitude";
   do {
@@ -206,7 +206,7 @@ LAB_1803df5e7:
   lVar5 = 0;
 LAB_1803df602:
   if ((param_1 + 0xf0 != 0) && (lVar5 != 0)) {
-    FUN_18010cbc0(lVar5,&system_data_6430,param_1 + 0xf0);
+    AdvancedSystemOptimizer(lVar5,&system_data_6430,param_1 + 0xf0);
   }
   lVar5 = FUN_180631de0(param_2,&unknown_var_6432_ptr,param_1 + 0x40);
   if (lVar5 == 0) {
@@ -256,7 +256,7 @@ LAB_1803df727:
   lVar5 = 0;
 LAB_1803df742:
   if ((param_1 + 0xe8 != 0) && (lVar5 != 0)) {
-    FUN_18010cbc0(lVar5,&system_data_6430,param_1 + 0xe8);
+    AdvancedSystemOptimizer(lVar5,&system_data_6430,param_1 + 0xe8);
   }
   pcVar7 = "falloff_angle";
   do {
@@ -293,7 +293,7 @@ LAB_1803df7c0:
   lVar5 = 0;
 LAB_1803df7db:
   if ((param_1 + 0xec != 0) && (lVar5 != 0)) {
-    FUN_18010cbc0(lVar5,&system_data_6430,param_1 + 0xec);
+    AdvancedSystemOptimizer(lVar5,&system_data_6430,param_1 + 0xec);
   }
   pcVar7 = "mask_texture";
   do {
@@ -430,7 +430,7 @@ LAB_1803dfa26:
   lVar5 = 0;
 LAB_1803dfa41:
   if ((param_1 + 0x16c != 0) && (lVar5 != 0)) {
-    FUN_18010cbc0(lVar5,&system_data_6430,param_1 + 0x16c);
+    AdvancedSystemOptimizer(lVar5,&system_data_6430,param_1 + 0x16c);
   }
   pcVar7 = "sprite_scale";
   do {
@@ -467,7 +467,7 @@ LAB_1803dfac0:
   lVar5 = 0;
 LAB_1803dfadb:
   if ((param_1 + 0x168 != 0) && (lVar5 != 0)) {
-    FUN_18010cbc0(lVar5,&system_data_6430,param_1 + 0x168);
+    AdvancedSystemOptimizer(lVar5,&system_data_6430,param_1 + 0x168);
   }
   FUN_180631330(param_2,&unknown_var_6464_ptr,param_1 + 200);
   FUN_180631330(param_2,&unknown_var_2672_ptr,param_1 + 0xc4);
@@ -521,7 +521,7 @@ LAB_1803dfbc7:
         if (puVar3[1] != 0) {
           lVar5 = puVar3[1];
         }
-        FUN_18010cbc0(lVar5,&system_data_6430,afStackX_18);
+        AdvancedSystemOptimizer(lVar5,&system_data_6430,afStackX_18);
         if (afStackX_18[0] == *(float *)(param_1 + 0x38)) goto LAB_1803dfc38;
         fVar9 = *(float *)(param_1 + 0x30);
         if (afStackX_18[0] <= *(float *)(param_1 + 0x30)) {
@@ -953,7 +953,7 @@ uint64_t * FUN_1803e04d0(int64_t param_1,uint64_t *param_2)
   uint64_t uVar5;
   int64_t *plVar6;
   
-  uVar5 = FUN_18062b1e0(system_memory_pool_ptr,0x468,8,3,0,0xfffffffffffffffe);
+  uVar5 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x468,8,3,0,0xfffffffffffffffe);
   plVar6 = (int64_t *)FUN_1803dd0f0(uVar5);
   *(int32_t *)(plVar6 + 0x18) = *(int32_t *)(param_1 + 0xc0);
   uVar5 = *(uint64_t *)(param_1 + 0xdc);

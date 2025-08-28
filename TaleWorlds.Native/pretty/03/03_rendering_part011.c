@@ -442,7 +442,7 @@ void parse_rendering_material_data(material_info_t *material_info, data_stream_t
     // - 材质纹理坐标变换
     
     // 栈保护检查
-    FUN_1808fc050(stack_guard_final ^ (uint64_t)stack_guard_buffer);
+    SystemSecurityChecker(stack_guard_final ^ (uint64_t)stack_guard_buffer);
 }
 
 //==========================================

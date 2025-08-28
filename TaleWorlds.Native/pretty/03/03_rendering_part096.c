@@ -298,7 +298,7 @@ void FUN_180323b30(RenderContext* context, void** resource_array, uint64_t param
     
     // 初始化资源迭代器
     resource_iter = (void**)(context + RENDER_CONTEXT_OFFSET_BF8);
-    FUN_180627910(&stack_data_70, resource_iter5, context_data, param4, RENDER_STATE_MAX_PRIORITY);
+    CoreMemoryPoolValidator(&stack_data_70, resource_iter5, context_data, param4, RENDER_STATE_MAX_PRIORITY);
     
     // 遍历资源链表
     resource_iter3 = *(void**)(context + RENDER_CONTEXT_OFFSET_C08);
@@ -358,7 +358,7 @@ void FUN_180323b30(RenderContext* context, void** resource_array, uint64_t param
 LAB_180323c2a:
     stack_data_70 = &system_data_buffer_ptr;
     if (stack_data_68 != (uint8_t*)0x0) {
-        FUN_18064e900();
+        CoreMemoryPoolInitializer();
     }
     stack_data_68 = (uint8_t*)0x0;
     stack_data_58 = 0;
@@ -366,7 +366,7 @@ LAB_180323c2a:
     
     // 执行最终处理和回调
     if (resource_iter == resource_iter2) {
-        FUN_180627910(&stack_data_50, resource_iter5);
+        CoreMemoryPoolValidator(&stack_data_50, resource_iter5);
         stack_data_30 = (void**)*resource_array;
         if (stack_data_30 != (void**)0x0) {
             (**(code**)(*stack_data_30 + 0x28))();
@@ -377,7 +377,7 @@ LAB_180323c2a:
         }
         stack_data_50 = &system_data_buffer_ptr;
         if (stack_data_48 != 0) {
-            FUN_18064e900();
+            CoreMemoryPoolInitializer();
         }
         stack_data_48 = 0;
         stack_data_38 = 0;
@@ -517,7 +517,7 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
             if (long_val4 == 0) {
                 stack_val_c8 = 0;
             } else {
-                stack_val_c8 = FUN_18062b420(system_memory_pool_ptr, long_val4 << 4, stack_val_b0 & RENDER_RESOURCE_FLAGS_MASK);
+                stack_val_c8 = CoreMemoryPoolAllocator(system_memory_pool_ptr, long_val4 << 4, stack_val_b0 & RENDER_RESOURCE_FLAGS_MASK);
             }
             stack_val_b8 = long_val4 * RENDER_RESOURCE_ALIGNMENT + stack_val_c8;
             long_val4 = resource_ptr3[5];
@@ -539,7 +539,7 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
             
             // 释放临时资源
             if (stack_val_c8 != 0) {
-                FUN_18064e900(stack_val_c8);
+                CoreMemoryPoolInitializer(stack_val_c8);
             }
         }
     }
@@ -568,7 +568,7 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
     stack_val100 = context;
     
     // 分配批处理缓冲区
-    stack_array_a8[0] = (uint32_t*)FUN_18062b1e0(system_memory_pool_ptr, RENDER_RESOURCE_POOL_SIZE, RENDER_MEMORY_ALIGNMENT, system_allocation_flags);
+    stack_array_a8[0] = (uint32_t*)CoreMemoryPoolReallocator(system_memory_pool_ptr, RENDER_RESOURCE_POOL_SIZE, RENDER_MEMORY_ALIGNMENT, system_allocation_flags);
     *stack_array_a8[0] = (uint32_t)stack_val108;
     stack_array_a8[0][1] = stack_val108._4_4_;
     stack_array_a8[0][2] = (uint32_t)stack_val100;
@@ -583,7 +583,7 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
     
     // 清理批处理资源
     if (stack_val140 != (void**)0x0) {
-        FUN_18064e900();
+        CoreMemoryPoolInitializer();
     }
     stack_val_e8 = 0;
     stack_val_e0 = 0;
@@ -602,7 +602,7 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
     stack_val138 = context;
     
     // 分配第二轮批处理缓冲区
-    stack_array88[0] = (uint32_t*)FUN_18062b1e0(system_memory_pool_ptr, RENDER_RESOURCE_POOL_SIZE, RENDER_MEMORY_ALIGNMENT, system_allocation_flags);
+    stack_array88[0] = (uint32_t*)CoreMemoryPoolReallocator(system_memory_pool_ptr, RENDER_RESOURCE_POOL_SIZE, RENDER_MEMORY_ALIGNMENT, system_allocation_flags);
     *stack_array88[0] = (uint32_t)stack_val140;
     stack_array88[0][1] = stack_val140._4_4_;
     stack_array88[0][2] = (uint32_t)stack_val138;
@@ -617,7 +617,7 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
     
     // 清理第二轮批处理资源
     if (stack_val_e8 != 0) {
-        FUN_18064e900();
+        CoreMemoryPoolInitializer();
     }
     
     // 执行系统状态更新和优化

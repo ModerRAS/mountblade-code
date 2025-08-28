@@ -121,7 +121,7 @@ void rendering_object_advanced_manager(int64_t ******render_context, int64_t ***
         temp_manager = (int64_t *******)0x0;
     }
     else {
-        temp_manager = (int64_t *******)FUN_18062b420(RENDERING_MEMORY_CONTEXT, object_count << 4, stack_flags & 0xff);
+        temp_manager = (int64_t *******)CoreMemoryPoolAllocator(RENDERING_MEMORY_CONTEXT, object_count << 4, stack_flags & 0xff);
         render_status = extra_status_2;
     }
     
@@ -209,7 +209,7 @@ void rendering_object_advanced_manager(int64_t ******render_context, int64_t ***
                 stack_manager_2 = (int64_t *******)0x0;
                 if (temp_ptr == (int64_t **)0xffffffffffffffff) {
                     // 创建新的渲染对象
-                    memory_flag = FUN_18062b1e0(RENDERING_MEMORY_CONTEXT, 0x300, 0x10);
+                    memory_flag = CoreMemoryPoolReallocator(RENDERING_MEMORY_CONTEXT, 0x300, 0x10);
                     temp_manager = (int64_t *******)FUN_180075030(memory_flag, 0, 1);
                     if (temp_manager != (int64_t *******)0x0) {
                         stack_manager_5 = temp_manager;
@@ -362,7 +362,7 @@ void rendering_object_advanced_manager(int64_t ******render_context, int64_t ***
         return;
     }
     // 警告：此子函数不返回
-    FUN_18064e900(temp_manager);
+    CoreMemoryPoolInitializer(temp_manager);
 }
 
 /**
@@ -559,7 +559,7 @@ void rendering_object_processor(int64_t process_context, int64_t *object_data)
         (**(code **)(*(int64_t *)*object_data + 0x38))();
     }
     // 警告：此子函数不返回
-    FUN_1808fc050(stack_guard ^ (uint64_t)stack_data_1);
+    SystemSecurityChecker(stack_guard ^ (uint64_t)stack_data_1);
 }
 
 /**
@@ -667,7 +667,7 @@ void rendering_object_initializer(int64_t init_context, int64_t *object_data, ui
         stack_data_1 = &RENDERING_DATA_STRUCTURE_1;
         if (context_offset != 0) {
             // 警告：此子函数不返回
-            FUN_18064e900(context_offset);
+            CoreMemoryPoolInitializer(context_offset);
         }
         stack_offset_1 = 0;
         stack_limit_1 = stack_limit_1 & 0xffffffff00000000;
@@ -679,7 +679,7 @@ void rendering_object_initializer(int64_t init_context, int64_t *object_data, ui
         stack_data_2 = &RENDERING_DATA_STRUCTURE_1;
         if (stack_offset_2 != 0) {
             // 警告：此子函数不返回
-            FUN_18064e900();
+            CoreMemoryPoolInitializer();
         }
         stack_offset_2 = 0;
         stack_flags_2 = 0;
@@ -726,7 +726,7 @@ uint64_t * rendering_object_data_handler(uint64_t param_1, uint64_t *param_2, ui
     *(int32_t *)(param_2 + 2) = 0;
     
     // 配置数据属性
-    FUN_1806277c0(param_2, 0x13, param_3, param_4, 0, 0xfffffffffffffffe);
+    CoreMemoryPoolProcessor(param_2, 0x13, param_3, param_4, 0, 0xfffffffffffffffe);
     result_ptr = (uint64_t *)param_2[1];
     
     // 设置对象签名
@@ -811,7 +811,7 @@ void rendering_object_batch_processor(int64_t batch_context, int64_t data_stream
     if (object_index == 0) {
         process_limit = (uint64_t)stack_flags_1;
         if (stack_offset_1 != 0) {
-            FUN_1806277c0(batch_context + 0x1f0, process_limit);
+            CoreMemoryPoolProcessor(batch_context + 0x1f0, process_limit);
         }
         if (data_size != 0) {
             // 警告：此子函数不返回
@@ -883,7 +883,7 @@ void rendering_object_batch_processor(int64_t batch_context, int64_t data_stream
         stack_data_2 = &RENDERING_DATA_STRUCTURE_1;
         if (stack_offset_2 != 0) {
             // 警告：此子函数不返回
-            FUN_18064e900();
+            CoreMemoryPoolInitializer();
         }
         stack_offset_2 = 0;
         stack_limit_2 = stack_limit_2 & 0xffffffff00000000;
@@ -903,7 +903,7 @@ void rendering_object_batch_processor(int64_t batch_context, int64_t data_stream
                 object_offset = *(int64_t *)(*(int64_t *)(batch_context + 0x38) + data_limit);
             }
             else {
-                data_value = FUN_18062b1e0(RENDERING_MEMORY_CONTEXT, 0x300, 0x10, 9);
+                data_value = CoreMemoryPoolReallocator(RENDERING_MEMORY_CONTEXT, 0x300, 0x10, 9);
                 object_offset = FUN_180075030(data_value, 0, 1);
             }
             
@@ -1007,7 +1007,7 @@ void rendering_object_batch_processor(int64_t batch_context, int64_t data_stream
             stack_data_3 = &RENDERING_DATA_STRUCTURE_1;
             if (stack_offset_3 != 0) {
                 // 警告：此子函数不返回
-                FUN_18064e900();
+                CoreMemoryPoolInitializer();
             }
             stack_offset_3 = 0;
             stack_limit_3 = stack_limit_3 & 0xffffffff00000000;
@@ -1015,7 +1015,7 @@ void rendering_object_batch_processor(int64_t batch_context, int64_t data_stream
             stack_memory_2 = &RENDERING_DATA_STRUCTURE_1;
             if (stack_memory_3 != 0) {
                 // 警告：此子函数不返回
-                FUN_18064e900();
+                CoreMemoryPoolInitializer();
             }
             stack_memory_3 = 0;
             stack_limit_4 = stack_limit_4 & 0xffffffff00000000;
@@ -1032,7 +1032,7 @@ void rendering_object_batch_processor(int64_t batch_context, int64_t data_stream
         return;
     }
     // 警告：此子函数不返回
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
 }
 
 // 警告：以'_'开头的全局变量与相同地址的较小符号重叠

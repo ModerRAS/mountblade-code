@@ -81,10 +81,10 @@ static void *g_rendering_memory_manager = (void *)0x180bf00a8;
 #define rendering_system_effect_completion_callback FUN_18031ccb0
 
 /** 特效系统内存管理函数 */
-#define rendering_system_effect_memory_manager FUN_1808fc050
+#define rendering_system_effect_memory_manager SystemSecurityChecker
 
 /** 特效系统错误处理函数 */
-#define rendering_system_effect_error_handler FUN_18064e900
+#define rendering_system_effect_error_handler CoreMemoryPoolInitializer
 
 // =============================================================================
 // 辅助函数声明

@@ -15,7 +15,7 @@ void FUN_18024a220(int64_t *param_1)
     *puVar2 = &system_data_buffer_ptr;
     if (puVar2[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreMemoryPoolInitializer();
     }
     puVar2[1] = 0;
     *(int32_t *)(puVar2 + 3) = 0;
@@ -23,7 +23,7 @@ void FUN_18024a220(int64_t *param_1)
   }
   if (*param_1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   return;
 }
@@ -40,7 +40,7 @@ void FUN_18024a240(uint64_t *param_1)
   *param_1 = &system_data_buffer_ptr;
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreMemoryPoolInitializer();
   }
   param_1[1] = 0;
   *(int32_t *)(param_1 + 3) = 0;
@@ -157,7 +157,7 @@ LAB_18024a311:
     do {
       iVar24 = (int)uVar20;
       if (*plVar14 == 0) {
-        lVar10 = FUN_18062b420(system_memory_pool_ptr,0x30000,0x25);
+        lVar10 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x30000,0x25);
         plVar1 = (int64_t *)(param_4 + 0x5ae0 + (int64_t)iVar24 * 8);
         LOCK();
         bVar25 = *plVar1 == 0;
@@ -174,7 +174,7 @@ LAB_18024a311:
         else {
           if (lVar10 != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreMemoryPoolInitializer();
           }
           do {
           } while (*pcVar18 != '\0');
@@ -502,7 +502,7 @@ LAB_18024ab81:
     do {
       iVar24 = (int)uVar20;
       if (*(int64_t *)puVar22 == 0) {
-        lVar10 = FUN_18062b420(system_memory_pool_ptr,0x68000,0x25);
+        lVar10 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x68000,0x25);
         LOCK();
         bVar25 = *(int64_t *)(puVar23 + (int64_t)iVar24 * 2 + 2) == 0;
         if (bVar25) {
@@ -518,7 +518,7 @@ LAB_18024ab81:
         else {
           if (lVar10 != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreMemoryPoolInitializer();
           }
           do {
           } while (*pcVar18 != '\0');
