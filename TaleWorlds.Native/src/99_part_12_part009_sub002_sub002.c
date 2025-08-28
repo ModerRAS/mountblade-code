@@ -537,30 +537,52 @@ undefined8 LoopDataProcessor(void)
 
 
 
-undefined8 FUN_1807cd5e5(void)
+/**
+ * 快速状态检查器 - 执行快速的状态检查和处理
+ * 
+ * 功能：
+ * - 检查系统状态标志
+ * - 处理状态恢复操作
+ * - 执行快速验证
+ * - 管理系统上下文
+ * 
+ * @return 处理状态码（0表示成功，非0表示错误）
+ */
+undefined8 FastStateChecker(void)
 
 {
-  undefined1 uVar1;
-  undefined1 uVar2;
-  longlong unaff_RBX;
-  char unaff_SIL;
+  undefined1 validation_flag;
+  undefined1 processing_flag;
+  longlong system_context;
+  char context_flag;
   
-  if (unaff_SIL != '\0') {
-    uVar1 = *(undefined1 *)(unaff_RBX + 0xbe8);
-    uVar2 = *(undefined1 *)(unaff_RBX + 0xbe9);
+  // 检查上下文标志并处理状态恢复
+  if (context_flag != '\0') {
+    validation_flag = *(undefined1 *)(system_context + SYSTEM_OFFSET_BE8);
+    processing_flag = *(undefined1 *)(system_context + SYSTEM_OFFSET_BE9);
     FUN_18080d690();
-    *(undefined1 *)(unaff_RBX + 0xbe8) = uVar1;
-    *(undefined1 *)(unaff_RBX + 0xbe9) = uVar2;
+    *(undefined1 *)(system_context + SYSTEM_OFFSET_BE8) = validation_flag;
+    *(undefined1 *)(system_context + SYSTEM_OFFSET_BE9) = processing_flag;
   }
-  return 0;
+  return SYSTEM_SUCCESS;
 }
 
 
 
-undefined8 FUN_1807cd620(void)
+/**
+ * 错误码返回器 - 返回系统错误代码
+ * 
+ * 功能：
+ * - 返回系统配置错误代码
+ * - 提供错误状态指示
+ * - 支持错误处理流程
+ * 
+ * @return 错误代码（0x13表示配置错误）
+ */
+undefined8 ErrorCodeReturner(void)
 
 {
-  return 0x13;
+  return SYSTEM_ERROR_INVALID_CONFIG;
 }
 
 
