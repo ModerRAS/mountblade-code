@@ -1066,7 +1066,12 @@ LAB_1808498c8:
 
 
 
-// 函数: void FUN_1808498e7(void)
+/**
+ * UI系统错误报告生成器
+ * 生成UI系统错误报告，进行错误信息格式化和输出
+ * 
+ * @return void 无返回值
+ */
 void FUN_1808498e7(void)
 
 {
@@ -1075,10 +1080,16 @@ void FUN_1808498e7(void)
   undefined4 unaff_ESI;
   undefined4 unaff_R14D;
   
+  // 初始化错误报告缓冲区
   iVar1 = func_0x00018074bda0(&stack0x00000050,0x100);
+  
+  // 填充错误报告数据
   iVar2 = FUN_18074b880(&stack0x00000050 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  
+  // 完成错误报告格式化
   func_0x00018074b800(&stack0x00000050 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),unaff_R14D);
-                    // WARNING: Subroutine does not return
+  
+  // 发送错误报告
   FUN_180749ef0(unaff_ESI,0xd);
 }
 
