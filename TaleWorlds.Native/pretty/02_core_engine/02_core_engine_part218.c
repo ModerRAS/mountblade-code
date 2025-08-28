@@ -457,7 +457,7 @@ void add_char_to_buffer(longlong *buffer_ptr, undefined1 *char_ptr)
       goto LAB_180194acf;
     }
   }
-  puVar1 = (undefined1 *)allocate_container_memory(_DAT_180c8ed18,lVar3,(char)param_1[3]);
+  puVar1 = (undefined1 *)allocate_container_memory(global_memory_allocator,lVar3,(char)param_1[3]);
   puVar2 = (undefined1 *)*param_1;
   puVar4 = (undefined1 *)param_1[1];
 LAB_180194acf:
@@ -560,7 +560,7 @@ FUN_180194d10(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
 {
   longlong *plVar1;
   
-  plVar1 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0,0xfffffffffffffffe);
+  plVar1 = (longlong *)allocate_object_memory(global_memory_allocator,0x70,8,3,0,0xfffffffffffffffe);
   *plVar1 = (longlong)&GLOBAL_BUFFER_VTABLE;
   *plVar1 = (longlong)&GLOBAL_RENDER_TARGET_VTABLE;
   *(undefined4 *)(plVar1 + 1) = 0;
@@ -598,7 +598,7 @@ FUN_180194e00(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
 {
   longlong *plVar1;
   
-  plVar1 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0,0xfffffffffffffffe);
+  plVar1 = (longlong *)allocate_object_memory(global_memory_allocator,0x70,8,3,0,0xfffffffffffffffe);
   *plVar1 = (longlong)&GLOBAL_BUFFER_VTABLE;
   *plVar1 = (longlong)&GLOBAL_RENDER_TARGET_VTABLE;
   *(undefined4 *)(plVar1 + 1) = 0;
@@ -639,7 +639,7 @@ undefined8 * FUN_180194ef0(longlong param_1)
   undefined8 *puVar4;
   undefined8 *puVar5;
   
-  puVar1 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,8,8,3,0xfffffffffffffffe);
+  puVar1 = (undefined8 *)allocate_object_memory(global_memory_allocator,8,8,3,0xfffffffffffffffe);
   *puVar1 = &GLOBAL_TEXTURE_VTABLE;
   *puVar1 = &GLOBAL_OBJECT_POOL_VTABLE;
   puVar5 = *(undefined8 **)(param_1 + 0x30);
@@ -660,7 +660,7 @@ undefined8 * FUN_180194ef0(longlong param_1)
       goto LAB_180194fa5;
     }
   }
-  puVar3 = (undefined8 *)allocate_container_memory(_DAT_180c8ed18,lVar2 * 8,*(undefined1 *)(param_1 + 0x40));
+  puVar3 = (undefined8 *)allocate_container_memory(global_memory_allocator,lVar2 * 8,*(undefined1 *)(param_1 + 0x40));
   puVar5 = *(undefined8 **)(param_1 + 0x30);
   puVar4 = *(undefined8 **)(param_1 + 0x28);
 LAB_180194fa5:
@@ -688,7 +688,7 @@ undefined8 * FUN_180195000(undefined8 param_1,undefined8 *param_2)
 {
   longlong *plVar1;
   
-  plVar1 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0,0xfffffffffffffffe);
+  plVar1 = (longlong *)allocate_object_memory(global_memory_allocator,0x70,8,3,0,0xfffffffffffffffe);
   *plVar1 = (longlong)&GLOBAL_BUFFER_VTABLE;
   *plVar1 = (longlong)&GLOBAL_RENDER_TARGET_VTABLE;
   *(undefined4 *)(plVar1 + 1) = 0;
@@ -725,7 +725,7 @@ undefined8 * FUN_1801950d0(longlong param_1)
   undefined8 *puVar1;
   undefined8 *puStackX_8;
   
-  puVar1 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,8,8,3,0xfffffffffffffffe);
+  puVar1 = (undefined8 *)allocate_object_memory(global_memory_allocator,8,8,3,0xfffffffffffffffe);
   *puVar1 = &GLOBAL_LIGHT_VTABLE;
   *puVar1 = &GLOBAL_MATERIAL_VTABLE;
   puStackX_8 = puVar1;
@@ -746,7 +746,7 @@ void release_texture_resource(longlong texture_id, undefined8 *resource_ptr)
   
   release_texture_data(param_1 + 0x28);
   if (param_2 != (undefined8 *)0x0) {
-    lVar1 = __RTCastToVoid(param_2);
+    lVar1 = cast_to_void(param_2);
     (**(code **)*param_2)(param_2,0);
     if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
@@ -768,7 +768,7 @@ void cleanup_texture_cache(void)
   longlong lVar1;
   undefined8 *unaff_RBX;
   
-  lVar1 = __RTCastToVoid();
+  lVar1 = cast_to_void();
   (**(code **)*unaff_RBX)();
   if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
@@ -802,7 +802,7 @@ void release_shader_resource(longlong shader_id, undefined8 *resource_ptr)
   
   release_texture_data(param_1 + 0x48);
   if (param_2 != (undefined8 *)0x0) {
-    lVar1 = __RTCastToVoid(param_2);
+    lVar1 = cast_to_void(param_2);
     (**(code **)*param_2)(param_2,0);
     if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
@@ -824,7 +824,7 @@ void cleanup_shader_cache(void)
   longlong lVar1;
   undefined8 *unaff_RBX;
   
-  lVar1 = __RTCastToVoid();
+  lVar1 = cast_to_void();
   (**(code **)*unaff_RBX)();
   if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
@@ -853,7 +853,7 @@ undefined8 * FUN_1801951e0(undefined8 param_1,undefined8 *param_2)
 {
   longlong *plVar1;
   
-  plVar1 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0,0xfffffffffffffffe);
+  plVar1 = (longlong *)allocate_object_memory(global_memory_allocator,0x70,8,3,0,0xfffffffffffffffe);
   *plVar1 = (longlong)&GLOBAL_BUFFER_VTABLE;
   *plVar1 = (longlong)&GLOBAL_RENDER_TARGET_VTABLE;
   *(undefined4 *)(plVar1 + 1) = 0;
@@ -941,11 +941,11 @@ FUN_1801953d0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
   *param_2 = &DEFAULT_STRING_BUFFER;
   param_2[1] = 0;
   *(undefined4 *)(param_2 + 2) = 0;
-  *param_2 = &UNK_1809fcc28;
+  *param_2 = &DEFAULT_STRING_HANDLER;
   param_2[1] = param_2 + 3;
   *(undefined1 *)(param_2 + 3) = 0;
   *(undefined4 *)(param_2 + 2) = 8;
-  strcpy_s(param_2[1],0x80,&UNK_180a0b1c8,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&DEFAULT_STRING_FORMAT,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
