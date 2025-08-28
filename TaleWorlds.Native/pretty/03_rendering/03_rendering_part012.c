@@ -422,385 +422,434 @@ undefined8 * initialize_render_state(undefined8 *render_state)
 
 
 
-undefined8 *
-FUN_180275010(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 创建基础渲染对象
+ * @param param_1 渲染对象指针
+ * @param param_2 渲染对象输出指针
+ * @param param_3 渲染参数1
+ * @param param_4 渲染参数2
+ * @return 渲染对象指针
+ */
+undefined8 * create_base_render_object(undefined8 param_1, undefined8 *render_object_ptr, undefined8 render_param1, undefined8 render_param2)
 
 {
-  *param_2 = &UNK_18098bcb0;
-  param_2[1] = 0;
-  *(undefined4 *)(param_2 + 2) = 0;
-  *param_2 = &UNK_1809fcc28;
-  param_2[1] = param_2 + 3;
-  *(undefined1 *)(param_2 + 3) = 0;
-  *(undefined4 *)(param_2 + 2) = 0xc;
-  strcpy_s(param_2[1],0x80,&UNK_180a167d0,param_4,0,0xfffffffffffffffe);
-  return param_2;
+  *render_object_ptr = &RENDER_VTABLE_BASE;
+  render_object_ptr[1] = 0;
+  *(undefined4 *)(render_object_ptr + 2) = 0;
+  *render_object_ptr = &RENDER_VTABLE_EXTENDED;
+  render_object_ptr[1] = render_object_ptr + 3;
+  *(undefined1 *)(render_object_ptr + 3) = 0;
+  *(undefined4 *)(render_object_ptr + 2) = 0xc;
+  strcpy_s(render_object_ptr[1], 0x80, &RENDER_NAME_TEMPLATE, render_param2, 0, 0xfffffffffffffffe);
+  return render_object_ptr;
 }
 
 
 
-undefined8 * FUN_180275090(undefined8 *param_1)
+/**
+ * 初始化渲染器
+ * @param renderer 渲染器指针
+ * @return 初始化后的渲染器指针
+ */
+undefined8 * initialize_renderer(undefined8 *renderer)
 
 {
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
-  *(undefined4 *)(param_1 + 1) = 0;
-  *param_1 = &UNK_180a14860;
-  *(undefined4 *)(param_1 + 2) = 4;
-  param_1[3] = 0;
-  param_1[4] = 0;
-  *(undefined4 *)(param_1 + 1) = 0;
-  param_1[5] = 0;
-  *param_1 = &UNK_180a169b8;
-  param_1[7] = 0;
-  param_1[8] = 0;
-  param_1[9] = 0;
-  *(undefined4 *)(param_1 + 10) = 0x16;
-  FUN_180285e20(param_1 + 0xd);
-  param_1[0x3e] = &UNK_18098bcb0;
-  param_1[0x3f] = 0;
-  *(undefined4 *)(param_1 + 0x40) = 0;
-  param_1[0x3e] = &UNK_180a3c3e0;
-  param_1[0x41] = 0;
-  param_1[0x3f] = 0;
-  *(undefined4 *)(param_1 + 0x40) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x244) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x214) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x21c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x224) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x22c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x234) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x23c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x24c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x254) = 0x7f7fffff00000000;
-  *(undefined8 *)((longlong)param_1 + 0x25c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x264) = 0x7f7fffff00000000;
-  *(undefined8 *)((longlong)param_1 + 0x26c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x274) = 0x7f7fffff00000000;
-  *(undefined8 *)((longlong)param_1 + 0x2fc) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x27c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x284) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x28c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x294) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x29c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2a4) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2ac) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2b4) = 0;
-  *(undefined8 *)((longlong)param_1 + 700) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2c4) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2cc) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2d4) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x2dc) = 0;
-  *(undefined4 *)(param_1 + 0x5c) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x2e4) = 0;
-  *(undefined4 *)(param_1 + 0x5d) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x2ec) = 0;
-  *(undefined4 *)(param_1 + 0x5e) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x2f4) = 0;
-  *(undefined4 *)(param_1 + 0x5f) = 0;
-  param_1[0x61] = &UNK_180a169a8;
+  *renderer = &RENDERER_VTABLE1;
+  *renderer = &RENDERER_VTABLE2;
+  *(undefined4 *)(renderer + 1) = 0;
+  *renderer = &RENDERER_SHADER_TABLE;
+  *(undefined4 *)(renderer + 2) = 4;
+  renderer[3] = 0;
+  renderer[4] = 0;
+  *(undefined4 *)(renderer + 1) = 0;
+  renderer[5] = 0;
+  *renderer = &RENDERER_CONFIG_TABLE;
+  renderer[7] = 0;
+  renderer[8] = 0;
+  renderer[9] = 0;
+  *(undefined4 *)(renderer + 10) = 0x16;
+  initialize_render_data_structures(renderer + 0xd);
+  renderer[0x3e] = &RENDER_STATE_NULL;
+  renderer[0x3f] = 0;
+  *(undefined4 *)(renderer + 0x40) = 0;
+  renderer[0x3e] = &RENDER_MATERIAL_TABLE;
+  renderer[0x41] = 0;
+  renderer[0x3f] = 0;
+  *(undefined4 *)(renderer + 0x40) = 0;
+  *(undefined4 *)((longlong)renderer + 0x244) = 0;
+  *(undefined8 *)((longlong)renderer + 0x214) = 0;
+  *(undefined8 *)((longlong)renderer + 0x21c) = 0;
+  *(undefined8 *)((longlong)renderer + 0x224) = 0;
+  *(undefined8 *)((longlong)renderer + 0x22c) = 0;
+  *(undefined8 *)((longlong)renderer + 0x234) = 0;
+  *(undefined8 *)((longlong)renderer + 0x23c) = 0;
+  *(undefined8 *)((longlong)renderer + 0x24c) = 0;
+  *(undefined8 *)((longlong)renderer + 0x254) = 0x7f7fffff00000000;
+  *(undefined8 *)((longlong)renderer + 0x25c) = 0;
+  *(undefined8 *)((longlong)renderer + 0x264) = 0x7f7fffff00000000;
+  *(undefined8 *)((longlong)renderer + 0x26c) = 0;
+  *(undefined8 *)((longlong)renderer + 0x274) = 0x7f7fffff00000000;
+  *(undefined8 *)((longlong)renderer + 0x2fc) = 0;
+  *(undefined8 *)((longlong)renderer + 0x27c) = 0;
+  *(undefined8 *)((longlong)renderer + 0x284) = 0;
+  *(undefined8 *)((longlong)renderer + 0x28c) = 0;
+  *(undefined8 *)((longlong)renderer + 0x294) = 0;
+  *(undefined8 *)((longlong)renderer + 0x29c) = 0;
+  *(undefined8 *)((longlong)renderer + 0x2a4) = 0;
+  *(undefined8 *)((longlong)renderer + 0x2ac) = 0;
+  *(undefined8 *)((longlong)renderer + 0x2b4) = 0;
+  *(undefined8 *)((longlong)renderer + 700) = 0;
+  *(undefined8 *)((longlong)renderer + 0x2c4) = 0;
+  *(undefined8 *)((longlong)renderer + 0x2cc) = 0;
+  *(undefined8 *)((longlong)renderer + 0x2d4) = 0;
+  *(undefined4 *)((longlong)renderer + 0x2dc) = 0;
+  *(undefined4 *)(renderer + 0x5c) = 0;
+  *(undefined4 *)((longlong)renderer + 0x2e4) = 0;
+  *(undefined4 *)(renderer + 0x5d) = 0;
+  *(undefined4 *)((longlong)renderer + 0x2ec) = 0;
+  *(undefined4 *)(renderer + 0x5e) = 0;
+  *(undefined4 *)((longlong)renderer + 0x2f4) = 0;
+  *(undefined4 *)(renderer + 0x5f) = 0;
+  renderer[0x61] = &RENDERER_LOCK_TABLE;
   LOCK();
-  *(undefined4 *)(param_1 + 0x62) = 0;
+  *(undefined4 *)(renderer + 0x62) = 0;
   UNLOCK();
-  param_1[99] = 0xffffffffffffffff;
-  param_1[0x77] = 0;
-  param_1[0x79] = 0;
-  FUN_1802786d0(param_1);
-  *(undefined4 *)(param_1 + 1) = 0;
-  return param_1;
+  renderer[99] = 0xffffffffffffffff;
+  renderer[0x77] = 0;
+  renderer[0x79] = 0;
+  initialize_render_internal_data(renderer);
+  *(undefined4 *)(renderer + 1) = 0;
+  return renderer;
 }
 
 
 
-undefined8 FUN_180275250(undefined8 param_1,ulonglong param_2)
+/**
+ * 释放渲染资源
+ * @param render_object 渲染对象指针
+ * @param free_flags 释放标志位
+ * @return 渲染对象指针
+ */
+undefined8 release_render_resources(undefined8 render_object, ulonglong free_flags)
 
 {
-  FUN_180275730();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x3d0);
+  destroy_render_object();
+  if ((free_flags & 1) != 0) {
+    free(render_object, 0x3d0);
   }
-  return param_1;
+  return render_object;
 }
 
 
 
 
 
-// 函数: void FUN_180275290(longlong *param_1)
-void FUN_180275290(longlong *param_1)
+/**
+ * 清理渲染队列
+ * @param render_queue 渲染队列指针
+ */
+void cleanup_render_queue(longlong *render_queue)
 
 {
-  longlong *plVar1;
-  longlong *plVar2;
+  longlong *current_entry;
+  longlong *queue_end;
   
-  plVar1 = (longlong *)param_1[1];
-  for (plVar2 = (longlong *)*param_1; plVar2 != plVar1; plVar2 = plVar2 + 2) {
-    if ((longlong *)*plVar2 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar2 + 0x38))();
+  current_entry = (longlong *)render_queue[1];
+  for (queue_end = (longlong *)*render_queue; queue_end != current_entry; queue_end = queue_end + 2) {
+    if ((longlong *)*queue_end != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*queue_end + 0x38))();
     }
   }
-  if (*param_1 == 0) {
+  if (*render_queue == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900();
+  // WARNING: Subroutine does not return
+  trigger_render_error();
 }
 
 
 
 
 
-// 函数: void FUN_1802752b0(longlong param_1)
-void FUN_1802752b0(longlong param_1)
+/**
+ * 重置渲染状态
+ * @param render_context 渲染上下文指针
+ */
+void reset_render_state(longlong render_context)
 
 {
-  *(undefined8 *)(param_1 + 0x168) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_1 + 0x170) != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  *(undefined8 *)(render_context + 0x168) = &RENDER_MATERIAL_TABLE;
+  if (*(longlong *)(render_context + 0x170) != 0) {
+    // WARNING: Subroutine does not return
+    trigger_render_error();
   }
-  *(undefined8 *)(param_1 + 0x170) = 0;
-  *(undefined4 *)(param_1 + 0x180) = 0;
-  *(undefined8 *)(param_1 + 0x168) = &UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 0x148) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_1 + 0x150) != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  *(undefined8 *)(render_context + 0x170) = 0;
+  *(undefined4 *)(render_context + 0x180) = 0;
+  *(undefined8 *)(render_context + 0x168) = &RENDER_STATE_NULL;
+  *(undefined8 *)(render_context + 0x148) = &RENDER_MATERIAL_TABLE;
+  if (*(longlong *)(render_context + 0x150) != 0) {
+    // WARNING: Subroutine does not return
+    trigger_render_error();
   }
-  *(undefined8 *)(param_1 + 0x150) = 0;
-  *(undefined4 *)(param_1 + 0x160) = 0;
-  *(undefined8 *)(param_1 + 0x148) = &UNK_18098bcb0;
-  *(undefined **)(param_1 + 0xb0) = &UNK_18098bcb0;
-  *(undefined **)(param_1 + 0x18) = &UNK_18098bcb0;
+  *(undefined8 *)(render_context + 0x150) = 0;
+  *(undefined4 *)(render_context + 0x160) = 0;
+  *(undefined8 *)(render_context + 0x148) = &RENDER_STATE_NULL;
+  *(undefined **)(render_context + 0xb0) = &RENDER_STATE_NULL;
+  *(undefined **)(render_context + 0x18) = &RENDER_STATE_NULL;
   return;
 }
 
 
 
-undefined8 *
-FUN_180275370(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 创建带参数的渲染对象
+ * @param render_object 渲染对象指针
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @return 渲染对象指针
+ */
+undefined8 * create_render_object_with_params(undefined8 *render_object, undefined8 param1, undefined8 param2, undefined8 param3)
 
 {
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
-  *(undefined4 *)(param_1 + 1) = 0;
-  *param_1 = &UNK_180a14860;
-  *(undefined4 *)(param_1 + 2) = 4;
-  param_1[3] = 0;
-  param_1[4] = 0;
-  *(undefined4 *)(param_1 + 1) = 0;
-  param_1[5] = 0;
-  *param_1 = &UNK_180a169b8;
-  param_1[7] = 0;
-  param_1[8] = 0;
-  param_1[9] = 0;
-  *(undefined4 *)(param_1 + 10) = 0x16;
-  FUN_180285e20(param_1 + 0xd,param_2,param_3,param_4,0xfffffffffffffffe);
-  param_1[0x3e] = &UNK_18098bcb0;
-  param_1[0x3f] = 0;
-  *(undefined4 *)(param_1 + 0x40) = 0;
-  param_1[0x3e] = &UNK_180a3c3e0;
-  param_1[0x41] = 0;
-  param_1[0x3f] = 0;
-  *(undefined4 *)(param_1 + 0x40) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x244) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x214) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x21c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x224) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x22c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x234) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x23c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x24c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x254) = 0x7f7fffff00000000;
-  *(undefined8 *)((longlong)param_1 + 0x25c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x264) = 0x7f7fffff00000000;
-  *(undefined8 *)((longlong)param_1 + 0x26c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x274) = 0x7f7fffff00000000;
-  *(undefined8 *)((longlong)param_1 + 0x2fc) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x27c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x284) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x28c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x294) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x29c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2a4) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2ac) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2b4) = 0;
-  *(undefined8 *)((longlong)param_1 + 700) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2c4) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2cc) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2d4) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x2dc) = 0;
-  *(undefined4 *)(param_1 + 0x5c) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x2e4) = 0;
-  *(undefined4 *)(param_1 + 0x5d) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x2ec) = 0;
-  *(undefined4 *)(param_1 + 0x5e) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x2f4) = 0;
-  *(undefined4 *)(param_1 + 0x5f) = 0;
-  param_1[0x61] = &UNK_180a169a8;
+  *render_object = &RENDERER_VTABLE1;
+  *render_object = &RENDERER_VTABLE2;
+  *(undefined4 *)(render_object + 1) = 0;
+  *render_object = &RENDERER_SHADER_TABLE;
+  *(undefined4 *)(render_object + 2) = 4;
+  render_object[3] = 0;
+  render_object[4] = 0;
+  *(undefined4 *)(render_object + 1) = 0;
+  render_object[5] = 0;
+  *render_object = &RENDERER_CONFIG_TABLE;
+  render_object[7] = 0;
+  render_object[8] = 0;
+  render_object[9] = 0;
+  *(undefined4 *)(render_object + 10) = 0x16;
+  initialize_render_data_structures(render_object + 0xd, param1, param2, param3, 0xfffffffffffffffe);
+  render_object[0x3e] = &RENDER_STATE_NULL;
+  render_object[0x3f] = 0;
+  *(undefined4 *)(render_object + 0x40) = 0;
+  render_object[0x3e] = &RENDER_MATERIAL_TABLE;
+  render_object[0x41] = 0;
+  render_object[0x3f] = 0;
+  *(undefined4 *)(render_object + 0x40) = 0;
+  *(undefined4 *)((longlong)render_object + 0x244) = 0;
+  *(undefined8 *)((longlong)render_object + 0x214) = 0;
+  *(undefined8 *)((longlong)render_object + 0x21c) = 0;
+  *(undefined8 *)((longlong)render_object + 0x224) = 0;
+  *(undefined8 *)((longlong)render_object + 0x22c) = 0;
+  *(undefined8 *)((longlong)render_object + 0x234) = 0;
+  *(undefined8 *)((longlong)render_object + 0x23c) = 0;
+  *(undefined8 *)((longlong)render_object + 0x24c) = 0;
+  *(undefined8 *)((longlong)render_object + 0x254) = 0x7f7fffff00000000;
+  *(undefined8 *)((longlong)render_object + 0x25c) = 0;
+  *(undefined8 *)((longlong)render_object + 0x264) = 0x7f7fffff00000000;
+  *(undefined8 *)((longlong)render_object + 0x26c) = 0;
+  *(undefined8 *)((longlong)render_object + 0x274) = 0x7f7fffff00000000;
+  *(undefined8 *)((longlong)render_object + 0x2fc) = 0;
+  *(undefined8 *)((longlong)render_object + 0x27c) = 0;
+  *(undefined8 *)((longlong)render_object + 0x284) = 0;
+  *(undefined8 *)((longlong)render_object + 0x28c) = 0;
+  *(undefined8 *)((longlong)render_object + 0x294) = 0;
+  *(undefined8 *)((longlong)render_object + 0x29c) = 0;
+  *(undefined8 *)((longlong)render_object + 0x2a4) = 0;
+  *(undefined8 *)((longlong)render_object + 0x2ac) = 0;
+  *(undefined8 *)((longlong)render_object + 0x2b4) = 0;
+  *(undefined8 *)((longlong)render_object + 700) = 0;
+  *(undefined8 *)((longlong)render_object + 0x2c4) = 0;
+  *(undefined8 *)((longlong)render_object + 0x2cc) = 0;
+  *(undefined8 *)((longlong)render_object + 0x2d4) = 0;
+  *(undefined4 *)((longlong)render_object + 0x2dc) = 0;
+  *(undefined4 *)(render_object + 0x5c) = 0;
+  *(undefined4 *)((longlong)render_object + 0x2e4) = 0;
+  *(undefined4 *)(render_object + 0x5d) = 0;
+  *(undefined4 *)((longlong)render_object + 0x2ec) = 0;
+  *(undefined4 *)(render_object + 0x5e) = 0;
+  *(undefined4 *)((longlong)render_object + 0x2f4) = 0;
+  *(undefined4 *)(render_object + 0x5f) = 0;
+  render_object[0x61] = &RENDERER_LOCK_TABLE;
   LOCK();
-  *(undefined4 *)(param_1 + 0x62) = 0;
+  *(undefined4 *)(render_object + 0x62) = 0;
   UNLOCK();
-  param_1[99] = 0xffffffffffffffff;
-  param_1[0x77] = 0;
-  param_1[0x79] = 0;
-  FUN_1802786d0(param_1);
-  *(undefined4 *)(param_1 + 1) = 0;
-  FUN_18027a810(param_1,param_2);
-  return param_1;
+  render_object[99] = 0xffffffffffffffff;
+  render_object[0x77] = 0;
+  render_object[0x79] = 0;
+  initialize_render_internal_data(render_object);
+  *(undefined4 *)(render_object + 1) = 0;
+  apply_render_settings(render_object, param1);
+  return render_object;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 *
-FUN_180275540(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 创建特殊渲染对象
+ * @param render_object 渲染对象指针
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @return 渲染对象指针
+ */
+undefined8 * create_special_render_object(undefined8 *render_object, undefined8 param1, undefined8 param2, undefined8 param3)
 
 {
-  longlong lVar1;
+  longlong special_result;
   
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
-  *(undefined4 *)(param_1 + 1) = 0;
-  *param_1 = &UNK_180a14860;
-  *(undefined4 *)(param_1 + 2) = 4;
-  param_1[3] = 0;
-  param_1[4] = 0;
-  *(undefined4 *)(param_1 + 1) = 0;
-  param_1[5] = 0;
-  *param_1 = &UNK_180a169b8;
-  param_1[7] = 0;
-  param_1[8] = 0;
-  param_1[9] = 0;
-  *(undefined4 *)(param_1 + 10) = 0x16;
-  FUN_180285e20(param_1 + 0xd,param_2,(char)param_3,param_4,0xfffffffffffffffe);
-  param_1[0x3e] = &UNK_18098bcb0;
-  param_1[0x3f] = 0;
-  *(undefined4 *)(param_1 + 0x40) = 0;
-  param_1[0x3e] = &UNK_180a3c3e0;
-  param_1[0x41] = 0;
-  param_1[0x3f] = 0;
-  *(undefined4 *)(param_1 + 0x40) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x244) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x214) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x21c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x224) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x22c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x234) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x23c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x24c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x254) = 0x7f7fffff00000000;
-  *(undefined8 *)((longlong)param_1 + 0x25c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x264) = 0x7f7fffff00000000;
-  *(undefined8 *)((longlong)param_1 + 0x26c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x274) = 0x7f7fffff00000000;
-  *(undefined8 *)((longlong)param_1 + 0x2fc) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x27c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x284) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x28c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x294) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x29c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2a4) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2ac) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2b4) = 0;
-  *(undefined8 *)((longlong)param_1 + 700) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2c4) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2cc) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x2d4) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x2dc) = 0;
-  *(undefined4 *)(param_1 + 0x5c) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x2e4) = 0;
-  *(undefined4 *)(param_1 + 0x5d) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x2ec) = 0;
-  *(undefined4 *)(param_1 + 0x5e) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x2f4) = 0;
-  *(undefined4 *)(param_1 + 0x5f) = 0;
-  param_1[0x61] = &UNK_180a169a8;
+  *render_object = &RENDERER_VTABLE1;
+  *render_object = &RENDERER_VTABLE2;
+  *(undefined4 *)(render_object + 1) = 0;
+  *render_object = &RENDERER_SHADER_TABLE;
+  *(undefined4 *)(render_object + 2) = 4;
+  render_object[3] = 0;
+  render_object[4] = 0;
+  *(undefined4 *)(render_object + 1) = 0;
+  render_object[5] = 0;
+  *render_object = &RENDERER_CONFIG_TABLE;
+  render_object[7] = 0;
+  render_object[8] = 0;
+  render_object[9] = 0;
+  *(undefined4 *)(render_object + 10) = 0x16;
+  initialize_render_data_structures(render_object + 0xd, param1, (char)param2, param3, 0xfffffffffffffffe);
+  render_object[0x3e] = &RENDER_STATE_NULL;
+  render_object[0x3f] = 0;
+  *(undefined4 *)(render_object + 0x40) = 0;
+  render_object[0x3e] = &RENDER_MATERIAL_TABLE;
+  render_object[0x41] = 0;
+  render_object[0x3f] = 0;
+  *(undefined4 *)(render_object + 0x40) = 0;
+  *(undefined4 *)((longlong)render_object + 0x244) = 0;
+  *(undefined8 *)((longlong)render_object + 0x214) = 0;
+  *(undefined8 *)((longlong)render_object + 0x21c) = 0;
+  *(undefined8 *)((longlong)render_object + 0x224) = 0;
+  *(undefined8 *)((longlong)render_object + 0x22c) = 0;
+  *(undefined8 *)((longlong)render_object + 0x234) = 0;
+  *(undefined8 *)((longlong)render_object + 0x23c) = 0;
+  *(undefined8 *)((longlong)render_object + 0x24c) = 0;
+  *(undefined8 *)((longlong)render_object + 0x254) = 0x7f7fffff00000000;
+  *(undefined8 *)((longlong)render_object + 0x25c) = 0;
+  *(undefined8 *)((longlong)render_object + 0x264) = 0x7f7fffff00000000;
+  *(undefined8 *)((longlong)render_object + 0x26c) = 0;
+  *(undefined8 *)((longlong)render_object + 0x274) = 0x7f7fffff00000000;
+  *(undefined8 *)((longlong)render_object + 0x2fc) = 0;
+  *(undefined8 *)((longlong)render_object + 0x27c) = 0;
+  *(undefined8 *)((longlong)render_object + 0x284) = 0;
+  *(undefined8 *)((longlong)render_object + 0x28c) = 0;
+  *(undefined8 *)((longlong)render_object + 0x294) = 0;
+  *(undefined8 *)((longlong)render_object + 0x29c) = 0;
+  *(undefined8 *)((longlong)render_object + 0x2a4) = 0;
+  *(undefined8 *)((longlong)render_object + 0x2ac) = 0;
+  *(undefined8 *)((longlong)render_object + 0x2b4) = 0;
+  *(undefined8 *)((longlong)render_object + 700) = 0;
+  *(undefined8 *)((longlong)render_object + 0x2c4) = 0;
+  *(undefined8 *)((longlong)render_object + 0x2cc) = 0;
+  *(undefined8 *)((longlong)render_object + 0x2d4) = 0;
+  *(undefined4 *)((longlong)render_object + 0x2dc) = 0;
+  *(undefined4 *)(render_object + 0x5c) = 0;
+  *(undefined4 *)((longlong)render_object + 0x2e4) = 0;
+  *(undefined4 *)(render_object + 0x5d) = 0;
+  *(undefined4 *)((longlong)render_object + 0x2ec) = 0;
+  *(undefined4 *)(render_object + 0x5e) = 0;
+  *(undefined4 *)((longlong)render_object + 0x2f4) = 0;
+  *(undefined4 *)(render_object + 0x5f) = 0;
+  render_object[0x61] = &RENDERER_LOCK_TABLE;
   LOCK();
-  *(undefined4 *)(param_1 + 0x62) = 0;
+  *(undefined4 *)(render_object + 0x62) = 0;
   UNLOCK();
-  param_1[99] = 0xffffffffffffffff;
-  param_1[0x77] = 0;
-  param_1[0x79] = 0;
-  FUN_1802786d0(param_1);
-  *(undefined4 *)(param_1 + 1) = 0;
-  lVar1 = FUN_1800b6de0(_DAT_180c86930,param_2,1);
-  if (lVar1 != 0) {
-    FUN_180275a60(lVar1,param_1,1);
+  render_object[99] = 0xffffffffffffffff;
+  render_object[0x77] = 0;
+  render_object[0x79] = 0;
+  initialize_render_internal_data(render_object);
+  *(undefined4 *)(render_object + 1) = 0;
+  special_result = get_special_render_data(RENDER_SPECIAL_TABLE, param1, 1);
+  if (special_result != 0) {
+    apply_special_render_settings(special_result, render_object, 1);
   }
-  FUN_18027a810(param_1,param_3);
-  return param_1;
+  apply_render_settings(render_object, param2);
+  return render_object;
 }
 
 
 
 
 
-// 函数: void FUN_180275730(undefined8 *param_1)
-void FUN_180275730(undefined8 *param_1)
+/**
+ * 销毁渲染对象
+ * @param render_object 渲染对象指针
+ */
+void destroy_render_object(undefined8 *render_object)
 
 {
-  *param_1 = &UNK_180a169b8;
-  FUN_180275960();
-  if ((longlong *)param_1[0x79] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_1[0x79] + 0x38))();
+  *render_object = &RENDERER_CONFIG_TABLE;
+  cleanup_render_cache();
+  if ((longlong *)render_object[0x79] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)render_object[0x79] + 0x38))();
   }
-  if ((longlong *)param_1[0x77] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_1[0x77] + 0x38))();
+  if ((longlong *)render_object[0x77] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)render_object[0x77] + 0x38))();
   }
-  param_1[0x61] = &UNK_180a169a8;
-  param_1[0x3e] = &UNK_180a3c3e0;
-  if (param_1[0x3f] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  render_object[0x61] = &RENDERER_LOCK_TABLE;
+  render_object[0x3e] = &RENDER_MATERIAL_TABLE;
+  if (render_object[0x3f] != 0) {
+    // WARNING: Subroutine does not return
+    trigger_render_error();
   }
-  param_1[0x3f] = 0;
-  *(undefined4 *)(param_1 + 0x41) = 0;
-  param_1[0x3e] = &UNK_18098bcb0;
-  FUN_1802752b0(param_1 + 0xd);
-  FUN_1802841d0();
-  *param_1 = &UNK_180a14860;
-  param_1[5] = 0;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  render_object[0x3f] = 0;
+  *(undefined4 *)(render_object + 0x41) = 0;
+  render_object[0x3e] = &RENDER_STATE_NULL;
+  reset_render_state(render_object + 0xd);
+  cleanup_render_buffers();
+  *render_object = &RENDERER_SHADER_TABLE;
+  render_object[5] = 0;
+  *render_object = &RENDERER_VTABLE2;
+  *render_object = &RENDERER_VTABLE1;
   return;
 }
 
 
 
-undefined8 FUN_180275820(longlong *param_1)
+/**
+ * 获取渲染数据
+ * @param render_object 渲染对象指针
+ * @return 渲染数据指针
+ */
+undefined8 get_render_data(longlong *render_object)
 
 {
-  char cVar1;
+  char is_ready;
   
-  if (*(code **)(*param_1 + 0xc0) == (code *)&UNK_180277e10) {
-    cVar1 = (param_1[8] - param_1[7] & 0xfffffffffffffff0U) == 0;
+  if (*(code **)(*render_object + 0xc0) == (code *)&RENDER_CHECK_FUNCTION) {
+    is_ready = (render_object[8] - render_object[7] & 0xfffffffffffffff0U) == 0;
   }
   else {
-    cVar1 = (**(code **)(*param_1 + 0xc0))();
+    is_ready = (**(code **)(*render_object + 0xc0))();
   }
-  if (cVar1 == '\0') {
-    return *(undefined8 *)param_1[7];
+  if (is_ready == '\0') {
+    return *(undefined8 *)render_object[7];
   }
   return 0;
 }
 
 
 
-undefined8 FUN_180275870(undefined8 *param_1)
+/**
+ * 检查渲染状态
+ * @param render_object 渲染对象指针
+ * @return 渲染状态指针
+ */
+undefined8 check_render_status(undefined8 *render_object)
 
 {
-  char cVar1;
+  char is_complete;
   
-  if ((undefined *)*param_1 == &UNK_180a169b8) {
-    cVar1 = (param_1[8] - param_1[7] & 0xfffffffffffffff0) == 0;
+  if ((undefined *)*render_object == &RENDERER_CONFIG_TABLE) {
+    is_complete = (render_object[8] - render_object[7] & 0xfffffffffffffff0) == 0;
   }
   else {
-    cVar1 = (**(code **)((undefined *)*param_1 + 0xc0))(param_1);
+    is_complete = (**(code **)((undefined *)*render_object + 0xc0))(render_object);
   }
-  if (cVar1 == '\0') {
-    return *(undefined8 *)param_1[7];
+  if (is_complete == '\0') {
+    return *(undefined8 *)render_object[7];
   }
   return 0;
 }
@@ -809,38 +858,42 @@ undefined8 FUN_180275870(undefined8 *param_1)
 
 
 
-// 函数: void FUN_1802758c0(longlong param_1,char param_2)
-void FUN_1802758c0(longlong param_1,char param_2)
+/**
+ * 设置渲染标志
+ * @param render_context 渲染上下文
+ * @param flag_value 标志值
+ */
+void set_render_flag(longlong render_context, char flag_value)
 
 {
-  ulonglong uVar1;
-  uint uVar2;
-  ulonglong uVar3;
-  longlong lVar4;
+  ulonglong entry_index;
+  uint entry_count;
+  ulonglong max_entries;
+  longlong entry_ptr;
   
-  lVar4 = *(longlong *)(param_1 + 0x38);
-  uVar1 = 0;
-  uVar3 = uVar1;
-  if (*(longlong *)(param_1 + 0x40) - lVar4 >> 4 != 0) {
+  entry_ptr = *(longlong *)(render_context + 0x38);
+  entry_index = 0;
+  max_entries = entry_index;
+  if (*(longlong *)(render_context + 0x40) - entry_ptr >> 4 != 0) {
     do {
-      lVar4 = *(longlong *)(uVar1 + lVar4);
-      if (param_2 == '\0') {
-        if (*(char *)(lVar4 + 0xfa) != '\0') {
-          *(undefined1 *)(lVar4 + 0xfa) = 0;
-LAB_18027591d:
-          FUN_180079520();
+      entry_ptr = *(longlong *)(entry_index + entry_ptr);
+      if (flag_value == '\0') {
+        if (*(char *)(entry_ptr + 0xfa) != '\0') {
+          *(undefined1 *)(entry_ptr + 0xfa) = 0;
+FLAG_SET_TRIGGER:
+          trigger_render_update();
         }
       }
-      else if (*(char *)(lVar4 + 0xfa) != '\x01') {
-        *(undefined1 *)(lVar4 + 0xfa) = 1;
-        goto LAB_18027591d;
+      else if (*(char *)(entry_ptr + 0xfa) != '\x01') {
+        *(undefined1 *)(entry_ptr + 0xfa) = 1;
+        goto FLAG_SET_TRIGGER;
       }
-      lVar4 = *(longlong *)(param_1 + 0x38);
-      uVar2 = (int)uVar3 + 1;
-      uVar1 = uVar1 + 0x10;
-      uVar3 = (ulonglong)uVar2;
-    } while ((ulonglong)(longlong)(int)uVar2 <
-             (ulonglong)(*(longlong *)(param_1 + 0x40) - lVar4 >> 4));
+      entry_ptr = *(longlong *)(render_context + 0x38);
+      entry_count = (int)max_entries + 1;
+      entry_index = entry_index + 0x10;
+      max_entries = (ulonglong)entry_count;
+    } while ((ulonglong)(longlong)(int)entry_count <
+             (ulonglong)(*(longlong *)(render_context + 0x40) - entry_ptr >> 4));
   }
   return;
 }
@@ -849,35 +902,40 @@ LAB_18027591d:
 
 
 
-// 函数: void FUN_1802758eb(undefined8 param_1,undefined8 param_2,longlong param_3)
-void FUN_1802758eb(undefined8 param_1,undefined8 param_2,longlong param_3)
+/**
+ * 批量设置渲染标志
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param render_context 渲染上下文
+ */
+void batch_set_render_flags(undefined8 param1, undefined8 param2, longlong render_context)
 
 {
-  longlong lVar1;
-  ulonglong uVar2;
-  char unaff_BPL;
-  longlong unaff_RSI;
-  uint unaff_EDI;
+  longlong entry_ptr;
+  ulonglong entry_index;
+  char flag_value;
+  longlong context_ptr;
+  uint entry_counter;
   
-  uVar2 = (ulonglong)unaff_EDI;
+  entry_index = (ulonglong)entry_counter;
   do {
-    lVar1 = *(longlong *)(uVar2 + param_3);
-    if (unaff_BPL == '\0') {
-      if (*(char *)(lVar1 + 0xfa) != '\0') {
-        *(undefined1 *)(lVar1 + 0xfa) = 0;
-LAB_18027591d:
-        FUN_180079520();
+    entry_ptr = *(longlong *)(entry_index + render_context);
+    if (flag_value == '\0') {
+      if (*(char *)(entry_ptr + 0xfa) != '\0') {
+        *(undefined1 *)(entry_ptr + 0xfa) = 0;
+BATCH_FLAG_TRIGGER:
+        trigger_render_update();
       }
     }
-    else if (*(char *)(lVar1 + 0xfa) != '\x01') {
-      *(undefined1 *)(lVar1 + 0xfa) = 1;
-      goto LAB_18027591d;
+    else if (*(char *)(entry_ptr + 0xfa) != '\x01') {
+      *(undefined1 *)(entry_ptr + 0xfa) = 1;
+      goto BATCH_FLAG_TRIGGER;
     }
-    param_3 = *(longlong *)(unaff_RSI + 0x38);
-    unaff_EDI = unaff_EDI + 1;
-    uVar2 = uVar2 + 0x10;
-    if ((ulonglong)(*(longlong *)(unaff_RSI + 0x40) - param_3 >> 4) <=
-        (ulonglong)(longlong)(int)unaff_EDI) {
+    render_context = *(longlong *)(context_ptr + 0x38);
+    entry_counter = entry_counter + 1;
+    entry_index = entry_index + 0x10;
+    if ((ulonglong)(*(longlong *)(context_ptr + 0x40) - render_context >> 4) <=
+        (ulonglong)(longlong)(int)entry_counter) {
       return;
     }
   } while( true );
@@ -887,8 +945,10 @@ LAB_18027591d:
 
 
 
-// 函数: void FUN_180275944(void)
-void FUN_180275944(void)
+/**
+ * 空函数 - 占位符
+ */
+void empty_function(void)
 
 {
   return;
@@ -898,53 +958,60 @@ void FUN_180275944(void)
 
 
 
-// 函数: void FUN_180275960(longlong param_1)
-void FUN_180275960(longlong param_1)
+/**
+ * 清理渲染缓存
+ * @param render_context 渲染上下文
+ */
+void cleanup_render_cache(longlong render_context)
 
 {
-  int iVar1;
-  longlong lVar2;
-  longlong lVar3;
+  int entry_count;
+  longlong entry_ptr;
+  longlong counter;
   
-  lVar2 = 0;
-  iVar1 = (int)(*(longlong *)(param_1 + 0x40) - *(longlong *)(param_1 + 0x38) >> 4);
-  lVar3 = (longlong)iVar1;
-  if (0 < iVar1) {
+  entry_ptr = 0;
+  entry_count = (int)(*(longlong *)(render_context + 0x40) - *(longlong *)(render_context + 0x38) >> 4);
+  counter = (longlong)entry_count;
+  if (0 < entry_count) {
     do {
-      *(undefined8 *)(*(longlong *)(lVar2 + *(longlong *)(param_1 + 0x38)) + 0x1c8) = 0;
-      lVar3 = lVar3 + -1;
-      lVar2 = lVar2 + 0x10;
-    } while (lVar3 != 0);
+      *(undefined8 *)(*(longlong *)(entry_ptr + *(longlong *)(render_context + 0x38)) + 0x1c8) = 0;
+      counter = counter + -1;
+      entry_ptr = entry_ptr + 0x10;
+    } while (counter != 0);
   }
-  FUN_180284500();
-  lVar2 = *(longlong *)(param_1 + 0x28);
-  *(undefined4 *)(param_1 + 0x58) = 0;
-  if ((lVar2 != 0) &&
-     (*(short *)(lVar2 + 0x2b0) = *(short *)(lVar2 + 0x2b0) + 1, *(longlong *)(lVar2 + 0x168) != 0))
+  cleanup_render_internal_data();
+  entry_ptr = *(longlong *)(render_context + 0x28);
+  *(undefined4 *)(render_context + 0x58) = 0;
+  if ((entry_ptr != 0) &&
+     (*(short *)(entry_ptr + 0x2b0) = *(short *)(entry_ptr + 0x2b0) + 1, *(longlong *)(entry_ptr + 0x168) != 0))
   {
-    func_0x0001802eeba0();
+    trigger_render_cleanup();
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 * FUN_1802759e0(undefined8 param_1,undefined8 *param_2)
+/**
+ * 创建渲染实例
+ * @param param1 参数1
+ * @param render_instance_ptr 渲染实例指针
+ * @return 渲染实例指针
+ */
+undefined8 * create_render_instance(undefined8 param1, undefined8 *render_instance_ptr)
 
 {
-  undefined8 uVar1;
-  longlong *plVar2;
+  undefined8 instance_handle;
+  longlong *instance_data;
   
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x3d0,8,0x16,0,0xfffffffffffffffe);
-  plVar2 = (longlong *)FUN_180275090(uVar1);
-  *param_2 = plVar2;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x28))(plVar2);
+  instance_handle = allocate_render_memory(RENDER_ALLOC_TABLE, 0x3d0, 8, 0x16, 0, 0xfffffffffffffffe);
+  instance_data = (longlong *)initialize_renderer(instance_handle);
+  *render_instance_ptr = instance_data;
+  if (instance_data != (longlong *)0x0) {
+    (**(code **)(*instance_data + 0x28))(instance_data);
   }
-  FUN_180275a60(param_1,*param_2,1);
-  return param_2;
+  apply_special_render_settings(param1, *render_instance_ptr, 1);
+  return render_instance_ptr;
 }
 
 
