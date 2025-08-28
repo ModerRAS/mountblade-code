@@ -1,521 +1,568 @@
 #include "TaleWorlds.Native.Split.h"
 
-// ============================================================================
-// 99_part_01_part004.c - 高级流处理和格式化输出模块
-// 包含14个核心函数，涵盖流处理、格式化输出、异常处理、编码转换等高级功能
-// 主要功能包括：高级流处理、格式化输出、异常处理、编码转换、文件操作等
-// ============================================================================
+/**
+ * @file 99_part_01_part004.c
+ * @brief 数据处理和流操作模块
+ * 
+ * 本模块包含22个核心函数，主要功能包括：
+ * - 数据流处理和输出操作
+ * - 内存管理和资源清理
+ * - 文件操作和异常处理
+ * - 字符串处理和格式化
+ * - 系统调用和同步处理
+ * 
+ * @author 系统自动生成
+ * @version 1.0
+ * @date 2024
+ */
 
-// 函数类型定义和常量
-typedef longlong* StreamPtr;
-typedef undefined1* CharPtr;
-typedef ulonglong SizeType;
+// ===========================================
+// 常量定义
+// ===========================================
 
-#define STREAM_BUFFER_SIZE 0x3c
-#define STREAM_FORMAT_CHAR 0x3f
-#define STREAM_SPACE_CHAR 0x20
-#define STREAM_NEWLINE_CHAR 0x0a
-#define STREAM_TAB_CHAR 0x09
-#define DEFAULT_STRING_ADDR 0x180d48d24
+/** 流操作状态常量 */
+#define STREAM_STATE_SUCCESS          0x00
+#define STREAM_STATE_FAILURE          0x04
+#define STREAM_STATE_ERROR           0x08
 
-// ============================================================================
-// 函数: AdvancedStreamFormatter - 高级流格式化处理器
-// 功能: 处理流数据的格式化输出，支持多种格式化选项和参数控制
-// 参数: 
-//   param_1 - 输出流指针
-//   param_2 - 格式化参数结构
-//   param_3 - 字符串参数
-//   param_4 - 格式化标志
-//   param_5 - 重复次数
-// 返回值: 无
-// ============================================================================
-void AdvancedStreamFormatter(StreamPtr param_1, StreamPtr param_2, undefined8 *param_3, 
-                           byte param_4, uint param_5)
-{
-    undefined1 char_value;
-    longlong stream_data;
-    CharPtr string_ptr;
-    longlong buffer_size;
-    CharPtr string_start;
-    longlong string_length;
-    SizeType counter;
-    CharPtr current_char;
-    longlong output_value;
-    
-    // 处理格式化前缀（如果标志位允许）
-    if ((param_4 & 1) == 0) {
-        output_value = *param_2;
-        stream_data = param_2[1];
-        
-        // 处理重复的制表符输出
-        if (0 < (int)param_5) {
-            counter = (SizeType)param_5;
-            do {
-                StreamOutputFormatter(stream_data, STREAM_TAB_CHAR);
-                if (output_value != 0) {
-                    StreamDataWriter(stream_data, output_value);
-                }
-                counter = counter - 1;
-            } while (counter != 0);
+/** 流操作控制字符 */
+#define STREAM_CHAR_TAB              0x09
+#define STREAM_CHAR_SPACE            0x20
+#define STREAM_CHAR_LESS_THAN        0x3c
+#define STREAM_CHAR_GREATER_THAN     0x3e
+#define STREAM_CHAR_QUESTION         0x3f
+#define STREAM_CHAR_X                0x78
+#define STREAM_CHAR_M                0x6d
+#define STREAM_CHAR_L                0x6c
+#define STREAM_CHAR_LINE_FEED        0x0a
+
+/** 内存管理常量 */
+#define MEMORY_ALIGNMENT_SIZE        0x18
+#define MEMORY_FREE_FLAG            0x01
+#define MEMORY_ALLOC_SUCCESS        0x00
+#define MEMORY_ALLOC_FAILURE        0xfffffffffffffffe
+
+/** 文件操作常量 */
+#define FILE_HANDLE_INVALID         0x00
+#define FILE_OPERATION_SUCCESS      0x00
+#define FILE_OPERATION_FAILURE      -1
+
+/** 系统调用常量 */
+#define SYSTEM_CALL_SUCCESS         0x00
+#define SYSTEM_CALL_FAILURE         -1
+#define SYSTEM_BUFFER_SIZE          32
+
+/** 异常处理常量 */
+#define EXCEPTION_TYPE_INVALID      0x00
+#define EXCEPTION_TYPE_MEMORY       0x01
+#define EXCEPTION_TYPE_FILE         0x02
+#define EXCEPTION_TYPE_STREAM       0x03
+
+/** 全局数据地址 */
+#define GLOBAL_DATA_ADDRESS_1       0x180d48d24
+#define GLOBAL_DATA_ADDRESS_2       0x180d48d38
+#define GLOBAL_EXCEPTION_VTABLE     0x18098b928
+
+// ===========================================
+// 函数别名宏定义
+// ===========================================
+
+/** 数据处理函数别名 */
+#define DataStreamProcessor           FUN_1800a0c50
+#define StreamOutputOperator          FUN_1800a0e50
+#define StreamInitializer           FUN_1800a1010
+#define StreamUnlocker              FUN_1800a10c0
+#define StreamCleaner               FUN_1800a1120
+#define StringStreamOutputter        FUN_1800a1160
+#define DataDistributionProcessor    FUN_1800a1310
+#define DataFormattingProcessor     FUN_1800a1326
+#define SystemCallProcessor         FUN_1800a1340
+
+/** 高级数据处理函数别名 */
+#define AdvancedDataProcessor       FUN_1800a146a
+#define DataConversionProcessor     FUN_1800a15ad
+#define DataTransferProcessor       FUN_1800a1618
+#define DataSyncProcessor           FUN_1800a162b
+
+/** 编码处理函数别名 */
+#define CharacterEncodingProcessor   FUN_1800a16b0
+#define CharacterOutputProcessor    FUN_1800a1710
+
+/** 系统清理函数别名 */
+#define SystemCleaner               FUN_1800a1832
+#define BufferCleaner               FUN_1800a1850
+#define StreamInitializerConfig     FUN_1800a1920
+#define FileCloseProcessor          FUN_1800a19c0
+
+/** 异常处理函数别名 */
+#define ExceptionObjectDestroyer     FUN_1800a1a40
+#define ExceptionMemoryDeallocator  FUN_1800a1a70
+#define ExceptionObjectCopier       FUN_1800a1ae0
+
+// ===========================================
+// 数据流处理函数
+// ===========================================
+
+/**
+ * @brief 数据流处理器
+ * 
+ * 处理数据流的核心函数，负责数据的读取、处理和输出。
+ * 支持多种数据格式和流操作模式。
+ * 
+ * @param param_1 流对象指针
+ * @param param_2 数据缓冲区指针
+ * @param param_3 输出目标指针
+ * @param param_4 控制标志字节
+ * @param param_5 数据长度
+ * @return void 无返回值
+ */
+void DataStreamProcessor(longlong *param_1,longlong *param_2,undefined8 *param_3,byte param_4,uint param_5)
+
+  undefined1 uVar1;
+  longlong lVar2;
+  undefined1 *puVar3;
+  longlong lVar4;
+  undefined1 *puVar5;
+  longlong lVar6;
+  ulonglong uVar7;
+  undefined1 *puVar8;
+  longlong lVar9;
+  
+  // 检查控制标志，决定是否进行数据预处理
+  if ((param_4 & 1) == 0) {
+    lVar9 = *param_2;
+    lVar2 = param_2[1];
+    if (0 < (int)param_5) {
+      uVar7 = (ulonglong)param_5;
+      do {
+        // 输出制表符
+        StreamOutputOperator(lVar2,STREAM_CHAR_TAB);
+        if (lVar9 != 0) {
+          StringStreamOutputter(lVar2,lVar9);
         }
-        
-        *param_2 = output_value;
-        param_2[1] = stream_data;
+        uVar7 = uVar7 - 1;
+      } while (uVar7 != 0);
     }
-    
-    // 输出格式化前缀字符
-    output_value = param_2[1];
-    StreamOutputFormatter(output_value, STREAM_BUFFER_SIZE);
-    stream_data = *param_2;
-    if (stream_data != 0) {
-        StreamDataWriter(output_value, stream_data);
+    *param_2 = lVar9;
+    param_2[1] = lVar2;
+  }
+  
+  // 输出开始标记
+  lVar9 = param_2[1];
+  StreamOutputOperator(lVar9,STREAM_CHAR_LESS_THAN);
+  lVar2 = *param_2;
+  if (lVar2 != 0) {
+    StringStreamOutputter(lVar9,lVar2);
+  }
+  
+  // 输出结束标记
+  StreamOutputOperator(lVar9,STREAM_CHAR_QUESTION);
+  if (lVar2 != 0) {
+    StringStreamOutputter(lVar9,lVar2);
+  }
+  
+  // 处理主数据块
+  puVar3 = (undefined1 *)*param_3;
+  lVar2 = *param_2;
+  lVar4 = param_2[1];
+  lVar9 = 0;
+  if (puVar3 == (undefined1 *)0x0) {
+    puVar5 = (undefined1 *)GLOBAL_DATA_ADDRESS_1;
+    lVar6 = lVar9;
+  }
+  else {
+    puVar5 = puVar3;
+    lVar6 = param_3[2];
+  }
+  puVar8 = (undefined1 *)GLOBAL_DATA_ADDRESS_1;
+  if (puVar3 != (undefined1 *)0x0) {
+    puVar8 = puVar3;
+  }
+  while (puVar8 != puVar5 + lVar6) {
+    uVar1 = *puVar8;
+    puVar8 = puVar8 + 1;
+    StreamOutputOperator(lVar4,uVar1);
+    if (lVar2 != 0) {
+      StringStreamOutputter(lVar4,lVar2);
     }
-    
-    // 输出格式化字符
-    StreamOutputFormatter(output_value, STREAM_FORMAT_CHAR);
-    if (stream_data != 0) {
-        StreamDataWriter(output_value, stream_data);
+  }
+  *param_2 = lVar2;
+  param_2[1] = lVar4;
+  
+  // 输出空格分隔符
+  lVar6 = param_2[1];
+  StreamOutputOperator(lVar6,STREAM_CHAR_SPACE);
+  if (*param_2 != 0) {
+    StringStreamOutputter(lVar6);
+  }
+  
+  // 处理属性数据
+  puVar3 = (undefined1 *)param_3[1];
+  if (puVar3 == (undefined1 *)0x0) {
+    puVar5 = (undefined1 *)GLOBAL_DATA_ADDRESS_1;
+  }
+  else {
+    lVar9 = param_3[3];
+    puVar5 = puVar3;
+  }
+  puVar8 = (undefined1 *)GLOBAL_DATA_ADDRESS_1;
+  if (puVar3 != (undefined1 *)0x0) {
+    puVar8 = puVar3;
+  }
+  while (puVar8 != puVar5 + lVar9) {
+    uVar1 = *puVar8;
+    puVar8 = puVar8 + 1;
+    StreamOutputOperator(lVar4,uVar1);
+    if (lVar2 != 0) {
+      StringStreamOutputter(lVar4,lVar2);
     }
-    
-    // 处理主字符串参数
-    string_ptr = (CharPtr)*param_3;
-    stream_data = *param_2;
-    buffer_size = param_2[1];
-    output_value = 0;
-    
-    // 确定字符串起始位置和长度
-    if (string_ptr == (CharPtr)0x0) {
-        string_start = (CharPtr)DEFAULT_STRING_ADDR;
-        string_length = output_value;
-    } else {
-        string_start = string_ptr;
-        string_length = param_3[2];
+  }
+  *param_2 = lVar2;
+  param_2[1] = lVar4;
+  
+  // 输出结束标记
+  lVar9 = param_2[1];
+  StreamOutputOperator(lVar9,STREAM_CHAR_QUESTION);
+  lVar6 = *param_2;
+  if (lVar6 != 0) {
+    StringStreamOutputter(lVar9,lVar6);
+  }
+  
+  // 输出结束符号
+  StreamOutputOperator(lVar9,STREAM_CHAR_GREATER_THAN);
+  if (lVar6 != 0) {
+    StringStreamOutputter(lVar9,lVar6);
+  }
+  
+  // 更新流对象状态
+  *param_1 = lVar2;
+  param_1[1] = lVar4;
+  return;
+
+
+
+/**
+ * @brief 流输出操作器
+ * 
+ * 处理流输出的核心函数，支持多种输出模式和字符编码。
+ * 实现缓冲区管理和错误处理机制。
+ * 
+ * @param param_1 流对象指针
+ * @param param_2 输出字符
+ * @param param_3 附加参数
+ * @param param_4 附加参数
+ * @return longlong* 流对象指针
+ */
+longlong * StreamOutputOperator(longlong *param_1,undefined1 param_2,undefined8 param_3,undefined8 param_4)
+
+  longlong *plVar1;
+  char cVar2;
+  longlong lVar3;
+  longlong lVar4;
+  int iVar5;
+  int iVar6;
+  int iVar7;
+  longlong *plStack_30;
+  char cStack_28;
+  
+  iVar5 = 0;
+  iVar7 = 0;
+  StreamInitializer(&plStack_30,param_1,param_3,param_4,0);
+  if (cStack_28 != '\0') {
+    lVar4 = *(longlong *)((longlong)*(int *)(*param_1 + 4) + 0x28 + (longlong)param_1);
+    if (lVar4 < 2) {
+      lVar4 = 0;
     }
-    
-    current_char = (CharPtr)DEFAULT_STRING_ADDR;
-    if (string_ptr != (CharPtr)0x0) {
-        current_char = string_ptr;
+    else {
+      lVar4 = lVar4 + -1;
     }
-    
-    // 输出主字符串内容
-    while (current_char != string_start + string_length) {
-        char_value = *current_char;
-        current_char = current_char + 1;
-        StreamOutputFormatter(buffer_size, char_value);
-        if (stream_data != 0) {
-            StreamDataWriter(buffer_size, stream_data);
+    lVar3 = *param_1;
+    iVar6 = STREAM_STATE_FAILURE;
+    if ((*(uint *)((longlong)*(int *)(lVar3 + 4) + 0x18 + (longlong)param_1) & 0x1c0) == 0x40) {
+LAB_1800a0f0c:
+      iVar7 = _sputc___basic_streambuf_DU__char_traits_D_std___std__QEAAHD_Z
+                        (*(undefined8 *)((longlong)*(int *)(lVar3 + 4) + 0x48 + (longlong)param_1),
+                         param_2);
+      if (iVar7 == FILE_OPERATION_FAILURE) {
+        iVar5 = iVar6;
+      }
+      for (; (iVar7 = iVar5, iVar5 == 0 && (0 < lVar4)); lVar4 = lVar4 + -1) {
+        iVar7 = _sputc___basic_streambuf_DU__char_traits_D_std___std__QEAAHD_Z
+                          (*(undefined8 *)
+                            ((longlong)*(int *)(*param_1 + 4) + 0x48 + (longlong)param_1),
+                           *(undefined1 *)
+                            ((longlong)*(int *)(*param_1 + 4) + 0x58 + (longlong)param_1));
+        if (iVar7 == FILE_OPERATION_FAILURE) {
+          iVar5 = iVar6;
         }
+      }
     }
-    
-    *param_2 = stream_data;
-    param_2[1] = buffer_size;
-    
-    // 输出空格分隔符
-    string_length = param_2[1];
-    StreamOutputFormatter(string_length, STREAM_SPACE_CHAR);
-    if (*param_2 != 0) {
-        StreamDataWriter(string_length);
-    }
-    
-    // 处理第二个字符串参数
-    string_ptr = (CharPtr)param_3[1];
-    if (string_ptr == (CharPtr)0x0) {
-        string_start = (CharPtr)DEFAULT_STRING_ADDR;
-    } else {
-        output_value = param_3[3];
-        string_start = string_ptr;
-    }
-    
-    current_char = (CharPtr)DEFAULT_STRING_ADDR;
-    if (string_ptr != (CharPtr)0x0) {
-        current_char = string_ptr;
-    }
-    
-    // 输出第二个字符串内容
-    while (current_char != string_start + output_value) {
-        char_value = *current_char;
-        current_char = current_char + 1;
-        StreamOutputFormatter(buffer_size, char_value);
-        if (stream_data != 0) {
-            StreamDataWriter(buffer_size, stream_data);
+    else {
+      while (iVar5 == 0) {
+        if (lVar4 < 1) {
+          lVar3 = *param_1;
+          goto LAB_1800a0f0c;
         }
+        iVar7 = _sputc___basic_streambuf_DU__char_traits_D_std___std__QEAAHD_Z
+                          (*(undefined8 *)
+                            ((longlong)*(int *)(*param_1 + 4) + 0x48 + (longlong)param_1),
+                           *(undefined1 *)
+                            ((longlong)*(int *)(*param_1 + 4) + 0x58 + (longlong)param_1));
+        if (iVar7 == FILE_OPERATION_FAILURE) {
+          iVar5 = iVar6;
+        }
+        lVar4 = lVar4 + -1;
+        iVar7 = iVar5;
+      }
     }
-    
-    *param_2 = stream_data;
-    param_2[1] = buffer_size;
-    
-    // 输出格式化后缀
-    output_value = param_2[1];
-    StreamOutputFormatter(output_value, STREAM_FORMAT_CHAR);
-    string_length = *param_2;
-    if (string_length != 0) {
-        StreamDataWriter(output_value, string_length);
+  }
+  *(undefined8 *)((longlong)*(int *)(*param_1 + 4) + 0x28 + (longlong)param_1) = 0;
+  _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
+            ((longlong)*(int *)(*param_1 + 4) + (longlong)param_1,iVar5,0,param_4,iVar7);
+  cVar2 = _uncaught_exception_std__YA_NXZ();
+  if (cVar2 == '\0') {
+    __Osfx___basic_ostream_DU__char_traits_D_std___std__QEAAXXZ(plStack_30);
+  }
+  plVar1 = *(longlong **)((longlong)*(int *)(*plStack_30 + 4) + 0x48 + (longlong)plStack_30);
+  if (plVar1 != (longlong *)0x0) {
+    if (*(code **)(*plVar1 + 0x10) == (code *)&UNK_18009ee10) {
+      if (plVar1[0x10] != 0) {
+        _unlock_file();
+      }
     }
-    
-    // 输出格式化结束符
-    StreamOutputFormatter(output_value, STREAM_FORMAT_CHAR - 1);
-    if (string_length != 0) {
-        StreamDataWriter(output_value, string_length);
+    else {
+      (**(code **)(*plVar1 + 0x10))();
     }
-    
-    // 保存最终结果
-    *param_1 = stream_data;
-    param_1[1] = buffer_size;
-    return;
+  }
+  return param_1;
 }
 
 
 
-// ============================================================================
-// 函数: StreamOutputFormatter - 流输出格式化器
-// 功能: 处理单个字符的流输出，包括缓冲区管理和错误处理
-// 参数:
-//   param_1 - 流对象指针
-//   param_2 - 要输出的字符
-//   param_3 - 保留参数1
-//   param_4 - 保留参数2
-// 返回值: 流对象指针
-// ============================================================================
-longlong * StreamOutputFormatter(longlong *param_1, undefined1 param_2, 
-                                undefined8 param_3, undefined8 param_4)
-{
-    longlong *stream_buffer;
-    char exception_flag;
-    longlong stream_base;
-    longlong buffer_count;
-    int error_code;
-    int error_mask;
-    int char_result;
-    longlong *stack_stream;
-    char stack_flag;
-    
-    error_code = 0;
-    char_result = 0;
-    StreamInitializer(&stack_stream, param_1, param_3, param_4, 0);
-    
-    if (stack_flag != '\0') {
-        // 获取缓冲区中可用字符数
-        buffer_count = *(longlong *)((longlong)*(int *)(*param_1 + 4) + 0x28 + (longlong)param_1);
-        if (buffer_count < 2) {
-            buffer_count = 0;
-        } else {
-            buffer_count = buffer_count - 1;
-        }
-        
-        stream_base = *param_1;
-        error_mask = 4;
-        
-        // 检查流状态标志
-        if ((*(uint *)((longlong)*(int *)(stream_base + 4) + 0x18 + (longlong)param_1) & 0x1c0) == 0x40) {
-            // 优化路径：直接输出字符
-        optimized_output_path:
-            char_result = StreamBufferPutChar(
-                *(undefined8 *)((longlong)*(int *)(stream_base + 4) + 0x48 + (longlong)param_1),
-                param_2);
-            
-            if (char_result == -1) {
-                error_code = error_mask;
-            }
-            
-            // 处理缓冲区中剩余字符
-            for (; (char_result = error_code, error_code == 0 && (0 < buffer_count)); buffer_count = buffer_count - 1) {
-                char_result = StreamBufferPutChar(
-                    *(undefined8 *)((longlong)*(int *)(*param_1 + 4) + 0x48 + (longlong)param_1),
-                    *(undefined1 *)((longlong)*(int *)(*param_1 + 4) + 0x58 + (longlong)param_1));
-                
-                if (char_result == -1) {
-                    error_code = error_mask;
-                }
-            }
-        } else {
-            // 标准路径：逐个字符输出
-            while (error_code == 0) {
-                if (buffer_count < 1) {
-                    stream_base = *param_1;
-                    goto optimized_output_path;
-                }
-                
-                char_result = StreamBufferPutChar(
-                    *(undefined8 *)((longlong)*(int *)(*param_1 + 4) + 0x48 + (longlong)param_1),
-                    *(undefined1 *)((longlong)*(int *)(*param_1 + 4) + 0x58 + (longlong)param_1));
-                
-                if (char_result == -1) {
-                    error_code = error_mask;
-                }
-                
-                buffer_count = buffer_count - 1;
-                char_result = error_code;
-            }
-        }
+/**
+ * @brief 流初始化器
+ * 
+ * 初始化流对象，设置流的状态和缓冲区。
+ * 处理文件锁定和缓冲区刷新操作。
+ * 
+ * @param param_1 初始化目标指针
+ * @param param_2 流对象指针
+ * @return undefined8* 初始化完成的对象指针
+ */
+undefined8 * StreamInitializer(undefined8 *param_1,longlong *param_2)
+
+  longlong *plVar1;
+  longlong lVar2;
+  
+  *param_1 = param_2;
+  plVar1 = *(longlong **)((longlong)*(int *)(*param_2 + 4) + 0x48 + (longlong)param_2);
+  if (plVar1 != (longlong *)0x0) {
+    if (*(code **)(*plVar1 + 8) == (code *)&UNK_18009edf0) {
+      if (plVar1[0x10] != 0) {
+        _lock_file();
+      }
     }
-    
-    // 重置缓冲区计数器
+    else {
+      (**(code **)(*plVar1 + 8))();
+    }
+  }
+  lVar2 = *param_2;
+  if (((*(int *)((longlong)*(int *)(lVar2 + 4) + 0x10 + (longlong)param_2) == 0) &&
+      (plVar1 = *(longlong **)((longlong)*(int *)(lVar2 + 4) + 0x50 + (longlong)param_2),
+      plVar1 != (longlong *)0x0)) && (plVar1 != param_2)) {
+    _flush___basic_ostream_DU__char_traits_D_std___std__QEAAAEAV12_XZ();
+    lVar2 = *param_2;
+  }
+  *(bool *)(param_1 + 1) = *(int *)((longlong)*(int *)(lVar2 + 4) + 0x10 + (longlong)param_2) == 0;
+  return param_1;
+}
+
+
+
+
+
+
+/**
+ * @brief 流解锁器
+ * 
+ * 解锁流对象，释放文件锁定资源。
+ * 确保流对象可以安全地被其他线程访问。
+ * 
+ * @param param_1 流对象指针
+ * @return void 无返回值
+ */
+void StreamUnlocker(longlong *param_1)
+
+{
+  longlong *plVar1;
+  
+  plVar1 = *(longlong **)((longlong)*(int *)(*(longlong *)*param_1 + 4) + 0x48 + *param_1);
+  if (plVar1 != (longlong *)0x0) {
+    if (*(code **)(*plVar1 + 0x10) != (code *)&UNK_18009ee10) {
+      (**(code **)(*plVar1 + 0x10))();
+      return;
+    }
+    if (plVar1[0x10] != 0) {
+      _unlock_file();
+      return;
+    }
+  }
+  return;
+}
+
+
+
+
+
+
+/**
+ * @brief 流清理器
+ * 
+ * 清理流对象，释放资源并处理异常情况。
+ * 确保流对象被正确关闭和清理。
+ * 
+ * @param param_1 流对象指针
+ * @return void 无返回值
+ */
+void StreamCleaner(longlong *param_1)
+
+{
+  longlong *plVar1;
+  char cVar2;
+  
+  cVar2 = _uncaught_exception_std__YA_NXZ();
+  if (cVar2 == '\0') {
+    __Osfx___basic_ostream_DU__char_traits_D_std___std__QEAAXXZ(*param_1);
+  }
+  plVar1 = *(longlong **)((longlong)*(int *)(*(longlong *)*param_1 + 4) + 0x48 + *param_1);
+  if (plVar1 != (longlong *)0x0) {
+    if (*(code **)(*plVar1 + 0x10) != (code *)&UNK_18009ee10) {
+      (**(code **)(*plVar1 + 0x10))();
+      return;
+    }
+    if (plVar1[0x10] != 0) {
+      _unlock_file();
+      return;
+    }
+  }
+  return;
+}
+
+
+
+/**
+ * @brief 字符串流输出器
+ * 
+ * 将字符串输出到流中，支持缓冲区管理和错误处理。
+ * 处理字符串长度计算和缓冲区溢出检查。
+ * 
+ * @param param_1 流对象指针
+ * @param param_2 字符串指针
+ * @param param_3 附加参数
+ * @param param_4 附加参数
+ * @return longlong* 流对象指针
+ */
+longlong * StringStreamOutputter(longlong *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+
+{
+  longlong *plVar1;
+  char cVar2;
+  int iVar3;
+  longlong lVar4;
+  undefined4 uVar5;
+  longlong lVar6;
+  longlong lVar7;
+  undefined4 uVar8;
+  longlong *plStack_30;
+  char cStack_28;
+  
+  uVar5 = STREAM_STATE_SUCCESS;
+  uVar8 = STREAM_STATE_SUCCESS;
+  lVar7 = -1;
+  do {
+    lVar7 = lVar7 + 1;
+  } while (*(char *)(param_2 + lVar7) != '\0');
+  lVar6 = *(longlong *)((longlong)*(int *)(*param_1 + 4) + 0x28 + (longlong)param_1);
+  if ((lVar6 < 1) || (lVar6 <= lVar7)) {
+    lVar6 = 0;
+  }
+  else {
+    lVar6 = lVar6 - lVar7;
+  }
+  StreamInitializer(&plStack_30,param_1,param_3,param_4,0);
+  if (cStack_28 == '\0') {
+    uVar5 = STREAM_STATE_FAILURE;
+  }
+  else {
+    lVar4 = *param_1;
+    if ((*(uint *)((longlong)*(int *)(lVar4 + 4) + 0x18 + (longlong)param_1) & 0x1c0) != 0x40) {
+      for (; 0 < lVar6; lVar6 = lVar6 + -1) {
+        iVar3 = _sputc___basic_streambuf_DU__char_traits_D_std___std__QEAAHD_Z
+                          (*(undefined8 *)
+                            ((longlong)*(int *)(*param_1 + 4) + 0x48 + (longlong)param_1),
+                           *(undefined1 *)
+                            ((longlong)*(int *)(*param_1 + 4) + 0x58 + (longlong)param_1));
+        if (iVar3 == FILE_OPERATION_FAILURE) goto LAB_1800a1263;
+      }
+      lVar4 = *param_1;
+    }
+    lVar4 = _sputn___basic_streambuf_DU__char_traits_D_std___std__QEAA_JPEBD_J_Z
+                      (*(undefined8 *)((longlong)*(int *)(lVar4 + 4) + 0x48 + (longlong)param_1),
+                       param_2,lVar7);
+    if (lVar4 == lVar7) {
+      for (; 0 < lVar6; lVar6 = lVar6 + -1) {
+        iVar3 = _sputc___basic_streambuf_DU__char_traits_D_std___std__QEAAHD_Z
+                          (*(undefined8 *)
+                            ((longlong)*(int *)(*param_1 + 4) + 0x48 + (longlong)param_1),
+                           *(undefined1 *)
+                            ((longlong)*(int *)(*param_1 + 4) + 0x58 + (longlong)param_1));
+        if (iVar3 == FILE_OPERATION_FAILURE) goto LAB_1800a1263;
+      }
+    }
+    else {
+LAB_1800a1263:
+      uVar5 = STREAM_STATE_FAILURE;
+      uVar8 = STREAM_STATE_FAILURE;
+    }
     *(undefined8 *)((longlong)*(int *)(*param_1 + 4) + 0x28 + (longlong)param_1) = 0;
-    
-    // 设置流状态
-    SetStreamState((longlong)*(int *)(*param_1 + 4) + (longlong)param_1, error_code, 0, param_4, char_result);
-    
-    // 检查异常状态
-    exception_flag = CheckUncaughtException();
-    if (exception_flag == '\0') {
-        StreamFlush(stack_stream);
+  }
+  _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
+            ((longlong)*(int *)(*param_1 + 4) + (longlong)param_1,uVar5,0,param_4,uVar8);
+  cVar2 = _uncaught_exception_std__YA_NXZ();
+  if (cVar2 == '\0') {
+    __Osfx___basic_ostream_DU__char_traits_D_std___std__QEAAXXZ(plStack_30);
+  }
+  plVar1 = *(longlong **)((longlong)*(int *)(*plStack_30 + 4) + 0x48 + (longlong)plStack_30);
+  if (plVar1 != (longlong *)0x0) {
+    if (*(code **)(*plVar1 + 0x10) == (code *)&UNK_18009ee10) {
+      if (plVar1[0x10] != 0) {
+        _unlock_file();
+      }
     }
-    
-    // 处理文件锁定
-    stream_buffer = *(longlong **)((longlong)*(int *)(*stack_stream + 4) + 0x48 + (longlong)stack_stream);
-    if (stream_buffer != (longlong *)0x0) {
-        if (*(code **)(*stream_buffer + 0x10) == (code *)&STREAM_UNLOCK_HANDLER) {
-            if (stream_buffer[0x10] != 0) {
-                UnlockFile();
-            }
-        } else {
-            (**(code **)(*stream_buffer + 0x10))();
-        }
+    else {
+      (**(code **)(*plVar1 + 0x10))();
     }
-    
-    return param_1;
+  }
+  return param_1;
 }
 
 
 
-// ============================================================================
-// 函数: StreamInitializer - 流初始化器
-// 功能: 初始化流对象，处理文件锁定和缓冲区刷新
-// 参数:
-//   param_1 - 初始化目标指针
-//   param_2 - 流对象指针
-// 返回值: 初始化目标指针
-// ============================================================================
-undefined8 * StreamInitializer(undefined8 *param_1, longlong *param_2)
-{
-    longlong *stream_buffer;
-    longlong stream_base;
-    
-    // 设置流对象引用
-    *param_1 = param_2;
-    
-    // 获取流缓冲区
-    stream_buffer = *(longlong **)((longlong)*(int *)(*param_2 + 4) + 0x48 + (longlong)param_2);
-    if (stream_buffer != (longlong *)0x0) {
-        // 处理文件锁定
-        if (*(code **)(*stream_buffer + 8) == (code *)&STREAM_LOCK_HANDLER) {
-            if (stream_buffer[0x10] != 0) {
-                LockFile();
-            }
-        } else {
-            (**(code **)(*stream_buffer + 8))();
-        }
-    }
-    
-    stream_base = *param_2;
-    
-    // 检查是否需要刷新缓冲区
-    if (((*(int *)((longlong)*(int *)(stream_base + 4) + 0x10 + (longlong)param_2) == 0) &&
-         (stream_buffer = *(longlong **)((longlong)*(int *)(stream_base + 4) + 0x50 + (longlong)param_2),
-          stream_buffer != (longlong *)0x0)) && (stream_buffer != param_2)) {
-        FlushOutputStream();
-        stream_base = *param_2;
-    }
-    
-    // 设置初始化状态标志
-    *(bool *)(param_1 + 1) = *(int *)((longlong)*(int *)(stream_base + 4) + 0x10 + (longlong)param_2) == 0;
-    
-    return param_1;
-}
-
-
-
-
-
-
-// ============================================================================
-// 函数: StreamUnlockHandler - 流解锁处理器
-// 功能: 处理流对象的解锁操作，确保资源正确释放
-// 参数:
-//   param_1 - 流对象指针数组
-// 返回值: 无
-// ============================================================================
-void StreamUnlockHandler(longlong *param_1)
-{
-    longlong *stream_buffer;
-    
-    // 获取流缓冲区
-    stream_buffer = *(longlong **)((longlong)*(int *)(*(longlong *)*param_1 + 4) + 0x48 + *param_1);
-    if (stream_buffer != (longlong *)0x0) {
-        // 检查解锁处理器类型
-        if (*(code **)(*stream_buffer + 0x10) != (code *)&STREAM_UNLOCK_HANDLER) {
-            // 使用自定义解锁处理器
-            (**(code **)(*stream_buffer + 0x10))();
-            return;
-        }
-        
-        // 使用标准解锁处理器
-        if (stream_buffer[0x10] != 0) {
-            UnlockFile();
-            return;
-        }
-    }
-    return;
-}
-
-
-
-
-
-
-// ============================================================================
-// 函数: StreamFlushAndUnlock - 流刷新和解锁处理器
-// 功能: 刷新流缓冲区并处理解锁操作，确保数据完整性
-// 参数:
-//   param_1 - 流对象指针数组
-// 返回值: 无
-// ============================================================================
-void StreamFlushAndUnlock(longlong *param_1)
-{
-    longlong *stream_buffer;
-    char exception_flag;
-    
-    // 检查异常状态
-    exception_flag = CheckUncaughtException();
-    if (exception_flag == '\0') {
-        // 无异常时刷新流
-        StreamFlush(*param_1);
-    }
-    
-    // 获取流缓冲区
-    stream_buffer = *(longlong **)((longlong)*(int *)(*(longlong *)*param_1 + 4) + 0x48 + *param_1);
-    if (stream_buffer != (longlong *)0x0) {
-        // 检查解锁处理器类型
-        if (*(code **)(*stream_buffer + 0x10) != (code *)&STREAM_UNLOCK_HANDLER) {
-            // 使用自定义解锁处理器
-            (**(code **)(*stream_buffer + 0x10))();
-            return;
-        }
-        
-        // 使用标准解锁处理器
-        if (stream_buffer[0x10] != 0) {
-            UnlockFile();
-            return;
-        }
-    }
-    return;
-}
-
-
-
-// ============================================================================
-// 函数: StreamDataWriter - 流数据写入器
-// 功能: 将字符串数据写入流缓冲区，支持大数据量和错误处理
-// 参数:
-//   param_1 - 流对象指针
-//   param_2 - 要写入的字符串数据
-//   param_3 - 保留参数1
-//   param_4 - 保留参数2
-// 返回值: 流对象指针
-// ============================================================================
-longlong * StreamDataWriter(longlong *param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
-{
-    longlong *stream_buffer;
-    char exception_flag;
-    int write_result;
-    longlong stream_base;
-    undefined4 error_code1;
-    longlong available_space;
-    longlong string_length;
-    undefined4 error_code2;
-    longlong *stack_stream;
-    char stack_flag;
-    
-    error_code1 = 0;
-    error_code2 = 0;
-    string_length = -1;
-    
-    // 计算字符串长度
-    do {
-        string_length = string_length + 1;
-    } while (*(char *)(param_2 + string_length) != '\0');
-    
-    // 获取可用缓冲区空间
-    available_space = *(longlong *)((longlong)*(int *)(*param_1 + 4) + 0x28 + (longlong)param_1);
-    if ((available_space < 1) || (available_space <= string_length)) {
-        available_space = 0;
-    } else {
-        available_space = available_space - string_length;
-    }
-    
-    // 初始化流写入操作
-    StreamInitializer(&stack_stream, param_1, param_3, param_4, 0);
-    
-    if (stack_flag == '\0') {
-        error_code1 = 4;
-    } else {
-        stream_base = *param_1;
-        
-        // 检查是否为优化写入模式
-        if ((*(uint *)((longlong)*(int *)(stream_base + 4) + 0x18 + (longlong)param_1) & 0x1c0) != 0x40) {
-            // 标准模式：逐个字符写入填充空间
-            for (; 0 < available_space; available_space = available_space - 1) {
-                write_result = StreamBufferPutChar(
-                    *(undefined8 *)((longlong)*(int *)(*param_1 + 4) + 0x48 + (longlong)param_1),
-                    *(undefined1 *)((longlong)*(int *)(*param_1 + 4) + 0x58 + (longlong)param_1));
-                
-                if (write_result == -1) goto write_error_handler;
-            }
-            stream_base = *param_1;
-        }
-        
-        // 批量写入字符串数据
-        write_result = StreamBufferPutString(
-            *(undefined8 *)((longlong)*(int *)(stream_base + 4) + 0x48 + (longlong)param_1),
-            param_2, string_length);
-        
-        if (write_result == string_length) {
-            // 写入成功，处理剩余空间
-            for (; 0 < available_space; available_space = available_space - 1) {
-                write_result = StreamBufferPutChar(
-                    *(undefined8 *)((longlong)*(int *)(*param_1 + 4) + 0x48 + (longlong)param_1),
-                    *(undefined1 *)((longlong)*(int *)(*param_1 + 4) + 0x58 + (longlong)param_1));
-                
-                if (write_result == -1) goto write_error_handler;
-            }
-        } else {
-        write_error_handler:
-            error_code1 = 4;
-            error_code2 = 4;
-        }
-        
-        // 重置缓冲区计数器
-        *(undefined8 *)((longlong)*(int *)(*param_1 + 4) + 0x28 + (longlong)param_1) = 0;
-    }
-    
-    // 设置流状态
-    SetStreamState((longlong)*(int *)(*param_1 + 4) + (longlong)param_1, error_code1, 0, param_4, error_code2);
-    
-    // 检查异常状态
-    exception_flag = CheckUncaughtException();
-    if (exception_flag == '\0') {
-        StreamFlush(stack_stream);
-    }
-    
-    // 处理文件解锁
-    stream_buffer = *(longlong **)((longlong)*(int *)(*stack_stream + 4) + 0x48 + (longlong)stack_stream);
-    if (stream_buffer != (longlong *)0x0) {
-        if (*(code **)(*stream_buffer + 0x10) == (code *)&STREAM_UNLOCK_HANDLER) {
-            if (stream_buffer[0x10] != 0) {
-                UnlockFile();
-            }
-        } else {
-            (**(code **)(*stream_buffer + 0x10))();
-        }
-    }
-    
-    return param_1;
-}
-
-
-
+/**
+ * @brief 数据分发处理器
+ * 
+ * 根据数据类型分发到不同的处理函数。
+ * 支持多种数据格式和处理模式。
+ * 
+ * @param param_1 输出缓冲区指针
+ * @param param_2 输入数据指针
+ * @param param_3 数据类型标识
+ * @param param_4 控制标志
+ * @param param_5 数据长度
+ * @return longlong* 处理结果指针
+ */
 longlong *
-FUN_1800a1310(longlong *param_1,longlong *param_2,longlong param_3,ulonglong param_4,uint param_5)
+DataDistributionProcessor(longlong *param_1,longlong *param_2,longlong param_3,ulonglong param_4,uint param_5)
 
 {
   longlong *plVar1;
@@ -529,24 +576,27 @@ FUN_1800a1310(longlong *param_1,longlong *param_2,longlong param_3,ulonglong par
   longlong lStack_50;
   undefined1 auStack_48 [32];
   
+  // 根据数据类型分发处理
   switch(*(undefined4 *)(param_3 + 0x28)) {
-  case 0:
+  case 0: // 递归处理数据类型
     plVar6 = (longlong *)*param_2;
     lVar7 = param_2[1];
     for (lVar5 = *(longlong *)(param_3 + 0x30); lVar5 != 0; lVar5 = *(longlong *)(lVar5 + 0x58)) {
       plStack_58 = plVar6;
       lStack_50 = lVar7;
-      plVar1 = (longlong *)FUN_1800a1310(auStack_48,&plStack_58,lVar5,param_4 & 0xffffffff,param_5);
+      plVar1 = (longlong *)DataDistributionProcessor(auStack_48,&plStack_58,lVar5,param_4 & 0xffffffff,param_5);
       plVar6 = (longlong *)*plVar1;
       lVar7 = plVar1[1];
     }
     goto code_r0x0001800a1605;
-  case 1:
+    
+  case 1: // 类型1处理
     plStack_58 = (longlong *)*param_2;
     lStack_50 = param_2[1];
     plVar1 = (longlong *)FUN_18009fc60(auStack_48,&plStack_58,param_3,param_4,param_5);
     break;
-  case 2:
+    
+  case 2: // 类型2处理
     if ((param_4 & 1) == 0) {
       plVar1 = (longlong *)*param_2;
       lVar7 = param_2[1];
@@ -555,9 +605,9 @@ FUN_1800a1310(longlong *param_1,longlong *param_2,longlong param_3,ulonglong par
         plStack_58 = plVar1;
         lStack_50 = lVar7;
         do {
-          FUN_1800a0e50(lVar7,9);
+          StreamOutputOperator(lVar7,STREAM_CHAR_TAB);
           if (plVar1 != (longlong *)0x0) {
-            FUN_1800a1160(lVar7,plVar1);
+            StringStreamOutputter(lVar7,plVar1);
           }
           uVar4 = uVar4 - 1;
         } while (uVar4 != 0);
@@ -567,30 +617,33 @@ FUN_1800a1310(longlong *param_1,longlong *param_2,longlong param_3,ulonglong par
     lStack_50 = param_2[1];
     lVar7 = *(longlong *)(param_3 + 8);
     if (lVar7 == 0) {
-      lVar2 = 0x180d48d24;
+      lVar2 = GLOBAL_DATA_ADDRESS_1;
       lVar5 = 0;
     }
     else {
       lVar5 = *(longlong *)(param_3 + 0x18);
       lVar2 = lVar7;
     }
-    lVar3 = 0x180d48d24;
+    lVar3 = GLOBAL_DATA_ADDRESS_1;
     if (lVar7 != 0) {
       lVar3 = lVar7;
     }
     plVar1 = (longlong *)FUN_1800a0350(auStack_48,lVar3,lVar5 + lVar2,0,&plStack_58);
     break;
-  case 3:
+    
+  case 3: // 类型3处理
     plStack_58 = (longlong *)*param_2;
     lStack_50 = param_2[1];
     plVar1 = (longlong *)FUN_1800a0040(auStack_48,&plStack_58,param_3,param_4,param_5);
     break;
-  case 4:
+    
+  case 4: // 类型4处理
     plStack_58 = (longlong *)*param_2;
     lStack_50 = param_2[1];
     plVar1 = (longlong *)FUN_1800a0820(auStack_48,&plStack_58,param_3,param_4,param_5);
     break;
-  case 5:
+    
+  case 5: // 类型5处理 - XML格式
     plVar1 = (longlong *)*param_2;
     lVar7 = param_2[1];
     plStack_58 = plVar1;
@@ -599,9 +652,9 @@ FUN_1800a1310(longlong *param_1,longlong *param_2,longlong param_3,ulonglong par
       if (0 < (int)param_5) {
         uVar4 = (ulonglong)param_5;
         do {
-          FUN_1800a0e50(lVar7,9);
+          StreamOutputOperator(lVar7,STREAM_CHAR_TAB);
           if (plVar1 != (longlong *)0x0) {
-            FUN_1800a1160(lVar7,plVar1);
+            StringStreamOutputter(lVar7,plVar1);
           }
           uVar4 = uVar4 - 1;
         } while (uVar4 != 0);
@@ -610,67 +663,72 @@ FUN_1800a1310(longlong *param_1,longlong *param_2,longlong param_3,ulonglong par
       lStack_50 = param_2[1];
     }
     lVar7 = lStack_50;
-    FUN_1800a0e50(lStack_50,0x3c);
+    StreamOutputOperator(lStack_50,STREAM_CHAR_LESS_THAN);
     plVar1 = plStack_58;
     if (plStack_58 != (longlong *)0x0) {
-      FUN_1800a1160(lVar7,plStack_58);
+      StringStreamOutputter(lVar7,plStack_58);
     }
-    FUN_1800a0e50(lVar7,0x3f);
+    StreamOutputOperator(lVar7,STREAM_CHAR_QUESTION);
     if (plVar1 != (longlong *)0x0) {
-      FUN_1800a1160(lVar7,plVar1);
+      StringStreamOutputter(lVar7,plVar1);
     }
-    FUN_1800a0e50(lVar7,0x78);
+    StreamOutputOperator(lVar7,STREAM_CHAR_X);
     if (plVar1 != (longlong *)0x0) {
-      FUN_1800a1160(lVar7,plVar1);
+      StringStreamOutputter(lVar7,plVar1);
     }
-    FUN_1800a0e50(lVar7,0x6d);
+    StreamOutputOperator(lVar7,STREAM_CHAR_M);
     if (plVar1 != (longlong *)0x0) {
-      FUN_1800a1160(lVar7,plVar1);
+      StringStreamOutputter(lVar7,plVar1);
     }
-    FUN_1800a0e50(lVar7,0x6c);
+    StreamOutputOperator(lVar7,STREAM_CHAR_L);
     if (plVar1 != (longlong *)0x0) {
-      FUN_1800a1160(lVar7,plVar1);
+      StringStreamOutputter(lVar7,plVar1);
     }
     plStack_58 = (longlong *)*param_2;
     lStack_50 = param_2[1];
     plVar1 = (longlong *)FUN_1800a05a0(auStack_48,&plStack_58,param_3);
     lVar7 = *plVar1;
     lVar5 = plVar1[1];
-    FUN_1800a0e50(lVar5,0x3f);
+    StreamOutputOperator(lVar5,STREAM_CHAR_QUESTION);
     if (lVar7 != 0) {
-      FUN_1800a1160(lVar5,lVar7);
+      StringStreamOutputter(lVar5,lVar7);
     }
-    FUN_1800a0e50(lVar5,0x3e);
+    StreamOutputOperator(lVar5,STREAM_CHAR_GREATER_THAN);
     if (lVar7 != 0) {
-      FUN_1800a1160(lVar5,lVar7);
+      StringStreamOutputter(lVar5,lVar7);
     }
     *param_2 = lVar7;
     param_2[1] = lVar5;
-    goto FUN_1800a1618;
-  case 6:
+    goto DataTransferProcessor;
+    
+  case 6: // 类型6处理
     plStack_58 = (longlong *)*param_2;
     lStack_50 = param_2[1];
     plVar1 = (longlong *)FUN_1800a0a00(auStack_48,&plStack_58,param_3,param_4,param_5);
     break;
-  case 7:
+    
+  case 7: // 类型7处理 - 数据流处理
     plStack_58 = (longlong *)*param_2;
     lStack_50 = param_2[1];
-    plVar1 = (longlong *)FUN_1800a0c50(auStack_48,&plStack_58,param_3,param_4,param_5);
+    plVar1 = (longlong *)DataStreamProcessor(auStack_48,&plStack_58,param_3,param_4,param_5);
     break;
+    
   default:
-    goto FUN_1800a1618;
+    goto DataTransferProcessor;
   }
+  
+  // 处理结果
   plVar6 = (longlong *)*plVar1;
   lVar7 = plVar1[1];
 code_r0x0001800a1605:
   *param_2 = (longlong)plVar6;
   param_2[1] = lVar7;
-FUN_1800a1618:
+DataTransferProcessor:
   if ((param_4 & 1) == 0) {
     lVar7 = param_2[1];
-    FUN_1800a0e50(lVar7,10);
+    StreamOutputOperator(lVar7,STREAM_CHAR_LINE_FEED);
     if (*param_2 != 0) {
-      FUN_1800a1160(lVar7);
+      StringStreamOutputter(lVar7);
     }
   }
   lVar7 = param_2[1];
@@ -681,7 +739,19 @@ FUN_1800a1618:
 
 
 
-longlong * FUN_1800a1326(longlong *param_1,undefined8 param_2,undefined8 param_3,uint param_4)
+/**
+ * @brief 数据格式化处理器
+ * 
+ * 处理数据格式化操作，支持多种格式转换。
+ * 包含跳转表处理和格式化输出。
+ * 
+ * @param param_1 输出缓冲区指针
+ * @param param_2 格式化参数
+ * @param param_3 附加参数
+ * @param param_4 控制标志
+ * @return longlong* 格式化结果指针
+ */
+longlong * DataFormattingProcessor(longlong *param_1,undefined8 param_2,undefined8 param_3,uint param_4)
 
 {
   longlong lVar1;
@@ -723,8 +793,15 @@ longlong * FUN_1800a1326(longlong *param_1,undefined8 param_2,undefined8 param_3
 
 
 
-// 函数: void FUN_1800a1340(void)
-void FUN_1800a1340(void)
+/**
+ * @brief 系统调用处理器
+ * 
+ * 处理系统级别的调用和跳转操作。
+ * 根据不同的调用类型执行相应的系统功能。
+ * 
+ * @note 这是一个底层系统调用处理函数
+ */
+void SystemCallProcessor(void)
 
 {
   longlong in_RAX;
@@ -745,8 +822,17 @@ void FUN_1800a1340(void)
 
 
 
-// 函数: void FUN_1800a146a(undefined8 param_1,undefined8 *param_2)
-void FUN_1800a146a(undefined8 param_1,undefined8 *param_2)
+/**
+ * @brief 高级数据处理器
+ * 
+ * 执行高级数据处理操作，包括数据格式化和输出。
+ * 支持复杂的数据结构和格式化要求。
+ * 
+ * @param param_1 处理参数
+ * @param param_2 数据指针
+ * @return void 无返回值
+ */
+void AdvancedDataProcessor(undefined8 param_1,undefined8 *param_2)
 
 {
   undefined8 uVar1;
@@ -839,8 +925,19 @@ void FUN_1800a146a(undefined8 param_1,undefined8 *param_2)
 
 
 
-// 函数: void FUN_1800a15ad(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800a15ad(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 数据转换处理器
+ * 
+ * 将数据从一种格式转换为另一种格式。
+ * 支持多种数据类型和转换模式。
+ * 
+ * @param param_1 转换参数
+ * @param param_2 源数据指针
+ * @param param_3 目标格式参数
+ * @param param_4 控制标志
+ * @return void 无返回值
+ */
+void DataConversionProcessor(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
   longlong lVar1;
@@ -888,8 +985,15 @@ void FUN_1800a15ad(undefined8 param_1,undefined4 *param_2,undefined8 param_3,und
 
 
 
-// 函数: void FUN_1800a1618(void)
-void FUN_1800a1618(void)
+/**
+ * @brief 数据传输处理器
+ * 
+ * 处理数据的传输和移动操作。
+ * 确保数据在传输过程中的完整性和正确性。
+ * 
+ * @return void 无返回值
+ */
+void DataTransferProcessor(void)
 
 {
   longlong lVar1;
@@ -915,8 +1019,15 @@ void FUN_1800a1618(void)
 
 
 
-// 函数: void FUN_1800a162b(void)
-void FUN_1800a162b(void)
+/**
+ * @brief 数据同步处理器
+ * 
+ * 处理数据的同步操作，确保数据的一致性。
+ * 执行必要的同步机制和状态检查。
+ * 
+ * @return void 无返回值
+ */
+void DataSyncProcessor(void)
 
 {
   longlong lVar1;
@@ -941,8 +1052,17 @@ void FUN_1800a162b(void)
 
 
 
-// 函数: void FUN_1800a16b0(longlong param_1,int param_2)
-void FUN_1800a16b0(longlong param_1,int param_2)
+/**
+ * @brief 字符编码处理器
+ * 
+ * 处理字符编码转换和输出操作。
+ * 支持多种编码格式和字符集。
+ * 
+ * @param param_1 流对象指针
+ * @param param_2 字符编码参数
+ * @return void 无返回值
+ */
+void CharacterEncodingProcessor(longlong param_1,int param_2)
 
 {
   ulonglong uVar1;
@@ -1018,8 +1138,16 @@ void FUN_1800a16b0(longlong param_1,int param_2)
 
 
 
-// 函数: void FUN_1800a1710(longlong param_1)
-void FUN_1800a1710(longlong param_1)
+/**
+ * @brief 字符输出处理器
+ * 
+ * 处理字符输出操作，包括缓冲区管理和编码转换。
+ * 确保字符正确输出到目标设备。
+ * 
+ * @param param_1 流对象指针
+ * @return void 无返回值
+ */
+void CharacterOutputProcessor(longlong param_1)
 
 {
   undefined8 uVar1;
@@ -1074,8 +1202,15 @@ void FUN_1800a1710(longlong param_1)
 
 
 
-// 函数: void FUN_1800a1832(void)
-void FUN_1800a1832(void)
+/**
+ * @brief 系统清理器
+ * 
+ * 执行系统级别的清理操作。
+ * 释放系统资源并清理内存。
+ * 
+ * @return void 无返回值
+ */
+void SystemCleaner(void)
 
 {
   ulonglong in_stack_00000078;
@@ -1091,8 +1226,16 @@ void FUN_1800a1832(void)
 
 
 
-// 函数: void FUN_1800a1850(longlong param_1)
-void FUN_1800a1850(longlong param_1)
+/**
+ * @brief 缓冲区清理器
+ * 
+ * 清理缓冲区并处理编码转换。
+ * 确保缓冲区数据正确处理和释放。
+ * 
+ * @param param_1 流对象指针
+ * @return void 无返回值
+ */
+void BufferCleaner(longlong param_1)
 
 {
   int iVar1;
@@ -1128,8 +1271,18 @@ LAB_1800a18fd:
 
 
 
-// 函数: void FUN_1800a1920(longlong param_1,longlong param_2,int param_3)
-void FUN_1800a1920(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 流初始化配置器
+ * 
+ * 配置流初始化参数，设置缓冲区和状态标志。
+ * 初始化流的内部状态和指针。
+ * 
+ * @param param_1 流对象指针
+ * @param param_2 缓冲区参数
+ * @param param_3 配置标志
+ * @return void 无返回值
+ */
+void StreamInitializerConfig(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined8 uStackX_8;
@@ -1161,7 +1314,16 @@ void FUN_1800a1920(longlong param_1,longlong param_2,int param_3)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_1800a19c0(longlong param_1)
+/**
+ * @brief 文件关闭处理器
+ * 
+ * 处理文件关闭操作，包括缓冲区清理和资源释放。
+ * 确保文件正确关闭并释放相关资源。
+ * 
+ * @param param_1 流对象指针
+ * @return longlong 操作结果状态码
+ */
+longlong FileCloseProcessor(longlong param_1)
 
 {
   char cVar1;
@@ -1196,8 +1358,16 @@ longlong FUN_1800a19c0(longlong param_1)
 
 
 
-// 函数: void FUN_1800a1a40(undefined8 *param_1)
-void FUN_1800a1a40(undefined8 *param_1)
+/**
+ * @brief 异常对象销毁器
+ * 
+ * 销毁异常对象并清理相关资源。
+ * 确保异常对象被正确释放。
+ * 
+ * @param param_1 异常对象指针
+ * @return void 无返回值
+ */
+void ExceptionObjectDestroyer(undefined8 *param_1)
 
 {
   *param_1 = &UNK_18098b928;
@@ -1207,8 +1377,20 @@ void FUN_1800a1a40(undefined8 *param_1)
 
 
 
+/**
+ * @brief 异常内存释放器
+ * 
+ * 释放异常对象占用的内存。
+ * 根据标志决定是否执行内存释放操作。
+ * 
+ * @param param_1 异常对象指针
+ * @param param_2 内存大小
+ * @param param_3 附加参数
+ * @param param_4 附加参数
+ * @return undefined8* 释放后的对象指针
+ */
 undefined8 *
-FUN_1800a1a70(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+ExceptionMemoryDeallocator(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -1224,7 +1406,17 @@ FUN_1800a1a70(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-undefined8 * FUN_1800a1ae0(undefined8 *param_1,longlong param_2)
+/**
+ * @brief 异常对象复制器
+ * 
+ * 复制异常对象的状态和信息。
+ * 确保异常对象正确复制和初始化。
+ * 
+ * @param param_1 目标对象指针
+ * @param param_2 源对象指针
+ * @return undefined8* 复制后的对象指针
+ */
+undefined8 * ExceptionObjectCopier(undefined8 *param_1,longlong param_2)
 
 {
   *param_1 = &UNK_18098b928;

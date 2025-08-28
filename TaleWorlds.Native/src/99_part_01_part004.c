@@ -793,8 +793,15 @@ longlong * DataFormattingProcessor(longlong *param_1,undefined8 param_2,undefine
 
 
 
-// 函数: void FUN_1800a1340(void)
-void FUN_1800a1340(void)
+/**
+ * @brief 系统调用处理器
+ * 
+ * 处理系统级别的调用和跳转操作。
+ * 根据不同的调用类型执行相应的系统功能。
+ * 
+ * @note 这是一个底层系统调用处理函数
+ */
+void SystemCallProcessor(void)
 
 {
   longlong in_RAX;
@@ -815,8 +822,17 @@ void FUN_1800a1340(void)
 
 
 
-// 函数: void FUN_1800a146a(undefined8 param_1,undefined8 *param_2)
-void FUN_1800a146a(undefined8 param_1,undefined8 *param_2)
+/**
+ * @brief 高级数据处理器
+ * 
+ * 执行高级数据处理操作，包括数据格式化和输出。
+ * 支持复杂的数据结构和格式化要求。
+ * 
+ * @param param_1 处理参数
+ * @param param_2 数据指针
+ * @return void 无返回值
+ */
+void AdvancedDataProcessor(undefined8 param_1,undefined8 *param_2)
 
 {
   undefined8 uVar1;
@@ -909,8 +925,19 @@ void FUN_1800a146a(undefined8 param_1,undefined8 *param_2)
 
 
 
-// 函数: void FUN_1800a15ad(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800a15ad(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 数据转换处理器
+ * 
+ * 将数据从一种格式转换为另一种格式。
+ * 支持多种数据类型和转换模式。
+ * 
+ * @param param_1 转换参数
+ * @param param_2 源数据指针
+ * @param param_3 目标格式参数
+ * @param param_4 控制标志
+ * @return void 无返回值
+ */
+void DataConversionProcessor(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
   longlong lVar1;
@@ -958,8 +985,15 @@ void FUN_1800a15ad(undefined8 param_1,undefined4 *param_2,undefined8 param_3,und
 
 
 
-// 函数: void FUN_1800a1618(void)
-void FUN_1800a1618(void)
+/**
+ * @brief 数据传输处理器
+ * 
+ * 处理数据的传输和移动操作。
+ * 确保数据在传输过程中的完整性和正确性。
+ * 
+ * @return void 无返回值
+ */
+void DataTransferProcessor(void)
 
 {
   longlong lVar1;
@@ -985,8 +1019,15 @@ void FUN_1800a1618(void)
 
 
 
-// 函数: void FUN_1800a162b(void)
-void FUN_1800a162b(void)
+/**
+ * @brief 数据同步处理器
+ * 
+ * 处理数据的同步操作，确保数据的一致性。
+ * 执行必要的同步机制和状态检查。
+ * 
+ * @return void 无返回值
+ */
+void DataSyncProcessor(void)
 
 {
   longlong lVar1;
@@ -1011,8 +1052,17 @@ void FUN_1800a162b(void)
 
 
 
-// 函数: void FUN_1800a16b0(longlong param_1,int param_2)
-void FUN_1800a16b0(longlong param_1,int param_2)
+/**
+ * @brief 字符编码处理器
+ * 
+ * 处理字符编码转换和输出操作。
+ * 支持多种编码格式和字符集。
+ * 
+ * @param param_1 流对象指针
+ * @param param_2 字符编码参数
+ * @return void 无返回值
+ */
+void CharacterEncodingProcessor(longlong param_1,int param_2)
 
 {
   ulonglong uVar1;
@@ -1088,8 +1138,16 @@ void FUN_1800a16b0(longlong param_1,int param_2)
 
 
 
-// 函数: void FUN_1800a1710(longlong param_1)
-void FUN_1800a1710(longlong param_1)
+/**
+ * @brief 字符输出处理器
+ * 
+ * 处理字符输出操作，包括缓冲区管理和编码转换。
+ * 确保字符正确输出到目标设备。
+ * 
+ * @param param_1 流对象指针
+ * @return void 无返回值
+ */
+void CharacterOutputProcessor(longlong param_1)
 
 {
   undefined8 uVar1;
@@ -1144,8 +1202,15 @@ void FUN_1800a1710(longlong param_1)
 
 
 
-// 函数: void FUN_1800a1832(void)
-void FUN_1800a1832(void)
+/**
+ * @brief 系统清理器
+ * 
+ * 执行系统级别的清理操作。
+ * 释放系统资源并清理内存。
+ * 
+ * @return void 无返回值
+ */
+void SystemCleaner(void)
 
 {
   ulonglong in_stack_00000078;
@@ -1161,8 +1226,16 @@ void FUN_1800a1832(void)
 
 
 
-// 函数: void FUN_1800a1850(longlong param_1)
-void FUN_1800a1850(longlong param_1)
+/**
+ * @brief 缓冲区清理器
+ * 
+ * 清理缓冲区并处理编码转换。
+ * 确保缓冲区数据正确处理和释放。
+ * 
+ * @param param_1 流对象指针
+ * @return void 无返回值
+ */
+void BufferCleaner(longlong param_1)
 
 {
   int iVar1;
@@ -1198,8 +1271,18 @@ LAB_1800a18fd:
 
 
 
-// 函数: void FUN_1800a1920(longlong param_1,longlong param_2,int param_3)
-void FUN_1800a1920(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 流初始化配置器
+ * 
+ * 配置流初始化参数，设置缓冲区和状态标志。
+ * 初始化流的内部状态和指针。
+ * 
+ * @param param_1 流对象指针
+ * @param param_2 缓冲区参数
+ * @param param_3 配置标志
+ * @return void 无返回值
+ */
+void StreamInitializerConfig(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined8 uStackX_8;
@@ -1231,7 +1314,16 @@ void FUN_1800a1920(longlong param_1,longlong param_2,int param_3)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_1800a19c0(longlong param_1)
+/**
+ * @brief 文件关闭处理器
+ * 
+ * 处理文件关闭操作，包括缓冲区清理和资源释放。
+ * 确保文件正确关闭并释放相关资源。
+ * 
+ * @param param_1 流对象指针
+ * @return longlong 操作结果状态码
+ */
+longlong FileCloseProcessor(longlong param_1)
 
 {
   char cVar1;
@@ -1266,8 +1358,16 @@ longlong FUN_1800a19c0(longlong param_1)
 
 
 
-// 函数: void FUN_1800a1a40(undefined8 *param_1)
-void FUN_1800a1a40(undefined8 *param_1)
+/**
+ * @brief 异常对象销毁器
+ * 
+ * 销毁异常对象并清理相关资源。
+ * 确保异常对象被正确释放。
+ * 
+ * @param param_1 异常对象指针
+ * @return void 无返回值
+ */
+void ExceptionObjectDestroyer(undefined8 *param_1)
 
 {
   *param_1 = &UNK_18098b928;
@@ -1277,8 +1377,20 @@ void FUN_1800a1a40(undefined8 *param_1)
 
 
 
+/**
+ * @brief 异常内存释放器
+ * 
+ * 释放异常对象占用的内存。
+ * 根据标志决定是否执行内存释放操作。
+ * 
+ * @param param_1 异常对象指针
+ * @param param_2 内存大小
+ * @param param_3 附加参数
+ * @param param_4 附加参数
+ * @return undefined8* 释放后的对象指针
+ */
 undefined8 *
-FUN_1800a1a70(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+ExceptionMemoryDeallocator(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -1294,7 +1406,17 @@ FUN_1800a1a70(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-undefined8 * FUN_1800a1ae0(undefined8 *param_1,longlong param_2)
+/**
+ * @brief 异常对象复制器
+ * 
+ * 复制异常对象的状态和信息。
+ * 确保异常对象正确复制和初始化。
+ * 
+ * @param param_1 目标对象指针
+ * @param param_2 源对象指针
+ * @return undefined8* 复制后的对象指针
+ */
+undefined8 * ExceptionObjectCopier(undefined8 *param_1,longlong param_2)
 
 {
   *param_1 = &UNK_18098b928;
