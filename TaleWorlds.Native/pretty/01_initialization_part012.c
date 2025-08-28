@@ -342,7 +342,7 @@ uint8_t SystemCallbackRegister_1(void)
     puVar7[8] = &UNK_180a2ca90;              // 回调数据引用
     puVar7[9] = 2;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -407,7 +407,7 @@ uint8_t SystemCallbackRegister_2(void)
     puVar7[8] = &UNK_180a2cab0;              // 回调数据引用
     puVar7[9] = 2;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -472,7 +472,7 @@ uint8_t SystemCallbackRegister_3(void)
     puVar7[8] = &UNK_180a2ca90;              // 回调数据引用
     puVar7[9] = 2;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -537,7 +537,7 @@ uint8_t SystemCallbackRegister_4(void)
     puVar7[8] = &UNK_180a2cab0;              // 回调数据引用
     puVar7[9] = 2;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -602,7 +602,7 @@ uint8_t SystemCallbackRegister_5(void)
     puVar7[8] = &UNK_1809ff978;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -667,7 +667,7 @@ uint8_t SystemCallbackRegister_6(void)
     puVar7[8] = &UNK_1809ff990;              // 回调数据引用
     puVar7[9] = 3;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -732,7 +732,7 @@ uint8_t SystemCallbackRegister_7(void)
     puVar7[8] = &UNK_180a00370;              // 回调数据引用
     puVar7[9] = 1;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -797,7 +797,7 @@ uint8_t SystemCallbackRegister_8(void)
     puVar7[8] = &UNK_180a00388;              // 回调数据引用
     puVar7[9] = 4;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -862,7 +862,7 @@ uint8_t SystemCallbackRegister_9(void)
     puVar7[8] = &UNK_180a003a0;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -927,7 +927,7 @@ uint8_t SystemCallbackRegister_10(void)
     puVar7[8] = &UNK_180a003b8;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -992,7 +992,7 @@ uint8_t SystemCallbackRegister_11(void)
     puVar7[8] = &UNK_180a003d0;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -1057,7 +1057,7 @@ uint8_t SystemCallbackRegister_12(void)
     puVar7[8] = &UNK_180a003e8;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = puStackX_18;                // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -1122,7 +1122,7 @@ uint8_t SystemCallbackRegister_13(void)
     puVar7[8] = &UNK_180a00400;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -1187,7 +1187,7 @@ uint8_t SystemCallbackRegister_14(void)
     puVar7[8] = &UNK_18098c790;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -1252,7 +1252,7 @@ uint8_t SystemCallbackRegister_15(void)
     puVar7[8] = &UNK_18098c7a0;              // 回调数据引用
     puVar7[9] = 1;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -1317,7 +1317,7 @@ uint8_t SystemCallbackRegister_16(void)
     puVar7[8] = &UNK_18098c7b8;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -1382,7 +1382,7 @@ uint8_t SystemCallbackRegister_17(void)
     puVar7[8] = &UNK_18098c7c8;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -1447,7 +1447,7 @@ uint8_t SystemCallbackRegister_18(void)
     puVar7[8] = &UNK_18098c7d8;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -1512,7 +1512,7 @@ uint8_t SystemCallbackRegister_19(void)
     puVar7[8] = &UNK_18098c7f0;              // 回调数据引用
     puVar7[9] = 3;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -1577,7 +1577,7 @@ uint8_t SystemCallbackRegister_20(void)
     puVar7[8] = &UNK_18098c810;              // 回调数据引用
     puVar7[9] = 3;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -1642,7 +1642,7 @@ uint8_t SystemCallbackRegister_21(void)
     puVar7[8] = &UNK_18098c870;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -1707,7 +1707,7 @@ uint8_t SystemCallbackRegister_22(void)
     puVar7[8] = &UNK_18098c880;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
     puVar7[10] = pcStackX_18;                // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -1772,7 +1772,7 @@ uint8_t SystemCallbackRegister_23(void)
     puVar7[8] = &UNK_18098c898;              // 回调数据引用
     puVar7[9] = 1;                           // 回调优先级
     puVar7[10] = uStackX_18;                 // 回调函数指针
-    return uint8_t;
+    return 0;
 }
 
 /*=============================================================================
@@ -1808,7 +1808,7 @@ uint8_t SystemEventProcessor_1(void)
     // 调用系统核心处理函数
     strcpy_s(auStack_88, 0x80, &UNK_180a33fb0, in_R9, 0xfffffffffffffffe);
     DAT_180c95ecc = SystemCoreFunction_4(&puStack_a0);
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -1840,7 +1840,7 @@ uint8_t SystemEventProcessor_2(void)
     // 调用系统核心处理函数
     strcpy_s(auStack_88, 0x80, &UNK_180a3c028, in_R9, 0xfffffffffffffffe);
     DAT_180c9606c = SystemCoreFunction_4(&puStack_a0);
-    return uint8_t;
+    return 0;
 }
 
 /*=============================================================================
@@ -1863,7 +1863,7 @@ uint8_t SystemInitializer_1(void)
 {
     // 获取当前进程句柄并存储
     DAT_180c96218 = GetCurrentProcess();
-    return uint8_t;
+    return 0;
 }
 
 /**
@@ -1885,7 +1885,7 @@ int SystemInitializer_2(void)
     // 调用系统初始化函数
     SystemCoreFunction_5();
     lVar1 = SystemCoreFunction_6(&UNK_180943130);
-    return (lVar1 != 0) - 1;
+    return (lVar1 != 0) ? 1 : 0;
 }
 
 /**
@@ -1908,7 +1908,7 @@ int SystemInitializer_3(void)
     // 初始化互斥锁
     _Mtx_init_in_situ(0x180c966f0, 2, param_3, param_4, 0xfffffffffffffffe);
     lVar1 = SystemCoreFunction_6(FUN_180943140);
-    return (lVar1 != 0) - 1;
+    return (lVar1 != 0) ? 1 : 0;
 }
 
 /**
@@ -1931,7 +1931,7 @@ int SystemInitializer_4(void)
     // 初始化互斥锁
     _Mtx_init_in_situ(0x180c96740, 2, param_3, param_4, 0xfffffffffffffffe);
     lVar1 = SystemCoreFunction_6(FUN_180943160);
-    return (lVar1 != 0) - 1;
+    return (lVar1 != 0) ? 1 : 0;
 }
 
 /*=============================================================================
@@ -1962,7 +1962,7 @@ int MutexInitializer_1(uint64_t param_1, uint64_t param_2, uint64_t param_3, uin
     // 初始化互斥锁
     _Mtx_init_in_situ(0x180c96690, 2, param_3, param_4, 0xfffffffffffffffe);
     lVar1 = SystemCoreFunction_6(FUN_180943070);
-    return (lVar1 != 0) - 1;
+    return (lVar1 != 0) ? 1 : 0;
 }
 
 /**
@@ -1989,7 +1989,7 @@ int MutexInitializer_2(uint64_t param_1, uint64_t param_2, uint64_t param_3, uin
     // 初始化互斥锁
     _Mtx_init_in_situ(0x180c966f0, 2, param_3, param_4, 0xfffffffffffffffe);
     lVar1 = SystemCoreFunction_6(FUN_180943140);
-    return (lVar1 != 0) - 1;
+    return (lVar1 != 0) ? 1 : 0;
 }
 
 /**
@@ -2016,7 +2016,7 @@ int MutexInitializer_3(uint64_t param_1, uint64_t param_2, uint64_t param_3, uin
     // 初始化互斥锁
     _Mtx_init_in_situ(0x180c96740, 2, param_3, param_4, 0xfffffffffffffffe);
     lVar1 = SystemCoreFunction_6(FUN_180943160);
-    return (lVar1 != 0) - 1;
+    return (lVar1 != 0) ? 1 : 0;
 }
 
 /*=============================================================================
@@ -2051,7 +2051,7 @@ int SystemAdvancedInitializer(void)
     
     // 注册系统功能
     lVar1 = SystemCoreFunction_6(FUN_180943180);
-    return (lVar1 != 0) - 1;
+    return (lVar1 != 0) ? 1 : 0;
 }
 
 /*=============================================================================
