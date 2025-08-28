@@ -961,7 +961,7 @@ void ResourceManager_Handler(longlong param_1, longlong *param_2, uint64_t param
 LAB_1800db339:
   puStack_c8 = &unknown_var_720_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_108);
+  SecurityChecker(uStack_28 ^ (ulonglong)auStack_108);
 }
 
 

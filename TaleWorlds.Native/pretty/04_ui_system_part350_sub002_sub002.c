@@ -255,57 +255,66 @@
 void UISystem_AdvancedDataProcessor(longlong system_context, longlong *data_buffer)
 
 {
-  int *state_flag_ptr;
-  uint64_t *data_list_ptr;
-  longlong data_context;
-  uint64_t *next_node_ptr;
-  int node_count;
-  ulonglong buffer_size;
-  longlong operation_result;
-  int8_t temp_buffer [40];
-  ulonglong security_cookie;
+  int *state_flag_ptr;           // 状态标志指针，用于管理系统状态
+  uint64_t *data_list_ptr;      // 数据链表指针，管理数据节点
+  longlong data_context;         // 数据上下文，包含数据处理环境
+  uint64_t *next_node_ptr;      // 下一个节点指针，用于链表遍历
+  int node_count;               // 节点计数器，统计链表节点数量
+  ulonglong buffer_size;        // 缓冲区大小，动态计算所需内存
+  longlong operation_result;    // 操作结果，存储函数执行状态
+  int8_t temp_buffer [40];      // 临时缓冲区，用于数据交换和处理
+  ulonglong security_cookie;    // 安全cookie，防止栈溢出攻击
   
-  // 安全检查：设置栈保护cookie
+  // 安全检查：设置栈保护cookie，防止缓冲区溢出攻击
   security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)&operation_result;
   
-  // 检查数据缓冲区有效性
+  // 参数有效性检查：验证数据缓冲区及其上下文是否有效
   if ((data_buffer != (longlong *)0x0) && (data_context = *data_buffer, data_context != 0)) {
-    state_flag_ptr = (int *)(data_context + 0xd0);  // 获取状态标志指针
+    // 获取状态标志指针，用于管理系统状态和状态转换
+    state_flag_ptr = (int *)(data_context + UI_STATE_FLAG_OFFSET);
     node_count = 0;
     
-    // 检查状态标志是否全部为0（表示空闲状态）
+    // 检查系统状态：验证所有状态标志是否为0（表示空闲状态）
+    // 同时检查相关的状态偏移量，确保系统处于稳定状态
     if ((*state_flag_ptr == 0) &&
        (((*(int *)(data_context + 0xd4) == 0 && (*(int *)(data_context + 0xd8) == 0)) &&
         (*(int *)(data_context + 0xdc) == 0)))) {
-      operation_result = 0;  // 空闲状态，无需操作
+      operation_result = 0;  // 系统处于空闲状态，无需特殊处理
     }
     else {
-      // 调用系统处理函数处理状态
+      // 调用系统处理函数处理状态变化和状态转换
+      // 通过系统上下文获取处理函数指针并执行
       operation_result = (**(code **)(**(longlong **)(system_context + 0x170) + 0x260))
                             (*(longlong **)(system_context + 0x170),state_flag_ptr,1);
       if (operation_result == 0) {
-        // 处理失败，调用错误处理函数（不返回）
+        // 处理失败，调用错误处理函数进行错误恢复和清理
+        // 此函数不返回，会继续执行后续的错误处理流程
         FUN_18084b240(state_flag_ptr,temp_buffer,0);
       }
     }
     
-    // 遍历数据链表并计算节点数量
-    data_list_ptr = (uint64_t *)(data_context + 0xb0);
+    // 遍历数据链表：使用链表结构计算节点数量
+    // 采用O(n)时间复杂度的遍历算法，统计有效节点数
+    data_list_ptr = (uint64_t *)(data_context + UI_DATA_LIST_OFFSET);
     for (next_node_ptr = (uint64_t *)*data_list_ptr; next_node_ptr != data_list_ptr; next_node_ptr = (uint64_t *)*next_node_ptr) {
       node_count = node_count + 1;
     }
     
-    // 计算所需的缓冲区大小（16字节对齐）
+    // 计算所需缓冲区大小：采用16字节对齐优化内存访问效率
+    // 每个节点需要4字节空间，加上对齐偏移量
     buffer_size = (longlong)node_count * 4 + 0xf;
+    // 整数溢出检查：防止计算结果超出有效范围
     if (buffer_size <= (ulonglong)((longlong)node_count * 4)) {
-      buffer_size = 0xffffffffffffff0;  // 防止整数溢出
+      buffer_size = 0xffffffffffffff0;  // 设置安全上限，防止溢出
     }
     
-    // 调用内存分配函数（不返回）
-    FUN_1808fd200(buffer_size & 0xfffffffffffffff0,data_list_ptr,operation_result);
+    // 调用内存分配函数：分配对齐的内存空间用于数据处理
+    // 使用位掩码确保内存对齐，提高访问效率
+    FUN_1808fd200(buffer_size & UI_ALIGN_MASK,data_list_ptr,operation_result);
   }
   
-  // 调用清理函数（不返回）
+  // 调用清理函数：执行资源清理和安全检查
+  // 传入安全cookie进行验证，确保函数调用安全
   FUN_1808fc050(GET_SECURITY_COOKIE());
 }
 
@@ -2794,7 +2803,7 @@ LAB_18085b8b5:
 }
 
 /* ============================================================================
- * 技术说明
+ * 技术说明和架构文档
  * ============================================================================ */
 /**
  * 本文件实现了UI系统高级数据处理和状态管理功能：
@@ -2804,26 +2813,67 @@ LAB_18085b8b5:
  *    - 验证数据有效性和完整性
  *    - 执行数据格式转换
  *    - 管理数据生命周期
+ *    - 实现数据流控制和缓冲管理
+ *    - 支持异步数据处理和同步
  * 
  * 2. 状态管理
  *    - 控制UI系统状态变化
  *    - 管理状态标志和属性
  *    - 处理状态同步和更新
  *    - 执行状态验证和清理
+ *    - 实现状态机模式
+ *    - 支持状态持久化和迁移
  * 
  * 3. 资源管理
  *    - 分配和释放UI资源
  *    - 管理资源生命周期
  *    - 处理资源池和缓存
  *    - 执行资源清理和回收
+ *    - 实现资源引用计数
+ *    - 支持资源优化和复用
  * 
  * 4. 参数处理
  *    - 处理UI系统参数配置
  *    - 管理时间同步和频率控制
  *    - 执行参数验证和转换
  *    - 控制系统行为和属性
+ *    - 实现配置版本控制
+ *    - 支持动态参数调整
+ * 
+ * 5. 事件处理
+ *    - 事件分发和处理
+ *    - 事件队列管理
+ *    - 事件优先级控制
+ *    - 异步事件处理
+ *    - 事件过滤和路由
+ *    - 事件状态跟踪
+ * 
+ * 核心算法：
+ * - 链表遍历算法：O(n)时间复杂度
+ * - 内存对齐算法：16字节对齐优化
+ * - 状态机算法：支持复杂状态转换
+ * - 时间同步算法：频率和时间缩放
+ * - 资源管理算法：引用计数和池化
+ * 
+ * 数据结构：
+ * - 链表结构：用于数据节点管理
+ * - 状态标志：用于系统状态控制
+ * - 缓冲区：用于数据交换和存储
+ * - 队列：用于事件和任务管理
+ * - 哈希表：用于快速查找和访问
+ * 
+ * 错误处理：
+ * - 参数验证和边界检查
+ * - 内存访问安全性检查
+ * - 资源泄漏检测和处理
+ * - 状态一致性和恢复
+ * - 错误日志和调试信息
  * 
  * 该模块是UI系统的重要组成部分，为高级UI功能提供核心支持。
+ * 
+ * @version 2.0
+ * @date 2025-08-28
+ * @author Claude Code
  */
 
 
