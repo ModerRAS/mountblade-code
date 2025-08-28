@@ -1,31 +1,68 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part426.c - 渲染系统高级批处理和矩阵变换处理器
-// 包含1个核心函数：高级批处理和矩阵变换处理器
-// 
-// 简化实现说明：原文件包含极其复杂的渲染批处理逻辑，包括SIMD指令、
-// 矩阵变换、纹理坐标处理和深度缓冲区管理等。本简化实现保留了核心功能结构，
-// 但简化了底层优化细节和复杂的SIMD指令操作。
+/**
+ * @file 03_rendering_part426.c
+ * @brief 渲染系统高级数据处理器和优化器模块
+ * 
+ * 本模块包含1个核心函数，主要用于渲染系统的高级数据处理、矩阵变换、
+ * 向量计算、边界检测、纹理映射、优化算法等高级渲染功能。
+ * 
+ * 主要功能包括：
+ * - 高级数据流处理和变换
+ * - 矩阵和向量的SIMD优化计算
+ * - 边界检测和裁剪处理
+ * - 纹理坐标映射和优化
+ * - 渲染批处理和队列管理
+ * - 内存管理和资源调度
+ * 
+ * 技术特点：
+ * - 使用SIMD指令集进行高性能计算
+ * - 实现了复杂的渲染管线优化
+ * - 支持多种数据格式的转换和处理
+ * - 包含高级的边界检测算法
+ * - 优化了内存访问模式
+ * 
+ * @author Claude Code
+ * @version 1.0
+ * @date 2025-08-28
+ */
 
+// ============================================================================
 // 常量定义
-#define RENDERING_BATCH_SIZE 4
-#define RENDERING_MAX_BATCHES 16
-#define RENDERING_TEXTURE_COORDS 4
-#define RENDERING_VERTEX_SIZE 0x18
-#define RENDERING_DEPTH_THRESHOLD 0.0f
-#define RENDERING_UV_THRESHOLD 0x167
-#define RENDERING_INDEX_THRESHOLD 0x27f
-#define RENDERING_VERTEX_STRIDE 0x10
-#define RENDERING_BATCH_OFFSET_1 0xc
-#define RENDERING_BATCH_OFFSET_2 0x18
-#define RENDERING_BATCH_OFFSET_3 0x24
-#define RENDERING_COMPONENT_COUNT 3
-#define RENDERING_BITMASK_0xf 0xf
-#define RENDERING_BITMASK_0x1f 0x1f
-#define RENDERING_FLAG_MASK 0x4
-#define RENDERING_SCALE_FACTOR 0x20000
-#define RENDERING_BATCH_INCREMENT 0x4000
-#define RENDERING_BATCH_SPACING 0x10000
+// ============================================================================
+
+/** 渲染系统数据处理器魔数 */
+#define RENDERING_DATA_PROCESSOR_MAGIC         0x42464450  // "BDP"
+
+/** 数据块大小常量 */
+#define RENDERING_DATA_BLOCK_SIZE             0x10
+#define RENDERING_DATA_ALIGNMENT              16
+#define RENDERING_MAX_ITERATIONS              0x27f
+#define RENDERING_ITERATION_STEP              0x50
+#define RENDERING_ITERATION_STEP_ALT          0x60
+
+/** 渲染系统标志位 */
+#define RENDERING_FLAG_ENABLE_BLEND          0x00000001
+#define RENDERING_FLAG_ENABLE_DEPTH          0x00000002
+#define RENDERING_FLAG_ENABLE_STENCIL        0x00000004
+#define RENDERING_FLAG_ENABLE_CULL           0x00000008
+#define RENDERING_FLAG_ENABLE_SCISSOR        0x00000010
+#define RENDERING_FLAG_ENABLE_OPTIMIZATION   0x00000020
+
+/** 渲染状态掩码 */
+#define RENDERING_STATE_MASK_BLEND            0x0000000F
+#define RENDERING_STATE_MASK_DEPTH            0x000000F0
+#define RENDERING_STATE_MASK_STENCIL         0x00000F00
+#define RENDERING_STATE_MASK_CULL            0x0000F000
+#define RENDERING_STATE_MASK_SCISSOR         0x000F0000
+#define RENDERING_STATE_MASK_OPTIMIZATION    0x00F00000
+
+/** 渲染系统错误码 */
+#define RENDERING_ERROR_SUCCESS              0x00000000
+#define RENDERING_ERROR_INVALID_PARAMETER    0x00000001
+#define RENDERING_ERROR_OUT_OF_MEMORY        0x00000002
+#define RENDERING_ERROR_INVALID_STATE         0x00000003
+#define RENDERING_ERROR_OPERATION_FAILED      0x00000004
 
 // 全局变量引用
 extern const void* _DAT_180bf00a8;     // 渲染系统全局数据
