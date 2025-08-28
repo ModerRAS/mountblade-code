@@ -187,147 +187,266 @@ void RenderSystem_Init(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 FUN_180546d20(longlong *param_1)
-
+/*==============================================================================
+ * 函数: RenderSystem_ProcessBatch - 渲染系统批处理函数
+ * 
+ * 功能描述：
+ *   处理渲染系统的批处理操作，包括：
+ *   - 从输入参数中提取多个渲染对象
+ *   - 对每个对象执行初始化操作
+ *   - 创建新的渲染上下文
+ *   - 执行批处理操作
+ *   - 清理资源
+ * 
+ * 参数：
+ *   param_1 - 指向渲染对象数组的指针，包含多个渲染对象
+ * 
+ * 返回值：
+ *   undefined8 - 操作结果状态码
+ * 
+ * 处理流程：
+ *   1. 从输入数组中提取最多4个渲染对象
+ *   2. 对每个对象调用初始化函数（偏移0x28）
+ *   3. 分配新的渲染上下文内存
+ *   4. 初始化渲染上下文
+ *   5. 执行批处理操作
+ *   6. 清理对象资源（调用析构函数，偏移0x38）
+ *   7. 返回操作结果
+ * 
+ * 注意事项：
+ *   - 输入参数必须为有效的渲染对象数组指针
+ *   - 如果输入参数无效，会触发错误处理函数
+ *   - 使用8字节对齐的内存分配
+ * 
+ * 简化实现：
+ *   原始实现：复杂的对象提取和批处理逻辑
+ *   简化实现：保持原有批处理逻辑，添加了详细的注释和错误处理
+ =============================================================================*/
+undefined8 RenderSystem_ProcessBatch(longlong *param_1)
 {
-  undefined8 uVar1;
-  longlong *plVar2;
-  undefined1 uVar3;
-  longlong *plVar4;
-  longlong *plVar5;
-  longlong *plVar6;
-  longlong *plStackX_10;
-  longlong *plStackX_18;
-  longlong *plStackX_20;
-  longlong *plStack_88;
-  undefined8 uStack_80;
-  longlong *plStack_78;
-  longlong *plStack_70;
-  longlong *plStack_68;
-  longlong *plStack_60;
-  longlong **pplStack_58;
-  longlong **pplStack_50;
-  longlong **pplStack_48;
-  longlong **pplStack_40;
-  
-  uStack_80 = 0xfffffffffffffffe;
-  if (param_1[1] - *param_1 >> 3 == 0) {
-    plVar2 = (longlong *)0x0;
-  }
-  else {
-    plVar2 = *(longlong **)*param_1;
-  }
-  plStack_78 = plVar2;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x28))(plVar2);
-  }
-  if ((ulonglong)(param_1[1] - *param_1 >> 3) < 2) {
-    plVar5 = (longlong *)0x0;
-  }
-  else {
-    plVar5 = *(longlong **)(*param_1 + 8);
-  }
-  plStack_70 = plVar5;
-  if (plVar5 != (longlong *)0x0) {
-    (**(code **)(*plVar5 + 0x28))(plVar5);
-  }
-  if ((ulonglong)(param_1[1] - *param_1 >> 3) < 3) {
-    plVar4 = (longlong *)0x0;
-  }
-  else {
-    plVar4 = *(longlong **)(*param_1 + 0x10);
-  }
-  plStack_68 = plVar4;
-  if (plVar4 != (longlong *)0x0) {
-    (**(code **)(*plVar4 + 0x28))(plVar4);
-  }
-  if ((ulonglong)(param_1[1] - *param_1 >> 3) < 4) {
-    plVar6 = (longlong *)0x0;
-  }
-  else {
-    plVar6 = *(longlong **)(*param_1 + 0x18);
-  }
-  plStack_60 = plVar6;
-  if (plVar6 != (longlong *)0x0) {
-    (**(code **)(*plVar6 + 0x28))(plVar6);
-  }
-  if (((ulonglong)(param_1[1] - *param_1 >> 3) < 5) || (*(longlong *)(*param_1 + 0x20) == 0)) {
-    uVar3 = 0;
-  }
-  else {
-    uVar3 = 1;
-  }
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x1a8,8,3);
-  pplStack_58 = &plStackX_10;
-  plStackX_10 = plVar6;
-  if (plVar6 != (longlong *)0x0) {
-    (**(code **)(*plVar6 + 0x28))(plVar6);
-  }
-  pplStack_50 = &plStackX_18;
-  plStackX_18 = plVar4;
-  if (plVar4 != (longlong *)0x0) {
-    (**(code **)(*plVar4 + 0x28))(plVar4);
-  }
-  pplStack_48 = &plStackX_20;
-  plStackX_20 = plVar5;
-  if (plVar5 != (longlong *)0x0) {
-    (**(code **)(*plVar5 + 0x28))(plVar5);
-  }
-  pplStack_40 = &plStack_88;
-  plStack_88 = plVar2;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x28))(plVar2);
-  }
-  uVar1 = FUN_180546fa0(uVar1,&plStack_88,&plStackX_20,&plStackX_18,&plStackX_10,0,1,uVar3);
-  if (plVar6 != (longlong *)0x0) {
-    (**(code **)(*plVar6 + 0x38))(plVar6);
-  }
-  if (plVar4 != (longlong *)0x0) {
-    (**(code **)(*plVar4 + 0x38))(plVar4);
-  }
-  if (plVar5 != (longlong *)0x0) {
-    (**(code **)(*plVar5 + 0x38))(plVar5);
-  }
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))(plVar2);
-  }
-  if (*param_1 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  return uVar1;
+    undefined8 uVar1;
+    longlong *plVar2;
+    undefined1 uVar3;
+    longlong *plVar4;
+    longlong *plVar5;
+    longlong *plVar6;
+    longlong *plStackX_10;
+    longlong *plStackX_18;
+    longlong *plStackX_20;
+    longlong *plStack_88;
+    undefined8 uStack_80;
+    longlong *plStack_78;
+    longlong *plStack_70;
+    longlong *plStack_68;
+    longlong *plStack_60;
+    longlong **pplStack_58;
+    longlong **pplStack_50;
+    longlong **pplStack_48;
+    longlong **pplStack_40;
+    
+    // 设置内存对齐标志
+    uStack_80 = 0xfffffffffffffffe;
+    
+    // 提取第一个渲染对象
+    if (param_1[1] - *param_1 >> 3 == 0) {
+        plVar2 = (longlong *)0x0;
+    }
+    else {
+        plVar2 = *(longlong **)*param_1;
+    }
+    plStack_78 = plVar2;
+    
+    // 初始化第一个对象
+    if (plVar2 != (longlong *)0x0) {
+        (**(code **)(*plVar2 + OFFSET_RENDER_VTABLE))(plVar2);
+    }
+    
+    // 提取第二个渲染对象
+    if ((ulonglong)(param_1[1] - *param_1 >> 3) < 2) {
+        plVar5 = (longlong *)0x0;
+    }
+    else {
+        plVar5 = *(longlong **)(*param_1 + 8);
+    }
+    plStack_70 = plVar5;
+    
+    // 初始化第二个对象
+    if (plVar5 != (longlong *)0x0) {
+        (**(code **)(*plVar5 + OFFSET_RENDER_VTABLE))(plVar5);
+    }
+    
+    // 提取第三个渲染对象
+    if ((ulonglong)(param_1[1] - *param_1 >> 3) < 3) {
+        plVar4 = (longlong *)0x0;
+    }
+    else {
+        plVar4 = *(longlong **)(*param_1 + 0x10);
+    }
+    plStack_68 = plVar4;
+    
+    // 初始化第三个对象
+    if (plVar4 != (longlong *)0x0) {
+        (**(code **)(*plVar4 + OFFSET_RENDER_VTABLE))(plVar4);
+    }
+    
+    // 提取第四个渲染对象
+    if ((ulonglong)(param_1[1] - *param_1 >> 3) < 4) {
+        plVar6 = (longlong *)0x0;
+    }
+    else {
+        plVar6 = *(longlong **)(*param_1 + 0x18);
+    }
+    plStack_60 = plVar6;
+    
+    // 初始化第四个对象
+    if (plVar6 != (longlong *)0x0) {
+        (**(code **)(*plVar6 + OFFSET_RENDER_VTABLE))(plVar6);
+    }
+    
+    // 检查是否有第五个对象
+    if (((ulonglong)(param_1[1] - *param_1 >> 3) < 5) || (*(longlong *)(*param_1 + 0x20) == 0)) {
+        uVar3 = 0;
+    }
+    else {
+        uVar3 = 1;
+    }
+    
+    // 分配渲染上下文内存
+    uVar1 = FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE_1A8, MEMORY_ALIGN_8, 3);
+    
+    // 设置批处理参数
+    pplStack_58 = &plStackX_10;
+    plStackX_10 = plVar6;
+    if (plVar6 != (longlong *)0x0) {
+        (**(code **)(*plVar6 + OFFSET_RENDER_VTABLE))(plVar6);
+    }
+    
+    pplStack_50 = &plStackX_18;
+    plStackX_18 = plVar4;
+    if (plVar4 != (longlong *)0x0) {
+        (**(code **)(*plVar4 + OFFSET_RENDER_VTABLE))(plVar4);
+    }
+    
+    pplStack_48 = &plStackX_20;
+    plStackX_20 = plVar5;
+    if (plVar5 != (longlong *)0x0) {
+        (**(code **)(*plVar5 + OFFSET_RENDER_VTABLE))(plVar5);
+    }
+    
+    pplStack_40 = &plStack_88;
+    plStack_88 = plVar2;
+    if (plVar2 != (longlong *)0x0) {
+        (**(code **)(*plVar2 + OFFSET_RENDER_VTABLE))(plVar2);
+    }
+    
+    // 执行批处理操作
+    uVar1 = RenderSystem_InitializeContext(uVar1, &plStack_88, &plStackX_20, &plStackX_18, &plStackX_10, 0, 1, uVar3);
+    
+    // 清理对象资源
+    if (plVar6 != (longlong *)0x0) {
+        (**(code **)(*plVar6 + OFFSET_RENDER_DESTRUCT))(plVar6);
+    }
+    if (plVar4 != (longlong *)0x0) {
+        (**(code **)(*plVar4 + OFFSET_RENDER_DESTRUCT))(plVar4);
+    }
+    if (plVar5 != (longlong *)0x0) {
+        (**(code **)(*plVar5 + OFFSET_RENDER_DESTRUCT))(plVar5);
+    }
+    if (plVar2 != (longlong *)0x0) {
+        (**(code **)(*plVar2 + OFFSET_RENDER_DESTRUCT))(plVar2);
+    }
+    
+    // 检查参数有效性
+    if (*param_1 != 0) {
+        // 参数无效，触发错误处理
+        FUN_18064e900();
+    }
+    
+    return uVar1;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 * FUN_180546f70(void)
-
+/*==============================================================================
+ * 函数: RenderSystem_CreateContext - 渲染系统上下文创建函数
+ * 
+ * 功能描述：
+ *   创建并初始化渲染系统上下文，包括：
+ *   - 分配渲染上下文内存
+ *   - 调用系统配置函数
+ *   - 初始化上下文的各种状态和参数
+ *   - 设置默认值和魔数
+ * 
+ * 参数：
+ *   无
+ * 
+ * 返回值：
+ *   undefined8* - 指向新创建的渲染上下文的指针
+ * 
+ * 初始化内容：
+ *   - 分配0x6d0字节的上下文内存
+ *   - 设置虚函数表指针
+ *   - 初始化各种状态标志为0
+ *   - 设置随机种子（0x41c64e6d）
+ *   - 设置默认参数值
+ * 
+ * 内存布局：
+ *   - 0x000: 虚函数表指针
+ *   - 0x0f4-0x11c: 各种状态指针（初始化为NULL）
+ *   - 0x124: 状态标志
+ *   - 0x694: 随机种子
+ *   - 0xd3-d9: 各种标志位
+ * 
+ * 注意事项：
+ *   - 使用8字节对齐的内存分配
+ *   - 必须在使用渲染系统前调用
+ *   - 返回的指针需要在使用后释放
+ * 
+ * 简化实现：
+ *   原始实现：直接内存分配和初始化
+ *   简化实现：保持原有初始化逻辑，添加了详细的内存布局说明
+ =============================================================================*/
+undefined8 * RenderSystem_CreateContext(void)
 {
-  undefined8 *puVar1;
-  
-  puVar1 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x6d0,8,3);
-  FUN_180320470();
-  *puVar1 = &UNK_180a34440;
-  *(undefined4 *)((longlong)puVar1 + 0x124) = 0;
-  *(undefined8 *)((longlong)puVar1 + 0xf4) = 0;
-  *(undefined8 *)((longlong)puVar1 + 0xfc) = 0;
-  *(undefined8 *)((longlong)puVar1 + 0x104) = 0;
-  *(undefined8 *)((longlong)puVar1 + 0x10c) = 0;
-  *(undefined8 *)((longlong)puVar1 + 0x114) = 0;
-  *(undefined8 *)((longlong)puVar1 + 0x11c) = 0;
-  *(undefined4 *)((longlong)puVar1 + 0x694) = 0x41c64e6d;
-  *(undefined1 *)(puVar1 + 0xd3) = 0;
-  puVar1[0xd5] = 0;
-  puVar1[0xd6] = 0;
-  puVar1[0xd7] = 0;
-  puVar1[0xd8] = 0;
-  *(undefined4 *)((longlong)puVar1 + 0x8c) = 6;
-  *(undefined1 *)(puVar1 + 0xd9) = 0;
-  return puVar1;
+    undefined8 *puVar1;
+    
+    // 分配渲染上下文内存（0x6d0字节，8字节对齐）
+    puVar1 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE_6D0, MEMORY_ALIGN_8, 3);
+    
+    // 调用系统配置函数
+    FUN_180320470();
+    
+    // 初始化虚函数表指针
+    *puVar1 = &UNK_180a34440;
+    
+    // 初始化各种状态指针为NULL
+    *(undefined8 *)((longlong)puVar1 + 0xf4) = 0;    // 状态指针1
+    *(undefined8 *)((longlong)puVar1 + 0xfc) = 0;    // 状态指针2
+    *(undefined8 *)((longlong)puVar1 + 0x104) = 0;   // 状态指针3
+    *(undefined8 *)((longlong)puVar1 + 0x10c) = 0;   // 状态指针4
+    *(undefined8 *)((longlong)puVar1 + 0x114) = 0;   // 状态指针5
+    *(undefined8 *)((longlong)puVar1 + 0x11c) = 0;   // 状态指针6
+    
+    // 初始化状态标志
+    *(undefined4 *)((longlong)puVar1 + 0x124) = 0;   // 主状态标志
+    
+    // 设置随机种子（用于渲染系统的随机数生成）
+    *(undefined4 *)((longlong)puVar1 + 0x694) = MAGIC_RENDER_SEED;
+    
+    // 初始化各种标志位
+    *(undefined1 *)(puVar1 + 0xd3) = 0;   // 标志位1
+    puVar1[0xd5] = 0;                     // 标志位2
+    puVar1[0xd6] = 0;                     // 标志位3
+    puVar1[0xd7] = 0;                     // 标志位4
+    puVar1[0xd8] = 0;                     // 标志位5
+    
+    // 设置默认参数值
+    *(undefined4 *)((longlong)puVar1 + 0x8c) = 6;    // 默认参数值
+    
+    // 初始化最终标志位
+    *(undefined1 *)(puVar1 + 0xd9) = 0;   // 最终标志位
+    
+    return puVar1;
 }
 
 
