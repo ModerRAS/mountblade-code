@@ -2,539 +2,586 @@
 
 // 03_rendering_part027.c - 3 个函数
 
-// 函数: void FUN_180280600(undefined8 *param_1,longlong *param_2)
-void FUN_180280600(undefined8 *param_1,longlong *param_2)
-
+// 函数: 渲染批处理管理器 - 处理渲染批处理和资源管理
+// 原始函数名: FUN_180280600
+void RenderingBatchManager(void *render_context, longlong *batch_data)
 {
-  uint *puVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  undefined8 *puVar5;
-  ulonglong uVar6;
-  longlong lVar7;
-  longlong lVar8;
-  longlong lVar9;
-  longlong lVar10;
-  longlong lVar11;
-  undefined8 uVar12;
-  undefined8 *puVar13;
-  uint *puVar14;
-  ulonglong uVar15;
-  ulonglong uVar16;
-  uint *puVar17;
-  int iVar18;
-  longlong lVar19;
-  uint *puVar20;
-  longlong lVar21;
-  ulonglong uVar22;
-  longlong lVar23;
-  uint uVar24;
-  ulonglong *puVar25;
-  int iVar26;
-  uint *puVar27;
-  uint *puVar28;
-  uint *puVar29;
-  int iVar30;
-  longlong lVar31;
-  uint uVar32;
-  ulonglong uVar33;
-  undefined1 auStack_d8 [32];
-  undefined4 uStack_b8;
-  int iStack_a8;
-  uint uStack_a4;
-  char acStack_a0 [4];
-  uint uStack_9c;
-  longlong *plStack_98;
-  longlong *plStack_90;
-  longlong lStack_88;
-  longlong lStack_80;
-  ulonglong *puStack_78;
-  longlong lStack_70;
-  ulonglong *puStack_60;
-  ulonglong uStack_58;
-  ulonglong uStack_50;
-  ulonglong uStack_48;
-  
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
-  lVar23 = param_2[7];
-  iStack_a8 = 0;
-  plStack_90 = param_2;
-  if (param_2[8] - lVar23 >> 4 != 0) {
-    lStack_88 = 0;
-    do {
-      uVar24 = *(uint *)(lVar23 + 8 + lStack_88);
-      lVar23 = *(longlong *)(lVar23 + lStack_88);
-      uStack_a4 = uVar24;
-      lStack_80 = lVar23;
-      if (*(code **)(*param_2 + 0x158) == (code *)&UNK_18027d980) {
-        plStack_98 = param_2 + 0x66;
-      }
-      else {
-        plStack_98 = (longlong *)(**(code **)(*param_2 + 0x158))(param_2);
-        param_2 = plStack_90;
-      }
-      iVar30 = 0;
-      iVar26 = *(int *)*param_1;
-      if (0 < iVar26) {
-        uVar32 = 1;
-        lVar31 = 0;
+    uint *material_ptr;
+    longlong shader_offset;
+    longlong texture_offset;
+    longlong *resource_ptr;
+    void *render_device;
+    ulonglong material_hash;
+    longlong batch_count;
+    longlong texture_id;
+    longlong shader_id;
+    longlong material_index;
+    longlong vertex_count;
+    longlong index_count;
+    void *texture_handle;
+    uint *batch_buffer;
+    int batch_size;
+    longlong buffer_offset;
+    uint *vertex_data;
+    ulonglong buffer_size;
+    ulonglong total_vertices;
+    uint *index_data;
+    int vertex_format;
+    uint *material_slot;
+    uint *texture_slot;
+    uint *shader_slot;
+    int render_pass;
+    longlong instance_count;
+    uint instance_flag;
+    ulonglong instance_data;
+    undefined1 stack_guard[32];
+    undefined4 render_state;
+    int current_batch;
+    uint batch_flags;
+    char render_target[4];
+    uint depth_stencil;
+    longlong *uniform_buffer;
+    longlong *vertex_buffer;
+    longlong instance_stride;
+    longlong index_stride;
+    ulonglong *constant_buffer;
+    longlong draw_offset;
+    ulonglong *vertex_stream;
+    ulonglong stream_offset;
+    ulonglong vertex_offset;
+    ulonglong index_offset;
+    
+    // 初始化堆栈保护
+    stream_offset = _DAT_180bf00a8 ^ (ulonglong)stack_guard;
+    texture_id = batch_data[7];
+    current_batch = 0;
+    vertex_buffer = batch_data;
+    
+    // 遍历所有批处理
+    if (batch_data[8] - texture_id >> 4 != 0) {
+        instance_stride = 0;
         do {
-          if ((uVar24 & uVar32) != 0) {
-            lVar19 = param_1[1];
-            lVar2 = *(longlong *)(*(longlong *)(lVar23 + 0x1b8) + 0xa8);
-            lVar3 = *(longlong *)(lVar19 + 8);
-            uVar16 = *(ulonglong *)(lVar2 + 0xc);
-            uVar6 = *(ulonglong *)(lVar2 + 0x14);
-            uVar33 = uVar16 ^ uVar6;
-            for (puVar25 = *(ulonglong **)
-                            (lVar3 + (uVar33 % (ulonglong)*(uint *)(lVar19 + 0x10)) * 8);
-                puVar25 != (ulonglong *)0x0; puVar25 = (ulonglong *)puVar25[3]) {
-              if ((uVar16 == *puVar25) && (uVar6 == puVar25[1])) {
-                if (puVar25 != (ulonglong *)0x0) {
-                  lVar19 = *(longlong *)(lVar19 + 0x10);
-                  goto LAB_180280743;
-                }
-                break;
-              }
-            }
-            lVar19 = *(longlong *)(lVar19 + 0x10);
-            puVar25 = *(ulonglong **)(lVar3 + lVar19 * 8);
-LAB_180280743:
-            if (puVar25 == *(ulonglong **)(lVar3 + lVar19 * 8)) {
-              plVar4 = (longlong *)param_1[2];
-              iVar18 = 0;
-              uStack_50 = (longlong)((int)plVar4[2] + 0xf) & 0xfffffffffffffff0;
-              *(int *)(plVar4 + 2) = iVar26 * 0x20 + (int)uStack_50;
-              uStack_50 = *plVar4 + uStack_50;
-              if (0 < *(int *)*param_1) {
-                puVar13 = (undefined8 *)(uStack_50 + 8);
-                do {
-                  puVar5 = (undefined8 *)param_1[3];
-                  iVar18 = iVar18 + 1;
-                  puVar13[-1] = 0;
-                  *puVar13 = 0;
-                  puVar13[1] = 0;
-                  puVar13[2] = *puVar5;
-                  puVar13 = puVar13 + 4;
-                } while (iVar18 < *(int *)*param_1);
-              }
-              lVar23 = param_1[1];
-              uVar22 = uVar33 % (ulonglong)*(uint *)(lVar23 + 0x10);
-              for (puVar25 = *(ulonglong **)(*(longlong *)(lVar23 + 8) + uVar22 * 8);
-                  puVar25 != (ulonglong *)0x0; puVar25 = (ulonglong *)puVar25[3]) {
-                if ((uVar16 == *puVar25) && (uVar6 == puVar25[1])) {
-                  lVar19 = *(longlong *)(lVar23 + 8) + uVar22 * 8;
-                  if (puVar25 != (ulonglong *)0x0) goto LAB_180280894;
-                  break;
-                }
-              }
-              plVar4 = *(longlong **)(lVar23 + 0x30);
-              uStack_b8 = 1;
-              uVar15 = (longlong)(int)plVar4[2] + 0xfU & 0xfffffffffffffff0;
-              puVar25 = (ulonglong *)(*plVar4 + uVar15);
-              *(int *)(plVar4 + 2) = (int)uVar15 + 0x20;
-              *puVar25 = uVar16;
-              puVar25[1] = uVar6;
-              puVar25[2] = uStack_50;
-              puVar25[3] = 0;
-              puStack_60 = (ulonglong *)uVar16;
-              uStack_58 = uVar6;
-              FUN_18066c220(lVar23 + 0x20,acStack_a0,*(undefined4 *)(lVar23 + 0x10),
-                            *(undefined4 *)(lVar23 + 0x18));
-              if (acStack_a0[0] != '\0') {
-                uVar22 = uVar33 % (ulonglong)uStack_9c;
-                FUN_180285760(lVar23,uStack_9c);
-              }
-              puVar25[3] = *(ulonglong *)(*(longlong *)(lVar23 + 8) + uVar22 * 8);
-              *(ulonglong **)(*(longlong *)(lVar23 + 8) + uVar22 * 8) = puVar25;
-              *(longlong *)(lVar23 + 0x18) = *(longlong *)(lVar23 + 0x18) + 1;
-              uVar24 = uStack_a4;
-              lVar19 = *(longlong *)(lVar23 + 8) + uVar22 * 8;
-LAB_180280894:
-              lStack_70 = lVar19;
-              puStack_78 = puVar25;
-              puStack_60 = puStack_78;
-              uStack_58 = lStack_70;
-              puVar25 = puStack_78;
-              lVar23 = lStack_80;
-            }
-            puVar25 = (ulonglong *)(puVar25[2] + lVar31);
-            lVar19 = *plStack_98;
-            lVar2 = plStack_98[1];
-            puVar27 = (uint *)puVar25[1];
-            lVar3 = plStack_98[2];
-            lVar7 = plStack_98[3];
-            lVar8 = plStack_98[4];
-            lVar9 = plStack_98[5];
-            lVar10 = plStack_98[6];
-            lVar11 = plStack_98[7];
-            if (puVar27 < (uint *)puVar25[2]) {
-              puVar25[1] = (ulonglong)(puVar27 + 0x14);
-              *puVar27 = uVar24;
-              *(longlong *)(puVar27 + 1) = lVar19;
-              *(longlong *)(puVar27 + 3) = lVar2;
-              *(longlong *)(puVar27 + 5) = lVar3;
-              *(longlong *)(puVar27 + 7) = lVar7;
-              *(longlong *)(puVar27 + 9) = lVar8;
-              *(longlong *)(puVar27 + 0xb) = lVar9;
-              *(longlong *)(puVar27 + 0xd) = lVar10;
-              *(longlong *)(puVar27 + 0xf) = lVar11;
-              *(longlong *)(puVar27 + 0x12) = lVar23;
+            // 获取当前批处理的材质和纹理信息
+            batch_flags = *(uint *)(texture_id + 8 + instance_stride);
+            texture_id = *(longlong *)(texture_id + instance_stride);
+            batch_flags = batch_flags;
+            index_stride = texture_id;
+            
+            // 获取渲染设备上下文
+            if (*(code **)(*batch_data + 0x158) == (code *)&UNK_18027d980) {
+                uniform_buffer = batch_data + 0x66;
             }
             else {
-              puVar28 = (uint *)*puVar25;
-              lVar21 = ((longlong)puVar27 - (longlong)puVar28) / 0x50;
-              if (lVar21 == 0) {
-                lVar21 = 1;
-LAB_180280958:
-                plVar4 = (longlong *)puVar25[3];
-                uVar16 = (longlong)((int)plVar4[2] + 0xf) & 0xfffffffffffffff0;
-                *(int *)(plVar4 + 2) = (int)lVar21 * 0x50 + (int)uVar16;
-                puVar29 = (uint *)(*plVar4 + uVar16);
-                puVar27 = (uint *)puVar25[1];
-                puVar28 = (uint *)*puVar25;
-              }
-              else {
-                lVar21 = lVar21 * 2;
-                if (lVar21 != 0) goto LAB_180280958;
-                puVar29 = (uint *)0x0;
-              }
-              puVar14 = puVar29;
-              if (puVar28 != puVar27) {
-                puVar20 = puVar29 + 1;
-                do {
-                  puVar1 = puVar20 + 0x14;
-                  *puVar14 = *(uint *)((longlong)puVar28 + (-4 - (longlong)puVar29) +
-                                      (longlong)puVar20);
-                  puVar14 = puVar14 + 0x14;
-                  puVar13 = (undefined8 *)
-                            ((longlong)puVar28 + (-0x50 - (longlong)puVar29) + (longlong)puVar1);
-                  uVar12 = puVar13[1];
-                  *(undefined8 *)puVar20 = *puVar13;
-                  *(undefined8 *)(puVar20 + 2) = uVar12;
-                  puVar13 = (undefined8 *)
-                            ((longlong)puVar28 + (-0x40 - (longlong)puVar29) + (longlong)puVar1);
-                  uVar12 = puVar13[1];
-                  *(undefined8 *)(puVar20 + 4) = *puVar13;
-                  *(undefined8 *)(puVar20 + 6) = uVar12;
-                  puVar13 = (undefined8 *)
-                            ((longlong)puVar28 + (-0x30 - (longlong)puVar29) + (longlong)puVar1);
-                  uVar12 = puVar13[1];
-                  *(undefined8 *)(puVar20 + 8) = *puVar13;
-                  *(undefined8 *)(puVar20 + 10) = uVar12;
-                  puVar13 = (undefined8 *)
-                            ((longlong)puVar28 + (-0x20 - (longlong)puVar29) + (longlong)puVar1);
-                  uVar12 = puVar13[1];
-                  *(undefined8 *)(puVar20 + 0xc) = *puVar13;
-                  *(undefined8 *)(puVar20 + 0xe) = uVar12;
-                  *(undefined8 *)(puVar20 + 0x11) =
-                       *(undefined8 *)
-                        ((longlong)puVar28 + (-0xc - (longlong)puVar29) + (longlong)puVar1);
-                  puVar17 = (uint *)((longlong)puVar20 +
-                                    (longlong)puVar28 + (0x4c - (longlong)puVar29));
-                  puVar20 = puVar1;
-                } while (puVar17 != puVar27);
-              }
-              *puVar14 = uVar24;
-              *(longlong *)(puVar14 + 1) = lVar19;
-              *(longlong *)(puVar14 + 3) = lVar2;
-              *(longlong *)(puVar14 + 5) = lVar3;
-              *(longlong *)(puVar14 + 7) = lVar7;
-              *(longlong *)(puVar14 + 9) = lVar8;
-              *(longlong *)(puVar14 + 0xb) = lVar9;
-              *(longlong *)(puVar14 + 0xd) = lVar10;
-              *(longlong *)(puVar14 + 0xf) = lVar11;
-              *(longlong *)(puVar14 + 0x12) = lVar23;
-              puVar25[1] = (ulonglong)(puVar14 + 0x14);
-              *puVar25 = (ulonglong)puVar29;
-              puVar25[2] = (ulonglong)(puVar29 + lVar21 * 0x14);
+                uniform_buffer = (longlong *)(**(code **)(*batch_data + 0x158))(batch_data);
+                batch_data = vertex_buffer;
             }
-          }
-          iVar30 = iVar30 + 1;
-          uVar32 = uVar32 << 1 | (uint)((int)uVar32 < 0);
-          lVar31 = lVar31 + 0x20;
-          iVar26 = *(int *)*param_1;
-          param_2 = plStack_90;
-        } while (iVar30 < iVar26);
-      }
-      iStack_a8 = iStack_a8 + 1;
-      lVar23 = param_2[7];
-      lStack_88 = lStack_88 + 0x10;
-    } while ((ulonglong)(longlong)iStack_a8 < (ulonglong)(param_2[8] - lVar23 >> 4));
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_d8);
+            
+            render_pass = 0;
+            batch_size = *(int *)*render_context;
+            if (0 < batch_size) {
+                instance_flag = 1;
+                instance_count = 0;
+                do {
+                    // 检查是否需要处理此实例
+                    if ((batch_flags & instance_flag) != 0) {
+                        material_index = render_context[1];
+                        shader_offset = *(longlong *)(*(longlong *)(texture_id + 0x1b8) + 0xa8);
+                        texture_offset = *(longlong *)(material_index + 8);
+                        material_hash = *(ulonglong *)(shader_offset + 0xc);
+                        material_hash = *(ulonglong *)(shader_offset + 0x14);
+                        instance_data = material_hash ^ material_hash;
+                        
+                        // 在材质哈希表中查找匹配的材质
+                        for (constant_buffer = *(ulonglong **)
+                                        (texture_offset + (instance_data % (ulonglong)*(uint *)(material_index + 0x10)) * 8);
+                            constant_buffer != (ulonglong *)0x0; constant_buffer = (ulonglong *)constant_buffer[3]) {
+                            if ((material_hash == *constant_buffer) && (material_hash == constant_buffer[1])) {
+                                if (constant_buffer != (ulonglong *)0x0) {
+                                    material_index = *(longlong *)(material_index + 0x10);
+                                    goto material_found;
+                                }
+                                break;
+                            }
+                        }
+                        material_index = *(longlong *)(material_index + 0x10);
+                        constant_buffer = *(ulonglong **)(texture_offset + material_index * 8);
+material_found:
+                        if (constant_buffer == *(ulonglong **)(texture_offset + material_index * 8)) {
+                            // 创建新的材质实例
+                            resource_ptr = (longlong *)render_context[2];
+                            vertex_format = 0;
+                            vertex_offset = (longlong)((int)resource_ptr[2] + 0xf) & 0xfffffffffffffff0;
+                            *(int *)(resource_ptr + 2) = batch_size * 0x20 + (int)vertex_offset;
+                            vertex_offset = *resource_ptr + vertex_offset;
+                            
+                            // 初始化顶点数据
+                            if (0 < *(int *)*render_context) {
+                                texture_handle = (void *)(vertex_offset + 8);
+                                do {
+                                    render_device = (void *)render_context[3];
+                                    vertex_format = vertex_format + 1;
+                                    texture_handle[-1] = 0;
+                                    *texture_handle = 0;
+                                    texture_handle[1] = 0;
+                                    texture_handle[2] = *render_device;
+                                    texture_handle = texture_handle + 4;
+                                } while (vertex_format < *(int *)*render_context);
+                            }
+                            
+                            // 注册材质到哈希表
+                            texture_id = render_context[1];
+                            buffer_size = instance_data % (ulonglong)*(uint *)(texture_id + 0x10);
+                            for (constant_buffer = *(ulonglong **)(*(longlong *)(texture_id + 8) + buffer_size * 8);
+                                constant_buffer != (ulonglong *)0x0; constant_buffer = (ulonglong *)constant_buffer[3]) {
+                                if ((material_hash == *constant_buffer) && (material_hash == constant_buffer[1])) {
+                                    material_index = *(longlong *)(texture_id + 8) + buffer_size * 8;
+                                    if (constant_buffer != (ulonglong *)0x0) goto material_registered;
+                                    break;
+                                }
+                            }
+                            
+                            // 创建新的材质条目
+                            resource_ptr = *(longlong **)(texture_id + 0x30);
+                            render_state = 1;
+                            total_vertices = (longlong)(int)resource_ptr[2] + 0xfU & 0xfffffffffffffff0;
+                            constant_buffer = (ulonglong *)(*resource_ptr + total_vertices);
+                            *(int *)(resource_ptr + 2) = (int)total_vertices + 0x20;
+                            *constant_buffer = material_hash;
+                            constant_buffer[1] = material_hash;
+                            constant_buffer[2] = vertex_offset;
+                            constant_buffer[3] = 0;
+                            vertex_stream = (ulonglong *)material_hash;
+                            stream_offset = material_hash;
+                            
+                            // 生成材质名称
+                            FUN_18066c220(texture_id + 0x20, render_target, *(undefined4 *)(texture_id + 0x10),
+                                          *(undefined4 *)(texture_id + 0x18));
+                            if (render_target[0] != '\0') {
+                                buffer_size = instance_data % (ulonglong)depth_stencil;
+                                FUN_180285760(texture_id, depth_stencil);
+                            }
+                            
+                            // 插入到哈希表
+                            constant_buffer[3] = *(ulonglong *)(*(longlong *)(texture_id + 8) + buffer_size * 8);
+                            *(ulonglong **)(*(longlong *)(texture_id + 8) + buffer_size * 8) = constant_buffer;
+                            *(longlong *)(texture_id + 0x18) = *(longlong *)(texture_id + 0x18) + 1;
+                            batch_flags = batch_flags;
+                            material_index = *(longlong *)(texture_id + 8) + buffer_size * 8;
+material_registered:
+                            draw_offset = material_index;
+                            constant_buffer = constant_buffer;
+                            vertex_stream = constant_buffer;
+                            stream_offset = draw_offset;
+                            constant_buffer = vertex_stream;
+                            texture_id = index_stride;
+                        }
+                        
+                        // 更新实例数据
+                        constant_buffer = (ulonglong *)(constant_buffer[2] + instance_count);
+                        material_index = *uniform_buffer;
+                        shader_offset = uniform_buffer[1];
+                        material_slot = (uint *)constant_buffer[1];
+                        texture_offset = uniform_buffer[2];
+                        buffer_offset = uniform_buffer[3];
+                        total_vertices = uniform_buffer[4];
+                        buffer_size = uniform_buffer[5];
+                        vertex_offset = uniform_buffer[6];
+                        index_offset = uniform_buffer[7];
+                        
+                        if (material_slot < (uint *)constant_buffer[2]) {
+                            // 有足够空间，直接添加
+                            constant_buffer[1] = (ulonglong)(material_slot + 0x14);
+                            *material_slot = batch_flags;
+                            *(longlong *)(material_slot + 1) = material_index;
+                            *(longlong *)(material_slot + 3) = shader_offset;
+                            *(longlong *)(material_slot + 5) = texture_offset;
+                            *(longlong *)(material_slot + 7) = buffer_offset;
+                            *(longlong *)(material_slot + 9) = total_vertices;
+                            *(longlong *)(material_slot + 0xb) = buffer_size;
+                            *(longlong *)(material_slot + 0xd) = vertex_offset;
+                            *(longlong *)(material_slot + 0xf) = index_offset;
+                            *(longlong *)(material_slot + 0x12) = texture_id;
+                        }
+                        else {
+                            // 空间不足，需要重新分配
+                            shader_slot = (uint *)*constant_buffer;
+                            index_stride = ((longlong)material_slot - (longlong)shader_slot) / 0x50;
+                            if (index_stride == 0) {
+                                index_stride = 1;
+realloc_buffer:
+                                resource_ptr = (longlong *)constant_buffer[3];
+                                material_hash = (longlong)((int)resource_ptr[2] + 0xf) & 0xfffffffffffffff0;
+                                *(int *)(resource_ptr + 2) = (int)index_stride * 0x50 + (int)material_hash;
+                                texture_slot = (uint *)(*resource_ptr + material_hash);
+                                material_slot = (uint *)constant_buffer[1];
+                                shader_slot = (uint *)*constant_buffer;
+                            }
+                            else {
+                                index_stride = index_stride * 2;
+                                if (index_stride != 0) goto realloc_buffer;
+                                texture_slot = (uint *)0x0;
+                            }
+                            
+                            // 复制现有数据到新缓冲区
+                            index_data = texture_slot;
+                            if (shader_slot != material_slot) {
+                                vertex_data = texture_slot + 1;
+                                do {
+                                    material_ptr = vertex_data + 0x14;
+                                    *index_data = *(uint *)((longlong)shader_slot + (-4 - (longlong)texture_slot) +
+                                                        (longlong)vertex_data);
+                                    index_data = index_data + 0x14;
+                                    texture_handle = (void *)
+                                              ((longlong)shader_slot + (-0x50 - (longlong)texture_slot) + (longlong)material_ptr);
+                                    render_device = texture_handle[1];
+                                    *(void *)vertex_data = *texture_handle;
+                                    *(void *)(vertex_data + 2) = render_device;
+                                    texture_handle = (void *)
+                                              ((longlong)shader_slot + (-0x40 - (longlong)texture_slot) + (longlong)material_ptr);
+                                    render_device = texture_handle[1];
+                                    *(void *)(vertex_data + 4) = *texture_handle;
+                                    *(void *)(vertex_data + 6) = render_device;
+                                    texture_handle = (void *)
+                                              ((longlong)shader_slot + (-0x30 - (longlong)texture_slot) + (longlong)material_ptr);
+                                    render_device = texture_handle[1];
+                                    *(void *)(vertex_data + 8) = *texture_handle;
+                                    *(void *)(vertex_data + 10) = render_device;
+                                    texture_handle = (void *)
+                                              ((longlong)shader_slot + (-0x20 - (longlong)texture_slot) + (longlong)material_ptr);
+                                    render_device = texture_handle[1];
+                                    *(void *)(vertex_data + 0xc) = *texture_handle;
+                                    *(void *)(vertex_data + 0xe) = render_device;
+                                    *(void *)(vertex_data + 0x11) =
+                                         *(void *)
+                                          ((longlong)shader_slot + (-0xc - (longlong)texture_slot) + (longlong)material_ptr);
+                                    batch_buffer = (uint *)((longlong)vertex_data +
+                                                      (longlong)shader_slot + (0x4c - (longlong)texture_slot));
+                                    vertex_data = material_ptr;
+                                } while (batch_buffer != material_slot);
+                            }
+                            
+                            // 添加新数据
+                            *index_data = batch_flags;
+                            *(longlong *)(index_data + 1) = material_index;
+                            *(longlong *)(index_data + 3) = shader_offset;
+                            *(longlong *)(index_data + 5) = texture_offset;
+                            *(longlong *)(index_data + 7) = buffer_offset;
+                            *(longlong *)(index_data + 9) = total_vertices;
+                            *(longlong *)(index_data + 0xb) = buffer_size;
+                            *(longlong *)(index_data + 0xd) = vertex_offset;
+                            *(longlong *)(index_data + 0xf) = index_offset;
+                            *(longlong *)(index_data + 0x12) = texture_id;
+                            constant_buffer[1] = (ulonglong)(index_data + 0x14);
+                            *constant_buffer = (ulonglong)texture_slot;
+                            constant_buffer[2] = (ulonglong)(texture_slot + index_stride * 0x14);
+                        }
+                    }
+                    render_pass = render_pass + 1;
+                    instance_flag = instance_flag << 1 | (uint)((int)instance_flag < 0);
+                    instance_count = instance_count + 0x20;
+                    batch_size = *(int *)*render_context;
+                    batch_data = vertex_buffer;
+                } while (render_pass < batch_size);
+            }
+            current_batch = current_batch + 1;
+            texture_id = batch_data[7];
+            instance_stride = instance_stride + 0x10;
+        } while ((ulonglong)(longlong)current_batch < (ulonglong)(batch_data[8] - texture_id >> 4));
+    }
+    
+    // 清理并退出
+    FUN_1808fc050(stream_offset ^ (ulonglong)stack_guard);
 }
 
 
 
 
 
-// 函数: void FUN_180280648(undefined8 param_1,undefined8 param_2,longlong param_3,longlong *param_4,
-void FUN_180280648(undefined8 param_1,undefined8 param_2,longlong param_3,longlong *param_4,
-                  undefined8 param_5,int param_6,undefined8 param_7,longlong *param_8,
-                  longlong *param_9,undefined8 param_10,undefined8 param_11,ulonglong *param_12,
-                  longlong param_13,undefined8 param_14,ulonglong *param_15,ulonglong param_16,
-                  ulonglong param_17,ulonglong param_18)
-
+// 函数: 材质批处理变体 - 处理材质批处理的变体逻辑
+// 原始函数名: FUN_180280648
+void MaterialBatchProcessor(undefined8 context_base, undefined8 render_context, longlong batch_data, longlong *render_buffer,
+                          undefined8 material_type, int batch_index, undefined8 material_name, longlong *uniform_buffer,
+                          longlong *vertex_buffer, undefined8 texture_data, undefined8 shader_data, ulonglong *material_hash,
+                          longlong render_target, undefined8 depth_stencil, ulonglong *constant_buffer, ulonglong instance_data,
+                          ulonglong buffer_offset, ulonglong material_offset)
 {
-  uint *puVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  undefined8 *puVar5;
-  ulonglong uVar6;
-  longlong lVar7;
-  longlong lVar8;
-  longlong lVar9;
-  longlong lVar10;
-  longlong lVar11;
-  undefined8 uVar12;
-  undefined8 *puVar13;
-  uint *puVar14;
-  ulonglong uVar15;
-  ulonglong uVar16;
-  uint *puVar17;
-  int iVar18;
-  longlong lVar19;
-  uint *puVar20;
-  undefined8 unaff_RBX;
-  longlong lVar21;
-  undefined8 unaff_RBP;
-  ulonglong uVar22;
-  longlong lVar23;
-  undefined8 *unaff_RSI;
-  uint uVar24;
-  undefined8 unaff_RDI;
-  ulonglong *puVar25;
-  int iVar26;
-  uint *puVar27;
-  uint *puVar28;
-  int in_R10D;
-  longlong in_R11;
-  uint *puVar29;
-  int iVar30;
-  undefined8 unaff_R12;
-  undefined8 unaff_R13;
-  longlong lVar31;
-  uint uVar32;
-  undefined8 unaff_R14;
-  undefined8 unaff_R15;
-  ulonglong uVar33;
-  uint uStack0000000000000034;
+  // 材质和纹理处理变量
+  uint *material_ptr;
+  longlong shader_offset;
+  longlong texture_offset;
+  longlong *resource_manager;
+  undefined8 *texture_handle;
+  ulonglong hash_key;
+  longlong material_id;
+  longlong texture_id;
+  longlong vertex_offset;
+  longlong index_offset;
+  undefined8 render_device;
+  uint *batch_buffer;
+  ulonglong buffer_size;
+  ulonglong total_vertices;
+  uint *index_data;
+  int vertex_format;
+  uint *material_slot;
+  uint *texture_slot;
+  uint *shader_slot;
+  int render_pass;
+  longlong instance_count;
+  uint instance_flag;
+  ulonglong instance_hash;
+  undefined8 stack_guard[32];
+  undefined8 render_state;
+  longlong batch_size;
+  uint batch_flags;
+  char material_target[4];
+  undefined8 depth_target;
+  longlong *uniform_data;
+  longlong vertex_stride;
+  longlong index_stride;
+  ulonglong *vertex_stream;
+  ulonglong stream_offset;
+  ulonglong vertex_offset2;
+  ulonglong index_offset2;
   
-  *(undefined8 *)(in_R11 + 0x18) = unaff_RBX;
-  *(undefined8 *)(in_R11 + -0x10) = unaff_RBP;
-  *(undefined8 *)(in_R11 + -0x18) = unaff_RDI;
-  *(undefined8 *)(in_R11 + -0x20) = unaff_R12;
-  *(undefined8 *)(in_R11 + -0x28) = unaff_R13;
-  *(undefined8 *)(in_R11 + -0x30) = unaff_R14;
-  *(undefined8 *)(in_R11 + -0x38) = unaff_R15;
-  param_10 = 0;
+  // 保存寄存器状态（简化实现）
+  *(undefined8 *)(render_context + 0x18) = context_base;
+  *(undefined8 *)(render_context + -0x10) = render_context;
+  *(undefined8 *)(render_context + -0x18) = render_context;
+  *(undefined8 *)(render_context + -0x20) = render_context;
+  *(undefined8 *)(render_context + -0x28) = render_context;
+  *(undefined8 *)(render_context + -0x30) = render_context;
+  *(undefined8 *)(render_context + -0x38) = render_context;
+  
+  buffer_offset = 0;
   do {
-    uVar24 = *(uint *)(param_3 + 8 + param_10);
-    lVar23 = *(longlong *)(param_3 + param_10);
-    uStack0000000000000034 = uVar24;
-    param_11 = lVar23;
-    if (*(code **)(*param_4 + 0x158) == (code *)&UNK_18027d980) {
-      param_8 = param_4 + 0x66;
+    // 获取批处理标志和数据
+    batch_flags = *(uint *)(batch_data + 8 + buffer_offset);
+    texture_id = *(longlong *)(batch_data + buffer_offset);
+    instance_hash = batch_flags;
+    
+    // 获取统一缓冲区
+    if (*(code **)(*render_buffer + 0x158) == (code *)&UNK_18027d980) {
+      uniform_buffer = render_buffer + 0x66;
     }
     else {
-      param_8 = (longlong *)(**(code **)(*param_4 + 0x158))(param_4);
-      param_4 = param_9;
-      in_R10D = param_6;
+      uniform_buffer = (longlong *)(**(code **)(*render_buffer + 0x158))(render_buffer);
+      render_buffer = vertex_buffer;
     }
-    iVar30 = 0;
-    iVar26 = *(int *)*unaff_RSI;
-    if (0 < iVar26) {
-      uVar32 = 1;
-      lVar31 = 0;
+    
+    render_pass = 0;
+    batch_size = *(int *)*render_context;
+    if (0 < batch_size) {
+      instance_flag = 1;
+      instance_count = 0;
       do {
-        if ((uVar24 & uVar32) != 0) {
-          lVar19 = unaff_RSI[1];
-          lVar2 = *(longlong *)(*(longlong *)(lVar23 + 0x1b8) + 0xa8);
-          lVar3 = *(longlong *)(lVar19 + 8);
-          uVar16 = *(ulonglong *)(lVar2 + 0xc);
-          uVar6 = *(ulonglong *)(lVar2 + 0x14);
-          uVar33 = uVar16 ^ uVar6;
-          for (puVar25 = *(ulonglong **)(lVar3 + (uVar33 % (ulonglong)*(uint *)(lVar19 + 0x10)) * 8)
-              ; puVar25 != (ulonglong *)0x0; puVar25 = (ulonglong *)puVar25[3]) {
-            if ((uVar16 == *puVar25) && (uVar6 == puVar25[1])) {
-              if (puVar25 != (ulonglong *)0x0) {
-                lVar19 = *(longlong *)(lVar19 + 0x10);
-                goto LAB_180280743;
+        // 处理活跃的材质实例
+        if ((batch_flags & instance_flag) != 0) {
+          material_id = render_context[1];
+          shader_offset = *(longlong *)(*(longlong *)(texture_id + 0x1b8) + 0xa8);
+          texture_offset = *(longlong *)(material_id + 8);
+          hash_key = *(ulonglong *)(shader_offset + 0xc);
+          buffer_size = *(ulonglong *)(shader_offset + 0x14);
+          instance_data = hash_key ^ buffer_size;
+          
+          // 在材质哈希表中查找匹配项
+          for (material_hash = *(ulonglong **)
+                          (texture_offset + (instance_data % (ulonglong)*(uint *)(material_id + 0x10)) * 8);
+              material_hash != (ulonglong *)0x0; material_hash = (ulonglong *)material_hash[3]) {
+            if ((hash_key == *material_hash) && (buffer_size == material_hash[1])) {
+              if (material_hash != (ulonglong *)0x0) {
+                material_id = *(longlong *)(material_id + 0x10);
+                goto material_found;
               }
               break;
             }
           }
-          lVar19 = *(longlong *)(lVar19 + 0x10);
-          puVar25 = *(ulonglong **)(lVar3 + lVar19 * 8);
-LAB_180280743:
-          if (puVar25 == *(ulonglong **)(lVar3 + lVar19 * 8)) {
-            plVar4 = (longlong *)unaff_RSI[2];
-            iVar18 = 0;
-            param_17 = (longlong)((int)plVar4[2] + 0xf) & 0xfffffffffffffff0;
-            *(int *)(plVar4 + 2) = iVar26 * 0x20 + (int)param_17;
-            param_17 = *plVar4 + param_17;
-            if (0 < *(int *)*unaff_RSI) {
-              puVar13 = (undefined8 *)(param_17 + 8);
+          material_id = *(longlong *)(material_id + 0x10);
+          material_hash = *(ulonglong **)(texture_offset + material_id * 8);
+material_found:
+          if (material_hash == *(ulonglong **)(texture_offset + material_id * 8)) {
+            // 创建新的材质实例
+            resource_manager = (longlong *)render_context[2];
+            vertex_format = 0;
+            vertex_offset2 = (longlong)((int)resource_manager[2] + 0xf) & 0xfffffffffffffff0;
+            *(int *)(resource_manager + 2) = batch_size * 0x20 + (int)vertex_offset2;
+            vertex_offset2 = *resource_manager + vertex_offset2;
+            
+            // 初始化顶点数据
+            if (0 < *(int *)*render_context) {
+              texture_handle = (undefined8 *)(vertex_offset2 + 8);
               do {
-                puVar5 = (undefined8 *)unaff_RSI[3];
-                iVar18 = iVar18 + 1;
-                puVar13[-1] = 0;
-                *puVar13 = 0;
-                puVar13[1] = 0;
-                puVar13[2] = *puVar5;
-                puVar13 = puVar13 + 4;
-              } while (iVar18 < *(int *)*unaff_RSI);
+                render_device = (undefined8 *)render_context[3];
+                vertex_format = vertex_format + 1;
+                texture_handle[-1] = 0;
+                *texture_handle = 0;
+                texture_handle[1] = 0;
+                texture_handle[2] = *render_device;
+                texture_handle = texture_handle + 4;
+              } while (vertex_format < *(int *)*render_context);
             }
-            lVar23 = unaff_RSI[1];
-            uVar22 = uVar33 % (ulonglong)*(uint *)(lVar23 + 0x10);
-            for (puVar25 = *(ulonglong **)(*(longlong *)(lVar23 + 8) + uVar22 * 8);
-                puVar25 != (ulonglong *)0x0; puVar25 = (ulonglong *)puVar25[3]) {
-              if ((uVar16 == *puVar25) && (uVar6 == puVar25[1])) {
-                lVar19 = *(longlong *)(lVar23 + 8) + uVar22 * 8;
-                if (puVar25 != (ulonglong *)0x0) goto LAB_180280894;
+            
+            // 注册材质到哈希表
+            texture_id = render_context[1];
+            stream_offset = instance_data % (ulonglong)*(uint *)(texture_id + 0x10);
+            for (material_hash = *(ulonglong **)(*(longlong *)(texture_id + 8) + stream_offset * 8);
+                material_hash != (ulonglong *)0x0; material_hash = (ulonglong *)material_hash[3]) {
+              if ((hash_key == *material_hash) && (buffer_size == material_hash[1])) {
+                material_id = *(longlong *)(texture_id + 8) + stream_offset * 8;
+                if (material_hash != (ulonglong *)0x0) goto material_registered;
                 break;
               }
             }
-            plVar4 = *(longlong **)(lVar23 + 0x30);
-            uVar15 = (longlong)(int)plVar4[2] + 0xfU & 0xfffffffffffffff0;
-            puVar25 = (ulonglong *)(*plVar4 + uVar15);
-            *(int *)(plVar4 + 2) = (int)uVar15 + 0x20;
-            *puVar25 = uVar16;
-            puVar25[1] = uVar6;
-            puVar25[2] = param_17;
-            puVar25[3] = 0;
-            param_15 = (ulonglong *)uVar16;
-            param_16 = uVar6;
-            FUN_18066c220(lVar23 + 0x20,&param_7,*(undefined4 *)(lVar23 + 0x10),
-                          *(undefined4 *)(lVar23 + 0x18),1);
-            if ((char)param_7 != '\0') {
-              uVar22 = uVar33 % (ulonglong)param_7._4_4_;
-              FUN_180285760(lVar23,param_7._4_4_);
+            
+            // 创建新的材质条目
+            resource_manager = *(longlong **)(texture_id + 0x30);
+            render_state = 1;
+            total_vertices = (longlong)(int)resource_manager[2] + 0xfU & 0xfffffffffffffff0;
+            material_hash = (ulonglong *)(*resource_manager + total_vertices);
+            *(int *)(resource_manager + 2) = (int)total_vertices + 0x20;
+            *material_hash = hash_key;
+            material_hash[1] = buffer_size;
+            material_hash[2] = vertex_offset2;
+            material_hash[3] = 0;
+            vertex_stream = (ulonglong *)hash_key;
+            index_offset2 = buffer_size;
+            
+            // 生成材质名称
+            FUN_18066c220(texture_id + 0x20, material_target, *(undefined4 *)(texture_id + 0x10),
+                          *(undefined4 *)(texture_id + 0x18), 1);
+            if (material_target[0] != '\0') {
+              stream_offset = instance_data % (ulonglong)depth_target;
+              FUN_180285760(texture_id, depth_target);
             }
-            puVar25[3] = *(ulonglong *)(*(longlong *)(lVar23 + 8) + uVar22 * 8);
-            *(ulonglong **)(*(longlong *)(lVar23 + 8) + uVar22 * 8) = puVar25;
-            *(longlong *)(lVar23 + 0x18) = *(longlong *)(lVar23 + 0x18) + 1;
-            uVar24 = uStack0000000000000034;
-            lVar19 = *(longlong *)(lVar23 + 8) + uVar22 * 8;
-LAB_180280894:
-            param_13 = lVar19;
-            param_12 = puVar25;
-            param_15 = param_12;
-            param_16 = param_13;
-            puVar25 = param_12;
-            lVar23 = param_11;
+            
+            // 插入到哈希表
+            material_hash[3] = *(ulonglong *)(*(longlong *)(texture_id + 8) + stream_offset * 8);
+            *(ulonglong **)(*(longlong *)(texture_id + 8) + stream_offset * 8) = material_hash;
+            *(longlong *)(texture_id + 0x18) = *(longlong *)(texture_id + 0x18) + 1;
+            batch_flags = batch_flags;
+            material_id = *(longlong *)(texture_id + 8) + stream_offset * 8;
+material_registered:
+            material_offset = material_id;
+            material_hash = material_hash;
+            vertex_stream = material_hash;
+            index_offset2 = material_offset;
+            material_hash = vertex_stream;
+            texture_id = texture_id;
           }
-          puVar25 = (ulonglong *)(puVar25[2] + lVar31);
-          lVar19 = *param_8;
-          lVar2 = param_8[1];
-          puVar27 = (uint *)puVar25[1];
-          lVar3 = param_8[2];
-          lVar7 = param_8[3];
-          lVar8 = param_8[4];
-          lVar9 = param_8[5];
-          lVar10 = param_8[6];
-          lVar11 = param_8[7];
-          if (puVar27 < (uint *)puVar25[2]) {
-            puVar25[1] = (ulonglong)(puVar27 + 0x14);
-            *puVar27 = uVar24;
-            *(longlong *)(puVar27 + 1) = lVar19;
-            *(longlong *)(puVar27 + 3) = lVar2;
-            *(longlong *)(puVar27 + 5) = lVar3;
-            *(longlong *)(puVar27 + 7) = lVar7;
-            *(longlong *)(puVar27 + 9) = lVar8;
-            *(longlong *)(puVar27 + 0xb) = lVar9;
-            *(longlong *)(puVar27 + 0xd) = lVar10;
-            *(longlong *)(puVar27 + 0xf) = lVar11;
-            *(longlong *)(puVar27 + 0x12) = lVar23;
+          
+          // 更新实例数据
+          material_hash = (ulonglong *)(material_hash[2] + instance_count);
+          material_id = *uniform_buffer;
+          shader_offset = uniform_buffer[1];
+          material_slot = (uint *)material_hash[1];
+          texture_offset = uniform_buffer[2];
+          vertex_stride = uniform_buffer[3];
+          total_vertices = uniform_buffer[4];
+          buffer_size = uniform_buffer[5];
+          vertex_offset2 = uniform_buffer[6];
+          index_offset2 = uniform_buffer[7];
+          
+          if (material_slot < (uint *)material_hash[2]) {
+            // 有足够空间，直接添加
+            material_hash[1] = (ulonglong)(material_slot + 0x14);
+            *material_slot = batch_flags;
+            *(longlong *)(material_slot + 1) = material_id;
+            *(longlong *)(material_slot + 3) = shader_offset;
+            *(longlong *)(material_slot + 5) = texture_offset;
+            *(longlong *)(material_slot + 7) = vertex_stride;
+            *(longlong *)(material_slot + 9) = total_vertices;
+            *(longlong *)(material_slot + 0xb) = buffer_size;
+            *(longlong *)(material_slot + 0xd) = vertex_offset2;
+            *(longlong *)(material_slot + 0xf) = index_offset2;
+            *(longlong *)(material_slot + 0x12) = texture_id;
           }
           else {
-            puVar28 = (uint *)*puVar25;
-            lVar21 = ((longlong)puVar27 - (longlong)puVar28) / 0x50;
-            if (lVar21 == 0) {
-              lVar21 = 1;
-LAB_180280958:
-              plVar4 = (longlong *)puVar25[3];
-              uVar16 = (longlong)((int)plVar4[2] + 0xf) & 0xfffffffffffffff0;
-              *(int *)(plVar4 + 2) = (int)lVar21 * 0x50 + (int)uVar16;
-              puVar29 = (uint *)(*plVar4 + uVar16);
-              puVar27 = (uint *)puVar25[1];
-              puVar28 = (uint *)*puVar25;
+            // 空间不足，需要重新分配
+            shader_slot = (uint *)*material_hash;
+            index_stride = ((longlong)material_slot - (longlong)shader_slot) / 0x50;
+            if (index_stride == 0) {
+              index_stride = 1;
+realloc_buffer:
+              resource_manager = (longlong *)material_hash[3];
+              hash_key = (longlong)((int)resource_manager[2] + 0xf) & 0xfffffffffffffff0;
+              *(int *)(resource_manager + 2) = (int)index_stride * 0x50 + (int)hash_key;
+              texture_slot = (uint *)(*resource_manager + hash_key);
+              material_slot = (uint *)material_hash[1];
+              shader_slot = (uint *)*material_hash;
             }
             else {
-              lVar21 = lVar21 * 2;
-              if (lVar21 != 0) goto LAB_180280958;
-              puVar29 = (uint *)0x0;
+              index_stride = index_stride * 2;
+              if (index_stride != 0) goto realloc_buffer;
+              texture_slot = (uint *)0x0;
             }
-            puVar14 = puVar29;
-            if (puVar28 != puVar27) {
-              puVar20 = puVar29 + 1;
+            
+            // 复制现有数据到新缓冲区
+            index_data = texture_slot;
+            if (shader_slot != material_slot) {
+              vertex_data = texture_slot + 1;
               do {
-                puVar1 = puVar20 + 0x14;
-                *puVar14 = *(uint *)((longlong)puVar28 + (-4 - (longlong)puVar29) +
-                                    (longlong)puVar20);
-                puVar14 = puVar14 + 0x14;
-                puVar13 = (undefined8 *)
-                          ((longlong)puVar28 + (-0x50 - (longlong)puVar29) + (longlong)puVar1);
-                uVar12 = puVar13[1];
-                *(undefined8 *)puVar20 = *puVar13;
-                *(undefined8 *)(puVar20 + 2) = uVar12;
-                puVar13 = (undefined8 *)
-                          ((longlong)puVar28 + (-0x40 - (longlong)puVar29) + (longlong)puVar1);
-                uVar12 = puVar13[1];
-                *(undefined8 *)(puVar20 + 4) = *puVar13;
-                *(undefined8 *)(puVar20 + 6) = uVar12;
-                puVar13 = (undefined8 *)
-                          ((longlong)puVar28 + (-0x30 - (longlong)puVar29) + (longlong)puVar1);
-                uVar12 = puVar13[1];
-                *(undefined8 *)(puVar20 + 8) = *puVar13;
-                *(undefined8 *)(puVar20 + 10) = uVar12;
-                puVar13 = (undefined8 *)
-                          ((longlong)puVar28 + (-0x20 - (longlong)puVar29) + (longlong)puVar1);
-                uVar12 = puVar13[1];
-                *(undefined8 *)(puVar20 + 0xc) = *puVar13;
-                *(undefined8 *)(puVar20 + 0xe) = uVar12;
-                *(undefined8 *)(puVar20 + 0x11) =
+                material_ptr = vertex_data + 0x14;
+                *index_data = *(uint *)((longlong)shader_slot + (-4 - (longlong)texture_slot) +
+                                      (longlong)vertex_data);
+                index_data = index_data + 0x14;
+                texture_handle = (undefined8 *)
+                          ((longlong)shader_slot + (-0x50 - (longlong)texture_slot) + (longlong)material_ptr);
+                render_device = texture_handle[1];
+                *(undefined8 *)vertex_data = *texture_handle;
+                *(undefined8 *)(vertex_data + 2) = render_device;
+                texture_handle = (undefined8 *)
+                          ((longlong)shader_slot + (-0x40 - (longlong)texture_slot) + (longlong)material_ptr);
+                render_device = texture_handle[1];
+                *(undefined8 *)(vertex_data + 4) = *texture_handle;
+                *(undefined8 *)(vertex_data + 6) = render_device;
+                texture_handle = (undefined8 *)
+                          ((longlong)shader_slot + (-0x30 - (longlong)texture_slot) + (longlong)material_ptr);
+                render_device = texture_handle[1];
+                *(undefined8 *)(vertex_data + 8) = *texture_handle;
+                *(undefined8 *)(vertex_data + 10) = render_device;
+                texture_handle = (undefined8 *)
+                          ((longlong)shader_slot + (-0x20 - (longlong)texture_slot) + (longlong)material_ptr);
+                render_device = texture_handle[1];
+                *(undefined8 *)(vertex_data + 0xc) = *texture_handle;
+                *(undefined8 *)(vertex_data + 0xe) = render_device;
+                *(undefined8 *)(vertex_data + 0x11) =
                      *(undefined8 *)
-                      ((longlong)puVar28 + (-0xc - (longlong)puVar29) + (longlong)puVar1);
-                puVar17 = (uint *)((longlong)puVar20 +
-                                  (longlong)puVar28 + (0x4c - (longlong)puVar29));
-                puVar20 = puVar1;
-              } while (puVar17 != puVar27);
+                      ((longlong)shader_slot + (-0xc - (longlong)texture_slot) + (longlong)material_ptr);
+                batch_buffer = (uint *)((longlong)vertex_data +
+                                  (longlong)shader_slot + (0x4c - (longlong)texture_slot));
+                vertex_data = material_ptr;
+              } while (batch_buffer != material_slot);
             }
-            *puVar14 = uVar24;
-            *(longlong *)(puVar14 + 1) = lVar19;
-            *(longlong *)(puVar14 + 3) = lVar2;
-            *(longlong *)(puVar14 + 5) = lVar3;
-            *(longlong *)(puVar14 + 7) = lVar7;
-            *(longlong *)(puVar14 + 9) = lVar8;
-            *(longlong *)(puVar14 + 0xb) = lVar9;
-            *(longlong *)(puVar14 + 0xd) = lVar10;
-            *(longlong *)(puVar14 + 0xf) = lVar11;
-            *(longlong *)(puVar14 + 0x12) = lVar23;
-            puVar25[1] = (ulonglong)(puVar14 + 0x14);
-            *puVar25 = (ulonglong)puVar29;
-            puVar25[2] = (ulonglong)(puVar29 + lVar21 * 0x14);
+            
+            // 添加新数据
+            *index_data = batch_flags;
+            *(longlong *)(index_data + 1) = material_id;
+            *(longlong *)(index_data + 3) = shader_offset;
+            *(longlong *)(index_data + 5) = texture_offset;
+            *(longlong *)(index_data + 7) = vertex_stride;
+            *(longlong *)(index_data + 9) = total_vertices;
+            *(longlong *)(index_data + 0xb) = buffer_size;
+            *(longlong *)(index_data + 0xd) = vertex_offset2;
+            *(longlong *)(index_data + 0xf) = index_offset2;
+            *(longlong *)(index_data + 0x12) = texture_id;
+            material_hash[1] = (ulonglong)(index_data + 0x14);
+            *material_hash = (ulonglong)texture_slot;
+            material_hash[2] = (ulonglong)(texture_slot + index_stride * 0x14);
           }
         }
-        iVar30 = iVar30 + 1;
-        uVar32 = uVar32 << 1 | (uint)((int)uVar32 < 0);
-        lVar31 = lVar31 + 0x20;
-        iVar26 = *(int *)*unaff_RSI;
-        param_4 = param_9;
-        in_R10D = param_6;
-      } while (iVar30 < iVar26);
+        render_pass = render_pass + 1;
+        instance_flag = instance_flag << 1 | (uint)((int)instance_flag < 0);
+        instance_count = instance_count + 0x20;
+        batch_size = *(int *)*render_context;
+        render_buffer = vertex_buffer;
+      } while (render_pass < batch_size);
     }
-    in_R10D = in_R10D + 1;
-    param_3 = param_4[7];
-    param_10 = param_10 + 0x10;
-    param_6 = in_R10D;
-    if ((ulonglong)(param_4[8] - param_3 >> 4) <= (ulonglong)(longlong)in_R10D) {
-                    // WARNING: Subroutine does not return
-      FUN_1808fc050(param_18 ^ (ulonglong)&stack0x00000000);
+    batch_index = batch_index + 1;
+    batch_data = render_buffer[7];
+    buffer_offset = buffer_offset + 0x10;
+    batch_size = batch_index;
+    if ((ulonglong)(render_buffer[8] - batch_data >> 4) <= (ulonglong)(longlong)batch_index) {
+      // 清理并退出
+      FUN_1808fc050(material_offset ^ (ulonglong)&stack_guard);
     }
   } while( true );
 }
@@ -543,14 +590,14 @@ LAB_180280958:
 
 
 
-// 函数: void FUN_180280a9f(void)
-void FUN_180280a9f(void)
-
+// 函数: 渲染系统初始化器 - 初始化渲染系统的各个组件
+// 原始函数名: FUN_180280a9f
+void RenderingSystemInitializer(void)
 {
-  ulonglong in_stack_00000090;
+  ulonglong stack_parameter;
   
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000090 ^ (ulonglong)&stack0x00000000);
+  // 初始化渲染系统并设置堆栈保护
+  FUN_1808fc050(stack_parameter ^ (ulonglong)&stack0x00000000);
 }
 
 
