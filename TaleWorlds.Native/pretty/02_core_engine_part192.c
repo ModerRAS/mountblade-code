@@ -627,7 +627,7 @@ void SystemEventDispatcher(void)
   plVar1 = *(int64_t **)(lVar5 + 0x8400);
   iVar3 = (**(code **)(*plVar1 + 0x70))(plVar1,*(uint64_t *)(lVar4 + 8),0,1,0);
   if (iVar3 < 0) {
-    CoreEngineErrorHandler(iVar3,&unknown_var_1856_ptr);
+    CoreEngineErrorHandler(iVar3,&system_error_handler_ptr);
   }
   iVar3 = (**(code **)(**(int64_t **)(unaff_RSI + 0x50) + 0xa8))
                     (*(int64_t **)(unaff_RSI + 0x50),in_stack_00000050,
@@ -910,9 +910,9 @@ void SystemGraphicsInitializer(uint64_t *graphics_context)
   *puVar9 = &system_graphics_config_ptr;
   puVar1 = param_1 + 0x12;
   *puVar1 = &system_graphics_memory_ptr;
-  *puVar1 = &unknown_var_5024_ptr;
+  *puVar1 = &system_graphics_data_ptr;
   puVar8 = param_1 + 0x13;
-  *puVar8 = &unknown_var_4768_ptr;
+  *puVar8 = &system_graphics_state_ptr;
   puStack_98 = param_1 + 0x14;
   *puStack_98 = 0;
   param_1[0x15] = 0;
@@ -958,8 +958,8 @@ void SystemGraphicsInitializer(uint64_t *graphics_context)
   *(int8_t *)(param_1 + 0x42) = 0;
   param_1[0x43] = 0;
   puVar2 = param_1 + 0x45;
-  *puVar2 = &unknown_var_4968_ptr;
-  *puVar2 = &unknown_var_4824_ptr;
+  *puVar2 = &system_graphics_config_ptr;
+  *puVar2 = &system_graphics_memory_ptr;
   puStack_a0 = param_1 + 0x46;
   param_1[0x49] = 0;
   *(int32_t *)(param_1 + 0x4b) = 3;
@@ -985,7 +985,7 @@ void SystemGraphicsInitializer(uint64_t *graphics_context)
   (**(code **)*puVar8)(puVar8,puVar9);
   iVar3 = _Initialize_Granite_Graphine__YA_AW4Enum_Error_2__J_Z(0x1450);
   if (iVar3 != 0) {
-    CoreEngineSystemValidator(&unknown_var_3688_ptr,iVar3);
+    CoreEngineSystemValidator(&system_init_error_ptr,iVar3);
   }
   __0DirectX11DeviceOptions_DX11_Granite_Graphine__QEAA_XZ(auStack_60);
   uStack_44 = 1;
@@ -995,11 +995,11 @@ void SystemGraphicsInitializer(uint64_t *graphics_context)
   param_1[0x1c] = lVar5;
   param_1[0x4c] = lVar5;
   if (lVar5 == 0) {
-    CoreEngineSystemValidator(&unknown_var_3800_ptr);
+    CoreEngineSystemValidator(&system_device_error_ptr);
   }
   puVar9 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,8,8,3);
-  *puVar9 = &unknown_var_5168_ptr;
-  *puVar9 = &unknown_var_5240_ptr;
+  *puVar9 = &system_context_param1_ptr;
+  *puVar9 = &system_context_param2_ptr;
   puStack_a8 = puVar9;
   __0ContextCreationParameters_Granite_Graphine__QEAA_XZ(&uStack_90);
   uStack_90 = param_1[0x1c];
@@ -1057,7 +1057,7 @@ uint64_t * CoreEngineResourceManager(uint64_t *param_1,uint param_2,uint64_t par
 
 {
   CoreEngineMemoryReleaser(param_1 + 1,param_1[3],param_3,param_4,0xfffffffffffffffe);
-  *param_1 = &unknown_var_4968_ptr;
+  *param_1 = &system_graphics_config_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x40);
   }
