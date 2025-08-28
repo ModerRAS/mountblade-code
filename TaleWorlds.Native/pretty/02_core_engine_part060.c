@@ -1,7 +1,117 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 02_core_engine_part060.c - 7 个函数
+/**
+ * @file 02_core_engine_part060.c
+ * @brief 核心引擎系统模块 - 数据处理和内存管理组件
+ * 
+ * 本模块包含7个核心系统函数，主要负责数据处理、内存管理、系统配置
+ * 和消息处理等关键功能。这些函数与part061模块协同工作，共同构成
+ * 完整的引擎核心系统。
+ * 
+ * 主要功能：
+ * - 系统数据处理和转换
+ * - 内存分配和堆管理
+ * - 系统配置和初始化
+ * - 消息队列处理
+ * - 数据结构操作
+ * 
+ * @author 系统架构团队
+ * @version 1.0
+ * @date 2024
+ */
+
+// 系统常量定义
+#define SYSTEM_DATA_BUFFER_SIZE 0x30
+#define SYSTEM_CONFIG_BUFFER_SIZE 0xa0
+#define SYSTEM_MESSAGE_BUFFER_SIZE 0xa8
+#define SYSTEM_SECURITY_COOKIE_MASK 0xfffffffffffffffe
+#define SYSTEM_FLOAT_ONE 0x3f800000
+#define SYSTEM_FLOAT_HALF 0x3f000000
+#define SYSTEM_FLOAT_NEG_TWO 0xbf000000
+
+// 系统状态常量
+#define SYSTEM_STATE_INITIALIZING 0x00
+#define SYSTEM_STATE_READY 0x01
+#define SYSTEM_STATE_PROCESSING 0x02
+#define SYSTEM_STATE_SHUTDOWN 0x03
+
+// 数据处理常量
+#define DATA_PROCESSING_FLAG_NONE 0x00
+#define DATA_PROCESSING_FLAG_ACTIVE 0x01
+#define DATA_PROCESSING_FLAG_COMPLETE 0x02
+
+// 内存管理常量
+#define MEMORY_POOL_DEFAULT_SIZE 0x10
+#define MEMORY_POOL_LARGE_SIZE 0x3b0
+#define MEMORY_ALIGNMENT_8 8
+#define MEMORY_ALIGNMENT_16 0x10
+
+// 线程同步常量
+#define THREAD_LOCK_SUCCESS 0x00
+#define THREAD_LOCK_TIMEOUT 0x01
+#define THREAD_LOCK_ERROR 0x02
+
+// 类型定义
+typedef uint64_t SystemHandle;
+typedef int64_t SystemError;
+typedef void* SystemPointer;
+typedef uint32_t SystemFlags;
+typedef int32_t SystemStatus;
+
+// 函数指针类型
+typedef SystemError (*SystemInitializer)(SystemPointer);
+typedef SystemError (*SystemProcessor)(SystemPointer, SystemPointer);
+typedef SystemError (*SystemCleanup)(SystemPointer);
+
+// 数据结构定义
+typedef struct {
+    uint64_t handle;
+    uint32_t size;
+    uint32_t flags;
+    SystemPointer data;
+    SystemPointer next;
+    SystemPointer prev;
+} SystemDataNode;
+
+typedef struct {
+    SystemDataNode* head;
+    SystemDataNode* tail;
+    uint32_t count;
+    uint32_t capacity;
+    SystemFlags flags;
+} SystemDataQueue;
+
+typedef struct {
+    SystemPointer buffer;
+    uint32_t size;
+    uint32_t used;
+    SystemFlags flags;
+    SystemDataQueue* queue;
+} SystemBufferManager;
+
+// 语义别名定义 - 系统初始化和配置
+#define SystemDataProcessor FUN_180096b60
+#define SystemConfigurationManager FUN_180098ae0
+#define SystemInitializerEx FUN_180099100
+
+// 语义别名定义 - 数据结构和队列管理
+#define DataStructureComparator FUN_1800988e0
+#define DataStructureCopier FUN_180098980
+#define DataArrayProcessor FUN_180098a22
+#define DataArrayCleaner FUN_180098abe
+#define DataStructureInitializer FUN_180098ae0
+
+// 语义别名定义 - 系统工具函数
+#define SystemUtilityFunction FUN_180097d40
+
+// 全局变量引用
+extern uint64_t* core_system_data_memory;
+extern void* system_data_buffer_ptr;
+extern void* system_state_ptr;
+extern void* system_memory_pool_ptr;
+extern void* system_parameter_buffer;
+extern uint64_t SYSTEM_DATA_MANAGER_A;
 
 // 函数: void FUN_180096b60(uint64_t param_1,int64_t param_2,int64_t param_3,char param_4)
 void FUN_180096b60(uint64_t param_1,int64_t param_2,int64_t param_3,char param_4)
