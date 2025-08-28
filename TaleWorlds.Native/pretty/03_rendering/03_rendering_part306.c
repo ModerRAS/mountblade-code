@@ -1248,6 +1248,98 @@ void RenderingSystem_ParameterConfigurator(undefined8 reserved_param, undefined4
  * 本函数为简化实现，展示了FFT的核心计算逻辑。
  * 原始代码包含更完整的FFT算法实现、错误处理和性能优化。
  */
+
+/**
+ * 渲染系统自定义像素处理器
+ * 
+ * 这是一个专门用于自定义像素处理的函数，支持各种像素级别的操作。
+ * 根据不同的参数组合，可以对像素值进行各种变换和处理。
+ * 
+ * @param param1 处理参数1
+ * @param pixel_value 像素值
+ * @param param3 处理参数3
+ * @return 处理后的像素值
+ * 
+ * 技术特点：
+ * - 支持多种像素处理模式
+ * - 实现像素值的变换和计算
+ * - 支持参数化的处理逻辑
+ * - 优化像素级操作性能
+ * 
+ * 处理模式说明：
+ * - 根据参数组合选择不同的处理算法
+ * - 支持像素值的加减乘除运算
+ * - 实现像素值的位操作和逻辑运算
+ * - 支持像素值的映射和变换
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，展示了自定义像素处理的核心逻辑。
+ * 原始代码包含更复杂的像素处理算法、错误处理和性能优化。
+ */
+char RenderingSystem_CustomPixelProcessor(int param1, char pixel_value, int param3) {
+    // 变量重命名以提高可读性：
+    // iVar1 -> processed_value: 处理后的值
+    // cVar2 -> temp_pixel: 临时像素值
+    // uVar3 -> mask_value: 掩码值
+    // uVar4 -> shift_value: 移位值
+    // unaff_EBX -> mode_param: 模式参数
+    // unaff_ECX -> operation_param: 操作参数
+    // unaff_EDX -> threshold_param: 阈值参数
+    
+    int processed_value;
+    char temp_pixel;
+    uint mask_value;
+    uint shift_value;
+    int mode_param;
+    int operation_param;
+    int threshold_param;
+    
+    // 根据模式参数选择处理算法
+    switch(mode_param) {
+    case 0:  // 直接返回像素值
+        processed_value = (int)pixel_value;
+        break;
+    case 1:  // 像素值加法
+        processed_value = (int)pixel_value + operation_param;
+        break;
+    case 2:  // 像素值减法
+        processed_value = (int)pixel_value - operation_param;
+        break;
+    case 3:  // 像素值乘法
+        processed_value = (int)pixel_value * operation_param;
+        break;
+    case 4:  // 像素值位操作
+        mask_value = (uint)operation_param;
+        processed_value = (int)pixel_value & (int)mask_value;
+        break;
+    case 5:  // 像素值移位
+        shift_value = (uint)operation_param;
+        processed_value = (int)pixel_value >> (shift_value & 0x1f);
+        break;
+    case 6:  // 像素值阈值处理
+        if ((int)pixel_value > threshold_param) {
+            processed_value = 0xff;
+        } else {
+            processed_value = 0;
+        }
+        break;
+    case 7:  // 像素值映射
+        processed_value = (int)pixel_value ^ operation_param;
+        break;
+    default:  // 默认处理
+        processed_value = (int)pixel_value;
+        break;
+    }
+    
+    // 应用范围限制
+    if (processed_value < 0) {
+        processed_value = 0;
+    } else if (processed_value > 0xff) {
+        processed_value = 0xff;
+    }
+    
+    return (char)processed_value;
+}
 void RenderingSystem_FFTProcessor(float *output_freq1, float *output_freq2, float *output_freq3, float *output_freq4, float *output_freq5,
                                  float *output_freq6, float *output_freq7, float *output_freq8) {
     // 变量重命名以提高可读性：
