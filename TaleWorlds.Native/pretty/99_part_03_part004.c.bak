@@ -686,17 +686,17 @@ void FUN_1801c8840(uint64_t param_1,uint64_t param_2,uint64_t param_3,int32_t *p
         if ((void *)puVar3[1] != (void *)0x0) {
           puVar7 = (void *)puVar3[1];
         }
-        AdvancedSystemOptimizer(puVar7,&unknown_var_2208_ptr,&uStackX_8);
+        FUN_18010cbc0(puVar7,&unknown_var_2208_ptr,&uStackX_8);
         puVar7 = &system_buffer_ptr;
         if ((void *)puVar3[5] != (void *)0x0) {
           puVar7 = (void *)puVar3[5];
         }
-        AdvancedSystemOptimizer(puVar7,&unknown_var_7284_ptr,&uStack_88);
+        FUN_18010cbc0(puVar7,&unknown_var_7284_ptr,&uStack_88);
         puVar7 = &system_buffer_ptr;
         if ((void *)puVar3[9] != (void *)0x0) {
           puVar7 = (void *)puVar3[9];
         }
-        AdvancedSystemOptimizer(puVar7,&unknown_var_4576_ptr,auStackX_18);
+        FUN_18010cbc0(puVar7,&unknown_var_4576_ptr,auStackX_18);
         *(int16_t *)((int64_t)param_6 + 0xc) = (int16_t)auStackX_18[0];
         *param_6 = uStack_88;
         *(int32_t *)(param_6 + 1) = (int32_t)uStackX_8;

@@ -449,7 +449,7 @@ void NetworkConnectionManager(uint64_t param_1,uint64_t param_2,int64_t *param_3
 
 
 uint64_t *
-NetworkProtocolHandler(int64_t *param_1,uint64_t *param_2,int64_t *param_3,uint64_t param_4,
+FUN_18008f140(int64_t *param_1,uint64_t *param_2,int64_t *param_3,uint64_t param_4,
              uint64_t param_5)
 
 {

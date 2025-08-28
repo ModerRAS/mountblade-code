@@ -152,7 +152,7 @@ void FUN_1806596fe(int64_t param_1,float param_2,int64_t param_3,char param_4)
   if (unaff_R14[8] != unaff_XMM6_Da) {
                     // WARNING: Subroutine does not return
     uStack_8 = 0x1806598e8;
-    AdvancedSystemController(-unaff_R14[8]);
+    FUN_1808fd400(-unaff_R14[8]);
   }
   fStack000000000000003c = (float)((uint64_t)*(uint64_t *)(unaff_R14 + 4) >> 0x20);
   fStack0000000000000038 = (float)*(uint64_t *)(unaff_R14 + 4);

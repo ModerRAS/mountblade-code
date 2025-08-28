@@ -842,7 +842,7 @@ SHADOW_PROCESSING_BRANCH:
       uStack_d8 = 3;
       uStack_e0 = uStack_100;
                     // WARNING: Subroutine does not return
-      AdvancedSystemController();
+      FUN_1808fd400();
     }
   }
   fVar25 = render_system_memory;

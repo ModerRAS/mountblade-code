@@ -303,7 +303,7 @@ void FUN_1802fad4b(void);
 void FUN_1802f9480(int64_t param_1, float param_2, int64_t param_3, uint64_t param_4);
 void NetworkDataProcessor(void);
 void NetworkConnectionManager(void* param_1);
-void NetworkProtocolHandler(void* param_1, void* param_2, void* param_3, int64_t param_4, int64_t param_5);
+void FUN_18008f140(void* param_1, void* param_2, void* param_3, int64_t param_4, int64_t param_5);
 void FUN_1802285e0(void);
 void NetworkConnectionManager(void* param_1);
 void FUN_1801985e0(uint64_t param_1, void* param_2, int param_3, void* param_4, int param_5);
@@ -357,7 +357,7 @@ void FUN_1808fd200(void);
 #define SystemResourceAllocator NetworkConnectionManager
 
 /** 系统资源创建器别名 */
-#define SystemResourceCreator NetworkProtocolHandler
+#define SystemResourceCreator FUN_18008f140
 
 /** 系统事件处理器别名 */
 #define SystemEventHandler FUN_1802285e0

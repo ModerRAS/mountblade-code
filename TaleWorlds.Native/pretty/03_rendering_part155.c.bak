@@ -607,7 +607,7 @@ LAB_18036460e:
     puVar11 = (uint64_t *)(param_1 + 0x100);
     lVar14 = 4;
     do {
-      CoreMemoryPoolValidator(&plStack_138,*puVar11);
+      FUN_180627910(&plStack_138,*puVar11);
       if ((uint64_t)param_3[1] < (uint64_t)param_3[2]) {
         param_3[1] = param_3[1] + 0x20;
         CoreEngineDataTransformer();

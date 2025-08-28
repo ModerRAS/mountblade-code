@@ -814,7 +814,7 @@ void FUN_1805d4440(int64_t *param_1)
         pfVar6 = (float *)FUN_1805b6a70(param_1);
         if (-0.70710677 < *pfVar6) {
                     // WARNING: Subroutine does not return
-          AdvancedSystemController(*(int32_t *)(*(int64_t *)(lVar8 + 0x20) + 0x34));
+          FUN_1808fd400(*(int32_t *)(*(int64_t *)(lVar8 + 0x20) + 0x34));
         }
         uVar1 = 0;
       }
