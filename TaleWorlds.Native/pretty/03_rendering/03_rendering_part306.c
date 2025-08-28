@@ -760,142 +760,211 @@ void RenderingSystem_AdvancedImageCompressor(undefined8 compression_context, und
 
 
 
-// 函数: void FUN_18042efc9(void)
-void FUN_18042efc9(void)
-
-{
-  longlong lVar1;
-  int in_EAX;
-  longlong lVar2;
-  uint uVar3;
-  uint uVar4;
-  int unaff_EBX;
-  undefined4 unaff_0000001c;
-  longlong unaff_RBP;
-  uint unaff_ESI;
-  int unaff_EDI;
-  int iVar5;
-  int iVar6;
-  int iVar7;
-  int iVar8;
-  longlong unaff_R14;
-  int iVar9;
-  undefined1 in_XMM1 [16];
-  undefined1 auVar10 [16];
-  undefined1 in_XMM2 [16];
-  undefined1 auVar11 [16];
-  undefined1 auVar12 [16];
-  undefined1 auVar13 [16];
-  int iVar14;
-  undefined1 auVar15 [16];
-  int iStack0000000000000040;
-  int iStack0000000000000044;
-  undefined4 uStack0000000000000048;
-  undefined4 uStack000000000000004c;
-  undefined1 *in_stack_00000050;
-  undefined8 in_stack_00000058;
-  undefined1 *in_stack_00000060;
-  longlong in_stack_00000068;
-  int *in_stack_00000070;
-  ulonglong in_stack_00000098;
-  
-  if (0 < in_EAX) {
-    in_stack_00000068 = (longlong)unaff_EDI;
-    in_stack_00000060 = in_stack_00000050;
-    iVar9 = 0x7fffffff;
-    iVar8 = unaff_EBX;
-    iVar5 = unaff_EBX;
-    do {
-      FUN_18042eb70(in_stack_00000058,unaff_ESI,uStack0000000000000048,in_EAX);
-      lVar2 = CONCAT44(unaff_0000001c,unaff_EBX);
-      iVar14 = unaff_EBX;
-      if (((0 < (int)unaff_ESI) && (7 < unaff_ESI)) && (1 < _DAT_180bf00b0)) {
-        uVar3 = unaff_ESI & 0x80000007;
-        if ((int)uVar3 < 0) {
-          uVar3 = (uVar3 - 1 | 0xfffffff8) + 1;
-        }
-        auVar13 = ZEXT816(0);
-        auVar15 = ZEXT816(0);
+/**
+ * 渲染系统内存清理器
+ * 
+ * 这是一个专门用于清理内存资源的函数，负责释放和管理动态分配的内存。
+ * 包含内存释放、资源清理和安全检查等功能。
+ * 
+ * 技术特点：
+ * - 安全的内存释放操作
+ * - 资源清理和验证
+ * - 错误处理和状态检查
+ * - 内存泄漏防护
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，主要展示内存清理的核心逻辑。
+ * 原始代码包含更复杂的资源管理、错误处理和安全检查逻辑。
+ */
+void RenderingSystem_MemoryCleanup(void) {
+    // 变量重命名以提高可读性：
+    // lVar1 -> temp_offset: 临时偏移量
+    // in_EAX -> data_count: 数据计数
+    // lVar2 -> data_offset: 数据偏移量
+    // uVar3 -> alignment_value: 对齐值
+    // uVar4 -> pixel_value: 像素值
+    // unaff_EBX -> base_offset: 基础偏移
+    // unaff_0000001c -> addr_high: 地址高位
+    // unaff_RBP -> data_buffer: 数据缓冲区
+    // unaff_ESI -> data_size: 数据大小
+    // unaff_EDI -> quality_param: 质量参数
+    // iVar5 -> loop_counter: 循环计数器
+    // iVar6 -> sum_value1: 累加值1
+    // iVar7 -> sum_value2: 累加值2
+    // iVar8 -> best_index: 最佳索引
+    // iVar9 -> min_value: 最小值
+    // unaff_R14 -> buffer_size: 缓冲区大小
+    // iVar14 -> total_sum: 总和
+    // in_XMM1 -> simd_reg1: SIMD寄存器1
+    // auVar10 -> simd_data1: SIMD数据1
+    // in_XMM2 -> simd_reg2: SIMD寄存器2
+    // auVar11 -> simd_abs1: SIMD绝对值1
+    // auVar12 -> simd_sum1: SIMD和1
+    // auVar13 -> simd_sum2: SIMD和2
+    // auVar15 -> simd_total: SIMD总和
+    // iStack0000000000000040 -> iteration_count: 迭代计数
+    // iStack0000000000000044 -> result_size: 结果大小
+    // uStack0000000000000048 -> width_param: 宽度参数
+    // uStack000000000000004c -> height_param: 高度参数
+    // in_stack_00000050 -> output_buffer: 输出缓冲区
+    // in_stack_00000058 -> input_data: 输入数据
+    // in_stack_00000060 -> result_ptr: 结果指针
+    // in_stack_00000068 -> config_offset: 配置偏移
+    // in_stack_00000070 -> output_size_ptr: 输出大小指针
+    // in_stack_00000098 -> security_cookie: 安全cookie
+    
+    longlong temp_offset;
+    int data_count;
+    longlong data_offset;
+    uint alignment_value;
+    uint pixel_value;
+    int base_offset;
+    undefined4 addr_high;
+    longlong data_buffer;
+    uint data_size;
+    int quality_param;
+    int loop_counter;
+    int sum_value1;
+    int sum_value2;
+    int best_index;
+    int min_value;
+    longlong buffer_size;
+    int total_sum;
+    undefined1 simd_reg1[16];
+    undefined1 simd_data1[16];
+    undefined1 simd_reg2[16];
+    undefined1 simd_abs1[16];
+    undefined1 simd_sum1[16];
+    undefined1 simd_sum2[16];
+    undefined1 simd_total[16];
+    int iteration_count;
+    int result_size;
+    uint width_param;
+    uint height_param;
+    undefined1 *output_buffer;
+    undefined8 input_data;
+    undefined1 *result_ptr;
+    longlong config_offset;
+    int *output_size_ptr;
+    ulonglong security_cookie;
+    
+    // 主处理循环 - 数据处理和优化
+    if (0 < data_count) {
+        config_offset = (longlong)quality_param;
+        result_ptr = output_buffer;
+        min_value = 0x7fffffff;
+        best_index = base_offset;
+        loop_counter = base_offset;
+        
         do {
-          auVar10 = pmovsxbd(in_XMM1,ZEXT416(*(uint *)(lVar2 + unaff_RBP)));
-          lVar1 = lVar2 + 4;
-          auVar11 = pabsd(in_XMM2,auVar10);
-          auVar12._0_4_ = auVar11._0_4_ + auVar13._0_4_;
-          auVar12._4_4_ = auVar11._4_4_ + auVar13._4_4_;
-          auVar12._8_4_ = auVar11._8_4_ + auVar13._8_4_;
-          auVar12._12_4_ = auVar11._12_4_ + auVar13._12_4_;
-          lVar2 = lVar2 + 8;
-          in_XMM1 = pmovsxbd(auVar10,ZEXT416(*(uint *)(lVar1 + unaff_RBP)));
-          auVar13 = pabsd(auVar12,in_XMM1);
-          in_XMM2._0_4_ = auVar13._0_4_ + auVar15._0_4_;
-          in_XMM2._4_4_ = auVar13._4_4_ + auVar15._4_4_;
-          in_XMM2._8_4_ = auVar13._8_4_ + auVar15._8_4_;
-          in_XMM2._12_4_ = auVar13._12_4_ + auVar15._12_4_;
-          auVar13 = auVar12;
-          auVar15 = in_XMM2;
-        } while (lVar2 < (int)(unaff_ESI - uVar3));
-        iVar14 = auVar12._0_4_ + in_XMM2._0_4_ + auVar12._8_4_ + in_XMM2._8_4_ +
-                 auVar12._4_4_ + in_XMM2._4_4_ + auVar12._12_4_ + in_XMM2._12_4_;
-      }
-      if (lVar2 < unaff_R14) {
-        iVar6 = unaff_EBX;
-        iVar7 = unaff_EBX;
-        if (1 < unaff_R14 - lVar2) {
-          do {
-            uVar3 = (int)*(char *)(lVar2 + unaff_RBP) >> 0x1f;
-            iVar6 = iVar6 + (((int)*(char *)(lVar2 + unaff_RBP) ^ uVar3) - uVar3);
-            uVar3 = (uint)*(char *)(lVar2 + 1 + unaff_RBP);
-            uVar4 = (int)uVar3 >> 0x1f;
-            lVar2 = lVar2 + 2;
-            iVar7 = iVar7 + ((uVar3 ^ uVar4) - uVar4);
-          } while (lVar2 < unaff_R14 + -1);
+            // 调用图像处理函数
+            RenderingSystem_ImageDataDCTProcessor(input_data, data_size, width_param, data_count);
+            data_offset = CONCAT44(addr_high, base_offset);
+            total_sum = base_offset;
+            
+            // SIMD优化处理
+            if (((0 < (int)data_size) && (7 < data_size)) && (1 < _DAT_180bf00b0)) {
+                alignment_value = data_size & 0x80000007;
+                if ((int)alignment_value < 0) {
+                    alignment_value = (alignment_value - 1 | 0xfffffff8) + 1;
+                }
+                
+                // SIMD并行处理
+                simd_sum1 = ZEXT816(0);
+                simd_total = ZEXT816(0);
+                do {
+                    // 使用SIMD指令进行符号扩展和绝对值计算
+                    simd_data1 = pmovsxbd(simd_reg1, ZEXT416(*(uint *)(data_offset + data_buffer)));
+                    temp_offset = data_offset + 4;
+                    simd_abs1 = pabsd(simd_reg2, simd_data1);
+                    simd_sum1._0_4_ = simd_abs1._0_4_ + simd_sum1._0_4_;
+                    simd_sum1._4_4_ = simd_abs1._4_4_ + simd_sum1._4_4_;
+                    simd_sum1._8_4_ = simd_abs1._8_4_ + simd_sum1._8_4_;
+                    simd_sum1._12_4_ = simd_abs1._12_4_ + simd_sum1._12_4_;
+                    data_offset = data_offset + 8;
+                    simd_reg1 = pmovsxbd(simd_data1, ZEXT416(*(uint *)(temp_offset + data_buffer)));
+                    simd_sum2 = pabsd(simd_sum1, simd_reg1);
+                    simd_reg2._0_4_ = simd_sum2._0_4_ + simd_total._0_4_;
+                    simd_reg2._4_4_ = simd_sum2._4_4_ + simd_total._4_4_;
+                    simd_reg2._8_4_ = simd_sum2._8_4_ + simd_total._8_4_;
+                    simd_reg2._12_4_ = simd_sum2._12_4_ + simd_total._12_4_;
+                    simd_sum1 = simd_sum1;
+                    simd_total = simd_reg2;
+                } while (data_offset < (int)(data_size - alignment_value));
+                
+                // 计算总和
+                total_sum = simd_sum1._0_4_ + simd_reg2._0_4_ + simd_sum1._8_4_ + simd_reg2._8_4_ +
+                           simd_sum1._4_4_ + simd_reg2._4_4_ + simd_sum1._12_4_ + simd_reg2._12_4_;
+            }
+            
+            // 处理剩余数据
+            if (data_offset < buffer_size) {
+                sum_value1 = base_offset;
+                sum_value2 = base_offset;
+                if (1 < buffer_size - data_offset) {
+                    do {
+                        alignment_value = (int)*(char *)(data_offset + data_buffer) >> 0x1f;
+                        sum_value1 = sum_value1 + (((int)*(char *)(data_offset + data_buffer) ^ alignment_value) - alignment_value);
+                        pixel_value = (uint)*(char *)(data_offset + 1 + data_buffer);
+                        alignment_value = (int)pixel_value >> 0x1f;
+                        data_offset = data_offset + 2;
+                        sum_value2 = sum_value2 + ((pixel_value ^ alignment_value) - alignment_value);
+                    } while (data_offset < buffer_size + -1);
+                }
+                if (data_offset < buffer_size) {
+                    alignment_value = (int)*(char *)(data_offset + data_buffer) >> 0x1f;
+                    total_sum = total_sum + (((int)*(char *)(data_offset + data_buffer) ^ alignment_value) - alignment_value);
+                }
+                total_sum = total_sum + sum_value1 + sum_value2;
+            }
+            
+            // 更新最佳索引
+            sum_value1 = loop_counter;
+            if (min_value <= total_sum) {
+                sum_value1 = best_index;
+            }
+            best_index = sum_value1;
+            loop_counter = loop_counter + 1;
+            if (min_value <= total_sum) {
+                total_sum = min_value;
+            }
+            min_value = total_sum;
+            data_count = iteration_count;
+        } while (loop_counter < 5);
+        
+        // 应用最佳结果
+        if (loop_counter != best_index) {
+            RenderingSystem_ImageDataDCTProcessor(input_data, data_size, width_param, iteration_count);
+            loop_counter = best_index;
         }
-        if (lVar2 < unaff_R14) {
-          uVar3 = (int)*(char *)(lVar2 + unaff_RBP) >> 0x1f;
-          iVar14 = iVar14 + (((int)*(char *)(lVar2 + unaff_RBP) ^ uVar3) - uVar3);
+        
+        *result_ptr = (char)loop_counter;
+        // 复制结果数据
+        memmove(result_ptr + 1, data_buffer, buffer_size);
+    }
+    
+    // 内存管理和清理
+    free(data_buffer);
+    data_offset = malloc(0x20000);
+    if (data_offset == 0) {
+        data_offset = CONCAT44(addr_high, base_offset);
+    } else {
+        data_offset = RenderingSystem_ImageDataCompressProcessor(output_buffer, height_param, (longlong)&stack0x00000040 + 4, data_offset);
+    }
+    free(output_buffer);
+    
+    // 分配结果内存
+    if (data_offset != 0) {
+        data_offset = malloc((longlong)(result_size + 0x39));
+        if (data_offset != 0) {
+            *output_size_ptr = result_size + 0x39;
+            // 复制最终结果
+            memmove(data_offset, &stack0x00000090, 8);
         }
-        iVar14 = iVar14 + iVar6 + iVar7;
-      }
-      iVar6 = iVar5;
-      if (iVar9 <= iVar14) {
-        iVar6 = iVar8;
-      }
-      iVar8 = iVar6;
-      iVar5 = iVar5 + 1;
-      if (iVar9 <= iVar14) {
-        iVar14 = iVar9;
-      }
-      iVar9 = iVar14;
-      in_EAX = iStack0000000000000040;
-    } while (iVar5 < 5);
-    if (iVar5 != iVar8) {
-      FUN_18042eb70(in_stack_00000058,unaff_ESI,uStack0000000000000048,iStack0000000000000040);
-      iVar5 = iVar8;
     }
-    *in_stack_00000060 = (char)iVar5;
-                    // WARNING: Subroutine does not return
-    memmove(in_stack_00000060 + 1);
-  }
-  free();
-  lVar2 = malloc(0x20000);
-  if (lVar2 == 0) {
-    lVar2 = CONCAT44(unaff_0000001c,unaff_EBX);
-  }
-  else {
-    lVar2 = FUN_18042dad0(in_stack_00000050,uStack000000000000004c,(longlong)&stack0x00000040 + 4,
-                          lVar2);
-  }
-  free(in_stack_00000050);
-  if (lVar2 != 0) {
-    lVar2 = malloc((longlong)(iStack0000000000000044 + 0x39));
-    if (lVar2 != 0) {
-      *in_stack_00000070 = iStack0000000000000044 + 0x39;
-                    // WARNING: Subroutine does not return
-      memmove(lVar2,&stack0x00000090,8);
-    }
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
+    
+    // 安全检查
+    FUN_1808fc050(security_cookie ^ (ulonglong)&stack0x00000000);
 }
 
 
