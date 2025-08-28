@@ -307,12 +307,14 @@ longlong find_next_resource_node(longlong node_ptr)
 
 {
   longlong next_node;
+  longlong child_node;
   
   while( true ) {
-    if (*(longlong *)(node_ptr + 0x10) == 0) {
+    child_node = *(longlong *)(node_ptr + 0x10);
+    if (child_node == 0) {
       return node_ptr;
     }
-    next_node = find_next_resource_node();
+    next_node = find_next_resource_node(child_node);
     if (next_node != 0) break;
     node_ptr = *(longlong *)(node_ptr + 0x18);
   }
@@ -334,6 +336,8 @@ longlong find_resource_by_position(longlong node_ptr,undefined8 position_coords)
   float boundary_half_size;
   float position_x;
   float position_y;
+  longlong child_node;
+  longlong sibling_node;
   
   if ((*(byte *)(node_ptr + 0xa0) & 4) != 0) {
     position_x = (float)position_coords;
@@ -361,11 +365,13 @@ longlong find_resource_by_position(longlong node_ptr,undefined8 position_coords)
         if (*(longlong *)(node_ptr + 0x10) == 0) {
           return node_ptr;
         }
-        found_node = find_next_resource_node();
+        child_node = *(longlong *)(node_ptr + 0x10);
+        found_node = find_next_resource_node(child_node);
         if (found_node != 0) {
           return found_node;
         }
-        found_node = find_next_resource_node(*(undefined8 *)(node_ptr + 0x18));
+        sibling_node = *(longlong *)(node_ptr + 0x18);
+        found_node = find_next_resource_node(sibling_node);
         return found_node;
       }
     }
@@ -455,6 +461,35 @@ void cleanup_resource_system(int cleanup_mode)
   undefined8 cleanup_mask;
   undefined8 cleanup_flags;
   undefined8 *cleanup_buffer;
+  longlong lVar4;
+  ulonglong uVar22;
+  int *piVar1;
+  longlong lStackX_18;
+  undefined8 *puVar16;
+  bool bVar6;
+  bool bVar5;
+  ulonglong uVar23;
+  ulonglong uVar12;
+  undefined8 *puVar24;
+  undefined8 *puVar11;
+  undefined8 *puVar18;
+  undefined8 *puVar20;
+  undefined8 *puVar21;
+  undefined8 *puVar9;
+  longlong lVar19;
+  ulonglong uVar10;
+  int *piVar2;
+  longlong lVar19_2;
+  ulonglong uVar14;
+  ulonglong uVar12_2;
+  int iVar13;
+  ulonglong uVar7;
+  ulonglong uVar15;
+  int iVar17;
+  int *piVar3;
+  int *piVar8;
+  uint uVar12_3;
+  ulonglong uVar7_2;
   
   lVar4 = _DAT_180c8a9b0;
   uVar22 = 0xfffffffffffffffe;
@@ -654,6 +689,15 @@ void reset_resource_states(undefined8 reset_context,char reset_flag)
   uint state_count;
   ulonglong preserve_flags;
   ulonglong loop_counter;
+  longlong lVar4;
+  ulonglong uVar9;
+  ulonglong uVar5;
+  ulonglong uVar6;
+  ulonglong uVar7;
+  int *piVar1;
+  longlong *plVar2;
+  longlong lVar3;
+  ulonglong uVar8;
   
   lVar4 = _DAT_180c8a9b0;
   uVar9 = 0;
@@ -717,6 +761,10 @@ void update_resource_batch(longlong batch_context)
   ulonglong update_flags;
   ulonglong batch_offset;
   char update_flag;
+  longlong *plVar1;
+  longlong lVar2;
+  ulonglong uVar3;
+  ulonglong uVar4;
   
   plVar1 = (longlong *)(param_1 + 0x1aa8);
   uVar3 = unaff_R12;
@@ -788,6 +836,25 @@ void process_resource_interaction(undefined8 *resource_data,undefined1 *interact
   ulonglong loop_counter;
   longlong temp_context;
   byte state_flags;
+  longlong lVar13;
+  bool bVar6;
+  bool bVar5;
+  longlong lVar9;
+  longlong lVar16;
+  ulonglong uVar8;
+  ulonglong uVar12;
+  longlong lVar2;
+  longlong lVar4;
+  longlong lVar2_2;
+  bool bVar17;
+  uint uVar1;
+  uint uVar11;
+  int *piVar3;
+  int *piVar10;
+  ulonglong uVar15;
+  int iVar14;
+  ulonglong uVar7;
+  undefined2 uVar7_2;
   
   lVar13 = _DAT_180c8a9b0;
   if ((*(char *)(_DAT_180c8a9b0 + 0xc2) == '\0') ||
