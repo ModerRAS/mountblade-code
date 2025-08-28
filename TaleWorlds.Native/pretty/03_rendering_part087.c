@@ -7,6 +7,17 @@
 // 内存管理和渲染管线控制。本简化实现保留了核心功能结构，但简化了底层优化细节，
 // 以便于理解和维护。
 
+// 函数别名定义 - 保持与原始函数名的兼容性
+#define FUN_1803198f0 rendering_system_advanced_parameter_setup
+#define FUN_18031a020 rendering_system_batch_process_and_apply
+#define FUN_18031a240 rendering_system_texture_generation_and_coord_calculation
+#define FUN_18031a470 rendering_system_resource_management_and_cleanup
+
+// 渲染系统浮点数常量
+#define RENDER_PARAM_FLOAT_ONE 0x3f800000    // 1.0的十六进制表示
+#define RENDER_PARAM_FLOAT_NEG_ONE 0xbf800000 // -1.0的十六进制表示
+#define RENDER_PARAM_FLOAT_NAN 0x7fc00000    // NaN的十六进制表示
+
 // 全局常量定义
 static const float RENDER_SCALE_FACTOR = 0.5f;              // 渲染缩放因子
 static const float RENDER_NORMALIZATION_FACTOR = 1.0f;       // 渲染归一化因子
