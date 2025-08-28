@@ -1564,40 +1564,51 @@ undefined UNK_180a1b100;      // 设备能力数据结构
 undefined UNK_180a1b368;      // 设备限制数据结构
 
 
-// 函数: undefined FUN_18033d080;
+/** 
+ * @brief 渲染资源基础管理函数
+ * @details 基础渲染资源管理功能
+ */
 undefined FUN_18033d080;
 
 
-// 函数: undefined FUN_18033d170;
+/** 
+ * @brief 渲染资源高级管理函数
+ * @details 高级渲染资源管理，包含资源池、缓存等
+ */
 undefined FUN_18033d170;
-undefined UNK_18033d070;
-undefined UNK_18033d160;
-undefined UNK_180a1b0f8;
+undefined UNK_18033d070;      // 资源池数据结构
+undefined UNK_18033d160;      // 资源缓存数据结构
+undefined UNK_180a1b0f8;      // 资源管理数据结构
 
 
-// 函数: undefined FUN_18033ced0;
+/** 
+ * @brief 渲染内存管理函数
+ * @details 渲染系统内存管理，包含内存池、分配器、统计等
+ */
 undefined FUN_18033ced0;
-undefined UNK_18033d030;
-undefined DAT_180d48e24;
-undefined DAT_180d48e60;
-undefined DAT_180d48e68;
-undefined DAT_180d48e70;
-undefined DAT_180d48e78;
-undefined DAT_180d48eb8;
-undefined DAT_180d48ec0;
-undefined DAT_180d48ed0;
-undefined DAT_180d48e30;
-undefined UNK_180941dc0;
-undefined8 UNK_180d48ec8;
-undefined DAT_180c917d8;
-undefined UNK_180a1b168;
-undefined DAT_180c917c0;
-undefined DAT_180d48e20;
-undefined DAT_180d496d0;
-undefined DAT_180d49730;
-undefined DAT_180d49738;
-undefined DAT_180d49740;
-undefined DAT_180d49748;
+
+/* 渲染内存管理数据结构 */
+undefined UNK_18033d030;      // 内存管理器数据结构
+undefined DAT_180d48e24;      // 内存池统计数据
+undefined DAT_180d48e60;      // 内存分配统计数据
+undefined DAT_180d48e68;      // 内存使用统计数据
+undefined DAT_180d48e70;      // 内存碎片统计数据
+undefined DAT_180d48e78;      // 内存性能统计数据
+undefined DAT_180d48eb8;      // 内存错误统计数据
+undefined DAT_180d48ec0;      // 内存警告统计数据
+undefined DAT_180d48ed0;      // 内存调试统计数据
+undefined DAT_180d48e30;      // 内存配置数据
+undefined UNK_180941dc0;      // 内存池数据结构
+undefined8 UNK_180d48ec8;    // 内存分配器数据结构
+undefined DAT_180c917d8;      // 内存限制数据
+undefined UNK_180a1b168;      // 内存管理配置数据结构
+undefined DAT_180c917c0;      // 内存策略数据
+undefined DAT_180d48e20;      // 内存池配置数据
+undefined DAT_180d496d0;      // 内存分配器配置数据
+undefined DAT_180d49730;      // 内存监控配置数据
+undefined DAT_180d49738;      // 内存调试配置数据
+undefined DAT_180d49740;      // 内存优化配置数据
+undefined DAT_180d49748;      // 内存压缩配置数据
 
 
 // 函数: undefined FUN_18033cd80;
