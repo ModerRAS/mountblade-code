@@ -478,4 +478,26 @@ uint64_t UI_System_Data_Batch_Copy(void)
  * 许可：内部使用
  * 
 //==============================================================================
+// 函数别名定义
+//==============================================================================
+
+// 原始函数别名（保持向后兼容性）
+#define FUN_180745ce1                     UI_System_Init_Placeholder
+#define FUN_180745cff                     UI_System_EventHandler_Register
+#define FUN_180745e75                     UI_System_Get_Error_Code
+#define FUN_180745e80                     UI_System_Event_Dispatch
+#define FUN_180745ed0                     UI_System_Callback_Execute
+#define FUN_180745f10                     UI_System_Resource_Cleanup
+#define FUN_180745f70                     UI_System_Event_State_Check
+#define FUN_1807460d0                     UI_System_Data_Copy
+#define FUN_18074610a                     UI_System_Memory_Operation
+#define FUN_180746135                     UI_System_Data_Batch_Copy
+
+// 外部函数调用别名
+#define FUN_180768360(param)              UI_Event_Process_Event(param)
+#define FUN_180768400(param)              UI_Event_Dispatch_Event(param)
+#define FUN_180769ed0(param1,param2,param3,param4,param5) UI_Event_Queue_Add(param1,param2,param3,param4,param5)
+#define FUN_180753170(param)              UI_State_Validate_Handle(param)
+
+//==============================================================================
 

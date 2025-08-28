@@ -172,6 +172,14 @@ static uint32_t g_system_flags = 0;
 #define pointer_offset_calculator     FUN_1801ba6f6
 #define system_empty_function_4       FUN_1801ba708
 #define resource_release_handler      FUN_180080060
+#define memory_pool_allocator         FUN_18062b420
+#define system_error_handler          FUN_18064e900
+#define data_block_processor          FUN_1801bb0b0
+#define data_binder                   FUN_1801bd320
+#define data_stream_processor         FUN_18014c570
+#define data_cleaner                  FUN_18014c7d0
+#define data_converter                FUN_1801bd980
+#define data_validator                FUN_1801bd090
 
 /*============================================================================
   核心函数实现

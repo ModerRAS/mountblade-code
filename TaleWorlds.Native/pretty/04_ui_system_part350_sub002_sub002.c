@@ -2707,10 +2707,10 @@ UISystem_BufferManager(longlong system_context, uint64_t buffer_data, uint *size
     iVar4 = *param_3 + (int)param_5;
   }
   param_5._4_4_ = iVar4;
-  uVar5 = FUN_18085acd0(param_1,param_2,&param_5,*(longlong *)(param_1 + 0x110) + 0x48,1,param_8,
+  uVar5 = UISystem_ConfigManager(param_1,param_2,&param_5,*(longlong *)(param_1 + 0x110) + 0x48,1,param_8,
                         param_7);
   if ((((int)uVar5 == 0) &&
-      (uVar5 = FUN_18085acd0(param_1,param_2,&param_5,*(longlong *)(param_1 + 0x110) + 0x38,
+      (uVar5 = UISystem_ConfigManager(param_1,param_2,&param_5,*(longlong *)(param_1 + 0x110) + 0x38,
                              (char)uVar5,uVar3,uVar2), (int)uVar5 == 0)) &&
      (uVar5 = UISystem_StateChecker(param_1,&param_5,param_2), (int)uVar5 == 0)) {
     *(int32_t *)(param_1 + 0xc) = 2;
@@ -3006,9 +3006,9 @@ int UISystem_AdvancedDataProcessor(longlong system_context, uint data_size, long
   uVar11 = CONCAT71((int7)((ulonglong)in_stack_ffffffffffffff88 >> 8),1);
   uStackX_8 = uVar5;
   lStack_50 = lVar13;
-  iVar9 = FUN_18085acd0(param_1,&lStack_50,&uStackX_8,lVar7 + 0x80,uVar11,uVar16,0);
+  iVar9 = UISystem_ConfigManager(param_1,&lStack_50,&uStackX_8,lVar7 + 0x80,uVar11,uVar16,0);
   if (iVar9 == 0) {
-    iVar9 = FUN_18085acd0(param_1,&lStack_50,&uStackX_8,lVar7 + 0x90,uVar11 & 0xffffffffffffff00,
+    iVar9 = UISystem_ConfigManager(param_1,&lStack_50,&uStackX_8,lVar7 + 0x90,uVar11 & 0xffffffffffffff00,
                           CONCAT71((int7)(uVar16 >> 8),~bVar3) & 0xffffffffffffff01,0);
     if (iVar9 != 0) goto LAB_18085b88c;
   }
@@ -3298,7 +3298,7 @@ int UISystem_DataStreamProcessor(longlong system_context, uint stream_size, long
   uVar9 = CONCAT71((int7)((ulonglong)in_stack_00000020 >> 8),1);
   lStack0000000000000048 = lVar11;
   uStack00000000000000a0 = uVar4;
-  iVar7 = FUN_18085acd0(param_1,&stack0x00000048,&stack0x000000a0,lStack0000000000000040 + 0x80,
+  iVar7 = UISystem_ConfigManager(param_1,&stack0x00000048,&stack0x000000a0,lStack0000000000000040 + 0x80,
                         uVar9);
   if (iVar7 == 0) {
     uStack0000000000000030 = 0;
