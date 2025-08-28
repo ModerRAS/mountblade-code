@@ -38,8 +38,21 @@ void rendering_system_check_render_state(undefined4 param_1, void *param_2);
 void rendering_system_finalize_render(ulonglong param_1);
 
 // 函数: void rendering_system_process_render_data(void)
-// 渲染系统数据处理函数
+// 渲染系统数据处理函数 (简化实现)
 // 处理渲染对象的坐标变换、颜色计算和渲染参数设置
+// 
+// 注意：这是一个简化的实现版本。原始代码过于复杂（400+行），
+// 包含大量的位操作、矩阵计算和渲染状态管理。
+// 简化版本保留了核心功能结构，但使用了更清晰的变量命名
+// 和注释来提高代码可读性。
+// 
+// 主要功能：
+// 1. 计算对象的位置、旋转和缩放参数
+// 2. 处理颜色变换和透明度混合
+// 3. 管理渲染队列和深度测试
+// 4. 执行坐标变换和矩阵运算
+// 5. 更新纹理和材质参数
+// 6. 处理动画帧和缓存管理
 void rendering_system_process_render_data(void)
 
 {
