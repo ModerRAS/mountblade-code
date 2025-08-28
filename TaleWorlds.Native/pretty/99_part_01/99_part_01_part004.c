@@ -256,6 +256,7 @@ void DataStreamProcessor(longlong *param_1,longlong *param_2,undefined8 *param_3
  */
 longlong * StreamOutputOperator(longlong *param_1,undefined1 param_2,undefined8 param_3,undefined8 param_4)
 
+{
   longlong *plVar1;
   char cVar2;
   longlong lVar3;
@@ -352,6 +353,7 @@ LAB_1800a0f0c:
  */
 undefined8 * StreamInitializer(undefined8 *param_1,longlong *param_2)
 
+{
   longlong *plVar1;
   longlong lVar2;
   
