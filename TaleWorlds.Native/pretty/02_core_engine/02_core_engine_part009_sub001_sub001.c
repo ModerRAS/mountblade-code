@@ -219,75 +219,95 @@ void initialize_string_system_2(void)
 
 
 // 函数: void FUN_180043820(void)
-void FUN_180043820(void)
-
+/**
+ * 初始化字符串处理系统3
+ * 功能：初始化第三个字符串处理系统
+ */
+void initialize_string_system_3(void)
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
-  
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0x11;
-  strcpy_s(auStack_88,0x80,&UNK_180a3e3f0,in_R9,0xfffffffffffffffe);
-  _DAT_180c967d8 = FUN_180623800(&puStack_a0);
-  return;
+    undefined8 in_R9;
+    undefined *puStack_a0;
+    undefined1 *puStack_98;
+    undefined4 uStack_90;
+    undefined1 auStack_88 [136];
+    
+    puStack_a0 = &UNK_1809fcc28;
+    puStack_98 = auStack_88;
+    auStack_88[0] = 0;
+    uStack_90 = 0x11;
+    strcpy_s(auStack_88, 0x80, &UNK_180a3e3f0, in_R9, 0xfffffffffffffffe);
+    _DAT_180c967d8 = FUN_180623800(&puStack_a0);
+    return;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_1800438b0(void)
-
+/**
+ * 初始化第二个全局数据结构
+ * 功能：初始化系统的第二个全局数据结构和指针
+ * 返回值：初始化成功返回0，失败返回-1
+ */
+int initialize_second_global_data_structure(void)
 {
-  longlong lVar1;
-  
-  _DAT_180c96808 = 3;
-  _DAT_180c967e0 = &DAT_180c967e0;
-  _DAT_180c967e8 = &DAT_180c967e0;
-  _DAT_180c967f0 = 0;
-  _DAT_180c967f8 = 0;
-  _DAT_180c96800 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180943200);
-  return (lVar1 != 0) - 1;
+    longlong result;
+    
+    // 设置第二个全局数据结构初始值
+    _DAT_180c96808 = 3;
+    _DAT_180c967e0 = &DAT_180c967e0;
+    _DAT_180c967e8 = &DAT_180c967e0;
+    _DAT_180c967f0 = 0;
+    _DAT_180c967f8 = 0;
+    _DAT_180c96800 = 0;
+    result = FUN_1808fc7d0(FUN_180943200);
+    return (result != 0) - 1;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180043960(void)
-
+/**
+ * 初始化系统配置
+ * 功能：初始化系统配置和参数设置
+ * 返回值：初始化成功返回0，失败返回-1
+ */
+int initialize_system_configuration(void)
 {
-  longlong lVar1;
-  int iVar2;
-  
-  _DAT_180c0c6c0 = 0x100;
-  iVar2 = 0;
-  do {
-    FUN_180767e20(iVar2,0x4000000000000000,0xffff7fff,0);
-    iVar2 = iVar2 + 1;
-  } while (iVar2 < 0xd);
-  *(uint *)(_DAT_180be14a0 + 0x330) = *(uint *)(_DAT_180be14a0 + 0x330) | 4;
-  _DAT_180be1324 = 0xffffffff;
-  lVar1 = FUN_1808fc7d0(&UNK_180943250);
-  return (lVar1 != 0) - 1;
+    longlong result;
+    int i;
+    
+    // 设置系统配置初始值
+    _DAT_180c0c6c0 = 0x100;
+    i = 0;
+    do {
+        FUN_180767e20(i, 0x4000000000000000, 0xffff7fff, 0);
+        i = i + 1;
+    } while (i < 0xd);
+    
+    // 设置配置标志
+    *(uint *)(_DAT_180be14a0 + 0x330) = *(uint *)(_DAT_180be14a0 + 0x330) | 4;
+    _DAT_180be1324 = 0xffffffff;
+    result = FUN_1808fc7d0(&UNK_180943250);
+    return (result != 0) - 1;
 }
 
 
 
-int FUN_1800439c0(void)
-
+/**
+ * 初始化系统内存管理
+ * 功能：初始化系统内存管理模块
+ * 返回值：初始化成功返回0，失败返回-1
+ */
+int initialize_memory_management(void)
 {
-  longlong lVar1;
-  
-  func_0x000180741c80(0x180c0c340);
-  lVar1 = FUN_1808fc7d0(&UNK_180943260);
-  return (lVar1 != 0) - 1;
+    longlong result;
+    
+    // 调用内存管理初始化函数
+    func_0x000180741c80(0x180c0c340);
+    result = FUN_1808fc7d0(&UNK_180943260);
+    return (result != 0) - 1;
 }
 
 
@@ -299,17 +319,20 @@ int FUN_1800439c0(void)
 
 
 // 函数: void FUN_1800439e0(void)
-void FUN_1800439e0(void)
-
+/**
+ * 初始化系统模块1
+ * 功能：初始化系统模块1，根据条件选择不同的实现
+ */
+void initialize_system_module_1(void)
 {
-  int iVar1;
-  
-  iVar1 = FUN_1807681a0(0);
-  _DAT_180c0c6d0 = 0x180be14a8;
-  if (iVar1 != 0) {
-    _DAT_180c0c6d0 = 0x180be14c0;
-  }
-  return;
+    int condition_result;
+    
+    condition_result = FUN_1807681a0(0);
+    _DAT_180c0c6d0 = 0x180be14a8;
+    if (condition_result != 0) {
+        _DAT_180c0c6d0 = 0x180be14c0;
+    }
+    return;
 }
 
 
@@ -321,22 +344,25 @@ void FUN_1800439e0(void)
 
 
 // 函数: void FUN_180043a10(void)
-void FUN_180043a10(void)
-
+/**
+ * 初始化系统模块2
+ * 功能：初始化系统模块2，根据多重条件选择不同的实现
+ */
+void initialize_system_module_2(void)
 {
-  int iVar1;
-  
-  iVar1 = FUN_1807681a0(1);
-  if (iVar1 != 0) {
-    _DAT_180c0c6d8 = 0x180be15c0;
+    int condition_result;
+    
+    condition_result = FUN_1807681a0(1);
+    if (condition_result != 0) {
+        _DAT_180c0c6d8 = 0x180be15c0;
+        return;
+    }
+    condition_result = FUN_1807681a0(0);
+    _DAT_180c0c6d8 = 0x180be14e0;
+    if (condition_result != 0) {
+        _DAT_180c0c6d8 = 0x180be1550;
+    }
     return;
-  }
-  iVar1 = FUN_1807681a0(0);
-  _DAT_180c0c6d8 = 0x180be14e0;
-  if (iVar1 != 0) {
-    _DAT_180c0c6d8 = 0x180be1550;
-  }
-  return;
 }
 
 
