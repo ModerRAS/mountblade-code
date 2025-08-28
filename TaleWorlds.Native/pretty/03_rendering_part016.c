@@ -898,7 +898,7 @@ void FUN_180277690(int64_t param_1,uint param_2)
         if (*(char *)(lVar3 + 0xf9) != '\0') {
           if (*(int64_t *)(lVar3 + 0x1d8) != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
           }
           *(uint64_t *)(lVar3 + 0x1d8) = 0;
           LOCK();
