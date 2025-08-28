@@ -939,88 +939,131 @@ void FUN_1806a99b3(void)
 
 
 
-undefined8 * FUN_1806a99d0(undefined8 *param_1,longlong param_2)
-
-{
-  longlong *plVar1;
-  longlong *plVar2;
-  undefined8 *puVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
-  longlong lVar7;
-  ulonglong uVar8;
-  uint uVar9;
-  ulonglong uVar10;
-  
-  uVar8 = 0;
-  *param_1 = &UNK_18094a3e8;
-  plVar1 = param_1 + 0x10;
-  uVar4 = *(undefined4 *)(param_2 + 0xc);
-  uVar5 = *(undefined4 *)(param_2 + 0x10);
-  uVar6 = *(undefined4 *)(param_2 + 0x14);
-  plVar2 = param_1 + 0x12;
-  *(undefined4 *)(param_1 + 1) = *(undefined4 *)(param_2 + 8);
-  *(undefined4 *)((longlong)param_1 + 0xc) = uVar4;
-  *(undefined4 *)(param_1 + 2) = uVar5;
-  *(undefined4 *)((longlong)param_1 + 0x14) = uVar6;
-  *(undefined4 *)(param_1 + 3) = *(undefined4 *)(param_2 + 0x18);
-  *(undefined4 *)((longlong)param_1 + 0x1c) = *(undefined4 *)(param_2 + 0x1c);
-  *(undefined4 *)(param_1 + 4) = *(undefined4 *)(param_2 + 0x20);
-  *(undefined4 *)((longlong)param_1 + 0x24) = *(undefined4 *)(param_2 + 0x24);
-  *(undefined4 *)(param_1 + 5) = *(undefined4 *)(param_2 + 0x28);
-  *(undefined4 *)((longlong)param_1 + 0x2c) = *(undefined4 *)(param_2 + 0x2c);
-  *(undefined4 *)(param_1 + 6) = *(undefined4 *)(param_2 + 0x30);
-  param_1[7] = *(undefined8 *)(param_2 + 0x38);
-  param_1[8] = *(undefined8 *)(param_2 + 0x40);
-  *(undefined4 *)(param_1 + 9) = *(undefined4 *)(param_2 + 0x48);
-  *(undefined4 *)((longlong)param_1 + 0x4c) = *(undefined4 *)(param_2 + 0x4c);
-  *(undefined4 *)(param_1 + 10) = *(undefined4 *)(param_2 + 0x50);
-  param_1[0xb] = *(undefined8 *)(param_2 + 0x58);
-  param_1[0xc] = *(undefined8 *)(param_2 + 0x60);
-  *(undefined1 *)(param_1 + 0xd) = *(undefined1 *)(param_2 + 0x68);
-  *(undefined1 *)((longlong)param_1 + 0x69) = *(undefined1 *)(param_2 + 0x69);
-  *param_1 = &UNK_18094aef0;
-  param_1[0xe] = 0;
-  param_1[0xf] = 0;
-  *plVar1 = 0;
-  param_1[0x11] = 0;
-  *plVar2 = 0;
-  param_1[0x13] = 0;
-  lVar7 = param_1[7];
-  uVar10 = uVar8;
-  if ((int)(param_1[8] - lVar7 >> 3) != 0) {
-    do {
-      puVar3 = (undefined8 *)(lVar7 + uVar10 * 8);
-      if (*(uint *)(param_1 + 0x11) < (*(uint *)((longlong)param_1 + 0x8c) & 0x7fffffff)) {
-        *(undefined8 *)(*plVar1 + (ulonglong)*(uint *)(param_1 + 0x11) * 8) = *puVar3;
-        *(int *)(param_1 + 0x11) = *(int *)(param_1 + 0x11) + 1;
-      }
-      else {
-        FUN_1806ae480(plVar1,puVar3);
-      }
-      lVar7 = param_1[7];
-      uVar9 = (int)uVar10 + 1;
-      uVar10 = (ulonglong)uVar9;
-    } while (uVar9 < (uint)(param_1[8] - lVar7 >> 3));
-  }
-  lVar7 = param_1[0xb];
-  if ((int)(param_1[0xc] - lVar7 >> 3) != 0) {
-    do {
-      puVar3 = (undefined8 *)(lVar7 + uVar8 * 8);
-      if (*(uint *)(param_1 + 0x13) < (*(uint *)((longlong)param_1 + 0x9c) & 0x7fffffff)) {
-        *(undefined8 *)(*plVar2 + (ulonglong)*(uint *)(param_1 + 0x13) * 8) = *puVar3;
-        *(int *)(param_1 + 0x13) = *(int *)(param_1 + 0x13) + 1;
-      }
-      else {
-        FUN_1806ae480(plVar2,puVar3);
-      }
-      lVar7 = param_1[0xb];
-      uVar9 = (int)uVar8 + 1;
-      uVar8 = (ulonglong)uVar9;
-    } while (uVar9 < (uint)(param_1[0xc] - lVar7 >> 3));
-  }
-  return param_1;
+/**
+ * 结构体初始化器和配置器
+ * 
+ * 功能：
+ * - 初始化复杂结构体的所有字段
+ * - 配置结构体的默认值和属性
+ * - 处理嵌套数据结构的初始化
+ * - 管理动态数组的初始配置
+ * 
+ * 参数：
+ * - param_1：目标结构体指针
+ * - param_2：源数据配置指针
+ * 
+ * 返回值：
+ * - undefined8*：返回初始化完成的结构体指针
+ * 
+ * 技术实现：
+ * - 使用双重指针管理结构体层次
+ * - 实现字段到字段的精确复制
+ * - 支持动态数组的容量检查
+ * - 处理内存溢出和扩容逻辑
+ */
+undefined8* StructureInitializerAndConfigurator(undefined8* target_structure, longlong source_config) {
+    longlong* primary_array_manager;
+    longlong* secondary_array_manager;
+    undefined8* array_element;
+    undefined4 field_4, field_5, field_6;
+    longlong array_base;
+    MemorySize element_index;
+    ArrayIndex element_counter;
+    ArrayCapacity array_capacity;
+    
+    element_index = 0;
+    
+    // 设置结构体虚拟函数表
+    *target_structure = &UNK_18094a3e8;
+    
+    // 获取数组管理器指针
+    primary_array_manager = target_structure + 0x10;
+    
+    // 复制基础字段
+    field_4 = *(undefined4 *)(source_config + 0xc);
+    field_5 = *(undefined4 *)(source_config + 0x10);
+    field_6 = *(undefined4 *)(source_config + 0x14);
+    secondary_array_manager = target_structure + 0x12;
+    
+    // 复制所有基础数据字段
+    CopyStructureField(target_structure + 1, source_config + 8);
+    CopyStructureField((longlong)target_structure + 0xc, field_4);
+    CopyStructureField(target_structure + 2, field_5);
+    CopyStructureField((longlong)target_structure + 0x14, field_6);
+    CopyStructureField(target_structure + 3, source_config + 0x18);
+    CopyStructureField((longlong)target_structure + 0x1c, source_config + 0x1c);
+    CopyStructureField(target_structure + 4, source_config + 0x20);
+    CopyStructureField((longlong)target_structure + 0x24, source_config + 0x24);
+    CopyStructureField(target_structure + 5, source_config + 0x28);
+    CopyStructureField((longlong)target_structure + 0x2c, source_config + 0x2c);
+    CopyStructureField(target_structure + 6, source_config + 0x30);
+    
+    // 复制指针字段
+    target_structure[7] = *(undefined8 *)(source_config + 0x38);
+    target_structure[8] = *(undefined8 *)(source_config + 0x40);
+    CopyStructureField(target_structure + 9, source_config + 0x48);
+    CopyStructureField((longlong)target_structure + 0x4c, source_config + 0x4c);
+    CopyStructureField(target_structure + 10, source_config + 0x50);
+    target_structure[0xb] = *(undefined8 *)(source_config + 0x58);
+    target_structure[0xc] = *(undefined8 *)(source_config + 0x60);
+    
+    // 复制字节字段
+    *(undefined1 *)(target_structure + 0xd) = *(undefined1 *)(source_config + 0x68);
+    *(undefined1 *)((longlong)target_structure + 0x69) = *(undefined1 *)(source_config + 0x69);
+    
+    // 更新虚拟函数表
+    *target_structure = &UNK_18094aef0;
+    
+    // 初始化数组计数器
+    target_structure[0xe] = 0;
+    target_structure[0xf] = 0;
+    *primary_array_manager = 0;
+    target_structure[0x11] = 0;
+    *secondary_array_manager = 0;
+    target_structure[0x13] = 0;
+    
+    // 处理第一个数组（8字节元素）
+    array_base = target_structure[7];
+    array_capacity = element_index;
+    if ((int)(target_structure[8] - array_base >> 3) != 0) {
+        do {
+            array_element = (undefined8 *)(array_base + array_capacity * ARRAY_ELEMENT_SIZE_8);
+            if (*(uint *)(target_structure + 0x11) < (*(uint *)((longlong)target_structure + 0x8c) & 0x7fffffff)) {
+                // 有空间，直接添加元素
+                *(undefined8 *)(*primary_array_manager + (ulonglong)*(uint *)(target_structure + 0x11) * ARRAY_ELEMENT_SIZE_8) = *array_element;
+                *(int *)(target_structure + 0x11) = *(int *)(target_structure + 0x11) + 1;
+            }
+            else {
+                // 空间不足，调用扩容函数
+                FUN_1806ae480(primary_array_manager, array_element);
+            }
+            array_base = target_structure[7];
+            element_counter = (int)array_capacity + 1;
+            array_capacity = (ulonglong)element_counter;
+        } while (element_counter < (uint)(target_structure[8] - array_base >> 3));
+    }
+    
+    // 处理第二个数组（8字节元素）
+    array_base = target_structure[0xb];
+    if ((int)(target_structure[0xc] - array_base >> 3) != 0) {
+        do {
+            array_element = (undefined8 *)(array_base + element_index * ARRAY_ELEMENT_SIZE_8);
+            if (*(uint *)(target_structure + 0x13) < (*(uint *)((longlong)target_structure + 0x9c) & 0x7fffffff)) {
+                // 有空间，直接添加元素
+                *(undefined8 *)(*secondary_array_manager + (ulonglong)*(uint *)(target_structure + 0x13) * ARRAY_ELEMENT_SIZE_8) = *array_element;
+                *(int *)(target_structure + 0x13) = *(int *)(target_structure + 0x13) + 1;
+            }
+            else {
+                // 空间不足，调用扩容函数
+                FUN_1806ae480(secondary_array_manager, array_element);
+            }
+            array_base = target_structure[0xb];
+            element_counter = (int)element_index + 1;
+            element_index = (ulonglong)element_counter;
+        } while (element_counter < (uint)(target_structure[0xc] - array_base >> 3));
+    }
+    
+    return target_structure;
 }
 
 
