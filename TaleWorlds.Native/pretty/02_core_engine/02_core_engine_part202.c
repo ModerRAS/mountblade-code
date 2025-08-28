@@ -1,110 +1,114 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part202.c - 13 个函数
+// 02_core_engine_part202.c - 核心引擎模块第202部分
+// 包含13个函数，主要处理权限请求、语言获取、高亮配置等功能
 
-// 函数: void FUN_180183a20(undefined8 *param_1)
-void FUN_180183a20(undefined8 *param_1)
-
+// 函数：initialize_permission_request_context
+// 功能：初始化权限请求上下文结构
+// 参数：param_1 - 权限请求参数结构体指针
+void initialize_permission_request_context(undefined8 *param_1)
 {
-  undefined8 *puVar1;
-  longlong lVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  undefined1 auStack_258 [48];
-  undefined4 uStack_228;
-  longlong *plStack_220;
-  longlong lStack_218;
-  undefined8 *puStack_1f8;
-  longlong lStack_1f0;
-  longlong lStack_1e8;
-  ulonglong uStack_1e0;
-  code *pcStack_1d8;
-  longlong lStack_1d0;
-  undefined8 uStack_1c8;
-  longlong lStack_1c0;
-  undefined8 uStack_1b8;
-  longlong alStack_1a8 [7];
-  longlong *plStack_170;
-  undefined8 uStack_168;
-  undefined1 auStack_158 [288];
-  ulonglong uStack_38;
+  undefined8 *context_ptr;
+  longlong size_diff;
+  longlong *alloc_ptr;
+  longlong start_pos;
+  undefined1 stack_buffer [48];
+  undefined4 status_flag;
+  longlong *temp_ptr;
+  longlong current_pos;
+  undefined8 *request_data;
+  longlong data_start;
+  longlong data_end;
+  ulonglong checksum;
+  code *callback_func;
+  longlong context_size;
+  undefined8 temp_var;
+  longlong stack_offset;
+  undefined8 guard_value;
+  longlong alloc_array [7];
+  longlong *resource_ptr;
+  undefined8 resource_data;
+  undefined1 resource_buffer [288];
+  ulonglong stack_checksum;
   
-  uStack_1b8 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_258;
-  uStack_228 = 0;
-  plVar3 = (longlong *)FUN_1808fc418(0x18);
-  *plVar3 = (longlong)&UNK_180a0ad58;
-  *plVar3 = (longlong)&UNK_180a0ad28;
-  plVar3[2] = 0;
-  lStack_1f0 = 0;
-  lStack_1e8 = 0;
-  pcStack_1d8 = (code *)0x0;
-  lStack_1d0 = 0;
-  uStack_1c8 = 0;
-  lStack_1c0 = 0;
-  puStack_1f8 = param_1;
+  guard_value = 0xfffffffffffffffe;
+  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  status_flag = 0;
+  alloc_ptr = (longlong *)FUN_1808fc418(0x18);
+  *alloc_ptr = (longlong)&UNK_180a0ad58;
+  *alloc_ptr = (longlong)&UNK_180a0ad28;
+  alloc_ptr[2] = 0;
+  current_pos = 0;
+  data_end = 0;
+  callback_func = (code *)0x0;
+  context_size = 0;
+  temp_var = 0;
+  stack_offset = 0;
+  request_data = param_1;
   if (0xf < (ulonglong)param_1[3]) {
-    puStack_1f8 = (undefined8 *)*param_1;
+    request_data = (undefined8 *)*param_1;
   }
-  uStack_1e0 = (ulonglong)*(byte *)(param_1 + 7);
-  lVar4 = param_1[4];
-  if (lVar4 != param_1[5]) {
-    lStack_1e8 = param_1[5] - lVar4 >> 2;
-    lStack_1f0 = lVar4;
+  checksum = (ulonglong)*(byte *)(param_1 + 7);
+  start_pos = param_1[4];
+  if (start_pos != param_1[5]) {
+    data_end = param_1[5] - start_pos >> 2;
+    current_pos = start_pos;
   }
-  plStack_220 = plVar3;
+  temp_ptr = alloc_ptr;
   if (param_1[0xf] != 0) {
-    pcStack_1d8 = FUN_180184320;
-    lVar4 = FUN_1808fc418(0x48);
-    plStack_170 = (longlong *)0x0;
-    puVar1 = (undefined8 *)param_1[0xf];
-    plStack_220 = (longlong *)lVar4;
-    if (puVar1 != (undefined8 *)0x0) {
-      plStack_170 = (longlong *)(**(code **)*puVar1)(puVar1,alStack_1a8);
+    callback_func = FUN_180184320;
+    start_pos = FUN_1808fc418(0x48);
+    resource_ptr = (longlong *)0x0;
+    context_ptr = (undefined8 *)param_1[0xf];
+    temp_ptr = (longlong *)start_pos;
+    if (context_ptr != (undefined8 *)0x0) {
+      resource_ptr = (longlong *)(**(code **)*context_ptr)(context_ptr,alloc_array);
     }
-    uStack_168 = param_1[0x10];
-    uStack_228 = 3;
-    *(undefined8 *)(lVar4 + 0x38) = 0;
-    lStack_218 = lVar4;
-    FUN_1801881a0(lVar4,alStack_1a8);
-    *(undefined8 *)(lVar4 + 0x40) = uStack_168;
-    lVar2 = plVar3[2];
-    plVar3[2] = lVar4;
-    if (lVar2 != 0) {
+    resource_data = param_1[0x10];
+    status_flag = 3;
+    *(undefined8 *)(start_pos + 0x38) = 0;
+    stack_offset = start_pos;
+    FUN_1801881a0(start_pos,alloc_array);
+    *(undefined8 *)(start_pos + 0x40) = resource_data;
+    size_diff = alloc_ptr[2];
+    alloc_ptr[2] = start_pos;
+    if (size_diff != 0) {
       FUN_180188120();
     }
-    uStack_228 = 1;
-    plStack_220 = alStack_1a8;
-    if (plStack_170 != (longlong *)0x0) {
-      (**(code **)(*plStack_170 + 0x20))
-                (plStack_170,
-                 CONCAT71((int7)((ulonglong)alStack_1a8 >> 8),plStack_170 != alStack_1a8));
-      plStack_170 = (longlong *)0x0;
+    status_flag = 1;
+    temp_ptr = alloc_array;
+    if (resource_ptr != (longlong *)0x0) {
+      (**(code **)(*resource_ptr + 0x20))
+                (resource_ptr,
+                 CONCAT71((int7)((ulonglong)alloc_array >> 8),resource_ptr != alloc_array));
+      resource_ptr = (longlong *)0x0;
     }
-    lStack_1d0 = plVar3[2];
+    context_size = alloc_ptr[2];
   }
-  uStack_1c8 = CONCAT44(uStack_1c8._4_4_,*(undefined4 *)(param_1 + 0x11));
+  temp_var = CONCAT44(temp_var._4_4_,*(undefined4 *)(param_1 + 0x11));
   if ((param_1[0x14] != 0) &&
-     (lStack_1c0 = (longlong)(param_1 + 0x12), 0xf < (ulonglong)param_1[0x15])) {
-    lStack_1c0 = *(longlong *)lStack_1c0;
+     (stack_offset = (longlong)(param_1 + 0x12), 0xf < (ulonglong)param_1[0x15])) {
+    stack_offset = *(longlong *)stack_offset;
   }
                     // WARNING: Subroutine does not return
-  memset(auStack_158,0,0x118);
+  memset(resource_buffer,0,0x118);
 }
 
 
 
-
-
-// 函数: void FUN_180183de0(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180183de0(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数：cleanup_permission_handler
+// 功能：清理权限处理器资源
+// 参数：param_1 - 处理器上下文指针
+//        param_2 - 保留参数
+//        param_3 - 保留参数
+//        param_4 - 保留参数
+void cleanup_permission_handler(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 {
-  longlong *plVar1;
+  longlong *handler_ptr;
   
-  plVar1 = (longlong *)param_1[7];
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x20))(plVar1,plVar1 != param_1,param_3,param_4,0xfffffffffffffffe);
+  handler_ptr = (longlong *)param_1[7];
+  if (handler_ptr != (longlong *)0x0) {
+    (**(code **)(*handler_ptr + 0x20))(handler_ptr,handler_ptr != param_1,param_3,param_4,0xfffffffffffffffe);
     param_1[7] = 0;
   }
   return;
@@ -116,74 +120,78 @@ void FUN_180183de0(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 
 
-// 函数: void FUN_180183e30(longlong param_1,longlong *param_2,longlong *param_3,undefined8 param_4)
-void FUN_180183e30(longlong param_1,longlong *param_2,longlong *param_3,undefined8 param_4)
-
+// 函数：request_permissions_async
+// 功能：异步请求权限
+// 参数：param_1 - 引擎实例指针
+//        param_2 - 权限数据指针
+//        param_3 - 权限类型指针
+//        param_4 - 回调参数
+void request_permissions_async(longlong param_1,longlong *param_2,longlong *param_3,undefined8 param_4)
 {
-  undefined8 *puVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  undefined1 auStack_f8 [32];
-  undefined4 uStack_d8;
-  longlong *plStack_d0;
-  longlong lStack_c8;
-  longlong lStack_c0;
-  undefined8 uStack_b8;
-  longlong *plStack_b0;
-  longlong lStack_a8;
-  longlong alStack_98 [7];
-  longlong *plStack_60;
-  undefined8 uStack_58;
-  ulonglong uStack_48;
+  undefined8 *resource_ptr;
+  longlong *alloc_ptr;
+  longlong data_size;
+  undefined8 callback_result;
+  undefined1 stack_buffer [32];
+  undefined4 status_flag;
+  longlong *context_ptr;
+  longlong data_start;
+  longlong data_end;
+  undefined8 guard_value;
+  longlong *data_ptr;
+  longlong buffer_size;
+  longlong alloc_array [7];
+  longlong *temp_ptr;
+  undefined8 callback_param;
+  ulonglong stack_checksum;
   
-  uStack_b8 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
-  uStack_d8 = 0;
-  lStack_c8 = *param_2;
-  lStack_c0 = param_2[1] - lStack_c8 >> 2;
-  plStack_b0 = param_3;
-  lVar3 = FUN_1808fc418(0x48);
-  plStack_60 = (longlong *)0x0;
-  puVar1 = (undefined8 *)param_3[7];
-  lStack_a8 = lVar3;
-  if (puVar1 != (undefined8 *)0x0) {
-    plStack_60 = (longlong *)(**(code **)*puVar1)(puVar1,alStack_98);
+  guard_value = 0xfffffffffffffffe;
+  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  status_flag = 0;
+  data_start = *param_2;
+  data_end = param_2[1] - data_start >> 2;
+  data_ptr = param_3;
+  data_size = FUN_1808fc418(0x48);
+  temp_ptr = (longlong *)0x0;
+  resource_ptr = (undefined8 *)param_3[7];
+  buffer_size = data_size;
+  if (resource_ptr != (undefined8 *)0x0) {
+    temp_ptr = (longlong *)(**(code **)*resource_ptr)(resource_ptr,alloc_array);
   }
-  uStack_d8 = 3;
-  *(undefined8 *)(lVar3 + 0x38) = 0;
-  plStack_d0 = (longlong *)lVar3;
-  uStack_58 = param_4;
-  if (plStack_60 != (longlong *)0x0) {
-    if (plStack_60 == alStack_98) {
-      uVar4 = (**(code **)(*plStack_60 + 8))(plStack_60,lVar3);
-      *(undefined8 *)(lVar3 + 0x38) = uVar4;
-      if (plStack_60 == (longlong *)0x0) goto LAB_180183f13;
-      (**(code **)(*plStack_60 + 0x20))
-                (plStack_60,CONCAT71((int7)((ulonglong)alStack_98 >> 8),plStack_60 != alStack_98));
+  status_flag = 3;
+  *(undefined8 *)(data_size + 0x38) = 0;
+  context_ptr = (longlong *)data_size;
+  callback_param = param_4;
+  if (temp_ptr != (longlong *)0x0) {
+    if (temp_ptr == alloc_array) {
+      callback_result = (**(code **)(*temp_ptr + 8))(temp_ptr,data_size);
+      *(undefined8 *)(data_size + 0x38) = callback_result;
+      if (temp_ptr == (longlong *)0x0) goto LAB_180183f13;
+      (**(code **)(*temp_ptr + 0x20))
+                (temp_ptr,CONCAT71((int7)((ulonglong)alloc_array >> 8),temp_ptr != alloc_array));
     }
     else {
-      *(longlong **)(lVar3 + 0x38) = plStack_60;
+      *(longlong **)(data_size + 0x38) = temp_ptr;
     }
-    plStack_60 = (longlong *)0x0;
+    temp_ptr = (longlong *)0x0;
   }
 LAB_180183f13:
-  *(undefined8 *)(lVar3 + 0x40) = uStack_58;
-  NVGSDK_RequestPermissionsAsync(*(undefined8 *)(param_1 + 8),&lStack_c8,FUN_1801842a0,lVar3);
-  uStack_d8 = 1;
-  plStack_d0 = alStack_98;
-  if (plStack_60 != (longlong *)0x0) {
-    (**(code **)(*plStack_60 + 0x20))
-              (plStack_60,CONCAT71((int7)((ulonglong)alStack_98 >> 8),plStack_60 != alStack_98));
-    plStack_60 = (longlong *)0x0;
+  *(undefined8 *)(data_size + 0x40) = callback_param;
+  NVGSDK_RequestPermissionsAsync(*(undefined8 *)(param_1 + 8),&data_start,FUN_1801842a0,data_size);
+  status_flag = 1;
+  context_ptr = alloc_array;
+  if (temp_ptr != (longlong *)0x0) {
+    (**(code **)(*temp_ptr + 0x20))
+              (temp_ptr,CONCAT71((int7)((ulonglong)alloc_array >> 8),temp_ptr != alloc_array));
+    temp_ptr = (longlong *)0x0;
   }
-  plVar2 = (longlong *)param_3[7];
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x20))(plVar2,plVar2 != param_3);
+  alloc_ptr = (longlong *)param_3[7];
+  if (alloc_ptr != (longlong *)0x0) {
+    (**(code **)(*alloc_ptr + 0x20))(alloc_ptr,alloc_ptr != param_3);
     param_3[7] = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_f8);
+  FUN_1808fc050(stack_checksum ^ (ulonglong)stack_buffer);
 }
 
 
@@ -192,70 +200,73 @@ LAB_180183f13:
 
 
 
-// 函数: void FUN_180183fa0(longlong param_1,longlong *param_2,undefined8 param_3)
-void FUN_180183fa0(longlong param_1,longlong *param_2,undefined8 param_3)
-
+// 函数：get_ui_language_async
+// 功能：异步获取UI语言设置
+// 参数：param_1 - 引擎实例指针
+//        param_2 - 语言数据指针
+//        param_3 - 回调参数
+void get_ui_language_async(longlong param_1,longlong *param_2,undefined8 param_3)
 {
-  undefined8 *puVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  undefined1 auStack_d8 [32];
-  undefined4 uStack_b8;
-  longlong *plStack_b0;
-  undefined8 uStack_a8;
-  longlong *plStack_a0;
-  longlong lStack_98;
-  longlong alStack_88 [7];
-  longlong *plStack_50;
-  undefined8 uStack_48;
-  ulonglong uStack_38;
+  undefined8 *resource_ptr;
+  longlong *alloc_ptr;
+  longlong data_size;
+  undefined8 callback_result;
+  undefined1 stack_buffer [32];
+  undefined4 status_flag;
+  longlong *context_ptr;
+  undefined8 callback_param;
+  longlong *data_ptr;
+  longlong buffer_size;
+  longlong alloc_array [7];
+  longlong *temp_ptr;
+  undefined8 callback_data;
+  ulonglong stack_checksum;
   
-  uStack_a8 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
-  uStack_b8 = 0;
-  plStack_a0 = param_2;
-  lVar3 = FUN_1808fc418(0x48);
-  plStack_50 = (longlong *)0x0;
-  puVar1 = (undefined8 *)param_2[7];
-  lStack_98 = lVar3;
-  if (puVar1 != (undefined8 *)0x0) {
-    plStack_50 = (longlong *)(**(code **)*puVar1)(puVar1,alStack_88);
+  callback_param = 0xfffffffffffffffe;
+  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  status_flag = 0;
+  data_ptr = param_2;
+  data_size = FUN_1808fc418(0x48);
+  temp_ptr = (longlong *)0x0;
+  resource_ptr = (undefined8 *)param_2[7];
+  buffer_size = data_size;
+  if (resource_ptr != (undefined8 *)0x0) {
+    temp_ptr = (longlong *)(**(code **)*resource_ptr)(resource_ptr,alloc_array);
   }
-  uStack_b8 = 3;
-  *(undefined8 *)(lVar3 + 0x38) = 0;
-  plStack_b0 = (longlong *)lVar3;
-  uStack_48 = param_3;
-  if (plStack_50 != (longlong *)0x0) {
-    if (plStack_50 == alStack_88) {
-      uVar4 = (**(code **)(*plStack_50 + 8))(plStack_50,lVar3);
-      *(undefined8 *)(lVar3 + 0x38) = uVar4;
-      if (plStack_50 == (longlong *)0x0) goto LAB_180184089;
-      (**(code **)(*plStack_50 + 0x20))
-                (plStack_50,CONCAT71((int7)((ulonglong)alStack_88 >> 8),plStack_50 != alStack_88));
+  status_flag = 3;
+  *(undefined8 *)(data_size + 0x38) = 0;
+  context_ptr = (longlong *)data_size;
+  callback_data = param_3;
+  if (temp_ptr != (longlong *)0x0) {
+    if (temp_ptr == alloc_array) {
+      callback_result = (**(code **)(*temp_ptr + 8))(temp_ptr,data_size);
+      *(undefined8 *)(data_size + 0x38) = callback_result;
+      if (temp_ptr == (longlong *)0x0) goto LAB_180184089;
+      (**(code **)(*temp_ptr + 0x20))
+                (temp_ptr,CONCAT71((int7)((ulonglong)alloc_array >> 8),temp_ptr != alloc_array));
     }
     else {
-      *(longlong **)(lVar3 + 0x38) = plStack_50;
+      *(longlong **)(data_size + 0x38) = temp_ptr;
     }
-    plStack_50 = (longlong *)0x0;
+    temp_ptr = (longlong *)0x0;
   }
 LAB_180184089:
-  *(undefined8 *)(lVar3 + 0x40) = uStack_48;
-  NVGSDK_GetUILanguageAsync(*(undefined8 *)(param_1 + 8),&UNK_180184260,lVar3);
-  uStack_b8 = 1;
-  plStack_b0 = alStack_88;
-  if (plStack_50 != (longlong *)0x0) {
-    (**(code **)(*plStack_50 + 0x20))
-              (plStack_50,CONCAT71((int7)((ulonglong)alStack_88 >> 8),plStack_50 != alStack_88));
-    plStack_50 = (longlong *)0x0;
+  *(undefined8 *)(data_size + 0x40) = callback_data;
+  NVGSDK_GetUILanguageAsync(*(undefined8 *)(param_1 + 8),&UNK_180184260,data_size);
+  status_flag = 1;
+  context_ptr = alloc_array;
+  if (temp_ptr != (longlong *)0x0) {
+    (**(code **)(*temp_ptr + 0x20))
+              (temp_ptr,CONCAT71((int7)((ulonglong)alloc_array >> 8),temp_ptr != alloc_array));
+    temp_ptr = (longlong *)0x0;
   }
-  plVar2 = (longlong *)param_2[7];
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x20))(plVar2,plVar2 != param_2);
+  alloc_ptr = (longlong *)param_2[7];
+  if (alloc_ptr != (longlong *)0x0) {
+    (**(code **)(*alloc_ptr + 0x20))(alloc_ptr,alloc_ptr != param_2);
     param_2[7] = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_d8);
+  FUN_1808fc050(stack_checksum ^ (ulonglong)stack_buffer);
 }
 
 
@@ -264,74 +275,78 @@ LAB_180184089:
 
 
 
-// 函数: void FUN_180184120(undefined8 param_1,int param_2,longlong *param_3,longlong *param_4)
-void FUN_180184120(undefined8 param_1,int param_2,longlong *param_3,longlong *param_4)
-
+// 函数：process_permission_callback
+// 功能：处理权限回调
+// 参数：param_1 - 回调参数
+//        param_2 - 状态码
+//        param_3 - 数据指针
+//        param_4 - 上下文指针
+void process_permission_callback(undefined8 param_1,int param_2,longlong *param_3,longlong *param_4)
 {
-  longlong *plVar1;
-  code *pcVar2;
-  longlong lVar3;
-  undefined1 auStack_78 [32];
-  int aiStack_58 [2];
-  longlong *plStack_50;
-  undefined1 *puStack_48;
-  longlong alStack_40 [2];
-  undefined1 auStack_30 [16];
-  undefined8 uStack_20;
-  undefined8 uStack_18;
-  ulonglong uStack_10;
+  longlong *handler_ptr;
+  code *callback_func;
+  longlong string_length;
+  undefined1 stack_buffer [32];
+  int status_array [2];
+  longlong *context_ptr;
+  undefined1 *string_ptr;
+  longlong result_array [2];
+  undefined1 temp_buffer [16];
+  undefined8 temp_var1;
+  undefined8 temp_var2;
+  ulonglong stack_checksum;
   
-  alStack_40[1] = 0xfffffffffffffffe;
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_78;
-  plVar1 = (longlong *)param_4[7];
-  plStack_50 = param_4;
-  if (plVar1 != (longlong *)0x0) {
-    aiStack_58[0] = param_2;
+  result_array[1] = 0xfffffffffffffffe;
+  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  handler_ptr = (longlong *)param_4[7];
+  context_ptr = param_4;
+  if (handler_ptr != (longlong *)0x0) {
+    status_array[0] = param_2;
     if (param_2 < 0) {
-      puStack_48 = (undefined1 *)param_4[8];
-      alStack_40[0] = 0;
-      (**(code **)(*plVar1 + 0x10))(plVar1,aiStack_58,alStack_40,&puStack_48);
+      string_ptr = (undefined1 *)param_4[8];
+      result_array[0] = 0;
+      (**(code **)(*handler_ptr + 0x10))(handler_ptr,status_array,result_array,&string_ptr);
     }
     else {
-      uStack_20 = 0;
-      uStack_18 = 0xf;
-      auStack_30[0] = 0;
-      lVar3 = -1;
+      temp_var1 = 0;
+      temp_var2 = 0xf;
+      temp_buffer[0] = 0;
+      string_length = -1;
       do {
-        lVar3 = lVar3 + 1;
-      } while (*(char *)(*param_3 + lVar3) != '\0');
-      FUN_1800671b0(auStack_30);
-      alStack_40[0] = param_4[8];
-      puStack_48 = auStack_30;
-      plVar1 = (longlong *)param_4[7];
-      if (plVar1 == (longlong *)0x0) {
+        string_length = string_length + 1;
+      } while (*(char *)(*param_3 + string_length) != '\0');
+      FUN_1800671b0(temp_buffer);
+      result_array[0] = param_4[8];
+      string_ptr = temp_buffer;
+      handler_ptr = (longlong *)param_4[7];
+      if (handler_ptr == (longlong *)0x0) {
         __Xbad_function_call_std__YAXXZ();
-        pcVar2 = (code *)swi(3);
-        (*pcVar2)();
+        callback_func = (code *)swi(3);
+        (*callback_func)();
         return;
       }
-      (**(code **)(*plVar1 + 0x10))(plVar1,aiStack_58,&puStack_48,alStack_40);
-      FUN_180067070(auStack_30);
+      (**(code **)(*handler_ptr + 0x10))(handler_ptr,status_array,&string_ptr,result_array);
+      FUN_180067070(temp_buffer);
     }
   }
-  plVar1 = (longlong *)param_4[7];
-  plStack_50 = param_4;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x20))(plVar1,plVar1 != param_4);
+  handler_ptr = (longlong *)param_4[7];
+  context_ptr = param_4;
+  if (handler_ptr != (longlong *)0x0) {
+    (**(code **)(*handler_ptr + 0x20))(handler_ptr,handler_ptr != param_4);
     param_4[7] = 0;
   }
   free(param_4,0x48);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_78);
+  FUN_1808fc050(stack_checksum ^ (ulonglong)stack_buffer);
 }
 
 
 
 
 
-// 函数: void FUN_180184270(void)
-void FUN_180184270(void)
-
+// 函数：cleanup_string_resources
+// 功能：清理字符串资源
+void cleanup_string_resources(void)
 {
   FUN_180067070();
   return;
@@ -341,26 +356,30 @@ void FUN_180184270(void)
 
 
 
-// 函数: void FUN_1801842a0(undefined4 param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1801842a0(undefined4 param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数：handle_permission_result
+// 功能：处理权限请求结果
+// 参数：param_1 - 结果状态
+//        param_2 - 数据指针
+//        param_3 - 回调参数
+//        param_4 - 上下文指针
+void handle_permission_result(undefined4 param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
 {
-  longlong *plVar1;
-  longlong *plStackX_10;
-  longlong lStackX_18;
-  longlong *plStackX_20;
+  longlong *handler_ptr;
+  longlong *temp_ptr;
+  longlong data_offset;
+  longlong *context_ptr;
   
-  plVar1 = (longlong *)param_2[7];
-  plStackX_20 = param_2;
-  if (plVar1 != (longlong *)0x0) {
-    lStackX_18 = param_2[8];
-    plStackX_10 = (longlong *)CONCAT44(plStackX_10._4_4_,param_1);
-    (**(code **)(*plVar1 + 0x10))(plVar1,&plStackX_10,&lStackX_18,param_4,0xfffffffffffffffe);
+  handler_ptr = (longlong *)param_2[7];
+  context_ptr = param_2;
+  if (handler_ptr != (longlong *)0x0) {
+    data_offset = param_2[8];
+    temp_ptr = (longlong *)CONCAT44(temp_ptr._4_4_,param_1);
+    (**(code **)(*handler_ptr + 0x10))(handler_ptr,&temp_ptr,&data_offset,param_4,0xfffffffffffffffe);
   }
-  plVar1 = (longlong *)param_2[7];
-  plStackX_10 = param_2;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x20))(plVar1,plVar1 != param_2);
+  handler_ptr = (longlong *)param_2[7];
+  temp_ptr = param_2;
+  if (handler_ptr != (longlong *)0x0) {
+    (**(code **)(*handler_ptr + 0x20))(handler_ptr,handler_ptr != param_2);
     param_2[7] = 0;
   }
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
@@ -375,150 +394,157 @@ void FUN_1801842a0(undefined4 param_1,longlong *param_2,undefined8 param_3,undef
 
 
 
-// 函数: void FUN_180184320(int param_1,longlong param_2,longlong param_3)
-void FUN_180184320(int param_1,longlong param_2,longlong param_3)
-
+// 函数：process_permission_data
+// 功能：处理权限数据
+// 参数：param_1 - 处理类型
+//        param_2 - 数据参数
+//        param_3 - 上下文指针
+void process_permission_data(int param_1,longlong param_2,longlong param_3)
 {
-  int *piVar1;
-  char cVar2;
-  int iVar3;
-  longlong *plVar4;
-  undefined8 ***pppuVar5;
-  code *pcVar6;
-  undefined8 ***pppuVar7;
-  undefined8 ***pppuVar8;
-  undefined8 ****ppppuVar9;
-  undefined8 ****ppppuVar10;
-  undefined8 ****ppppuVar11;
-  ulonglong uVar12;
-  undefined1 auStack_a8 [32];
-  longlong lStack_88;
-  undefined8 uStack_78;
-  undefined8 uStack_70;
-  undefined8 ***pppuStack_68;
-  undefined8 uStack_60;
-  undefined8 uStack_58;
-  undefined8 ***pppuStack_50;
-  undefined1 uStack_48;
-  undefined4 uStack_44;
-  ulonglong uStack_40;
+  int *data_ptr;
+  char node_flag;
+  int data_value;
+  longlong *context_ptr;
+  undefined8 ***tree_ptr;
+  code *error_func;
+  undefined8 ***current_node;
+  undefined8 ***parent_node;
+  undefined8 ****node_array;
+  undefined8 ****temp_array;
+  undefined8 ****result_node;
+  ulonglong loop_counter;
+  undefined1 stack_buffer [32];
+  longlong temp_value;
+  undefined8 temp_var1;
+  undefined8 temp_var2;
+  undefined8 ***stack_node;
+  undefined8 temp_var3;
+  undefined8 temp_var4;
+  undefined8 ***resource_ptr;
+  undefined1 byte_value;
+  undefined4 int_value;
+  ulonglong stack_checksum;
   
-  uStack_58 = 0xfffffffffffffffe;
-  uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
-  plVar4 = *(longlong **)(param_3 + 0x38);
-  if (plVar4 != (longlong *)0x0) {
+  temp_var4 = 0xfffffffffffffffe;
+  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  context_ptr = *(longlong **)(param_3 + 0x38);
+  if (context_ptr != (longlong *)0x0) {
     if (param_1 == 0) {
-      pppuStack_50 = &pppuStack_68;
-      uVar12 = 0;
-      pppuStack_68 = (undefined8 ***)0x0;
-      uStack_60 = 0;
-      pppuStack_68 = (undefined8 ***)FUN_180188560();
-      uStack_70 = *(undefined8 *)(param_3 + 0x40);
+      resource_ptr = &stack_node;
+      loop_counter = 0;
+      stack_node = (undefined8 ***)0x0;
+      temp_var3 = 0;
+      stack_node = (undefined8 ***)FUN_180188560();
+      temp_var2 = *(undefined8 *)(param_3 + 0x40);
       if (*(longlong *)(param_2 + 0x10) != 0) {
         do {
-          piVar1 = (int *)(*(longlong *)(param_2 + 8) + uVar12 * 8);
-          iVar3 = piVar1[1];
-          ppppuVar11 = (undefined8 ****)pppuStack_68;
-          if (*(char *)((longlong)pppuStack_68[1] + 0x19) == '\0') {
-            ppppuVar9 = (undefined8 ****)pppuStack_68[1];
+          data_ptr = (int *)(*(longlong *)(param_2 + 8) + loop_counter * 8);
+          data_value = data_ptr[1];
+          node_array = (undefined8 ****)stack_node;
+          if (*(char *)((longlong)stack_node[1] + 0x19) == '\0') {
+            result_node = (undefined8 ****)stack_node[1];
             do {
-              if (*(int *)((longlong)ppppuVar9 + 0x1c) < *piVar1) {
-                ppppuVar10 = (undefined8 ****)ppppuVar9[2];
+              if (*(int *)((longlong)result_node + 0x1c) < *data_ptr) {
+                temp_array = (undefined8 ****)result_node[2];
               }
               else {
-                ppppuVar10 = (undefined8 ****)*ppppuVar9;
-                ppppuVar11 = ppppuVar9;
+                temp_array = (undefined8 ****)*result_node;
+                node_array = result_node;
               }
-              ppppuVar9 = ppppuVar10;
-            } while (*(char *)((longlong)ppppuVar10 + 0x19) == '\0');
-            if ((ppppuVar11 == (undefined8 ****)pppuStack_68) ||
-               (*piVar1 < *(int *)((longlong)ppppuVar11 + 0x1c))) goto LAB_180184411;
+              result_node = temp_array;
+            } while (*(char *)((longlong)temp_array + 0x19) == '\0');
+            if ((node_array == (undefined8 ****)stack_node) ||
+               (*data_ptr < *(int *)((longlong)node_array + 0x1c))) goto LAB_180184411;
           }
           else {
 LAB_180184411:
-            uStack_78 = piVar1;
-            lStack_88 = FUN_18018a610(&pppuStack_68,pppuStack_68,&uStack_78);
-            FUN_18018a660(&pppuStack_68,&pppuStack_50,ppppuVar11,lStack_88 + 0x1c);
-            ppppuVar11 = (undefined8 ****)pppuStack_50;
+            temp_var1 = data_ptr;
+            temp_value = FUN_18018a610(&stack_node,stack_node,&temp_var1);
+            FUN_18018a660(&stack_node,&resource_ptr,node_array,temp_value + 0x1c);
+            node_array = (undefined8 ****)resource_ptr;
           }
-          *(int *)(ppppuVar11 + 4) = iVar3;
-          uVar12 = uVar12 + 1;
-        } while (uVar12 < *(ulonglong *)(param_2 + 0x10));
+          *(int *)(node_array + 4) = data_value;
+          loop_counter = loop_counter + 1;
+        } while (loop_counter < *(ulonglong *)(param_2 + 0x10));
       }
-      uStack_78 = (int *)((ulonglong)uStack_78._4_4_ << 0x20);
-      plVar4 = *(longlong **)(param_3 + 0x38);
-      if (plVar4 == (longlong *)0x0) {
+      temp_var1 = (int *)((ulonglong)temp_var1._4_4_ << 0x20);
+      context_ptr = *(longlong **)(param_3 + 0x38);
+      if (context_ptr == (longlong *)0x0) {
         __Xbad_function_call_std__YAXXZ();
-        pcVar6 = (code *)swi(3);
-        (*pcVar6)();
+        error_func = (code *)swi(3);
+        (*error_func)();
         return;
       }
-      (**(code **)(*plVar4 + 0x10))(plVar4,&uStack_78,&uStack_70);
-      pppuVar8 = pppuStack_68;
-      pppuStack_50 = &pppuStack_68;
-      cVar2 = *(char *)((longlong)pppuStack_68[1] + 0x19);
-      pppuVar7 = (undefined8 ***)pppuStack_68[1];
-      while (cVar2 == '\0') {
-        FUN_1801885a0(&pppuStack_68,pppuVar7[2]);
-        pppuVar5 = (undefined8 ***)*pppuVar7;
-        free(pppuVar7,0x28);
-        pppuVar7 = pppuVar5;
-        cVar2 = *(char *)((longlong)pppuVar5 + 0x19);
+      (**(code **)(*context_ptr + 0x10))(context_ptr,&temp_var1,&temp_var2);
+      parent_node = stack_node;
+      resource_ptr = &stack_node;
+      node_flag = *(char *)((longlong)stack_node[1] + 0x19);
+      current_node = (undefined8 ***)stack_node[1];
+      while (node_flag == '\0') {
+        FUN_1801885a0(&stack_node,current_node[2]);
+        tree_ptr = (undefined8 ***)*current_node;
+        free(current_node,0x28);
+        current_node = tree_ptr;
+        node_flag = *(char *)((longlong)tree_ptr + 0x19);
       }
-      ((undefined8 ****)pppuStack_68)[1] = pppuVar8;
-      *pppuStack_68 = pppuVar8;
-      ((undefined8 ****)pppuStack_68)[2] = pppuVar8;
-      uStack_60 = 0;
-      free(pppuStack_68,0x28);
+      ((undefined8 ****)stack_node)[1] = parent_node;
+      *stack_node = parent_node;
+      ((undefined8 ****)stack_node)[2] = parent_node;
+      temp_var3 = 0;
+      free(stack_node,0x28);
     }
     else if (param_1 == 1) {
-      pppuStack_50 = *(undefined8 ****)(param_3 + 0x40);
-      uStack_48 = *(undefined1 *)(param_2 + 8);
-      uStack_44 = *(undefined4 *)(param_2 + 0xc);
-      uStack_78 = (int *)CONCAT44(uStack_78._4_4_,1);
-      (**(code **)(*plVar4 + 0x10))(plVar4,&uStack_78,&pppuStack_50);
+      resource_ptr = *(undefined8 ****)(param_3 + 0x40);
+      byte_value = *(undefined1 *)(param_2 + 8);
+      int_value = *(undefined4 *)(param_2 + 0xc);
+      temp_var1 = (int *)CONCAT44(temp_var1._4_4_,1);
+      (**(code **)(*context_ptr + 0x10))(context_ptr,&temp_var1,&resource_ptr);
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (ulonglong)auStack_a8);
+  FUN_1808fc050(stack_checksum ^ (ulonglong)stack_buffer);
 }
 
 
 
 
 
-// 函数: void FUN_180184500(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180184500(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数：cleanup_resource_tree
+// 功能：清理资源树结构
+// 参数：param_1 - 根节点指针
+//        param_2 - 保留参数
+//        param_3 - 回调参数
+//        param_4 - 保留参数
+void cleanup_resource_tree(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 {
-  longlong *plVar1;
-  longlong lVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  longlong *plVar5;
-  undefined8 uVar6;
+  longlong *root_ptr;
+  longlong current_pos;
+  longlong *node_ptr;
+  longlong start_pos;
+  longlong *child_ptr;
+  undefined8 guard_value;
   
-  uVar6 = 0xfffffffffffffffe;
-  plVar1 = (longlong *)(param_1 + 8);
-  lVar2 = *plVar1;
-  lVar4 = lVar2;
-  plVar5 = *(longlong **)(lVar2 + 8);
-  if (*(char *)((longlong)*(longlong **)(lVar2 + 8) + 0x19) == '\0') {
+  guard_value = 0xfffffffffffffffe;
+  root_ptr = (longlong *)(param_1 + 8);
+  current_pos = *root_ptr;
+  start_pos = current_pos;
+  node_ptr = *(longlong **)(current_pos + 8);
+  if (*(char *)((longlong)*(longlong **)(current_pos + 8) + 0x19) == '\0') {
     do {
-      FUN_1801885a0(plVar1,plVar5[2],param_3,param_4,uVar6);
-      plVar3 = (longlong *)*plVar5;
-      free(plVar5,0x28);
-      plVar5 = plVar3;
-    } while (*(char *)((longlong)plVar3 + 0x19) == '\0');
-    lVar4 = *plVar1;
+      FUN_1801885a0(root_ptr,node_ptr[2],param_3,param_4,guard_value);
+      child_ptr = (longlong *)*node_ptr;
+      free(node_ptr,0x28);
+      node_ptr = child_ptr;
+    } while (*(char *)((longlong)child_ptr + 0x19) == '\0');
+    start_pos = *root_ptr;
   }
-  *(longlong *)(lVar4 + 8) = lVar2;
-  *(longlong *)*plVar1 = lVar2;
-  *(longlong *)(*plVar1 + 0x10) = lVar2;
+  *(longlong *)(start_pos + 8) = current_pos;
+  *(longlong *)*root_ptr = current_pos;
+  *(longlong *)(*root_ptr + 0x10) = current_pos;
   *(undefined8 *)(param_1 + 0x10) = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(*plVar1,0x28);
+  free(*root_ptr,0x28);
   return;
 }
 
@@ -526,32 +552,36 @@ void FUN_180184500(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_1801845b0(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1801845b0(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数：free_resource_node
+// 功能：释放资源节点
+// 参数：param_1 - 节点指针
+//        param_2 - 保留参数
+//        param_3 - 回调参数
+//        param_4 - 保留参数
+void free_resource_node(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 {
-  longlong lVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  undefined8 uVar5;
+  longlong node_value;
+  longlong *node_ptr;
+  longlong current_pos;
+  longlong *child_ptr;
+  undefined8 guard_value;
   
-  uVar5 = 0xfffffffffffffffe;
-  lVar1 = *param_1;
-  plVar4 = *(longlong **)(lVar1 + 8);
-  lVar3 = lVar1;
-  if (*(char *)((longlong)plVar4 + 0x19) == '\0') {
+  guard_value = 0xfffffffffffffffe;
+  node_value = *param_1;
+  child_ptr = *(longlong **)(node_value + 8);
+  current_pos = node_value;
+  if (*(char *)((longlong)child_ptr + 0x19) == '\0') {
     do {
-      FUN_1801885a0(param_1,plVar4[2],param_3,param_4,uVar5);
-      plVar2 = (longlong *)*plVar4;
-      free(plVar4,0x28);
-      plVar4 = plVar2;
-    } while (*(char *)((longlong)plVar2 + 0x19) == '\0');
-    lVar3 = *param_1;
+      FUN_1801885a0(param_1,child_ptr[2],param_3,param_4,guard_value);
+      node_ptr = (longlong *)*child_ptr;
+      free(child_ptr,0x28);
+      child_ptr = node_ptr;
+    } while (*(char *)((longlong)node_ptr + 0x19) == '\0');
+    current_pos = *param_1;
   }
-  *(longlong *)(lVar3 + 8) = lVar1;
-  *(longlong *)*param_1 = lVar1;
-  *(longlong *)(*param_1 + 0x10) = lVar1;
+  *(longlong *)(current_pos + 8) = node_value;
+  *(longlong *)*param_1 = node_value;
+  *(longlong *)(*param_1 + 0x10) = node_value;
   param_1[1] = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -563,17 +593,21 @@ void FUN_1801845b0(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 
 
-// 函数: void FUN_180184660(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180184660(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数：destroy_resource_node
+// 功能：销毁资源节点
+// 参数：param_1 - 节点指针
+//        param_2 - 保留参数
+//        param_3 - 回调参数
+//        param_4 - 保留参数
+void destroy_resource_node(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 {
-  longlong lVar1;
+  longlong node_value;
   
-  lVar1 = *param_1;
-  FUN_1801884d0(param_1,*(undefined8 *)(lVar1 + 8),param_3,param_4,0xfffffffffffffffe);
-  *(longlong *)(*param_1 + 8) = lVar1;
-  *(longlong *)*param_1 = lVar1;
-  *(longlong *)(*param_1 + 0x10) = lVar1;
+  node_value = *param_1;
+  FUN_1801884d0(param_1,*(undefined8 *)(node_value + 8),param_3,param_4,0xfffffffffffffffe);
+  *(longlong *)(*param_1 + 8) = node_value;
+  *(longlong *)*param_1 = node_value;
+  *(longlong *)(*param_1 + 0x10) = node_value;
   param_1[1] = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -583,8 +617,11 @@ void FUN_180184660(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 
 
-undefined8 * FUN_1801846d0(undefined8 *param_1,ulonglong param_2)
-
+// 函数：create_resource_pointer
+// 功能：创建资源指针
+// 参数：param_1 - 指针变量
+//        param_2 - 标志位
+undefined8 * create_resource_pointer(undefined8 *param_1,ulonglong param_2)
 {
   *param_1 = &UNK_180a0ac88;
   if ((param_2 & 1) != 0) {
@@ -596,8 +633,7 @@ undefined8 * FUN_1801846d0(undefined8 *param_1,ulonglong param_2)
 
 
 undefined8 *
-FUN_180184700(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-
+create_resource_pointer_extended(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 {
   *param_1 = &UNK_180a0ac88;
   if ((param_2 & 1) != 0) {
@@ -612,263 +648,258 @@ FUN_180184700(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-// 函数: void FUN_180184740(longlong param_1,longlong *param_2,longlong *param_3,undefined8 param_4)
-void FUN_180184740(longlong param_1,longlong *param_2,longlong *param_3,undefined8 param_4)
-
+// 函数：configure_highlights_async
+// 功能：异步配置高亮设置
+// 参数：param_1 - 引擎实例指针
+//        param_2 - 高亮数据指针
+//        param_3 - 上下文指针
+//        param_4 - 回调参数
+void configure_highlights_async(longlong param_1,longlong *param_2,longlong *param_3,undefined8 param_4)
 {
-  char cVar1;
-  undefined4 *puVar2;
-  longlong lVar3;
-  undefined8 *puVar4;
-  longlong *plVar5;
-  longlong *plVar6;
-  longlong lVar7;
-  undefined8 uVar8;
-  ulonglong uVar9;
-  longlong *plVar10;
-  undefined8 *puVar11;
-  undefined8 *puVar12;
-  undefined1 auStack_168 [32];
-  undefined4 uStack_148;
-  longlong lStack_140;
-  undefined8 *puStack_138;
-  undefined8 *puStack_130;
-  longlong lStack_128;
-  undefined8 uStack_120;
-  longlong lStack_118;
-  longlong lStack_110;
-  undefined8 *puStack_108;
-  undefined8 *puStack_100;
-  undefined8 uStack_f8;
-  undefined8 uStack_f0;
-  longlong lStack_e8;
-  longlong lStack_e0;
-  longlong lStack_d8;
-  longlong lStack_d0;
-  undefined8 uStack_c8;
-  longlong *plStack_c0;
-  longlong lStack_b8;
-  undefined8 *puStack_a8;
-  undefined4 uStack_a0;
-  undefined4 uStack_9c;
-  undefined4 uStack_98;
-  undefined4 uStack_94;
-  undefined8 uStack_90;
-  longlong lStack_88;
-  undefined8 **ppuStack_70;
-  undefined8 uStack_68;
-  ulonglong uStack_58;
+  char node_flag;
+  undefined4 *data_ptr;
+  longlong array_size;
+  undefined8 *current_item;
+  longlong *item_ptr;
+  longlong *temp_ptr;
+  longlong data_offset;
+  undefined8 callback_result;
+  ulonglong alloc_size;
+  longlong *resource_ptr;
+  undefined8 *item_data;
+  undefined8 *next_item;
+  undefined1 stack_buffer [32];
+  undefined4 status_flag;
+  longlong buffer_pos;
+  undefined8 *buffer_ptr;
+  undefined8 *buffer_end;
+  longlong buffer_offset;
+  undefined8 temp_var1;
+  longlong temp_offset;
+  undefined8 temp_var2;
+  longlong buffer_size;
+  longlong temp_var3;
+  undefined8 *item_start;
+  undefined4 flag1;
+  undefined4 flag2;
+  undefined4 flag3;
+  undefined4 flag4;
+  undefined8 config_data;
+  longlong item_count;
+  undefined8 **resource_array;
+  undefined8 callback_param;
+  ulonglong stack_checksum;
   
-  uStack_c8 = 0xfffffffffffffffe;
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
-  puVar12 = (undefined8 *)0x0;
-  uStack_148 = 0;
-  lStack_110 = 0;
-  puStack_108 = (undefined8 *)0x0;
-  puStack_100 = (undefined8 *)0x0;
-  lStack_140 = 0;
-  puStack_138 = (undefined8 *)0x0;
-  puStack_130 = (undefined8 *)0x0;
-  puVar11 = (undefined8 *)*param_2;
-  lStack_e8 = param_1;
-  plStack_c0 = param_3;
-  if (puVar11 != (undefined8 *)param_2[1]) {
+  config_data = 0xfffffffffffffffe;
+  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  next_item = (undefined8 *)0x0;
+  status_flag = 0;
+  item_count = 0;
+  buffer_ptr = (undefined8 *)0x0;
+  buffer_end = (undefined8 *)0x0;
+  buffer_pos = 0;
+  buffer_ptr = (undefined8 *)0x0;
+  buffer_end = (undefined8 *)0x0;
+  item_data = (undefined8 *)*param_2;
+  buffer_size = param_1;
+  resource_ptr = param_3;
+  if (item_data != (undefined8 *)param_2[1]) {
     do {
-      puVar4 = puStack_108;
-      lStack_128 = 0;
-      uStack_120 = 0;
-      lStack_118 = 0;
-      if (puStack_130 == puStack_138) {
-        FUN_180188910(&lStack_140);
+      current_item = buffer_ptr;
+      buffer_offset = 0;
+      temp_var1 = 0;
+      temp_offset = 0;
+      if (buffer_end == buffer_ptr) {
+        FUN_180188910(&buffer_pos);
       }
       else {
-        *puStack_138 = 0;
-        puStack_138[1] = 0;
-        puStack_138[2] = 0;
-        *puStack_138 = 0;
-        puStack_138[1] = 0;
-        puStack_138[2] = 0;
-        lStack_128 = 0;
-        uStack_120 = 0;
-        lStack_118 = 0;
-        puStack_138 = puStack_138 + 3;
+        *buffer_ptr = 0;
+        buffer_ptr[1] = 0;
+        buffer_ptr[2] = 0;
+        *buffer_ptr = 0;
+        buffer_ptr[1] = 0;
+        buffer_ptr[2] = 0;
+        buffer_offset = 0;
+        temp_var1 = 0;
+        temp_offset = 0;
+        buffer_ptr = buffer_ptr + 3;
       }
-      if (lStack_128 != 0) {
-        uVar9 = lStack_118 - lStack_128 & 0xfffffffffffffff0;
-        if (0xfff < uVar9) {
-          if (0x1f < (lStack_128 - *(longlong *)(lStack_128 + -8)) - 8U) {
+      if (buffer_offset != 0) {
+        alloc_size = temp_offset - buffer_offset & 0xfffffffffffffff0;
+        if (0xfff < alloc_size) {
+          if (0x1f < (buffer_offset - *(longlong *)(buffer_offset + -8)) - 8U) {
                     // WARNING: Subroutine does not return
-            _invalid_parameter_noinfo_noreturn(*(longlong *)(lStack_128 + -8),uVar9 + 0x27);
+            _invalid_parameter_noinfo_noreturn(*(longlong *)(buffer_offset + -8),alloc_size + 0x27);
           }
         }
         free();
-        lStack_128 = 0;
-        uStack_120 = 0;
-        lStack_118 = 0;
+        buffer_offset = 0;
+        temp_var1 = 0;
+        temp_offset = 0;
       }
-      plVar10 = *(longlong **)puVar11[6];
-      if (plVar10 != (longlong *)puVar11[6]) {
+      resource_ptr = *(longlong **)item_data[6];
+      if (resource_ptr != (longlong *)item_data[6]) {
         do {
-          plVar5 = plVar10 + 4;
-          if (0xf < (ulonglong)plVar10[7]) {
-            plVar5 = (longlong *)*plVar5;
+          item_ptr = resource_ptr + 4;
+          if (0xf < (ulonglong)resource_ptr[7]) {
+            item_ptr = (longlong *)*item_ptr;
           }
-          plVar6 = plVar10 + 8;
-          if (0xf < (ulonglong)plVar10[0xb]) {
-            plVar6 = (longlong *)*plVar6;
+          temp_ptr = resource_ptr + 8;
+          if (0xf < (ulonglong)resource_ptr[0xb]) {
+            temp_ptr = (longlong *)*temp_ptr;
           }
-          puVar2 = (undefined4 *)puStack_138[-2];
-          uStack_f8 = (undefined8 **)plVar5;
-          uStack_f0 = (longlong)plVar6;
-          if ((undefined4 *)puStack_138[-1] == puVar2) {
+          data_ptr = (undefined4 *)buffer_ptr[-2];
+          temp_var2 = (undefined8 **)item_ptr;
+          temp_var3 = (longlong)temp_ptr;
+          if ((undefined4 *)buffer_ptr[-1] == data_ptr) {
             FUN_1801887a0();
           }
           else {
-            uStack_f8._0_4_ = SUB84(plVar5,0);
-            uStack_f8._4_4_ = (undefined4)((ulonglong)plVar5 >> 0x20);
-            uStack_f0._0_4_ = SUB84(plVar6,0);
-            uStack_f0._4_4_ = (undefined4)((ulonglong)plVar6 >> 0x20);
-            *puVar2 = (undefined4)uStack_f8;
-            puVar2[1] = uStack_f8._4_4_;
-            puVar2[2] = (undefined4)uStack_f0;
-            puVar2[3] = uStack_f0._4_4_;
-            puStack_138[-2] = puStack_138[-2] + 0x10;
+            temp_var2._0_4_ = SUB84(item_ptr,0);
+            temp_var2._4_4_ = (undefined4)((ulonglong)item_ptr >> 0x20);
+            temp_var3._0_4_ = SUB84(temp_ptr,0);
+            temp_var3._4_4_ = (undefined4)((ulonglong)temp_ptr >> 0x20);
+            *data_ptr = (undefined4)temp_var2;
+            data_ptr[1] = temp_var2._4_4_;
+            data_ptr[2] = (undefined4)temp_var3;
+            data_ptr[3] = temp_var3._4_4_;
+            buffer_ptr[-2] = buffer_ptr[-2] + 0x10;
           }
-          plVar5 = (longlong *)plVar10[2];
-          if (*(char *)((longlong)plVar5 + 0x19) == '\0') {
-            cVar1 = *(char *)(*plVar5 + 0x19);
-            plVar10 = plVar5;
-            plVar5 = (longlong *)*plVar5;
-            while (cVar1 == '\0') {
-              cVar1 = *(char *)(*plVar5 + 0x19);
-              plVar10 = plVar5;
-              plVar5 = (longlong *)*plVar5;
+          item_ptr = (longlong *)resource_ptr[2];
+          if (*(char *)((longlong)item_ptr + 0x19) == '\0') {
+            node_flag = *(char *)(*item_ptr + 0x19);
+            resource_ptr = item_ptr;
+            item_ptr = (longlong *)*item_ptr;
+            while (node_flag == '\0') {
+              node_flag = *(char *)(*item_ptr + 0x19);
+              resource_ptr = item_ptr;
+              item_ptr = (longlong *)*item_ptr;
             }
           }
           else {
-            cVar1 = *(char *)(plVar10[1] + 0x19);
-            plVar6 = (longlong *)plVar10[1];
-            plVar5 = plVar10;
-            while ((plVar10 = plVar6, cVar1 == '\0' && (plVar5 == (longlong *)plVar10[2]))) {
-              cVar1 = *(char *)(plVar10[1] + 0x19);
-              plVar6 = (longlong *)plVar10[1];
-              plVar5 = plVar10;
+            node_flag = *(char *)(resource_ptr[1] + 0x19);
+            temp_ptr = (longlong *)resource_ptr[1];
+            item_ptr = resource_ptr;
+            while ((resource_ptr = temp_ptr, node_flag == '\0' && (item_ptr == (longlong *)resource_ptr[2]))) {
+              node_flag = *(char *)(resource_ptr[1] + 0x19);
+              temp_ptr = (longlong *)resource_ptr[1];
+              item_ptr = resource_ptr;
             }
           }
-        } while (plVar10 != (longlong *)puVar11[6]);
+        } while (resource_ptr != (longlong *)item_data[6]);
       }
-      puStack_a8 = puVar11;
-      if (0xf < (ulonglong)puVar11[3]) {
-        puStack_a8 = (undefined8 *)*puVar11;
+      item_start = item_data;
+      if (0xf < (ulonglong)item_data[3]) {
+        item_start = (undefined8 *)*item_data;
       }
-      uStack_a0 = CONCAT31(uStack_a0._1_3_,*(undefined1 *)(puVar11 + 4));
-      uStack_9c = *(undefined4 *)((longlong)puVar11 + 0x24);
-      uStack_98 = *(undefined4 *)(puVar11 + 5);
-      lStack_88 = puVar11[7];
-      if (lStack_88 == 0) {
-        uStack_90 = 0;
-      }
-      else {
-        uStack_90 = puStack_138[-3];
-      }
-      if (puVar12 == puVar4) {
-        FUN_180188b30(&lStack_110,puVar4);
-        puVar12 = puStack_100;
+      flag1 = CONCAT31(flag1._1_3_,*(undefined1 *)(item_data + 4));
+      flag2 = *(undefined4 *)((longlong)item_data + 0x24);
+      flag3 = *(undefined4 *)(item_data + 5);
+      item_count = item_data[7];
+      if (item_count == 0) {
+        config_data = 0;
       }
       else {
-        *puVar4 = puStack_a8;
-        puVar4[1] = CONCAT44(uStack_9c,uStack_a0);
-        puVar4[2] = CONCAT44(uStack_94,uStack_98);
-        puVar4[3] = uStack_90;
-        puVar4[4] = lStack_88;
-        puStack_108 = puVar4 + 5;
+        config_data = buffer_ptr[-3];
       }
-      puVar11 = puVar11 + 8;
-    } while (puVar11 != (undefined8 *)param_2[1]);
+      if (next_item == current_item) {
+        FUN_180188b30(&item_count,current_item);
+        next_item = buffer_end;
+      }
+      else {
+        *current_item = item_start;
+        current_item[1] = CONCAT44(flag2,flag1);
+        current_item[2] = CONCAT44(flag4,flag3);
+        current_item[3] = config_data;
+        current_item[4] = item_count;
+        buffer_ptr = current_item + 5;
+      }
+      item_data = item_data + 8;
+    } while (item_data != (undefined8 *)param_2[1]);
   }
-  lVar3 = lStack_110;
-  lStack_e0 = lStack_110;
-  lStack_d8 = ((longlong)puStack_108 - lStack_110) / 0x28;
-  lStack_d0 = (longlong)(param_2 + 3);
+  array_size = item_count;
+  buffer_size = item_count;
+  temp_var3 = ((longlong)buffer_ptr - item_count) / 0x28;
+  temp_offset = (longlong)(param_2 + 3);
   if (0xf < (ulonglong)param_2[6]) {
-    lStack_d0 = *(longlong *)lStack_d0;
+    temp_offset = *(longlong *)temp_offset;
   }
-  lVar7 = FUN_1808fc418(0x48);
-  ppuStack_70 = (undefined8 **)0x0;
-  puVar11 = (undefined8 *)param_3[7];
-  lStack_b8 = lVar7;
-  if (puVar11 != (undefined8 *)0x0) {
-    ppuStack_70 = (undefined8 **)(**(code **)*puVar11)(puVar11,&puStack_a8);
+  data_offset = FUN_1808fc418(0x48);
+  resource_array = (undefined8 **)0x0;
+  item_data = (undefined8 *)param_3[7];
+  item_count = data_offset;
+  if (item_data != (undefined8 *)0x0) {
+    resource_array = (undefined8 **)(**(code **)*item_data)(item_data,&item_start);
   }
-  uStack_148 = 3;
-  *(undefined8 *)(lVar7 + 0x38) = 0;
-  uStack_f8 = (undefined8 **)lVar7;
-  uStack_68 = param_4;
-  if (ppuStack_70 != (undefined8 **)0x0) {
-    if (ppuStack_70 == &puStack_a8) {
-      uVar8 = (*(code *)(*ppuStack_70)[1])(ppuStack_70,lVar7);
-      *(undefined8 *)(lVar7 + 0x38) = uVar8;
-      if (ppuStack_70 == (undefined8 **)0x0) goto LAB_180184aa5;
-      (*(code *)(*ppuStack_70)[4])
-                (ppuStack_70,
-                 CONCAT71((int7)((ulonglong)&puStack_a8 >> 8),ppuStack_70 != &puStack_a8));
+  status_flag = 3;
+  *(undefined8 *)(data_offset + 0x38) = 0;
+  temp_var2 = (undefined8 **)data_offset;
+  callback_param = param_4;
+  if (resource_array != (undefined8 **)0x0) {
+    if (resource_array == &item_start) {
+      callback_result = (*(code *)(*resource_array)[1])(resource_array,data_offset);
+      *(undefined8 *)(data_offset + 0x38) = callback_result;
+      if (resource_array == (undefined8 **)0x0) goto LAB_180184aa5;
+      (*(code *)(*resource_array)[4])
+                (resource_array,
+                 CONCAT71((int7)((ulonglong)&item_start >> 8),resource_array != &item_start));
     }
     else {
-      *(undefined8 ***)(lVar7 + 0x38) = ppuStack_70;
+      *(undefined8 ***)(data_offset + 0x38) = resource_array;
     }
-    ppuStack_70 = (undefined8 **)0x0;
+    resource_array = (undefined8 **)0x0;
   }
 LAB_180184aa5:
-  *(undefined8 *)(lVar7 + 0x40) = uStack_68;
-  NVGSDK_Highlights_ConfigureAsync(*(undefined8 *)(lStack_e8 + 8),&lStack_e0,FUN_1801842a0,lVar7);
-  uStack_148 = 1;
-  uStack_f8 = &puStack_a8;
-  if (ppuStack_70 != (undefined8 **)0x0) {
-    (*(code *)(*ppuStack_70)[4])
-              (ppuStack_70,CONCAT71((int7)((ulonglong)&puStack_a8 >> 8),ppuStack_70 != &puStack_a8))
+  *(undefined8 *)(data_offset + 0x40) = callback_param;
+  NVGSDK_Highlights_ConfigureAsync(*(undefined8 *)(buffer_size + 8),&buffer_size,FUN_1801842a0,data_offset);
+  status_flag = 1;
+  temp_var2 = &item_start;
+  if (resource_array != (undefined8 **)0x0) {
+    (*(code *)(*resource_array)[4])
+              (resource_array,CONCAT71((int7)((ulonglong)&item_start >> 8),resource_array != &item_start))
     ;
-    ppuStack_70 = (undefined8 **)0x0;
+    resource_array = (undefined8 **)0x0;
   }
-  if (lStack_140 != 0) {
-    FUN_180189900(lStack_140,puStack_138);
-    uVar9 = (((longlong)puStack_130 - lStack_140) / 0x18) * 0x18;
-    lVar7 = lStack_140;
-    if (0xfff < uVar9) {
-      uVar9 = uVar9 + 0x27;
-      lVar7 = *(longlong *)(lStack_140 + -8);
-      if (0x1f < (lStack_140 - lVar7) - 8U) {
+  if (buffer_pos != 0) {
+    FUN_180189900(buffer_pos,buffer_ptr);
+    alloc_size = (((longlong)buffer_end - buffer_pos) / 0x18) * 0x18;
+    data_offset = buffer_pos;
+    if (0xfff < alloc_size) {
+      alloc_size = alloc_size + 0x27;
+      data_offset = *(longlong *)(buffer_pos + -8);
+      if (0x1f < (buffer_pos - data_offset) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn();
       }
     }
-    free(lVar7,uVar9);
-    lStack_140 = 0;
-    puStack_138 = (undefined8 *)0x0;
-    puStack_130 = (undefined8 *)0x0;
+    free(data_offset,alloc_size);
+    buffer_pos = 0;
+    buffer_ptr = (undefined8 *)0x0;
+    buffer_end = (undefined8 *)0x0;
   }
-  if (lVar3 != 0) {
-    uVar9 = (((longlong)puVar12 - lVar3) / 0x28) * 0x28;
-    lVar7 = lVar3;
-    if (0xfff < uVar9) {
-      uVar9 = uVar9 + 0x27;
-      lVar7 = *(longlong *)(lVar3 + -8);
-      if (0x1f < (lVar3 - lVar7) - 8U) {
+  if (array_size != 0) {
+    alloc_size = (((longlong)next_item - array_size) / 0x28) * 0x28;
+    data_offset = array_size;
+    if (0xfff < alloc_size) {
+      alloc_size = alloc_size + 0x27;
+      data_offset = *(longlong *)(array_size + -8);
+      if (0x1f < (array_size - data_offset) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn();
       }
     }
-    free(lVar7,uVar9);
-    lStack_110 = 0;
-    puStack_108 = (undefined8 *)0x0;
-    puStack_100 = (undefined8 *)0x0;
+    free(data_offset,alloc_size);
+    item_count = 0;
+    buffer_ptr = (undefined8 *)0x0;
+    buffer_end = (undefined8 *)0x0;
   }
-  plVar10 = (longlong *)param_3[7];
-  if (plVar10 != (longlong *)0x0) {
-    (**(code **)(*plVar10 + 0x20))(plVar10,plVar10 != param_3);
+  resource_ptr = (longlong *)param_3[7];
+  if (resource_ptr != (longlong *)0x0) {
+    (**(code **)(*resource_ptr + 0x20))(resource_ptr,resource_ptr != param_3);
     param_3[7] = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_168);
+  FUN_1808fc050(stack_checksum ^ (ulonglong)stack_buffer);
 }
 
 
@@ -877,75 +908,77 @@ LAB_180184aa5:
 
 
 
-// 函数: void FUN_180184c20(longlong param_1,longlong *param_2,undefined8 param_3)
-void FUN_180184c20(longlong param_1,longlong *param_2,undefined8 param_3)
-
+// 函数：get_highlights_user_settings_async
+// 功能：异步获取高亮用户设置
+// 参数：param_1 - 引擎实例指针
+//        param_2 - 设置数据指针
+//        param_3 - 回调参数
+void get_highlights_user_settings_async(longlong param_1,longlong *param_2,undefined8 param_3)
 {
-  undefined8 *puVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  undefined1 auStack_d8 [32];
-  undefined4 uStack_b8;
-  longlong *plStack_b0;
-  undefined8 uStack_a8;
-  longlong *plStack_a0;
-  longlong lStack_98;
-  longlong alStack_88 [7];
-  longlong *plStack_50;
-  undefined8 uStack_48;
-  ulonglong uStack_38;
+  undefined8 *resource_ptr;
+  longlong *alloc_ptr;
+  longlong data_size;
+  undefined8 callback_result;
+  undefined1 stack_buffer [32];
+  undefined4 status_flag;
+  longlong *context_ptr;
+  undefined8 callback_param;
+  longlong *data_ptr;
+  longlong buffer_size;
+  longlong alloc_array [7];
+  longlong *temp_ptr;
+  undefined8 callback_data;
+  ulonglong stack_checksum;
   
-  uStack_a8 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
-  uStack_b8 = 0;
-  plStack_a0 = param_2;
-  lVar3 = FUN_1808fc418(0x48);
-  plStack_50 = (longlong *)0x0;
-  puVar1 = (undefined8 *)param_2[7];
-  lStack_98 = lVar3;
-  if (puVar1 != (undefined8 *)0x0) {
-    plStack_50 = (longlong *)(**(code **)*puVar1)(puVar1,alStack_88);
+  callback_param = 0xfffffffffffffffe;
+  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  status_flag = 0;
+  data_ptr = param_2;
+  data_size = FUN_1808fc418(0x48);
+  temp_ptr = (longlong *)0x0;
+  resource_ptr = (undefined8 *)param_2[7];
+  buffer_size = data_size;
+  if (resource_ptr != (undefined8 *)0x0) {
+    temp_ptr = (longlong *)(**(code **)*resource_ptr)(resource_ptr,alloc_array);
   }
-  uStack_b8 = 3;
-  *(undefined8 *)(lVar3 + 0x38) = 0;
-  plStack_b0 = (longlong *)lVar3;
-  uStack_48 = param_3;
-  if (plStack_50 != (longlong *)0x0) {
-    if (plStack_50 == alStack_88) {
-      uVar4 = (**(code **)(*plStack_50 + 8))(plStack_50,lVar3);
-      *(undefined8 *)(lVar3 + 0x38) = uVar4;
-      if (plStack_50 == (longlong *)0x0) goto LAB_180184d09;
-      (**(code **)(*plStack_50 + 0x20))
-                (plStack_50,CONCAT71((int7)((ulonglong)alStack_88 >> 8),plStack_50 != alStack_88));
+  status_flag = 3;
+  *(undefined8 *)(data_size + 0x38) = 0;
+  context_ptr = (longlong *)data_size;
+  callback_data = param_3;
+  if (temp_ptr != (longlong *)0x0) {
+    if (temp_ptr == alloc_array) {
+      callback_result = (**(code **)(*temp_ptr + 8))(temp_ptr,data_size);
+      *(undefined8 *)(data_size + 0x38) = callback_result;
+      if (temp_ptr == (longlong *)0x0) goto LAB_180184d09;
+      (**(code **)(*temp_ptr + 0x20))
+                (temp_ptr,CONCAT71((int7)((ulonglong)alloc_array >> 8),temp_ptr != alloc_array));
     }
     else {
-      *(longlong **)(lVar3 + 0x38) = plStack_50;
+      *(longlong **)(data_size + 0x38) = temp_ptr;
     }
-    plStack_50 = (longlong *)0x0;
+    temp_ptr = (longlong *)0x0;
   }
 LAB_180184d09:
-  *(undefined8 *)(lVar3 + 0x40) = uStack_48;
-  NVGSDK_Highlights_GetUserSettingsAsync(*(undefined8 *)(param_1 + 8),&UNK_180185030,lVar3);
-  uStack_b8 = 1;
-  plStack_b0 = alStack_88;
-  if (plStack_50 != (longlong *)0x0) {
-    (**(code **)(*plStack_50 + 0x20))
-              (plStack_50,CONCAT71((int7)((ulonglong)alStack_88 >> 8),plStack_50 != alStack_88));
-    plStack_50 = (longlong *)0x0;
+  *(undefined8 *)(data_size + 0x40) = callback_data;
+  NVGSDK_Highlights_GetUserSettingsAsync(*(undefined8 *)(param_1 + 8),&UNK_180185030,data_size);
+  status_flag = 1;
+  context_ptr = alloc_array;
+  if (temp_ptr != (longlong *)0x0) {
+    (**(code **)(*temp_ptr + 0x20))
+              (temp_ptr,CONCAT71((int7)((ulonglong)alloc_array >> 8),temp_ptr != alloc_array));
+    temp_ptr = (longlong *)0x0;
   }
-  plVar2 = (longlong *)param_2[7];
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x20))(plVar2,plVar2 != param_2);
+  alloc_ptr = (longlong *)param_2[7];
+  if (alloc_ptr != (longlong *)0x0) {
+    (**(code **)(*alloc_ptr + 0x20))(alloc_ptr,alloc_ptr != param_2);
     param_2[7] = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_d8);
+  FUN_1808fc050(stack_checksum ^ (ulonglong)stack_buffer);
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 
 
