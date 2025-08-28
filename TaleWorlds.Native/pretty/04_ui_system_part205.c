@@ -1457,92 +1457,134 @@ uint64_t FUN_180789798(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int32_t
-FUN_1807897b0(longlong param_1,longlong param_2,uint64_t param_3,longlong param_4,int param_5)
-
+/**
+ * UI_ProcessData - UI系统数据处理
+ * 
+ * 处理UI系统中的浮点数据，包括数据复制、变换和渲染操作
+ * 
+ * @param data_ptr 数据指针
+ * @param source_ptr 源数据指针
+ * @param param3 参数3
+ * @param transform_ptr 变换数据指针
+ * @param mode 处理模式
+ * @return 处理结果：0=成功，其他=错误代码
+ * 
+ * 原始实现：FUN_1807897b0
+ */
+int32_t UI_ProcessData(longlong data_ptr, longlong source_ptr, uint64_t param3, longlong transform_ptr, int mode)
 {
-  uint64_t uVar1;
-  float *pfVar2;
-  int iVar3;
-  int iVar4;
-  longlong lVar5;
-  float *pfVar6;
-  
-  if (*(int *)(param_1 + 0x18) == 0) {
-    return 0x43;
-  }
-  if (param_5 == 0) {
-    return 0x1f;
-  }
-  uVar1 = *(uint64_t *)(param_1 + 0x60);
-  FUN_180768360(uVar1);
-  iVar4 = *(int *)(param_1 + 0x18);
-  pfVar2 = *(float **)(param_1 + 0x20);
-  if (param_5 == 1) {
-    if (param_4 == 0) {
-      iVar3 = 0;
-      if (0 < iVar4 / 2) {
-        lVar5 = 0;
-        pfVar6 = pfVar2;
+    uint64_t resource_id;
+    float *float_buffer;
+    int processed_count;
+    int total_count;
+    longlong index;
+    float *current_float;
+    
+    // 检查数据是否有效
+    if (*(int *)(data_ptr + 0x18) == 0) {
+        return UI_ERROR_INVALID_DATA;
+    }
+    
+    // 检查模式是否有效
+    if (mode == 0) {
+        return UI_ERROR_INVALID_MODE;
+    }
+    
+    // 获取资源ID并初始化
+    resource_id = *(uint64_t *)(data_ptr + 0x60);
+    FUN_180768360(resource_id);
+    
+    total_count = *(int *)(data_ptr + 0x18);
+    float_buffer = *(float **)(data_ptr + 0x20);
+    
+    if (mode == 1) {
+        if (transform_ptr == 0) {
+            // 模式1：直接复制数据
+            processed_count = 0;
+            if (0 < total_count / 2) {
+                index = 0;
+                current_float = float_buffer;
+                do {
+                    processed_count = processed_count + 1;
+                    
+                    // 复制第一个浮点数
+                    *current_float = *(float *)(source_ptr +
+                                           (longlong)(*(int *)(index + *(longlong *)(data_ptr + 0x38)) * 2) * 4);
+                    
+                    // 复制第二个浮点数
+                    current_float[1] = *(float *)(source_ptr + 4 +
+                                               (longlong)(*(int *)(index + *(longlong *)(data_ptr + 0x38)) * 2) * 4);
+                    
+                    total_count = *(int *)(data_ptr + 0x18);
+                    index = index + 4;
+                    current_float = current_float + 2;
+                } while (processed_count < total_count / 2);
+            }
+            goto PROCESS_COMPLETE;
+        }
+    }
+    else if (transform_ptr == 0) {
+        // 其他模式：间隔复制数据
+        processed_count = 0;
+        if (0 < total_count / 2) {
+            index = 0;
+            current_float = float_buffer;
+            do {
+                processed_count = processed_count + 1;
+                
+                // 复制第一个浮点数（带间隔）
+                *current_float = *(float *)(source_ptr +
+                                        (longlong)
+                                        (*(int *)(index + *(longlong *)(data_ptr + 0x38)) * mode * 2) * 4);
+                
+                // 复制第二个浮点数（带间隔）
+                current_float[1] = *(float *)(source_ptr +
+                                            (longlong)
+                                            ((*(int *)(index + *(longlong *)(data_ptr + 0x38)) * 2 + 1) * mode)
+                                            * 4);
+                
+                total_count = *(int *)(data_ptr + 0x18);
+                index = index + 4;
+                current_float = current_float + 2;
+            } while (processed_count < total_count / 2);
+        }
+        goto PROCESS_COMPLETE;
+    }
+    
+    // 变换模式：数据变换处理
+    processed_count = 0;
+    if (0 < total_count / 2) {
+        index = 0;
+        current_float = float_buffer;
         do {
-          iVar3 = iVar3 + 1;
-          *pfVar6 = *(float *)(param_2 +
-                              (longlong)(*(int *)(lVar5 + *(longlong *)(param_1 + 0x38)) * 2) * 4);
-          pfVar6[1] = *(float *)(param_2 + 4 +
-                                (longlong)(*(int *)(lVar5 + *(longlong *)(param_1 + 0x38)) * 2) * 4)
-          ;
-          iVar4 = *(int *)(param_1 + 0x18);
-          lVar5 = lVar5 + 4;
-          pfVar6 = pfVar6 + 2;
-        } while (iVar3 < iVar4 / 2);
-      }
-      goto LAB_180789990;
+            processed_count = processed_count + 1;
+            total_count = *(int *)(index + *(longlong *)(data_ptr + 0x38));
+            
+            // 第一个浮点数：源数据与变换数据相乘
+            *current_float = *(float *)(source_ptr + (longlong)(total_count * mode * 2) * 4) *
+                              *(float *)(transform_ptr + (longlong)(total_count * 2) * 4);
+            
+            total_count = *(int *)(index + *(longlong *)(data_ptr + 0x38)) * 2;
+            
+            // 第二个浮点数：源数据与变换数据相乘
+            current_float[1] = *(float *)(source_ptr + (longlong)((total_count + 1) * mode) * 4) *
+                                *(float *)(transform_ptr + 4 + (longlong)total_count * 4);
+            
+            total_count = *(int *)(data_ptr + 0x18);
+            index = index + 4;
+            current_float = current_float + 2;
+        } while (processed_count < total_count / 2);
     }
-  }
-  else if (param_4 == 0) {
-    iVar3 = 0;
-    if (0 < iVar4 / 2) {
-      lVar5 = 0;
-      pfVar6 = pfVar2;
-      do {
-        iVar3 = iVar3 + 1;
-        *pfVar6 = *(float *)(param_2 +
-                            (longlong)
-                            (*(int *)(lVar5 + *(longlong *)(param_1 + 0x38)) * param_5 * 2) * 4);
-        pfVar6[1] = *(float *)(param_2 +
-                              (longlong)
-                              ((*(int *)(lVar5 + *(longlong *)(param_1 + 0x38)) * 2 + 1) * param_5)
-                              * 4);
-        iVar4 = *(int *)(param_1 + 0x18);
-        lVar5 = lVar5 + 4;
-        pfVar6 = pfVar6 + 2;
-      } while (iVar3 < iVar4 / 2);
-    }
-    goto LAB_180789990;
-  }
-  iVar3 = 0;
-  if (0 < iVar4 / 2) {
-    lVar5 = 0;
-    pfVar6 = pfVar2;
-    do {
-      iVar3 = iVar3 + 1;
-      iVar4 = *(int *)(lVar5 + *(longlong *)(param_1 + 0x38));
-      *pfVar6 = *(float *)(param_2 + (longlong)(iVar4 * param_5 * 2) * 4) *
-                *(float *)(param_4 + (longlong)(iVar4 * 2) * 4);
-      iVar4 = *(int *)(lVar5 + *(longlong *)(param_1 + 0x38)) * 2;
-      pfVar6[1] = *(float *)(param_2 + (longlong)((iVar4 + 1) * param_5) * 4) *
-                  *(float *)(param_4 + 4 + (longlong)iVar4 * 4);
-      iVar4 = *(int *)(param_1 + 0x18);
-      lVar5 = lVar5 + 4;
-      pfVar6 = pfVar6 + 2;
-    } while (iVar3 < iVar4 / 2);
-  }
-LAB_180789990:
-  (*(code *)*_DAT_180c108d0)(pfVar2,*(longlong *)(param_1 + 0x30) + (longlong)iVar4 * 4,iVar4 / 2);
-  (*(code *)_DAT_180c108d0[2])
-            (pfVar2,param_3,*(uint64_t *)(param_1 + 0x30),*(int32_t *)(param_1 + 0x18));
-                    // WARNING: Subroutine does not return
-  FUN_180768400(uVar1);
+
+PROCESS_COMPLETE:
+    // 调用处理完成回调
+    (*(code *)*_DAT_180c108d0)(float_buffer, *(longlong *)(data_ptr + 0x30) + (longlong)total_count * 4, total_count / 2);
+    (*(code *)_DAT_180c108d0[2])(float_buffer, param3, *(uint64_t *)(data_ptr + 0x30), *(int32_t *)(data_ptr + 0x18));
+    
+    // 清理资源（此函数不返回）
+    FUN_180768400(resource_id);
+    
+    return UI_SYSTEM_SUCCESS;
 }
 
 
