@@ -133,118 +133,118 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
         do {
             resource_offset = *(longlong *)(resource_array_ptr + 2);
             data_offset = *(longlong *)(resource_offset + 8);
-            for (piVar12 = *(int **)(data_offset + (resource_id % (ulonglong)*(uint *)(resource_offset + 0x10)) * 8);
-                piVar12 != (int *)0x0; piVar12 = *(int **)(piVar12 + 4)) {
-                if ((int)resource_id == *piVar12) {
+            for (hash_entry_ptr = *(int **)(data_offset + (resource_id % (ulonglong)*(uint *)(resource_offset + 0x10)) * 8);
+                hash_entry_ptr != (int *)0x0; hash_entry_ptr = *(int **)(hash_entry_ptr + 4)) {
+                if ((int)resource_id == *hash_entry_ptr) {
                     resource_offset = *(longlong *)(resource_offset + 0x10);
                     goto LAB_180331625;
                 }
             }
             resource_offset = *(longlong *)(resource_offset + 0x10);
-      piVar12 = *(int **)(data_offset + resource_offset * 8);
+      hash_entry_ptr = *(int **)(data_offset + resource_offset * 8);
 LAB_180331625:
-        if ((piVar12 != *(int **)(data_offset + resource_offset * 8)) &&
-            (resource_offset = *(longlong *)(piVar12 + 2), resource_offset != 0)) {
-        if (puStack_110 < puStack_108) {
-          *(undefined4 *)puStack_110 = *puVar16;
-          puVar7 = puStack_110;
+        if ((hash_entry_ptr != *(int **)(data_offset + resource_offset * 8)) &&
+            (resource_offset = *(longlong *)(hash_entry_ptr + 2), resource_offset != 0)) {
+        if (resource_buffer_end < resource_buffer_start) {
+          *(undefined4 *)resource_buffer_end = *resource_array_item;
+          temp_buffer_ptr = resource_buffer_end;
         }
         else {
-          lVar22 = (longlong)puStack_110 - (longlong)puStack_118 >> 2;
-          if (lVar22 == 0) {
-            lVar22 = 1;
+          buffer_size = (longlong)resource_buffer_end - (longlong)memory_pool_ptr >> 2;
+          if (buffer_size == 0) {
+            buffer_size = 1;
 LAB_180331688:
-            puVar7 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,lVar22 * 4,(undefined1)uStack_100);
+            temp_buffer_ptr = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,buffer_size * 4,(undefined1)allocation_flag);
           }
           else {
-            lVar22 = lVar22 * 2;
-            if (lVar22 != 0) goto LAB_180331688;
-            puVar7 = (ulonglong *)0x0;
+            buffer_size = buffer_size * 2;
+            if (buffer_size != 0) goto LAB_180331688;
+            temp_buffer_ptr = (ulonglong *)0x0;
           }
-          if (puStack_118 != puStack_110) {
+          if (memory_pool_ptr != resource_buffer_end) {
                     // WARNING: Subroutine does not return
-            memmove(puVar7,puStack_118,(longlong)puStack_110 - (longlong)puStack_118);
+            memmove(temp_buffer_ptr,memory_pool_ptr,(longlong)resource_buffer_end - (longlong)memory_pool_ptr);
           }
-          *(undefined4 *)puVar7 = *puVar16;
-          if (puStack_118 != (ulonglong *)0x0) {
+          *(undefined4 *)temp_buffer_ptr = *resource_array_item;
+          if (memory_pool_ptr != (ulonglong *)0x0) {
                     // WARNING: Subroutine does not return
             FUN_18064e900();
           }
-          puStack_108 = (ulonglong *)((longlong)puVar7 + lVar22 * 4);
-          puStack_118 = puVar7;
+          resource_buffer_start = (ulonglong *)((longlong)temp_buffer_ptr + buffer_size * 4);
+          memory_pool_ptr = temp_buffer_ptr;
         }
-        puStack_110 = (ulonglong *)((longlong)puVar7 + 4);
-        if (puStack_140 < plStack_138) {
-          *(longlong *)puStack_140 = lVar23;
-          puVar8 = puStack_140;
+        resource_buffer_end = (ulonglong *)((longlong)temp_buffer_ptr + 4);
+        if (data_buffer_end < memory_buffer_end) {
+          *(longlong *)data_buffer_end = resource_data;
+          temp_data_ptr = data_buffer_end;
         }
         else {
-          lVar22 = (longlong)puStack_140 - (longlong)plStack_148 >> 3;
-          if (lVar22 == 0) {
-            lVar22 = 1;
+          buffer_size = (longlong)data_buffer_end - (longlong)resource_pool_ptr >> 3;
+          if (buffer_size == 0) {
+            buffer_size = 1;
 LAB_18033173f:
-            puVar8 = (uint *)FUN_18062b420(_DAT_180c8ed18,lVar22 * 8,(char)uStack_130);
+            temp_data_ptr = (uint *)FUN_18062b420(_DAT_180c8ed18,buffer_size * 8,(char)thread_flag);
           }
           else {
-            lVar22 = lVar22 * 2;
-            if (lVar22 != 0) goto LAB_18033173f;
-            puVar8 = (uint *)0x0;
+            buffer_size = buffer_size * 2;
+            if (buffer_size != 0) goto LAB_18033173f;
+            temp_data_ptr = (uint *)0x0;
           }
-          if ((uint *)plStack_148 != puStack_140) {
+          if ((uint *)resource_pool_ptr != data_buffer_end) {
                     // WARNING: Subroutine does not return
-            memmove(puVar8,plStack_148,(longlong)puStack_140 - (longlong)plStack_148);
+            memmove(temp_data_ptr,resource_pool_ptr,(longlong)data_buffer_end - (longlong)resource_pool_ptr);
           }
-          *(longlong *)puVar8 = lVar23;
-          if (plStack_148 != (longlong *)0x0) {
+          *(longlong *)temp_data_ptr = resource_data;
+          if (resource_pool_ptr != (longlong *)0x0) {
                     // WARNING: Subroutine does not return
             FUN_18064e900();
           }
-          plStack_138 = (longlong *)((longlong)puVar8 + lVar22 * 8);
-          plStack_148 = (longlong *)puVar8;
+          memory_buffer_end = (longlong *)((longlong)temp_data_ptr + buffer_size * 8);
+          resource_pool_ptr = (longlong *)temp_data_ptr;
         }
-        puStack_140 = (uint *)((longlong)puVar8 + 8);
-        uVar19 = auStackX_20[0] + 1;
-        uVar13 = (ulonglong)uStackX_18;
-        auStackX_20[0] = uVar19;
+        data_buffer_end = (uint *)((longlong)temp_data_ptr + 8);
+        item_count = count_array[0] + 1;
+        resource_id = (ulonglong)resource_data_param;
+        count_array[0] = item_count;
       }
-      puVar16 = *(undefined4 **)(puVar16 + 4);
-      while (puVar16 == (undefined4 *)0x0) {
-        puVar18 = puVar18 + 1;
-        puVar16 = (undefined4 *)*puVar18;
+      resource_array_item = *(undefined4 **)(resource_array_item + 4);
+      while (resource_array_item == (undefined4 *)0x0) {
+        resource_manager_ptr = resource_manager_ptr + 1;
+        resource_array_item = (undefined4 *)*resource_manager_ptr;
       }
-    } while (puVar16 !=
-             *(undefined4 **)(*(longlong *)(param_1 + 0x9f8) + *(longlong *)(param_1 + 0xa00) * 8));
+    } while (resource_array_item !=
+             *(undefined4 **)(*(longlong *)(render_context + 0x9f8) + *(longlong *)(render_context + 0xa00) * 8));
   }
   puVar7 = (ulonglong *)0x0;
-  iVar11 = 0x20;
-  uStack_128 = CONCAT44(uStack_128._4_4_,0x20);
-  auVar25._0_4_ = 0.0;
-  if (uVar19 != 0) {
-    auVar25._0_4_ = (float)uVar19 * 0.03125;
-    iVar14 = (int)auVar25._0_4_;
-    if ((iVar14 != -0x80000000) && ((float)iVar14 != auVar25._0_4_)) {
-      auVar25._4_4_ = auVar25._0_4_;
-      auVar25._8_8_ = 0;
-      uVar5 = movmskps(uVar19,auVar25);
-      auVar25._0_4_ = (float)(int)(iVar14 + (uVar5 & 1 ^ 1));
+  alignment_counter = 0x20;
+  write_buffer = CONCAT44(write_buffer._4_4_,0x20);
+  float_union._0_4_ = 0.0;
+  if (item_count != 0) {
+    float_union._0_4_ = (float)item_count * RENDERING_FLOAT_MULTIPLIER;
+    float_value = (int)float_union._0_4_;
+    if ((float_value != -0x80000000) && ((float)float_value != float_union._0_4_)) {
+      float_union._4_4_ = float_union._0_4_;
+      float_union._8_8_ = 0;
+      alignment_result = movmskps(item_count,float_union);
+      float_union._0_4_ = (float)(int)(float_value + (alignment_result & 1 ^ 1));
     }
   }
-  uVar5 = (uint)(longlong)auVar25._0_4_;
-  if (uVar5 < 2) {
-    uStack_128 = CONCAT44(uStack_128._4_4_,uVar19);
+  alignment_result = (uint)(longlong)float_union._0_4_;
+  if (alignment_result < 2) {
+    write_buffer = CONCAT44(write_buffer._4_4_,item_count);
   }
   else {
-    uVar6 = uVar5 * 0x1f;
-    if (uVar19 <= uVar6) {
+    alignment_factor = alignment_result * RENDERING_ALIGNMENT_FACTOR;
+    if (item_count <= alignment_factor) {
       do {
-        iVar11 = iVar11 + -1;
-        uVar6 = uVar6 - uVar5;
-      } while (uVar19 <= uVar6);
-      uStack_128 = CONCAT44(uStack_128._4_4_,iVar11);
+        alignment_counter = alignment_counter + -1;
+        alignment_factor = alignment_factor - alignment_result;
+      } while (item_count <= alignment_factor);
+      write_buffer = CONCAT44(write_buffer._4_4_,alignment_counter);
     }
   }
-  uStack_120 = CONCAT44(uStack_120._4_4_,uVar5);
-  fwrite(&uStack_128,4,1,*(undefined8 *)(lStackX_10 + 8));
+  alignment_value = CONCAT44(alignment_value._4_4_,alignment_result);
+  fwrite(&write_buffer,4,1,*(undefined8 *)(output_handle_local + 8));
   if ((int)uStack_128 != 0) {
     pplStack_a8 = &plStack_f8;
     puStack_d8 = &uStack_120;

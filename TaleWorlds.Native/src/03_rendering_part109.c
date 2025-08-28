@@ -1,9 +1,55 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part109.c - 5 个函数
+/**
+ * @file 03_rendering_part109.c
+ * @brief 渲染系统高级数据处理和资源管理模块
+ * 
+ * 本模块包含5个核心函数，涵盖渲染系统高级数据处理、资源管理、
+ * 批量操作、数据验证、内存管理、线程同步和系统清理等高级渲染功能。
+ */
 
-// 函数: void FUN_180332560(longlong param_1,longlong param_2,undefined4 param_3)
-void FUN_180332560(longlong param_1,longlong param_2,undefined4 param_3)
+/**
+ * @defgroup rendering_constants 渲染系统常量定义
+ * @{
+ */
+#define RENDERING_RESOURCE_POOL_SIZE 0x100000
+#define RENDERING_BUFFER_SIZE 0x18
+#define RENDERING_HASH_TABLE_SIZE 0x80
+#define RENDERING_DATA_BLOCK_SIZE 0xf0
+#define RENDERING_LARGE_BUFFER_SIZE 0x1b0
+#define RENDERING_THREAD_TIMEOUT 0x30000
+#define RENDERING_ALIGNMENT_MASK 0x1f
+#define RENDERING_MAX_ITERATIONS 0x40
+#define RENDERING_MUTEX_TIMEOUT_MS 0x30000
+#define RENDERING_CLEANUP_FLAG 3
+#define RENDERING_RESOURCE_ID_OFFSET 0x6c8
+#define RENDERING_CONTEXT_OFFSET 0x9f8
+#define RENDERING_OUTPUT_OFFSET 0xa00
+/* @} */
+
+/**
+ * @defgroup rendering_function_aliases 渲染系统函数别名
+ * @{
+ */
+#define RenderingSystem_ProcessResourceBatch FUN_180332560
+#define RenderingSystem_ExecuteResourceProcessing FUN_180332c20
+#define RenderingSystem_FilterResourceData FUN_180333460
+#define RenderingSystem_ProcessResourceRange FUN_1803336f0
+#define RenderingSystem_CleanupResourceData FUN_180333810
+/* @} */
+
+/**
+ * @brief 渲染系统资源批量处理器
+ * 
+ * 该函数负责处理渲染系统资源的批量操作，包括资源读取、数据验证、
+ * 内存分配、哈希表操作和资源管理等高级渲染功能。
+ * 
+ * @param render_context 渲染上下文指针
+ * @param output_handle 输出文件句柄
+ * @param process_flag 处理标志
+ * @return void
+ */
+void RenderingSystem_ProcessResourceBatch(longlong render_context, longlong output_handle, undefined4 process_flag)
 
 {
   uint uVar1;
@@ -248,8 +294,18 @@ LAB_1803329a3:
 
 
 
-// 函数: void FUN_180332c20(longlong *param_1,int param_2,int param_3)
-void FUN_180332c20(longlong *param_1,int param_2,int param_3)
+/**
+ * @brief 渲染系统资源处理执行器
+ * 
+ * 该函数负责执行渲染系统资源的高级处理操作，包括数据读取、内存管理、
+ * 线程同步、资源查找和批量处理等高级渲染功能。
+ * 
+ * @param resource_manager 资源管理器指针
+ * @param start_index 起始索引
+ * @param end_index 结束索引
+ * @return void
+ */
+void RenderingSystem_ExecuteResourceProcessing(longlong *resource_manager, int start_index, int end_index)
 
 {
   uint uVar1;
@@ -610,8 +666,16 @@ LAB_1803330f8:
 
 
 
-// 函数: void FUN_180333460(longlong param_1)
-void FUN_180333460(longlong param_1)
+/**
+ * @brief 渲染系统资源数据过滤器
+ * 
+ * 该函数负责过滤和处理渲染系统资源数据，包括数据验证、范围检查、
+ * 内存管理和资源清理等高级渲染功能。
+ * 
+ * @param resource_context 资源上下文指针
+ * @return void
+ */
+void RenderingSystem_FilterResourceData(longlong resource_context)
 
 {
   double dVar1;
@@ -748,8 +812,16 @@ LAB_180333594:
 
 
 
-// 函数: void FUN_1803336f0(longlong param_1)
-void FUN_1803336f0(longlong param_1)
+/**
+ * @brief 渲染系统资源范围处理器
+ * 
+ * 该函数负责处理渲染系统资源的范围操作，包括数据遍历、资源查找、
+ * 范围验证和批量处理等高级渲染功能。
+ * 
+ * @param resource_context 资源上下文指针
+ * @return void
+ */
+void RenderingSystem_ProcessResourceRange(longlong resource_context)
 
 {
   double dVar1;
@@ -807,8 +879,17 @@ LAB_1803337df:
 
 
 
-// 函数: void FUN_180333810(longlong param_1,char param_2)
-void FUN_180333810(longlong param_1,char param_2)
+/**
+ * @brief 渲染系统资源数据清理器
+ * 
+ * 该函数负责清理渲染系统资源数据，包括内存释放、资源删除、
+ * 状态重置和系统清理等高级渲染功能。
+ * 
+ * @param resource_context 资源上下文指针
+ * @param cleanup_flag 清理标志
+ * @return void
+ */
+void RenderingSystem_CleanupResourceData(longlong resource_context, char cleanup_flag)
 
 {
   int *piVar1;
