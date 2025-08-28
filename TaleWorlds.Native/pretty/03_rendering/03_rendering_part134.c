@@ -1,8 +1,30 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part134.c - 16 个函数
+// =============================================================================
+// 03_rendering_part134.c - 渲染系统场景管理和边界计算模块
+// =============================================================================
+// 本模块包含16个核心函数，主要负责：
+// - 场景对象边界计算和碰撞检测
+// - 渲染系统内存管理和资源清理
+// - 对象状态更新和生命周期管理
+// - 着色器参数设置和纹理坐标处理
+// - 场景节点遍历和层次结构管理
+// =============================================================================
 
-// 函数: void FUN_180348d90(longlong param_1)
+// 常量定义
+#define RENDERING_MAX_BOUNDING_BOX   0x7f7fffff  // 最大边界框值
+#define RENDERING_MIN_BOUNDING_BOX   0xff7fffff  // 最小边界框值
+#define RENDERING_DEFAULT_SHADER_ID  0x3f800000  // 默认着色器ID
+#define RENDERING_MAX_TEXTURE_COORD  0x41a00000  // 最大纹理坐标
+#define RENDERING_MESH_TYPE_MASK     0x14        // 网格类型掩码
+
+// =============================================================================
+// 渲染系统场景对象边界计算器 (RenderingSystemSceneObjectBoundaryCalculator)
+// =============================================================================
+// 功能：计算场景对象的边界框，用于碰撞检测和视锥体裁剪
+// 参数：param_1 - 场景对象指针
+// 返回值：无
+// =============================================================================
 void FUN_180348d90(longlong param_1)
 
 {
@@ -25,6 +47,7 @@ void FUN_180348d90(longlong param_1)
   undefined8 uStack_20;
   undefined4 uStack_18;
   
+  // 获取场景对象的渲染上下文
   lVar1 = *(longlong *)(param_1 + 0x18);
   lStackX_8 = 0;
   uStack_18 = 0;
@@ -34,23 +57,31 @@ void FUN_180348d90(longlong param_1)
   uStack_30 = 0;
   uStack_28 = 0;
   uStack_20 = 0;
+  
+  // 执行边界计算
   FUN_180348e60(0,lVar1,&lStackX_8,&uStack_48);
+  
+  // 如果成功获取边界，设置边界框参数
   if (lStackX_8 != 0) {
-    uStack_58 = 0x7f7fffff;
-    uStack_54 = 0x7f7fffff;
-    uStack_50 = 0x7f7fffff;
-    uStack_4c = 0x7f7fffff;
-    uStack_68 = 0xff7fffff;
-    uStack_64 = 0xff7fffff;
-    uStack_60 = 0xff7fffff;
-    uStack_5c = 0x7f7fffff;
+    uStack_58 = RENDERING_MAX_BOUNDING_BOX;  // 最大X坐标
+    uStack_54 = RENDERING_MAX_BOUNDING_BOX;  // 最大Y坐标
+    uStack_50 = RENDERING_MAX_BOUNDING_BOX;  // 最大Z坐标
+    uStack_4c = RENDERING_MAX_BOUNDING_BOX;  // 最大W坐标
+    uStack_68 = RENDERING_MIN_BOUNDING_BOX;  // 最小X坐标
+    uStack_64 = RENDERING_MIN_BOUNDING_BOX;  // 最小Y坐标
+    uStack_60 = RENDERING_MIN_BOUNDING_BOX;  // 最小Z坐标
+    uStack_5c = RENDERING_MAX_BOUNDING_BOX;  // 最小W坐标
     FUN_180347ca0(param_1,lVar1,&uStack_48,&uStack_58,&uStack_68);
     return;
   }
+  
+  // 获取默认材质数据
   puVar2 = &DAT_18098bc73;
   if (*(undefined **)(lVar1 + 0x290) != (undefined *)0x0) {
     puVar2 = *(undefined **)(lVar1 + 0x290);
   }
+  
+  // 应用默认材质设置
   FUN_180627020(&UNK_180a1cf60,puVar2);
   return;
 }
@@ -59,7 +90,13 @@ void FUN_180348d90(longlong param_1)
 
 
 
-// 函数: void FUN_180348e60(undefined8 param_1,longlong param_2,longlong *param_3,undefined8 *param_4)
+// =============================================================================
+// 渲染系统边界框优化计算器 (RenderingSystemBoundingBoxOptimizer)
+// =============================================================================
+// 功能：优化计算多个对象的边界框，支持批量处理和内存管理
+// 参数：param_1 - 标志位，param_2 - 渲染对象，param_3 - 结果指针，param_4 - 边界数据
+// 返回值：无
+// =============================================================================
 void FUN_180348e60(undefined8 param_1,longlong param_2,longlong *param_3,undefined8 *param_4)
 
 {
@@ -96,19 +133,27 @@ void FUN_180348e60(undefined8 param_1,longlong param_2,longlong *param_3,undefin
   undefined4 uStack_84;
   undefined4 uStack_80;
   
+  // 检查是否需要批量处理多个对象
   if (*(longlong *)(param_2 + 0x110) == 0) {
+    // 初始化批处理缓冲区
     plStack_d0 = (longlong *)0x0;
     plStack_c8 = (longlong *)0x0;
     uVar8 = 0;
     uStack_c0 = 0;
     uStack_b8 = 3;
+    
+    // 获取需要处理的对象列表
     FUN_180347ab0(param_2,&plStack_d0,param_3,(char)param_4,0xfffffffffffffffe);
-    fVar15 = 3.4028235e+38;
-    fVar13 = 3.4028235e+38;
-    fVar14 = 3.4028235e+38;
-    fVar10 = 1.1754944e-38;
-    fVar11 = 1.1754944e-38;
-    fVar12 = 1.1754944e-38;
+    
+    // 初始化边界框极值
+    fVar15 = 3.4028235e+38;  // 最大正浮点数
+    fVar13 = 3.4028235e+38;  // 最大正浮点数
+    fVar14 = 3.4028235e+38;  // 最大正浮点数
+    fVar10 = 1.1754944e-38;  // 最小正浮点数
+    fVar11 = 1.1754944e-38;  // 最小正浮点数
+    fVar12 = 1.1754944e-38;  // 最小正浮点数
+    
+    // 遍历所有对象计算边界框
     if ((longlong)plStack_c8 - (longlong)plStack_d0 >> 3 != 0) {
       fVar12 = 1.1754944e-38;
       fVar11 = 1.1754944e-38;
@@ -121,6 +166,8 @@ void FUN_180348e60(undefined8 param_1,longlong param_2,longlong *param_3,undefin
         if (cVar4 == '\0') {
           *param_3 = lVar1;
           FUN_1802f4040(lVar1,&fStack_b0,1);
+          
+          // 更新最大边界值
           if (fStack_b0 <= fVar15) {
             fVar15 = fStack_b0;
           }
@@ -130,6 +177,8 @@ void FUN_180348e60(undefined8 param_1,longlong param_2,longlong *param_3,undefin
           if (fStack_a8 <= fVar14) {
             fVar14 = fStack_a8;
           }
+          
+          // 更新最小边界值
           if (fVar10 <= fStack_a0) {
             fVar10 = fStack_a0;
           }
@@ -147,8 +196,10 @@ void FUN_180348e60(undefined8 param_1,longlong param_2,longlong *param_3,undefin
       } while ((ulonglong)(longlong)(int)uVar7 <
                (ulonglong)((longlong)plStack_c8 - (longlong)plVar6 >> 3));
     }
-    uStack_94 = 0x7f7fffff;
-    uStack_a4 = 0x7f7fffff;
+    
+    // 设置最终的边界框数据
+    uStack_94 = RENDERING_MAX_BOUNDING_BOX;
+    uStack_a4 = RENDERING_MAX_BOUNDING_BOX;
     fStack_b0 = fVar15;
     fStack_ac = fVar13;
     fStack_a8 = fVar14;
@@ -166,17 +217,20 @@ void FUN_180348e60(undefined8 param_1,longlong param_2,longlong *param_3,undefin
     *(undefined4 *)(param_4 + 5) = uStack_88;
     *(undefined4 *)((longlong)param_4 + 0x2c) = uStack_84;
     *(undefined4 *)(param_4 + 6) = uStack_80;
+    
+    // 清理临时对象
     for (plVar6 = plStack_d0; plVar6 != plVar3; plVar6 = plVar6 + 1) {
       if ((longlong *)*plVar6 != (longlong *)0x0) {
         (**(code **)(*(longlong *)*plVar6 + 0x38))();
       }
     }
     if (plStack_d0 != (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
+      // 释放批处理内存
       FUN_18064e900();
     }
   }
   else {
+    // 单个对象的简单处理
     *param_3 = param_2;
     puVar5 = (undefined8 *)FUN_1802f4040(param_2,&fStack_b0,1);
     uVar2 = puVar5[1];
@@ -199,7 +253,13 @@ void FUN_180348e60(undefined8 param_1,longlong param_2,longlong *param_3,undefin
 
 
 
-// 函数: void FUN_1803490e0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// =============================================================================
+// 渲染系统场景对象释放器 (RenderingSystemSceneObjectReleaser)
+// =============================================================================
+// 功能：安全释放场景对象及其相关资源，处理内存管理和状态更新
+// 参数：param_1 - 渲染系统上下文，param_2 - 场景对象，param_3/4 - 标志位
+// 返回值：无
+// =============================================================================
 void FUN_1803490e0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -227,44 +287,58 @@ void FUN_1803490e0(longlong param_1,longlong param_2,undefined8 param_3,undefine
   ulonglong uVar9;
   
   uVar11 = 0xfffffffffffffffe;
+  
+  // 获取场景对象的引用
   plVar1 = *(longlong **)(param_2 + 0x1b8);
   plStackX_10 = plVar1;
   if (plVar1 != (longlong *)0x0) {
+    // 调用对象的释放方法
     (**(code **)(*plVar1 + 0x28))(plVar1);
   }
+  
   uVar9 = 0;
   puStack_80 = &UNK_180a3c3e0;
   uStack_68 = 0;
   puStack_78 = (undefined4 *)0x0;
   uStack_70 = 0;
+  
+  // 创建调试信息字符串 "_usemesh_begin_design"
   puVar4 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x11,0x13,param_4,uVar11);
   *(undefined1 *)puVar4 = 0;
   puStack_78 = puVar4;
   uVar3 = FUN_18064e990(puVar4);
   uStack_68 = CONCAT44(uStack_68._4_4_,uVar3);
-  *puVar4 = 0x5f657375;
-  puVar4[1] = 0x6873656d;
-  puVar4[2] = 0x6e65625f;
-  puVar4[3] = 0x676e6964;
+  *puVar4 = 0x5f657375;        // "_use"
+  puVar4[1] = 0x6873656d;     // "mesh"
+  puVar4[2] = 0x6e65625f;     // "neb_"
+  puVar4[3] = 0x676e6964;     // "gnid"
   *(undefined1 *)(puVar4 + 4) = 0;
   uStack_70 = 0x10;
+  
+  // 检查对象状态
   lVar5 = FUN_180240430(plVar1[0x3c],&puStack_80,0);
   if (lVar5 != 0) {
     uVar6 = FUN_180240430(plVar1[0x3c],&puStack_80,0);
     if ((plVar1[0x28] & uVar6) == 0) {
+      // 获取对象的管理器引用
       puVar7 = (undefined8 *)FUN_18022cb40(plVar1,&plStackX_20);
       plVar2 = (longlong *)*puVar7;
       *puVar7 = 0;
       plStackX_10 = plVar2;
       plStackX_18 = plVar1;
+      
+      // 释放对象和管理器
       if (plVar1 != (longlong *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
       }
       if (plStackX_20 != (longlong *)0x0) {
         (**(code **)(*plStackX_20 + 0x38))();
       }
+      
+      // 检查对象是否可以安全释放
       uVar6 = FUN_180240430(plVar2[0x3c],&puStack_80,1);
       if (uVar6 == 0) {
+        // 记录释放事件
         puVar10 = &DAT_18098bc73;
         if ((undefined *)plVar2[3] != (undefined *)0x0) {
           puVar10 = (undefined *)plVar2[3];
@@ -272,10 +346,15 @@ void FUN_1803490e0(longlong param_1,longlong param_2,undefined8 param_3,undefine
         FUN_1806272a0(&UNK_180a13bd8,puVar4,puVar10);
       }
       else {
+        // 更新对象状态
         plVar2[0x28] = plVar2[0x28] | uVar6;
         FUN_18022dd60(plVar2);
       }
+      
+      // 清理场景对象的引用
       FUN_180076910(param_2,&plStackX_10);
+      
+      // 获取相关的渲染对象列表
       lStack_60 = 0;
       lStack_58 = 0;
       uStack_50 = 0;
@@ -283,6 +362,8 @@ void FUN_1803490e0(longlong param_1,longlong param_2,undefined8 param_3,undefine
       FUN_1802e8c60(*(undefined8 *)(param_1 + 0x18),&lStack_60);
       FUN_1802ec150(*(undefined8 *)(param_1 + 0x18),1);
       uVar6 = uVar9;
+      
+      // 释放所有相关的渲染对象
       if (lStack_58 - lStack_60 >> 3 != 0) {
         do {
           FUN_1802ec150(*(undefined8 *)(uVar6 + lStack_60),1);
@@ -291,14 +372,16 @@ void FUN_1803490e0(longlong param_1,longlong param_2,undefined8 param_3,undefine
           uVar6 = uVar6 + 8;
         } while ((ulonglong)(longlong)(int)uVar8 < (ulonglong)(lStack_58 - lStack_60 >> 3));
       }
+      
+      // 清理临时内存
       if (lStack_60 != 0) {
-                    // WARNING: Subroutine does not return
         FUN_18064e900();
       }
     }
   }
+  
+  // 清理调试信息
   puStack_80 = &UNK_180a3c3e0;
-                    // WARNING: Subroutine does not return
   FUN_18064e900(puVar4);
 }
 
@@ -308,7 +391,13 @@ void FUN_1803490e0(longlong param_1,longlong param_2,undefined8 param_3,undefine
 
 
 
-// 函数: void FUN_180349330(longlong param_1)
+// =============================================================================
+// 渲染系统批量对象清理器 (RenderingSystemBatchObjectCleaner)
+// =============================================================================
+// 功能：批量清理和释放渲染对象，处理复杂的内存管理和状态同步
+// 参数：param_1 - 渲染系统上下文
+// 返回值：无
+// =============================================================================
 void FUN_180349330(longlong param_1)
 
 {
@@ -358,10 +447,14 @@ void FUN_180349330(longlong param_1)
   uStack_110 = 0;
   uStack_108 = 3;
   lStack_168 = param_1;
+  
+  // 获取需要清理的对象列表
   FUN_1802e92b0(*(undefined8 *)(param_1 + 0x18),&plStack_120,1,0xffffffff);
   uVar11 = (longlong)plStack_118 - (longlong)plStack_120 >> 3;
   uVar10 = uVar7;
   plVar12 = plStack_120;
+  
+  // 第一阶段：清理对象管理器
   if (uVar11 != 0) {
     do {
       lVar2 = *plVar12;
@@ -381,6 +474,7 @@ void FUN_180349330(longlong param_1)
         puStack_f8 = &UNK_18098bcb0;
         plVar8 = plVar6;
         if (lVar3 != 0) {
+          // 分离对象管理器
           puVar4 = (undefined8 *)FUN_18022cb40(plVar6,&plStack_158);
           plVar8 = (longlong *)*puVar4;
           *puVar4 = 0;
@@ -392,6 +486,8 @@ void FUN_180349330(longlong param_1)
           if (plStack_158 != (longlong *)0x0) {
             (**(code **)(*plStack_158 + 0x38))();
           }
+          
+          // 清理管理器状态
           puStack_98 = &UNK_1809fcc58;
           puStack_90 = auStack_80;
           auStack_80[0] = 0;
@@ -413,6 +509,8 @@ void FUN_180349330(longlong param_1)
       plVar12 = plVar12 + 1;
     } while ((ulonglong)(longlong)(int)uVar9 < uVar11);
   }
+  
+  // 第二阶段：清理渲染对象
   plVar12 = plStack_118;
   lStack_148 = 0;
   lStack_140 = 0;
@@ -422,13 +520,15 @@ void FUN_180349330(longlong param_1)
   lStack_168 = *(longlong *)(param_1 + 0x18);
   uVar13 = FUN_18005ea90(&lStack_148,&lStack_168);
   uVar10 = uVar7;
+  
   if (lStack_140 - lStack_148 >> 3 != 0) {
     do {
       lVar2 = *(longlong *)(uVar10 + lStack_148);
       *(undefined1 *)(lVar2 + 0x2d8) = 0;
+      
+      // 清理主渲染对象
       if (*(longlong *)(lVar2 + 0x110) != 0) {
-        plVar6 = (longlong *)FUN_1800b3430(uVar13,&lStack_168,*(longlong *)(lVar2 + 0x110) + 0x10,1)
-        ;
+        plVar6 = (longlong *)FUN_1800b3430(uVar13,&lStack_168,*(longlong *)(lVar2 + 0x110) + 0x10,1);
         uVar13 = extraout_XMM0_Da;
         plStack_160 = plVar6;
         if (*plVar6 != *(longlong *)(lVar2 + 0x110)) {
@@ -447,6 +547,8 @@ void FUN_180349330(longlong param_1)
           uVar13 = FUN_1802f28f0(lVar2,lVar3);
         }
       }
+      
+      // 清理辅助渲染对象
       if (*(longlong *)(lVar2 + 0x10) != 0) {
         uVar1 = *(undefined4 *)(lVar2 + 0x18);
         puVar4 = (undefined8 *)
@@ -461,9 +563,10 @@ void FUN_180349330(longlong param_1)
       uVar10 = uVar10 + 8;
     } while ((ulonglong)(longlong)(int)uVar9 < (ulonglong)(lStack_140 - lStack_148 >> 3));
   }
+  
+  // 第三阶段：清理临时资源
   plVar6 = plStack_120;
   if (lStack_148 != 0) {
-                    // WARNING: Subroutine does not return
     FUN_18064e900();
   }
   lStack_148 = 0;
@@ -473,15 +576,20 @@ void FUN_180349330(longlong param_1)
     }
   }
   if (plVar6 != (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
     FUN_18064e900(plVar6);
   }
-                    // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_188);
 }
 
 
 
+// =============================================================================
+// 渲染系统内存分配器 (RenderingSystemMemoryAllocator)
+// =============================================================================
+// 功能：为渲染系统分配内存，支持多种分配模式和标志位
+// 参数：param_1 - 内存指针，param_2 - 分配大小，param_3/4 - 标志位
+// 返回值：分配的内存指针
+// =============================================================================
 undefined8 *
 FUN_180349730(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
@@ -503,7 +611,13 @@ FUN_180349730(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-// 函数: void FUN_180349780(undefined8 *param_1)
+// =============================================================================
+// 渲染系统材质初始化器 (RenderingSystemMaterialInitializer)
+// =============================================================================
+// 功能：初始化渲染材质对象，设置默认参数和属性
+// 参数：param_1 - 材质对象指针
+// 返回值：无
+// =============================================================================
 void FUN_180349780(undefined8 *param_1)
 
 {
@@ -520,22 +634,25 @@ void FUN_180349780(undefined8 *param_1)
   FUN_1803456e0();
   *puVar2 = &UNK_180a1d230;
   puVar2[0xe] = 0;
-  *(undefined4 *)(puVar2 + 0xf) = 0x3f800000;
+  *(undefined4 *)(puVar2 + 0xf) = RENDERING_DEFAULT_SHADER_ID;
   puStack_90 = &UNK_180a3c3e0;
   uStack_78 = 0;
   puStack_88 = (undefined8 *)0x0;
   uStack_80 = 0;
+  
+  // 创建材质名称 "Material"
   puVar2 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
   *(undefined1 *)puVar2 = 0;
   puStack_88 = puVar2;
   uVar1 = FUN_18064e990(puVar2);
   uStack_78 = CONCAT44(uStack_78._4_4_,uVar1);
-  *puVar2 = 0x6c6169726574614d;
+  *puVar2 = 0x6c6169726574614d;  // "Material"
   *(undefined1 *)(puVar2 + 1) = 0;
   uStack_80 = 8;
+  
+  // 应用材质参数
   FUN_1803460a0(param_1,&puStack_90,param_1 + 0xe,10,uVar3);
   puStack_90 = &UNK_180a3c3e0;
-                    // WARNING: Subroutine does not return
   FUN_18064e900(puVar2);
 }
 
@@ -543,7 +660,13 @@ void FUN_180349780(undefined8 *param_1)
 
 
 
-// 函数: void FUN_1803499b0(longlong param_1)
+// =============================================================================
+// 渲染系统场景更新器 (RenderingSystemSceneUpdater)
+// =============================================================================
+// 功能：更新场景中的活动对象，处理状态变化和事件通知
+// 参数：param_1 - 场景对象
+// 返回值：无
+// =============================================================================
 void FUN_1803499b0(longlong param_1)
 
 {
@@ -552,10 +675,13 @@ void FUN_1803499b0(longlong param_1)
   uint uVar3;
   ulonglong uVar4;
   
+  // 检查是否有活动对象需要更新
   if (*(longlong *)(param_1 + 0x70) != 0) {
     lVar1 = *(longlong *)(param_1 + 0x18);
     uVar2 = 0;
     uVar4 = uVar2;
+    
+    // 遍历所有活动对象并调用更新方法
     if (*(longlong *)(lVar1 + 0xf8) - *(longlong *)(lVar1 + 0xf0) >> 3 != 0) {
       do {
         (**(code **)(**(longlong **)(uVar2 + *(longlong *)(lVar1 + 0xf0)) + 0x98))();
@@ -573,7 +699,13 @@ void FUN_1803499b0(longlong param_1)
 
 
 
-// 函数: void FUN_1803499bb(longlong param_1)
+// =============================================================================
+// 渲染系统强制场景更新器 (RenderingSystemForceSceneUpdater)
+// =============================================================================
+// 功能：强制更新场景中的所有对象，忽略活动状态检查
+// 参数：param_1 - 场景对象
+// 返回值：无
+// =============================================================================
 void FUN_1803499bb(longlong param_1)
 
 {
@@ -585,6 +717,8 @@ void FUN_1803499bb(longlong param_1)
   lVar1 = *(longlong *)(param_1 + 0x18);
   uVar2 = 0;
   uVar4 = uVar2;
+  
+  // 强制遍历所有对象并调用更新方法
   if (*(longlong *)(lVar1 + 0xf8) - *(longlong *)(lVar1 + 0xf0) >> 3 != 0) {
     do {
       (**(code **)(**(longlong **)(uVar2 + *(longlong *)(lVar1 + 0xf0)) + 0x98))();
