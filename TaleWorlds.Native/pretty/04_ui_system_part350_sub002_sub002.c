@@ -286,6 +286,9 @@
 // UI系统组件处理器 - 处理组件
 #define UISystem_ComponentProcessor func_0x0001808c6bf0
 
+// UI系统时间参数计算器 - 计算时间参数
+#define UISystem_TimeParameterCalculator UISystem_TimeParameterCalculator
+
 // UI系统配置管理器
 #define UISystem_ConfigManager FUN_18085acd0
 
@@ -1419,7 +1422,7 @@ uint64_t UISystem_Initializer(longlong system_context)
     if (plVar3 == (longlong *)0x0) {
       plVar7 = plVar8;
     }
-    uVar5 = func_0x0001808c6bf0(plVar7);
+    uVar5 = UISystem_ComponentProcessor(plVar7);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
@@ -1503,7 +1506,7 @@ ulonglong UISystem_TimeCalculator(longlong system_context)
   uint auStackX_10 [2];
   
   uVar4 = (**(code **)(*(longlong *)(*(longlong *)(param_1 + 0x160) + 8) + 0x30))();
-  lVar5 = func_0x0001808b8910(uVar4);
+  lVar5 = UISystem_TimeParameterCalculator(uVar4);
   uVar6 = (ulonglong)*(uint *)(lVar5 + 0x1f8);
   if (*(uint *)(lVar5 + 0x1f8) == 0xffffffff) {
     uVar4 = (*(code *)**(uint64_t **)(*(longlong *)(lVar5 + 0x228) + 8))();
@@ -1720,7 +1723,7 @@ ulonglong UISystem_AdvancedController(longlong system_context)
   uVar26 = 0;
   uVar8 = *(uint *)(param_1 + 0x20);
   uVar10 = (**(code **)(*(longlong *)(*(longlong *)(param_1 + 0x160) + 8) + 0x30))();
-  lVar14 = func_0x0001808b8910(uVar10);
+  lVar14 = UISystem_TimeParameterCalculator(uVar10);
   uVar19 = (ulonglong)*(uint *)(lVar14 + 0x1fc);
   if (*(uint *)(lVar14 + 0x1fc) != 0xffffffff) goto LAB_180857f18;
   lVar14 = (*(code *)**(uint64_t **)(*(longlong *)(param_1 + 0x160) + 8))();

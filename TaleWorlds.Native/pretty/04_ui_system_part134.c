@@ -1287,7 +1287,7 @@ uint64_t UISystem_AddComponentSimple(int32_t param_1)
     uVar6 = 0x50;
   }
   else {
-    uVar6 = FUN_180748290(param_1,unaff_RDI & 0xffffffff);
+    uVar6 = UISystem_ComponentRemover(param_1,unaff_RDI & 0xffffffff);
     if ((int)uVar6 == 0) {
       puVar7 = (int32_t *)
                FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x60,&unknown_var_8576_ptr,0x1432,0);
@@ -1356,7 +1356,7 @@ uint64_t UISystem_AddComponentWithContext(int32_t param_1)
   int32_t unaff_EDI;
   int8_t unaff_R14B;
   
-  uVar6 = FUN_180748290(param_1,unaff_EDI);
+  uVar6 = UISystem_ComponentRemover(param_1,unaff_EDI);
   if ((int)uVar6 == 0) {
     puVar7 = (int32_t *)
              FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x60,&unknown_var_8576_ptr,0x1432,0);
@@ -1424,12 +1424,12 @@ uint64_t UISystem_ValidateComponentAdd(longlong param_1,int param_2)
   if (*(longlong *)(lVar3 + 0x30 + *(longlong *)(param_1 + 0x6a0)) == 0) {
     return 0;
   }
-  func_0x000180743c20(param_1,0x10);
+  UISystem_ComponentStateChecker(param_1,0x10);
   iVar1 = FUN_180788d20(*(uint64_t *)(param_1 + 0x670),
                         *(uint64_t *)(lVar3 + 0x30 + *(longlong *)(param_1 + 0x6a0)));
   if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(param_1,0x10);
+    UISystem_ComponentCleaner(param_1,0x10);
   }
                     // WARNING: Subroutine does not return
   FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
@@ -1453,12 +1453,12 @@ uint64_t UISystem_ValidateComponentAddSimple(void)
   if (*(longlong *)(unaff_RDI + 0x30 + in_RAX) == 0) {
     return 0;
   }
-  func_0x000180743c20();
+  UISystem_ComponentStateChecker();
   iVar1 = FUN_180788d20(*(uint64_t *)(unaff_RBX + 0x670),
                         *(uint64_t *)(unaff_RDI + 0x30 + *(longlong *)(unaff_RBX + 0x6a0)));
   if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60();
+    UISystem_ComponentCleaner();
   }
                     // WARNING: Subroutine does not return
   FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
