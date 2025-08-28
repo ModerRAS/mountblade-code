@@ -148,6 +148,30 @@
 // 网络安全清理器
 #define NetworkingSystem_SecurityCleaner FUN_1808fc050
 
+// 连接状态获取器
+#define NetworkingSystem_GetConnectionStatus FUN_18084c3d0
+
+// 连接池管理器
+#define NetworkingSystem_ConnectionPoolManager FUN_1808bde90
+
+// TCP 协议处理器
+#define NetworkingSystem_TCPProtocolHandler network_tcp_handler_ptr
+
+// UDP 协议处理器
+#define NetworkingSystem_UDPProtocolHandler network_udp_handler_ptr
+
+// SSL 协议处理器
+#define NetworkingSystem_SSLProtocolHandler network_ssl_handler_ptr
+
+// 自定义协议处理器
+#define NetworkingSystem_CustomProtocolHandler network_custom_handler_ptr
+
+// 默认网络配置
+#define NetworkingSystem_DefaultConfig network_default_config_ptr
+
+// 网络配置指针
+#define NetworkingSystem_ConfigPtr UNK_18095af38
+
 /* ============================================================================
  * 类型别名定义 - 用于代码可读性和维护性
  * ============================================================================ */

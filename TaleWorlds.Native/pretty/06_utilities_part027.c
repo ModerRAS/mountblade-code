@@ -627,7 +627,7 @@ void utilities_thread_synchronization_cleaner(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180941690(void)
+void utilities_thread_resource_cleaner(void)
 
 {
   // 销毁互斥锁
@@ -652,7 +652,7 @@ void FUN_180941690(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_1809416d0(void)
+void utilities_thread_lock_cleaner(void)
 
 {
   // 销毁互斥锁
@@ -677,7 +677,7 @@ void FUN_1809416d0(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180941710(void)
+void utilities_thread_state_cleaner(void)
 
 {
   // 销毁互斥锁
@@ -704,7 +704,7 @@ void FUN_180941710(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_1809417a0(void)
+void utilities_system_handle_cleaner(void)
 
 {
   // WARNING: Could not recover jumptable at 0x0001809417b8. Too many branches
@@ -726,7 +726,7 @@ void FUN_1809417a0(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_1809417c0(void)
+void utilities_mutex_cleaner(void)
 
 {
   // WARNING: Could not recover jumptable at 0x0001809417d8. Too many branches
@@ -750,7 +750,7 @@ void FUN_1809417c0(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_1809417e0(void)
+void utilities_system_data_pointer_resetter(void)
 
 {
   // 重置系统数据指针并设置为默认值
@@ -771,7 +771,7 @@ void FUN_1809417e0(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180941800(void)
+void utilities_system_state_pointer_resetter(void)
 
 {
   // 重置系统状态指针并设置为默认值
@@ -792,7 +792,7 @@ void FUN_180941800(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180941820(void)
+void utilities_system_config_pointer_resetter(void)
 
 {
   // 重置系统配置指针并设置为默认值
@@ -813,7 +813,7 @@ void FUN_180941820(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180941840(void)
+void utilities_system_resource_pointer_resetter(void)
 
 {
   // 重置系统资源指针并设置为默认值
@@ -834,7 +834,7 @@ void FUN_180941840(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180941860(void)
+void utilities_system_parameter_pointer_resetter(void)
 
 {
   // 重置系统参数指针并设置为默认值
