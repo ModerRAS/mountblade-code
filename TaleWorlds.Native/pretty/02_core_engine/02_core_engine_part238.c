@@ -1,114 +1,149 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part238.c - 9 个函数
+// 02_core_engine_part238.c - 核心引擎内存管理和资源处理模块 (9个函数)
 
-// 函数: void FUN_180207f50(undefined8 param_1,longlong *param_2)
-void FUN_180207f50(undefined8 param_1,longlong *param_2)
+// 全局变量声明
+extern undefined8 _DAT_180c86920;    // 引擎全局数据结构指针
+extern undefined8 _DAT_180c8ed18;    // 内存池标识符
+extern undefined8 _DAT_180c86890;    // 资源管理器数据指针
+extern undefined8 _DAT_180c86870;    // 渲染配置数据指针
+extern undefined1 UNK_180a0fec0;      // 格式化字符串常量
+
+/**
+ * 处理引擎资源管理器初始化和配置
+ * 初始化资源管理器的各项参数，设置默认值，处理资源分配
+ * 
+ * @param engine_context 引擎上下文指针
+ * @param resource_manager 资源管理器指针
+ */
+void initialize_engine_resource_manager(undefined8 engine_context, longlong *resource_manager)
 
 {
-  uint *puVar1;
-  longlong lVar2;
-  longlong *plVar3;
-  int iVar4;
-  longlong lVar5;
-  ulonglong uVar6;
-  ulonglong uVar7;
-  uint uVar8;
-  ulonglong uVar9;
-  longlong *plStack_a8;
-  undefined8 uStack_a0;
-  longlong *plStack_98;
-  undefined8 uStack_90;
-  undefined8 uStack_88;
-  undefined8 uStack_80;
-  undefined8 uStack_78;
-  undefined4 uStack_70;
-  undefined4 uStack_6c;
-  undefined4 uStack_68;
-  undefined4 uStack_64;
-  undefined4 uStack_60;
-  undefined4 uStack_5c;
-  undefined4 uStack_58;
-  undefined4 uStack_54;
-  longlong lStack_50;
-  undefined8 uStack_48;
-  undefined8 uStack_40;
-  undefined4 uStack_38;
-  undefined8 uStack_28;
+  uint *status_flag_ptr;
+  longlong resource_offset;
+  longlong *resource_ptr;
+  int resource_count;
+  longlong temp_value;
+  ulonglong loop_counter;
+  ulonglong config_offset;
+  uint item_count;
+  ulonglong total_items;
+  longlong *stack_resource_ptr;
+  undefined8 stack_config_1;
+  longlong *stack_resource_ptr2;
+  undefined8 stack_config_2;
+  undefined8 stack_config_3;
+  undefined8 stack_config_4;
+  undefined8 stack_config_5;
+  undefined4 stack_config_6;
+  undefined4 stack_config_7;
+  undefined4 stack_config_8;
+  undefined4 stack_config_9;
+  undefined4 stack_config_10;
+  undefined4 stack_config_11;
+  undefined4 stack_config_12;
+  undefined4 stack_config_13;
+  longlong stack_config_14;
+  undefined8 stack_config_15;
+  undefined8 stack_config_16;
+  undefined4 stack_config_17;
+  undefined8 stack_config_18;
   
-  uVar6 = 0;
-  uStack_28 = 0xfffffffffffffffe;
-  uStack_38 = 3;
-  uStack_40 = 0;
-  uStack_48 = 0;
-  lStack_50 = 0;
-  plStack_98 = (longlong *)0x0;
-  uStack_a0 = 0;
-  plStack_a8 = (longlong *)0x0;
-  if (param_2 != (longlong *)0x0) {
-    (**(code **)(*param_2 + 0x28))(param_2);
+  loop_counter = 0;
+  stack_config_18 = 0xfffffffffffffffe;
+  stack_config_17 = 3;
+  stack_config_16 = 0;
+  stack_config_15 = 0;
+  stack_config_14 = 0;
+  stack_resource_ptr2 = (longlong *)0x0;
+  stack_config_2 = 0;
+  stack_resource_ptr = (longlong *)0x0;
+  
+  // 初始化资源管理器
+  if (resource_manager != (longlong *)0x0) {
+    (**(code **)(*resource_manager + 0x28))(resource_manager);
   }
-  plVar3 = param_2;
-  if (plStack_a8 != (longlong *)0x0) {
-    lVar5 = *plStack_a8;
-    plStack_a8 = param_2;
-    (**(code **)(lVar5 + 0x38))();
-    plVar3 = plStack_a8;
+  resource_ptr = resource_manager;
+  
+  // 处理栈资源管理器
+  if (stack_resource_ptr != (longlong *)0x0) {
+    temp_value = *stack_resource_ptr;
+    stack_resource_ptr = resource_manager;
+    (**(code **)(temp_value + 0x38))();
+    resource_ptr = stack_resource_ptr;
   }
-  plStack_a8 = plVar3;
-  plVar3 = plStack_98;
-  uStack_a0 = 0;
-  plStack_98 = (longlong *)0x0;
-  if (plVar3 != (longlong *)0x0) {
-    (**(code **)(*plVar3 + 0x38))();
+  stack_resource_ptr = resource_ptr;
+  resource_ptr = stack_resource_ptr2;
+  stack_config_2 = 0;
+  stack_resource_ptr2 = (longlong *)0x0;
+  
+  // 清理资源管理器
+  if (resource_ptr != (longlong *)0x0) {
+    (**(code **)(*resource_ptr + 0x38))();
   }
-  uStack_90 = 0x3f800000;
-  uStack_88 = 0;
-  uStack_80 = 0x3f80000000000000;
-  uStack_78 = 0;
-  uStack_70 = 0;
-  uStack_6c = 0;
-  uStack_68 = 0x3f800000;
-  uStack_64 = 0;
-  uStack_60 = 0;
-  uStack_5c = 0;
-  uStack_58 = 0;
-  uStack_54 = 0x3f800000;
-  FUN_180209470(&plStack_a8);
-  lVar5 = _DAT_180c86920;
-  uVar7 = uVar6;
-  uVar9 = uVar6;
-  if (param_2[8] - param_2[7] >> 4 != 0) {
+  
+  // 设置默认配置参数
+  stack_config_3 = 0x3f800000;    // 1.0f
+  stack_config_4 = 0;
+  stack_config_5 = 0x3f80000000000000;  // 1.0
+  stack_config_6 = 0;
+  stack_config_7 = 0;
+  stack_config_8 = 0;
+  stack_config_9 = 0x3f800000;    // 1.0f
+  stack_config_10 = 0;
+  stack_config_11 = 0;
+  stack_config_12 = 0;
+  stack_config_13 = 0;
+  stack_config_14 = 0x3f800000;    // 1.0f
+  
+  // 调用资源管理配置函数
+  FUN_180209470(&stack_resource_ptr);
+  temp_value = _DAT_180c86920;
+  config_offset = loop_counter;
+  total_items = loop_counter;
+  
+  // 配置资源管理器状态
+  if (resource_manager[8] - resource_manager[7] >> 4 != 0) {
     do {
-      *(char *)(*(longlong *)(uVar7 + param_2[7]) + 0xf5) = (*(int *)(lVar5 + 0xe00) != 0) + -1;
-      uVar8 = (int)uVar9 + 1;
-      uVar7 = uVar7 + 0x10;
-      uVar9 = (ulonglong)uVar8;
-    } while ((ulonglong)(longlong)(int)uVar8 < (ulonglong)(param_2[8] - param_2[7] >> 4));
+      *(char *)(*(longlong *)(config_offset + resource_manager[7]) + 0xf5) = 
+        (*(int *)(temp_value + 0xe00) != 0) + -1;
+      item_count = (int)total_items + 1;
+      config_offset = config_offset + 0x10;
+      total_items = (ulonglong)item_count;
+    } while ((ulonglong)(longlong)(int)item_count < 
+             (ulonglong)(resource_manager[8] - resource_manager[7] >> 4));
   }
-  FUN_180209720(param_1,&plStack_a8);
-  if ((plStack_a8 != (longlong *)0x0) &&
-     (iVar4 = (int)(plStack_a8[8] - plStack_a8[7] >> 4), lVar5 = (longlong)iVar4, 0 < iVar4)) {
+  
+  // 执行资源管理器处理
+  FUN_180209720(engine_context, &stack_resource_ptr);
+  
+  // 处理资源管理器数据
+  if ((stack_resource_ptr != (longlong *)0x0) &&
+     (resource_count = (int)(stack_resource_ptr[8] - stack_resource_ptr[7] >> 4), 
+      temp_value = (longlong)resource_count, 0 < resource_count)) {
     do {
-      puVar1 = (uint *)(*(longlong *)(uVar6 + plStack_a8[7]) + 0x100);
-      *puVar1 = *puVar1 & 0xfffff7ff;
-      lVar2 = *(longlong *)(uVar6 + plStack_a8[7]);
-      *(undefined8 *)(lVar2 + 0x108) = 0xffffffffffffffff;
-      *(undefined4 *)(lVar2 + 0x110) = 0xffffffff;
-      uVar6 = uVar6 + 0x10;
-      lVar5 = lVar5 + -1;
-    } while (lVar5 != 0);
+      status_flag_ptr = (uint *)(*(longlong *)(loop_counter + stack_resource_ptr[7]) + 0x100);
+      *status_flag_ptr = *status_flag_ptr & 0xfffff7ff;
+      resource_offset = *(longlong *)(loop_counter + stack_resource_ptr[7]);
+      *(undefined8 *)(resource_offset + 0x108) = 0xffffffffffffffff;
+      *(undefined4 *)(resource_offset + 0x110) = 0xffffffff;
+      loop_counter = loop_counter + 0x10;
+      temp_value = temp_value + -1;
+    } while (temp_value != 0);
   }
-  if (lStack_50 == 0) {
-    if (plStack_98 != (longlong *)0x0) {
-      (**(code **)(*plStack_98 + 0x38))();
+  
+  // 清理栈资源
+  if (stack_config_14 == 0) {
+    if (stack_resource_ptr2 != (longlong *)0x0) {
+      (**(code **)(*stack_resource_ptr2 + 0x38))();
     }
-    if (plStack_a8 != (longlong *)0x0) {
-      (**(code **)(*plStack_a8 + 0x38))();
+    if (stack_resource_ptr != (longlong *)0x0) {
+      (**(code **)(*stack_resource_ptr + 0x38))();
     }
     return;
   }
-                    // WARNING: Subroutine does not return
+  
+  // 错误处理
   FUN_18064e900();
 }
 

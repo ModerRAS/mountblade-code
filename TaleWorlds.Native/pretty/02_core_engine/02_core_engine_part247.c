@@ -1,0 +1,893 @@
+#include "TaleWorlds.Native.Split.h"
+
+// 02_core_engine_part247.c - 核心引擎模块第247部分
+// 本文件包含事件系统、线程安全和资源管理相关功能
+
+/**
+ * 清理事件队列中的所有事件
+ * @param event_context 事件上下文指针
+ */
+void clear_event_queue(longlong event_context)
+{
+  int lock_result;
+  longlong event_index;
+  
+  // 锁定事件互斥体
+  lock_result = _Mtx_lock(event_context + 0x318);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
+  }
+  
+  lock_result = 0;
+  // 遍历并清理队列中的所有事件
+  if (*(longlong *)(event_context + 0x380) - *(longlong *)(event_context + 0x378) >> 3 != 0) {
+    event_index = 0;
+    do {
+      FUN_18084b2f0(*(undefined8 *)(event_index + *(longlong *)(event_context + 0x378)));
+      lock_result = lock_result + 1;
+      event_index = event_index + 8;
+    } while ((ulonglong)(longlong)lock_result <
+             (ulonglong)(*(longlong *)(event_context + 0x380) - *(longlong *)(event_context + 0x378) >> 3));
+  }
+  
+  // 清理事件处理相关资源
+  FUN_18084b380(*(undefined8 *)(event_context + 0x368));
+  FUN_180849360(*(undefined8 *)(event_context + 0x368));
+  *(undefined8 *)(event_context + 0x380) = *(undefined8 *)(event_context + 0x378);
+  *(undefined8 *)(event_context + 0x3c0) = *(undefined8 *)(event_context + 0x3b8);
+  FUN_180218120(event_context + 0x398);
+  *(undefined8 *)(event_context + 0x370) = 0;
+  *(undefined8 *)(event_context + 0x368) = 0;
+  
+  // 解锁事件互斥体
+  lock_result = _Mtx_unlock(event_context + 0x318);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
+  }
+  return;
+}
+
+/**
+ * 获取事件系统状态标识符（水平方向）
+ * @return 事件系统状态标识符
+ */
+longlong get_event_system_horizontal_id(void)
+{
+  int id_buffer[2];
+  undefined1 temp_buffer[16];
+  
+  FUN_180738630(id_buffer, temp_buffer, 1);
+  return (longlong)id_buffer[0];
+}
+
+/**
+ * 获取事件系统状态标识符（垂直方向）
+ * @return 事件系统状态标识符
+ */
+longlong get_event_system_vertical_id(void)
+{
+  int id_buffer[2];
+  undefined1 temp_buffer[16];
+  
+  FUN_180738630(temp_buffer, id_buffer, 1);
+  return (longlong)id_buffer[0];
+}
+
+/**
+ * 处理事件触发器相关逻辑
+ * @param event_context 事件上下文指针
+ * @param trigger_data 触发器数据指针
+ * @param is_enabled 是否启用触发器
+ * @return 处理结果状态码
+ */
+undefined8 process_event_trigger(longlong event_context, longlong trigger_data, char is_enabled)
+{
+  uint buffer_size;
+  int string_length;
+  undefined4 format_result;
+  undefined4 *message_buffer;
+  undefined4 *temp_buffer;
+  undefined *string_ptr;
+  longlong compare_index;
+  longlong context_backup;
+  undefined8 result_code;
+  
+  context_backup = event_context;
+  
+  // 检查是否启用调试模式
+  if (*(int *)(_DAT_180c8a9c8 + 0x9a0) == 0) goto skip_debug_logging;
+  
+  // 创建调试消息缓冲区
+  message_buffer = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+  *(undefined1 *)message_buffer = 0;
+  buffer_size = FUN_18064e990(message_buffer);
+  
+  // 设置调试消息格式
+  *message_buffer = 0x5f746567;  // "_teg"
+  message_buffer[1] = 0x6e657665; // "neve"
+  message_buffer[2] = 0x65645f74; // "ed_t"
+  message_buffer[3] = 0x206373;   // " cs"
+  
+  string_length = *(int *)(trigger_data + 0x10);
+  if (0 < string_length) {
+    if ((string_length != -0xf) && (buffer_size < string_length + 0x10U)) {
+      message_buffer = (undefined4 *)FUN_18062b8b0(_DAT_180c8ed18, message_buffer, string_length + 0x10U, 0x10, 0x13);
+      FUN_18064e990(message_buffer);
+      string_length = *(int *)(trigger_data + 0x10);
+    }
+    // 复制触发器名称到消息缓冲区
+    memcpy((undefined1 *)((longlong)message_buffer + 0xf), *(undefined8 *)(trigger_data + 8), (longlong)(string_length + 1));
+  }
+  
+  if (message_buffer == (undefined4 *)0x0) {
+    message_buffer = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x11, 0x13);
+    *(undefined1 *)message_buffer = 0;
+build_message:
+    FUN_18064e990(message_buffer);
+  }
+  else if (buffer_size < 0x11) {
+    message_buffer = (undefined4 *)FUN_18062b8b0(_DAT_180c8ed18, message_buffer, 0x11, 0x10, 0x13);
+    goto build_message;
+  }
+  
+  *(undefined2 *)((longlong)message_buffer + 0xf) = 10; // 换行符
+  
+  temp_buffer = (undefined4 *)&DAT_18098bc73;
+  if (message_buffer != (undefined4 *)0x0) {
+    temp_buffer = message_buffer;
+  }
+  
+  // 输出调试消息
+  FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, temp_buffer);
+  if (message_buffer != (undefined4 *)0x0) {
+    FUN_18064e900(message_buffer);
+  }
+
+skip_debug_logging:
+  compare_index = 0;
+  result_code = 0;
+  string_ptr = &DAT_18098bc73;
+  if (*(undefined **)(trigger_data + 8) != (undefined *)0x0) {
+    string_ptr = *(undefined **)(trigger_data + 8);
+  }
+  
+  // 处理事件触发器
+  format_result = FUN_180845c40(*(undefined8 *)(context_backup + 0x368), string_ptr, &result_code);
+  string_ptr = &DAT_18098bc73;
+  if (*(undefined **)(trigger_data + 8) != (undefined *)0x0) {
+    string_ptr = *(undefined **)(trigger_data + 8);
+  }
+  FUN_180211a30(format_result, string_ptr);
+  
+  // 检查是否为系统内部事件
+  if (is_enabled == '\0') {
+    if (6 < *(uint *)(trigger_data + 0x10)) {
+      do {
+        if ((&UNK_180a10500 + compare_index)[*(longlong *)(trigger_data + 8) + -0x180a10500] !=
+            (&UNK_180a10500)[compare_index]) {
+          return result_code;
+        }
+        compare_index = compare_index + 1;
+      } while (compare_index < 7);
+      context_backup = 0;
+      FUN_180846fe0(result_code, &context_backup);
+    }
+  }
+  else {
+    format_result = FUN_1808496c0(result_code, &UNK_180211ec0, 0xffffffff);
+    string_ptr = &DAT_18098bc73;
+    if (*(undefined **)(trigger_data + 8) != (undefined *)0x0) {
+      string_ptr = *(undefined **)(trigger_data + 8);
+    }
+    FUN_180211a30(format_result, string_ptr);
+  }
+  return result_code;
+}
+
+/**
+ * 处理事件类型相关的逻辑
+ * @param event_context 事件上下文指针
+ * @param event_type 事件类型标识符
+ * @param is_enabled 是否启用事件类型
+ * @return 处理结果状态码
+ */
+longlong process_event_type(longlong event_context, int event_type, char is_enabled)
+{
+  uint buffer_size;
+  undefined4 format_result;
+  undefined4 *message_buffer;
+  int total_length;
+  longlong context_backup;
+  undefined *string_data;
+  undefined4 *temp_buffer;
+  uint temp_size;
+  undefined8 result_code;
+  
+  if (*(int *)(_DAT_180c8a9c8 + 0x9a0) == 0) goto skip_debug_logging;
+  
+  string_data = &UNK_180a3c3e0;
+  result_code = 0;
+  temp_buffer = (undefined4 *)0x0;
+  temp_size = 0;
+  
+  // 创建调试消息缓冲区
+  temp_buffer = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+  *(undefined1 *)temp_buffer = 0;
+  buffer_size = FUN_18064e990(temp_buffer);
+  
+  // 设置调试消息格式
+  *temp_buffer = 0x5f746567;  // "_teg"
+  temp_buffer[1] = 0x6e657665; // "neve"
+  temp_buffer[2] = 0x65645f74; // "ed_t"
+  temp_buffer[3] = 0x206373;   // " cs"
+  
+  temp_size = 0xf;
+  result_code._0_4_ = buffer_size;
+  FUN_180628380(&string_data, event_type);
+  
+  total_length = temp_size + 1;
+  if (total_length != 0) {
+    buffer_size = temp_size + 2;
+    if (temp_buffer == (undefined4 *)0x0) {
+      if ((int)buffer_size < 0x10) {
+        buffer_size = 0x10;
+      }
+      temp_buffer = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)buffer_size, 0x13);
+      *(undefined1 *)temp_buffer = 0;
+    }
+    else {
+      if (buffer_size <= (uint)result_code) goto buffer_ready;
+      temp_buffer = (undefined4 *)FUN_18062b8b0(_DAT_180c8ed18, temp_buffer, buffer_size, 0x10, 0x13);
+    }
+    result_code._0_4_ = FUN_18064e990(temp_buffer);
+  }
+  
+buffer_ready:
+  *(undefined2 *)((ulonglong)temp_size + (longlong)temp_buffer) = 10; // 换行符
+  
+  message_buffer = (undefined4 *)&DAT_18098bc73;
+  if (temp_buffer != (undefined4 *)0x0) {
+    message_buffer = temp_buffer;
+  }
+  temp_size = total_length;
+  
+  // 输出调试消息
+  FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, message_buffer);
+  string_data = &UNK_180a3c3e0;
+  if (temp_buffer != (undefined4 *)0x0) {
+    FUN_18064e900();
+  }
+  temp_buffer = (undefined4 *)0x0;
+  result_code = (ulonglong)result_code._4_4_ << 0x20;
+  string_data = &UNK_18098bcb0;
+
+skip_debug_logging:
+  context_backup = 0;
+  format_result = FUN_180845d20(*(undefined8 *)(event_context + 0x368),
+                        (longlong)event_type * 0x10 + *(longlong *)(event_context + 0x3b8), &context_backup);
+  FUN_180211a30(format_result, &DAT_18098bc73);
+  
+  if ((context_backup != 0) && (is_enabled != '\0')) {
+    format_result = FUN_1808496c0(context_backup, &UNK_180211ec0, 0xffffffff);
+    FUN_180211a30(format_result, &DAT_18098bc73);
+  }
+  return context_backup;
+}
+
+/**
+ * 检查并处理事件系统状态变化
+ * @param event_context 事件上下文指针
+ * @param state_data 状态数据指针
+ * @return 处理结果状态码
+ */
+undefined8 check_event_system_state(longlong event_context, longlong state_data)
+{
+  uint buffer_size;
+  int string_length;
+  undefined4 *message_buffer;
+  undefined4 *temp_buffer;
+  undefined8 process_result;
+  undefined *string_ptr;
+  undefined8 result_code;
+  undefined8 error_code;
+  
+  error_code = 0xfffffffffffffffe;
+  
+  // 检查事件系统是否已启用
+  if (*(char *)(event_context + 0x210) != '\0') {
+    return 0;
+  }
+  
+  if (*(int *)(_DAT_180c8a9c8 + 0x9a0) == 0) goto skip_debug_logging;
+  
+  // 创建调试消息缓冲区
+  message_buffer = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x16, 0x13);
+  *(undefined1 *)message_buffer = 0;
+  buffer_size = FUN_18064e990(message_buffer);
+  
+  // 设置调试消息格式
+  *message_buffer = 0x61657263;  // "acre"
+  message_buffer[1] = 0x6f5f6574; // "o_et"
+  message_buffer[2] = 0x6873656e; // "hsen"
+  message_buffer[3] = 0x655f746f; // "e_to"
+  message_buffer[4] = 0x746e6576; // "tnev"
+  *(undefined2 *)(message_buffer + 5) = 0x20; // 空格
+  
+  string_length = *(int *)(state_data + 0x10);
+  if (0 < string_length) {
+    if ((string_length != -0x15) && (buffer_size < string_length + 0x16U)) {
+      message_buffer = (undefined4 *)FUN_18062b8b0(_DAT_180c8ed18, message_buffer, string_length + 0x16U, 0x10, 0x13);
+      FUN_18064e990(message_buffer);
+      string_length = *(int *)(state_data + 0x10);
+    }
+    // 复制状态信息到消息缓冲区
+    memcpy((undefined1 *)((longlong)message_buffer + 0x15), *(undefined8 *)(state_data + 8),
+           (longlong)(string_length + 1));
+  }
+  
+  if (message_buffer == (undefined4 *)0x0) {
+    message_buffer = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x17, 0x13);
+    *(undefined1 *)message_buffer = 0;
+build_message:
+    FUN_18064e990(message_buffer);
+  }
+  else if (buffer_size < 0x17) {
+    message_buffer = (undefined4 *)FUN_18062b8b0(_DAT_180c8ed18, message_buffer, 0x17, 0x10, 0x13);
+    goto build_message;
+  }
+  
+  *(undefined2 *)((longlong)message_buffer + 0x15) = 10; // 换行符
+  
+  temp_buffer = (undefined4 *)&DAT_18098bc73;
+  if (message_buffer != (undefined4 *)0x0) {
+    temp_buffer = message_buffer;
+  }
+  
+  // 输出调试消息
+  FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, temp_buffer);
+  if (message_buffer != (undefined4 *)0x0) {
+    FUN_18064e900(message_buffer);
+  }
+
+skip_debug_logging:
+  process_result = process_event_trigger(event_context, state_data, 0);
+  string_length = FUN_180840490(process_result, &result_code);
+  
+  string_ptr = &DAT_18098bc73;
+  if (*(undefined **)(state_data + 8) != (undefined *)0x0) {
+    string_ptr = *(undefined **)(state_data + 8);
+  }
+  FUN_180211a30(string_length, string_ptr);
+  
+  if (string_length != 0) {
+    FUN_1800623b0(_DAT_180c86928, 0, 0, 3, &UNK_180a10508, result_code, error_code);
+    return 0;
+  }
+  return result_code;
+}
+
+/**
+ * 处理事件系统的线程安全操作
+ * @param event_context 事件上下文指针
+ * @param operation_code 操作代码
+ * @return 处理结果状态码
+ */
+undefined8 process_thread_safe_event_operation(longlong event_context, undefined4 operation_code)
+{
+  int lock_result;
+  uint buffer_size;
+  undefined8 process_result;
+  undefined4 *message_buffer;
+  undefined8 result_code;
+  undefined *string_data;
+  undefined4 *temp_buffer;
+  uint temp_size;
+  undefined8 debug_result;
+  
+  // 检查事件系统是否已启用
+  if (*(char *)(event_context + 0x210) != '\0') {
+    return 0;
+  }
+  
+  // 获取线程锁
+  lock_result = _Mtx_lock(event_context + 0x318);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
+  }
+  
+  if (*(int *)(_DAT_180c8a9c8 + 0x9a0) == 0) goto skip_debug_logging;
+  
+  string_data = &UNK_180a3c3e0;
+  debug_result = 0;
+  temp_buffer = (undefined4 *)0x0;
+  temp_size = 0;
+  
+  // 创建调试消息缓冲区
+  temp_buffer = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x16, 0x13);
+  *(undefined1 *)temp_buffer = 0;
+  buffer_size = FUN_18064e990(temp_buffer);
+  
+  // 设置调试消息格式
+  *temp_buffer = 0x61657263;  // "acre"
+  temp_buffer[1] = 0x6f5f6574; // "o_et"
+  temp_buffer[2] = 0x6873656e; // "hsen"
+  temp_buffer[3] = 0x655f746f; // "e_to"
+  temp_buffer[4] = 0x746e6576; // "tnev"
+  *(undefined2 *)(temp_buffer + 5) = 0x20; // 空格
+  
+  temp_size = 0x15;
+  debug_result._0_4_ = buffer_size;
+  FUN_180628380(&string_data, operation_code);
+  
+  lock_result = temp_size + 1;
+  if (lock_result != 0) {
+    buffer_size = temp_size + 2;
+    if (temp_buffer == (undefined4 *)0x0) {
+      if ((int)buffer_size < 0x10) {
+        buffer_size = 0x10;
+      }
+      temp_buffer = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)buffer_size, 0x13);
+      *(undefined1 *)temp_buffer = 0;
+    }
+    else {
+      if (buffer_size <= (uint)debug_result) goto buffer_ready;
+      temp_buffer = (undefined4 *)FUN_18062b8b0(_DAT_180c8ed18, temp_buffer, buffer_size, 0x10, 0x13);
+    }
+    debug_result._0_4_ = FUN_18064e990(temp_buffer);
+  }
+
+buffer_ready:
+  *(undefined2 *)((ulonglong)temp_size + (longlong)temp_buffer) = 10; // 换行符
+  
+  message_buffer = (undefined4 *)&DAT_18098bc73;
+  if (temp_buffer != (undefined4 *)0x0) {
+    message_buffer = temp_buffer;
+  }
+  temp_size = lock_result;
+  
+  // 输出调试消息
+  FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, message_buffer);
+  string_data = &UNK_180a3c3e0;
+  if (temp_buffer != (undefined4 *)0x0) {
+    FUN_18064e900();
+  }
+  temp_buffer = (undefined4 *)0x0;
+  debug_result = (ulonglong)debug_result._4_4_ << 0x20;
+  string_data = &UNK_18098bcb0;
+
+skip_debug_logging:
+  process_result = process_event_type(event_context, operation_code, 0);
+  lock_result = FUN_180840490(process_result, &result_code);
+  FUN_180211a30(lock_result, &DAT_18098bc73);
+  process_result = result_code;
+  
+  if (lock_result != 0) {
+    FUN_1800623b0(_DAT_180c86928, 0, 0x1000000000000, 3, &UNK_180a10520, result_code);
+    process_result = 0;
+  }
+  
+  // 释放线程锁
+  lock_result = _Mtx_unlock(event_context + 0x318);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
+  }
+  return process_result;
+}
+
+/**
+ * 添加事件到事件队列
+ * @param event_context 事件上下文指针
+ * @param event_data 事件数据
+ */
+void add_event_to_queue(longlong event_context, undefined8 event_data)
+{
+  longlong lock_address;
+  int lock_result;
+  undefined4 format_result;
+  undefined8 parsed_data;
+  longlong search_result;
+  undefined *string_ptr;
+  undefined8 *queue_end;
+  undefined8 *queue_start;
+  undefined8 *queue_position;
+  undefined1 security_buffer[32];
+  undefined8 debug_handle;
+  undefined *temp_string;
+  undefined8 *queue_capacity;
+  undefined8 *new_queue;
+  ulonglong security_check;
+  
+  debug_handle = 0xfffffffffffffffe;
+  security_check = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  
+  lock_address = event_context + 0x318;
+  lock_result = _Mtx_lock(lock_address);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
+  }
+  
+  // 解析事件数据
+  parsed_data = FUN_180624440(security_buffer, event_data);
+  FUN_1806279c0(&temp_string, parsed_data);
+  
+  security_buffer[0] = &UNK_18098bcb0;
+  debug_handle = 0;
+  
+  string_ptr = &DAT_18098bc73;
+  if (temp_string != (undefined *)0x0) {
+    string_ptr = temp_string;
+  }
+  
+  // 检查事件是否已存在
+  lock_result = FUN_180848090(*(undefined8 *)(event_context + 0x368), string_ptr, 0, &debug_handle);
+  string_ptr = &DAT_18098bc73;
+  if (temp_string != (undefined *)0x0) {
+    string_ptr = temp_string;
+  }
+  FUN_180211a30(lock_result, string_ptr);
+  
+  if (lock_result != 0) {
+    string_ptr = &DAT_18098bc73;
+    if (temp_string != (undefined *)0x0) {
+      string_ptr = temp_string;
+    }
+    FUN_180626f80(&UNK_180a105b8, string_ptr);
+    goto cleanup_and_exit;
+  }
+  
+  // 检查是否为特殊事件类型
+  string_ptr = &DAT_18098bc73;
+  if (temp_string != (undefined *)0x0) {
+    string_ptr = temp_string;
+  }
+  search_result = strstr(string_ptr, &UNK_180a105d8);
+  if (search_result == 0) {
+    string_ptr = &DAT_18098bc73;
+    if (temp_string != (undefined *)0x0) {
+      string_ptr = temp_string;
+    }
+    search_result = strstr(string_ptr, &DAT_180a0e358);
+    if (search_result != 0) goto process_special_event;
+    string_ptr = &DAT_18098bc73;
+    if (temp_string != (undefined *)0x0) {
+      string_ptr = temp_string;
+    }
+    search_result = strstr(string_ptr, &UNK_180a10568);
+    if (search_result != 0) goto process_special_event;
+  }
+  else {
+process_special_event:
+    format_result = FUN_1808482f0(debug_handle);
+    string_ptr = &DAT_18098bc73;
+    if (temp_string != (undefined *)0x0) {
+      string_ptr = temp_string;
+    }
+    FUN_180211a30(format_result, string_ptr);
+    format_result = FUN_180840c00(*(undefined8 *)(event_context + 0x368));
+    FUN_180211a30(format_result, &DAT_18098bc73);
+  }
+  
+  // 将事件添加到队列
+  queue_end = *(undefined8 **)(event_context + 0x380);
+  if (queue_end < *(undefined8 **)(event_context + 0x388)) {
+    *(undefined8 **)(event_context + 0x380) = queue_end + 1;
+    *queue_end = debug_handle;
+    goto cleanup_and_exit;
+  }
+  
+  // 队列已满，需要扩容
+  queue_start = *(undefined8 **)(event_context + 0x378);
+  search_result = (longlong)queue_end - (longlong)queue_start >> 3;
+  if (search_result == 0) {
+    search_result = 1;
+calculate_new_size:
+    new_queue = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, search_result * 8, *(undefined1 *)(event_context + 0x390));
+    queue_end = *(undefined8 **)(event_context + 0x380);
+    queue_start = *(undefined8 **)(event_context + 0x378);
+  }
+  else {
+    search_result = search_result * 2;
+    if (search_result != 0) goto calculate_new_size;
+    new_queue = (undefined8 *)0x0;
+  }
+  
+  // 复制现有队列数据到新队列
+  if (queue_start != queue_end) {
+    memmove(new_queue, queue_start, (longlong)queue_end - (longlong)queue_start);
+  }
+  
+  *new_queue = debug_handle;
+  if (*(longlong *)(event_context + 0x378) != 0) {
+    FUN_18064e900();
+  }
+  
+  // 更新队列指针
+  *(undefined8 **)(event_context + 0x378) = new_queue;
+  *(undefined8 **)(event_context + 0x380) = new_queue + 1;
+  *(undefined8 **)(event_context + 0x388) = new_queue + search_result;
+
+cleanup_and_exit:
+  temp_string = &UNK_180a3c3e0;
+  if (temp_string != (undefined *)0x0) {
+    FUN_18064e900();
+  }
+  temp_string = (undefined *)0x0;
+  format_result = 0;
+  temp_string = &UNK_18098bcb0;
+  
+  // 释放线程锁
+  lock_result = _Mtx_unlock(lock_address);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
+  }
+  
+  // 安全检查
+  FUN_1808fc050(security_check ^ (ulonglong)security_buffer);
+}
+
+/**
+ * 初始化事件系统配置
+ * @param event_context 事件上下文指针
+ * @param config_data 配置数据数组
+ * @param config_params 配置参数数组
+ */
+void initialize_event_system_config(longlong event_context, undefined8 *config_data, undefined4 *config_params)
+{
+  undefined4 temp_result;
+  undefined8 config_value;
+  int check_result;
+  undefined1 security_buffer[32];
+  undefined4 config_params_copy[6];
+  undefined4 u_stack_54;
+  undefined4 u_stack_50;
+  undefined4 u_stack_48;
+  undefined8 u_stack_44;
+  undefined4 u_stack_3c;
+  uint u_stack_38;
+  uint u_stack_34;
+  uint u_stack_30;
+  undefined4 u_stack_2c;
+  undefined4 u_stack_28;
+  undefined4 u_stack_24;
+  ulonglong security_check;
+  
+  security_check = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  
+  // 检查事件系统是否已禁用
+  if (*(char *)(event_context + 0x210) == '\0') {
+    config_value = config_data[1];
+    u_stack_44 = 0;
+    u_stack_3c = 0;
+    
+    // 设置事件系统配置数据
+    *(undefined8 *)(event_context + 0x188) = *config_data;
+    *(undefined8 *)(event_context + 400) = config_value;
+    config_value = config_data[3];
+    *(undefined8 *)(event_context + 0x198) = config_data[2];
+    *(undefined8 *)(event_context + 0x1a0) = config_value;
+    config_value = config_data[5];
+    *(undefined8 *)(event_context + 0x1a8) = config_data[4];
+    *(undefined8 *)(event_context + 0x1b0) = config_value;
+    
+    // 复制配置参数
+    config_params_copy[0] = *(undefined4 *)(config_data + 6);
+    config_params_copy[1] = *(undefined4 *)((longlong)config_data + 0x34);
+    config_params_copy[2] = *(undefined4 *)(config_data + 7);
+    temp_result = *(undefined4 *)((longlong)config_data + 0x3c);
+    
+    *(undefined4 *)(event_context + 0x1b8) = config_params_copy[0];
+    *(undefined4 *)(event_context + 0x1bc) = config_params_copy[1];
+    *(undefined4 *)(event_context + 0x1c0) = config_params_copy[2];
+    *(undefined4 *)(event_context + 0x1c4) = temp_result;
+    
+    // 计算配置校验值
+    u_stack_38 = *(uint *)(event_context + 0x1a8) ^ 0x80000000;
+    u_stack_34 = *(uint *)(event_context + 0x1b0) ^ 0x80000000;
+    u_stack_30 = *(uint *)(event_context + 0x1ac) ^ 0x80000000;
+    
+    u_stack_54 = *config_params;
+    u_stack_50 = config_params[1];
+    u_stack_48 = config_params[2];
+    temp_result = config_params[3];
+    
+    u_stack_2c = *(undefined4 *)(event_context + 0x198);
+    u_stack_24 = *(undefined4 *)(event_context + 0x19c);
+    u_stack_28 = *(undefined4 *)(event_context + 0x1a0);
+    
+    *(undefined4 *)(event_context + 0x1c8) = u_stack_54;
+    *(undefined4 *)(event_context + 0x1cc) = u_stack_50;
+    *(undefined4 *)(event_context + 0x1d0) = u_stack_48;
+    *(undefined4 *)(event_context + 0x1d4) = temp_result;
+    
+    // 验证配置参数
+    check_result = FUN_180849990(*(undefined8 *)(event_context + 0x368), 0, &config_params_copy[0], &u_stack_54);
+    if (check_result != 0) {
+      FUN_180626f80(&UNK_180a10570);
+    }
+  }
+  
+  // 安全检查
+  FUN_1808fc050(security_check ^ (ulonglong)security_buffer);
+}
+
+/**
+ * 移除指定的事件处理器
+ * @param event_context 事件上下文指针
+ * @param handler_id 要移除的处理器ID
+ */
+void remove_event_handler(longlong event_context, int handler_id)
+{
+  longlong *hash_table_entry;
+  longlong table_size;
+  int *handler_entry;
+  int *next_handler;
+  longlong handler_data;
+  int *current_handler;
+  longlong *table_entry;
+  
+  table_size = *(longlong *)(event_context + 0x38);
+  table_entry = (longlong *)
+           (table_size + ((ulonglong)(longlong)handler_id % (ulonglong)*(uint *)(event_context + 0x40)) * 8);
+  current_handler = (int *)*table_entry;
+  
+  do {
+    if (current_handler == (int *)0x0) {
+      handler_data = *(longlong *)(event_context + 0x40);
+      table_entry = (longlong *)(table_size + handler_data * 8);
+      current_handler = (int *)*table_entry;
+remove_handler:
+      if (current_handler != *(int **)(table_size + handler_data * 8)) {
+        table_size = *(longlong *)(current_handler + 2);
+        FUN_180849230(*(undefined8 *)(table_size + 0x80));
+        *(undefined8 *)(table_size + 0x80) = 0;
+        table_size = *(longlong *)(current_handler + 4);
+        hash_table_entry = table_entry;
+        
+        // 查找链表中的下一个处理器
+        while (table_size == 0) {
+          hash_table_entry = hash_table_entry + 1;
+          table_size = *hash_table_entry;
+        }
+        
+        handler_entry = (int *)*table_entry;
+        next_handler = *(int **)(handler_entry + 4);
+        if (handler_entry == current_handler) {
+          *table_entry = (longlong)next_handler;
+        }
+        else {
+          // 遍历链表找到要移除的处理器
+          for (; next_handler != current_handler; next_handler = *(int **)(next_handler + 4)) {
+            handler_entry = next_handler;
+          }
+          *(undefined8 *)(handler_entry + 4) = *(undefined8 *)(next_handler + 4);
+        }
+        
+        // 调用处理器的清理函数
+        if (*(longlong **)(current_handler + 2) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(current_handler + 2) + 0x38))();
+        }
+        FUN_18064e900(current_handler);
+      }
+      return;
+    }
+    
+    if (handler_id == *current_handler) {
+      handler_data = *(longlong *)(event_context + 0x40);
+      goto remove_handler;
+    }
+    current_handler = *(int **)(current_handler + 4);
+  } while( true );
+}
+
+/**
+ * 检查指定的事件处理器是否存在
+ * @param event_context 事件上下文指针
+ * @param handler_id 要检查的处理器ID
+ * @return 处理器是否存在（true/false）
+ */
+bool is_event_handler_registered(longlong event_context, int handler_id)
+{
+  longlong table_size;
+  int *handler_entry;
+  longlong table_index;
+  int status_buffer[6];
+  
+  table_size = *(longlong *)(event_context + 0x38);
+  handler_entry = *(int **)(table_size + ((ulonglong)(longlong)handler_id % (ulonglong)*(uint *)(event_context + 0x40)) *
+                             8);
+  do {
+    if (handler_entry == (int *)0x0) {
+      table_index = *(longlong *)(event_context + 0x40);
+      handler_entry = *(int **)(table_size + table_index * 8);
+check_handler:
+      if (handler_entry == *(int **)(table_size + table_index * 8)) {
+        return false;
+      }
+      FUN_180846d30(*(undefined8 *)(*(longlong *)(handler_entry + 2) + 0x78), status_buffer);
+      return status_buffer[0] != 2;
+    }
+    
+    if (handler_id == *handler_entry) {
+      table_index = *(longlong *)(event_context + 0x40);
+      goto check_handler;
+    }
+    handler_entry = *(int **)(handler_entry + 4);
+  } while( true );
+}
+
+/**
+ * 更新事件系统的渲染参数
+ * @param event_context 事件上下文指针
+ */
+void update_event_rendering_params(longlong event_context)
+{
+  undefined1 security_buffer[32];
+  float render_params[16];
+  undefined4 texture_params[2];
+  undefined4 u_stack_38;
+  undefined4 u_stack_2c;
+  undefined4 u_stack_24;
+  ulonglong security_check;
+  
+  security_check = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  
+  // 获取当前渲染参数
+  FUN_1808452a0(*(undefined8 *)(event_context + 0x368), &render_params[3], &render_params[2]);
+  FUN_18010f010(&UNK_180a10600);
+  FUN_18010f010(&UNK_180a10618, (double)render_params[2]);
+  FUN_18010f010(&UNK_180a105e0, (double)render_params[1]);
+  FUN_18010f010(&UNK_180a105f0, (double)render_params[0]);
+  FUN_18010f010(&UNK_180a10650, (double)render_params[4]);
+  FUN_18010f010(&UNK_180a10668, (double)render_params[3]);
+  
+  // 获取纹理参数
+  FUN_180845090(*(undefined8 *)(event_context + 0x368), texture_params);
+  FUN_18010f010(&UNK_180a10628, u_stack_2c);
+  FUN_18010f010(&UNK_180a10640, u_stack_24);
+  FUN_18010f010(&UNK_180a10698, texture_params[0]);
+  FUN_18010f010(&UNK_180a106c0, u_stack_38);
+  
+  // 初始化并更新渲染参数
+  render_params[0] = 0.0;
+  FUN_180846210(*(undefined8 *)(event_context + 0x368), &UNK_180a10678, &render_params[0], 0);
+  render_params[1] = 0.0;
+  FUN_180846210(*(undefined8 *)(event_context + 0x368), &UNK_180a10688, &render_params[1], 0);
+  render_params[2] = 0.0;
+  FUN_180846210(*(undefined8 *)(event_context + 0x368), &UNK_180a10710, &render_params[2], 0);
+  render_params[3] = 0.0;
+  FUN_180846210(*(undefined8 *)(event_context + 0x368), &UNK_180a10720, &render_params[3], 0);
+  render_params[4] = 0.0;
+  FUN_180846210(*(undefined8 *)(event_context + 0x368), &UNK_180a078fc, &render_params[4], 0);
+  render_params[5] = 0.0;
+  FUN_180846210(*(undefined8 *)(event_context + 0x368), &UNK_180a106e8, &render_params[5], 0);
+  render_params[6] = 0.0;
+  FUN_180846210(*(undefined8 *)(event_context + 0x368), &UNK_180a10700, &render_params[6], 0);
+  render_params[7] = 0.0;
+  FUN_180846210(*(undefined8 *)(event_context + 0x368), &UNK_180a10750, &render_params[7], 0);
+  render_params[8] = 0.0;
+  FUN_180846210(*(undefined8 *)(event_context + 0x368), &UNK_180a10760, &render_params[8], 0);
+  render_params[9] = 0.0;
+  FUN_180846210(*(undefined8 *)(event_context + 0x368), &UNK_180a10728, &render_params[9], 0);
+  render_params[10] = 0.0;
+  FUN_180846210(*(undefined8 *)(event_context + 0x368), &UNK_180a10740, &render_params[10], 0);
+  
+  // 应用渲染参数更新
+  FUN_18010f010(&UNK_180a10798);
+  FUN_18010f010(&UNK_180a107b0);
+  FUN_18010f010(&UNK_180a10798);
+  FUN_18010f010(&UNK_180a10778, (double)render_params[0]);
+  FUN_18010f010(&UNK_180a10788, (double)render_params[1]);
+  FUN_18010f010(&UNK_180a107f8, (double)render_params[2]);
+  FUN_18010f010(&UNK_180a10810, (double)render_params[3]);
+  FUN_18010f010(&UNK_180a107c8, (double)render_params[4]);
+  FUN_18010f010(&UNK_180a107d8, (double)render_params[5]);
+  FUN_18010f010(&UNK_180a10850, (double)render_params[6]);
+  FUN_18010f010(&UNK_180a10860, (double)render_params[7]);
+  FUN_18010f010(&UNK_180a10820, (double)render_params[8]);
+  FUN_18010f010(&UNK_180a10838, (double)render_params[9]);
+  FUN_18010f010(&UNK_180a10898, (double)render_params[10]);
+  FUN_18010f010(&UNK_180a10798);
+  
+  // 安全检查
+  FUN_1808fc050(security_check ^ (ulonglong)security_buffer);
+}

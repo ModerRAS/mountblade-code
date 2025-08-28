@@ -1,0 +1,899 @@
+#include "TaleWorlds.Native.Split.h"
+
+// 02_core_engine_part249.c - 核心引擎模块第249部分
+// 本文件包含引擎渲染、资源管理和事件处理相关功能
+
+// 函数: 处理渲染管线状态更新
+// 参数: param_1 - 渲染上下文, param_2 - 操作类型, param_3 - 资源句柄, param_4 - 输出缓冲区
+void update_render_pipeline_state(longlong render_context, int operation_type, longlong resource_handle, longlong output_buffer)
+{
+  longlong temp_ptr;
+  uint temp_uint;
+  undefined4 temp_result;
+  uint temp_uint2;
+  int lock_result;
+  undefined *temp_ptr2;
+  undefined1 stack_buffer_1c8 [32];
+  longlong *stack_ptr_1a8;
+  longlong stack_value_198;
+  longlong *stack_ptr_190;
+  undefined8 stack_value_188;
+  undefined4 stack_value_180;
+  undefined4 stack_value_17c;
+  undefined8 stack_value_178;
+  undefined4 stack_value_160;
+  undefined1 stack_buffer_150 [200];
+  undefined4 stack_value_88;
+  undefined4 stack_value_84;
+  undefined4 stack_value_80;
+  ulonglong stack_value_58;
+  
+  stack_value_178 = 0xfffffffffffffffe;
+  stack_value_58 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_1c8;
+  if (((operation_type == 8) || (operation_type == 0x20)) &&
+     ((*(longlong *)(render_context + 0x308) != 0 || (*(longlong *)(render_context + 0x310) != 0)))) {
+    stack_ptr_190 = (longlong *)0x0;
+    get_resource_info(resource_handle, &stack_ptr_190);
+    stack_value_198 = 0;
+    process_resource_data(stack_ptr_190, &stack_value_198);
+    if ((stack_value_198 != 0) && (-1 < *(int *)(stack_value_198 + 8))) {
+      temp_result = get_resource_properties(resource_handle, &stack_value_88);
+      validate_resource_handle(temp_result, &DEFAULT_STRING_CONST);
+      stack_value_188 = CONCAT44(stack_value_80, stack_value_88);
+      stack_value_180 = stack_value_84;
+      stack_value_17c = 0x7f7fffff;
+      (**(code **)(render_context + 0x310))
+                (*(undefined8 *)(render_context + 0x308), operation_type == 8, *(undefined4 *)(stack_value_198 + 8),
+                 &stack_value_188);
+    }
+  }
+  if (operation_type == 0x20) {
+    stack_ptr_190 = (longlong *)0x0;
+    stack_value_198 = resource_handle;
+    temp_result = acquire_resource_lock(resource_handle, &stack_ptr_190);
+    validate_resource_handle(temp_result, &DEFAULT_STRING_CONST);
+    release_resource_reference(resource_handle, 0);
+    if ((stack_ptr_190 == (longlong *)0x0) || (temp_ptr = *stack_ptr_190, temp_ptr == 0)) {
+      stack_value_188 = render_context + 0x60;
+      lock_result = _Mtx_lock(stack_value_188);
+      if (lock_result != 0) {
+        throw_thread_error(lock_result);
+      }
+      process_render_queue(render_context + 0x410, &stack_value_198);
+    }
+    else {
+      stack_value_188 = render_context + 0x60;
+      if (*(longlong *)(temp_ptr + 0x80) == resource_handle) {
+        lock_result = _Mtx_lock();
+        if (lock_result != 0) {
+          throw_thread_error(lock_result);
+        }
+        stack_value_198 = CONCAT44(stack_value_198._4_4_, *(undefined4 *)(temp_ptr + 0x50));
+        update_render_state(render_context + 0xb0, &stack_value_198);
+      }
+      else {
+        lock_result = _Mtx_lock(stack_value_188);
+        if (lock_result != 0) {
+          throw_thread_error(lock_result);
+        }
+        process_render_queue(render_context + 0x410, &stack_value_198);
+      }
+    }
+    lock_result = _Mtx_unlock(render_context + 0x60);
+    if (lock_result != 0) {
+      throw_thread_error(lock_result);
+    }
+  }
+  else if (operation_type == 0x80) {
+    stack_ptr_190 = (longlong *)0x0;
+    temp_result = acquire_resource_lock(resource_handle, &stack_ptr_190);
+    validate_resource_handle(temp_result, &DEFAULT_STRING_CONST);
+    if (((stack_ptr_190 != (longlong *)0x0) && (temp_ptr = *stack_ptr_190, temp_ptr != 0)) &&
+       (*(int *)(temp_ptr + 0x10) != 0)) {
+      stack_value_198 = 0;
+      if (*(int *)(temp_ptr + 0x10) != 1) {
+        stack_value_160 = 0;
+        memset(stack_buffer_150, 0, 200);
+      }
+      temp_uint = 8;
+      if (*(char *)(temp_ptr + 0x49) != '\0') {
+        temp_uint = 0x10;
+      }
+      temp_uint2 = temp_uint | 0x10000;
+      if (*(char *)(temp_ptr + 0x48) != '\0') {
+        temp_uint2 = temp_uint;
+      }
+      temp_ptr2 = &DEFAULT_STRING_CONST;
+      if (*(undefined **)(temp_ptr + 0x20) != (undefined *)0x0) {
+        temp_ptr2 = *(undefined **)(temp_ptr + 0x20);
+      }
+      stack_ptr_1a8 = &stack_value_198;
+      temp_result = create_shader_object(*(undefined8 *)(render_context + 0x370), temp_ptr2, temp_uint2, 0);
+      temp_ptr2 = &DEFAULT_STRING_CONST;
+      if (*(undefined **)(temp_ptr + 0x20) != (undefined *)0x0) {
+        temp_ptr2 = *(undefined **)(temp_ptr + 0x20);
+      }
+      validate_resource_handle(temp_result, temp_ptr2);
+      *(longlong *)(output_buffer + 8) = stack_value_198;
+    }
+  }
+  else if (operation_type == 0x100) {
+    cleanup_shader_object(*(undefined8 *)(output_buffer + 8));
+  }
+  cleanup_stack_protection(stack_value_58 ^ (ulonglong)stack_buffer_1c8);
+}
+
+// 函数: 获取动画混合权重
+// 参数: param_1 - 动画控制器, param_2 - 动画轨道ID
+// 返回值: 混合权重值，失败返回-1.0
+float get_animation_blend_weight(undefined8 animation_controller, undefined8 track_id)
+{
+  longlong blend_state;
+  int blend_weights[4];
+  
+  blend_state = get_animation_state(animation_controller, track_id, 0);
+  if (blend_state != 0) {
+    blend_weights[0] = -1;
+    extract_blend_weights(blend_state, blend_weights);
+    return (float)blend_weights[0] * 0.001;
+  }
+  return -1.0;
+}
+
+// 函数: 创建和管理渲染对象
+// 参数: param_1 - 渲染设备, param_2 - 输出对象指针, param_3 - 配置参数, param_4 - 渲染标志, param_5 - 附加数据
+// 返回值: 创建的渲染对象指针
+longlong *create_render_object(longlong render_device, longlong **output_object, int *config_params, undefined4 render_flags, longlong extra_data)
+{
+  undefined4 temp_result;
+  int temp_int;
+  uint temp_uint;
+  uint temp_uint2;
+  longlong resource_ptr;
+  undefined8 *temp_ptr8;
+  undefined8 temp_value8;
+  undefined1 *temp_ptr1;
+  longlong *temp_ptr_long;
+  ulonglong temp_ullong;
+  uint temp_uint3;
+  longlong *temp_ptr_long2;
+  undefined *stack_ptr_1a8;
+  undefined8 *stack_ptr_1a0;
+  undefined4 stack_value_198;
+  undefined8 stack_value_190;
+  undefined *stack_ptr_188;
+  undefined8 *stack_ptr_180;
+  undefined4 stack_value_178;
+  undefined8 stack_value_170;
+  undefined *stack_ptr_168;
+  undefined8 *stack_ptr_160;
+  undefined4 stack_value_158;
+  undefined8 stack_value_150;
+  undefined *stack_ptr_148;
+  undefined8 *stack_ptr_140;
+  undefined4 stack_value_138;
+  undefined8 stack_value_130;
+  undefined *stack_ptr_128;
+  longlong stack_value_120;
+  undefined4 stack_value_110;
+  undefined *stack_ptr_108;
+  longlong stack_value_100;
+  undefined4 stack_value_f0;
+  undefined1 stack_buffer_e8 [32];
+  undefined *stack_ptr_c8;
+  longlong stack_value_c0;
+  undefined4 stack_value_b0;
+  undefined *stack_ptr_a8;
+  longlong stack_value_a0;
+  undefined4 stack_value_90;
+  undefined1 stack_buffer_88 [32];
+  undefined8 stack_value_68;
+  longlong *stack_ptr_60;
+  longlong *stack_ptr_58;
+  
+  stack_value_68 = 0xfffffffffffffffe;
+  if (*(char *)(render_device + 0x210) != '\0') {
+    temp_ptr_long2 = *(longlong **)(render_device + 0x1e8);
+    *output_object = (longlong)temp_ptr_long2;
+    if (temp_ptr_long2 == (longlong *)0x0) {
+      return output_object;
+    }
+    (**(code **)(*temp_ptr_long2 + 0x28))();
+    return output_object;
+  }
+  if (*config_params != 1) {
+    resource_ptr = find_resource_by_id(render_device, config_params + 2, 1);
+    if (extra_data == 0) goto LAB_1802158ec;
+    if (resource_ptr != 0) goto LAB_1802158f5;
+    stack_ptr_148 = &EMPTY_STRING_CONST;
+    stack_value_130 = 0;
+    stack_ptr_140 = (undefined8 *)0x0;
+    stack_value_138 = 0;
+    temp_ptr8 = (undefined8 *)allocate_string_memory(GLOBAL_MEMORY_POOL, 0x10, 0x13);
+    *(undefined1 *)temp_ptr8 = 0;
+    stack_ptr_140 = temp_ptr8;
+    temp_result = get_string_length(temp_ptr8);
+    stack_value_130 = CONCAT44(stack_value_130._4_4_, temp_result);
+    *temp_ptr8 = 0x2220656e656353; // "Scene" 字符串编码
+    stack_value_138 = 7;
+    temp_value8 = format_error_message(&stack_ptr_148, stack_buffer_88, extra_data + 0x4d8);
+    stack_ptr_168 = &EMPTY_STRING_CONST;
+    stack_value_150 = 0;
+    stack_ptr_160 = (undefined8 *)0x0;
+    stack_value_158 = 0;
+    temp_ptr8 = (undefined8 *)allocate_string_memory(GLOBAL_MEMORY_POOL, 0x37, 0x13);
+    *(undefined1 *)temp_ptr8 = 0;
+    stack_ptr_160 = temp_ptr8;
+    temp_result = get_string_length(temp_ptr8);
+    stack_value_150 = CONCAT44(stack_value_150._4_4_, temp_result);
+    *temp_ptr8 = 0x2064656972742022; // " dirty " 字符串编码
+    temp_ptr8[1] = 0x636f6c6c61206f74; // "tolla colla" 字符串编码
+    *(undefined4 *)(temp_ptr8 + 2) = 0x20657461; // " ate" 字符串编码
+    *(undefined4 *)((longlong)temp_ptr8 + 0x14) = 0x69206e61; // "ani i" 字符串编码
+    *(undefined4 *)(temp_ptr8 + 3) = 0x6c61766e; // "nval" 字符串编码
+    *(undefined4 *)((longlong)temp_ptr8 + 0x1c) = 0x73206469; // "dis " 字符串编码
+    *(undefined4 *)(temp_ptr8 + 4) = 0x646e756f; // "ound" 字符串编码
+    *(undefined4 *)((longlong)temp_ptr8 + 0x24) = 0x65766520; // " eve" 字符串编码
+    *(undefined4 *)(temp_ptr8 + 5) = 0x7720746e; // "nt w" 字符串编码
+    *(undefined4 *)((longlong)temp_ptr8 + 0x2c) = 0x20687469; // "it h" 字符串编码
+    *(undefined4 *)(temp_ptr8 + 6) = 0x656d616e; // "name" 字符串编码
+    *(undefined2 *)((longlong)temp_ptr8 + 0x34) = 0x2220; // " \"" 字符串编码
+    *(undefined1 *)((longlong)temp_ptr8 + 0x36) = 0;
+    stack_value_158 = 0x36;
+    temp_value8 = format_error_message(temp_value8, &stack_ptr_a8, &stack_ptr_168);
+    resource_ptr = format_error_message(temp_value8, &stack_ptr_c8, config_params + 2);
+    temp_ptr1 = (undefined1 *)0x0;
+    temp_uint3 = 0;
+    temp_uint2 = *(uint *)(resource_ptr + 0x10);
+    temp_ullong = (ulonglong)temp_uint2;
+    temp_uint = 0;
+    if (*(longlong *)(resource_ptr + 8) == 0) {
+LAB_18021573d:
+      temp_uint3 = temp_uint;
+      if (temp_uint2 != 0) {
+        memcpy(temp_ptr1, *(undefined8 *)(resource_ptr + 8), temp_ullong);
+      }
+    }
+    else if (temp_uint2 != 0) {
+      temp_int = temp_uint2 + 1;
+      if (temp_int < 0x10) {
+        temp_int = 0x10;
+      }
+      temp_ptr1 = (undefined1 *)allocate_string_memory(GLOBAL_MEMORY_POOL, (longlong)temp_int, 0x13);
+      *temp_ptr1 = 0;
+      temp_uint = get_string_length(temp_ptr1);
+      goto LAB_18021573d;
+    }
+    if (temp_ptr1 != (undefined1 *)0x0) {
+      temp_ptr1[temp_ullong] = 0;
+    }
+    if (temp_uint2 != 0xfffffffe) {
+      temp_uint2 = temp_uint2 + 3;
+      if (temp_ptr1 == (undefined1 *)0x0) {
+        if ((int)temp_uint2 < 0x10) {
+          temp_uint2 = 0x10;
+        }
+        temp_ptr1 = (undefined1 *)allocate_string_memory(GLOBAL_MEMORY_POOL, (longlong)(int)temp_uint2, 0x13);
+        *temp_ptr1 = 0;
+      }
+      else {
+        if (temp_uint2 <= temp_uint3) goto LAB_1802157dc;
+        temp_ptr1 = (undefined1 *)reallocate_string_memory(GLOBAL_MEMORY_POOL, temp_ptr1, temp_uint2, 0x10, 0x13);
+      }
+      get_string_length(temp_ptr1);
+    }
+LAB_1802157dc:
+    *(undefined2 *)(temp_ptr1 + temp_ullong) = 0xa22;
+    temp_ptr1[temp_ullong + 2] = 0;
+    stack_ptr_c8 = &EMPTY_STRING_CONST;
+    if (stack_value_c0 != 0) {
+      free_string_memory();
+    }
+    stack_value_c0 = 0;
+    stack_value_b0 = 0;
+    stack_ptr_c8 = &GLOBAL_STRING_CONST;
+    stack_ptr_a8 = &EMPTY_STRING_CONST;
+    if (stack_value_a0 != 0) {
+      free_string_memory();
+    }
+    stack_value_a0 = 0;
+    stack_value_90 = 0;
+    stack_ptr_a8 = &GLOBAL_STRING_CONST;
+    stack_ptr_168 = &EMPTY_STRING_CONST;
+    free_string_memory(stack_ptr_160);
+  }
+  resource_ptr = get_animation_state(render_device, config_params[10]);
+  if (extra_data == 0) {
+LAB_1802158ec:
+    if (resource_ptr == 0) {
+      temp_ptr_long2 = *(longlong **)(render_device + 0x1e8);
+      *output_object = (longlong)temp_ptr_long2;
+      if (temp_ptr_long2 == (longlong *)0x0) {
+        return output_object;
+      }
+      (**(code **)(*temp_ptr_long2 + 0x28))();
+      return output_object;
+    }
+LAB_1802158f5:
+    initialize_render_object(render_device, output_object);
+    temp_result = 8;
+    if (*output_object == 0) {
+      temp_ptr_long = (longlong *)allocate_object_memory(GLOBAL_MEMORY_POOL, 0xb8, 8, 3);
+      *temp_ptr_long = (longlong)&RENDER_OBJECT_VTABLE;
+      *temp_ptr_long = (longlong)&RENDER_OBJECT_VTABLE2;
+      *(undefined4 *)(temp_ptr_long + 1) = 0;
+      *temp_ptr_long = (longlong)&RENDER_OBJECT_VTABLE3;
+      temp_ptr_long2 = temp_ptr_long;
+      initialize_render_object_data(temp_ptr_long + 2);
+      *(undefined4 *)(temp_ptr_long + 10) = render_flags;
+      temp_ptr_long[0xb] = extra_data;
+      if (*(int *)(GLOBAL_DEBUG_FLAG + 0x9a0) != 0) {
+        GLOBAL_RESOURCE_COUNTER = GLOBAL_RESOURCE_COUNTER + 1;
+        log_debug_event(GLOBAL_LOGGER_HANDLE, 0, 0x1000000000000, 3, &DEBUG_RENDER_OBJECT, GLOBAL_RESOURCE_COUNTER, temp_result, temp_ptr_long);
+      }
+      *temp_ptr_long = (longlong)&RENDER_OBJECT_VTABLE4;
+      temp_ptr_long[0x11] = 0;
+      *(undefined4 *)(temp_ptr_long + 0x12) = 0xffffffff;
+      stack_ptr_60 = temp_ptr_long + 0x13;
+      temp_ptr_long[0x15] = 0;
+      temp_ptr_long[0x16] = (longlong)_guard_check_icall;
+      configure_render_object(temp_ptr_long, resource_ptr, render_flags, extra_data);
+      stack_ptr_58 = temp_ptr_long;
+      (**(code **)(*temp_ptr_long + 0x28))(temp_ptr_long);
+      (**(code **)(*temp_ptr_long + 0x28))(temp_ptr_long);
+      temp_ptr_long2 = (longlong *)*output_object;
+      *output_object = (longlong)temp_ptr_long;
+      if (temp_ptr_long2 != (longlong *)0x0) {
+        (**(code **)(*temp_ptr_long2 + 0x38))();
+      }
+      (**(code **)(*temp_ptr_long + 0x38))(temp_ptr_long);
+    }
+    else {
+      configure_render_object(*output_object, resource_ptr, render_flags, extra_data);
+    }
+    return output_object;
+  }
+  if (resource_ptr != 0) goto LAB_1802158f5;
+  stack_ptr_188 = &EMPTY_STRING_CONST;
+  stack_value_170 = 0;
+  stack_ptr_180 = (undefined8 *)0x0;
+  stack_value_178 = 0;
+  temp_ptr8 = (undefined8 *)allocate_string_memory(GLOBAL_MEMORY_POOL, 0x10, 0x13);
+  *(undefined1 *)temp_ptr8 = 0;
+  stack_ptr_180 = temp_ptr8;
+  temp_result = get_string_length(temp_ptr8);
+  stack_value_170 = CONCAT44(stack_value_170._4_4_, temp_result);
+  *temp_ptr8 = 0x2220656e656353; // "Scene" 字符串编码
+  stack_value_178 = 7;
+  temp_value8 = format_error_message(&stack_ptr_188, stack_buffer_e8, extra_data + 0x4d8);
+  stack_ptr_1a8 = &EMPTY_STRING_CONST;
+  stack_value_190 = 0;
+  stack_ptr_1a0 = (undefined8 *)0x0;
+  stack_value_198 = 0;
+  temp_ptr8 = (undefined8 *)allocate_string_memory(GLOBAL_MEMORY_POOL, 0x37, 0x13);
+  *(undefined1 *)temp_ptr8 = 0;
+  stack_ptr_1a0 = temp_ptr8;
+  temp_result = get_string_length(temp_ptr8);
+  stack_value_190 = CONCAT44(stack_value_190._4_4_, temp_result);
+  *temp_ptr8 = 0x2064656972742022; // " dirty " 字符串编码
+  temp_ptr8[1] = 0x636f6c6c61206f74; // "tolla colla" 字符串编码
+  *(undefined4 *)(temp_ptr8 + 2) = 0x20657461; // " ate" 字符串编码
+  *(undefined4 *)((longlong)temp_ptr8 + 0x14) = 0x69206e61; // "ani i" 字符串编码
+  *(undefined4 *)(temp_ptr8 + 3) = 0x6c61766e; // "nval" 字符串编码
+  *(undefined4 *)((longlong)temp_ptr8 + 0x1c) = 0x73206469; // "dis " 字符串编码
+  *(undefined4 *)(temp_ptr8 + 4) = 0x646e756f; // "ound" 字符串编码
+  *(undefined4 *)((longlong)temp_ptr8 + 0x24) = 0x65766520; // " eve" 字符串编码
+  *(undefined4 *)(temp_ptr8 + 5) = 0x7720746e; // "nt w" 字符串编码
+  *(undefined4 *)((longlong)temp_ptr8 + 0x2c) = 0x20687469; // "it h" 字符串编码
+  *(undefined4 *)(temp_ptr8 + 6) = 0x656d616e; // "name" 字符串编码
+  *(undefined2 *)((longlong)temp_ptr8 + 0x34) = 0x2220; // " \"" 字符串编码
+  *(undefined1 *)((longlong)temp_ptr8 + 0x36) = 0;
+  stack_value_198 = 0x36;
+  temp_value8 = format_error_message(temp_value8, &stack_ptr_108, &stack_ptr_1a8);
+  resource_ptr = format_error_message(temp_value8, &stack_ptr_128, config_params + 2);
+  temp_ptr1 = (undefined1 *)0x0;
+  temp_uint3 = 0;
+  temp_uint2 = *(uint *)(resource_ptr + 0x10);
+  temp_ullong = (ulonglong)temp_uint2;
+  temp_uint = 0;
+  if (*(longlong *)(resource_ptr + 8) == 0) {
+LAB_180215380:
+    temp_uint3 = temp_uint;
+    if (temp_uint2 != 0) {
+      memcpy(temp_ptr1, *(undefined8 *)(resource_ptr + 8), temp_ullong);
+    }
+  }
+  else if (temp_uint2 != 0) {
+    temp_int = temp_uint2 + 1;
+    if (temp_int < 0x10) {
+      temp_int = 0x10;
+    }
+    temp_ptr1 = (undefined1 *)allocate_string_memory(GLOBAL_MEMORY_POOL, (longlong)temp_int, 0x13);
+    *temp_ptr1 = 0;
+    temp_uint = get_string_length(temp_ptr1);
+    goto LAB_180215380;
+  }
+  if (temp_ptr1 != (undefined1 *)0x0) {
+    temp_ptr1[temp_ullong] = 0;
+  }
+  if (temp_uint2 != 0xfffffffe) {
+    temp_uint2 = temp_uint2 + 3;
+    if (temp_ptr1 == (undefined1 *)0x0) {
+      if ((int)temp_uint2 < 0x10) {
+        temp_uint2 = 0x10;
+      }
+      temp_ptr1 = (undefined1 *)allocate_string_memory(GLOBAL_MEMORY_POOL, (longlong)(int)temp_uint2, 0x13);
+      *temp_ptr1 = 0;
+    }
+    else {
+      if (temp_uint2 <= temp_uint3) goto LAB_18021541f;
+      temp_ptr1 = (undefined1 *)reallocate_string_memory(GLOBAL_MEMORY_POOL, temp_ptr1, temp_uint2, 0x10, 0x13);
+    }
+    get_string_length(temp_ptr1);
+  }
+LAB_18021541f:
+  *(undefined2 *)(temp_ptr1 + temp_ullong) = 0xa22;
+  temp_ptr1[temp_ullong + 2] = 0;
+  stack_ptr_128 = &EMPTY_STRING_CONST;
+  if (stack_value_120 != 0) {
+    free_string_memory();
+  }
+  stack_value_120 = 0;
+  stack_value_110 = 0;
+  stack_ptr_128 = &GLOBAL_STRING_CONST;
+  stack_ptr_108 = &EMPTY_STRING_CONST;
+  if (stack_value_100 != 0) {
+    free_string_memory();
+  }
+  stack_value_100 = 0;
+  stack_value_f0 = 0;
+  stack_ptr_108 = &GLOBAL_STRING_CONST;
+  stack_ptr_1a8 = &EMPTY_STRING_CONST;
+  free_string_memory(stack_ptr_1a0);
+}
+
+// 函数: 清理渲染资源缓存
+// 参数: param_1 - 渲染设备上下文
+void cleanup_render_cache(longlong render_context)
+{
+  undefined8 *resource_array;
+  longlong array_size;
+  int lock_result;
+  undefined4 cleanup_result;
+  undefined8 *current_resource;
+  ulonglong resource_count;
+  int cleanup_counter;
+  
+  initialize_cleanup_system();
+  cleanup_counter = 0;
+  lock_result = _Mtx_lock(render_context + 0x60);
+  if (lock_result != 0) {
+    throw_thread_error(lock_result);
+  }
+  resource_array = *(undefined8 **)(render_context + 0x410);
+  *(undefined8 *)(render_context + 0x410) = 0;
+  array_size = *(longlong *)(render_context + 0x418);
+  *(undefined8 *)(render_context + 0x418) = 0;
+  *(undefined8 *)(render_context + 0x420) = 0;
+  *(undefined4 *)(render_context + 0x428) = 3;
+  lock_result = _Mtx_unlock(render_context + 0x60);
+  if (lock_result != 0) {
+    throw_thread_error(lock_result);
+  }
+  resource_count = array_size - (longlong)resource_array >> 3;
+  current_resource = resource_array;
+  if (resource_count != 0) {
+    do {
+      cleanup_result = release_resource_reference(*current_resource);
+      validate_resource_handle(cleanup_result, &DEFAULT_STRING_CONST);
+      cleanup_counter = cleanup_counter + 1;
+      current_resource = current_resource + 1;
+    } while ((ulonglong)(longlong)cleanup_counter < resource_count);
+  }
+  if (resource_array == (undefined8 *)0x0) {
+    return;
+  }
+  free_memory(resource_array);
+}
+
+// 函数: 查找渲染材质索引
+// 参数: param_1 - 材质管理器, param_2 - 材质名称
+// 返回值: 材质索引，失败返回-1
+int find_material_index(longlong material_manager, longlong material_name)
+{
+  byte *name_ptr1;
+  int comparison_result;
+  int loop_counter;
+  int material_count;
+  longlong current_material;
+  byte *name_ptr2;
+  undefined *error_ptr;
+  int name_length;
+  longlong material_data;
+  longlong *material_entry;
+  undefined8 stack_guard;
+  
+  stack_guard = 0xfffffffffffffffe;
+  current_material = get_material_database_handle(*(undefined8 *)(material_manager + 0x1f8));
+  if (current_material == 0) {
+    comparison_result = _Mtx_lock(material_manager + 0x318);
+    if (comparison_result != 0) {
+      throw_thread_error(comparison_result);
+    }
+    comparison_result = 0;
+    material_count = (int)((*(longlong *)(material_manager + 0x3a0) - *(longlong *)(material_manager + 0x398)) / 0x98);
+    if (0 < material_count) {
+      current_material = 0;
+      name_length = *(int *)(material_name + 0x10);
+      material_entry = (longlong *)(*(longlong *)(material_manager + 0x398) + 8);
+      do {
+        comparison_result = (int)material_entry[1];
+        if (name_length == comparison_result) {
+          if (name_length != 0) {
+            name_ptr2 = *(byte **)(material_name + 8);
+            material_data = *material_entry - (longlong)name_ptr2;
+            do {
+              name_ptr1 = name_ptr2 + material_data;
+              comparison_result = (uint)*name_ptr2 - (uint)*name_ptr1;
+              if (comparison_result != 0) break;
+              name_ptr2 = name_ptr2 + 1;
+            } while (*name_ptr1 != 0);
+          }
+LAB_180215c6e:
+          if (comparison_result == 0) goto LAB_180215cc5;
+        }
+        else if (name_length == 0) goto LAB_180215c6e;
+        comparison_result = comparison_result + 1;
+        current_material = current_material + 1;
+        material_entry = material_entry + 0x13;
+      } while (current_material < material_count);
+    }
+    error_ptr = &DEFAULT_STRING_CONST;
+    if (*(undefined **)(material_name + 8) != (undefined *)0x0) {
+      error_ptr = *(undefined **)(material_name + 8);
+    }
+    log_warning(GLOBAL_LOGGER_HANDLE, 0, 0x1000000000000, 3, &MATERIAL_NOT_FOUND, error_ptr, stack_guard);
+    comparison_result = -1;
+LAB_180215cc5:
+    material_count = _Mtx_unlock(material_manager + 0x318);
+    if (material_count != 0) {
+      throw_thread_error(material_count);
+    }
+  }
+  else {
+    comparison_result = *(int *)(current_material + 0x54);
+  }
+  return comparison_result;
+}
+
+// 函数: 查找纹理资源索引
+// 参数: param_1 - 纹理管理器, param_2 - 纹理名称
+// 返回值: 纹理索引，失败返回-1
+int find_texture_index(longlong texture_manager, longlong texture_name)
+{
+  byte *name_ptr1;
+  int comparison_result;
+  byte *name_ptr3;
+  undefined *error_ptr;
+  int texture_index;
+  int loop_counter;
+  int texture_count;
+  longlong current_texture;
+  longlong *texture_entry;
+  longlong name_offset;
+  
+  texture_index = 0;
+  texture_count = (int)((*(longlong *)(texture_manager + 0x3e0) - *(longlong *)(texture_manager + 0x3d8)) / 0x28);
+  if (0 < texture_count) {
+    comparison_result = *(int *)(texture_name + 0x10);
+    name_offset = 0;
+    texture_entry = (longlong *)(*(longlong *)(texture_manager + 0x3d8) + 8);
+    do {
+      loop_counter = (int)texture_entry[1];
+      if (comparison_result == loop_counter) {
+        if (comparison_result != 0) {
+          name_ptr3 = *(byte **)(texture_name + 8);
+          name_offset = *texture_entry - (longlong)name_ptr3;
+          do {
+            name_ptr1 = name_ptr3 + name_offset;
+            loop_counter = (uint)*name_ptr3 - (uint)*name_ptr1;
+            if (loop_counter != 0) break;
+            name_ptr3 = name_ptr3 + 1;
+          } while (*name_ptr1 != 0);
+        }
+LAB_180215d8e:
+        if (loop_counter == 0) {
+          return texture_index;
+        }
+      }
+      else if (comparison_result == 0) goto LAB_180215d8e;
+      texture_index = texture_index + 1;
+      name_offset = name_offset + 1;
+      texture_entry = texture_entry + 5;
+    } while (name_offset < texture_count);
+  }
+  error_ptr = &DEFAULT_STRING_CONST;
+  if (*(undefined **)(texture_name + 8) != (undefined *)0x0) {
+    error_ptr = *(undefined **)(texture_name + 8);
+  }
+  log_warning(GLOBAL_LOGGER_HANDLE, 0, 0x1000000000000, 3, &TEXTURE_NOT_FOUND, error_ptr);
+  return -1;
+}
+
+// 函数: 重置渲染状态
+// 参数: param_1 - 渲染设备
+void reset_render_state(longlong render_device)
+{
+  int reset_result;
+  
+  if (*(char *)(render_device + 0x210) == '\0') {
+    reset_result = check_render_state_validity(*(undefined8 *)(render_device + 0x368));
+    if (reset_result == 0) {
+      *(undefined8 *)(render_device + 0x380) = *(undefined8 *)(render_device + 0x378);
+      return;
+    }
+    log_warning(GLOBAL_LOGGER_HANDLE, 0, 0x1000000000000, 3, &RENDER_STATE_RESET);
+  }
+  return;
+}
+
+// 函数: 执行渲染对象方法
+// 参数: param_1 - 渲染对象
+void execute_render_object_method(longlong *render_object)
+{
+  (**(code **)(*render_object + 0x68))();
+  return;
+}
+
+// 函数: 处理渲染事件
+// 参数: param_1 - 渲染设备, param_2 - 事件数据, param_3 - 事件类型, param_4 - 事件参数, param_5 - 附加数据
+// 返回值: 事件处理结果
+ulonglong process_render_event(longlong render_device, longlong event_data, undefined8 event_type, undefined4 *event_params, undefined8 extra_data)
+{
+  undefined4 temp_result;
+  ulonglong return_value;
+  longlong event_handler;
+  ulonglong process_result;
+  undefined *error_message;
+  longlong stack_temp;
+  
+  if ((*(char *)(render_device + 0x210) == '\0') &&
+     (return_value = GLOBAL_DEBUG_FLAG, *(int *)(GLOBAL_DEBUG_FLAG + 0xb60) == 1)) {
+    if ((*(longlong *)(render_device + 0x18) != 0) && (0 < *(int *)(event_data + 0x10))) {
+      (**(code **)(render_device + 0x20))(event_data, event_type, extra_data, render_device + 8);
+    }
+    event_handler = find_event_handler(render_device, event_data, 0);
+    if (event_handler != 0) {
+      temp_result = get_event_handler_info(event_handler, &stack_temp);
+      validate_resource_handle(temp_result, &DEFAULT_STRING_CONST);
+      if (stack_temp != 0) {
+        setup_event_handler(stack_temp, event_type, &EVENT_HANDLER_DEFAULT);
+        trigger_event_system();
+        apply_event_parameters(stack_temp, *event_params);
+        process_result = get_event_result(stack_temp);
+        return process_result;
+      }
+    }
+    error_message = &DEFAULT_STRING_CONST;
+    if (*(undefined **)(event_data + 8) != (undefined *)0x0) {
+      error_message = *(undefined **)(event_data + 8);
+    }
+    process_result = log_warning(GLOBAL_LOGGER_HANDLE, 0, 0x1000000000000, 3, &EVENT_HANDLER_ERROR, error_message);
+    return process_result & 0xffffffffffffff00;
+  }
+  return return_value & 0xffffffffffffff00;
+}
+
+// 函数: 处理全局渲染事件
+ulonglong process_global_render_event(void)
+{
+  undefined4 temp_result;
+  longlong event_handler;
+  ulonglong process_result;
+  undefined4 *unaff_R15;
+  longlong in_stack_00000050;
+  
+  event_handler = find_global_event_handler();
+  if (event_handler != 0) {
+    temp_result = get_event_handler_info(event_handler, &stack0x00000050);
+    validate_resource_handle(temp_result, &DEFAULT_STRING_CONST);
+    event_handler = in_stack_00000050;
+    if (in_stack_00000050 != 0) {
+      setup_event_handler(in_stack_00000050);
+      trigger_event_system();
+      apply_event_parameters(event_handler, *unaff_R15);
+      process_result = get_event_result(event_handler);
+      return process_result;
+    }
+  }
+  process_result = log_warning(GLOBAL_LOGGER_HANDLE, 0, 0x1000000000000, 3, &GLOBAL_EVENT_ERROR);
+  return process_result & 0xffffffffffffff00;
+}
+
+// 函数: 处理渲染设备事件
+ulonglong process_device_render_event(void)
+{
+  ulonglong process_result;
+  longlong unaff_RBX;
+  longlong unaff_RDI;
+  longlong stack_temp;
+  
+  stack_temp = unaff_RBX;
+  if (*(longlong *)(unaff_RDI + 8) != 0) {
+    stack_temp = *(longlong *)(unaff_RDI + 8);
+  }
+  process_result = log_warning(GLOBAL_LOGGER_HANDLE, 0, 0x1000000000000, 3, &DEVICE_EVENT_ERROR);
+  return process_result & 0xffffffffffffff00;
+}
+
+// 函数: 检查渲染设备状态
+undefined1 check_render_device_status(void)
+{
+  return 0;
+}
+
+// 函数: 设置渲染参数
+// 参数: param_1 - 渲染对象, param_2 - 参数类型, param_3 - 参数值, param_4 - 附加数据
+void set_render_parameters(longlong *render_object, undefined8 param_type, undefined8 param_value, undefined8 extra_data)
+{
+  undefined4 stack_temp_8;
+  undefined4 stack_temp_c;
+  
+  stack_temp_8 = 0x3f800000;
+  stack_temp_c = 0;
+  (**(code **)(*render_object + 0x58))(0x3f800000, 0, param_value, &stack_temp_8, extra_data);
+  return;
+}
+
+// 函数: 处理渲染命令
+// 参数: param_1 - 渲染设备, param_2 - 命令类型, param_3 - 命令数据, param_4 - 命令参数, param_5 - 附加数据
+undefined8 process_render_command(longlong render_device, int command_type, undefined8 command_data, undefined4 *command_params, undefined8 extra_data)
+{
+  longlong *temp_ptr;
+  int lock_result;
+  undefined4 temp_result;
+  undefined8 command_result;
+  longlong resource_handle;
+  longlong *stack_temp;
+  
+  if ((*(char *)(render_device + 0x210) == '\0') && (*(int *)(GLOBAL_DEBUG_FLAG + 0xb60) == 1)) {
+    lock_result = *(int *)(*(longlong *)(render_device + 0x1f8) + 0x50);
+    if (command_type < lock_result) {
+      if ((*(longlong *)(render_device + 0x18) != 0) && (-1 < command_type)) {
+        temp_ptr = (longlong *)(render_device + 0x318);
+        stack_temp = temp_ptr;
+        lock_result = _Mtx_lock(temp_ptr);
+        if (lock_result != 0) {
+          throw_thread_error(lock_result);
+        }
+        resource_handle = (longlong)command_type * 0x98 + *(longlong *)(render_device + 0x398);
+        if (0 < *(int *)(resource_handle + 0x10)) {
+          (**(code **)(render_device + 0x20))(resource_handle, command_data, extra_data);
+        }
+        lock_result = _Mtx_unlock(temp_ptr);
+        if (lock_result != 0) {
+          throw_thread_error(lock_result);
+        }
+      }
+      command_result = get_animation_state(render_device, command_type, 0);
+      temp_result = get_event_handler_info(command_result, &stack_temp);
+      validate_resource_handle(temp_result, &DEFAULT_STRING_CONST);
+      temp_ptr = stack_temp;
+      setup_event_handler(stack_temp, command_data, &EVENT_HANDLER_DEFAULT);
+      trigger_event_system();
+      apply_event_parameters(temp_ptr, *command_params);
+      command_result = get_event_result(temp_ptr);
+    }
+    else {
+      create_render_object_from_template(render_device, &stack_temp,
+                    (longlong)(command_type - lock_result) * 0x60 +
+                    *(longlong *)(*(longlong *)(render_device + 0x1f8) + 0x30), command_params, 0xfffffffffffffffe);
+      (**(code **)(*stack_temp + 0xa8))(stack_temp, command_data);
+      (**(code **)(*stack_temp + 0x148))(stack_temp, extra_data);
+      (**(code **)(*stack_temp + 0x60))();
+      if (stack_temp != (longlong *)0x0) {
+        (**(code **)(*stack_temp + 0x38))();
+      }
+      command_result = 1;
+    }
+  }
+  else {
+    command_result = 0;
+  }
+  return command_result;
+}
+
+// 函数: 获取渲染对象属性
+undefined4 get_render_object_property(undefined8 render_object, undefined8 property_id)
+{
+  longlong property_value;
+  undefined4 property_data[2];
+  undefined1 temp_buffer[8];
+  
+  property_value = find_event_handler(render_object, property_id, 0);
+  if (property_value != 0) {
+    extract_property_data(property_value, temp_buffer, property_data);
+    return property_data[0];
+  }
+  return 0;
+}
+
+// 函数: 获取渲染对象状态
+undefined4 get_render_object_status(undefined8 render_object, undefined8 status_id)
+{
+  longlong status_value;
+  undefined4 status_data[2];
+  undefined1 temp_buffer[8];
+  
+  status_value = get_animation_state(render_object, status_id, 0);
+  if (status_value != 0) {
+    extract_property_data(status_value, temp_buffer, status_data);
+    return status_data[0];
+  }
+  return 0;
+}
+
+// 全局常量定义
+#define DEFAULT_STRING_CONST DAT_18098bc73
+#define EMPTY_STRING_CONST UNK_180a3c3e0
+#define GLOBAL_STRING_CONST UNK_18098bcb0
+#define GLOBAL_MEMORY_POOL _DAT_180c8ed18
+#define GLOBAL_LOGGER_HANDLE _DAT_180c86928
+#define GLOBAL_DEBUG_FLAG _DAT_180c8a9c8
+#define GLOBAL_RESOURCE_COUNTER _DAT_180c967dc
+#define EVENT_HANDLER_DEFAULT DAT_180a002f0
+#define MATERIAL_NOT_FOUND UNK_180a108d0
+#define TEXTURE_NOT_FOUND UNK_180a10988
+#define RENDER_STATE_RESET UNK_180a109b8
+#define EVENT_HANDLER_ERROR UNK_180a10938
+#define GLOBAL_EVENT_ERROR UNK_180a10938
+#define DEVICE_EVENT_ERROR UNK_180a10938
+#define DEBUG_RENDER_OBJECT UNK_180a1b008
+#define RENDER_OBJECT_VTABLE UNK_180a21690
+#define RENDER_OBJECT_VTABLE2 UNK_180a21720
+#define RENDER_OBJECT_VTABLE3 UNK_180a079c0
+#define RENDER_OBJECT_VTABLE4 UNK_180a128b0
+
+// 函数指针映射表（简化实现）
+#define get_resource_info FUN_1808455f0
+#define process_resource_data FUN_180846fe0
+#define get_resource_properties FUN_180844f40
+#define validate_resource_handle FUN_180211a30
+#define acquire_resource_lock FUN_180847110
+#define release_resource_reference FUN_18084a7a0
+#define process_render_queue FUN_18005ea90
+#define update_render_state FUN_1800571e0
+#define throw_thread_error __Throw_C_error_std__YAXH_Z
+#define create_shader_object FUN_180739270
+#define cleanup_shader_object FUN_18073ebd0
+#define cleanup_stack_protection FUN_1808fc050
+#define get_animation_state FUN_180213700
+#define extract_blend_weights FUN_180845ef0
+#define find_resource_by_id FUN_180213440
+#define allocate_string_memory FUN_18062b420
+#define get_string_length FUN_18064e990
+#define format_error_message FUN_180627ce0
+#define free_string_memory FUN_18064e900
+#define initialize_render_object FUN_180159210
+#define allocate_object_memory FUN_18062b1e0
+#define initialize_render_object_data FUN_18015c2b0
+#define log_debug_event FUN_1800623b0
+#define configure_render_object FUN_180406a00
+#define _guard_check_icall _guard_check_icall
+#define reallocate_string_memory FUN_18062b8b0
+#define initialize_cleanup_system FUN_180156300
+#define release_resource_reference2 FUN_180849230
+#define free_memory FUN_18064e900
+#define get_material_database_handle FUN_18020fa10
+#define check_render_state_validity FUN_18084b380
+#define log_warning FUN_1800623b0
+#define find_event_handler FUN_180213440
+#define get_event_handler_info FUN_180840490
+#define setup_event_handler FUN_180407630
+#define trigger_event_system FUN_1802164f0
+#define apply_event_parameters FUN_18084a280
+#define get_event_result FUN_180406800
+#define find_global_event_handler FUN_180213440
+#define get_property_data FUN_180846050
+#define extract_property_data FUN_180846050
+#define create_render_object_from_template FUN_1801582f0
