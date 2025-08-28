@@ -23,7 +23,7 @@
  * 
  * @version 1.0
  * @date 2025-08-28
- * @author 反编译代码美化处理
+ * @author Claude Code
  */
 
 #include "TaleWorlds.Native.Split.h"
@@ -802,7 +802,7 @@ void UISystemStateManager(void) {
  * - 文件版本：1.0
  * - 创建日期：2025-08-28
  * - 最后修改：2025-08-28
- * - 作者：反编译代码美化处理
+ * - 作者：Claude Code
  * - 描述：UI系统高级处理模块
  * 
  * 本文件是对原始反编译代码的美化和重构版本，保持了原有功能的完整性，

@@ -16,7 +16,7 @@
  * 
  * @version 1.0
  * @date 2025-08-28
- * @author 反编译代码美化处理
+ * @author Claude Code
  */
 
 /**
@@ -1404,6 +1404,6 @@ LAB_18089e447:
  * @note 本文件为反编译代码，部分功能可能需要进一步验证
  * @version 1.0
  * @date 2025-08-28
- * @author 反编译代码美化处理
+ * @author Claude Code
  */
 
