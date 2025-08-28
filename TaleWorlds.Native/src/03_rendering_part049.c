@@ -8,80 +8,80 @@
 void RenderingSystem_ProcessVertexIndexBuffer(longlong render_context, undefined8 *vertex_data, uint vertex_count, uint render_flags)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined8 uVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  short sVar6;
-  int iVar7;
-  short sVar8;
-  uint uStack_88;
-  int iStack_84;
-  ulonglong uStack_80;
+  undefined4 render_flag1;
+  undefined4 render_flag2;
+  undefined8 vertex_data_item;
+  longlong vertex_buffer_ptr;
+  ulonglong vertex_loop_counter;
+  short index_offset;
+  int triangle_counter;
+  short base_index;
+  uint processed_render_flags;
+  int index_buffer_size;
+  ulonglong stack_protection;
   
   // 栈保护机制初始化
-  uStack_80 = STACK_PROTECTION_COOKIE ^ (ulonglong)&uStack_88;
-  uVar5 = (ulonglong)vertex_count;
+  stack_protection = STACK_PROTECTION_COOKIE ^ (ulonglong)&processed_render_flags;
+  vertex_loop_counter = (ulonglong)vertex_count;
   
   // 处理顶点数量大于2的情况
   if (2 < (int)vertex_count) {
-    uVar1 = **(undefined4 **)(param_1 + 0x38);
-    uVar2 = (*(undefined4 **)(param_1 + 0x38))[1];
-    if ((*(byte *)(param_1 + 0x30) & 2) != 0) {
-      uStack_88 = param_4 & 0xffffff;
-      iStack_84 = param_3 * 2;
-      FUN_1802921e0(param_1,param_3 * 9 + -6,iStack_84);
-      uVar1 = *(undefined4 *)(param_1 + 0x48);
-      iVar7 = 2;
-      if (2 < (int)param_3) {
+    render_flag1 = **(undefined4 **)(render_context + 0x38);
+    render_flag2 = (*(undefined4 **)(render_context + 0x38))[1];
+    if ((*(byte *)(render_context + 0x30) & 2) != 0) {
+      processed_render_flags = render_flags & 0xffffff;
+      index_buffer_size = vertex_count * 2;
+      allocate_index_buffer(render_context, vertex_count * 9 + -6, index_buffer_size);
+      render_flag1 = *(undefined4 *)(render_context + 0x48);
+      triangle_counter = 2;
+      if (2 < (int)vertex_count) {
         do {
-          sVar6 = (short)iVar7;
-          iVar7 = iVar7 + 1;
-          sVar8 = (short)uVar1;
-          sVar6 = sVar6 * 2 + sVar8;
-          **(short **)(param_1 + 0x58) = sVar8;
-          *(short *)(*(longlong *)(param_1 + 0x58) + 2) = sVar6 + -2;
-          *(short *)(*(longlong *)(param_1 + 0x58) + 4) = sVar6;
-          *(longlong *)(param_1 + 0x58) = *(longlong *)(param_1 + 0x58) + 6;
-        } while (iVar7 < (int)param_3);
+          index_offset = (short)triangle_counter;
+          triangle_counter = triangle_counter + 1;
+          base_index = (short)render_flag1;
+          index_offset = index_offset * 2 + base_index;
+          **(short **)(render_context + 0x58) = base_index;
+          *(short *)(*(longlong *)(render_context + 0x58) + 2) = index_offset + -2;
+          *(short *)(*(longlong *)(render_context + 0x58) + 4) = index_offset;
+          *(longlong *)(render_context + 0x58) = *(longlong *)(render_context + 0x58) + 6;
+        } while (triangle_counter < (int)vertex_count);
       }
-      uVar5 = (longlong)(int)param_3 * 8 + 0xf;
-      if (uVar5 <= (ulonglong)((longlong)(int)param_3 * 8)) {
-        uVar5 = 0xffffffffffffff0;
+      vertex_loop_counter = (longlong)(int)vertex_count * 8 + 0xf;
+      if (vertex_loop_counter <= (ulonglong)((longlong)(int)vertex_count * 8)) {
+        vertex_loop_counter = 0xffffffffffffff0;
       }
-                    // WARNING: Subroutine does not return
-      FUN_1808fd200(uVar5 & 0xfffffffffffffff0);
+      // 分配顶点缓冲区内存（此函数不返回）
+      allocate_vertex_memory(vertex_loop_counter & 0xfffffffffffffff0);
     }
-    FUN_1802921e0(param_1,(param_3 - 2) * 3,uVar5);
-    if (0 < (int)param_3) {
+    allocate_index_buffer(render_context, (vertex_count - 2) * 3, vertex_loop_counter);
+    if (0 < (int)vertex_count) {
       do {
-        uVar3 = *param_2;
-        param_2 = param_2 + 1;
-        **(undefined8 **)(param_1 + 0x50) = uVar3;
-        lVar4 = *(longlong *)(param_1 + 0x50);
-        *(undefined4 *)(lVar4 + 8) = uVar1;
-        *(undefined4 *)(lVar4 + 0xc) = uVar2;
-        *(uint *)(*(longlong *)(param_1 + 0x50) + 0x10) = param_4;
-        *(longlong *)(param_1 + 0x50) = *(longlong *)(param_1 + 0x50) + 0x14;
-        uVar5 = uVar5 - 1;
-      } while (uVar5 != 0);
+        vertex_data_item = *vertex_data;
+        vertex_data = vertex_data + 1;
+        **(undefined8 **)(render_context + 0x50) = vertex_data_item;
+        vertex_buffer_ptr = *(longlong *)(render_context + 0x50);
+        *(undefined4 *)(vertex_buffer_ptr + 8) = render_flag1;
+        *(undefined4 *)(vertex_buffer_ptr + 0xc) = render_flag2;
+        *(uint *)(*(longlong *)(render_context + 0x50) + 0x10) = render_flags;
+        *(longlong *)(render_context + 0x50) = *(longlong *)(render_context + 0x50) + 0x14;
+        vertex_loop_counter = vertex_loop_counter - 1;
+      } while (vertex_loop_counter != 0);
     }
-    iVar7 = 2;
-    if (2 < (int)param_3) {
+    triangle_counter = 2;
+    if (2 < (int)vertex_count) {
       do {
-        **(undefined2 **)(param_1 + 0x58) = *(undefined2 *)(param_1 + 0x48);
-        sVar6 = (short)iVar7;
-        *(short *)(*(longlong *)(param_1 + 0x58) + 2) = sVar6 + -1 + *(short *)(param_1 + 0x48);
-        iVar7 = iVar7 + 1;
-        *(short *)(*(longlong *)(param_1 + 0x58) + 4) = sVar6 + *(short *)(param_1 + 0x48);
-        *(longlong *)(param_1 + 0x58) = *(longlong *)(param_1 + 0x58) + 6;
-      } while (iVar7 < (int)param_3);
+        **(undefined2 **)(render_context + 0x58) = *(undefined2 *)(render_context + 0x48);
+        index_offset = (short)triangle_counter;
+        *(short *)(*(longlong *)(render_context + 0x58) + 2) = index_offset + -1 + *(short *)(render_context + 0x48);
+        triangle_counter = triangle_counter + 1;
+        *(short *)(*(longlong *)(render_context + 0x58) + 4) = index_offset + *(short *)(render_context + 0x48);
+        *(longlong *)(render_context + 0x58) = *(longlong *)(render_context + 0x58) + 6;
+      } while (triangle_counter < (int)vertex_count);
     }
-    *(int *)(param_1 + 0x48) = *(int *)(param_1 + 0x48) + (param_3 & 0xffff);
+    *(int *)(render_context + 0x48) = *(int *)(render_context + 0x48) + (vertex_count & 0xffff);
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_80 ^ (ulonglong)&uStack_88);
+  // 栈保护检查（此函数不返回）
+  check_stack_protection(stack_protection ^ (ulonglong)&processed_render_flags);
 }
 
 
@@ -149,52 +149,62 @@ void RenderingSystem_TextureCoordinateTransform(longlong render_context, float *
 
 
 // 函数: void FUN_180293772(longlong param_1,int param_2,undefined8 param_3,int param_4)
-void FUN_180293772(longlong param_1,int param_2,undefined8 param_3,int param_4)
+// 功能: 渲染系统高级坐标变换处理函数（寄存器变量版本）
+// 参数: param_1 - 渲染上下文指针, param_2 - 坐标数量, param_3 - 坐标数据指针, param_4 - 起始索引
+void RenderingSystem_AdvancedCoordinateTransform(longlong render_context, int coordinate_count, undefined8 coordinate_data, int start_index)
 
 {
-  int *piVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  int iVar6;
-  int iVar7;
-  longlong unaff_RBP;
-  int unaff_ESI;
-  int unaff_EDI;
-  int iVar8;
-  float *unaff_R14;
-  float unaff_XMM6_Da;
+  int *buffer_count_ptr;
+  float transform_x;
+  float transform_y;
+  float coord_x;
+  float coord_y;
+  int buffer_capacity;
+  int new_capacity;
+  longlong context_reg;
+  int end_index_reg;
+  int current_index_reg;
+  int current_count;
+  float *coord_array_reg;
+  float scale_factor_reg;
   
-  piVar1 = (int *)(param_1 + 0x80);
-  FUN_18011dc70(piVar1,param_2 + (*piVar1 - param_4));
-  iVar8 = *piVar1;
+  buffer_count_ptr = (int *)(render_context + 0x80);
+  // 重新分配缓冲区以容纳新的坐标点
+  FUN_18011dc70(buffer_count_ptr, coordinate_count + (*buffer_count_ptr - start_index));
+  current_count = *buffer_count_ptr;
+  
+  // 使用寄存器变量进行坐标变换
   do {
-    iVar6 = *(int *)(param_1 + 0x84);
-    fVar2 = *(float *)(*(longlong *)(unaff_RBP + 0x38) + 0x28 + (longlong)(unaff_EDI % 0xc) * 8);
-    fVar3 = *(float *)(*(longlong *)(unaff_RBP + 0x38) + 0x2c + (longlong)(unaff_EDI % 0xc) * 8);
-    fVar4 = *unaff_R14;
-    fVar5 = unaff_R14[1];
-    if (iVar8 == iVar6) {
-      if (iVar6 == 0) {
-        iVar6 = 8;
+    buffer_capacity = *(int *)(render_context + 0x84);
+    // 获取变换矩阵中的坐标值
+    transform_x = *(float *)(*(longlong *)(context_reg + 0x38) + 0x28 + (longlong)(current_index_reg % 0xc) * 8);
+    transform_y = *(float *)(*(longlong *)(context_reg + 0x38) + 0x2c + (longlong)(current_index_reg % 0xc) * 8);
+    coord_x = *coord_array_reg;
+    coord_y = coord_array_reg[1];
+    
+    // 检查缓冲区是否需要扩展
+    if (current_count == buffer_capacity) {
+      if (buffer_capacity == 0) {
+        buffer_capacity = 8;
       }
       else {
-        iVar6 = iVar6 / 2 + iVar6;
+        buffer_capacity = buffer_capacity / 2 + buffer_capacity;
       }
-      iVar7 = iVar8 + 1;
-      if (iVar8 + 1 < iVar6) {
-        iVar7 = iVar6;
+      new_capacity = current_count + 1;
+      if (current_count + 1 < buffer_capacity) {
+        new_capacity = buffer_capacity;
       }
-      FUN_18011dc70(piVar1,iVar7);
-      iVar8 = *piVar1;
+      FUN_18011dc70(buffer_count_ptr, new_capacity);
+      current_count = *buffer_count_ptr;
     }
-    unaff_EDI = unaff_EDI + 1;
-    *(ulonglong *)(*(longlong *)(param_1 + 0x88) + (longlong)iVar8 * 8) =
-         CONCAT44(unaff_XMM6_Da * fVar3 + fVar5,unaff_XMM6_Da * fVar2 + fVar4);
-    *piVar1 = *piVar1 + 1;
-    iVar8 = *piVar1;
-  } while (unaff_EDI <= unaff_ESI);
+    
+    current_index_reg = current_index_reg + 1;
+    // 应用变换并存储结果
+    *(ulonglong *)(*(longlong *)(render_context + 0x88) + (longlong)current_count * 8) =
+         CONCAT44(scale_factor_reg * transform_y + coord_y, scale_factor_reg * transform_x + coord_x);
+    *buffer_count_ptr = *buffer_count_ptr + 1;
+    current_count = *buffer_count_ptr;
+  } while (current_index_reg <= end_index_reg);
   return;
 }
 
@@ -203,10 +213,13 @@ void FUN_180293772(longlong param_1,int param_2,undefined8 param_3,int param_4)
 
 
 // 函数: void FUN_180293836(longlong param_1)
-void FUN_180293836(longlong param_1)
+// 功能: 渲染系统缓冲区清理函数
+// 参数: param_1 - 渲染上下文指针
+void RenderingSystem_ClearBuffer(longlong render_context)
 
 {
-  FUN_18011d9a0(param_1 + 0x80);
+  // 清理渲染缓冲区
+  FUN_18011d9a0(render_context + 0x80);
   return;
 }
 
