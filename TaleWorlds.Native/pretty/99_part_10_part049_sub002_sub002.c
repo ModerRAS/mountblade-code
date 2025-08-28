@@ -5834,7 +5834,7 @@ LAB_1806c7195:
 
 
 
-int FUN_1806c71d2(void)
+int SystemMonitor(void)
 
 {
   int iVar1;

@@ -1030,7 +1030,7 @@ void FUN_180941920(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   memory_ptr = *memory_pool_ptr;
   
   // 调用内存处理函数
-  FUN_18008d1f0(param_1,               // 内存参数1
+  utilities_system_memory_handler(param_1,               // 内存参数1
                 memory_pool_ptr[1],    // 内存参数2
                 param_3,               // 内存参数3
                 param_4,               // 内存参数4
@@ -1228,7 +1228,7 @@ void FUN_180941ad0(void)
       
       // 检查异常计数器
       if (*exception_count == 0) {
-        FUN_18064d630();
+        utilities_system_exception_recovery();
         return;
       }
     }
@@ -1354,7 +1354,7 @@ void utilities_system_state_cleaner_and_terminator(void)
 
 {
   if (DAT_180c91d50 != '\0') {
-    FUN_18005a050();
+    utilities_system_cleanup_handler();
     if ((1 < *system_sync_count_ptr) && (*system_sync_data_ptr != 0)) {
                     // WARNING: Subroutine does not return
       utilities_system_error_handler();
@@ -2486,7 +2486,7 @@ void FUN_180942720(void)
 #define utilities_system_resource_processor utilities_system_resource_processor
 #define utilities_system_callback_handler FUN_1808fc074
 #define utilities_system_function_caller FUN_1808fc51c
-#define utilities_system_memory_handler FUN_18008d1f0
+#define utilities_system_memory_handler utilities_system_memory_handler
 #define utilities_system_exception_recovery FUN_18064d630
 #define utilities_system_cleanup_handler FUN_18005a050
 #define utilities_system_finalizer FUN_180059ee0
