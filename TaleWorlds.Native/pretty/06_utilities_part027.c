@@ -1466,8 +1466,7 @@ void utilities_system_memory_validator(void)
 
 
 
-// 函数: void FUN_180941e90(void)
-void FUN_180941e90(void)
+void utilities_system_temp_cleaner(void)
 
 {
   longlong lVar1;
@@ -1498,8 +1497,7 @@ void FUN_180941e90(void)
 
 
 
-// 函数: void FUN_180941f00(void)
-void FUN_180941f00(void)
+void utilities_system_ptr_array_resetter_0(void)
 
 {
   *utilities_system_ptr_array[0] = SYSTEM_DEFAULT_VALUE;
@@ -1512,8 +1510,7 @@ void FUN_180941f00(void)
 
 
 
-// 函数: void FUN_180941f20(void)
-void FUN_180941f20(void)
+void utilities_system_ptr_array_resetter_1(void)
 
 {
   *utilities_system_ptr_array[1] = SYSTEM_DEFAULT_VALUE;
@@ -1526,8 +1523,7 @@ void FUN_180941f20(void)
 
 
 
-// 函数: void FUN_180941f40(void)
-void FUN_180941f40(void)
+void utilities_system_ptr_array_resetter_2(void)
 
 {
   *utilities_system_ptr_array[2] = SYSTEM_DEFAULT_VALUE;
@@ -1540,8 +1536,7 @@ void FUN_180941f40(void)
 
 
 
-// 函数: void FUN_180941f60(void)
-void FUN_180941f60(void)
+void utilities_system_ptr_array_resetter_3(void)
 
 {
   *utilities_system_ptr_array[3] = SYSTEM_DEFAULT_VALUE;
