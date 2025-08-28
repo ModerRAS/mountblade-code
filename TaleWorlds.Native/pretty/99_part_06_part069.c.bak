@@ -115,7 +115,7 @@ void FUN_1803e8ff0(int64_t *param_1)
   if (0xf < (uint64_t)param_1[0x8b]) {
     plVar12 = (int64_t *)*plVar8;
   }
-  uVar7 = CoreMemoryPoolValidator(&plStack_2c8,plVar12);
+  uVar7 = FUN_180627910(&plStack_2c8,plVar12);
   cVar2 = FUN_180624a00(uVar7);
   plStack_2c8 = (int64_t *)&system_data_buffer_ptr;
   if (puStack_2c0 != (uint64_t *)0x0) {
@@ -132,7 +132,7 @@ void FUN_1803e8ff0(int64_t *param_1)
   if (0xf < (uint64_t)param_1[0x8b]) {
     plVar8 = (int64_t *)*plVar8;
   }
-  uVar7 = CoreMemoryPoolValidator(&plStack_2c8,plVar8);
+  uVar7 = FUN_180627910(&plStack_2c8,plVar8);
   cVar2 = FUN_180624a00(uVar7);
   if (cVar2 == '\0') {
     FUN_180624910(uVar7);

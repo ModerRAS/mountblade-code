@@ -116,7 +116,7 @@ typedef struct {
 #define UISystem_EmptyHandler1              FUN_180749e0b    // UI系统空处理器1
 #define UISystem_EmptyHandler2              FUN_180749e21    // UI系统空处理器2
 #define UISystem_ComponentValidator         FUN_180749e60    // UI系统组件验证器
-#define UISystem_EventDispatcher           DataTransformer    // UI系统事件分发器
+#define UISystem_EventDispatcher           FUN_180749ef0    // UI系统事件分发器
 #define UISystem_VectorProcessor           FUN_180749f70    // UI系统向量处理器
 #define UISystem_ResourceInitializer       FUN_18074a310    // UI系统资源初始化器
 #define UISystem_ComponentConfigurator     FUN_18074a350    // UI系统组件配置器
@@ -484,8 +484,8 @@ uint64_t FUN_180749e60(int64_t param_1,int64_t *param_2,int64_t *param_3)
 
 
 
-// 函数: void DataTransformer(int32_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
-void DataTransformer(int32_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
+// 函数: void FUN_180749ef0(int32_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
+void FUN_180749ef0(int32_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
                   uint64_t param_5)
 
 {

@@ -302,7 +302,7 @@ int RenderingSystem_ValidateResourceData(uint64_t param_1, uint64_t param_2, uin
   void *puStack_30;
   int64_t lStack_28;
   
-  CoreMemoryPoolValidator(&puStack_30, param_1, param_3, param_4, 0xfffffffffffffffe);
+  FUN_180627910(&puStack_30, param_1, param_3, param_4, 0xfffffffffffffffe);
   sVar1 = FUN_180571e20(&system_buffer_60c0, &puStack_30);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
@@ -1149,7 +1149,7 @@ RenderingSystem_GetResourceProperty(uint64_t param_1,uint64_t param_2,uint64_t p
   void *puStack_30;
   int64_t lStack_28;
   
-  uVar2 = CoreMemoryPoolValidator(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  uVar2 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   uVar1 = FUN_180552800(&system_buffer_5ff0,uVar2);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
@@ -1180,7 +1180,7 @@ byte RenderingSystem_CheckResourceCapability(uint64_t param_1,uint64_t param_2,u
   void *puStack_30;
   int64_t lStack_28;
   
-  uVar2 = CoreMemoryPoolValidator(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  uVar2 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   iVar1 = FUN_180552800(&system_buffer_5ff0,uVar2);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
@@ -1212,7 +1212,7 @@ RenderingSystem_GetResourceExtendedProperty(uint64_t param_1,uint64_t param_2,ui
   void *puStack_30;
   int64_t lStack_28;
   
-  uVar2 = CoreMemoryPoolValidator(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  uVar2 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   uVar1 = FUN_1804c3680(&system_buffer_61b0,uVar2);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
@@ -1285,7 +1285,7 @@ uint64_t RenderingSystem_GetResourceIdentifier(uint64_t param_1,uint64_t param_2
   void *puStack_30;
   int64_t lStack_28;
   
-  uVar2 = CoreMemoryPoolValidator(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  uVar2 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   iVar1 = FUN_180552800(&system_buffer_5ff0,uVar2);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
@@ -1385,7 +1385,7 @@ void RenderingSystem_ProcessResourceCommand(uint64_t param_1,uint64_t param_2,ui
   void *puStack_30;
   int64_t lStack_28;
   
-  CoreMemoryPoolValidator(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   auStackX_10[0] = 0xffffffff;
   puVar1 = *(void **)*render_system_data_memory;
   if (puVar1 == &unknown_var_424_ptr) {

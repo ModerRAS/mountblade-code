@@ -213,7 +213,7 @@ void System_DataProcessor(int64_t param_1)
   }
   *(int8_t *)(system_global_data_ptr + 9) = 1;
   uVar10 = FUN_1801c5bb0(uVar38,param_1 + 0x110,param_1 + 0x130);
-  CoreMemoryPoolValidator(&puStack_350,uVar10);
+  FUN_180627910(&puStack_350,uVar10);
   lVar37 = param_1 + 0xc0;
   lVar35 = *(int64_t *)(param_1 + 200);
   lStack_4c8 = lVar35;

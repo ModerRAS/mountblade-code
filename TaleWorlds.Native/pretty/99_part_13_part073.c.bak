@@ -19,7 +19,7 @@
 #define SystemValidator FUN_1808db010   // 系统验证器
 
 // 事件和状态管理函数
-#define EventManager AdvancedSystemProcessor       // 事件管理器
+#define EventManager FUN_18088c790       // 事件管理器
 #define EventHandler FUN_18088c740      // 事件处理器
 #define EventDispatcher FUN_18088c620   // 事件分发器
 #define EventInitializer FUN_18088a0c0  // 事件初始化器

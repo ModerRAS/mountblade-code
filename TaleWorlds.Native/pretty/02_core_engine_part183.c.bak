@@ -239,8 +239,8 @@ typedef void (*code)(void);
 /* CoreEngineSystemCleanup - 格式化处理函数 */
 #define FormatProcessor CoreEngineSystemCleanup
 
-/* DataValidator - 内存重分配函数 */
-#define MemoryReallocator DataValidator
+/* FUN_18062b8b0 - 内存重分配函数 */
+#define MemoryReallocator FUN_18062b8b0
 
 /* CoreEngineDataBufferProcessor - 配置块初始化函数 */
 #define ConfigBlockInitializer CoreEngineDataBufferProcessor

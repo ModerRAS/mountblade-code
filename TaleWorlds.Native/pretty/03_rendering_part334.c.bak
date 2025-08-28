@@ -490,7 +490,7 @@ void FUN_180443b40(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     int8_t command_buffer_30 [48];
     
     // 准备命令缓冲区
-    CoreMemoryPoolValidator(command_buffer_30, param_1, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE);
+    FUN_180627910(command_buffer_30, param_1, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE);
     
     // 执行渲染命令
     FUN_1801865a0();
@@ -528,7 +528,7 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
     parameter_data_b0 = RENDERING_SYSTEM_FLAG_FFFFFFFE;
     parameter_data_18 = GET_SECURITY_COOKIE() ^ (uint64_t)parameter_buffer_d8;
     parameter_ptr_b8 = parameter_array_60;
-    parameter_ptr = (uint64_t *)CoreMemoryPoolValidator(parameter_array_60, param_1);
+    parameter_ptr = (uint64_t *)FUN_180627910(parameter_array_60, param_1);
     system_context = render_system_data_config;
     parameter_ptr_a8 = parameter_ptr;
     
@@ -591,8 +591,8 @@ void FUN_180443d10(uint64_t param_1)
     int8_t resource_buffer_30 [40];
     
     // 初始化资源缓冲区
-    CoreMemoryPoolValidator(resource_buffer_50);
-    CoreMemoryPoolValidator(resource_buffer_30, param_1);
+    FUN_180627910(resource_buffer_50);
+    FUN_180627910(resource_buffer_30, param_1);
     
     // 执行资源销毁
     FUN_180186880();
@@ -611,8 +611,8 @@ void FUN_180443d70(uint64_t param_1)
     int8_t resource_buffer_30 [40];
     
     // 初始化资源缓冲区
-    CoreMemoryPoolValidator(resource_buffer_50);
-    CoreMemoryPoolValidator(resource_buffer_30, param_1);
+    FUN_180627910(resource_buffer_50);
+    FUN_180627910(resource_buffer_30, param_1);
     
     // 执行资源释放
     FUN_180186ac0();
@@ -721,8 +721,8 @@ void FUN_180443f80(uint64_t param_1)
     int8_t object_buffer_30 [40];
     
     // 初始化对象缓冲区
-    CoreMemoryPoolValidator(object_buffer_50);
-    CoreMemoryPoolValidator(object_buffer_30, param_1);
+    FUN_180627910(object_buffer_50);
+    FUN_180627910(object_buffer_30, param_1);
     
     // 执行对象销毁
     FUN_180186eb0();
@@ -743,7 +743,7 @@ void FUN_180443ff0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     int8_t process_buffer_30 [48];
     
     // 准备处理缓冲区
-    CoreMemoryPoolValidator(process_buffer_30, param_1, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE);
+    FUN_180627910(process_buffer_30, param_1, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE);
     
     // 执行最终处理
     FUN_1801871f0();

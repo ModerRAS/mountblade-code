@@ -2144,7 +2144,7 @@ float SQRT(float value)
 /** 系统注册表管理函数别名 */
 #define NetworkDataProcessor core_engine_registry_manager_get
 #define NetworkConnectionManager core_engine_memory_allocator_calculate
-#define NetworkProtocolHandler core_engine_memory_allocator_allocate
+#define FUN_18008f140 core_engine_memory_allocator_allocate
 
 /** 系统回调函数别名 */
 #define FUN_1802633c0 core_engine_callback_handler_type1

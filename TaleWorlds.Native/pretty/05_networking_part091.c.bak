@@ -866,7 +866,7 @@ int32_t Network_ResourceAllocator(int64_t param_1, uint64_t param_2, uint param_
   }
 LAB_180894ebf:
   // 资源清理
-  AdvancedSystemProcessor(auStack_28);
+  FUN_18088c790(auStack_28);
 }
 
 /* ===== 资源清理函数 ===== */

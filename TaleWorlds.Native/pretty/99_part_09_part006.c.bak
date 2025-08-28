@@ -127,7 +127,7 @@ LAB_1805c04d0:
         if (fVar17 * 3.5 <= fVar24 * fVar23) {
           if (fVar24 * fVar23 < fVar19 * 3.0) {
                     // WARNING: Subroutine does not return
-            AdvancedSystemController(*(int32_t *)(lVar9 + 0x34));
+            FUN_1808fd400(*(int32_t *)(lVar9 + 0x34));
           }
         }
         else {
@@ -183,7 +183,7 @@ LAB_1805c04d0:
   }
 LAB_1805c0886:
                     // WARNING: Subroutine does not return
-  AdvancedSystemController(*(int32_t *)(*(int64_t *)(*unaff_RDI + 0x20) + 0x34));
+  FUN_1808fd400(*(int32_t *)(*(int64_t *)(*unaff_RDI + 0x20) + 0x34));
 LAB_1805c07d0:
   if (plVar12 == (int64_t *)0x0) goto code_r0x0001805c07d9;
   goto LAB_1805c04d0;
@@ -367,7 +367,7 @@ LAB_1805c09a3:
             uVar16 = uVar16 ^ uVar16 << 5;
             *(uint *)(unaff_RDI + 0x272) = uVar16;
                     // WARNING: Subroutine does not return
-            AdvancedSystemController((float)(uVar16 - 1) * 3.949879e-10 - 0.84823006);
+            FUN_1808fd400((float)(uVar16 - 1) * 3.949879e-10 - 0.84823006);
           }
         }
         puVar7 = *(uint64_t **)(unaff_RBP + 200);
