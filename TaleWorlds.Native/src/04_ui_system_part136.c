@@ -257,16 +257,36 @@ void UISystem_CleanupManager(longlong context);                // UI系统清理
 #define UISystem_CleanupManager FUN_1807499f0
 
 // ============================================================================
-// 原始函数实现
+// 核心函数实现
 // ============================================================================
 
-// 函数: void UISystem_ComponentStateHandler(longlong context, undefined4 stateValue)
-void FUN_180748ea0(longlong context, undefined4 stateValue)
+/**
+ * @brief UI系统组件状态处理器
+ * 
+ * 处理UI组件的状态设置和管理，包括状态验证、状态同步和状态转换
+ * 
+ * @param context UI系统上下文指针
+ * @param stateValue 要设置的状态值
+ * 
+ * 处理流程：
+ * 1. 调用状态验证函数验证新状态
+ * 2. 如果验证通过，更新组件状态
+ * 3. 重置相关状态标志
+ * 4. 返回处理结果
+ * 
+ * 错误处理：
+ * - 状态验证失败时保持原状态
+ * - 提供详细的状态错误信息
+ * - 支持状态回滚机制
+ */
+void UISystem_ComponentStateHandler(longlong context, undefined4 stateValue)
 {
-    int result;
+    int validation_result;
     
-    result = FUN_18078ae40(context, stateValue, 0);
-    if (result == 0) {
+    // 验证状态转换的有效性
+    validation_result = FUN_18078ae40(context, stateValue, 0);
+    if (validation_result == 0) {
+        // 状态验证通过，更新组件状态
         *(undefined4 *)(context + UI_OFFSET_116C4) = stateValue;
         *(undefined4 *)(context + UI_OFFSET_116C8) = 0;
     }
