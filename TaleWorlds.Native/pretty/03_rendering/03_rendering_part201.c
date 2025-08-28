@@ -426,6 +426,8 @@ void rendering_parameter_calculator_type2(void)
     uint64_t *render_data_ptr1;              // 渲染数据指针1
     uint64_t *render_data_ptr2;              // 渲染数据指针2
     uint64_t *base_ptr;                      // 基础指针
+    uint64_t *matrix_data_ptr1;              // 矩阵数据指针1
+    uint64_t *matrix_data_ptr2;              // 矩阵数据指针2
     longlong base_long;                      // 基础长整型变量
     longlong loop_counter;                   // 循环计数器
     uint64_t *context_ptr;                   // 上下文指针
@@ -652,6 +654,8 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     longlong long_param2;                   // 长整型参数2
     longlong long_param3;                   // 长整型参数3
     uint64_t *render_data_ptr2;             // 渲染数据指针2
+    uint64_t *matrix_data_ptr1;             // 矩阵数据指针1
+    uint64_t *matrix_data_ptr2;             // 矩阵数据指针2
     char stack_char [8];                    // 栈字符数组
     longlong stack_long;                    // 栈长整型变量
     uint64_t memory_stack_param;            // 内存栈参数
