@@ -46,102 +46,101 @@
  * @return void
  */
 void RenderingSystem_ProcessResourceData(longlong render_context, longlong output_handle, uint resource_data)
-
 {
-  undefined4 render_data;
-  undefined8 *resource_pool_ptr;
-  longlong *memory_block_ptr;
-  longlong *memory_block_ptr2;
-  uint loop_counter;
-  uint alignment_counter;
-  ulonglong *data_buffer_ptr;
-  uint *uint_array_ptr;
-  longlong hash_table_entry;
-  ulonglong *resource_data_ptr;
-  int array_size;
-  int *hash_entry_ptr;
-  ulonglong resource_id;
-  int float_value;
-  undefined *string_data;
-  undefined4 *resource_array_ptr;
-  ulonglong resource_size;
-  undefined8 *resource_manager_ptr;
-  uint item_count;
-  longlong **context_ptr_ptr;
-  ulonglong *output_buffer_ptr;
-  longlong data_offset;
-  longlong resource_offset;
-  ulonglong *temp_buffer_ptr;
-  undefined1 float_buffer [16];
-  longlong output_handle;
-  uint resource_data_param;
-  uint count_array [2];
-  longlong *memory_pool_ptr;
-  uint *uint_buffer_ptr;
-  longlong *long_buffer_ptr;
-  undefined4 memory_flag;
-  ulonglong write_data_1;
-  ulonglong write_data_2;
-  ulonglong *buffer_start_ptr;
-  ulonglong *buffer_current_ptr;
-  ulonglong *buffer_end_ptr;
-  undefined4 allocation_flag;
-  longlong *stack_buffer_ptr;
-  undefined8 callback_data;
-  code *callback_function;
-  undefined *error_handler;
-  ulonglong *resource_list_ptr;
-  ulonglong *data_stream_ptr;
-  longlong **context_manager_ptr;
-  longlong render_context_local;
-  longlong *file_handle_ptr;
-  ulonglong **buffer_manager_ptr;
-  longlong **thread_manager_ptr;
-  undefined1 thread_flag;
-  undefined8 thread_counter;
-  undefined1 stack_buffer [16];
-  ulonglong performance_counter;
-  undefined *cleanup_handler;
-  longlong cleanup_flag;
-  undefined4 status_flag;
-  
-  thread_counter = 0xfffffffffffffffe;
-  resource_id = (ulonglong)resource_data;
-  count_array[0] = 0;
-  buffer_start_ptr = (ulonglong *)0x0;
-  buffer_current_ptr = (ulonglong *)0x0;
-  buffer_end_ptr = (ulonglong *)0x0;
-  allocation_flag = 3;
-  memory_pool_ptr = (longlong *)0x0;
-  uint_buffer_ptr = (uint *)0x0;
-  long_buffer_ptr = (longlong *)0x0;
-  memory_flag = 3;
-  resource_pool_ptr = *(undefined8 **)(render_context + 0x9f8);
-  resource_array_ptr = (undefined4 *)*resource_pool_ptr;
-  resource_manager_ptr = resource_pool_ptr;
+    undefined4 render_data;
+    undefined8 *resource_pool_ptr;
+    longlong *memory_block_ptr;
+    longlong *memory_block_ptr2;
+    uint loop_counter;
+    uint alignment_counter;
+    ulonglong *data_buffer_ptr;
+    uint *uint_array_ptr;
+    longlong hash_table_entry;
+    ulonglong *resource_data_ptr;
+    int array_size;
+    int *hash_entry_ptr;
+    ulonglong resource_id;
+    int float_value;
+    undefined *string_data;
+    undefined4 *resource_array_ptr;
+    ulonglong resource_size;
+    undefined8 *resource_manager_ptr;
+    uint item_count;
+    longlong **context_ptr_ptr;
+    ulonglong *output_buffer_ptr;
+    longlong data_offset;
+    longlong resource_offset;
+    ulonglong *temp_buffer_ptr;
+    undefined1 float_buffer[16];
+    longlong output_handle_local;
+    uint resource_data_param;
+    uint count_array[2];
+    longlong *memory_pool_ptr;
+    uint *uint_buffer_ptr;
+    longlong *long_buffer_ptr;
+    undefined4 memory_flag;
+    ulonglong write_data_1;
+    ulonglong write_data_2;
+    ulonglong *buffer_start_ptr;
+    ulonglong *buffer_current_ptr;
+    ulonglong *buffer_end_ptr;
+    undefined4 allocation_flag;
+    longlong *stack_buffer_ptr;
+    undefined8 callback_data;
+    code *callback_function;
+    undefined *error_handler;
+    ulonglong *resource_list_ptr;
+    ulonglong *data_stream_ptr;
+    longlong **context_manager_ptr;
+    longlong render_context_local;
+    longlong *file_handle_ptr;
+    ulonglong **buffer_manager_ptr;
+    longlong **thread_manager_ptr;
+    undefined1 thread_flag;
+    undefined8 thread_counter;
+    undefined1 stack_buffer[16];
+    ulonglong performance_counter;
+    undefined *cleanup_handler;
+    longlong cleanup_flag;
+    undefined4 status_flag;
+    
+    thread_counter = 0xfffffffffffffffe;
+    resource_id = (ulonglong)resource_data;
+    count_array[0] = 0;
+    buffer_start_ptr = (ulonglong *)0x0;
+    buffer_current_ptr = (ulonglong *)0x0;
+    buffer_end_ptr = (ulonglong *)0x0;
+    allocation_flag = 3;
+    memory_pool_ptr = (longlong *)0x0;
+    uint_buffer_ptr = (uint *)0x0;
+    long_buffer_ptr = (longlong *)0x0;
+    memory_flag = 3;
+    resource_pool_ptr = *(undefined8 **)(render_context + 0x9f8);
+    resource_array_ptr = (undefined4 *)*resource_pool_ptr;
+    resource_manager_ptr = resource_pool_ptr;
   if (resource_array_ptr == (undefined4 *)0x0) {
-    resource_manager_ptr = resource_pool_ptr + 1;
-    resource_array_ptr = (undefined4 *)*resource_manager_ptr;
-    while (resource_array_ptr == (undefined4 *)0x0) {
-      resource_manager_ptr = resource_manager_ptr + 1;
-      resource_array_ptr = (undefined4 *)*resource_manager_ptr;
-    }
-  }
-  item_count = 0;
-  output_handle = output_handle;
-  resource_data_param = resource_data;
-  if (resource_array_ptr != (undefined4 *)resource_pool_ptr[*(longlong *)(render_context + 0xa00)]) {
-    do {
-      resource_offset = *(longlong *)(resource_array_ptr + 2);
-      data_offset = *(longlong *)(resource_offset + 8);
-      for (piVar12 = *(int **)(lVar22 + (uVar13 % (ulonglong)*(uint *)(lVar23 + 0x10)) * 8);
-          piVar12 != (int *)0x0; piVar12 = *(int **)(piVar12 + 4)) {
-        if ((int)uVar13 == *piVar12) {
-          lVar23 = *(longlong *)(lVar23 + 0x10);
-          goto LAB_180331625;
+        resource_manager_ptr = resource_pool_ptr + 1;
+        resource_array_ptr = (undefined4 *)*resource_manager_ptr;
+        while (resource_array_ptr == (undefined4 *)0x0) {
+            resource_manager_ptr = resource_manager_ptr + 1;
+            resource_array_ptr = (undefined4 *)*resource_manager_ptr;
         }
-      }
-      lVar23 = *(longlong *)(lVar23 + 0x10);
+    }
+    item_count = 0;
+    output_handle_local = output_handle;
+    resource_data_param = resource_data;
+    if (resource_array_ptr != (undefined4 *)resource_pool_ptr[*(longlong *)(render_context + 0xa00)]) {
+        do {
+            resource_offset = *(longlong *)(resource_array_ptr + 2);
+            data_offset = *(longlong *)(resource_offset + 8);
+            for (piVar12 = *(int **)(data_offset + (resource_id % (ulonglong)*(uint *)(resource_offset + 0x10)) * 8);
+                piVar12 != (int *)0x0; piVar12 = *(int **)(piVar12 + 4)) {
+                if ((int)resource_id == *piVar12) {
+                    resource_offset = *(longlong *)(resource_offset + 0x10);
+                    goto LAB_180331625;
+                }
+            }
+            resource_offset = *(longlong *)(resource_offset + 0x10);
       piVar12 = *(int **)(lVar22 + lVar23 * 8);
 LAB_180331625:
       if ((piVar12 != *(int **)(lVar22 + lVar23 * 8)) &&
