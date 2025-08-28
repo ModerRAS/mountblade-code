@@ -130,7 +130,7 @@
 #define DataStructureFinder FUN_1801ea730       /** 数据结构查找器 */
 #define DataStructureInserter FUN_1801ea0a0      /** 数据结构插入器 */
 #define DataStructureUpdater FUN_180179aa0      /** 数据结构更新器 */
-#define DataStructureDeleter FUN_18066bdc0       /** 数据结构删除器 */
+#define DataStructureDeleter SystemNetworkHandler       /** 数据结构删除器 */
 
 /** 事件和消息处理器 */
 #define EventHandler FUN_1801e8b60               /** 事件处理器 */

@@ -33,7 +33,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 3;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,3);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010bf80(auStack_148,0);
@@ -48,7 +48,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 1;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x17a0;
@@ -57,7 +57,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x3f000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f000000);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   func_0x00018010bfa0(auStack_148,0);
@@ -72,7 +72,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010bfc0(auStack_148,0);
@@ -86,7 +86,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 2;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,2);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010bfe0(auStack_148,0);
@@ -101,7 +101,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 2;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,2);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c000(auStack_148,0);
@@ -116,7 +116,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 1;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x1810;
@@ -125,7 +125,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c020(auStack_148,0);
@@ -140,7 +140,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 1;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x1ab0;
@@ -149,7 +149,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x380;
@@ -158,7 +158,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 2;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,2);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x3f0;
@@ -167,7 +167,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 1;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c040(auStack_148,0);
@@ -182,7 +182,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x1b90;
@@ -191,7 +191,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 200;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,200);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c060(auStack_148,0);
@@ -206,7 +206,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c080(auStack_148,0);
@@ -221,7 +221,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c0a0(auStack_148,0);
@@ -236,7 +236,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 1;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x1d50;
@@ -245,7 +245,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x500;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x500);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x1dc0;
@@ -254,7 +254,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x2d0;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x2d0);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x1e30;
@@ -263,7 +263,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x42700000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42700000);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1ea0;
@@ -272,7 +272,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x1f10;
@@ -281,7 +281,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c0c0(auStack_148,0);
@@ -296,7 +296,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c0e0(auStack_148,0);
@@ -311,7 +311,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c100(auStack_148,0);
@@ -326,7 +326,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c120(auStack_148,0);
@@ -341,7 +341,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c140(auStack_148,0);
@@ -356,7 +356,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c160(auStack_148,0);
@@ -371,7 +371,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c180(auStack_148,0);
@@ -386,7 +386,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c1a0(auStack_148,0);
@@ -401,7 +401,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c1c0(auStack_148,0);
@@ -416,7 +416,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c1e0(auStack_148,0);
@@ -431,7 +431,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c200(auStack_148,0);
@@ -446,7 +446,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c220(auStack_148,0);
@@ -461,7 +461,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c240(auStack_148,0);
@@ -476,7 +476,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c260(auStack_148,0);
@@ -491,7 +491,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c280(auStack_148,0);
@@ -506,7 +506,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c2a0(auStack_148,0);
@@ -521,7 +521,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c2c0(auStack_148,0);
@@ -536,7 +536,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c2e0(auStack_148,0);
@@ -551,7 +551,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   FUN_18010bd80(auStack_148,0);
@@ -563,7 +563,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   FUN_18010bdb0(auStack_148,0);
@@ -575,7 +575,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0xc40;
@@ -583,7 +583,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 2;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,2);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0xd20;
@@ -591,7 +591,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 1;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0xcb0;
@@ -599,7 +599,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 1;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   FUN_18010bde0(auStack_120,0);
@@ -611,7 +611,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x1340;
@@ -619,7 +619,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x3f800000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f800000);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x13b0;
@@ -627,7 +627,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x3f266666;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f266666);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1420;
@@ -635,7 +635,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x3f800000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f800000);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1500;
@@ -643,7 +643,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x3f800000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f800000);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1490;
@@ -651,7 +651,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x3f800000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f800000);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1570;
@@ -659,7 +659,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x15e0;
@@ -667,7 +667,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x16c0;
@@ -675,7 +675,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x3f000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f000000);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1880;
@@ -683,7 +683,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x400ccccd;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x400ccccd);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x2060;
@@ -691,7 +691,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x42200000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42200000);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x18f0;
@@ -699,7 +699,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x3fc00000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3fc00000);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1960;
@@ -707,7 +707,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x42200000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42200000);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x19d0;
@@ -715,7 +715,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x42c80000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42c80000);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1110;
@@ -723,7 +723,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x42480000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42480000);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1180;
@@ -731,7 +731,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x11f0;
@@ -739,7 +739,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x3f800000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f800000);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1260;
@@ -747,7 +747,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x20d0;
@@ -755,7 +755,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x42c80000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42c80000);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x2140;
@@ -763,7 +763,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x21b0;
@@ -771,7 +771,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x3c;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3c);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x2220;
@@ -779,7 +779,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 0x42480000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42480000);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0xbd0;
@@ -787,7 +787,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 2;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,2);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   FUN_18010be10(auStack_100,0);
@@ -799,7 +799,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   FUN_18010be40(auStack_e0,0);
@@ -811,7 +811,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0xd90;
@@ -819,7 +819,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 4;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,4);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0xe00;
@@ -827,7 +827,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 4;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,4);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   FUN_18010be70(auStack_c0,0);
@@ -839,7 +839,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 1;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x230;
@@ -847,7 +847,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 2;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,2);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   FUN_18010bea0(auStack_a0,0);
@@ -859,7 +859,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 1;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   FUN_18010bed0(auStack_80,0);
@@ -871,7 +871,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 1;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x24c0;
@@ -879,7 +879,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 0x28,&uStackX_8);
   FUN_18010bf00(auStack_60,0);
@@ -891,7 +891,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   FUN_18010bf30(auStack_40,0);
@@ -903,7 +903,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x2370;
@@ -911,7 +911,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x23e0;
@@ -919,7 +919,7 @@ void FUN_180105630(int64_t param_1)
   uStackX_8._0_4_ = 1;
   SystemAudioManager(uVar1,&uStackX_8);
   uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
-  FUN_1800b0710(uVar1,&uStackX_8);
+  DataValidationEngine(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
   SystemInitializer(param_1 + 8,&uStackX_8);
   *(int32_t *)(param_1 + 0x88) = 1;

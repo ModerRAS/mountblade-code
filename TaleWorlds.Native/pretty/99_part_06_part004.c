@@ -16,7 +16,7 @@ void FUN_1803a6d01(void)
   *(int32_t *)(lVar1 + 0x28) = *(int32_t *)(unaff_RDI + 1);
   *(int32_t *)(lVar1 + 0x2c) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar1);
+  SystemNetworkHandler(lVar1);
 }
 
 
@@ -126,7 +126,7 @@ LAB_1803a6ea8:
   *(int *)(lVar3 + 0x28) = param_4[2];
   *(int32_t *)(lVar3 + 0x2c) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar3,puVar5,param_1,uVar4);
+  SystemNetworkHandler(lVar3,puVar5,param_1,uVar4);
 }
 
 

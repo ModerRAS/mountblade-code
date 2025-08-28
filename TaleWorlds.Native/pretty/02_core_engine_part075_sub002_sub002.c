@@ -909,7 +909,7 @@ void FUN_180108190(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
   FUN_180046240(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
-  FUN_1800b0710(uVar2,&uStackX_8);
+  DataValidationEngine(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)uVar2;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
   uVar2 = param_1 + 0x770;
@@ -918,7 +918,7 @@ void FUN_180108190(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
   FUN_180046240(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
-  FUN_1800b0710(uVar2,&uStackX_8);
+  DataValidationEngine(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)uVar2;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
   uVar2 = param_1 + 0x7e0;
@@ -927,7 +927,7 @@ void FUN_180108190(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
   FUN_180046240(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
-  FUN_1800b0710(uVar2,&uStackX_8);
+  DataValidationEngine(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)uVar2;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
   uVar2 = param_1 + 0x850;
@@ -936,7 +936,7 @@ void FUN_180108190(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
   FUN_180046240(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
-  FUN_1800b0710(uVar2,&uStackX_8);
+  DataValidationEngine(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)uVar2;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
   uVar2 = param_1 + 0x8c0;
@@ -945,7 +945,7 @@ void FUN_180108190(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
   FUN_180046240(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
-  FUN_1800b0710(uVar2,&uStackX_8);
+  DataValidationEngine(uVar2,&uStackX_8);
   uStackX_8 = (uint64_t *)uVar2;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
   lVar3 = param_1 + 0x930;
@@ -954,7 +954,7 @@ void FUN_180108190(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
   FUN_180046240(lVar3,&uStackX_8);
   uStackX_8 = (uint64_t *)((uint64_t)uStackX_8 & 0xffffffff00000000);
-  FUN_1800b0710(lVar3,&uStackX_8);
+  DataValidationEngine(lVar3,&uStackX_8);
   uStackX_8 = (uint64_t *)lVar3;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
   *(int32_t *)(param_1 + 0x88) = 1;

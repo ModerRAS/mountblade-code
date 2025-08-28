@@ -187,7 +187,7 @@ void RenderingSystemProcessFileData(int64_t render_context, int64_t file_context
           }
           
           // 警告：子函数不返回
-          FUN_18066bdc0(memory_block, resource_allocator, resource_pool, process_parameter);
+          SystemNetworkHandler(memory_block, resource_allocator, resource_pool, process_parameter);
         }
         
         if (((char)stack_flags == '\0') && (memory_block != 0)) {
@@ -247,7 +247,7 @@ LAB_18032d19c:
     }
     
     // 警告：子函数不返回
-    FUN_18066bdc0(resource_handle, resource_pool, resource_allocator, process_parameter, file_size);
+    SystemNetworkHandler(resource_handle, resource_pool, resource_allocator, process_parameter, file_size);
   }
   
   fread(&stack_item_count, 4, 1, *(uint64_t *)(file_context + 8), allocation_size);
@@ -292,7 +292,7 @@ LAB_18032d06c:
   }
   
   // 警告：子函数不返回
-  FUN_18066bdc0(resource_handle, resource_allocator, resource_pool, process_parameter);
+  SystemNetworkHandler(resource_handle, resource_allocator, resource_pool, process_parameter);
 }
 
 // 渲染系统资源序列化器
