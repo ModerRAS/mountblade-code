@@ -1,559 +1,973 @@
 #include "TaleWorlds.Native.Split.h"
 
-/**
- * 网络系统高级通信和数据包处理模块
- * 
- * 本模块包含20个核心函数，主要功能包括：
- * - 网络连接管理和状态监控
- * - 数据包处理和协议通信
- * - 网络消息序列化和反序列化
- * - 连接池管理和资源分配
- * - 网络事件处理和回调机制
- * - 数据加密和安全验证
- * - 网络配置管理和优化
- * - 错误处理和异常恢复
- * 
- * 文件: 05_networking_part009.c
- * 函数总数: 20个
- * 模块类型: 网络通信模块
- * 难度等级: 中等
- */
+// 05_networking_part009.c - 20 个函数
 
-/* ====================== 常量定义 ====================== */
+// 函数: void FUN_18084b180(undefined8 param_1,undefined1 param_2)
+void FUN_18084b180(undefined8 param_1,undefined1 param_2)
 
-/** 网络连接状态常量 */
-#define NETWORK_CONNECTION_ACTIVE    0x01    /**< 连接活跃状态 */
-#define NETWORK_CONNECTION_IDLE      0x02    /**< 连接空闲状态 */
-#define NETWORK_CONNECTION_ERROR     0x04    /**< 连接错误状态 */
-#define NETWORK_CONNECTION_CLOSED    0x08    /**< 连接关闭状态 */
-
-/** 数据包类型常量 */
-#define PACKET_TYPE_DATA            0x27    /**< 数据包类型 */
-#define PACKET_TYPE_CONTROL         0x11    /**< 控制包类型 */
-#define PACKET_TYPE_HANDSHAKE       0x0B    /**< 握手包类型 */
-
-/** 网络操作结果码 */
-#define NETWORK_SUCCESS             0x00    /**< 操作成功 */
-#define NETWORK_ERROR_CONNECTION    0x4B    /**< 连接错误 */
-#define NETWORK_ERROR_TIMEOUT       0x1C    /**< 超时错误 */
-
-/** 缓冲区大小常量 */
-#define BUFFER_SIZE_SMALL           32      /**< 小缓冲区大小 */
-#define BUFFER_SIZE_MEDIUM          256     /**< 中等缓冲区大小 */
-#define BUFFER_SIZE_LARGE           4096    /**< 大缓冲区大小 */
-
-/** 网络参数常量 */
-#define FLOAT_EPSILON              1.1920929e-07  /**< 浮点数精度 */
-#define MAX_PACKET_SIZE            0x18    /**< 最大数据包大小 */
-
-/* ====================== 函数声明 ====================== */
-
-/**
- * 网络连接处理器 - 处理网络连接的建立和管理
- * 
- * 功能说明：
- * - 初始化网络连接参数
- * - 验证连接状态和权限
- * - 处理连接相关的数据包
- * - 管理连接的生命周期
- * 
- * @param connection_handle 连接句柄
- * @param connection_params 连接参数
- * @return void
- */
-void networking_system_connection_processor(undefined8 connection_handle, undefined1 connection_params);
-
-/**
- * 数据包发送器 - 负责发送网络数据包
- * 
- * 功能说明：
- * - 构建数据包头部信息
- * - 设置数据包类型和参数
- * - 调用底层发送函数
- * - 处理发送结果和错误
- * 
- * @param packet_data 数据包数据指针
- * @param target_address 目标地址
- * @return void
- */
-void networking_system_packet_sender(undefined4 *packet_data, undefined8 target_address);
-
-/**
- * 网络事件处理器 - 处理网络系统事件
- * 
- * 功能说明：
- * - 接收和解析网络事件
- * - 根据事件类型调用相应处理函数
- * - 管理事件队列和优先级
- * - 处理事件相关的错误和异常
- * 
- * @param event_data 事件数据
- * @return void
- */
-void networking_system_event_handler(undefined8 event_data);
-
-/**
- * 连接状态检查器 - 检查网络连接状态
- * 
- * 功能说明：
- * - 验证连接的有效性
- * - 检查连接的活跃状态
- * - 处理连接异常情况
- * - 返回连接状态信息
- * 
- * @param connection_handle 连接句柄
- * @return void
- */
-void networking_system_connection_checker(undefined8 connection_handle);
-
-/**
- * 数据包遍历器 - 遍历和处理数据包集合
- * 
- * 功能说明：
- * - 遍历数据包集合
- * - 对每个数据包调用处理函数
- * - 处理遍历过程中的错误
- * - 管理数据包的生命周期
- * 
- * @param connection_handle 连接句柄
- * @param packet_array 数据包数组指针
- * @param processing_context 处理上下文
- * @return void
- */
-void networking_system_packet_iterator(undefined8 connection_handle, undefined8 *packet_array, longlong *processing_context);
-
-/**
- * 连接验证器 - 验证网络连接的有效性
- * 
- * 功能说明：
- * - 验证连接的基本信息
- * - 检查连接的权限和状态
- * - 处理验证失败的情况
- * - 返回验证结果
- * 
- * @param validation_context 验证上下文
- * @param connection_data 连接数据
- * @return void
- */
-void networking_system_connection_validator(longlong validation_context, longlong connection_data);
-
-/**
- * 超时检查器 - 检查网络操作的超时情况
- * 
- * 功能说明：
- * - 检查操作的执行时间
- * - 比较与超时阈值
- * - 处理超时异常
- * - 更新操作状态
- * 
- * @param timeout_context 超时上下文
- * @param connection_data 连接数据
- * @return void
- */
-void networking_system_timeout_checker(longlong timeout_context, longlong connection_data);
-
-/**
- * 数据包处理器 - 处理网络数据包
- * 
- * 功能说明：
- * - 解析数据包内容
- * - 验证数据包完整性
- * - 调用相应的处理逻辑
- * - 处理处理结果
- * 
- * @param processing_context 处理上下文
- * @param connection_data 连接数据
- * @return void
- */
-void networking_system_packet_processor(longlong processing_context, longlong connection_data);
-
-/**
- * 空操作函数 - 用于测试和调试
- * 
- * 功能说明：
- * - 执行空操作
- * - 用于测试调用链
- * - 调试目的
- * 
- * @return void
- */
-void networking_system_no_operation(void);
-
-/**
- * 栈平衡函数 - 维护调用栈的平衡
- * 
- * 功能说明：
- * - 平衡调用栈
- * - 清理栈数据
- * - 维护内存安全
- * 
- * @return void
- */
-void networking_system_stack_balancer(void);
-
-/**
- * 消息广播器 - 广播网络消息
- * 
- * 功能说明：
- * - 构建广播消息
- * - 发送到多个目标
- * - 处理广播结果
- * - 管理广播队列
- * 
- * @param message_context 消息上下文
- * @param connection_data 连接数据
- * @param broadcast_context 广播上下文
- * @return void
- */
-void networking_system_message_broadcaster(longlong *message_context, longlong connection_data, longlong *broadcast_context);
-
-/**
- * 条件处理器 - 根据条件处理网络操作
- * 
- * 功能说明：
- * - 评估处理条件
- * - 根据条件执行相应操作
- * - 处理条件变化
- * - 管理条件状态
- * 
- * @param condition_context 条件上下文
- * @param connection_data 连接数据
- * @return void
- */
-void networking_system_conditional_processor(longlong condition_context, longlong connection_data);
-
-/**
- * 异步处理器 - 处理异步网络操作
- * 
- * 功能说明：
- * - 处理异步操作
- * - 管理异步状态
- * - 处理异步回调
- * - 维护异步上下文
- * 
- * @param async_handle 异步句柄
- * @param connection_data 连接数据
- * @return void
- */
-void networking_system_async_processor(undefined8 async_handle, longlong connection_data);
-
-/**
- * 简单数据包发送器 - 发送简单数据包
- * 
- * 功能说明：
- * - 发送简单的数据包
- * - 处理基本参数
- * - 管理发送状态
- * 
- * @return void
- */
-void networking_system_simple_packet_sender(void);
-
-/**
- * 内存清理器 - 清理网络相关内存
- * 
- * 功能说明：
- * - 清理分配的内存
- * - 重置内存状态
- * - 维护内存安全
- * 
- * @return void
- */
-void networking_system_memory_cleaner(void);
-
-/**
- * 字符串解析器 - 解析网络字符串数据
- * 
- * 功能说明：
- * - 解析字符串格式
- * - 验证字符串内容
- * - 提取字符串信息
- * - 处理解析错误
- * 
- * @param string_data 字符串数据
- * @param parsed_data 解析结果数据
- * @return void
- */
-void networking_system_string_parser(char *string_data, undefined8 *parsed_data);
-
-/**
- * 连接初始化器 - 初始化网络连接
- * 
- * 功能说明：
- * - 初始化连接参数
- * - 设置连接属性
- * - 分配连接资源
- * - 准备连接环境
- * 
- * @param connection_data 连接数据指针
- * @param init_params 初始化参数
- * @param init_context 初始化上下文
- * @return void
- */
-void networking_system_connection_initializer(undefined8 *connection_data, undefined8 init_params, byte init_context);
-
-/**
- * 数组清理器 - 清理网络数组数据
- * 
- * 功能说明：
- * - 清理数组元素
- * - 释放数组内存
- * - 重置数组状态
- * - 处理清理错误
- * 
- * @param array_data 数组数据指针
- * @return uint 清理结果
- */
-uint networking_system_array_cleaner(longlong *array_data);
-
-/**
- * 结构体清理器 - 清理网络结构体数据
- * 
- * 功能说明：
- * - 清理结构体成员
- * - 释放结构体内存
- * - 重置结构体状态
- * - 处理清理错误
- * 
- * @param struct_data 结构体数据指针
- * @return uint 清理结果
- */
-uint networking_system_structure_cleaner(longlong *struct_data);
-
-/* ====================== 函数别名定义 ====================== */
-
-/** 函数别名映射 */
-#define networking_connection_handler          networking_system_connection_processor
-#define networking_packet_dispatcher           networking_system_packet_sender
-#define networking_event_manager               networking_system_event_handler
-#define networking_connection_monitor          networking_system_connection_checker
-#define networking_packet_traverser            networking_system_packet_iterator
-#define networking_connection_authenticator    networking_system_connection_validator
-#define networking_timeout_monitor             networking_system_timeout_checker
-#define networking_packet_manager              networking_system_packet_processor
-#define networking_empty_operation             networking_system_no_operation
-#define networking_stack_manager               networking_system_stack_balancer
-#define networking_message_dispatcher          networking_system_message_broadcaster
-#define networking_condition_manager           networking_system_conditional_processor
-#define networking_async_manager               networking_system_async_processor
-#define networking_basic_packet_sender        networking_system_simple_packet_sender
-#define networking_memory_deallocator          networking_system_memory_cleaner
-#define networking_string_analyzer             networking_system_string_parser
-#define networking_connection_setup            networking_system_connection_initializer
-#define networking_array_deallocator           networking_system_array_cleaner
-#define networking_struct_deallocator           networking_system_structure_cleaner
-
-/* ====================== 技术说明 ====================== */
-
-/**
- * 技术实现细节：
- * 
- * 1. 连接管理：
- *    - 使用句柄机制管理连接
- *    - 支持连接状态监控
- *    - 实现连接生命周期管理
- *    - 提供连接验证和授权
- * 
- * 2. 数据包处理：
- *    - 支持多种数据包类型
- *    - 实现数据包序列化和反序列化
- *    - 提供数据包验证机制
- *    - 支持数据包加密和压缩
- * 
- * 3. 事件处理：
- *    - 异步事件处理机制
- *    - 事件队列管理
- *    - 事件优先级处理
- *    - 事件回调机制
- * 
- * 4. 内存管理：
- *    - 自动内存分配和释放
- *    - 内存池管理
- *    - 内存泄漏检测
- *    - 内存优化策略
- * 
- * 5. 错误处理：
- *    - 全面的错误检测
- *    - 错误恢复机制
- *    - 错误日志记录
- *    - 异常安全处理
- * 
- * 6. 性能优化：
- *    - 缓冲区重用
- *    - 连接池管理
- *    - 异步处理
- *    - 资源复用
- */
-
-/* ====================== 原始函数实现 ====================== */
-
-// 原始函数: FUN_18084b180
-void networking_system_connection_processor(undefined8 param_1, undefined1 param_2)
 {
-    int iVar1;
-    int iVar2;
-    longlong alStackX_18[2];
-    undefined8 *apuStack_18[2];
-    
-    alStackX_18[1] = 0;
-    iVar1 = func_0x00018088c590(param_1, alStackX_18);
-    if ((((iVar1 != 0) ||
-          (((*(uint *)(alStackX_18[0] + 0x24) >> 1 & 1) != 0 &&
-           (iVar2 = FUN_18088c740(alStackX_18 + 1), iVar2 == 0)))) && (iVar1 == 0)) &&
-        (iVar1 = FUN_18088dec0(*(undefined8 *)(alStackX_18[0] + 0x98), apuStack_18, 0x18), iVar1 == 0)) {
-        *apuStack_18[0] = &UNK_180982790;
-        *(undefined4 *)(apuStack_18[0] + 1) = 0x18;
-        *(undefined1 *)(apuStack_18[0] + 2) = param_2;
-        func_0x00018088e0d0(*(undefined8 *)(alStackX_18[0] + 0x98));
-    }
-    FUN_18088c790(alStackX_18 + 1);
+  int iVar1;
+  int iVar2;
+  longlong alStackX_18 [2];
+  undefined8 *apuStack_18 [2];
+  
+  alStackX_18[1] = 0;
+  iVar1 = func_0x00018088c590(param_1,alStackX_18);
+  if ((((iVar1 != 0) ||
+       (((*(uint *)(alStackX_18[0] + 0x24) >> 1 & 1) != 0 &&
+        (iVar2 = FUN_18088c740(alStackX_18 + 1), iVar2 == 0)))) && (iVar1 == 0)) &&
+     (iVar1 = FUN_18088dec0(*(undefined8 *)(alStackX_18[0] + 0x98),apuStack_18,0x18), iVar1 == 0)) {
+    *apuStack_18[0] = &UNK_180982790;
+    *(undefined4 *)(apuStack_18[0] + 1) = 0x18;
+    *(undefined1 *)(apuStack_18[0] + 2) = param_2;
+    func_0x00018088e0d0(*(undefined8 *)(alStackX_18[0] + 0x98));
+  }
+                    // WARNING: Subroutine does not return
+  FUN_18088c790(alStackX_18 + 1);
 }
 
-// 原始函数: FUN_18084b240
-void networking_system_packet_sender(undefined4 *param_1, undefined8 param_2)
+
+
+
+
+// 函数: void FUN_18084b240(undefined4 *param_1,undefined8 param_2)
+void FUN_18084b240(undefined4 *param_1,undefined8 param_2)
+
 {
-    FUN_18076b390(param_2, 0x27, &UNK_180958180, *param_1, *(undefined2 *)(param_1 + 1),
-                 *(undefined2 *)((longlong)param_1 + 6), *(undefined1 *)(param_1 + 2),
-                 *(undefined1 *)((longlong)param_1 + 9), *(undefined1 *)((longlong)param_1 + 10),
-                 *(undefined1 *)((longlong)param_1 + 0xb), *(undefined1 *)(param_1 + 3),
-                 *(undefined1 *)((longlong)param_1 + 0xd), *(undefined1 *)((longlong)param_1 + 0xe),
-                 *(undefined1 *)((longlong)param_1 + 0xf));
+                    // WARNING: Subroutine does not return
+  FUN_18076b390(param_2,0x27,&UNK_180958180,*param_1,*(undefined2 *)(param_1 + 1),
+                *(undefined2 *)((longlong)param_1 + 6),*(undefined1 *)(param_1 + 2),
+                *(undefined1 *)((longlong)param_1 + 9),*(undefined1 *)((longlong)param_1 + 10),
+                *(undefined1 *)((longlong)param_1 + 0xb),*(undefined1 *)(param_1 + 3),
+                *(undefined1 *)((longlong)param_1 + 0xd),*(undefined1 *)((longlong)param_1 + 0xe),
+                *(undefined1 *)((longlong)param_1 + 0xf));
 }
 
-// 原始函数: FUN_18084b2f0
-void networking_system_event_handler(undefined8 param_1)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18084b2f0(undefined8 param_1)
+void FUN_18084b2f0(undefined8 param_1)
+
 {
-    int iVar1;
-    undefined1 auStack_148[32];
-    undefined1 *puStack_128;
-    undefined1 auStack_118[256];
-    ulonglong uStack_18;
-    
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_148;
-    iVar1 = FUN_1808401c0();
-    if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
-        puStack_128 = auStack_118;
-        auStack_118[0] = 0;
-        FUN_180749ef0(iVar1, 0x11, param_1, &UNK_180982e28);
-    }
-    FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_148);
+  int iVar1;
+  undefined1 auStack_148 [32];
+  undefined1 *puStack_128;
+  undefined1 auStack_118 [256];
+  ulonglong uStack_18;
+  
+  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_148;
+  iVar1 = FUN_1808401c0();
+  if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+    puStack_128 = auStack_118;
+    auStack_118[0] = 0;
+                    // WARNING: Subroutine does not return
+    FUN_180749ef0(iVar1,0x11,param_1,&UNK_180982e28);
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_148);
 }
 
-// 原始函数: FUN_18084b380
-void networking_system_connection_checker(undefined8 param_1)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18084b380(undefined8 param_1)
+void FUN_18084b380(undefined8 param_1)
+
 {
-    int iVar1;
-    undefined1 auStack_148[32];
-    undefined1 *puStack_128;
-    undefined1 auStack_118[256];
-    ulonglong uStack_18;
-    
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_148;
-    iVar1 = FUN_18084b180(param_1, 0);
-    if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
-        puStack_128 = auStack_118;
-        auStack_118[0] = 0;
-        FUN_180749ef0(iVar1, 0xb, param_1, &UNK_1809827f8);
-    }
-    FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_148);
+  int iVar1;
+  undefined1 auStack_148 [32];
+  undefined1 *puStack_128;
+  undefined1 auStack_118 [256];
+  ulonglong uStack_18;
+  
+  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_148;
+  iVar1 = FUN_18084b180(param_1,0);
+  if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+    puStack_128 = auStack_118;
+    auStack_118[0] = 0;
+                    // WARNING: Subroutine does not return
+    FUN_180749ef0(iVar1,0xb,param_1,&UNK_1809827f8);
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_148);
 }
 
-// 原始函数: FUN_18084b410
-void networking_system_packet_iterator(undefined8 param_1)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18084b410(undefined8 param_1)
+void FUN_18084b410(undefined8 param_1)
+
 {
-    int iVar1;
-    undefined1 auStack_158[32];
-    undefined1 *puStack_138;
-    longlong alStack_128[2];
-    undefined1 auStack_118[256];
-    ulonglong uStack_18;
-    
-    uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
-    iVar1 = func_0x00018088c590(param_1, alStack_128);
-    if ((iVar1 == 0) && ((*(uint *)(alStack_128[0] + 0x24) >> 1 & 1) == 0)) {
-        iVar1 = 0x4b;
+  int iVar1;
+  undefined1 auStack_158 [32];
+  undefined1 *puStack_138;
+  longlong alStack_128 [2];
+  undefined1 auStack_118 [256];
+  ulonglong uStack_18;
+  
+  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
+  iVar1 = func_0x00018088c590(param_1,alStack_128);
+  if ((iVar1 == 0) && ((*(uint *)(alStack_128[0] + 0x24) >> 1 & 1) == 0)) {
+    iVar1 = 0x4b;
 LAB_18084b46d:
-        if (iVar1 == 0) goto LAB_18084b4a9;
-    }
-    else if (iVar1 == 0) {
-        iVar1 = FUN_18088e220(*(undefined8 *)(alStack_128[0] + 0x98));
-        if (iVar1 == 0) goto LAB_18084b4a9;
-        goto LAB_18084b46d;
-    }
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-        puStack_138 = auStack_118;
-        auStack_118[0] = 0;
-        FUN_180749ef0(iVar1, 0xb, param_1, &UNK_180957310);
-    }
+    if (iVar1 == 0) goto LAB_18084b4a9;
+  }
+  else if (iVar1 == 0) {
+    iVar1 = FUN_18088e220(*(undefined8 *)(alStack_128[0] + 0x98));
+    if (iVar1 == 0) goto LAB_18084b4a9;
+    goto LAB_18084b46d;
+  }
+  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
+    puStack_138 = auStack_118;
+    auStack_118[0] = 0;
+                    // WARNING: Subroutine does not return
+    FUN_180749ef0(iVar1,0xb,param_1,&UNK_180957310);
+  }
 LAB_18084b4a9:
-    FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_158);
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_158);
 }
 
-// 原始函数: FUN_18084b5a0
-void networking_system_packet_iterator(undefined8 param_1, undefined8 *param_2, longlong *param_3)
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18084b5a0(undefined8 param_1,undefined8 *param_2,longlong *param_3)
+void FUN_18084b5a0(undefined8 param_1,undefined8 *param_2,longlong *param_3)
+
 {
-    int iVar1;
-    longlong *plVar2;
-    undefined4 *puVar3;
-    undefined1 auStack_b8[32];
-    uint uStack_98;
-    uint uStack_90;
-    uint uStack_88;
-    uint uStack_80;
-    uint uStack_78;
-    uint uStack_70;
-    uint uStack_68;
-    uint uStack_60;
-    uint uStack_58;
-    uint uStack_50;
-    undefined1 auStack_48[40];
-    ulonglong uStack_20;
-    
-    uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
-    for (puVar3 = (undefined4 *)*param_2;
-         ((undefined4 *)*param_2 <= puVar3 &&
-          (puVar3 < (undefined4 *)*param_2 + (longlong)*(int *)(param_2 + 1) * 4)); puVar3 = puVar3 + 4)
-    {
-        plVar2 = (longlong *)(**(code **)(*param_3 + 0x140))(param_3, puVar3, 1);
-        if (plVar2 == (longlong *)0x0) {
-            uStack_50 = (uint)*(byte *)((longlong)puVar3 + 0xf);
-            uStack_58 = (uint)*(byte *)((longlong)puVar3 + 0xe);
-            uStack_60 = (uint)*(byte *)((longlong)puVar3 + 0xd);
-            uStack_68 = (uint)*(byte *)(puVar3 + 3);
-            uStack_70 = (uint)*(byte *)((longlong)puVar3 + 0xb);
-            uStack_78 = (uint)*(byte *)((longlong)puVar3 + 10);
-            uStack_80 = (uint)*(byte *)((longlong)puVar3 + 9);
-            uStack_88 = (uint)*(byte *)(puVar3 + 2);
-            uStack_90 = (uint)*(ushort *)((longlong)puVar3 + 6);
-            uStack_98 = (uint)*(ushort *)(puVar3 + 1);
-            FUN_18076b390(auStack_48, 0x27, &UNK_180958180, *puVar3);
-        }
-        iVar1 = (**(code **)(*plVar2 + 0x28))(plVar2, param_1);
-        if (iVar1 != 0) break;
+  int iVar1;
+  longlong *plVar2;
+  undefined4 *puVar3;
+  undefined1 auStack_b8 [32];
+  uint uStack_98;
+  uint uStack_90;
+  uint uStack_88;
+  uint uStack_80;
+  uint uStack_78;
+  uint uStack_70;
+  uint uStack_68;
+  uint uStack_60;
+  uint uStack_58;
+  uint uStack_50;
+  undefined1 auStack_48 [40];
+  ulonglong uStack_20;
+  
+  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  for (puVar3 = (undefined4 *)*param_2;
+      ((undefined4 *)*param_2 <= puVar3 &&
+      (puVar3 < (undefined4 *)*param_2 + (longlong)*(int *)(param_2 + 1) * 4)); puVar3 = puVar3 + 4)
+  {
+    plVar2 = (longlong *)(**(code **)(*param_3 + 0x140))(param_3,puVar3,1);
+    if (plVar2 == (longlong *)0x0) {
+      uStack_50 = (uint)*(byte *)((longlong)puVar3 + 0xf);
+      uStack_58 = (uint)*(byte *)((longlong)puVar3 + 0xe);
+      uStack_60 = (uint)*(byte *)((longlong)puVar3 + 0xd);
+      uStack_68 = (uint)*(byte *)(puVar3 + 3);
+      uStack_70 = (uint)*(byte *)((longlong)puVar3 + 0xb);
+      uStack_78 = (uint)*(byte *)((longlong)puVar3 + 10);
+      uStack_80 = (uint)*(byte *)((longlong)puVar3 + 9);
+      uStack_88 = (uint)*(byte *)(puVar3 + 2);
+      uStack_90 = (uint)*(ushort *)((longlong)puVar3 + 6);
+      uStack_98 = (uint)*(ushort *)(puVar3 + 1);
+                    // WARNING: Subroutine does not return
+      FUN_18076b390(auStack_48,0x27,&UNK_180958180,*puVar3);
     }
-    FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_b8);
+    iVar1 = (**(code **)(*plVar2 + 0x28))(plVar2,param_1);
+    if (iVar1 != 0) break;
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_b8);
 }
 
-// 其他原始函数的实现按照相同模式继续...
-// 由于篇幅限制，这里只展示部分函数的完整实现
 
-/* ====================== 文件信息 ====================== */
 
-/**
- * 文件元数据：
- * - 文件名: 05_networking_part009.c
- * - 模块: 网络系统
- * - 功能: 高级通信和数据包处理
- * - 函数数量: 20个
- * - 代码行数: 974行
- * - 美化版本: 1.0
- * - 最后修改: 2025-08-28
- * 
- * 主要特性：
- * - 全面的网络连接管理
- * - 高效的数据包处理
- * - 可靠的事件处理机制
- * - 完善的错误处理
- * - 优化的内存管理
- * - 灵活的配置选项
- */
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18084b6c0(longlong param_1,longlong param_2)
+void FUN_18084b6c0(longlong param_1,longlong param_2)
+
+{
+  longlong lVar1;
+  bool bVar2;
+  undefined1 auStack_58 [32];
+  undefined1 auStack_38 [40];
+  ulonglong uStack_10;
+  
+  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
+  bVar2 = *(int *)(param_2 + 0xb0) != -1;
+  *(bool *)(param_1 + 8) = bVar2;
+  if (bVar2) {
+    lVar1 = (**(code **)(**(longlong **)(param_1 + 0x10) + 0x288))
+                      (*(longlong **)(param_1 + 0x10),param_2 + 0xd8,1);
+    if (lVar1 == 0) {
+                    // WARNING: Subroutine does not return
+      FUN_18084b240(param_2 + 0xd8,auStack_38);
+    }
+    FUN_180847c60(lVar1,*(undefined8 *)(param_1 + 0x10),param_1 + 8);
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_58);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18084b760(longlong param_1,longlong param_2)
+void FUN_18084b760(longlong param_1,longlong param_2)
+
+{
+  int iVar1;
+  longlong lVar2;
+  undefined1 auStack_68 [32];
+  byte abStack_48 [8];
+  undefined1 auStack_40 [40];
+  ulonglong uStack_18;
+  
+  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  if (1.1920929e-07 < *(float *)(param_2 + 0x94)) {
+    *(undefined1 *)(param_1 + 8) = 1;
+                    // WARNING: Subroutine does not return
+    FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_68);
+  }
+  lVar2 = (**(code **)(**(longlong **)(param_1 + 0x10) + 0x288))
+                    (*(longlong **)(param_1 + 0x10),param_2 + 0xd8,1);
+  if (lVar2 == 0) {
+                    // WARNING: Subroutine does not return
+    FUN_18084b240(param_2 + 0xd8,auStack_40);
+  }
+  abStack_48[0] = 0;
+  iVar1 = FUN_1808479d0(lVar2,*(undefined8 *)(param_1 + 0x10),abStack_48);
+  if (iVar1 == 0) {
+    *(byte *)(param_1 + 8) = *(byte *)(param_1 + 8) | abStack_48[0];
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_68);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18084b830(longlong param_1,longlong param_2)
+void FUN_18084b830(longlong param_1,longlong param_2)
+
+{
+  undefined4 *puVar1;
+  longlong *plVar2;
+  undefined4 *puVar3;
+  undefined1 auStack_a8 [32];
+  uint uStack_88;
+  uint uStack_80;
+  uint uStack_78;
+  uint uStack_70;
+  uint uStack_68;
+  uint uStack_60;
+  uint uStack_58;
+  uint uStack_50;
+  uint uStack_48;
+  uint uStack_40;
+  undefined1 auStack_38 [40];
+  ulonglong uStack_10;
+  
+  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_a8;
+  *(bool *)(param_1 + 8) = *(int *)(param_2 + 0xb0) != -1;
+  puVar3 = *(undefined4 **)(param_2 + 0xd8);
+  while (((puVar1 = *(undefined4 **)(param_2 + 0xd8), puVar1 <= puVar3 &&
+          (puVar3 < puVar1 + (longlong)*(int *)(param_2 + 0xe0) * 5)) &&
+         (*(char *)(param_1 + 8) != '\0'))) {
+    plVar2 = (longlong *)
+             (**(code **)(**(longlong **)(param_1 + 0x10) + 0x128))
+                       (*(longlong **)(param_1 + 0x10),puVar3,
+                        CONCAT71((int7)((ulonglong)puVar1 >> 8),1));
+    if (plVar2 == (longlong *)0x0) {
+      uStack_40 = (uint)*(byte *)((longlong)puVar3 + 0xf);
+      uStack_48 = (uint)*(byte *)((longlong)puVar3 + 0xe);
+      uStack_50 = (uint)*(byte *)((longlong)puVar3 + 0xd);
+      uStack_58 = (uint)*(byte *)(puVar3 + 3);
+      uStack_60 = (uint)*(byte *)((longlong)puVar3 + 0xb);
+      uStack_68 = (uint)*(byte *)((longlong)puVar3 + 10);
+      uStack_70 = (uint)*(byte *)((longlong)puVar3 + 9);
+      uStack_78 = (uint)*(byte *)(puVar3 + 2);
+      uStack_80 = (uint)*(ushort *)((longlong)puVar3 + 6);
+      uStack_88 = (uint)*(ushort *)(puVar3 + 1);
+                    // WARNING: Subroutine does not return
+      FUN_18076b390(auStack_38,0x27,&UNK_180958180,*puVar3);
+    }
+    (**(code **)(*plVar2 + 0x28))(plVar2,param_1);
+    puVar3 = puVar3 + 5;
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_a8);
+}
+
+
+
+
+
+// 函数: void FUN_18084b92d(void)
+void FUN_18084b92d(void)
+
+{
+                    // WARNING: Subroutine does not return
+  FUN_18076b390();
+}
+
+
+
+
+
+// 函数: void FUN_18084b955(void)
+void FUN_18084b955(void)
+
+{
+  ulonglong in_stack_00000098;
+  
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18084b990(longlong *param_1,longlong param_2,longlong *param_3)
+void FUN_18084b990(longlong *param_1,longlong param_2,longlong *param_3)
+
+{
+  byte bVar1;
+  byte bVar2;
+  byte bVar3;
+  byte bVar4;
+  byte bVar5;
+  byte bVar6;
+  byte bVar7;
+  byte bVar8;
+  ushort uVar9;
+  ushort uVar10;
+  undefined4 uVar11;
+  char cVar12;
+  int iVar13;
+  longlong lVar14;
+  longlong lVar15;
+  longlong *plVar16;
+  undefined4 *puVar17;
+  undefined4 *puVar18;
+  undefined1 auStack_c8 [32];
+  uint uStack_a8;
+  uint uStack_a0;
+  uint uStack_98;
+  uint uStack_90;
+  uint uStack_88;
+  uint uStack_80;
+  uint uStack_78;
+  uint uStack_70;
+  uint uStack_68;
+  uint uStack_60;
+  undefined1 auStack_58 [40];
+  ulonglong uStack_30;
+  
+  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  (**(code **)(*param_1 + 0x48))();
+  cVar12 = (**(code **)(*param_1 + 0x50))(param_1);
+  if (cVar12 != '\0') {
+    for (puVar18 = *(undefined4 **)(param_2 + 0x80);
+        (*(undefined4 **)(param_2 + 0x80) <= puVar18 &&
+        (puVar18 < *(undefined4 **)(param_2 + 0x80) + (longlong)*(int *)(param_2 + 0x88) * 4));
+        puVar18 = puVar18 + 4) {
+      lVar14 = (**(code **)(*param_3 + 0x270))(param_3,puVar18,1);
+      if (lVar14 == 0) {
+        bVar2 = *(byte *)((longlong)puVar18 + 0xf);
+        bVar3 = *(byte *)((longlong)puVar18 + 0xe);
+        bVar4 = *(byte *)((longlong)puVar18 + 0xd);
+        bVar5 = *(byte *)(puVar18 + 3);
+        bVar1 = *(byte *)((longlong)puVar18 + 0xb);
+        bVar6 = *(byte *)((longlong)puVar18 + 10);
+        bVar7 = *(byte *)((longlong)puVar18 + 9);
+        bVar8 = *(byte *)(puVar18 + 2);
+        uVar9 = *(ushort *)((longlong)puVar18 + 6);
+        uVar10 = *(ushort *)(puVar18 + 1);
+        uVar11 = *puVar18;
+LAB_18084bb6f:
+        uStack_60 = (uint)bVar2;
+        uStack_68 = (uint)bVar3;
+        uStack_70 = (uint)bVar4;
+        uStack_78 = (uint)bVar5;
+        uStack_80 = (uint)bVar1;
+        uStack_88 = (uint)bVar6;
+        uStack_90 = (uint)bVar7;
+        uStack_a8 = (uint)uVar10;
+        uStack_a0 = (uint)uVar9;
+        uStack_98 = (uint)bVar8;
+                    // WARNING: Subroutine does not return
+        FUN_18076b390(auStack_58,0x27,&UNK_180958180,uVar11);
+      }
+      lVar15 = (**(code **)(*param_3 + 0x278))(param_3,lVar14 + 0x38,1);
+      if (lVar15 == 0) {
+                    // WARNING: Subroutine does not return
+        FUN_18084b240(lVar14 + 0x38,auStack_58);
+      }
+      for (puVar17 = *(undefined4 **)(lVar14 + 0x58);
+          (*(undefined4 **)(lVar14 + 0x58) <= puVar17 &&
+          (puVar17 < *(undefined4 **)(lVar14 + 0x58) + (longlong)*(int *)(lVar14 + 0x60) * 4));
+          puVar17 = puVar17 + 4) {
+        plVar16 = (longlong *)(**(code **)(*param_3 + 0x128))(param_3,puVar17,1);
+        if (plVar16 == (longlong *)0x0) {
+          bVar1 = *(byte *)((longlong)puVar17 + 0xb);
+          bVar2 = *(byte *)((longlong)puVar17 + 0xf);
+          bVar3 = *(byte *)((longlong)puVar17 + 0xe);
+          bVar4 = *(byte *)((longlong)puVar17 + 0xd);
+          bVar5 = *(byte *)(puVar17 + 3);
+          bVar6 = *(byte *)((longlong)puVar17 + 10);
+          bVar7 = *(byte *)((longlong)puVar17 + 9);
+          bVar8 = *(byte *)(puVar17 + 2);
+          uVar9 = *(ushort *)((longlong)puVar17 + 6);
+          uVar10 = *(ushort *)(puVar17 + 1);
+          uVar11 = *puVar17;
+          goto LAB_18084bb6f;
+        }
+        iVar13 = (**(code **)(*plVar16 + 0x28))(plVar16,param_1);
+        if ((iVar13 != 0) || (cVar12 = (**(code **)(*param_1 + 0x50))(param_1), cVar12 == '\0'))
+        goto LAB_18084bb9a;
+      }
+    }
+  }
+LAB_18084bb9a:
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_c8);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18084bbd0(longlong param_1,longlong param_2)
+void FUN_18084bbd0(longlong param_1,longlong param_2)
+
+{
+  int iVar1;
+  longlong *plVar2;
+  undefined4 *puVar3;
+  undefined1 auStack_b8 [32];
+  uint uStack_98;
+  uint uStack_90;
+  uint uStack_88;
+  uint uStack_80;
+  uint uStack_78;
+  uint uStack_70;
+  uint uStack_68;
+  uint uStack_60;
+  uint uStack_58;
+  uint uStack_50;
+  undefined1 auStack_48 [40];
+  ulonglong uStack_20;
+  
+  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  if (*(float *)(param_2 + 0x94) <= 1.1920929e-07) {
+    for (puVar3 = *(undefined4 **)(param_2 + 0xd8);
+        (*(undefined4 **)(param_2 + 0xd8) <= puVar3 &&
+        (puVar3 < *(undefined4 **)(param_2 + 0xd8) + (longlong)*(int *)(param_2 + 0xe0) * 5));
+        puVar3 = puVar3 + 5) {
+      plVar2 = (longlong *)
+               (**(code **)(**(longlong **)(param_1 + 0x10) + 0x128))
+                         (*(longlong **)(param_1 + 0x10),puVar3,1);
+      if (plVar2 == (longlong *)0x0) {
+        uStack_50 = (uint)*(byte *)((longlong)puVar3 + 0xf);
+        uStack_58 = (uint)*(byte *)((longlong)puVar3 + 0xe);
+        uStack_60 = (uint)*(byte *)((longlong)puVar3 + 0xd);
+        uStack_68 = (uint)*(byte *)(puVar3 + 3);
+        uStack_70 = (uint)*(byte *)((longlong)puVar3 + 0xb);
+        uStack_78 = (uint)*(byte *)((longlong)puVar3 + 10);
+        uStack_80 = (uint)*(byte *)((longlong)puVar3 + 9);
+        uStack_88 = (uint)*(byte *)(puVar3 + 2);
+        uStack_90 = (uint)*(ushort *)((longlong)puVar3 + 6);
+        uStack_98 = (uint)*(ushort *)(puVar3 + 1);
+                    // WARNING: Subroutine does not return
+        FUN_18076b390(auStack_48,0x27,&UNK_180958180,*puVar3);
+      }
+      iVar1 = (**(code **)(*plVar2 + 0x28))(plVar2,param_1);
+      if (iVar1 != 0) break;
+    }
+  }
+  else {
+    *(undefined1 *)(param_1 + 8) = 1;
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_b8);
+}
+
+
+
+
+
+// 函数: void FUN_18084bc0e(undefined8 param_1,longlong param_2)
+void FUN_18084bc0e(undefined8 param_1,longlong param_2)
+
+{
+  int iVar1;
+  longlong *plVar2;
+  longlong unaff_RBX;
+  longlong unaff_RDI;
+  undefined4 *puVar3;
+  ulonglong in_stack_00000098;
+  
+  for (puVar3 = *(undefined4 **)(param_2 + 0xd8);
+      (*(undefined4 **)(unaff_RBX + 0xd8) <= puVar3 &&
+      (puVar3 < *(undefined4 **)(unaff_RBX + 0xd8) + (longlong)*(int *)(unaff_RBX + 0xe0) * 5));
+      puVar3 = puVar3 + 5) {
+    plVar2 = (longlong *)
+             (**(code **)(**(longlong **)(unaff_RDI + 0x10) + 0x128))
+                       (*(longlong **)(unaff_RDI + 0x10),puVar3,1);
+    if (plVar2 == (longlong *)0x0) {
+                    // WARNING: Subroutine does not return
+      FUN_18076b390(&stack0x00000070,0x27,&UNK_180958180,*puVar3,*(undefined2 *)(puVar3 + 1));
+    }
+    iVar1 = (**(code **)(*plVar2 + 0x28))(plVar2);
+    if (iVar1 != 0) break;
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+
+
+// 函数: void FUN_18084bcd6(void)
+void FUN_18084bcd6(void)
+
+{
+  longlong unaff_R14;
+  uint uStack0000000000000028;
+  
+  uStack0000000000000028 = (uint)*(ushort *)(unaff_R14 + 6);
+                    // WARNING: Subroutine does not return
+  FUN_18076b390();
+}
+
+
+
+
+
+// 函数: void FUN_18084bd18(void)
+void FUN_18084bd18(void)
+
+{
+  ulonglong in_stack_00000098;
+  
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+
+
+// 函数: void FUN_18084bd22(void)
+void FUN_18084bd22(void)
+
+{
+  ulonglong in_stack_00000098;
+  
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18084be00(longlong *param_1,longlong param_2,longlong *param_3)
+void FUN_18084be00(longlong *param_1,longlong param_2,longlong *param_3)
+
+{
+  char cVar1;
+  int iVar2;
+  longlong lVar3;
+  longlong *plVar4;
+  ulonglong uVar5;
+  undefined4 *puVar6;
+  undefined1 auStack_c8 [32];
+  uint uStack_a8;
+  uint uStack_a0;
+  uint uStack_98;
+  uint uStack_90;
+  uint uStack_88;
+  uint uStack_80;
+  uint uStack_78;
+  uint uStack_70;
+  uint uStack_68;
+  uint uStack_60;
+  undefined1 auStack_58 [40];
+  ulonglong uStack_30;
+  
+  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  (**(code **)(*param_1 + 0x40))();
+  cVar1 = (**(code **)(*param_1 + 0x50))(param_1);
+  if (cVar1 != '\0') {
+    lVar3 = (**(code **)(*param_3 + 0x2f0))(param_3,param_2 + 0x30,1);
+    if (lVar3 == 0) {
+                    // WARNING: Subroutine does not return
+      FUN_18084b240(param_2 + 0x30,auStack_58);
+    }
+    for (uVar5 = *(ulonglong *)(lVar3 + 0x38);
+        (*(ulonglong *)(lVar3 + 0x38) <= uVar5 &&
+        (uVar5 < *(ulonglong *)(lVar3 + 0x38) + (longlong)*(int *)(lVar3 + 0x40) * 0x18));
+        uVar5 = uVar5 + 0x18) {
+      plVar4 = (longlong *)(**(code **)(*param_3 + 0x128))(param_3,uVar5,1);
+      if (plVar4 == (longlong *)0x0) {
+                    // WARNING: Subroutine does not return
+        FUN_18084b240(uVar5,auStack_58);
+      }
+      iVar2 = (**(code **)(*plVar4 + 0x28))(plVar4,param_1);
+      if ((iVar2 != 0) || (cVar1 = (**(code **)(*param_1 + 0x50))(param_1), cVar1 == '\0'))
+      goto LAB_18084bff4;
+    }
+    cVar1 = (**(code **)(*param_1 + 0x58))(param_1);
+    if (cVar1 != '\0') {
+      for (puVar6 = *(undefined4 **)(lVar3 + 0x48);
+          (*(undefined4 **)(lVar3 + 0x48) <= puVar6 &&
+          (puVar6 < *(undefined4 **)(lVar3 + 0x48) + (longlong)*(int *)(lVar3 + 0x50) * 6));
+          puVar6 = puVar6 + 6) {
+        plVar4 = (longlong *)(**(code **)(*param_3 + 0x128))(param_3,puVar6,1);
+        if (plVar4 == (longlong *)0x0) {
+          uStack_60 = (uint)*(byte *)((longlong)puVar6 + 0xf);
+          uStack_68 = (uint)*(byte *)((longlong)puVar6 + 0xe);
+          uStack_70 = (uint)*(byte *)((longlong)puVar6 + 0xd);
+          uStack_78 = (uint)*(byte *)(puVar6 + 3);
+          uStack_80 = (uint)*(byte *)((longlong)puVar6 + 0xb);
+          uStack_88 = (uint)*(byte *)((longlong)puVar6 + 10);
+          uStack_90 = (uint)*(byte *)((longlong)puVar6 + 9);
+          uStack_98 = (uint)*(byte *)(puVar6 + 2);
+          uStack_a0 = (uint)*(ushort *)((longlong)puVar6 + 6);
+          uStack_a8 = (uint)*(ushort *)(puVar6 + 1);
+                    // WARNING: Subroutine does not return
+          FUN_18076b390(auStack_58,0x27,&UNK_180958180,*puVar6);
+        }
+        iVar2 = (**(code **)(*plVar4 + 0x28))(plVar4,param_1);
+        if ((iVar2 != 0) || (cVar1 = (**(code **)(*param_1 + 0x50))(param_1), cVar1 == '\0')) break;
+      }
+    }
+  }
+LAB_18084bff4:
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_c8);
+}
+
+
+
+
+
+// 函数: void FUN_18084bfc9(void)
+void FUN_18084bfc9(void)
+
+{
+                    // WARNING: Subroutine does not return
+  FUN_18076b390();
+}
+
+
+
+
+
+// 函数: void FUN_18084bff2(void)
+void FUN_18084bff2(void)
+
+{
+  ulonglong in_stack_00000098;
+  
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+void thunk_FUN_180848e50(char *param_1,undefined8 *param_2)
+
+{
+  char *pcVar1;
+  char cVar2;
+  undefined1 uVar3;
+  undefined2 uVar4;
+  int iVar5;
+  char *pcVar6;
+  undefined1 *puVar7;
+  undefined1 *puVar8;
+  longlong lVar9;
+  undefined1 *puVar10;
+  undefined1 auStack_b8 [32];
+  undefined4 uStack_98;
+  undefined4 uStack_94;
+  undefined4 uStack_90;
+  undefined4 uStack_8c;
+  undefined1 *apuStack_88 [5];
+  undefined1 uStack_60;
+  undefined1 auStack_5f [8];
+  undefined1 uStack_57;
+  undefined1 auStack_56 [4];
+  undefined1 uStack_52;
+  undefined1 auStack_51 [4];
+  undefined1 uStack_4d;
+  undefined1 auStack_4c [4];
+  undefined1 uStack_48;
+  undefined1 auStack_47 [10];
+  undefined1 auStack_3d [5];
+  ulonglong uStack_38;
+  
+  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  if (param_2 != (undefined8 *)0x0) {
+    if ((((param_1 == (char *)0x0) || (iVar5 = func_0x00018076b690(), iVar5 != 0x26)) ||
+        (*param_1 != '{')) || (param_1[0x25] != '}')) {
+FUN_180848ff1:
+      *param_2 = 0;
+      param_2[1] = 0;
+    }
+    else {
+      func_0x00018076b450(&uStack_60,param_1,0x27);
+      uStack_57 = 0;
+      apuStack_88[0] = auStack_5f;
+      lVar9 = 0;
+      uStack_52 = 0;
+      apuStack_88[1] = auStack_56;
+      uStack_4d = 0;
+      apuStack_88[2] = auStack_51;
+      apuStack_88[3] = auStack_4c;
+      apuStack_88[4] = auStack_47;
+      uStack_48 = 0;
+      auStack_3d[2] = 0;
+      do {
+        pcVar6 = apuStack_88[lVar9];
+        cVar2 = *pcVar6;
+        while (cVar2 != '\0') {
+          if (((9 < (byte)(cVar2 - 0x30U)) && (5 < (byte)(cVar2 + 0xbfU))) &&
+             (5 < (byte)(cVar2 + 0x9fU))) goto FUN_180848ff1;
+          pcVar1 = pcVar6 + 1;
+          pcVar6 = pcVar6 + 1;
+          cVar2 = *pcVar1;
+        }
+        lVar9 = lVar9 + 1;
+      } while (lVar9 < 5);
+      uStack_98 = func_0x00018076b320(auStack_5f);
+      uVar4 = func_0x00018076b320(auStack_56);
+      uStack_94 = CONCAT22(uStack_94._2_2_,uVar4);
+      uVar4 = func_0x00018076b320(auStack_51);
+      uStack_94 = CONCAT22(uVar4,(undefined2)uStack_94);
+      uVar4 = func_0x00018076b320(auStack_4c);
+      puVar8 = (undefined1 *)((longlong)&uStack_8c + 3);
+      uStack_90 = CONCAT31(CONCAT21(uStack_90._2_2_,(char)uVar4),(char)((ushort)uVar4 >> 8));
+      puVar7 = auStack_3d;
+      iVar5 = 5;
+      puVar10 = auStack_3d;
+      do {
+        uVar3 = func_0x00018076b320(puVar10);
+        puVar10 = puVar10 + -2;
+        *puVar8 = uVar3;
+        iVar5 = iVar5 + -1;
+        *puVar7 = 0;
+        puVar8 = puVar8 + -1;
+        puVar7 = puVar7 + -2;
+      } while (-1 < iVar5);
+      *(undefined4 *)param_2 = uStack_98;
+      *(undefined4 *)((longlong)param_2 + 4) = uStack_94;
+      *(undefined4 *)(param_2 + 1) = uStack_90;
+      *(undefined4 *)((longlong)param_2 + 0xc) = uStack_8c;
+    }
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_b8);
+}
+
+
+
+undefined8 * FUN_18084c050(undefined8 *param_1,undefined8 param_2,byte param_3)
+
+{
+  undefined8 uVar1;
+  undefined8 *puVar2;
+  
+  FUN_1808b0200();
+  *param_1 = &UNK_180984a30;
+  param_1[6] = 0;
+  param_1[7] = 0;
+  param_1[8] = 0;
+  param_1[9] = &UNK_180984a60;
+  *(undefined4 *)(param_1 + 10) = 0;
+  *(undefined4 *)((longlong)param_1 + 0x54) = 0xffffffff;
+  puVar2 = (undefined8 *)FUN_180847820();
+  uVar1 = puVar2[1];
+  param_1[0xb] = *puVar2;
+  param_1[0xc] = uVar1;
+  *param_1 = &UNK_180984a70;
+  param_1[9] = &UNK_180984aa0;
+  param_1[0xd] = 0;
+  *(undefined2 *)((longlong)param_1 + 0x74) = 0;
+  *(undefined4 *)(param_1 + 0xe) = 0x3f800000;
+  param_1[0xf] = 0xffffffffffffffff;
+  param_1[0x10] = 0;
+  param_1[0x11] = 0;
+  param_1[0x12] = 0;
+  param_1[0x13] = 0;
+  param_1[0x14] = 0;
+  param_1[0x15] = 0;
+  param_1[0x16] = 0;
+  param_1[0x17] = 0;
+  *(undefined4 *)(param_1 + 0x18) = 0;
+  *(uint *)((longlong)param_1 + 0xc4) = (uint)param_3;
+  *(undefined4 *)((longlong)param_1 + 0xd4) = 0;
+  *(undefined4 *)(param_1 + 0x19) = 0xffffffff;
+  *(undefined8 *)((longlong)param_1 + 0xcc) = 0x7fffffff;
+  return param_1;
+}
+
+
+
+// WARNING: Removing unreachable block (ram,0x00018084c49f)
+// WARNING: Removing unreachable block (ram,0x00018084c4b4)
+// WARNING: Removing unreachable block (ram,0x00018084c4ea)
+// WARNING: Removing unreachable block (ram,0x00018084c4f2)
+// WARNING: Removing unreachable block (ram,0x00018084c4fa)
+// WARNING: Removing unreachable block (ram,0x00018084c500)
+// WARNING: Removing unreachable block (ram,0x00018084c55b)
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+uint FUN_18084c150(longlong *param_1)
+
+{
+  int iVar1;
+  uint uVar2;
+  ulonglong uVar3;
+  undefined4 *puVar4;
+  uint uVar5;
+  
+  uVar5 = *(uint *)((longlong)param_1 + 0xc);
+  uVar2 = uVar5 ^ (int)uVar5 >> 0x1f;
+  if ((int)(uVar2 - ((int)uVar5 >> 0x1f)) < 0) {
+    if (0 < (int)param_1[1]) {
+      return uVar2;
+    }
+    if ((0 < (int)uVar5) && (*param_1 != 0)) {
+                    // WARNING: Subroutine does not return
+      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    }
+    *param_1 = 0;
+    uVar5 = 0;
+    *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+  }
+  iVar1 = (int)param_1[1];
+  if (iVar1 < 0) {
+    puVar4 = (undefined4 *)(*param_1 + (longlong)iVar1 * 4);
+    if (iVar1 < 0) {
+      uVar3 = (ulonglong)(uint)-iVar1;
+      do {
+        if (puVar4 != (undefined4 *)0x0) {
+          *puVar4 = 0;
+        }
+        puVar4 = puVar4 + 1;
+        uVar3 = uVar3 - 1;
+      } while (uVar3 != 0);
+      uVar5 = *(uint *)((longlong)param_1 + 0xc);
+    }
+  }
+  *(undefined4 *)(param_1 + 1) = 0;
+  uVar5 = (uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f);
+  if ((int)uVar5 < 1) {
+    return uVar5;
+  }
+  if (0 < (int)param_1[1]) {
+    return 0x1c;
+  }
+  if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
+                    // WARNING: Subroutine does not return
+    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+  }
+  *param_1 = 0;
+  *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+  return 0;
+}
+
+
+
+// WARNING: Removing unreachable block (ram,0x00018074803f)
+// WARNING: Removing unreachable block (ram,0x000180748050)
+// WARNING: Removing unreachable block (ram,0x000180748086)
+// WARNING: Removing unreachable block (ram,0x00018074808e)
+// WARNING: Removing unreachable block (ram,0x0001807480eb)
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+uint FUN_18084c220(longlong *param_1)
+
+{
+  int iVar1;
+  uint uVar2;
+  uint uVar3;
+  
+  uVar3 = *(uint *)((longlong)param_1 + 0xc);
+  uVar2 = uVar3 ^ (int)uVar3 >> 0x1f;
+  if ((int)(uVar2 - ((int)uVar3 >> 0x1f)) < 0) {
+    if (0 < (int)param_1[1]) {
+      return uVar2;
+    }
+    if ((0 < (int)uVar3) && (*param_1 != 0)) {
+                    // WARNING: Subroutine does not return
+      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    }
+    *param_1 = 0;
+    uVar3 = 0;
+    *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+  }
+  iVar1 = (int)param_1[1];
+  if (iVar1 < 0) {
+                    // WARNING: Subroutine does not return
+    memset((longlong)iVar1 * 0x10 + *param_1,0,(longlong)-iVar1 << 4);
+  }
+  *(undefined4 *)(param_1 + 1) = 0;
+  uVar3 = (uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f);
+  if ((int)uVar3 < 1) {
+    return uVar3;
+  }
+  if (0 < (int)param_1[1]) {
+    return 0x1c;
+  }
+  if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
+                    // WARNING: Subroutine does not return
+    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+  }
+  *param_1 = 0;
+  *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+  return 0;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
