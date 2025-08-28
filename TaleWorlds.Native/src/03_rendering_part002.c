@@ -465,435 +465,677 @@ undefined FUN_18044bc50;
 undefined FUN_18044be30;
 
 
-// 函数: undefined FUN_18044c0d0;
+/*-----------------------------------------------------------------------------
+ * 着色器程序管理函数组
+ *---------------------------------------------------------------------------*/
+
+/** 
+ * @brief 顶点着色器创建函数
+ * @details 创建顶点着色器对象
+ */
 undefined FUN_18044c0d0;
 
-
-// 函数: undefined FUN_18044c190;
+/** 
+ * @brief 片段着色器创建函数
+ * @details 创建片段着色器对象
+ */
 undefined FUN_18044c190;
 
-
-// 函数: undefined FUN_18044c420;
+/** 
+ * @brief 几何着色器创建函数
+ * @details 创建几何着色器对象
+ */
 undefined FUN_18044c420;
 
-
-// 函数: undefined FUN_18044c840;
+/** 
+ * @brief 计算着色器创建函数
+ * @details 创建计算着色器对象
+ */
 undefined FUN_18044c840;
 
-
-// 函数: undefined FUN_18044c9c0;
+/** 
+ * @brief 着色器编译函数
+ * @details 编译着色器源代码
+ */
 undefined FUN_18044c9c0;
 
-
-// 函数: undefined FUN_18044cb80;
+/** 
+ * @brief 着色器链接函数
+ * @details 链接着色器程序
+ */
 undefined FUN_18044cb80;
 
-
-// 函数: undefined FUN_18044cd30;
+/** 
+ * @brief 着色器程序创建函数
+ * @details 创建着色器程序对象
+ */
 undefined FUN_18044cd30;
 
-
-// 函数: undefined FUN_18044ce10;
+/** 
+ * @brief 着色器附加函数
+ * @details 将着色器附加到程序
+ */
 undefined FUN_18044ce10;
 
-
-// 函数: undefined FUN_18044cf20;
+/** 
+ * @brief 着色器程序验证函数
+ * @details 验证着色器程序的有效性
+ */
 undefined FUN_18044cf20;
 
-
-// 函数: undefined FUN_18044d0b0;
+/** 
+ * @brief 着色器程序激活函数
+ * @details 激活着色器程序
+ */
 undefined FUN_18044d0b0;
 
-
-// 函数: undefined FUN_18044d0f0;
+/** 
+ * @brief 着色器参数设置函数
+ * @details 设置着色器程序的参数
+ */
 undefined FUN_18044d0f0;
 
-
-// 函数: undefined FUN_18044d130;
+/** 
+ * @brief 着色器统一变量设置函数
+ * @details 设置着色器程序的统一变量
+ */
 undefined FUN_18044d130;
 
-
-// 函数: undefined FUN_18044d2d0;
+/** 
+ * @brief 着色器属性绑定函数
+ * @details 绑定顶点属性到着色器
+ */
 undefined FUN_18044d2d0;
 
-
-// 函数: undefined FUN_18044d340;
+/** 
+ * @brief 着色器纹理绑定函数
+ * @details 绑定纹理到着色器
+ */
 undefined FUN_18044d340;
 
-
-// 函数: undefined FUN_18044d450;
+/** 
+ * @brief 着色器缓冲区绑定函数
+ * @details 绑定缓冲区到着色器
+ */
 undefined FUN_18044d450;
 
-
-// 函数: undefined FUN_18044d4f0;
+/** 
+ * @brief 着色器程序释放函数
+ * @details 释放着色器程序资源
+ */
 undefined FUN_18044d4f0;
 
-
-// 函数: undefined FUN_18044d570;
+/** 
+ * @brief 着色器错误检查函数
+ * @details 检查着色器编译和链接错误
+ */
 undefined FUN_18044d570;
 
-
-// 函数: undefined FUN_18044d680;
+/** 
+ * @brief 着色器程序缓存函数
+ * @details 缓存着色器程序以提高性能
+ */
 undefined FUN_18044d680;
 
-
-// 函数: undefined FUN_18044d910;
+/** 
+ * @brief 着色器预编译函数
+ * @details 预编译着色器程序
+ */
 undefined FUN_18044d910;
 
-
-// 函数: undefined FUN_18044da90;
+/** 
+ * @brief 着色器热重载函数
+ * @details 支持着色器的热重载
+ */
 undefined FUN_18044da90;
 
-
-// 函数: undefined FUN_18044db70;
+/** 
+ * @brief 着色器变体生成函数
+ * @details 生成着色器的不同变体
+ */
 undefined FUN_18044db70;
 
-
-// 函数: undefined FUN_18044dc10;
+/** 
+ * @brief 着色器条件编译函数
+ * @details 根据条件编译着色器
+ */
 undefined FUN_18044dc10;
 
-
-// 函数: undefined FUN_18044df40;
+/** 
+ * @brief 着色器包含处理函数
+ * @details 处理着色器的包含文件
+ */
 undefined FUN_18044df40;
 
-
-// 函数: undefined FUN_18044e000;
+/** 
+ * @brief 着色器宏定义函数
+ * @details 定义着色器的宏
+ */
 undefined FUN_18044e000;
 
-
-// 函数: undefined FUN_18044e0d0;
+/** 
+ * @brief 着色器字符串处理函数
+ * @details 处理着色器字符串
+ */
 undefined FUN_18044e0d0;
 
-
-// 函数: undefined FUN_18044e180;
+/** 
+ * @brief 着色器代码优化函数
+ * @details 优化着色器代码
+ */
 undefined FUN_18044e180;
 
-
-// 函数: undefined FUN_18044e2b0;
+/** 
+ * @brief 着色器程序查询函数
+ * @details 查询着色器程序的信息
+ */
 undefined FUN_18044e2b0;
 
-
-// 函数: undefined FUN_18044e3b0;
+/** 
+ * @brief 着色器反射函数
+ * @details 获取着色器的反射信息
+ */
 undefined FUN_18044e3b0;
 
-
-// 函数: undefined FUN_18044e4f0;
+/** 
+ * @brief 着色器调试函数
+ * @details 调试着色器程序
+ */
 undefined FUN_18044e4f0;
 
-
-// 函数: undefined FUN_18044e590;
+/** 
+ * @brief 着色器性能分析函数
+ * @details 分析着色器的性能
+ */
 undefined FUN_18044e590;
 
-
-// 函数: undefined FUN_18044e620;
+/** 
+ * @brief 着色器内存管理函数
+ * @details 管理着色器的内存使用
+ */
 undefined FUN_18044e620;
 
-
-// 函数: undefined FUN_18044e650;
+/** 
+ * @brief 着色器资源管理函数
+ * @details 管理着色器的资源
+ */
 undefined FUN_18044e650;
 
-
-// 函数: undefined FUN_18044e890;
+/** 
+ * @brief 着色器状态管理函数
+ * @details 管理着色器的状态
+ */
 undefined FUN_18044e890;
 
-
-// 函数: undefined FUN_18044ead0;
+/** 
+ * @brief 着色器批量处理函数
+ * @details 批量处理着色器操作
+ */
 undefined FUN_18044ead0;
 
-
-// 函数: undefined FUN_18044ed20;
+/** 
+ * @brief 着色器程序序列化函数
+ * @details 序列化着色器程序
+ */
 undefined FUN_18044ed20;
 
-
-// 函数: undefined FUN_18044edc0;
+/** 
+ * @brief 着色器程序反序列化函数
+ * @details 反序列化着色器程序
+ */
 undefined FUN_18044edc0;
 
-
-// 函数: undefined FUN_18044efd0;
+/** 
+ * @brief 着色器程序版本控制函数
+ * @details 管理着色器程序的版本
+ */
 undefined FUN_18044efd0;
 
-
-// 函数: undefined FUN_18044f210;
+/** 
+ * @brief 着色器程序依赖管理函数
+ * @details 管理着色器程序的依赖关系
+ */
 undefined FUN_18044f210;
 
-
-// 函数: undefined FUN_18044f370;
+/** 
+ * @brief 着色器程序配置函数
+ * @details 配置着色器程序的参数
+ */
 undefined FUN_18044f370;
 
-
-// 函数: undefined FUN_18044f780;
+/** 
+ * @brief 着色器程序初始化函数
+ * @details 初始化着色器程序
+ */
 undefined FUN_18044f780;
 
-
-// 函数: undefined FUN_18044f880;
+/** 
+ * @brief 着色器程序清理函数
+ * @details 清理着色器程序资源
+ */
 undefined FUN_18044f880;
 
-
-// 函数: undefined FUN_18044fa00;
+/** 
+ * @brief 着色器程序重置函数
+ * @details 重置着色器程序到初始状态
+ */
 undefined FUN_18044fa00;
 
-
-// 函数: undefined FUN_18044ffa0;
+/** 
+ * @brief 着色器程序验证和优化函数
+ * @details 验证并优化着色器程序
+ */
 undefined FUN_18044ffa0;
 
 
-// 函数: undefined FUN_180450070;
+/*-----------------------------------------------------------------------------
+ * 渲染目标和缓冲区管理函数组
+ *---------------------------------------------------------------------------*/
+
+/** 
+ * @brief 渲染目标创建函数
+ * @details 创建渲染目标对象，用于离屏渲染
+ */
 undefined FUN_180450070;
 
-
-// 函数: undefined FUN_180450140;
+/** 
+ * @brief 渲染目标绑定函数
+ * @details 绑定渲染目标到渲染管线
+ */
 undefined FUN_180450140;
 
-
-// 函数: undefined FUN_1804501c0;
+/** 
+ * @brief 渲染目标配置函数
+ * @details 配置渲染目标的格式、大小等参数
+ */
 undefined FUN_1804501c0;
 
-
-// 函数: undefined FUN_1804502d0;
+/** 
+ * @brief 渲染目标纹理附加函数
+ * @details 将纹理附加到渲染目标
+ */
 undefined FUN_1804502d0;
 
-
-// 函数: undefined FUN_180450360;
+/** 
+ * @brief 渲染目标深度缓冲区附加函数
+ * @details 将深度缓冲区附加到渲染目标
+ */
 undefined FUN_180450360;
 
-
-// 函数: undefined FUN_1804508a0;
+/** 
+ * @brief 渲染目标多重采样设置函数
+ * @details 设置渲染目标的多重采样参数
+ */
 undefined FUN_1804508a0;
 
-
-// 函数: undefined FUN_1804509e0;
+/** 
+ * @brief 渲染目标状态查询函数
+ * @details 查询渲染目标的当前状态
+ */
 undefined FUN_1804509e0;
 
-
-// 函数: undefined FUN_180450a20;
+/** 
+ * @brief 渲染目标有效性检查函数
+ * @details 检查渲染目标是否完整有效
+ */
 undefined FUN_180450a20;
 
-
-// 函数: undefined FUN_180450ba0;
+/** 
+ * @brief 渲染目标分辨率设置函数
+ * @details 设置渲染目标的分辨率
+ */
 undefined FUN_180450ba0;
 
-
-// 函数: undefined FUN_180450d90;
+/** 
+ * @brief 渲染目标释放函数
+ * @details 释放渲染目标资源
+ */
 undefined FUN_180450d90;
 
-
-// 函数: undefined FUN_1804510a0;
+/** 
+ * @brief 渲染目标拷贝函数
+ * @details 拷贝渲染目标内容
+ */
 undefined FUN_1804510a0;
 
-
-// 函数: undefined FUN_1804511e0;
+/** 
+ * @brief 渲染目标清除函数
+ * @details 清除渲染目标的内容
+ */
 undefined FUN_1804511e0;
 
-
-// 函数: undefined FUN_1804512f0;
+/** 
+ * @brief 渲染目标交换函数
+ * @details 交换渲染目标的内容
+ */
 undefined FUN_1804512f0;
 
-
-// 函数: undefined FUN_180451770;
+/** 
+ * @brief 渲染目标批量处理函数
+ * @details 批量处理多个渲染目标的操作
+ */
 undefined FUN_180451770;
 
-
-// 函数: undefined FUN_1804517c0;
+/** 
+ * @brief 渲染目标链管理函数
+ * @details 管理渲染目标链
+ */
 undefined FUN_1804517c0;
 
-
-// 函数: undefined FUN_180451890;
+/** 
+ * @brief 渲染目标优先级设置函数
+ * @details 设置渲染目标的优先级
+ */
 undefined FUN_180451890;
 
-
-// 函数: undefined FUN_1804519d0;
+/** 
+ * @brief 渲染目标依赖管理函数
+ * @details 管理渲染目标之间的依赖关系
+ */
 undefined FUN_1804519d0;
 
-
-// 函数: undefined FUN_180451bd0;
+/** 
+ * @brief 渲染目标内存管理函数
+ * @details 管理渲染目标的内存使用
+ */
 undefined FUN_180451bd0;
 
-
-// 函数: undefined FUN_180451ca0;
+/** 
+ * @brief 渲染目标性能监控函数
+ * @details 监控渲染目标的性能
+ */
 undefined FUN_180451ca0;
 
-
-// 函数: undefined FUN_180451d20;
+/** 
+ * @brief 渲染目标调试函数
+ * @details 调试渲染目标的问题
+ */
 undefined FUN_180451d20;
 
-
-// 函数: undefined FUN_180451da0;
+/** 
+ * @brief 渲染目标错误处理函数
+ * @details 处理渲染目标的错误
+ */
 undefined FUN_180451da0;
 
-
-// 函数: undefined FUN_180451e30;
+/** 
+ * @brief 渲染目标配置验证函数
+ * @details 验证渲染目标的配置
+ */
 undefined FUN_180451e30;
 
-
-// 函数: undefined FUN_1804520a0;
+/** 
+ * @brief 渲染目标初始化函数
+ * @details 初始化渲染目标
+ */
 undefined FUN_1804520a0;
 
-
-// 函数: undefined FUN_1804522d0;
+/** 
+ * @brief 渲染目标清理函数
+ * @details 清理渲染目标资源
+ */
 undefined FUN_1804522d0;
 
-
-// 函数: undefined FUN_180452500;
+/** 
+ * @brief 渲染目标重置函数
+ * @details 重置渲染目标到初始状态
+ */
 undefined FUN_180452500;
 
-
-// 函数: undefined FUN_180452630;
+/** 
+ * @brief 渲染目标同步函数
+ * @details 同步渲染目标的操作
+ */
 undefined FUN_180452630;
 
-
-// 函数: undefined FUN_180452f40;
+/** 
+ * @brief 渲染目标状态保存函数
+ * @details 保存渲染目标的状态
+ */
 undefined FUN_180452f40;
 
-
-// 函数: undefined FUN_180452fa0;
+/** 
+ * @brief 渲染目标状态恢复函数
+ * @details 恢复渲染目标的状态
+ */
 undefined FUN_180452fa0;
 
-
-// 函数: undefined FUN_1804530a0;
+/** 
+ * @brief 渲染目标序列化函数
+ * @details 序列化渲染目标
+ */
 undefined FUN_1804530a0;
 
-
-// 函数: undefined FUN_180453140;
+/** 
+ * @brief 渲染目标反序列化函数
+ * @details 反序列化渲染目标
+ */
 undefined FUN_180453140;
 
-
-// 函数: undefined FUN_1804531d0;
+/** 
+ * @brief 渲染目标版本控制函数
+ * @details 管理渲染目标的版本
+ */
 undefined FUN_1804531d0;
 
-
-// 函数: undefined FUN_180453300;
+/** 
+ * @brief 渲染目标缓存函数
+ * @details 缓存渲染目标以提高性能
+ */
 undefined FUN_180453300;
 
-
-// 函数: undefined FUN_1804534d0;
+/** 
+ * @brief 渲染目标预分配函数
+ * @details 预分配渲染目标资源
+ */
 undefined FUN_1804534d0;
 
-
-// 函数: undefined FUN_180453580;
+/** 
+ * @brief 渲染目标延迟释放函数
+ * @details 延迟释放渲染目标资源
+ */
 undefined FUN_180453580;
 
-
-// 函数: undefined FUN_180453750;
+/** 
+ * @brief 渲染目标引用计数函数
+ * @details 管理渲染目标的引用计数
+ */
 undefined FUN_180453750;
 
-
-// 函数: undefined FUN_1804537b0;
+/** 
+ * @brief 渲染目标共享函数
+ * @details 共享渲染目标资源
+ */
 undefined FUN_1804537b0;
 
-
-// 函数: undefined FUN_1804537e0;
+/** 
+ * @brief 渲染目标独占函数
+ * @details 独占渲染目标资源
+ */
 undefined FUN_1804537e0;
 
-
-// 函数: undefined FUN_180453810;
+/** 
+ * @brief 渲染目标锁定函数
+ * @details 锁定渲染目标以防止并发访问
+ */
 undefined FUN_180453810;
 
-
-// 函数: undefined FUN_180453860;
+/** 
+ * @brief 渲染目标解锁函数
+ * @details 解锁渲染目标
+ */
 undefined FUN_180453860;
 
-
-// 函数: undefined FUN_1804538b0;
+/** 
+ * @brief 渲染目标等待函数
+ * @details 等待渲染目标操作完成
+ */
 undefined FUN_1804538b0;
 
-
-// 函数: undefined FUN_1804539b0;
+/** 
+ * @brief 渲染目标超时处理函数
+ * @details 处理渲染目标操作超时
+ */
 undefined FUN_1804539b0;
 
-
-// 函数: undefined FUN_180453b60;
+/** 
+ * @brief 渲染目标优先级调整函数
+ * @details 调整渲染目标的优先级
+ */
 undefined FUN_180453b60;
 
-
-// 函数: undefined FUN_180453cb0;
+/** 
+ * @brief 渲染目标资源回收函数
+ * @details 回收渲染目标的资源
+ */
 undefined FUN_180453cb0;
 
-
-// 函数: undefined FUN_180453d60;
+/** 
+ * @brief 渲染目标垃圾回收函数
+ * @details 执行渲染目标的垃圾回收
+ */
 undefined FUN_180453d60;
 
-
-// 函数: undefined FUN_180453de0;
+/** 
+ * @brief 渲染目标内存碎片整理函数
+ * @details 整理渲染目标的内存碎片
+ */
 undefined FUN_180453de0;
 
-
-// 函数: undefined FUN_180453e40;
+/** 
+ * @brief 渲染目标内存压缩函数
+ * @details 压缩渲染目标的内存使用
+ */
 undefined FUN_180453e40;
 
-
-// 函数: undefined FUN_180453f70;
+/** 
+ * @brief 渲染目标热重载函数
+ * @details 支持渲染目标的热重载
+ */
 undefined FUN_180453f70;
 
-
-// 函数: undefined FUN_180453f90;
+/** 
+ * @brief 渲染目标配置更新函数
+ * @details 更新渲染目标的配置
+ */
 undefined FUN_180453f90;
 
-
-// 函数: undefined FUN_180454070;
+/** 
+ * @brief 渲染目标状态查询函数
+ * @details 查询渲染目标的状态信息
+ */
 undefined FUN_180454070;
 
-
-// 函数: undefined FUN_1804541a0;
+/** 
+ * @brief 渲染目标性能分析函数
+ * @details 分析渲染目标的性能
+ */
 undefined FUN_1804541a0;
 
-
-// 函数: undefined FUN_180454230;
+/** 
+ * @brief 渲染目标错误报告函数
+ * @details 报告渲染目标的错误
+ */
 undefined FUN_180454230;
 
-
-// 函数: undefined FUN_180454300;
+/** 
+ * @brief 渲染目标统计信息函数
+ * @details 收集渲染目标的统计信息
+ */
 undefined FUN_180454300;
 
-
-// 函数: undefined FUN_1804543f0;
+/** 
+ * @brief 渲染目标资源管理函数
+ * @details 管理渲染目标的资源
+ */
 undefined FUN_1804543f0;
 
 
-// 函数: undefined FUN_180454d00;
+/*-----------------------------------------------------------------------------
+ * 光照和阴影处理函数组
+ *---------------------------------------------------------------------------*/
+
+/** 
+ * @brief 光照系统初始化函数
+ * @details 初始化光照系统的基本参数和状态
+ */
 undefined FUN_180454d00;
 
 
-// 函数: undefined FUN_180454d80;
+/** 
+ * @brief 光照参数设置函数
+ * @details 设置光照的强度、颜色、位置等参数
+ */
 undefined FUN_180454d80;
 
 
-// 函数: undefined FUN_180454ea0;
+/** 
+ * @brief 光照计算函数
+ * @details 计算场景中的光照效果
+ */
 undefined FUN_180454ea0;
 
 
-// 函数: undefined FUN_180454ff0;
+/** 
+ * @brief 阴影映射生成函数
+ * @details 生成阴影映射贴图
+ */
 undefined FUN_180454ff0;
 
 
-// 函数: undefined FUN_180455090;
+/** 
+ * @brief 阴影渲染函数
+ * @details 渲染阴影效果
+ */
 undefined FUN_180455090;
 
 
-// 函数: undefined FUN_180455250;
+/** 
+ * @brief 环境光照计算函数
+ * @details 计算环境光照效果
+ */
 undefined FUN_180455250;
 
 
-// 函数: undefined FUN_180455340;
+/** 
+ * @brief 漫反射光照计算函数
+ * @details 计算漫反射光照效果
+ */
 undefined FUN_180455340;
 
 
-// 函数: undefined FUN_180455430;
+/** 
+ * @brief 镜面反射光照计算函数
+ * @details 计算镜面反射光照效果
+ */
 undefined FUN_180455430;
 
 
-// 函数: undefined FUN_1804555a0;
+/** 
+ * @brief 光照衰减计算函数
+ * @details 计算光照的衰减效果
+ */
 undefined FUN_1804555a0;
 
 
-// 函数: undefined FUN_1804557b0;
+/** 
+ * @brief 光照贴图烘焙函数
+ * @details 烘焙光照贴图
+ */
 undefined FUN_1804557b0;
 
 
-// 函数: undefined FUN_180455980;
+/** 
+ * @brief 光照探针管理函数
+ * @details 管理光照探针
+ */
 undefined FUN_180455980;
 
 
-// 函数: undefined FUN_1804559d0;
+/** 
+ * @brief 光照探针放置函数
+ * @details 放置光照探针
+ */
 undefined FUN_1804559d0;
 
 
