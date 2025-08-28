@@ -223,10 +223,11 @@ UPDATE_RESULT:
 
 // 函数：数据结构操作包装函数
 // 功能：调用内部函数进行数据结构操作
+// 参数：param_1 - 数据结构指针，param_2 - 操作参数，param_3 - 数据大小，param_4 - 标志位
 void data_structure_wrapper(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_18008d810(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  CoreEngine_DataStructureProcessor(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -293,7 +294,7 @@ uint64_t * find_tree_node(uint64_t *tree_root,uint64_t search_key)
   }
   if ((parent_node == tree_root) || 
       (compare_result = memcmp(search_key,parent_node + 4,0x10), compare_result < 0)) {
-    parent_node = (uint64_t *)FUN_18008da10(tree_root,temp_buffer);
+    parent_node = (uint64_t *)CoreEngine_TreeStructureSearcher(tree_root,temp_buffer);
     parent_node = (uint64_t *)*parent_node;
   }
   return parent_node + 6;
