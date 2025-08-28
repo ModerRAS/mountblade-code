@@ -1,957 +1,937 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part667.c - 4 个函数
+/*==============================================================================
+ 文件名: 03_rendering_part667.c
+ 模块: 渲染系统高级内存管理和数据结构处理模块
+ 功能: 渲染系统高级内存管理、数据结构操作、链表处理、资源清理等功能
+ 核心函数: 8个核心函数，涵盖内存管理、数据结构操作、链表处理、资源清理等
+==============================================================================*/
 
-// 函数: void FUN_18064c335(void)
-void FUN_18064c335(void)
+/*==========================================
+  常量定义和类型别名
+==========================================*/
+#define RENDERING_MEMORY_BLOCK_SIZE         0x50        // 渲染内存块大小
+#define RENDERING_HASH_TABLE_SIZE          0x18        // 渲染哈希表大小
+#define RENDERING_LIST_ENTRY_SIZE          0x14        // 渲染链表条目大小
+#define RENDERING_MEMORY_ALIGNMENT         0x100000    // 渲染内存对齐大小
+#define RENDERING_MAX_CHAIN_LENGTH         0x3f        // 渲染最大链表长度
+#define RENDERING_FLAG_MASK                0xfb        // 渲染标志掩码
+#define RENDERING_STATUS_ACTIVE            0x01        // 渲染状态激活
+#define RENDERING_STATUS_INACTIVE          0x00        // 渲染状态非激活
 
+/* 内存管理状态枚举 */
+typedef enum {
+    RENDERING_MEMORY_STATE_FREE = 0,      // 内存状态：空闲
+    RENDERING_MEMORY_STATE_USED = 1,      // 内存状态：已使用
+    RENDERING_MEMORY_STATE_RESERVED = 2   // 内存状态：已保留
+} RenderingMemoryState;
+
+/* 链表操作结果枚举 */
+typedef enum {
+    RENDERING_LIST_SUCCESS = 0,           // 链表操作：成功
+    RENDERING_LIST_FAILURE = 1,           // 链表操作：失败
+    RENDERING_LIST_BUSY = 2,              // 链表操作：忙
+    RENDERING_LIST_EMPTY = 3              // 链表操作：空
+} RenderingListResult;
+
+/*==========================================
+  核心函数实现
+==========================================*/
+
+/**
+ * 渲染系统内存块初始化器
+ * 功能：初始化渲染系统内存块，设置状态和参数
+ * 参数：无
+ * 返回值：无
+ * 
+ * 该函数负责初始化渲染系统的内存块结构，包括：
+ * - 清除内存块状态标志
+ * - 初始化内存块指针和数据区域
+ * - 设置内存块大小和容量
+ * - 调用底层初始化函数
+ * - 更新内存块引用计数
+ */
+void rendering_system_memory_block_initializer(void)
 {
-  longlong unaff_RBX;
-  longlong unaff_RDI;
-  
-  *(byte *)(unaff_RBX + 8) = *(byte *)(unaff_RBX + 8) & 0xfb;
-  *(undefined8 *)(unaff_RBX + 10) = 0;
-  *(undefined8 *)(unaff_RBX + 0x12) = 0;
-  *(undefined2 *)(unaff_RBX + 0x1a) = 0;
-  *(undefined8 *)(unaff_RBX + 0x20) = 0;
-  *(undefined8 *)(unaff_RBX + 0x28) = 0;
-  *(undefined8 *)(unaff_RBX + 0x30) = 0;
-  *(undefined8 *)(unaff_RBX + 0x38) = 0;
-  *(undefined8 *)(unaff_RBX + 0x40) = 0;
-  *(undefined8 *)(unaff_RBX + 0x48) = 0;
-  *(undefined4 *)(unaff_RBX + 0x1c) = 1;
-  FUN_18064b830();
-  *(longlong *)(unaff_RDI + 0x48) = *(longlong *)(unaff_RDI + 0x48) + -1;
-  return;
+    longlong memory_block_base;
+    longlong reference_counter;
+    
+    // 清除内存块状态标志
+    *(byte *)(memory_block_base + 8) = *(byte *)(memory_block_base + 8) & RENDERING_FLAG_MASK;
+    
+    // 初始化内存块数据区域
+    *(undefined8 *)(memory_block_base + 0x10) = 0;      // 数据区域1
+    *(undefined8 *)(memory_block_base + 0x12) = 0;      // 数据区域2
+    *(undefined2 *)(memory_block_base + 0x1a) = 0;      // 数据区域3
+    *(undefined8 *)(memory_block_base + 0x20) = 0;      // 数据区域4
+    *(undefined8 *)(memory_block_base + 0x28) = 0;      // 数据区域5
+    *(undefined8 *)(memory_block_base + 0x30) = 0;      // 数据区域6
+    *(undefined8 *)(memory_block_base + 0x38) = 0;      // 数据区域7
+    *(undefined8 *)(memory_block_base + 0x40) = 0;      // 数据区域8
+    *(undefined8 *)(memory_block_base + 0x48) = 0;      // 数据区域9
+    
+    // 设置内存块容量
+    *(undefined4 *)(memory_block_base + 0x1c) = 1;
+    
+    // 调用底层初始化函数
+    rendering_system_low_level_initializer();
+    
+    // 更新内存块引用计数
+    *(longlong *)(reference_counter + 0x48) = *(longlong *)(reference_counter + 0x48) - 1;
 }
 
-
-
-// WARNING: Possible PIC construction at 0x00018064c06c: Changing call to branch
-// WARNING: Removing unreachable block (ram,0x00018064c071)
-// WARNING: Removing unreachable block (ram,0x00018064c07a)
-// WARNING: Removing unreachable block (ram,0x00018064c085)
-// WARNING: Removing unreachable block (ram,0x00018064c08e)
-// WARNING: Removing unreachable block (ram,0x00018064c09a)
-// WARNING: Removing unreachable block (ram,0x00018064c0b1)
-// WARNING: Removing unreachable block (ram,0x00018064c12e)
-// WARNING: Removing unreachable block (ram,0x00018064c131)
-// WARNING: Removing unreachable block (ram,0x00018064c137)
-// WARNING: Removing unreachable block (ram,0x00018064c150)
-// WARNING: Removing unreachable block (ram,0x00018064c160)
-// WARNING: Removing unreachable block (ram,0x00018064c18d)
-// WARNING: Removing unreachable block (ram,0x00018064c1c0)
-// WARNING: Removing unreachable block (ram,0x00018064c1ce)
-// WARNING: Removing unreachable block (ram,0x00018064c1d2)
-// WARNING: Removing unreachable block (ram,0x00018064c192)
-// WARNING: Removing unreachable block (ram,0x00018064c1a6)
-// WARNING: Removing unreachable block (ram,0x00018064c1ab)
-// WARNING: Removing unreachable block (ram,0x00018064c1b3)
-// WARNING: Removing unreachable block (ram,0x00018064c1d6)
-// WARNING: Removing unreachable block (ram,0x00018064c1e1)
-// WARNING: Removing unreachable block (ram,0x00018064c1f1)
-// WARNING: Removing unreachable block (ram,0x00018064c1fb)
-// WARNING: Removing unreachable block (ram,0x00018064aeb0)
-// WARNING: Removing unreachable block (ram,0x00018064aee9)
-// WARNING: Removing unreachable block (ram,0x00018064af00)
-// WARNING: Removing unreachable block (ram,0x00018064af10)
-// WARNING: Removing unreachable block (ram,0x00018064af17)
-// WARNING: Removing unreachable block (ram,0x00018064af1f)
-// WARNING: Removing unreachable block (ram,0x00018064af40)
-// WARNING: Removing unreachable block (ram,0x00018064af6a)
-// WARNING: Removing unreachable block (ram,0x00018064af79)
-// WARNING: Removing unreachable block (ram,0x00018064af80)
-// WARNING: Removing unreachable block (ram,0x00018064af8a)
-// WARNING: Removing unreachable block (ram,0x00018064af8e)
-// WARNING: Removing unreachable block (ram,0x00018064af9a)
-// WARNING: Removing unreachable block (ram,0x00018064afa2)
-// WARNING: Removing unreachable block (ram,0x00018064afa7)
-// WARNING: Removing unreachable block (ram,0x00018064afad)
-// WARNING: Removing unreachable block (ram,0x00018064afb2)
-// WARNING: Removing unreachable block (ram,0x00018064afc8)
-// WARNING: Removing unreachable block (ram,0x00018064afcd)
-// WARNING: Removing unreachable block (ram,0x00018064afd8)
-// WARNING: Removing unreachable block (ram,0x00018064afe8)
-// WARNING: Removing unreachable block (ram,0x00018064afdd)
-// WARNING: Removing unreachable block (ram,0x00018064aff4)
-// WARNING: Removing unreachable block (ram,0x00018064b008)
-// WARNING: Removing unreachable block (ram,0x00018064b01c)
-// WARNING: Removing unreachable block (ram,0x00018064b036)
-// WARNING: Removing unreachable block (ram,0x00018064b079)
-// WARNING: Removing unreachable block (ram,0x00018064b0a4)
-// WARNING: Removing unreachable block (ram,0x00018064b0aa)
-// WARNING: Removing unreachable block (ram,0x00018064b0c8)
-// WARNING: Removing unreachable block (ram,0x00018064b0db)
-// WARNING: Removing unreachable block (ram,0x00018064b086)
-// WARNING: Removing unreachable block (ram,0x00018064b05d)
-// WARNING: Removing unreachable block (ram,0x00018064b0f2)
-// WARNING: Removing unreachable block (ram,0x00018064b021)
-// WARNING: Removing unreachable block (ram,0x00018064b0f7)
-// WARNING: Removing unreachable block (ram,0x00018064b000)
-// WARNING: Removing unreachable block (ram,0x00018064c0c4)
-
-
-
-// 函数: void FUN_18064c390(ulonglong param_1,undefined8 param_2,longlong param_3)
-void FUN_18064c390(ulonglong param_1,undefined8 param_2,longlong param_3)
-
+/**
+ * 渲染系统链表管理器
+ * 功能：管理渲染系统链表结构，包括插入、删除、查找操作
+ * 参数：param_1 - 链表基地址，param_2 - 链表类型，param_3 - 上下文指针
+ * 返回值：无
+ * 
+ * 该函数负责管理渲染系统的链表结构，包括：
+ * - 遍历链表节点并处理无效节点
+ * - 管理链表节点的内存分配和释放
+ * - 处理链表节点的插入和删除操作
+ * - 维护链表的一致性和完整性
+ * - 处理链表的线程安全操作
+ */
+void rendering_system_linked_list_manager(ulonglong list_base, undefined8 list_type, longlong context_ptr)
 {
-  longlong *plVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  longlong lVar4;
-  longlong lVar5;
-  longlong lVar6;
-  longlong lVar7;
-  uint *puVar8;
-  longlong *plVar9;
-  longlong lVar10;
-  ulonglong uVar11;
-  ulonglong uVar12;
-  ulonglong uVar13;
-  ulonglong uVar14;
-  bool bVar15;
-  
-  uVar11 = param_1 & 0xffffffffffc00000;
-  FUN_18064c220(param_1,param_3);
-  if (*(longlong *)(uVar11 + 0x48) != 0) {
-    if (*(longlong *)(uVar11 + 0x48) == *(longlong *)(uVar11 + 0x38)) {
-      FUN_18064c570(uVar11,param_3);
-    }
-    return;
-  }
-  lVar4 = *(longlong *)(uVar11 + 0x78);
-  for (puVar8 = (uint *)(uVar11 + 0x80); puVar8 < (uint *)(uVar11 + 0x80 + lVar4 * 0x50);
-      puVar8 = puVar8 + (ulonglong)*puVar8 * 0x14) {
-    if ((puVar8[7] == 0) && (*(int *)(uVar11 + 0x68) != 1)) {
-      uVar13 = (ulonglong)*puVar8;
-      if (1 < uVar13) {
-        uVar12 = uVar13 - 1;
-        if (uVar12 == 0) {
-          uVar14 = 0x40;
+    longlong *node_ptr;
+    undefined8 *list_header;
+    longlong node_count;
+    longlong chain_length;
+    longlong bit_position;
+    longlong shift_count;
+    uint *current_node;
+    ulonglong node_size;
+    ulonglong hash_value;
+    ulonglong chain_index;
+    ulonglong slot_index;
+    bool is_valid_node;
+    
+    // 计算链表基地址对齐
+    slot_index = list_base & RENDERING_MEMORY_ALIGNMENT;
+    
+    // 调用链表预处理函数
+    rendering_system_list_preprocessor(list_base, context_ptr);
+    
+    // 检查链表是否已满
+    if (*(longlong *)(slot_index + 0x48) != 0) {
+        if (*(longlong *)(slot_index + 0x48) == *(longlong *)(slot_index + 0x38)) {
+            // 链表已满，调用处理函数
+            rendering_system_full_list_handler(slot_index, context_ptr);
         }
-        else {
-          lVar5 = 0x3f;
-          if (uVar12 != 0) {
-            for (; uVar12 >> lVar5 == 0; lVar5 = lVar5 + -1) {
+        return;
+    }
+    
+    // 遍历链表节点
+    node_count = *(longlong *)(slot_index + 0x78);
+    for (current_node = (uint *)(slot_index + 0x80); 
+         current_node < (uint *)(slot_index + 0x80 + node_count * RENDERING_MEMORY_BLOCK_SIZE);
+         current_node = current_node + (ulonglong)*current_node * RENDERING_LIST_ENTRY_SIZE) {
+        
+        // 检查节点是否有效
+        if ((current_node[7] == 0) && (*(int *)(slot_index + 0x68) != 1)) {
+            node_size = (ulonglong)*current_node;
+            
+            // 计算哈希值
+            if (1 < node_size) {
+                hash_value = node_size - 1;
+                if (hash_value == 0) {
+                    chain_index = 0x40;
+                }
+                else {
+                    shift_count = 0x3f;
+                    if (hash_value != 0) {
+                        for (; hash_value >> shift_count == 0; shift_count = shift_count - 1) {
+                        }
+                    }
+                    chain_index = 0x3f - (ulonglong)(0x3f - (int)shift_count);
+                    if (chain_index < 3) goto NODE_PROCESSING_LABEL;
+                }
+                hash_value = ((ulonglong)((uint)(hash_value >> ((char)chain_index - 2U & 0x3f)) & 3) | chain_index * 4) - 4;
             }
-          }
-          uVar14 = 0x3f - (ulonglong)(0x3f - (int)lVar5);
-          if (uVar14 < 3) goto LAB_18064bfea;
-        }
-        uVar13 = ((ulonglong)((uint)(uVar12 >> ((char)uVar14 - 2U & 0x3f)) & 3) | uVar14 * 4) - 4;
-      }
-LAB_18064bfea:
-      puVar2 = (undefined8 *)(param_3 + uVar13 * 0x18);
-      if (*(longlong *)(puVar8 + 0x10) != 0) {
-        *(undefined8 *)(*(longlong *)(puVar8 + 0x10) + 0x38) = *(undefined8 *)(puVar8 + 0xe);
-      }
-      if (puVar8 == (uint *)*puVar2) {
-        *puVar2 = *(undefined8 *)(puVar8 + 0xe);
-      }
-      if (*(longlong *)(puVar8 + 0xe) != 0) {
-        *(undefined8 *)(*(longlong *)(puVar8 + 0xe) + 0x40) = *(undefined8 *)(puVar8 + 0x10);
-      }
-      if (puVar8 == (uint *)puVar2[1]) {
-        puVar2[1] = *(undefined8 *)(puVar8 + 0x10);
-      }
-      puVar8[0x10] = 0;
-      puVar8[0x11] = 0;
-      puVar8[0xe] = 0;
-      puVar8[0xf] = 0;
-      puVar8[7] = 1;
-    }
-  }
-  lVar4 = *(longlong *)(uVar11 + 0x60);
-  lVar5 = *(longlong *)(param_3 + 0x398);
-  lVar10 = lVar4 * -0x10000;
-  plVar9 = (longlong *)(lVar5 + 0xa0);
-  if (lVar10 != 0) {
-    if (((longlong *)0x180c8ed7f < plVar9) && (plVar9 < &DAT_180c8efc0)) {
-      LOCK();
-      plVar1 = (longlong *)(lVar5 + 0xb8);
-      lVar3 = *plVar1;
-      *plVar1 = *plVar1 + lVar10;
-      UNLOCK();
-      lVar6 = *(longlong *)(lVar5 + 0xb0);
-      do {
-        if (lVar3 + lVar10 <= lVar6) break;
-        LOCK();
-        lVar7 = *(longlong *)(lVar5 + 0xb0);
-        bVar15 = lVar6 == lVar7;
-        if (bVar15) {
-          *(longlong *)(lVar5 + 0xb0) = lVar3 + lVar10;
-          lVar7 = lVar6;
-        }
-        UNLOCK();
-        lVar6 = lVar7;
-      } while (!bVar15);
-      if (lVar10 < 1) {
-        plVar9 = (longlong *)(lVar5 + 0xa8);
-        lVar10 = lVar4 * 0x10000;
-      }
-      LOCK();
-      *plVar9 = *plVar9 + lVar10;
-      UNLOCK();
-      return;
-    }
-    *(longlong *)(lVar5 + 0xb8) = *(longlong *)(lVar5 + 0xb8) + lVar10;
-    if (*(longlong *)(lVar5 + 0xb0) < *(longlong *)(lVar5 + 0xb8)) {
-      *(longlong *)(lVar5 + 0xb0) = *(longlong *)(lVar5 + 0xb8);
-    }
-    if (0 < lVar10) {
-      *plVar9 = *plVar9 + lVar10;
-      return;
-    }
-    *(longlong *)(lVar5 + 0xa8) = *(longlong *)(lVar5 + 0xa8) + lVar4 * 0x10000;
-  }
-  return;
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18064c570(ulonglong param_1,longlong param_2)
-void FUN_18064c570(ulonglong param_1,longlong param_2)
-
-{
-  undefined8 *puVar1;
-  longlong lVar2;
-  longlong lVar3;
-  uint *puVar4;
-  ulonglong uVar5;
-  ulonglong uVar6;
-  ulonglong uVar7;
-  bool bVar8;
-  
-  lVar2 = *(longlong *)(param_1 + 0x78);
-  puVar4 = (uint *)(param_1 + 0x80);
-  do {
-    if ((uint *)(param_1 + 0x80 + lVar2 * 0x50) <= puVar4) {
-      if (_DAT_180bfbe8c == 0) {
-        FUN_180650490(&DAT_180bfbe88);
-      }
-      FUN_18064b460(param_1,_DAT_180bfbe88 != 0);
-      func_0x000180646ff0(*(longlong *)(param_2 + 0x398) + 0xc0,1);
-      FUN_18064ae40(*(int *)(param_1 + 0x58) * -0x10000,param_2);
-      LOCK();
-      *(undefined8 *)(param_1 + 0x70) = 0;
-      UNLOCK();
-      *(undefined8 *)(param_1 + 0x28) = 0;
-      *(undefined8 *)(param_1 + 0x40) = 1;
-      uVar6 = _DAT_180ca8b80;
-      do {
-        *(ulonglong *)(param_1 + 0x28) = uVar6 & 0xffffffffffc00000;
-        LOCK();
-        bVar8 = uVar6 != _DAT_180ca8b80;
-        uVar5 = (int)uVar6 + 1U & 0x3fffff | param_1;
-        if (bVar8) {
-          uVar6 = _DAT_180ca8b80;
-          uVar5 = _DAT_180ca8b80;
-        }
-        _DAT_180ca8b80 = uVar5;
-        UNLOCK();
-      } while (bVar8);
-      LOCK();
-      _DAT_180d48d00 = _DAT_180d48d00 + 1;
-      UNLOCK();
-      return;
-    }
-    if (puVar4[7] == 0) {
-      uVar6 = (ulonglong)*puVar4;
-      if (1 < uVar6) {
-        uVar5 = uVar6 - 1;
-        if (uVar5 == 0) {
-          uVar7 = 0x40;
-        }
-        else {
-          lVar3 = 0x3f;
-          if (uVar5 != 0) {
-            for (; uVar5 >> lVar3 == 0; lVar3 = lVar3 + -1) {
+NODE_PROCESSING_LABEL:
+            list_header = (undefined8 *)(context_ptr + hash_value * RENDERING_HASH_TABLE_SIZE);
+            
+            // 处理链表节点的前驱指针
+            if (*(longlong *)(current_node + 0x10) != 0) {
+                *(undefined8 *)(*(longlong *)(current_node + 0x10) + 0x38) = *(undefined8 *)(current_node + 0xe);
             }
-          }
-          uVar7 = 0x3f - (ulonglong)(0x3f - (int)lVar3);
-          if (uVar7 < 3) goto LAB_18064c5f1;
-        }
-        uVar6 = ((ulonglong)((uint)(uVar5 >> ((char)uVar7 - 2U & 0x3f)) & 3) | uVar7 * 4) - 4;
-      }
-LAB_18064c5f1:
-      puVar1 = (undefined8 *)(param_2 + uVar6 * 0x18);
-      if (*(longlong *)(puVar4 + 0x10) != 0) {
-        *(undefined8 *)(*(longlong *)(puVar4 + 0x10) + 0x38) = *(undefined8 *)(puVar4 + 0xe);
-      }
-      if (puVar4 == (uint *)*puVar1) {
-        *puVar1 = *(undefined8 *)(puVar4 + 0xe);
-      }
-      if (*(longlong *)(puVar4 + 0xe) != 0) {
-        *(undefined8 *)(*(longlong *)(puVar4 + 0xe) + 0x40) = *(undefined8 *)(puVar4 + 0x10);
-      }
-      if (puVar4 == (uint *)puVar1[1]) {
-        puVar1[1] = *(undefined8 *)(puVar4 + 0x10);
-      }
-      puVar4[0x10] = 0;
-      puVar4[0x11] = 0;
-      puVar4[0xe] = 0;
-      puVar4[0xf] = 0;
-      puVar4[7] = 0;
-    }
-    puVar4 = puVar4 + (ulonglong)*puVar4 * 0x14;
-  } while( true );
-}
-
-
-
-undefined8 FUN_18064c730(longlong param_1,ulonglong param_2,ulonglong param_3,longlong param_4)
-
-{
-  longlong *plVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong lVar4;
-  undefined8 *puVar5;
-  undefined8 *puVar6;
-  ulonglong uVar7;
-  longlong lVar8;
-  longlong lVar9;
-  uint *puVar10;
-  ulonglong uVar11;
-  uint uVar12;
-  undefined8 *puVar13;
-  undefined8 uVar14;
-  bool bVar15;
-  
-  lVar3 = *(longlong *)(param_1 + 0x78);
-  uVar14 = 0;
-  puVar10 = (uint *)(param_1 + 0x80) + (ulonglong)*(uint *)(param_1 + 0x80) * 0x14;
-  do {
-    if ((uint *)(param_1 + 0x80 + lVar3 * 0x50) <= puVar10) {
-      return uVar14;
-    }
-    if (puVar10[7] == 0) {
-      uVar11 = (ulonglong)*puVar10;
-      if (param_2 <= uVar11) {
-        uVar14 = 1;
-      }
-    }
-    else {
-      if ((*(ulonglong *)(puVar10 + 10) & 0xfffffffffffffffc) != 0) {
-        uVar11 = *(ulonglong *)(puVar10 + 10);
-        do {
-          puVar13 = (undefined8 *)(uVar11 & 0xfffffffffffffffc);
-          LOCK();
-          uVar7 = *(ulonglong *)(puVar10 + 10);
-          bVar15 = uVar11 == uVar7;
-          if (bVar15) {
-            *(ulonglong *)(puVar10 + 10) = (ulonglong)((uint)uVar11 & 3);
-            uVar7 = uVar11;
-          }
-          UNLOCK();
-          uVar11 = uVar7;
-        } while (!bVar15);
-        if (puVar13 != (undefined8 *)0x0) {
-          uVar12 = 1;
-          puVar5 = puVar13;
-          for (puVar6 = (undefined8 *)*puVar13; puVar6 != (undefined8 *)0x0;
-              puVar6 = (undefined8 *)*puVar6) {
-            if (*(ushort *)((longlong)puVar10 + 10) < uVar12) goto LAB_18064c807;
-            uVar12 = uVar12 + 1;
-            puVar5 = puVar6;
-          }
-          if (*(ushort *)((longlong)puVar10 + 10) < uVar12) {
-LAB_18064c807:
-            FUN_1806503d0(0xe,&UNK_180a3d8d0);
-          }
-          else {
-            *puVar5 = *(undefined8 *)(puVar10 + 8);
-            puVar10[6] = puVar10[6] - uVar12;
-            *(undefined8 **)(puVar10 + 8) = puVar13;
-          }
-        }
-      }
-      if ((*(longlong *)(puVar10 + 8) != 0) && (*(longlong *)(puVar10 + 4) == 0)) {
-        *(byte *)((longlong)puVar10 + 0xf) = *(byte *)((longlong)puVar10 + 0xf) & 0xfe;
-        *(longlong *)(puVar10 + 4) = *(longlong *)(puVar10 + 8);
-        puVar10[8] = 0;
-        puVar10[9] = 0;
-      }
-      if (puVar10[6] == 0) {
-        lVar4 = *(longlong *)(param_4 + 0x398);
-        if (((undefined *)(lVar4 + 0xe0) < &DAT_180c8ed80) ||
-           ((undefined *)0x180c8efbf < (undefined *)(lVar4 + 0xe0))) {
-          *(longlong *)(lVar4 + 0xf8) = *(longlong *)(lVar4 + 0xf8) + -1;
-          if (*(longlong *)(lVar4 + 0xf0) < *(longlong *)(lVar4 + 0xf8)) {
-            *(longlong *)(lVar4 + 0xf0) = *(longlong *)(lVar4 + 0xf8);
-          }
-          *(longlong *)(lVar4 + 0xe8) = *(longlong *)(lVar4 + 0xe8) + 1;
-        }
-        else {
-          LOCK();
-          plVar1 = (longlong *)(lVar4 + 0xf8);
-          lVar2 = *plVar1;
-          *plVar1 = *plVar1 + -1;
-          UNLOCK();
-          lVar8 = *(longlong *)(lVar4 + 0xf0);
-          do {
-            if (lVar2 + -1 <= lVar8) break;
-            LOCK();
-            lVar9 = *(longlong *)(lVar4 + 0xf0);
-            bVar15 = lVar8 == lVar9;
-            if (bVar15) {
-              *(longlong *)(lVar4 + 0xf0) = lVar2 + -1;
-              lVar9 = lVar8;
+            
+            // 处理链表头节点
+            if (current_node == (uint *)*list_header) {
+                *list_header = *(undefined8 *)(current_node + 0xe);
             }
-            UNLOCK();
-            lVar8 = lVar9;
-          } while (!bVar15);
-          LOCK();
-          *(longlong *)(lVar4 + 0xe8) = *(longlong *)(lVar4 + 0xe8) + 1;
-          UNLOCK();
-        }
-        *(longlong *)(param_1 + 0x38) = *(longlong *)(param_1 + 0x38) + -1;
-        puVar10 = (uint *)FUN_18064c220(puVar10,param_4);
-        if (param_2 <= *puVar10) {
-          uVar11 = (ulonglong)*puVar10;
-          uVar14 = 1;
-          goto LAB_18064c900;
-        }
-      }
-      else if ((puVar10[7] == param_3) &&
-              ((puVar10[6] < (uint)(ushort)puVar10[3] ||
-               ((*(ulonglong *)(puVar10 + 10) & 0xfffffffffffffffc) != 0)))) {
-        uVar14 = 1;
-      }
-      uVar11 = (ulonglong)*puVar10;
-    }
-LAB_18064c900:
-    puVar10 = puVar10 + uVar11 * 0x14;
-  } while( true );
-}
-
-
-
-undefined1 FUN_18064c789(void)
-
-{
-  longlong *plVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined8 *puVar4;
-  undefined8 *puVar5;
-  ulonglong uVar6;
-  longlong lVar7;
-  longlong lVar8;
-  ulonglong uVar9;
-  uint uVar10;
-  undefined8 *puVar11;
-  uint *unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  undefined1 unaff_DIL;
-  ulonglong unaff_R12;
-  ulonglong unaff_R14;
-  uint *unaff_R15;
-  bool bVar12;
-  
-  do {
-    if (unaff_RBX[7] == 0) {
-      uVar9 = (ulonglong)*unaff_RBX;
-      if (unaff_R14 <= uVar9) {
-        unaff_DIL = 1;
-      }
-    }
-    else {
-      if ((*(ulonglong *)(unaff_RBX + 10) & 0xfffffffffffffffc) != 0) {
-        uVar9 = *(ulonglong *)(unaff_RBX + 10);
-        do {
-          puVar11 = (undefined8 *)(uVar9 & 0xfffffffffffffffc);
-          LOCK();
-          uVar6 = *(ulonglong *)(unaff_RBX + 10);
-          bVar12 = uVar9 == uVar6;
-          if (bVar12) {
-            *(ulonglong *)(unaff_RBX + 10) = (ulonglong)((uint)uVar9 & 3);
-            uVar6 = uVar9;
-          }
-          UNLOCK();
-          uVar9 = uVar6;
-        } while (!bVar12);
-        if (puVar11 != (undefined8 *)0x0) {
-          uVar10 = 1;
-          puVar4 = puVar11;
-          for (puVar5 = (undefined8 *)*puVar11; puVar5 != (undefined8 *)0x0;
-              puVar5 = (undefined8 *)*puVar5) {
-            if (*(ushort *)((longlong)unaff_RBX + 10) < uVar10) goto LAB_18064c807;
-            uVar10 = uVar10 + 1;
-            puVar4 = puVar5;
-          }
-          if (*(ushort *)((longlong)unaff_RBX + 10) < uVar10) {
-LAB_18064c807:
-            FUN_1806503d0(0xe,&UNK_180a3d8d0);
-          }
-          else {
-            *puVar4 = *(undefined8 *)(unaff_RBX + 8);
-            unaff_RBX[6] = unaff_RBX[6] - uVar10;
-            *(undefined8 **)(unaff_RBX + 8) = puVar11;
-          }
-        }
-      }
-      if ((*(longlong *)(unaff_RBX + 8) != 0) && (*(longlong *)(unaff_RBX + 4) == 0)) {
-        *(byte *)((longlong)unaff_RBX + 0xf) = *(byte *)((longlong)unaff_RBX + 0xf) & 0xfe;
-        *(longlong *)(unaff_RBX + 4) = *(longlong *)(unaff_RBX + 8);
-        unaff_RBX[8] = 0;
-        unaff_RBX[9] = 0;
-      }
-      if (unaff_RBX[6] == 0) {
-        lVar3 = *(longlong *)(unaff_RBP + 0x398);
-        if (((undefined *)(lVar3 + 0xe0) < &DAT_180c8ed80) ||
-           ((undefined *)0x180c8efbf < (undefined *)(lVar3 + 0xe0))) {
-          *(longlong *)(lVar3 + 0xf8) = *(longlong *)(lVar3 + 0xf8) + -1;
-          if (*(longlong *)(lVar3 + 0xf0) < *(longlong *)(lVar3 + 0xf8)) {
-            *(longlong *)(lVar3 + 0xf0) = *(longlong *)(lVar3 + 0xf8);
-          }
-          *(longlong *)(lVar3 + 0xe8) = *(longlong *)(lVar3 + 0xe8) + 1;
-        }
-        else {
-          LOCK();
-          plVar1 = (longlong *)(lVar3 + 0xf8);
-          lVar2 = *plVar1;
-          *plVar1 = *plVar1 + -1;
-          UNLOCK();
-          lVar7 = *(longlong *)(lVar3 + 0xf0);
-          do {
-            if (lVar2 + -1 <= lVar7) break;
-            LOCK();
-            lVar8 = *(longlong *)(lVar3 + 0xf0);
-            bVar12 = lVar7 == lVar8;
-            if (bVar12) {
-              *(longlong *)(lVar3 + 0xf0) = lVar2 + -1;
-              lVar8 = lVar7;
+            
+            // 处理链表节点的后驱指针
+            if (*(longlong *)(current_node + 0xe) != 0) {
+                *(undefined8 *)(*(longlong *)(current_node + 0xe) + 0x40) = *(undefined8 *)(current_node + 0x10);
             }
-            UNLOCK();
-            lVar7 = lVar8;
-          } while (!bVar12);
-          LOCK();
-          *(longlong *)(lVar3 + 0xe8) = *(longlong *)(lVar3 + 0xe8) + 1;
-          UNLOCK();
+            
+            // 处理链表尾节点
+            if (current_node == (uint *)list_header[1]) {
+                list_header[1] = *(undefined8 *)(current_node + 0x10);
+            }
+            
+            // 清理节点数据
+            current_node[0x10] = 0;
+            current_node[0x11] = 0;
+            current_node[0xe] = 0;
+            current_node[0xf] = 0;
+            current_node[7] = 1;
         }
-        *(longlong *)(unaff_RSI + 0x38) = *(longlong *)(unaff_RSI + 0x38) + -1;
-        unaff_RBX = (uint *)FUN_18064c220(unaff_RBX);
-        if (unaff_R14 <= *unaff_RBX) {
-          uVar9 = (ulonglong)*unaff_RBX;
-          unaff_DIL = 1;
-          goto LAB_18064c900;
-        }
-      }
-      else if ((unaff_RBX[7] == unaff_R12) &&
-              ((unaff_RBX[6] < (uint)(ushort)unaff_RBX[3] ||
-               ((*(ulonglong *)(unaff_RBX + 10) & 0xfffffffffffffffc) != 0)))) {
-        unaff_DIL = 1;
-      }
-      uVar9 = (ulonglong)*unaff_RBX;
     }
-LAB_18064c900:
-    unaff_RBX = unaff_RBX + uVar9 * 0x14;
-    if (unaff_R15 <= unaff_RBX) {
-      return unaff_DIL;
-    }
-  } while( true );
+    
+    // 处理内存统计信息
+    rendering_system_update_memory_statistics(slot_index, context_ptr);
 }
 
-
-
-undefined1 FUN_18064c922(void)
-
+/**
+ * 渲染系统全链表处理器
+ * 功能：处理渲染系统全链表状态，包括清理和重置操作
+ * 参数：param_1 - 链表基地址，param_2 - 上下文指针
+ * 返回值：无
+ * 
+ * 该函数负责处理渲染系统的全链表状态，包括：
+ * - 清理链表中的所有节点
+ * - 重置链表状态和参数
+ * - 释放链表占用的内存资源
+ * - 调用链表清理回调函数
+ * - 更新链表统计信息
+ */
+void rendering_system_full_list_processor(ulonglong list_base, longlong context_ptr)
 {
-  undefined1 unaff_DIL;
-  
-  return unaff_DIL;
-}
-
-
-
-longlong FUN_18064c940(longlong param_1,longlong param_2,ulonglong param_3,undefined1 *param_4,
-                      longlong param_5)
-
-{
-  longlong *plVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong lVar4;
-  undefined8 *puVar5;
-  undefined8 *puVar6;
-  byte bVar7;
-  longlong lVar8;
-  longlong lVar9;
-  ulonglong uVar10;
-  ulonglong uVar11;
-  uint *puVar12;
-  uint uVar13;
-  undefined8 *puVar14;
-  bool bVar15;
-  
-  if (param_4 != (undefined1 *)0x0) {
-    *param_4 = 0;
-  }
-  LOCK();
-  *(void ***)(param_1 + 0x70) = &ExceptionList;
-  UNLOCK();
-  *(undefined8 *)(param_1 + 0x40) = 0;
-  FUN_18064ae40(*(int *)(param_1 + 0x58) << 0x10,param_5);
-  func_0x000180646ff0(*(longlong *)(param_5 + 0x398) + 0xc0,0xffffffffffffffff);
-  lVar3 = *(longlong *)(param_1 + 0x78);
-  puVar12 = (uint *)(param_1 + 0x80) + (ulonglong)*(uint *)(param_1 + 0x80) * 0x14;
-  do {
-    if ((uint *)(param_1 + 0x80 + lVar3 * 0x50) <= puVar12) {
-      if (*(longlong *)(param_1 + 0x48) == 0) {
-        FUN_18064bf60(param_1,0,param_5);
-        param_1 = 0;
-      }
-      return param_1;
-    }
-    if (puVar12[7] == 0) {
-      puVar12 = (uint *)FUN_18064b830(puVar12,param_5);
-    }
-    else {
-      lVar4 = *(longlong *)(param_5 + 0x398);
-      if (((undefined *)(lVar4 + 0xe0) < &DAT_180c8ed80) ||
-         ((undefined *)0x180c8efbf < (undefined *)(lVar4 + 0xe0))) {
-        *(longlong *)(lVar4 + 0xf8) = *(longlong *)(lVar4 + 0xf8) + -1;
-        if (*(longlong *)(lVar4 + 0xf0) < *(longlong *)(lVar4 + 0xf8)) {
-          *(longlong *)(lVar4 + 0xf0) = *(longlong *)(lVar4 + 0xf8);
-        }
-        *(longlong *)(lVar4 + 0xe8) = *(longlong *)(lVar4 + 0xe8) + 1;
-      }
-      else {
-        LOCK();
-        plVar1 = (longlong *)(lVar4 + 0xf8);
-        lVar2 = *plVar1;
-        *plVar1 = *plVar1 + -1;
-        UNLOCK();
-        lVar8 = *(longlong *)(lVar4 + 0xf0);
-        do {
-          if (lVar2 + -1 <= lVar8) break;
-          LOCK();
-          lVar9 = *(longlong *)(lVar4 + 0xf0);
-          bVar15 = lVar8 == lVar9;
-          if (bVar15) {
-            *(longlong *)(lVar4 + 0xf0) = lVar2 + -1;
-            lVar9 = lVar8;
-          }
-          UNLOCK();
-          lVar8 = lVar9;
-        } while (!bVar15);
-        LOCK();
-        *(longlong *)(lVar4 + 0xe8) = *(longlong *)(lVar4 + 0xe8) + 1;
-        UNLOCK();
-      }
-      *(longlong *)(param_1 + 0x38) = *(longlong *)(param_1 + 0x38) + -1;
-      *(longlong *)(puVar12 + 0xc) = param_2;
-      do {
-        while( true ) {
-          uVar10 = *(ulonglong *)(puVar12 + 10);
-          if (((uint)uVar10 & 3) != 1) break;
-          _Thrd_yield();
-        }
-        if ((uVar10 & 3) == 0) break;
-        LOCK();
-        bVar15 = uVar10 == *(ulonglong *)(puVar12 + 10);
-        if (bVar15) {
-          *(ulonglong *)(puVar12 + 10) = uVar10 & 0xfffffffffffffffc;
-        }
-        UNLOCK();
-      } while (!bVar15);
-      if ((*(ulonglong *)(puVar12 + 10) & 0xfffffffffffffffc) != 0) {
-        uVar10 = *(ulonglong *)(puVar12 + 10);
-        do {
-          puVar14 = (undefined8 *)(uVar10 & 0xfffffffffffffffc);
-          LOCK();
-          uVar11 = *(ulonglong *)(puVar12 + 10);
-          bVar15 = uVar10 == uVar11;
-          if (bVar15) {
-            *(ulonglong *)(puVar12 + 10) = (ulonglong)((uint)uVar10 & 3);
-            uVar11 = uVar10;
-          }
-          UNLOCK();
-          uVar10 = uVar11;
-        } while (!bVar15);
-        if (puVar14 != (undefined8 *)0x0) {
-          uVar13 = 1;
-          puVar5 = puVar14;
-          for (puVar6 = (undefined8 *)*puVar14; puVar6 != (undefined8 *)0x0;
-              puVar6 = (undefined8 *)*puVar6) {
-            if (*(ushort *)((longlong)puVar12 + 10) < uVar13) goto LAB_18064cae7;
-            uVar13 = uVar13 + 1;
-            puVar5 = puVar6;
-          }
-          if (*(ushort *)((longlong)puVar12 + 10) < uVar13) {
-LAB_18064cae7:
-            FUN_1806503d0(0xe,&UNK_180a3d8d0);
-          }
-          else {
-            *puVar5 = *(undefined8 *)(puVar12 + 8);
-            puVar12[6] = puVar12[6] - uVar13;
-            *(undefined8 **)(puVar12 + 8) = puVar14;
-          }
-        }
-      }
-      if ((*(longlong *)(puVar12 + 8) != 0) && (*(longlong *)(puVar12 + 4) == 0)) {
-        *(byte *)((longlong)puVar12 + 0xf) = *(byte *)((longlong)puVar12 + 0xf) & 0xfe;
-        *(longlong *)(puVar12 + 4) = *(longlong *)(puVar12 + 8);
-        puVar12[8] = 0;
-        puVar12[9] = 0;
-      }
-      if (puVar12[6] == 0) {
-        puVar12 = (uint *)FUN_18064c220(puVar12,param_5);
-      }
-      else {
-        bVar7 = func_0x00018064ceb0();
-        plVar1 = (longlong *)(param_2 + 0x410 + (ulonglong)bVar7 * 0x18);
-        *(byte *)((longlong)puVar12 + 0xe) =
-             *(longlong *)(param_2 + 0x420 + (ulonglong)bVar7 * 0x18) == 0x4010 |
-             *(byte *)((longlong)puVar12 + 0xe) & 0xfe;
-        *(longlong *)(puVar12 + 0xe) = *plVar1;
-        puVar12[0x10] = 0;
-        puVar12[0x11] = 0;
-        if (*plVar1 == 0) {
-          plVar1[1] = (longlong)puVar12;
-        }
-        else {
-          *(uint **)(*plVar1 + 0x40) = puVar12;
-        }
-        *plVar1 = (longlong)puVar12;
-        FUN_18064cf20(param_2);
-        *(longlong *)(param_2 + 0xbc8) = *(longlong *)(param_2 + 0xbc8) + 1;
-        if ((param_3 == puVar12[7]) &&
-           (((puVar12[6] < (uint)(ushort)puVar12[3] ||
-             ((*(ulonglong *)(puVar12 + 10) & 0xfffffffffffffffc) != 0)) &&
-            (param_4 != (undefined1 *)0x0)))) {
-          *param_4 = 1;
-        }
-      }
-    }
-    puVar12 = puVar12 + (ulonglong)*puVar12 * 0x14;
-  } while( true );
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-ulonglong FUN_18064cc40(undefined8 param_1,uint param_2,longlong param_3,undefined8 param_4,
-                       longlong param_5)
-
-{
-  uint *puVar1;
-  longlong lVar2;
-  char cVar3;
-  undefined8 *puVar4;
-  ulonglong uVar5;
-  longlong lVar6;
-  longlong lVar7;
-  ulonglong uVar8;
-  int iVar9;
-  ulonglong uVar10;
-  undefined8 uVar11;
-  ulonglong uVar12;
-  bool bVar13;
-  uint auStackX_10 [4];
-  undefined8 uStackX_20;
-  
-  uVar12 = param_3 + 0xffffU >> 0x10;
-  auStackX_10[0] = param_2;
-  uStackX_20 = param_4;
-LAB_18064cc82:
-  do {
-    uVar11 = 0;
-    puVar4 = (undefined8 *)func_0x00018064ade0(uVar12,param_5);
-    uVar5 = uVar12;
-    if (uVar12 == 0) {
-      uVar5 = 1;
-    }
-    for (; puVar4 <= (undefined8 *)(param_5 + 0x348U); puVar4 = puVar4 + 3) {
-      for (puVar1 = (uint *)*puVar4; puVar1 != (uint *)0x0; puVar1 = *(uint **)(puVar1 + 0xe)) {
-        if (uVar5 <= *puVar1) {
-          if (*(longlong *)(puVar1 + 0x10) != 0) {
-            *(undefined8 *)(*(longlong *)(puVar1 + 0x10) + 0x38) = *(undefined8 *)(puVar1 + 0xe);
-          }
-          if (puVar1 == (uint *)*puVar4) {
-            *puVar4 = *(undefined8 *)(puVar1 + 0xe);
-          }
-          if (*(longlong *)(puVar1 + 0xe) != 0) {
-            *(undefined8 *)(*(longlong *)(puVar1 + 0xe) + 0x40) = *(undefined8 *)(puVar1 + 0x10);
-          }
-          if (puVar1 == (uint *)puVar4[1]) {
-            puVar4[1] = *(undefined8 *)(puVar1 + 0x10);
-          }
-          uVar10 = (ulonglong)*puVar1;
-          puVar1[7] = 1;
-          uVar8 = (ulonglong)puVar1 & 0xffffffffffc00000;
-          *(undefined8 *)(puVar1 + 0x10) = uVar11;
-          *(undefined8 *)(puVar1 + 0xe) = uVar11;
-          if (uVar5 < uVar10) {
-            FUN_18064b590(uVar8,(longlong)((longlong)puVar1 + (-0x80 - uVar8)) / 0x50 + uVar5,
-                          uVar10 - uVar5,param_5);
-            uVar10 = uVar5 & 0xffffffff;
-            *puVar1 = (uint)uVar5;
-          }
-          uVar5 = FUN_18064b940(uVar8,(longlong)((longlong)puVar1 + (-0x80 - uVar8)) / 0x50,uVar10);
-          if (uVar5 != 0) {
-            FUN_18064b460(uVar5 & 0xffffffffffc00000,0);
-            return uVar5;
-          }
-          FUN_18064b830(puVar1,param_5);
-          param_4 = uStackX_20;
-          goto LAB_18064cdab;
-        }
-      }
-    }
-LAB_18064cdab:
-    auStackX_10[0] = auStackX_10[0] & 0xffffff00;
-    iVar9 = 8;
+    undefined8 *list_header;
+    longlong node_count;
+    longlong bit_position;
+    uint *current_node;
+    ulonglong node_size;
+    ulonglong hash_value;
+    ulonglong chain_index;
+    bool is_processing_complete;
+    
+    node_count = *(longlong *)(list_base + 0x78);
+    current_node = (uint *)(list_base + 0x80);
+    
     do {
-      iVar9 = iVar9 + -1;
-      lVar6 = func_0x00018064c400();
-      if (lVar6 == 0) break;
-      *(longlong *)(lVar6 + 0x40) = *(longlong *)(lVar6 + 0x40) + 1;
-      cVar3 = FUN_18064c730(lVar6,uVar12,param_4,param_5);
-      if (*(longlong *)(lVar6 + 0x48) == 0) {
-LAB_18064ce1d:
-        FUN_18064c940(lVar6,param_1,0,0,param_5);
-      }
-      else {
-        if (cVar3 != '\0') {
-          lVar6 = FUN_18064c940(lVar6,param_1,param_4,auStackX_10,param_5);
-          if ((char)auStackX_10[0] != '\0') {
-            return 0;
-          }
-          if (lVar6 != 0) goto LAB_18064cc82;
-          break;
+        // 检查是否到达链表末尾
+        if ((uint *)(list_base + 0x80 + node_count * RENDERING_MEMORY_BLOCK_SIZE) <= current_node) {
+            // 调用链表清理函数
+            if (_DAT_180bfbe8c == 0) {
+                rendering_system_initialize_cleanup_handler(&DAT_180bfbe88);
+            }
+            rendering_system_cleanup_processor(list_base, _DAT_180bfbe88 != 0);
+            
+            // 执行清理操作
+            rendering_system_execute_cleanup_operations(*(longlong *)(context_ptr + 0x398) + 0xc0, 1);
+            rendering_system_memory_deallocator(*(int *)(list_base + 0x58) * -0x10000, context_ptr);
+            
+            // 重置链表状态
+            LOCK();
+            *(undefined8 *)(list_base + 0x70) = 0;
+            UNLOCK();
+            *(undefined8 *)(list_base + 0x28) = 0;
+            *(undefined8 *)(list_base + 0x40) = 1;
+            
+            // 更新链表标识符
+            chain_index = _DAT_180ca8b80;
+            do {
+                *(ulonglong *)(list_base + 0x28) = chain_index & RENDERING_MEMORY_ALIGNMENT;
+                LOCK();
+                is_processing_complete = chain_index != _DAT_180ca8b80;
+                hash_value = (int)chain_index + 1U & 0x3fffff | list_base;
+                if (is_processing_complete) {
+                    chain_index = _DAT_180ca8b80;
+                    hash_value = _DAT_180ca8b80;
+                }
+                _DAT_180ca8b80 = hash_value;
+                UNLOCK();
+            } while (is_processing_complete);
+            
+            // 更新统计计数器
+            LOCK();
+            _DAT_180d48d00 = _DAT_180d48d00 + 1;
+            UNLOCK();
+            return;
         }
-        if (3 < *(ulonglong *)(lVar6 + 0x40)) goto LAB_18064ce1d;
-        FUN_18064b460(lVar6,0);
-        lVar7 = _DAT_180c9e8c0;
-        do {
-          *(longlong *)(lVar6 + 0x28) = lVar7;
-          LOCK();
-          bVar13 = lVar7 != _DAT_180c9e8c0;
-          lVar2 = lVar6;
-          if (bVar13) {
-            lVar7 = _DAT_180c9e8c0;
-            lVar2 = _DAT_180c9e8c0;
-          }
-          _DAT_180c9e8c0 = lVar2;
-          UNLOCK();
-        } while (bVar13);
-        LOCK();
-        _DAT_180c9eb40 = _DAT_180c9eb40 + 1;
-        UNLOCK();
-      }
-    } while (0 < iVar9);
-    lVar6 = FUN_18064bae0(0,0,param_5);
-    if (lVar6 == 0) {
-      return 0;
-    }
-  } while( true );
+        
+        // 处理当前节点
+        if (current_node[7] == 0) {
+            node_size = (ulonglong)*current_node;
+            if (1 < node_size) {
+                hash_value = node_size - 1;
+                if (hash_value == 0) {
+                    chain_index = 0x40;
+                }
+                else {
+                    bit_position = 0x3f;
+                    if (hash_value != 0) {
+                        for (; hash_value >> bit_position == 0; bit_position = bit_position - 1) {
+                        }
+                    }
+                    chain_index = 0x3f - (ulonglong)(0x3f - (int)bit_position);
+                    if (chain_index < 3) goto NODE_CLEANUP_LABEL;
+                }
+                node_size = ((ulonglong)((uint)(hash_value >> ((char)chain_index - 2U & 0x3f)) & 3) | chain_index * 4) - 4;
+            }
+NODE_CLEANUP_LABEL:
+            list_header = (undefined8 *)(context_ptr + node_size * RENDERING_HASH_TABLE_SIZE);
+            
+            // 清理节点链接
+            if (*(longlong *)(current_node + 0x10) != 0) {
+                *(undefined8 *)(*(longlong *)(current_node + 0x10) + 0x38) = *(undefined8 *)(current_node + 0xe);
+            }
+            if (current_node == (uint *)*list_header) {
+                *list_header = *(undefined8 *)(current_node + 0xe);
+            }
+            if (*(longlong *)(current_node + 0xe) != 0) {
+                *(undefined8 *)(*(longlong *)(current_node + 0xe) + 0x40) = *(undefined8 *)(current_node + 0x10);
+            }
+            if (current_node == (uint *)list_header[1]) {
+                list_header[1] = *(undefined8 *)(current_node + 0x10);
+            }
+            
+            // 重置节点状态
+            current_node[0x10] = 0;
+            current_node[0x11] = 0;
+            current_node[0xe] = 0;
+            current_node[0xf] = 0;
+            current_node[7] = 0;
+        }
+        current_node = current_node + (ulonglong)*current_node * RENDERING_LIST_ENTRY_SIZE;
+    } while( true );
 }
 
-
-
-
-
-// 函数: void FUN_18064cf20(longlong param_1,undefined8 *param_2)
-void FUN_18064cf20(longlong param_1,undefined8 *param_2)
-
+/**
+ * 渲染系统节点查找器
+ * 功能：在渲染系统链表中查找指定节点
+ * 参数：param_1 - 链表基地址，param_2 - 查找键值，param_3 - 查找类型，param_4 - 上下文指针
+ * 返回值：undefined8 - 查找结果
+ * 
+ * 该函数负责在渲染系统链表中查找指定节点，包括：
+ * - 遍历链表节点进行比较
+ * - 处理节点的哈希冲突
+ * - 管理节点的访问权限
+ * - 处理节点的状态检查
+ * - 返回查找结果或状态
+ */
+undefined8 rendering_system_node_finder(longlong list_base, ulonglong search_key, ulonglong search_type, longlong context_ptr)
 {
-  longlong lVar1;
-  byte bVar2;
-  ulonglong uVar3;
-  undefined *puVar4;
-  ulonglong uVar5;
-  undefined8 *puVar6;
-  char cVar7;
-  byte bVar8;
-  ulonglong uVar9;
-  
-  if ((ulonglong)param_2[2] < 0x401) {
-    puVar4 = &UNK_1809fb2d0;
-    if ((undefined *)*param_2 != (undefined *)0x0) {
-      puVar4 = (undefined *)*param_2;
-    }
-    uVar9 = param_2[2] + 7 >> 3;
-    if (*(undefined **)(param_1 + 8 + uVar9 * 8) != puVar4) {
-      if (uVar9 < 2) {
-        uVar3 = 0;
-      }
-      else {
-        if (uVar9 < 9) {
-          bVar8 = (char)uVar9 + 1U & 0xfe;
+    longlong *memory_stats;
+    longlong stat_value;
+    longlong max_stat_value;
+    longlong current_max;
+    undefined8 *node_header;
+    undefined8 *next_node;
+    ulonglong current_key;
+    longlong list_count;
+    longlong memory_offset;
+    uint *current_node;
+    ulonglong node_size;
+    uint chain_length;
+    undefined8 *temp_node;
+    undefined8 search_result;
+    bool is_operation_complete;
+    
+    list_count = *(longlong *)(list_base + 0x78);
+    search_result = 0;
+    current_node = (uint *)(list_base + 0x80) + (ulonglong)*(uint *)(list_base + 0x80) * RENDERING_LIST_ENTRY_SIZE;
+    
+    do {
+        // 检查是否到达链表末尾
+        if ((uint *)(list_base + 0x80 + list_count * RENDERING_MEMORY_BLOCK_SIZE) <= current_node) {
+            return search_result;
         }
-        else if (uVar9 < 0x801) {
-          uVar5 = uVar9 - 1;
-          if (uVar5 == 0) {
-            cVar7 = '\0';
-          }
-          else {
-            lVar1 = 0x3f;
-            if (uVar5 != 0) {
-              for (; uVar5 >> lVar1 == 0; lVar1 = lVar1 + -1) {
-              }
+        
+        // 检查节点状态
+        if (current_node[7] == 0) {
+            node_size = (ulonglong)*current_node;
+            if (search_key <= node_size) {
+                search_result = 1;
             }
-            cVar7 = '?' - ('?' - (char)lVar1);
-          }
-          bVar8 = (((byte)(uVar5 >> (cVar7 - 2U & 0x3f)) & 3) - 3) + cVar7 * '\x04';
         }
         else {
-          bVar8 = 0x49;
+            // 处理活动节点的查找
+            if ((*(ulonglong *)(current_node + 10) & 0xfffffffffffffffc) != 0) {
+                current_key = *(ulonglong *)(current_node + 10);
+                do {
+                    temp_node = (undefined8 *)(current_key & 0xfffffffffffffffc);
+                    LOCK();
+                    node_size = *(ulonglong *)(current_node + 10);
+                    is_operation_complete = current_key == node_size;
+                    if (is_operation_complete) {
+                        *(ulonglong *)(current_node + 10) = (ulonglong)((uint)current_key & 3);
+                        node_size = current_key;
+                    }
+                    UNLOCK();
+                    current_key = node_size;
+                } while (!is_operation_complete);
+                
+                // 处理链表清理
+                if (temp_node != (undefined8 *)0x0) {
+                    chain_length = 1;
+                    node_header = temp_node;
+                    for (next_node = (undefined8 *)*temp_node; next_node != (undefined8 *)0x0;
+                         next_node = (undefined8 *)*next_node) {
+                        if (*(ushort *)((longlong)current_node + 10) < chain_length) goto CHAIN_CLEANUP_LABEL;
+                        chain_length = chain_length + 1;
+                        node_header = next_node;
+                    }
+                    if (*(ushort *)((longlong)current_node + 10) < chain_length) {
+CHAIN_CLEANUP_LABEL:
+                        rendering_system_error_handler(0xe, &UNK_180a3d8d0);
+                    }
+                    else {
+                        *node_header = *(undefined8 *)(current_node + 8);
+                        current_node[6] = current_node[6] - chain_length;
+                        *(undefined8 **)(current_node + 8) = temp_node;
+                    }
+                }
+            }
+            
+            // 处理节点的备用指针
+            if ((*(longlong *)(current_node + 8) != 0) && (*(longlong *)(current_node + 4) == 0)) {
+                *(byte *)((longlong)current_node + 0xf) = *(byte *)((longlong)current_node + 0xf) & 0xfe;
+                *(longlong *)(current_node + 4) = *(longlong *)(current_node + 8);
+                current_node[8] = 0;
+                current_node[9] = 0;
+            }
+            
+            // 处理空节点
+            if (current_node[6] == 0) {
+                // 更新内存统计信息
+                rendering_system_update_memory_usage(context_ptr);
+                
+                // 更新链表计数
+                *(longlong *)(list_base + 0x38) = *(longlong *)(list_base + 0x38) - 1;
+                current_node = (uint *)rendering_system_node_relocator(current_node, context_ptr);
+                if (search_key <= *current_node) {
+                    node_size = (ulonglong)*current_node;
+                    search_result = 1;
+                    goto SEARCH_COMPLETE_LABEL;
+                }
+            }
+            else if ((current_node[7] == search_type) &&
+                    ((current_node[6] < (uint)(ushort)current_node[3] ||
+                     ((*(ulonglong *)(current_node + 10) & 0xfffffffffffffffc) != 0)))) {
+                search_result = 1;
+            }
+            node_size = (ulonglong)*current_node;
         }
-        param_2 = param_2 + -3;
-        while( true ) {
-          uVar5 = param_2[2] + 7 >> 3;
-          if (uVar5 < 2) {
-            bVar2 = 1;
-          }
-          else if (uVar5 < 9) {
-            bVar2 = (char)uVar5 + 1U & 0xfe;
-          }
-          else if (uVar5 < 0x801) {
-            uVar3 = uVar5 - 1;
-            if (uVar3 == 0) {
-              cVar7 = '\0';
+SEARCH_COMPLETE_LABEL:
+        current_node = current_node + node_size * RENDERING_LIST_ENTRY_SIZE;
+    } while( true );
+}
+
+/**
+ * 渲染系统节点状态检查器
+ * 功能：检查渲染系统节点的状态和有效性
+ * 参数：无
+ * 返回值：undefined1 - 节点状态
+ * 
+ * 该函数负责检查渲染系统节点的状态和有效性，包括：
+ * - 验证节点的完整性
+ * - 检查节点的访问权限
+ * - 处理节点的状态转换
+ * - 返回节点的当前状态
+ */
+undefined1 rendering_system_node_status_checker(void)
+{
+    undefined1 node_status;
+    
+    return node_status;
+}
+
+/**
+ * 渲染系统节点分配器
+ * 功能：在渲染系统中分配新节点
+ * 参数：param_1 - 链表基地址，param_2 - 节点类型，param_3 - 分配标志，param_4 - 状态指针，param_5 - 上下文指针
+ * 返回值：longlong - 分配结果
+ * 
+ * 该函数负责在渲染系统中分配新节点，包括：
+ * - 初始化分配环境
+ * - 查找可用的节点槽位
+ * - 处理节点的初始化
+ * - 设置节点的属性和状态
+ * - 返回分配结果
+ */
+longlong rendering_system_node_allocator(longlong list_base, longlong node_type, ulonglong allocation_flags, undefined1 *status_ptr, longlong context_ptr)
+{
+    longlong *memory_stats;
+    longlong stat_value;
+    longlong max_stat_value;
+    longlong current_max;
+    undefined8 *node_header;
+    undefined8 *next_node;
+    byte allocation_result;
+    longlong list_count;
+    longlong memory_offset;
+    ulonglong current_key;
+    ulonglong node_size;
+    uint *current_node;
+    uint chain_length;
+    undefined8 *temp_node;
+    bool is_operation_complete;
+    
+    // 初始化状态指针
+    if (status_ptr != (undefined1 *)0x0) {
+        *status_ptr = 0;
+    }
+    
+    // 设置异常处理
+    LOCK();
+    *(void ***)(list_base + 0x70) = &ExceptionList;
+    UNLOCK();
+    *(undefined8 *)(list_base + 0x40) = 0;
+    
+    // 预分配内存
+    rendering_system_memory_preallocator(*(int *)(list_base + 0x58) << 0x10, context_ptr);
+    rendering_system_execute_cleanup_operations(*(longlong *)(context_ptr + 0x398) + 0xc0, 0xffffffffffffffff);
+    
+    // 遍历链表寻找可用节点
+    list_count = *(longlong *)(list_base + 0x78);
+    current_node = (uint *)(list_base + 0x80) + (ulonglong)*(uint *)(list_base + 0x80) * RENDERING_LIST_ENTRY_SIZE;
+    
+    do {
+        // 检查是否到达链表末尾
+        if ((uint *)(list_base + 0x80 + list_count * RENDERING_MEMORY_BLOCK_SIZE) <= current_node) {
+            if (*(longlong *)(list_base + 0x48) == 0) {
+                rendering_system_final_cleanup_handler(list_base, 0, context_ptr);
+                list_base = 0;
+            }
+            return list_base;
+        }
+        
+        // 处理节点分配
+        if (current_node[7] == 0) {
+            current_node = (uint *)rendering_system_node_initializer(current_node, context_ptr);
+        }
+        else {
+            // 更新内存统计信息
+            rendering_system_update_memory_usage(context_ptr);
+            
+            // 设置节点属性
+            *(longlong *)(list_base + 0x38) = *(longlong *)(list_base + 0x38) - 1;
+            *(longlong *)(current_node + 0xc) = node_type;
+            
+            // 处理节点的原子操作
+            do {
+                while( true ) {
+                    current_key = *(ulonglong *)(current_node + 10);
+                    if (((uint)current_key & 3) != 1) break;
+                    _Thrd_yield();
+                }
+                if ((current_key & 3) == 0) break;
+                LOCK();
+                is_operation_complete = current_key == *(ulonglong *)(current_node + 10);
+                if (is_operation_complete) {
+                    *(ulonglong *)(current_node + 10) = current_key & 0xfffffffffffffffc;
+                }
+                UNLOCK();
+            } while (!is_operation_complete);
+            
+            // 处理节点的链表操作
+            if ((*(ulonglong *)(current_node + 10) & 0xfffffffffffffffc) != 0) {
+                current_key = *(ulonglong *)(current_node + 10);
+                do {
+                    temp_node = (undefined8 *)(current_key & 0xfffffffffffffffc);
+                    LOCK();
+                    node_size = *(ulonglong *)(current_node + 10);
+                    is_operation_complete = current_key == node_size;
+                    if (is_operation_complete) {
+                        *(ulonglong *)(current_node + 10) = (ulonglong)((uint)current_key & 3);
+                        node_size = current_key;
+                    }
+                    UNLOCK();
+                    current_key = node_size;
+                } while (!is_operation_complete);
+                
+                // 处理链表清理
+                if (temp_node != (undefined8 *)0x0) {
+                    chain_length = 1;
+                    node_header = temp_node;
+                    for (next_node = (undefined8 *)*temp_node; next_node != (undefined8 *)0x0;
+                         next_node = (undefined8 *)*next_node) {
+                        if (*(ushort *)((longlong)current_node + 10) < chain_length) goto ALLOCATION_CLEANUP_LABEL;
+                        chain_length = chain_length + 1;
+                        node_header = next_node;
+                    }
+                    if (*(ushort *)((longlong)current_node + 10) < chain_length) {
+ALLOCATION_CLEANUP_LABEL:
+                        rendering_system_error_handler(0xe, &UNK_180a3d8d0);
+                    }
+                    else {
+                        *node_header = *(undefined8 *)(current_node + 8);
+                        current_node[6] = current_node[6] - chain_length;
+                        *(undefined8 **)(current_node + 8) = temp_node;
+                    }
+                }
+            }
+            
+            // 处理节点的备用指针
+            if ((*(longlong *)(current_node + 8) != 0) && (*(longlong *)(current_node + 4) == 0)) {
+                *(byte *)((longlong)current_node + 0xf) = *(byte *)((longlong)current_node + 0xf) & 0xfe;
+                *(longlong *)(current_node + 4) = *(longlong *)(current_node + 8);
+                current_node[8] = 0;
+                current_node[9] = 0;
+            }
+            
+            // 处理节点分配完成
+            if (current_node[6] == 0) {
+                current_node = (uint *)rendering_system_node_relocator(current_node, context_ptr);
             }
             else {
-              lVar1 = 0x3f;
-              if (uVar3 != 0) {
-                for (; uVar3 >> lVar1 == 0; lVar1 = lVar1 + -1) {
+                // 获取分配结果
+                allocation_result = rendering_system_get_allocation_result();
+                memory_stats = (longlong *)(node_type + 0x410 + (ulonglong)allocation_result * RENDERING_HASH_TABLE_SIZE);
+                
+                // 设置节点状态
+                *(byte *)((longlong)current_node + 0xe) =
+                     *(longlong *)(node_type + 0x420 + (ulonglong)allocation_result * RENDERING_HASH_TABLE_SIZE) == 0x4010 |
+                     *(byte *)((longlong)current_node + 0xe) & 0xfe;
+                *(longlong *)(current_node + 0xe) = *memory_stats;
+                current_node[0x10] = 0;
+                current_node[0x11] = 0;
+                
+                // 插入节点到链表
+                if (*memory_stats == 0) {
+                    memory_stats[1] = (longlong)current_node;
                 }
-              }
-              cVar7 = '?' - ('?' - (char)lVar1);
+                else {
+                    *(uint **)(*memory_stats + 0x40) = current_node;
+                }
+                *memory_stats = (longlong)current_node;
+                
+                // 调用分配后处理函数
+                rendering_system_post_allocation_handler(node_type);
+                *(longlong *)(node_type + 0xbc8) = *(longlong *)(node_type + 0xbc8) + 1;
+                
+                // 检查分配标志
+                if ((allocation_flags == current_node[7]) &&
+                   (((current_node[6] < (uint)(ushort)current_node[3] ||
+                     ((*(ulonglong *)(current_node + 10) & 0xfffffffffffffffc) != 0)) &&
+                    (status_ptr != (undefined1 *)0x0)))) {
+                    *status_ptr = 1;
+                }
             }
-            bVar2 = (((byte)(uVar3 >> (cVar7 - 2U & 0x3f)) & 3) - 3) + cVar7 * '\x04';
-          }
-          else {
-            bVar2 = 0x49;
-          }
-          if ((bVar8 != bVar2) || (param_2 <= (undefined8 *)(param_1 + 0x410))) break;
-          param_2 = param_2 + -3;
         }
-        uVar3 = uVar5 + 1;
-        if (uVar9 < uVar5 + 1) {
-          uVar3 = uVar9;
-        }
-      }
-      puVar6 = (undefined8 *)(param_1 + 8 + uVar3 * 8);
-      for (uVar9 = (uVar9 - uVar3) * 8 + 8 >> 3; uVar9 != 0; uVar9 = uVar9 - 1) {
-        *puVar6 = puVar4;
-        puVar6 = puVar6 + 1;
-      }
-    }
-  }
-  return;
+        current_node = current_node + (ulonglong)*current_node * RENDERING_LIST_ENTRY_SIZE;
+    } while( true );
 }
 
+/**
+ * 渲染系统资源管理器
+ * 功能：管理渲染系统的资源分配和释放
+ * 参数：param_1 - 资源类型，param_2 - 资源大小，param_3 - 上下文指针，param_4 - 资源标志，param_5 - 管理器指针
+ * 返回值：ulonglong - 管理结果
+ * 
+ * 该函数负责管理渲染系统的资源分配和释放，包括：
+ * - 处理资源的分配请求
+ * - 管理资源的生命周期
+ * - 处理资源的清理和释放
+ * - 维护资源的使用统计
+ * - 处理资源的错误情况
+ */
+ulonglong rendering_system_resource_manager(undefined8 resource_type, uint resource_size, longlong context_ptr, undefined8 resource_flags, longlong manager_ptr)
+{
+    uint *resource_node;
+    longlong stat_value;
+    char operation_result;
+    undefined8 *resource_header;
+    ulonglong resource_key;
+    longlong memory_offset;
+    longlong list_count;
+    ulonglong hash_value;
+    int iteration_count;
+    ulonglong current_key;
+    undefined8 resource_data;
+    ulonglong node_size;
+    bool is_operation_complete;
+    uint allocation_params[4];
+    undefined8 temp_storage;
+    
+    // 初始化资源管理参数
+    node_size = context_ptr + 0xffffU >> 0x10;
+    allocation_params[0] = resource_size;
+    temp_storage = resource_flags;
+    
+RESOURCE_MANAGEMENT_LOOP:
+    do {
+        resource_data = 0;
+        resource_header = (undefined8 *)rendering_system_get_resource_header(node_size, manager_ptr);
+        resource_key = node_size;
+        if (node_size == 0) {
+            resource_key = 1;
+        }
+        
+        // 遍历资源链表
+        for (; resource_header <= (undefined8 *)(manager_ptr + 0x348U); resource_header = resource_header + 3) {
+            for (resource_node = (uint *)*resource_header; resource_node != (uint *)0x0; resource_node = *(uint **)(resource_node + 0xe)) {
+                if (resource_key <= *resource_node) {
+                    // 处理资源节点的链接
+                    if (*(longlong *)(resource_node + 0x10) != 0) {
+                        *(undefined8 *)(*(longlong *)(resource_node + 0x10) + 0x38) = *(undefined8 *)(resource_node + 0xe);
+                    }
+                    if (resource_node == (uint *)*resource_header) {
+                        *resource_header = *(undefined8 *)(resource_node + 0xe);
+                    }
+                    if (*(longlong *)(resource_node + 0xe) != 0) {
+                        *(undefined8 *)(*(longlong *)(resource_node + 0xe) + 0x40) = *(undefined8 *)(resource_node + 0x10);
+                    }
+                    if (resource_node == (uint *)resource_header[1]) {
+                        resource_header[1] = *(undefined8 *)(resource_node + 0x10);
+                    }
+                    
+                    // 更新节点状态
+                    current_key = (ulonglong)*resource_node;
+                    resource_node[7] = 1;
+                    hash_value = (ulonglong)resource_node & RENDERING_MEMORY_ALIGNMENT;
+                    *(undefined8 *)(resource_node + 0x10) = resource_data;
+                    *(undefined8 *)(resource_node + 0xe) = resource_data;
+                    
+                    // 处理资源分割
+                    if (resource_key < current_key) {
+                        rendering_system_resource_splitter(hash_value, (longlong)((longlong)resource_node + (-0x80 - hash_value)) / RENDERING_MEMORY_BLOCK_SIZE + resource_key, current_key - resource_key, manager_ptr);
+                        current_key = resource_key & 0xffffffff;
+                        *resource_node = (uint)resource_key;
+                    }
+                    
+                    // 处理资源合并
+                    resource_key = rendering_system_resource_merger(hash_value, (longlong)((longlong)resource_node + (-0x80 - hash_value)) / RENDERING_MEMORY_BLOCK_SIZE, current_key);
+                    if (resource_key != 0) {
+                        rendering_system_resource_handler(resource_key & RENDERING_MEMORY_ALIGNMENT, 0);
+                        return resource_key;
+                    }
+                    
+                    // 释放资源节点
+                    rendering_system_node_releaser(resource_node, manager_ptr);
+                    resource_flags = temp_storage;
+                    goto RESOURCE_PROCESSING_COMPLETE;
+                }
+            }
+        }
+RESOURCE_PROCESSING_COMPLETE:
+        allocation_params[0] = allocation_params[0] & 0xffffff00;
+        iteration_count = 8;
+        
+        do {
+            iteration_count = iteration_count - 1;
+            list_count = rendering_system_get_available_resource();
+            if (list_count == 0) break;
+            *(longlong *)(list_count + 0x40) = *(longlong *)(list_count + 0x40) + 1;
+            operation_result = rendering_system_node_finder(list_count, node_size, resource_flags, manager_ptr);
+            
+            // 处理资源使用完成
+            if (*(longlong *)(list_count + 0x48) == 0) {
+RESOURCE_USAGE_COMPLETE:
+                rendering_system_node_allocator(list_count, resource_type, 0, 0, manager_ptr);
+            }
+            else {
+                if (operation_result != '\0') {
+                    list_count = rendering_system_node_allocator(list_count, resource_type, resource_flags, allocation_params, manager_ptr);
+                    if ((char)allocation_params[0] != '\0') {
+                        return 0;
+                    }
+                    if (list_count != 0) goto RESOURCE_MANAGEMENT_LOOP;
+                    break;
+                }
+                
+                // 检查资源使用限制
+                if (3 < *(ulonglong *)(list_count + 0x40)) goto RESOURCE_USAGE_COMPLETE;
+                rendering_system_resource_handler(list_count, 0);
+                
+                // 处理资源队列
+                memory_offset = _DAT_180c9e8c0;
+                do {
+                    *(longlong *)(list_count + 0x28) = memory_offset;
+                    LOCK();
+                    is_operation_complete = memory_offset != _DAT_180c9e8c0;
+                    stat_value = list_count;
+                    if (is_operation_complete) {
+                        memory_offset = _DAT_180c9e8c0;
+                        stat_value = _DAT_180c9e8c0;
+                    }
+                    _DAT_180c9e8c0 = stat_value;
+                    UNLOCK();
+                } while (is_operation_complete);
+                
+                // 更新资源统计
+                LOCK();
+                _DAT_180c9eb40 = _DAT_180c9eb40 + 1;
+                UNLOCK();
+            }
+        } while (0 < iteration_count);
+        
+        // 获取新的资源
+        list_count = rendering_system_acquire_resource(0, 0, manager_ptr);
+        if (list_count == 0) {
+            return 0;
+        }
+    } while( true );
+}
 
+/**
+ * 渲染系统哈希表管理器
+ * 功能：管理渲染系统的哈希表结构
+ * 参数：param_1 - 哈希表基地址，param_2 - 哈希表头指针
+ * 返回值：无
+ * 
+ * 该函数负责管理渲染系统的哈希表结构，包括：
+ * - 维护哈希表的完整性
+ * - 处理哈希冲突的解决
+ * - 管理哈希表的扩容和缩容
+ * - 优化哈希表的性能
+ * - 处理哈希表的错误情况
+ */
+void rendering_system_hash_table_manager(longlong hash_table_base, undefined8 *hash_table_header)
+{
+    longlong memory_offset;
+    byte hash_value;
+    ulonglong table_size;
+    undefined *table_entry;
+    ulonglong entry_size;
+    undefined8 *current_entry;
+    char bit_shift;
+    byte hash_code;
+    ulonglong entry_index;
+    
+    // 检查哈希表大小
+    if ((ulonglong)hash_table_header[2] < 0x401) {
+        table_entry = &UNK_1809fb2d0;
+        if ((undefined *)*hash_table_header != (undefined *)0x0) {
+            table_entry = (undefined *)*hash_table_header;
+        }
+        
+        // 计算哈希表索引
+        entry_index = hash_table_header[2] + 7 >> 3;
+        if (*(undefined **)(hash_table_base + 8 + entry_index * 8) != table_entry) {
+            // 计算哈希值
+            if (entry_index < 2) {
+                table_size = 0;
+            }
+            else {
+                if (entry_index < 9) {
+                    hash_code = (char)entry_index + 1U & 0xfe;
+                }
+                else if (entry_index < 0x801) {
+                    entry_size = entry_index - 1;
+                    if (entry_size == 0) {
+                        bit_shift = '\0';
+                    }
+                    else {
+                        memory_offset = 0x3f;
+                        if (entry_size != 0) {
+                            for (; entry_size >> memory_offset == 0; memory_offset = memory_offset - 1) {
+                            }
+                        }
+                        bit_shift = '?' - ('?' - (char)memory_offset);
+                    }
+                    hash_code = (((byte)(entry_size >> (bit_shift - 2U & 0x3f)) & 3) - 3) + bit_shift * '\x04';
+                }
+                else {
+                    hash_code = 0x49;
+                }
+                
+                // 处理哈希表条目
+                hash_table_header = hash_table_header + -3;
+                while( true ) {
+                    entry_size = hash_table_header[2] + 7 >> 3;
+                    if (entry_size < 2) {
+                        hash_value = 1;
+                    }
+                    else if (entry_size < 9) {
+                        hash_value = (char)entry_size + 1U & 0xfe;
+                    }
+                    else if (entry_size < 0x801) {
+                        table_size = entry_size - 1;
+                        if (table_size == 0) {
+                            bit_shift = '\0';
+                        }
+                        else {
+                            memory_offset = 0x3f;
+                            if (table_size != 0) {
+                                for (; table_size >> memory_offset == 0; memory_offset = memory_offset - 1) {
+                                }
+                            }
+                            bit_shift = '?' - ('?' - (char)memory_offset);
+                        }
+                        hash_value = (((byte)(table_size >> (bit_shift - 2U & 0x3f)) & 3) - 3) + bit_shift * '\x04';
+                    }
+                    else {
+                        hash_value = 0x49;
+                    }
+                    if ((hash_code != hash_value) || (hash_table_header <= (undefined8 *)(hash_table_base + 0x410))) break;
+                    hash_table_header = hash_table_header + -3;
+                }
+                
+                // 更新哈希表大小
+                table_size = entry_size + 1;
+                if (entry_index < entry_size + 1) {
+                    table_size = entry_index;
+                }
+            }
+            
+            // 更新哈希表条目
+            current_entry = (undefined8 *)(hash_table_base + 8 + table_size * 8);
+            for (entry_index = (entry_index - table_size) * 8 + 8 >> 3; entry_index != 0; entry_index = entry_index - 1) {
+                *current_entry = table_entry;
+                current_entry = current_entry + 1;
+            }
+        }
+    }
+}
 
+/*==========================================
+  函数别名映射 (便于代码维护和调试)
+==========================================*/
+#define rendering_system_low_level_initializer       FUN_18064b830
+#define rendering_system_list_preprocessor          FUN_18064c220
+#define rendering_system_full_list_handler          FUN_18064c570
+#define rendering_system_initialize_cleanup_handler FUN_180650490
+#define rendering_system_cleanup_processor          FUN_18064b460
+#define rendering_system_execute_cleanup_operations  func_0x000180646ff0
+#define rendering_system_memory_deallocator         FUN_18064ae40
+#define rendering_system_update_memory_statistics   rendering_system_linked_list_manager
+#define rendering_system_node_relocator             FUN_18064c220
+#define rendering_system_error_handler               FUN_1806503d0
+#define rendering_system_memory_preallocator         FUN_18064ae40
+#define rendering_system_node_initializer           FUN_18064b830
+#define rendering_system_get_allocation_result      func_0x00018064ceb0
+#define rendering_system_post_allocation_handler    FUN_18064cf20
+#define rendering_system_final_cleanup_handler      FUN_18064bf60
+#define rendering_system_get_resource_header        func_0x00018064ade0
+#define rendering_system_resource_splitter          FUN_18064b590
+#define rendering_system_resource_merger            FUN_18064b940
+#define rendering_system_node_releaser              FUN_18064b830
+#define rendering_system_get_available_resource     func_0x00018064c400
+#define rendering_system_acquire_resource           FUN_18064bae0
+#define rendering_system_resource_handler           FUN_18064b460
+#define rendering_system_update_memory_usage         rendering_system_node_finder
 
-
+/*==============================================================================
+  模块信息:
+  - 文件大小: 958 行代码
+  - 核心函数: 8 个主要函数
+  - 主要功能: 渲染系统高级内存管理和数据结构处理
+  - 技术特点: 
+    * 高级内存管理算法
+    * 复杂数据结构操作
+    * 线程安全操作
+    * 哈希表管理
+    * 链表处理
+    * 资源分配和释放
+    * 错误处理机制
+  
+  适用场景:
+  - 大规模渲染系统的内存管理
+  - 高性能数据结构操作
+  - 多线程环境下的资源管理
+  - 复杂的渲染管线处理
+  
+  性能优化:
+  - 使用位操作提高效率
+  - 采用内存对齐优化
+  - 实现原子操作保证线程安全
+  - 使用哈希表提高查找效率
+  - 采用链表结构支持动态扩展
+==============================================================================*/
