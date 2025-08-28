@@ -561,90 +561,91 @@ void EngineDataStructureFactory_Create(void)
 
 
 
-// 函数: void FUN_1801871f0(undefined8 param_1,undefined8 *param_2)
-void FUN_1801871f0(undefined8 param_1,undefined8 *param_2)
-
+// 函数: 字符串资源移除器 (原: FUN_1801871f0)
+// 功能: 从资源管理器中移除指定的字符串资源
+void StringResource_Remover(undefined8 param_1, undefined8 *string_resource)
 {
-  byte *pbVar1;
-  int iVar2;
-  int iVar3;
-  undefined8 *puVar4;
-  undefined8 *puVar5;
-  longlong lVar6;
-  byte *pbVar7;
-  int iVar8;
-  undefined8 *puVar9;
-  longlong lVar10;
+  byte *string1_ptr;
+  int target_length;
+  int current_length;
+  undefined8 *resource_entry;
+  undefined8 *next_entry;
+  longlong global_data;
+  byte *string2_ptr;
+  int compare_result;
+  undefined8 *resource_start;
+  undefined8 *resource_end;
+  longlong string_offset;
   
-  lVar6 = _DAT_180c8a9e0;
-  puVar9 = *(undefined8 **)(_DAT_180c8a9e0 + 0x18);
-  if (puVar9 != *(undefined8 **)(_DAT_180c8a9e0 + 0x20)) {
-    iVar2 = *(int *)(param_2 + 2);
+  global_data = GLOBAL_ENGINE_CONTEXT;
+  resource_start = *(undefined8 **)(GLOBAL_ENGINE_CONTEXT + 0x18);
+  if (resource_start != *(undefined8 **)(GLOBAL_ENGINE_CONTEXT + 0x20)) {
+    target_length = *(int *)(string_resource + 2);
     do {
-      puVar4 = (undefined8 *)*puVar9;
-      iVar3 = *(int *)(puVar4 + 2);
-      iVar8 = iVar2;
-      if (iVar3 == iVar2) {
-        if (iVar3 != 0) {
-          pbVar7 = (byte *)puVar4[1];
-          lVar10 = param_2[1] - (longlong)pbVar7;
+      resource_entry = (undefined8 *)*resource_start;
+      current_length = *(int *)(resource_entry + 2);
+      compare_result = target_length;
+      if (current_length == target_length) {
+        if (current_length != 0) {
+          string2_ptr = (byte *)resource_entry[1];
+          string_offset = string_resource[1] - (longlong)string2_ptr;
           do {
-            pbVar1 = pbVar7 + lVar10;
-            iVar8 = (uint)*pbVar7 - (uint)*pbVar1;
-            if (iVar8 != 0) break;
-            pbVar7 = pbVar7 + 1;
-          } while (*pbVar1 != 0);
+            string1_ptr = string2_ptr + string_offset;
+            compare_result = (uint)*string2_ptr - (uint)*string1_ptr;
+            if (compare_result != 0) break;
+            string2_ptr = string2_ptr + 1;
+          } while (*string1_ptr != 0);
         }
-LAB_18018728e:
-        if (iVar8 == 0) {
-          if (puVar4 != (undefined8 *)0x0) {
-            if (puVar4[0xd] != 0) {
-                    // WARNING: Subroutine does not return
+STRING_FOUND:
+        if (compare_result == 0) {
+          if (resource_entry != (undefined8 *)0x0) {
+            if (resource_entry[0xd] != 0) {
+              // 资源条目错误处理
               FUN_18064e900();
             }
-            puVar4[4] = &UNK_180a3c3e0;
-            if (puVar4[5] == 0) {
-              puVar4[5] = 0;
-              *(undefined4 *)(puVar4 + 7) = 0;
-              puVar4[4] = &UNK_18098bcb0;
-              *puVar4 = &UNK_180a3c3e0;
-              if (puVar4[1] == 0) {
-                puVar4[1] = 0;
-                *(undefined4 *)(puVar4 + 3) = 0;
-                *puVar4 = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
-                FUN_18064e900(puVar4);
+            resource_entry[4] = &EMPTY_STRING_CONST;
+            if (resource_entry[5] == 0) {
+              resource_entry[5] = 0;
+              *(undefined4 *)(resource_entry + 7) = 0;
+              resource_entry[4] = &STRING_END_CONST;
+              *resource_entry = &EMPTY_STRING_CONST;
+              if (resource_entry[1] == 0) {
+                resource_entry[1] = 0;
+                *(undefined4 *)(resource_entry + 3) = 0;
+                *resource_entry = &STRING_END_CONST;
+                // 资源条目错误处理
+                FUN_18064e900(resource_entry);
               }
-                    // WARNING: Subroutine does not return
+              // 资源条目错误处理
               FUN_18064e900();
             }
-                    // WARNING: Subroutine does not return
+            // 资源条目错误处理
             FUN_18064e900();
           }
-          *puVar9 = 0;
-          puVar4 = puVar9 + 1;
-          puVar5 = *(undefined8 **)(lVar6 + 0x20);
-          if (puVar4 < puVar5) {
-                    // WARNING: Subroutine does not return
-            memmove(puVar9,puVar4,(longlong)puVar5 - (longlong)puVar4,iVar2,0xfffffffffffffffe);
+          *resource_start = 0;
+          resource_entry = resource_start + 1;
+          next_entry = *(undefined8 **)(global_data + 0x20);
+          if (resource_entry < next_entry) {
+            // 移动内存以填充空隙
+            memmove(resource_start, resource_entry, (longlong)next_entry - (longlong)resource_entry, target_length, 0xfffffffffffffffe);
           }
-          *(undefined8 **)(lVar6 + 0x20) = puVar5 + -1;
+          *(undefined8 **)(global_data + 0x20) = next_entry + -1;
           break;
         }
       }
-      else if (iVar3 == 0) goto LAB_18018728e;
-      puVar9 = puVar9 + 1;
-    } while (puVar9 != *(undefined8 **)(_DAT_180c8a9e0 + 0x20));
+      else if (current_length == 0) goto STRING_FOUND;
+      resource_start = resource_start + 1;
+    } while (resource_start != *(undefined8 **)(GLOBAL_ENGINE_CONTEXT + 0x20));
   }
-  FUN_180187390(lVar6,&UNK_180a0aa34);
-  *param_2 = &UNK_180a3c3e0;
-  if (param_2[1] == 0) {
-    param_2[1] = 0;
-    *(undefined4 *)(param_2 + 3) = 0;
-    *param_2 = &UNK_18098bcb0;
+  FUN_180187390(global_data, &DEFAULT_STRING_CONST);
+  *string_resource = &EMPTY_STRING_CONST;
+  if (string_resource[1] == 0) {
+    string_resource[1] = 0;
+    *(undefined4 *)(string_resource + 3) = 0;
+    *string_resource = &STRING_END_CONST;
     return;
   }
-                    // WARNING: Subroutine does not return
+  // 字符串资源错误处理
   FUN_18064e900();
 }
 
