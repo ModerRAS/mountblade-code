@@ -1,145 +1,192 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 05_networking_part002.c - 网络系统数据包处理和协议实现
+// 本文件包含多个网络系统核心功能，包括数据包处理、校验和计算、加密传输、压缩等功能
+//
+// 主要功能模块：
+// 1. 数据包处理：process_network_packet - 处理网络数据包的接收和解析
+// 2. 校验和计算：calculate_network_checksum - 计算网络数据包的校验和
+// 3. 数据包发送：send_network_packet - 发送网络数据包
+// 4. 加密数据处理：process_encrypted_data - 处理加密数据的传输
+// 5. 数据压缩：compress_network_data - 压缩网络数据
+// 6. 网络握手：handle_network_handshake - 处理网络握手协议
+// 7. 协议初始化：initialize_network_protocol - 初始化网络协议
+// 8. 数据编码：encode_network_data - 编码网络数据
+// 9. 数据完整性验证：verify_data_integrity - 验证数据完整性
+// 10. 安全连接处理：process_secure_connection - 处理安全连接数据
+
+// 全局常量定义
+#define NETWORK_SECURITY_KEY    _DAT_180bf00a8
+#define NETWORK_ERROR_LOGGER    _DAT_180be12f0
+#define PACKET_HEADER_PTR      UNK_180982b30
+#define ERROR_MESSAGE_PTR      UNK_180982b98
+#define DATA_BUFFER_PTR        DAT_180a06434
+
+// 函数别名定义
+#define get_connection_info      func_0x00018088c590
+#define validate_packet_data     FUN_18088e0f0
+#define process_connection_data  FUN_18088c740
+#define extract_packet_header    FUN_18088dec0
+#define finalize_packet_header  func_0x00018088e0d0
+#define cleanup_connection_data  FUN_18088c790
+#define log_network_error        FUN_180749ef0
+#define validate_security_cookie FUN_1808fc050
+#define initialize_checksum      func_0x00018074b800
+#define process_checksum_data   FUN_18074b880
+#define apply_checksum          func_0x00018074b7d0
+#define send_packet_data         FUN_18083faf0
+#define process_encryption       func_0x00018074b7d0
+#define apply_data_padding      FUN_18074b650
+#define initialize_compression  func_0x00018074b800
+#define process_compression      FUN_18074b880
+#define finalize_compression    func_0x00018074b7d0
 
 // 函数: void process_network_packet(undefined8 packet_ptr)
 // 处理网络数据包的接收和解析
+// 参数: packet_ptr - 网络数据包指针
+// 功能: 验证连接状态，处理数据包头部信息，管理连接数据
 void process_network_packet(undefined8 packet_ptr)
 
 {
-  int result;
-  undefined1 buffer_stack_168 [32];
-  undefined1 *data_ptr_stack_148;
-  longlong connection_info_stack_138 [2];
-  undefined8 *header_ptr_stack_128 [2];
-  undefined1 packet_data_stack_118 [256];
-  ulonglong stack_cookie;
+  int processing_result;
+  undefined1 security_buffer [32];
+  undefined1 *error_data_ptr;
+  longlong connection_context [2];
+  undefined8 *packet_header [2];
+  undefined1 packet_buffer [256];
+  ulonglong security_cookie;
   
   // 栈保护cookie
-  stack_cookie = _DAT_180bf00a8 ^ (ulonglong)buffer_stack_168;
+  security_cookie = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
   
   // 获取连接信息
-  result = func_0x00018088c590(packet_ptr, connection_info_stack_138);
+  processing_result = get_connection_info(packet_ptr, connection_context);
   
   // 检查连接状态和数据包验证
-  if ((result == 0) && ((*(uint *)(connection_info_stack_138[0] + 0x24) >> 1 & 1) == 0)) {
-    result = 0x4b; // 错误码：连接状态异常
-LAB_packet_error:
-    if (result == 0) goto LAB_packet_success;
+  if ((processing_result == 0) && ((*(uint *)(connection_context[0] + 0x24) >> 1 & 1) == 0)) {
+    processing_result = 0x4b; // 错误码：连接状态异常
+LAB_packet_processing_error:
+    if (processing_result == 0) goto LAB_packet_processing_success;
   }
-  else if (result == 0) {
+  else if (processing_result == 0) {
     // 处理有效数据包
-    result = FUN_18088e0f0(*(undefined8 *)(connection_info_stack_138[0] + 0x98), 1);
-    if (result == 0) {
+    processing_result = validate_packet_data(*(undefined8 *)(connection_context[0] + 0x98), 1);
+    if (processing_result == 0) {
       // 检查是否有活动连接
-      if (*(int *)(*(longlong *)(connection_info_stack_138[0] + 0x98) + 0x200) != 0) {
-        connection_info_stack_138[1] = 0;
-        result = FUN_18088c740(connection_info_stack_138 + 1);
-        if ((result == 0) &&
-           (result = FUN_18088dec0(*(undefined8 *)(connection_info_stack_138[0] + 0x98), header_ptr_stack_128, 0x10),
-           result == 0)) {
-          *header_ptr_stack_128[0] = &UNK_180982b30;
-          *(undefined4 *)(header_ptr_stack_128[0] + 1) = 0x10;
-          func_0x00018088e0d0(*(undefined8 *)(connection_info_stack_138[0] + 0x98));
+      if (*(int *)(*(longlong *)(connection_context[0] + 0x98) + 0x200) != 0) {
+        connection_context[1] = 0;
+        processing_result = process_connection_data(connection_context + 1);
+        if ((processing_result == 0) &&
+           (processing_result = extract_packet_header(*(undefined8 *)(connection_context[0] + 0x98), packet_header, 0x10),
+           processing_result == 0)) {
+          *packet_header[0] = &PACKET_HEADER_PTR;
+          *(undefined4 *)(packet_header[0] + 1) = 0x10;
+          finalize_packet_header(*(undefined8 *)(connection_context[0] + 0x98));
                     // WARNING: Subroutine does not return
-          FUN_18088c790(connection_info_stack_138 + 1);
+          cleanup_connection_data(connection_context + 1);
         }
                     // WARNING: Subroutine does not return
-        FUN_18088c790(connection_info_stack_138 + 1);
+        cleanup_connection_data(connection_context + 1);
       }
-      goto LAB_packet_success;
+      goto LAB_packet_processing_success;
     }
-    goto LAB_packet_error;
+    goto LAB_packet_processing_error;
   }
   
   // 错误处理：记录网络错误
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    data_ptr_stack_148 = packet_data_stack_118;
-    packet_data_stack_118[0] = 0;
+  if ((*(byte *)(NETWORK_ERROR_LOGGER + 0x10) & 0x80) != 0) {
+    error_data_ptr = packet_buffer;
+    packet_buffer[0] = 0;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(result, 0xb, packet_ptr, &UNK_180982b98);
+    log_network_error(processing_result, 0xb, packet_ptr, &ERROR_MESSAGE_PTR);
   }
   
-LAB_packet_success:
+LAB_packet_processing_success:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_cookie ^ (ulonglong)buffer_stack_168);
+  validate_security_cookie(security_cookie ^ (ulonglong)security_buffer);
 }
 
 // 函数: int calculate_network_checksum(longlong data_ptr, longlong offset, int length)
 // 计算网络数据包的校验和
+// 参数: data_ptr - 数据指针, offset - 数据偏移量, length - 数据长度
+// 功能: 计算网络数据包的校验和，确保数据传输的完整性
 int calculate_network_checksum(longlong data_ptr, longlong offset, int length)
 
 {
-  undefined4 header_value;
-  int checksum_result;
-  int processed_bytes;
+  undefined4 packet_header_value;
+  int checksum_total;
+  int bytes_processed;
   
   // 获取数据包头值
-  header_value = *(undefined4 *)(data_ptr + 0x18);
+  packet_header_value = *(undefined4 *)(data_ptr + 0x18);
   
   // 计算初始校验和
-  checksum_result = func_0x00018074b800(offset, length, *(undefined4 *)(data_ptr + 0x10));
-  processed_bytes = FUN_18074b880(offset + checksum_result, length - checksum_result, &DAT_180a06434);
-  checksum_result = checksum_result + processed_bytes;
+  checksum_total = initialize_checksum(offset, length, *(undefined4 *)(data_ptr + 0x10));
+  bytes_processed = process_checksum_data(offset + checksum_total, length - checksum_total, &DATA_BUFFER_PTR);
+  checksum_total = checksum_total + bytes_processed;
   
-  // 处理剩余数据
-  processed_bytes = func_0x00018074b7d0(checksum_result + offset, length - checksum_result, header_value);
-  return processed_bytes + checksum_result;
-}// 函数: void send_network_packet(longlong connection_ptr, undefined8 packet_data, undefined4 packet_size)
+  // 处理剩余数据并应用校验和
+  bytes_processed = apply_checksum(checksum_total + offset, length - checksum_total, packet_header_value);
+  return bytes_processed + checksum_total;
+// 函数: void send_network_packet(longlong connection_ptr, undefined8 packet_data, undefined4 packet_size)
 // 发送网络数据包
+// 参数: connection_ptr - 连接指针, packet_data - 数据包数据, packet_size - 数据包大小
+// 功能: 通过指定的连接发送网络数据包
 void send_network_packet(longlong connection_ptr, undefined8 packet_data, undefined4 packet_size)
 
 {
-  FUN_18083faf0(packet_data, packet_size, *(undefined4 *)(connection_ptr + 0x10), *(undefined4 *)(connection_ptr + 0x18),
-                *(undefined4 *)(connection_ptr + 0x1c));
+  send_packet_data(packet_data, packet_size, *(undefined4 *)(connection_ptr + 0x10), *(undefined4 *)(connection_ptr + 0x18),
+                   *(undefined4 *)(connection_ptr + 0x1c));
   return;
 }
 // 函数: int process_encrypted_data(longlong encryption_info, longlong data_ptr, int data_size)
 // 处理加密数据的传输
+// 参数: encryption_info - 加密信息指针, data_ptr - 数据指针, data_size - 数据大小
+// 功能: 处理网络加密数据，包括加密方法应用、填充处理和密钥管理
 int process_encrypted_data(longlong encryption_info, longlong data_ptr, int data_size)
 
 {
   undefined4 encryption_key;
   undefined4 encryption_method;
-  int processed_bytes;
-  int remaining_bytes;
-  undefined4 padding_value;
-  undefined4 iv_vector;
+  int bytes_processed;
+  int bytes_remaining;
+  undefined4 data_padding;
+  undefined4 initialization_vector;
   undefined4 salt_value;
   undefined4 hmac_key;
   
   // 获取加密参数
-  padding_value = *(undefined4 *)(encryption_info + 0x1c);
-  iv_vector = *(undefined4 *)(encryption_info + 0x20);
+  data_padding = *(undefined4 *)(encryption_info + 0x1c);
+  initialization_vector = *(undefined4 *)(encryption_info + 0x20);
   salt_value = *(undefined4 *)(encryption_info + 0x24);
   hmac_key = *(undefined4 *)(encryption_info + 0x28);
   encryption_key = *(undefined4 *)(encryption_info + 0x2c);
   encryption_method = *(undefined4 *)(encryption_info + 0x18);
   
   // 处理数据头部
-  processed_bytes = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(encryption_info + 0x10));
-  remaining_bytes = FUN_18074b880(processed_bytes + data_ptr, data_size - processed_bytes, &DAT_180a06434);
-  processed_bytes = processed_bytes + remaining_bytes;
+  bytes_processed = initialize_checksum(data_ptr, data_size, *(undefined4 *)(encryption_info + 0x10));
+  bytes_remaining = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_remaining;
   
   // 应用加密方法
-  remaining_bytes = func_0x00018074b7d0(processed_bytes + data_ptr, data_size - processed_bytes, encryption_method);
-  processed_bytes = processed_bytes + remaining_bytes;
+  bytes_remaining = process_encryption(bytes_processed + data_ptr, data_size - bytes_processed, encryption_method);
+  bytes_processed = bytes_processed + bytes_remaining;
   
   // 处理加密数据
-  remaining_bytes = FUN_18074b880(processed_bytes + data_ptr, data_size - processed_bytes, &DAT_180a06434);
-  processed_bytes = processed_bytes + remaining_bytes;
+  bytes_remaining = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_remaining;
   
   // 应用填充值
-  remaining_bytes = FUN_18074b650(processed_bytes + data_ptr, data_size - processed_bytes, &padding_value);
-  processed_bytes = processed_bytes + remaining_bytes;
+  bytes_remaining = apply_data_padding(bytes_processed + data_ptr, data_size - bytes_processed, &data_padding);
+  bytes_processed = bytes_processed + bytes_remaining;
   
   // 处理填充后的数据
-  remaining_bytes = FUN_18074b880(processed_bytes + data_ptr, data_size - processed_bytes, &DAT_180a06434);
-  processed_bytes = processed_bytes + remaining_bytes;
+  bytes_remaining = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_remaining;
   
   // 应用最终加密密钥
-  remaining_bytes = func_0x00018074b800(processed_bytes + data_ptr, data_size - processed_bytes, encryption_key);
-  return remaining_bytes + processed_bytes;
+  bytes_remaining = initialize_checksum(bytes_processed + data_ptr, data_size - bytes_processed, encryption_key);
+  return bytes_remaining + bytes_processed;
 }
 // 函数: int compress_network_data(longlong compression_info, longlong data_ptr, int data_size)
 // 压缩网络数据
@@ -329,19 +376,28 @@ int initialize_network_protocol(longlong protocol_info, longlong data_ptr, int d
 
 
 
-int FUN_1808412b0(longlong param_1,longlong param_2,int param_3)
+// 函数: int process_basic_data_validation(longlong config_info, longlong data_ptr, int data_size)
+// 基础数据验证处理
+// 参数: config_info - 配置信息指针, data_ptr - 数据指针, data_size - 数据大小
+// 功能: 执行基础数据验证，包括初始化校验和、缓冲区处理和最终验证
+int process_basic_data_validation(longlong config_info, longlong data_ptr, int data_size)
 
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
+  undefined4 validation_key;
+  int bytes_processed;
+  int bytes_validated;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x18);
-  iVar2 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  // 获取验证密钥
+  validation_key = *(undefined4 *)(config_info + 0x18);
+  
+  // 初始化数据校验
+  bytes_processed = initialize_checksum(data_ptr, data_size, *(undefined4 *)(config_info + 0x10));
+  bytes_validated = process_checksum_data(data_ptr + bytes_processed, data_size - bytes_processed, &DATA_BUFFER_PTR);
+  bytes_processed = bytes_processed + bytes_validated;
+  
+  // 应用最终验证
+  bytes_validated = initialize_checksum(bytes_processed + data_ptr, data_size - bytes_processed, validation_key);
+  return bytes_validated + bytes_processed;
 }
 
 
