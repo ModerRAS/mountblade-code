@@ -118,6 +118,7 @@
  */
 void DataStreamProcessor(longlong *param_1,longlong *param_2,undefined8 *param_3,byte param_4,uint param_5)
 
+{
   undefined1 uVar1;
   longlong lVar2;
   undefined1 *puVar3;

@@ -811,8 +811,9 @@ void SystemCallProcessor(void)
   
   *(undefined8 *)(in_R11 + 8) = unaff_RSI;
   *(undefined8 *)(in_R11 + 0x18) = unaff_R14;
-                    // WARNING: Could not recover jumptable at 0x0001800a135a. Too many branches
-                    // WARNING: Treating indirect jump as call
+  // 系统调用跳转表处理
+  // WARNING: Could not recover jumptable at 0x0001800a135a. Too many branches
+  // WARNING: Treating indirect jump as call
   (*(code *)((ulonglong)*(uint *)(&UNK_1800a1660 + in_RAX * 4) + 0x180000000))();
   return;
 }
@@ -832,7 +833,7 @@ void SystemCallProcessor(void)
  * @param param_2 数据指针
  * @return void 无返回值
  */
-void AdvancedDataProcessor(undefined8 param_1,undefined8 *param_2)
+void AdvancedDataProcessor(undefined8 param_1, undefined8 *param_2)
 
 {
   undefined8 uVar1;
@@ -858,9 +859,9 @@ void AdvancedDataProcessor(undefined8 param_1,undefined8 *param_2)
       uVar6 = (ulonglong)*(uint *)(unaff_RBP + 0x48);
       lVar2 = *(longlong *)(unaff_RBP + -0x38);
       do {
-        FUN_1800a0e50(uVar1,9);
+        StreamOutputOperator(uVar1, STREAM_CHAR_TAB);
         if (lVar2 != 0) {
-          FUN_1800a1160(uVar1,lVar2);
+          StringStreamOutputter(uVar1, lVar2);
         }
         uVar6 = uVar6 - 1;
       } while (uVar6 != 0);
@@ -870,48 +871,48 @@ void AdvancedDataProcessor(undefined8 param_1,undefined8 *param_2)
     *(longlong *)(unaff_RBP + -0x30) = lVar2;
   }
   uVar1 = *(undefined8 *)(unaff_RBP + -0x30);
-  FUN_1800a0e50(uVar1,0x3c);
+  StreamOutputOperator(uVar1, STREAM_CHAR_LESS_THAN);
   lVar2 = *(longlong *)(unaff_RBP + -0x38);
   if (lVar2 != 0) {
-    FUN_1800a1160(uVar1,lVar2);
+    StringStreamOutputter(uVar1, lVar2);
   }
-  FUN_1800a0e50(uVar1,0x3f);
+  StreamOutputOperator(uVar1, STREAM_CHAR_QUESTION);
   if (lVar2 != 0) {
-    FUN_1800a1160(uVar1,lVar2);
+    StringStreamOutputter(uVar1, lVar2);
   }
-  FUN_1800a0e50(uVar1,0x78);
+  StreamOutputOperator(uVar1, STREAM_CHAR_X);
   if (lVar2 != 0) {
-    FUN_1800a1160(uVar1,lVar2);
+    StringStreamOutputter(uVar1, lVar2);
   }
-  FUN_1800a0e50(uVar1,0x6d);
+  StreamOutputOperator(uVar1, STREAM_CHAR_M);
   if (lVar2 != 0) {
-    FUN_1800a1160(uVar1,lVar2);
+    StringStreamOutputter(uVar1, lVar2);
   }
-  FUN_1800a0e50(uVar1,0x6c);
+  StreamOutputOperator(uVar1, STREAM_CHAR_L);
   if (lVar2 != 0) {
-    FUN_1800a1160(uVar1,lVar2);
+    StringStreamOutputter(uVar1, lVar2);
   }
   lVar2 = unaff_RBX[1];
   *(longlong *)(unaff_RBP + -0x38) = *unaff_RBX;
   *(longlong *)(unaff_RBP + -0x30) = lVar2;
-  plVar5 = (longlong *)FUN_1800a05a0(unaff_RBP + -0x28,unaff_RBP + -0x38);
+  plVar5 = (longlong *)FUN_1800a05a0(unaff_RBP + -0x28, unaff_RBP + -0x38);
   lVar2 = *plVar5;
   lVar3 = plVar5[1];
-  FUN_1800a0e50(lVar3,0x3f);
+  StreamOutputOperator(lVar3, STREAM_CHAR_QUESTION);
   if (lVar2 != 0) {
-    FUN_1800a1160(lVar3,lVar2);
+    StringStreamOutputter(lVar3, lVar2);
   }
-  FUN_1800a0e50(lVar3,0x3e);
+  StreamOutputOperator(lVar3, STREAM_CHAR_GREATER_THAN);
   if (lVar2 != 0) {
-    FUN_1800a1160(lVar3,lVar2);
+    StringStreamOutputter(lVar3, lVar2);
   }
   *unaff_RBX = lVar2;
   unaff_RBX[1] = lVar3;
   if ((unaff_R15 & 1) == 0) {
     lVar2 = unaff_RBX[1];
-    FUN_1800a0e50(lVar2,10);
+    StreamOutputOperator(lVar2, STREAM_CHAR_LINE_FEED);
     if (*unaff_RBX != 0) {
-      FUN_1800a1160(lVar2);
+      StringStreamOutputter(lVar2);
     }
   }
   lVar2 = unaff_RBX[1];
@@ -937,7 +938,7 @@ void AdvancedDataProcessor(undefined8 param_1,undefined8 *param_2)
  * @param param_4 控制标志
  * @return void 无返回值
  */
-void DataConversionProcessor(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
+void DataConversionProcessor(undefined8 param_1, undefined4 *param_2, undefined8 param_3, undefined8 param_4)
 
 {
   longlong lVar1;
@@ -958,7 +959,7 @@ void DataConversionProcessor(undefined8 param_1,undefined4 *param_2,undefined8 p
   *(undefined4 *)(unaff_RBP + -0x30) = uVar3;
   *(undefined4 *)(unaff_RBP + -0x2c) = uVar4;
   puVar5 = (undefined4 *)
-           FUN_1800a0820(unaff_RBP + -0x28,unaff_RBP + -0x38,param_3,param_4,
+           FUN_1800a0820(unaff_RBP + -0x28, unaff_RBP + -0x38, param_3, param_4,
                          *(undefined4 *)(unaff_RBP + 0x48));
   uVar2 = puVar5[1];
   uVar3 = puVar5[2];
@@ -969,9 +970,9 @@ void DataConversionProcessor(undefined8 param_1,undefined4 *param_2,undefined8 p
   *(undefined4 *)((longlong)unaff_RBX + 0xc) = uVar4;
   if ((unaff_R15 & 1) == 0) {
     lVar1 = unaff_RBX[1];
-    FUN_1800a0e50(lVar1,10);
+    StreamOutputOperator(lVar1, STREAM_CHAR_LINE_FEED);
     if (*unaff_RBX != 0) {
-      FUN_1800a1160(lVar1);
+      StringStreamOutputter(lVar1);
     }
   }
   lVar1 = unaff_RBX[1];
@@ -1003,9 +1004,9 @@ void DataTransferProcessor(void)
   
   if ((unaff_R15 & 1) == 0) {
     lVar1 = unaff_RBX[1];
-    FUN_1800a0e50(lVar1,10);
+    StreamOutputOperator(lVar1, STREAM_CHAR_LINE_FEED);
     if (*unaff_RBX != 0) {
-      FUN_1800a1160(lVar1);
+      StringStreamOutputter(lVar1);
     }
   }
   lVar1 = unaff_RBX[1];
@@ -1035,9 +1036,9 @@ void DataSyncProcessor(void)
   longlong *unaff_R12;
   
   lVar1 = unaff_RBX[1];
-  FUN_1800a0e50(lVar1,10);
+  StreamOutputOperator(lVar1, STREAM_CHAR_LINE_FEED);
   if (*unaff_RBX != 0) {
-    FUN_1800a1160(lVar1);
+    StringStreamOutputter(lVar1);
   }
   lVar1 = unaff_RBX[1];
   *unaff_R12 = *unaff_RBX;
