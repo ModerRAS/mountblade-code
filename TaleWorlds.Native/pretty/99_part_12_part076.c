@@ -749,7 +749,7 @@ void FUN_1807fefe0(uint64_t param_1,float param_2,float param_3)
     fVar2 = 22000.0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fd400((fVar2 * 6.2831855) / param_2);
+  AdvancedSystemController((fVar2 * 6.2831855) / param_2);
 }
 
 
@@ -776,7 +776,7 @@ void FUN_1807ff0d0(uint64_t param_1,float param_2,float param_3)
     fVar2 = 22000.0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fd400((fVar2 * 6.2831855) / param_2);
+  AdvancedSystemController((fVar2 * 6.2831855) / param_2);
 }
 
 

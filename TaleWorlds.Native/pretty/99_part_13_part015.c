@@ -849,7 +849,7 @@ LAB_1808ad747:
   }
 LAB_1808ad80d:
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(param_2,auStack_38);
+  AdvancedSystemManager(param_2,auStack_38);
 }
 
 
@@ -915,7 +915,7 @@ LAB_1808ad766:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80();
+  AdvancedSystemManager();
 }
 
 
@@ -956,7 +956,7 @@ uint64_t FUN_1808ad772(void)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80();
+  AdvancedSystemManager();
 }
 
 
@@ -1015,7 +1015,7 @@ LAB_1808ad8de:
     if (1 < uVar4) {
 LAB_1808ad9a6:
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(param_2,auStack_38);
+      AdvancedSystemManager(param_2,auStack_38);
     }
     puVar3 = (uint64_t *)
              SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x50,&unknown_var_688_ptr,0xd7d,
@@ -1096,7 +1096,7 @@ LAB_1808ad8de:
     if (1 < uVar4) {
 LAB_1808ad9a6:
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80();
+      AdvancedSystemManager();
     }
     puVar2 = (uint64_t *)
              SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x50,&unknown_var_688_ptr,0xd7d,

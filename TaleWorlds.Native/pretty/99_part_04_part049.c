@@ -272,7 +272,7 @@ LAB_1802b5374:
            (puVar14 = &unknown_var_5412_ptr, (pcVar10[1] + 0xa8U & 0xdf) != 0)) {
           puVar14 = &unknown_var_2208_ptr;
         }
-        param_1 = (float)FUN_18010cbc0(param_1,puVar14,aiStackX_20);
+        param_1 = (float)AdvancedSystemOptimizer(param_1,puVar14,aiStackX_20);
         if ((uint64_t)(int64_t)aiStackX_20[0] <
             (uint64_t)(*(int64_t *)(unaff_RSI + 0xd0) - *(int64_t *)(unaff_RSI + 200) >> 3)) {
           FUN_180264330(*(uint64_t *)
@@ -396,7 +396,7 @@ LAB_1802b5374:
        (puVar7 = &unknown_var_5412_ptr, (pcVar5[1] + 0xa8U & 0xdf) != 0)) {
       puVar7 = &unknown_var_2208_ptr;
     }
-    param_1 = (float)FUN_18010cbc0(param_1,puVar7,aiStackX_20);
+    param_1 = (float)AdvancedSystemOptimizer(param_1,puVar7,aiStackX_20);
     if ((uint64_t)(int64_t)aiStackX_20[0] <
         (uint64_t)(*(int64_t *)(unaff_RSI + 0xd0) - *(int64_t *)(unaff_RSI + 200) >> 3)) {
       FUN_180264330(*(uint64_t *)(*(int64_t *)(unaff_RSI + 200) + (int64_t)aiStackX_20[0] * 8),
@@ -536,7 +536,7 @@ LAB_1802b5374:
        (puVar8 = &unknown_var_5412_ptr, (pcVar6[1] + 0xa8U & 0xdf) != 0)) {
       puVar8 = &unknown_var_2208_ptr;
     }
-    param_1 = (float)FUN_18010cbc0(param_1,puVar8,aiStackX_20);
+    param_1 = (float)AdvancedSystemOptimizer(param_1,puVar8,aiStackX_20);
     if ((uint64_t)(int64_t)aiStackX_20[0] <
         (uint64_t)(*(int64_t *)(unaff_RSI + 0xd0) - *(int64_t *)(unaff_RSI + 200) >> 3)) {
       FUN_180264330(*(uint64_t *)(*(int64_t *)(unaff_RSI + 200) + (int64_t)aiStackX_20[0] * 8),
@@ -637,7 +637,7 @@ code_r0x0001802b5340:
          (puVar6 = &unknown_var_5412_ptr, (pcVar4[1] + 0xa8U & 0xdf) != 0)) {
         puVar6 = &unknown_var_2208_ptr;
       }
-      param_1 = (float)FUN_18010cbc0(param_1,puVar6,aiStackX_20);
+      param_1 = (float)AdvancedSystemOptimizer(param_1,puVar6,aiStackX_20);
       if ((uint64_t)(int64_t)aiStackX_20[0] <
           (uint64_t)(*(int64_t *)(unaff_RSI + 0xd0) - *(int64_t *)(unaff_RSI + 200) >> 3)) {
         FUN_180264330(*(uint64_t *)(*(int64_t *)(unaff_RSI + 200) + (int64_t)aiStackX_20[0] * 8)

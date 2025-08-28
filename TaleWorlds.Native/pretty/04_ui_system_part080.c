@@ -658,7 +658,7 @@ void FUN_180712f20(uint64_t param_1,int64_t param_2,int64_t param_3,int32_t para
     } while (uVar5 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_50 ^ (uint64_t)auStack_88);
+  SystemSecurityChecker(uStack_50 ^ (uint64_t)auStack_88);
 }
 
 
@@ -716,7 +716,7 @@ void FUN_180712f5f(uint64_t param_1,int64_t param_2,int64_t param_3)
     } while (uVar5 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000038 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000038 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -749,7 +749,7 @@ void FUN_180712fbc(int32_t param_1,uint64_t param_2,int64_t param_3)
     } while (uVar2 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000038 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000038 ^ (uint64_t)&stack0x00000000);
 }
 
 

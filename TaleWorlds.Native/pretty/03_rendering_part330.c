@@ -82,7 +82,7 @@ FUN_18043f3f0(uint64_t *param_1,int64_t param_2,uint64_t param_3,int8_t param_4)
   int64_t lStack_40;
   
   uStack_50 = 0xfffffffffffffffe;
-  FUN_180627910(&puStack_48,param_3);
+  CoreMemoryPoolValidator(&puStack_48,param_3);
   lVar1 = FUN_18020bef0(render_system_data_config,&puStack_48);
   plStackX_10 = (int64_t *)0x0;
   if (lVar1 != 0) {
@@ -199,7 +199,7 @@ int64_t * FUN_18043f610(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint6
   int64_t lStack_30;
   
   uStack_40 = 0xfffffffffffffffe;
-  FUN_180627910(&puStack_38,param_3);
+  CoreMemoryPoolValidator(&puStack_38,param_3);
   lVar2 = FUN_18020bef0(render_system_data_config,&puStack_38);
   if (lVar2 != 0) {
     auStackX_8[0] = *(int8_t *)(lVar2 + 0x2e5);

@@ -460,7 +460,7 @@ void FUN_1804375f0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   int64_t lStack_28;
   int32_t uStack_18;
   
-  uVar1 = FUN_180627910(&puStack_30,param_3,param_3,param_4,0xfffffffffffffffe);
+  uVar1 = CoreMemoryPoolValidator(&puStack_30,param_3,param_3,param_4,0xfffffffffffffffe);
   uVar1 = FUN_18020bef0(render_system_data_config,uVar1);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {

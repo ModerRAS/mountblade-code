@@ -494,7 +494,7 @@ LAB_1800af68c:
             }
             uStack_a8 = uStack_a8 - iVar24;
             pbStack_b0[uStack_a8] = 0;
-            uVar10 = FUN_180627910(&puStack_58,&system_data_c8e4);
+            uVar10 = CoreMemoryPoolValidator(&puStack_58,&system_data_c8e4);
             FUN_1806288c0(&puStack_b8,(int)lVar25 - (int)pbStack_b0,uVar10);
             puStack_58 = &system_data_buffer_ptr;
             if (lStack_50 != 0) {

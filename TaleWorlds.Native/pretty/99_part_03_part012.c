@@ -314,7 +314,7 @@ void FUN_1801d6680(int64_t param_1)
   uStack_120 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_338;
   uVar8 = FUN_1801c5bb0(param_1,param_1 + 8,param_1 + 0x28);
-  FUN_180627910(&puStack_188,uVar8);
+  CoreMemoryPoolValidator(&puStack_188,uVar8);
   puStack_1a8 = (uint64_t *)0x0;
   puStack_1a0 = (uint64_t *)0x0;
   uStack_198 = 0;
@@ -607,7 +607,7 @@ LAB_1801d6f7e:
               else {
                 if (uVar7 <= *(uint *)(ppuVar11 + 0x5d)) goto LAB_1801d6f7e;
                 pcStack_318 = (code *)CONCAT71(pcStack_318._1_7_,0x13);
-                puVar12 = (void *)FUN_18062b8b0(system_memory_pool_ptr,ppuVar11[0x5b],uVar7,0x10);
+                puVar12 = (void *)DataValidator(system_memory_pool_ptr,ppuVar11[0x5b],uVar7,0x10);
                 ppuVar11[0x5b] = puVar12;
                 uVar26 = (uint64_t)puVar12 & 0xffffffffffc00000;
                 if (uVar26 != 0) {

@@ -719,7 +719,7 @@ void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4
         }
         FUN_18022a890(lVar12,*puVar22,lStack_188,fVar23);
                     // WARNING: Subroutine does not return
-        FUN_1808fd400(fVar24 * fVar27 * fStack_168 * 0.5);
+        AdvancedSystemController(fVar24 * fVar27 * fStack_168 * 0.5);
       }
     }
     pfVar21 = pfVar21 + 6;

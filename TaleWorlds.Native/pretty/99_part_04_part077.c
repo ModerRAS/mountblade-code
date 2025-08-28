@@ -202,7 +202,7 @@ void FUN_1802ceaa0(int64_t *param_1,uint param_2,int param_3)
           pfVar11[8] = fVar23 * pfVar11[8];
           pfVar11[10] = fVar23 * pfVar11[10];
                     // WARNING: Subroutine does not return
-          FUN_1808fd400(*(int32_t *)(lVar2 + 0xc));
+          AdvancedSystemController(*(int32_t *)(lVar2 + 0xc));
         }
       }
       uStackX_10 = uStackX_10 + 1;
@@ -523,7 +523,7 @@ void FUN_1802ceabf(int64_t *param_1,uint param_2)
         pfVar11[8] = fVar22 * pfVar11[8];
         pfVar11[10] = fVar22 * pfVar11[10];
                     // WARNING: Subroutine does not return
-        FUN_1808fd400(*(int32_t *)(lVar2 + 0xc));
+        AdvancedSystemController(*(int32_t *)(lVar2 + 0xc));
       }
     }
     param_2 = in_stack_00000178 + 1;

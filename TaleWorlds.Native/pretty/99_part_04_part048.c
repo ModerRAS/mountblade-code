@@ -264,7 +264,7 @@ LAB_1802b5374:
                    (puVar13 = &unknown_var_5412_ptr, (pcVar9[1] + 0xa8U & 0xdf) != 0)) {
                   puVar13 = &unknown_var_2208_ptr;
                 }
-                param_1 = (float)FUN_18010cbc0(param_1,puVar13,aiStackX_20);
+                param_1 = (float)AdvancedSystemOptimizer(param_1,puVar13,aiStackX_20);
                 if ((uint64_t)(int64_t)aiStackX_20[0] <
                     (uint64_t)
                     (*(int64_t *)(unaff_RSI + 0xd0) - *(int64_t *)(unaff_RSI + 200) >> 3)) {
@@ -636,7 +636,7 @@ LAB_1802b5374:
                    (puVar12 = &unknown_var_5412_ptr, (pcVar14[1] + 0xa8U & 0xdf) != 0)) {
                   puVar12 = &unknown_var_2208_ptr;
                 }
-                param_1 = (float)FUN_18010cbc0(param_1,puVar12,aiStackX_20);
+                param_1 = (float)AdvancedSystemOptimizer(param_1,puVar12,aiStackX_20);
                 if ((uint64_t)(int64_t)aiStackX_20[0] <
                     (uint64_t)
                     (*(int64_t *)(unaff_RSI + 0xd0) - *(int64_t *)(unaff_RSI + 200) >> 3)) {

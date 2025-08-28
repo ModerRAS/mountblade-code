@@ -8,7 +8,7 @@ void FUN_1808c7d0e(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&stack0x00000030);
+  AdvancedSystemProcessor(&stack0x00000030);
 }
 
 
@@ -510,11 +510,11 @@ uint64_t FUN_1808c83d0(int64_t param_1,int64_t param_2)
                           *(uint64_t *)(param_2 + 800));
     if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088c790(&uStackX_8);
+      AdvancedSystemProcessor(&uStackX_8);
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStackX_8);
+  AdvancedSystemProcessor(&uStackX_8);
 }
 
 

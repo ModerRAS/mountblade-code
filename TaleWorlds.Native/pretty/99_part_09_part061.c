@@ -106,7 +106,7 @@ void FUN_1805df120(int64_t param_1)
        (((lVar7 = *(int64_t *)(lStack_1f8 + 0x20), *(float *)(lVar7 + 0x24) != 0.0 ||
          (*(float *)(lVar7 + 0x28) != 0.0)) || (*(float *)(lVar7 + 0x2c) != 0.0)))) {
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(*(int32_t *)(lVar7 + 0x34));
+      AdvancedSystemController(*(int32_t *)(lVar7 + 0x34));
     }
     lVar7 = lStack_1f8;
     lVar13 = lStack_200;
@@ -264,7 +264,7 @@ LAB_1805dfa06:
   uStack_178 = 0;
   uStack_148 = 0;
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(int32_t *)(*(int64_t *)(lStack_200 + 0x20) + 0x34));
+  AdvancedSystemController(*(int32_t *)(*(int64_t *)(lStack_200 + 0x20) + 0x34));
 }
 
 
@@ -365,7 +365,7 @@ void FUN_1805df13b(void)
        (((lVar12 = *(int64_t *)(lVar6 + 0x20), *(float *)(lVar12 + 0x24) != 0.0 ||
          (*(float *)(lVar12 + 0x28) != 0.0)) || (*(float *)(lVar12 + 0x2c) != 0.0)))) {
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(*(int32_t *)(lVar12 + 0x34));
+      AdvancedSystemController(*(int32_t *)(lVar12 + 0x34));
     }
     if (fVar16 == 1.0) {
       *(uint64_t *)(unaff_R12 + 0xd8) = 0xffffffffffffffff;
@@ -551,7 +551,7 @@ LAB_1805dfa06:
   unaff_RBP[2] = 0;
   *(int32_t *)(unaff_RBP + 8) = 0;
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(int32_t *)(lVar6 + 0x34));
+  AdvancedSystemController(*(int32_t *)(lVar6 + 0x34));
 }
 
 

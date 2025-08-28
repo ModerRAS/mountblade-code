@@ -654,7 +654,7 @@ LAB_18057b795:
   FUN_18063b470(&stack0x00000030);
                     // WARNING: Subroutine does not return
   // 调用最终渲染函数，应用最终的变换效果
-  FUN_1808fd400(fVar31 * *(float *)(unaff_RBX + 0x58) * 0.5);
+  AdvancedSystemController(fVar31 * *(float *)(unaff_RBX + 0x58) * 0.5);
 }
 
 /* ============================================================================

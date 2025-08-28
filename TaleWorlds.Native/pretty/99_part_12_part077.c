@@ -17,7 +17,7 @@ void FUN_1807ff4ee(void)
     freeaddrinfo();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x198) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x198) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -38,7 +38,7 @@ void FUN_1807ff500(void)
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_1d8;
   WSAStartup(2,auStack_1b8);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_1d8);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_1d8);
 }
 
 
@@ -87,7 +87,7 @@ void FUN_1807ff550(int16_t param_1,int8_t param_2,int64_t *param_3)
   }
 LAB_1807ff61f:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_68);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_68);
 }
 
 
@@ -170,7 +170,7 @@ void FUN_1807ff700(uint64_t param_1,byte param_2)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_88);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_88);
 }
 
 

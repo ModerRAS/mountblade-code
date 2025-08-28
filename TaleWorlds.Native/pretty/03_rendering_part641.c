@@ -232,7 +232,7 @@ uint64_t FUN_180628ba0(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t 
      (lVar1 = strstr(*(uint64_t *)(param_1 + 8)), lVar1 != 0)) {
     FUN_180628610(param_1,(int)lVar1 - *(int *)(param_1 + 8),uVar2 & 0xffffffff,param_4,uVar4);
     if (lVar3 != 0) {
-      uVar4 = FUN_180627910(&puStack_30,param_3);
+      uVar4 = CoreMemoryPoolValidator(&puStack_30,param_3);
       FUN_1806288c0(param_1,(int)lVar1 - *(int *)(param_1 + 8),uVar4);
       puStack_30 = &system_data_buffer_ptr;
       if (lStack_28 != 0) {

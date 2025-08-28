@@ -187,8 +187,8 @@
 /* FUN_1801166f0 - 事件处理器函数 */
 #define EventHandler FUN_1801166f0
 
-/* FUN_180627910 - 上下文创建函数 */
-#define ContextCreator FUN_180627910
+/* CoreMemoryPoolValidator - 上下文创建函数 */
+#define ContextCreator CoreMemoryPoolValidator
 
 /* CoreEngineMemoryPoolReallocator - 内存分配函数 */
 #define MemoryAllocator CoreEngineMemoryPoolReallocator

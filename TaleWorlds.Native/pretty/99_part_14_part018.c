@@ -934,7 +934,7 @@ LAB_1808fab6f:
     if (param_3 != '\0') {
       if (bVar10 == 0x18) {
         lStack_38 = 0;
-        FUN_18010cbc0(pbVar3,&unknown_var_6976_ptr,&lStack_38);
+        AdvancedSystemOptimizer(pbVar3,&unknown_var_6976_ptr,&lStack_38);
         goto LAB_1808fab6f;
       }
       goto LAB_1808fa9f5;

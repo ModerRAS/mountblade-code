@@ -767,7 +767,7 @@ LAB_1802b5374:
                    (puVar10 = &unknown_var_5412_ptr, (pcVar15[1] + 0xa8U & 0xdf) != 0)) {
                   puVar10 = &unknown_var_2208_ptr;
                 }
-                FUN_18010cbc0(pcVar15,puVar10,aiStack_58);
+                AdvancedSystemOptimizer(pcVar15,puVar10,aiStack_58);
                 if ((uint64_t)(int64_t)aiStack_58[0] <
                     (uint64_t)(*(int64_t *)(param_1 + 0xd0) - *(int64_t *)(param_1 + 200) >> 3))
                 {

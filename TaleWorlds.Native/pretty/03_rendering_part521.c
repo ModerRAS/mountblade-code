@@ -479,7 +479,7 @@ LAB_18054bfb4:
      (puVar14 = &unknown_var_5412_ptr, (pcVar21[1] + 0xa8U & 0xdf) != 0)) {
     puVar14 = &unknown_var_2208_ptr;
   }
-  FUN_18010cbc0(pcVar21,puVar14,auStackX_18);
+  AdvancedSystemOptimizer(pcVar21,puVar14,auStackX_18);
 LAB_18054c005:
   puVar16[1] = auStackX_18[0];
   acStackX_10[0] = '\0';

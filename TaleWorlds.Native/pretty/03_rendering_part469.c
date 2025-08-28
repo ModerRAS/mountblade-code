@@ -798,7 +798,7 @@ void FUN_18051c010(int64_t param_1,int64_t param_2)
         FUN_180508510(param_1,render_system_config_memory,2,0);
       }
                     // WARNING: Subroutine does not return
-      FUN_1808fd400();
+      AdvancedSystemController();
     }
     aiStackX_20[0] = -1;
     aiStack_128[0] = -1;
@@ -849,7 +849,7 @@ void FUN_18051c010(int64_t param_1,int64_t param_2)
              *(int32_t *)(*(int64_t *)(lVar15 + 0x6e0) + 0x14a8);
         FUN_180516f50(lVar15,&uStack_178);
                     // WARNING: Subroutine does not return
-        FUN_1808fd400();
+        AdvancedSystemController();
       }
     }
     else {

@@ -452,12 +452,12 @@ void FUN_180176de0(void)
           if (pppppppuVar12[5] != (uint64_t ******)0x0) {
             ppppppuVar18 = pppppppuVar12[5];
           }
-          FUN_180627910(&puStack_308,ppppppuVar18);
+          CoreMemoryPoolValidator(&puStack_308,ppppppuVar18);
           puVar16 = &system_buffer_ptr;
           if (puStack_328 != (void *)0x0) {
             puVar16 = puStack_328;
           }
-          FUN_180627910(&puStack_2e8,puVar16);
+          CoreMemoryPoolValidator(&puStack_2e8,puVar16);
           FUN_1801762b0(lVar10,&puStack_2e8,&puStack_308,&uStack_48);
           puStack_2e8 = &system_data_buffer_ptr;
           if (lStack_2e0 != 0) {

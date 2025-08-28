@@ -944,7 +944,7 @@ int32_t FUN_1804585e0(uint64_t param_1)
   int64_t lStack_28;
   int32_t uStack_18;
   
-  FUN_180627910(&puStack_30,param_1);
+  CoreMemoryPoolValidator(&puStack_30,param_1);
   FUN_180157390();
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
@@ -975,7 +975,7 @@ FUN_180458680(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   int64_t lStack_28;
   
   pcVar1 = *(code **)(*render_system_data_config + 0xd0);
-  FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  CoreMemoryPoolValidator(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   uVar2 = (*pcVar1)(render_system_data_config,&puStack_30);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {

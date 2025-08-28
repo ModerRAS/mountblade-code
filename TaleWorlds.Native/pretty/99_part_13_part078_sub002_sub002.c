@@ -37,7 +37,7 @@ void FUN_1808dea80(int *param_1)
   }
 LAB_1808deb6a:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStackX_8);
+  AdvancedSystemProcessor(&uStackX_8);
 }
 
 

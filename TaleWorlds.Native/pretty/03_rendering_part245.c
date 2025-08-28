@@ -55,7 +55,7 @@ void FUN_180406fe0(int64_t param_1)
     }
     else {
       if (uVar9 <= (uint)uStack_38) goto LAB_180211b66;
-      puStack_48 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar9,0x10,0x13);
+      puStack_48 = (uint64_t *)DataValidator(system_memory_pool_ptr,puStack_48,uVar9,0x10,0x13);
     }
     uVar1 = CoreEngineSystemCleanup(puStack_48);
     uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
@@ -76,7 +76,7 @@ LAB_180211b66:
     }
     else {
       if (uVar8 <= (uint)uStack_38) goto LAB_180211be9;
-      puStack_48 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar8,0x10,0x13);
+      puStack_48 = (uint64_t *)DataValidator(system_memory_pool_ptr,puStack_48,uVar8,0x10,0x13);
     }
     uVar1 = CoreEngineSystemCleanup(puStack_48);
     uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
@@ -103,7 +103,7 @@ LAB_180211be9:
       }
       else {
         if (uVar2 <= (uint)uStack_38) goto LAB_180211c85;
-        puStack_48 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
+        puStack_48 = (uint64_t *)DataValidator(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
       }
       uVar1 = CoreEngineSystemCleanup(puStack_48);
       uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
@@ -125,7 +125,7 @@ LAB_180211c85:
     }
     else {
       if (uVar2 <= (uint)uStack_38) goto LAB_180211d03;
-      puStack_48 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
+      puStack_48 = (uint64_t *)DataValidator(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
     }
     uVar1 = CoreEngineSystemCleanup(puStack_48);
     uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
@@ -154,7 +154,7 @@ LAB_180211d03:
         }
         else {
           if (uVar2 <= (uint)uStack_38) goto LAB_180211da7;
-          puStack_48 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
+          puStack_48 = (uint64_t *)DataValidator(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
         }
         uVar1 = CoreEngineSystemCleanup(puStack_48);
         uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
@@ -177,7 +177,7 @@ LAB_180211da7:
     }
     else {
       if (uVar2 <= (uint)uStack_38) goto LAB_180211e24;
-      puStack_48 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
+      puStack_48 = (uint64_t *)DataValidator(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
     }
     uVar1 = CoreEngineSystemCleanup(puStack_48);
     uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
@@ -613,7 +613,7 @@ LAB_180849c22:
   }
 LAB_180849c81:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(auStack_158);
+  AdvancedSystemProcessor(auStack_158);
 }
 
 
@@ -674,7 +674,7 @@ void FUN_180407760(int64_t param_1)
     }
     else {
       if (uVar9 <= (uint)uStack_38) goto LAB_180211b66;
-      puStack_48 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar9,0x10,0x13);
+      puStack_48 = (uint64_t *)DataValidator(system_memory_pool_ptr,puStack_48,uVar9,0x10,0x13);
     }
     uVar1 = CoreEngineSystemCleanup(puStack_48);
     uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
@@ -695,7 +695,7 @@ LAB_180211b66:
     }
     else {
       if (uVar8 <= (uint)uStack_38) goto LAB_180211be9;
-      puStack_48 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar8,0x10,0x13);
+      puStack_48 = (uint64_t *)DataValidator(system_memory_pool_ptr,puStack_48,uVar8,0x10,0x13);
     }
     uVar1 = CoreEngineSystemCleanup(puStack_48);
     uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
@@ -722,7 +722,7 @@ LAB_180211be9:
       }
       else {
         if (uVar2 <= (uint)uStack_38) goto LAB_180211c85;
-        puStack_48 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
+        puStack_48 = (uint64_t *)DataValidator(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
       }
       uVar1 = CoreEngineSystemCleanup(puStack_48);
       uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
@@ -744,7 +744,7 @@ LAB_180211c85:
     }
     else {
       if (uVar2 <= (uint)uStack_38) goto LAB_180211d03;
-      puStack_48 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
+      puStack_48 = (uint64_t *)DataValidator(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
     }
     uVar1 = CoreEngineSystemCleanup(puStack_48);
     uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
@@ -773,7 +773,7 @@ LAB_180211d03:
         }
         else {
           if (uVar2 <= (uint)uStack_38) goto LAB_180211da7;
-          puStack_48 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
+          puStack_48 = (uint64_t *)DataValidator(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
         }
         uVar1 = CoreEngineSystemCleanup(puStack_48);
         uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
@@ -796,7 +796,7 @@ LAB_180211da7:
     }
     else {
       if (uVar2 <= (uint)uStack_38) goto LAB_180211e24;
-      puStack_48 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
+      puStack_48 = (uint64_t *)DataValidator(system_memory_pool_ptr,puStack_48,uVar2,0x10,0x13);
     }
     uVar1 = CoreEngineSystemCleanup(puStack_48);
     uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);

@@ -102,7 +102,7 @@ FUN_18045e710(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   int64_t lStack_28;
   int32_t uStack_18;
   
-  FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  CoreMemoryPoolValidator(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   FUN_1800533d0();
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
@@ -289,7 +289,7 @@ void FUN_18045ea10(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   void *puStack_30;
   int64_t lStack_28;
   
-  FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  CoreMemoryPoolValidator(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
@@ -360,7 +360,7 @@ FUN_18045ebe0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   int64_t lStack_20;
   
   if (*(int64_t *)(system_message_buffer + 8) != 0) {
-    FUN_180627910(&puStack_28,param_1,param_3,param_4,0,0xfffffffffffffffe);
+    CoreMemoryPoolValidator(&puStack_28,param_1,param_3,param_4,0,0xfffffffffffffffe);
     puStack_28 = &system_data_buffer_ptr;
     if (lStack_20 != 0) {
                     // WARNING: Subroutine does not return
@@ -414,10 +414,10 @@ void FUN_18045ecc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   plVar1 = *(int64_t **)(render_system_data_memory + 0x18);
   if (plVar1 != (int64_t *)0x0) {
     pcVar2 = *(code **)(*plVar1 + 0x20);
-    uVar3 = FUN_180627910(&puStack_58,param_4);
-    uVar4 = FUN_180627910(&puStack_78,param_3);
-    uVar5 = FUN_180627910(&puStack_98,param_2);
-    uVar6 = FUN_180627910(&puStack_b8,param_1);
+    uVar3 = CoreMemoryPoolValidator(&puStack_58,param_4);
+    uVar4 = CoreMemoryPoolValidator(&puStack_78,param_3);
+    uVar5 = CoreMemoryPoolValidator(&puStack_98,param_2);
+    uVar6 = CoreMemoryPoolValidator(&puStack_b8,param_1);
     (*pcVar2)(plVar1,uVar6,uVar5,uVar4,uVar3);
     puStack_b8 = &system_data_buffer_ptr;
     if (lStack_b0 != 0) {
@@ -529,7 +529,7 @@ void FUN_18045ef30(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   int64_t lStack_28;
   int32_t uStack_18;
   
-  uVar1 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  uVar1 = CoreMemoryPoolValidator(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   lVar2 = FUN_1800b6de0(system_resource_state,uVar1,0);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
@@ -701,7 +701,7 @@ void FUN_18045f350(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t par
   
   uStack_3b8 = 0xfffffffffffffffe;
   uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_418;
-  FUN_180627910(&puStack_3d8);
+  CoreMemoryPoolValidator(&puStack_3d8);
   lVar2 = FUN_180624440(&puStack_278,&puStack_3d8);
   puVar3 = &system_buffer_ptr;
   if (*(void **)(lVar2 + 8) != (void *)0x0) {
@@ -709,7 +709,7 @@ void FUN_18045f350(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t par
   }
   (**(code **)(puStack_3d8 + 0x10))(&puStack_3d8,puVar3);
   puStack_278 = &system_state_ptr;
-  FUN_180627910(&puStack_3f8,param_3);
+  CoreMemoryPoolValidator(&puStack_3f8,param_3);
   lVar2 = FUN_180624440(&puStack_278,&puStack_3f8);
   puVar3 = &system_buffer_ptr;
   if (*(void **)(lVar2 + 8) != (void *)0x0) {
@@ -920,7 +920,7 @@ void FUN_18045f820(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   int64_t lStack_28;
   
   uVar4 = 0xfffffffffffffffe;
-  lVar2 = FUN_180627910(&puStack_30);
+  lVar2 = CoreMemoryPoolValidator(&puStack_30);
   pcVar1 = *(code **)(*(int64_t *)(param_1 + 0x88) + 0x10);
   puVar3 = &system_buffer_ptr;
   if (*(void **)(lVar2 + 8) != (void *)0x0) {
@@ -951,7 +951,7 @@ void FUN_18045f8a0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   int64_t lStack_28;
   
   uVar4 = 0xfffffffffffffffe;
-  lVar2 = FUN_180627910(&puStack_30);
+  lVar2 = CoreMemoryPoolValidator(&puStack_30);
   pcVar1 = *(code **)(*(int64_t *)(param_1 + 0xa8) + 0x10);
   puVar3 = &system_buffer_ptr;
   if (*(void **)(lVar2 + 8) != (void *)0x0) {

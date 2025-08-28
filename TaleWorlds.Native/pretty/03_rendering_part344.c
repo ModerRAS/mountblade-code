@@ -482,7 +482,7 @@ void FUN_1804512f0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   uStack_178 = 0;
   puStack_188 = (int8_t *)0x0;
   uStack_180 = 0;
-  FUN_180627910(&puStack_120,param_2);
+  CoreMemoryPoolValidator(&puStack_120,param_2);
   lVar7 = *system_main_module_state;
   iVar4 = FUN_1801426a0(lVar7,&puStack_120);
   if (iVar4 < 0) {
@@ -537,7 +537,7 @@ LAB_180451498:
     uStack_180 = uVar2;
     uStack_178._0_4_ = uVar11;
     uStack_178._4_4_ = *(uint *)(lVar7 + 0x1c);
-    FUN_180627910(&puStack_140,param_4);
+    CoreMemoryPoolValidator(&puStack_140,param_4);
     lVar7 = lStack_150;
     if (0 < iStack_130) {
       iVar4 = (int)((*(int64_t *)(render_system_data_memory + 0x3a8) - *(int64_t *)(render_system_data_memory + 0x3a0))
@@ -626,7 +626,7 @@ LAB_18045167c:
     else {
       if (iVar4 + 1U <= uVar11) goto LAB_180451541;
       iStack_1c8 = CONCAT31(iStack_1c8._1_3_,0x13);
-      puVar8 = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar8,iVar4 + 1U,0x10);
+      puVar8 = (int8_t *)DataValidator(system_memory_pool_ptr,puVar8,iVar4 + 1U,0x10);
     }
     puStack_1b0 = puVar8;
     uVar6 = CoreEngineSystemCleanup(puVar8);
@@ -768,7 +768,7 @@ void FUN_1804519d0(int64_t param_1,int64_t param_2,int64_t param_3,int32_t param
       lVar3 = lVar3 + 1;
     } while (*(char *)(param_2 + lVar3) != '\0');
     if (lVar3 != 0) {
-      uVar4 = FUN_180627910(&puStack_80,param_2,param_3,in_R9,auStackX_8,0xfffffffffffffffe);
+      uVar4 = CoreMemoryPoolValidator(&puStack_80,param_2,param_3,in_R9,auStackX_8,0xfffffffffffffffe);
       uVar4 = FUN_1800b08e0(system_resource_state,auStackX_8,uVar4,1);
       FUN_1803aef00(param_1 + 0x3018,uVar4);
       puStack_80 = &system_data_buffer_ptr;
@@ -785,7 +785,7 @@ void FUN_1804519d0(int64_t param_1,int64_t param_2,int64_t param_3,int32_t param
       lVar3 = lVar3 + 1;
     } while (*(char *)(param_3 + lVar3) != '\0');
     if (lVar3 != 0) {
-      uVar4 = FUN_180627910(&puStack_60,param_3);
+      uVar4 = CoreMemoryPoolValidator(&puStack_60,param_3);
       plVar5 = (int64_t *)FUN_1800b08e0(system_resource_state,auStackX_8,uVar4,1);
       plVar2 = (int64_t *)*plVar5;
       plVar8 = plVar5;

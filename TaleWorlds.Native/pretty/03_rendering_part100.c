@@ -26,7 +26,7 @@ void FUN_1803276a0(int64_t param_1,int64_t *param_2,int64_t param_3)
     if (*(void **)(param_3 + 8) != (void *)0x0) {
       puVar3 = *(void **)(param_3 + 8);
     }
-    FUN_180627910(&puStack_28,puVar3);
+    CoreMemoryPoolValidator(&puStack_28,puVar3);
     FUN_180058080(param_1 + 0xbf8,&plStack_38,&puStack_28);
     puStack_28 = &system_data_buffer_ptr;
     if (lStack_20 != 0) {

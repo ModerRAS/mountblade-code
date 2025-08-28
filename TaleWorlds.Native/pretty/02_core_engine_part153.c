@@ -333,12 +333,12 @@ void FUN_18013c020(int64_t param_1,uint64_t param_2,uint64_t param_3,char *param
     }
     uStack_2a = 1;
   }
-  iVar3 = FUN_18010cbc0(param_4,&unknown_var_2784_ptr,&uStack_38,&iStack_48);
+  iVar3 = AdvancedSystemOptimizer(param_4,&unknown_var_2784_ptr,&uStack_38,&iStack_48);
   if (iVar3 != 1) {
     return;
   }
   param_4 = param_4 + iStack_48;
-  iVar3 = FUN_18010cbc0(param_4,&unknown_var_2832_ptr,&iStack_34,&iStack_48);
+  iVar3 = AdvancedSystemOptimizer(param_4,&unknown_var_2832_ptr,&iStack_34,&iStack_48);
   if (iVar3 == 1) {
     param_4 = param_4 + iStack_48;
     if (iStack_34 == 0) {
@@ -346,7 +346,7 @@ void FUN_18013c020(int64_t param_1,uint64_t param_2,uint64_t param_3,char *param
     }
   }
   else if (iStack_34 == 0) {
-    iVar3 = FUN_18010cbc0(param_4,&unknown_var_2816_ptr,&iStack_44,&uStack_40,&iStack_48);
+    iVar3 = AdvancedSystemOptimizer(param_4,&unknown_var_2816_ptr,&iStack_44,&uStack_40,&iStack_48);
     if (iVar3 != 2) {
       return;
     }
@@ -354,7 +354,7 @@ void FUN_18013c020(int64_t param_1,uint64_t param_2,uint64_t param_3,char *param
     uStack_3c = CONCAT22((int16_t)uStack_40,(short)iStack_44);
     piVar5 = &iStack_48;
     uStack_26 = uStack_3c;
-    iVar3 = FUN_18010cbc0(param_4 + lVar4,&unknown_var_2880_ptr,&iStack_44,&uStack_40,piVar5);
+    iVar3 = AdvancedSystemOptimizer(param_4 + lVar4,&unknown_var_2880_ptr,&iStack_44,&uStack_40,piVar5);
     if (iVar3 != 2) {
       return;
     }
@@ -365,14 +365,14 @@ void FUN_18013c020(int64_t param_1,uint64_t param_2,uint64_t param_3,char *param
     goto LAB_18013c174;
   }
   piVar5 = &iStack_48;
-  iVar3 = FUN_18010cbc0(param_4,&unknown_var_2856_ptr,&iStack_44,&uStack_40,piVar5);
+  iVar3 = AdvancedSystemOptimizer(param_4,&unknown_var_2856_ptr,&iStack_44,&uStack_40,piVar5);
   if (iVar3 == 2) {
     param_4 = param_4 + iStack_48;
     uStack_3c = CONCAT22((int16_t)uStack_40,(short)iStack_44);
     uStack_1e = uStack_3c;
   }
 LAB_18013c174:
-  iVar3 = FUN_18010cbc0(param_4,&unknown_var_2920_ptr,acStackX_20,&iStack_48,piVar5);
+  iVar3 = AdvancedSystemOptimizer(param_4,&unknown_var_2920_ptr,acStackX_20,&iStack_48,piVar5);
   if (iVar3 == 1) {
     param_4 = param_4 + iStack_48;
     if (acStackX_20[0] == 'X') {
@@ -382,17 +382,17 @@ LAB_18013c174:
       uStack_2c = 1;
     }
   }
-  iVar3 = FUN_18010cbc0(param_4,&unknown_var_2896_ptr,&iStack_44,&iStack_48,piVar5);
+  iVar3 = AdvancedSystemOptimizer(param_4,&unknown_var_2896_ptr,&iStack_44,&iStack_48,piVar5);
   if (iVar3 == 1) {
     param_4 = param_4 + iStack_48;
     uStack_29 = iStack_44 != 0;
   }
-  iVar3 = FUN_18010cbc0(param_4,&unknown_var_2960_ptr,&iStack_44,&iStack_48,piVar5);
+  iVar3 = AdvancedSystemOptimizer(param_4,&unknown_var_2960_ptr,&iStack_44,&iStack_48,piVar5);
   if (iVar3 == 1) {
     param_4 = param_4 + iStack_48;
     uStack_28 = iStack_44 != 0;
   }
-  FUN_18010cbc0(param_4,&unknown_var_2936_ptr,&uStack_30,&iStack_48);
+  AdvancedSystemOptimizer(param_4,&unknown_var_2936_ptr,&uStack_30,&iStack_48);
   lVar4 = *(int64_t *)(param_1 + 0x2df8);
   if ((iStack_34 != 0) && (0 < *(int *)(lVar4 + 0x20))) {
     piVar5 = *(int **)(lVar4 + 0x28);

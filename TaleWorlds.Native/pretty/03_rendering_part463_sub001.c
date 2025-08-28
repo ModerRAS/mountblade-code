@@ -653,7 +653,7 @@ void FUN_1805162e0(int64_t param_1)
       }
       fVar28 = (float)asinf(fVar28);
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(fVar28 * 0.5);
+      AdvancedSystemController(fVar28 * 0.5);
     }
     if (0.001 <= fVar9) {
       if (fVar9 <= 0.999) {

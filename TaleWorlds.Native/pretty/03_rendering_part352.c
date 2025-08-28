@@ -74,7 +74,7 @@ uint64_t * FUN_180459ae0(uint64_t *param_1)
   int64_t lStack_28;
   
   uVar2 = 0xfffffffffffffffe;
-  FUN_180627910(&puStack_30);
+  CoreMemoryPoolValidator(&puStack_30);
   FUN_1800b08e0(system_resource_state,&plStackX_8,&puStack_30,1,uVar2);
   plVar1 = plStackX_8;
   if (plStackX_8 == (int64_t *)0x0) {
@@ -217,8 +217,8 @@ uint64_t * FUN_180459c50(uint64_t *param_1,uint64_t param_2,uint64_t param_3)
   void *puStack_40;
   int64_t lStack_38;
   
-  FUN_180627910(&puStack_40);
-  uVar2 = FUN_180627910(&puStack_60,param_3);
+  CoreMemoryPoolValidator(&puStack_40);
+  uVar2 = CoreMemoryPoolValidator(&puStack_60,param_3);
   FUN_1800b2cd0(uVar2,&plStackX_8,&puStack_40,&puStack_60);
   plVar1 = plStackX_8;
   if (plStackX_8 == (int64_t *)0x0) {
@@ -297,7 +297,7 @@ uint64_t * FUN_180459e30(uint64_t *param_1)
   void *puStack_28;
   int64_t lStack_20;
   
-  FUN_180627910(&puStack_28);
+  CoreMemoryPoolValidator(&puStack_28);
   FUN_1800b08e0(system_resource_state,&plStackX_8,&puStack_28,0);
   plStack_38 = plStackX_8;
   if (plStackX_8 == (int64_t *)0x0) {
@@ -600,7 +600,7 @@ void FUN_18045a410(int64_t *param_1)
   void *puStack_30;
   int64_t lStack_28;
   
-  FUN_180627910(&puStack_30);
+  CoreMemoryPoolValidator(&puStack_30);
   (**(code **)(param_1[2] + 0x10))();
   uVar6 = 0;
   if ((int)param_1[4] != 0) {
@@ -701,7 +701,7 @@ int32_t * FUN_18045a610(int32_t *param_1,int64_t param_2)
   int64_t lStack_28;
   
   FUN_1800bbc40(&puStack_30);
-  uVar2 = FUN_180627910(&puStack_50,param_2 + 0x204);
+  uVar2 = CoreMemoryPoolValidator(&puStack_50,param_2 + 0x204);
   FUN_1800b2cd0(uVar2,&plStackX_8,&puStack_50,&puStack_30);
   plVar1 = plStackX_8;
   if (plStackX_8 == (int64_t *)0x0) {
@@ -1054,7 +1054,7 @@ void FUN_18045ac90(int64_t *param_1,int64_t param_2)
   if (puStack_140 != (void *)0x0) {
     puVar5 = puStack_140;
   }
-  uStack_180 = FUN_180627910(uVar3,puVar5);
+  uStack_180 = CoreMemoryPoolValidator(uVar3,puVar5);
   plStack_188 = param_1;
   (**(code **)(*param_1 + 0x28))(param_1);
   uVar3 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);

@@ -93,7 +93,7 @@ void FUN_1803b8390(int64_t param_1)
       if (0 < iVar5) {
         if ((iVar5 != -10) && (uVar4 < iVar5 + 0xbU)) {
           uStack_208 = 0x13;
-          puVar7 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar7,iVar5 + 0xbU,0x10);
+          puVar7 = (uint64_t *)DataValidator(system_memory_pool_ptr,puVar7,iVar5 + 0xbU,0x10);
           puStack_1f0 = puVar7;
           uStack_1e0._0_4_ = CoreEngineSystemCleanup(puVar7);
           iVar5 = *(int *)(lVar1 + 0x4e8);
@@ -166,7 +166,7 @@ void FUN_1803b8390(int64_t param_1)
       if (0 < iVar5) {
         if ((iVar5 != -10) && (uVar6 < iVar5 + 0xbU)) {
           uStack_208 = 0x13;
-          puVar7 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar7,iVar5 + 0xbU,0x10);
+          puVar7 = (uint64_t *)DataValidator(system_memory_pool_ptr,puVar7,iVar5 + 0xbU,0x10);
           puStack_1f0 = puVar7;
           uStack_1e0._0_4_ = CoreEngineSystemCleanup(puVar7);
           iVar5 = *(int *)(lVar1 + 0x4e8);

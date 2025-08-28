@@ -171,7 +171,7 @@ void FUN_1805c63f0(int64_t *param_1,uint64_t *param_2,int8_t *param_3)
       uStack_258 = (uint64_t *)*puStack_250;
 LAB_1805c6622:
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(puStack_250,
+      AdvancedSystemController(puStack_250,
                     ((float)(int)param_1[0x421] * 6.2831855) / (float)(int)uStack_258[2] - 3.1415927
                    );
     }
@@ -471,7 +471,7 @@ LAB_1805c70c1:
   *param_2 = uStack_218;
 LAB_1805c7137:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_c8 ^ (uint64_t)auStack_288);
+  SystemSecurityChecker(uStack_c8 ^ (uint64_t)auStack_288);
 }
 
 

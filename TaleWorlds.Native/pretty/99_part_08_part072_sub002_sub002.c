@@ -189,7 +189,7 @@ LAB_1805b9a5e:
       }
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(int32_t *)(*(int64_t *)(lVar31 + 0x20) + 0x34));
+    AdvancedSystemController(*(int32_t *)(*(int64_t *)(lVar31 + 0x20) + 0x34));
   }
   cVar20 = false;
   *(int8_t *)(unaff_RBP + 0x130) = 0;

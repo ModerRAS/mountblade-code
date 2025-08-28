@@ -804,7 +804,7 @@ uint64_t FUN_180572610(int64_t param_1,uint64_t param_2,int param_3)
     *(int32_t *)(param_1 + 0x3428) = 0xffffffff;
     return 0;
   }
-  uVar4 = FUN_180627910(&puStack_50);
+  uVar4 = CoreMemoryPoolValidator(&puStack_50);
   puVar3 = render_system_data_config;
   FUN_1806279c0(&puStack_70,uVar4);
   puVar10 = (uint64_t *)puVar3[2];

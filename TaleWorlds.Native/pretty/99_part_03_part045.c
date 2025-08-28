@@ -123,7 +123,7 @@ void FUN_1801f9340(int64_t *param_1,int64_t param_2)
       if (0 < (int)uVar2) {
         if ((uVar2 != 0xfffffff1) && (uVar9 < uVar2 + 0x10)) {
           uStack_168 = CONCAT31(uStack_168._1_3_,0x13);
-          puVar6 = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar6,uVar2 + 0x10,0x10);
+          puVar6 = (uint64_t *)DataValidator(system_memory_pool_ptr,puVar6,uVar2 + 0x10,0x10);
           puStack_140 = puVar6;
           uStack_130._0_4_ = CoreEngineSystemCleanup(puVar6);
           uVar2 = *(uint *)(lVar5 + 0x4e8);

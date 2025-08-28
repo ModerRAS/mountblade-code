@@ -192,7 +192,7 @@ LAB_1802c16a0:
       if (pcVar14 != (char *)0x0) goto LAB_1802c16b2;
     }
     else if (pcVar14 != (char *)0x0) {
-      FUN_18010cbc0(pcVar14);
+      AdvancedSystemOptimizer(pcVar14);
       goto LAB_1802c16a0;
     }
     *puVar1 = 0x42480000;

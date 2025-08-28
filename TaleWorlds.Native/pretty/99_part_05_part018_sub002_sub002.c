@@ -177,7 +177,7 @@ void FUN_1802e1bb0(int *param_1,int64_t param_2,float param_3)
       uStack_490 = *(int32_t *)(param_2 + 0x1bd4);
       *(char *)((int64_t)param_1 + 0xb1) = (char)param_1[0x2c];
       if ((char)param_1[0x2c] == '\0') {
-        FUN_180627910(&uStack_188,&unknown_var_9960_ptr);
+        CoreMemoryPoolValidator(&uStack_188,&unknown_var_9960_ptr);
         FUN_180628320(&uStack_188,param_2 + 0x3520);
         uStack_4a0 = CONCAT44(uStack_4a0._4_4_,4);
         FUN_180049b30(apuStack_368,&uStack_188);
@@ -189,7 +189,7 @@ void FUN_1802e1bb0(int *param_1,int64_t param_2,float param_3)
         FUN_180045af0(&uStack_528);
       }
       else {
-        FUN_180627910(&uStack_188,&unknown_var_9976_ptr);
+        CoreMemoryPoolValidator(&uStack_188,&unknown_var_9976_ptr);
         FUN_180628320(&uStack_188,param_2 + 0x3520);
         FUN_180049b30(apuStack_368,&uStack_188);
         puVar7 = (uint64_t *)FUN_1800b1d80(system_resource_state,&uStack_528,apuStack_368,&puStack_4a8);

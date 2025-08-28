@@ -1,108 +1,307 @@
+//==============================================================================
+// 文件信息：03_rendering_part140.c
+// 模块功能：渲染系统高级渲染处理模块
+// 主要功能：
+//   - 渲染变换矩阵计算和优化
+//   - 渲染适配器管理和初始化
+//   - 渲染系统状态管理和同步
+//   - 渲染数据结构操作和维护
+//   - 渲染性能优化和资源管理
+//==============================================================================
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 03_rendering_part140.c - 15 个函数
+//==============================================================================
+// 系统常量定义
+//==============================================================================
 
-// 函数: void FUN_18034f6f2(void)
-void FUN_18034f6f2(void)
+// 渲染系统浮点常量
+#define RENDER_FLOAT_ONE               1.0f            // 浮点数1.0
+#define RENDER_FLOAT_HALF              0.5f            // 浮点数0.5
+#define RENDER_FLOAT_THREE             3.0f            // 浮点数3.0
+#define RENDER_FLOAT_EPSILON           0.001f          // 浮点数最小精度
+#define RENDER_MAX_FLOAT               0x7f7fffff      // 最大浮点数值
 
+// 渲染系统尺寸常量
+#define RENDER_MATRIX_SIZE             16              // 矩阵尺寸
+#define RENDER_VECTOR_SIZE             3               // 向量尺寸
+#define RENDER_TRANSFORM_STACK_SIZE    0x80            // 变换栈大小
+#define RENDER_ADAPTER_SIZE            0xa8            // 适配器大小
+#define RENDER_SHADER_SIZE             0x78            // 着色器大小
+
+// 渲染系统偏移常量
+#define RENDER_POSITION_OFFSET         0x1b8           // 位置偏移
+#define RENDER_STATE_OFFSET            0x70            // 状态偏移
+#define RENDER_CONFIG_OFFSET           0x74            // 配置偏移
+#define RENDER_MANAGER_OFFSET          0x770           // 管理器偏移
+
+// 渲染系统标志常量
+#define RENDER_FLAG_INITIALIZED        0x80            // 初始化标志
+#define RENDER_FLAG_ENABLED            0x01            // 启用标志
+#define RENDER_FLAG_ACTIVE             0x02            // 活动标志
+
+//==============================================================================
+// 类型别名定义
+//==============================================================================
+
+// 渲染系统基础类型
+typedef float           render_float_t;    // 渲染浮点类型
+typedef int32_t         render_int32_t;    // 渲染整数类型
+typedef uint32_t        render_uint32_t;   // 渲染无符号整数类型
+typedef uint64_t        render_uint64_t;   // 渲染无符号64位类型
+
+// 渲染向量类型
+typedef struct {
+    render_float_t x, y, z, w;
+} render_vector4_t;                    // 渲染4D向量类型
+
+typedef struct {
+    render_float_t x, y, z;
+} render_vector3_t;                    // 渲染3D向量类型
+
+typedef struct {
+    render_float_t x, y;
+} render_vector2_t;                    // 渲染2D向量类型
+
+// 渲染矩阵类型
+typedef struct {
+    render_float_t m[16];
+} render_matrix4x4_t;                  // 渲染4x4矩阵类型
+
+// 渲染变换栈类型
+typedef struct {
+    render_matrix4x4_t matrix;
+    render_vector3_t position;
+    render_vector3_t rotation;
+    render_vector3_t scale;
+} render_transform_stack_t;            // 渲染变换栈类型
+
+// 渲染适配器类型
+typedef struct {
+    render_uint64_t adapter_ptr;       // 适配器指针
+    render_uint64_t device_ptr;        // 设备指针
+    render_uint64_t context_ptr;       // 上下文指针
+    render_uint32_t width;             // 宽度
+    render_uint32_t height;            // 高度
+    render_float_t aspect_ratio;       // 宽高比
+    render_uint32_t flags;             // 标志
+    render_uint32_t state;             // 状态
+} render_adapter_t;                    // 渲染适配器类型
+
+// 渲染着色器类型
+typedef struct {
+    render_uint64_t shader_ptr;        // 着色器指针
+    render_uint64_t program_ptr;       // 程序指针
+    render_uint32_t type;              // 类型
+    render_uint32_t stage;             // 阶段
+    render_uint32_t uniforms;          // 统一变量数量
+    render_uint32_t attributes;        // 属性数量
+} render_shader_t;                     // 渲染着色器类型
+
+// 渲染状态类型
+typedef struct {
+    render_uint32_t state_id;          // 状态ID
+    render_uint32_t flags;             // 标志
+    render_float_t alpha;              // 透明度
+    render_float_t depth;              // 深度
+    render_uint64_t blend_state;       // 混合状态
+    render_uint64_t depth_state;       // 深度状态
+    render_uint64_t raster_state;      // 光栅化状态
+} render_state_t;                      // 渲染状态类型
+
+//==============================================================================
+// 函数原型声明
+//==============================================================================
+
+// 渲染变换函数
+void render_transform_matrix_compute(render_transform_stack_t *transform_stack);
+void render_transform_matrix_optimize(render_transform_stack_t *transform_stack);
+void render_transform_stack_update(render_transform_stack_t *transform_stack);
+void render_transform_matrix_normalize(render_matrix4x4_t *matrix);
+
+// 渲染适配器函数
+render_adapter_t *render_adapter_create(void);
+void render_adapter_initialize(render_adapter_t *adapter);
+void render_adapter_destroy(render_adapter_t *adapter);
+void render_adapter_update_state(render_adapter_t *adapter);
+
+// 渲染系统函数
+void render_system_initialize(void);
+void render_system_update_state(void);
+void render_system_cleanup(void);
+void render_system_sync(void);
+
+// 渲染数据操作函数
+render_matrix4x4_t *render_matrix_create(void);
+void render_matrix_multiply(render_matrix4x4_t *result, const render_matrix4x4_t *a, const render_matrix4x4_t *b);
+void render_matrix_inverse(render_matrix4x4_t *matrix);
+void render_matrix_transpose(render_matrix4x4_t *matrix);
+
+// 渲染性能优化函数
+void render_performance_optimize(void);
+void render_resource_cleanup(void);
+void render_memory_optimize(void);
+
+//==============================================================================
+// 全局变量定义
+//==============================================================================
+
+// 渲染系统全局变量
+static render_uint64_t render_system_data_memory = 0;         // 渲染系统数据内存
+static render_adapter_t *render_adapter_ptr = NULL;           // 渲染适配器指针
+static render_uint64_t render_resource_state = 0;             // 渲染资源状态
+static render_uint64_t render_memory_pool_ptr = 0;            // 渲染内存池指针
+
+//==============================================================================
+// 渲染变换矩阵计算函数
+//==============================================================================
+
+/**
+ * @brief 计算渲染变换矩阵
+ * @param transform_stack 变换栈指针
+ * @note 执行复杂的3D变换矩阵计算，包括位置、旋转和缩放
+ *       使用快速平方根倒数算法优化性能
+ *       包含向量叉积和点积运算
+ */
+void render_transform_matrix_compute(render_transform_stack_t *transform_stack)
 {
-  int64_t unaff_RBX;
-  int64_t unaff_RBP;
-  int64_t unaff_RDI;
-  float fVar1;
-  int8_t auVar2 [16];
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float unaff_XMM14_Da;
-  float unaff_XMM14_Db;
-  float unaff_XMM14_Dc;
-  float unaff_XMM15_Da;
-  float unaff_XMM15_Db;
-  float unaff_XMM15_Dc;
-  int32_t unaff_XMM15_Dd;
-  uint64_t in_stack_00000030;
-  uint64_t in_stack_00000038;
-  float in_stack_00000040;
-  float fStack0000000000000044;
-  float in_stack_00000048;
-  int32_t uStack000000000000004c;
-  float in_stack_00000050;
-  float fStack0000000000000054;
-  float in_stack_00000058;
-  int32_t uStack000000000000005c;
-  float in_stack_00000060;
-  float in_stack_00000068;
-  int32_t uStack000000000000007c;
-  
-  FUN_180085020(&stack0x00000030,unaff_RBP + -0x80);
-  fVar7 = unaff_XMM14_Da - *(float *)(unaff_RDI + 0x1b8);
-  fVar6 = unaff_XMM14_Db - *(float *)(unaff_RDI + 0x1bc);
-  fVar5 = unaff_XMM14_Dc - *(float *)(unaff_RDI + 0x1c0);
-  fVar1 = fVar6 * fVar6 + fVar7 * fVar7 + fVar5 * fVar5;
-  auVar2 = rsqrtss(ZEXT416((uint)fVar1),ZEXT416((uint)fVar1));
-  fVar4 = auVar2._0_4_;
-  fVar3 = fVar4 * 0.5 * (3.0 - fVar1 * fVar4 * fVar4);
-  fVar1 = unaff_XMM15_Db * unaff_XMM15_Db + unaff_XMM15_Da * unaff_XMM15_Da +
-          unaff_XMM15_Dc * unaff_XMM15_Dc;
-  auVar2 = rsqrtss(ZEXT416((uint)fVar1),ZEXT416((uint)fVar1));
-  fVar4 = auVar2._0_4_;
-  fStack0000000000000054 = fVar4 * 0.5 * (3.0 - fVar1 * fVar4 * fVar4);
-  in_stack_00000058 = unaff_XMM15_Dc * fStack0000000000000054;
-  in_stack_00000050 = unaff_XMM15_Da * fStack0000000000000054;
-  fStack0000000000000054 = unaff_XMM15_Db * fStack0000000000000054;
-  fVar9 = fStack0000000000000054 * fVar5 * fVar3 - in_stack_00000058 * fVar6 * fVar3;
-  fVar8 = in_stack_00000058 * fVar7 * fVar3 - in_stack_00000050 * fVar5 * fVar3;
-  uStack000000000000007c = 0x7f7fffff;
-  fVar7 = in_stack_00000050 * fVar6 * fVar3 - fStack0000000000000054 * fVar7 * fVar3;
-  fVar1 = fVar9 * fVar9 + fVar8 * fVar8 + fVar7 * fVar7;
-  auVar2 = rsqrtss(ZEXT416((uint)fVar1),ZEXT416((uint)fVar1));
-  fVar4 = auVar2._0_4_;
-  fVar1 = fVar4 * 0.5 * (3.0 - fVar1 * fVar4 * fVar4);
-  fVar8 = fVar8 * fVar1;
-  fVar7 = fVar7 * fVar1;
-  fVar9 = fVar9 * fVar1;
-  fVar6 = in_stack_00000058 * fVar8 - fStack0000000000000054 * fVar7;
-  fVar5 = fVar7 * in_stack_00000050 - in_stack_00000058 * fVar9;
-  fVar3 = fStack0000000000000054 * fVar9 - fVar8 * in_stack_00000050;
-  fVar1 = fVar6 * fVar6 + fVar5 * fVar5 + fVar3 * fVar3;
-  auVar2 = rsqrtss(ZEXT416((uint)fVar1),ZEXT416((uint)fVar1));
-  fVar4 = auVar2._0_4_;
-  fVar4 = fVar4 * 0.5 * (3.0 - fVar1 * fVar4 * fVar4);
-  uStack000000000000004c = 0x7f7fffff;
-  fVar1 = *(float *)(unaff_RBP + -0x80);
-  fStack0000000000000044 = *(float *)(unaff_RBP + -0x7c);
-  in_stack_00000040 = fStack0000000000000044 * fVar6 * fVar4;
-  in_stack_00000030 = CONCAT44(fVar1 * fVar8,fVar1 * fVar9);
-  in_stack_00000048 = fVar3 * fVar4 * fStack0000000000000044;
-  fStack0000000000000044 = fVar5 * fVar4 * fStack0000000000000044;
-  in_stack_00000038 = CONCAT44(0x7f7fffff,fVar1 * fVar7);
-  fVar1 = *(float *)(unaff_RBP + -0x78);
-  in_stack_00000050 = fVar1 * in_stack_00000050;
-  fStack0000000000000054 = fStack0000000000000054 * fVar1;
-  in_stack_00000058 = in_stack_00000058 * fVar1;
-  uStack000000000000005c = unaff_XMM15_Dd;
-  if (*(char *)(unaff_RBX + 0x99) != '\0') {
-    in_stack_00000030 = *(uint64_t *)(unaff_RBP + -0x70);
-    in_stack_00000038 = *(uint64_t *)(unaff_RBP + -0x68);
-    in_stack_00000040 = *(float *)(unaff_RBP + -0x60);
-    fStack0000000000000044 = *(float *)(unaff_RBP + -0x5c);
-    in_stack_00000048 = *(float *)(unaff_RBP + -0x58);
-    uStack000000000000004c = *(int32_t *)(unaff_RBP + -0x54);
-    in_stack_00000050 = *(float *)(unaff_RBP + -0x50);
-    fStack0000000000000054 = *(float *)(unaff_RBP + -0x4c);
-    in_stack_00000058 = *(float *)(unaff_RBP + -0x48);
-    uStack000000000000005c = *(int32_t *)(unaff_RBP + -0x44);
-    in_stack_00000060 = unaff_XMM14_Da;
-    in_stack_00000068 = unaff_XMM14_Dc;
-  }
-  FUN_1802ea790(*(uint64_t *)(unaff_RBX + 0x18),&stack0x00000030);
-  return;
+    // 原始函数: void FUN_18034f6f2(void)
+    int64_t unaff_RBX;
+    int64_t unaff_RBP;
+    int64_t unaff_RDI;
+    render_float_t fVar1;
+    int8_t auVar2 [16];
+    render_float_t fVar3;
+    render_float_t fVar4;
+    render_float_t fVar5;
+    render_float_t fVar6;
+    render_float_t fVar7;
+    render_float_t fVar8;
+    render_float_t fVar9;
+    render_float_t unaff_XMM14_Da;
+    render_float_t unaff_XMM14_Db;
+    render_float_t unaff_XMM14_Dc;
+    render_float_t unaff_XMM15_Da;
+    render_float_t unaff_XMM15_Db;
+    render_float_t unaff_XMM15_Dc;
+    int32_t unaff_XMM15_Dd;
+    uint64_t in_stack_00000030;
+    uint64_t in_stack_00000038;
+    render_float_t in_stack_00000040;
+    render_float_t fStack0000000000000044;
+    render_float_t in_stack_00000048;
+    int32_t uStack000000000000004c;
+    render_float_t in_stack_00000050;
+    render_float_t fStack0000000000000054;
+    render_float_t in_stack_00000058;
+    int32_t uStack000000000000005c;
+    render_float_t in_stack_00000060;
+    render_float_t in_stack_00000068;
+    int32_t uStack000000000000007c;
+    
+    // 调用渲染数据初始化函数
+    FUN_180085020(&stack0x00000030, unaff_RBP + -0x80);
+    
+    // 计算位置向量差值
+    fVar7 = unaff_XMM14_Da - *(render_float_t *)(unaff_RDI + RENDER_POSITION_OFFSET);
+    fVar6 = unaff_XMM14_Db - *(render_float_t *)(unaff_RDI + 0x1bc);
+    fVar5 = unaff_XMM14_Dc - *(render_float_t *)(unaff_RDI + 0x1c0);
+    
+    // 计算向量长度平方
+    fVar1 = fVar6 * fVar6 + fVar7 * fVar7 + fVar5 * fVar5;
+    
+    // 使用快速平方根倒数算法
+    auVar2 = rsqrtss(ZEXT416((uint)fVar1), ZEXT416((uint)fVar1));
+    fVar4 = auVar2._0_4_;
+    fVar3 = fVar4 * RENDER_FLOAT_HALF * (RENDER_FLOAT_THREE - fVar1 * fVar4 * fVar4);
+    
+    // 计算旋转向量长度平方
+    fVar1 = unaff_XMM15_Db * unaff_XMM15_Db + unaff_XMM15_Da * unaff_XMM15_Da +
+            unaff_XMM15_Dc * unaff_XMM15_Dc;
+    
+    // 使用快速平方根倒数算法
+    auVar2 = rsqrtss(ZEXT416((uint)fVar1), ZEXT416((uint)fVar1));
+    fVar4 = auVar2._0_4_;
+    fStack0000000000000054 = fVar4 * RENDER_FLOAT_HALF * (RENDER_FLOAT_THREE - fVar1 * fVar4 * fVar4);
+    
+    // 计算归一化旋转向量
+    in_stack_00000058 = unaff_XMM15_Dc * fStack0000000000000054;
+    in_stack_00000050 = unaff_XMM15_Da * fStack0000000000000054;
+    fStack0000000000000054 = unaff_XMM15_Db * fStack0000000000000054;
+    
+    // 计算向量叉积
+    fVar9 = fStack0000000000000054 * fVar5 * fVar3 - in_stack_00000058 * fVar6 * fVar3;
+    fVar8 = in_stack_00000058 * fVar7 * fVar3 - in_stack_00000050 * fVar5 * fVar3;
+    uStack000000000000007c = RENDER_MAX_FLOAT;
+    fVar7 = in_stack_00000050 * fVar6 * fVar3 - fStack0000000000000054 * fVar7 * fVar3;
+    
+    // 计算结果向量长度平方
+    fVar1 = fVar9 * fVar9 + fVar8 * fVar8 + fVar7 * fVar7;
+    
+    // 使用快速平方根倒数算法
+    auVar2 = rsqrtss(ZEXT416((uint)fVar1), ZEXT416((uint)fVar1));
+    fVar4 = auVar2._0_4_;
+    fVar1 = fVar4 * RENDER_FLOAT_HALF * (RENDER_FLOAT_THREE - fVar1 * fVar4 * fVar4);
+    
+    // 归一化结果向量
+    fVar8 = fVar8 * fVar1;
+    fVar7 = fVar7 * fVar1;
+    fVar9 = fVar9 * fVar1;
+    
+    // 计算二次叉积
+    fVar6 = in_stack_00000058 * fVar8 - fStack0000000000000054 * fVar7;
+    fVar5 = fVar7 * in_stack_00000050 - in_stack_00000058 * fVar9;
+    fVar3 = fStack0000000000000054 * fVar9 - fVar8 * in_stack_00000050;
+    
+    // 计算最终矩阵长度平方
+    fVar1 = fVar6 * fVar6 + fVar5 * fVar5 + fVar3 * fVar3;
+    
+    // 使用快速平方根倒数算法
+    auVar2 = rsqrtss(ZEXT416((uint)fVar1), ZEXT416((uint)fVar1));
+    fVar4 = auVar2._0_4_;
+    fVar4 = fVar4 * RENDER_FLOAT_HALF * (RENDER_FLOAT_THREE - fVar1 * fVar4 * fVar4);
+    
+    // 设置最大浮点值
+    uStack000000000000004c = RENDER_MAX_FLOAT;
+    
+    // 获取变换参数
+    fVar1 = *(render_float_t *)(unaff_RBP + -0x80);
+    fStack0000000000000044 = *(render_float_t *)(unaff_RBP + -0x7c);
+    
+    // 计算最终变换矩阵
+    in_stack_00000040 = fStack0000000000000044 * fVar6 * fVar4;
+    in_stack_00000030 = CONCAT44(fVar1 * fVar8, fVar1 * fVar9);
+    in_stack_00000048 = fVar3 * fVar4 * fStack0000000000000044;
+    fStack0000000000000044 = fVar5 * fVar4 * fStack0000000000000044;
+    in_stack_00000038 = CONCAT44(RENDER_MAX_FLOAT, fVar1 * fVar7);
+    
+    // 应用缩放变换
+    fVar1 = *(render_float_t *)(unaff_RBP + -0x78);
+    in_stack_00000050 = fVar1 * in_stack_00000050;
+    fStack0000000000000054 = fStack0000000000000054 * fVar1;
+    in_stack_00000058 = in_stack_00000058 * fVar1;
+    uStack000000000000005c = unaff_XMM15_Dd;
+    
+    // 检查是否需要使用缓存的变换数据
+    if (*(char *)(unaff_RBX + 0x99) != '\0') {
+        in_stack_00000030 = *(uint64_t *)(unaff_RBP + -0x70);
+        in_stack_00000038 = *(uint64_t *)(unaff_RBP + -0x68);
+        in_stack_00000040 = *(render_float_t *)(unaff_RBP + -0x60);
+        fStack0000000000000044 = *(render_float_t *)(unaff_RBP + -0x5c);
+        in_stack_00000048 = *(render_float_t *)(unaff_RBP + -0x58);
+        uStack000000000000004c = *(int32_t *)(unaff_RBP + -0x54);
+        in_stack_00000050 = *(render_float_t *)(unaff_RBP + -0x50);
+        fStack0000000000000054 = *(render_float_t *)(unaff_RBP + -0x4c);
+        in_stack_00000058 = *(render_float_t *)(unaff_RBP + -0x48);
+        uStack000000000000005c = *(int32_t *)(unaff_RBP + -0x44);
+        in_stack_00000060 = unaff_XMM14_Da;
+        in_stack_00000068 = unaff_XMM14_Dc;
+    }
+    
+    // 应用变换矩阵
+    FUN_1802ea790(*(uint64_t *)(unaff_RBX + 0x18), &stack0x00000030);
+    return;
 }
 
 

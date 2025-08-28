@@ -107,7 +107,7 @@ LAB_18089e70b:
       uVar4 = FUN_1808ad9d0(param_2,param_1 + 0x78,0);
       if (((int)uVar4 == 0) && (uVar4 = FUN_1808a62d0(param_2,param_1 + 0x88,0), (int)uVar4 == 0)) {
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80(param_2,auStack_58);
+        AdvancedSystemManager(param_2,auStack_58);
       }
     }
   }
@@ -224,7 +224,7 @@ LAB_18089e70b:
     if (((int)uVar8 == 0) &&
        (uVar8 = FUN_1808a62d0(extraout_XMM0_Da_03,unaff_R15 + 0x88,0), (int)uVar8 == 0)) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(extraout_XMM0_Da_04,unaff_RBP + 7);
+      AdvancedSystemManager(extraout_XMM0_Da_04,unaff_RBP + 7);
     }
   }
   return uVar8;
@@ -292,7 +292,7 @@ LAB_18089e70b:
   uVar4 = FUN_1808ad9d0();
   if (((int)uVar4 == 0) && (uVar4 = FUN_1808a62d0(), (int)uVar4 == 0)) {
                     // WARNING: Subroutine does not return
-    FUN_1808ddf80();
+    AdvancedSystemManager();
   }
   return uVar4;
 }

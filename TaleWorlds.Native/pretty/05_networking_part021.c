@@ -487,7 +487,7 @@ void FUN_180853230(int64_t param_1)
     FUN_18074be90(auStack_118,0x100,1);
     puStack_138 = auStack_118;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar2,4,uVar1,&unknown_var_6016_ptr);
+    DataTransformer(iVar2,4,uVar1,&unknown_var_6016_ptr);
   }
 LAB_18073d93d:
   if (lStack_128 != 0) {

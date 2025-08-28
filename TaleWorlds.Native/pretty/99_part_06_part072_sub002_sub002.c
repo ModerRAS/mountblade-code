@@ -592,7 +592,7 @@ void FUN_1803ec310(int64_t param_1,int32_t *param_2)
               if (0xf < (uint64_t)puVar15[3]) {
                 puVar15 = (uint64_t *)*puVar15;
               }
-              FUN_180627910(&puStack_610,puVar15);
+              CoreMemoryPoolValidator(&puStack_610,puVar15);
               FUN_180066df0(&uStack_580,&puStack_610);
               plVar9 = plStack_468;
               puStack_610 = &system_data_buffer_ptr;
@@ -1040,7 +1040,7 @@ void FUN_1803ec310(int64_t param_1,int32_t *param_2)
               if (0xf < (uint64_t)puVar15[3]) {
                 puVar15 = (uint64_t *)*puVar15;
               }
-              uVar13 = FUN_180627910(&puStack_5a0,puVar15);
+              uVar13 = CoreMemoryPoolValidator(&puStack_5a0,puVar15);
               FUN_1803eef10(param_1,uVar13,&puStack_700);
               puStack_5a0 = &system_data_buffer_ptr;
               if (lStack_598 != 0) {
