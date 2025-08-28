@@ -54,55 +54,82 @@ void initialize_engine_core_module(undefined8 *module_config)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+/**
+ * 配置引擎参数并创建默认实例
+ * @param config_ptr 配置指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 配置指针
+ */
 undefined8 *
-FUN_18016dbb0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+configure_engine_parameters(undefined8 *config_ptr,undefined8 param2,undefined8 param3,undefined8 param4)
 
 {
-  undefined4 *puVar1;
+  undefined4 *instance_data;
   
   *(undefined4 *)(_DAT_180c8a980 + 0x2f8) = *(undefined4 *)(_DAT_180c86870 + 0x224);
-  *param_1 = &UNK_18098bcb0;
-  param_1[1] = 0;
-  *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_180a3c3e0;
-  param_1[3] = 0;
-  param_1[1] = 0;
-  *(undefined4 *)(param_1 + 2) = 0;
-  FUN_1806277c0(param_1,4,param_3,param_4,0,0xfffffffffffffffe);
-  puVar1 = (undefined4 *)param_1[1];
-  *puVar1 = 0x656e6f44;
-  *(undefined1 *)(puVar1 + 1) = 0;
-  *(undefined4 *)(param_1 + 2) = 4;
-  return param_1;
+  *config_ptr = &UNK_18098bcb0;
+  config_ptr[1] = 0;
+  *(undefined4 *)(config_ptr + 2) = 0;
+  *config_ptr = &UNK_180a3c3e0;
+  config_ptr[3] = 0;
+  config_ptr[1] = 0;
+  *(undefined4 *)(config_ptr + 2) = 0;
+  create_engine_instance(config_ptr,4,param3,param4,0,0xfffffffffffffffe);
+  instance_data = (undefined4 *)config_ptr[1];
+  *instance_data = 0x656e6f44;
+  *(undefined1 *)(instance_data + 1) = 0;
+  *(undefined4 *)(config_ptr + 2) = 4;
+  return config_ptr;
 }
 
 
 
-undefined8 FUN_18016dca0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 执行引擎初始化序列并返回状态
+ * @param engine_handle 引擎句柄
+ * @param param2 参数2
+ * @param init_params 初始化参数
+ * @return 引擎句柄
+ */
+undefined8 execute_engine_initialization_sequence(undefined8 engine_handle,undefined8 param2,undefined8 init_params)
 
 {
-  FUN_180168840(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
-  return param_1;
+  initialize_engine_components(engine_handle,engine_handle,init_params,init_params,0,0xfffffffffffffffe);
+  return engine_handle;
 }
 
 
 
-undefined8 FUN_18016dd20(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 启动引擎核心系统并初始化组件
+ * @param system_ptr 系统指针
+ * @param param2 参数2
+ * @param startup_params 启动参数
+ * @return 系统指针
+ */
+undefined8 start_engine_core_system(undefined8 system_ptr,undefined8 param2,undefined8 startup_params)
 
 {
-  FUN_180168670(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
-  return param_1;
+  initialize_core_system_components(system_ptr,system_ptr,startup_params,startup_params,0,0xfffffffffffffffe);
+  return system_ptr;
 }
 
 
 
-undefined8 FUN_18016dda0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 设置引擎运行环境并配置系统参数
+ * @param env_ptr 环境指针
+ * @param param2 参数2
+ * @param env_config 环境配置
+ * @return 环境指针
+ */
+undefined8 setup_engine_environment(undefined8 env_ptr,undefined8 param2,undefined8 env_config)
 
 {
-  FUN_180168590(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
-  return param_1;
+  configure_engine_environment(env_ptr,env_ptr,env_config,env_config,0,0xfffffffffffffffe);
+  return env_ptr;
 }
 
 
