@@ -674,9 +674,23 @@ LAB_180157eb5:
 // WARNING: Removing unreachable block (ram,0x00018015807b)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int64_t *
-FUN_180157ef0(int64_t *param_1,int64_t *param_2,uint64_t param_3,int64_t param_4,
-             int64_t param_5,uint64_t param_6,int8_t param_7)
+// 函数: int64_t* EventDispatcher(int64_t *dispatcher, int64_t *dispatch_result, uint64_t event_type, int64_t event_source, int64_t event_target, uint64_t dispatch_flags, int8_t priority)
+// 事件分发器：将事件分发到相应的处理器
+// 参数：
+//   - dispatcher: 分发器指针
+//   - dispatch_result: 分发结果指针
+//   - event_type: 事件类型
+//   - event_source: 事件源
+//   - event_target: 事件目标
+//   - dispatch_flags: 分发标志
+//   - priority: 事件优先级
+// 返回值：
+//   - 分发结果指针
+// 功能：
+//   - 根据事件类型和目标选择处理器
+//   - 按优先级分发事件
+//   - 管理分发过程中的状态
+int64_t * EventDispatcher(int64_t *dispatcher, int64_t *dispatch_result, uint64_t event_type, int64_t event_source, int64_t event_target, uint64_t dispatch_flags, int8_t priority)
 
 {
   int64_t *plVar1;
