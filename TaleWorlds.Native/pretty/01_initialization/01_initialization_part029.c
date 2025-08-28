@@ -1,51 +1,46 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part029.c - 初始化模块第29部分
-// 包含：容器移除、资源清理、线程同步等初始化相关函数
+// 01_initialization_part029.c - 5 个函数
 
-/**
- * 从容器中移除指定元素并清理资源
- * @param container_ptr 容器指针
- * @param element_ptr 要移除的元素指针
- */
-void remove_element_from_container(longlong container_ptr, longlong *element_ptr)
+// 函数: void FUN_18005e57a(longlong param_1,longlong *param_2)
+void FUN_18005e57a(longlong param_1,longlong *param_2)
 
 {
-  longlong *container_start;
-  ulonglong element_count;
-  longlong element_address;
-  longlong *current_element;
-  int index;
-  ulonglong container_size;
+  longlong *plVar1;
+  ulonglong uVar2;
+  longlong lVar3;
+  longlong *plVar4;
+  int iVar5;
+  ulonglong uVar6;
   
-  index = 0;
-  container_start = *(longlong **)(container_ptr + 0x48);
-  container_size = *(longlong *)(container_ptr + 0x50) - (longlong)container_start >> 3;
-  current_element = container_start;
-  if (container_size != 0) {
+  iVar5 = 0;
+  plVar1 = *(longlong **)(param_1 + 0x48);
+  uVar6 = *(longlong *)(param_1 + 0x50) - (longlong)plVar1 >> 3;
+  plVar4 = plVar1;
+  if (uVar6 != 0) {
     do {
-      if ((longlong *)*current_element == element_ptr) {
-        release_element_resources(container_start[index]);
-        element_count = *(ulonglong *)(container_ptr + 0x50);
-        element_address = *(longlong *)(container_ptr + 0x48) + (longlong)index * 8;
-        container_size = element_address + 8;
-        if (container_size < element_count) {
+      if ((longlong *)*plVar4 == param_2) {
+        FUN_18020e7b0(plVar1[iVar5]);
+        uVar2 = *(ulonglong *)(param_1 + 0x50);
+        lVar3 = *(longlong *)(param_1 + 0x48) + (longlong)iVar5 * 8;
+        uVar6 = lVar3 + 8;
+        if (uVar6 < uVar2) {
                     // WARNING: Subroutine does not return
-          memmove(element_address, container_size, element_count - container_size);
+          memmove(lVar3,uVar6,uVar2 - uVar6);
         }
-        *(ulonglong *)(container_ptr + 0x50) = element_count - 8;
+        *(ulonglong *)(param_1 + 0x50) = uVar2 - 8;
         break;
       }
-      index = index + 1;
-      current_element = current_element + 1;
-    } while ((ulonglong)(longlong)index < container_size);
+      iVar5 = iVar5 + 1;
+      plVar4 = plVar4 + 1;
+    } while ((ulonglong)(longlong)iVar5 < uVar6);
   }
-  if (element_ptr != (longlong *)0x0) {
-    element_address = __RTCastToVoid(element_ptr);
-    (**(code **)(*element_ptr + 0x28))(element_ptr, 0);
-    if (element_address != 0) {
+  if (param_2 != (longlong *)0x0) {
+    lVar3 = __RTCastToVoid(param_2);
+    (**(code **)(*param_2 + 0x28))(param_2,0);
+    if (lVar3 != 0) {
                     // WARNING: Subroutine does not return
-      free_memory_resources(element_address);
+      FUN_18064e900(lVar3);
     }
   }
   return;

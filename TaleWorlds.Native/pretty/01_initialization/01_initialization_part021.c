@@ -627,14 +627,19 @@ LAB_180054ec9:
 
 
 
-// 函数: void FUN_180055050(void)
-void FUN_180055050(void)
+/**
+ * 初始化系统核心数据结构
+ * 设置游戏引擎的核心系统，包括内存管理、线程同步和全局状态
+ * 原函数名：FUN_180055050
+ */
+void initialize_system_core(void)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  undefined8 uVar3;
-  longlong lVar4;
+  // 系统核心初始化变量
+  undefined8 *memory_pool;      // 内存池指针
+  undefined8 *system_handle;    // 系统句柄
+  undefined8 pool_size;         // 内存池大小
+  longlong mutex_handle;        // 互斥体句柄
   
   puVar2 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x198,8,3);
   puVar1 = puVar2 + 4;
