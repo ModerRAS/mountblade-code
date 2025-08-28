@@ -1,32 +1,39 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part026.c - 25 个函数
+// 01_initialization_part026.c - 初始化模块第26部分
+// 包含25个函数，主要涉及内存管理、字符串操作和系统初始化功能
 
-// 函数: void FUN_180059940(longlong param_1,longlong param_2)
-void FUN_180059940(longlong param_1,longlong param_2)
-
+// 函数: void initialize_string_buffer(longlong buffer_ptr, longlong source_ptr)
+// 功能: 初始化字符串缓冲区，处理字符串复制和长度设置
+void initialize_string_buffer(longlong buffer_ptr, longlong source_ptr)
 {
-  longlong lVar1;
+  longlong string_length;
   
-  if (param_2 == 0) {
-    *(undefined4 *)(param_1 + 0x10) = 0;
-    **(undefined1 **)(param_1 + 8) = 0;
+  // 如果源指针为空，清空缓冲区
+  if (source_ptr == 0) {
+    *(int *)(buffer_ptr + 0x10) = 0;  // 设置字符串长度为0
+    **(char **)(buffer_ptr + 8) = 0;   // 清空字符串指针
     return;
   }
-  lVar1 = -1;
+  
+  // 计算源字符串长度
+  string_length = -1;
   do {
-    lVar1 = lVar1 + 1;
-  } while (*(char *)(param_2 + lVar1) != '\0');
-  if ((int)lVar1 < 0x10) {
-    *(int *)(param_1 + 0x10) = (int)lVar1;
-                    // WARNING: Could not recover jumptable at 0x000180059977. Too many branches
-                    // WARNING: Treating indirect jump as call
-    strcpy_s(*(undefined8 *)(param_1 + 8),0x10);
+    string_length = string_length + 1;
+  } while (*(char *)(source_ptr + string_length) != '\0');
+  
+  // 如果字符串长度小于16字节，直接复制
+  if ((int)string_length < 0x10) {
+    *(int *)(buffer_ptr + 0x10) = (int)string_length;  // 设置字符串长度
+    // 安全复制字符串（可能有跳转表优化）
+    strcpy_s(*(char **)(buffer_ptr + 8), 0x10);
     return;
   }
-  FUN_180626f80(&UNK_18098bc48,0x10,param_2);
-  *(undefined4 *)(param_1 + 0x10) = 0;
-  **(undefined1 **)(param_1 + 8) = 0;
+  
+  // 长字符串处理：调用内存分配函数
+  allocate_string_memory(&STRING_ALLOCATOR, 0x10, source_ptr);
+  *(int *)(buffer_ptr + 0x10) = 0;      // 重置长度
+  **(char **)(buffer_ptr + 8) = 0;       // 清空指针
   return;
 }
 
@@ -34,16 +41,18 @@ void FUN_180059940(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_1800599c0(longlong param_1,undefined8 param_2,int param_3)
-void FUN_1800599c0(longlong param_1,undefined8 param_2,int param_3)
-
+// 函数: void copy_memory_safe(longlong dest_ptr, void* src_ptr, int length)
+// 功能: 安全地复制内存数据，包含边界检查
+void copy_memory_safe(longlong dest_ptr, void* src_ptr, int length)
 {
-  if (param_3 + 1 < 0x10) {
-                    // WARNING: Subroutine does not return
-    memcpy(*(undefined1 **)(param_1 + 8),param_2,(longlong)param_3);
+  // 检查长度是否在安全范围内（小于16字节）
+  if (length + 1 < 0x10) {
+    // 安全复制内存数据
+    memcpy(*(char **)(dest_ptr + 8), src_ptr, (longlong)length);
   }
-  **(undefined1 **)(param_1 + 8) = 0;
-  *(undefined4 *)(param_1 + 0x10) = 0;
+  // 确保字符串以null结尾
+  **(char **)(dest_ptr + 8) = 0;
+  *(int *)(dest_ptr + 0x10) = 0;  // 重置长度标记
   return;
 }
 
@@ -51,11 +60,13 @@ void FUN_1800599c0(longlong param_1,undefined8 param_2,int param_3)
 
 
 
-// 函数: void FUN_1800599df(void)
-void FUN_1800599df(void)
-
+// 函数: void memory_copy_operation(void)
+// 功能: 执行内存复制操作（简化实现）
+// 注意：原始函数缺少参数，这是一个简化实现
+void memory_copy_operation(void)
 {
-                    // WARNING: Subroutine does not return
+  // 执行内存复制操作（具体实现待完善）
+  // WARNING: Subroutine does not return
   memcpy();
 }
 
@@ -63,14 +74,14 @@ void FUN_1800599df(void)
 
 
 
-// 函数: void FUN_180059a04(undefined1 *param_1)
-void FUN_180059a04(undefined1 *param_1)
-
+// 函数: void reset_memory_flag(char* flag_ptr)
+// 功能: 重置内存标志和相关计数器
+void reset_memory_flag(char* flag_ptr)
 {
-  longlong unaff_RDI;
+  longlong context_ptr;
   
-  *param_1 = 0;
-  *(undefined4 *)(unaff_RDI + 0x10) = 0;
+  *flag_ptr = 0;  // 重置标志
+  *(int *)(context_ptr + 0x10) = 0;  // 重置相关计数器
   return;
 }
 
@@ -80,77 +91,95 @@ void FUN_180059a04(undefined1 *param_1)
 
 
 
-// 函数: void FUN_180059a20(longlong param_1,longlong param_2,longlong param_3)
-void FUN_180059a20(longlong param_1,longlong param_2,longlong param_3)
-
+// 函数: void process_string_operation(longlong str1_ptr, longlong str2_ptr, longlong str3_ptr)
+// 功能: 处理字符串操作，包括搜索、长度计算和内存复制
+void process_string_operation(longlong str1_ptr, longlong str2_ptr, longlong str3_ptr)
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined1 auStack_98 [32];
-  undefined8 uStack_78;
-  undefined *puStack_70;
-  undefined1 *puStack_68;
-  undefined4 uStack_60;
-  undefined1 auStack_58 [16];
-  ulonglong uStack_48;
+  longlong search_result;
+  longlong str2_length;
+  longlong str3_length;
+  char temp_buffer1[32];
+  longlong stack_param1;
+  void* temp_ptr1;
+  char* temp_buffer2;
+  int temp_param1;
+  char temp_buffer3[16];
+  ulonglong stack_param2;
   
-  uStack_78 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
-  puStack_70 = &UNK_1809fdc18;
-  puStack_68 = auStack_58;
-  uStack_60 = 0;
-  auStack_58[0] = 0;
-  lVar1 = strstr(*(undefined8 *)(param_1 + 8));
-  if (lVar1 != 0) {
-    lVar2 = -1;
-    lVar3 = -1;
+  // 设置栈参数
+  stack_param1 = 0xfffffffffffffffe;
+  stack_param2 = MEMORY_CHECKSUM ^ (ulonglong)temp_buffer1;
+  temp_ptr1 = &STRING_CONSTANT1;
+  temp_buffer2 = temp_buffer3;
+  temp_param1 = 0;
+  temp_buffer3[0] = 0;
+  
+  // 在第一个字符串中搜索子字符串
+  search_result = strstr(*(char **)(str1_ptr + 8));
+  if (search_result != 0) {
+    // 计算第二个字符串的长度
+    str2_length = -1;
+    str3_length = -1;
     do {
-      lVar3 = lVar3 + 1;
-    } while (*(char *)(param_2 + lVar3) != '\0');
+      str3_length = str3_length + 1;
+    } while (*(char *)(str2_ptr + str3_length) != '\0');
+    
+    // 计算第三个字符串的长度
     do {
-      lVar2 = lVar2 + 1;
-    } while (*(char *)(lVar2 + param_3) != '\0');
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_68,*(longlong *)(param_1 + 8),lVar1 - *(longlong *)(param_1 + 8));
+      str2_length = str2_length + 1;
+    } while (*(char *)(str2_length + str3_ptr) != '\0');
+    
+    // 复制内存数据
+    memcpy(temp_buffer2, *(longlong *)(str1_ptr + 8), search_result - *(longlong *)(str1_ptr + 8));
   }
-  puStack_70 = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  
+  temp_ptr1 = &STRING_CONSTANT2;
+  // 调用处理函数
+  process_string_data(stack_param2 ^ (ulonglong)temp_buffer1);
 }
 
 
 
 
 
-// 函数: void FUN_180059ba0(undefined8 *param_1)
-void FUN_180059ba0(undefined8 *param_1)
-
+// 函数: void release_memory_block(void** block_ptr)
+// 功能: 释放内存块，处理引用计数和异常列表
+void release_memory_block(void** block_ptr)
 {
-  int *piVar1;
-  longlong lVar2;
-  ulonglong uVar3;
+  int* ref_count;
+  longlong block_info;
+  ulonglong memory_region;
   
-  if (param_1 == (undefined8 *)0x0) {
+  // 检查指针是否有效
+  if (block_ptr == (void**)0x0) {
     return;
   }
-  uVar3 = (ulonglong)param_1 & 0xffffffffffc00000;
-  if (uVar3 != 0) {
-    lVar2 = uVar3 + 0x80 + ((longlong)param_1 - uVar3 >> 0x10) * 0x50;
-    lVar2 = lVar2 - (ulonglong)*(uint *)(lVar2 + 4);
-    if ((*(void ***)(uVar3 + 0x70) == &ExceptionList) && (*(char *)(lVar2 + 0xe) == '\0')) {
-      *param_1 = *(undefined8 *)(lVar2 + 0x20);
-      *(undefined8 **)(lVar2 + 0x20) = param_1;
-      piVar1 = (int *)(lVar2 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
-        FUN_18064d630();
+  
+  // 获取内存区域信息
+  memory_region = (ulonglong)block_ptr & 0xffffffffffc00000;
+  if (memory_region != 0) {
+    // 计算块信息偏移
+    block_info = memory_region + 0x80 + ((longlong)block_ptr - memory_region >> 0x10) * 0x50;
+    block_info = block_info - (ulonglong)*(uint *)(block_info + 4);
+    
+    // 检查是否在异常列表中
+    if ((*(void ***)(memory_region + 0x70) == &ExceptionList) && (*(char *)(block_info + 0xe) == '\0')) {
+      // 从链表中移除块
+      *block_ptr = *(void **)(block_info + 0x20);
+      *(void **)(block_info + 0x20) = block_ptr;
+      
+      // 减少引用计数
+      ref_count = (int *)(block_info + 0x18);
+      *ref_count = *ref_count - 1;
+      if (*ref_count == 0) {
+        cleanup_memory_manager();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar3,CONCAT71(0xff000000,*(void ***)(uVar3 + 0x70) == &ExceptionList),
-                          param_1,uVar3,0xfffffffffffffffe);
+      // 处理异常情况
+      handle_memory_error(memory_region, CONCAT71(0xff000000, *(void ***)(memory_region + 0x70) == &ExceptionList),
+                         block_ptr, memory_region, 0xfffffffffffffffe);
     }
   }
   return;

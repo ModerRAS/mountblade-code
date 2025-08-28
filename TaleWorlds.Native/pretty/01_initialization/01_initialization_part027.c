@@ -196,53 +196,60 @@ undefined8 * initialize_component_array(undefined8 *array)
 
 
 
-// 函数: void FUN_18005b960(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18005b960(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 注册组件处理器
+ * 为组件注册事件处理器并设置虚函数表
+ * 
+ * @param handler 处理器指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ */
+void register_component_handler(undefined8 *handler, undefined8 param2, undefined8 param3, undefined8 param4)
 {
-  if ((code *)param_1[0x16] != (code *)0x0) {
-    (*(code *)param_1[0x16])(param_1 + 0x14,0,0,param_4,0xfffffffffffffffe);
+  if ((code *)handler[0x16] != (code *)0x0) {
+    (*(code *)handler[0x16])(handler + 0x14, 0, 0, param4, 0xfffffffffffffffe);
   }
-  param_1[0x10] = &UNK_180a3c3e0;
-  if (param_1[0x11] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  handler[0x10] = &COMPONENT_FACTORY_VTABLE;
+  if (handler[0x11] != 0) {
+    // 警告：子程序不返回
+    handle_critical_error();
   }
-  param_1[0x11] = 0;
-  *(undefined4 *)(param_1 + 0x13) = 0;
-  param_1[0x10] = &UNK_18098bcb0;
-  param_1[0xc] = &UNK_180a3c3e0;
-  if (param_1[0xd] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  handler[0x11] = 0;
+  *(undefined4 *)(handler + 0x13) = 0;
+  handler[0x10] = &COMPONENT_DESTROYER_VTABLE;
+  handler[0xc] = &COMPONENT_FACTORY_VTABLE;
+  if (handler[0xd] != 0) {
+    // 警告：子程序不返回
+    handle_critical_error();
   }
-  param_1[0xd] = 0;
-  *(undefined4 *)(param_1 + 0xf) = 0;
-  param_1[0xc] = &UNK_18098bcb0;
-  param_1[8] = &UNK_180a3c3e0;
-  if (param_1[9] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  handler[0xd] = 0;
+  *(undefined4 *)(handler + 0xf) = 0;
+  handler[0xc] = &COMPONENT_DESTROYER_VTABLE;
+  handler[8] = &COMPONENT_FACTORY_VTABLE;
+  if (handler[9] != 0) {
+    // 警告：子程序不返回
+    handle_critical_error();
   }
-  param_1[9] = 0;
-  *(undefined4 *)(param_1 + 0xb) = 0;
-  param_1[8] = &UNK_18098bcb0;
-  param_1[4] = &UNK_180a3c3e0;
-  if (param_1[5] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  handler[9] = 0;
+  *(undefined4 *)(handler + 0xb) = 0;
+  handler[8] = &COMPONENT_DESTROYER_VTABLE;
+  handler[4] = &COMPONENT_FACTORY_VTABLE;
+  if (handler[5] != 0) {
+    // 警告：子程序不返回
+    handle_critical_error();
   }
-  param_1[5] = 0;
-  *(undefined4 *)(param_1 + 7) = 0;
-  param_1[4] = &UNK_18098bcb0;
-  *param_1 = &UNK_180a3c3e0;
-  if (param_1[1] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  handler[5] = 0;
+  *(undefined4 *)(handler + 7) = 0;
+  handler[4] = &COMPONENT_DESTROYER_VTABLE;
+  *handler = &COMPONENT_FACTORY_VTABLE;
+  if (handler[1] != 0) {
+    // 警告：子程序不返回
+    handle_critical_error();
   }
-  param_1[1] = 0;
-  *(undefined4 *)(param_1 + 3) = 0;
-  *param_1 = &UNK_18098bcb0;
+  handler[1] = 0;
+  *(undefined4 *)(handler + 3) = 0;
+  *handler = &COMPONENT_DESTROYER_VTABLE;
   return;
 }
 
@@ -252,150 +259,194 @@ void FUN_18005b960(undefined8 *param_1,undefined8 param_2,undefined8 param_3,und
 
 
 
-// 函数: void FUN_18005ba80(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18005ba80(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 创建用户会话
+ * 创建并初始化用户会话对象
+ * 
+ * @param param1 会话ID
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ */
+void create_user_session(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4)
 {
-  undefined4 uVar1;
-  undefined8 *puVar2;
-  undefined *puStack_50;
-  undefined8 *puStack_48;
-  undefined4 uStack_40;
-  undefined8 uStack_38;
+  undefined4 user_id;
+  undefined8 *session;
+  undefined *session_type;
+  undefined8 *session_data;
+  undefined4 session_flags;
+  undefined8 session_timeout;
   
-  puStack_50 = &UNK_180a3c3e0;
-  uStack_38 = 0;
-  puStack_48 = (undefined8 *)0x0;
-  uStack_40 = 0;
-  puVar2 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,param_4,0xfffffffffffffffe);
-  *(undefined1 *)puVar2 = 0;
-  puStack_48 = puVar2;
-  uVar1 = FUN_18064e990(puVar2);
-  uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
-  *puVar2 = 0x6e6f632072657355;
-  *(undefined4 *)(puVar2 + 1) = 0x676966;
-  uStack_40 = 0xb;
-  FUN_1800ae520(param_1,&puStack_50);
-  puStack_50 = &UNK_180a3c3e0;
-                    // WARNING: Subroutine does not return
-  FUN_18064e900(puVar2);
+  session_type = &COMPONENT_FACTORY_VTABLE;
+  session_timeout = 0;
+  session_data = (undefined8 *)0x0;
+  session_flags = 0;
+  session = (undefined8 *)allocate_session_object(GLOBAL_SESSION_POOL, 0x10, 0x13, param4, 0xfffffffffffffffe);
+  *(undefined1 *)session = 0;
+  session_data = session;
+  user_id = generate_session_id(session);
+  session_timeout = CONCAT44(session_timeout._4_4_, user_id);
+  *session = 0x6e6f632072657355; // "User con"
+  *(undefined4 *)(session + 1) = 0x676966; // "fig"
+  session_flags = 0xb;
+  register_session_handler(param1, &session_type);
+  session_type = &COMPONENT_FACTORY_VTABLE;
+  // 警告：子程序不返回
+  cleanup_session_object(session);
 }
 
 
 
-undefined8 * FUN_18005c060(undefined8 *param_1)
-
+/**
+ * 初始化数据缓冲区
+ * 初始化数据缓冲区并设置基本属性
+ * 
+ * @param buffer 缓冲区指针
+ * @return 初始化后的缓冲区指针
+ */
+undefined8 * initialize_data_buffer(undefined8 *buffer)
 {
-  *param_1 = 0;
-  param_1[1] = 0;
-  param_1[2] = 0;
-  *(undefined4 *)(param_1 + 3) = 0x24;
-  return param_1;
+  *buffer = 0;
+  buffer[1] = 0;
+  buffer[2] = 0;
+  *(undefined4 *)(buffer + 3) = 0x24;
+  return buffer;
 }
 
 
 
-longlong FUN_18005c090(longlong param_1)
-
+/**
+ * 初始化内存池
+ * 初始化内存池并设置缓冲区结构
+ * 
+ * @param pool 内存池指针
+ * @return 初始化后的内存池指针
+ */
+longlong initialize_memory_pool(longlong pool)
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong buffer_ptr;
+  longlong counter;
   
-  FUN_1808fc838(param_1,0x20,0x400,FUN_18005c060,FUN_180046860);
-  FUN_1808fc838(param_1 + 0x8000,0x20,0x400,FUN_18005c060,FUN_180046860);
-  *(undefined8 *)(param_1 + 0x10400) = 0;
-  *(undefined8 *)(param_1 + 0x10408) = 0;
-  *(undefined8 *)(param_1 + 0x10410) = 0;
-  *(undefined4 *)(param_1 + 0x10418) = 0x24;
-  lVar1 = param_1 + 0x10002;
-  lVar2 = 8;
+  create_memory_region(pool, 0x20, 0x400, initialize_data_buffer, cleanup_buffer_function);
+  create_memory_region(pool + 0x8000, 0x20, 0x400, initialize_data_buffer, cleanup_buffer_function);
+  *(undefined8 *)(pool + 0x10400) = 0;
+  *(undefined8 *)(pool + 0x10408) = 0;
+  *(undefined8 *)(pool + 0x10410) = 0;
+  *(undefined4 *)(pool + 0x10418) = 0x24;
+  buffer_ptr = pool + 0x10002;
+  counter = 8;
   do {
-    *(undefined8 *)(lVar1 + -2) = 0;
-    *(undefined8 *)(lVar1 + 6) = 0;
-    *(undefined8 *)(lVar1 + 0xe) = 0;
-    *(undefined8 *)(lVar1 + 0x16) = 0;
-    *(undefined8 *)(lVar1 + 0x1e) = 0;
-    *(undefined8 *)(lVar1 + 0x26) = 0;
-    *(undefined8 *)(lVar1 + 0x2e) = 0;
-    *(undefined8 *)(lVar1 + 0x36) = 0;
-    *(undefined8 *)(lVar1 + 0x3e) = 0;
-    *(undefined8 *)(lVar1 + 0x46) = 0;
-    *(undefined8 *)(lVar1 + 0x4e) = 0;
-    *(undefined8 *)(lVar1 + 0x56) = 0;
-    *(undefined8 *)(lVar1 + 0x5e) = 0;
-    *(undefined8 *)(lVar1 + 0x66) = 0;
-    *(undefined8 *)(lVar1 + 0x6e) = 0;
-    *(undefined8 *)(lVar1 + 0x76) = 0;
-    lVar1 = lVar1 + 0x80;
-    lVar2 = lVar2 + -1;
-  } while (lVar2 != 0);
-  return param_1;
+    *(undefined8 *)(buffer_ptr + -2) = 0;
+    *(undefined8 *)(buffer_ptr + 6) = 0;
+    *(undefined8 *)(buffer_ptr + 0xe) = 0;
+    *(undefined8 *)(buffer_ptr + 0x16) = 0;
+    *(undefined8 *)(buffer_ptr + 0x1e) = 0;
+    *(undefined8 *)(buffer_ptr + 0x26) = 0;
+    *(undefined8 *)(buffer_ptr + 0x2e) = 0;
+    *(undefined8 *)(buffer_ptr + 0x36) = 0;
+    *(undefined8 *)(buffer_ptr + 0x3e) = 0;
+    *(undefined8 *)(buffer_ptr + 0x46) = 0;
+    *(undefined8 *)(buffer_ptr + 0x4e) = 0;
+    *(undefined8 *)(buffer_ptr + 0x56) = 0;
+    *(undefined8 *)(buffer_ptr + 0x5e) = 0;
+    *(undefined8 *)(buffer_ptr + 0x66) = 0;
+    *(undefined8 *)(buffer_ptr + 0x6e) = 0;
+    *(undefined8 *)(buffer_ptr + 0x76) = 0;
+    buffer_ptr = buffer_ptr + 0x80;
+    counter = counter + -1;
+  } while (counter != 0);
+  return pool;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8
-FUN_18005c1c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 处理引擎命令
+ * 执行引擎相关的命令处理逻辑
+ * 
+ * @param param_1 命令参数1
+ * @param param_2 命令参数2
+ * @param param_3 命令参数3
+ * @param param_4 命令参数4
+ * @return 返回参数2
+ */
+undefined8 process_engine_command(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  FUN_180627ae0(param_2,_DAT_180c86928 + 0xe0,param_3,param_4,0,0xfffffffffffffffe);
+  FUN_180627ae0(param_2, _DAT_180c86928 + 0xe0, param_3, param_4, 0, 0xfffffffffffffffe);
   return param_2;
 }
 
 
 
-undefined8 * FUN_18005c210(undefined8 *param_1,uint param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 清理组件并设置标志
+ * 根据标志清理组件并设置相应的状态
+ * 
+ * @param param_1 组件指针
+ * @param param_2 清理标志
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 返回组件指针
+ */
+undefined8 * cleanup_component_with_flags(undefined8 *param_1, uint param_2, undefined8 param_3, undefined8 param_4)
 {
   if ((code *)param_1[6] != (code *)0x0) {
-    (*(code *)param_1[6])(param_1 + 4,0,0,param_4,0xfffffffffffffffe);
+    (*(code *)param_1[6])(param_1 + 4, 0, 0, param_4, 0xfffffffffffffffe);
   }
-  *param_1 = &UNK_18098bdc8;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *param_1 = &COMPONENT_DESTROYER_VTABLE;
+  *param_1 = &COMPONENT_FACTORY_VTABLE;
+  *param_1 = &COMPONENT_ALLOCATOR_VTABLE;
   if ((param_2 & 1) != 0) {
-    free(param_1,0x40);
+    free(param_1, 0x40);
   }
   return param_1;
 }
 
 
 
-undefined8 *
-FUN_18005c2a0(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 传输组件数据
+ * 在两个组件之间传输数据并更新相关状态
+ * 
+ * @param param_1 目标组件指针
+ * @param param_2 源组件指针
+ * @param param_3 传输参数
+ * @param param_4 传输标志
+ * @return 返回目标组件指针
+ */
+undefined8 * transfer_component_data(undefined8 *param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
 {
   undefined8 *puVar1;
   code *pcVar2;
   
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
+  *param_1 = &COMPONENT_ALLOCATOR_VTABLE;
+  *param_1 = &COMPONENT_FACTORY_VTABLE;
   *(undefined4 *)(param_1 + 1) = 0;
-  *param_1 = &UNK_18098bdc8;
+  *param_1 = &COMPONENT_DESTROYER_VTABLE;
   LOCK();
   *(undefined1 *)(param_1 + 2) = 0;
   UNLOCK();
   param_1[3] = 0xffffffffffffffff;
-  *param_1 = &UNK_1809fdea8;
+  *param_1 = &COMPONENT_TRANSFER_VTABLE;
   puVar1 = param_1 + 4;
   param_1[6] = 0;
   param_1[7] = _guard_check_icall;
   if (puVar1 != param_2) {
     if ((code *)param_1[6] != (code *)0x0) {
-      (*(code *)param_1[6])(puVar1,0,0,param_4,0xfffffffffffffffe);
+      (*(code *)param_1[6])(puVar1, 0, 0, param_4, 0xfffffffffffffffe);
     }
     pcVar2 = (code *)param_2[2];
     if (pcVar2 != (code *)0x0) {
-      (*pcVar2)(puVar1,param_2,1);
+      (*pcVar2)(puVar1, param_2, 1);
       pcVar2 = (code *)param_2[2];
     }
     param_1[6] = pcVar2;
     param_1[7] = param_2[3];
   }
   if ((code *)param_2[2] != (code *)0x0) {
-    (*(code *)param_2[2])(param_2,0,0);
+    (*(code *)param_2[2])(param_2, 0, 0);
   }
   return param_1;
 }
@@ -404,18 +455,22 @@ FUN_18005c2a0(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefin
 
 
 
-// 函数: void FUN_18005c380(longlong param_1)
-void FUN_18005c380(longlong param_1)
-
+/**
+ * 清理组件实例
+ * 清理单个组件实例的资源并重置状态
+ * 
+ * @param param_1 组件实例指针
+ */
+void cleanup_component_instance(longlong param_1)
 {
-  *(undefined8 *)(param_1 + 0x18) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_1 + 0x18) = &COMPONENT_ALLOCATOR_VTABLE;
   if (*(longlong *)(param_1 + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+    // 警告：子程序不返回
+    handle_critical_error();
   }
   *(undefined8 *)(param_1 + 0x20) = 0;
   *(undefined4 *)(param_1 + 0x30) = 0;
-  *(undefined8 *)(param_1 + 0x18) = &UNK_18098bcb0;
+  *(undefined8 *)(param_1 + 0x18) = &COMPONENT_DESTROYER_VTABLE;
   return;
 }
 

@@ -752,10 +752,11 @@ void initialize_module_handle(longlong module_base, undefined8 handle_size, unde
 void free_module_resource_array(longlong resource_array)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
+  // 资源释放变量
+  longlong resource_data;      // 资源数据指针
+  longlong array_pointer;      // 数组指针
+  ulonglong array_size;        // 数组大小
+  ulonglong index;             // 索引计数器
   
   uVar3 = *(ulonglong *)(param_1 + 0x10);
   lVar1 = *(longlong *)(param_1 + 8);
@@ -785,7 +786,12 @@ void free_module_resource_array(longlong resource_array)
 
 
 
-longlong FUN_180055e80(longlong param_1)
+/**
+ * 初始化字符串缓冲区
+ * 初始化用于存储字符串的缓冲区结构
+ * 原函数名：FUN_180055e80
+ */
+longlong initialize_string_buffer(longlong buffer_handle)
 
 {
   *(undefined8 *)(param_1 + 8) = &UNK_18098bcb0;
@@ -802,8 +808,12 @@ longlong FUN_180055e80(longlong param_1)
 
 
 
-// 函数: void FUN_180055ed0(longlong param_1)
-void FUN_180055ed0(longlong param_1)
+/**
+ * 重置字符串缓冲区
+ * 重置字符串缓冲区并释放相关资源
+ * 原函数名：FUN_180055ed0
+ */
+void reset_string_buffer(longlong buffer_handle)
 
 {
   *(undefined8 *)(param_1 + 8) = &UNK_180a3c3e0;
@@ -821,8 +831,12 @@ void FUN_180055ed0(longlong param_1)
 
 
 
-// 函数: void FUN_180055f20(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180055f20(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 创建资源管理器
+ * 创建并初始化资源管理器实例
+ * 原函数名：FUN_180055f20
+ */
+void create_resource_manager(longlong manager_base, undefined8 manager_size, undefined8 init_flags, undefined8 context_data)
 
 {
   FUN_180058210(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -833,14 +847,19 @@ void FUN_180055f20(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_180055f50(longlong param_1)
-void FUN_180055f50(longlong param_1)
+/**
+ * 销毁资源管理器
+ * 销毁资源管理器并释放所有相关资源
+ * 原函数名：FUN_180055f50
+ */
+void destroy_resource_manager(longlong manager_handle)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
+  // 资源管理器销毁变量
+  longlong resource_pointer;    // 资源指针
+  longlong array_base;          // 数组基址
+  ulonglong resource_count;     // 资源计数
+  ulonglong index;             // 索引计数器
   
   uVar3 = *(ulonglong *)(param_1 + 0x10);
   lVar1 = *(longlong *)(param_1 + 8);
@@ -874,11 +893,16 @@ void FUN_180055f50(longlong param_1)
 
 
 
-// 函数: void FUN_180055f70(undefined8 param_1,undefined4 param_2)
-void FUN_180055f70(undefined8 param_1,undefined4 param_2)
+/**
+ * 紧急退出处理函数
+ * 在发生严重错误时进行紧急退出处理
+ * 原函数名：FUN_180055f70
+ */
+void emergency_exit_handler(undefined8 exit_context, undefined4 exit_code)
 
 {
-  code *pcVar1;
+  // 退出处理变量
+  code *system_call_handler;  // 系统调用处理函数
   
   if (_DAT_180c8f008 != 0) {
     func_0x00018005a410(_DAT_180c8f008 + 8);
@@ -896,17 +920,22 @@ void FUN_180055f70(undefined8 param_1,undefined4 param_2)
 
 
 
-// 函数: void FUN_180055fa0(void)
-void FUN_180055fa0(void)
+/**
+ * 执行系统清理和关闭
+ * 在程序关闭时执行系统清理操作，释放所有资源
+ * 原函数名：FUN_180055fa0
+ */
+void perform_system_cleanup(void)
 
 {
-  undefined8 *puVar1;
-  undefined8 uVar2;
-  char *pcVar3;
-  int iVar4;
-  char *pcVar5;
-  undefined8 in_R9;
-  undefined8 uVar6;
+  // 系统清理变量
+  undefined8 *cleanup_list;     // 清理列表
+  undefined8 list_state;       // 列表状态
+  char *config_data;          // 配置数据
+  int lock_result;            // 锁定结果
+  char *iterator_ptr;          // 迭代器指针
+  undefined8 register_value;  // 寄存器值
+  undefined8 security_cookie;  // 安全cookie
   
   pcVar3 = _DAT_180c8a9d8;
   uVar6 = 0xfffffffffffffffe;

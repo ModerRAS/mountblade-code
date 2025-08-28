@@ -1,9 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part033.c - 8 个函数
+// 01_initialization_part033.c - 初始化模块第33部分
+// 包含8个函数，主要处理控制台输出、字符串处理和系统初始化功能
 
-// 函数: void FUN_180062920(int *param_1)
-void FUN_180062920(int *param_1)
+// 函数: void initialize_console_output_system(int *output_counter)
+// 功能: 初始化控制台输出系统，设置输出计数器并进行相关检查
+void initialize_console_output_system(int *output_counter)
 
 {
   char cVar1;
@@ -36,10 +38,10 @@ void FUN_180062920(int *param_1)
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_1f8;
   iVar8 = 0;
   uStack_190 = 0;
-  *param_1 = *param_1 + 1;
-  if ((*(longlong *)(param_1 + 4) != 0) && (*(longlong *)(param_1 + 2) != 0)) {
+  output_counter = output_counter + 1;
+  if ((*(longlong *)(output_counter + 4) != 0) && (*(longlong *)(output_counter + 2) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_1f8);
+    check_system_security(_SECURITY_CHECK_VALUE ^ (ulonglong)stack_buffer);
   }
   lStack_168 = 0;
   lStack_160 = 0;
@@ -48,14 +50,14 @@ void FUN_180062920(int *param_1)
   lVar4 = FUN_180627ae0(&puStack_188,_DAT_180c86870 + 0x2c0);
   uStack_190 = 1;
   auStack_1b8[0] = 0x20;
-  if (*(longlong *)(lVar4 + 8) != 0) {
-    FUN_180057980(lVar4,&lStack_168,auStack_1b8);
+  if (*(longlong *)(resource_handle + 8) != 0) {
+    process_resource_data(resource_handle,&temp_buffer_1,buffer_config);
   }
   uStack_190 = 0;
   puStack_188 = &UNK_180a3c3e0;
-  if (lStack_180 != 0) {
+  if (temp_buffer_2 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    trigger_system_error();
   }
   lStack_180 = 0;
   uStack_170 = 0;
@@ -64,18 +66,18 @@ void FUN_180062920(int *param_1)
   uStack_198 = 0;
   puStack_1a8 = (undefined4 *)0x0;
   uStack_1a0 = 0;
-  puVar5 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x13,0x13);
-  *(undefined1 *)puVar5 = 0;
-  puStack_1a8 = puVar5;
-  uVar3 = FUN_18064e990(puVar5);
-  uStack_198 = CONCAT44(uStack_198._4_4_,uVar3);
-  *puVar5 = 0x5f657375;
-  puVar5[1] = 0x65726170;
-  puVar5[2] = 0x635f746e;
-  puVar5[3] = 0x6f736e6f;
-  *(undefined2 *)(puVar5 + 4) = 0x656c;
-  *(undefined1 *)((longlong)puVar5 + 0x12) = 0;
-  uStack_1a0 = 0x12;
+  string_buffer = allocate_string_buffer(_STRING_BUFFER_CONFIG,0x13,0x13);
+  *(undefined1 *)string_buffer = 0;
+  buffer_ptr = string_buffer;
+  buffer_flags = set_buffer_flags(string_buffer);
+  output_config = CONCAT44(output_config._4_4_,buffer_flags);
+  *string_buffer = 0x5f657375;
+  string_buffer[1] = 0x65726170;
+  string_buffer[2] = 0x635f746e;
+  string_buffer[3] = 0x6f736e6f;
+  *(undefined2 *)(string_buffer + 4) = 0x656c;
+  *(undefined1 *)((longlong)string_buffer + 0x12) = 0;
+  buffer_length = 0x12;
   uVar9 = lStack_160 - lStack_168 >> 5;
   if (uVar9 != 0) {
     puVar7 = (undefined8 *)(lStack_168 + 8);
@@ -97,68 +99,70 @@ void FUN_180062920(int *param_1)
   }
   puStack_1b0 = &UNK_180a3c3e0;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(puVar5);
+  release_string_buffer(string_buffer);
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180062ee0(undefined8 param_1,undefined4 param_2)
+// 函数: bool set_console_color_theme(unsigned long console_handle, unsigned int color_index)
+// 功能: 根据颜色索引设置控制台文本颜色主题
+bool set_console_color_theme(unsigned long console_handle, unsigned int color_index)
 
 {
   undefined2 uVar1;
   int iVar2;
   
-  switch(param_2) {
+  switch(color_index) {
   case 0:
-    uVar1 = 4;
+    color_code = 4;    // 红色
     break;
   case 1:
-    uVar1 = 2;
+    color_code = 2;    // 绿色
     break;
   case 2:
-    uVar1 = 1;
+    color_code = 1;    // 蓝色
     break;
   case 3:
-    uVar1 = 0xc;
+    color_code = 0xc;   // 浅红色
     break;
   case 4:
-    uVar1 = 10;
+    color_code = 10;   // 浅绿色
     break;
   case 5:
-    uVar1 = 9;
+    color_code = 9;    // 浅蓝色
     break;
   case 6:
-    uVar1 = 3;
+    color_code = 3;    // 青色
     break;
   case 7:
-    uVar1 = 0xb;
+    color_code = 0xb;   // 浅青色
     break;
   case 8:
-    uVar1 = 6;
+    color_code = 6;    // 黄色
     break;
   case 9:
-    uVar1 = 0xe;
+    color_code = 0xe;   // 浅黄色
     break;
   case 10:
-    uVar1 = 5;
+    color_code = 5;    // 紫色
     break;
   case 0xb:
-    uVar1 = 0xd;
+    color_code = 0xd;   // 浅紫色
     break;
   case 0xc:
-    uVar1 = 7;
+    color_code = 7;    // 白色
     break;
   default:
-    uVar1 = 0xf;
+    color_code = 0xf;   // 亮白色
   }
-  iVar2 = SetConsoleTextAttribute(_DAT_180c912f0,uVar1);
-  if (iVar2 == 0) {
-    FUN_18005d3a0(&UNK_1809fe5a0);
-    return 0;
+  result = SetConsoleTextAttribute(_CONSOLE_HANDLE,color_code);
+  if (result == 0) {
+    log_error_message(&_ERROR_MESSAGE);
+    return false;
   }
-  return 1;
+  return true;
 }
 
 
@@ -167,8 +171,9 @@ undefined8 FUN_180062ee0(undefined8 param_1,undefined4 param_2)
 
 
 
-// 函数: void FUN_180062fd0(longlong param_1)
-void FUN_180062fd0(longlong param_1)
+// 函数: void process_initialization_command(longlong command_data)
+// 功能: 处理初始化命令，根据命令类型执行相应的初始化操作
+void process_initialization_command(longlong command_data)
 
 {
   uint uVar1;

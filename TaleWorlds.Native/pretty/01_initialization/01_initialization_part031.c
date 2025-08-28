@@ -16,296 +16,300 @@ void InitializeEmptyFunction(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18005f570(longlong param_1,longlong *param_2,longlong param_3)
+/**
+ * 处理批量对象注册和内存管理
+ * 这是一个复杂的内存管理函数，负责批量注册对象到系统中，处理环形缓冲区操作
+ * 原函数名: FUN_18005f570
+ */
+ulonglong ProcessBatchObjectRegistration(longlong objectManager, longlong *objectArray, longlong objectCount)
 
 {
-  uint *puVar1;
-  undefined4 *puVar2;
-  uint uVar3;
-  uint uVar4;
-  longlong *plVar5;
-  undefined4 uVar6;
-  undefined4 uVar7;
-  undefined4 uVar8;
-  longlong *plVar9;
-  ulonglong uVar10;
-  longlong lVar11;
-  ulonglong uVar12;
-  ulonglong uVar13;
-  ulonglong uVar14;
-  ulonglong uVar15;
-  ulonglong uVar16;
-  ulonglong *puVar17;
-  ulonglong uVar18;
-  ulonglong uVar19;
-  ulonglong uVar20;
-  undefined4 *puVar21;
-  undefined4 *puVar22;
-  longlong lVar23;
-  longlong lVar24;
-  ulonglong uVar25;
-  bool bVar26;
-  ulonglong uStack_78;
-  ulonglong uStack_68;
+  uint *referenceCount;
+  undefined4 *blockData;
+  uint currentRefCount;
+  uint newRefCount;
+  longlong *poolInfo;
+  undefined4 data1;
+  undefined4 data2;
+  undefined4 data3;
+  longlong *nextPool;
+  ulonglong currentObject;
+  longlong capacity;
+  ulonglong poolStart;
+  ulonglong objectData;
+  ulonglong nextObject;
+  ulonglong ringBuffer;
+  ulonglong *ringBufferEntry;
+  ulonglong processedCount;
+  ulonglong remainingBytes;
+  ulonglong newCapacity;
+  undefined4 *sourceBlock;
+  undefined4 *destBlock;
+  longlong processedItems;
+  longlong bytesToProcess;
+  ulonglong totalObjects;
+  bool isHeadNode;
+  ulonglong stackOffset1;
+  ulonglong stackOffset2;
   
-  uVar25 = *(ulonglong *)(param_1 + 0x20);
-  uVar13 = *(ulonglong *)(param_1 + 0x40);
-  uVar16 = *(ulonglong *)(param_1 + 0x70);
-  uVar12 = *(ulonglong *)(param_1 + 0x60);
-  uVar18 = 0;
-  uVar19 = param_3 + uVar25;
-  uStack_78 = uVar25 - 1 & 0xffffffffffffffe0;
-  lVar24 = (uVar19 - 1 & 0xffffffffffffffe0) - uStack_78;
-  uVar10 = uVar18;
-  uVar20 = uVar18;
-  uVar15 = uVar13;
-  if (lVar24 != 0) {
+  totalObjects = *(ulonglong *)(objectManager + 0x20);
+  poolStart = *(ulonglong *)(objectManager + 0x40);
+  ringBuffer = *(ulonglong *)(objectManager + 0x70);
+  objectData = *(ulonglong *)(objectManager + 0x60);
+  processedCount = 0;
+  newCapacity = objectCount + totalObjects;
+  stackOffset1 = totalObjects - 1 & 0xffffffffffffffe0;
+  bytesToProcess = (newCapacity - 1 & 0xffffffffffffffe0) - stackOffset1;
+  currentObject = processedCount;
+  nextObject = processedCount;
+  nextObject = poolStart;
+  if (bytesToProcess != 0) {
     do {
-      uStack_68 = uVar16;
-      uVar20 = uVar10;
-      if ((*(longlong *)(param_1 + 0x40) == 0) ||
-         (uVar15 = *(ulonglong *)(*(longlong *)(param_1 + 0x40) + 0x100), uVar14 = uVar18,
-         uVar15 == uVar10)) goto joined_r0x00018005f6ef;
+      stackOffset2 = ringBuffer;
+      nextObject = currentObject;
+      if ((*(longlong *)(objectManager + 0x40) == 0) ||
+         (nextObject = *(ulonglong *)(*(longlong *)(objectManager + 0x40) + 0x100), objectData = processedCount,
+         nextObject == currentObject)) goto joined_r0x00018005f6ef;
       do {
-        if (*(char *)(uVar15 + 0x110 + uVar14) == '\0') goto joined_r0x00018005f6ef;
-        uVar14 = uVar14 + 1;
-      } while (uVar14 < 0x20);
-      uStack_78 = uStack_78 + 0x20;
-      uVar20 = *(ulonglong *)(*(longlong *)(param_1 + 0x40) + 0x100);
-      *(ulonglong *)(param_1 + 0x40) = uVar20;
-      puVar17 = (ulonglong *)
-                (*(longlong *)(*(longlong *)(param_1 + 0x58) + 0x10) +
-                *(longlong *)(param_1 + 0x70) * 0x10);
-      *puVar17 = uStack_78;
-      puVar17[1] = *(ulonglong *)(param_1 + 0x40);
-      *(ulonglong *)(param_1 + 0x70) =
-           *(longlong *)(param_1 + 0x68) - 1U & *(longlong *)(param_1 + 0x70) + 1U;
-      if (uVar10 != 0) {
-        uVar20 = uVar10;
+        if (*(char *)(nextObject + 0x110 + objectData) == '\0') goto joined_r0x00018005f6ef;
+        objectData = objectData + 1;
+      } while (objectData < 0x20);
+      stackOffset1 = stackOffset1 + 0x20;
+      nextObject = *(ulonglong *)(*(longlong *)(objectManager + 0x40) + 0x100);
+      *(ulonglong *)(objectManager + 0x40) = nextObject;
+      ringBufferEntry = (ulonglong *)
+                (*(longlong *)(*(longlong *)(objectManager + 0x58) + 0x10) +
+                *(longlong *)(objectManager + 0x70) * 0x10);
+      *ringBufferEntry = stackOffset1;
+      ringBufferEntry[1] = *(ulonglong *)(objectManager + 0x40);
+      *(ulonglong *)(objectManager + 0x70) =
+           *(longlong *)(objectManager + 0x68) - 1U & *(longlong *)(objectManager + 0x70) + 1U;
+      if (currentObject != 0) {
+        nextObject = currentObject;
       }
-      lVar24 = lVar24 + -0x20;
-      uVar10 = uVar20;
-    } while (lVar24 != 0);
+      bytesToProcess = bytesToProcess + -0x20;
+      currentObject = nextObject;
+    } while (bytesToProcess != 0);
 LAB_18005f6a2:
-    lVar24 = 0;
-    uVar16 = uVar20;
+    bytesToProcess = 0;
+    ringBuffer = nextObject;
     while( true ) {
       do {
-        *(undefined1 *)(uVar16 + 0x110 + lVar24) = 0;
-        lVar24 = lVar24 + 1;
-      } while (lVar24 != 0x20);
-      uVar15 = *(ulonglong *)(param_1 + 0x40);
-      if (uVar16 == uVar15) break;
-      uVar16 = *(ulonglong *)(uVar16 + 0x100);
-      lVar24 = 0;
+        *(undefined1 *)(ringBuffer + 0x110 + bytesToProcess) = 0;
+        bytesToProcess = bytesToProcess + 1;
+      } while (bytesToProcess != 0x20);
+      nextObject = *(ulonglong *)(objectManager + 0x40);
+      if (ringBuffer == nextObject) break;
+      ringBuffer = *(ulonglong *)(ringBuffer + 0x100);
+      bytesToProcess = 0;
     }
   }
-  *(ulonglong *)(param_1 + 0x40) = uVar13;
-  if ((uVar25 & 0x1f) == 0) {
-    if (uVar20 != 0) {
-      uVar13 = uVar20;
+  *(ulonglong *)(objectManager + 0x40) = poolStart;
+  if ((totalObjects & 0x1f) == 0) {
+    if (nextObject != 0) {
+      poolStart = nextObject;
     }
-    *(ulonglong *)(param_1 + 0x40) = uVar13;
+    *(ulonglong *)(objectManager + 0x40) = poolStart;
   }
   while( true ) {
-    uVar16 = (uVar25 & 0xffffffffffffffe0) + 0x20;
-    uVar13 = uVar19;
-    if (uVar19 - uVar16 < 0x8000000000000001) {
-      uVar13 = uVar16;
+    ringBuffer = (totalObjects & 0xffffffffffffffe0) + 0x20;
+    poolStart = newCapacity;
+    if (newCapacity - ringBuffer < 0x8000000000000001) {
+      poolStart = ringBuffer;
     }
-    for (; uVar25 != uVar13; uVar25 = uVar25 + 1) {
-      plVar5 = (longlong *)*param_2;
-      *(longlong **)(*(longlong *)(param_1 + 0x40) + (ulonglong)((uint)uVar25 & 0x1f) * 8) = plVar5;
-      if (plVar5 != (longlong *)0x0) {
-        (**(code **)(*plVar5 + 0x28))();
+    for (; totalObjects != poolStart; totalObjects = totalObjects + 1) {
+      poolInfo = (longlong *)*objectArray;
+      *(longlong **)(*(longlong *)(objectManager + 0x40) + (ulonglong)((uint)totalObjects & 0x1f) * 8) = poolInfo;
+      if (poolInfo != (longlong *)0x0) {
+        (**(code **)(*poolInfo + 0x28))();
       }
-      param_2 = param_2 + 1;
+      objectArray = objectArray + 1;
     }
-    uVar13 = *(ulonglong *)(param_1 + 0x40);
-    if (uVar13 == uVar15) break;
-    *(undefined8 *)(param_1 + 0x40) = *(undefined8 *)(uVar13 + 0x100);
+    poolStart = *(ulonglong *)(objectManager + 0x40);
+    if (poolStart == nextObject) break;
+    *(undefined8 *)(objectManager + 0x40) = *(undefined8 *)(poolStart + 0x100);
   }
-  if (uVar20 != 0) {
-    uVar13 = *(longlong *)(param_1 + 0x68) - 1;
-    *(ulonglong *)(*(longlong *)(param_1 + 0x58) + 8) = *(longlong *)(param_1 + 0x70) - 1U & uVar13;
+  if (nextObject != 0) {
+    poolStart = *(longlong *)(objectManager + 0x68) - 1;
+    *(ulonglong *)(*(longlong *)(objectManager + 0x58) + 8) = *(longlong *)(objectManager + 0x70) - 1U & poolStart;
   }
-  *(ulonglong *)(param_1 + 0x20) = uVar19;
-  return CONCAT71((int7)(uVar13 >> 8),1);
+  *(ulonglong *)(objectManager + 0x20) = newCapacity;
+  return CONCAT71((int7)(poolStart >> 8),1);
 joined_r0x00018005f6ef:
-  if (lVar24 == 0) goto LAB_18005f6a2;
-  lVar24 = lVar24 + -0x20;
-  uStack_78 = uStack_78 + 0x20;
-  uVar15 = (*(longlong *)(param_1 + 0x28) - uStack_78) - 0x20;
-  plVar5 = (longlong *)(param_1 + 0x68);
-  if ((*(longlong *)(param_1 + 0x80) == 0) || (*(longlong *)(param_1 + 0x60) == *plVar5)) {
-    if (0x8000000000000000 < uVar15) {
-      lVar11 = *plVar5;
-      *plVar5 = lVar11 * 2;
-      plVar9 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar11 * 0x20 + 0x27,10);
-      if (plVar9 != (longlong *)0x0) {
-        puVar22 = (undefined4 *)((ulonglong)(-(int)(plVar9 + 4) & 7) + (longlong)(plVar9 + 4));
-        lVar23 = 0;
-        if (*(longlong *)(param_1 + 0x60) != 0) {
-          uVar16 = *(longlong *)(param_1 + 0x70) - *(longlong *)(param_1 + 0x60) & lVar11 - 1U;
-          puVar21 = puVar22;
+  if (bytesToProcess == 0) goto LAB_18005f6a2;
+  bytesToProcess = bytesToProcess + -0x20;
+  stackOffset1 = stackOffset1 + 0x20;
+  nextObject = (*(longlong *)(objectManager + 0x28) - stackOffset1) - 0x20;
+  poolInfo = (longlong *)(objectManager + 0x68);
+  if ((*(longlong *)(objectManager + 0x80) == 0) || (*(longlong *)(objectManager + 0x60) == *poolInfo)) {
+    if (0x8000000000000000 < nextObject) {
+      capacity = *poolInfo;
+      *poolInfo = capacity * 2;
+      nextPool = (longlong *)AllocateMemoryFromPool(_DAT_180c8ed18,capacity * 0x20 + 0x27,10);
+      if (nextPool != (longlong *)0x0) {
+        destBlock = (undefined4 *)((ulonglong)(-(int)(nextPool + 4) & 7) + (longlong)(nextPool + 4));
+        processedItems = 0;
+        if (*(longlong *)(objectManager + 0x60) != 0) {
+          ringBuffer = *(longlong *)(objectManager + 0x70) - *(longlong *)(objectManager + 0x60) & capacity - 1U;
+          sourceBlock = destBlock;
           do {
-            puVar2 = (undefined4 *)(*(longlong *)(param_1 + 0x78) + uVar16 * 0x10);
-            uVar6 = puVar2[1];
-            uVar7 = puVar2[2];
-            uVar8 = puVar2[3];
-            *puVar21 = *puVar2;
-            puVar21[1] = uVar6;
-            puVar21[2] = uVar7;
-            puVar21[3] = uVar8;
-            lVar23 = lVar23 + 1;
-            puVar21 = puVar21 + 4;
-            uVar16 = uVar16 + 1 & lVar11 - 1U;
-          } while (uVar16 != *(ulonglong *)(param_1 + 0x70));
+            blockData = (undefined4 *)(*(longlong *)(objectManager + 0x78) + ringBuffer * 0x10);
+            data1 = blockData[1];
+            data2 = blockData[2];
+            data3 = blockData[3];
+            *sourceBlock = *blockData;
+            sourceBlock[1] = data1;
+            sourceBlock[2] = data2;
+            sourceBlock[3] = data3;
+            processedItems = processedItems + 1;
+            sourceBlock = sourceBlock + 4;
+            ringBuffer = ringBuffer + 1 & capacity - 1U;
+          } while (ringBuffer != *(ulonglong *)(objectManager + 0x70));
         }
-        *plVar9 = *plVar5;
-        plVar9[1] = uVar12 - 1;
-        plVar9[2] = (longlong)puVar22;
-        plVar9[3] = *(longlong *)(param_1 + 0x80);
-        *(longlong *)(param_1 + 0x70) = lVar23;
-        *(undefined4 **)(param_1 + 0x78) = puVar22;
-        *(longlong **)(param_1 + 0x80) = plVar9;
-        *(longlong **)(param_1 + 0x58) = plVar9;
-        uVar16 = uVar12;
-        uStack_68 = uVar12;
+        *nextPool = *poolInfo;
+        nextPool[1] = objectData - 1;
+        nextPool[2] = (longlong)destBlock;
+        nextPool[3] = *(longlong *)(objectManager + 0x80);
+        *(longlong *)(objectManager + 0x70) = processedItems;
+        *(undefined4 **)(objectManager + 0x78) = destBlock;
+        *(longlong **)(objectManager + 0x80) = nextPool;
+        *(longlong **)(objectManager + 0x58) = nextPool;
+        ringBuffer = objectData;
+        stackOffset2 = objectData;
         goto LAB_18005f818;
       }
-      *(ulonglong *)(param_1 + 0x68) = *(ulonglong *)(param_1 + 0x68) >> 1;
-      uVar16 = uStack_68;
+      *(ulonglong *)(objectManager + 0x68) = *(ulonglong *)(objectManager + 0x68) >> 1;
+      ringBuffer = stackOffset2;
     }
 LAB_18005fa1c:
-    *(ulonglong *)(param_1 + 0x70) = uVar16;
-    *(ulonglong *)(param_1 + 0x60) = uVar12;
-    if (uVar13 == 0) {
-      uVar13 = uVar20;
+    *(ulonglong *)(objectManager + 0x70) = ringBuffer;
+    *(ulonglong *)(objectManager + 0x60) = objectData;
+    if (poolStart == 0) {
+      poolStart = nextObject;
     }
-    *(ulonglong *)(param_1 + 0x40) = uVar13;
+    *(ulonglong *)(objectManager + 0x40) = poolStart;
 LAB_18005fa01:
-    return uVar12 & 0xffffffffffffff00;
+    return objectData & 0xffffffffffffff00;
   }
-  if (uVar15 < 0x8000000000000001) goto LAB_18005fa1c;
+  if (nextObject < 0x8000000000000001) goto LAB_18005fa1c;
 LAB_18005f818:
-  lVar11 = *(longlong *)(param_1 + 0x50);
-  if (*(ulonglong *)(lVar11 + 0x20) <= *(ulonglong *)(lVar11 + 0x10)) {
+  capacity = *(longlong *)(objectManager + 0x50);
+  if (*(ulonglong *)(capacity + 0x20) <= *(ulonglong *)(capacity + 0x10)) {
 LAB_18005f848:
-    uVar10 = *(ulonglong *)(lVar11 + 0x28);
+    currentObject = *(ulonglong *)(capacity + 0x28);
 LAB_18005f84c:
-    uVar15 = uVar10;
-    if (uVar15 != 0) {
-      puVar1 = (uint *)(uVar15 + 0x130);
-      uVar4 = *puVar1;
-      if ((uVar4 & 0x7fffffff) == 0) {
+    nextObject = currentObject;
+    if (nextObject != 0) {
+      referenceCount = (uint *)(nextObject + 0x130);
+      newRefCount = *referenceCount;
+      if ((newRefCount & 0x7fffffff) == 0) {
 LAB_18005f8c7:
-        uVar10 = *(ulonglong *)(lVar11 + 0x28);
+        currentObject = *(ulonglong *)(capacity + 0x28);
       }
       else {
         LOCK();
-        uVar3 = *puVar1;
-        if (uVar4 == uVar3) {
-          *puVar1 = uVar4 + 1;
+        currentRefCount = *referenceCount;
+        if (newRefCount == currentRefCount) {
+          *referenceCount = newRefCount + 1;
         }
         UNLOCK();
-        if (uVar4 != uVar3) goto LAB_18005f8c7;
+        if (newRefCount != currentRefCount) goto LAB_18005f8c7;
         LOCK();
-        uVar10 = *(ulonglong *)(lVar11 + 0x28);
-        bVar26 = uVar15 == uVar10;
-        if (bVar26) {
-          *(ulonglong *)(lVar11 + 0x28) = *(ulonglong *)(uVar15 + 0x138);
-          uVar10 = uVar15;
+        currentObject = *(ulonglong *)(capacity + 0x28);
+        isHeadNode = nextObject == currentObject;
+        if (isHeadNode) {
+          *(ulonglong *)(capacity + 0x28) = *(ulonglong *)(nextObject + 0x138);
+          currentObject = nextObject;
         }
         UNLOCK();
-        if (bVar26) {
+        if (isHeadNode) {
           LOCK();
-          *puVar1 = *puVar1 - 2;
+          *referenceCount = *referenceCount - 2;
           UNLOCK();
-          if (uVar15 != 0) goto LAB_18005f92b;
+          if (nextObject != 0) goto LAB_18005f92b;
           goto LAB_18005f8e3;
         }
         LOCK();
-        uVar4 = *puVar1;
-        *puVar1 = *puVar1 - 1;
+        newRefCount = *referenceCount;
+        *referenceCount = *referenceCount - 1;
         UNLOCK();
-        if (uVar4 == 0x80000001) {
-          uVar18 = *(ulonglong *)(lVar11 + 0x28);
+        if (newRefCount == 0x80000001) {
+          processedCount = *(ulonglong *)(capacity + 0x28);
           do {
-            *(ulonglong *)(uVar15 + 0x138) = uVar18;
-            *puVar1 = 1;
+            *(ulonglong *)(nextObject + 0x138) = processedCount;
+            *referenceCount = 1;
             LOCK();
-            uVar14 = *(ulonglong *)(lVar11 + 0x28);
-            bVar26 = uVar18 == uVar14;
-            if (bVar26) {
-              *(ulonglong *)(lVar11 + 0x28) = uVar15;
-              uVar14 = uVar18;
+            objectData = *(ulonglong *)(capacity + 0x28);
+            isHeadNode = processedCount == objectData;
+            if (isHeadNode) {
+              *(ulonglong *)(capacity + 0x28) = nextObject;
+              objectData = processedCount;
             }
             UNLOCK();
-            if (bVar26) break;
+            if (isHeadNode) break;
             LOCK();
-            uVar4 = *puVar1;
-            *puVar1 = *puVar1 + 0x7fffffff;
+            newRefCount = *referenceCount;
+            *referenceCount = *referenceCount + 0x7fffffff;
             UNLOCK();
-            uVar18 = uVar14;
-          } while (uVar4 == 1);
+            processedCount = objectData;
+          } while (newRefCount == 1);
         }
       }
       goto LAB_18005f84c;
     }
 LAB_18005f8e3:
-    uVar15 = FUN_18062b420(_DAT_180c8ed18,0x148,CONCAT71((int7)(uVar15 >> 8),10));
-    if (uVar15 != 0) {
-      *(undefined8 *)(uVar15 + 0x100) = 0;
-      *(undefined8 *)(uVar15 + 0x108) = 0;
-      *(undefined4 *)(uVar15 + 0x130) = 0;
-      *(undefined8 *)(uVar15 + 0x138) = 0;
-      *(undefined2 *)(uVar15 + 0x140) = 0x100;
+    nextObject = AllocateMemoryFromPool(_DAT_180c8ed18,0x148,CONCAT71((int7)(nextObject >> 8),10));
+    if (nextObject != 0) {
+      *(undefined8 *)(nextObject + 0x100) = 0;
+      *(undefined8 *)(nextObject + 0x108) = 0;
+      *(undefined4 *)(nextObject + 0x130) = 0;
+      *(undefined8 *)(nextObject + 0x138) = 0;
+      *(undefined2 *)(nextObject + 0x140) = 0x100;
       goto LAB_18005f92b;
     }
 LAB_18005f9e1:
-    *(ulonglong *)(param_1 + 0x70) = uVar16;
-    *(ulonglong *)(param_1 + 0x60) = uVar12;
-    uVar12 = uVar13;
-    if (uVar13 == 0) {
-      uVar12 = uVar20;
+    *(ulonglong *)(objectManager + 0x70) = ringBuffer;
+    *(ulonglong *)(objectManager + 0x60) = objectData;
+    objectData = poolStart;
+    if (poolStart == 0) {
+      objectData = nextObject;
     }
-    *(ulonglong *)(param_1 + 0x40) = uVar12;
+    *(ulonglong *)(objectManager + 0x40) = objectData;
     goto LAB_18005fa01;
   }
   LOCK();
-  puVar17 = (ulonglong *)(lVar11 + 0x10);
-  uVar15 = *puVar17;
-  *puVar17 = *puVar17 + 1;
+  ringBufferEntry = (ulonglong *)(capacity + 0x10);
+  nextObject = *ringBufferEntry;
+  *ringBufferEntry = *ringBufferEntry + 1;
   UNLOCK();
-  if ((*(ulonglong *)(lVar11 + 0x20) <= uVar15) ||
-     (uVar15 = uVar15 * 0x148 + *(longlong *)(lVar11 + 0x18), uVar15 == 0)) goto LAB_18005f848;
+  if ((*(ulonglong *)(capacity + 0x20) <= nextObject) ||
+     (nextObject = nextObject * 0x148 + *(longlong *)(capacity + 0x18), nextObject == 0)) goto LAB_18005f848;
 LAB_18005f92b:
-  lVar11 = 0;
-  if (uVar15 == 0) goto LAB_18005f9e1;
+  capacity = 0;
+  if (nextObject == 0) goto LAB_18005f9e1;
   do {
-    *(undefined1 *)(uVar15 + 0x110 + lVar11) = 1;
-    lVar11 = lVar11 + 1;
-  } while (lVar11 != 0x20);
-  if (*(longlong *)(param_1 + 0x40) == 0) {
-    *(ulonglong *)(uVar15 + 0x100) = uVar15;
+    *(undefined1 *)(nextObject + 0x110 + capacity) = 1;
+    capacity = capacity + 1;
+  } while (capacity != 0x20);
+  if (*(longlong *)(objectManager + 0x40) == 0) {
+    *(ulonglong *)(nextObject + 0x100) = nextObject;
   }
   else {
-    *(undefined8 *)(uVar15 + 0x100) = *(undefined8 *)(*(longlong *)(param_1 + 0x40) + 0x100);
-    *(ulonglong *)(*(longlong *)(param_1 + 0x40) + 0x100) = uVar15;
+    *(undefined8 *)(nextObject + 0x100) = *(undefined8 *)(*(longlong *)(objectManager + 0x40) + 0x100);
+    *(ulonglong *)(*(longlong *)(objectManager + 0x40) + 0x100) = nextObject;
   }
-  *(ulonglong *)(param_1 + 0x40) = uVar15;
-  if (uVar20 != 0) {
-    uVar15 = uVar20;
+  *(ulonglong *)(objectManager + 0x40) = nextObject;
+  if (nextObject != 0) {
+    nextObject = nextObject;
   }
-  *(longlong *)(param_1 + 0x60) = *(longlong *)(param_1 + 0x60) + 1;
-  puVar17 = (ulonglong *)
-            (*(longlong *)(*(longlong *)(param_1 + 0x58) + 0x10) +
-            *(longlong *)(param_1 + 0x70) * 0x10);
-  *puVar17 = uStack_78;
-  puVar17[1] = *(ulonglong *)(param_1 + 0x40);
-  *(ulonglong *)(param_1 + 0x70) = *(longlong *)(param_1 + 0x70) + 1U & *plVar5 - 1U;
-  uVar20 = uVar15;
+  *(longlong *)(objectManager + 0x60) = *(longlong *)(objectManager + 0x60) + 1;
+  ringBufferEntry = (ulonglong *)
+            (*(longlong *)(*(longlong *)(objectManager + 0x58) + 0x10) +
+            *(longlong *)(objectManager + 0x70) * 0x10);
+  *ringBufferEntry = stackOffset1;
+  ringBufferEntry[1] = *(ulonglong *)(objectManager + 0x40);
+  *(ulonglong *)(objectManager + 0x70) = *(longlong *)(objectManager + 0x70) + 1U & *poolInfo - 1U;
+  nextObject = nextObject;
   goto joined_r0x00018005f6ef;
 }
 
