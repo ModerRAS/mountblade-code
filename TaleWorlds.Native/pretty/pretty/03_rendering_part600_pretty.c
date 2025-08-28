@@ -76,7 +76,7 @@ SystemHandle RenderingSystemInitializer(uint64_t param1, uint64_t param2)
     }
     
     // 激活系统
-    local_c = RenderingFlagSetter(handle, SYSTEM_FLAG_ENABLED);
+    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
     if (local_c != SYSTEM_SUCCESS) {
         return (SystemHandle)SYSTEM_ERROR_STATE;
     }
@@ -105,19 +105,19 @@ int RenderingSystemShutdown(SystemHandle handle)
     }
     
     // 停止渲染系统服务
-    status = RenderingServiceStopper(handle);
+    status = FUN_00000003(handle);
     if (status != SYSTEM_SUCCESS) {
         return status;
     }
     
     // 释放渲染资源
-    status = RenderingResourceReleaser(handle);
+    status = FUN_00000004(handle);
     if (status != SYSTEM_SUCCESS) {
         return status;
     }
     
     // 清理渲染状态
-    status = RenderingStateCleaner(handle);
+    status = FUN_00000005(handle);
     return status;
 }
 
@@ -136,7 +136,7 @@ int RenderingSystemGetState(SystemHandle handle)
         return SYSTEM_ERROR_INVALID;
     }
     
-    return RenderingStateQuerier(handle);
+    return FUN_00000006(handle);
 }
 
 //==============================================================================
