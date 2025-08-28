@@ -492,7 +492,7 @@ void SystemEventHandler(int64_t event_context,int64_t event_data)
       puStack_28 = &system_event_callback_ptr;
       uStack_30 = 0x191;
       (**(code **)**(uint64_t **)(param_1 + 0x48))
-                (*(uint64_t **)(param_1 + 0x48),5,&unknown_var_3576_ptr,&puStack_38);
+                (*(uint64_t **)(param_1 + 0x48),5,&system_event_config_ptr,&puStack_38);
     }
     plVar3 = *(int64_t **)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x8400);
     pcVar4 = *(code **)(*plVar3 + 0x78);
@@ -515,8 +515,9 @@ void SystemEventHandler(int64_t event_context,int64_t event_data)
 
 
 
-// 函数: void FUN_180175572(void)
-void FUN_180175572(void)
+// 函数: void SystemEventDispatcher(void)
+// 功能: 系统事件分发器，负责事件的异步分发和处理
+void SystemEventDispatcher(void)
 
 {
   int64_t *plVar1;
@@ -545,11 +546,11 @@ void FUN_180175572(void)
                      *(int16_t *)(*(int64_t *)(unaff_R14 + 0x28) + 0x32c),
                      *(int16_t *)(*(int64_t *)(unaff_R14 + 0x28) + 0x32e),in_stack_00000058);
   if (iVar3 != 0) {
-    in_stack_00000050 = &unknown_var_3640_ptr;
+    in_stack_00000050 = &system_event_data_ptr;
     in_stack_00000060 = &unknown_var_3520_ptr;
     in_stack_00000058 = 0x191;
     (**(code **)**(uint64_t **)(unaff_RSI + 0x48))
-              (*(uint64_t **)(unaff_RSI + 0x48),5,&unknown_var_3576_ptr,&stack0x00000050);
+              (*(uint64_t **)(unaff_RSI + 0x48),5,&system_event_config_ptr,&stack0x00000050);
   }
   plVar1 = *(int64_t **)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x8400);
   pcVar2 = *(code **)(*plVar1 + 0x78);

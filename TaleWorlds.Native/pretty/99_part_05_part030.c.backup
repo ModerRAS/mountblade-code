@@ -2,8 +2,8 @@
 
 // 99_part_05_part030.c - 6 个函数
 
-// 函数: void matrix_transform_processor(int64_t param_1)
-void matrix_transform_processor(int64_t param_1)
+// 函数: void FUN_1802eab80(int64_t param_1)
+void FUN_1802eab80(int64_t param_1)
 
 {
   float fVar1;
@@ -87,7 +87,7 @@ void matrix_transform_processor(int64_t param_1)
       *(float *)(lVar13 + 0xa4) = fVar6 * fVar19 + fVar11 * fVar15 + fVar12 * fVar23 + fVar27;
       *(float *)(lVar13 + 0xa8) = fVar6 * fVar20 + fVar11 * fVar16 + fVar12 * fVar24 + fVar28;
       *(float *)(lVar13 + 0xac) = fVar6 * fVar21 + fVar11 * fVar17 + fVar12 * fVar25 + fVar29;
-      matrix_transform_processor();
+      FUN_1802eab80();
       lVar31 = lVar31 + 1;
     } while (lVar31 < iVar30);
   }
@@ -99,8 +99,8 @@ void matrix_transform_processor(int64_t param_1)
 
 
 
-// 函数: void matrix_transform_processor_alt(void)
-void matrix_transform_processor_alt(void)
+// 函数: void FUN_1802eabaa(void)
+void FUN_1802eabaa(void)
 
 {
   float fVar1;
@@ -183,7 +183,7 @@ void matrix_transform_processor_alt(void)
     *(float *)(lVar13 + 0xa4) = fVar6 * fVar19 + fVar11 * fVar15 + fVar12 * fVar23 + fVar27;
     *(float *)(lVar13 + 0xa8) = fVar6 * fVar20 + fVar11 * fVar16 + fVar12 * fVar24 + fVar28;
     *(float *)(lVar13 + 0xac) = fVar6 * fVar21 + fVar11 * fVar17 + fVar12 * fVar25 + fVar29;
-    matrix_transform_processor();
+    FUN_1802eab80();
     lVar30 = lVar30 + 1;
   } while (lVar30 < unaff_RDI);
   return;
@@ -194,8 +194,8 @@ void matrix_transform_processor_alt(void)
 
 
 
-// 函数: void matrix_transform_cleanup(void)
-void matrix_transform_cleanup(void)
+// 函数: void FUN_1802eacd5(void)
+void FUN_1802eacd5(void)
 
 {
   return;
@@ -206,8 +206,8 @@ void matrix_transform_cleanup(void)
 
 
 
-// 函数: void conditional_matrix_processor(int64_t param_1)
-void conditional_matrix_processor(int64_t param_1)
+// 函数: void FUN_1802eace0(int64_t param_1)
+void FUN_1802eace0(int64_t param_1)
 
 {
   float fVar1;
@@ -246,7 +246,7 @@ void conditional_matrix_processor(int64_t param_1)
   
   *(byte *)(param_1 + 0x2e8) = *(byte *)(param_1 + 0x2e8) | 0x10;
   if (((*(uint *)(param_1 + 0x2ac) & 0x10000000) == 0) && (*(int64_t *)(param_1 + 0x20) != 0)) {
-    system_matrix_initializer(*(int64_t *)(param_1 + 0x20),param_1);
+    FUN_1801b01f0(*(int64_t *)(param_1 + 0x20),param_1);
   }
   iVar32 = (int)(*(int64_t *)(param_1 + 0x1c8) - *(int64_t *)(param_1 + 0x1c0) >> 3);
   if (0 < iVar32) {
@@ -308,7 +308,7 @@ void conditional_matrix_processor(int64_t param_1)
         *(float *)(lVar13 + 0xa4) = fVar6 * fVar19 + fVar11 * fVar15 + fVar12 * fVar23 + fVar27;
         *(float *)(lVar13 + 0xa8) = fVar6 * fVar20 + fVar11 * fVar16 + fVar12 * fVar24 + fVar28;
         *(float *)(lVar13 + 0xac) = fVar6 * fVar21 + fVar11 * fVar17 + fVar12 * fVar25 + fVar29;
-        conditional_matrix_processor(lVar13);
+        FUN_1802eace0(lVar13);
       }
       lVar33 = lVar33 + 1;
     } while (lVar33 < iVar32);
@@ -321,8 +321,8 @@ void conditional_matrix_processor(int64_t param_1)
 
 
 
-// 函数: void conditional_matrix_processor_alt(void)
-void conditional_matrix_processor_alt(void)
+// 函数: void FUN_1802ead2e(void)
+void FUN_1802ead2e(void)
 
 {
   float fVar1;
@@ -421,7 +421,7 @@ LAB_1802ead98:
       *(float *)(lVar13 + 0xa4) = fVar6 * fVar19 + fVar11 * fVar15 + fVar12 * fVar23 + fVar27;
       *(float *)(lVar13 + 0xa8) = fVar6 * fVar20 + fVar11 * fVar16 + fVar12 * fVar24 + fVar28;
       *(float *)(lVar13 + 0xac) = fVar6 * fVar21 + fVar11 * fVar17 + fVar12 * fVar25 + fVar29;
-      conditional_matrix_processor(lVar13);
+      FUN_1802eace0(lVar13);
     }
     lVar32 = lVar32 + 1;
     if (unaff_RBP <= lVar32) {
@@ -435,8 +435,8 @@ LAB_1802ead98:
 
 
 
-// 函数: void matrix_transform_finalizer(void)
-void matrix_transform_finalizer(void)
+// 函数: void FUN_1802eaeb3(void)
+void FUN_1802eaeb3(void)
 
 {
   return;
