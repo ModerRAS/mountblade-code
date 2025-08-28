@@ -996,7 +996,7 @@ void FUN_18063be90(uint64_t param_1,longlong param_2,char param_3,float param_4)
   float fVar3;
   float fVar4;
   float fVar5;
-  undefined3 uVar6;
+  uint32_t uVar6;
   float *in_RAX;
   int iVar7;
   int iVar8;
@@ -1028,7 +1028,7 @@ void FUN_18063be90(uint64_t param_1,longlong param_2,char param_3,float param_4)
   do {
     fVar10 = (unaff_XMM6_Da - in_RAX[-5]) * in_RAX[-1] + (unaff_XMM7_Da - in_RAX[-6]) * in_RAX[-2] +
              (in_XMM5_Da - in_RAX[-4]) * *in_RAX;
-    uVar6 = (undefined3)((uint)unaff_EDI >> 8);
+    uVar6 = (uint32_t)((uint)unaff_EDI >> 8);
     iVar7 = unaff_EDI;
     if (in_XMM4_Da <= fVar10) {
       iVar7 = CONCAT31(uVar6,fVar10 < param_4) + 1;

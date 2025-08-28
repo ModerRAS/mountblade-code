@@ -10,7 +10,7 @@ void FUN_18089a9f0(longlong param_1,int *param_2)
   code *pcVar2;
   char cVar3;
   int32_t in_EAX;
-  undefined3 uVar6;
+  uint32_t uVar6;
   int iVar5;
   int32_t in_register_00000004;
   uint unaff_EBP;
@@ -18,7 +18,7 @@ void FUN_18089a9f0(longlong param_1,int *param_2)
   int *piStack_8;
   int32_t uVar4;
   
-  uVar6 = (undefined3)((uint)in_EAX >> 8);
+  uVar6 = (uint32_t)((uint)in_EAX >> 8);
   cVar3 = (char)in_EAX + -0x57 + in_CF;
   uVar4 = CONCAT31(uVar6,cVar3);
   *(int32_t *)CONCAT44(in_register_00000004,uVar4) = uVar4;

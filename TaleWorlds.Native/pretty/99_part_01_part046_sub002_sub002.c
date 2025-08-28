@@ -1296,7 +1296,7 @@ LAB_1800d15de:
           *(float *)(lVar16 + 0xcc) = (float)(uVar10 >> 0x18) * 0.003921569;
           FUN_18029fc10(fVar37,*(uint64_t *)(lVar23 + 0x1ca8),
                         *(longlong *)(lVar23 + 0x1cd8) + 0x80,0x80);
-          uStack_8e4 = CONCAT13(4,(undefined3)uStack_8e4);
+          uStack_8e4 = CONCAT13(4,(uint32_t)uStack_8e4);
           FUN_18029cdd0(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),&uStack_8f8);
           lVar16 = _DAT_180c86938;
           lVar23 = strnlen(&UNK_180a03c10,0x3f);
@@ -1797,7 +1797,7 @@ LAB_1800d32fb:
     uVar14 = FUN_180299eb0(uVar14,param_2,uVar15,&cStack_998);
     uStack_8f8 = (int32_t)uVar14;
     uStack_8f4 = (int32_t)((ulonglong)uVar14 >> 0x20);
-    uStack_8e4 = CONCAT13(4,(undefined3)uStack_8e4);
+    uStack_8e4 = CONCAT13(4,(uint32_t)uStack_8e4);
     FUN_18029d000(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),4);
     FUN_18029cdd0(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),&uStack_8f8);
     uVar14 = *(uint64_t *)(_DAT_180c86938 + 0x1cd8);

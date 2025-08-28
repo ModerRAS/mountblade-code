@@ -586,7 +586,7 @@ FUN_1806ed9d0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,longlong *para
   puVar2 = (int32_t *)(**(code **)(*(longlong *)param_5[1] + 0x10))();
   uStack_158 = *puVar2;
   uStack_154 = puVar2[1];
-  uStack_150 = CONCAT17(uStack_150._7_1_,*(undefined7 *)(puVar2 + 2));
+  uStack_150 = CONCAT17(uStack_150._7_1_,*(uint8_t *)(puVar2 + 2));
   uStack_148 = puVar2[4];
   uStack_144 = puVar2[5];
   uStack_140 = puVar2[6];
@@ -897,7 +897,7 @@ FUN_1806ee180(uint64_t param_1,uint64_t *param_2,uint64_t param_3,longlong *para
   puVar2 = (int32_t *)(**(code **)(*(longlong *)param_5[1] + 0x10))();
   uStack_158 = *puVar2;
   uStack_154 = puVar2[1];
-  uStack_150 = CONCAT17(uStack_150._7_1_,*(undefined7 *)(puVar2 + 2));
+  uStack_150 = CONCAT17(uStack_150._7_1_,*(uint8_t *)(puVar2 + 2));
   uStack_148 = puVar2[4];
   uStack_144 = puVar2[5];
   uStack_140 = puVar2[6];

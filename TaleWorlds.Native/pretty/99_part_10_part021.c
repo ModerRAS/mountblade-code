@@ -460,7 +460,7 @@ FUN_1806b2770(uint64_t *param_1,uint64_t param_2,uint64_t param_3,int param_4,in
   uint64_t *puVar2;
   int32_t *puVar3;
   int16_t uVar4;
-  undefined3 uVar5;
+  uint32_t uVar5;
   int32_t uVar6;
   uint64_t uVar7;
   int16_t *puVar8;
@@ -559,7 +559,7 @@ FUN_1806b2770(uint64_t *param_1,uint64_t param_2,uint64_t param_3,int param_4,in
   if (*param_5 != 0) {
     puVar10 = puVar9 + 1;
     uVar4 = *(int16_t *)puVar10;
-    uVar5 = *(undefined3 *)puVar10;
+    uVar5 = *(uint32_t *)puVar10;
     uVar7 = *puVar9;
     _lock_MutexImpl_shdfnd_physx__QEAAXXZ(param_1[0x1b]);
     auStackX_10[0] = uVar4;

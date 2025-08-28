@@ -72,7 +72,7 @@ void FUN_1800fe720(void)
   int8_t auVar69 [15];
   int8_t auVar70 [11];
   int8_t auVar71 [13];
-  undefined3 uVar72;
+  uint32_t uVar72;
   int8_t auVar73 [15];
   int8_t auVar74 [15];
   unkbyte9 Var75;

@@ -802,8 +802,8 @@ void FUN_1806393b0(uint64_t param_1,longlong *param_2,ulonglong param_3)
 
 
 
-// 函数: void FUN_180639630(undefined6 *param_1,longlong *param_2,char param_3,char param_4)
-void FUN_180639630(undefined6 *param_1,longlong *param_2,char param_3,char param_4)
+// 函数: void FUN_180639630(uint8_t *param_1,longlong *param_2,char param_3,char param_4)
+void FUN_180639630(uint8_t *param_1,longlong *param_2,char param_3,char param_4)
 
 {
   uint64_t uVar1;
@@ -841,7 +841,7 @@ void FUN_180639630(undefined6 *param_1,longlong *param_2,char param_3,char param
   uStack_c8 = *(uint *)((longlong)param_1 + 4);
   uStack_b8 = *(uint *)(param_1 + 1);
   uStack_98 = *(uint *)((longlong)param_1 + 0xc);
-  uVar3 = *(undefined5 *)(param_1 + 1);
+  uVar3 = *(uint8_t *)(param_1 + 1);
   uStack_74 = (int16_t)uStack_c8;
   uStack_72 = (ushort)(uStack_c8 >> 0x10);
   uStack_70 = (int8_t)uStack_b8;

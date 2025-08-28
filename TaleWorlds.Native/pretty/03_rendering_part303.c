@@ -154,7 +154,7 @@ void FUN_18042c300(longlong param_1,uint *param_2,int *param_3,int32_t *param_4)
                     bVar13 = **(byte **)(param_1 + 0xb8);
                     *(byte **)(param_1 + 0xb8) = *(byte **)(param_1 + 0xb8) + 1;
                   }
-                  uStack_478 = CONCAT13(bVar13,(undefined3)uStack_478);
+                  uStack_478 = CONCAT13(bVar13,(uint32_t)uStack_478);
                   FUN_18042c1d0(lVar7,&uStack_478,3);
                   iVar5 = 0;
                   if (lVar9 != 0) {
