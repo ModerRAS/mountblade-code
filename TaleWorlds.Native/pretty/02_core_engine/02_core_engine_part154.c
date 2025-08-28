@@ -460,7 +460,7 @@ uint64_t *create_default_string_hash_entry(void)
   entry_ptr = (uint64_t *)((longlong)current_count * 0x38 + *(longlong *)(global_base + 0x2e30));
   
   // 存储默认字符串指针
-  new_array = FUN_1801210b0();
+  new_array = StringStorage_CreateCopy();
   *entry_ptr = new_array;
   
   // 计算默认字符串的哈希值
