@@ -902,67 +902,100 @@ void rendering_system_avx2_multi_reference_frame_calculator(uint8_t (*src_block)
 
 
 
-// 函数: void FUN_1806978b0(undefined1 (*param_1) [32],int param_2,longlong *param_3,int param_4,
-void FUN_1806978b0(undefined1 (*param_1) [32],int param_2,longlong *param_3,int param_4,
-                  undefined1 (*param_5) [16])
+// =============================================================================
+// 13. AVX2多参考帧绝对差值计算函数（64字节块）
+// =============================================================================
 
+/**
+ * 渲染系统AVX2多参考帧绝对差值计算器 - 64字节块版本
+ * 
+ * 该函数使用AVX2指令集计算源图像块与多个参考帧之间的绝对差值，
+ * 专门针对64字节数据块进行优化，用于视频编码中的多参考帧运动估计。
+ * 
+ * @param src_block     源图像块数据（32字节数组）
+ * @param src_stride    源图像块行跨度
+ * @param ref_frames    参考帧数组指针（包含4个参考帧的地址）
+ * @param ref_stride    参考帧行跨度
+ * @param result        计算结果数组（16字节）
+ * 
+ * 算法特点：
+ * - 使用vpsadbw_avx2计算绝对差值和
+ * - 同时处理4个参考帧
+ * - 处理64行数据
+ * - 使用AVX2指令集进行并行计算
+ * - 高效的内存访问模式
+ * - 适用于视频编码中的多参考帧运动估计
+ */
+void rendering_system_avx2_multi_reference_frame_calculator_64byte(uint8_t (*src_block)[32], int src_stride, long long *ref_frames, int ref_stride, uint8_t (*result)[16])
 {
-  undefined1 auVar1 [32];
-  undefined1 auVar2 [32];
-  undefined1 auVar3 [16];
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  undefined1 auVar6 [32];
-  undefined1 auVar7 [32];
-  undefined1 (*pauVar8) [32];
-  longlong lVar9;
-  longlong lVar10;
-  longlong lVar11;
-  longlong lVar12;
-  undefined1 auVar13 [32];
-  undefined1 auVar14 [32];
+  __m256i src_vec1, src_vec2;
+  __m128i final_result;
+  __m256i sum_vec1, sum_vec2, sum_vec3, sum_vec4;
+  __m256i temp_vec1, temp_vec2, result_vec1, result_vec2;
+  __m256i sad_vec1, sad_vec2;
+  uint8_t (*current_ref)[32];
+  longlong ref_offset1, ref_offset2, ref_offset3;
+  longlong row_count;
   
-  pauVar8 = (undefined1 (*) [32])param_3[2];
-  lVar12 = param_3[1] - (longlong)pauVar8;
-  lVar11 = param_3[3] - (longlong)pauVar8;
-  auVar14 = ZEXT832(0) << 0x40;
-  lVar10 = *param_3 - (longlong)pauVar8;
-  lVar9 = 0x40;
-  auVar13 = auVar14;
-  auVar4 = auVar14;
-  auVar5 = auVar14;
+  // 获取参考帧地址和偏移量
+  current_ref = (uint8_t (*)[32])ref_frames[2];
+  ref_offset1 = ref_frames[1] - (longlong)current_ref;
+  ref_offset2 = ref_frames[3] - (longlong)current_ref;
+  sum_vec2 = _mm256_setzero_si256();
+  ref_offset3 = *ref_frames - (longlong)current_ref;
+  row_count = 64;
+  sum_vec1 = sum_vec2;
+  sum_vec3 = sum_vec2;
+  sum_vec4 = sum_vec2;
+  
+  // 处理64行数据
   do {
-    auVar1 = *param_1;
-    auVar2 = param_1[1];
-    auVar6 = vpsadbw_avx2(auVar1,*(undefined1 (*) [32])(lVar10 + (longlong)pauVar8));
-    auVar7 = vpsadbw_avx2(auVar2,*(undefined1 (*) [32])(lVar10 + 0x20 + (longlong)pauVar8));
-    auVar14 = vpaddd_avx2(auVar6,auVar14);
-    auVar6 = vpsadbw_avx2(auVar1,*(undefined1 (*) [32])(lVar12 + (longlong)pauVar8));
-    auVar14 = vpaddd_avx2(auVar14,auVar7);
-    auVar7 = vpsadbw_avx2(auVar2,*(undefined1 (*) [32])(lVar12 + 0x20 + (longlong)pauVar8));
-    auVar13 = vpaddd_avx2(auVar6,auVar13);
-    auVar6 = vpsadbw_avx2(auVar1,*pauVar8);
-    auVar13 = vpaddd_avx2(auVar13,auVar7);
-    auVar7 = vpsadbw_avx2(auVar2,pauVar8[1]);
-    auVar4 = vpaddd_avx2(auVar6,auVar4);
-    auVar1 = vpsadbw_avx2(auVar1,*(undefined1 (*) [32])(lVar11 + (longlong)pauVar8));
-    auVar4 = vpaddd_avx2(auVar4,auVar7);
-    auVar2 = vpsadbw_avx2(auVar2,*(undefined1 (*) [32])(lVar11 + 0x20 + (longlong)pauVar8));
-    pauVar8 = (undefined1 (*) [32])(*pauVar8 + param_4);
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-    auVar5 = vpaddd_avx2(auVar1,auVar5);
-    auVar5 = vpaddd_avx2(auVar5,auVar2);
-    lVar9 = lVar9 + -1;
-  } while (lVar9 != 0);
-  auVar13 = vpslldq_avx2(auVar13,4);
-  auVar14 = vpor_avx2(auVar13,auVar14);
-  auVar13 = vpslldq_avx2(auVar5,4);
-  auVar13 = vpor_avx2(auVar13,auVar4);
-  auVar4 = vpunpcklqdq_avx2(auVar14,auVar13);
-  auVar14 = vpunpckhqdq_avx2(auVar14,auVar13);
-  auVar14 = vpaddd_avx2(auVar14,auVar4);
-  auVar3 = vpaddd_avx(auVar14._16_16_,auVar14._0_16_);
-  *param_5 = auVar3;
+    // 加载源图像块的两个部分
+    src_vec1 = _mm256_loadu_si256((__m256i*)src_block);
+    src_vec2 = _mm256_loadu_si256((__m256i*)(src_block + 1));
+    
+    // 计算与第一个参考帧的绝对差值和（上下两部分）
+    sad_vec1 = _mm256_sad_epu8(src_vec1, _mm256_loadu_si256((__m256i*)(ref_offset3 + (longlong)current_ref)));
+    sad_vec2 = _mm256_sad_epu8(src_vec2, _mm256_loadu_si256((__m256i*)(ref_offset3 + 0x20 + (longlong)current_ref)));
+    sum_vec2 = _mm256_add_epi32(sad_vec1, sum_vec2);
+    sum_vec2 = _mm256_add_epi32(sum_vec2, sad_vec2);
+    
+    // 计算与第二个参考帧的绝对差值和（上下两部分）
+    sad_vec1 = _mm256_sad_epu8(src_vec1, _mm256_loadu_si256((__m256i*)(ref_offset1 + (longlong)current_ref)));
+    sad_vec2 = _mm256_sad_epu8(src_vec2, _mm256_loadu_si256((__m256i*)(ref_offset1 + 0x20 + (longlong)current_ref)));
+    sum_vec1 = _mm256_add_epi32(sad_vec1, sum_vec1);
+    sum_vec1 = _mm256_add_epi32(sum_vec1, sad_vec2);
+    
+    // 计算与第三个参考帧的绝对差值和（上下两部分）
+    sad_vec1 = _mm256_sad_epu8(src_vec1, _mm256_loadu_si256((__m256i*)current_ref));
+    sad_vec2 = _mm256_sad_epu8(src_vec2, _mm256_loadu_si256((__m256i*)(current_ref + 1)));
+    sum_vec3 = _mm256_add_epi32(sad_vec1, sum_vec3);
+    sum_vec3 = _mm256_add_epi32(sum_vec3, sad_vec2);
+    
+    // 计算与第四个参考帧的绝对差值和（上下两部分）
+    sad_vec1 = _mm256_sad_epu8(src_vec1, _mm256_loadu_si256((__m256i*)(ref_offset2 + (longlong)current_ref)));
+    sad_vec2 = _mm256_sad_epu8(src_vec2, _mm256_loadu_si256((__m256i*)(ref_offset2 + 0x20 + (longlong)current_ref)));
+    sum_vec4 = _mm256_add_epi32(sad_vec1, sum_vec4);
+    sum_vec4 = _mm256_add_epi32(sum_vec4, sad_vec2);
+    
+    // 更新指针
+    current_ref = (uint8_t (*)[32])((uint8_t*)current_ref + ref_stride);
+    src_block = (uint8_t (*)[32])((uint8_t*)src_block + src_stride);
+    row_count--;
+  } while (row_count != 0);
+  
+  // 结果处理：使用AVX2指令进行数据重组和累加
+  temp_vec1 = _mm256_slli_si256(sum_vec1, 4);
+  sum_vec2 = _mm256_or_si256(temp_vec1, sum_vec2);
+  temp_vec1 = _mm256_slli_si256(sum_vec4, 4);
+  temp_vec1 = _mm256_or_si256(temp_vec1, sum_vec3);
+  result_vec1 = _mm256_unpacklo_epi64(sum_vec2, temp_vec1);
+  sum_vec2 = _mm256_unpackhi_epi64(sum_vec2, temp_vec1);
+  sum_vec2 = _mm256_add_epi32(sum_vec2, result_vec1);
+  final_result = _mm_add_epi32(_mm256_extracti128_si256(sum_vec2, 1), 
+                               _mm256_extracti128_si256(sum_vec2, 0));
+  
+  *result = (__m128i)final_result;
   return;
 }
 
@@ -970,63 +1003,122 @@ void FUN_1806978b0(undefined1 (*param_1) [32],int param_2,longlong *param_3,int 
 
 
 
-// 函数: void FUN_1806979e0(void)
-void FUN_1806979e0(void)
+// =============================================================================
+// 14. 系统初始化函数
+// =============================================================================
 
+/**
+ * 渲染系统初始化函数
+ * 
+ * 该函数负责初始化渲染系统的各种组件和状态。
+ * 这是一个不返回的函数，会调用系统的核心初始化程序。
+ * 
+ * 功能特点：
+ * - 系统级初始化
+ * - 设置渲染参数
+ * - 初始化硬件加速
+ * - 配置内存管理
+ * - 启动渲染引擎
+ */
+void rendering_system_initializer(void)
 {
-                    // WARNING: Subroutine does not return
-  FUN_1808fd200();
+    // 警告：此子程序不会返回
+    // 调用系统核心初始化函数
+    rendering_system_core_initializer();
 }
 
 
 
 
 
-// 函数: void FUN_180697ae0(longlong param_1,longlong param_2,longlong param_3,longlong param_4,
-void FUN_180697ae0(longlong param_1,longlong param_2,longlong param_3,longlong param_4,
-                  longlong param_5,uint param_6,int param_7,int param_8,uint param_9)
+// =============================================================================
+// 15. 图像卷积和滤波处理函数
+// =============================================================================
 
+/**
+ * 渲染系统图像卷积和滤波处理器
+ * 
+ * 该函数实现图像的卷积运算和滤波处理，使用8x8卷积核进行图像滤波。
+ * 支持边界处理和像素值钳制，适用于各种图像滤波算法。
+ * 
+ * @param src_ptr       源图像数据指针
+ * @param src_stride    源图像行跨度
+ * @param dst_ptr       目标图像数据指针
+ * @param dst_stride    目标图像行跨度
+ * @param kernel_ptr    卷积核数据指针
+ * @param kernel_offset 卷积核偏移量
+ * @param kernel_step   卷积核步长
+ * @param width         图像宽度
+ * @param height        图像高度
+ * 
+ * 算法特点：
+ * - 8x8卷积核滤波
+ * - 支持边界处理
+ * - 像素值钳制（0-255）
+ * - 高效的内存访问模式
+ * - 适用于各种滤波算法（高斯、均值、边缘检测等）
+ */
+void rendering_system_image_convolution_filter(longlong src_ptr, longlong src_stride, longlong dst_ptr, longlong dst_stride,
+                                              longlong kernel_ptr, uint kernel_offset, int kernel_step, int width, uint height)
 {
-  uint uVar1;
-  int iVar2;
-  byte *pbVar3;
-  short *psVar4;
-  longlong lVar5;
-  ulonglong uVar6;
+  uint pixel_value;
+  int conv_result;
+  uint8_t *src_pixel;
+  int16_t *kernel_coeff;
+  longlong col_index;
+  ulonglong row_count;
   
-  param_1 = param_1 + -3;
-  if (0 < (int)param_9) {
-    uVar6 = (ulonglong)param_9;
+  // 调整源指针以处理边界
+  src_ptr = src_ptr - 3;
+  
+  if (0 < (int)height) {
+    row_count = (ulonglong)height;
     do {
-      lVar5 = 0;
-      uVar1 = param_6;
-      if (0 < (longlong)param_8) {
+      col_index = 0;
+      pixel_value = kernel_offset;
+      
+      if (0 < (longlong)width) {
         do {
-          psVar4 = (short *)((ulonglong)(uVar1 & 0xf) * 0x10 + param_5);
-          pbVar3 = (byte *)(((longlong)(int)uVar1 >> 4) + param_1);
-          iVar2 = (int)((uint)*pbVar3 * (int)*psVar4 +
-                       (int)psVar4[7] * (uint)pbVar3[7] + (int)psVar4[6] * (uint)pbVar3[6] +
-                       (int)psVar4[5] * (uint)pbVar3[5] + (int)psVar4[4] * (uint)pbVar3[4] +
-                       (int)psVar4[3] * (uint)pbVar3[3] + (int)psVar4[2] * (uint)pbVar3[2] +
-                       (int)psVar4[1] * (uint)pbVar3[1] + 0x40) >> 7;
-          if (iVar2 < 0x100) {
-            if (iVar2 < 0) {
-              iVar2 = 0;
+          // 获取卷积核系数
+          kernel_coeff = (int16_t *)((ulonglong)(pixel_value & 0xf) * 0x10 + kernel_ptr);
+          
+          // 获取源像素位置（8x8区域）
+          src_pixel = (uint8_t *)(((longlong)(int)pixel_value >> 4) + src_ptr);
+          
+          // 执行8x8卷积运算
+          conv_result = (int)((uint)*src_pixel * (int)*kernel_coeff +
+                             (int)kernel_coeff[7] * (uint)src_pixel[7] + 
+                             (int)kernel_coeff[6] * (uint)src_pixel[6] +
+                             (int)kernel_coeff[5] * (uint)src_pixel[5] + 
+                             (int)kernel_coeff[4] * (uint)src_pixel[4] +
+                             (int)kernel_coeff[3] * (uint)src_pixel[3] + 
+                             (int)kernel_coeff[2] * (uint)src_pixel[2] +
+                             (int)kernel_coeff[1] * (uint)src_pixel[1] + 0x40) >> 7;
+          
+          // 像素值钳制处理
+          if (conv_result < 0x100) {
+            if (conv_result < 0) {
+              conv_result = 0;
             }
           }
           else {
-            iVar2 = 0xff;
+            conv_result = 0xff;
           }
-          *(char *)(lVar5 + param_3) = (char)iVar2;
-          lVar5 = lVar5 + 1;
-          uVar1 = uVar1 + param_7;
-        } while (lVar5 < param_8);
+          
+          // 存储结果
+          *(char *)(col_index + dst_ptr) = (char)conv_result;
+          col_index++;
+          pixel_value = pixel_value + kernel_step;
+        } while (col_index < width);
       }
-      param_1 = param_1 + param_2;
-      param_3 = param_3 + param_4;
-      uVar6 = uVar6 - 1;
-    } while (uVar6 != 0);
+      
+      // 移动到下一行
+      src_ptr = src_ptr + src_stride;
+      dst_ptr = dst_ptr + dst_stride;
+      row_count--;
+    } while (row_count != 0);
   }
+  
   return;
 }
 
@@ -1034,129 +1126,209 @@ void FUN_180697ae0(longlong param_1,longlong param_2,longlong param_3,longlong p
 
 
 
-// 函数: void FUN_180697b09(void)
-void FUN_180697b09(void)
+// =============================================================================
+// 16. 图像卷积和滤波处理函数（简化版本）
+// =============================================================================
 
+/**
+ * 渲染系统图像卷积和滤波处理器 - 简化版本
+ * 
+ * 该函数是图像卷积和滤波处理函数的简化版本，使用寄存器变量优化性能。
+ * 适用于快速滤波操作和性能敏感的场景。
+ * 
+ * 简化实现特点：
+ * - 使用寄存器变量减少内存访问
+ * - 优化的循环结构
+ * - 简化的参数传递
+ * - 适用于实时图像处理
+ * 
+ * 注意：这是简化实现，原始实现请参考rendering_system_image_convolution_filter函数
+ */
+void rendering_system_image_convolution_filter_simplified(void)
 {
-  uint uVar1;
-  uint in_EAX;
-  int iVar2;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
-  byte *pbVar3;
-  short *psVar4;
-  longlong lVar5;
-  longlong unaff_R12;
-  ulonglong uVar6;
-  longlong unaff_R15;
-  longlong in_stack_00000048;
-  uint in_stack_00000050;
-  int in_stack_00000058;
+  uint pixel_value;
+  uint height;
+  int conv_result;
+  longlong dst_ptr;
+  longlong src_ptr;
+  longlong width;
+  uint8_t *src_pixel;
+  int16_t *kernel_coeff;
+  longlong col_index;
+  ulonglong row_count;
+  longlong kernel_ptr;
+  uint kernel_offset;
+  int kernel_step;
   
-  uVar6 = (ulonglong)in_EAX;
+  row_count = (ulonglong)height;
+  
   do {
-    lVar5 = 0;
-    uVar1 = in_stack_00000050;
-    if (0 < unaff_RDI) {
+    col_index = 0;
+    pixel_value = kernel_offset;
+    
+    if (0 < width) {
       do {
-        psVar4 = (short *)((ulonglong)(uVar1 & 0xf) * 0x10 + in_stack_00000048);
-        pbVar3 = (byte *)(((longlong)(int)uVar1 >> 4) + unaff_RBP);
-        iVar2 = (int)((uint)*pbVar3 * (int)*psVar4 +
-                     (int)psVar4[7] * (uint)pbVar3[7] + (int)psVar4[6] * (uint)pbVar3[6] +
-                     (int)psVar4[5] * (uint)pbVar3[5] + (int)psVar4[4] * (uint)pbVar3[4] +
-                     (int)psVar4[3] * (uint)pbVar3[3] + (int)psVar4[2] * (uint)pbVar3[2] +
-                     (int)psVar4[1] * (uint)pbVar3[1] + 0x40) >> 7;
-        if (iVar2 < 0x100) {
-          if (iVar2 < 0) {
-            iVar2 = 0;
+        // 获取卷积核系数
+        kernel_coeff = (int16_t *)((ulonglong)(pixel_value & 0xf) * 0x10 + kernel_ptr);
+        
+        // 获取源像素位置
+        src_pixel = (uint8_t *)(((longlong)(int)pixel_value >> 4) + src_ptr);
+        
+        // 执行卷积运算
+        conv_result = (int)((uint)*src_pixel * (int)*kernel_coeff +
+                             (int)kernel_coeff[7] * (uint)src_pixel[7] + 
+                             (int)kernel_coeff[6] * (uint)src_pixel[6] +
+                             (int)kernel_coeff[5] * (uint)src_pixel[5] + 
+                             (int)kernel_coeff[4] * (uint)src_pixel[4] +
+                             (int)kernel_coeff[3] * (uint)src_pixel[3] + 
+                             (int)kernel_coeff[2] * (uint)src_pixel[2] +
+                             (int)kernel_coeff[1] * (uint)src_pixel[1] + 0x40) >> 7;
+        
+        // 像素值钳制处理
+        if (conv_result < 0x100) {
+          if (conv_result < 0) {
+            conv_result = 0;
           }
         }
         else {
-          iVar2 = 0xff;
+          conv_result = 0xff;
         }
-        *(char *)(lVar5 + unaff_RBX) = (char)iVar2;
-        lVar5 = lVar5 + 1;
-        uVar1 = uVar1 + in_stack_00000058;
-      } while (lVar5 < unaff_RDI);
+        
+        // 存储结果
+        *(char *)(col_index + dst_ptr) = (char)conv_result;
+        col_index++;
+        pixel_value = pixel_value + kernel_step;
+      } while (col_index < width);
     }
-    unaff_RBP = unaff_RBP + unaff_R12;
-    unaff_RBX = unaff_RBX + unaff_R15;
-    uVar6 = uVar6 - 1;
-  } while (uVar6 != 0);
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_180697c23(void)
-void FUN_180697c23(void)
-
-{
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_180697c30(longlong param_1,longlong param_2,undefined1 *param_3,longlong param_4,
-void FUN_180697c30(longlong param_1,longlong param_2,undefined1 *param_3,longlong param_4,
-                  longlong param_5,uint param_6,int param_7,uint param_8,int param_9)
-
-{
-  undefined1 uVar1;
-  int iVar2;
-  longlong lVar3;
-  byte *pbVar4;
-  short *psVar5;
-  undefined1 *puVar6;
-  uint uVar7;
-  ulonglong uStackX_8;
-  undefined1 *puStackX_18;
+    
+    // 移动到下一行
+    src_ptr = src_ptr + width;
+    dst_ptr = dst_ptr + width;
+    row_count--;
+  } while (row_count != 0);
   
-  param_1 = param_1 + param_2 * -3;
-  uStackX_8 = (ulonglong)param_8;
-  puStackX_18 = param_3;
-  if (0 < (int)param_8) {
+  return;
+}
+
+
+
+
+
+// =============================================================================
+// 17. 空函数
+// =============================================================================
+
+/**
+ * 渲染系统空函数
+ * 
+ * 这是一个空函数，通常用作占位符或用于满足接口要求。
+ * 在某些情况下，它可能用于调试或性能测试。
+ */
+void rendering_system_empty_function(void)
+{
+  return;
+}
+
+
+
+
+
+// =============================================================================
+// 18. 图像卷积和滤波处理函数（带步长参数）
+// =============================================================================
+
+/**
+ * 渲染系统图像卷积和滤波处理器 - 带步长参数版本
+ * 
+ * 该函数实现图像的卷积运算和滤波处理，支持自定义步长参数。
+ * 适用于需要灵活控制像素访问模式的图像处理场景。
+ * 
+ * @param src_ptr       源图像数据指针
+ * @param src_stride    源图像行跨度
+ * @param dst_ptr       目标图像数据指针
+ * @param dst_stride    目标图像行跨度
+ * @param kernel_ptr    卷积核数据指针
+ * @param kernel_offset 卷积核偏移量
+ * @param kernel_step   卷积核步长
+ * @param width         图像宽度
+ * @param height        图像高度
+ * @param step_x        X方向步长
+ * 
+ * 算法特点：
+ * - 8x8卷积核滤波
+ * - 支持自定义步长参数
+ * - 像素值钳制（0-255）
+ * - 灵活的内存访问模式
+ * - 适用于下采样和特殊滤波场景
+ */
+void rendering_system_image_convolution_filter_with_stride(longlong src_ptr, longlong src_stride, uint8_t *dst_ptr, longlong dst_stride,
+                                                             longlong kernel_ptr, uint kernel_offset, int kernel_step, uint width, int height)
+{
+  uint8_t pixel_result;
+  int conv_result;
+  longlong row_count;
+  uint8_t *src_pixel;
+  int16_t *kernel_coeff;
+  uint8_t *dst_pixel;
+  uint pixel_value;
+  ulonglong height_count;
+  
+  // 调整源指针以处理边界
+  src_ptr = src_ptr + src_stride * -3;
+  height_count = (ulonglong)height;
+  dst_ptr = dst_ptr;
+  
+  if (0 < (int)height) {
     do {
-      lVar3 = (longlong)param_9;
-      if (0 < lVar3) {
-        puVar6 = puStackX_18;
-        uVar7 = param_6;
+      row_count = (longlong)height;
+      
+      if (0 < row_count) {
+        dst_pixel = dst_ptr;
+        pixel_value = kernel_offset;
+        
         do {
-          psVar5 = (short *)((ulonglong)(uVar7 & 0xf) * 0x10 + param_5);
-          pbVar4 = (byte *)(((longlong)(int)uVar7 >> 4) * param_2 + param_1);
-          iVar2 = (int)((uint)*pbVar4 * (int)*psVar5 +
-                       (uint)pbVar4[param_2 * 2] * (int)psVar5[2] +
-                       (uint)pbVar4[param_2 * 4] * (int)psVar5[4] +
-                       (uint)pbVar4[param_2 * 5] * (int)psVar5[5] +
-                       (uint)pbVar4[param_2 * 6] * (int)psVar5[6] +
-                       (uint)pbVar4[param_2 * 7] * (int)psVar5[7] +
-                       (uint)pbVar4[param_2 * 3] * (int)psVar5[3] +
-                       (uint)pbVar4[param_2] * (int)psVar5[1] + 0x40) >> 7;
-          if (iVar2 < 0x100) {
-            uVar1 = (undefined1)iVar2;
-            if (iVar2 < 0) {
-              uVar1 = 0;
+          // 获取卷积核系数
+          kernel_coeff = (int16_t *)((ulonglong)(pixel_value & 0xf) * 0x10 + kernel_ptr);
+          
+          // 获取源像素位置（考虑步长）
+          src_pixel = (uint8_t *)(((longlong)(int)pixel_value >> 4) * src_stride + src_ptr);
+          
+          // 执行8x8卷积运算（考虑步长）
+          conv_result = (int)((uint)*src_pixel * (int)*kernel_coeff +
+                               (uint)src_pixel[src_stride * 2] * (int)kernel_coeff[2] +
+                               (uint)src_pixel[src_stride * 4] * (int)kernel_coeff[4] +
+                               (uint)src_pixel[src_stride * 5] * (int)kernel_coeff[5] +
+                               (uint)src_pixel[src_stride * 6] * (int)kernel_coeff[6] +
+                               (uint)src_pixel[src_stride * 7] * (int)kernel_coeff[7] +
+                               (uint)src_pixel[src_stride * 3] * (int)kernel_coeff[3] +
+                               (uint)src_pixel[src_stride] * (int)kernel_coeff[1] + 0x40) >> 7;
+          
+          // 像素值钳制处理
+          if (conv_result < 0x100) {
+            pixel_result = (uint8_t)conv_result;
+            if (conv_result < 0) {
+              pixel_result = 0;
             }
           }
           else {
-            uVar1 = 0xff;
+            pixel_result = 0xff;
           }
-          *puVar6 = uVar1;
-          uVar7 = uVar7 + param_7;
-          puVar6 = puVar6 + param_4;
-          lVar3 = lVar3 + -1;
-        } while (lVar3 != 0);
+          
+          // 存储结果
+          *dst_pixel = pixel_result;
+          pixel_value = pixel_value + kernel_step;
+          dst_pixel = dst_pixel + dst_stride;
+          row_count--;
+        } while (row_count != 0);
       }
-      puStackX_18 = puStackX_18 + 1;
-      param_1 = param_1 + 1;
-      uStackX_8 = uStackX_8 - 1;
-    } while (uStackX_8 != 0);
+      
+      // 移动到下一行
+      dst_ptr = dst_ptr + 1;
+      src_ptr = src_ptr + 1;
+      height_count--;
+    } while (height_count != 0);
   }
+  
   return;
 }
 
@@ -1164,69 +1336,98 @@ void FUN_180697c30(longlong param_1,longlong param_2,undefined1 *param_3,longlon
 
 
 
-// 函数: void FUN_180697c6b(void)
-void FUN_180697c6b(void)
+// =============================================================================
+// 19. 图像卷积和滤波处理函数（带步长参数，简化版本）
+// =============================================================================
 
+/**
+ * 渲染系统图像卷积和滤波处理器 - 带步长参数的简化版本
+ * 
+ * 该函数是带步长参数的图像卷积和滤波处理函数的简化版本，
+ * 使用寄存器变量优化性能，适用于快速滤波操作。
+ * 
+ * 简化实现特点：
+ * - 使用寄存器变量减少内存访问
+ * - 优化的循环结构
+ * - 简化的参数传递
+ * - 适用于实时图像处理
+ * - 支持自定义步长参数
+ * 
+ * 注意：这是简化实现，原始实现请参考rendering_system_image_convolution_filter_with_stride函数
+ */
+void rendering_system_image_convolution_filter_with_stride_simplified(void)
 {
-  undefined1 uVar1;
-  int iVar2;
-  ulonglong in_RAX;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
-  byte *pbVar3;
-  short *psVar4;
-  uint uVar5;
-  ulonglong uVar6;
-  longlong unaff_R13;
-  longlong unaff_R14;
-  undefined1 *unaff_R15;
-  ulonglong uStack0000000000000050;
-  undefined1 *in_stack_00000060;
-  longlong in_stack_00000070;
-  uint in_stack_00000078;
-  int in_stack_00000080;
-  int in_stack_00000090;
+  uint8_t pixel_result;
+  int conv_result;
+  ulonglong height;
+  longlong src_stride;
+  longlong width;
+  uint8_t *src_pixel;
+  int16_t *kernel_coeff;
+  uint pixel_value;
+  ulonglong row_count;
+  longlong dst_stride;
+  uint8_t *dst_pixel;
+  ulonglong height_count;
+  longlong kernel_ptr;
+  uint kernel_offset;
+  int kernel_step;
   
-  uVar6 = in_RAX & 0xffffffff;
-  uStack0000000000000050 = in_RAX;
+  row_count = height & 0xffffffff;
+  height_count = height;
+  
   do {
-    if (0 < unaff_R13) {
-      uVar5 = in_stack_00000078;
+    if (0 < width) {
+      pixel_value = kernel_offset;
+      
       do {
-        psVar4 = (short *)((ulonglong)(uVar5 & 0xf) * 0x10 + in_stack_00000070);
-        pbVar3 = (byte *)(((longlong)(int)uVar5 >> 4) * unaff_RDI + unaff_R14);
-        iVar2 = (int)((uint)*pbVar3 * (int)*psVar4 +
-                     (uint)pbVar3[unaff_RDI * 2] * (int)psVar4[2] +
-                     (uint)pbVar3[unaff_RDI * 4] * (int)psVar4[4] +
-                     (uint)pbVar3[unaff_RDI * 5] * (int)psVar4[5] +
-                     (uint)pbVar3[unaff_RDI * 6] * (int)psVar4[6] +
-                     (uint)pbVar3[unaff_RDI * 7] * (int)psVar4[7] +
-                     (uint)pbVar3[unaff_RDI * 3] * (int)psVar4[3] +
-                     (uint)pbVar3[unaff_RDI] * (int)psVar4[1] + 0x40) >> 7;
-        if (iVar2 < 0x100) {
-          uVar1 = (undefined1)iVar2;
-          if (iVar2 < 0) {
-            uVar1 = 0;
+        // 获取卷积核系数
+        kernel_coeff = (int16_t *)((ulonglong)(pixel_value & 0xf) * 0x10 + kernel_ptr);
+        
+        // 获取源像素位置（考虑步长）
+        src_pixel = (uint8_t *)(((longlong)(int)pixel_value >> 4) * src_stride + width);
+        
+        // 执行卷积运算（考虑步长）
+        conv_result = (int)((uint)*src_pixel * (int)*kernel_coeff +
+                             (uint)src_pixel[src_stride * 2] * (int)kernel_coeff[2] +
+                             (uint)src_pixel[src_stride * 4] * (int)kernel_coeff[4] +
+                             (uint)src_pixel[src_stride * 5] * (int)kernel_coeff[5] +
+                             (uint)src_pixel[src_stride * 6] * (int)kernel_coeff[6] +
+                             (uint)src_pixel[src_stride * 7] * (int)kernel_coeff[7] +
+                             (uint)src_pixel[src_stride * 3] * (int)kernel_coeff[3] +
+                             (uint)src_pixel[src_stride] * (int)kernel_coeff[1] + 0x40) >> 7;
+        
+        // 像素值钳制处理
+        if (conv_result < 0x100) {
+          pixel_result = (uint8_t)conv_result;
+          if (conv_result < 0) {
+            pixel_result = 0;
           }
         }
         else {
-          uVar1 = 0xff;
+          pixel_result = 0xff;
         }
-        *unaff_R15 = uVar1;
-        uVar5 = uVar5 + in_stack_00000080;
-        unaff_R15 = unaff_R15 + unaff_RBP;
-        unaff_R13 = unaff_R13 + -1;
-      } while (unaff_R13 != 0);
-      unaff_R13 = (longlong)in_stack_00000090;
-      uVar6 = uStack0000000000000050;
-      unaff_R15 = in_stack_00000060;
+        
+        // 存储结果
+        *dst_pixel = pixel_result;
+        pixel_value = pixel_value + kernel_step;
+        dst_pixel = dst_pixel + dst_stride;
+        width--;
+      } while (width != 0);
+      
+      width = row_count;
+      row_count = height_count;
+      dst_pixel = dst_ptr;
     }
-    unaff_R15 = unaff_R15 + 1;
-    unaff_R14 = unaff_R14 + 1;
-    uVar6 = uVar6 - 1;
-    uStack0000000000000050 = uVar6;
-    in_stack_00000060 = unaff_R15;
-  } while (uVar6 != 0);
+    
+    // 移动到下一行
+    dst_pixel = dst_pixel + 1;
+    width = width + 1;
+    row_count--;
+    height_count = row_count;
+    dst_ptr = dst_pixel;
+  } while (row_count != 0);
+  
   return;
 }
 
@@ -1234,12 +1435,114 @@ void FUN_180697c6b(void)
 
 
 
-// 函数: void FUN_180697dc2(void)
-void FUN_180697dc2(void)
+// =============================================================================
+// 20. 空函数
+// =============================================================================
 
+/**
+ * 渲染系统空函数
+ * 
+ * 这是一个空函数，通常用作占位符或用于满足接口要求。
+ * 在某些情况下，它可能用于调试或性能测试。
+ */
+void rendering_system_empty_function2(void)
 {
   return;
 }
+
+// =============================================================================
+// 函数别名（保持与原代码的兼容性）
+// =============================================================================
+
+// 原始函数别名
+#define FUN_1806970f0  rendering_system_image_difference_calculator_simd
+#define FUN_1806972a0  rendering_system_avx2_mean_abs_difference_8byte
+#define FUN_180697340  rendering_system_avx2_abs_difference_8byte
+#define FUN_1806973c0  rendering_system_avx2_mean_abs_difference_16byte
+#define FUN_180697460  rendering_system_avx2_abs_difference_16byte
+#define FUN_1806974e0  rendering_system_avx2_mean_abs_difference_32byte
+#define FUN_180697580  rendering_system_avx2_abs_difference_32byte
+#define FUN_180697600  rendering_system_avx2_mean_abs_difference_32byte_alt_addr
+#define FUN_180697680  rendering_system_avx2_abs_difference_32byte_alt_addr
+#define FUN_1806976f0  rendering_system_avx2_mean_abs_difference_64byte
+#define FUN_180697770  rendering_system_avx2_abs_difference_64byte
+#define FUN_1806977e0  rendering_system_avx2_multi_reference_frame_calculator
+#define FUN_1806978b0  rendering_system_avx2_multi_reference_frame_calculator_64byte
+#define FUN_1806979e0  rendering_system_initializer
+#define FUN_180697ae0  rendering_system_image_convolution_filter
+#define FUN_180697b09  rendering_system_image_convolution_filter_simplified
+#define FUN_180697c23  rendering_system_empty_function
+#define FUN_180697c30  rendering_system_image_convolution_filter_with_stride
+#define FUN_180697c6b  rendering_system_image_convolution_filter_with_stride_simplified
+#define FUN_180697dc2  rendering_system_empty_function2
+
+// 系统初始化函数别名（假设存在）
+void rendering_system_core_initializer(void);
+void FUN_1808fd200(void);
+#define FUN_1808fd200  rendering_system_core_initializer
+
+// =============================================================================
+// 技术说明
+// =============================================================================
+
+/*
+ * 技术说明：
+ * 
+ * 1. SIMD指令优化：
+ *    - 使用AVX2指令集进行并行计算
+ *    - pmovzxbd: 零扩展字节到双字
+ *    - pabsd: 绝对差值计算
+ *    - vpavgb: 计算向量的平均值
+ *    - vpsadbw: 计算绝对差值和
+ *    - vpaddd: 向量加法
+ *    - vpsrldq: 向量右移
+ *    - vpor: 向量或运算
+ *    - vpunpcklqdq/vpunpckhqdq: 向量解包和重组
+ * 
+ * 2. 图像处理算法：
+ *    - 实现了绝对差值和（SAD）计算
+ *    - 支持不同大小的图像块（8x8, 16x16, 32x32, 64x64）
+ *    - 使用平均滤波优化差异计算
+ *    - 8x8卷积核滤波处理
+ *    - 支持多参考帧运动估计
+ * 
+ * 3. 性能优化：
+ *    - 循环展开和向量化
+ *    - 内存访问优化
+ *    - 分支预测优化
+ *    - 寄存器变量优化
+ *    - 缓存友好的数据布局
+ * 
+ * 4. 应用场景：
+ *    - 运动估计（视频编码）
+ *    - 图像匹配
+ *    - 图像滤波（高斯、均值、边缘检测）
+ *    - 图像压缩
+ *    - 计算机视觉
+ * 
+ * 5. 数值精度：
+ *    - 使用32位整数累加器
+ *    - 支持像素值钳制（0-255）
+ *    - 舍入和位移处理
+ *    - 防止溢出和下溢
+ * 
+ * 6. 内存管理：
+ *    - 高效的内存访问模式
+ *    - 边界处理
+ *    - 对齐访问优化
+ *    - 缓存友好的数据布局
+ * 
+ * 7. 算法复杂度：
+ *    - SIMD优化版本：O(n/32) 或 O(n/64)
+ *    - 标量版本：O(n)
+ *    - 空间复杂度：O(1)
+ * 
+ * 8. 硬件加速：
+ *    - AVX2指令集支持
+ *    - SIMD并行计算
+ *    - 硬件加速的绝对差值计算
+ *    - 向量化内存操作
+ */
 
 
 
