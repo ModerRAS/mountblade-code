@@ -1,6 +1,18 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part183.c - 核心引擎数据处理函数 (6个函数)
+// 02_core_engine_part183.c - 核心引擎数据处理和初始化模块
+// 本文件包含8个核心函数，主要负责数据结构初始化、内存管理、字符串处理、
+// 命令行解析、文件扩展名处理和数据类型转换等核心功能
+//
+// 函数列表：
+// 1. initialize_data_pointers - 数据结构指针初始化
+// 2. copy_data_structure - 数据结构复制和内存管理
+// 3. process_resource_data - 资源数据处理和验证
+// 4. validate_string_format - 字符串格式验证
+// 5. parse_command_line - 命令行参数解析
+// 6. process_file_extension_data - 文件扩展名数据处理
+// 7. initialize_data_buffer - 数据缓冲区初始化
+// 8. process_data_type_conversion - 数据类型转换处理
 
 // 函数: void initialize_data_pointers(undefined8 *data_structure)
 // 功能: 初始化数据结构指针，设置默认值和引用关系

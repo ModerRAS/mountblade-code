@@ -961,112 +961,145 @@ undefined8 synchronize_engine_system_components(undefined8 system_ptr,undefined8
 
 
 
-undefined8 FUN_18016f3c0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 优化引擎系统性能
+ * @param system_ptr 系统指针
+ * @param param2 参数2
+ * @param optimization_params 优化参数
+ * @return 系统指针
+ */
+undefined8 optimize_engine_system_performance(undefined8 system_ptr,undefined8 param2,undefined8 optimization_params)
 
 {
-  FUN_180165bb0(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
-  return param_1;
+  optimize_system_performance(system_ptr,system_ptr,optimization_params,optimization_params,0,0xfffffffffffffffe);
+  return system_ptr;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+/**
+ * 启用引擎调试模式并配置参数
+ * @param param_1 调试配置指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 调试配置指针
+ */
 undefined8 *
-FUN_18016f440(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+enable_engine_debug_mode(undefined8 *param_1,undefined8 param2,undefined8 param3,undefined8 param_4)
 
 {
-  undefined4 *puVar1;
+  undefined4 *debug_data;
   
-  *(undefined1 *)(_DAT_180c86950 + 0x1610) = 1;
-  *param_1 = &UNK_18098bcb0;
+  *(undefined1 *)(engine_system_config + 0x1610) = 1;
+  *param_1 = &default_engine_config;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_180a3c3e0;
+  *param_1 = &engine_resource_table;
   param_1[3] = 0;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  FUN_1806277c0(param_1,4,param_3,param_4,0,0xfffffffffffffffe);
-  puVar1 = (undefined4 *)param_1[1];
-  *puVar1 = 0x656e6f44;
-  *(undefined1 *)(puVar1 + 1) = 0;
+  create_engine_instance(param_1,4,param_3,param_4,0,0xfffffffffffffffe);
+  debug_data = (undefined4 *)param_1[1];
+  *debug_data = 0x656e6f44;
+  *(undefined1 *)(debug_data + 1) = 0;
   *(undefined4 *)(param_1 + 2) = 4;
   return param_1;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+/**
+ * 初始化引擎资源管理器
+ * @param param_1 资源管理器指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 资源管理器指针
+ */
 undefined8 *
-FUN_18016f4f0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+initialize_engine_resource_manager(undefined8 *param_1,undefined8 param2,undefined8 param3,undefined8 param_4)
 
 {
-  undefined4 *puVar1;
-  longlong lVar2;
+  undefined4 *resource_data;
+  longlong resource_handle;
   
-  lVar2 = _DAT_180c8a988;
-  FUN_180058370(_DAT_180c8a988,*(undefined8 *)(_DAT_180c8a988 + 0x10),param_3,param_4,0,
+  resource_handle = engine_resource_manager;
+  setup_resource_manager(engine_resource_manager,*(undefined8 *)(engine_resource_manager + 0x10),param_3,param_4,0,
                 0xfffffffffffffffe);
-  *(longlong *)lVar2 = lVar2;
-  *(longlong *)(lVar2 + 8) = lVar2;
-  *(undefined8 *)(lVar2 + 0x10) = 0;
-  *(undefined1 *)(lVar2 + 0x18) = 0;
-  *(undefined8 *)(lVar2 + 0x20) = 0;
-  *param_1 = &UNK_18098bcb0;
+  *(longlong *)resource_handle = resource_handle;
+  *(longlong *)(resource_handle + 8) = resource_handle;
+  *(undefined8 *)(resource_handle + 0x10) = 0;
+  *(undefined1 *)(resource_handle + 0x18) = 0;
+  *(undefined8 *)(resource_handle + 0x20) = 0;
+  *param_1 = &default_engine_config;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_180a3c3e0;
+  *param_1 = &engine_resource_table;
   param_1[3] = 0;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  FUN_1806277c0(param_1,4);
-  puVar1 = (undefined4 *)param_1[1];
-  *puVar1 = 0x656e6f44;
-  *(undefined1 *)(puVar1 + 1) = 0;
+  create_engine_instance(param_1,4);
+  resource_data = (undefined4 *)param_1[1];
+  *resource_data = 0x656e6f44;
+  *(undefined1 *)(resource_data + 1) = 0;
   *(undefined4 *)(param_1 + 2) = 4;
   return param_1;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+/**
+ * 重置引擎系统状态
+ * @param param_1 系统状态指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 系统状态指针
+ */
 undefined8 *
-FUN_18016f5d0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+reset_engine_system_status(undefined8 *param_1,undefined8 param2,undefined8 param3,undefined8 param_4)
 
 {
-  undefined4 *puVar1;
+  undefined4 *status_data;
   
-  *(undefined1 *)(_DAT_180c86870 + 0x2a) = 0;
-  *param_1 = &UNK_18098bcb0;
+  *(undefined1 *)(engine_context + 0x2a) = 0;
+  *param_1 = &default_engine_config;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_180a3c3e0;
+  *param_1 = &engine_resource_table;
   param_1[3] = 0;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  FUN_1806277c0(param_1,4,param_3,param_4,0,0xfffffffffffffffe);
-  puVar1 = (undefined4 *)param_1[1];
-  *puVar1 = 0x656e6f44;
-  *(undefined1 *)(puVar1 + 1) = 0;
+  create_engine_instance(param_1,4,param_3,param_4,0,0xfffffffffffffffe);
+  status_data = (undefined4 *)param_1[1];
+  *status_data = 0x656e6f44;
+  *(undefined1 *)(status_data + 1) = 0;
   *(undefined4 *)(param_1 + 2) = 4;
   return param_1;
 }
 
 
 
+/**
+ * 选择引擎配置模式并应用设置
+ * @param param_1 配置指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param_4 配置选项指针
+ * @return 配置指针
+ */
 undefined8
-FUN_18016f680(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 *param_4)
+select_engine_config_mode(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 *param_4)
 
 {
-  undefined *puVar1;
+  undefined *config_mode;
   
-  puVar1 = &DAT_180a089e8;
+  config_mode = &default_config_mode;
   if (*(int *)*param_4 != 0) {
-    puVar1 = &DAT_180a08120;
+    config_mode = &alternative_config_mode;
   }
-  FUN_180627910(param_1,puVar1,param_3,param_4,0,0xfffffffffffffffe);
+  apply_config_settings(param_1,config_mode,param_3,param_4,0,0xfffffffffffffffe);
   return param_1;
 }
 
