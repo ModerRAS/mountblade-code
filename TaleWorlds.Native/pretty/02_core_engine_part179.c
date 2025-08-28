@@ -660,7 +660,7 @@ uint64_t* CoreEngineConfigurationProcessor(uint64_t param_1, uint64_t* param_2, 
     *(int32_t*)(param_2 + 2) = 0;
     
     // 处理配置参数
-    FUN_1806277c0(param_2, 5, param_3, param_4, config_flags, config_result);
+    CoreEngineDataBufferProcessor(param_2, 5, param_3, param_4, config_flags, config_result);
     
     // 设置配置标识符
     config_buffer = (int32_t*)param_2[1];
