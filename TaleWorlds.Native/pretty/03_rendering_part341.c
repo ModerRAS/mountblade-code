@@ -712,7 +712,7 @@ void FUN_18044d7d0(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t pa
     if (lVar4 == 0) goto joined_r0x00018044d87d;
   }
   puVar2 = (uint64_t *)
-           FUN_18062b420(system_memory_pool_ptr,lVar4 * 8,*(int8_t *)(param_1 + 0x28),param_4,uVar8);
+           CoreEngine_MemoryAllocator(system_memory_pool_ptr,lVar4 * 8,*(int8_t *)(param_1 + 0x28),param_4,uVar8);
   puVar6 = *(uint64_t **)(param_1 + 0x18);
   puVar3 = *(uint64_t **)(param_1 + 0x10);
   puVar7 = puVar2;
@@ -990,7 +990,7 @@ void FUN_18044dd10(uint64_t *param_1,int64_t param_2,uint64_t param_3)
   lStack_d8 = lVar1;
   uStack_d0 = param_3;
   if (cStack_72 == '\0') {
-    uVar2 = FUN_18062b420(system_memory_pool_ptr,param_3,3);
+    uVar2 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,param_3,3);
                     // WARNING: Subroutine does not return
     memcpy(uVar2,lVar1,param_3);
   }

@@ -97,7 +97,7 @@ void rendering_data_processor(int64_t param_1, uint64_t param_2, int64_t param_3
 #define rendering_iterator               func_0x00018066bd70
 
 /** 渲染内存分配器 */
-#define rendering_memory_allocator       FUN_18062b420
+#define rendering_memory_allocator       CoreEngine_MemoryAllocator
 
 /** 渲染内存管理器 */
 #define rendering_memory_manager         FUN_18062b1e0

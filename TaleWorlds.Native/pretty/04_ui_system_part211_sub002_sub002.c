@@ -87,7 +87,7 @@ int UI_SetComponentProperties(void* context, uint32_t flags, void* properties, v
 #define UI_CreateSpecializedComponent FUN_18078d9d0
 #define UI_CreateRenderComponent FUN_18078de70
 #define UI_SetComponentProperties FUN_18078df30
-#define UI_SecurityCheck FUN_1808fc050
+#define UI_SecurityCheck SystemSecurityChecker
 #define UI_InitializeComponentMemory func_0x000180768c10
 
 // ==================== 地址别名定义 ====================

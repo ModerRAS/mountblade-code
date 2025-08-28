@@ -187,10 +187,10 @@ typedef struct {
 #define SystemResourceCopier                   FUN_1800a5750
 #define SystemMemoryAllocator                  func_0x0001800ab000
 #define SystemSizeCalculator                   func_0x000180225d90
-#define SystemMemoryManager                    FUN_18062b420
+#define SystemMemoryManager                    CoreMemoryPoolAllocator
 #define SystemErrorHandler                     FUN_180220810
 #define SystemCleanupHandler                  FUN_18023ce10
-#define SystemFinalizer                       FUN_1808fc050
+#define SystemFinalizer                       SystemSecurityChecker
 #define SystemStateInitializer                 FUN_1800a5750
 
 /** 系统组件函数别名 */

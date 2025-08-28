@@ -105,7 +105,7 @@ void rendering_system_dynamic_array_resize(int64_t *array_control, uint64_t new_
     }
     lVar1 = 0;
     if (uVar4 != 0) {
-      lVar1 = FUN_18062b420(MemoryAllocator_180c8ed18,uVar4 * 0xb0,(char)param_1[3]);
+      lVar1 = CoreEngine_MemoryAllocator(MemoryAllocator_180c8ed18,uVar4 * 0xb0,(char)param_1[3]);
       puVar7 = (int32_t *)param_1[1];
       lVar8 = *param_1;
     }
@@ -415,7 +415,7 @@ uint64_t *Rendering_HashTableInsert_18033af10(int64_t param_1,uint64_t *param_2,
   }
   FUN_18066c220(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),1);
-  piVar5 = (int *)FUN_18062b420(MemoryAllocator_180c8ed18,0x40,*(int8_t *)(param_1 + 0x2c));
+  piVar5 = (int *)CoreEngine_MemoryAllocator(MemoryAllocator_180c8ed18,0x40,*(int8_t *)(param_1 + 0x2c));
   *piVar5 = *param_4;
   piVar4 = piVar5 + 2;
   piVar5[8] = 0;
@@ -574,7 +574,7 @@ uint64_t *Rendering_HashTableAdd_18033b220(int64_t param_1,uint64_t *param_2,uin
   lVar7 = *(int64_t *)(param_1 + 8) + uVar8 * 8;
   do {
     if (puVar5 == (uint *)0x0) {
-      puVar5 = (uint *)FUN_18062b420(MemoryAllocator_180c8ed18,0x18,*(int8_t *)(param_1 + 0x2c));
+      puVar5 = (uint *)CoreEngine_MemoryAllocator(MemoryAllocator_180c8ed18,0x18,*(int8_t *)(param_1 + 0x2c));
       uVar2 = param_3[1];
       uVar3 = param_3[2];
       uVar4 = param_3[3];
@@ -749,7 +749,7 @@ int64_t Rendering_ObjectCopy_18033b460(int64_t param_1,int64_t param_2,uint64_t 
   lVar7 = 0;
   lVar6 = lVar7;
   if (lVar8 != 0) {
-    lVar6 = FUN_18062b420(MemoryAllocator_180c8ed18,lVar8 * 8,uVar1 & 0xff,param_4,uVar9);
+    lVar6 = CoreEngine_MemoryAllocator(MemoryAllocator_180c8ed18,lVar8 * 8,uVar1 & 0xff,param_4,uVar9);
   }
   *(int64_t *)(param_1 + 0x130) = lVar6;
   *(int64_t *)(param_1 + 0x138) = lVar6;
@@ -766,7 +766,7 @@ int64_t Rendering_ObjectCopy_18033b460(int64_t param_1,int64_t param_2,uint64_t 
   *(uint *)(param_1 + 0x168) = uVar1;
   lVar6 = lVar7;
   if (lVar8 != 0) {
-    lVar6 = FUN_18062b420(MemoryAllocator_180c8ed18,lVar8 << 6,uVar1 & 0xff,param_4,uVar9);
+    lVar6 = CoreEngine_MemoryAllocator(MemoryAllocator_180c8ed18,lVar8 << 6,uVar1 & 0xff,param_4,uVar9);
   }
   *(int64_t *)(param_1 + 0x150) = lVar6;
   *(int64_t *)(param_1 + 0x158) = lVar6;
@@ -779,7 +779,7 @@ int64_t Rendering_ObjectCopy_18033b460(int64_t param_1,int64_t param_2,uint64_t 
     uVar1 = *(uint *)(param_2 + 0x188);
     *(uint *)(param_1 + 0x188) = uVar1;
     if (lVar6 != 0) {
-      lVar7 = FUN_18062b420(MemoryAllocator_180c8ed18,lVar6,uVar1 & 0xff,param_4,uVar9);
+      lVar7 = CoreEngine_MemoryAllocator(MemoryAllocator_180c8ed18,lVar6,uVar1 & 0xff,param_4,uVar9);
     }
     *(int64_t *)(param_1 + 0x170) = lVar7;
     *(int64_t *)(param_1 + 0x178) = lVar7;
@@ -858,7 +858,7 @@ int64_t *Rendering_ArrayCopy_18033b760(int64_t *param_1,int64_t *param_2,uint64_
     lVar2 = 0;
   }
   else {
-    lVar2 = FUN_18062b420(MemoryAllocator_180c8ed18,lVar3 * 8,uVar1 & 0xff,param_4,0xfffffffffffffffe);
+    lVar2 = CoreEngine_MemoryAllocator(MemoryAllocator_180c8ed18,lVar3 * 8,uVar1 & 0xff,param_4,0xfffffffffffffffe);
   }
   *param_1 = lVar2;
   param_1[1] = lVar2;
@@ -945,7 +945,7 @@ void Rendering_ArrayExpand_18033b840(int64_t *param_1,uint64_t param_2)
     }
     lVar1 = 0;
     if (uVar4 != 0) {
-      lVar1 = FUN_18062b420(MemoryAllocator_180c8ed18,uVar4 * 0xb0,(char)param_1[3]);
+      lVar1 = CoreEngine_MemoryAllocator(MemoryAllocator_180c8ed18,uVar4 * 0xb0,(char)param_1[3]);
       puVar6 = (int32_t *)param_1[1];
       lVar7 = *param_1;
     }

@@ -285,7 +285,7 @@ void system_resource_allocator_and_initializer(uint64_t system_handle, int64_t r
     local_stack_value4 = 0;
     local_stack_ptr_ptr = &system_state_ptr;
     // WARNING: Subroutine does not return
-    FUN_1808fc050(stack_canary ^ (uint64_t)local_stack_buffer1);
+    SystemSecurityChecker(stack_canary ^ (uint64_t)local_stack_buffer1);
 }
 
 /**
@@ -646,7 +646,7 @@ void directx_subsystem_initializer(int64_t system_handle)
     if (local_var3 == -0x7785fffe) {
         *(int32_t *)(system_handle + 0x1d48) = 0;
         // WARNING: Subroutine does not return
-        FUN_1808fc050(stack_canary ^ (uint64_t)local_stack_buffer1);
+        SystemSecurityChecker(stack_canary ^ (uint64_t)local_stack_buffer1);
     }
     
     // 渲染管线初始化
@@ -711,11 +711,11 @@ void system_memory_allocator_and_resource_manager(int64_t system_handle)
     local_stack_value3 = 0;
     
     // 内存池分配
-    local_var3 = FUN_18062b1e0(system_memory_pool_ptr, 8, 8, 3);
+    local_var3 = CoreMemoryPoolReallocator(system_memory_pool_ptr, 8, 8, 3);
     *(uint64_t *)(system_handle + 0x10) = local_var3;
     
     // 资源内存分配
-    local_var3 = FUN_18062b1e0(system_memory_pool_ptr, 0x120, 8, 3);
+    local_var3 = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x120, 8, 3);
     local_var3 = FUN_1800ae430(local_var3);
     *(uint64_t *)(system_handle + 8) = local_var3;
     
@@ -727,12 +727,12 @@ void system_memory_allocator_and_resource_manager(int64_t system_handle)
     local_stack_value1 = 0;
     
     // 资源标识符创建
-    local_var4 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x12, 0x13);
+    local_var4 = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, 0x12, 0x13);
     *(int8_t *)local_var4 = 0;
     local_stack_ptr2 = local_var4;
     
     // 资源属性设置
-    local_var2 = FUN_18064e990(local_var4);
+    local_var2 = CoreMemoryPoolCleaner(local_var4);
     local_stack_value2 = CONCAT44(local_stack_value2._4_4_, local_var2);
     *local_var4 = 0x526c6772;
     local_var4[1] = 0x756f7365;
@@ -924,7 +924,7 @@ LAB_1800a326b:
     (**(code **)(**(int64_t **)(system_handle + 0x1d68) + 0x40))
             (*(int64_t **)(system_handle + 0x1d68), *(uint64_t *)(*(int64_t *)(system_main_module_state + 8) + 8), 2);
     // WARNING: Subroutine does not return
-    FUN_1808fc050(stack_canary ^ (uint64_t)local_stack_buffer1);
+    SystemSecurityChecker(stack_canary ^ (uint64_t)local_stack_buffer1);
 }
 
 /**

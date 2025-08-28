@@ -25,7 +25,7 @@ void FUN_18019aac0(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t pa
   System_DataHandler(&puStack_88,&unknown_var_2452_ptr,*(uint64_t *)(param_2 + 0x20));
   lVar3 = *param_1;
   if (0 < iStack_78) {
-    FUN_1806277c0(lVar3 + 0x60780,*(int *)(lVar3 + 0x60790) + iStack_78);
+    CoreMemoryPoolProcessor(lVar3 + 0x60780,*(int *)(lVar3 + 0x60790) + iStack_78);
                     // WARNING: Subroutine does not return
     memcpy((uint64_t)*(uint *)(lVar3 + 0x60790) + *(int64_t *)(lVar3 + 0x60788),lStack_80,
            (int64_t)(iStack_78 + 1));

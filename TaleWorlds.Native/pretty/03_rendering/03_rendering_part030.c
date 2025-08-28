@@ -143,7 +143,7 @@ void process_render_objects_batch(int64_t****** render_context, int64_t******* m
         material_cache = (int64_t*******)0x0;
     }
     else {
-        material_cache = (int64_t*******)FUN_18062b420(system_memory_pool_ptr, object_range << 4, stack_68 & 0xff);
+        material_cache = (int64_t*******)CoreEngine_MemoryAllocator(system_memory_pool_ptr, object_range << 4, stack_68 & 0xff);
         render_result = temp_result;
     }
     

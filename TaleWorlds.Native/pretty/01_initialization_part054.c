@@ -1,7 +1,7 @@
 #define SystemInitializer FUN_1808fcb90  // 系统初始化器
 #define ResourceReleaser CoreEngine_MemoryPoolManager  // 资源释放器
-#define AdvancedMemoryAllocator FUN_18062b420  // 高级内存分配器
-#define MemoryPoolAllocator FUN_18062b1e0  // 内存池分配器
+#define AdvancedMemoryAllocator CoreMemoryPoolAllocator  // 高级内存分配器
+#define MemoryPoolAllocator CoreMemoryPoolReallocator  // 内存池分配器
 #define StateQueryProcessor FUN_180080380  // 状态查询处理器
 #define SystemStateUpdater FUN_1800802e0  // 系统状态更新器
 
@@ -662,7 +662,7 @@ void FUN_18007940e(void)
             *plVar1 = 0;
           }
           else {
-            plVar8 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr,(int64_t)cVar4 * 4);
+            plVar8 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,(int64_t)cVar4 * 4);
             *plVar1 = (int64_t)plVar8;
           }
         }

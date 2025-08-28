@@ -146,7 +146,7 @@ final_mismatch:
     FUN_1801c9940(global_ptr);
     
     // 分配内存资源
-    temp_var = FUN_18062b1e0(system_memory_pool_ptr, 0x580, 8, 3);
+    temp_var = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x580, 8, 3);
     allocated_ptr = (int64_t *)FUN_1803e8a40(temp_var, param_2);
     *global_ptr = allocated_ptr;
     
@@ -155,7 +155,7 @@ final_mismatch:
     *(int8_t *)(system_main_module_state + 0x60) = 1;
     
     // 分配更多资源并处理
-    temp_var = FUN_18062b1e0(system_memory_pool_ptr, 0xe0, 8, 3);
+    temp_var = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0xe0, 8, 3);
     temp_ptr2 = ptr_array;
     temp_ptr3 = (uint64_t ***)&stack_ptr3;
     stack_ptr3 = global_ptr;
@@ -173,7 +173,7 @@ final_mismatch:
     func_ptr2 = FUN_1801eb560;
     
     // 分配最终处理结构
-    result_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x30, 8, system_stack_cookie);
+    result_ptr = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x30, 8, system_stack_cookie);
     *result_ptr = stack_ptr1;
     *(int8_t *)(result_ptr + 1) = stack_flag1;
     temp_ptr5 = result_ptr;
@@ -358,7 +358,7 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
     // 构建路径字符串
     FUN_1801c5870(&stack_ptr1, param_2);
     temp_int = stack_uint1 + 0x12;
-    FUN_1806277c0(&stack_ptr1, temp_int);
+    CoreMemoryPoolProcessor(&stack_ptr1, temp_int);
     temp_ptr4 = (int32_t *)(stack_ptr2 + stack_uint1);
     
     // 设置文件名
@@ -644,7 +644,7 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
         stack_ptr2 = (void *)0x0;
         stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
         stack_ptr1 = &global_config_720_ptr;
-        FUN_1808fc050(stack_ulong3 ^ (uint64_t)temp_buffer1);
+        SystemSecurityChecker(stack_ulong3 ^ (uint64_t)temp_buffer1);
     }
     CoreEngine_MemoryPoolManager();
 }
@@ -687,7 +687,7 @@ bool file_validator(int64_t param_1)
     // 构建文件路径
     FUN_1801c5700(&stack_ptr1, param_1);
     temp_int = stack_uint1 + 0x1c;
-    FUN_1806277c0(&stack_ptr1, temp_int);
+    CoreMemoryPoolProcessor(&stack_ptr1, temp_int);
     temp_ptr1 = (int32_t *)(stack_ptr2 + stack_uint1);
     
     // 设置进程名称
@@ -815,7 +815,7 @@ void shader_cache_processor(uint64_t param_1)
     // 构建文件路径
     FUN_1801c5870(&stack_ptr1, param_1);
     temp_int = stack_uint1 + 0x12;
-    FUN_1806277c0(&stack_ptr1, temp_int);
+    CoreMemoryPoolProcessor(&stack_ptr1, temp_int);
     temp_ptr1 = (int32_t *)(stack_ptr2 + stack_uint1);
     
     // 设置文件名
@@ -852,7 +852,7 @@ void shader_cache_processor(uint64_t param_1)
             fread(&stack_int1, 4, 1, temp_long1);
             if (stack_int1 < 9) {
                 if (stack_int1 + 1 != 0) {
-                    temp_var1 = FUN_18062b420(system_memory_pool_ptr, (int64_t)(stack_int1 + 1), 3);
+                    temp_var1 = CoreMemoryPoolAllocator(system_memory_pool_ptr, (int64_t)(stack_int1 + 1), 3);
                 }
                 memset(temp_var1, 0, (int64_t)(stack_int1 + 1));
             }
@@ -881,7 +881,7 @@ void shader_cache_processor(uint64_t param_1)
         stack_ptr2 = (void *)0x0;
         stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
         stack_ptr1 = &global_config_720_ptr;
-        FUN_1808fc050(stack_ulong2 ^ (uint64_t)temp_buffer1);
+        SystemSecurityChecker(stack_ulong2 ^ (uint64_t)temp_buffer1);
     }
     CoreEngine_MemoryPoolManager();
 }
@@ -935,7 +935,7 @@ void configuration_file_handler(void)
         stack_ulong1 = 0;
         stack_ptr2 = (int8_t *)0x0;
         stack_uint1 = 0;
-        FUN_1806277c0(&stack_ptr1, stack_int1);
+        CoreMemoryPoolProcessor(&stack_ptr1, stack_int1);
         
         if (stack_int1 != 0) {
             memcpy(stack_ptr2, stack_long1, stack_int1 + 1);
@@ -950,7 +950,7 @@ void configuration_file_handler(void)
         }
         
         temp_int = stack_uint1 + 0x12;
-        FUN_1806277c0(&stack_ptr1, temp_int);
+        CoreMemoryPoolProcessor(&stack_ptr1, temp_int);
         temp_ptr1 = (int32_t *)(stack_ptr2 + stack_uint1);
         
         // 设置文件名
@@ -1019,7 +1019,7 @@ void configuration_file_handler(void)
         stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
         stack_ptr3 = &global_config_720_ptr;
     }
-    FUN_1808fc050(stack_ulong3 ^ (uint64_t)temp_buffer1);
+    SystemSecurityChecker(stack_ulong3 ^ (uint64_t)temp_buffer1);
 }
 
 /**
@@ -1074,14 +1074,14 @@ void path_builder(int64_t *param_1, int64_t param_2)
         stack_ptr1 = &global_config_720_ptr;
         temp_long2 = param_1[2];
         temp_int = (int)temp_long2 + 8;
-        FUN_1806277c0(param_1, temp_int);
+        CoreMemoryPoolProcessor(param_1, temp_int);
         temp_uint1 = *(uint *)(param_1 + 2);
         temp_long1 = param_1[1];
         *(uint64_t *)((uint64_t)temp_uint1 + temp_long1) = 0x2f73726564616853; // "Shader/"
         *(int8_t *)((uint64_t *)((uint64_t)temp_uint1 + temp_long1) + 1) = 0;
         *(int *)(param_1 + 2) = temp_int;
         temp_int = (int)temp_long2 + 0xe;
-        FUN_1806277c0(param_1, temp_int);
+        CoreMemoryPoolProcessor(param_1, temp_int);
         temp_ptr1 = (int32_t *)((uint64_t)*(uint *)(param_1 + 2) + param_1[1]);
         *temp_ptr1 = 0x31443344; // "D3D1"
         *(int16_t *)(temp_ptr1 + 1) = 0x2f31; // "/1"
@@ -1093,7 +1093,7 @@ void path_builder(int64_t *param_1, int64_t param_2)
         // 使用自定义路径
         FUN_180627be0(param_1, param_2 + 0x2d0);
     }
-    FUN_1808fc050(stack_ulong1 ^ (uint64_t)temp_buffer1);
+    SystemSecurityChecker(stack_ulong1 ^ (uint64_t)temp_buffer1);
 }
 
 /**
@@ -1133,7 +1133,7 @@ int64_t string_constructor(int64_t param_1, int64_t param_2)
         stack_var1 = 0;
         stack_ptr1 = &global_config_720_ptr;
         temp_int = *(int *)(param_1 + 0x10) + 0x12;
-        FUN_1806277c0(param_1, temp_int);
+        CoreMemoryPoolProcessor(param_1, temp_int);
         temp_ptr1 = (uint64_t *)((uint64_t)*(uint *)(param_1 + 0x10) + *(int64_t *)(param_1 + 8));
         *temp_ptr1 = 0x6461685365726f43; // "CoreShader"
         temp_ptr1[1] = 0x314433442f737265; // "res/D3D1"
@@ -1148,7 +1148,7 @@ int64_t string_constructor(int64_t param_1, int64_t param_2)
     temp_ulong = (uint64_t)temp_uint1;
     if (*(int64_t *)(param_2 + 0x2b8) != 0) {
         stack_ptr1 = (void *)0x180627c06;
-        FUN_1806277c0(param_1, temp_ulong);
+        CoreMemoryPoolProcessor(param_1, temp_ulong);
     }
     if (temp_uint1 != 0) {
         stack_ptr1 = (void *)0x180627c1a;

@@ -346,7 +346,7 @@ int64_t filter_rendering_objects(int64_t filter_ctx, uint filter_flags, uint64_t
                     if (array_size == 0) {
                         array_size = 1;
                     LAB_180283f92:
-                    obj_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, array_size * 8, (char)result_array[3]);
+                    obj_ptr = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, array_size * 8, (char)result_array[3]);
                     temp_ptr = (uint64_t *)*result_array;
                     result_ptr = (uint64_t *)result_array[1];
                     }
@@ -411,7 +411,7 @@ int64_t count_rendering_objects(void)
                 if (array_size == 0) {
                     array_size = 1;
                 LAB_180283f92:
-                obj_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, array_size * 8, (char)result_array[3]);
+                obj_ptr = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, array_size * 8, (char)result_array[3]);
                 temp_ptr = (uint64_t *)*result_array;
                 obj_iter = (uint64_t *)result_array[1];
                 }
@@ -555,7 +555,7 @@ void resize_rendering_buffer(int64_t *buffer_ptr, uint64_t new_size)
             new_buffer = 0;
         }
         else {
-            new_buffer = FUN_18062b420(system_memory_pool_ptr, new_size << 6, (char)buffer_ptr[3]);
+            new_buffer = CoreEngine_MemoryAllocator(system_memory_pool_ptr, new_size << 6, (char)buffer_ptr[3]);
             current_size = *buffer_ptr;
         }
         
@@ -590,7 +590,7 @@ void reallocate_rendering_buffer(int64_t buffer_ptr, int64_t new_size)
         new_buffer = 0;
     }
     else {
-        new_buffer = FUN_18062b420(system_memory_pool_ptr, new_size << 6, (char)old_buffer[3]);
+        new_buffer = CoreEngine_MemoryAllocator(system_memory_pool_ptr, new_size << 6, (char)old_buffer[3]);
         buffer_ptr = *old_buffer;
     }
     
@@ -724,7 +724,7 @@ void add_rendering_data(int64_t *data_ptr, int64_t *item_ptr, uint64_t param3, u
     }
     
     new_ptr = (int64_t *)
-           FUN_18062b420(system_memory_pool_ptr, array_size << 4, (char)data_ptr[3], param4, 0xfffffffffffffffe);
+           CoreEngine_MemoryAllocator(system_memory_pool_ptr, array_size << 4, (char)data_ptr[3], param4, 0xfffffffffffffffe);
     end_ptr = (int64_t *)data_ptr[1];
     iter_ptr = (int64_t *)*data_ptr;
 LAB_180284385:
@@ -881,7 +881,7 @@ void expand_rendering_queue(int64_t *queue_ptr, uint64_t expand_size, uint64_t p
                 new_buffer = 0;
             }
             else {
-                new_buffer = FUN_18062b420(system_memory_pool_ptr, new_size * 0x1a0, (char)queue_ptr[3]);
+                new_buffer = CoreEngine_MemoryAllocator(system_memory_pool_ptr, new_size * 0x1a0, (char)queue_ptr[3]);
                 base_ptr = *queue_ptr;
                 end_ptr = queue_ptr[1];
             }
@@ -960,7 +960,7 @@ void reallocate_rendering_queue(int64_t queue_ptr, int64_t new_size)
         new_buffer = 0;
     }
     else {
-        new_buffer = FUN_18062b420(system_memory_pool_ptr, total_size * 0x1a0, (char)queue_data[3]);
+        new_buffer = CoreEngine_MemoryAllocator(system_memory_pool_ptr, total_size * 0x1a0, (char)queue_data[3]);
         item_count = *queue_data;
         queue_end = queue_data[1];
     }
@@ -1104,7 +1104,7 @@ find_in_rendering_hash_table(int64_t hash_table, uint64_t *result_ptr, uint64_t 
     // 创建新的哈希表项
     FUN_18066c220(hash_table + 0x20, &param5, (uint64_t)*(uint *)(hash_table + 0x10),
                   *(int32_t *)(hash_table + 0x18), 1);
-    item_ptr = (int *)FUN_18062b420(system_memory_pool_ptr, 0x40, *(int8_t *)(hash_table + 0x2c));
+    item_ptr = (int *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x40, *(int8_t *)(hash_table + 0x2c));
     *item_ptr = *key_ptr;
     item_ptr[10] = 0x3f800000;
     item_ptr[0xb] = 0x40000000;
@@ -1194,7 +1194,7 @@ find_in_rendering_string_hash(int64_t hash_table, int64_t *result_ptr, uint64_t 
     
     // 创建新的字符串哈希表项
     FUN_18066c220(hash_table + 0x20, &param5, *(uint *)(hash_table + 0x10), *(int32_t *)(hash_table + 0x18), 1);
-    string_data = FUN_18062b420(system_memory_pool_ptr, 0x48, *(int8_t *)(hash_table + 0x2c));
+    string_data = CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x48, *(int8_t *)(hash_table + 0x2c));
     FUN_180627ae0(string_data, string_ptr);
     *(uint64_t *)(string_data + 0x20) = 0;
     *(uint64_t *)(string_data + 0x28) = 0;

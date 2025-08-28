@@ -229,7 +229,7 @@ int64_t * FindResourceInHashTable(int64_t param_1, int64_t *param_2, uint64_t pa
       // 哈希表中不存在该资源，执行插入操作
       FUN_18066c220(param_1 + 0x20, acStackX_8, (uint64_t)*(uint *)(param_1 + 0x10),
                     *(int32_t *)(param_1 + 0x18), 1);
-      lVar7 = FUN_18062b420(system_memory_pool_ptr, 0x30, *(int8_t *)(param_1 + 0x2c));
+      lVar7 = CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x30, *(int8_t *)(param_1 + 0x2c));
       lStackX_10 = lVar7;
       FUN_180627ae0(lVar7);
       
@@ -327,7 +327,7 @@ void CopyResourcePoolData(int64_t *param_1, uint64_t param_2, uint64_t param_3, 
   
   // 分配新的资源池内存
   if (lVar10 != 0) {
-    lVar5 = FUN_18062b420(system_memory_pool_ptr, lVar10 * RESOURCE_POOL_SIZE, uVar1 & 0xff, param_4,
+    lVar5 = CoreEngine_MemoryAllocator(system_memory_pool_ptr, lVar10 * RESOURCE_POOL_SIZE, uVar1 & 0xff, param_4,
                           0xfffffffffffffffe, 0, 0, 0, uVar1);
   }
   
@@ -612,7 +612,7 @@ void InsertResourceIntoPool(uint64_t *param_1, int64_t param_2, uint64_t param_3
   
   // 分配新的资源池内存
   puVar2 = (uint64_t *)
-           FUN_18062b420(system_memory_pool_ptr, lVar9 * RESOURCE_POOL_SIZE, *(int8_t *)(param_1 + 3), param_4,
+           CoreEngine_MemoryAllocator(system_memory_pool_ptr, lVar9 * RESOURCE_POOL_SIZE, *(int8_t *)(param_1 + 3), param_4,
                          0xfffffffffffffffe);
   
   puVar7 = (uint64_t *)param_1[1];
@@ -759,7 +759,7 @@ InitializePerformanceCounter(uint64_t *param_1, uint64_t param_2, uint64_t param
     puVar6 = (int32_t *)*plVar1;
     lVar4 = (int64_t)puVar7 - (int64_t)puVar6 >> 5;
     if ((lVar4 == 0) || (lVar8 = lVar4 * 2, lVar8 != 0)) {
-      puVar5 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, lVar8 << 5, *(int8_t *)(param_1 + 4));
+      puVar5 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, lVar8 << 5, *(int8_t *)(param_1 + 4));
       puVar7 = (int32_t *)param_1[2];
       puVar6 = (int32_t *)*plVar1;
     }

@@ -164,15 +164,15 @@ void FUN_180235cc4(int64_t *param_1,double param_2,int8_t (*param_3) [16],byte p
   unaff_RBP[-0x10] = 0.0;
   param_12 = dVar36;
   if (dVar13 == 0.0) {
-    param_13 = (double *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3);
+    param_13 = (double *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,3);
     *param_13 = dVar37;
     *(int32_t *)(param_13 + 1) = 0;
     FUN_18007f770(param_13);
-    param_14 = (double *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3);
+    param_14 = (double *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,3);
     *param_14 = dVar38;
     *(int32_t *)(param_14 + 1) = 0;
     FUN_18007f770(param_14);
-    pdVar39 = (double *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3);
+    pdVar39 = (double *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,3);
     unaff_RBP[-0x10] = (double)pdVar39;
     *pdVar39 = dVar36;
     *(int32_t *)(pdVar39 + 1) = 0;
@@ -892,7 +892,7 @@ void FUN_180235cc4(int64_t *param_1,double param_2,int8_t (*param_3) [16],byte p
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050((uint64_t)unaff_RBP[0x28] ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker((uint64_t)unaff_RBP[0x28] ^ (uint64_t)&stack0x00000000);
 }
 
 

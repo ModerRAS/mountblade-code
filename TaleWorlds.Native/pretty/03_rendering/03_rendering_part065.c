@@ -64,7 +64,7 @@ extern void FUN_1801c2360(int64_t param1, int64_t **param2);
 extern void FUN_1800b6620(void);
 extern void CoreEngine_MemoryPoolManager(void);
 extern uint64_t FUN_180302c30(int64_t param1);
-extern int64_t FUN_18062b420(int64_t param1, int64_t param2, int8_t param3);
+extern int64_t CoreEngine_MemoryAllocator(int64_t param1, int64_t param2, int8_t param3);
 extern int64_t func_0x00018066b9a0(void *param1);
 extern void FUN_18066bdc0(int64_t param1, void *param2, void *param3, uint64_t param4, uint64_t param5);
 extern void FUN_1800571e0(uint64_t param1, int64_t param2);
@@ -1000,7 +1000,7 @@ void RenderingSystem_CompleteRenderShutdown(uint64_t *render_context, uint64_t p
   }
   data_array = (uint64_t *)render_context[0xd9];
   if (data_array != (uint64_t *)0x0) {
-    memory_block = FUN_18062b420(data_array, 0, 0);
+    memory_block = CoreEngine_MemoryAllocator(data_array, 0, 0);
     (**(code **)*data_array)(data_array, 0);
     if (memory_block != 0) {
       // 处理内存块释放

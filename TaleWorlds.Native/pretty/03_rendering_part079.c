@@ -419,7 +419,7 @@ void FUN_18030f2c0(int64_t param_1)
     }
     
     // 安全退出检查
-    FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_48);
+    SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_48);
 }
 
 /**
@@ -1141,7 +1141,7 @@ void FUN_18030f390(int64_t param_1)
     }
     
     // 安全退出检查
-    FUN_1808fc050(uStack_d8 ^ (uint64_t)auStack_298);
+    SystemSecurityChecker(uStack_d8 ^ (uint64_t)auStack_298);
 }
 
 // ============================================================================

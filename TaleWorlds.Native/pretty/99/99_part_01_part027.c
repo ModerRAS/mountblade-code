@@ -1230,7 +1230,7 @@ void FUN_1800ba6f0(uint64_t module_param)
         debug_value = FUN_180628ca0();
         FUN_180627ae0(module_param, debug_value);
         buffer_value8 = 1;
-        FUN_1808fc050(stack_checksum ^ (uint64_t)debug_buffer);
+        SystemSecurityChecker(stack_checksum ^ (uint64_t)debug_buffer);
     }
     path_ptr = (uint16_t*)wcsrchr(module_name, PATH_SEPARATOR_WCHAR);
     if (path_ptr == (uint16_t*)0x0) {
@@ -1271,7 +1271,7 @@ LAB_1800ba7cd:
     buffer_value3 = PATH_MAX_LENGTH;
     buffer_ptr = final_buffer;
     path_length = WideCharToMultiByte(0xfde9, 0, module_name, 0xffffffff);
-    FUN_1806277c0(&buffer_ptr2, path_length);
+    CoreMemoryPoolProcessor(&buffer_ptr2, path_length);
     memcpy(buffer_value6, final_buffer, (int64_t)path_length);
 }
 
@@ -1397,10 +1397,10 @@ void FUN_1800baa80(uint64_t* dir_param)
     buffer_flag = 1;
     FUN_180628e80(dir_param, large_buffer);
     string_length = *(int*)(dir_param + 2);
-    FUN_1806277c0(dir_param, string_length + 1);
+    CoreMemoryPoolProcessor(dir_param, string_length + 1);
     *(uint16_t*)((uint64_t)*(uint*)(dir_param + 2) + dir_param[1]) = 0x2f;
     *(int*)(dir_param + 2) = string_length + 1;
-    FUN_1806277c0(dir_param, string_length + 0x1e);
+    CoreMemoryPoolProcessor(dir_param, string_length + 0x1e);
     string_ptr = (uint32_t*)((uint64_t)*(uint*)(dir_param + 2) + dir_param[1]);
     *string_ptr = 0x6e756f4d;
     string_ptr[1] = 0x6e612074;
@@ -1410,7 +1410,7 @@ void FUN_1800baa80(uint64_t* dir_param)
     string_ptr[6] = 0x726f6c72;
     *(uint16_t*)(string_ptr + 7) = 100;
     *(int*)(dir_param + 2) = string_length + 0x1e;
-    FUN_1806277c0(dir_param, string_length + 0x27);
+    CoreMemoryPoolProcessor(dir_param, string_length + 0x27);
     path_ptr = (uint64_t*)((uint64_t)*(uint*)(dir_param + 2) + dir_param[1]);
     *path_ptr = 0x737265646168532f;
     *(uint16_t*)(path_ptr + 1) = 0x2f;

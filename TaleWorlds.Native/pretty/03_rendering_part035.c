@@ -312,7 +312,7 @@ uint64_t * FUN_180287d30(uint64_t *param_1)
     puVar7 = puVar8;
     do {
       lVar1 = param_1[9];
-      lVar2 = FUN_18062b420(system_memory_pool_ptr,lVar1 * 0x1c + 0xaa,3);
+      lVar2 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,lVar1 * 0x1c + 0xaa,3);
       puVar3 = puVar8;
       if (lVar2 != 0) {
         puVar3 = (uint64_t *)((uint64_t)(-(int)lVar2 & 7) + lVar2);

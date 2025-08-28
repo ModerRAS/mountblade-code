@@ -976,7 +976,7 @@ FUN_1801a20e0(uint64_t param_1,uint64_t *param_2,float *param_3,float *param_4,f
           lVar8 = 1;
 LAB_1801a2330:
           puVar7 = (uint64_t *)
-                   FUN_18062b420(system_memory_pool_ptr,lVar8 << 4,(char)param_2[3],fVar13,uVar18,uVar19);
+                   CoreEngine_MemoryAllocator(system_memory_pool_ptr,lVar8 << 4,(char)param_2[3],fVar13,uVar18,uVar19);
           puVar9 = (uint64_t *)param_2[1];
         }
         else {

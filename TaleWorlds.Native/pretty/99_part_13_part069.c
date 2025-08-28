@@ -131,7 +131,7 @@ typedef uint64_t ResourceCleanupFlags;          // 资源清理标志
  * @brief 资源释放器
  * 释放系统资源
  */
-#define ResourceReleaser FUN_180742250
+#define ResourceReleaser SystemInitializer
 
 /**
  * @brief 内存清理器

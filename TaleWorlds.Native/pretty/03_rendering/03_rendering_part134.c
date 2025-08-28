@@ -304,7 +304,7 @@ void FUN_1803490e0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   uStack_70 = 0;
   
   // 创建调试信息字符串 "_usemesh_begin_design"
-  puVar4 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x11,0x13,param_4,uVar11);
+  puVar4 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x11,0x13,param_4,uVar11);
   *(int8_t *)puVar4 = 0;
   puStack_78 = puVar4;
   uVar3 = FUN_18064e990(puVar4);
@@ -642,7 +642,7 @@ void FUN_180349780(uint64_t *param_1)
   uStack_80 = 0;
   
   // 创建材质名称 "Material"
-  puVar2 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+  puVar2 = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x10,0x13);
   *(int8_t *)puVar2 = 0;
   puStack_88 = puVar2;
   uVar1 = FUN_18064e990(puVar2);

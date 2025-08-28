@@ -1001,7 +1001,7 @@ LAB_1805a2c79:
   FUN_1805a0af0(lVar32,fVar39,CONCAT71(uVar27,1));
 FUN_1805a18db:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x1c0) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1c0) ^ (uint64_t)&stack0x00000000);
 }
 
 

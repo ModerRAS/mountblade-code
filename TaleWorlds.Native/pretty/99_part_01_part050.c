@@ -415,7 +415,7 @@ LAB_1800d6939:
     (**(code **)(*plVar3 + 0x40))(plVar3,0x2f,1,&uStack_218);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_88 ^ (uint64_t)auStack_248);
+  SystemSecurityChecker(uStack_88 ^ (uint64_t)auStack_248);
 }
 
 

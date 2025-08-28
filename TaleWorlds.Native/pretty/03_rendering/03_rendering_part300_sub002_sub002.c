@@ -448,7 +448,7 @@ LABEL_COMPRESSION_DETECTED:
          ((temp_stack_data != 0 && ((int)(MEMORY_MAX_ALLOCATION_SIZE / (int64_t)(int)temp_stack_data) < temp_stack_int)))) ||
         ((((int)data_size < 0 || (data_offset < (int)data_size)) ||
          (output_buffer = (int8_t *)
-                   FUN_18062b420(system_memory_pool_ptr,(int64_t)(int)((int)chunk_size * temp_stack_data * temp_stack_int),
+                   CoreEngine_MemoryAllocator(system_memory_pool_ptr,(int64_t)(int)((int)chunk_size * temp_stack_data * temp_stack_int),
                                  CONCAT71((int7)(chunk_size >> 8), MEMORY_ALIGNMENT_4BYTE)), output_buffer == (int8_t *)0x0)))) {
         return (int8_t *)0x0;
     }
@@ -491,7 +491,7 @@ LABEL_COMPRESSION_DETECTED:
             CoreEngine_MemoryPoolManager(output_buffer);
         }
         data_offset = temp_stack_offset * temp_stack_capacity;
-        temp_buffer = FUN_18062b420(system_memory_pool_ptr, (int64_t)data_offset, MEMORY_ALIGNMENT_4BYTE);
+        temp_buffer = CoreEngine_MemoryAllocator(system_memory_pool_ptr, (int64_t)data_offset, MEMORY_ALIGNMENT_4BYTE);
         temp_stack_long = temp_buffer;
         if (temp_buffer == 0) goto LABEL_MEMORY_ERROR;
         
@@ -908,7 +908,7 @@ rendering_system_texture_processor(int64_t param_1, int *param_2, int *param_3, 
                            ((-1 < texture_height * 8)) &&
                            ((texture_width == 0 || (texture_height * 8 <= (int)(MEMORY_MAX_ALLOCATION_SIZE / (int64_t)texture_width))))) {
                             stack_buffer = (int16_t *)
-                                         FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)(pixel_count * 8), MEMORY_ALIGNMENT_4BYTE);
+                                         CoreEngine_MemoryAllocator(system_memory_pool_ptr, (int64_t)(int)(pixel_count * 8), MEMORY_ALIGNMENT_4BYTE);
                             *param_6 = TEXTURE_FORMAT_16BIT;
                         }
                         else {
@@ -918,7 +918,7 @@ rendering_system_texture_processor(int64_t param_1, int *param_2, int *param_3, 
                     }
                     else {
                         stack_buffer = (int16_t *)
-                                     FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)(pixel_count * 4), MEMORY_ALIGNMENT_4BYTE);
+                                     CoreEngine_MemoryAllocator(system_memory_pool_ptr, (int64_t)(int)(pixel_count * 4), MEMORY_ALIGNMENT_4BYTE);
                     }
                     
                     if (stack_buffer != (int16_t *)0x0) {

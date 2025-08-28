@@ -875,7 +875,7 @@ render_hash_table_insert(int64_t hash_table,uint64_t *result_buffer,uint64_t par
   }
   FUN_18066c220(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),1);
-  puVar5 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x20,*(int8_t *)(param_1 + 0x2c));
+  puVar5 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x20,*(int8_t *)(param_1 + 0x2c));
   uVar3 = *(int32_t *)((int64_t)param_4 + 4);
   lVar1 = param_4[1];
   uVar4 = *(int32_t *)((int64_t)param_4 + 0xc);
@@ -927,7 +927,7 @@ void render_hash_table_add(uint64_t hash_table,uint64_t result_buffer,uint64_t p
   uint uStack0000000000000084;
   
   FUN_18066c220(param_1,&stack0x00000080,in_R10D,param_4,1);
-  puVar5 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x20,*(int8_t *)(unaff_RDI + 0x2c));
+  puVar5 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x20,*(int8_t *)(unaff_RDI + 0x2c));
   uVar2 = unaff_RBX[1];
   uVar3 = unaff_RBX[2];
   uVar4 = unaff_RBX[3];

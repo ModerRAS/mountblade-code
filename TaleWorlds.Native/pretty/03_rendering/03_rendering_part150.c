@@ -359,7 +359,7 @@ void FUN_18035ebe0(uint64_t *param_1)
                                 if (lVar7 == 0) {
                                     lVar7 = 1;
 LAB_18035f156:
-                                    auVar8 = (int8_t  [8])FUN_18062b420(system_memory_pool_ptr,lVar7 * 8,3);
+                                    auVar8 = (int8_t  [8])CoreEngine_MemoryAllocator(system_memory_pool_ptr,lVar7 * 8,3);
                                 } else {
                                     lVar7 = lVar7 * 2;
                                     if (lVar7 != 0) goto LAB_18035f156;

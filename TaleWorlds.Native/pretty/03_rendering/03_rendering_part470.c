@@ -456,7 +456,7 @@ LABEL_TEXTURE_PROCESS:
             stack_param_5 = 0;
             stack_param_ptr = (int32_t*)0x0;
             stack_param_2 = 0;
-            param_ptr = (int32_t*)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+            param_ptr = (int32_t*)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
             *(int8_t*)param_ptr = 0;
             stack_param_ptr = param_ptr;
             stack_param_4 = FUN_18064e990(param_ptr);
@@ -653,7 +653,7 @@ LABEL_TEXTURE_PROCESS:
                 stack_param_5 = 0;
                 stack_param_ptr = (int32_t*)0x0;
                 stack_param_2 = 0;
-                param_ptr = (int32_t*)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+                param_ptr = (int32_t*)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
                 *(int8_t*)param_ptr = 0;
                 stack_param_ptr = param_ptr;
                 stack_param_4 = FUN_18064e990(param_ptr);
@@ -674,7 +674,7 @@ LABEL_TEXTURE_PROCESS:
                 stack_param_5 = 0;
                 stack_param_ptr = (int32_t*)0x0;
                 stack_param_2 = 0;
-                param_ptr = (int32_t*)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+                param_ptr = (int32_t*)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
                 *(int8_t*)param_ptr = 0;
                 stack_param_ptr = param_ptr;
                 stack_param_4 = FUN_18064e990(param_ptr);

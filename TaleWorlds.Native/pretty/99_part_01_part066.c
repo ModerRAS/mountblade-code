@@ -168,7 +168,7 @@ void FUN_1800e4f90(int64_t param_1,uint64_t param_2,uint *param_3,int param_4)
       do {
         iVar9 = (int)uVar10;
         if (*plVar11 == 0) {
-          lVar4 = FUN_18062b420(system_memory_pool_ptr,0x120000,0x25);
+          lVar4 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x120000,0x25);
           plVar2 = (int64_t *)(param_1 + 0x7628 + (int64_t)iVar9 * 8);
           LOCK();
           bVar13 = *plVar2 == 0;
@@ -256,7 +256,7 @@ void FUN_1800e4fbe(int param_1)
     do {
       iVar7 = (int)uVar8;
       if (*plVar9 == 0) {
-        lVar3 = FUN_18062b420(system_memory_pool_ptr,0x120000,0x25);
+        lVar3 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x120000,0x25);
         plVar2 = (int64_t *)(unaff_R13 + 0x7628 + (int64_t)iVar7 * 8);
         LOCK();
         bVar11 = *plVar2 == 0;
@@ -335,7 +335,7 @@ void FUN_1800e4fef(void)
   do {
     iVar5 = (int)unaff_RDI;
     if (*plVar6 == 0) {
-      lVar2 = FUN_18062b420(system_memory_pool_ptr,0x120000,0x25);
+      lVar2 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x120000,0x25);
       plVar1 = (int64_t *)(unaff_R13 + 0x7628 + (int64_t)iVar5 * 8);
       LOCK();
       bVar7 = *plVar1 == 0;
@@ -660,7 +660,7 @@ FUN_1800e545a:
             do {
               iVar26 = (int)uVar19;
               if (*(int64_t *)puVar27 == 0) {
-                lVar13 = FUN_18062b420(system_memory_pool_ptr,0xc000,CONCAT71((int7)(uVar21 >> 8),0x25));
+                lVar13 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0xc000,CONCAT71((int7)(uVar21 >> 8),0x25));
                 uVar21 = (uint64_t)iVar26;
                 LOCK();
                 bVar28 = *(int64_t *)(param_3 + uVar21 * 2 + 2) == 0;

@@ -63,7 +63,7 @@ void rendering_system_process_render_objects_batch(int64_t *render_context, uint
       goto memory_allocation_complete;
     }
   }
-  allocated_memory = FUN_18062b420(system_memory_pool_ptr, batch_size * RENDER_OBJECT_POOL_SIZE, (char)render_context[3]);
+  allocated_memory = CoreEngine_MemoryAllocator(system_memory_pool_ptr, batch_size * RENDER_OBJECT_POOL_SIZE, (char)render_context[3]);
   context_start = render_context[1];
   context_end = *render_context;
 memory_allocation_complete:
@@ -282,7 +282,7 @@ uint64_t *rendering_system_initialize_render_object_controller(uint64_t *control
     loop_var = loop_var * 2;
     if (loop_var == 0) goto memory_allocation_complete;
   }
-  temp_ptr2 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, loop_var * 8, *(int8_t *)(render_system_data_resource + 0x30));
+  temp_ptr2 = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, loop_var * 8, *(int8_t *)(render_system_data_resource + 0x30));
   object_ptr = *(uint64_t **)(temp_var + 0x20);
   temp_ptr3 = *(uint64_t **)(temp_var + 0x18);
 memory_allocation_complete:
@@ -764,7 +764,7 @@ void rendering_system_add_render_object_to_queue(int64_t render_context, int64_t
   if (data_ptr == 0) {
     data_ptr = 1;
 LAB_18030d7a4:
-    new_entry = (int64_t *)FUN_18062b420(system_memory_pool_ptr, data_ptr * 8, (char)array_ptr[3]);
+    new_entry = (int64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, data_ptr * 8, (char)array_ptr[3]);
     queue_ptr = (int64_t *)array_ptr[1];
     existing_entry = (int64_t *)*array_ptr;
   }

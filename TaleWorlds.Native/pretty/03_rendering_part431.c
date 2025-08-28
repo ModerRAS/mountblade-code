@@ -244,7 +244,7 @@ LAB_1805020b7:
     lVar9 = lVar6;
     if (lVar9 == 0) {
 LAB_180502156:
-      lVar6 = FUN_18062b420(system_memory_pool_ptr,0x2048,10);
+      lVar6 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x2048,10);
       if (lVar6 == 0) {
         return 0;
       }

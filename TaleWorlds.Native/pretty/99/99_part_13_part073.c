@@ -218,7 +218,7 @@ void system_resource_manager_initialize(void)
     *current_ptr = (int64_t)current_ptr;
     
     // 调用系统资源分配函数
-    FUN_180742250(*(void**)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), current_ptr, &unknown_var_976_ptr, 0x30);
+    SystemInitializer(*(void**)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), current_ptr, &unknown_var_976_ptr, 0x30);
 }
 
 /**
@@ -436,7 +436,7 @@ void system_data_processor_execute(int64_t processor_handle, void* command)
     }
     
     // 执行后处理操作
-    FUN_1808fc050(encrypted_value ^ (uint64_t)stack_buffer);
+    SystemSecurityChecker(encrypted_value ^ (uint64_t)stack_buffer);
 }
 
 /**
@@ -643,7 +643,7 @@ void system_memory_manager_free(void* memory_handle)
         FUN_1808dbcd0(memory_handle);
         
         // 释放内存资源
-        FUN_180742250(*(void**)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), memory_handle, &unknown_var_7744_ptr, 0x252, 1);
+        SystemInitializer(*(void**)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), memory_handle, &unknown_var_7744_ptr, 0x252, 1);
     }
 }
 
@@ -697,7 +697,7 @@ uint32_t system_resource_manager_query(int64_t query_handle, uint32_t* query_par
     
     // 锁定资源列表
     if (resource_list != 0) {
-        FUN_180768360(resource_list);
+        SystemStateManager(resource_list);
         list_iterator = resource_list;
     }
     
@@ -731,7 +731,7 @@ uint32_t system_resource_manager_query(int64_t query_handle, uint32_t* query_par
     }
     
     // 执行解锁操作
-    FUN_180768400(list_iterator);
+    SystemConfigManager(list_iterator);
     return ERROR_SUCCESS;
 }
 
@@ -769,7 +769,7 @@ int64_t system_resource_manager_find(int64_t resource_key)
     
     // 锁定资源列表
     if (resource_list != 0) {
-        FUN_180768360(resource_list);
+        SystemStateManager(resource_list);
         list_iterator = resource_list;
     }
     
@@ -809,7 +809,7 @@ int64_t system_resource_manager_find(int64_t resource_key)
     }
     
     // 执行解锁操作
-    FUN_180768400(list_iterator);
+    SystemConfigManager(list_iterator);
     return hash_result;
 }
 
@@ -831,7 +831,7 @@ int64_t system_resource_manager_find(int64_t resource_key)
 void system_resource_manager_lock(void)
 {
     // 执行资源锁定操作
-    FUN_180768400();
+    SystemConfigManager();
 }
 
 /**
@@ -852,7 +852,7 @@ void system_resource_manager_lock(void)
 void system_resource_manager_unlock(void)
 {
     // 执行资源解锁操作
-    FUN_180768400();
+    SystemConfigManager();
 }
 
 /**
@@ -935,7 +935,7 @@ uint32_t system_exception_handler_cleanup(int64_t exception_handle)
 void system_utility_function_execute(void)
 {
     // 执行工具函数操作
-    FUN_1808fc050();
+    SystemSecurityChecker();
 }
 
 /**

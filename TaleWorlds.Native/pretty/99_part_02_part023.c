@@ -17,7 +17,7 @@ void FUN_1800fc8e0(int64_t param_1,uint64_t param_2,int64_t param_3,char param_4
   else {
     uVar2 = 0;
   }
-  lVar1 = FUN_18062b420(system_memory_pool_ptr,0x30,*(int8_t *)(param_1 + 0x28));
+  lVar1 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x30,*(int8_t *)(param_1 + 0x28));
   *(uint64_t *)(lVar1 + 0x20) = *param_5;
   *(uint64_t *)(lVar1 + 0x28) = 0;
                     // WARNING: Subroutine does not return
@@ -646,7 +646,7 @@ void FUN_1800fd5a0(int64_t param_1,int64_t param_2,uint64_t param_3,float param_
       do {
         puVar4 = (uint64_t *)*puVar6;
         if (puVar4 == (uint64_t *)0x0) {
-          puVar4 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x20,8,3);
+          puVar4 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x20,8,3);
           *puVar4 = 0;
           puVar4[1] = 0;
           puVar4[2] = 0;
@@ -704,7 +704,7 @@ void FUN_1800fd5a0(int64_t param_1,int64_t param_2,uint64_t param_3,float param_
           (**(code **)(*plStack_170 + 0x38))();
         }
         do {
-          uVar11 = FUN_18062b1e0(system_memory_pool_ptr,0x1000d8,8,3);
+          uVar11 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x1000d8,8,3);
           uVar11 = FUN_1800fcd90(uVar11,param_1,*(int32_t *)(param_1 + 0x124),uVar9);
           FUN_180056f10(*(int64_t *)(param_1 + 0x268) + uVar10,uVar11);
           lVar3 = system_context_ptr;
@@ -731,7 +731,7 @@ void FUN_1800fd5a0(int64_t param_1,int64_t param_2,uint64_t param_3,float param_
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_1b8);
+  SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_1b8);
 }
 
 
@@ -818,7 +818,7 @@ uint64_t FUN_1800fda70(uint64_t *param_1)
     pcVar8 = (char *)(param_1 + 0x51);
     do {
       if (*pcVar8 == '\0') {
-        plVar7 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x1000d8,8,3);
+        plVar7 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x1000d8,8,3);
         uVar1 = *(int32_t *)((int64_t)param_1 + 0x124);
         pplStack_58 = (int64_t **)plVar7;
         FUN_180049830(plVar7);

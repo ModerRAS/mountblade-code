@@ -252,7 +252,7 @@ LAB_180551646:
     }
   }
   if ((param_1 + 0xc != (int32_t *)0x0) && (pcVar9 != (char *)0x0)) {
-    FUN_18010cbc0(pcVar9,&system_data_6430,param_1 + 0xc);
+    AdvancedSystemOptimizer(pcVar9,&system_data_6430,param_1 + 0xc);
   }
   param_1[8] = (float)param_1[8] * 0.017453292;
   param_1[9] = (float)param_1[9] * 0.017453292;
@@ -284,7 +284,7 @@ LAB_180551646:
     if (puVar8 == (uint64_t *)0x0) {
 LAB_180551786:
       if ((param_1 + 0x17 != (int32_t *)0x0) && (pcVar7 != (char *)0x0)) {
-        FUN_18010cbc0(pcVar7,&system_data_6430,param_1 + 0x17);
+        AdvancedSystemOptimizer(pcVar7,&system_data_6430,param_1 + 0x17);
       }
       *pfVar1 = *pfVar1 * 0.017453292;
       param_1[0x14] = (float)param_1[0x14] * 0.017453292;
@@ -730,7 +730,7 @@ void FUN_180551ec0(int64_t param_1,int64_t param_2)
   int iStack_50;
   uint64_t uStack_48;
   
-  lVar4 = FUN_18062b1e0(system_memory_pool_ptr,0x30,8,3,0xfffffffffffffffe);
+  lVar4 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x30,8,3,0xfffffffffffffffe);
   pcVar18 = (char *)0x0;
   *(uint64_t *)(lVar4 + 0x28) = 3;
   *(int32_t *)(lVar4 + 0x19) = 0;

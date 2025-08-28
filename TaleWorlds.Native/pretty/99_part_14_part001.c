@@ -325,7 +325,7 @@ void BufferSizeInitializer(uint64_t param_1)
     int64_t unaff_RDI;
     
     // 初始化缓冲区大小和配置
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(unaff_RDI + 8),
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(unaff_RDI + 8),
                 &unknown_var_9296_ptr,MEMORY_BLOCK_SIZE_168,1);
     
     return;

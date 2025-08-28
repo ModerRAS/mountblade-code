@@ -454,8 +454,8 @@ typedef struct {
 // 系统调用函数别名
 #define SystemCallWrapper1                   func_0x0001807e16c0  // 系统调用包装器1
 #define SystemCallWrapper2                   FUN_1807dfbe0       // 系统调用包装器2
-#define SystemCleanupHandler                FUN_1808fc050       // 系统清理处理器
-#define SystemDataValidator                  FUN_1808fc050       // 系统数据验证器
+#define SystemCleanupHandler                SystemSecurityChecker       // 系统清理处理器
+#define SystemDataValidator                  SystemSecurityChecker       // 系统数据验证器
 
 // ============================================================================
 // 核心函数实现

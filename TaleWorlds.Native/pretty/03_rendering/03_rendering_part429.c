@@ -277,7 +277,7 @@ void RenderingSystemResourceRecycler(void)
   uStack_270 = 0;
   puStack_280 = (uint64_t *)0x0;
   uStack_278 = 0;
-  puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+  puVar3 = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x10,0x13);
   *(int8_t *)puVar3 = 0;
   puStack_280 = puVar3;
   uVar1 = FUN_18064e990(puVar3);

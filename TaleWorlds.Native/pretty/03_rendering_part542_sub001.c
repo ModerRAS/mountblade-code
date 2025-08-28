@@ -60,7 +60,7 @@ LAB_1805643e8:
   lVar4 = 0;
 LAB_180564401:
   if ((puVar3 != (int32_t *)0x0) && (lVar4 != 0)) {
-    FUN_18010cbc0(lVar4,&system_data_6430,puVar3);
+    AdvancedSystemOptimizer(lVar4,&system_data_6430,puVar3);
   }
   return;
 }
@@ -78,7 +78,7 @@ void FUN_180564430(int64_t param_1)
 {
   uint64_t *puVar1;
   
-  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x28,8,3);
+  puVar1 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x28,8,3);
   *puVar1 = &unknown_var_8496_ptr;
   *(int32_t *)(puVar1 + 1) = *(int32_t *)(param_1 + 8);
   *(uint64_t *)((int64_t)puVar1 + 0xc) = *(uint64_t *)(param_1 + 0xc);
@@ -388,7 +388,7 @@ void FUN_180564480(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   puVar2[4] = param_3;
   puVar2[6] = 0;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_78);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_78);
 }
 
 
@@ -444,7 +444,7 @@ LAB_180564b67:
   lVar4 = 0;
 LAB_180564b82:
   if ((puVar1 != (int32_t *)0x0) && (lVar4 != 0)) {
-    FUN_18010cbc0(lVar4,&system_data_6430,puVar1);
+    AdvancedSystemOptimizer(lVar4,&system_data_6430,puVar1);
   }
   pcVar5 = "snapping_duration_right";
   do {
@@ -481,7 +481,7 @@ LAB_180564c00:
   lVar4 = 0;
 LAB_180564c1b:
   if ((param_1 + 0xc != 0) && (lVar4 != 0)) {
-    FUN_18010cbc0(lVar4,&system_data_6430,param_1 + 0xc);
+    AdvancedSystemOptimizer(lVar4,&system_data_6430,param_1 + 0xc);
   }
   pcVar5 = "snapping_duration_left";
   do {
@@ -518,7 +518,7 @@ LAB_180564ca0:
   lVar4 = 0;
 LAB_180564cbb:
   if ((param_1 + 0x10 != 0) && (lVar4 != 0)) {
-    FUN_18010cbc0(lVar4,&system_data_6430,param_1 + 0x10);
+    AdvancedSystemOptimizer(lVar4,&system_data_6430,param_1 + 0x10);
   }
   pcVar5 = "snapping_period_right";
   do {
@@ -555,7 +555,7 @@ LAB_180564d40:
   lVar4 = 0;
 LAB_180564d5b:
   if ((param_1 + 0x14 != 0) && (lVar4 != 0)) {
-    FUN_18010cbc0(lVar4,&system_data_6430,param_1 + 0x14);
+    AdvancedSystemOptimizer(lVar4,&system_data_6430,param_1 + 0x14);
   }
   pcVar5 = "snapping_period_left";
   do {
@@ -592,7 +592,7 @@ LAB_180564de0:
   lVar4 = 0;
 LAB_180564dfb:
   if ((param_1 + 0x18 != 0) && (lVar4 != 0)) {
-    FUN_18010cbc0(lVar4,&system_data_6430,param_1 + 0x18);
+    AdvancedSystemOptimizer(lVar4,&system_data_6430,param_1 + 0x18);
   }
   pcVar5 = "adjusting_period_right";
   do {
@@ -629,7 +629,7 @@ LAB_180564e80:
   lVar4 = 0;
 LAB_180564e9b:
   if ((param_1 + 0x1c != 0) && (lVar4 != 0)) {
-    FUN_18010cbc0(lVar4,&system_data_6430,param_1 + 0x1c);
+    AdvancedSystemOptimizer(lVar4,&system_data_6430,param_1 + 0x1c);
   }
   pcVar5 = "adjusting_period_left";
   do {
@@ -642,7 +642,7 @@ LAB_180564e9b:
       lVar4 = 0;
 LAB_180564f38:
       if ((param_1 + 0x20 != 0) && (lVar4 != 0)) {
-        FUN_18010cbc0(lVar4,&system_data_6430,param_1 + 0x20);
+        AdvancedSystemOptimizer(lVar4,&system_data_6430,param_1 + 0x20);
       }
       return;
     }
@@ -914,7 +914,7 @@ void FUN_180565300(int64_t param_1)
   uStack_60 = 0xfffffffffffffffe;
   uStack_20 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_a8;
   uStack_88 = 0;
-  uVar2 = FUN_18062b1e0(system_memory_pool_ptr,0xea0,8,3);
+  uVar2 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xea0,8,3);
   uVar2 = FUN_1803a9530(uVar2);
   puStack_58 = &unknown_var_672_ptr;
   puStack_50 = auStack_40;
@@ -946,7 +946,7 @@ void FUN_180565300(int64_t param_1)
   *(uint64_t *)(param_1 + 0x3360) = uVar2;
   func_0x0001801be740(param_1 + 0x60c10);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_20 ^ (uint64_t)auStack_a8);
+  SystemSecurityChecker(uStack_20 ^ (uint64_t)auStack_a8);
 }
 
 
@@ -991,7 +991,7 @@ void FUN_180565480(int64_t param_1,int32_t param_2,uint64_t param_3,uint64_t par
   if (param_5 == '\0') {
     pcStack_40 = FUN_180567870;
     puStack_38 = &unknown_var_7856_ptr;
-    aplStack_50[0] = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x28,8,system_allocation_flags);
+    aplStack_50[0] = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x28,8,system_allocation_flags);
     *aplStack_50[0] = (int64_t)plStack_30;
     aplStack_50[0][1] = (int64_t)puStack_28;
     *(int32_t *)(aplStack_50[0] + 2) = (int32_t)uStack_20;
@@ -1004,7 +1004,7 @@ void FUN_180565480(int64_t param_1,int32_t param_2,uint64_t param_3,uint64_t par
   else {
     pcStack_40 = FUN_180567960;
     puStack_38 = &unknown_var_8096_ptr;
-    aplStack_50[0] = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x28,8,system_allocation_flags);
+    aplStack_50[0] = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x28,8,system_allocation_flags);
     *aplStack_50[0] = (int64_t)plStack_30;
     aplStack_50[0][1] = (int64_t)puStack_28;
     *(int32_t *)(aplStack_50[0] + 2) = (int32_t)uStack_20;

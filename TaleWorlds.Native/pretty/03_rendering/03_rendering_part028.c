@@ -505,7 +505,7 @@ void calculate_render_transform(int64_t *param_1, int64_t *param_2)
         if (array_size == 0) {
           array_size = 1;
         allocate_new_matrix:
-          temp_matrix_2 = (int64_t *)FUN_18062b420(system_memory_pool_ptr, array_size << 4, (char)param_1[10]);
+          temp_matrix_2 = (int64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, array_size << 4, (char)param_1[10]);
           temp_matrix_5 = (int64_t *)param_1[8];
           temp_matrix_3 = (int64_t *)param_1[7];
           temp_matrix_4 = temp_matrix_2;

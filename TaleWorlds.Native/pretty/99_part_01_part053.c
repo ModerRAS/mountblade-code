@@ -78,14 +78,14 @@
 
 // 辅助函数别名
 #define DataStructureComparator func_0x0001800da750
-#define MemoryAllocator FUN_18062b420
+#define MemoryAllocator CoreMemoryPoolAllocator
 #define DataStructureValidator func_0x0001800ba3b0
 #define SystemInitializer FUN_1800e9790
 #define MemoryManager FUN_1800e9540
 #define MemoryPoolInitializer FUN_1800e9360
 #define ResourceStateHandler FUN_180246810
 #define SystemErrorHandler CoreEngine_MemoryPoolManager
-#define SecurityChecker FUN_1808fc050
+#define SecurityChecker SystemSecurityChecker
 #define SystemContextInitializer FUN_18005e630
 #define SystemParameterProcessor FUN_18005c650
 #define SystemStateManager FUN_18005ea90

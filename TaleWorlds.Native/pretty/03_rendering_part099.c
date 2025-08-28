@@ -446,7 +446,7 @@ void rendering_system_parameter_processor(int64_t param_1, int64_t param_2, int6
             *(int32_t *)(param_3 + 0x110) = uVar21;
             
             // 分配和初始化渲染资源
-            puVar14 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x20,8,3);
+            puVar14 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x20,8,3);
             *puVar14 = 0;
             *(int32_t *)(puVar14 + 1) = 0;
             *(int32_t *)((int64_t)puVar14 + 0xc) = 0xffffffff;
@@ -589,7 +589,7 @@ void rendering_system_parameter_processor(int64_t param_1, int64_t param_2, int6
     // 最终状态更新和安全检查
 LAB_180327215:
     *(byte *)(param_3 + 0xfd) = *(byte *)(param_3 + 0xfd) | 1;
-    FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_168);
+    SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_168);
 }
 
 /**

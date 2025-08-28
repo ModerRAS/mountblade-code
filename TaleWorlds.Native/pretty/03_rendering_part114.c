@@ -728,7 +728,7 @@ void RenderingSystem_LoadRenderResource(int32_t *param_1, int64_t param_2)
                     lVar7 = RENDERING_SYSTEM_MEMORY_INITIAL_SIZE;
 LAB_180337537:
                     puVar3 = (uint64_t *)
-                             FUN_18062b420(system_memory_pool_ptr, lVar7 * 8, *(int8_t *)(param_1 + 0x28));
+                             CoreMemoryPoolAllocator(system_memory_pool_ptr, lVar7 * 8, *(int8_t *)(param_1 + 0x28));
                     puVar5 = *(uint64_t **)(param_1 + 0x22);
                     puVar8 = *(uint64_t **)(param_1 + 0x24);
                 }
@@ -801,7 +801,7 @@ void RenderingSystem_LoadRenderResourceBatch(uint param_1)
                 lVar2 = RENDERING_SYSTEM_MEMORY_INITIAL_SIZE;
 LAB_180337537:
                 puVar3 = (uint64_t *)
-                         FUN_18062b420(system_memory_pool_ptr, lVar2 * 8, *(int8_t *)(unaff_RBX + 0xa0));
+                         CoreMemoryPoolAllocator(system_memory_pool_ptr, lVar2 * 8, *(int8_t *)(unaff_RBX + 0xa0));
                 puVar4 = *(uint64_t **)(unaff_RBX + 0x88);
                 puVar5 = *(uint64_t **)(unaff_RBX + 0x90);
             }
@@ -920,7 +920,7 @@ void RenderingSystem_LoadRenderResourceData(int32_t *param_1, int64_t param_2)
                     lVar3 = RENDERING_SYSTEM_MEMORY_INITIAL_SIZE;
 LAB_180337706:
                     puVar4 = (uint64_t *)
-                             FUN_18062b420(system_memory_pool_ptr, lVar3 * 8, *(int8_t *)(param_1 + 0x28));
+                             CoreMemoryPoolAllocator(system_memory_pool_ptr, lVar3 * 8, *(int8_t *)(param_1 + 0x28));
                     puVar6 = *(uint64_t **)(param_1 + 0x22);
                     puVar7 = *(uint64_t **)(param_1 + 0x24);
                 }
@@ -985,7 +985,7 @@ void RenderingSystem_LoadRenderResourceDataBatch(uint param_1)
                 lVar2 = RENDERING_SYSTEM_MEMORY_INITIAL_SIZE;
 LAB_180337706:
                 puVar3 = (uint64_t *)
-                         FUN_18062b420(system_memory_pool_ptr, lVar2 * 8, *(int8_t *)(unaff_RBX + 0xa0));
+                         CoreMemoryPoolAllocator(system_memory_pool_ptr, lVar2 * 8, *(int8_t *)(unaff_RBX + 0xa0));
                 puVar4 = *(uint64_t **)(unaff_RBX + 0x88);
                 puVar5 = *(uint64_t **)(unaff_RBX + 0x90);
             }

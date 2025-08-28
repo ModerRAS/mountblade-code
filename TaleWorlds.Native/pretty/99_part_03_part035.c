@@ -796,7 +796,7 @@ void FUN_1801ee610(int64_t param_1)
   int64_t lVar1;
   uint64_t *puVar2;
   
-  lVar1 = FUN_18062b420(system_memory_pool_ptr,param_1 * 8 + 0xaa,3);
+  lVar1 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,param_1 * 8 + 0xaa,3);
   if (lVar1 == 0) {
     return;
   }
@@ -855,7 +855,7 @@ void FUN_1801ee700(int64_t param_1)
   int64_t lVar1;
   uint64_t *puVar2;
   
-  lVar1 = FUN_18062b420(system_memory_pool_ptr,param_1 * 0x10 + 0xaa,3);
+  lVar1 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,param_1 * 0x10 + 0xaa,3);
   if (lVar1 == 0) {
     return;
   }
@@ -885,7 +885,7 @@ void FUN_1801ee790(int64_t param_1)
   int64_t lVar1;
   uint64_t *puVar2;
   
-  lVar1 = FUN_18062b420(system_memory_pool_ptr,param_1 * 0x1c + 0xaa,3);
+  lVar1 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,param_1 * 0x1c + 0xaa,3);
   if (lVar1 == 0) {
     return;
   }
@@ -974,12 +974,12 @@ void FUN_1801ee8e0(int64_t *param_1)
   uint64_t uVar4;
   
   param_1[1] = 8;
-  lVar3 = FUN_18062b420(system_memory_pool_ptr,0x40,(char)param_1[10]);
+  lVar3 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x40,(char)param_1[10]);
   *param_1 = lVar3;
   plVar1 = (int64_t *)(lVar3 + (param_1[1] - 1U >> 1) * 8);
   plVar2 = plVar1;
   for (uVar4 = (uint64_t)(plVar1 <= plVar1 + 1); uVar4 != 0; uVar4 = uVar4 - 1) {
-    lVar3 = FUN_18062b420(system_memory_pool_ptr,0x100,(char)param_1[10]);
+    lVar3 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x100,(char)param_1[10]);
     *plVar2 = lVar3;
     plVar2 = plVar2 + 1;
   }
@@ -1045,7 +1045,7 @@ void FUN_1801ee9c0(int64_t *param_1,uint64_t param_2,int param_3)
     uVar5 = param_2;
   }
   lVar8 = uVar6 + 2 + uVar5;
-  lVar4 = FUN_18062b420(system_memory_pool_ptr,lVar8 * 8,(char)param_1[10]);
+  lVar4 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,lVar8 * 8,(char)param_1[10]);
   uVar6 = 0;
   if (param_3 == 0) {
     uVar6 = param_2;

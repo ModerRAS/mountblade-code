@@ -677,7 +677,7 @@ void FUN_180244ff0(int64_t param_1)
     }
     
     /* 执行系统操作 */
-    FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_158);
+    SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_158);
 }
 
 /**
@@ -771,7 +771,7 @@ void FUN_180245280(int64_t param_1)
     }
     
     /* 执行系统操作 */
-    FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_118);
+    SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_118);
 }
 
 /**

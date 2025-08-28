@@ -230,7 +230,7 @@ void rendering_system_cleanup_resources(uint64_t *context, uint64_t param2, uint
     }
     else {
         // 分配内存用于资源清理
-        resource_size = FUN_18062b420(g_rendering_system_module_registry, resource_size * 8, *(uint *)(context + 0x375) & 0xff, param4, cleanup_flag);
+        resource_size = CoreEngine_MemoryAllocator(g_rendering_system_module_registry, resource_size * 8, *(uint *)(context + 0x375) & 0xff, param4, cleanup_flag);
     }
     
     // 移动资源数据
@@ -313,7 +313,7 @@ void rendering_system_process_data(int64_t context, uint64_t param2, uint64_t pa
         allocated_memory = 0;
     }
     else {
-        allocated_memory = FUN_18062b420(g_rendering_system_module_registry, temp_long1 * RENDERING_SYSTEM_ALIGNMENT_SIZE, 
+        allocated_memory = CoreEngine_MemoryAllocator(g_rendering_system_module_registry, temp_long1 * RENDERING_SYSTEM_ALIGNMENT_SIZE, 
                                        g_rendering_system_resource_count & 0xff, param4, 0, 0xfffffffffffffffe);
     }
     
@@ -376,7 +376,7 @@ void rendering_system_process_data(int64_t context, uint64_t param2, uint64_t pa
                     temp_long1 = 1;
 LAB_1803075e0:
                     temp_ptr1 = (uint64_t *)
-                             FUN_18062b420(g_rendering_system_module_registry, temp_long1 * 8, *(int8_t *)(context + 0x1ba8));
+                             CoreEngine_MemoryAllocator(g_rendering_system_module_registry, temp_long1 * 8, *(int8_t *)(context + 0x1ba8));
                     temp_ptr3 = *(uint64_t **)(context + 0x1b98);
                     temp_ptr2 = *(uint64_t **)(context + 0x1b90);
                 }

@@ -431,7 +431,7 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
         (**(code **)(**(int64_t **)(handle + 0x1d78) + 0x48))
                   (*(int64_t **)(handle + 0x1d78), stack_handle_ptr1, 0, &stack_data1);
         
-        temp_data1 = FUN_18062b1e0(system_memory_pool_ptr, MEMORY_POOL_SIZE, MEMORY_CHUNK_SIZE, MEMORY_ALLOC_TYPE_3);
+        temp_data1 = CoreMemoryPoolReallocator(system_memory_pool_ptr, MEMORY_POOL_SIZE, MEMORY_CHUNK_SIZE, MEMORY_ALLOC_TYPE_3);
         stack_handle_ptr3 = (int64_t *)FUN_18023a2e0(temp_data1, 4);
         
         if (stack_handle_ptr3 != (int64_t *)0x0) {
@@ -463,7 +463,7 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
         *(int64_t *)(*(int64_t *)(handle + 0x121e0) + 0x168) = *(int64_t *)(handle + 0x121e0);
         
         // 分配和初始化资源数据
-        resource_ptr1 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, MEMORY_ALLOC_TYPE_3);
+        resource_ptr1 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, 0x10, MEMORY_ALLOC_TYPE_3);
         resource_ptr2 = resource_ptr1;
         
         do {
@@ -534,7 +534,7 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
     }
     
     // 函数结束 - 调用特殊的清理函数
-    FUN_1808fc050(stack_memory_size2 ^ (uint64_t)stack_buffer1);
+    SystemSecurityChecker(stack_memory_size2 ^ (uint64_t)stack_buffer1);
 }
 
 /**
@@ -835,7 +835,7 @@ void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int para
     
 LAB_1800a4380:
     // 函数结束 - 调用特殊的清理函数
-    FUN_1808fc050(stack_memory_size ^ (uint64_t)stack_buffer1);
+    SystemSecurityChecker(stack_memory_size ^ (uint64_t)stack_buffer1);
 }
 
 /**
@@ -1055,7 +1055,7 @@ void SystemStateSynchronizer(void **resource_ptrs, uint *resource_ids, int64_t s
         data_ptr1 = (uint64_t *)0x0;
     }
     else {
-        data_ptr1 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, (uint64_t)uint_var5 << 4, MEMORY_ALLOC_TYPE_5);
+        data_ptr1 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, (uint64_t)uint_var5 << 4, MEMORY_ALLOC_TYPE_5);
         status1 = 0;
         data_ptr2 = data_ptr1;
         do {
@@ -1154,7 +1154,7 @@ LAB_1800a46f5:
             uint_var2 = uint_var5;
         }
         if (uint_var2 * data_word1 != 0) {
-            temp_data1 = FUN_18062b420(system_memory_pool_ptr, (uint64_t)(uint_var2 * data_word1) * 8,
+            temp_data1 = CoreMemoryPoolAllocator(system_memory_pool_ptr, (uint64_t)(uint_var2 * data_word1) * 8,
                            CONCAT71((uint7)(byte)(data_word1 >> 8), 3));
             uint_var6 = (uint)*(byte *)(sync_handle + 0x335);
             uint_var5 = *(uint *)(sync_handle + 0x35c);
@@ -1226,7 +1226,7 @@ LAB_1800a46f5:
             temp_data1 = 0;
         }
         else {
-            temp_data1 = FUN_18062b420(system_memory_pool_ptr, (uint64_t)(uint_var2 * data_word1) * 8,
+            temp_data1 = CoreMemoryPoolAllocator(system_memory_pool_ptr, (uint64_t)(uint_var2 * data_word1) * 8,
                            CONCAT71((uint7)(byte)(data_word1 >> 8), 3));
             uint_var6 = (uint)*(byte *)(sync_handle + 0x335);
             uint_var5 = *(uint *)(sync_handle + 0x35c);
@@ -1314,7 +1314,7 @@ LAB_1800a46f5:
     stack_ptr_ptr1 = &stack_ptr2;
     
     // 函数结束 - 调用特殊的清理函数
-    FUN_1808fc050(stack_memory_size ^ (uint64_t)stack_buffer1);
+    SystemSecurityChecker(stack_memory_size ^ (uint64_t)stack_buffer1);
 }
 
 // ================================ 技术说明 ================================

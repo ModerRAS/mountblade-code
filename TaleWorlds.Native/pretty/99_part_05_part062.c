@@ -38,7 +38,7 @@ void FUN_1802fe6e7(void)
     (**(code **)(unaff_RDI + 0x138))();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x910) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x910) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -69,7 +69,7 @@ void FUN_1802fe73d(void)
     (**(code **)(unaff_RDI + 0x138))();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x910) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x910) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -90,7 +90,7 @@ void FUN_1802fe768(float param_1)
     (**(code **)(unaff_RDI + 0x138))();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x910) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x910) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -260,7 +260,7 @@ void FUN_1802fe910(int64_t param_1,float *param_2)
   param_2[4] = fVar4 + param_2[4];
   param_2[6] = fVar4 + param_2[6];
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)&fStack_58);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)&fStack_58);
 }
 
 
@@ -467,7 +467,7 @@ void FUN_1802feba0(int64_t param_1,char param_2)
   pfVar8[0xf] = fVar1 * fVar9 + fVar2 * fVar10 + fVar3 * fVar11 + pfVar8[0xf];
   pfVar8[0xf] = 1.0;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_118);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_118);
 }
 
 
@@ -757,7 +757,7 @@ LAB_1802ff2f4:
     if (*(int64_t *)(param_1 + 0x10) != 0) {
       FUN_1802ed990(*(int64_t *)(param_1 + 0x10),1);
     }
-    puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3);
+    puVar3 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x70,8,3);
     *puVar3 = &unknown_var_1864_ptr;
     *puVar3 = &unknown_var_1608_ptr;
     puVar3[9] = 0;

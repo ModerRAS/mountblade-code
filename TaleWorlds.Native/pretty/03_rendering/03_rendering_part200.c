@@ -41,7 +41,7 @@ void RenderingSystem_ParameterProcessor(uint64_t render_context, int64_t param_b
     // 资源分配和管理
     if (resource_index == 0) {
       // 分配新资源
-      int64_t new_resource = FUN_18062b420(system_memory_pool_ptr, 0x48000, 0x25);
+      int64_t new_resource = CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x48000, 0x25);
       if (new_resource != 0) {
         // 资源初始化和设置
         FUN_1803e0670(new_resource, 0, data_buffer);

@@ -75,7 +75,7 @@
 #define InternalMemoryOperation                   FUN_1807ba570
 #define InternalDataTransfer                      FUN_1807b8f20
 #define InternalStateUpdate                       FUN_1807bb8a0
-#define InternalSystemExit                        FUN_1808fc050
+#define InternalSystemExit                        SystemSecurityChecker
 #define InternalConfigUpdate                      FUN_180772fe0
 
 // ============================================================================

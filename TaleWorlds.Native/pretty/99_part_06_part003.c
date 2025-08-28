@@ -124,7 +124,7 @@ typedef struct {
 #define SystemDataInitializer SystemDataInitializer
 #define SystemDataManager SystemDataManager
 #define SystemDataOrganizer SystemDataOrganizer
-#define SystemDataHandler FUN_18010cbc0
+#define SystemDataHandler AdvancedSystemOptimizer
 #define SystemDataConfigurator FUN_180631330
 #define SystemDataModifier FUN_180631850
 #define SystemDataAllocator FUN_180631000

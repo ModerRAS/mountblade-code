@@ -69,7 +69,7 @@
 #define process_memory_data          FUN_180245b90    /**< 内存数据处理函数 */
 #define copy_memory_data             FUN_1800ea950    /**< 内存数据复制函数 */
 #define move_memory_data             FUN_1800eac80    /**< 内存数据移动函数 */
-#define allocate_system_memory       FUN_18062b420    /**< 系统内存分配函数 */
+#define allocate_system_memory       CoreMemoryPoolAllocator    /**< 系统内存分配函数 */
 #define free_system_memory           CoreEngine_MemoryPoolManager    /**< 系统内存释放函数 */
 /* @} */
 

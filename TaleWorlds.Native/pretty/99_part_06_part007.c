@@ -236,8 +236,8 @@ typedef enum {
 #define HashTableClear               FUN_1803a8fc0
 
 // 内存管理函数别名
-#define MemoryAllocate               FUN_18062b420
-#define MemoryReallocate             FUN_18062b8b0
+#define MemoryAllocate               CoreEngine_MemoryAllocator
+#define MemoryReallocate             DataValidator
 #define MemoryFree                   FUN_1803a9fc0
 #define MemoryPoolCreate             FUN_1803a9530
 
@@ -623,7 +623,7 @@ ObjectPointer HashTableFind(int64_t param_1, int64_t* param_2, uint param_3)
     // 分配字符串内存
     result_ptr = (ObjectPointer*)MemoryAllocate(system_memory_pool_ptr, 0x10, 0x13);
     *(Byte*)result_ptr = 0;
-    string_length = FUN_18064e990(result_ptr);
+    string_length = CoreMemoryPoolCleaner(result_ptr);
     string_handle = CONCAT44(string_handle._4_4_, string_length);
     
     // 设置名称字符串
@@ -640,7 +640,7 @@ ObjectPointer HashTableFind(int64_t param_1, int64_t* param_2, uint param_3)
         result_ptr = (ObjectPointer*)MemoryReallocate(system_memory_pool_ptr, result_ptr, 0x14, 0x10, 0x13);
     }
     
-    string_length = FUN_18064e990(result_ptr);
+    string_length = CoreMemoryPoolCleaner(result_ptr);
     string_handle = CONCAT44(string_handle._4_4_, string_length);
     
 BUILD_STRING:
@@ -773,7 +773,7 @@ ObjectPointer HashTableClear(int64_t param_1, int64_t* param_2, uint param_3)
     // 分配字符串内存
     result_ptr = (ObjectPointer*)MemoryAllocate(system_memory_pool_ptr, 0x10, 0x13);
     *(Byte*)result_ptr = 0;
-    string_length = FUN_18064e990(result_ptr);
+    string_length = CoreMemoryPoolCleaner(result_ptr);
     string_handle = CONCAT44(string_handle._4_4_, string_length);
     
     // 设置名称字符串
@@ -790,7 +790,7 @@ ObjectPointer HashTableClear(int64_t param_1, int64_t* param_2, uint param_3)
         result_ptr = (ObjectPointer*)MemoryReallocate(system_memory_pool_ptr, result_ptr, 0x17, 0x10, 0x13);
     }
     
-    string_length = FUN_18064e990(result_ptr);
+    string_length = CoreMemoryPoolCleaner(result_ptr);
     string_handle = CONCAT44(string_handle._4_4_, string_length);
     
 BUILD_STRING:
@@ -869,11 +869,11 @@ BUILD_STRING:
  * - 空间复杂度: O(1)，使用固定大小的栈空间
  * 
  * 依赖项:
- * - FUN_1806277c0: 字符串处理函数
+ * - CoreMemoryPoolProcessor: 字符串处理函数
  * - FUN_18041adc0: 资源访问函数
  * - CoreEngine_MemoryPoolManager: 异常处理函数
  * - FUN_18015b810: 系统操作函数
- * - FUN_18062b1e0: 内存分配函数
+ * - CoreMemoryPoolReallocator: 内存分配函数
  * 
  * 线程安全:
  * 该函数不是线程安全的，需要在单线程环境下调用或使用适当的同步机制。
@@ -907,7 +907,7 @@ void ResourceProcessor_ExecuteBatchOperations(int64_t param_1)
     resource_flag_1 = 0;
     
     // 处理第一个资源操作
-    FUN_1806277c0(&resource_buffer_1, RESOURCE_CONFIG_SIZE_1);
+    CoreMemoryPoolProcessor(&resource_buffer_1, RESOURCE_CONFIG_SIZE_1);
     if (0 < RESOURCE_CONFIG_SIZE_1) {
         resource_data = &RESOURCE_DEFAULT_DATA;
         if (RESOURCE_CONFIG_PTR_1 != (void *)0x0) {
@@ -945,7 +945,7 @@ void ResourceProcessor_ExecuteBatchOperations(int64_t param_1)
     resource_buffer_4 = (uint64_t)resource_buffer_4._4_4_ << 0x20;
     
     // 处理第二个资源操作
-    FUN_1806277c0(&resource_buffer_2, RESOURCE_CONFIG_SIZE_2);
+    CoreMemoryPoolProcessor(&resource_buffer_2, RESOURCE_CONFIG_SIZE_2);
     if (0 < RESOURCE_CONFIG_SIZE_2) {
         resource_data = &RESOURCE_DEFAULT_DATA;
         if (RESOURCE_CONFIG_PTR_2 != (void *)0x0) {
@@ -983,7 +983,7 @@ void ResourceProcessor_ExecuteBatchOperations(int64_t param_1)
     resource_flag_1 = 0;
     
     // 处理第三个资源操作
-    FUN_1806277c0(&resource_buffer_1, RESOURCE_CONFIG_SIZE_3);
+    CoreMemoryPoolProcessor(&resource_buffer_1, RESOURCE_CONFIG_SIZE_3);
     if (0 < RESOURCE_CONFIG_SIZE_3) {
         resource_data = &RESOURCE_DEFAULT_DATA;
         if (RESOURCE_CONFIG_PTR_3 != (void *)0x0) {
@@ -1024,7 +1024,7 @@ void ResourceProcessor_ExecuteBatchOperations(int64_t param_1)
     resource_buffer_5 = resource_result_3;
     
     // 分配操作栈内存
-    operation_stack[0] = (int32_t *)FUN_18062b1e0(SYSTEM_MEMORY_POOL, 0x20, 8, MEMORY_ALIGNMENT);
+    operation_stack[0] = (int32_t *)CoreMemoryPoolReallocator(SYSTEM_MEMORY_POOL, 0x20, 8, MEMORY_ALIGNMENT);
     *operation_stack[0] = (int32_t)resource_buffer_2;
     operation_stack[0][1] = resource_buffer_2._4_4_;
     operation_stack[0][2] = (int32_t)resource_buffer_3;
@@ -1072,9 +1072,9 @@ void ResourceProcessor_ExecuteBatchOperations(int64_t param_1)
  * 依赖项:
  * - FUN_1802705c0: 组件初始化函数
  * - FUN_1800b8300: 事件处理函数
- * - FUN_18062b420: 内存分配函数
+ * - CoreEngine_MemoryAllocator: 内存分配函数
  * - CoreEngine_MemoryPoolManager: 异常处理函数
- * - FUN_1808fc050: 系统完整性检查函数
+ * - SystemSecurityChecker: 系统完整性检查函数
  * 
  * 线程安全:
  * 该函数不是线程安全的，需要在系统初始化阶段单线程调用。
@@ -1262,7 +1262,7 @@ void SystemManager_InitializeComplex(uint64_t *param_1)
                         component_id = component_id * 2;
                     }
                     
-                    memory_block = (uint64_t *)FUN_18062b420(SYSTEM_MEMORY_POOL, component_id * EVENT_REGISTRY_SIZE, EVENT_REGISTRY_ALIGNMENT);
+                    memory_block = (uint64_t *)CoreEngine_MemoryAllocator(SYSTEM_MEMORY_POOL, component_id * EVENT_REGISTRY_SIZE, EVENT_REGISTRY_ALIGNMENT);
                     component_ptr_3 = EVENT_REGISTRY_BASE;
                     event_handler = EVENT_REGISTRY_CURRENT;
                     
@@ -1322,7 +1322,7 @@ void SystemManager_InitializeComplex(uint64_t *param_1)
     // ... (省略类似的处理逻辑以保持代码简洁)
     
     // 执行系统完整性检查
-    FUN_1808fc050(security_checksum ^ (uint64_t)security_buffer);
+    SystemSecurityChecker(security_checksum ^ (uint64_t)security_buffer);
 }
 
 

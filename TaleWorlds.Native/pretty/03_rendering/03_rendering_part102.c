@@ -733,7 +733,7 @@ void RenderingSystemCleanupResources(int64_t render_context)
             stack_ptr1 = (int64_t *)0x0;
         }
         else {
-            stack_ptr1 = (int64_t *)FUN_18062b420(system_memory_pool_ptr, temp_long1 * 8, *(uint *)(temp_long2 + 0x40) & 0xff);
+            stack_ptr1 = (int64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, temp_long1 * 8, *(uint *)(temp_long2 + 0x40) & 0xff);
         }
         temp_long1 = *(int64_t *)(temp_long2 + 0x28);
         if (temp_long1 != *(int64_t *)(temp_long2 + 0x30)) {
@@ -777,7 +777,7 @@ void RenderingSystemCleanupResources(int64_t render_context)
                 stack_ptr1 = (int64_t *)0x0;
             }
             else {
-                stack_ptr1 = (int64_t *)FUN_18062b420(system_memory_pool_ptr, temp_long1 * 8, *(uint *)(temp_long2 + 0x40) & 0xff);
+                stack_ptr1 = (int64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, temp_long1 * 8, *(uint *)(temp_long2 + 0x40) & 0xff);
             }
             temp_long1 = *(int64_t *)(temp_long2 + 0x28);
             if (temp_long1 != *(int64_t *)(temp_long2 + 0x30)) {
@@ -824,7 +824,7 @@ void RenderingSystemCleanupResources(int64_t render_context)
                 stack_ptr1 = (int64_t *)0x0;
             }
             else {
-                stack_ptr1 = (int64_t *)FUN_18062b420(system_memory_pool_ptr, temp_long1 * 8, *(uint *)(temp_long2 + 0x40) & 0xff);
+                stack_ptr1 = (int64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, temp_long1 * 8, *(uint *)(temp_long2 + 0x40) & 0xff);
             }
             temp_long1 = *(int64_t *)(temp_long2 + 0x28);
             if (temp_long1 != *(int64_t *)(temp_long2 + 0x30)) {
@@ -897,7 +897,7 @@ void RenderingSystemCleanupResources(int64_t render_context)
                     if (temp_long2 == 0) {
                         temp_long2 = 1;
 parameter_allocation_label:
-                        int_ptr1 = (int *)FUN_18062b420(system_memory_pool_ptr, temp_long2 * 4,
+                        int_ptr1 = (int *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, temp_long2 * 4,
                                                        CONCAT71((int7)((uint64_t)stack_ptr3 >> 8), 3), int_ptr9,
                                                        temp_int8_t, int_ptr6, int_ptr7, int_ptr8, temp_int16_t);
                     }

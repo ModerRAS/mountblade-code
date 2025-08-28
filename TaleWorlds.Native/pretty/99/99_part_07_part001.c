@@ -397,9 +397,9 @@ void FUN_1803f94b0(int64_t param_1, int64_t param_2) {
         uStack_198 = *(int32_t *)(param_2 + 0x1bd4);
         
         // 内存分配和数据初始化
-        puStack_1e0 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+        puStack_1e0 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
         *(int8_t *)puStack_1e0 = 0;
-        uVar2 = FUN_18064e990(puStack_1e0);
+        uVar2 = CoreMemoryPoolCleaner(puStack_1e0);
         uStack_1d0 = CONCAT44(uStack_1d0._4_4_,uVar2);
         
         // 字符串处理和数据设置
@@ -449,9 +449,9 @@ void FUN_1803f94b0(int64_t param_1, int64_t param_2) {
         uStack_1f8 = 0;
         
         // 渲染数据分配和设置
-        puStack_200 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x12,0x13);
+        puStack_200 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x12,0x13);
         *(int8_t *)puStack_200 = 0;
-        uVar2 = FUN_18064e990(puStack_200);
+        uVar2 = CoreMemoryPoolCleaner(puStack_200);
         uStack_1f0 = CONCAT44(uStack_1f0._4_4_,uVar2);
         *puStack_200 = 0x7365725f666c6168;  // "hash_fl"
         puStack_200[1] = 0x7469636f6c65765f;  // "_evolocit"
@@ -498,9 +498,9 @@ void FUN_1803f94b0(int64_t param_1, int64_t param_2) {
         uStack_218 = 0;
         
         // 高级渲染数据分配
-        puStack_220 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x1f,0x13);
+        puStack_220 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x1f,0x13);
         *(int8_t *)puStack_220 = 0;
-        uVar2 = FUN_18064e990(puStack_220);
+        uVar2 = CoreMemoryPoolCleaner(puStack_220);
         uStack_210 = CONCAT44(uStack_210._4_4_,uVar2);
         *puStack_220 = 0x7365725f666c6168;  // "hash_fl"
         puStack_220[1] = 0x5f64656b6361705f;  // "_packed_"
@@ -574,7 +574,7 @@ void FUN_1803f94b0(int64_t param_1, int64_t param_2) {
     }
     
     // 系统退出处理
-    FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_258);
+    SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_258);
 }
 
 /**
@@ -926,7 +926,7 @@ void FUN_1803f9a40(uint64_t *param_1, uint64_t param_2, int64_t param_3, int32_t
     system_system_data_memory = system_system_data_memory + -1;
     (**(code **)(*system_system_data_memory + 0x20))();
     puStack_118 = &global_state_720_ptr;
-    FUN_1808fc050(uStack_78 ^ (uint64_t)auStack_2a8);
+    SystemSecurityChecker(uStack_78 ^ (uint64_t)auStack_2a8);
 }
 
 /**
@@ -1088,7 +1088,7 @@ int64_t FUN_1803fa6a0(int64_t param_1) {
     int64_t *plVar6;
     
     // 内存分配和数据初始化
-    uVar3 = FUN_18062b1e0(system_memory_pool_ptr,0x488,8,3,0xfffffffffffffffe);
+    uVar3 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x488,8,3,0xfffffffffffffffe);
     lVar4 = FUN_1803fa510(uVar3);
     
     // 数据复制和配置
@@ -1380,7 +1380,7 @@ void FUN_1803fa980(int64_t *param_1, int64_t param_2) {
     }
     
     // 系统退出处理
-    FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_1e8);
+    SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_1e8);
 }
 
 /* ============================================================================

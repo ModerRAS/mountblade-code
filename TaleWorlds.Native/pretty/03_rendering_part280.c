@@ -39,7 +39,7 @@ void FUN_18041eb4a(uint param_1)
     uVar1 = uVar1 - 1;
   } while (uVar1 != 0);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000820 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000820 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -53,7 +53,7 @@ void FUN_18041ec11(void)
   uint64_t in_stack_00000820;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000820 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000820 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -105,7 +105,7 @@ uint64_t FUN_18041ec30(uint64_t param_1,int *param_2,int *param_3,int *param_4)
   uVar15 = uVar11;
   if (iStack_38 != 8) {
     uVar16 = *param_2 * *param_3 * *param_4;
-    uVar12 = FUN_18062b420(system_memory_pool_ptr,(int64_t)(int)uVar16,0x22);
+    uVar12 = CoreMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)(int)uVar16,0x22);
     uVar15 = 0;
     if (uVar12 != 0) {
       if (((0 < (int)uVar16) && (0x1f < uVar16)) &&
@@ -320,7 +320,7 @@ uint64_t FUN_18041ec8c(void)
   uint64_t uVar33;
   
   uVar15 = *unaff_R12 * *unaff_R15 * *unaff_R14;
-  uVar11 = FUN_18062b420();
+  uVar11 = CoreMemoryPoolAllocator();
   iVar14 = 0;
   if (uVar11 == 0) {
     if (render_system_data_string != 0) {

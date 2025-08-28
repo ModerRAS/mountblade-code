@@ -568,7 +568,7 @@ void RenderingSystem_CoordinateTransformer(int64_t param_1, int64_t param_2)
                     transform_param_4 = 0.0;
                     transform_output_2 = (int32_t *)0x0;
                     transform_param_1 = 0.0;
-                    pixel_data = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+                    pixel_data = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
                     *(int8_t *)pixel_data = 0;
                     transform_output_2 = pixel_data;
                     transform_param_3 = (float)FUN_18064e990(pixel_data);
@@ -742,7 +742,7 @@ void RenderingSystem_CoordinateTransformer(int64_t param_1, int64_t param_2)
                     transform_param_4 = 0.0;
                     transform_output_2 = (int32_t *)0x0;
                     transform_param_1 = 0.0;
-                    pixel_data = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+                    pixel_data = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
                     *(int8_t *)pixel_data = 0;
                     transform_output_2 = pixel_data;
                     transform_param_3 = (float)FUN_18064e990(pixel_data);

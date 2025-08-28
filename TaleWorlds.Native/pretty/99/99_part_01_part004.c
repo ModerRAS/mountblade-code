@@ -1191,7 +1191,7 @@ void SystemCharacterWriter(int64_t stream_handle, int character)
   }
   
   // 警告：子程序不返回
-  FUN_1808fc050(stack_cookie2 ^ (uint64_t)local_buffer);
+  SystemSecurityChecker(stack_cookie2 ^ (uint64_t)local_buffer);
 }
 
 /**
@@ -1252,7 +1252,7 @@ void SystemStreamWriter(int64_t stream_handle)
   }
   
   // 警告：子程序不返回
-  FUN_1808fc050(in_stack_00000078 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000078 ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -1269,7 +1269,7 @@ void SystemStreamTerminator(void)
   uint64_t in_stack_00000078;
   
   // 警告：子程序不返回
-  FUN_1808fc050(in_stack_00000078 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000078 ^ (uint64_t)&stack0x00000000);
 }
 
 // 警告：以'_'开头的全局变量在相同地址与较小符号重叠
@@ -1315,7 +1315,7 @@ void SystemStreamFlusher(int64_t stream_handle)
   
 flush_complete:
   // 警告：子程序不返回
-  FUN_1808fc050(stack_cookie ^ (uint64_t)local_buffer);
+  SystemSecurityChecker(stack_cookie ^ (uint64_t)local_buffer);
 }
 
 // 警告：以'_'开头的全局变量在相同地址与较小符号重叠

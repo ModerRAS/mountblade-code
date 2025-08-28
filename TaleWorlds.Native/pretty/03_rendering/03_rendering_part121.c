@@ -413,7 +413,7 @@ int64_t* rendering_system_array_data_copy(int64_t** dest_ptr, int64_t* src_start
             
             // 分配内存（如果需要）
             if (array_size != 0) {
-                data_offset = FUN_18062b420(system_memory_pool_ptr, array_size * 8, element_value & 0xff);
+                data_offset = CoreEngine_MemoryAllocator(system_memory_pool_ptr, array_size * 8, element_value & 0xff);
             }
             
             // 设置数组指针

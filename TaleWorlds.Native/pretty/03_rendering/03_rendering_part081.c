@@ -75,7 +75,7 @@ void rendering_system_process_data_queue(long long *queue_handle, unsigned long 
     }
     
     // 从内存池分配新的数据块
-    new_block_address = FUN_18062b420(g_rendering_memory_pool, RENDERING_DATA_BLOCK_SIZE, (char)queue_handle[10]);
+    new_block_address = CoreEngine_MemoryAllocator(g_rendering_memory_pool, RENDERING_DATA_BLOCK_SIZE, (char)queue_handle[10]);
     
     // 设置新数据块的链接
     *(unsigned long long *)(queue_handle[9] + 8) = new_block_address;

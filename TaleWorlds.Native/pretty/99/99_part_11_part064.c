@@ -27,7 +27,7 @@ void system_initializer_and_state_setter(void)
     *(int32_t *)(unaff_RDI + 0x110) = uVar1;
   }
   *(int32_t *)(unaff_RDI + 0x18) = unaff_R15D;
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x218) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x218) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -404,7 +404,7 @@ void resource_allocator_and_batch_operation_processor(int64_t param_1, int param
  */
 void resource_cleaner_and_release_processor(uint64_t param_1, uint64_t param_2)
 {
-  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &unknown_var_7376_ptr, 0x52, 1);
+  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &unknown_var_7376_ptr, 0x52, 1);
 }
 
 /**
@@ -905,14 +905,14 @@ void system_configurator_and_initialization_manager(int64_t param_1)
         iVar1 = FUN_180769080(*(uint64_t *)(param_1 + 0x170));
         if (iVar1 == 0) {
           uStack_48 = CONCAT71(uStack_48._1_7_,1);
-          FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *(uint64_t *)(param_1 + 0x170),
+          SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *(uint64_t *)(param_1 + 0x170),
                         &unknown_var_7680_ptr, 0xb4);
         }
       }
     }
   }
 FUN_1807c4ae8:
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_68);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_68);
 }
 
 /**
@@ -986,12 +986,12 @@ void advanced_system_manager_and_configuration_processor(void)
     *(int32_t *)(unaff_RBX + 0x18) = unaff_ESI;
     iVar1 = FUN_180769080(*(uint64_t *)(unaff_RBX + 0x170));
     if (iVar1 == 0) {
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *(uint64_t *)(unaff_RBX + 0x170),
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *(uint64_t *)(unaff_RBX + 0x170),
                     &unknown_var_7680_ptr, 0xb4, 1);
     }
   }
 LAB_1807c4ae3:
-  FUN_1808fc050(in_stack_00000050 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000050 ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -1006,7 +1006,7 @@ void system_finalizer_and_cleanup_processor(void)
 {
   uint64_t in_stack_00000050;
   
-  FUN_1808fc050(in_stack_00000050 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000050 ^ (uint64_t)&stack0x00000000);
 }
 
 /* 

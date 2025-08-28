@@ -616,7 +616,7 @@ code_r0x0001805caef0:
           fVar25 = fVar25 * fVar19 * fVar26 + fVar18 * fVar19 * fVar24;
           if ((fVar26 * fVar26 + fVar24 * fVar24) - fVar25 * fVar25 < fVar23 * fVar23 * 36.0) {
                     // WARNING: Subroutine does not return
-            FUN_1808fd400();
+            AdvancedSystemController();
           }
         }
         uVar10 = param_1[0x291];
@@ -797,7 +797,7 @@ code_r0x0001805caef0:
       auVar20._0_4_ = (float)system_data_01f0 - fVar23 * auVar21._0_4_ * auVar21._0_4_;
       uStackX_8 = uVar8;
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(iVar5 == 3,auVar20._0_8_);
+      AdvancedSystemController(iVar5 == 3,auVar20._0_8_);
     }
 FUN_1805cc66f:
     if (iVar5 == 3) {
@@ -960,7 +960,7 @@ uint64_t FUN_1805caef0(int64_t *param_1)
         fVar8 = fVar8 * fVar7 * fVar13 + fVar11 * fVar7 * fVar12;
         if ((fVar13 * fVar13 + fVar12 * fVar12) - fVar8 * fVar8 < fVar1 * fVar1 * 36.0) {
                     // WARNING: Subroutine does not return
-          FUN_1808fd400(*(int32_t *)(*param_1 + 0x4ac));
+          AdvancedSystemController(*(int32_t *)(*param_1 + 0x4ac));
         }
       }
       lVar4 = param_1[0x291];
@@ -1076,7 +1076,7 @@ uint64_t FUN_1805caf14(void)
         fVar8 = fVar8 * fVar7 * fVar13 + fVar9 * fVar7 * fVar6;
         if ((fVar13 * fVar13 + fVar6 * fVar6) - fVar8 * fVar8 < fVar12) {
                     // WARNING: Subroutine does not return
-          FUN_1808fd400(*(int32_t *)(lVar5 + 0x4ac));
+          AdvancedSystemController(*(int32_t *)(lVar5 + 0x4ac));
         }
         fVar6 = *(float *)(unaff_RBP + 0x58);
       }
@@ -1182,7 +1182,7 @@ uint64_t FUN_1805cb073(float param_1,int param_2,int64_t param_3)
         fVar5 = fVar5 * fVar4 * fVar10 + fVar6 * fVar4 * fVar9;
         if ((fVar10 * fVar10 + fVar9 * fVar9) - fVar5 * fVar5 < unaff_XMM6_Da) {
                     // WARNING: Subroutine does not return
-          FUN_1808fd400(*(int32_t *)(lVar3 + 0x4ac));
+          AdvancedSystemController(*(int32_t *)(lVar3 + 0x4ac));
         }
         param_1 = *(float *)(unaff_RBP + 0x58);
       }

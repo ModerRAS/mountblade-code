@@ -735,7 +735,7 @@ void rendering_system_data_transformer(int64_t source_context, int64_t target_co
     texture_resource = 0;
     texture_data = (uint64_t *)0x0;
     texture_format = 0;
-    data_pointer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x1c, 0x13);
+    data_pointer = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x1c, 0x13);
     *(int8_t *)data_pointer = 0;
     texture_data = data_pointer;
     buffer_index = FUN_18064e990(data_pointer);

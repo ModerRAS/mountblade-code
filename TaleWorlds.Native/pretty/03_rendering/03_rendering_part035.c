@@ -366,7 +366,7 @@ uint64_t * initialize_rendering_pool(uint64_t *pool_data)
         
         do {
             allocation_size = pool_data[9];
-            memory_alignment = FUN_18062b420(system_memory_pool_ptr, allocation_size * 0x1c + 0xaa, 3);
+            memory_alignment = CoreEngine_MemoryAllocator(system_memory_pool_ptr, allocation_size * 0x1c + 0xaa, 3);
             memory_block = block_pointer;
             
             if (memory_alignment != 0) {

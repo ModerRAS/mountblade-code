@@ -472,7 +472,7 @@ void FUN_1801f7d20(int64_t param_1,int64_t param_2,uint *param_3,uint64_t *param
   }
   *param_3 = *param_3 & *(uint *)(*(int64_t *)(param_1 + 0x30) + 0x1610);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_b08);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_b08);
 }
 
 
@@ -484,7 +484,7 @@ uint64_t FUN_1801f8e50(uint64_t param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x450,8,3);
+  uVar1 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x450,8,3);
   uVar1 = FUN_1801fa180(uVar1);
   FUN_1801f8ea0(uVar1,param_1);
   return uVar1;

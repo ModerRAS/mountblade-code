@@ -124,8 +124,8 @@ void FUN_180059a20(int64_t param_1,int64_t param_2,int64_t param_3)
 
 
 
-// 函数: void FUN_180059ba0(uint64_t *param_1)
-void FUN_180059ba0(uint64_t *param_1)
+// 函数: void ResourceManager_Release(uint64_t *param_1)
+void ResourceManager_Release(uint64_t *param_1)
 
 {
   int *piVar1;

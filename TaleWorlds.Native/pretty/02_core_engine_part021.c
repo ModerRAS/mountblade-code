@@ -40,7 +40,7 @@ void FUN_180062920(int *param_1)
   *param_1 = *param_1 + 1;
   if ((*(int64_t *)(param_1 + 4) != 0) && (*(int64_t *)(param_1 + 2) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_1f8);
+    SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_1f8);
   }
   lStack_168 = 0;
   lStack_160 = 0;
@@ -65,10 +65,10 @@ void FUN_180062920(int *param_1)
   uStack_198 = 0;
   puStack_1a8 = (int32_t *)0x0;
   uStack_1a0 = 0;
-  puVar5 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x13,0x13);
+  puVar5 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x13,0x13);
   *(int8_t *)puVar5 = 0;
   puStack_1a8 = puVar5;
-  uVar3 = FUN_18064e990(puVar5);
+  uVar3 = CoreMemoryPoolCleaner(puVar5);
   uStack_198 = CONCAT44(uStack_198._4_4_,uVar3);
   *puVar5 = 0x5f657375;
   puVar5[1] = 0x65726170;
@@ -208,10 +208,10 @@ void FUN_180062fd0(int64_t param_1)
       uStack_58 = 0;
       puStack_68 = (uint64_t *)0x0;
       uStack_60 = 0;
-      puVar5 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+      puVar5 = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x10,0x13);
       *(int8_t *)puVar5 = 0;
       puStack_68 = puVar5;
-      uVar3 = FUN_18064e990(puVar5);
+      uVar3 = CoreMemoryPoolCleaner(puVar5);
       uStack_58 = CONCAT44(uStack_58._4_4_,uVar3);
       *puVar5 = 0x73726f7272655f;
       uStack_60 = 7;
@@ -704,7 +704,7 @@ LAB_180063de9:
     uStack_278 = 0;
     puStack_290 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_2f8);
+    SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_2f8);
   }
   puStack_2a8 = puVar4;
                     // WARNING: Subroutine does not return
@@ -857,7 +857,7 @@ void FUN_180064010(uint64_t param_1)
     UNLOCK();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_358);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_358);
 }
 
 

@@ -164,7 +164,7 @@ void FUN_180352bf0(uint64_t *param_1)
     uStack_70 = 0;                // 配置参数2
     
     // 分配配置缓冲区
-    puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x1f, 0x13);
+    puVar3 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x1f, 0x13);
     *(int8_t *)puVar3 = 0;    // 初始化缓冲区
     
     // 设置配置数据指针
@@ -274,7 +274,7 @@ void FUN_180352e50(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t
         uStack_50 = 0;                // 配置参数2
         
         // 分配配置缓冲区
-        puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+        puVar3 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
         *(int8_t *)puVar3 = 0;    // 初始化缓冲区
         
         // 设置配置数据指针
@@ -313,7 +313,7 @@ void FUN_180352e50(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t
         uStack_30 = 0;                // 配置参数2
         
         // 分配配置缓冲区
-        puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+        puVar3 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
         *(int8_t *)puVar3 = 0;    // 初始化缓冲区
         
         // 设置配置数据指针
@@ -1237,7 +1237,7 @@ int64_t * FUN_180355140(int64_t param_1,int64_t *param_2,uint64_t param_3,int64_
   uint64_t uVar14;
   
   uVar14 = 0xfffffffffffffffe;
-  puVar7 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr);
+  puVar7 = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr);
   *puVar7 = &system_state_ptr;
   uVar12 = 0;
   puVar7[1] = 0;

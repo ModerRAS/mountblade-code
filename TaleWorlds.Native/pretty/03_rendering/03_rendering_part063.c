@@ -502,7 +502,7 @@ LAB_18029ffc7:
   
   allocation_result = 0;
 LAB_1802a0010:
-  key_offset = FUN_18062b420(system_memory_pool_ptr, 0x158, (char)resource_manager_ptr[5]);
+  key_offset = CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x158, (char)resource_manager_ptr[5]);
   FUN_180068ff0(key_offset + 0x20, resource_data_ptr);
   *(uint64_t *)(key_offset + 0x138) = 0;
   *(uint64_t *)(key_offset + 0x140) = 0;
@@ -1095,7 +1095,7 @@ void rendering_system_mutex_manager(int64_t mutex_context_ptr, int64_t target_mu
     if (array_size == 0) {
       array_size = 1;
 LAB_1803007a9:
-      new_array_ptr = (int64_t *)FUN_18062b420(system_memory_pool_ptr, array_size * 8, *(int8_t *)(tls_data_ptr + 0x2a08));
+      new_array_ptr = (int64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, array_size * 8, *(int8_t *)(tls_data_ptr + 0x2a08));
       mutex_array_ptr = *(int64_t **)(tls_data_ptr + 0x29f8);
       old_array_ptr = *(int64_t **)(tls_data_ptr + 0x29f0);
     }

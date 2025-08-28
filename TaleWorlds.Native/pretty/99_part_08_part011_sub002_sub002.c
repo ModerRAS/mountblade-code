@@ -356,7 +356,7 @@ LAB_1804e9887:
   pcStack_3e0 = FUN_1805036d0;
   pcStack_3d8 = FUN_1805035c0;
   uStack_458 = param_1;
-  apiStack_3f0[0] = (int *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,system_allocation_flags);
+  apiStack_3f0[0] = (int *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,system_allocation_flags);
   *apiStack_3f0[0] = (int)uStack_458;
   apiStack_3f0[0][1] = uStack_458._4_4_;
   apiStack_3f0[0][2] = (int)uStack_450;
@@ -417,7 +417,7 @@ LAB_1804e9887:
     LOCK();
     auStack_4e0._8_4_ = 0;
     UNLOCK();
-    uVar17 = FUN_18062b1e0(system_memory_pool_ptr,0x3fc0,0x10,0x27);
+    uVar17 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x3fc0,0x10,0x27);
     auStack_4e0._0_8_ = uVar17;
     if ((char)param_1[0x21ca5b] == '\0') {
       iVar29 = (int)(*(int64_t *)(param_1 + 0x21ca54) - *(int64_t *)(param_1 + 0x21ca52) >> 3);
@@ -432,7 +432,7 @@ LAB_1804e9887:
     pcStack_3b8 = FUN_1805023c0;
     uStack_508 = piVar24;
     uStack_500 = (float *)param_1;
-    apuStack_3d0[0] = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr,0x20,8,system_allocation_flags);
+    apuStack_3d0[0] = (int32_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x20,8,system_allocation_flags);
     *apuStack_3d0[0] = (int)uStack_508;
     apuStack_3d0[0][1] = uStack_508._4_4_;
     apuStack_3d0[0][2] = (int)uStack_500;
@@ -656,7 +656,7 @@ LAB_1804e9faf:
     LOCK();
     iStack_4a8 = 0;
     UNLOCK();
-    lStack_4b0 = FUN_18062b1e0(system_memory_pool_ptr,0x3fc0,0x10,0x27);
+    lStack_4b0 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x3fc0,0x10,0x27);
     if ((char)param_1[0x21da55] == '\0') {
       iVar29 = (int)(*(int64_t *)(param_1 + 0x21da4e) - *(int64_t *)(param_1 + 0x21da4c) >> 3);
     }
@@ -669,7 +669,7 @@ LAB_1804e9faf:
     pcStack_360 = FUN_1805034e0;
     pcStack_358 = FUN_180503400;
     uStack_508 = param_1;
-    apuStack_370[0] = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,system_allocation_flags);
+    apuStack_370[0] = (int32_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,system_allocation_flags);
     *apuStack_370[0] = (int)uStack_508;
     apuStack_370[0][1] = uStack_508._4_4_;
     apuStack_370[0][2] = (int)uStack_500;
@@ -690,7 +690,7 @@ LAB_1804e9faf:
     pcStack_340 = FUN_180503320;
     pcStack_338 = FUN_180503240;
     uStack_508 = param_1;
-    apiStack_350[0] = (int *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,system_allocation_flags);
+    apiStack_350[0] = (int *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,system_allocation_flags);
     *apiStack_350[0] = (int)uStack_508;
     apiStack_350[0][1] = uStack_508._4_4_;
     apiStack_350[0][2] = (int)uStack_500;
@@ -780,7 +780,7 @@ LAB_1804e9faf:
       pcStack_400 = FUN_180502ed0;
       puStack_3f8 = &unknown_var_5792_ptr;
       uStack_508 = param_1;
-      apuStack_410[0] = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,system_allocation_flags);
+      apuStack_410[0] = (int32_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,system_allocation_flags);
       *apuStack_410[0] = (int)uStack_508;
       apuStack_410[0][1] = uStack_508._4_4_;
       apuStack_410[0][2] = (int)uStack_500;
@@ -952,7 +952,7 @@ LAB_1804e9faf:
           FUN_18052edc0();
         }
       }
-      uVar17 = FUN_18062b1e0(system_memory_pool_ptr,0xe0,8,3);
+      uVar17 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
       plStack_4b8 = (int64_t *)&uStack_430;
       uStack_500 = afStack_528;
       puStack_420 = &unknown_var_5264_ptr;
@@ -1258,7 +1258,7 @@ LAB_1804eb07a:
     FUN_1804f6fd0(param_1);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_d8 ^ (uint64_t)auStack_568);
+  SystemSecurityChecker(uStack_d8 ^ (uint64_t)auStack_568);
 }
 
 

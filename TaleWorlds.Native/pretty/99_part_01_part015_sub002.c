@@ -77,10 +77,10 @@ LAB_1800afade:
             if (iVar10 < 0x10) {
               iVar15 = 0x10;
             }
-            puVar5 = (int8_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)iVar15,0x13);
+            puVar5 = (int8_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)iVar15,0x13);
             *puVar5 = 0;
             puStack_90 = puVar5;
-            uVar3 = FUN_18064e990(puVar5);
+            uVar3 = CoreMemoryPoolCleaner(puVar5);
             uStack_80 = CONCAT44(uStack_80._4_4_,uVar3);
                     // WARNING: Subroutine does not return
             memcpy(puVar5,&uStack_60,(int64_t)iVar10);
@@ -138,10 +138,10 @@ LAB_1800afc3f:
             if (iVar10 < 0x10) {
               iVar15 = 0x10;
             }
-            puVar5 = (int8_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)iVar15,0x13);
+            puVar5 = (int8_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)iVar15,0x13);
             *puVar5 = 0;
             puStack_90 = puVar5;
-            uVar3 = FUN_18064e990(puVar5);
+            uVar3 = CoreMemoryPoolCleaner(puVar5);
             uStack_80 = CONCAT44(uStack_80._4_4_,uVar3);
                     // WARNING: Subroutine does not return
             memcpy(puVar5,&uStack_60,(int64_t)iVar10);
@@ -192,7 +192,7 @@ LAB_1800afda6:
             if (iVar15 < 0x10) {
               iVar15 = 0x10;
             }
-            puStack_90 = (int8_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)iVar15,0x13);
+            puStack_90 = (int8_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)iVar15,0x13);
             *puStack_90 = 0;
             uVar9 = (uint64_t)puStack_90 & 0xffffffffffc00000;
             if (uVar9 == 0) {
@@ -279,7 +279,7 @@ LAB_1800aff9c:
             if (iVar15 < 0x10) {
               iVar15 = 0x10;
             }
-            puStack_90 = (int8_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)iVar15,0x13);
+            puStack_90 = (int8_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)iVar15,0x13);
             *puStack_90 = 0;
             uVar9 = (uint64_t)puStack_90 & 0xffffffffffc00000;
             if (uVar9 == 0) {
@@ -340,7 +340,7 @@ LAB_1800affe3:
   puStack_90 = (int8_t *)0x0;
   puStack_98 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (uint64_t)auStack_b8);
+  SystemSecurityChecker(uStack_40 ^ (uint64_t)auStack_b8);
 }
 
 

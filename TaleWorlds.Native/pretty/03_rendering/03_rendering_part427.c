@@ -260,7 +260,7 @@ void rendering_system_host_interface_initializer(uint64_t param_1, uint64_t para
   uStack_28 = 0;
   puStack_38 = (uint64_t *)0x0;
   uStack_30 = 0;
-  puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, RENDERING_MODULE_SIZE, 0x13);
+  puVar3 = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, RENDERING_MODULE_SIZE, 0x13);
   *(int8_t *)puVar3 = 0;
   puStack_38 = puVar3;
   uVar1 = FUN_18064e990(puVar3);
@@ -402,7 +402,7 @@ void rendering_system_name_manager(uint64_t param_1, uint64_t param_2)
   uStack_88 = 0;
   puStack_98 = (uint64_t *)0x0;
   uStack_90 = 0;
-  puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, RENDERING_MODULE_SIZE, 0x13);
+  puVar3 = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, RENDERING_MODULE_SIZE, 0x13);
   *(int8_t *)puVar3 = 0;
   puStack_98 = puVar3;
   uVar1 = FUN_18064e990(puVar3);
@@ -441,7 +441,7 @@ void rendering_system_grid_handler(uint64_t param_1, uint64_t param_2)
   uStack_28 = 0;
   puStack_38 = (uint64_t *)0x0;
   uStack_30 = 0;
-  puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, RENDERING_MODULE_SIZE, 0x13);
+  puVar3 = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, RENDERING_MODULE_SIZE, 0x13);
   *(int8_t *)puVar3 = 0;
   puStack_38 = puVar3;
   uVar1 = FUN_18064e990(puVar3);
@@ -635,7 +635,7 @@ void rendering_system_material_processor(uint64_t param_1, int64_t *param_2, uin
     uStack_48 = 0;
     puStack_58 = (uint64_t *)0x0;
     uStack_50 = 0;
-    puVar2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, RENDERING_MODULE_SIZE, 0x13, param_4, uVar4);
+    puVar2 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, RENDERING_MODULE_SIZE, 0x13, param_4, uVar4);
     *(int8_t *)puVar2 = 0;
     puStack_58 = (uint64_t *)puVar2;
     uVar1 = FUN_18064e990(puVar2);
@@ -657,7 +657,7 @@ void rendering_system_material_processor(uint64_t param_1, int64_t *param_2, uin
     uStack_28 = 0;
     puStack_38 = (uint64_t *)0x0;
     uStack_30 = 0;
-    puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, RENDERING_MODULE_SIZE, 0x13);
+    puVar3 = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, RENDERING_MODULE_SIZE, 0x13);
     *(int8_t *)puVar3 = 0;
     puStack_38 = puVar3;
     uVar1 = FUN_18064e990(puVar3);
@@ -678,7 +678,7 @@ void rendering_system_material_processor(uint64_t param_1, int64_t *param_2, uin
     uStack_48 = 0;
     puStack_58 = (uint64_t *)0x0;
     uStack_50 = 0;
-    puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, RENDERING_MODULE_SIZE, 0x13);
+    puVar3 = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, RENDERING_MODULE_SIZE, 0x13);
     *(int8_t *)puVar3 = 0;
     puStack_58 = puVar3;
     uVar1 = FUN_18064e990(puVar3);
@@ -699,7 +699,7 @@ void rendering_system_material_processor(uint64_t param_1, int64_t *param_2, uin
     uStack_28 = 0;
     puStack_38 = (uint64_t *)0x0;
     uStack_30 = 0;
-    puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, RENDERING_MODULE_SIZE, 0x13);
+    puVar3 = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, RENDERING_MODULE_SIZE, 0x13);
     *(int8_t *)puVar3 = 0;
     puStack_38 = puVar3;
     uVar1 = FUN_18064e990(puVar3);
@@ -719,7 +719,7 @@ void rendering_system_material_processor(uint64_t param_1, int64_t *param_2, uin
     uStack_48 = 0;
     puStack_58 = (uint64_t *)0x0;
     uStack_50 = 0;
-    puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, RENDERING_MODULE_SIZE, 0x13);
+    puVar3 = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, RENDERING_MODULE_SIZE, 0x13);
     *(int8_t *)puVar3 = 0;
     puStack_58 = puVar3;
     uVar1 = FUN_18064e990(puVar3);
@@ -741,7 +741,7 @@ void rendering_system_material_processor(uint64_t param_1, int64_t *param_2, uin
     uStack_28 = 0;
     puStack_38 = (uint64_t *)0x0;
     uStack_30 = 0;
-    puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, RENDERING_MODULE_SIZE, 0x13);
+    puVar3 = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, RENDERING_MODULE_SIZE, 0x13);
     *(int8_t *)puVar3 = 0;
     puStack_38 = puVar3;
     uVar1 = FUN_18064e990(puVar3);

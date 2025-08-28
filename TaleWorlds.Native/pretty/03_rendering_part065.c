@@ -132,7 +132,7 @@ void FUN_180301f30(uint64_t param_1,int64_t *param_2)
     return;
   }
   puVar6 = (uint64_t *)(lVar2 + 0x60b98);
-  lVar4 = FUN_18062b420(system_memory_pool_ptr,0x28,*(int8_t *)(lVar2 + 0x60bc0));
+  lVar4 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x28,*(int8_t *)(lVar2 + 0x60bc0));
   *(uint64_t *)(lVar4 + 0x20) = param_1;
   bVar8 = true;
   puVar3 = puVar6;

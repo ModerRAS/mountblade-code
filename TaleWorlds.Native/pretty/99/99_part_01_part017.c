@@ -211,7 +211,7 @@ void advanced_data_processor_and_resource_manager(
 process_data:
         // 创建和管理资源对象
         long_ptr4 = stack_long_ptr4;
-        long_ptr2 = (void*)((MemoryAllocatorFunc)FUN_18062b1e0)(GLOBAL_DATA_PTR_180c8ed18, 0x170, 8, 3);
+        long_ptr2 = (void*)((MemoryAllocatorFunc)CoreMemoryPoolReallocator)(GLOBAL_DATA_PTR_180c8ed18, 0x170, 8, 3);
         
         // 初始化资源对象结构
         *(void**)long_ptr2 = (void*)&system_handler1_ptr;
@@ -312,7 +312,7 @@ process_data:
             }
             
             // 执行异步操作
-            temp_long1 = ((MemoryAllocatorFunc)FUN_18062b1e0)(GLOBAL_DATA_PTR_180c8ed18, 0x100, 8, 3);
+            temp_long1 = ((MemoryAllocatorFunc)CoreMemoryPoolReallocator)(GLOBAL_DATA_PTR_180c8ed18, 0x100, 8, 3);
             long_ptr3 = (void*)((DataProcessorFunc)FUN_18005ce30)(temp_long1, &stack_ptr8);
             stack_indirect_ptr2 = (void**)long_ptr3;
             if (long_ptr3 != (void*)0x0) {
@@ -357,7 +357,7 @@ process_data:
                 if (temp_long1 == 0) {
                     temp_long1 = 1;
 expand_queue:
-                    ptr3 = (void*)((MemoryAllocatorFunc)FUN_18062b420)(GLOBAL_DATA_PTR_180c8ed18, temp_long1 * 8);
+                    ptr3 = (void*)((MemoryAllocatorFunc)CoreMemoryPoolAllocator)(GLOBAL_DATA_PTR_180c8ed18, temp_long1 * 8);
                     data_ptr2 = (void*)long_ptr4[1];
                     ptr1 = (void*)*long_ptr4;
                     stack_ptr2 = ptr3;
@@ -516,7 +516,7 @@ expand_queue:
     
 cleanup_and_exit:
     // 执行最终的清理操作
-    ((void(*)(unsigned long long))FUN_1808fc050)(security_hash ^ (unsigned long long)stack_buffer1);
+    ((void(*)(unsigned long long))SystemSecurityChecker)(security_hash ^ (unsigned long long)stack_buffer1);
 }
 
 // ============================================================================

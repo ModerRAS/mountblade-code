@@ -16,7 +16,7 @@ void FUN_1804c60b0(uint64_t param_1,uint64_t param_2)
   int32_t uStack_30;
   uint64_t uStack_28;
   
-  puVar2 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x78,8,3,0xfffffffffffffffe);
+  puVar2 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x78,8,3,0xfffffffffffffffe);
   puVar4 = puVar2;
   FUN_1803456e0(puVar2,param_2,param_1);
   *puVar4 = &unknown_var_1216_ptr;
@@ -24,10 +24,10 @@ void FUN_1804c60b0(uint64_t param_1,uint64_t param_2)
   uStack_28 = 0;
   puStack_38 = (int32_t *)0x0;
   uStack_30 = 0;
-  puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+  puVar3 = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
   *(int8_t *)puVar3 = 0;
   puStack_38 = puVar3;
-  uVar1 = FUN_18064e990(puVar3);
+  uVar1 = CoreMemoryPoolCleaner(puVar3);
   uStack_28 = CONCAT44(uStack_28._4_4_,uVar1);
   *puVar3 = 0x74747542;
   *(int16_t *)(puVar3 + 1) = 0x6e6f;

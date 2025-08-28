@@ -95,7 +95,7 @@ extern void System_BufferManager(int64_t param_1, int64_t param_2, int64_t param
 extern void FUN_18062b1e0(uint64_t param_1, int param_2, int param_3, int param_4);
 extern void FUN_1800c17c0(int32_t param_1, int64_t param_2);
 extern void FUN_18020d730(uint64_t param_1, uint64_t param_2);
-extern void FUN_18062b420(uint64_t param_1, int64_t param_2, int8_t param_3);
+extern void CoreEngine_MemoryAllocator(uint64_t param_1, int64_t param_2, int8_t param_3);
 extern void CoreEngine_MemoryPoolManager(uint64_t param_1);
 extern int64_t func_0x00018066bd70(int64_t param_1);
 

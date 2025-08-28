@@ -687,7 +687,7 @@ void FUN_180722370(uint64_t param_1,int *param_2)
   param_2[1] = iVar2;
   *param_2 = iVar5 - iVar2;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_20 ^ (uint64_t)auStack_58);
+  SystemSecurityChecker(uStack_20 ^ (uint64_t)auStack_58);
 }
 
 
@@ -942,7 +942,7 @@ void FUN_180722910(int64_t param_1,uint64_t param_2,int param_3,int param_4,int 
   uVar1 = FUN_18070f3e0(param_2,&unknown_var_9560_ptr,8);
   *(int8_t *)(param_1 + 0xaea) = uVar1;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_98);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_98);
 }
 
 

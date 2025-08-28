@@ -755,7 +755,7 @@ void rendering_system_pipeline_initializer(int64_t param_1)
     }
     
     // 创建新的渲染管线节点
-    puVar8 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, *(int8_t *)(param_1 + 0x9b4));
+    puVar8 = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x10, *(int8_t *)(param_1 + 0x9b4));
     *puVar8 = CONCAT44(fStackX_1c, uStackX_18);
     puVar8[1] = 0;
     FUN_18066c220(param_1 + 0x9a8, acStackX_20, *(int32_t *)(param_1 + 0x998),
@@ -777,7 +777,7 @@ LAB_18032285f:
   
 LAB_180322608:
   // 处理渲染管线队列节点
-  lVar7 = FUN_18062b420(system_memory_pool_ptr, RENDERING_POOL_SIZE_0x30, *(int8_t *)(param_1 + 0x980));
+  lVar7 = CoreEngine_MemoryAllocator(system_memory_pool_ptr, RENDERING_POOL_SIZE_0x30, *(int8_t *)(param_1 + 0x980));
   uStack_78 = SUB84(puVar5, 0);
   uStack_74 = (int32_t)((uint64_t)puVar5 >> 0x20);
   *(int *)(lVar7 + 0x20) = iVar4;
@@ -995,7 +995,7 @@ LAB_180322b26:
               lVar9 = 1;
 LAB_180322c61:
               plVar10 = (int64_t *)
-                        FUN_18062b420(system_memory_pool_ptr, lVar9 * 8, *(int8_t *)(puVar7 + 0x6a));
+                        CoreEngine_MemoryAllocator(system_memory_pool_ptr, lVar9 * 8, *(int8_t *)(puVar7 + 0x6a));
               plVar16 = *(int64_t **)(puVar7 + 0x66);
               plVar14 = (int64_t *)*puVar1;
             }
@@ -1048,7 +1048,7 @@ LAB_180322c61:
             if (lVar11 == 0) {
               lVar11 = 1;
 LAB_180322d80:
-              piVar12 = (int *)FUN_18062b420(system_memory_pool_ptr, lVar11 * 4,
+              piVar12 = (int *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, lVar11 * 4,
                                              *(int8_t *)(puVar22 + 0x62));
               piVar17 = *(int **)(puVar22 + 0x5e);
               piVar15 = (int *)*puVar1;

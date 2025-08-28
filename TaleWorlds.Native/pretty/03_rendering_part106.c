@@ -99,7 +99,7 @@ void RenderingSystem_ProcessResourceFile(int64_t render_context, int64_t output_
       puStack_b8 = (int32_t *)0x0;
     }
     else {
-      puStack_b8 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)aiStack_108[0] * 4,3);
+      puStack_b8 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,(int64_t)aiStack_108[0] * 4,3);
     }
     puVar11 = puStack_b8;
     fread(puStack_b8,4,(int64_t)aiStack_108[0],*(uint64_t *)(param_2 + 8));
@@ -285,7 +285,7 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, int64_t output_
       puStack_a0 = (int32_t *)0x0;
     }
     else {
-      puStack_a0 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)aiStack_108[0] * 4,3);
+      puStack_a0 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,(int64_t)aiStack_108[0] * 4,3);
     }
     puVar1 = puStack_a0;
     fread(puStack_a0,4,(int64_t)aiStack_108[0],*(uint64_t *)(param_2 + 8));
@@ -371,7 +371,7 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, int64_t output_
         iVar8 = 0;
       }
       else {
-        uVar4 = FUN_18062b420(system_memory_pool_ptr,(int64_t)iVar8 * 4,3);
+        uVar4 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,(int64_t)iVar8 * 4,3);
         iVar8 = *(int *)(puVar3 + 1);
       }
       *puVar3 = uVar4;
@@ -457,28 +457,28 @@ void RenderingSystem_OptimizeResourceData(int64_t render_context, int64_t output
       lStack_c0 = 0;
     }
     else {
-      lStack_c0 = FUN_18062b420(system_memory_pool_ptr,(int64_t)aiStackX_10[0] * 4,3);
+      lStack_c0 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,(int64_t)aiStackX_10[0] * 4,3);
     }
     lVar5 = lStack_c0;
     if (aiStackX_10[0] == 0) {
       puStack_98 = (int32_t *)0x0;
     }
     else {
-      puStack_98 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)aiStackX_10[0] * 4,3);
+      puStack_98 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,(int64_t)aiStackX_10[0] * 4,3);
     }
     puVar13 = puStack_98;
     if (aiStackX_10[0] == 0) {
       lStack_c8 = 0;
     }
     else {
-      lStack_c8 = FUN_18062b420(system_memory_pool_ptr,(int64_t)aiStackX_10[0] * 4,3);
+      lStack_c8 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,(int64_t)aiStackX_10[0] * 4,3);
     }
     lVar14 = lStack_c8;
     if (aiStackX_10[0] == 0) {
       plStack_90 = (int64_t *)0x0;
     }
     else {
-      plStack_90 = (int64_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)aiStackX_10[0] * 8,3);
+      plStack_90 = (int64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,(int64_t)aiStackX_10[0] * 8,3);
     }
     plVar15 = plStack_90;
     fread(lVar5,4,(int64_t)aiStackX_10[0],*(uint64_t *)(param_2 + 8));
@@ -579,7 +579,7 @@ void RenderingSystem_OptimizeResourceData(int64_t render_context, int64_t output
         }
         if (*(int *)(puVar4 + 4) < iVar1) {
 LAB_180330378:
-          lVar5 = FUN_18062b420(system_memory_pool_ptr,0x30,*(int8_t *)(param_1 + 0x980));
+          lVar5 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x30,*(int8_t *)(param_1 + 0x980));
           *(int *)(lVar5 + 0x20) = iStack_60;
           *(int32_t *)(lVar5 + 0x24) = uStack_5c;
           *(int32_t *)(lVar5 + 0x28) = (int32_t)uStack_58;
@@ -733,14 +733,14 @@ void RenderingSystem_CompressRenderData(int64_t render_context, int64_t output_h
       lStack_f0 = 0;
     }
     else {
-      lStack_f0 = FUN_18062b420(system_memory_pool_ptr,(int64_t)aiStackX_8[0] * 4,3);
+      lStack_f0 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,(int64_t)aiStackX_8[0] * 4,3);
     }
     lVar14 = lStack_f0;
     if (aiStackX_8[0] == 0) {
       piStack_f8 = (int *)0x0;
     }
     else {
-      piStack_f8 = (int *)FUN_18062b420(system_memory_pool_ptr,(int64_t)aiStackX_8[0] * 4,3);
+      piStack_f8 = (int *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,(int64_t)aiStackX_8[0] * 4,3);
     }
     piVar13 = piStack_f8;
     fread(lVar14,4,(int64_t)aiStackX_8[0],*(uint64_t *)(param_2 + 8));
@@ -803,7 +803,7 @@ void RenderingSystem_CompressRenderData(int64_t render_context, int64_t output_h
           iVar3 = 0;
         }
         else {
-          puStack_d0 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)iVar3 * 0x10,3);
+          puStack_d0 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,(int64_t)iVar3 * 0x10,3);
           puStack_c8 = puStack_d0 + (int64_t)iVar3 * 4;
           iVar3 = *piVar13;
         }
@@ -834,7 +834,7 @@ void RenderingSystem_CompressRenderData(int64_t render_context, int64_t output_h
               if (lStack_78 >> 4 == 0) {
                 lVar7 = 1;
 LAB_18033084a:
-                puVar4 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,lVar7 << 4,3);
+                puVar4 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,lVar7 << 4,3);
               }
               else {
                 lVar7 = (lStack_78 >> 4) * 2;
@@ -874,7 +874,7 @@ LAB_18033084a:
           lStack_98 = 0;
         }
         else {
-          lStack_98 = FUN_18062b420(system_memory_pool_ptr,((int64_t)uVar8 >> 4) << 4,3);
+          lStack_98 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,((int64_t)uVar8 >> 4) << 4,3);
         }
         lStack_88 = lStack_98 + ((int64_t)uVar8 >> 4) * 0x10;
         lStack_90 = lStack_98;

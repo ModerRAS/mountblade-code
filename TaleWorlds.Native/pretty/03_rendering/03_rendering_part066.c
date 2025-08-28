@@ -549,7 +549,7 @@ void rendering_system_initialize_render_context(int64_t render_context, unsigned
             stack_value_64 = 0;
             stack_buffer_32 = (int32_t *)0x0;
             stack_value_32 = 0;
-            string_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x18, 0x13);
+            string_buffer = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x18, 0x13);
             *(unsigned char *)string_buffer = 0;
             stack_buffer_32 = string_buffer;
             adjusted_flags = FUN_18064e990(string_buffer);
@@ -572,7 +572,7 @@ void rendering_system_initialize_render_context(int64_t render_context, unsigned
             stack_value_64_2 = 0;
             stack_buffer_64 = (uint64_t *)0x0;
             stack_value_32_2 = 0;
-            string_buffer_64 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+            string_buffer_64 = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
             *(unsigned char *)string_buffer_64 = 0;
             stack_buffer_64 = string_buffer_64;
             adjusted_flags = FUN_18064e990(string_buffer_64);
@@ -592,7 +592,7 @@ void rendering_system_initialize_render_context(int64_t render_context, unsigned
             stack_value_64_3 = 0;
             stack_buffer_32_3 = (int32_t *)0x0;
             stack_value_32_3 = 0;
-            string_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x1a, 0x13);
+            string_buffer = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x1a, 0x13);
             *(unsigned char *)string_buffer = 0;
             stack_buffer_32_3 = string_buffer;
             adjusted_flags = FUN_18064e990(string_buffer);
@@ -623,7 +623,7 @@ void rendering_system_initialize_render_context(int64_t render_context, unsigned
         stack_value_64_4 = 0;
         stack_buffer_32_4 = (int32_t *)0x0;
         stack_value_32_4 = 0;
-        string_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x11, 0x13);
+        string_buffer = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x11, 0x13);
         *(unsigned char *)string_buffer = 0;
         stack_buffer_32_4 = string_buffer;
         adjusted_flags = FUN_18064e990(string_buffer);
@@ -649,7 +649,7 @@ void rendering_system_initialize_render_context(int64_t render_context, unsigned
     stack_value_64_5 = 0;
     stack_buffer_32_5 = (int32_t *)0x0;
     stack_value_32_5 = 0;
-    string_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+    string_buffer = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
     *(unsigned char *)string_buffer = 0;
     stack_buffer_32_5 = string_buffer;
     adjusted_flags = FUN_18064e990(string_buffer);

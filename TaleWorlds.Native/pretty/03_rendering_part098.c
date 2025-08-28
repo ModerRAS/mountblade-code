@@ -37,7 +37,7 @@ void FUN_180325930(int64_t param_1,uint64_t param_2,int64_t *param_3,int32_t *pa
   lVar9 = param_3[1] - *param_3 >> 3;
   uStack_50 = *(uint *)(param_3 + 3);
   if (lVar9 != 0) {
-    lVar7 = FUN_18062b420(system_memory_pool_ptr,lVar9 * 8,uStack_50 & 0xff);
+    lVar7 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,lVar9 * 8,uStack_50 & 0xff);
   }
   lStack_58 = lVar7 + lVar9 * 8;
   lVar9 = *param_3;
@@ -722,7 +722,7 @@ LAB_1803265ac:
         puVar18 = (uint64_t *)param_1[0x2a];
         lVar22 = (int64_t)puVar20 - (int64_t)puVar18 >> 6;
         if ((lVar22 == 0) || (lVar12 = lVar22 * 2, lVar12 != 0)) {
-          puVar13 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar12 << 6,(char)param_1[0x2d]);
+          puVar13 = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,lVar12 << 6,(char)param_1[0x2d]);
           puVar20 = (uint64_t *)param_1[0x2b];
           puVar18 = (uint64_t *)param_1[0x2a];
         }
@@ -780,7 +780,7 @@ LAB_1803265ac:
         puVar19 = (int8_t *)param_1[0x2e];
         if (((int64_t)puVar21 - (int64_t)puVar19 == 0) ||
            (lVar22 = ((int64_t)puVar21 - (int64_t)puVar19) * 2, lVar22 != 0)) {
-          puVar14 = (int8_t *)FUN_18062b420(system_memory_pool_ptr,lVar22,(char)param_1[0x31]);
+          puVar14 = (int8_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,lVar22,(char)param_1[0x31]);
           puVar21 = (int8_t *)param_1[0x2f];
           puVar19 = (int8_t *)param_1[0x2e];
         }

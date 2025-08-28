@@ -543,7 +543,7 @@ LAB_18039a381:
            (puVar6 = &unknown_var_5412_ptr, (pcVar9[1] + 0xa8U & 0xdf) != 0)) {
           puVar6 = &unknown_var_2208_ptr;
         }
-        FUN_18010cbc0(pcVar9,puVar6,aiStackX_8);
+        AdvancedSystemOptimizer(pcVar9,puVar6,aiStackX_8);
 LAB_18039a3d2:
         *(int *)(param_1 + 0x224) = aiStackX_8[0];
         if (aiStackX_8[0] == 1) {

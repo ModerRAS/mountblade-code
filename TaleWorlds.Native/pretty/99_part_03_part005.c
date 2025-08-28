@@ -105,7 +105,7 @@ void FUN_1801c93c0(void)
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_388;
   uStack_308 = 0;
   puVar4 = (uint64_t *)(system_global_data_ptr + 0xa8);
-  uVar2 = FUN_18062b1e0(system_memory_pool_ptr,0x120,8,3);
+  uVar2 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x120,8,3);
   uVar2 = FUN_18029a3c0(uVar2);
   *puVar4 = uVar2;
   puStack_2f8 = &system_config_ptr;
@@ -118,7 +118,7 @@ void FUN_1801c93c0(void)
   uStack_310 = 0;
   puStack_320 = (int8_t *)0x0;
   uStack_318 = 0;
-  FUN_1806277c0(&puStack_328,iStack_2e8);
+  CoreMemoryPoolProcessor(&puStack_328,iStack_2e8);
   if (0 < iStack_2e8) {
     puVar6 = &system_buffer_ptr;
     if (puStack_2f0 != (void *)0x0) {
@@ -136,7 +136,7 @@ void FUN_1801c93c0(void)
   uStack_308 = 0;
   puStack_2f8 = &system_state_ptr;
   iVar7 = uStack_318 + 0x1b;
-  FUN_1806277c0(&puStack_328,iVar7);
+  CoreMemoryPoolProcessor(&puStack_328,iVar7);
   puVar5 = (int32_t *)(puStack_320 + uStack_318);
   *puVar5 = 0x64616853;
   puVar5[1] = 0x2f737265;
@@ -169,7 +169,7 @@ void FUN_1801c93c0(void)
     *(uint64_t *)(lVar1 + 0x88) = uVar2;
     puStack_2d0 = &system_state_ptr;
   }
-  puVar4 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0xb8,8,0x11);
+  puVar4 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xb8,8,0x11);
   *(int32_t *)(puVar4 + 8) = 0x7f0000;
   puVar4[6] = 0xffffffffffffffff;
   puVar4[7] = 0xffffffffffffffff;
@@ -591,7 +591,7 @@ LAB_1801c9fa3:
         if (iVar6 < 0x10) {
           iVar6 = 0x10;
         }
-        puStack_230 = (int8_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)iVar6,0x13);
+        puStack_230 = (int8_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,(int64_t)iVar6,0x13);
         *puStack_230 = 0;
         uVar7 = (uint64_t)puStack_230 & 0xffffffffffc00000;
         if (uVar7 != 0) {
@@ -800,7 +800,7 @@ LAB_1801c9f07:
 LAB_1801c9f0f:
     uVar26 = 0;
   }
-  lVar20 = FUN_18062b420(system_memory_pool_ptr,0x70,(int8_t)uStack_1c8);
+  lVar20 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x70,(int8_t)uStack_1c8);
   lStack_188 = lVar20 + 0x20;
   FUN_180627ae0(lStack_188,plVar3 + 6);
   lStack_180 = lVar20 + 0x40;

@@ -656,7 +656,7 @@ void FUN_18007f8f0(int64_t param_1)
             do {
               iVar18 = (int)uVar21;
               if (*(int64_t *)puVar20 == 0) {
-                lVar8 = FUN_18062b420(system_memory_pool_ptr,0x2000,0x25);
+                lVar8 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x2000,0x25);
                 LOCK();
                 bVar23 = *(int64_t *)(puVar14 + (int64_t)iVar18 * 2 + 2) == 0;
                 if (bVar23) {
@@ -863,7 +863,7 @@ void FUN_18007f90f(int32_t param_1)
           do {
             iVar18 = (int)uVar21;
             if (*(int64_t *)puVar20 == 0) {
-              lVar8 = FUN_18062b420(system_memory_pool_ptr,0x2000,0x25);
+              lVar8 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x2000,0x25);
               LOCK();
               bVar23 = *(int64_t *)(puVar14 + (int64_t)iVar18 * 2 + 2) == 0;
               if (bVar23) {

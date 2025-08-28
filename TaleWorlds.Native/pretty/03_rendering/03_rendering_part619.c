@@ -373,7 +373,7 @@ void rendering_system_effect_processor(int effect_context, uint effect_type, flo
   stack_value2 = 0;
   stack_pointer2 = (int32_t *)0x0;
   stack_value1 = 0;
-  stack_pointer2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x17, 0x13);
+  stack_pointer2 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x17, 0x13);
   *(int8_t *)stack_pointer2 = 0;
   temp_value2 = FUN_18064e990(stack_pointer2);
   stack_value2 = CONCAT44(stack_value2._4_4_, temp_value2);
@@ -397,7 +397,7 @@ void rendering_system_effect_processor(int effect_context, uint effect_type, flo
       if ((int)temp_value3 < 0x10) {
         temp_value3 = 0x10;
       }
-      stack_pointer2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)temp_value3, 0x13);
+      stack_pointer2 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, (int64_t)(int)temp_value3, 0x13);
       *(int8_t *)stack_pointer2 = 0;
     }
     else {
@@ -424,7 +424,7 @@ EFFECT_PROCESSOR_LABEL1:
       if ((int)temp_value3 < 0x10) {
         temp_value3 = 0x10;
       }
-      stack_pointer2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)temp_value3, 0x13);
+      stack_pointer2 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, (int64_t)(int)temp_value3, 0x13);
       *(int8_t *)stack_pointer2 = 0;
     }
     else {
@@ -453,7 +453,7 @@ EFFECT_PROCESSOR_LABEL2:
         if ((int)effect_level < 0x10) {
           effect_level = 0x10;
         }
-        stack_pointer2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)effect_level, 0x13);
+        stack_pointer2 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, (int64_t)(int)effect_level, 0x13);
         *(int8_t *)stack_pointer2 = 0;
       }
       else {
@@ -486,7 +486,7 @@ EFFECT_PROCESSOR_LABEL3:
       if ((int)effect_level < 0x10) {
         effect_level = 0x10;
       }
-      stack_pointer2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)effect_level, 0x13);
+      stack_pointer2 = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, (int64_t)(int)effect_level, 0x13);
       *(int8_t *)stack_pointer2 = 0;
     }
     else {

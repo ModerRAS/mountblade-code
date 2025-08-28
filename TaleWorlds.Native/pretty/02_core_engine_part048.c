@@ -444,7 +444,7 @@ LAB_180089891:
       if (iVar7 < 0x10) {
         iVar7 = 0x10;
       }
-      puStack_388 = (int8_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)iVar7,0x13);
+      puStack_388 = (int8_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,(int64_t)iVar7,0x13);
       *puStack_388 = 0;
       uVar17 = (uint64_t)puStack_388 & 0xffffffffffc00000;
       if (uVar17 != 0) {
@@ -525,7 +525,7 @@ LAB_180089891:
       FUN_18008a620(&ppuStack_278);
       if (lStack_1e0 - lStack_1e8 >> 3 != 0) {
         lVar11 = lVar16 + 0x48;
-        lVar28 = FUN_18062b420(system_memory_pool_ptr,0x40,*(int8_t *)(lVar16 + 0x70));
+        lVar28 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x40,*(int8_t *)(lVar16 + 0x70));
         FUN_180627ae0(lVar28 + 0x20,&puStack_330);
         lVar9 = FUN_1800590b0(lVar11,acStack_3e8,lVar28 + 0x20);
         if (acStack_3e8[0] != '\0') {

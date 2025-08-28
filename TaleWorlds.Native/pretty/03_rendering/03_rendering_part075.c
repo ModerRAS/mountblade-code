@@ -42,7 +42,7 @@ extern uint64_t *cloth_string_constants;
 void FUN_18005d4b0(int64_t param1, void *param2, int param3, uint64_t param4, uint64_t memory_flags);
 void FUN_1804c1300(int64_t param1, int param2);
 void FUN_18062b1e0(void *allocator, int size, int alignment, int flags, uint64_t memory_flags);
-void FUN_18062b420(void *allocator, int size, int flags, uint64_t param4, int param5, uint64_t memory_flags);
+void CoreEngine_MemoryAllocator(void *allocator, int size, int flags, uint64_t param4, int param5, uint64_t memory_flags);
 void FUN_180275090(uint64_t param1);
 void FUN_180275370(uint64_t param1, int64_t param2);
 void FUN_180275540(uint64_t param1, int64_t param2, int64_t param3);
@@ -712,7 +712,7 @@ void rendering_system_process_cloth_texture(
     temp_data = 0;
     
     // 分配纹理内存
-    texture_ptr = (uint32_t *)FUN_18062b420(global_memory_allocator, RENDERING_CLOTH_NAME_SIZE, 0x13, param4, 0, RENDERING_MEMORY_FLAG_EXCLUSIVE);
+    texture_ptr = (uint32_t *)CoreEngine_MemoryAllocator(global_memory_allocator, RENDERING_CLOTH_NAME_SIZE, 0x13, param4, 0, RENDERING_MEMORY_FLAG_EXCLUSIVE);
     
     *(uint8_t *)texture_ptr = 0;
     texture_stack = texture_ptr;

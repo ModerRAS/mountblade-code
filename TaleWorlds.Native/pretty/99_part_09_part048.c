@@ -166,7 +166,7 @@ void FUN_1805d2cb9(int64_t param_1)
   *(float *)(unaff_RBX + 0x407) = fVar11;
   *(float *)((int64_t)unaff_RBX + 0x203c) = fVar13;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000070 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000070 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -227,7 +227,7 @@ void FUN_1805d2ce8(uint64_t param_1,uint64_t param_2,int64_t param_3)
   *(float *)(unaff_RBX + 0x2038) = (fVar3 - fVar10) * fVar2 + fVar10;
   *(int32_t *)(unaff_RBX + 0x203c) = 0x7f7fffff;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000070 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000070 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -342,7 +342,7 @@ void FUN_1805d2ebf(uint64_t param_1,uint64_t param_2,int64_t param_3,int param_4
   *(float *)(unaff_RBX + 0x407) = fVar6;
   *(float *)((int64_t)unaff_RBX + 0x203c) = fVar10;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000070 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000070 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -362,7 +362,7 @@ void FUN_1805d31dd(void)
   *(uint64_t *)(unaff_RBX + 0x2030) = unaff_XMM6_Qa;
   *(uint64_t *)(unaff_RBX + 0x2038) = unaff_XMM6_Qb;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000070 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000070 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -627,7 +627,7 @@ void FUN_1805d3480(int64_t param_1)
       func_0x0001805d4cd0(param_1);
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(int32_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0xe0) + 0x20) + 0x34));
+    AdvancedSystemController(*(int32_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0xe0) + 0x20) + 0x34));
   }
   *(int32_t *)(param_1 + 0x70) = 0;
   *(uint *)(param_1 + 8) = *(uint *)(param_1 + 8) | 0x10000;
@@ -654,7 +654,7 @@ void FUN_1805d34a8(void)
     func_0x0001805d4cd0();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(int32_t *)(*(int64_t *)(*(int64_t *)(unaff_RBX + 0xe0) + 0x20) + 0x34));
+  AdvancedSystemController(*(int32_t *)(*(int64_t *)(*(int64_t *)(unaff_RBX + 0xe0) + 0x20) + 0x34));
 }
 
 

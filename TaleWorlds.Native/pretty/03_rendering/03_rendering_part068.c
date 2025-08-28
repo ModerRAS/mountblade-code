@@ -277,7 +277,7 @@ LAB_1803066f9:
         UNLOCK();
         priority_bits = render_flags >> 0xb;
         if (*(int64_t *)(render_context + 0x80 + (uint64_t)priority_bits * 8) == 0) {
-          allocated_memory = FUN_18062b420(system_memory_pool_ptr,0x4000,0x25);
+          allocated_memory = CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x4000,0x25);
           render_buffer = (int64_t *)(render_context + 0x80 + (uint64_t)priority_bits * 8);
           LOCK();
           allocation_success = *render_buffer == 0;
@@ -406,7 +406,7 @@ LAB_1803066f9:
       UNLOCK();
       priority_bits = render_flags >> 0xb;
       if (*(int64_t *)(render_context + 0x80 + (uint64_t)priority_bits * 8) == 0) {
-        allocated_memory = FUN_18062b420(system_memory_pool_ptr,0x4000,0x25);
+        allocated_memory = CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x4000,0x25);
         render_buffer = (int64_t *)(render_context + 0x80 + (uint64_t)priority_bits * 8);
         LOCK();
         allocation_success = *render_buffer == 0;

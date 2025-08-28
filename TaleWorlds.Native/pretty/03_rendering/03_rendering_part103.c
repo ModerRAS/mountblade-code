@@ -178,7 +178,7 @@ void RenderingSystemDataCollector(int64_t render_context, int64_t *data_buffer, 
                     buffer_size = 1;
                 LAB_18032b0f4:
                     // 分配新的缓冲区
-                    temp_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, buffer_size * 4, (char)data_buffer[3]);
+                    temp_buffer = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, buffer_size * 4, (char)data_buffer[3]);
                     source_buffer = (int32_t *)data_buffer[1];
                     temp_buffer = (int32_t *)*data_buffer;
                 }
@@ -321,7 +321,7 @@ void RenderingSystemAdvancedDataProcessor(int64_t render_context, int64_t *data_
                     buffer_size = 1;
                 LAB_18032b314:
                     // 分配新的缓冲区
-                    temp_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, buffer_size * 4, (char)data_buffer[3]);
+                    temp_buffer = (int32_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, buffer_size * 4, (char)data_buffer[3]);
                     source_buffer = (int32_t *)data_buffer[1];
                     temp_buffer = (int32_t *)*data_buffer;
                 }
@@ -512,7 +512,7 @@ LAB_18032b522:
         }
         
         // 创建新的哈希条目
-        current_entry = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x18, *(int8_t *)(resource_manager + 0x354));
+        current_entry = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x18, *(int8_t *)(resource_manager + 0x354));
         resource_data = (int32_t)resource_id;
         data_high = (int32_t)(resource_id >> 0x20);
         
@@ -624,7 +624,7 @@ LAB_18032b6ff:
         }
         
         // 创建新的资源条目
-        current_entry = (uint *)FUN_18062b420(system_memory_pool_ptr, 0x18, *(int8_t *)(resource_manager + 0xa1c));
+        current_entry = (uint *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x18, *(int8_t *)(resource_manager + 0xa1c));
         resource_data_low = (uint)resource_data;
         resource_data_high = (uint)((uint64_t)resource_data >> 0x20);
         
@@ -749,7 +749,7 @@ void RenderingSystemFileWriter(int64_t render_context, uint64_t file_handle)
     _fseeki64(file_header[1], 0, 0);
     
     // 分配临时缓冲区
-    temp_buffer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+    temp_buffer = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)temp_buffer = 0;
     FUN_18064e990(temp_buffer);
     
@@ -935,7 +935,7 @@ void RenderingSystemResourceLoader(int64_t render_context, int64_t file_handle)
                     mutex_handle = 1;
                 LAB_18032c711:
                     temp_buffer = (uint64_t *)
-                                 FUN_18062b420(system_memory_pool_ptr, mutex_handle * 8, *(int8_t *)(render_context + 0x278));
+                                 CoreEngine_MemoryAllocator(system_memory_pool_ptr, mutex_handle * 8, *(int8_t *)(render_context + 0x278));
                     resource_data = *(uint64_t **)(render_context + 0x268);
                     temp_buffer = (uint64_t *)*resource_pointer;
                 }
@@ -988,7 +988,7 @@ void RenderingSystemResourceLoader(int64_t render_context, int64_t file_handle)
                           *(int32_t *)(render_context + 0x9a0), 1);
             
             // 创建新的资源条目
-            resource_entry = (int *)FUN_18062b420(system_memory_pool_ptr, 0x10, *(int8_t *)(render_context + 0x9b4));
+            resource_entry = (int *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x10, *(int8_t *)(render_context + 0x9b4));
             *resource_entry = mutex_handle;
             resource_entry[1] = 0;
             resource_entry[2] = 0;

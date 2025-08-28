@@ -726,7 +726,7 @@ void RenderingSystemConditionHandler(
     (**(code **)(*param4 + 0x28))();
   }
   stack_ptr_ptr = &stack_ptr;
-  temp_var1 = FUN_18062b1e0(system_memory_pool_ptr,0x1f8,8,3);
+  temp_var1 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x1f8,8,3);
   temp_var2 = FUN_18058f390(temp_var1);
   stack_ptr2 = &param4;
   param4 = stack_ptr;
@@ -1052,7 +1052,7 @@ void FUN_180600930(uint64_t param_1,int64_t param_2)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(float *)(param_2 + 0x4b0) + *(float *)(param_2 + 0x4ac));
+  AdvancedSystemController(*(float *)(param_2 + 0x4b0) + *(float *)(param_2 + 0x4ac));
 }
 
 
@@ -1160,7 +1160,7 @@ FUN_180600cc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   void *puStack_30;
   int64_t lStack_28;
   
-  uVar2 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  uVar2 = CoreMemoryPoolValidator(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   uVar1 = FUN_180555eb0(&system_memory_60a0,uVar2);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
@@ -1220,7 +1220,7 @@ uint64_t * FUN_180600f40(uint64_t *param_1,int64_t param_2)
     }
     if (((*(uint64_t *)(lVar1 + 0x2470) | uVar2) & 0x400000000000) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(*(int32_t *)(*(int64_t *)(param_2 + 0x20) + 0x34));
+      AdvancedSystemController(*(int32_t *)(*(int64_t *)(param_2 + 0x20) + 0x34));
     }
   }
   *param_1 = 0;
@@ -1241,7 +1241,7 @@ void FUN_180600f8d(uint64_t param_1,uint64_t param_2,int64_t param_3)
   
   uStack0000000000000028 = *(uint64_t *)(param_3 + 0xc4);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(int32_t *)(in_RAX + 0x34));
+  AdvancedSystemController(*(int32_t *)(in_RAX + 0x34));
 }
 
 

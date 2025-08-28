@@ -796,7 +796,7 @@ void FUN_1804f6330(int64_t param_1,uint64_t param_2,uint64_t param_3)
   FUN_1804f3510(param_1);
   *(uint64_t *)(param_1 + 0x87b788) =
        *(uint64_t *)(&system_error_code + (int64_t)*(int *)(param_1 + 0x87b790) * 8);
-  FUN_18062b1e0(system_memory_pool_ptr,0x620,8,3);
+  CoreMemoryPoolReallocator(system_memory_pool_ptr,0x620,8,3);
                     // WARNING: Subroutine does not return
   memcpy(auStack_578,param_3,0x554);
 }

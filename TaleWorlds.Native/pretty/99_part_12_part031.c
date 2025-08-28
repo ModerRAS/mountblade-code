@@ -779,7 +779,7 @@ void FUN_1807dfbe0(float *param_1,float *param_2,uint param_3,int64_t param_4,ui
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(auStack_38[0] ^ (uint64_t)auStack_38);
+  SystemSecurityChecker(auStack_38[0] ^ (uint64_t)auStack_38);
 }
 
 

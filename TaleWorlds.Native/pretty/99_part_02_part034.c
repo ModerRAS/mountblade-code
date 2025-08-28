@@ -217,7 +217,7 @@ void DataProcessor_ProcessConfigData(void)
             handle_near_plane:
                 // 应用近平面配置
                 if ((context_ptr + 0x607d4 != 0) && (length != 0)) {
-                    FUN_18010cbc0(length, &system_memory_6430, context_ptr + 0x607d4);
+                    AdvancedSystemOptimizer(length, &system_memory_6430, context_ptr + 0x607d4);
                 }
                 
                 // 处理远平面配置
@@ -333,7 +333,7 @@ void DataProcessor_ProcessConfigData(void)
 handle_far_plane:
     // 应用远平面配置并验证数值
     if ((float_ptr != (float*)0x0) && (length != 0)) {
-        FUN_18010cbc0(length, &system_memory_6430, float_ptr);
+        AdvancedSystemOptimizer(length, &system_memory_6430, float_ptr);
     }
     
     // 确保远平面距离不超过最大值
@@ -413,7 +413,7 @@ void StringProcessor_HandleStrings(int32_t param_1)
 apply_near_plane:
     // 应用近平面配置
     if ((context_ptr + 0x607d4 != 0) && (name_ptr != (char*)0x0)) {
-        FUN_18010cbc0(param_1, &system_memory_6430, context_ptr + 0x607d4);
+        AdvancedSystemOptimizer(param_1, &system_memory_6430, context_ptr + 0x607d4);
     }
     
     // 处理远平面字符串
@@ -466,7 +466,7 @@ apply_near_plane:
 apply_far_plane:
     // 应用远平面配置并验证数值
     if ((float_ptr != (float*)0x0) && (string_ptr != (char*)0x0)) {
-        FUN_18010cbc0(string_ptr, &system_memory_6430, float_ptr);
+        AdvancedSystemOptimizer(string_ptr, &system_memory_6430, float_ptr);
     }
     
     // 确保远平面距离不超过最大值
@@ -581,7 +581,7 @@ process_string_config:
 apply_near_plane_config:
     // 应用近平面配置
     if ((context_ptr + 0x607d4 != 0) && (name_ptr != (char*)0x0)) {
-        FUN_18010cbc0(param_1, &system_memory_6430, context_ptr + 0x607d4);
+        AdvancedSystemOptimizer(param_1, &system_memory_6430, context_ptr + 0x607d4);
     }
     
     // 处理远平面配置
@@ -634,7 +634,7 @@ apply_near_plane_config:
 apply_far_plane_config:
     // 应用远平面配置并验证数值
     if ((float_ptr != (float*)0x0) && (string_ptr != (char*)0x0)) {
-        FUN_18010cbc0(string_ptr, &system_memory_6430, float_ptr);
+        AdvancedSystemOptimizer(string_ptr, &system_memory_6430, float_ptr);
     }
     
     // 确保远平面距离不超过最大值
@@ -695,7 +695,7 @@ void ConfigProcessor_HandleConfig(int32_t param_1, uint64_t* param_2)
             
             // 应用配置
             if ((param_r11 != 0) && (name_ptr != (char*)0x0)) {
-                FUN_18010cbc0(param_1, &system_memory_6430);
+                AdvancedSystemOptimizer(param_1, &system_memory_6430);
             }
             
             // 处理远平面配置
@@ -762,7 +762,7 @@ restart_config_processing:
 apply_far_plane:
     // 应用远平面配置并验证数值
     if ((float_ptr != (float*)0x0) && (string_ptr != (char*)0x0)) {
-        FUN_18010cbc0(string_ptr, &system_memory_6430, float_ptr);
+        AdvancedSystemOptimizer(string_ptr, &system_memory_6430, float_ptr);
     }
     
     // 确保远平面距离不超过最大值
@@ -814,7 +814,7 @@ void DataValidator_ValidateData(int64_t param_1)
     
     // 验证参数有效性
     if (param_1 != 0) {
-        FUN_18010cbc0(param_1, &system_memory_6430);
+        AdvancedSystemOptimizer(param_1, &system_memory_6430);
     }
     
     // 处理远平面配置验证
@@ -867,7 +867,7 @@ void DataValidator_ValidateData(int64_t param_1)
 apply_validation:
     // 应用验证结果并确保数值有效性
     if ((float_ptr != (float*)0x0) && (string_ptr != (char*)0x0)) {
-        FUN_18010cbc0(string_ptr, &system_memory_6430, float_ptr);
+        AdvancedSystemOptimizer(string_ptr, &system_memory_6430, float_ptr);
     }
     
     // 确保远平面距离不超过最大值
@@ -968,7 +968,7 @@ void EntityManager_ProcessEntities(int64_t param_1, int64_t* param_2)
                             array_params[0] = 1 << ((byte)*(int32_t*)(param_1 + 0x3054) & 0x1f);
                             stack_buffer[0] = 1;
                             
-                            entity_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x70, 8, 
+                            entity_handle = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x70, 8, 
                                                          CONCAT71((int7)((uint64_t)entity_id >> 8), 3));
                             entity_handle = FUN_18039fc00(entity_handle);
                             *(uint64_t*)(param_1 + 600) = entity_handle;
@@ -979,7 +979,7 @@ void EntityManager_ProcessEntities(int64_t param_1, int64_t* param_2)
                             stack_uint64_2 = stack_params;
                             int_ptr = array_params;
                             
-                            stack_string = (char*)FUN_18062b1e0(system_memory_pool_ptr, 0x28, 8, system_allocation_flags);
+                            stack_string = (char*)CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x28, 8, system_allocation_flags);
                             *(int64_t**)stack_string = stack_ptr;
                             *(int64_t*)(stack_string + 8) = stack_long;
                             *(int32_t*)(stack_string + 0x10) = (int32_t)stack_uint64_1;
@@ -1159,7 +1159,7 @@ void EntityManager_ProcessEntities(int64_t param_1, int64_t* param_2)
                                 array_params[0] = 1 << ((byte)*(int32_t*)(param_1 + 0x3054) & 0x1f);
                                 stack_buffer[0] = 1;
                                 
-                                entity_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x70, 8, 
+                                entity_handle = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x70, 8, 
                                                              CONCAT71((int7)((uint64_t)entity_id >> 8), 3));
                                 entity_handle = FUN_18039fc00(entity_handle);
                                 *(uint64_t*)(param_1 + 600) = entity_handle;
@@ -1170,7 +1170,7 @@ void EntityManager_ProcessEntities(int64_t param_1, int64_t* param_2)
                                 stack_uint64_2 = stack_params;
                                 int_ptr = array_params;
                                 
-                                stack_string = (char*)FUN_18062b1e0(system_memory_pool_ptr, 0x28, 8, system_allocation_flags);
+                                stack_string = (char*)CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x28, 8, system_allocation_flags);
                                 *(int64_t**)stack_string = stack_ptr;
                                 *(int64_t*)(stack_string + 8) = stack_long;
                                 *(int32_t*)(stack_string + 0x10) = (int32_t)stack_uint64_1;
@@ -1347,7 +1347,7 @@ process_entity_init:
     array_params[0] = 1 << ((byte)*(int32_t*)(param_1 + 0x3054) & 0x1f);
     stack_buffer[0] = 1;
     
-    entity_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x70, 8, 
+    entity_handle = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x70, 8, 
                                  CONCAT71((int7)((uint64_t)entity_id >> 8), 3));
     entity_handle = FUN_18039fc00(entity_handle);
     *(uint64_t*)(param_1 + 600) = entity_handle;
@@ -1358,7 +1358,7 @@ process_entity_init:
     stack_uint64_2 = stack_params;
     int_ptr = array_params;
     
-    stack_string = (char*)FUN_18062b1e0(system_memory_pool_ptr, 0x28, 8, system_allocation_flags);
+    stack_string = (char*)CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x28, 8, system_allocation_flags);
     *(int64_t**)stack_string = stack_ptr;
     *(int64_t*)(stack_string + 8) = stack_long;
     *(int32_t*)(stack_string + 0x10) = (int32_t)stack_uint64_1;
@@ -1392,7 +1392,7 @@ process_game_entity:
             array_params[0] = 1 << ((byte)*(int32_t*)(param_1 + 0x3054) & 0x1f);
             stack_buffer[0] = 1;
             
-            entity_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x70, 8, 
+            entity_handle = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x70, 8, 
                                          CONCAT71((int7)((uint64_t)entity_id >> 8), 3));
             entity_handle = FUN_18039fc00(entity_handle);
             *(uint64_t*)(param_1 + 600) = entity_handle;
@@ -1403,7 +1403,7 @@ process_game_entity:
             stack_uint64_2 = stack_params;
             int_ptr = array_params;
             
-            stack_string = (char*)FUN_18062b1e0(system_memory_pool_ptr, 0x28, 8, system_allocation_flags);
+            stack_string = (char*)CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x28, 8, system_allocation_flags);
             *(int64_t**)stack_string = stack_ptr;
             *(int64_t*)(stack_string + 8) = stack_long;
             *(int32_t*)(stack_string + 0x10) = (int32_t)stack_uint64_1;
@@ -1614,7 +1614,7 @@ void ArrayProcessor_ProcessArrays(uint64_t* param_1, int param_2, int param_3)
             resource_handle = *resource_ptr;
             
             // 创建配置句柄
-            config_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x2f0, 0x10, 0xd);
+            config_handle = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x2f0, 0x10, 0xd);
             config_ptr = (int64_t*)FUN_1802e6b00(config_handle, 4);
             stack_ptr3 = config_ptr;
             

@@ -151,7 +151,7 @@ LAB_1801cb4f5:
         if (lVar20 == 0) {
           lVar20 = 1;
 LAB_1801cb5d2:
-          puVar11 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar20 << 5,(int8_t)uStack_2a0);
+          puVar11 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,lVar20 << 5,(int8_t)uStack_2a0);
         }
         else {
           lVar20 = lVar20 * 2;
@@ -227,7 +227,7 @@ LAB_1801cb5d2:
               }
               uStack_394 = uVar22 | 4;
               uVar14 = FUN_180079430(*(uint64_t *)plVar21[7]);
-              lVar13 = FUN_18062b420(system_memory_pool_ptr,0x40,(int8_t)uStack_2c0);
+              lVar13 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x40,(int8_t)uStack_2c0);
               puVar23 = (uint64_t *)(lVar13 + 0x20);
               FUN_1806279c0(puVar23,uVar14);
               lStack_240 = lVar13;
@@ -240,7 +240,7 @@ LAB_1801cb5d2:
           uVar18 = (uint64_t)uVar22;
           lVar13 = *(int64_t *)(*plVar26 + 0x10);
           if (lVar13 != 0) {
-            lVar24 = FUN_18062b420(system_memory_pool_ptr,0x40,(int8_t)uStack_2c0);
+            lVar24 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x40,(int8_t)uStack_2c0);
             puVar23 = (uint64_t *)(lVar24 + 0x20);
             FUN_1806279c0(puVar23,lVar13 + 0x10);
             lStack_240 = lVar24;
@@ -338,9 +338,9 @@ LAB_1801cb5d2:
   }
   uVar14 = 0;
   if ((int64_t)plStack_338 - (int64_t)plStack_340 >> 3 == 0) {
-    lVar13 = FUN_18062b420(system_memory_pool_ptr,0x40,(int8_t)uStack_2f0);
+    lVar13 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x40,(int8_t)uStack_2f0);
     puVar23 = (uint64_t *)(lVar13 + 0x20);
-    FUN_180627910(puVar23,&unknown_var_920_ptr);
+    CoreMemoryPoolValidator(puVar23,&unknown_var_920_ptr);
     bVar2 = true;
     pppppppuVar5 = &pppppppuStack_318;
     pppppppuVar15 = pppppppuStack_308;
@@ -425,7 +425,7 @@ LAB_1801cc020:
     FUN_18066bdc0(lVar13,pppppppuVar5,&pppppppuStack_318,uVar14);
   }
   lVar13 = *(int64_t *)(*plStack_340 + 0x1b8);
-  lVar24 = FUN_18062b420(system_memory_pool_ptr,0x40,(int8_t)uStack_2f0);
+  lVar24 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x40,(int8_t)uStack_2f0);
   puVar23 = (uint64_t *)(lVar24 + 0x20);
   FUN_1806279c0(puVar23,lVar13 + 0x10);
   bVar2 = true;

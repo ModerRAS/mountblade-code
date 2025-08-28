@@ -243,7 +243,7 @@ LAB_18027c5be:
               if (entry_count < 0x10) {
                 entry_count = 0x10;
               }
-              texture_path = (char *)FUN_18062b420(system_memory_pool_ptr, (int64_t)entry_count,
+              texture_path = (char *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, (int64_t)entry_count,
                                                   CONCAT71((uint7)(uint3)((uint)param_index >> 8), 0x13));
               *texture_path = '\0';
               param_value = FUN_18064e990(texture_path);

@@ -169,7 +169,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         
         // 分配字符串缓冲区
         buffer_ptr = (uint32_t*)
-                    FUN_18062b420(system_memory_pool_ptr, (int)temp_counter + RENDERING_SYSTEM_BUFFER_SIZE_12, 
+                    CoreEngine_MemoryAllocator(system_memory_pool_ptr, (int)temp_counter + RENDERING_SYSTEM_BUFFER_SIZE_12, 
                                  &unknown_var_1379_ptr, param_4, RENDERING_SYSTEM_FLAG_0xfffffffffffffffe);
         
         // 初始化缓冲区
@@ -206,7 +206,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         stack_uint_30 = 0;
         
         // 分配第二个字符串缓冲区
-        buffer_ptr = (uint32_t*)FUN_18062b420(system_memory_pool_ptr, RENDERING_SYSTEM_BUFFER_SIZE_16, 
+        buffer_ptr = (uint32_t*)CoreEngine_MemoryAllocator(system_memory_pool_ptr, RENDERING_SYSTEM_BUFFER_SIZE_16, 
                                              0x13, param_4, flag_value);
         *(uint8_t*)buffer_ptr = 0;
         stack_buffer_38 = buffer_ptr;
@@ -237,7 +237,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         stack_uint_50 = 0;
         
         // 分配第三个字符串缓冲区
-        buffer_ptr = (uint32_t*)FUN_18062b420(system_memory_pool_ptr, RENDERING_SYSTEM_BUFFER_SIZE_16, 0x13);
+        buffer_ptr = (uint32_t*)CoreEngine_MemoryAllocator(system_memory_pool_ptr, RENDERING_SYSTEM_BUFFER_SIZE_16, 0x13);
         *(uint8_t*)buffer_ptr = 0;
         stack_buffer_58 = buffer_ptr;
         string_hash = FUN_18064e990(buffer_ptr);
@@ -269,7 +269,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         stack_uint_30 = 0;
         
         // 分配第四个字符串缓冲区
-        buffer_ptr = (uint32_t*)FUN_18062b420(system_memory_pool_ptr, RENDERING_SYSTEM_BUFFER_SIZE_23, 0x13);
+        buffer_ptr = (uint32_t*)CoreEngine_MemoryAllocator(system_memory_pool_ptr, RENDERING_SYSTEM_BUFFER_SIZE_23, 0x13);
         *(uint8_t*)buffer_ptr = 0;
         stack_buffer_38 = buffer_ptr;
         string_hash = FUN_18064e990(buffer_ptr);

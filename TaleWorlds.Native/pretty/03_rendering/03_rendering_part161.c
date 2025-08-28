@@ -218,7 +218,7 @@ void FUN_1803692d0(uint64_t *param_1)
     texture_flags = 0;
     
     // 分配纹理参数内存
-    texture_data_ptr = (uint64_t *)FUN_18062b420(RENDERING_GLOBAL_DATA_TABLE, 
+    texture_data_ptr = (uint64_t *)CoreEngine_MemoryAllocator(RENDERING_GLOBAL_DATA_TABLE, 
                                                   TEXTURE_PARAM_SIZE_BASE, 
                                                   TEXTURE_PARAM_TYPE_STRING);
     
@@ -325,7 +325,7 @@ void FUN_1803697f0(uint64_t param_1, uint64_t param_2)
     material_flags = 0;
     
     // 分配材质参数内存
-    texture_object_ptr = (uint64_t *)FUN_18062b420(RENDERING_GLOBAL_DATA_TABLE, 
+    texture_object_ptr = (uint64_t *)CoreEngine_MemoryAllocator(RENDERING_GLOBAL_DATA_TABLE, 
                                                     TEXTURE_PARAM_SIZE_BASE, 
                                                     TEXTURE_PARAM_TYPE_STRING);
     *(int8_t *)texture_object_ptr = 0;
@@ -826,7 +826,7 @@ void FUN_180369ef0(uint64_t *param_1)
     object_pool_ptr = resource_handle_ptr;
     
     // 分配资源名称内存
-    resource_name_ptr = (int32_t *)FUN_18062b420(RENDERING_GLOBAL_DATA_TABLE, 
+    resource_name_ptr = (int32_t *)CoreEngine_MemoryAllocator(RENDERING_GLOBAL_DATA_TABLE, 
                                                    TEXTURE_PARAM_SIZE_BASE, 
                                                    TEXTURE_PARAM_TYPE_STRING);
     *(int8_t *)resource_name_ptr = 0;
@@ -873,7 +873,7 @@ void FUN_180369ef0(uint64_t *param_1)
     context_id = 0;
     context_data_ptr = (uint64_t *)0x0;
     context_flags = 0;
-    resource_handle_ptr = (uint64_t *)FUN_18062b420(RENDERING_GLOBAL_DATA_TABLE, 
+    resource_handle_ptr = (uint64_t *)CoreEngine_MemoryAllocator(RENDERING_GLOBAL_DATA_TABLE, 
                                                     TEXTURE_PARAM_SIZE_BASE, 
                                                     TEXTURE_PARAM_TYPE_STRING);
     *(int8_t *)resource_handle_ptr = 0;
@@ -1009,7 +1009,7 @@ void FUN_18036a7e0(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t
     resource_flags = 0;
     
     // 分配资源名称内存
-    resource_name_ptr = (int32_t *)FUN_18062b420(RENDERING_GLOBAL_DATA_TABLE, 
+    resource_name_ptr = (int32_t *)CoreEngine_MemoryAllocator(RENDERING_GLOBAL_DATA_TABLE, 
                                                    TEXTURE_PARAM_SIZE_BASE, 
                                                    TEXTURE_PARAM_TYPE_STRING, 
                                                    param_4, 0xfffffffffffffffe);
@@ -1274,7 +1274,7 @@ void FUN_18036ab70(uint64_t param_1, uint64_t param_2)
     object_pool_ptr = texture_handle_ptr;
     
     // 分配资源名称内存
-    resource_name_ptr = (int32_t *)FUN_18062b420(RENDERING_GLOBAL_DATA_TABLE, 
+    resource_name_ptr = (int32_t *)CoreEngine_MemoryAllocator(RENDERING_GLOBAL_DATA_TABLE, 
                                                    TEXTURE_PARAM_SIZE_BASE, 
                                                    TEXTURE_PARAM_TYPE_STRING);
     *(int8_t *)resource_name_ptr = 0;
@@ -1321,7 +1321,7 @@ void FUN_18036ab70(uint64_t param_1, uint64_t param_2)
     context_id = 0;
     context_data_ptr = (uint64_t *)0x0;
     context_flags = 0;
-    texture_handle_ptr = (uint64_t *)FUN_18062b420(RENDERING_GLOBAL_DATA_TABLE, 
+    texture_handle_ptr = (uint64_t *)CoreEngine_MemoryAllocator(RENDERING_GLOBAL_DATA_TABLE, 
                                                     TEXTURE_PARAM_SIZE_BASE, 
                                                     TEXTURE_PARAM_TYPE_STRING);
     *(int8_t *)texture_handle_ptr = 0;

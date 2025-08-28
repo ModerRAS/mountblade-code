@@ -661,7 +661,7 @@ LAB_1804c2b24:
       uStack_130 = 0;
       puStack_140 = (uint64_t *)0x0;
       uStack_138 = 0;
-      puVar7 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+      puVar7 = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x10,0x13);
       *(int8_t *)puVar7 = 0;
       puStack_140 = puVar7;
       uVar6 = FUN_18064e990(puVar7);

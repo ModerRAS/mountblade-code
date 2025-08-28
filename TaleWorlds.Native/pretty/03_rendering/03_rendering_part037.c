@@ -16,7 +16,7 @@
 
 /* 函数别名定义 */
 #define process_rendering_resources FUN_180288f30
-#define allocate_rendering_memory FUN_18062b420
+#define allocate_rendering_memory CoreEngine_MemoryAllocator
 #define free_rendering_memory CoreEngine_MemoryPoolManager
 #define copy_string_data FUN_1806277c0
 #define resize_string_buffer FUN_18062b8b0

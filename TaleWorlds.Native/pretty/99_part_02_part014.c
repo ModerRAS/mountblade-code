@@ -790,7 +790,7 @@ LAB_1800f3c54:
             lVar12 = 1;
 LAB_1800f3b9f:
             puVar13 = (uint64_t *)
-                      FUN_18062b420(system_memory_pool_ptr,lVar12 * 8,*(int8_t *)(param_2 + 0x68));
+                      CoreEngine_MemoryAllocator(system_memory_pool_ptr,lVar12 * 8,*(int8_t *)(param_2 + 0x68));
             puVar23 = *(uint64_t **)(param_2 + 0x58);
             puVar17 = *(uint64_t **)(param_2 + 0x50);
           }

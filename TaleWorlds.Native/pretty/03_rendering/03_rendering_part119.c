@@ -235,7 +235,7 @@ INSERT_POSITION_FOUND:
     }
     
     // 创建新节点
-    parent_node = FUN_18062b420(MemoryAllocator_180c8ed18, RENDERING_TREE_NODE_SIZE, (char)tree_ptr[5]);
+    parent_node = CoreEngine_MemoryAllocator(MemoryAllocator_180c8ed18, RENDERING_TREE_NODE_SIZE, (char)tree_ptr[5]);
     
     // 初始化新节点
     *(uint64_t *)(parent_node + 0x20) = *priority;
@@ -406,7 +406,7 @@ uint64_t *Rendering_HashTableInsert(int64_t hash_table_ptr, uint64_t *insert_res
                   *(int32_t *)(hash_table_ptr + 0x18), 1);
     
     // 创建新节点
-    existing_node = (int *)FUN_18062b420(MemoryAllocator_180c8ed18, 0x18, *(int8_t *)(hash_table_ptr + 0x2c));
+    existing_node = (int *)CoreEngine_MemoryAllocator(MemoryAllocator_180c8ed18, 0x18, *(int8_t *)(hash_table_ptr + 0x2c));
     *existing_node = *key_ptr;
     existing_node[2] = 0;
     existing_node[3] = 0;
@@ -487,7 +487,7 @@ void Rendering_ContainerInsert(uint64_t container_ptr, uint64_t *insert_result, 
     FUN_18066c220(container_ptr, &resize_flag, key_ptr, value_ptr, 1);
     
     // 创建新节点
-    new_node = (int32_t *)FUN_18062b420(MemoryAllocator_180c8ed18, 0x18, *(int8_t *)(container_base + 0x2c));
+    new_node = (int32_t *)CoreEngine_MemoryAllocator(MemoryAllocator_180c8ed18, 0x18, *(int8_t *)(container_base + 0x2c));
     *new_node = *key_value;
     *(uint64_t *)(new_node + 2) = 0;
     *(uint64_t *)(new_node + 4) = 0;

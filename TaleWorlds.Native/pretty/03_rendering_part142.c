@@ -164,14 +164,14 @@ void FUN_180352bf0(uint64_t *param_1)
     uStack_70 = 0;                // 配置参数2
     
     // 分配配置缓冲区
-    puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x1f, 0x13);
+    puVar3 = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, 0x1f, 0x13);
     *(int8_t *)puVar3 = 0;    // 初始化缓冲区
     
     // 设置配置数据指针
     puStack_78 = puVar3;
     
     // 获取配置数据句柄
-    uVar2 = FUN_18064e990(puVar3);
+    uVar2 = CoreMemoryPoolCleaner(puVar3);
     uStack_68 = CONCAT44(uStack_68._4_4_, uVar2);
     
     // 设置配置消息内容："Part Bake Frame Control Level"
@@ -274,14 +274,14 @@ void FUN_180352e50(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t
         uStack_50 = 0;                // 配置参数2
         
         // 分配配置缓冲区
-        puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+        puVar3 = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 0x13);
         *(int8_t *)puVar3 = 0;    // 初始化缓冲区
         
         // 设置配置数据指针
         puStack_58 = puVar3;
         
         // 获取配置数据句柄
-        uVar2 = FUN_18064e990(puVar3);
+        uVar2 = CoreMemoryPoolCleaner(puVar3);
         
         // 设置配置消息内容："Normal"
         *puVar3 = 0x6d726f4e;         // "Norm"
@@ -313,14 +313,14 @@ void FUN_180352e50(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t
         uStack_30 = 0;                // 配置参数2
         
         // 分配配置缓冲区
-        puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+        puVar3 = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 0x13);
         *(int8_t *)puVar3 = 0;    // 初始化缓冲区
         
         // 设置配置数据指针
         puStack_38 = puVar3;
         
         // 获取配置数据句柄
-        uVar2 = FUN_18064e990(puVar3);
+        uVar2 = CoreMemoryPoolCleaner(puVar3);
         uStack_28 = CONCAT44(uStack_28._4_4_, uVar2);
         
         // 设置配置消息内容："High"
@@ -494,7 +494,7 @@ void FUN_1803530c0(int64_t *param_1, int64_t param_2, uint64_t param_3)
         uStack_7a8 = 0;                // 数据参数2
         
         // 调用数据长度获取函数
-        FUN_1806277c0(&puStack_7b8, *(int32_t *)(puStack_6d0 + 2));
+        CoreMemoryPoolProcessor(&puStack_7b8, *(int32_t *)(puStack_6d0 + 2));
         
         // 检查数据长度
         if (*(int *)(puVar2 + 2) != 0) {
@@ -565,7 +565,7 @@ void FUN_1803530c0(int64_t *param_1, int64_t param_2, uint64_t param_3)
     puStack_698 = &system_state_ptr;
     
     // 执行安全检查
-    FUN_1808fc050(uStack_e8 ^ (uint64_t)auStack_7e8);
+    SystemSecurityChecker(uStack_e8 ^ (uint64_t)auStack_7e8);
 }
 
 //==============================================================================
@@ -782,7 +782,7 @@ LAB_180353f85:
   uStack_310 = 0;
   puStack_328 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_3b8);
+  SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_3b8);
 }
 
 
@@ -846,7 +846,7 @@ void FUN_180354170(int64_t *param_1)
   (**(code **)(*param_1 + 0x70))(param_1);
 LAB_18035436c:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_68 ^ (uint64_t)auStack_3e8);
+  SystemSecurityChecker(uStack_68 ^ (uint64_t)auStack_3e8);
 }
 
 
@@ -907,7 +907,7 @@ int64_t * FUN_1803543b0(int64_t param_1,uint64_t *param_2,char param_3,char para
       }
     }
     else {
-      uVar5 = FUN_18062b1e0(system_memory_pool_ptr,0x58,8,0xd);
+      uVar5 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x58,8,0xd);
       plVar6 = (int64_t *)FUN_180469f40(uVar5,param_1,pcVar3);
       if (plVar6 != (int64_t *)0x0) {
         aplStack_a0[0] = plVar6;
@@ -973,7 +973,7 @@ void FUN_1803549f0(void)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x80,8,3,0xfffffffffffffffe);
+  uVar1 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x80,8,3,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
   memset(uVar1,0,0x80);
 }
@@ -990,7 +990,7 @@ void FUN_180354b70(void)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x80,8,3,0,0xfffffffffffffffe);
+  uVar1 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x80,8,3,0,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
   memset(uVar1,0,0x80);
 }
@@ -1237,7 +1237,7 @@ int64_t * FUN_180355140(int64_t param_1,int64_t *param_2,uint64_t param_3,int64_
   uint64_t uVar14;
   
   uVar14 = 0xfffffffffffffffe;
-  puVar7 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr);
+  puVar7 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr);
   *puVar7 = &system_state_ptr;
   uVar12 = 0;
   puVar7[1] = 0;
@@ -1367,7 +1367,7 @@ FUN_180355340(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4
                 *(int32_t *)(param_1 + 0x18),1);
   if ((char)auStackX_18[0] != '\0') {
     lVar1 = (auStackX_18[0] >> 0x20) * 8;
-    uVar2 = FUN_18062b1e0(system_memory_pool_ptr,lVar1 + 8,8,*(int8_t *)(param_1 + 0x2c));
+    uVar2 = CoreMemoryPoolReallocator(system_memory_pool_ptr,lVar1 + 8,8,*(int8_t *)(param_1 + 0x2c));
                     // WARNING: Subroutine does not return
     memset(uVar2,0,lVar1);
   }
@@ -1394,7 +1394,7 @@ void FUN_180355393(uint64_t param_1)
   uint64_t in_stack_00000070;
   
   lVar1 = (in_stack_00000070 >> 0x20) * 8;
-  uVar2 = FUN_18062b1e0(param_1,lVar1 + 8,8);
+  uVar2 = CoreMemoryPoolReallocator(param_1,lVar1 + 8,8);
                     // WARNING: Subroutine does not return
   memset(uVar2,0,lVar1);
 }

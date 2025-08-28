@@ -106,7 +106,7 @@ void ui_system_advanced_data_processor(int64_t *param_1, int64_t *param_2, int64
   // 分配处理所需的内存缓冲区
   if (iVar4 != 0) {
     puStack_58 = (uint64_t *)
-                 FUN_18062b420(system_memory_pool_ptr,lStackX_8 * 8,
+                 CoreMemoryPoolAllocator(system_memory_pool_ptr,lStackX_8 * 8,
                                CONCAT71((int7)(int3)((uint64_t)lVar5 >> 8),3),param_3,
                                0xfffffffffffffffe);
     puStack_50 = puStack_58 + lStackX_8;
@@ -137,7 +137,7 @@ void ui_system_advanced_data_processor(int64_t *param_1, int64_t *param_2, int64
 LAB_1806588f2:
           // 分配新的内存块
           puVar7 = (uint64_t *)
-                   FUN_18062b420(system_memory_pool_ptr,lVar6 * 8,
+                   CoreMemoryPoolAllocator(system_memory_pool_ptr,lVar6 * 8,
                                  CONCAT71((int7)((uint64_t)lStackX_8 >> 8),3),param_3,uVar13);
         }
         else {

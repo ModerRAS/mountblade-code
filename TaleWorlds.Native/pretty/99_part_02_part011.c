@@ -600,7 +600,7 @@ LAB_1800ef691:
         do {
           if (*(int64_t *)puVar23 == 0) {
             uStack_50 = 0x1800f695c;
-            lVar27 = FUN_18062b420(system_memory_pool_ptr,0x18000,0x1e);
+            lVar27 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x18000,0x1e);
             LOCK();
             bVar29 = *(int64_t *)(puVar11 + (int64_t)(int)uVar21 * 2 + 2) == 0;
             if (bVar29) {

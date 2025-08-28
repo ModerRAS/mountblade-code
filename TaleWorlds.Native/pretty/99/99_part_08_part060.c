@@ -75,8 +75,8 @@ void FUN_1805f7890(uint64_t param_1);
 void FUN_180646200(int64_t param_1);
 void FUN_180645c10(int64_t param_1,void *param_2,void *param_3);
 void FUN_1808fd200(void);
-void FUN_18062b420(uint64_t param_1,int64_t param_2,char param_3);
-void FUN_18062b1e0(uint64_t param_1,int64_t param_2,int64_t param_3,char param_4);
+void CoreMemoryPoolAllocator(uint64_t param_1,int64_t param_2,char param_3);
+void CoreMemoryPoolReallocator(uint64_t param_1,int64_t param_2,int64_t param_3,char param_4);
 
 // 函数: void ProcessResourceCleanup(int64_t *resource_manager)
 // 资源清理处理器 - 负责系统资源的清理和释放
@@ -250,7 +250,7 @@ void InitializeMemoryPool(uint64_t *memory_pool, int pool_size)
     allocated_memory = 0;
   }
   else {
-    allocated_memory = FUN_18062b420(system_memory_pool_ptr, (int64_t)memory_blocks, 3);
+    allocated_memory = CoreMemoryPoolAllocator(system_memory_pool_ptr, (int64_t)memory_blocks, 3);
   }
   *memory_pool = allocated_memory;
   // 清理内存池内容
@@ -949,7 +949,7 @@ LAB_1805b3eb4:
     memory_offset = *(int64_t *)(memory_manager + 0x5848);
     list_head = *(int64_t *)(memory_manager + 0x5850);
     if (memory_offset == list_head) {
-      memory_block = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0xc98, 8, CONCAT71((uint7)(uint3)((uint)data_item >> 8), 3));
+      memory_block = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr, 0xc98, 8, CONCAT71((uint7)(uint3)((uint)data_item >> 8), 3));
       *memory_block = 0;
       *memory_block = system_system_memory;
       memory_block[1] = 0;
@@ -973,7 +973,7 @@ LAB_1805b3eb4:
           item_index = memory_capacity;
         }
         if (item_index != 0) {
-          item_index = FUN_18062b420(system_memory_pool_ptr, item_index * 8, *(int8_t *)(memory_manager + 0x5860));
+          item_index = CoreMemoryPoolAllocator(system_memory_pool_ptr, item_index * 8, *(int8_t *)(memory_manager + 0x5860));
           memory_offset = *(int64_t *)(memory_manager + 0x5848);
           list_head = *(int64_t *)(memory_manager + 0x5850);
         }
@@ -1102,7 +1102,7 @@ LAB_1805b3eb4:
     memory_offset = *(int64_t *)(system_config + 0x5848);
     list_head = *(int64_t *)(system_config + 0x5850);
     if (memory_offset == list_head) {
-      memory_block = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0xc98, 8, CONCAT71((uint7)(uint3)((uint)data_item >> 8), 3));
+      memory_block = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr, 0xc98, 8, CONCAT71((uint7)(uint3)((uint)data_item >> 8), 3));
       *memory_block = 0;
       *memory_block = system_system_memory;
       memory_block[1] = 0;
@@ -1126,7 +1126,7 @@ LAB_1805b3eb4:
           allocation_size = memory_capacity;
         }
         if (allocation_size != 0) {
-          item_index = FUN_18062b420(system_memory_pool_ptr, allocation_size * 8, *(int8_t *)(system_config + 0x5860));
+          item_index = CoreMemoryPoolAllocator(system_memory_pool_ptr, allocation_size * 8, *(int8_t *)(system_config + 0x5860));
           memory_offset = *(int64_t *)(system_config + 0x5848);
           list_head = *(int64_t *)(system_config + 0x5850);
         }

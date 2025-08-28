@@ -280,7 +280,7 @@ LAB_180273bfe:
         if (lVar10 == 0) {
           lVar10 = 1;
 LAB_180273eb0:
-          puVar14 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar10 * 0x58);
+          puVar14 = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr,lVar10 * 0x58);
           puVar22 = *(uint64_t **)(param_1 + 0x128);
           puVar18 = *(uint64_t **)(param_1 + 0x120);
         }

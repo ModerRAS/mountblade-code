@@ -744,7 +744,7 @@ void FUN_180208720(int64_t *param_1,uint64_t param_2,float *param_3,int param_4)
                   *(int32_t *)(lVar10 + 0x110) = uVar3;
                   *(byte *)(lVar10 + 0xfe) = *(byte *)(lVar10 + 0xfe) | bVar6;
                   *(int32_t *)(lVar10 + 0x108) = uVar17;
-                  puVar7 = (uint64_t *)FUN_18062b1e0(uVar4,0x20,8,3);
+                  puVar7 = (uint64_t *)CoreMemoryPoolReallocator(uVar4,0x20,8,3);
                   *puVar7 = 0;
                   *(int32_t *)(puVar7 + 1) = 0;
                   *(int32_t *)((int64_t)puVar7 + 0xc) = 0xffffffff;
@@ -776,7 +776,7 @@ LAB_180208aa2:
                     do {
                       iVar14 = (int)uVar22;
                       if (*(int64_t *)puVar27 == 0) {
-                        lVar8 = FUN_18062b420(system_memory_pool_ptr,0x4000,0x25);
+                        lVar8 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x4000,0x25);
                         LOCK();
                         bVar28 = *(int64_t *)(puVar18 + (int64_t)iVar14 * 2 + 2) == 0;
                         if (bVar28) {

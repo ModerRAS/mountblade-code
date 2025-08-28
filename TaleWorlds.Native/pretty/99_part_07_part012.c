@@ -65,7 +65,7 @@ void FUN_1804a52b0(int64_t param_1,int32_t param_2)
   else if (*(int *)(param_1 + 0x410) == 1) {
     (**(code **)(system_system_data_ui + 0xa0))(param_2);
     *(int32_t *)(param_1 + 0x420) = param_2;
-    uVar5 = FUN_18062b1e0(system_memory_pool_ptr,0xe0,8,3,uVar5);
+    uVar5 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3,uVar5);
     puStack_30 = &unknown_var_8352_ptr;
     puStack_28 = &unknown_var_8320_ptr;
     alStack_40[0] = param_1;
@@ -111,7 +111,7 @@ void FUN_1804a54e0(uint64_t param_1,uint64_t param_2)
     ppuVar4 = apuStack_40;
     pcStack_30 = FUN_18055ec90;
     pcStack_28 = FUN_18055ec20;
-    apuStack_40[0] = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,system_allocation_flags);
+    apuStack_40[0] = (int32_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,system_allocation_flags);
     *apuStack_40[0] = 0x80c925a0;
     apuStack_40[0][1] = 1;
     *(int32_t **)(apuStack_40[0] + 2) = auStackX_18;
@@ -152,7 +152,7 @@ void create_game_application(void)
   
                     // 0x4a5650  32  create_game_application
   uStack_30 = 0x1804a566e;
-  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x428,8,3);
+  puVar1 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x428,8,3);
   uStack_60 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_b8;
   uStack_68 = 0;
@@ -176,7 +176,7 @@ void create_game_application(void)
   uStack_70 = 0;
   puStack_80 = (int8_t *)0x0;
   uStack_78 = 0;
-  FUN_1806277c0(&puStack_88,iStack_40);
+  CoreMemoryPoolProcessor(&puStack_88,iStack_40);
   if (0 < iStack_40) {
     puVar2 = &system_buffer_ptr;
     if (puStack_48 != (void *)0x0) {
@@ -195,21 +195,21 @@ void create_game_application(void)
   uStack_68 = 0;
   puStack_50 = &system_state_ptr;
   uVar3 = uStack_78 + 8;
-  FUN_1806277c0(&puStack_88,uVar3);
+  CoreMemoryPoolProcessor(&puStack_88,uVar3);
   *(uint64_t *)(puStack_80 + uStack_78) = 0x2f73656c75646f4d;
   *(int8_t *)((int64_t)(puStack_80 + uStack_78) + 8) = 0;
   uStack_78 = uVar3;
   if (0 < system_system_ui) {
-    FUN_1806277c0(&puStack_88,uVar3 + system_system_ui);
+    CoreMemoryPoolProcessor(&puStack_88,uVar3 + system_system_ui);
                     // WARNING: Subroutine does not return
     memcpy(puStack_80 + uStack_78,system_system_ui,(int64_t)(system_system_ui + 1));
   }
   uVar4 = uVar4 + 9;
-  FUN_1806277c0(&puStack_88,(uint64_t)uVar4);
+  CoreMemoryPoolProcessor(&puStack_88,(uint64_t)uVar4);
   *(int16_t *)(puStack_80 + uStack_78) = 0x2f;
   uStack_78 = uVar4;
   if (puStack_80 != (int8_t *)0x0) {
-    FUN_1806277c0(&system_data_24f0,uVar4);
+    CoreMemoryPoolProcessor(&system_data_24f0,uVar4);
   }
   if (uVar4 != 0) {
                     // WARNING: Subroutine does not return
@@ -230,7 +230,7 @@ void create_game_application(void)
   uStack_70 = (uint64_t)uStack_70._4_4_ << 0x20;
   puStack_88 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_b8,0);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_b8,0);
 }
 
 
@@ -1100,7 +1100,7 @@ uint64_t * FUN_1804a5c60(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
     return param_2;
   }
 LAB_1804a5d01:
-  lVar8 = FUN_18062b420(system_memory_pool_ptr,0x30,*(int8_t *)(param_1 + 5));
+  lVar8 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x30,*(int8_t *)(param_1 + 5));
   uVar2 = *(int32_t *)((int64_t)param_3 + 4);
   uVar6 = param_3[1];
   uVar3 = *(int32_t *)((int64_t)param_3 + 0xc);

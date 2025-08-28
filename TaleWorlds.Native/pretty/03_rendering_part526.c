@@ -852,7 +852,7 @@ void FUN_180553fd0(int64_t param_1,int64_t param_2)
   int iStack_50;
   uint64_t uStack_48;
   
-  lVar4 = FUN_18062b1e0(system_memory_pool_ptr,0x30,8,3,0xfffffffffffffffe);
+  lVar4 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x30,8,3,0xfffffffffffffffe);
   pcVar18 = (char *)0x0;
   *(uint64_t *)(lVar4 + 0x28) = 3;
   *(int32_t *)(lVar4 + 0x19) = 0;

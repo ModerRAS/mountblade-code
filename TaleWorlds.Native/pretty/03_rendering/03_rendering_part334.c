@@ -682,7 +682,7 @@ void FUN_180443df0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
             }
             data_processor_3 = data_processor_4;
             if (data_capacity != 0) {
-                data_processor_3 = (int64_t *)FUN_18062b420(system_memory_pool_ptr, data_capacity * 8, CONCAT71((int7)((uint64_t)data_processor_6 >> 8), 3));
+                data_processor_3 = (int64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, data_capacity * 8, CONCAT71((int7)((uint64_t)data_processor_6 >> 8), 3));
             }
             
             if (data_processor_2 != data_processor_6) {

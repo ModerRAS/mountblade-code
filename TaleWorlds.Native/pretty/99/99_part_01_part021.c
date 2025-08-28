@@ -239,7 +239,7 @@ void SystemResourceBatchProcessor(uint64_t param_1, char param_2, char param_3) 
             // 分配新的内存池
             plVar12 = plVar6;
             if (uVar16 != 0) {
-                plVar6 = (int64_t *)FUN_18062b420(system_memory_pool_ptr, uVar16 * 8, (char)plVar8[3]);
+                plVar6 = (int64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, uVar16 * 8, (char)plVar8[3]);
                 plVar7 = (int64_t *)plVar8[1];
                 plVar9 = (int64_t *)*plVar8;
                 plVar12 = plVar6;
@@ -373,7 +373,7 @@ LAB_1800b5291:
                 plVar12 = plVar7;
                 if (uVar16 != 0) {
                     plVar6 = (int64_t *)
-                             FUN_18062b420(system_memory_pool_ptr, uVar16 * 8, *(int8_t *)(lVar15 + 0x40));
+                             CoreMemoryPoolAllocator(system_memory_pool_ptr, uVar16 * 8, *(int8_t *)(lVar15 + 0x40));
                     plVar8 = *(int64_t **)(lVar15 + 0x30);
                     plVar9 = *(int64_t **)(lVar15 + 0x28);
                     plVar12 = plVar6;
@@ -479,7 +479,7 @@ LAB_1800b547f:
     }
     
     // 执行最终的清理操作
-    FUN_1808fc050(alStack_48[3] ^ (uint64_t)auStack_c8);
+    SystemSecurityChecker(alStack_48[3] ^ (uint64_t)auStack_c8);
 }
 
 /**
@@ -725,7 +725,7 @@ void SystemMemoryManager(uint64_t param_1, int64_t *param_2) {
                     lVar10 = 1;
 LAB_1800b5909:
                     // 分配新的内存池
-                    puVar1 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, lVar10 * 0x58, (char)param_2[3]);
+                    puVar1 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, lVar10 * 0x58, (char)param_2[3]);
                     puVar4 = (uint64_t *)param_2[1];
                     puVar3 = (uint64_t *)*param_2;
                 }
@@ -804,7 +804,7 @@ LAB_1800b5909:
     }
     
     // 执行最终的内存管理操作
-    FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_d8);
+    SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_d8);
 }
 
 /**
@@ -880,7 +880,7 @@ void SystemStatusMonitor(uint64_t param_1, int64_t *param_2, float param_3) {
             iVar4 = (int)(lVar5 + 1);
             if (0 < iVar4) {
                 // 分配监控数据缓冲区
-                FUN_1806277c0(&puStack_90, uStack_80 + iVar4);
+                CoreMemoryPoolProcessor(&puStack_90, uStack_80 + iVar4);
                 memcpy((uint64_t)uStack_80 + lStack_88, acStack_50, (int64_t)((int)lVar5 + 2));
             }
             
@@ -930,7 +930,7 @@ void SystemStatusMonitor(uint64_t param_1, int64_t *param_2, float param_3) {
     }
     
     uStack_98 = 1;
-    FUN_1808fc050(uStack_40 ^ (uint64_t)auStack_b8);
+    SystemSecurityChecker(uStack_40 ^ (uint64_t)auStack_b8);
 }
 
 /**
@@ -1002,7 +1002,7 @@ void SystemResourceRegistrar(uint64_t param_1, int64_t *param_2, uint64_t param_
         lVar6 = 1;
 LAB_1802abea0:
         // 分配新的注册表空间
-        puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, lVar6 * 8, (char)plVar5[3], param_4, uVar10);
+        puVar3 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, lVar6 * 8, (char)plVar5[3], param_4, uVar10);
         puVar8 = (uint64_t *)plVar5[1];
         puVar4 = (uint64_t *)*plVar5;
         puVar9 = puVar3;
@@ -1116,7 +1116,7 @@ void SystemResourceCleaner(uint64_t param_1, int64_t *param_2) {
                     lVar3 = 1;
 LAB_1800b5da5:
                     // 分配新的清理队列空间
-                    plVar2 = (int64_t *)FUN_18062b420(system_memory_pool_ptr, lVar3 * 8);
+                    plVar2 = (int64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, lVar3 * 8);
                     plVar4 = (int64_t *)param_2[1];
                     plVar5 = (int64_t *)*param_2;
                     plVar7 = plVar2;

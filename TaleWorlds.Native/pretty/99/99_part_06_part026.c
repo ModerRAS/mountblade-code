@@ -605,7 +605,7 @@ config_complete:
                     mobility_processor = &unknown_var_5412_ptr;
                 }
                 
-                FUN_18010cbc0(mobility_value_data, mobility_processor, &mobility_value);
+                AdvancedSystemOptimizer(mobility_value_data, mobility_processor, &mobility_value);
                 
                 // 设置移动性值
                 void* mobility_base = *(void**)((char*)prefab_data + SCENE_DATA_OFFSET);
@@ -666,7 +666,7 @@ config_complete:
                     lod_bias_value_data = (void*)lod_bias_attr_array[1];
                 }
                 
-                FUN_18010cbc0(lod_bias_value_data, &system_memory_6430, &lod_bias_factor);
+                AdvancedSystemOptimizer(lod_bias_value_data, &system_memory_6430, &lod_bias_factor);
                 
                 // 限制LOD偏置因子范围
                 if (lod_bias_factor < LOD_BIAS_FACTOR_MIN) {
@@ -729,7 +729,7 @@ config_complete:
                     upgrade_processor = &unknown_var_5412_ptr;
                 }
                 
-                FUN_18010cbc0(scene_upgrade_value_data, upgrade_processor, &scene_upgrade_mask);
+                AdvancedSystemOptimizer(scene_upgrade_value_data, upgrade_processor, &scene_upgrade_mask);
                 
                 // 处理场景升级掩码位
                 if (scene_upgrade_mask != 0) {
@@ -740,10 +740,10 @@ config_complete:
                         if ((temp_mask & mask_bit) != 0) {
                             // 处理每个掩码位
                             void* mask_processor = &system_data_buffer_ptr;
-                            void* mask_data = FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+                            void* mask_data = CoreMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 0x13);
                             
                             *(char*)mask_data = 0;
-                            uint32_t mask_hash = FUN_18064e990(mask_data);
+                            uint32_t mask_hash = CoreMemoryPoolCleaner(mask_data);
                             *mask_data = 0x6576656c;
                             *(uint16_t*)((char*)mask_data + 1) = 0x5f6c;
                             *(char*)((long long)mask_data + 6) = 0;
@@ -804,7 +804,7 @@ config_complete:
                     season_mask_value_data = (void*)season_mask_attr_array[1];
                 }
                 
-                FUN_18010cbc0(season_mask_value_data, &unknown_var_2208_ptr, &season_mask);
+                AdvancedSystemOptimizer(season_mask_value_data, &unknown_var_2208_ptr, &season_mask);
                 *(char*)((char*)(*(long long*)((char*)prefab_data + SCENE_DATA_OFFSET)) + SCENE_SEASON_MASK_OFFSET) = (char)season_mask;
                 
                 // 验证场景状态
@@ -833,7 +833,7 @@ config_complete:
                 name_attr_data = &system_state_ptr;
                 
                 // 返回配置处理结果
-                FUN_1808fc050(config_stack[1] ^ (uint64_t)config_data);
+                SystemSecurityChecker(config_stack[1] ^ (uint64_t)config_data);
             }
         }
     }

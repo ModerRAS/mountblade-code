@@ -186,7 +186,7 @@ SceneObject* CreateSceneObjectInternal(SceneManager* manager, SceneObjectType ty
         }
         
         // 重新分配内存
-        SceneObject* new_objects = (SceneObject*)FUN_18062b420(
+        SceneObject* new_objects = (SceneObject*)CoreEngine_MemoryAllocator(
             MEMORY_ALLOCATOR_ID, 
             new_capacity * sizeof(SceneObject), 
             3
@@ -288,7 +288,7 @@ void OptimizeSceneObjectMemory(SceneManager* manager)
             new_capacity = DEFAULT_OBJECT_CAPACITY;
         }
         
-        SceneObject* new_objects = (SceneObject*)FUN_18062b420(
+        SceneObject* new_objects = (SceneObject*)CoreEngine_MemoryAllocator(
             MEMORY_ALLOCATOR_ID,
             new_capacity * sizeof(SceneObject),
             3

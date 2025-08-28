@@ -320,7 +320,7 @@ LAB_180597a79:
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(*(uint *)(in_RCX + 0x34) ^ 0x80000000);
+  AdvancedSystemController(*(uint *)(in_RCX + 0x34) ^ 0x80000000);
 }
 
 
@@ -648,7 +648,7 @@ LAB_180597a79:
   uVar3 = *(uint *)(unaff_RBX + 0x34);
   *(uint64_t *)(unaff_RBP + -0x49) = *(uint64_t *)(unaff_RBX + 0xf0);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(uVar3 ^ 0x80000000);
+  AdvancedSystemController(uVar3 ^ 0x80000000);
 }
 
 

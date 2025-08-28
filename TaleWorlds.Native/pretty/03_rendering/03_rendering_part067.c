@@ -288,7 +288,7 @@ void rendering_system_initialize_render_context(uint64_t *render_context)
     stack_value_1f8 = 0;
     
     // 分配内存池
-    context_pointer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+    context_pointer = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)context_pointer = 0;
     stack_pointer_200 = context_pointer;
     initialization_result = FUN_18064e990(context_pointer);
@@ -1157,7 +1157,7 @@ void rendering_system_manage_render_resources(int64_t render_context)
         stack_value_190 = 0;
         stack_pointer_1a0 = (uint64_t *)0x0;
         stack_value_198 = 0;
-        resource_pointer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+        resource_pointer = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
         *(int8_t *)resource_pointer = 0;
         stack_pointer_1a0 = resource_pointer;
         resource_id = FUN_18064e990(resource_pointer);

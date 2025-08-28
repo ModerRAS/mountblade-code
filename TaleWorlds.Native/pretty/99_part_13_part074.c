@@ -496,7 +496,7 @@ void System_Initialize(void)
   /* 调用系统初始化向量 */
   (*(void (**)())*system_table)();
                     /* WARNING: 子程序不返回 */
-  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
+  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
 }
 
 
@@ -530,7 +530,7 @@ status_t Resource_ValidateAndProcess(void* param_1, void* param_2)
   FUN_1808db3f0(param_1, param_2);
 cleanup_handler:
                     /* WARNING: 子程序不返回 */
-  FUN_18088c790(&stack_context);
+  AdvancedSystemProcessor(&stack_context);
 }
 
 
@@ -916,7 +916,7 @@ status_t HashTable_ProcessData(void* param_1, void* param_2)
   lock_handle = hash_table[5];
   data_param = param_2;
   if (lock_handle != 0) {
-    FUN_180768360(lock_handle);
+    SystemStateManager(lock_handle);
   }
   status = FUN_180851a40(hash_table);
   if (status == 0) {
@@ -947,7 +947,7 @@ error_handler:
 cleanup_handler:
       if (lock_handle != 0) {
                     /* WARNING: 子程序不返回 */
-        FUN_180768400(lock_handle);
+        SystemConfigManager(lock_handle);
       }
       if (status != 0) {
         return status;
@@ -957,7 +957,7 @@ cleanup_handler:
   }
   if (lock_handle != 0) {
                     /* WARNING: 子程序不返回 */
-    FUN_180768400(lock_handle);
+    SystemConfigManager(lock_handle);
   }
 success_exit:
   *(uint16_t *)((uint64_t)param_2 + 0xe) = *(uint16_t *)((uint64_t)param_2 + 0xe) + 1;
@@ -1008,7 +1008,7 @@ status_t HashTable_ProcessDataOptimized(void* param_1)
   stack_data1 = param_1;
   stack_data2 = data_reg;
   if (lock_handle != 0) {
-    FUN_180768360(lock_handle);
+    SystemStateManager(lock_handle);
   }
   status = FUN_180851a40(hash_table);
   if (status == 0) {
@@ -1041,7 +1041,7 @@ error_handler:
 cleanup_handler:
       if (lock_handle != 0) {
                     /* WARNING: 子程序不返回 */
-        FUN_180768400(lock_handle);
+        SystemConfigManager(lock_handle);
       }
       if (status != 0) {
         return status;
@@ -1051,7 +1051,7 @@ cleanup_handler:
   }
   if (lock_handle != 0) {
                     /* WARNING: 子程序不返回 */
-    FUN_180768400(lock_handle);
+    SystemConfigManager(lock_handle);
   }
 success_exit:
   *(uint16_t *)(target_reg + 0xe) = *(uint16_t *)(target_reg + 0xe) + 1;
@@ -1085,7 +1085,7 @@ uint64_t Resource_ReleaseCheck(void)
   }
   
   /* 调用资源释放函数 */
-  FUN_180768400(resource_ptr);
+  SystemConfigManager(resource_ptr);
   return 0;  /* 释放成功 */
 }
 
@@ -1275,7 +1275,7 @@ uint64_t ReferenceCount_Manager(int64_t *param_1, uint64_t *param_2)
       
       /* 执行清理前准备 */
       if (cleanup_context != 0) {
-        FUN_180768360(cleanup_context);
+        SystemStateManager(cleanup_context);
       }
       
       /* 哈希表操作 */
@@ -1314,7 +1314,7 @@ uint64_t ReferenceCount_Manager(int64_t *param_1, uint64_t *param_2)
       
       /* 执行清理操作 */
       if (cleanup_context != 0) {
-        FUN_180768400(cleanup_context);
+        SystemConfigManager(cleanup_context);
       }
       
       if (status != SYSTEM_SUCCESS) {
@@ -1326,7 +1326,7 @@ uint64_t ReferenceCount_Manager(int64_t *param_1, uint64_t *param_2)
     status_t status = (*(status_t (**)(void**, void*))(*param_1 + 0x18))(param_1, param_2);
     if (status == SYSTEM_SUCCESS) {
       (*(void (**)(void*, int))(*param_2))(param_2, 0);
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &unknown_var_7872_ptr, 0xcc, 1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &unknown_var_7872_ptr, 0xcc, 1);
     }
   } else {
     status_t status = SYSTEM_SUCCESS;
@@ -1384,7 +1384,7 @@ status_t HashTable_RemoveDataOptimized(void* param_1)
   
   /* 获取哈希表访问锁 */
   if (lock_handle != 0) {
-    FUN_180768360(lock_handle);
+    SystemStateManager(lock_handle);
   }
   
   /* 验证哈希表状态 */
@@ -1429,13 +1429,13 @@ status_t HashTable_RemoveDataOptimized(void* param_1)
   
   /* 释放哈希表锁 */
   if (lock_handle != 0) {
-    FUN_180768400(lock_handle);
+    SystemConfigManager(lock_handle);
   }
   
   /* 执行后处理操作 */
   if (((int)status == 0) && (status = (*(system_control_func_t)(*target_reg + 0x18))(), (int)status == 0)) {
     (*(system_control_func_t)*target_reg)(data_reg1, 0);
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
   }
   
   return status;
@@ -1522,7 +1522,7 @@ status_t ReferenceCount_ManagerExtended(void* param_1, uint16_t param_2, void* p
       
       /* 获取哈希表访问锁 */
       if (lock_handle != 0) {
-        FUN_180768360(lock_handle);
+        SystemStateManager(lock_handle);
       }
       
       /* 验证哈希表状态 */
@@ -1564,7 +1564,7 @@ status_t ReferenceCount_ManagerExtended(void* param_1, uint16_t param_2, void* p
       
       /* 释放哈希表锁 */
       if (lock_handle != 0) {
-        FUN_180768400(lock_handle);
+        SystemConfigManager(lock_handle);
       }
       
       if ((int)operation_result != 0) {
@@ -1576,7 +1576,7 @@ status_t ReferenceCount_ManagerExtended(void* param_1, uint16_t param_2, void* p
     operation_result = (*(system_control_func_t)(*context_reg + 0x18))();
     if ((int)operation_result == 0) {
       (*(system_control_func_t)*param_1)(data_reg1, 0);
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
     }
   }
   else {
@@ -1668,7 +1668,7 @@ status_t HashTable_Cleanup(void)
   
   /* 释放锁资源 */
   if (lock_handle != 0) {
-    FUN_180768400(lock_handle);
+    SystemConfigManager(lock_handle);
   }
   
   /* 执行后处理操作 */
@@ -1676,7 +1676,7 @@ status_t HashTable_Cleanup(void)
       (operation_result = (*(system_control_func_t)(*target_reg + 0x18))(), 
        (int)operation_result == 0)) {
     (*(system_control_func_t)*target_reg)();
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
   }
   
   return operation_result;
@@ -2188,7 +2188,7 @@ uint32_t DataBuffer_Manager(void** param_1)
     
     /* 条件性资源清理 */
     if ((0 < (int)buffer_size) && (*param_1 != 0)) {
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
     }
     
     /* 重置缓冲区 */
@@ -2209,7 +2209,7 @@ uint32_t DataBuffer_Manager(void** param_1)
   /* 检查元素计数有效性 */
   if ((int)param_1[1] < 1) {
     if ((0 < *(int *)((uint64_t)param_1 + 0xc)) && (*param_1 != 0)) {
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
     }
     
     /* 完全重置缓冲区 */

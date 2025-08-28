@@ -375,7 +375,7 @@ void FUN_1801970c0(uint64_t **param_1,float param_2)
             lVar14 = 1;
 LAB_1801974aa:
             ppuVar11 = (uint64_t **)
-                       FUN_18062b420(system_memory_pool_ptr,lVar14 * 8,(uint64_t)puStack_88 & 0xff);
+                       CoreEngine_MemoryAllocator(system_memory_pool_ptr,lVar14 * 8,(uint64_t)puStack_88 & 0xff);
           }
           else {
             lVar14 = lVar14 * 2;

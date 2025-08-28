@@ -29,7 +29,7 @@
 #define SystemInitializer_InitializeAdvanced() FUN_1801fa180()
 
 /* 系统安全检查函数 */
-#define SystemSecurityChecker_VerifyAccess() FUN_1808fc050()
+#define SystemSecurityChecker_VerifyAccess() SystemSecurityChecker()
 #define SystemSecurityChecker_CheckPermissions() FUN_1808fc838()
 #define SystemSecurityChecker_ValidateContext() FUN_1808fc8a8()
 
@@ -47,7 +47,7 @@
 
 /* 资源管理函数 */
 #define ResourceManager_CreateInstance() FUN_1800bdc80()
-#define ResourceManager_FindResource() FUN_18062b1e0()
+#define ResourceManager_FindResource() CoreMemoryPoolReallocator()
 #define ResourceManager_LoadResource() FUN_1801f8ea0()
 
 /* 状态管理函数 */

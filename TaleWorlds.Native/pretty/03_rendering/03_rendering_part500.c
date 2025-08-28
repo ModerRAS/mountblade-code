@@ -928,7 +928,7 @@ int64_t * rendering_system_manage_render_queue(int64_t *queue_ptr, int64_t *item
     old_queue_ptr = (int64_t *)queue_ptr[1];
     current_size = (int64_t)new_item - (int64_t)old_queue_ptr >> 3;
     if ((current_size == 0) || (new_size = current_size * 2, new_queue_ptr = result_ptr, new_size != 0)) {
-      result_ptr = (int64_t *)FUN_18062b420(system_memory_pool_ptr, new_size * 8, (char)queue_ptr[4]);
+      result_ptr = (int64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, new_size * 8, (char)queue_ptr[4]);
       new_item = (int64_t *)queue_ptr[2];
       old_queue_ptr = (int64_t *)queue_ptr[1];
       new_queue_ptr = result_ptr;

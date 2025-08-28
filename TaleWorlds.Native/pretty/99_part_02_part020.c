@@ -516,7 +516,7 @@ int32_t* FUN_1800f9010(int32_t *param_1, int32_t param_2, uint64_t param_3, int8
     _Mtx_init_in_situ(param_1 + 6, 2, param_3, param_4, LOCK_TIMEOUT_INFINITE);
     
     /* 分配资源 */
-    resource_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, 3);
+    resource_ptr = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x18, 8, 3);
     *(int32_t *)((int64_t)resource_ptr + 0x14) = 0;
     *resource_ptr = 0;
     resource_ptr[1] = 0;

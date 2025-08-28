@@ -317,7 +317,7 @@ void FUN_1805ee510(int64_t param_1,int64_t param_2,char param_3)
   FUN_180208720(param_1 + 0x50);
   FUN_180208720(param_1 + 0x8a0);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_b8 ^ (uint64_t)auStack_568);
+  SystemSecurityChecker(uStack_b8 ^ (uint64_t)auStack_568);
 }
 
 
@@ -717,7 +717,7 @@ void FUN_1805ef2e0(int64_t param_1,int param_2,int64_t param_3,uint64_t param_4)
   uStack_38 = 0;
   pbStack_48 = (byte *)0x0;
   iStack_40 = 0;
-  FUN_1806277c0(&puStack_50,*(int32_t *)(param_3 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  CoreMemoryPoolProcessor(&puStack_50,*(int32_t *)(param_3 + 0x10),param_3,param_4,0xfffffffffffffffe);
   if (0 < *(int *)(param_3 + 0x10)) {
     puVar6 = &system_buffer_ptr;
     if (*(void **)(param_3 + 8) != (void *)0x0) {

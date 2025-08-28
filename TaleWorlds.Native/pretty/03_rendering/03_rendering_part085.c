@@ -707,7 +707,7 @@ void rendering_system_advanced_render_control(int64_t render_engine, int64_t ren
     stack_value_1 = 0;
     stack_data_ptr = (uint64_t *)0x0;
     stack_param_1 = 0;
-    texture_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+    texture_ptr = (uint64_t *)CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)texture_ptr = 0;
     stack_data_ptr = texture_ptr;
     render_quality = FUN_18064e990(texture_ptr);

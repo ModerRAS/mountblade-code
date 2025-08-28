@@ -810,7 +810,7 @@ void FUN_1803415f0(uint64_t param_1, int64_t param_2, int64_t param_3, uint64_t 
 #define FUN_180344f00              ShaderTextureProcessor
 
 // 内存管理函数别名
-#define FUN_18062b420              MemoryAllocator
+#define CoreEngine_MemoryAllocator              MemoryAllocator
 #define FUN_18064e990              MemoryInitializer
 #define CoreEngine_MemoryPoolManager              MemoryDeallocator
 

@@ -118,7 +118,7 @@ void FUN_180514820(float param_1,int64_t param_2)
   *(int32_t *)(lVar5 + 0x1c) = uStack0000000000000084;
   FUN_180516bd0(uStack0000000000000078,unaff_R12W,0xc7d5);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x38) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x38) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -159,7 +159,7 @@ void FUN_180514987(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
   *(int32_t *)(lVar2 + 0x1c) = uStack0000000000000084;
   FUN_180516bd0(uStack0000000000000078,unaff_R12W,0xc7d5);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0xe0) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0xe0) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -173,7 +173,7 @@ void FUN_180514a3c(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0xe0) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0xe0) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -366,7 +366,7 @@ void FUN_180514a60(int64_t param_1)
           }
           fVar16 = (float)asinf(fVar16);
                     // WARNING: Subroutine does not return
-          FUN_1808fd400(fVar16 * 0.5);
+          AdvancedSystemController(fVar16 * 0.5);
         }
         puVar10 = (uint *)((int64_t)*(char *)(*(int64_t *)(param_1 + 0x590) + 0x25fb) * 0x100 +
                           *(int64_t *)(*(int64_t *)(param_1 + 0x658) + 0x18));
@@ -428,7 +428,7 @@ void FUN_180514a60(int64_t param_1)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_b8 ^ (uint64_t)auStack_198);
+  SystemSecurityChecker(uStack_b8 ^ (uint64_t)auStack_198);
 }
 
 
@@ -643,7 +643,7 @@ void FUN_180514acc(uint64_t param_1,uint *param_2)
         }
         fVar19 = (float)asinf(fVar19);
                     // WARNING: Subroutine does not return
-        FUN_1808fd400(fVar19 * 0.5);
+        AdvancedSystemController(fVar19 * 0.5);
       }
       puVar12 = (uint *)((int64_t)*(char *)(*(int64_t *)(unaff_RBX + 0x590) + 0x25fb) * 0x100 +
                         *(int64_t *)(*(int64_t *)(unaff_RBX + 0x658) + 0x18));
@@ -723,7 +723,7 @@ void FUN_180514acc(uint64_t param_1,uint *param_2)
     FUN_180515880();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x20) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x20) ^ (uint64_t)&stack0x00000000);
 }
 
 

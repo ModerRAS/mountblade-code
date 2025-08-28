@@ -840,7 +840,7 @@ uint64_t *create_hash_table(uint64_t table_size)
   }
   
   // 分配哈希表内存
-  hash_table = (uint64_t *)FUN_18062b420(global_memory_allocator, table_size * HASH_TABLE_SIZE + ARRAY_HEADER_SIZE, 3);
+  hash_table = (uint64_t *)CoreMemoryPoolAllocator(global_memory_allocator, table_size * HASH_TABLE_SIZE + ARRAY_HEADER_SIZE, 3);
   *hash_table = table_size << 0x20 | HASH_TABLE_SIZE;
   
   // 初始化哈希表

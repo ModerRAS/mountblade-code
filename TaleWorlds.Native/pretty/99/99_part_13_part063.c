@@ -213,7 +213,7 @@ void advanced_data_processor(float *input_data, int32_t *output_data, float *tra
     output_data[0xb] = temp_var11;
     
     // 调用清理函数
-    FUN_1808fc050(stack_var_58 ^ (uint64_t)stack_buffer_148);
+    SystemSecurityChecker(stack_var_58 ^ (uint64_t)stack_buffer_148);
 }
 
 /**
@@ -319,7 +319,7 @@ void coordinate_transform_processor(uint64_t transform_params, float x_param, fl
     reg_rdi[0xb] = temp_var12;
     
     // 调用清理函数
-    FUN_1808fc050(*(uint64_t *)(reg_rbp + -0x10) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t *)(reg_rbp + -0x10) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -372,7 +372,7 @@ void system_state_initializer(void)
     reg_rdi[0xb] = temp_var11;
     
     // 调用清理函数
-    FUN_1808fc050(*(uint64_t *)(reg_rbp + -0x10) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t *)(reg_rbp + -0x10) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -461,7 +461,7 @@ void resource_manager(uint64_t resource_params, int32_t *output_data, uint64_t r
     output_data[0xb] = temp_var11;
     
     // 调用清理函数
-    FUN_1808fc050(stack_var_28 ^ (uint64_t)stack_buffer_d8);
+    SystemSecurityChecker(stack_var_28 ^ (uint64_t)stack_buffer_d8);
 }
 
 /**
@@ -527,7 +527,7 @@ void matrix_transform_processor(uint64_t matrix_params, uint64_t *output_matrix,
     *(float *)(output_matrix + 1) = stack_var_c0;
     
     // 调用清理函数
-    FUN_1808fc050(stack_var_38 ^ (uint64_t)stack_buffer_e8);
+    SystemSecurityChecker(stack_var_38 ^ (uint64_t)stack_buffer_e8);
 }
 
 /**
@@ -697,7 +697,7 @@ void system_parameter_setup(uint64_t *system_params, uint64_t param_set1, uint64
     }
     
     // 调用清理函数
-    FUN_1808fc050(stack_var_20 ^ (uint64_t)stack_buffer_68);
+    SystemSecurityChecker(stack_var_20 ^ (uint64_t)stack_buffer_68);
 }
 
 /**
@@ -723,7 +723,7 @@ void system_state_manager(int64_t *state_manager)
     *(int64_t *)(reg_rbx + 0x90) = temp_var1;
     
     // 调用清理函数
-    FUN_1808fc050(stack_param_48 ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(stack_param_48 ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -737,7 +737,7 @@ void system_cleanup_handler(void)
     uint64_t stack_param_48;
     
     // 调用清理函数
-    FUN_1808fc050(stack_param_48 ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(stack_param_48 ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -1454,7 +1454,7 @@ void advanced_resource_manager(int64_t *resource_manager, uint64_t *resource_par
     
 LAB_1808d3bd8:
     // 调用清理函数
-    FUN_1808fc050(stack_var_20 ^ (uint64_t)stack_buffer_68);
+    SystemSecurityChecker(stack_var_20 ^ (uint64_t)stack_buffer_68);
 }
 
 /**
@@ -1513,5 +1513,5 @@ void system_resource_handler(int64_t *resource_processor, uint64_t *resource_par
     }
     
     // 调用清理函数
-    FUN_1808fc050(stack_var_20 ^ (uint64_t)stack_buffer_68);
+    SystemSecurityChecker(stack_var_20 ^ (uint64_t)stack_buffer_68);
 }

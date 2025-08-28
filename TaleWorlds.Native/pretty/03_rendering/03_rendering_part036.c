@@ -178,7 +178,7 @@ void initialize_rendering_manager(uint64_t *render_manager)
                         buffer_size = 1;
                     LAB_18028834f:
                     material_ptr = (uint64_t *)
-                            FUN_18062b420(system_memory_pool_ptr, buffer_size * 8, *(int8_t *)(render_manager + 0x22));
+                            CoreEngine_MemoryAllocator(system_memory_pool_ptr, buffer_size * 8, *(int8_t *)(render_manager + 0x22));
                     texture_ptr = (uint64_t *)render_manager[0x20];
                     shader_ptr = (uint64_t *)*buffer_ptr;
                     resource_ptr = material_ptr;

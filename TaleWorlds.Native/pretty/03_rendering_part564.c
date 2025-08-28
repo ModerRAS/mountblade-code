@@ -189,7 +189,7 @@ LAB_180579bd9:
   FUN_180516e40(in_XMM0_Da,0x382a);
 LAB_180579c4f:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x110) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x110) ^ (uint64_t)&stack0x00000000);
 }
 
 

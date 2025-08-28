@@ -107,7 +107,7 @@ void FUN_180589516(uint64_t param_1)
   *(uint64_t *)(unaff_R12 + 0x80) = 0x3f800000;
   *(uint64_t *)(unaff_R12 + 0x88) = 0;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x40) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x40) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -137,7 +137,7 @@ void FUN_1805896aa(void)
   *(uint64_t *)(unaff_R12 + 0x80) = 0x3f800000;
   *(uint64_t *)(unaff_R12 + 0x88) = 0;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x40) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x40) ^ (uint64_t)&stack0x00000000);
 }
 
 
