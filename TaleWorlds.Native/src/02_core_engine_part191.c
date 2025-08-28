@@ -114,90 +114,91 @@ void adjust_window_position_and_size(longlong window_context,int width,int heigh
 
 
 
-// 函数: void FUN_180173771(void)
-void FUN_180173771(void)
+/**
+ * 配置窗口样式和位置 based on display parameters
+ * @param display_mode 显示模式 (unaff_EBX)
+ * @param window_width 窗口宽度 (unaff_R15D)
+ * @param window_height 窗口高度 (unaff_EBP)
+ * @param display_config 显示配置 (unaff_RSI)
+ * @param window_context 窗口上下文 (unaff_R13)
+ * @param current_mode_ptr 当前模式指针 (unaff_R14)
+ */
+void configure_window_style_and_position(int display_mode,int window_width,int window_height,
+                                      longlong *display_config,longlong window_context,int *current_mode_ptr)
 
 {
-  longlong lVar1;
-  int iVar2;
-  int iVar3;
-  uint uVar4;
-  uint uVar5;
-  longlong lVar6;
-  uint uVar7;
-  longlong lVar8;
-  int unaff_EBX;
-  int unaff_EBP;
-  int iVar9;
-  longlong *unaff_RSI;
-  ulonglong uVar10;
-  int iVar11;
-  longlong unaff_R13;
-  int *unaff_R14;
-  int unaff_R15D;
-  int iStack0000000000000044;
-  int iStack0000000000000048;
-  int in_stack_00000050;
-  int iStack0000000000000054;
-  ulonglong in_stack_00000058;
+  longlong config_start;
+  int screen_width;
+  int screen_height;
+  uint display_width;
+  uint display_height;
+  longlong display_count;
+  uint adjusted_width;
+  longlong total_displays;
+  int window_style;
+  ulonglong display_index;
+  int vertical_offset;
+  int horizontal_offset;
+  int adjusted_height;
+  ulonglong stack_guard_value;
   
-  iVar2 = GetSystemMetrics(0);
-  iVar3 = GetSystemMetrics(1);
-  lVar1 = *unaff_RSI;
-  iStack0000000000000044 = 0;
-  uVar10 = 0;
-  lVar6 = unaff_RSI[1] - lVar1 >> 0x3f;
-  lVar8 = (unaff_RSI[1] - lVar1) / 0x70 + lVar6;
-  iVar11 = 0;
-  if (lVar8 != lVar6) {
+  screen_width = GetSystemMetrics(0);
+  screen_height = GetSystemMetrics(1);
+  config_start = *display_config;
+  horizontal_offset = 0;
+  display_index = 0;
+  display_count = display_config[1] - config_start >> 0x3f;
+  total_displays = (display_config[1] - config_start) / 0x70 + display_count;
+  vertical_offset = 0;
+  if (total_displays != display_count) {
     do {
-      if ((int)uVar10 == *(int *)(_DAT_180c86920 + 0x1f10)) {
-        lVar6 = uVar10 * 0x70;
-        iStack0000000000000044 = *(int *)(lVar6 + 0x58 + lVar1);
-        iVar11 = *(int *)(lVar6 + 0x5c + lVar1);
-        uVar4 = *(int *)(lVar6 + 0x60 + lVar1) - iStack0000000000000044;
-        uVar7 = (int)uVar4 >> 0x1f;
-        uVar5 = *(int *)(lVar6 + 100 + lVar1) - iVar11;
-        iVar2 = (uVar4 ^ uVar7) - uVar7;
-        uVar4 = (int)uVar5 >> 0x1f;
-        iVar3 = (uVar5 ^ uVar4) - uVar4;
+      if ((int)display_index == *(int *)(_DAT_180c86920 + 0x1f10)) {
+        display_count = display_index * 0x70;
+        horizontal_offset = *(int *)(display_count + 0x58 + config_start);
+        vertical_offset = *(int *)(display_count + 0x5c + config_start);
+        display_width = *(int *)(display_count + 0x60 + config_start) - horizontal_offset;
+        adjusted_width = (int)display_width >> 0x1f;
+        display_height = *(int *)(display_count + 100 + config_start) - vertical_offset;
+        screen_width = (display_width ^ adjusted_width) - adjusted_width;
+        display_width = (int)display_height >> 0x1f;
+        screen_height = (display_height ^ display_width) - display_width;
         break;
       }
-      uVar10 = (ulonglong)((int)uVar10 + 1);
-      iVar11 = 0;
-    } while (uVar10 < (ulonglong)(lVar8 - lVar6));
+      display_index = (ulonglong)((int)display_index + 1);
+      vertical_offset = 0;
+    } while (display_index < (ulonglong)(total_displays - display_count));
   }
-  iVar9 = 0;
-  _iStack0000000000000048 = 0;
-  if (unaff_EBX == 1) {
-    iVar9 = -0x70000000;
-    in_stack_00000050 = iVar2;
-    iStack0000000000000054 = iVar3;
+  window_style = 0;
+  adjusted_height = 0;
+  if (display_mode == 1) {
+    window_style = -0x70000000;
+    adjusted_width = screen_width;
+    adjusted_height = screen_height;
   }
   else {
-    in_stack_00000050 = unaff_R15D;
-    iStack0000000000000054 = unaff_EBP;
-    if (unaff_EBX == 0) {
-      iVar9 = 0xca0000;
-      if (unaff_R15D <= iVar2) {
-        iStack0000000000000044 = (iVar2 - unaff_R15D) / 2 + iStack0000000000000044;
+    adjusted_width = window_width;
+    adjusted_height = window_height;
+    if (display_mode == 0) {
+      window_style = 0xca0000;
+      if (window_width <= screen_width) {
+        horizontal_offset = (screen_width - window_width) / 2 + horizontal_offset;
       }
-      if (unaff_EBP <= iVar3) {
-        iVar11 = iVar11 + (iVar3 - unaff_EBP) / 2;
+      if (window_height <= screen_height) {
+        vertical_offset = vertical_offset + (screen_height - window_height) / 2;
       }
     }
   }
-  if (*unaff_R14 != unaff_EBX) {
-    SetWindowLongPtrW(*(undefined8 *)(unaff_R13 + 8),0xfffffff0,(longlong)iVar9);
-    SetWindowPos(*(undefined8 *)(unaff_R13 + 8),0,0,0,0);
-    *unaff_R14 = unaff_EBX;
+  if (*current_mode_ptr != display_mode) {
+    SetWindowLongPtrW(*(undefined8 *)(window_context + 8),0xfffffff0,(longlong)window_style);
+    SetWindowPos(*(undefined8 *)(window_context + 8),0,0,0,0);
+    *current_mode_ptr = display_mode;
   }
-  AdjustWindowRect(&stack0x00000048,iVar9,0);
-  SetWindowPos(*(undefined8 *)(unaff_R13 + 8),0,iStack0000000000000044 + iStack0000000000000048,
-               iVar11,in_stack_00000050 - iStack0000000000000048);
-  *unaff_R14 = unaff_EBX;
+  AdjustWindowRect(&adjusted_height,window_style,0);
+  SetWindowPos(*(undefined8 *)(window_context + 8),0,horizontal_offset + adjusted_height,
+               vertical_offset,adjusted_width - adjusted_height);
+  *current_mode_ptr = display_mode;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000058 ^ (ulonglong)&stack0x00000000);
+  execute_window_configuration_completion(stack_guard_value ^ (ulonglong)&window_style);
 }
 
 
