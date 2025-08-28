@@ -792,7 +792,7 @@ void RenderSystem_Initialize(longlong system_handle, uint64_t *output_data, int3
       if (SYSTEM_DATA_MANAGER_A != 0) {
         *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
-      pixel_data = (uint *)func_0x000180120ce0((longlong)texture_height * (longlong)texture_width * 4, SYSTEM_DATA_MANAGER_B);
+      pixel_data = (uint *)SystemMemoryAllocatorFunc((longlong)texture_height * (longlong)texture_width * 4, SYSTEM_DATA_MANAGER_B);
       *(uint **)(system_handle + RENDER_STATE_OFFSET) = pixel_data;
       
       // 处理纹理像素数据
@@ -969,7 +969,7 @@ void RenderSystem_ConfigureParameters(longlong system_handle, uint64_t *output_d
       if (SYSTEM_DATA_MANAGER_A != 0) {
         *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
-      pixel_data = (uint *)func_0x000180120ce0((longlong)texture_height * (longlong)texture_width * 4, SYSTEM_DATA_MANAGER_B);
+      pixel_data = (uint *)SystemMemoryAllocatorFunc((longlong)texture_height * (longlong)texture_width * 4, SYSTEM_DATA_MANAGER_B);
       *(uint **)(system_handle + RENDER_STATE_OFFSET) = pixel_data;
       
       // 处理纹理像素数据
@@ -1149,7 +1149,7 @@ void RenderSystem_AdvancedConfigure(longlong system_handle, uint64_t *output_dat
       if (SYSTEM_DATA_MANAGER_A != 0) {
         *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
-      pixel_data = (uint *)func_0x000180120ce0((longlong)texture_height * (longlong)texture_width * 4, SYSTEM_DATA_MANAGER_B);
+      pixel_data = (uint *)SystemMemoryAllocatorFunc((longlong)texture_height * (longlong)texture_width * 4, SYSTEM_DATA_MANAGER_B);
       *(uint **)(system_base + RENDER_STATE_OFFSET) = pixel_data;
       
       // 处理纹理像素数据
