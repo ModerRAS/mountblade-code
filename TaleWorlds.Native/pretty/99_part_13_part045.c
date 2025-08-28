@@ -344,7 +344,7 @@ void SystemDataStructureProcessor(int64_t *param_1, uint64_t *param_2)
                                 uStack_98 = (int64_t *)CONCAT44(uStack_98._4_4_, (int32_t)uStack_98);
                                 if (param_1 == (int64_t *)0x0) goto SystemErrorHandlerExit;
                                 plStack_78 = aplStack_88[0];
-                                iVar2 = FUN_1808c4160(param_1 + 9, &plStack_78);
+                                iVar2 = SystemDataValidator2(param_1 + 9, &plStack_78);
                                 uStack_98 = (int64_t *)CONCAT44(uStack_98._4_4_, (int32_t)uStack_98);
                                 if (iVar2 != 0) goto SystemErrorHandlerExit;
                                 iVar2 = FUN_1808c4570(param_1);
