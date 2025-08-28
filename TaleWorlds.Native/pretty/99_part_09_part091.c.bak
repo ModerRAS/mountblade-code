@@ -177,7 +177,7 @@ typedef enum {
  * @return 验证结果
  * @note 负责系统状态的验证和检查
  */
-#define SystemStateValidator SystemSecurityChecker
+#define SystemStateValidator FUN_1808fc050
 
 /**
  * @brief 系统配置管理器

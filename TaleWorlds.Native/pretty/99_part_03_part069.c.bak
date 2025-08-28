@@ -448,7 +448,7 @@ LAB_18023ba58:
     __Throw_C_error_std__YAXH_Z(iVar5);
   }
                     // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_4e8);
+  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_4e8);
 }
 
 
@@ -831,7 +831,7 @@ void FUN_18023c060(int64_t *param_1,int64_t param_2,uint64_t param_3)
     uStack_98 = 0;
   }
                     // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_e8);
+  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_e8);
 }
 
 
