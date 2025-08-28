@@ -101,15 +101,11 @@ void utilities_system_state_checker(uint64_t param_1, longlong param_2)
 // 参数：param_1 - 系统上下文，param_2 - 状态参数
 // 返回值：无
 // =============================================================================
-void FUN_180941383(uint64_t param_1,longlong param_2)
+void utilities_system_state_resetter(uint64_t param_1, longlong param_2)
 
 {
-  char cVar1;
-  int iVar2;
-  
-  // 变量重命名以提高可读性：
-  // cVar1 -> reset_flag: 重置标志
-  // iVar2 -> system_check_result: 系统检查结果
+  char reset_flag;
+  int system_check_result;
   
   // 执行系统初始化
   FUN_1808fc5ac();
@@ -139,7 +135,7 @@ void FUN_180941383(uint64_t param_1,longlong param_2)
 // 参数：param_1 - 函数参数数组指针，param_2 - 系统状态参数
 // 返回值：无
 // =============================================================================
-void FUN_18094139f(uint64_t *param_1,longlong param_2)
+void utilities_system_function_invoker(uint64_t *param_1, longlong param_2)
 
 {
   // 调用系统函数并传递相关参数

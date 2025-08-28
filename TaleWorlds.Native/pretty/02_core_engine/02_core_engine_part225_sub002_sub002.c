@@ -490,20 +490,20 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
   // 局部变量声明
   float temp_float1;          // 临时浮点变量1
   float temp_float2;          // 临时浮点变量2
-  uint64_t *ptr_uint64_t;  // 未定义8字节指针
+  uint64_t *data_ptr;              // 数据指针
   longlong temp_long1;        // 临时长整型变量1
   code *code_ptr;             // 代码指针
   int temp_int1;              // 临时整型变量1
-  int32_t temp_int32_t; // 未定义4字节变量
+  int32_t status_flag;             // 状态标志
   bool temp_bool1;            // 临时布尔变量1
   char temp_char1;            // 临时字符变量1
-  int8_t temp_int8_t; // 未定义1字节变量
+  int8_t control_flag;            // 控制标志
   int temp_int2;              // 临时整型变量2
-  int32_t temp_int32_t_2; // 未定义4字节变量2
+  int32_t entity_id;               // 实体ID
   longlong **ptr_ptr_long;    // 长整型二级指针
   longlong *ptr_long1;        // 长整型指针1
   longlong *ptr_long2;        // 长整型指针2
-  uint64_t temp_uint64_t; // 未定义8字节变量
+  uint64_t entity_data;           // 实体数据
   longlong *ptr_long3;        // 长整型指针3
   uint temp_uint;             // 无符号整型变量
   longlong *ptr_long4;        // 长整型指针4
@@ -516,24 +516,24 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
   // 栈变量声明
   int8_t stack_buffer_32[32];  // 32字节栈缓冲区
   char stack_char1;                // 栈字符变量1
-  uint64_t stack_uint64_t_1;   // 栈未定义8字节变量1
+  uint64_t stack_data_1;          // 栈数据1
   float stack_float1;              // 栈浮点变量1
-  int32_t stack_int32_t_1;   // 栈未定义4字节变量1
+  int32_t stack_status_1;         // 栈状态1
   uint stack_uint1;                // 栈无符号整型变量1
   longlong *stack_ptr_long1;       // 栈长整型指针1
   longlong *stack_ptr_long2;       // 栈长整型指针2
-  uint64_t stack_uint64_t_2;   // 栈未定义8字节变量2
-  uint64_t stack_uint64_t_3;   // 栈未定义8字节变量3
-  uint64_t stack_uint64_t_4;   // 栈未定义8字节变量4
-  uint64_t stack_uint64_t_5;   // 栈未定义8字节变量5
+  uint64_t stack_data_2;          // 栈数据2
+  uint64_t stack_data_3;          // 栈数据3
+  uint64_t stack_data_4;          // 栈数据4
+  uint64_t stack_data_5;          // 栈数据5
   float stack_float2;              // 栈浮点变量2
   float stack_float3;              // 栈浮点变量3
   float stack_float4;              // 栈浮点变量4
-  int32_t stack_int32_t_2;   // 栈未定义4字节变量2
+  int32_t stack_status_2;         // 栈状态2
   float stack_float5;              // 栈浮点变量5
   float stack_float6;              // 栈浮点变量6
   float stack_float7;              // 栈浮点变量7
-  int32_t stack_int32_t_3;   // 栈未定义4字节变量3
+  int32_t stack_status_3;         // 栈状态3
   longlong *stack_ptr_long3;       // 栈长整型指针3
   longlong **stack_ptr_ptr_long1;  // 栈长整型二级指针1
   longlong **stack_ptr_ptr_long2;  // 栈长整型二级指针2
@@ -560,13 +560,13 @@ void EntityInitializationProcessor(EntityContextPtr entity_context, SceneContext
   longlong *stack_ptr_long18;      // 栈长整型指针18
   longlong *stack_ptr_long19;      // 栈长整型指针19
   longlong *stack_ptr_long20;      // 栈长整型指针20
-  void *stack_ptr_int8_t; // 栈未定义指针1
+  void *stack_data_ptr_1;        // 栈数据指针1
   code *stack_code_ptr;           // 栈代码指针
   longlong *stack_ptr_long21;      // 栈长整型指针21
   longlong *stack_ptr_long22;      // 栈长整型指针22
-  void *stack_ptr_int16_t; // 栈未定义指针2
+  void *stack_data_ptr_2;        // 栈数据指针2
   void *stack_data_ptr_3; // 栈数据指针3
-  uint64_t stack_uint64_t_6;   // 栈未定义8字节变量6
+  uint64_t stack_data_6;          // 栈数据6
   longlong stack_array_40[40];     // 40个长整型的栈数组
   ulonglong stack_ulonglong;       // 栈无符号长整型变量
   
