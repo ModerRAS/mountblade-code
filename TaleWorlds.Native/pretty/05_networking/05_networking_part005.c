@@ -67,22 +67,31 @@ void validate_network_connection(undefined8 connection_handle, ulonglong *info_b
   undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
   ulonglong security_key;
   
+  // 安全密钥生成和验证
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
   if (info_buffer == (ulonglong *)0x0) {
+    // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
-                    // WARNING: Subroutine does not return
+      // 安全验证失败，执行异常处理
       FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
     }
+    // 准备错误消息包
     func_0x00018074bda0(packet_buffer, NETWORK_BUFFER_SIZE, 0);
     message_buffer = packet_buffer;
-                    // WARNING: Subroutine does not return
+    // 发送错误消息（函数不返回）
     FUN_180749ef0(0x1f, 0xd, connection_handle, NETWORK_ERROR_MESSAGE);
   }
+  
+  // 初始化输出缓冲区
   *info_buffer = 0;
   connection_data[1] = 0;
+  
+  // 获取连接数据
   connection_result = func_0x00018088c590(connection_handle, connection_data);
   if (connection_result == 0) {
+    // 检查连接状态标志位
     if ((*(uint *)(connection_data[0] + 0x24) >> 1 & 1) == 0) goto CONNECTION_INFO_FAILED;
+    // 验证连接数据有效性
     validation_result = FUN_18088c740(connection_data + 1);
     if (validation_result == 0) goto CONNECTION_VALIDATION_FAILED;
   }
@@ -90,6 +99,8 @@ void validate_network_connection(undefined8 connection_handle, ulonglong *info_b
 CONNECTION_VALIDATION_FAILED:
     validation_result = connection_result;
   }
+  
+  // 设置协议处理器并获取连接信息
   if ((validation_result == 0) &&
      (connection_result = FUN_18088dec0(*(undefined8 *)(connection_data[0] + 0x98), protocol_handlers, 0x20), connection_result == 0))
   {
@@ -100,12 +111,12 @@ CONNECTION_VALIDATION_FAILED:
     connection_result = func_0x00018088e0d0(*(undefined8 *)(connection_data[0] + 0x98), protocol_handlers[0]);
     if (connection_result == 0) {
       *info_buffer = (ulonglong)*(uint *)(protocol_handlers[0] + 3);
-                    // WARNING: Subroutine does not return
+      // 清理连接数据（函数不返回）
       FUN_18088c790(connection_data + 1);
     }
   }
 CONNECTION_INFO_FAILED:
-                    // WARNING: Subroutine does not return
+  // 清理连接数据（函数不返回）
   FUN_18088c790(connection_data + 1);
 }
 
