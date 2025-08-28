@@ -1,9 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part132.c - 5 个函数
+// 02_core_engine_part132.c - 核心引擎模块第132部分
+// 包含5个函数：游戏对象状态更新、渲染上下文管理、游戏对象创建等
 
-// 函数: void FUN_180130155(void)
-void FUN_180130155(void)
+// 函数1: 更新游戏对象状态
+// 原始实现：FUN_180130155
+// 简化实现：update_game_object_states
+// 功能：更新游戏对象的状态、位置、动画等属性
+void update_game_object_states(void)
 
 {
   undefined8 uVar1;
@@ -252,8 +256,11 @@ LAB_180130808:
 
 
 
-// 函数: void FUN_1801306c9(void)
-void FUN_1801306c9(void)
+// 函数2: 渲染上下文管理
+// 原始实现：FUN_1801306c9
+// 简化实现：manage_render_context
+// 功能：管理渲染上下文，处理渲染状态和资源
+void manage_render_context(void)
 
 {
   ulonglong uVar1;
@@ -338,8 +345,11 @@ LAB_180130808:
 
 
 
-// 函数: void FUN_1801306f3(void)
-void FUN_1801306f3(void)
+// 函数3: 简单渲染上下文设置
+// 原始实现：FUN_1801306f3
+// 简化实现：set_simple_render_context
+// 功能：简单的渲染上下文设置函数
+void set_simple_render_context(void)
 
 {
   longlong unaff_RBX;
@@ -353,7 +363,11 @@ void FUN_1801306f3(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int * FUN_180130830(longlong param_1,int param_2,undefined8 *param_3,undefined8 *param_4,
+// 函数4: 创建游戏对象
+// 原始实现：FUN_180130830
+// 简化实现：create_game_object
+// 功能：创建新的游戏对象，初始化属性和状态
+int * create_game_object(longlong param_1,int param_2,undefined8 *param_3,undefined8 *param_4,
                    uint param_5)
 
 {
@@ -462,8 +476,11 @@ LAB_1801308eb:
 
 
 
-// 函数: void FUN_180130a80(longlong param_1)
-void FUN_180130a80(longlong param_1)
+// 函数5: 初始化游戏对象
+// 原始实现：FUN_180130a80
+// 简化实现：initialize_game_object
+// 功能：初始化游戏对象，设置渲染属性和状态
+void initialize_game_object(longlong param_1)
 
 {
   uint uVar1;
@@ -509,7 +526,7 @@ void FUN_180130a80(longlong param_1)
     if (lVar7 == 0) {
       if ((*(float *)(param_1 + 0x34) != 3.4028235e+38) &&
          (*(float *)(param_1 + 0x38) != 3.4028235e+38)) {
-        uVar8 = FUN_180130830(param_1,*(undefined4 *)(param_1 + 8),(float *)(param_1 + 0x34),
+        uVar8 = create_game_object(param_1,*(undefined4 *)(param_1 + 8),(float *)(param_1 + 0x34),
                               param_1 + 0x48,0);
         *(undefined8 *)(param_1 + 0x28) = uVar8;
       }
@@ -529,7 +546,7 @@ void FUN_180130a80(longlong param_1)
     cVar6 = func_0x00018012fb90();
     if (cVar6 != '\0') {
       puVar9 = (undefined4 *)
-               FUN_180130830(extraout_XMM0_Qa,*(undefined4 *)(param_1 + 8),param_1 + 0x40,
+               create_game_object(extraout_XMM0_Qa,*(undefined4 *)(param_1 + 8),param_1 + 0x40,
                              param_1 + 0x48,0);
       *(undefined4 **)(param_1 + 0x28) = puVar9;
       goto LAB_180130c8e;
@@ -542,7 +559,7 @@ void FUN_180130a80(longlong param_1)
         *(float *)(_DAT_180c8a9b0 + 0x11c) == -256000.0)) {
       if ((*(longlong *)(param_1 + 0x28) != 0) &&
          (*(longlong *)(*(longlong *)(param_1 + 0x28) + 0x78) == param_1)) {
-        uVar8 = FUN_180130830(extraout_XMM0_Qa,*(undefined4 *)(param_1 + 8),param_1 + 0x40,
+        uVar8 = create_game_object(extraout_XMM0_Qa,*(undefined4 *)(param_1 + 8),param_1 + 0x40,
                               param_1 + 0x48,0);
         *(undefined8 *)(param_1 + 0x28) = uVar8;
       }
@@ -586,7 +603,7 @@ LAB_180130c8e:
           (*(int *)(lVar5 + 0x1a90) <= (int)puVar9[0x15])) || (!bVar3)) {
         cVar6 = FUN_18012fbd0(param_1,**(undefined8 **)(lVar5 + 0x1c70));
         if (cVar6 == '\0') {
-          uVar8 = FUN_180130830(param_1,*(undefined4 *)(param_1 + 8),param_1 + 0x40,param_1 + 0x48,4
+          uVar8 = create_game_object(param_1,*(undefined4 *)(param_1 + 8),param_1 + 0x40,param_1 + 0x48,4
                                );
           *(undefined8 *)(param_1 + 0x28) = uVar8;
         }
@@ -666,8 +683,11 @@ LAB_180130e8e:
 
 
 
-// 函数: void FUN_180130ae3(undefined8 param_1)
-void FUN_180130ae3(undefined8 param_1)
+// 函数6: 游戏对象属性设置
+// 原始实现：FUN_180130ae3
+// 简化实现：set_game_object_properties
+// 功能：设置游戏对象的属性，包括位置、状态标志等
+void set_game_object_properties(undefined8 param_1)
 
 {
   bool bVar1;
@@ -715,7 +735,7 @@ void FUN_180130ae3(undefined8 param_1)
       param_1 = 0x7f7fffff;
       if ((*(float *)(unaff_RBX + 0x34) != 3.4028235e+38) &&
          (*(float *)(unaff_RBX + 0x38) != 3.4028235e+38)) {
-        uVar6 = FUN_180130830(0x7f7fffff,*(undefined4 *)(unaff_RBX + 8),(float *)(unaff_RBX + 0x34),
+        uVar6 = create_game_object(0x7f7fffff,*(undefined4 *)(unaff_RBX + 8),(float *)(unaff_RBX + 0x34),
                               unaff_RBX + 0x48);
         *(undefined8 *)(unaff_RBX + 0x28) = uVar6;
         param_1 = extraout_XMM0_Qa_00;
@@ -736,7 +756,7 @@ void FUN_180130ae3(undefined8 param_1)
     }
     cVar3 = func_0x00018012fb90();
     if (cVar3 != '\0') {
-      lVar5 = FUN_180130830(extraout_XMM0_Qa_02,*(undefined4 *)(unaff_RBX + 8),unaff_RBX + 0x40,
+      lVar5 = create_game_object(extraout_XMM0_Qa_02,*(undefined4 *)(unaff_RBX + 8),unaff_RBX + 0x40,
                             unaff_RBX + 0x48);
       *(longlong *)(unaff_RBX + 0x28) = lVar5;
       param_1 = extraout_XMM0_Qa_03;
@@ -751,7 +771,7 @@ void FUN_180130ae3(undefined8 param_1)
         *(float *)(_DAT_180c8a9b0 + 0x11c) == -256000.0)) {
       if ((*(longlong *)(unaff_RBX + 0x28) != 0) &&
          (*(longlong *)(*(longlong *)(unaff_RBX + 0x28) + 0x78) == unaff_RBX)) {
-        uVar6 = FUN_180130830(extraout_XMM0_Qa_02,*(undefined4 *)(unaff_RBX + 8),unaff_RBX + 0x40,
+        uVar6 = create_game_object(extraout_XMM0_Qa_02,*(undefined4 *)(unaff_RBX + 8),unaff_RBX + 0x40,
                               unaff_RBX + 0x48);
         *(undefined8 *)(unaff_RBX + 0x28) = uVar6;
         param_1 = extraout_XMM0_Qa_04;
@@ -796,7 +816,7 @@ LAB_180130c8e:
           (*(int *)(unaff_RDI + 0x1a90) <= *(int *)(lVar5 + 0x54))) || (!bVar1)) {
         cVar4 = FUN_18012fbd0(param_1,**(undefined8 **)(unaff_RDI + 0x1c70));
         if (cVar4 == '\0') {
-          uVar6 = FUN_180130830(extraout_XMM0_Qa_05,*(undefined4 *)(unaff_RBX + 8),unaff_RBX + 0x40,
+          uVar6 = create_game_object(extraout_XMM0_Qa_05,*(undefined4 *)(unaff_RBX + 8),unaff_RBX + 0x40,
                                 unaff_RBX + 0x48,4);
           *(undefined8 *)(unaff_RBX + 0x28) = uVar6;
         }
@@ -874,6 +894,4 @@ LAB_180130e8e:
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
 
