@@ -466,7 +466,7 @@ LAB_1803a62a7:
     puVar6 = puVar1;
 LAB_1803a62d7:
     if (puVar6 == puVar1) {
-        puVar7 = (int32_t *)FUN_1803a6bb0(puVar1, &iStack_88);
+        puVar7 = (int32_t *)DataStructureSearcher(puVar1, &iStack_88);
         *puVar7 = 0;
     }
     else {
@@ -538,7 +538,7 @@ LAB_1803a62d7:
             *(int64_t **)(param_1 + 0x98) = plVar16 + lVar5;
         }
         *(int64_t *)(*param_2 + 0x40) = param_1;
-        piVar9 = (int *)FUN_1803a6bb0(puVar1, &iStack_88);
+        piVar9 = (int *)DataStructureSearcher(puVar1, &iStack_88);
         *piVar9 = *piVar9 + 1;
         iVar3 = _Mtx_unlock(param_1);
         if (iVar3 != 0) {
