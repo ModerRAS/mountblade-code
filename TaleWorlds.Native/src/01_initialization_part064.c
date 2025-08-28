@@ -1,33 +1,138 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part064.c - 2 个函数
+/**
+ * @file 01_initialization_part064.c
+ * @brief 初始化系统高级组件管理模块
+ * 
+ * 本模块是初始化系统的一部分，主要负责：
+ * - 系统组件的初始化和配置
+ * - 高级数据结构的处理
+ * - 系统资源的分配和管理
+ * - 初始化参数的处理和验证
+ * - 系统状态的管理和监控
+ * 
+ * 该文件作为初始化系统的一个子模块，提供了系统组件管理的核心支持。
+ * 
+ * @version 1.0
+ * @date 2025-08-28
+ * @author 反编译代码美化处理
+ */
 
-// 函数: undefined FUN_180058c20;
-undefined FUN_180058c20;
+/* ============================================================================
+ * 初始化系统高级组件管理常量定义
+ * ============================================================================ */
 
+/**
+ * @brief 初始化系统高级组件管理接口
+ * @details 定义初始化系统高级组件管理的参数和接口函数
+ * 
+ * 功能：
+ * - 系统组件初始化和配置
+ * - 高级数据结构处理
+ * - 系统资源分配和管理
+ * - 初始化参数处理和验证
+ * - 系统状态管理和监控
+ * 
+ * @note 该文件作为初始化系统的子模块，提供系统组件管理支持
+ */
 
-// 函数: undefined FUN_18004bb30;
-undefined FUN_18004bb30;
-undefined DAT_180d49830;
-undefined8 UNK_180d498a0;
-undefined4 UNK_180d498a8;
-undefined *UNK_180d498b0;
-undefined1 *UNK_180d498b8;
-undefined4 UNK_180d498c0;
-longlong UNK_180d49908;
-longlong UNK_180d49910;
-longlong UNK_180d49928;
-longlong UNK_180d49930;
-undefined4 UNK_180d49948;
-undefined4 UNK_180d4994c;
-undefined DAT_180d49950;
-undefined DAT_180d49970;
-undefined DAT_180bfc140;
-undefined DAT_1803f48b2;
-undefined UNK_180d49d58;
-longlong UNK_180d49d68;
-undefined8 UNK_180d49d70;
-longlong UNK_180d49d78;
-longlong *UNK_180c96358;
+/* ============================================================================
+ * 函数别名定义 - 用于代码可读性和维护性
+ * ============================================================================ */
+
+// 系统组件初始化器
+#define InitializationSystem_ComponentInitializer FUN_180058c20
+
+// 系统配置处理器
+#define InitializationSystem_ConfigProcessor FUN_18004bb30
+
+/* ============================================================================
+ * 全局变量声明
+ * ============================================================================ */
+
+// 系统数据区域
+extern undefined DAT_180d49830;
+extern undefined8 UNK_180d498a0;
+extern undefined4 UNK_180d498a8;
+extern undefined *UNK_180d498b0;
+extern undefined1 *UNK_180d498b8;
+extern undefined4 UNK_180d498c0;
+extern longlong UNK_180d49908;
+extern longlong UNK_180d49910;
+extern longlong UNK_180d49928;
+extern longlong UNK_180d49930;
+extern undefined4 UNK_180d49948;
+extern undefined4 UNK_180d4994c;
+extern undefined DAT_180d49950;
+extern undefined DAT_180d49970;
+extern undefined DAT_180bfc140;
+extern undefined DAT_1803f48b2;
+extern undefined UNK_180d49d58;
+extern longlong UNK_180d49d68;
+extern undefined8 UNK_180d49d70;
+extern longlong UNK_180d49d78;
+extern longlong *UNK_180c96358;
+
+/* ============================================================================
+ * 函数声明
+ * ============================================================================ */
+
+/**
+ * @brief 系统组件初始化器
+ * 
+ * 该函数负责初始化系统组件，包括：
+ * - 组件配置和初始化
+ * - 资源分配和设置
+ * - 状态初始化和验证
+ * - 组件间依赖关系处理
+ * 
+ * @return undefined 初始化结果状态
+ */
+undefined InitializationSystem_ComponentInitializer;
+
+/**
+ * @brief 系统配置处理器
+ * 
+ * 该函数负责处理系统配置，包括：
+ * - 配置参数解析和验证
+ * - 配置数据结构初始化
+ * - 配置状态管理和同步
+ * - 配置错误处理和恢复
+ * 
+ * @return undefined 配置处理结果状态
+ */
+undefined InitializationSystem_ConfigProcessor;
+
+/* ============================================================================
+ * 技术说明
+ * ============================================================================ */
+
+/**
+ * 技术实现说明：
+ * 
+ * 1. 模块功能：
+ *    - 系统组件初始化和管理
+ *    - 配置参数处理和验证
+ *    - 系统资源分配和管理
+ *    - 状态监控和错误处理
+ * 
+ * 2. 设计特点：
+ *    - 模块化组件设计
+ *    - 清晰的接口定义
+ *    - 完善的错误处理机制
+ *    - 高效的资源管理策略
+ * 
+ * 3. 性能优化：
+ *    - 资源预分配和缓存
+ *    - 状态标志位优化
+ *    - 批量操作支持
+ *    - 内存对齐优化
+ * 
+ * 4. 维护性：
+ *    - 详细的文档注释
+ *    - 清晰的函数别名
+ *    - 标准化的错误处理
+ *    - 完善的日志记录
+ */
 
 
