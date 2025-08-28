@@ -110,6 +110,30 @@ typedef struct {
 #define DataStructureSearcher FUN_1803a6bb0
 #define ResourceAllocator FUN_1803a6c4c
 
+// 内存管理函数
+#define SystemMemoryPoolAllocator FUN_18062b420
+#define SystemMemoryPoolInitializer FUN_18064e900
+#define SystemMemoryPoolReallocator FUN_18066bdc0
+
+// 数据处理函数
+#define SystemDataProcessor FUN_1800a02a0
+#define SystemConfigurationValidator FUN_1808fc050
+#define SystemDataTransformer FUN_1803a7190
+#define SystemDataOptimizer FUN_1803a6f10
+#define SystemDataEnhancer FUN_1803a7050
+#define SystemDataInitializer FUN_180627be0
+#define SystemDataManager FUN_180627910
+#define SystemDataOrganizer FUN_180627340
+#define SystemDataHandler FUN_18010cbc0
+#define SystemDataConfigurator FUN_180631330
+#define SystemDataModifier FUN_180631850
+#define SystemDataAllocator FUN_180631000
+
+// 资源管理函数
+#define SystemResourceAllocator FUN_1803a6db0
+#define SystemResourceInitializer FUN_1803a6d94
+#define SystemResourceHandler FUN_1803a6d7c
+
 // ============================================================================
 // 核心函数实现
 // ============================================================================
