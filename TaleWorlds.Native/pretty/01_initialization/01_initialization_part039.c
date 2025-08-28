@@ -207,6 +207,7 @@ undefined8 * GetThreadLocalStorageData(longlong *thread_context)
         // 在主哈希表中添加缓存条目
         do {
           uVar13 = uVar13 & *puVar7 - 1;
+          // 检查主哈希表中的空槽位
           if (*(int *)(puVar7[1] + uVar13 * 0x10) == 0) {
             puVar2 = (uint *)(puVar7[1] + uVar13 * 0x10);
             LOCK();
@@ -227,6 +228,8 @@ undefined8 * GetThreadLocalStorageData(longlong *thread_context)
       uVar6 = uVar6 + 1;
     }
   }
+  
+  // 增加活跃线程计数
   LOCK();
   plVar1 = param_1 + 7;
   lVar9 = *plVar1;
@@ -234,30 +237,40 @@ undefined8 * GetThreadLocalStorageData(longlong *thread_context)
   UNLOCK();
   uVar6 = lVar9 + 1;
   puVar15 = (undefined8 *)0x0;
+  
+  // 检查是否需要扩展哈希表
   while( true ) {
     if (*puVar7 >> 1 <= uVar6) {
+      // 设置扩展标志
       LOCK();
       puVar2 = (uint *)(param_1 + 0x4b);
       uVar14 = *puVar2;
       *puVar2 = *puVar2 | 1;
       UNLOCK();
       if ((uVar14 & 1) == 0) {
+        // 执行哈希表扩展
         puVar3 = (ulonglong *)param_1[6];
         puVar7 = puVar3;
         uVar12 = *puVar3;
         if (*puVar3 >> 1 <= uVar6) {
+          // 计算新的哈希表大小
           do {
             uVar4 = uVar12;
             uVar12 = uVar4 * 2;
           } while ((uVar4 & 0x7fffffffffffffff) <= uVar6);
+          
+          // 分配新的哈希表内存
           puVar7 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,uVar4 * 0x20 + 0x1f,10);
           if (puVar7 == (ulonglong *)0x0) {
+            // 分配失败，回滚计数器
             LOCK();
             param_1[7] = param_1[7] + -1;
             UNLOCK();
             *(undefined4 *)(param_1 + 0x4b) = 0;
             return (undefined8 *)0x0;
           }
+          
+          // 初始化新的哈希表
           *puVar7 = uVar12;
           puVar7[1] = (ulonglong)(-(int)(puVar7 + 3) & 7) + (longlong)(puVar7 + 3);
           puVar11 = puVar15;

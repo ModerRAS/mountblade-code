@@ -706,8 +706,10 @@ void execute_component_callback(longlong *param_1)
 
 
 
-// 函数: void FUN_18005c830(uint *param_1)
-void FUN_18005c830(uint *param_1)
+// 函数: void generate_timestamp_hash(uint *hash_value)
+// 功能: 生成基于时间戳的哈希值
+// 参数: hash_value - 输出参数，用于存储生成的哈希值
+void generate_timestamp_hash(uint *hash_value)
 
 {
   uint uVar1;
@@ -720,17 +722,21 @@ void FUN_18005c830(uint *param_1)
     cVar2 = (**(code **)(*(undefined **)*_DAT_180c8ed08 + 0x48))();
   }
   if (cVar2 != '\0') {
-    *param_1 = 0x41c6fe0c;
+    *hash_value = 0x41c6fe0c;
     return;
   }
   uVar1 = timeGetTime();
-  *param_1 = uVar1 ^ 0x41c64e6d;
+  *hash_value = uVar1 ^ 0x41c64e6d;
   return;
 }
 
 
 
-undefined8 FUN_18005c8a0(longlong param_1,undefined8 param_2)
+// 函数: bool validate_and_process_condition(longlong context, undefined8 param_2)
+// 功能: 验证条件并处理相应的操作
+// 参数: context - 上下文指针，param_2 - 处理参数
+// 返回: 成功返回1，失败返回0
+bool validate_and_process_condition(longlong context, undefined8 param_2)
 
 {
   char cVar1;
@@ -747,11 +753,11 @@ undefined8 FUN_18005c8a0(longlong param_1,undefined8 param_2)
         FUN_180626f80(&UNK_18098bc00,puVar2);
       }
       FUN_180627be0(param_1,param_1 + 0x80);
-      return 0;
+      return false;
     }
   }
   FUN_180627be0(param_1,param_2);
-  return 1;
+  return true;
 }
 
 

@@ -195,10 +195,429 @@ undefined8 * set_resource_release_handler(undefined8 *resource_ptr, ulonglong fl
  */
 void cleanup_resource_manager_list(longlong *manager_ptr)
 {
-  int *node_counter;
-  char *node_data;
+  int *reference_count;
+  char *node_name;
   undefined8 *current_node;
-  longlong list_size;
-  ulonglong node_index;
+  longlong next_node;
+  ulonglong memory_base;
   
   current_node = (undefined8 *)*manager_ptr;
+  if (current_node != (undefined8 *)0x0) {
+    if ((undefined8 *)current_node[3] != (undefined8 *)0x0) {
+      *(undefined8 *)current_node[3] = 0;
+    }
+    // 调用节点的清理函数
+    (**(code **)*current_node)(current_node, 0);
+    // 警告：子程序不返回
+    deallocate_node_memory(current_node);
+  }
+  if ((manager_ptr[6] != 0) && (*(longlong *)(manager_ptr[6] + 0x10) != 0)) {
+    // 警告：子程序不返回
+    handle_memory_error();
+  }
+  next_node = manager_ptr[5];
+  while (next_node != 0) {
+    node_name = (char *)(next_node + 0x3541);
+    next_node = *(longlong *)(next_node + 0x3538);
+    if (*node_name != '\0') {
+      // 警告：子程序不返回
+      handle_name_error();
+    }
+  }
+  current_node = (undefined8 *)manager_ptr[3];
+  if (current_node == (undefined8 *)0x0) {
+    return;
+  }
+  memory_base = (ulonglong)current_node & 0xffffffffffc00000;
+  if (memory_base != 0) {
+    next_node = memory_base + 0x80 + ((longlong)current_node - memory_base >> 0x10) * 0x50;
+    next_node = next_node - (ulonglong)*(uint *)(next_node + 4);
+    if ((*(void ***)(memory_base + 0x70) == &ExceptionList) && (*(char *)(next_node + 0xe) == '\0')) {
+      *current_node = *(undefined8 *)(next_node + 0x20);
+      *(undefined8 **)(next_node + 0x20) = current_node;
+      reference_count = (int *)(next_node + 0x18);
+      *reference_count = *reference_count + -1;
+      if (*reference_count == 0) {
+        cleanup_memory_pool();
+        return;
+      }
+    }
+    else {
+      handle_memory_pool_error(memory_base, CONCAT71(0xff000000, *(void ***)(memory_base + 0x70) == &ExceptionList),
+                            current_node, memory_base, 0xfffffffffffffffe);
+    }
+  }
+  return;
+}
+
+/**
+ * 清理资源管理器链表（变体）
+ * 与cleanup_resource_manager_list功能相同，但可能用于不同的上下文
+ * 
+ * @param manager_ptr 资源管理器指针
+ */
+void cleanup_resource_manager_list_variant(longlong *manager_ptr)
+{
+  int *reference_count;
+  char *node_name;
+  undefined8 *current_node;
+  longlong next_node;
+  ulonglong memory_base;
+  
+  current_node = (undefined8 *)*manager_ptr;
+  if (current_node != (undefined8 *)0x0) {
+    if ((undefined8 *)current_node[3] != (undefined8 *)0x0) {
+      *(undefined8 *)current_node[3] = 0;
+    }
+    // 调用节点的清理函数
+    (**(code **)*current_node)(current_node, 0);
+    // 警告：子程序不返回
+    deallocate_node_memory(current_node);
+  }
+  if ((manager_ptr[6] != 0) && (*(longlong *)(manager_ptr[6] + 0x10) != 0)) {
+    // 警告：子程序不返回
+    handle_memory_error();
+  }
+  next_node = manager_ptr[5];
+  while (next_node != 0) {
+    node_name = (char *)(next_node + 0x3541);
+    next_node = *(longlong *)(next_node + 0x3538);
+    if (*node_name != '\0') {
+      // 警告：子程序不返回
+      handle_name_error();
+    }
+  }
+  current_node = (undefined8 *)manager_ptr[3];
+  if (current_node == (undefined8 *)0x0) {
+    return;
+  }
+  memory_base = (ulonglong)current_node & 0xffffffffffc00000;
+  if (memory_base != 0) {
+    next_node = memory_base + 0x80 + ((longlong)current_node - memory_base >> 0x10) * 0x50;
+    next_node = next_node - (ulonglong)*(uint *)(next_node + 4);
+    if ((*(void ***)(memory_base + 0x70) == &ExceptionList) && (*(char *)(next_node + 0xe) == '\0')) {
+      *current_node = *(undefined8 *)(next_node + 0x20);
+      *(undefined8 **)(next_node + 0x20) = current_node;
+      reference_count = (int *)(next_node + 0x18);
+      *reference_count = *reference_count + -1;
+      if (*reference_count == 0) {
+        cleanup_memory_pool();
+        return;
+      }
+    }
+    else {
+      handle_memory_pool_error(memory_base, CONCAT71(0xff000000, *(void ***)(memory_base + 0x70) == &ExceptionList),
+                            current_node, memory_base, 0xfffffffffffffffe);
+    }
+  }
+  return;
+}
+
+/**
+ * 销毁资源节点
+ * 销毁指定的资源节点，清理相关资源
+ */
+void destroy_resource_node(void)
+{
+  undefined8 *unaff_RBX;
+  
+  if ((undefined8 *)unaff_RBX[3] != (undefined8 *)0x0) {
+    *(undefined8 *)unaff_RBX[3] = 0;
+  }
+  (**(code **)*unaff_RBX)();
+  // 警告：子程序不返回
+  deallocate_node_memory();
+}
+
+/**
+ * 清理资源上下文
+ * 清理指定资源上下文中的所有资源
+ */
+void cleanup_resource_context(void)
+{
+  int *reference_count;
+  char *node_name;
+  undefined8 *current_node;
+  longlong next_node;
+  longlong unaff_RSI;
+  ulonglong memory_base;
+  
+  if ((*(longlong *)(unaff_RSI + 0x30) != 0) &&
+     (*(longlong *)(*(longlong *)(unaff_RSI + 0x30) + 0x10) != 0)) {
+    // 警告：子程序不返回
+    handle_memory_error();
+  }
+  next_node = *(longlong *)(unaff_RSI + 0x28);
+  while (next_node != 0) {
+    node_name = (char *)(next_node + 0x3541);
+    next_node = *(longlong *)(next_node + 0x3538);
+    if (*node_name != '\0') {
+      // 警告：子程序不返回
+      handle_name_error();
+    }
+  }
+  current_node = *(undefined8 **)(unaff_RSI + 0x18);
+  if (current_node != (undefined8 *)0x0) {
+    memory_base = (ulonglong)current_node & 0xffffffffffc00000;
+    if (memory_base != 0) {
+      next_node = memory_base + 0x80 + ((longlong)current_node - memory_base >> 0x10) * 0x50;
+      next_node = next_node - (ulonglong)*(uint *)(next_node + 4);
+      if ((*(void ***)(memory_base + 0x70) == &ExceptionList) && (*(char *)(next_node + 0xe) == '\0')) {
+        *current_node = *(undefined8 *)(next_node + 0x20);
+        *(undefined8 **)(next_node + 0x20) = current_node;
+        reference_count = (int *)(next_node + 0x18);
+        *reference_count = *reference_count + -1;
+        if (*reference_count == 0) {
+          cleanup_memory_pool();
+          return;
+        }
+      }
+      else {
+        handle_memory_pool_error(memory_base, CONCAT71(0xff000000, *(void ***)(memory_base + 0x70) == &ExceptionList),
+                              current_node, memory_base, 0xfffffffffffffffe);
+      }
+    }
+    return;
+  }
+  return;
+}
+
+/**
+ * 从内存池中移除资源
+ * 从内存池中移除指定的资源节点
+ * 
+ * @param resource_ptr 资源指针
+ */
+void remove_resource_from_pool(undefined8 *resource_ptr)
+{
+  int *reference_count;
+  longlong pool_node;
+  ulonglong memory_base;
+  
+  memory_base = (ulonglong)resource_ptr & 0xffffffffffc00000;
+  if (memory_base != 0) {
+    pool_node = memory_base + 0x80 + ((longlong)resource_ptr - memory_base >> 0x10) * 0x50;
+    pool_node = pool_node - (ulonglong)*(uint *)(pool_node + 4);
+    if ((*(void ***)(memory_base + 0x70) == &ExceptionList) && (*(char *)(pool_node + 0xe) == '\0')) {
+      *resource_ptr = *(undefined8 *)(pool_node + 0x20);
+      *(undefined8 **)(pool_node + 0x20) = resource_ptr;
+      reference_count = (int *)(pool_node + 0x18);
+      *reference_count = *reference_count + -1;
+      if (*reference_count == 0) {
+        cleanup_memory_pool();
+        return;
+      }
+    }
+    else {
+      handle_memory_pool_error(memory_base, CONCAT71(0xff000000, *(void ***)(memory_base + 0x70) == &ExceptionList),
+                            resource_ptr, memory_base, 0xfffffffffffffffe);
+    }
+  }
+  return;
+}
+
+/**
+ * 销毁资源管理器
+ * 销毁资源管理器及其所有相关资源
+ * 
+ * @param manager_ptr 资源管理器指针
+ */
+void destroy_resource_manager(longlong *manager_ptr)
+{
+  int *reference_count;
+  char *node_name;
+  undefined8 *current_node;
+  longlong next_node;
+  ulonglong memory_base;
+  
+  // 销毁同步对象
+  _Mtx_destroy_in_situ();
+  _Cnd_destroy_in_situ();
+  
+  current_node = (undefined8 *)*manager_ptr;
+  if (current_node != (undefined8 *)0x0) {
+    if ((undefined8 *)current_node[3] != (undefined8 *)0x0) {
+      *(undefined8 *)current_node[3] = 0;
+    }
+    // 调用节点的清理函数
+    (**(code **)*current_node)(current_node, 0);
+    // 警告：子程序不返回
+    deallocate_node_memory(current_node);
+  }
+  if ((manager_ptr[6] != 0) && (*(longlong *)(manager_ptr[6] + 0x10) != 0)) {
+    // 警告：子程序不返回
+    handle_memory_error();
+  }
+  next_node = manager_ptr[5];
+  while (next_node != 0) {
+    node_name = (char *)(next_node + 0x3541);
+    next_node = *(longlong *)(next_node + 0x3538);
+    if (*node_name != '\0') {
+      // 警告：子程序不返回
+      handle_name_error();
+    }
+  }
+  current_node = (undefined8 *)manager_ptr[3];
+  if (current_node == (undefined8 *)0x0) {
+    return;
+  }
+  memory_base = (ulonglong)current_node & 0xffffffffffc00000;
+  if (memory_base != 0) {
+    next_node = memory_base + 0x80 + ((longlong)current_node - memory_base >> 0x10) * 0x50;
+    next_node = next_node - (ulonglong)*(uint *)(next_node + 4);
+    if ((*(void ***)(memory_base + 0x70) == &ExceptionList) && (*(char *)(next_node + 0xe) == '\0')) {
+      *current_node = *(undefined8 *)(next_node + 0x20);
+      *(undefined8 **)(next_node + 0x20) = current_node;
+      reference_count = (int *)(next_node + 0x18);
+      *reference_count = *reference_count + -1;
+      if (*reference_count == 0) {
+        cleanup_memory_pool();
+        return;
+      }
+    }
+    else {
+      handle_memory_pool_error(memory_base, CONCAT71(0xff000000, *(void ***)(memory_base + 0x70) == &ExceptionList),
+                            current_node, memory_base, 0xfffffffffffffffe);
+    }
+  }
+  return;
+}
+
+/**
+ * 清理资源块数组
+ * 清理指定资源块数组中的所有资源
+ * 
+ * @param resource_array 资源块数组指针
+ */
+void cleanup_resource_block_array(longlong *resource_array)
+{
+  longlong array_end;
+  longlong current_block;
+  
+  array_end = resource_array[1];
+  for (current_block = *resource_array; current_block != array_end; current_block = current_block + 0x1a8) {
+    cleanup_resource_block(current_block);
+  }
+  if (*resource_array == 0) {
+    return;
+  }
+  // 警告：子程序不返回
+  deallocate_node_memory();
+}
+
+/**
+ * 清理资源块数组（变体）
+ * 与cleanup_resource_block_array功能相同，但可能用于不同的上下文
+ * 
+ * @param resource_array 资源块数组指针
+ */
+void cleanup_resource_block_array_variant(longlong *resource_array)
+{
+  longlong array_end;
+  longlong current_block;
+  
+  array_end = resource_array[1];
+  for (current_block = *resource_array; current_block != array_end; current_block = current_block + 0x1a8) {
+    cleanup_resource_block(current_block);
+  }
+  if (*resource_array == 0) {
+    return;
+  }
+  // 警告：子程序不返回
+  deallocate_node_memory();
+}
+
+/**
+ * 初始化资源管理器
+ * 初始化资源管理器，设置各种参数和内存池
+ * 
+ * @param manager_ptr 资源管理器指针
+ * @param param2 初始化参数2
+ * @param param3 初始化参数3
+ * @return 返回资源管理器指针
+ */
+undefined8 * initialize_resource_manager(undefined8 *manager_ptr, undefined8 param2, undefined8 param3)
+{
+  ulonglong array_index;
+  ulonglong start_index;
+  ulonglong max_slots;
+  longlong memory_pool;
+  undefined8 *slot_array;
+  undefined8 *current_slot;
+  longlong slot_count;
+  
+  initialize_system_functions();
+  *manager_ptr = &RESOURCE_MANAGER_VTABLE;
+  manager_ptr[0x19] = 0;           // 状态标志
+  *(undefined4 *)(manager_ptr + 0x1a) = 0;  // 错误代码
+  manager_ptr[0x1b] = 0;           // 保留字段
+  manager_ptr[0x1e] = 0;           // 锁定计数
+  
+  // 初始化槽位数组
+  current_slot = manager_ptr + 0x24;
+  slot_count = 0x20;
+  max_slots = 0x20;
+  slot_array = current_slot;
+  do {
+    initialize_slot(current_slot);
+    current_slot = current_slot + 2;
+    max_slots = max_slots - 1;
+  } while (max_slots != 0);
+  
+  start_index = 0;
+  *(undefined8 *)((longlong)manager_ptr + 0x324) = 0;  // 当前使用的槽位
+  *(undefined4 *)(manager_ptr + 100) = 0;                // 槽位使用计数
+  manager_ptr[0x20] = 0;           // 槽位数组基地址
+  manager_ptr[0x21] = 0x20;         // 槽位数组大小
+  manager_ptr[0x22] = slot_array;   // 槽位数组指针
+  
+  // 清零槽位数组
+  do {
+    *(undefined4 *)slot_array = 0;
+    slot_array = slot_array + 2;
+    slot_count = slot_count - 1;
+  } while (slot_count != 0);
+  
+  manager_ptr[0x23] = 0;           // 当前槽位索引
+  manager_ptr[0x1f] = manager_ptr + 0x21;  // 槽位数组尾指针
+  manager_ptr[0x1d] = 0x15;         // 最大槽位数
+  memory_pool = initialize_system_memory_pool();
+  manager_ptr[0x1c] = memory_pool;  // 内存池指针
+  
+  if (memory_pool == 0) {
+    manager_ptr[0x1d] = 0;         // 内存池初始化失败
+    max_slots = start_index;
+  }
+  else {
+    max_slots = manager_ptr[0x1d];  // 使用内存池中的槽位数
+  }
+  
+  array_index = start_index;
+  if (max_slots != 0) {
+    do {
+      // 初始化每个槽位的名称字段
+      *(undefined1 *)(start_index + 0x3541 + manager_ptr[0x1c]) = 0;
+      array_index = array_index + 1;
+      start_index = start_index + 0x3548;
+    } while (array_index < (ulonglong)manager_ptr[0x1d]);
+  }
+  
+  // 初始化同步对象
+  _Cnd_init_in_situ();            // 初始化条件变量
+  _Mtx_init_in_situ(manager_ptr + 0x6f, 2);  // 初始化互斥锁
+  
+  // 初始化管理器状态
+  manager_ptr[0x79] = 0;           // 活动线程数
+  manager_ptr[0x7a] = 0;           // 等待线程数
+  manager_ptr[0x7b] = 0;           // 信号量
+  *(undefined4 *)(manager_ptr + 0x7c) = 3;  // 同步模式
+  manager_ptr[0x7e] = 0;           // 超时计数器
+  *(undefined4 *)(manager_ptr + 0x7f) = 0;  // 错误计数器
+  *(undefined4 *)((longlong)manager_ptr + 0x3fc) = 4000;  // 最大等待时间
+  
+  manager_ptr[0x18] = param2;       // 用户参数2
+  manager_ptr[0x7d] = param3;       // 用户参数3
+  *(undefined1 *)(manager_ptr + 0x80) = 0;  // 初始化完成标志
+  
+  return manager_ptr;
+}

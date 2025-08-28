@@ -928,59 +928,66 @@ undefined8 initialize_render_system(undefined8 param_1, ulonglong param_2)
 
 
 
-// 函数: void FUN_18005a9a0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18005a9a0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: void initialize_render_pipeline(undefined8 *render_pipeline_ptr, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 功能: 初始化渲染管线，设置多个渲染阶段和缓冲区
+void initialize_render_pipeline(undefined8 *render_pipeline_ptr, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  *param_1 = &UNK_1809fddc8;
-  FUN_18005ab50(param_1 + 0x143);
-  FUN_18005ab50(param_1 + 0x134);
-  FUN_18005b7c0(param_1 + 0x126);
-  FUN_18005b7c0(param_1 + 0x118);
-  FUN_18005b7c0(param_1 + 0x10a);
-  FUN_18005b7c0(param_1 + 0xfc);
-  FUN_18005b7c0(param_1 + 0xee);
-  FUN_18005b7c0(param_1 + 0xe0);
-  FUN_18005b7c0(param_1 + 0xd2);
-  FUN_18005b7c0(param_1 + 0xc4);
-  FUN_18005b7c0(param_1 + 0xb6);
-  FUN_18005b7c0(param_1 + 0xa8);
-  FUN_18005b7c0(param_1 + 0x9a);
-  FUN_18005b7c0(param_1 + 0x8c);
-  FUN_18005b7c0(param_1 + 0x7e);
-  FUN_18005b7c0(param_1 + 0x70);
-  FUN_18005b7c0(param_1 + 0x62);
-  FUN_18005b7c0(param_1 + 0x54);
-  FUN_18005b7c0(param_1 + 0x46);
-  FUN_18005b7c0(param_1 + 0x38);
-  FUN_18005b7c0(param_1 + 0x2a);
-  FUN_18005b7c0(param_1 + 0x1c);
-  *param_1 = &UNK_180a02968;
-  param_1[0x18] = &UNK_180a3c3e0;
-  if (param_1[0x19] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  // 设置主管线指针
+  *render_pipeline_ptr = &UNK_1809fddc8;
+  
+  // 初始化渲染管线组件（按偏移量递减顺序）
+  FUN_18005ab50(render_pipeline_ptr + 0x143);  // 初始化阶段20 (偏移0x143)
+  FUN_18005ab50(render_pipeline_ptr + 0x134);  // 初始化阶段19 (偏移0x134)
+  FUN_18005b7c0(render_pipeline_ptr + 0x126);  // 初始化阶段18 (偏移0x126)
+  FUN_18005b7c0(render_pipeline_ptr + 0x118);  // 初始化阶段17 (偏移0x118)
+  FUN_18005b7c0(render_pipeline_ptr + 0x10a);  // 初始化阶段16 (偏移0x10a)
+  FUN_18005b7c0(render_pipeline_ptr + 0xfc);   // 初始化阶段15 (偏移0xfc)
+  FUN_18005b7c0(render_pipeline_ptr + 0xee);   // 初始化阶段14 (偏移0xee)
+  FUN_18005b7c0(render_pipeline_ptr + 0xe0);   // 初始化阶段13 (偏移0xe0)
+  FUN_18005b7c0(render_pipeline_ptr + 0xd2);   // 初始化阶段12 (偏移0xd2)
+  FUN_18005b7c0(render_pipeline_ptr + 0xc4);   // 初始化阶段11 (偏移0xc4)
+  FUN_18005b7c0(render_pipeline_ptr + 0xb6);   // 初始化阶段10 (偏移0xb6)
+  FUN_18005b7c0(render_pipeline_ptr + 0xa8);   // 初始化阶段9 (偏移0xa8)
+  FUN_18005b7c0(render_pipeline_ptr + 0x9a);   // 初始化阶段8 (偏移0x9a)
+  FUN_18005b7c0(render_pipeline_ptr + 0x8c);   // 初始化阶段7 (偏移0x8c)
+  FUN_18005b7c0(render_pipeline_ptr + 0x7e);   // 初始化阶段6 (偏移0x7e)
+  FUN_18005b7c0(render_pipeline_ptr + 0x70);   // 初始化阶段5 (偏移0x70)
+  FUN_18005b7c0(render_pipeline_ptr + 0x62);   // 初始化阶段4 (偏移0x62)
+  FUN_18005b7c0(render_pipeline_ptr + 0x54);   // 初始化阶段3 (偏移0x54)
+  FUN_18005b7c0(render_pipeline_ptr + 0x46);   // 初始化阶段2 (偏移0x46)
+  FUN_18005b7c0(render_pipeline_ptr + 0x38);   // 初始化阶段1 (偏移0x38)
+  FUN_18005b7c0(render_pipeline_ptr + 0x2a);   // 初始化缓冲区2 (偏移0x2a)
+  FUN_18005b7c0(render_pipeline_ptr + 0x1c);   // 初始化缓冲区1 (偏移0x1c)
+  
+  // 设置管线状态
+  *render_pipeline_ptr = &UNK_180a02968;  // 设置管线状态指针
+  render_pipeline_ptr[0x18] = &UNK_180a3c3e0;  // 设置默认缓冲区
+  
+  // 检查并清理阶段19
+  if (render_pipeline_ptr[0x19] != 0) {
+    FUN_18064e900();  // 清理阶段19
   }
-  param_1[0x19] = 0;
-  *(undefined4 *)(param_1 + 0x1b) = 0;
-  param_1[0x18] = &UNK_18098bcb0;
-  FUN_18005d260(param_1 + 0x12,param_1[0x14],param_3,param_4,0xfffffffffffffffe);
-  if (param_1[0xd] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  render_pipeline_ptr[0x19] = 0;
+  *(undefined4 *)(render_pipeline_ptr + 0x1b) = 0;  // 清空阶段19标志
+  render_pipeline_ptr[0x18] = &UNK_18098bcb0;  // 设置阶段18缓冲区
+  
+  // 初始化渲染管线细节
+  FUN_18005d260(render_pipeline_ptr + 0x12, render_pipeline_ptr[0x14], param_3, param_4, 0xfffffffffffffffe);
+  
+  // 检查并清理各个阶段
+  if (render_pipeline_ptr[0xd] != 0) {  // 检查阶段13
+    FUN_18064e900();  // 清理阶段13
   }
-  if (param_1[9] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  if (render_pipeline_ptr[9] != 0) {     // 检查阶段9
+    FUN_18064e900();  // 清理阶段9
   }
-  if (param_1[5] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  if (render_pipeline_ptr[5] != 0) {     // 检查阶段5
+    FUN_18064e900();  // 清理阶段5
   }
-  if (param_1[1] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  if (render_pipeline_ptr[1] != 0) {     // 检查阶段1
+    FUN_18064e900();  // 清理阶段1
   }
+  
   return;
 }
 
@@ -988,12 +995,14 @@ void FUN_18005a9a0(undefined8 *param_1,undefined8 param_2,undefined8 param_3,und
 
 
 
-// 函数: void FUN_18005aaf0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18005aaf0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: void execute_stage_callback(longlong stage_ptr, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 功能: 执行渲染阶段回调函数，调用特定阶段的处理函数
+void execute_stage_callback(longlong stage_ptr, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  if (*(code **)(param_1 + 0x10) != (code *)0x0) {
-    (**(code **)(param_1 + 0x10))(param_1,0,0,param_4,0xfffffffffffffffe);
+  // 检查是否存在回调函数
+  if (*(code **)(stage_ptr + 0x10) != (code *)0x0) {
+    // 调用阶段回调函数
+    (**(code **)(stage_ptr + 0x10))(stage_ptr, 0, 0, param_4, 0xfffffffffffffffe);
   }
   return;
 }
