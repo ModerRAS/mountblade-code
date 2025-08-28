@@ -212,8 +212,8 @@ typedef void (*code)(void);
 /* FUN_180044a30 - 数据验证函数 */
 #define DataValidator FUN_180044a30
 
-/* FUN_1806279c0 - 上下文初始化函数 */
-#define ContextInitializer FUN_1806279c0
+/* RenderingSystemCleanupProcessor - 上下文初始化函数 */
+#define ContextInitializer RenderingSystemCleanupProcessor
 
 /* FUN_180169350 - 资源计数函数 */
 #define ResourceCounter FUN_180169350

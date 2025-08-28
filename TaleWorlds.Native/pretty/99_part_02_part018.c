@@ -320,7 +320,7 @@ void FUN_1800f6c10(int64_t *param_1)
 void FUN_1800f6c80(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_1800f7260(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  NetworkSystemController(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -713,8 +713,8 @@ void FUN_1800f7215(int64_t param_1)
 
 
 
-// 函数: void FUN_1800f7260(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1800f7260(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void NetworkSystemController(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
+void NetworkSystemController(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int64_t lVar1;
@@ -723,7 +723,7 @@ void FUN_1800f7260(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t 
   if (param_2 == (uint64_t *)0x0) {
     return;
   }
-  FUN_1800f7260(param_1,*param_2,param_3,param_4,0xfffffffffffffffe);
+  NetworkSystemController(param_1,*param_2,param_3,param_4,0xfffffffffffffffe);
   lVar1 = param_2[6];
   for (lVar2 = param_2[5]; lVar2 != lVar1; lVar2 = lVar2 + 0x18) {
     if (*(int64_t **)(lVar2 + 8) != (int64_t *)0x0) {
