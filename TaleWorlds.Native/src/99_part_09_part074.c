@@ -551,16 +551,32 @@ void system_empty_function(void)
 
 
 
-undefined8 *
-FUN_1805edbf0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 系统分配器 - 系统内存分配器
+ * 
+ * 功能：
+ * - 分配系统内存
+ * - 管理内存池
+ * - 处理内存释放
+ * 
+ * @param param_1 内存指针
+ * @param param_2 分配标志
+ * @param param_3 分配参数1
+ * @param param_4 分配参数2
+ * @return 分配的内存指针
+ */
+undefined8 *system_allocator(undefined8 *param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4)
 {
+  /* 系统内存池初始化 */
   *param_1 = &UNK_180a378a0;
   *param_1 = &UNK_180a21720;
   *param_1 = &UNK_180a21690;
+  
+  /* 系统内存释放 */
   if ((param_2 & 1) != 0) {
-    free(param_1,0x18,param_3,param_4,0xfffffffffffffffe);
+    free(param_1, 0x18, param_3, param_4, 0xfffffffffffffffe);
   }
+  
   return param_1;
 }
 
@@ -569,82 +585,127 @@ FUN_1805edbf0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-// 函数: void FUN_1805edc40(undefined8 *param_1)
-void FUN_1805edc40(undefined8 *param_1)
-
+/**
+ * 系统资源初始化器 - 初始化系统资源
+ * 
+ * 功能：
+ * - 初始化系统资源
+ * - 设置资源指针
+ * 
+ * @param param_1 资源指针
+ */
+void system_resource_initializer(undefined8 *param_1)
 {
+  /* 系统资源初始化 */
   *param_1 = &UNK_180a378a0;
   *param_1 = &UNK_180a21720;
   *param_1 = &UNK_180a21690;
+  
   return;
 }
 
 
 
-undefined8 *
-FUN_1805edc80(undefined8 *param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4,
-             undefined4 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8,
-             undefined1 param_9)
-
+/**
+ * 系统内存控制器 - 控制系统内存和资源
+ * 
+ * 功能：
+ * - 控制系统内存分配
+ * - 管理系统资源
+ * - 初始化系统参数
+ * - 处理内存清理
+ * 
+ * @param param_1 内存控制器指针
+ * @param param_2 控制参数1
+ * @param param_3 控制参数2
+ * @param param_4 控制参数3
+ * @param param_5 控制参数4
+ * @param param_6 控制参数5
+ * @param param_7 控制参数6
+ * @param param_8 控制参数7
+ * @param param_9 控制参数8
+ * @return 内存控制器指针
+ */
+undefined8 *system_memory_controller(undefined8 *param_1, undefined8 param_2, undefined4 param_3, undefined4 param_4,
+                                     undefined4 param_5, undefined8 param_6, undefined8 param_7, undefined8 param_8,
+                                     undefined1 param_9)
 {
-  longlong *plVar1;
-  longlong lVar2;
-  longlong *plVar3;
-  code *pcVar4;
-  undefined4 uVar5;
+  longlong *system_resource_pointer;
+  longlong system_iterator;
+  longlong *system_array_pointer;
+  code *system_function_pointer;
+  undefined4 system_parameter;
   
+  /* 系统内存控制器初始化 */
   *param_1 = &UNK_180a19ac8;
   *param_1 = &UNK_180a37930;
-  lVar2 = 0;
+  system_iterator = 0;
   param_1[1] = 0;
   param_1[2] = 0;
   param_1[3] = 0;
   *(undefined4 *)(param_1 + 4) = 3;
+  
+  /* 系统缓冲区初始化 */
   FUN_18034c080(param_1 + 10);
   FUN_18034c080(param_1 + 0x114);
   param_1[0x21e] = 0;
   param_1[0x21f] = 0;
   param_1[0x220] = 0;
-  plVar3 = param_1 + 0x224;
-  pcVar4 = FUN_180045af0;
-  FUN_1808fc838(plVar3,8,3,&SUB_18005d5f0,FUN_180045af0);
-  *(undefined4 *)(param_1 + 0x229) = 0x41c64e6d;
-  *(undefined4 *)(param_1 + 0x229) = 0x897ee768;
+  
+  /* 系统数组初始化 */
+  system_array_pointer = param_1 + 0x224;
+  system_function_pointer = FUN_180045af0;
+  FUN_1808fc838(system_array_pointer, 8, 3, &SUB_18005d5f0, FUN_180045af0);
+  
+  /* 系统随机种子设置 */
+  *(undefined4 *)(param_1 + 0x229) = SYSTEM_RANDOM_SEED1;
+  *(undefined4 *)(param_1 + 0x229) = SYSTEM_RANDOM_SEED2;
   *(undefined4 *)(param_1 + 5) = 0xbfc4bf74;
-  *(undefined8 *)((longlong)param_1 + 0x2c) = 0x3d4ccccd;
-  *(undefined4 *)((longlong)param_1 + 0x34) = 0x3dcccccd;
+  *(undefined8 *)((longlong)param_1 + 0x2c) = SYSTEM_FLOAT_CONSTANT;
+  *(undefined4 *)((longlong)param_1 + 0x34) = SYSTEM_FLOAT_CONSTANT;
   param_1[0x221] = 0xffffffffffffffff;
   *(undefined4 *)(param_1 + 0x222) = 0xffffffff;
+  
+  /* 系统资源清理循环 */
   do {
-    plVar1 = (longlong *)*plVar3;
-    *plVar3 = 0;
-    if (plVar1 != (longlong *)0x0) {
-      (**(code **)(*plVar1 + 0x38))();
+    system_resource_pointer = (longlong *)*system_array_pointer;
+    *system_array_pointer = 0;
+    if (system_resource_pointer != (longlong *)0x0) {
+      (**(code **)(*system_resource_pointer + 0x38))();
     }
-    uVar5 = (undefined4)((ulonglong)pcVar4 >> 0x20);
-    *(undefined1 *)((longlong)param_1 + lVar2 + 0x1138) = 0;
-    lVar2 = lVar2 + 1;
-    plVar3 = plVar3 + 1;
-  } while (lVar2 < 3);
+    system_parameter = (undefined4)((ulonglong)system_function_pointer >> 0x20);
+    *(undefined1 *)((longlong)param_1 + system_iterator + 0x1138) = 0;
+    system_iterator = system_iterator + 1;
+    system_array_pointer = system_array_pointer + 1;
+  } while (system_iterator < 3);
+  
+  /* 系统参数设置 */
   *(undefined4 *)(param_1 + 7) = 0;
   *(undefined4 *)((longlong)param_1 + 0x3c) = 0x3f800000;
   *(undefined4 *)(param_1 + 8) = 0;
   *(undefined4 *)((longlong)param_1 + 0x44) = 0x7f7fffff;
   *(undefined1 *)(param_1 + 9) = 0;
-  plVar3 = (longlong *)param_1[0x21e];
+  
+  /* 系统资源清理 */
+  system_array_pointer = (longlong *)param_1[0x21e];
   param_1[0x21e] = 0;
-  if (plVar3 != (longlong *)0x0) {
-    (**(code **)(*plVar3 + 0x38))();
+  if (system_array_pointer != (longlong *)0x0) {
+    (**(code **)(*system_array_pointer + 0x38))();
   }
-  plVar3 = (longlong *)param_1[0x21f];
+  
+  system_array_pointer = (longlong *)param_1[0x21f];
   param_1[0x21f] = 0;
-  if (plVar3 != (longlong *)0x0) {
-    (**(code **)(*plVar3 + 0x38))();
+  if (system_array_pointer != (longlong *)0x0) {
+    (**(code **)(*system_array_pointer + 0x38))();
   }
+  
   param_1[0x228] = 0;
   *(undefined4 *)(param_1 + 0x223) = 0xffffffff;
-  FUN_1805eebb0(param_1,param_2,param_3,param_4,CONCAT44(uVar5,param_5),param_6,param_7,param_8,
+  
+  /* 系统最终初始化 */
+  FUN_1805eebb0(param_1, param_2, param_3, param_4, CONCAT44(system_parameter, param_5), param_6, param_7, param_8,
                 param_9);
+  
   return param_1;
 }
 
