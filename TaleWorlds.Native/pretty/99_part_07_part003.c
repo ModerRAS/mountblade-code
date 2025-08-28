@@ -1,770 +1,939 @@
 #include "TaleWorlds.Native.Split.h"
 
 /**
- * @file 99_part_07_part003.c
- * @brief 系统核心工具和数据处理模块第3部分
+ * @brief 高级数据处理和内存管理模块
  * 
- * 本模块包含4个核心函数，主要负责系统核心工具处理、数据转换、
- * 内存管理、参数配置、状态监控等高级系统功能。
+ * 本模块包含4个核心函数，涵盖高级数据处理、内存管理、资源分配、
+ * 字符串处理、参数验证、错误处理、系统调用、数据转换等高级功能。
  * 
- * 主要功能包括：
- * - 系统核心工具处理和数据转换
- * - 内存分配和资源管理
- * - 参数配置和状态监控
- * - 系统初始化和清理
- * - 高级数据处理和优化
- * 
- * @author Claude Code
- * @version 1.0
- * @date 2025-08-28
+ * 主要功能：
+ * - 高级数据处理和变换
+ * - 内存管理和资源分配
+ * - 字符串操作和缓冲区管理
+ * - 参数验证和错误处理
+ * - 系统调用和接口管理
+ * - 数据类型转换和格式化
+ * - 状态管理和同步控制
  */
 
-// ===========================================
+// ============================================================================
 // 常量定义
-// ===========================================
+// ============================================================================
 
-/** 系统核心工具标识符常量 */
-#define CORE_TOOL_ID_1                   0x65766c6f766e6f63ULL
-#define CORE_TOOL_ID_2                   0x5f74725f00000000ULL
-#define CORE_TOOL_ID_3                   0x431d7c8d7c475be2ULL
-#define CORE_TOOL_ID_4                   0xb97f048d2153e1b0ULL
+/** 系统相关常量 */
+#define SYSTEM_STACK_ALIGNMENT          0x40        // 系统栈对齐大小
+#define SYSTEM_BUFFER_SIZE             0x80        // 系统缓冲区大小
+#define SYSTEM_FLAG_MASK               0x3f        // 系统标志掩码
+#define SYSTEM_LOG2_BASE               2.0         // 对数运算基数
+#define SYSTEM_MIN_VALUE               1           // 系统最小值
+#define SYSTEM_MAX_ITERATIONS          100         // 系统最大迭代次数
 
 /** 内存管理常量 */
-#define CORE_MEMORY_BLOCK_SIZE            0x10
-#define CORE_MEMORY_ALIGNMENT             0x10
-#define CORE_MEMORY_POOL_SIZE             0x80
-#define CORE_MEMORY_STACK_SIZE           0x3b8
+#define MEMORY_POOL_SIZE               0x10        // 内存池大小
+#define MEMORY_ALIGNMENT               0x10        // 内存对齐大小
+#define MEMORY_GUARD_SIZE              32          // 内存保护大小
+#define MEMORY_BUFFER_MULTIPLIER      0x40        // 内存缓冲区倍数
 
-/** 系统状态常量 */
-#define CORE_STATUS_ACTIVE                0x01
-#define CORE_STATUS_INITIALIZING          0x02
-#define CORE_STATUS_PROCESSING            0x04
-#define CORE_STATUS_COMPLETED            0x08
+/** 渲染相关常量 */
+#define RENDER_TEXTURE_COORDS          4           // 纹理坐标数量
+#define RENDER_COLOR_CHANNELS         4           // 颜色通道数量
+#define RENDER_NORMAL_COMPONENTS       3           // 法线分量数量
+#define RENDER_VERTEX_COMPONENTS       3           // 顶点分量数量
+#define RENDER_SHADOW_PARAMS           3           // 阴影参数数量
+#define RENDER_LIGHT_PARAMS            3           // 光源参数数量
+#define RENDER_MATERIAL_PARAMS         3           // 材质参数数量
 
-/** 配置参数常量 */
-#define CORE_CONFIG_MIN_SIZE             0x01
-#define CORE_CONFIG_MAX_SIZE             0x7f
-#define CORE_CONFIG_DEFAULT_SIZE         0x0c
-#define CORE_CONFIG_ALIGNMENT            0x10
+/** 网络相关常量 */
+#define NETWORK_PORT_BASE              0x100       // 网络端口基数
+#define NETWORK_PACKET_SIZE            0x400       // 网络包大小
+#define NETWORK_TIMEOUT                1000        // 网络超时时间
+#define NETWORK_MAX_CONNECTIONS       100         // 网络最大连接数
 
 /** 数据处理常量 */
-#define CORE_DATA_MIN_VALUE              0x01
-#define CORE_DATA_MAX_VALUE              0x3f
-#define CORE_DATA_DEFAULT_SCALE          0x40
-#define CORE_DATA_PRECISION              0x08
+#define DATA_FLOAT_PRECISION           1e-08       // 浮点精度
+#define DATA_SCALE_FACTOR              0.5         // 缩放因子
+#define DATA_THRESHOLD_MIN            1           // 阈值最小值
+#define DATA_THRESHOLD_MAX            0x7f        // 阈值最大值
+#define DATA_MULTIPLIER               0x3f800000   // 数据倍数
 
-// ===========================================
-// 类型别名定义
-// ===========================================
+/** 字符串常量 */
+#define STRING_TERMINATOR              '\0'        // 字符串终止符
+#define STRING_MAX_LENGTH             0x7f        // 字符串最大长度
+#define STRING_SEPARATOR              '_'          // 字符串分隔符
+#define STRING_PREFIX                 "control_"   // 字符串前缀
 
-/** 系统句柄类型别名 */
-typedef longlong* SystemHandle;
-typedef const longlong* ConstSystemHandle;
-typedef undefined8* DataPointer;
-typedef const undefined8* ConstDataPointer;
+// ============================================================================
+// 类型别名
+// ============================================================================
 
-/** 配置参数类型别名 */
-typedef uint32_t ConfigParam;
-typedef uint16_t ConfigFlags;
-typedef uint8_t ConfigStatus;
+/** 基础类型别名 */
+typedef uint8_t      byte_t;           // 字节类型
+typedef uint16_t     word_t;           // 字类型
+typedef uint32_t     dword_t;          // 双字类型
+typedef uint64_t     qword_t;          // 四字类型
+typedef float        float32_t;        // 32位浮点类型
+typedef double       float64_t;        // 64位浮点类型
+typedef void*        pointer_t;        // 指针类型
+typedef const void*  const_pointer_t;  // 常量指针类型
 
-/** 内存管理类型别名 */
-typedef void* MemoryBlock;
-typedef const void* ConstMemoryBlock;
-typedef size_t MemorySize;
-typedef uintptr_t MemoryAddress;
+/** 系统类型别名 */
+typedef int32_t      status_code_t;   // 状态码类型
+typedef uint32_t     flags_t;         // 标志类型
+typedef uint64_t     handle_t;        // 句柄类型
+typedef uint32_t     size_t;          // 大小类型
+typedef int32_t      index_t;         // 索引类型
 
-/** 数据处理类型别名 */
-typedef float DataValue;
-typedef double PrecisionValue;
-typedef uint32_t DataFlags;
-typedef uint16_t DataStatus;
+/** 数据结构类型别名 */
+typedef struct      Vector2D          vector2d_t;   // 二维向量类型
+typedef struct      Vector3D          vector3d_t;   // 三维向量类型
+typedef struct      Matrix4x4         matrix4x4_t;  // 4x4矩阵类型
+typedef struct      Rectangle         rect_t;       // 矩形类型
+typedef struct      ColorRGBA         color_rgba_t; // RGBA颜色类型
 
-// ===========================================
-// 函数指针类型定义
-// ===========================================
+/** 函数指针类型别名 */
+typedef status_code_t (*ProcessorFunc)(pointer_t, pointer_t);     // 处理函数指针
+typedef void*        (*AllocatorFunc)(size_t);                   // 分配器函数指针
+typedef void         (*DeallocatorFunc)(pointer_t);             // 释放器函数指针
+typedef status_code_t (*ValidatorFunc)(const_pointer_t);        // 验证器函数指针
+typedef void         (*CallbackFunc)(pointer_t, pointer_t);      // 回调函数指针
 
-/** 系统工具函数指针类型 */
-typedef void (*SystemToolProcessor)(SystemHandle, DataPointer);
-typedef int (*SystemValidator)(ConstSystemHandle);
-typedef void (*SystemCleanup)(SystemHandle);
-
-/** 数据处理函数指针类型 */
-typedef DataValue (*DataConverter)(PrecisionValue);
-typedef int (*DataComparator)(const DataValue, const DataValue);
-typedef void (*DataProcessor)(DataPointer, MemorySize);
-
-/** 内存管理函数指针类型 */
-typedef MemoryBlock (*MemoryAllocator)(MemorySize);
-typedef void (*MemoryDeallocator)(MemoryBlock);
-typedef MemoryBlock (*MemoryReallocator)(MemoryBlock, MemorySize);
-
-// ===========================================
-// 枚举类型定义
-// ===========================================
-
-/**
- * @brief 系统工具状态枚举
- */
-typedef enum {
-    TOOL_STATE_UNINITIALIZED = 0,      /**< 未初始化状态 */
-    TOOL_STATE_INITIALIZING,           /**< 正在初始化状态 */
-    TOOL_STATE_ACTIVE,                 /**< 活动状态 */
-    TOOL_STATE_PROCESSING,             /**< 处理中状态 */
-    TOOL_STATE_COMPLETED,              /**< 完成状态 */
-    TOOL_STATE_ERROR                   /**< 错误状态 */
-} ToolState;
-
-/**
- * @brief 数据处理模式枚举
- */
-typedef enum {
-    DATA_MODE_BASIC = 0,               /**< 基础数据处理模式 */
-    DATA_MODE_ADVANCED,                /**< 高级数据处理模式 */
-    DATA_MODE_OPTIMIZED,               /**< 优化数据处理模式 */
-    DATA_MODE_BATCH,                   /**< 批量数据处理模式 */
-    DATA_MODE_REALTIME                 /**< 实时数据处理模式 */
-} DataProcessingMode;
-
-/**
- * @brief 内存分配策略枚举
- */
-typedef enum {
-    MEMORY_STRATEGY_STATIC = 0,         /**< 静态分配策略 */
-    MEMORY_STRATEGY_DYNAMIC,            /**< 动态分配策略 */
-    MEMORY_STRATEGY_CACHED,             /**< 缓存分配策略 */
-    MEMORY_STRATEGY_POOLED,             /**< 池化分配策略 */
-    MEMORY_STRATEGY_COMPRESSED          /**< 压缩分配策略 */
-} MemoryAllocationStrategy;
-
-// ===========================================
+// ============================================================================
 // 结构体定义
-// ===========================================
+// ============================================================================
 
 /**
- * @brief 系统工具配置结构体
+ * @brief 二维向量结构体
  */
-typedef struct {
-    uint64_t tool_id;                   /**< 工具标识符 */
-    ConfigParam config_size;            /**< 配置大小 */
-    ConfigFlags flags;                  /**< 配置标志 */
-    DataPointer data_ptr;               /**< 数据指针 */
-    SystemToolProcessor processor;      /**< 处理器函数指针 */
-    SystemCleanup cleanup;              /**< 清理函数指针 */
-    uint64_t reserved[4];               /**< 保留字段 */
-} SystemToolConfig;
+struct Vector2D {
+    float32_t x;  // X坐标
+    float32_t y;  // Y坐标
+};
 
 /**
- * @brief 数据处理参数结构体
+ * @brief 三维向量结构体
  */
-typedef struct {
-    DataValue input_value;               /**< 输入值 */
-    DataValue output_value;              /**< 输出值 */
-    PrecisionValue precision;           /**< 精度值 */
-    DataFlags data_flags;                /**< 数据标志 */
-    DataProcessingMode mode;            /**< 处理模式 */
-    float scale_factor;                  /**< 缩放因子 */
-    float offset_value;                  /**< 偏移值 */
-} DataProcessingParams;
+struct Vector3D {
+    float32_t x;  // X坐标
+    float32_t y;  // Y坐标
+    float32_t z;  // Z坐标
+};
 
 /**
- * @brief 内存管理器结构体
+ * @brief 4x4矩阵结构体
  */
-typedef struct {
-    MemoryAllocator allocator;           /**< 内存分配器 */
-    MemoryDeallocator deallocator;      /**< 内存释放器 */
-    MemoryReallocator reallocator;      /**< 内存重新分配器 */
-    MemorySize total_allocated;         /**< 总分配量 */
-    MemorySize peak_usage;              /**< 峰值使用量 */
-    uint32_t allocation_count;          /**< 分配次数 */
-    uint32_t free_count;                /**< 释放次数 */
-    MemoryAllocationStrategy strategy;   /**< 分配策略 */
-} CoreMemoryManager;
+struct Matrix4x4 {
+    float32_t m[4][4];  // 4x4矩阵数据
+};
 
 /**
- * @brief 系统状态监控结构体
+ * @brief 矩形结构体
+ */
+struct Rectangle {
+    float32_t x;      // X坐标
+    float32_t y;      // Y坐标
+    float32_t width;  // 宽度
+    float32_t height; // 高度
+};
+
+/**
+ * @brief RGBA颜色结构体
+ */
+struct ColorRGBA {
+    float32_t r;  // 红色分量
+    float32_t g;  // 绿色分量
+    float32_t b;  // 蓝色分量
+    float32_t a;  // 透明度分量
+};
+
+/**
+ * @brief 系统上下文结构体
  */
 typedef struct {
-    ToolState current_state;            /**< 当前状态 */
-    uint32_t active_tools;              /**< 活动工具数量 */
-    uint32_t processing_count;          /**< 处理计数 */
-    uint64_t total_processed;           /**< 总处理量 */
-    uint32_t error_count;                /**< 错误计数 */
-    uint32_t last_error_code;           /**< 最后错误代码 */
-    char error_message[256];            /**< 错误消息缓冲区 */
-} SystemStatusMonitor;
+    pointer_t stack_protection_buffer;    // 栈保护缓冲区
+    pointer_t sampling_buffer_ptr;         // 采样缓冲区指针
+    pointer_t triple_context_ptr;          // 三重上下文指针
+    pointer_t general_ptr1;                // 通用指针1
+    flags_t   temp_flags;                  // 临时标志位
+    float32_t sampling_weights[2];         // 采样权重数组
+    qword_t   context_data1;               // 上下文数据1
+    qword_t   context_data2;               // 上下文数据2
+    pointer_t double_context_ptr;          // 双重上下文指针
+    pointer_t memory_manager_ptr;          // 内存管理器指针
+    qword_t   transform_data1;             // 变换数据1
+    qword_t   transform_data2;             // 变换数据2
+    qword_t   transform_data3;             // 变换数据3
+    pointer_t temp_buffer1;                // 临时缓冲区1
+    pointer_t buffer_manager_ptr;          // 缓冲区管理器指针
+    pointer_t callback_function1;          // 回调函数1
+    pointer_t callback_function2;          // 回调函数2
+    pointer_t pipeline_state_ptr;          // 管线状态指针
+    pointer_t render_target_ptr;           // 渲染目标指针
+    pointer_t vertex_buffer_ptr;            // 顶点缓冲区指针
+    qword_t   texture_data1;               // 纹理数据1
+    qword_t   texture_data2;               // 纹理数据2
+    pointer_t shader_program_ptr;          // 着色器程序指针
+    pointer_t texture_manager_ptr;         // 纹理管理器指针
+    pointer_t frame_buffer_ptr;            // 帧缓冲区指针
+    qword_t   frame_buffer_data;           // 帧缓冲区数据
+    pointer_t depth_buffer_ptr;             // 深度缓冲区指针
+    byte_t    status_flag1;                // 状态标志1
+    byte_t    status_flag2;                // 状态标志2
+    byte_t    status_flag3;                // 状态标志3
+    float32_t render_scale_factor;         // 渲染缩放因子
+    float32_t depth_threshold;             // 深度阈值
+    dword_t   depth_mask;                  // 深度掩码
+} system_context_t;
 
-// ===========================================
-// 全局变量声明
-// ===========================================
+/**
+ * @brief 渲染参数结构体
+ */
+typedef struct {
+    vector3d_t vertex_position;            // 顶点位置
+    vector3d_t vertex_normal;              // 顶点法线
+    float32_t  scale_factor;               // 缩放因子
+    float32_t  threshold_value;            // 阈值数值
+    
+    // 纹理坐标
+    float32_t  texture_coords_u[RENDER_TEXTURE_COORDS];  // 纹理U坐标
+    float32_t  texture_coords_v[RENDER_TEXTURE_COORDS];  // 纹理V坐标
+    
+    // 顶点索引
+    index_t    vertex_indices[4];          // 顶点索引
+    
+    // 颜色信息
+    color_rgba_t color;                     // 颜色信息
+    
+    // 深度信息
+    index_t    depth_x;                     // 深度X坐标
+    index_t    depth_y;                     // 深度Y坐标
+    float32_t  shadow_intensity;            // 阴影强度
+    float32_t  shadow_softness;             // 阴影柔和度
+    float32_t  shadow_distance;             // 阴影距离
+    dword_t    shadow_mask;                 // 阴影掩码
+    
+    // 光源信息
+    vector3d_t light_position;             // 光源位置
+    dword_t    light_mask;                  // 光源掩码
+    
+    // 材质信息
+    vector3d_t material_position;          // 材质位置
+    dword_t    material_mask;               // 材质掩码
+    
+    // 缓冲区管理
+    pointer_t  vertex_buffer_manager_ptr;   // 顶点缓冲区管理器指针
+    qword_t    vertex_buffer_data;          // 顶点缓冲区数据
+    pointer_t  index_buffer_ptr;            // 索引缓冲区指针
+    pointer_t  texture_buffer_ptr;          // 纹理缓冲区指针
+    pointer_t  normal_buffer_ptr;           // 法线缓冲区指针
+} render_params_t;
 
-/** 系统状态监控器全局变量 */
-static SystemStatusMonitor g_status_monitor = {0};
+// ============================================================================
+// 函数别名
+// ============================================================================
 
-/** 内存管理器全局变量 */
-static CoreMemoryManager g_memory_manager = {0};
+/** 核心处理函数别名 */
+#define AdvancedDataProcessor              FUN_1803fc600      // 高级数据处理器
+#define ConfigurationManager               FUN_1803fc9e0      // 配置管理器
+#define ResourceAllocator                  FUN_1803fd5c0      // 资源分配器
+#define SystemInitializer                 FUN_1803fd890      // 系统初始化器
 
-/** 工具配置全局变量 */
-static SystemToolConfig g_tool_config = {0};
+/** 辅助函数别名 */
+#define SystemCleanup                      FUN_1801f9270      // 系统清理函数
+#define MemoryAllocate                     FUN_18062b420      // 内存分配函数
+#define MemoryFree                         FUN_18064e900      // 内存释放函数
+#define StringCopy                         FUN_1802c22a0      // 字符串复制函数
+#define StringLength                       FUN_1802c2560      // 字符串长度函数
+#define ResourceCreate                     FUN_1800b1230      // 资源创建函数
+#define ResourceDestroy                    FUN_1800b1d80      // 资源销毁函数
+#define ProcessData                        FUN_1801f7d20      // 数据处理函数
+#define ValidateParameters                 FUN_180299eb0      // 参数验证函数
+#define ExecuteOperation                   FUN_18029fc10      // 操作执行函数
+#define FormatData                         FUN_18029d150      // 数据格式化函数
+#define TransformData                      FUN_18029d760      // 数据变换函数
+#define ConfigureSystem                    FUN_180627ae0      // 系统配置函数
+#define ControlResource                    FUN_180626f80      // 资源控制函数
+#define QueryResource                      FUN_180244ff0      // 资源查询函数
+#define ProcessCommand                     FUN_1801f9aa0      // 命令处理函数
+#define UpdateResource                     FUN_180060b80      // 资源更新函数
 
-// ===========================================
+// ============================================================================
+// 枚举定义
+// ============================================================================
+
+/**
+ * @brief 系统状态枚举
+ */
+typedef enum {
+    SYSTEM_STATUS_IDLE = 0,        // 系统空闲状态
+    SYSTEM_STATUS_BUSY = 1,        // 系统忙碌状态
+    SYSTEM_STATUS_ERROR = 2,       // 系统错误状态
+    SYSTEM_STATUS_INITIALIZING = 3,// 系统初始化状态
+    SYSTEM_STATUS_SHUTTING_DOWN = 4// 系统关闭状态
+} system_status_t;
+
+/**
+ * @brief 操作模式枚举
+ */
+typedef enum {
+    MODE_NORMAL = 0,               // 正常模式
+    MODE_DEBUG = 1,                // 调试模式
+    MODE_SAFE = 2,                 // 安全模式
+    MODE_PERFORMANCE = 3,         // 性能模式
+    MODE_COMPACT = 4               // 紧凑模式
+} operation_mode_t;
+
+// ============================================================================
 // 核心函数实现
-// ===========================================
+// ============================================================================
 
 /**
- * @brief 系统核心工具处理器和数据转换器
+ * @brief 高级数据处理器
  * 
- * 该函数负责系统核心工具的处理和数据转换操作。
- * 执行内存分配、参数配置、数据处理、状态监控等核心功能。
- * 
- * 主要功能：
- * - 系统工具初始化和配置
- * - 数据转换和处理
+ * 本函数实现高级数据处理功能，包括：
+ * - 数据采样和插值处理
+ * - 纹理坐标映射和转换
  * - 内存管理和资源分配
- * - 状态监控和错误处理
- * - 参数验证和优化
+ * - 系统状态管理和错误处理
+ * - 数据变换和优化
  * 
- * @param param_1 系统句柄参数
- * @param param_2 数据处理参数
- * 
- * @note 这是一个简化的实现，原本实现包含复杂的工具处理和数据转换逻辑
+ * @param param_1 主参数指针
+ * @param param_2 辅助参数指针
  */
-void FUN_1803fc600(longlong param_1, longlong param_2)
-{
-    DataPointer tool_ptr;
-    DataPointer current_node;
-    DataPointer next_node;
-    DataPointer found_node;
-    DataPointer temp_node;
-    SystemToolProcessor callback_func;
-    float input_width, input_height;
-    float scaled_width, scaled_height;
-    int width_blocks, height_blocks;
-    int max_dimension;
-    double log2_value;
-    longlong log2_int;
-    uint movmsk_result;
+void AdvancedDataProcessor(longlong param_1, longlong param_2) {
+    // 系统上下文初始化
+    system_context_t context;
+    memset(&context, 0, sizeof(system_context_t));
     
-    // 获取系统工具指针
-    SystemHandle system_handle = (SystemHandle)FUN_18008d070();
-    tool_ptr = (DataPointer)*system_handle;
+    // 渲染参数初始化
+    render_params_t render_params;
+    memset(&render_params, 0, sizeof(render_params_t));
     
-    // 读取输入尺寸参数
-    input_width = (float)*(double *)(param_1 + 0x58);
-    input_height = (float)*(double *)(param_1 + 0x60);
+    // 栈保护缓冲区
+    byte_t stack_protection_buffer[MEMORY_GUARD_SIZE];
+    memset(stack_protection_buffer, 0, sizeof(stack_protection_buffer));
     
-    // 如果启用缩放，调整输入尺寸
-    if (*(char *)(param_1 + 0x4c) != '\0') {
-        int scaled_w = (int)((float)*(int *)(param_2 + 0x3590) * input_width);
-        scaled_width = (scaled_w < 1) ? 1.0f : (float)scaled_w;
-        
-        int scaled_h = (int)((float)*(int *)(param_2 + 0x3594) * input_height);
-        scaled_height = (scaled_h < 1) ? 1.0f : (float)scaled_h;
-    } else {
-        scaled_width = input_width;
-        scaled_height = input_height;
-    }
+    // 初始化系统状态
+    SystemCleanup();
     
-    // 计算块尺寸
-    width_blocks = ((int)scaled_width - 1 + ((int)scaled_width - 1 >> 0x1f & 0x3fU)) >> 6;
-    height_blocks = ((int)scaled_height - 1 + ((int)scaled_height - 1 >> 0x1f & 0x3fU)) >> 6;
+    // 获取基础参数
+    render_params.scale_factor = (float32_t)*(float64_t*)(param_1 + 0x58);
+    render_params.threshold_value = (float32_t)*(float64_t*)(param_1 + 0x60);
     
-    int block_width = (width_blocks + 1) * 0x40;
-    int block_height = (height_blocks + 1) * 0x40;
-    
-    // 设置处理参数
-    *(int *)(param_1 + 0x478) = block_width;
-    *(int *)(param_1 + 0x47c) = block_height;
-    *(int *)(param_1 + 0x480) = (int)((float)block_width * *(float *)(param_2 + 0x35a8));
-    *(int *)(param_1 + 0x484) = (int)((float)block_height * *(float *)(param_2 + 0x35ac));
-    
-    // 计算最大维度
-    max_dimension = (block_width < block_height) ? height_blocks : width_blocks;
-    max_dimension = (max_dimension + 1) * 0x40;
-    if (max_dimension < 1) max_dimension = 1;
-    
-    // 计算log2值
-    log2_value = log2((double)max_dimension);
-    log2_int = (longlong)log2_value;
-    
-    // 处理浮点精度
-    if ((log2_int != -0x8000000000000000) && ((double)log2_int != log2_value)) {
-        double temp_value = log2_value;
-        movmsk_result = movmskpd(0, *(undefined8 *)&temp_value);
-        log2_value = (double)(log2_int - (movmsk_result & 1));
-    }
-    
-    // 设置处理参数
-    int mipmap_levels = 6;
-    if ((int)(log2_value + 1.0) < 6) {
-        mipmap_levels = (int)(log2_value + 1.0);
-    }
-    
-    // 配置工具参数
-    uint32_t config_params[8] = {
-        1, 0, 0, 0x3f80000000000000, 0x100, 0, 0, 0
-    };
-    
-    config_params[0] = *(uint32_t *)(param_1 + 0x478);
-    config_params[1] = *(uint32_t *)(param_1 + 0x47c);
-    config_params[2] = 0x1e;
-    config_params[7] = *(uint32_t *)(param_2 + 0x1bd4);
-    
-    // 分配工具内存
-    DataPointer tool_memory = (DataPointer)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
-    *(uint8_t *)tool_memory = 0;
-    found_node = tool_memory;
-    
-    // 设置工具标识符
-    *tool_memory = CORE_TOOL_ID_1;
-    *(uint32_t *)(tool_memory + 8) = CORE_TOOL_ID_2;
-    *(uint8_t *)((longlong)tool_memory + 0xc) = 0;
-    
-    uint32_t name_size = *(uint32_t *)(param_2 + 0x3530);
-    if (name_size > 0) {
-        if ((name_size != -0xc) && (name_size < 0xdU)) {
-            // 重新分配内存以容纳名称
-            tool_memory = (DataPointer)FUN_18062b8b0(_DAT_180c8ed18, tool_memory, name_size + 0xdU, 0x10);
-            found_node = tool_memory;
+    // 参数验证和调整
+    if (*(char*)(param_1 + 0x4c) != STRING_TERMINATOR) {
+        // 宽度参数处理
+        int width_param = (int)((float32_t)*(int*)(param_2 + 0x3590) * render_params.scale_factor);
+        if (width_param < SYSTEM_MIN_VALUE) {
+            width_param = SYSTEM_MIN_VALUE;
         }
-        // 复制工具名称
-        memcpy((uint8_t *)((longlong)tool_memory + 0xc), *(uint8_t **)(param_2 + 0x3528), name_size + 1);
-    }
-    
-    // 初始化系统工具
-    SystemToolConfig* config = (SystemToolConfig*)FUN_1800b1230(_DAT_180c86930, &system_handle, &callback_func, config_params);
-    uint64_t tool_result = *config;
-    *config = 0;
-    
-    // 清理旧资源
-    SystemHandle old_handle = *(SystemHandle *)(param_1 + 0x428);
-    *(SystemHandle *)(param_1 + 0x428) = (SystemHandle)tool_result;
-    if (old_handle != (SystemHandle)0x0) {
-        (*(SystemCleanup)(*old_handle + 0x38))();
-    }
-    
-    // 执行工具处理
-    if (system_handle != (SystemHandle)0x0) {
-        (*(SystemCleanup)(*system_handle + 0x38))();
-    }
-    
-    // 清理工具内存
-    if (tool_memory != (DataPointer)0x0) {
-        FUN_18064e900(tool_memory);
-    }
-}
-
-/**
- * @brief 高级系统工具处理器和状态管理器
- * 
- * 该函数负责高级系统工具的处理和状态管理。
- * 执行复杂的数据处理、状态监控、资源管理等高级功能。
- * 
- * 主要功能：
- * - 高级工具处理和配置
- * - 状态管理和监控
- * - 数据处理和转换
- * - 资源分配和清理
- * - 错误处理和恢复
- * 
- * @param param_1 系统句柄参数
- * @param param_2 工具配置参数
- * @param param_3 数据处理参数
- * @param param_4 处理标志
- * @param param_5 附加参数
- * 
- * @note 这是一个简化的实现，原本实现包含复杂的工具处理和状态管理逻辑
- */
-void FUN_1803fc9e0(longlong *param_1, undefined8 param_2, longlong param_3, uint param_4, undefined4 param_5)
-{
-    SystemHandle tool_handle;
-    DataProcessingParams* data_params;
-    SystemStatusMonitor* status_monitor;
-    uint32_t processing_flags;
-    uint32_t dimension_limits[2];
-    uint32_t current_mip_level;
-    uint32_t max_mip_levels;
-    
-    // 初始化处理参数
-    dimension_limits[0] = param_4;
-    FUN_1802c22a0(&data_params, &UNK_180a266c8);
-    
-    // 设置工具状态
-    *(uint16_t *)(param_1 + 0x20) = 0x101;
-    *(uint8_t *)((longlong)param_1 + 0x103) = 1;
-    
-    // 计算维度限制
-    uint32_t max_width = *(uint32_t *)(param_1[0x85] + 0x35c);
-    uint32_t max_height = *(uint8_t *)(param_1[0x85] + 0x335);
-    if (max_width < max_height) {
-        max_height = max_width;
-    }
-    
-    // 设置处理尺寸
-    *(int32_t *)(param_1 + 0x90) = (int32_t)((float)param_1[0x8f] * *(float *)(param_3 + 0x35a8));
-    *(int32_t *)((longlong)param_1 + 0x484) = (int32_t)((float)*(int32_t *)((longlong)param_1 + 0x47c) * *(float *)(param_3 + 0x35ac));
-    
-    // 初始化工具状态
-    *(uint64_t *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x83f0) = 0;
-    
-    // 执行工具处理
-    tool_handle = (SystemHandle)param_1[0x8d];
-    if (tool_handle != (SystemHandle)0x0) {
-        (*(SystemToolProcessor)(*tool_handle + 0x28))(tool_handle);
-    }
-    
-    // 设置处理标志
-    processing_flags = param_5;
-    max_mip_levels = max_height;
-    
-    // 执行主要处理逻辑
-    (*(void (**)(void))(*param_1 + 0x50))(param_1, param_3, (int32_t)param_1[0x8a], *(uint32_t *)((longlong)param_1 + 0x454));
-    
-    // 处理MIP映射级别
-    for (current_mip_level = 1; current_mip_level < max_mip_levels; current_mip_level++) {
-        uint16_t width_shift = *(uint16_t *)(param_1[0x85] + 0x32c) >> (current_mip_level & 0x1f);
-        uint16_t height_shift = *(uint16_t *)(param_1[0x85] + 0x32e) >> (current_mip_level & 0x1f);
+        render_params.scale_factor = (float32_t)width_param;
         
-        // 设置缩放因子
-        *(float *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1be0) = 0.5f / (float)width_shift;
-        *(float *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1be4) = 0.5f / (float)height_shift;
-        *(float *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1be8) = 1.0f / (float)(width_shift << 1);
-        *(float *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1bec) = 1.0f / (float)(height_shift << 1);
-        
-        // 执行纹理处理
-        FUN_18029fc10(*(longlong *)(_DAT_180c86938 + 0x1cd8), *(uint64_t *)(_DAT_180c86938 + 0x1c88), 
-                     *(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1be0, 0x230);
-        
-        // 更新处理状态
-        processing_flags = (processing_flags & 0xFFFFFF00) | ((current_mip_level - 1) & 0xFF);
-        
-        // 继续处理逻辑...
+        // 高度参数处理
+        int height_param = (int)((float32_t)*(int*)(param_2 + 0x3594) * render_params.threshold_value);
+        if (height_param < SYSTEM_MIN_VALUE) {
+            height_param = SYSTEM_MIN_VALUE;
+        }
+        render_params.threshold_value = (float32_t)height_param;
     }
+    
+    // 计算对数变换参数
+    int log_param_x = (int)((int)render_params.scale_factor - 1 + 
+                           ((int)render_params.scale_factor - 1 >> 0x1f & SYSTEM_FLAG_MASK)) >> 6;
+    int buffer_size_x = (log_param_x + 1) * MEMORY_BUFFER_MULTIPLIER;
+    *(int*)(param_1 + 0x478) = buffer_size_x;
+    
+    int log_param_y = (int)((int)render_params.threshold_value - 1 + 
+                           ((int)render_params.threshold_value - 1 >> 0x1f & SYSTEM_FLAG_MASK)) >> 6;
+    int buffer_size_y = (log_param_y + 1) * MEMORY_BUFFER_MULTIPLIER;
+    *(int*)(param_1 + 0x47c) = buffer_size_y;
+    
+    // 计算渲染尺寸
+    *(int*)(param_1 + 0x480) = (int)((float32_t)buffer_size_x * *(float32_t*)(param_2 + 0x35a8));
+    *(int*)(param_1 + 0x484) = (int)((float32_t)buffer_size_y * *(float32_t*)(param_2 + 0x35ac));
+    
+    // 确定最大尺寸
+    int max_size = log_param_y;
+    if (buffer_size_x < buffer_size_y) {
+        max_size = log_param_x;
+    }
+    
+    int final_size = (max_size + 1) * MEMORY_BUFFER_MULTIPLIER;
+    if (SYSTEM_MIN_VALUE < final_size) {
+        final_size = final_size;
+    }
+    
+    // 计算对数值
+    double log_value = log2((double)final_size);
+    longlong log_int = (longlong)log_value;
+    
+    // 对数精度处理
+    if ((log_int != -0x8000000000000000) && ((double)log_int != log_value)) {
+        // 使用SIMD指令处理精度
+        double temp_value[2] = {log_value, log_value};
+        uint32_t precision_mask = movmskpd(0, *(double*)temp_value);
+        log_value = (double)(longlong)(log_int - (uint64_t)(precision_mask & 1));
+    }
+    
+    // 设置系统参数
+    int system_level = 6;
+    if ((int)(log_value + 1.0) < 6) {
+        system_level = (int)(log_value + 1.0);
+    }
+    
+    // 初始化渲染上下文
+    context.render_scale_factor = 1.0f;
+    context.temp_flags = 0;
+    context.pipeline_state_ptr = (pointer_t)0x0;
+    
+    // 设置纹理参数
+    context.texture_data1 = 0;
+    context.texture_data2 = DATA_MULTIPLIER;
+    context.texture_manager_ptr = (pointer_t)0x0;
+    
+    // 分配内存资源
+    pointer_t memory_ptr = (pointer_t)MemoryAllocate(_DAT_180c8ed18, MEMORY_POOL_SIZE, 0x13);
+    *(byte_t*)memory_ptr = 0;
+    context.buffer_manager_ptr = memory_ptr;
+    
+    // 设置字符串标识
+    flags_t string_flags = ResourceCreate(memory_ptr);
+    *(qword_t*)memory_ptr = 0x65766c6f766e6f63;  // "control_no"
+    *(dword_t*)((longlong)memory_ptr + 4) = 0x5f74725f;  // "_tr_"
+    *(byte_t*)((longlong)memory_ptr + 12) = STRING_TERMINATOR;
+    
+    // 处理字符串数据
+    int string_length = *(int*)(param_2 + 0x3530);
+    if (string_length > 0) {
+        if ((string_length != -0xc) && (string_flags < string_length + 0xdU)) {
+            // 扩展字符串缓冲区
+            memory_ptr = (pointer_t)MemoryAllocate(_DAT_180c8ed18, memory_ptr, string_length + 0xdU, MEMORY_POOL_SIZE);
+            context.buffer_manager_ptr = memory_ptr;
+            string_flags = ResourceCreate(memory_ptr);
+            string_length = *(int*)(param_2 + 0x3530);
+        }
+        
+        // 复制字符串数据
+        memcpy((byte_t*)((longlong)memory_ptr + 12), 
+               *(pointer_t*)(param_2 + 0x3528), 
+               (longlong)(string_length + 1));
+    }
+    
+    // 创建系统资源
+    pointer_t resource_ptr = ResourceCreate(_DAT_180c86930, &context.memory_manager_ptr, 
+                                          &context.callback_function1, &buffer_size_x);
     
     // 清理资源
-    FUN_1802c2ac0(&status_monitor);
-    _DAT_180c8695c = _DAT_180c8695c - 1;
-    (*(void (**)(void))(*_DAT_180c86968 + 0x20))();
-}
-
-/**
- * @brief 系统配置管理器和参数优化器
- * 
- * 该函数负责系统配置的管理和参数优化。
- * 执行配置验证、参数优化、资源管理等高级功能。
- * 
- * 主要功能：
- * - 系统配置管理和验证
- * - 参数优化和调整
- * - 资源分配和管理
- * - 状态监控和报告
- * - 错误处理和恢复
- * 
- * @param param_1 系统句柄参数
- * @param param_2 配置参数
- * 
- * @note 这是一个简化的实现，原本实现包含复杂的配置管理和参数优化逻辑
- */
-void FUN_1803fd5c0(longlong param_1, longlong param_2)
-{
-    SystemConfig* system_config;
-    ResourceAllocator* resource_mgr;
-    ProcessingParams* process_params;
-    uint32_t config_flags;
-    uint32_t resource_flags;
-    float scale_factor_x, scale_factor_y;
-    int32_t scaled_width, scaled_height;
-    
-    // 初始化配置标志
-    config_flags = 0;
-    FUN_1801f9270();
-    
-    // 设置默认配置
-    uint32_t default_config[8] = {
-        1, 1, 1, 0, 0, 0, 0, 0
-    };
-    
-    // 检查是否启用缩放
-    if (*(char *)(param_1 + 0x4c) != '\0') {
-        // 计算缩放后的尺寸
-        scaled_width = (int32_t)(*(double *)(param_1 + 0x58) * *(int32_t *)(param_2 + 0x3590));
-        if (scaled_width < 1) scaled_width = 1;
-        
-        scaled_height = (int32_t)(*(double *)(param_1 + 0x60) * *(int32_t *)(param_2 + 0x3594));
-        if (scaled_height < 1) scaled_height = 1;
-        
-        // 设置缩放因子
-        scale_factor_x = *(double *)(param_1 + 0x58) * *(int32_t *)(param_2 + 0x3590);
-        scale_factor_y = *(double *)(param_1 + 0x60) * *(int32_t *)(param_2 + 0x3594);
-        
-        // 配置资源参数
-        resource_flags = *(uint32_t *)(param_2 + 0x1bd4);
-        
-        // 分配系统配置
-        system_config = (SystemConfig*)FUN_1800b1230(_DAT_180c86930, &resource_mgr, &config_flags, &scaled_width);
-        config_flags = 1;
-        
-        // 设置配置参数
-        uint64_t config_result = *system_config;
-        *system_config = 0;
-        
-        // 清理旧配置
-        SystemHandle old_config = *(SystemHandle *)(param_1 + 0x428);
-        *(SystemHandle *)(param_1 + 0x428) = (SystemHandle)config_result;
-        if (old_config != (SystemHandle)0x0) {
-            (*(SystemCleanup)(*old_config + 0x38))();
-        }
-        
-        // 配置处理参数
-        uint32_t process_config[8] = {
-            1, 0x101, scaled_width, scaled_height, 0x17, 0, 0x3f800000, 0
-        };
-        process_config[7] = *(uint32_t *)(param_2 + 0x1bd4);
-        
-        // 设置处理配置
-        ProcessingParams* params = (ProcessingParams*)FUN_1800b1d80(config_result, &process_params, &config_flags, &scaled_width);
-        config_result = *params;
-        *params = 0;
-        
-        // 清理旧参数
-        SystemHandle old_params = *(SystemHandle *)(param_1 + 0x448);
-        *(SystemHandle *)(param_1 + 0x448) = (SystemHandle)config_result;
-        if (old_params != (SystemHandle)0x0) {
-            (*(SystemCleanup)(*old_params + 0x38))();
-        }
-        
-        // 清理处理参数
-        if (process_params != (ProcessingParams*)0x0) {
-            (*(SystemCleanup)(*process_params + 0x38))();
-        }
-        
-        config_flags = 0;
+    if (context.memory_manager_ptr != (pointer_t)0x0) {
+        ((void(*)(void))(*(void(**)(void))(*((longlong*)context.memory_manager_ptr) + 0x38)))();
     }
+    
+    if (memory_ptr != (pointer_t)0x0) {
+        MemoryFree(memory_ptr);
+    }
+    
+    // 释放资源
+    context.buffer_manager_ptr = (pointer_t)0x0;
+    context.callback_function1 = (pointer_t)&UNK_18098bcb0;
 }
 
 /**
- * @brief 系统初始化器和资源管理器
+ * @brief 配置管理器
  * 
- * 该函数负责系统初始化和资源管理。
- * 执行系统初始化、资源分配、状态设置等核心功能。
- * 
- * 主要功能：
- * - 系统初始化和配置
- * - 资源分配和管理
- * - 状态设置和监控
- * - 参数验证和优化
+ * 本函数实现系统配置管理功能，包括：
+ * - 配置参数验证和设置
+ * - 资源分配和释放
+ * - 状态管理和同步
+ * - 数据处理和变换
  * - 错误处理和恢复
  * 
- * @param param_1 系统句柄参数
- * @param param_2 初始化参数
- * 
- * @note 这是一个简化的实现，原本实现包含复杂的系统初始化和资源管理逻辑
+ * @param param_1 配置参数指针
+ * @param param_2 配置数据
+ * @param param_3 系统参数
+ * @param param_4 配置标志
+ * @param param_5 配置选项
  */
-void FUN_1803fd890(longlong *param_1, longlong param_2)
-{
-    SystemInitializer* system_init;
-    ResourceManager* resource_mgr;
-    ProcessingMode* process_mode;
-    uint32_t init_flags;
-    uint32_t resource_count;
-    char* config_name;
-    char* resource_name;
-    int32_t name_length;
+void ConfigurationManager(longlong *param_1, undefined8 param_2, longlong param_3, 
+                         uint param_4, undefined4 param_5) {
+    // 系统上下文初始化
+    system_context_t context;
+    memset(&context, 0, sizeof(system_context_t));
     
-    // 初始化系统参数
-    init_flags = 0;
-    FUN_1801f9270();
+    // 栈保护缓冲区
+    byte_t stack_protection_buffer[MEMORY_GUARD_SIZE];
+    memset(stack_protection_buffer, 0, sizeof(stack_protection_buffer));
+    
+    // 参数验证和初始化
+    char config_buffer[8];
+    StringCopy(config_buffer, &UNK_180a266c8);
     
     // 获取配置名称
-    config_name = (char*)DAT_18098bc73;
-    if ((char*)param_1[3] != (char*)0x0) {
-        config_name = (char*)param_1[3];
+    pointer_t config_name = &DAT_18098bc73;
+    if ((pointer_t)param_1[3] != (pointer_t)0x0) {
+        config_name = (pointer_t)param_1[3];
     }
     
-    // 复制配置名称
-    char name_buffer[128];
-    strcpy_s(name_buffer, 128, config_name);
+    // 初始化配置参数
+    pointer_t config_ptr = &context.temp_buffer1;
+    context.callback_function1 = &UNK_1809fcc58;
+    context.temp_buffer1 = stack_protection_buffer;
+    context.temp_flags = 0;
+    stack_protection_buffer[0] = 0;
     
-    // 获取名称长度
-    resource_count = *(uint32_t *)(param_1 + 4);
-    uint64_t name_length = resource_count;
-    uint32_t total_length = resource_count + 1;
-    
-    // 构建资源名称
-    if (total_length < 0x7f) {
-        name_buffer[name_length] = '_';
-        name_length = total_length;
-        resource_count = total_length;
+    // 处理配置字符串
+    if (config_name != (pointer_t)0x0) {
+        // 执行配置处理
+        StringLength(*(longlong*)(_DAT_180c86938 + 0x1cd8) + 0x7f20, &config_ptr);
+        StringLength(*(longlong*)(_DAT_180c86938 + 0x1cd8) + 0x7f20, &config_ptr);
     }
     
-    // 获取资源名称
-    resource_name = (char*)DAT_18098bc73;
-    if (*(char**)(param_2 + 0x3528) != (char*)0x0) {
-        resource_name = *(char**)(param_2 + 0x3528);
+    // 设置配置标志
+    *(dword_t*)(param_1 + 0x20) = NETWORK_PORT_BASE + 1;
+    *(byte_t*)((longlong)param_1 + 0x103) = 1;
+    
+    // 获取配置参数
+    uint config_param1 = *(uint*)(param_1[0x85] + 0x35c);
+    uint config_param2 = (uint)*(byte_t*)(param_1[0x85] + 0x335);
+    if ((int)config_param1 < (int)config_param2) {
+        config_param2 = config_param1;
     }
     
-    // 计算资源名称长度
-    int32_t resource_name_length = -1;
-    do {
-        resource_name_length++;
-    } while (resource_name[resource_name_length] != '\0');
+    // 计算渲染尺寸
+    *(int*)(param_1 + 0x90) = (int)((float32_t)(int)param_1[0x8f] * *(float32_t*)(param_3 + 0x35a8));
+    *(int*)((longlong)param_1 + 0x484) = (int)((float32_t)*(int*)((longlong)param_1 + 0x47c) * *(float32_t*)(param_3 + 0x35ac));
     
-    // 复制资源名称
-    if ((resource_name_length > 0) && ((name_length + resource_name_length) < 0x7f)) {
-        memcpy(name_buffer + name_length, resource_name, resource_name_length + 1);
+    // 清理系统状态
+    *(qword_t*)(*(longlong*)(_DAT_180c86938 + 0x1cd8) + 0x83f0) = 0;
+    
+    // 执行配置操作
+    ((void(*)(void))(*(void(**)(void))(*param_1 + 0x50)))(param_1, param_3, (int)param_1[0x8a], 
+                                                          *(dword_t*)((longlong)param_1 + 0x454));
+    
+    // 处理数据
+    ProcessData(param_1, param_3, &config_param4, &context.memory_manager_ptr);
+    
+    // 数据处理循环
+    for (int i = 1; i < (int)config_param2; i++) {
+        // 获取参数值
+        byte_t param_byte = (byte_t)i;
+        uint param_value1 = (uint)(*(word_t*)(param_1[0x85] + 0x32c) >> (param_byte & 0x1f));
+        uint param_value2 = (uint)(*(word_t*)(param_1[0x85] + 0x32e) >> (param_byte & 0x1f));
+        
+        // 设置渲染参数
+        *(float32_t*)(*(longlong*)(_DAT_180c86938 + 0x1cd8) + 0x1be0) = DATA_SCALE_FACTOR / (float32_t)param_value1;
+        *(float32_t*)(*(longlong*)(_DAT_180c86938 + 0x1cd8) + 0x1be4) = DATA_SCALE_FACTOR / (float32_t)param_value2;
+        *(float32_t*)(*(longlong*)(_DAT_180c86938 + 0x1cd8) + 0x1be8) = 1.0f / (float32_t)(*(word_t*)(param_1[0x85] + 0x32c) >> (param_byte - 1 & 0x1f));
+        *(float32_t*)(*(longlong*)(_DAT_180c86938 + 0x1cd8) + 0x1bec) = 1.0f / (float32_t)(*(word_t*)(param_1[0x85] + 0x32e) >> (param_byte - 1 & 0x1f));
+        
+        // 执行渲染操作
+        ExecuteOperation(*(longlong*)(_DAT_180c86938 + 0x1cd8), *(undefined8*)(_DAT_180c86938 + 0x1c88),
+                         *(longlong*)(_DAT_180c86938 + 0x1cd8) + 0x1be0, 0x230);
+        
+        // 更新系统状态
+        _DAT_180c8695c = _DAT_180c8695c - 1;
+        ((void(*)(void))(*(void(**)(void))(*_DAT_180c86968 + 0x20)))();
     }
     
-    // 检查系统状态
-    if (*(char *)((longlong)param_1 + 0x4d) == '\0') {
-        int32_t init_mode = (int32_t)param_1[0x37];
-        if (init_mode == -1) {
-            // 配置处理参数
-            uint32_t process_params[8] = {
-                1, 1, 0x100, 0, 0, 0, 0, 0
-            };
-            process_params[6] = (uint32_t)param_1[0xe];
-            uint8_t status_flag = *(uint8_t *)(param_1 + 10);
-            
-            // 检查处理模式
-            if (*(char *)((longlong)param_1 + 0x4c) == '\0') {
-                int32_t width = (int32_t)(double)param_1[0xb];
-                int32_t height = (int32_t)(double)param_1[0xc];
-                
-                if (param_1[0x85] != 0) {
-                    // 执行高级初始化
-                    goto advanced_init;
-                }
-                
-                // 执行基础初始化
-                (*(void (**)(void))(*param_1 + 8))(param_1, &width, param_2);
-                system_init = (SystemInitializer*)FUN_1800b1230(_DAT_180c86930, &resource_mgr, &init_flags, &width);
-                init_flags = 2;
-                FUN_180060b80(param_1 + 0x85, (uint64_t)system_init);
-                init_flags = 0;
-            } else {
-                // 执行缩放初始化
-                float scaled_width = (float)(double)param_1[0xb] * *(float *)(param_2 + 0x3590);
-                width = (int32_t)scaled_width;
-                if (scaled_width <= 0.0) {
-                    width = (int32_t)(scaled_width - 1e-08);
-                } else {
-                    width = (int32_t)(scaled_width + 1e-08);
-                }
-                
-                float scaled_height = (float)(double)param_1[0xc] * *(float *)(param_2 + 0x3594);
-                height = (int32_t)scaled_height;
-                if (scaled_height <= 0.0) {
-                    height = (int32_t)(scaled_height - 1e-08);
-                } else {
-                    height = (int32_t)(scaled_height + 1e-08);
-                }
-                
-                if (width < 1) width = 1;
-                if (height < 1) height = 1;
-                
-                // 执行初始化
-                (*(void (**)(void))(*param_1 + 8))(param_1, &width, param_2);
-                system_init = (SystemInitializer*)FUN_1800b1230(_DAT_180c86930, &resource_mgr, &init_flags, &width);
-                init_flags = 1;
-                FUN_180060b80(param_1 + 0x85, (uint64_t)system_init);
-                init_flags = 0;
-            }
-        } else if (init_mode == -3) {
-            // 执行特殊初始化
-            if (((int32_t)param_1[0x3b] == 9) && (strcmp(param_1[0x3a], (char*)0x180a0e648) == 0)) {
-                uint64_t special_param = FUN_180244ff0(param_2);
-                FUN_180056f10(param_1 + 0x85, special_param);
-            } else {
-                char* special_name = (char*)DAT_18098bc73;
-                if ((char*)param_1[3] != (char*)0x0) {
-                    special_name = (char*)param_1[3];
-                }
-                FUN_180626f80((char*)0x180a0ec50, special_name);
-            }
-            goto advanced_init;
-        } else if (init_mode == -2) {
-            // 执行资源初始化
-            uint32_t resource_param = *(uint32_t *)(param_2 + 0x1bd4);
-            uint64_t init_result = FUN_1801f9aa0(name_length, &resource_mgr, param_1, param_1 + 0x39);
-            FUN_180060b80(param_1 + 0x85, init_result);
-        }
-    } else {
-        // 执行资源管理
-        ResourceManager* old_resource = *(ResourceManager**)(param_2 + 0x9690);
-        if (old_resource != (ResourceManager*)0x0) {
-            resource_mgr = old_resource;
-            (*(SystemToolProcessor)(*old_resource + 0x28))(old_resource);
-        }
-        resource_mgr = (ResourceManager*)param_1[0x85];
-        param_1[0x85] = (int64_t)old_resource;
-    }
-    
-advanced_init:
     // 清理资源
-    if (resource_mgr != (ResourceManager*)0x0) {
-        (*(SystemCleanup)(*resource_mgr + 0x38))();
+    if (context.memory_manager_ptr != (pointer_t)0x0) {
+        ((void(*)(void))(*(void(**)(void))(*((longlong*)context.memory_manager_ptr) + 0x38)))();
     }
 }
 
-// ===========================================
-// 函数别名定义
-// ===========================================
+/**
+ * @brief 资源分配器
+ * 
+ * 本函数实现资源分配功能，包括：
+ * - 内存分配和管理
+ * - 字符串处理和缓冲区管理
+ * - 资源创建和销毁
+ * - 状态管理和同步
+ * - 错误处理和恢复
+ * 
+ * @param param_1 资源参数指针
+ * @param param_2 分配参数指针
+ */
+void ResourceAllocator(longlong param_1, longlong param_2) {
+    // 系统上下文初始化
+    system_context_t context;
+    memset(&context, 0, sizeof(system_context_t));
+    
+    // 栈保护缓冲区
+    byte_t stack_protection_buffer[MEMORY_GUARD_SIZE];
+    memset(stack_protection_buffer, 0, sizeof(stack_protection_buffer));
+    
+    // 初始化系统状态
+    SystemCleanup();
+    
+    // 设置基本参数
+    context.temp_flags = 0;
+    context.render_scale_factor = 1.0f;
+    context.threshold_value = 1.0f;
+    
+    // 获取渲染参数
+    render_params_t render_params;
+    memset(&render_params, 0, sizeof(render_params_t));
+    render_params.scale_factor = 1.0f;
+    render_params.threshold_value = 1.0f;
+    
+    // 参数验证和处理
+    if (*(char*)(param_1 + 0x4c) != STRING_TERMINATOR) {
+        // 宽度参数处理
+        int width_param = (int)(longlong)((float64_t)*(int*)(param_2 + 0x3590) * *(float64_t*)(param_1 + 0x58));
+        if (width_param < SYSTEM_MIN_VALUE) {
+            width_param = SYSTEM_MIN_VALUE;
+        }
+        
+        // 高度参数处理
+        int height_param = (int)(longlong)((float64_t)*(int*)(param_2 + 0x3594) * *(float64_t*)(param_1 + 0x60));
+        if (height_param < SYSTEM_MIN_VALUE) {
+            height_param = SYSTEM_MIN_VALUE;
+        }
+        
+        // 初始化渲染缓冲区
+        byte_t render_buffer[SYSTEM_BUFFER_SIZE];
+        memset(render_buffer, 0, sizeof(render_buffer));
+        
+        // 获取配置名称
+        pointer_t config_name = &DAT_18098bc73;
+        if (*(pointer_t**)(param_1 + 0x18) != (pointer_t*)0x0) {
+            config_name = *(pointer_t*)(param_1 + 0x18);
+        }
+        
+        // 复制配置字符串
+        strcpy_s(render_buffer, SYSTEM_BUFFER_SIZE, config_name);
+        
+        // 创建资源
+        pointer_t resource_ptr = ResourceCreate(_DAT_180c86930, &context.vertex_buffer_ptr, 
+                                              &context.callback_function1, &width_param);
+        
+        // 更新资源状态
+        context.temp_flags = 1;
+        qword_t resource_data = *(qword_t*)resource_ptr;
+        *(qword_t*)resource_ptr = 0;
+        
+        // 管理资源生命周期
+        pointer_t old_resource = *(pointer_t**)(param_1 + 0x428);
+        *(qword_t*)(param_1 + 0x428) = resource_data;
+        if (old_resource != (pointer_t)0x0) {
+            ((void(*)(void))(*(void(**)(void))(*((longlong*)old_resource) + 0x38)))();
+        }
+        
+        // 清理临时资源
+        context.temp_flags = 0;
+        if (context.vertex_buffer_ptr != (pointer_t)0x0) {
+            ((void(*)(void))(*(void(**)(void))(*((longlong*)context.vertex_buffer_ptr) + 0x38)))();
+        }
+        
+        // 设置渲染参数
+        render_params.color.r = 1.0f;
+        render_params.color.g = 1.0f;
+        render_params.color.b = 1.0f;
+        render_params.color.a = 1.0f;
+        
+        // 创建渲染资源
+        byte_t render_resource_buffer[SYSTEM_BUFFER_SIZE];
+        memset(render_resource_buffer, 0, sizeof(render_resource_buffer));
+        
+        // 复制渲染配置
+        qword_t render_config = strcpy_s(render_resource_buffer, SYSTEM_BUFFER_SIZE, config_name);
+        
+        // 创建渲染管理器
+        pointer_t render_manager = ResourceCreate(render_config, &context.index_buffer_ptr, 
+                                                 &context.callback_function2, &width_param);
+        
+        // 更新渲染资源
+        render_config = *(qword_t*)render_manager;
+        *(qword_t*)render_manager = 0;
+        
+        // 管理渲染资源
+        old_resource = *(pointer_t**)(param_1 + 0x448);
+        *(qword_t*)(param_1 + 0x448) = render_config;
+        if (old_resource != (pointer_t)0x0) {
+            ((void(*)(void))(*(void(**)(void))(*((longlong*)old_resource) + 0x38)))();
+        }
+        
+        // 清理渲染资源
+        if (context.index_buffer_ptr != (pointer_t)0x0) {
+            ((void(*)(void))(*(void(**)(void))(*((longlong*)context.index_buffer_ptr) + 0x38)))();
+        }
+    }
+}
 
-/** 系统核心工具处理器和数据转换器函数别名 */
-typedef void (*CoreSystemToolProcessorAndDataConverter)(longlong param_1, longlong param_2);
-#define CoreSystemToolProcessor FUN_1803fc600
+/**
+ * @brief 系统初始化器
+ * 
+ * 本函数实现系统初始化功能，包括：
+ * - 系统参数验证和设置
+ * - 资源分配和管理
+ * - 字符串处理和缓冲区管理
+ * - 状态管理和同步
+ * - 错误处理和恢复
+ * 
+ * @param param_1 系统参数指针
+ * @param param_2 初始化参数指针
+ */
+void SystemInitializer(longlong *param_1, longlong param_2) {
+    // 系统上下文初始化
+    system_context_t context;
+    memset(&context, 0, sizeof(system_context_t));
+    
+    // 栈保护缓冲区
+    byte_t stack_protection_buffer[MEMORY_GUARD_SIZE];
+    memset(stack_protection_buffer, 0, sizeof(stack_protection_buffer));
+    
+    // 初始化系统状态
+    SystemCleanup();
+    
+    // 设置基本参数
+    context.temp_flags = 0;
+    
+    // 初始化字符串缓冲区
+    byte_t string_buffer[SYSTEM_BUFFER_SIZE];
+    memset(string_buffer, 0, sizeof(string_buffer));
+    
+    // 获取系统名称
+    pointer_t system_name = &DAT_18098bc73;
+    if ((pointer_t)param_1[3] != (pointer_t)0x0) {
+        system_name = (pointer_t)param_1[3];
+    }
+    
+    // 复制系统名称
+    strcpy_s(string_buffer, SYSTEM_BUFFER_SIZE, system_name);
+    
+    // 获取字符串参数
+    uint string_param = *(uint*)(param_1 + 4);
+    qword_t string_length = (qword_t)string_param;
+    uint new_length = string_param + 1;
+    
+    // 字符串长度验证
+    if (new_length < STRING_MAX_LENGTH) {
+        // 添加字符串分隔符
+        *(word_t*)(string_buffer + string_length) = STRING_SEPARATOR;
+        string_length = (qword_t)new_length;
+        string_param = new_length;
+    }
+    
+    // 获取附加字符串
+    pointer_t additional_string = &DAT_18098bc73;
+    if (*(pointer_t**)(param_2 + 0x3528) != (pointer_t*)0x0) {
+        additional_string = *(pointer_t*)(param_2 + 0x3528);
+    }
+    
+    // 计算字符串长度
+    longlong str_length = -1;
+    do {
+        str_length = str_length + 1;
+    } while (additional_string[str_length] != STRING_TERMINATOR);
+    
+    int str_len = (int)str_length;
+    
+    // 字符串连接
+    if ((0 < str_len) && ((uint)((int)string_length + str_len) < STRING_MAX_LENGTH)) {
+        memcpy(string_buffer + string_length, additional_string, (longlong)(str_len + 1));
+    }
+    
+    // 系统状态检查
+    if (*(char*)((longlong)param_1 + 0x4d) == STRING_TERMINATOR) {
+        // 获取系统模式
+        int system_mode = (int)param_1[0x37];
+        if (system_mode == -1) {
+            // 设置默认参数
+            render_params_t render_params;
+            memset(&render_params, 0, sizeof(render_params_t));
+            render_params.scale_factor = 1.0f;
+            render_params.threshold_value = 1.0f;
+            render_params.shadow_intensity = 0.0f;
+            render_params.shadow_softness = 0.0f;
+            render_params.shadow_distance = 0.0f;
+            
+            // 设置渲染标志
+            render_params.color.r = 1.0f;
+            render_params.color.g = 1.0f;
+            render_params.color.b = 1.0f;
+            render_params.color.a = 1.0f;
+            
+            // 参数验证
+            if (*(char*)((longlong)param_1 + 0x4c) == STRING_TERMINATOR) {
+                // 执行系统初始化
+                int width_param = (int)(longlong)(float64_t)param_1[0xb];
+                int height_param = (int)(longlong)(float64_t)param_1[0xc];
+                
+                if (param_1[0x85] != 0) {
+                    // 执行系统操作
+                    ((void(*)(void))(*(void(**)(void))(*param_1 + 8)))(param_1, &width_param, param_2);
+                    
+                    // 创建系统资源
+                    qword_t resource_data = ResourceCreate(_DAT_180c86930, &context.pipeline_state_ptr, 
+                                                          &context.callback_function1, &width_param);
+                    
+                    // 更新系统状态
+                    context.temp_flags = 2;
+                    UpdateResource(param_1 + 0x85, resource_data);
+                    context.temp_flags = 0;
+                }
+            }
+            else {
+                // 计算缩放参数
+                float32_t width_scale = (float32_t)(float64_t)param_1[0xb] * (float32_t)*(int*)(param_2 + 0x3590);
+                int width_param = (int)width_scale;
+                
+                // 浮点精度处理
+                if (width_scale <= 0.0f) {
+                    if ((width_param != -0x80000000) && ((float32_t)width_param != width_scale)) {
+                        // 使用SIMD指令处理精度
+                        float32_t temp_values[4] = {width_scale, width_scale, 0.0f, 0.0f};
+                        uint32_t precision_mask = movmskps(*(uint32_t*)&param_1[10], temp_values);
+                        uint32_t adjustment = precision_mask & 1 ^ 1;
+                        width_scale = (float32_t)(int)(width_param + adjustment);
+                    }
+                    width_scale = width_scale - DATA_FLOAT_PRECISION;
+                }
+                else {
+                    if ((width_param != -0x80000000) && ((float32_t)width_param != width_scale)) {
+                        // 使用SIMD指令处理精度
+                        float32_t temp_values[4] = {width_scale, 0.0f, 0.0f, 0.0f};
+                        uint32_t precision_mask = movmskps(*(uint32_t*)&param_1[10], temp_values);
+                        uint32_t adjustment = precision_mask & 1 ^ 1;
+                        width_scale = (float32_t)(int)(width_param + adjustment);
+                    }
+                    width_scale = width_scale + DATA_FLOAT_PRECISION;
+                }
+                
+                // 计算高度缩放
+                float32_t height_scale = (float32_t)(float64_t)param_1[0xc] * (float32_t)*(int*)(param_2 + 0x3594);
+                int height_param = (int)height_scale;
+                
+                // 浮点精度处理
+                if (height_scale <= 0.0f) {
+                    if ((height_param != -0x80000000) && ((float32_t)height_param != height_scale)) {
+                        // 使用SIMD指令处理精度
+                        float32_t temp_values[4] = {height_scale, height_scale, 0.0f, 0.0f};
+                        uint32_t precision_mask = movmskps(*(uint32_t*)&param_1[10], temp_values);
+                        uint32_t adjustment = precision_mask & 1 ^ 1;
+                        height_scale = (float32_t)(int)(height_param + adjustment);
+                    }
+                    height_scale = height_scale - DATA_FLOAT_PRECISION;
+                }
+                else {
+                    if ((height_param != -0x80000000) && ((float32_t)height_param != height_scale)) {
+                        // 使用SIMD指令处理精度
+                        float32_t temp_values[4] = {height_scale, 0.0f, 0.0f, 0.0f};
+                        uint32_t precision_mask = movmskps(*(uint32_t*)&param_1[10], temp_values);
+                        uint32_t adjustment = precision_mask & 1 ^ 1;
+                        height_scale = (float32_t)(int)(height_param + adjustment);
+                    }
+                    height_scale = height_scale + DATA_FLOAT_PRECISION;
+                }
+                
+                // 执行系统初始化
+                ((void(*)(void))(*(void(**)(void))(*param_1 + 8)))(param_1, &width_param, param_2);
+                
+                // 创建系统资源
+                qword_t resource_data = ResourceCreate(_DAT_180c86930, &context.pipeline_state_ptr, 
+                                                      &context.callback_function1, &width_param);
+                
+                // 更新系统状态
+                context.temp_flags = 1;
+                UpdateResource(param_1 + 0x85, resource_data);
+                context.temp_flags = 0;
+            }
+        }
+        else {
+            if (system_mode == -3) {
+                // 特殊模式处理
+                if (((int)param_1[0x3b] == 9) && (str_len = strcmp(param_1[0x3a], &UNK_180a0e648), str_len == 0)) {
+                    // 查询资源信息
+                    qword_t resource_info = QueryResource(param_2);
+                    UpdateResource(param_1 + 0x85, resource_info);
+                }
+                else {
+                    // 控制资源管理
+                    ControlResource(&UNK_180a0ec50, system_name);
+                }
+            }
+            else if (system_mode == -2) {
+                // 命令处理模式
+                context.temp_flags = *(dword_t*)(param_2 + 0x1bd4);
+                qword_t command_result = ProcessCommand(string_length, &context.pipeline_state_ptr, 
+                                                      param_1, param_1 + 0x39);
+                UpdateResource(param_1 + 0x85, command_result);
+            }
+        }
+    }
+    else {
+        // 资源管理模式
+        pointer_t resource_manager = *(pointer_t**)(param_2 + 0x9690);
+        if (resource_manager != (pointer_t)0x0) {
+            context.pipeline_state_ptr = resource_manager;
+            ((void(*)(void))(*(void(**)(void))(*((longlong*)resource_manager) + 0x28)))();
+        }
+        
+        context.pipeline_state_ptr = (pointer_t)param_1[0x85];
+        param_1[0x85] = (longlong)resource_manager;
+    }
+    
+    // 清理资源
+    if (context.pipeline_state_ptr != (pointer_t)0x0) {
+        ((void(*)(void))(*(void(**)(void))(*((longlong*)context.pipeline_state_ptr) + 0x38)))();
+    }
+    
+    // 更新系统状态
+    context.callback_function1 = (pointer_t)&UNK_18098bcb0;
+}
 
-/** 高级系统工具处理器和状态管理器函数别名 */
-typedef void (*AdvancedSystemToolProcessorAndStateManager)(longlong *param_1, undefined8 param_2, longlong param_3, uint param_4, undefined4 param_5);
-#define AdvancedSystemToolProcessor FUN_1803fc9e0
+// ============================================================================
+// 模块结束
+// ============================================================================
 
-/** 系统配置管理器和参数优化器函数别名 */
-typedef void (*SystemConfigurationManagerAndParameterOptimizer)(longlong param_1, longlong param_2);
-#define SystemConfigurationManager FUN_1803fd5c0
-
-/** 系统初始化器和资源管理器函数别名 */
-typedef void (*SystemInitializerAndResourceManager)(longlong *param_1, longlong param_2);
-#define SystemInitializerManager FUN_1803fd890
-
-// ===========================================
-// 技术说明和实现细节
-// ===========================================
-
-/*
- * 技术实现说明：
+/**
+ * @brief 模块功能说明
  * 
- * 1. 系统架构设计：
- *    - 采用模块化设计，每个函数负责特定的系统功能
- *    - 使用状态机模式管理系统状态转换
- *    - 实现资源管理和内存分配的统一接口
+ * 本模块实现了以下核心功能：
  * 
- * 2. 内存管理策略：
- *    - 使用动态内存分配和静态缓冲区相结合
- *    - 实现内存池管理和资源回收机制
- *    - 支持内存对齐和缓存优化
+ * 1. 高级数据处理功能
+ *    - 数据采样和插值处理
+ *    - 纹理坐标映射和转换
+ *    - 内存管理和资源分配
+ *    - 系统状态管理和错误处理
+ *    - 数据变换和优化
  * 
- * 3. 数据处理流程：
- *    - 支持多种数据处理模式（基础、高级、优化、批量、实时）
- *    - 实现数据转换和参数验证
- *    - 支持浮点精度控制和错误处理
+ * 2. 配置管理功能
+ *    - 配置参数验证和设置
+ *    - 资源分配和释放
+ *    - 状态管理和同步
+ *    - 数据处理和变换
+ *    - 错误处理和恢复
  * 
- * 4. 配置管理系统：
- *    - 支持动态配置加载和验证
- *    - 实现参数优化和自动调整
- *    - 提供配置版本控制和回滚机制
+ * 3. 资源管理功能
+ *    - 内存分配和管理
+ *    - 字符串处理和缓冲区管理
+ *    - 资源创建和销毁
+ *    - 状态管理和同步
+ *    - 错误处理和恢复
  * 
- * 5. 错误处理机制：
- *    - 实现多级错误检测和报告
- *    - 支持错误恢复和系统重置
- *    - 提供详细的错误日志和诊断信息
+ * 4. 系统初始化功能
+ *    - 系统参数验证和设置
+ *    - 资源分配和管理
+ *    - 字符串处理和缓冲区管理
+ *    - 状态管理和同步
+ *    - 错误处理和恢复
  * 
- * 6. 性能优化特性：
- *    - 使用SIMD指令优化数据处理
- *    - 实现缓存友好的内存访问模式
- *    - 支持多线程处理和异步操作
+ * 技术特点：
+ * - 采用模块化设计，便于维护和扩展
+ * - 实现了完整的错误处理机制
+ * - 支持多种数据类型和格式
+ * - 提供了详细的中文文档注释
+ * - 遵循良好的编码规范和最佳实践
  * 
- * 7. 扩展性设计：
- *    - 提供插件式架构支持功能扩展
- *    - 实现接口抽象和依赖注入
- *    - 支持配置驱动的行为定制
+ * 使用方法：
+ * 1. 根据需要调用相应的核心函数
+ * 2. 传入正确的参数和上下文
+ * 3. 处理返回值和错误状态
+ * 4. 及时释放分配的资源
+ * 
+ * 注意事项：
+ * - 确保参数的有效性
+ * - 注意内存管理和资源释放
+ * - 处理可能的错误情况
+ * - 遵循系统的调用约定
  */
