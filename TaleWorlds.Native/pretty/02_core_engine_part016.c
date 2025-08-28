@@ -87,7 +87,7 @@
 // 内存管理函数别名
 #define CoreEngineMemoryPoolAllocator CoreEngineMemoryPoolAllocator     // 核心引擎内存池分配器
 #define CoreEngineMemoryPoolCleaner CoreEngineMemoryPoolCleaner       // 核心引擎内存池清理器
-#define CoreEngineMemoryPoolInitializer FUN_18064d630   // 核心引擎内存池初始化器
+#define CoreEngineMemoryPoolInitializer CoreEngineMemoryPoolInitializer   // 核心引擎内存池初始化器
 
 // 数据结构处理函数别名
 #define CoreEngineDataBufferProcessor CoreEngineDataBufferProcessor     // 核心引擎数据缓冲区处理器
@@ -409,7 +409,7 @@ void FUN_180057550(int64_t param_1)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          CoreEngineMemoryPoolInitializer();
           return;
         }
       }
@@ -465,7 +465,7 @@ void FUN_180057556(int64_t param_1)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          CoreEngineMemoryPoolInitializer();
           return;
         }
       }
@@ -519,7 +519,7 @@ void FUN_180057580(void)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          CoreEngineMemoryPoolInitializer();
           return;
         }
       }
@@ -561,7 +561,7 @@ void FUN_1800575b6(void)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          CoreEngineMemoryPoolInitializer();
           return;
         }
       }
@@ -603,7 +603,7 @@ void FUN_1800575d4(void)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        CoreEngineMemoryPoolInitializer();
         return;
       }
     }
@@ -754,7 +754,7 @@ void FUN_180057790(int64_t param_1)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          CoreEngineMemoryPoolInitializer();
           return;
         }
       }
@@ -810,7 +810,7 @@ void FUN_180057796(int64_t param_1)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          CoreEngineMemoryPoolInitializer();
           return;
         }
       }
@@ -864,7 +864,7 @@ void FUN_1800577c0(void)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          CoreEngineMemoryPoolInitializer();
           return;
         }
       }
@@ -906,7 +906,7 @@ void FUN_1800577f6(void)
         piVar1 = (int *)(lVar3 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          CoreEngineMemoryPoolInitializer();
           return;
         }
       }
@@ -948,7 +948,7 @@ void FUN_180057814(void)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        CoreEngineMemoryPoolInitializer();
         return;
       }
     }
@@ -1033,7 +1033,7 @@ void FUN_1800578a0(void)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        CoreEngineMemoryPoolInitializer();
         return;
       }
     }
