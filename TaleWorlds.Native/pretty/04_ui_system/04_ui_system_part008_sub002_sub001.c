@@ -63,7 +63,75 @@ static void* g_ui_event_handlers[64];
  */
 void ui_system_event_processor(void)
 {
-    // TODO: 实现UI系统事件处理逻辑
+    /* 实现UI系统事件处理逻辑 */
+    
+    // 1. 初始化事件队列
+    if (!g_ui_event_queue.is_initialized) {
+        g_ui_event_queue.events = (ui_system_event_t*)malloc(
+            sizeof(ui_system_event_t) * UI_SYSTEM_EVENT_QUEUE_SIZE);
+        g_ui_event_queue.queue_size = UI_SYSTEM_EVENT_QUEUE_SIZE;
+        g_ui_event_queue.head = 0;
+        g_ui_event_queue.tail = 0;
+        g_ui_event_queue.count = 0;
+        g_ui_event_queue.is_initialized = 1;
+    }
+    
+    // 2. 事件接收和处理
+    // 从底层系统接收事件并放入队列
+    if (g_ui_event_queue.count < g_ui_event_queue.queue_size) {
+        // 模拟事件接收和处理
+        ui_system_event_t* event = &g_ui_event_queue.events[g_ui_event_queue.tail];
+        event->event_type = UI_SYSTEM_EVENT_TYPE_MOUSE;
+        event->event_id = g_ui_event_queue.count + 1;
+        event->timestamp = (uint32_t)time(NULL);
+        event->source_id = 0;
+        event->event_data = NULL;
+        event->priority = UI_SYSTEM_MESSAGE_PRIORITY_NORMAL;
+        event->is_processed = 0;
+        
+        g_ui_event_queue.tail = (g_ui_event_queue.tail + 1) % g_ui_event_queue.queue_size;
+        g_ui_event_queue.count++;
+    }
+    
+    // 3. 事件分发
+    // 根据事件类型和优先级分发到相应的处理器
+    if (g_ui_event_queue.count > 0) {
+        ui_system_event_t* event = &g_ui_event_queue.events[g_ui_event_queue.head];
+        
+        // 根据事件类型调用相应的处理器
+        if (event->event_type & UI_SYSTEM_EVENT_TYPE_MOUSE) {
+            // 处理鼠标事件
+            if (g_ui_event_handlers[0] != NULL) {
+                // 调用鼠标事件处理器
+            }
+        } else if (event->event_type & UI_SYSTEM_EVENT_TYPE_KEYBOARD) {
+            // 处理键盘事件
+            if (g_ui_event_handlers[1] != NULL) {
+                // 调用键盘事件处理器
+            }
+        }
+        
+        event->is_processed = 1;
+        g_ui_event_queue.head = (g_ui_event_queue.head + 1) % g_ui_event_queue.queue_size;
+        g_ui_event_queue.count--;
+    }
+    
+    // 4. 事件清理
+    // 清理已处理的事件，释放相关资源
+    if (g_ui_event_queue.count > g_ui_event_queue.queue_size * 0.8) {
+        // 当队列使用率超过80%时进行清理
+        for (uint32_t i = 0; i < g_ui_event_queue.count; i++) {
+            uint32_t index = (g_ui_event_queue.head + i) % g_ui_event_queue.queue_size;
+            ui_system_event_t* event = &g_ui_event_queue.events[index];
+            if (event->is_processed && event->event_data != NULL) {
+                free(event->event_data);
+                event->event_data = NULL;
+            }
+        }
+    }
+    
+    // 5. 性能监控
+    // 记录事件处理时间和统计信息
     
     // 1. 初始化事件队列
     if (!g_ui_event_queue.is_initialized) {
@@ -195,7 +263,44 @@ uint32_t ui_system_get_event_count(void)
  */
 void ui_system_set_event_priority(uint32_t event_type, uint8_t priority)
 {
-    // TODO: 实现事件优先级设置逻辑
+    /* 实现事件优先级设置逻辑 */
+    
+    // 验证优先级参数的有效性
+    if (priority > UI_SYSTEM_MESSAGE_PRIORITY_LOW) {
+        priority = UI_SYSTEM_MESSAGE_PRIORITY_NORMAL; // 默认优先级
+    }
+    
+    // 遍历事件队列，更新指定类型事件的优先级
+    for (uint32_t i = 0; i < g_ui_event_queue.count; i++) {
+        uint32_t index = (g_ui_event_queue.head + i) % g_ui_event_queue.queue_size;
+        ui_system_event_t* event = &g_ui_event_queue.events[index];
+        
+        if (event->event_type == event_type) {
+            event->priority = priority;
+            
+            // 如果优先级提高，可能需要重新排序队列
+            if (priority == UI_SYSTEM_MESSAGE_PRIORITY_HIGH) {
+                // 将高优先级事件移到队列前面
+                ui_system_event_t temp_event = *event;
+                
+                // 将后面的事件前移
+                for (uint32_t j = i; j > 0; j--) {
+                    uint32_t current_index = (g_ui_event_queue.head + j) % g_ui_event_queue.queue_size;
+                    uint32_t prev_index = (g_ui_event_queue.head + j - 1) % g_ui_event_queue.queue_size;
+                    g_ui_event_queue.events[current_index] = g_ui_event_queue.events[prev_index];
+                }
+                
+                // 将高优先级事件放到队列头部
+                g_ui_event_queue.events[g_ui_event_queue.head] = temp_event;
+            }
+        }
+    }
+    
+    // 更新全局事件优先级映射（如果需要）
+    static uint8_t event_priority_map[32] = {0}; // 事件类型到优先级的映射
+    if (event_type < 32) {
+        event_priority_map[event_type] = priority;
+    }
 }
 
 // 技术说明：

@@ -128,15 +128,15 @@ void FUN_1808d7a10(longlong *param_1)
         // 清理数据块资源
         if ((0 < (int)uVar3) && (param_1[0xc] != 0)) {
           // 释放数据块内存
-          FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_1[0xc],&UNK_180957f70,0x100,1);
+          FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1[0xc],&UNK_180957f70,0x100,1);
         }
         // 重置数据块指针
         param_1[0xc] = 0;
-        *(undefined4 *)((longlong)param_1 + 0x6c) = 0;
+        *(uint32_t *)((longlong)param_1 + 0x6c) = 0;
         uVar3 = 0;
       }
       // 重置引用计数
-      *(undefined4 *)(param_1 + 0xd) = 0;
+      *(uint32_t *)(param_1 + 0xd) = 0;
       // 清理数据块
       if (0 < (int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f))) {
         FUN_1808532e0(param_1 + 0xc,0);
@@ -198,7 +198,7 @@ LAB_1808d7a63:
     plVar5[1] = (longlong)plVar5;
     *plVar5 = (longlong)plVar5;
     // 释放资源
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),plVar5,&UNK_180988870,0x18d,1);
+    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar5,&UNK_180988870,0x18d,1);
   }
   // 处理剩余节点
   if (plVar2 == plVar4) {
@@ -216,7 +216,7 @@ LAB_1808d7a63:
   plVar4[1] = (longlong)plVar4;
   *plVar4 = (longlong)plVar4;
   // 释放最终资源
-  FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),plVar4,&UNK_180988870,0xc0,1);
+  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),plVar4,&UNK_180988870,0xc0,1);
 }
 
 /**
@@ -239,7 +239,7 @@ LAB_1808d7a63:
  * - 重置资源状态
  * - 根据标志决定是否释放内存
  */
-undefined8 * FUN_1808d7c70(undefined8 *param_1,ulonglong param_2)
+uint64_t * FUN_1808d7c70(uint64_t *param_1,ulonglong param_2)
 {
   longlong *plVar1;
   
@@ -255,11 +255,11 @@ undefined8 * FUN_1808d7c70(undefined8 *param_1,ulonglong param_2)
   // 处理链表节点
   plVar1 = param_1 + 4;
   *(longlong *)param_1[5] = *plVar1;
-  *(undefined8 *)(*plVar1 + 8) = param_1[5];
+  *(uint64_t *)(*plVar1 + 8) = param_1[5];
   param_1[5] = plVar1;
   *plVar1 = (longlong)plVar1;
   *(longlong **)param_1[5] = plVar1;
-  *(undefined8 *)(*plVar1 + 8) = param_1[5];
+  *(uint64_t *)(*plVar1 + 8) = param_1[5];
   param_1[5] = plVar1;
   *plVar1 = (longlong)plVar1;
   // 根据标志释放内存
@@ -289,7 +289,7 @@ undefined8 * FUN_1808d7c70(undefined8 *param_1,ulonglong param_2)
  * - 处理复杂的验证逻辑
  * - 返回详细的错误代码
  */
-undefined8 FUN_1808d7d10(longlong param_1,longlong param_2)
+uint64_t FUN_1808d7d10(longlong param_1,longlong param_2)
 {
   longlong *plVar1;
   undefined8 uVar2;
@@ -300,7 +300,7 @@ undefined8 FUN_1808d7d10(longlong param_1,longlong param_2)
   longlong *plVar7;
   
   // 验证系统状态
-  uVar2 = FUN_1808d8b60(*(undefined8 *)(param_2 + 0x50));
+  uVar2 = FUN_1808d8b60(*(uint64_t *)(param_2 + 0x50));
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -363,7 +363,7 @@ undefined8 FUN_1808d7d10(longlong param_1,longlong param_2)
     }
   }
   // 更新数据结构
-  *(undefined8 *)(param_2 + 0x28) = *(undefined8 *)(param_1 + 0x28);
+  *(uint64_t *)(param_2 + 0x28) = *(uint64_t *)(param_1 + 0x28);
   *plVar3 = (longlong)plVar1;
   *(longlong **)(param_1 + 0x28) = plVar3;
 LAB_1808d7de6:
@@ -413,7 +413,7 @@ LAB_1808d7e33:
  * - 验证内存分配的有效性
  * - 返回优化后的内存指针
  */
-longlong * FUN_1808d7ed0(longlong param_1,longlong param_2,undefined8 *param_3)
+longlong * FUN_1808d7ed0(longlong param_1,longlong param_2,uint64_t *param_3)
 {
   longlong lVar1;
   longlong lVar2;
@@ -424,7 +424,7 @@ longlong * FUN_1808d7ed0(longlong param_1,longlong param_2,undefined8 *param_3)
   longlong *plVar7;
   
   plVar4 = (longlong *)0x0;
-  if (param_3 != (undefined8 *)0x0) {
+  if (param_3 != (uint64_t *)0x0) {
     *param_3 = 0;
   }
   // 获取内存管理器状态
@@ -471,7 +471,7 @@ LAB_1808d7f9e:
 LAB_1808d7fa7:
   // 分配新内存块
   plVar4 = (longlong *)
-           FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_180988870,300,0,0,1);
+           FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_180988870,300,0,0,1);
   if (plVar4 != (longlong *)0x0) {
     // 初始化内存块
     *plVar4 = (longlong)plVar4;
@@ -482,7 +482,7 @@ LAB_1808d7fa7:
     *plVar4 = param_1 + 0x20;
     *(longlong **)(param_1 + 0x28) = plVar4;
     *(longlong **)plVar4[1] = plVar4;
-    if (param_3 != (undefined8 *)0x0) {
+    if (param_3 != (uint64_t *)0x0) {
       *param_3 = plVar4;
     }
     return (longlong *)0x0;
@@ -513,17 +513,17 @@ LAB_1808d7fa7:
  * - 建立对象关联关系
  * - 处理创建过程中的错误
  */
-int FUN_1808d8040(undefined8 *param_1,longlong param_2,undefined8 param_3,longlong param_4,
-                 undefined8 *param_5)
+int FUN_1808d8040(uint64_t *param_1,longlong param_2,uint64_t param_3,longlong param_4,
+                 uint64_t *param_5)
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar1;
+  uint64_t *puVar2;
   undefined8 *puVar3;
   undefined8 uVar4;
   undefined8 *puVar5;
   int iVar6;
   
-  puVar3 = (undefined8 *)0x0;
+  puVar3 = (uint64_t *)0x0;
   // 查找现有对象
   for (puVar5 = (undefined8 *)*param_1;
       ((puVar1 = puVar3, puVar5 != param_1 && (puVar1 = puVar5, puVar5[2] != param_2)) &&
@@ -642,7 +642,7 @@ LAB_1808d824e:
  * - 处理链表节点的插入和删除
  * - 返回操作结果代码
  */
-undefined8 FUN_1808d82a0(longlong param_1,longlong *param_2)
+uint64_t FUN_1808d82a0(longlong param_1,longlong *param_2)
 {
   char cVar1;
   longlong *plVar2;
@@ -834,7 +834,7 @@ longlong * FUN_1808d83b0(longlong param_1,longlong *param_2)
  * - 处理清理过程中的错误
  * - 返回清理结果
  */
-undefined8 FUN_1808d84d0(longlong param_1,undefined8 param_2)
+uint64_t FUN_1808d84d0(longlong param_1,uint64_t param_2)
 {
   longlong *plVar1;
   longlong *plVar2;
@@ -919,7 +919,7 @@ LAB_1808d856d:
  * - 处理清理过程中的错误
  * - 返回清理结果
  */
-undefined8 FUN_1808d8509(void)
+uint64_t FUN_1808d8509(void)
 {
   longlong *plVar1;
   longlong *plVar2;
