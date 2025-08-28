@@ -29,6 +29,7 @@
 #define manage_render_resources       FUN_180280fd0
 #define cleanup_render_buffers        FUN_180281020
 #define initialize_render_system      FUN_180281040
+#define render_system_idle            FUN_18028106c
 #define execute_render_pipeline       FUN_180281080
 
 // 函数: void process_render_hash_table(undefined8 param_1,code *param_2,undefined8 param_3,longlong *param_4,
@@ -282,6 +283,27 @@ LAB_180280958:
 
 
 
+// 全局变量和数据定义
+undefined RENDER_CONTROL_DATA;
+undefined UNK_180a3e3d8;
+undefined DAT_180c967d8;
+undefined UNK_180a3e3f0;
+undefined RENDER_SYSTEM_CONFIG;
+undefined DAT_180c967e8;
+undefined DAT_180c967f0;
+undefined DAT_180c967f8;
+undefined RENDER_PARAM_DATA;
+undefined RENDER_BUFFER_SIZE;
+
+// 原始函数声明（保持与原始代码的兼容性）
+undefined8 FUN_180280ab8;
+void FUN_180280ad0;
+longlong * FUN_180280fd0;
+void FUN_180281020;
+void FUN_180281040;
+void FUN_18028106c;
+void FUN_180281080;
+
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
@@ -522,7 +544,11 @@ LAB_180280e02:
 
 
 
-longlong * FUN_180280fd0(longlong *param_1,longlong *param_2)
+// 函数: longlong * manage_render_resources(longlong *param_1,longlong *param_2)
+// 管理渲染资源，处理资源的引用计数和生命周期
+// 参数: param_1 - 资源管理器指针, param_2 - 资源句柄指针
+// 返回值: 更新后的资源管理器指针
+longlong * manage_render_resources(longlong *param_1,longlong *param_2)
 
 {
   longlong *plVar1;
@@ -540,8 +566,11 @@ longlong * FUN_180280fd0(longlong *param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_180281020(longlong param_1)
-void FUN_180281020(longlong param_1)
+// 函数: void cleanup_render_buffers(longlong param_1)
+// 清理渲染缓冲区，释放不再使用的渲染资源
+// 参数: param_1 - 渲染上下文句柄
+// 功能：遍历并释放渲染缓冲区中的所有资源
+cleanup_render_buffers(longlong param_1)
 
 {
   int iVar1;
@@ -565,8 +594,10 @@ void FUN_180281020(longlong param_1)
 
 
 
-// 函数: void FUN_180281040(void)
-void FUN_180281040(void)
+// 函数: void initialize_render_system(void)
+// 初始化渲染系统，设置渲染管线的初始状态
+// 功能：执行渲染系统的启动初始化过程
+initialize_render_system(void)
 
 {
   longlong lVar1;
@@ -586,8 +617,10 @@ void FUN_180281040(void)
 
 
 
-// 函数: void FUN_18028106c(void)
-void FUN_18028106c(void)
+// 函数: void render_system_idle(void)
+// 渲染系统空闲处理，执行空闲时的维护操作
+// 功能：处理渲染系统在空闲状态时的维护任务
+render_system_idle(void)
 
 {
   return;
@@ -599,8 +632,11 @@ void FUN_18028106c(void)
 
 
 
-// 函数: void FUN_180281080(longlong param_1,undefined8 param_2,longlong param_3)
-void FUN_180281080(longlong param_1,undefined8 param_2,longlong param_3)
+// 函数: void execute_render_pipeline(longlong param_1,undefined8 param_2,longlong param_3)
+// 执行渲染管线，处理高级渲染操作和状态管理
+// 参数: param_1 - 渲染设备上下文, param_2 - 渲染参数, param_3 - 渲染目标
+// 功能：协调渲染管线的各个阶段，管理渲染状态
+execute_render_pipeline(longlong param_1,undefined8 param_2,longlong param_3)
 
 {
   longlong **pplVar1;

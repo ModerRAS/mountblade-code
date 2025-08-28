@@ -1,119 +1,120 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part029.c - 4 个函数
+// 03_rendering_part029.c - 渲染系统材质处理和比较模块
+// 包含5个核心函数，涵盖渲染材质处理、数据比较、资源清理和渲染状态管理等功能
 
-// 函数: void FUN_1802814d0(longlong *param_1,longlong param_2,longlong param_3,longlong param_4,uint param_5
-void FUN_1802814d0(longlong *param_1,longlong param_2,longlong param_3,longlong param_4,uint param_5
+// 渲染材质处理函数 - 根据渲染标志处理材质数据和应用变换
+void process_rendering_materials(longlong *render_context, longlong material_data, 
+                                longlong source_data, longlong target_data, 
+                                uint render_flags)
                   )
 
 {
-  undefined8 uVar1;
-  undefined4 *puVar2;
-  longlong lVar3;
-  uint uVar4;
-  ulonglong uVar5;
-  uint uVar6;
-  longlong lVar7;
-  undefined4 uVar8;
-  undefined4 uVar9;
-  undefined4 uVar10;
-  undefined4 uVar11;
-  undefined4 uVar12;
-  undefined4 uVar13;
-  undefined4 uVar14;
-  undefined4 uVar15;
-  undefined4 uVar16;
-  undefined4 uVar17;
-  undefined4 uVar18;
-  undefined4 uVar19;
-  undefined4 uVar20;
-  undefined4 uVar21;
-  undefined4 uVar22;
-  undefined4 uVar23;
-  longlong *aplStackX_18 [2];
-  undefined4 uStack_b8;
-  undefined4 uStack_b4;
-  undefined4 uStack_b0;
-  undefined4 uStack_ac;
-  undefined4 uStack_a8;
-  undefined4 uStack_a4;
-  undefined4 uStack_a0;
-  undefined4 uStack_9c;
-  undefined4 uStack_98;
-  undefined4 uStack_94;
-  undefined4 uStack_90;
-  undefined4 uStack_8c;
-  undefined4 uStack_88;
-  undefined4 uStack_84;
-  undefined4 uStack_80;
-  undefined4 uStack_7c;
-  undefined1 auStack_78 [64];
+  undefined8 transform_matrix1;
+  undefined4 *material_colors;
+  longlong data_offset;
+  uint material_index;
+  ulonglong texture_hash;
+  uint render_state;
+  longlong buffer_ptr;
+  undefined4 color_r1, color_g1, color_b1, color_a1;
+  undefined4 color_r2, color_g2, color_b2, color_a2;
+  undefined4 color_r3, color_g3, color_b3, color_a3;
+  undefined4 color_r4, color_g4, color_b4, color_a4;
+  undefined4 color_r5, color_g5, color_b5, color_a5;
+  undefined4 color_r6, color_g6, color_b6, color_a6;
+  longlong *texture_handles[2];
+  undefined4 tex_coord_u1, tex_coord_v1;
+  undefined4 tex_coord_u2, tex_coord_v2;
+  undefined4 tex_coord_u3, tex_coord_v3;
+  undefined4 tex_coord_u4, tex_coord_v4;
+  undefined4 tex_coord_u5, tex_coord_v5;
+  undefined4 tex_coord_u6, tex_coord_v6;
+  undefined4 tex_coord_u7, tex_coord_v7;
+  undefined4 tex_coord_u8, tex_coord_v8;
+  undefined4 tex_coord_u9, tex_coord_v9;
+  undefined4 tex_coord_u10, tex_coord_v10;
+  undefined4 tex_coord_u11, tex_coord_v11;
+  undefined4 tex_coord_u12, tex_coord_v12;
+  undefined4 tex_coord_u13, tex_coord_v13;
+  undefined4 tex_coord_u14, tex_coord_v14;
+  undefined4 tex_coord_u15, tex_coord_v15;
+  undefined4 tex_coord_u16, tex_coord_v16;
+  undefined1 blend_params[64];
   
-  if ((param_5 >> 2 & 1) == 0) {
-    if ((param_5 & 10) != 0) {
-      uVar1 = *(undefined8 *)(param_3 + 0x60);
-      *(undefined8 *)((longlong)param_1 + 0x214) = *(undefined8 *)(param_3 + 0x58);
-      *(undefined8 *)((longlong)param_1 + 0x21c) = uVar1;
-      uVar1 = *(undefined8 *)(param_3 + 0x70);
-      *(undefined8 *)((longlong)param_1 + 0x224) = *(undefined8 *)(param_3 + 0x68);
-      *(undefined8 *)((longlong)param_1 + 0x22c) = uVar1;
-      uVar1 = *(undefined8 *)(param_3 + 0x80);
-      *(undefined8 *)((longlong)param_1 + 0x234) = *(undefined8 *)(param_3 + 0x78);
-      *(undefined8 *)((longlong)param_1 + 0x23c) = uVar1;
-      *(undefined4 *)((longlong)param_1 + 0x244) = *(undefined4 *)(param_3 + 0x88);
-      uVar8 = *(undefined4 *)(param_3 + 0x18);
-      uVar9 = *(undefined4 *)(param_3 + 0x1c);
-      uVar10 = *(undefined4 *)(param_3 + 0x20);
-      uVar11 = *(undefined4 *)(param_3 + 0x24);
-      uVar12 = *(undefined4 *)(param_3 + 0x28);
-      uVar13 = *(undefined4 *)(param_3 + 0x2c);
-      uVar14 = *(undefined4 *)(param_3 + 0x30);
-      uVar15 = *(undefined4 *)(param_3 + 0x34);
-      uVar16 = *(undefined4 *)(param_3 + 0x38);
-      uVar17 = *(undefined4 *)(param_3 + 0x3c);
-      uVar18 = *(undefined4 *)(param_3 + 0x40);
-      uVar19 = *(undefined4 *)(param_3 + 0x44);
-      uVar20 = *(undefined4 *)(param_3 + 0x48);
-      uVar21 = *(undefined4 *)(param_3 + 0x4c);
-      uVar22 = *(undefined4 *)(param_3 + 0x50);
-      uVar23 = *(undefined4 *)(param_3 + 0x54);
-      uStack_b8 = uVar8;
-      uStack_b4 = uVar9;
-      uStack_b0 = uVar10;
-      uStack_ac = uVar11;
-      uStack_a8 = uVar12;
-      uStack_a4 = uVar13;
-      uStack_a0 = uVar14;
-      uStack_9c = uVar15;
-      uStack_98 = uVar16;
-      uStack_94 = uVar17;
-      uStack_90 = uVar18;
-      uStack_8c = uVar19;
-      uStack_88 = uVar20;
-      uStack_84 = uVar21;
-      uStack_80 = uVar22;
-      uStack_7c = uVar23;
-      if (param_4 != 0) {
-        puVar2 = (undefined4 *)
-                 FUN_1803310f0(param_5 & 10,auStack_78,&uStack_b8,param_4 + 0x18,
-                               1.0 - (*(float *)(param_2 + 0x13c) - *(float *)(param_2 + 0x144)) /
-                                     *(float *)(param_2 + 0x13c));
-        uVar8 = *puVar2;
-        uVar9 = puVar2[1];
-        uVar10 = puVar2[2];
-        uVar11 = puVar2[3];
-        uVar12 = puVar2[4];
-        uVar13 = puVar2[5];
-        uVar14 = puVar2[6];
-        uVar15 = puVar2[7];
-        uVar16 = puVar2[8];
-        uVar17 = puVar2[9];
-        uVar18 = puVar2[10];
-        uVar19 = puVar2[0xb];
-        uVar20 = puVar2[0xc];
-        uVar21 = puVar2[0xd];
-        uVar22 = puVar2[0xe];
-        uVar23 = puVar2[0xf];
+  // 检查是否启用了材质处理标志
+  if ((render_flags >> 2 & 1) == 0) {
+    // 检查是否启用了基础材质或高级材质标志
+    if ((render_flags & 10) != 0) {
+      // 从源数据复制变换矩阵到渲染上下文
+      transform_matrix1 = *(undefined8 *)(source_data + 0x60);
+      *(undefined8 *)((longlong)render_context + 0x214) = *(undefined8 *)(source_data + 0x58);
+      *(undefined8 *)((longlong)render_context + 0x21c) = transform_matrix1;
+      transform_matrix1 = *(undefined8 *)(source_data + 0x70);
+      *(undefined8 *)((longlong)render_context + 0x224) = *(undefined8 *)(source_data + 0x68);
+      *(undefined8 *)((longlong)render_context + 0x22c) = transform_matrix1;
+      transform_matrix1 = *(undefined8 *)(source_data + 0x80);
+      *(undefined8 *)((longlong)render_context + 0x234) = *(undefined8 *)(source_data + 0x78);
+      *(undefined8 *)((longlong)render_context + 0x23c) = transform_matrix1;
+      *(undefined4 *)((longlong)render_context + 0x244) = *(undefined4 *)(source_data + 0x88);
+      
+      // 从源数据提取材质颜色
+      color_r1 = *(undefined4 *)(source_data + 0x18);
+      color_g1 = *(undefined4 *)(source_data + 0x1c);
+      color_b1 = *(undefined4 *)(source_data + 0x20);
+      color_a1 = *(undefined4 *)(source_data + 0x24);
+      color_r2 = *(undefined4 *)(source_data + 0x28);
+      color_g2 = *(undefined4 *)(source_data + 0x2c);
+      color_b2 = *(undefined4 *)(source_data + 0x30);
+      color_a2 = *(undefined4 *)(source_data + 0x34);
+      color_r3 = *(undefined4 *)(source_data + 0x38);
+      color_g3 = *(undefined4 *)(source_data + 0x3c);
+      color_b3 = *(undefined4 *)(source_data + 0x40);
+      color_a3 = *(undefined4 *)(source_data + 0x44);
+      color_r4 = *(undefined4 *)(source_data + 0x48);
+      color_g4 = *(undefined4 *)(source_data + 0x4c);
+      color_b4 = *(undefined4 *)(source_data + 0x50);
+      color_a4 = *(undefined4 *)(source_data + 0x54);
+      // 将颜色数据存储到栈中用于后续处理
+      tex_coord_u1 = color_r1;
+      tex_coord_v1 = color_g1;
+      tex_coord_u2 = color_b1;
+      tex_coord_v2 = color_a1;
+      tex_coord_u3 = color_r2;
+      tex_coord_v3 = color_g2;
+      tex_coord_u4 = color_b2;
+      tex_coord_v4 = color_a2;
+      tex_coord_u5 = color_r3;
+      tex_coord_v5 = color_g3;
+      tex_coord_u6 = color_b3;
+      tex_coord_v6 = color_a3;
+      tex_coord_u7 = color_r4;
+      tex_coord_v7 = color_g4;
+      tex_coord_u8 = color_b4;
+      tex_coord_v8 = color_a4;
+      
+      // 如果存在目标数据，则处理材质颜色
+      if (target_data != 0) {
+        material_colors = (undefined4 *)
+                 process_material_colors(render_flags & 10, blend_params, &tex_coord_u1, target_data + 0x18,
+                               1.0 - (*(float *)(material_data + 0x13c) - *(float *)(material_data + 0x144)) /
+                                     *(float *)(material_data + 0x13c));
+        color_r1 = *material_colors;
+        color_g1 = material_colors[1];
+        color_b1 = material_colors[2];
+        color_a1 = material_colors[3];
+        color_r2 = material_colors[4];
+        color_g2 = material_colors[5];
+        color_b2 = material_colors[6];
+        color_a2 = material_colors[7];
+        color_r3 = material_colors[8];
+        color_g3 = material_colors[9];
+        color_b3 = material_colors[10];
+        color_a3 = material_colors[11];
+        color_r4 = material_colors[12];
+        color_g4 = material_colors[13];
+        color_b4 = material_colors[14];
+        color_a4 = material_colors[15];
       }
       *(undefined4 *)(param_1 + 0x66) = uVar8;
       *(undefined4 *)((longlong)param_1 + 0x334) = uVar9;
