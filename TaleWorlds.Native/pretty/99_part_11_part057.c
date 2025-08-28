@@ -137,7 +137,7 @@ extern uint64_t system_memory_64c8;      // 数据引用64c8
  * - 0xFF: 扩展数据流控制
  * - 0x00-0xEF: 普通数据处理
  */
-void FUN_1807bb100(longlong *param_1, char param_2, int8_t param_3)
+void data_stream_processor(longlong *param_1, char param_2, int8_t param_3)
 {
     int8_t uVar1;
     char cVar2;
@@ -481,7 +481,7 @@ LAB_1807bb778:
  * - 状态管理：设置适当的错误状态
  * - 内存安全：确保所有内存操作都在边界内
  */
-uint64_t FUN_1807bb8a0(longlong param_1, longlong param_2, int param_3)
+uint64_t memory_boundary_checker(longlong param_1, longlong param_2, int param_3)
 {
     uint uVar1;
     uint uVar2;
