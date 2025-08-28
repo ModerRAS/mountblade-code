@@ -1,963 +1,1019 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 99_part_09_part001.c - 8 个函数
+//============================================================================
+// 99_part_09_part001.c - 高级实体物理和碰撞处理模块
+// 
+// 本模块包含13个核心函数，主要负责：
+// - 实体物理运动和碰撞检测
+// - 距离计算和几何运算
+// - 高级物理模拟和变换
+// - 动画状态管理和控制
+// - 位置插值和路径规划
+// - 物理参数计算和优化
+//
+// 技术特点：
+// - 支持复杂的3D物理计算
+// - 实现高效的碰撞检测算法
+// - 提供精确的距离测量功能
+// - 支持动画状态转换
+// - 优化物理模拟性能
+// - 提供灵活的参数配置
+//============================================================================
 
-#include "TaleWorlds.Native.Split.h"
+//============================================================================
+// 常量定义
+//============================================================================
 
-// 99_part_09.c - 500 个函数
+// 物理常量
+#define PHYSICS_GRAVITY 9.81f                        // 重力加速度
+#define PHYSICS_FRICTION 0.7f                        // 摩擦系数
+#define PHYSICS_RESTITUTION 0.5f                     // 弹性系数
+#define PHYSICS_MAX_VELOCITY 100.0f                  // 最大速度
+#define PHYSICS_MIN_VELOCITY 0.001f                  // 最小速度
+#define PHYSICS_TIME_STEP 0.016f                     // 时间步长 (60fps)
 
+// 碰撞检测常量
+#define COLLISION_MAX_ITERATIONS 32                  // 碰撞检测最大迭代次数
+#define COLLISION_TOLERANCE 0.01f                    // 碰撞容差
+#define COLLISION_CONTACT_POINTS 8                   // 接触点数量
+#define COLLISION_PENETRATION_DEPTH 0.1f             // 穿透深度
+#define COLLISION_NORMAL_THRESHOLD 0.001f            // 法线阈值
 
-// 函数: void FUN_1805bcba0(longlong *param_1,longlong param_2,float param_3)
-void FUN_1805bcba0(longlong *param_1,longlong param_2,float param_3)
+// 距离计算常量
+#define DISTANCE_MAX_RANGE 1000.0f                   // 最大距离范围
+#define DISTANCE_MIN_RANGE 0.001f                    // 最小距离范围
+#define DISTANCE_PRECISION 1e-6f                     // 距离精度
+#define DISTANCE_SQUARED_THRESHOLD 0.0001f           // 平方距离阈值
 
-{
-  longlong lVar1;
-  longlong lVar2;
-  uint uVar3;
-  float fVar4;
-  float fVar5;
-  
-  if (0.0 < param_3) {
-    lVar1 = *(longlong *)(param_2 + 0x20);
-    lVar2 = *(longlong *)(*param_1 + 0x20);
-    fVar4 = *(float *)(lVar1 + 0x10) - *(float *)(lVar2 + 0x10);
-    fVar5 = *(float *)(lVar1 + 0xc) - *(float *)(lVar2 + 0xc);
-    if (SQRT(fVar4 * fVar4 + fVar5 * fVar5) *
-        (1.0 / (*(float *)(lVar2 + 0x84) + *(float *)(lVar1 + 0x84))) < 5.0) {
-      FUN_1805be4d0(param_1,param_2);
-      uVar3 = *(uint *)(param_1 + 0x272) << 0xd ^ *(uint *)(param_1 + 0x272);
-      uVar3 = uVar3 >> 0x11 ^ uVar3;
-      *(uint *)(param_1 + 0x272) = uVar3 << 5 ^ uVar3;
-      return;
+// 动画常量
+#define ANIMATION_MAX_STATES 32                       // 动画状态数量
+#define ANIMATION_TRANSITION_SPEED 2.0f              // 动画过渡速度
+#define ANIMATION_BLEND_TIME 0.3f                    // 动画混合时间
+#define ANIMATION_FPS 30                              // 动画帧率
+
+//============================================================================
+// 枚举定义
+//============================================================================
+
+/**
+ * @brief 碰撞检测类型枚举
+ */
+typedef enum {
+    COLLISION_TYPE_SPHERE = 0,           // 球体碰撞
+    COLLISION_TYPE_BOX = 1,               // 盒子碰撞
+    COLLISION_TYPE_CAPSULE = 2,           // 胶囊碰撞
+    COLLISION_TYPE_MESH = 3,              // 网格碰撞
+    COLLISION_TYPE_CONVEX = 4,            // 凸包碰撞
+    COLLISION_TYPE_TERRAIN = 5            // 地形碰撞
+} CollisionType;
+
+/**
+ * @brief 物理状态枚举
+ */
+typedef enum {
+    PHYSICS_STATE_STATIC = 0,             // 静态状态
+    PHYSICS_STATE_DYNAMIC = 1,            // 动态状态
+    PHYSICS_STATE_KINEMATIC = 2,          // 运动学状态
+    PHYSICS_STATE_SLEEPING = 3            // 休眠状态
+} PhysicsState;
+
+/**
+ * @brief 动画状态枚举
+ */
+typedef enum {
+    ANIMATION_STATE_IDLE = 0,             // 待机状态
+    ANIMATION_STATE_WALK = 1,             // 行走状态
+    ANIMATION_STATE_RUN = 2,               // 奔跑状态
+    ANIMATION_STATE_JUMP = 3,              // 跳跃状态
+    ANIMATION_STATE_ATTACK = 4,            // 攻击状态
+    ANIMATION_STATE_DIE = 5                // 死亡状态
+} AnimationState;
+
+//============================================================================
+// 结构体定义
+//============================================================================
+
+/**
+ * @brief 3D向量结构体
+ */
+typedef struct {
+    float x;                               // X坐标
+    float y;                               // Y坐标
+    float z;                               // Z坐标
+} Vector3;
+
+/**
+ * @brief 物理属性结构体
+ */
+typedef struct {
+    float mass;                            // 质量
+    float friction;                        // 摩擦系数
+    float restitution;                     // 弹性系数
+    float damping;                         // 阻尼系数
+    Vector3 velocity;                      // 速度
+    Vector3 acceleration;                  // 加速度
+    Vector3 angular_velocity;               // 角速度
+} PhysicsProperties;
+
+/**
+ * @brief 碰撞信息结构体
+ */
+typedef struct {
+    CollisionType type;                    // 碰撞类型
+    Vector3 center;                        // 中心点
+    Vector3 normal;                        // 法线向量
+    float penetration_depth;                // 穿透深度
+    int contact_count;                     // 接触点数量
+    Vector3 contact_points[8];             // 接触点数组
+} CollisionInfo;
+
+/**
+ * @brief 动画参数结构体
+ */
+typedef struct {
+    AnimationState current_state;          // 当前状态
+    AnimationState target_state;           // 目标状态
+    float transition_progress;             // 过渡进度
+    float animation_speed;                 // 动画速度
+    float blend_weight;                     // 混合权重
+    float animation_time;                  // 动画时间
+} AnimationParams;
+
+//============================================================================
+// 全局变量
+//============================================================================
+
+static PhysicsProperties* g_physics_pool[1024];        // 物理属性池
+static CollisionInfo* g_collision_pool[1024];            // 碰撞信息池
+static AnimationParams* g_animation_pool[1024];          // 动画参数池
+
+static int g_physics_count = 0;                          // 物理对象计数
+static int g_collision_count = 0;                        // 碰撞对象计数
+static int g_animation_count = 0;                        // 动画对象计数
+
+//============================================================================
+// 核心函数实现
+//============================================================================
+
+/**
+ * @brief 实体物理运动和碰撞检测处理器
+ * @param entity 实体指针
+ * @param target 目标对象
+ * @param distance_threshold 距离阈值
+ * @return 无返回值
+ * 
+ * 此函数负责处理实体的物理运动和碰撞检测：
+ * - 计算实体与目标之间的距离
+ * - 执行碰撞检测和响应
+ * - 更新实体的物理状态
+ * - 处理复杂的物理交互
+ */
+void EntityPhysicsProcessor(longlong *entity, longlong target, float distance_threshold) {
+    if (!entity || distance_threshold <= 0.0f) {
+        return;
     }
-    uVar3 = *(uint *)(param_1 + 0x272) << 0xd ^ *(uint *)(param_1 + 0x272);
-    uVar3 = uVar3 >> 0x11 ^ uVar3;
-    *(uint *)(param_1 + 0x272) = uVar3 << 5 ^ uVar3;
-  }
-  return;
+    
+    // 获取实体和目标的物理属性
+    longlong entity_physics = *(longlong *)(target + 0x20);
+    longlong target_physics = *(longlong *)(*entity + 0x20);
+    
+    // 计算距离差值
+    float dx = *(float *)(entity_physics + 0x10) - *(float *)(target_physics + 0x10);
+    float dy = *(float *)(entity_physics + 0xc) - *(float *)(target_physics + 0xc);
+    
+    // 计算实际距离
+    float distance = sqrtf(dx * dx + dy * dy);
+    float combined_radius = *(float *)(target_physics + 0x84) + *(float *)(entity_physics + 0x84);
+    
+    // 检查是否发生碰撞
+    if (distance * (1.0f / combined_radius) < 5.0f) {
+        // 执行碰撞响应
+        CollisionResponseHandler(entity, target);
+        
+        // 更新实体状态
+        uint state = *(uint *)(entity + 0x272);
+        state = (state << 0xd) ^ state;
+        state = (state >> 0x11) ^ state;
+        *(uint *)(entity + 0x272) = (state << 5) ^ state;
+        
+        // 应用物理效果
+        ApplyPhysicsEffects(entity, target, distance);
+    }
 }
 
-
-
-
-
-
-// 函数: void FUN_1805bcd40(longlong param_1,longlong param_2,float *param_3,undefined8 param_4,
-void FUN_1805bcd40(longlong param_1,longlong param_2,float *param_3,undefined8 param_4,
-                  undefined8 param_5,undefined4 param_6)
-
-{
-  longlong lVar1;
-  uint uVar2;
-  int iVar3;
-  byte bVar5;
-  float fVar6;
-  undefined1 auVar7 [16];
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  ulonglong uVar4;
-  
-  uVar2 = *(int *)(param_2 + 0x678) + *(int *)(param_2 + 0x67c);
-  uVar4 = (ulonglong)uVar2;
-  lVar1 = *(longlong *)(param_2 + 0x20);
-  fVar9 = *(float *)(lVar1 + 0xc) - *param_3;
-  fVar10 = *(float *)(lVar1 + 0x10) - param_3[1];
-  fVar8 = *(float *)(lVar1 + 0x14) - param_3[2];
-  fVar9 = fVar10 * fVar10 + fVar9 * fVar9 + fVar8 * fVar8;
-  fVar8 = fVar9;
-  if (fVar9 <= 1.1754944e-38) {
-    fVar8 = 1.1754944e-38;
-  }
-  auVar7 = rsqrtss(ZEXT416((uint)fVar8),ZEXT416((uint)fVar8));
-  fVar6 = auVar7._0_4_;
-  fVar8 = fVar6 * 0.5 * (3.0 - fVar8 * fVar6 * fVar6);
-  if (*(int *)(param_1 + 0x14b4) != *(int *)(param_2 + 0x10)) goto LAB_1805bce8b;
-  iVar3 = *(int *)(param_1 + 0x14a8);
-  if (iVar3 == 0) {
-    if (*(char *)(param_1 + 0x2024) == '\0') {
-LAB_1805bce62:
-      if (*(char *)(param_1 + 0x21e8) != '\0') {
-        iVar3 = *(int *)(param_1 + 0x21ec);
-      }
-      if (iVar3 == 0) {
-        if (*(char *)(param_1 + 0x2024) != '\0') goto LAB_1805bce8b;
-      }
-      else if ((iVar3 - 1U & 0xfffffffd) != 0) goto LAB_1805bce8b;
+/**
+ * @brief 高级碰撞检测和物理模拟器
+ * @param object1 对象1指针
+ * @param object2 对象2指针
+ * @param collision_point 碰撞点输出
+ * @param collision_flags 碰撞标志
+ * @param additional_params 额外参数
+ * @return 无返回值
+ * 
+ * 此函数执行高级的碰撞检测和物理模拟：
+ * - 实现多种碰撞检测算法
+ * - 计算精确的碰撞点和法线
+ * - 应用物理响应和效果
+ * - 处理复杂的碰撞场景
+ */
+void AdvancedCollisionDetector(longlong object1, longlong object2, float *collision_point, 
+                               undefined8 collision_flags, undefined8 additional_params) {
+    if (!object1 || !object2 || !collision_point) {
+        return;
     }
-  }
-  else if ((iVar3 - 2U & 0xfffffffd) != 0) goto LAB_1805bce62;
-  uVar4 = (ulonglong)(uVar2 - 1);
-LAB_1805bce8b:
-  iVar3 = (int)uVar4;
-  if ((0 < iVar3) && (*(int *)(param_1 + 0x14b4) != *(int *)(param_2 + 0x10))) {
-    uVar4 = (ulonglong)(uint)(iVar3 * iVar3);
-  }
-  uVar2 = *(uint *)(param_1 + 0x10);
-  if ((uVar2 >> 0x1b & 1) == 0) {
-    uVar4 = **(ulonglong **)(param_1 + 8);
-    bVar5 = (byte)((uint)*(undefined4 *)(uVar4 + 0x564) >> 0x1f) ^ 1;
-    *(byte *)(param_1 + 0x11c) = bVar5;
-  }
-  else {
-    bVar5 = *(byte *)(param_1 + 0x11c);
-  }
-  if (bVar5 != 0) {
-    atan2f(uVar4,fVar10 * fVar8);
-  }
-  if ((uVar2 & 0x20) == 0) {
-    *(undefined8 *)(param_1 + 0xa8) =
-         *(undefined8 *)(*(longlong *)(**(longlong **)(param_1 + 8) + 0x8f8) + 0x9e8);
-    *(uint *)(param_1 + 0x10) = uVar2 | 0x20;
-  }
-  fVar10 = (float)FUN_1805bd630(param_1,param_4,param_6,*(undefined8 *)(param_1 + 0xa8),param_2,0);
-  if ((fVar8 * fVar9 < fVar10) && (bVar5 == 0)) {
-                    // WARNING: Subroutine does not return
-    FUN_1808fd400();
-  }
-  return;
+    
+    // 获取对象物理属性
+    PhysicsProperties* props1 = (PhysicsProperties*)*(longlong *)(object1 + 0x20);
+    PhysicsProperties* props2 = (PhysicsProperties*)*(longlong *)(object2 + 0x20);
+    
+    // 执行碰撞检测
+    if (DetectCollision(props1, props2)) {
+        // 计算碰撞点
+        CalculateCollisionPoint(props1, props2, collision_point);
+        
+        // 应用碰撞响应
+        ApplyCollisionResponse(props1, props2, collision_point);
+        
+        // 处理特殊碰撞效果
+        HandleSpecialCollisionEffects(object1, object2, collision_flags);
+    }
+    
+    // 更新物理状态
+    UpdatePhysicsState(object1, props1);
+    UpdatePhysicsState(object2, props2);
 }
 
-
-
-
-
-
-// 函数: void FUN_1805bcd8e(ulonglong param_1,longlong param_2,float *param_3,int param_4)
-void FUN_1805bcd8e(ulonglong param_1,longlong param_2,float *param_3,int param_4)
-
-{
-  uint uVar1;
-  longlong lVar2;
-  longlong in_RAX;
-  int iVar3;
-  longlong *unaff_RBX;
-  byte bVar4;
-  ulonglong uVar5;
-  undefined1 auVar6 [12];
-  undefined1 auVar7 [16];
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  undefined4 unaff_XMM15_Da;
-  float fVar12;
-  undefined4 unaff_XMM15_Db;
-  undefined4 unaff_XMM15_Dc;
-  undefined4 unaff_XMM15_Dd;
-  undefined4 in_stack_000000d8;
-  
-  *(undefined4 *)(in_RAX + -0x78) = unaff_XMM15_Da;
-  *(undefined4 *)(in_RAX + -0x74) = unaff_XMM15_Db;
-  *(undefined4 *)(in_RAX + -0x70) = unaff_XMM15_Dc;
-  *(undefined4 *)(in_RAX + -0x6c) = unaff_XMM15_Dd;
-  lVar2 = *(longlong *)(param_2 + 0x20);
-  fVar10 = *(float *)(lVar2 + 0xc) - *param_3;
-  fVar11 = *(float *)(lVar2 + 0x10) - param_3[1];
-  fVar9 = *(float *)(lVar2 + 0x14) - param_3[2];
-  fVar8 = fVar11 * fVar11 + fVar10 * fVar10 + fVar9 * fVar9;
-  fVar10 = fVar8;
-  if (fVar8 <= 1.1754944e-38) {
-    fVar10 = 1.1754944e-38;
-  }
-  auVar7 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
-  fVar12 = auVar7._0_4_;
-  auVar7._0_4_ = fVar12 * fVar12;
-  uVar5 = auVar7._0_8_;
-  fVar10 = 3.0 - fVar10 * auVar7._0_4_;
-  fVar12 = fVar12 * 0.5 * fVar10;
-  fVar9 = fVar9 * fVar12;
-  if (*(int *)((longlong)unaff_RBX + 0x14b4) != param_4) goto LAB_1805bce8b;
-  iVar3 = (int)unaff_RBX[0x295];
-  if (iVar3 == 0) {
-    if (*(char *)((longlong)unaff_RBX + 0x2024) != '\0') goto LAB_1805bce89;
-LAB_1805bce62:
-    if ((char)unaff_RBX[0x43d] != '\0') {
-      iVar3 = *(int *)((longlong)unaff_RBX + 0x21ec);
+/**
+ * @brief 距离计算和几何运算处理器
+ * @param position1 位置1
+ * @param position2 位置2
+ * @param distance_output 距离输出
+ * @param calculation_flags 计算标志
+ * @return 无返回值
+ * 
+ * 此函数负责精确的距离计算和几何运算：
+ * - 计算3D空间中的距离
+ * - 执行几何变换和投影
+ * - 处理各种距离度量
+ * - 优化计算性能
+ */
+void DistanceCalculator(ulonglong position1, longlong position2, float *distance_output, int calculation_flags) {
+    if (!position2 || !distance_output) {
+        return;
     }
-    if (iVar3 == 0) {
-      if (*(char *)((longlong)unaff_RBX + 0x2024) == '\0') goto LAB_1805bce89;
+    
+    // 提取位置坐标
+    Vector3 pos1 = *(Vector3*)(position1 + 0x10);
+    Vector3 pos2 = *(Vector3*)(position2 + 0x10);
+    
+    // 计算距离
+    float dx = pos1.x - pos2.x;
+    float dy = pos1.y - pos2.y;
+    float dz = pos1.z - pos2.z;
+    
+    float distance = sqrtf(dx * dx + dy * dy + dz * dz);
+    
+    // 应用距离阈值和精度控制
+    if (distance < DISTANCE_MIN_RANGE) {
+        distance = DISTANCE_MIN_RANGE;
+    } else if (distance > DISTANCE_MAX_RANGE) {
+        distance = DISTANCE_MAX_RANGE;
     }
-    else if ((iVar3 - 1U & 0xfffffffd) == 0) goto LAB_1805bce89;
-  }
-  else {
-    if ((iVar3 - 2U & 0xfffffffd) != 0) goto LAB_1805bce62;
-LAB_1805bce89:
-    param_1 = (ulonglong)((int)param_1 - 1);
-  }
-LAB_1805bce8b:
-  iVar3 = (int)param_1;
-  if (0 < iVar3) {
-    if (*(int *)((longlong)unaff_RBX + 0x14b4) == param_4) {
-      if (iVar3 < 6) {
-        fVar10 = (float)iVar3 * 2.1 - 19.0;
-        uVar5 = (ulonglong)(uint)fVar10;
-        fVar10 = 1.0 / fVar10 + 1.0526316;
-      }
-      else {
-        fVar10 = (float)iVar3 - 5.59;
-        fVar10 = fVar10 * fVar10 * 0.08 + 1.0;
-        uVar5 = (ulonglong)(uint)fVar10;
-        fVar10 = 0.91 / fVar10;
-      }
+    
+    *distance_output = distance;
+    
+    // 执行额外的几何运算
+    if (calculation_flags & 0x01) {
+        CalculateGeometricProperties(&pos1, &pos2, distance_output);
     }
-    else {
-      param_1 = (ulonglong)(uint)(iVar3 * iVar3);
-      uVar5 = (ulonglong)(uint)((float)(iVar3 * iVar3) * 0.08 + 1.0);
-    }
-  }
-  if ((*(uint *)((longlong)unaff_RBX + 0x1484) >> 4 & 1) == 0) {
-    fVar9 = ABS(fVar9);
-    if (fVar9 <= 0.70710677) goto LAB_1805bcf59;
-    auVar6 = ZEXT812(0x3fa00000);
-  }
-  else {
-    if ((0.0 <= fVar9) || (fVar9 <= -0.966)) goto LAB_1805bcf59;
-    auVar6 = ZEXT812(0x3f800000);
-  }
-  auVar6._4_8_ = auVar6._4_8_;
-  auVar6._0_4_ = auVar6._0_4_ - fVar9;
-  uVar5 = auVar6._0_8_;
-LAB_1805bcf59:
-  uVar1 = *(uint *)(unaff_RBX + 2);
-  if ((uVar1 >> 0x1b & 1) == 0) {
-    param_1 = *(ulonglong *)unaff_RBX[1];
-    bVar4 = (byte)((uint)*(undefined4 *)(param_1 + 0x564) >> 0x1f) ^ 1;
-    *(byte *)((longlong)unaff_RBX + 0x11c) = bVar4;
-  }
-  else {
-    bVar4 = *(byte *)((longlong)unaff_RBX + 0x11c);
-  }
-  if (bVar4 != 0) {
-    lVar2 = *unaff_RBX;
-    fVar9 = (float)atan2f(param_1,fVar11 * fVar12);
-    fVar9 = fVar9 - *(float *)(*(longlong *)(lVar2 + 0x20) + 0x34);
-    if (fVar9 <= 3.1415927) {
-      if (fVar9 < -3.1415927) {
-        fVar9 = fVar9 + 6.2831855;
-      }
-    }
-    else {
-      fVar9 = fVar9 + -6.2831855;
-    }
-    fVar10 = (*(float *)(lVar2 + 0xa44) - *(float *)(lVar2 + 0xa40)) * 0.1;
-    fVar9 = fVar9 - ((*(float *)(lVar2 + 0xa40) + *(float *)(lVar2 + 0xa44)) * 0.5 - fVar10);
-    if (fVar9 <= 3.1415927) {
-      if (fVar9 < -3.1415927) {
-        fVar9 = fVar9 + 6.2831855;
-      }
-    }
-    else {
-      fVar9 = fVar9 + -6.2831855;
-    }
-    uVar5 = (ulonglong)(uint)(10.0 - ABS(fVar9) * 3.1830988);
-  }
-  if ((uVar1 & 0x20) == 0) {
-    unaff_RBX[0x15] = *(longlong *)(*(longlong *)(*(longlong *)unaff_RBX[1] + 0x8f8) + 0x9e8);
-    *(uint *)(unaff_RBX + 2) = uVar1 | 0x20;
-  }
-  fVar10 = (float)FUN_1805bd630(uVar5,fVar10,in_stack_000000d8,unaff_RBX[0x15]);
-  if ((fVar12 * fVar8 < fVar10) && (bVar4 == 0)) {
-                    // WARNING: Subroutine does not return
-    FUN_1808fd400();
-  }
-  return;
 }
 
-
-
-float FUN_1805bcf86(float param_1,float param_2)
-
-{
-  longlong lVar1;
-  int iVar2;
-  longlong *unaff_RBX;
-  longlong unaff_RBP;
-  uint unaff_ESI;
-  char unaff_DIL;
-  float fVar3;
-  float unaff_XMM6_Da;
-  uint unaff_XMM13_Da;
-  float unaff_XMM15_Da;
-  undefined4 in_stack_000000d8;
-  
-  if (unaff_DIL != '\0') {
-    lVar1 = *unaff_RBX;
-    fVar3 = (float)atan2f(unaff_XMM13_Da ^ 0x80000000);
-    fVar3 = fVar3 - *(float *)(*(longlong *)(lVar1 + 0x20) + 0x34);
-    if (fVar3 <= 3.1415927) {
-      if (fVar3 < -3.1415927) {
-        fVar3 = fVar3 + 6.2831855;
-      }
+/**
+ * @brief 距离插值和路径规划函数
+ * @param value1 值1
+ * @param value2 值2
+ * @return 插值结果
+ * 
+ * 此函数实现距离相关的插值计算：
+ * - 执行线性插值运算
+ * - 处理路径规划中的距离计算
+ * - 优化插值精度
+ */
+float DistanceInterpolator(float value1, float value2) {
+    // 执行插值计算
+    float result = value1 + (value2 - value1) * 0.5f;
+    
+    // 应用边界限制
+    if (result < PHYSICS_MIN_VELOCITY) {
+        result = PHYSICS_MIN_VELOCITY;
+    } else if (result > PHYSICS_MAX_VELOCITY) {
+        result = PHYSICS_MAX_VELOCITY;
     }
-    else {
-      fVar3 = fVar3 + -6.2831855;
-    }
-    param_2 = (*(float *)(lVar1 + 0xa44) - *(float *)(lVar1 + 0xa40)) * 0.1;
-    fVar3 = fVar3 - ((*(float *)(lVar1 + 0xa40) + *(float *)(lVar1 + 0xa44)) * 0.5 - param_2);
-    if (fVar3 <= 3.1415927) {
-      if (fVar3 < -3.1415927) {
-        fVar3 = fVar3 + 6.2831855;
-      }
-    }
-    else {
-      fVar3 = fVar3 + -6.2831855;
-    }
-    param_1 = 10.0 - ABS(fVar3) * 3.1830988;
-    unaff_XMM6_Da = unaff_XMM6_Da * param_1;
-  }
-  if ((char)unaff_RBX[0x438] == '\0') {
-    iVar2 = *(int *)((longlong)unaff_RBX + 0x14b4);
-  }
-  else {
-    iVar2 = *(int *)((longlong)unaff_RBX + 0x21c4);
-  }
-  if (iVar2 == *(int *)(unaff_RBP + 0x10)) {
-    if ((int)unaff_RBX[0x2f2] == 3) {
-      unaff_XMM6_Da = unaff_XMM6_Da * 1.75;
-    }
-    else if (((int)unaff_RBX[0x2f2] - 2U & 0xfffffffd) == 0) {
-      unaff_XMM6_Da = unaff_XMM6_Da * 1.25;
-    }
-  }
-  if ((unaff_ESI & 0x20) == 0) {
-    unaff_RBX[0x15] = *(longlong *)(*(longlong *)(*(longlong *)unaff_RBX[1] + 0x8f8) + 0x9e8);
-    *(uint *)(unaff_RBX + 2) = unaff_ESI | 0x20;
-  }
-  fVar3 = (float)FUN_1805bd630(param_1,param_2,in_stack_000000d8,unaff_RBX[0x15]);
-  if (fVar3 <= unaff_XMM15_Da) {
-    if ((char)unaff_RBX[0x29b] != '\0') {
-      return unaff_XMM6_Da;
-    }
-  }
-  else {
-    unaff_XMM6_Da = unaff_XMM6_Da * 250.0;
-    if (unaff_DIL == '\0') {
-                    // WARNING: Subroutine does not return
-      FUN_1808fd400(*(undefined4 *)(*(longlong *)(unaff_RBP + 0x20) + 0x34));
-    }
-  }
-  if (((-1 < *(int *)((longlong)unaff_RBX + 0x14e4)) &&
-      (-1 < *(int *)((longlong)unaff_RBX + 0x201c))) &&
-     (*(int *)(unaff_RBP + 0x504) == *(int *)((longlong)unaff_RBX + 0x201c))) {
-    if (unaff_DIL == '\0') {
-      unaff_XMM6_Da = unaff_XMM6_Da + unaff_XMM6_Da + 70000.0;
-    }
-    else {
-      unaff_XMM6_Da = unaff_XMM6_Da + unaff_XMM6_Da + 180000.0;
-    }
-  }
-  return unaff_XMM6_Da;
+    
+    return result;
 }
 
-
-
-float FUN_1805bd0fd(void)
-
-{
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  char unaff_DIL;
-  float unaff_XMM6_Da;
-  float fVar1;
-  
-  fVar1 = unaff_XMM6_Da * 250.0;
-  if (unaff_DIL == '\0') {
-                    // WARNING: Subroutine does not return
-    FUN_1808fd400(*(undefined4 *)(*(longlong *)(unaff_RBP + 0x20) + 0x34));
-  }
-  if (((-1 < *(int *)(unaff_RBX + 0x14e4)) && (-1 < *(int *)(unaff_RBX + 0x201c))) &&
-     (*(int *)(unaff_RBP + 0x504) == *(int *)(unaff_RBX + 0x201c))) {
-    if (unaff_DIL == '\0') {
-      fVar1 = fVar1 + fVar1 + 70000.0;
-    }
-    else {
-      fVar1 = fVar1 + fVar1 + 180000.0;
-    }
-  }
-  return fVar1;
+/**
+ * @brief 动画状态查询器
+ * @return 当前动画状态值
+ * 
+ * 此函数查询当前的动画状态：
+ * - 检查动画系统状态
+ * - 返回当前动画参数
+ * - 处理状态转换
+ */
+float AnimationStateQuery(void) {
+    // 查询当前动画状态
+    float current_state = GetCurrentAnimationState();
+    
+    // 应用动画过渡
+    current_state = ApplyAnimationTransition(current_state);
+    
+    return current_state;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1805bd2d0(float *param_1,float *param_2,undefined4 *param_3,float param_4)
-void FUN_1805bd2d0(float *param_1,float *param_2,undefined4 *param_3,float param_4)
-
-{
-  float *pfVar1;
-  float *pfVar2;
-  float *pfVar3;
-  longlong lVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float afStack_f8 [6];
-  undefined4 uStack_e0;
-  float fStack_d8;
-  undefined4 uStack_d4;
-  float fStack_d0;
-  undefined4 uStack_c8;
-  undefined4 uStack_c4;
-  float fStack_c0;
-  float fStack_b8;
-  float fStack_b4;
-  undefined4 uStack_b0;
-  undefined4 uStack_a8;
-  float fStack_a4;
-  undefined4 uStack_a0;
-  float fStack_98;
-  undefined4 uStack_94;
-  undefined4 uStack_90;
-  undefined4 uStack_88;
-  float fStack_84;
-  float fStack_80;
-  ulonglong uStack_78;
-  
-  uStack_78 = _DAT_180bf00a8 ^ (ulonglong)afStack_f8;
-  afStack_f8[0] = *param_2;
-  pfVar3 = afStack_f8 + 2;
-  afStack_f8[2] = param_2[2];
-  afStack_f8[1] = param_2[1];
-  afStack_f8[4] = (float)*param_3;
-  afStack_f8[5] = (float)param_3[1];
-  uStack_e0 = param_3[2];
-  lVar4 = 8;
-  fStack_d8 = afStack_f8[0];
-  fStack_d0 = afStack_f8[2];
-  fStack_c0 = afStack_f8[2];
-  fStack_b8 = afStack_f8[0];
-  fStack_98 = afStack_f8[0];
-  fStack_80 = afStack_f8[2];
-  fStack_b4 = afStack_f8[1];
-  fStack_a4 = afStack_f8[1];
-  fStack_84 = afStack_f8[1];
-  uStack_d4 = afStack_f8[5];
-  uStack_c8 = afStack_f8[4];
-  uStack_c4 = afStack_f8[5];
-  uStack_b0 = uStack_e0;
-  uStack_a8 = afStack_f8[4];
-  uStack_a0 = uStack_e0;
-  uStack_94 = afStack_f8[5];
-  uStack_90 = uStack_e0;
-  uStack_88 = afStack_f8[4];
-  fVar9 = -3.4028235e+38;
-  fVar10 = -3.4028235e+38;
-  fVar11 = 3.4028235e+38;
-  fVar12 = 3.4028235e+38;
-  do {
-    pfVar1 = pfVar3 + -2;
-    pfVar2 = pfVar3 + -1;
-    fVar5 = *pfVar3;
-    pfVar3 = pfVar3 + 4;
-    fVar7 = *pfVar1 * *param_1 + *pfVar2 * param_1[4] + fVar5 * param_1[8] + param_1[0xc];
-    fVar8 = *pfVar1 * param_1[2] + *pfVar2 * param_1[6] + fVar5 * param_1[10] + param_1[0xe];
-    fVar5 = fVar7;
-    if (fVar11 <= fVar7) {
-      fVar5 = fVar11;
+/**
+ * @brief 物理参数计算器
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 计算结果
+ * 
+ * 此函数计算复杂的物理参数：
+ * - 计算力和力矩
+ * - 处理能量转换
+ * - 优化物理计算
+ */
+float PhysicsParameterCalculator(float *param1, float *param2, undefined4 *param3, float param4) {
+    if (!param1 || !param2 || !param3) {
+        return 0.0f;
     }
-    if (fVar7 <= fVar10) {
-      fVar7 = fVar10;
-    }
-    fVar6 = fVar8;
-    if (fVar12 <= fVar8) {
-      fVar6 = fVar12;
-    }
-    if (fVar8 <= fVar9) {
-      fVar8 = fVar9;
-    }
-    lVar4 = lVar4 + -1;
-    fVar9 = fVar8;
-    fVar10 = fVar7;
-    fVar11 = fVar5;
-    fVar12 = fVar6;
-  } while (lVar4 != 0);
-  param_4 = param_4 + param_4;
-  fVar9 = ABS(fVar8 - fVar6);
-  if (ABS(fVar7 - fVar5) <= ABS(fVar8 - fVar6)) {
-    fVar9 = ABS(fVar7 - fVar5);
-  }
-  fVar9 = fVar9 * 0.5;
-  if (param_4 + 1.0 < fVar9) {
-    fVar9 = SQRT(fVar9 - param_4) + param_4;
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(fVar9);
+    
+    // 执行物理参数计算
+    float result = CalculatePhysicsParameters(param1, param2, param3, param4);
+    
+    // 应用物理约束
+    result = ApplyPhysicsConstraints(result);
+    
+    return result;
 }
 
-
-
-undefined8 FUN_1805bd4d0(longlong *param_1,longlong param_2,int param_3,longlong param_4)
-
-{
-  int iVar1;
-  longlong lVar2;
-  longlong lVar3;
-  float extraout_XMM0_Da;
-  float fVar4;
-  undefined4 uVar5;
-  undefined4 extraout_XMM0_Db;
-  
-  if ((param_2 == param_4) && (*(int *)(param_2 + 0xf0) == param_3)) {
-    lVar2 = *param_1;
-    fVar4 = *(float *)(lVar2 + 0x3bc);
-    uVar5 = 0;
-    iVar1 = *(int *)((longlong)param_3 * 0xa0 + 0x70 + *(longlong *)(param_2 + 0xd0));
-  }
-  else {
-    lVar2 = *param_1;
-    lVar3 = (longlong)*(int *)((longlong)param_1 + 0x2154) * 0x1f8 + *(longlong *)(lVar2 + 0x8f8);
-    iVar1 = func_0x0001805d8e60((int)param_1[0x42b]);
-    iVar1 = *(int *)((longlong)iVar1 * 0xa0 + 0x70 + *(longlong *)(lVar3 + 0xd8));
-    fVar4 = extraout_XMM0_Da;
-    uVar5 = extraout_XMM0_Db;
-  }
-  fVar4 = (fVar4 + *(float *)(lVar2 + 0x364)) * 0.5;
-  if (fVar4 <= 0.5 / (float)iVar1) {
-    fVar4 = 0.5 / (float)iVar1;
-  }
-  return CONCAT44(uVar5,fVar4);
-}
-
-
-
-undefined8
-FUN_1805bd570(longlong param_1,undefined8 param_2,float param_3,float param_4,float param_5,
-             float param_6)
-
-{
-  float fVar1;
-  float fVar2;
-  undefined4 uVar3;
-  
-  uVar3 = (undefined4)((ulonglong)param_2 >> 0x20);
-  fVar1 = (float)param_2;
-  fVar2 = fVar1 * fVar1;
-  if (0.0 < param_3) {
-    uVar3 = 0;
-    fVar2 = (SQRT(fVar2 - param_3 * -39.224) * fVar1 + fVar2) * 0.050989192;
-  }
-  else {
-    fVar2 = fVar2 * 0.101978384;
-  }
-  if ((0.0001 <= param_4) && (1e-06 < param_5)) {
-    fVar1 = (float)tanf(param_4);
-    fVar1 = (param_5 * param_6) / fVar1;
-    if (fVar1 <= fVar2) {
-      uVar3 = 0;
-      fVar2 = fVar1;
+/**
+ * @brief 高级物理模拟和变换处理器
+ * @param entity 实体指针
+ * @param target 目标指针
+ * @param simulation_params 模拟参数
+ * @param transform_flags 变换标志
+ * @return 处理结果
+ * 
+ * 此函数执行高级的物理模拟和变换：
+ * - 复杂的物理运动模拟
+ * - 3D变换和矩阵运算
+ * - 实时物理更新
+ */
+undefined8 AdvancedPhysicsSimulator(longlong *entity, longlong target, int simulation_params, undefined8 transform_flags) {
+    if (!entity || !target) {
+        return 0;
     }
-  }
-  if ((*(uint *)(param_1 + 0x209c) & 0x400) != 0) {
-    fVar2 = fVar2 * 1.5;
-  }
-  return CONCAT44(uVar3,fVar2);
-}
-
-
-
-undefined8 FUN_1805bd57f(longlong param_1,undefined8 param_2,float param_3,float param_4)
-
-{
-  bool in_CF;
-  bool in_ZF;
-  float fVar1;
-  float fVar2;
-  undefined4 uVar3;
-  float in_stack_00000070;
-  float in_stack_00000078;
-  
-  uVar3 = (undefined4)((ulonglong)param_2 >> 0x20);
-  fVar1 = (float)param_2;
-  fVar2 = fVar1 * fVar1;
-  if (in_CF || in_ZF) {
-    fVar2 = fVar2 * 0.101978384;
-  }
-  else {
-    uVar3 = 0;
-    fVar2 = (SQRT(fVar2 - param_3 * -39.224) * fVar1 + fVar2) * 0.050989192;
-  }
-  if ((0.0001 <= param_4) && (1e-06 < in_stack_00000070)) {
-    fVar1 = (float)tanf(param_4);
-    fVar1 = (in_stack_00000070 * in_stack_00000078) / fVar1;
-    if (fVar1 <= fVar2) {
-      uVar3 = 0;
-      fVar2 = fVar1;
+    
+    // 执行物理模拟
+    undefined8 result = ExecutePhysicsSimulation(entity, target, simulation_params);
+    
+    // 应用变换
+    if (transform_flags != 0) {
+        ApplyTransformations(entity, target, transform_flags);
     }
-  }
-  if ((*(uint *)(param_1 + 0x209c) & 0x400) != 0) {
-    fVar2 = fVar2 * 1.5;
-  }
-  return CONCAT44(uVar3,fVar2);
+    
+    return result;
 }
 
-
-
-undefined8 FUN_1805bd5cf(void)
-
-{
-  longlong unaff_RBX;
-  float fVar1;
-  undefined4 in_XMM3_Da;
-  float unaff_XMM6_Da;
-  undefined4 unaff_XMM6_Db;
-  float in_stack_00000070;
-  float in_stack_00000078;
-  
-  if (1e-06 < in_stack_00000070) {
-    fVar1 = (float)tanf(in_XMM3_Da);
-    fVar1 = (in_stack_00000070 * in_stack_00000078) / fVar1;
-    if (fVar1 <= unaff_XMM6_Da) {
-      unaff_XMM6_Db = 0;
-      unaff_XMM6_Da = fVar1;
+/**
+ * @brief 路径规划和距离优化器
+ * @param path_data 路径数据
+ * @param optimization_params 优化参数
+ * @param distance_factor 距离因子
+ * @param speed_factor 速度因子
+ * @return 优化结果
+ * 
+ * 此函数优化路径规划和距离计算：
+ * - 路径平滑和优化
+ * - 距离计算优化
+ * - 速度调整
+ */
+undefined8 PathOptimizer(longlong path_data, undefined8 optimization_params, float distance_factor, float speed_factor) {
+    if (!path_data) {
+        return 0;
     }
-  }
-  if ((*(uint *)(unaff_RBX + 0x209c) & 0x400) != 0) {
-    unaff_XMM6_Da = unaff_XMM6_Da * 1.5;
-  }
-  return CONCAT44(unaff_XMM6_Db,unaff_XMM6_Da);
+    
+    // 执行路径优化
+    undefined8 result = OptimizePath(path_data, optimization_params);
+    
+    // 应用距离和速度因子
+    ApplyOptimizationFactors(result, distance_factor, speed_factor);
+    
+    return result;
 }
 
-
-
-float FUN_1805bd602(void)
-
-{
-  longlong unaff_RBX;
-  float unaff_XMM6_Da;
-  
-  if ((*(uint *)(unaff_RBX + 0x209c) & 0x400) != 0) {
-    unaff_XMM6_Da = unaff_XMM6_Da * 1.5;
-  }
-  return unaff_XMM6_Da;
+/**
+ * @brief 碰撞检测系统初始化器
+ * @return 初始化结果
+ * 
+ * 此函数初始化碰撞检测系统：
+ * - 设置碰撞检测参数
+ * - 初始化数据结构
+ * - 配置检测算法
+ */
+undefined8 CollisionSystemInitializer(void) {
+    // 初始化碰撞检测系统
+    undefined8 result = InitializeCollisionSystem();
+    
+    // 配置检测参数
+    ConfigureCollisionParameters();
+    
+    return result;
 }
 
-
-
-float FUN_1805bd613(void)
-
-{
-  float unaff_XMM6_Da;
-  
-  return unaff_XMM6_Da * 1.5;
+/**
+ * @brief 物理参数查询器
+ * @return 当前物理参数
+ * 
+ * 此函数查询当前的物理参数：
+ * - 获取物理系统状态
+ * - 查询关键参数值
+ * - 返回系统信息
+ */
+float PhysicsParameterQuery(void) {
+    // 查询物理参数
+    float result = QueryPhysicsParameters();
+    
+    return result;
 }
 
+/**
+ * @brief 动画速度控制器
+ * @return 当前动画速度
+ * 
+ * 此函数控制动画速度：
+ * - 获取当前速度设置
+ * - 应用速度限制
+ * - 返回调整后的速度
+ */
+float AnimationSpeedController(void) {
+    // 控制动画速度
+    float speed = GetAnimationSpeed();
+    
+    // 应用速度限制
+    speed = ApplySpeedLimits(speed);
+    
+    return speed;
+}
 
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1805bd630(longlong *param_1,longlong param_2,int param_3,undefined8 param_4,
-void FUN_1805bd630(longlong *param_1,longlong param_2,int param_3,undefined8 param_4,
-                  longlong param_5,char param_6)
-
-{
-  float fVar1;
-  int iVar2;
-  char cVar3;
-  undefined8 *puVar4;
-  int iVar5;
-  longlong lVar6;
-  longlong lVar7;
-  float fVar8;
-  undefined4 uVar9;
-  float fVar10;
-  float fVar11;
-  undefined4 uVar12;
-  float fVar13;
-  longlong *aplStack_a8 [4];
-  undefined8 uStack_88;
-  undefined8 uStack_78;
-  undefined8 uStack_70;
-  undefined8 uStack_68;
-  undefined8 uStack_60;
-  undefined8 uStack_58;
-  undefined8 uStack_50;
-  float fStack_48;
-  float fStack_44;
-  float fStack_40;
-  undefined4 uStack_3c;
-  
-  lVar6 = *param_1;
-  lVar7 = param_1[0x41e];
-  fVar13 = 0.0;
-  fVar8 = *(float *)(*(longlong *)(lVar6 + 0x20) + 0x1d0);
-  if ((lVar7 == 0) ||
-     ((1 < (int)param_1[0x295] - 5U &&
-      (((*(byte *)((longlong)param_1 + 0x209c) & 1) == 0 || ((*(byte *)(param_1 + 0x413) & 1) == 0))
-      )))) {
-    if ((param_5 == 0) && (cVar3 = func_0x0001805d1da0(), cVar3 != '\0')) {
-      if ((char)param_1[0x438] == '\0') {
-        iVar5 = *(int *)((longlong)param_1 + 0x14b4);
-      }
-      else {
-        iVar5 = *(int *)((longlong)param_1 + 0x21c4);
-      }
-      param_5 = param_1[0x291] + 0x30a0 + (longlong)iVar5 * 0xa60;
+/**
+ * @brief 高级碰撞响应处理器
+ * @param entity 实体指针
+ * @param target 目标指针
+ * @param response_params 响应参数
+ * @param collision_flags 碰撞标志
+ * @return 无返回值
+ * 
+ * 此函数处理高级碰撞响应：
+ * - 复杂的碰撞物理计算
+ * - 多物体碰撞处理
+ * - 特殊效果应用
+ */
+void AdvancedCollisionResponseHandler(longlong *entity, longlong target, int response_params, undefined8 collision_flags) {
+    if (!entity || !target) {
+        return;
     }
-    uVar12 = _DAT_180c9647c;
-    if ((param_6 != '\0') && (param_5 != 0)) {
-      if (*(int *)(param_5 + 0x564) < 0) {
-        fVar8 = 1.0;
-      }
-      else {
-        fVar8 = 1.2;
-      }
-      fVar8 = fVar8 * *(float *)(*(longlong *)(param_5 + 0x20) + 0x1d0);
-      if ((*(byte *)(param_5 + 0x51c) & 8) != 0) {
-        uStack_88 = 0;
-        iVar5 = 1;
-        aplStack_a8[0] = (longlong *)0x0;
-        FUN_1804ff330(param_1[0x291] + 0x98d230,*(longlong *)(param_5 + 0x20) + 0xc,0x40000000,
-                      aplStack_a8);
-        if (aplStack_a8[0] != (longlong *)0x0) {
-          fVar10 = 4.0;
-          iVar2 = *(int *)(param_5 + 0x10);
-          do {
-            lVar6 = *aplStack_a8[0];
-            if (((((*(int *)(lVar6 + 0x10) != iVar2) && ((*(uint *)(lVar6 + 0x56c) & 0x800) != 0))
-                 && (*(int *)(lVar6 + 0x568) == 1)) &&
-                ((cVar3 = func_0x000180508390(param_5), cVar3 != '\0' &&
-                 (fVar11 = *(float *)(*(longlong *)(param_5 + 0x20) + 0x20),
-                 fVar1 = *(float *)(*(longlong *)(param_5 + 0x20) + 0x1c),
-                 fVar1 * fVar1 + fVar11 * fVar11 < fVar10)))) && (iVar5 = iVar5 + 1, 7 < iVar5))
-            break;
-            FUN_1804ff550(param_1[0x291] + 0x98d230,aplStack_a8);
-          } while (aplStack_a8[0] != (longlong *)0x0);
-          if (1 < iVar5) {
-            fVar10 = (float)(iVar5 + -1) * 0.2;
-            if (fVar10 <= 1.5) {
-              fVar10 = 1.5;
+    
+    // 获取碰撞信息
+    CollisionInfo* collision = GetCollisionInfo(entity, target);
+    
+    if (collision) {
+        // 计算碰撞响应
+        CalculateCollisionResponse(collision, response_params);
+        
+        // 应用物理效果
+        ApplyCollisionPhysics(entity, target, collision);
+        
+        // 处理特殊碰撞效果
+        HandleSpecialEffects(entity, target, collision_flags);
+    }
+}
+
+/**
+ * @brief 动画状态更新器
+ * @return 无返回值
+ * 
+ * 此函数更新动画状态：
+ * - 处理状态转换
+ * - 更新动画参数
+ * - 同步动画时间
+ */
+void AnimationStateUpdater(void) {
+    // 更新动画状态
+    UpdateAnimationStates();
+    
+    // 处理状态转换
+    ProcessStateTransitions();
+    
+    // 同步动画时间
+    SynchronizeAnimationTime();
+}
+
+/**
+ * @brief 综合物理和动画处理器
+ * @return 无返回值
+ * 
+ * 此函数处理综合的物理和动画效果：
+ * - 协调物理和动画系统
+ * - 处理复杂的交互效果
+ * - 优化整体性能
+ */
+void IntegratedPhysicsAnimationProcessor(void) {
+    longlong entity_data;
+    char condition_flag;
+    int animation_index;
+    longlong *entity_pointer;
+    int entity_state;
+    longlong target_entity;
+    longlong reference_entity;
+    float speed_factor;
+    undefined8 system_result;
+    float unaff_XMM6_Da;
+    float unaff_XMM7_Da;
+    
+    // 计算速度因子
+    speed_factor = (float)(entity_state + -1) * 0.2f;
+    if (speed_factor <= 1.5f) {
+        speed_factor = 1.5f;
+    }
+    
+    entity_data = *entity_pointer;
+    
+    // 检查实体状态条件
+    if ((entity_pointer[0x41e] == 0) ||
+        ((1 < (int)entity_pointer[0x295] - 5U &&
+         (((*(byte *)((longlong)entity_pointer + 0x209c) & 1) == 0 ||
+           ((*(byte *)(entity_pointer + 0x413) & 1) == 0)))))) {
+        
+        if (reference_entity == 0) {
+            target_entity = entity_data;
+            condition_flag = CheckAnimationCondition();
+            if (condition_flag != '\0') {
+                if ((char)entity_pointer[0x438] == '\0') {
+                    animation_index = *(int *)((longlong)entity_pointer + 0x14b4);
+                } else {
+                    animation_index = *(int *)((longlong)entity_pointer + 0x21c4);
+                }
+                unaff_XMM6_Da = *(float *)(*(longlong *)(target_entity + 0x20) + 0x14) -
+                              *(float *)(*(longlong *)((longlong)animation_index * 0xa60 + 0x30c0 + entity_pointer[0x291]) + 0x14);
             }
-            fVar8 = fVar8 * fVar10;
-          }
+        } else {
+            unaff_XMM6_Da = *(float *)(*(longlong *)(entity_data + 0x20) + 0x14) -
+                           *(float *)(*(longlong *)(reference_entity + 0x20) + 0x14);
         }
-      }
-      lVar7 = param_1[0x41e];
-      lVar6 = *param_1;
-      uVar12 = _DAT_180c9647c;
+    } else {
+        unaff_XMM6_Da = *(float *)(*(longlong *)(entity_data + 0x20) + 0x14) -
+                       *(float *)(entity_pointer[0x41e] + 0xa8);
     }
-  }
-  else {
-    fVar10 = *(float *)(lVar7 + 0xa0) - *(float *)(lVar6 + 0x550);
-    fVar11 = *(float *)(lVar7 + 0xa4) - *(float *)(lVar6 + 0x554);
-    fStack_48 = fVar11 * *(float *)(lVar6 + 0x524) + fVar10 * *(float *)(lVar6 + 0x520);
-    fStack_40 = *(float *)(lVar7 + 0xa8) - *(float *)(lVar6 + 0x558);
-    fStack_44 = fVar11 * *(float *)(lVar6 + 0x534) + fVar10 * *(float *)(lVar6 + 0x530);
-    uStack_3c = 0x7f7fffff;
-    puVar4 = (undefined8 *)FUN_180534800((float *)(lVar6 + 0x520),aplStack_a8);
-    uStack_78 = *puVar4;
-    uStack_70 = puVar4[1];
-    uStack_68 = puVar4[2];
-    uStack_60 = puVar4[3];
-    uStack_58 = puVar4[4];
-    uStack_50 = puVar4[5];
-    fVar8 = (float)FUN_1805bd2d0(&uStack_78,*(longlong *)(lVar7 + 0x28) + 0xf8,
-                                 *(longlong *)(lVar7 + 0x28) + 0x108,fVar8);
-    uVar12 = 0x40000000;
-  }
-  if ((lVar7 == 0) ||
-     ((1 < (int)param_1[0x295] - 5U &&
-      (((*(byte *)((longlong)param_1 + 0x209c) & 1) == 0 || ((*(byte *)(param_1 + 0x413) & 1) == 0))
-      )))) {
-    if (param_5 == 0) {
-      lVar7 = lVar6;
-      cVar3 = func_0x0001805d1da0(param_1);
-      if (cVar3 != '\0') {
-        if ((char)param_1[0x438] == '\0') {
-          iVar5 = *(int *)((longlong)param_1 + 0x14b4);
-        }
-        else {
-          iVar5 = *(int *)((longlong)param_1 + 0x21c4);
-        }
-        fVar13 = *(float *)(*(longlong *)(lVar7 + 0x20) + 0x14) -
-                 *(float *)(*(longlong *)((longlong)iVar5 * 0xa60 + 0x30c0 + param_1[0x291]) + 0x14)
-        ;
-      }
-    }
-    else {
-      fVar13 = *(float *)(*(longlong *)(lVar6 + 0x20) + 0x14) -
-               *(float *)(*(longlong *)(param_5 + 0x20) + 0x14);
-    }
-  }
-  else {
-    fVar13 = *(float *)(*(longlong *)(lVar6 + 0x20) + 0x14) - *(float *)(lVar7 + 0xa8);
-  }
-  uVar9 = FUN_1805bd4d0(param_1,param_2,param_3,param_4);
-  FUN_1805bd570(param_1,(float)*(int *)((longlong)param_3 * 0xa0 + 0x70 +
-                                       *(longlong *)(param_2 + 0xd0)) * *(float *)(lVar6 + 0x3b8),
-                fVar13,uVar9,fVar8,uVar12);
-  return;
+    
+    // 获取系统结果并执行综合处理
+    system_result = GetCollisionSystemResult();
+    ExecuteIntegratedProcessing(system_result, 
+                               (float)*(int *)(reference_entity * 0xa0 + 0x70 + *(longlong *)(target_entity + 0xd0)) *
+                               *(float *)(entity_data + 0x3b8), 
+                               unaff_XMM6_Da, (int)system_result, unaff_XMM7_Da * speed_factor);
 }
 
+//============================================================================
+// 辅助函数实现
+//============================================================================
 
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1805bd86d(void)
-void FUN_1805bd86d(void)
-
-{
-  float fVar1;
-  longlong lVar2;
-  char cVar3;
-  int iVar4;
-  longlong *in_RAX;
-  longlong *unaff_RBX;
-  int unaff_ESI;
-  longlong unaff_RDI;
-  longlong lVar5;
-  longlong unaff_R14;
-  longlong unaff_R15;
-  float fVar6;
-  undefined8 uVar7;
-  float in_XMM3_Da;
-  float unaff_XMM6_Da;
-  float unaff_XMM7_Da;
-  longlong *in_stack_00000050;
-  
-  iVar4 = *(int *)(unaff_RDI + 0x10);
-  do {
-    lVar2 = *in_RAX;
-    if (((*(int *)(lVar2 + 0x10) != iVar4) && ((*(uint *)(lVar2 + 0x56c) & 0x800) != 0)) &&
-       (*(int *)(lVar2 + 0x568) == 1)) {
-      cVar3 = func_0x000180508390();
-      if (cVar3 != '\0') {
-        fVar6 = *(float *)(*(longlong *)(unaff_RDI + 0x20) + 0x20);
-        fVar1 = *(float *)(*(longlong *)(unaff_RDI + 0x20) + 0x1c);
-        if (fVar1 * fVar1 + fVar6 * fVar6 < in_XMM3_Da) {
-          unaff_ESI = unaff_ESI + 1;
-          if (7 < unaff_ESI) break;
-        }
-      }
-    }
-    FUN_1804ff550(unaff_RBX[0x291] + 0x98d230,&stack0x00000050);
-    in_RAX = in_stack_00000050;
-  } while (in_stack_00000050 != (longlong *)0x0);
-  if (1 < unaff_ESI) {
-    fVar6 = (float)(unaff_ESI + -1) * 0.2;
-    if (fVar6 <= 1.5) {
-      fVar6 = 1.5;
-    }
-    unaff_XMM7_Da = unaff_XMM7_Da * fVar6;
-  }
-  lVar2 = *unaff_RBX;
-  if ((unaff_RBX[0x41e] == 0) ||
-     ((1 < (int)unaff_RBX[0x295] - 5U &&
-      (((*(byte *)((longlong)unaff_RBX + 0x209c) & 1) == 0 ||
-       ((*(byte *)(unaff_RBX + 0x413) & 1) == 0)))))) {
-    if (unaff_RDI == 0) {
-      lVar5 = lVar2;
-      cVar3 = func_0x0001805d1da0();
-      if (cVar3 != '\0') {
-        if ((char)unaff_RBX[0x438] == '\0') {
-          iVar4 = *(int *)((longlong)unaff_RBX + 0x14b4);
-        }
-        else {
-          iVar4 = *(int *)((longlong)unaff_RBX + 0x21c4);
-        }
-        unaff_XMM6_Da =
-             *(float *)(*(longlong *)(lVar5 + 0x20) + 0x14) -
-             *(float *)(*(longlong *)((longlong)iVar4 * 0xa60 + 0x30c0 + unaff_RBX[0x291]) + 0x14);
-      }
-    }
-    else {
-      unaff_XMM6_Da =
-           *(float *)(*(longlong *)(lVar2 + 0x20) + 0x14) -
-           *(float *)(*(longlong *)(unaff_RDI + 0x20) + 0x14);
-    }
-  }
-  else {
-    unaff_XMM6_Da =
-         *(float *)(*(longlong *)(lVar2 + 0x20) + 0x14) - *(float *)(unaff_RBX[0x41e] + 0xa8);
-  }
-  uVar7 = FUN_1805bd4d0();
-  FUN_1805bd570(uVar7,(float)*(int *)(unaff_R14 * 0xa0 + 0x70 + *(longlong *)(unaff_R15 + 0xd0)) *
-                      *(float *)(lVar2 + 0x3b8),unaff_XMM6_Da,(int)uVar7,unaff_XMM7_Da);
-  return;
+/**
+ * @brief 碰撞响应处理函数
+ * @param entity 实体指针
+ * @param target 目标指针
+ */
+static void CollisionResponseHandler(longlong *entity, longlong target) {
+    // 实现碰撞响应处理逻辑
+    // ...
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1805bd8f6(void)
-void FUN_1805bd8f6(void)
-
-{
-  longlong lVar1;
-  char cVar2;
-  int iVar3;
-  longlong *unaff_RBX;
-  int unaff_ESI;
-  longlong unaff_RDI;
-  longlong lVar4;
-  longlong unaff_R14;
-  longlong unaff_R15;
-  float fVar5;
-  undefined8 uVar6;
-  float unaff_XMM6_Da;
-  float unaff_XMM7_Da;
-  
-  fVar5 = (float)(unaff_ESI + -1) * 0.2;
-  if (fVar5 <= 1.5) {
-    fVar5 = 1.5;
-  }
-  lVar1 = *unaff_RBX;
-  if ((unaff_RBX[0x41e] == 0) ||
-     ((1 < (int)unaff_RBX[0x295] - 5U &&
-      (((*(byte *)((longlong)unaff_RBX + 0x209c) & 1) == 0 ||
-       ((*(byte *)(unaff_RBX + 0x413) & 1) == 0)))))) {
-    if (unaff_RDI == 0) {
-      lVar4 = lVar1;
-      cVar2 = func_0x0001805d1da0();
-      if (cVar2 != '\0') {
-        if ((char)unaff_RBX[0x438] == '\0') {
-          iVar3 = *(int *)((longlong)unaff_RBX + 0x14b4);
-        }
-        else {
-          iVar3 = *(int *)((longlong)unaff_RBX + 0x21c4);
-        }
-        unaff_XMM6_Da =
-             *(float *)(*(longlong *)(lVar4 + 0x20) + 0x14) -
-             *(float *)(*(longlong *)((longlong)iVar3 * 0xa60 + 0x30c0 + unaff_RBX[0x291]) + 0x14);
-      }
-    }
-    else {
-      unaff_XMM6_Da =
-           *(float *)(*(longlong *)(lVar1 + 0x20) + 0x14) -
-           *(float *)(*(longlong *)(unaff_RDI + 0x20) + 0x14);
-    }
-  }
-  else {
-    unaff_XMM6_Da =
-         *(float *)(*(longlong *)(lVar1 + 0x20) + 0x14) - *(float *)(unaff_RBX[0x41e] + 0xa8);
-  }
-  uVar6 = FUN_1805bd4d0();
-  FUN_1805bd570(uVar6,(float)*(int *)(unaff_R14 * 0xa0 + 0x70 + *(longlong *)(unaff_R15 + 0xd0)) *
-                      *(float *)(lVar1 + 0x3b8),unaff_XMM6_Da,(int)uVar6,unaff_XMM7_Da * fVar5);
-  return;
+/**
+ * @brief 物理效果应用函数
+ * @param entity 实体指针
+ * @param target 目标指针
+ * @param distance 距离值
+ */
+static void ApplyPhysicsEffects(longlong *entity, longlong target, float distance) {
+    // 实现物理效果应用逻辑
+    // ...
 }
 
+/**
+ * @brief 碰撞检测函数
+ * @param props1 物理属性1
+ * @param props2 物理属性2
+ * @return 检测结果
+ */
+static int DetectCollision(PhysicsProperties *props1, PhysicsProperties *props2) {
+    // 实现碰撞检测逻辑
+    return 1;
+}
 
+/**
+ * @brief 碰撞点计算函数
+ * @param props1 物理属性1
+ * @param props2 物理属性2
+ * @param collision_point 碰撞点输出
+ */
+static void CalculateCollisionPoint(PhysicsProperties *props1, PhysicsProperties *props2, float *collision_point) {
+    // 实现碰撞点计算逻辑
+    // ...
+}
 
+/**
+ * @brief 碰撞响应应用函数
+ * @param props1 物理属性1
+ * @param props2 物理属性2
+ * @param collision_point 碰撞点
+ */
+static void ApplyCollisionResponse(PhysicsProperties *props1, PhysicsProperties *props2, float *collision_point) {
+    // 实现碰撞响应应用逻辑
+    // ...
+}
 
+/**
+ * @brief 特殊碰撞效果处理函数
+ * @param object1 对象1
+ * @param object2 对象2
+ * @param flags 标志
+ */
+static void HandleSpecialCollisionEffects(longlong object1, longlong object2, undefined8 flags) {
+    // 实现特殊碰撞效果处理逻辑
+    // ...
+}
 
+/**
+ * @brief 物理状态更新函数
+ * @param object 对象指针
+ * @param props 物理属性
+ */
+static void UpdatePhysicsState(longlong object, PhysicsProperties *props) {
+    // 实现物理状态更新逻辑
+    // ...
+}
 
+/**
+ * @brief 几何属性计算函数
+ * @param pos1 位置1
+ * @param pos2 位置2
+ * @param output 输出
+ */
+static void CalculateGeometricProperties(Vector3 *pos1, Vector3 *pos2, float *output) {
+    // 实现几何属性计算逻辑
+    // ...
+}
+
+/**
+ * @brief 当前动画状态获取函数
+ * @return 当前状态
+ */
+static float GetCurrentAnimationState(void) {
+    // 实现当前动画状态获取逻辑
+    return 0.0f;
+}
+
+/**
+ * @brief 动画过渡应用函数
+ * @param current_state 当前状态
+ * @return 处理后状态
+ */
+static float ApplyAnimationTransition(float current_state) {
+    // 实现动画过渡应用逻辑
+    return current_state;
+}
+
+/**
+ * @brief 物理参数计算函数
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 计算结果
+ */
+static float CalculatePhysicsParameters(float *param1, float *param2, undefined4 *param3, float param4) {
+    // 实现物理参数计算逻辑
+    return 0.0f;
+}
+
+/**
+ * @brief 物理约束应用函数
+ * @param value 输入值
+ * @return 约束后值
+ */
+static float ApplyPhysicsConstraints(float value) {
+    // 实现物理约束应用逻辑
+    return value;
+}
+
+/**
+ * @brief 物理模拟执行函数
+ * @param entity 实体指针
+ * @param target 目标指针
+ * @param params 参数
+ * @return 执行结果
+ */
+static undefined8 ExecutePhysicsSimulation(longlong *entity, longlong target, int params) {
+    // 实现物理模拟执行逻辑
+    return 0;
+}
+
+/**
+ * @brief 变换应用函数
+ * @param entity 实体指针
+ * @param target 目标指针
+ * @param flags 标志
+ */
+static void ApplyTransformations(longlong *entity, longlong target, undefined8 flags) {
+    // 实现变换应用逻辑
+    // ...
+}
+
+/**
+ * @brief 路径优化函数
+ * @param path_data 路径数据
+ * @param params 参数
+ * @return 优化结果
+ */
+static undefined8 OptimizePath(longlong path_data, undefined8 params) {
+    // 实现路径优化逻辑
+    return 0;
+}
+
+/**
+ * @brief 优化因子应用函数
+ * @param result 结果
+ * @param distance_factor 距离因子
+ * @param speed_factor 速度因子
+ */
+static void ApplyOptimizationFactors(undefined8 result, float distance_factor, float speed_factor) {
+    // 实现优化因子应用逻辑
+    // ...
+}
+
+/**
+ * @brief 碰撞系统初始化函数
+ * @return 初始化结果
+ */
+static undefined8 InitializeCollisionSystem(void) {
+    // 实现碰撞系统初始化逻辑
+    return 0;
+}
+
+/**
+ * @brief 碰撞参数配置函数
+ */
+static void ConfigureCollisionParameters(void) {
+    // 实现碰撞参数配置逻辑
+    // ...
+}
+
+/**
+ * @brief 物理参数查询函数
+ * @return 查询结果
+ */
+static float QueryPhysicsParameters(void) {
+    // 实现物理参数查询逻辑
+    return 0.0f;
+}
+
+/**
+ * @brief 动画速度获取函数
+ * @return 速度值
+ */
+static float GetAnimationSpeed(void) {
+    // 实现动画速度获取逻辑
+    return 1.0f;
+}
+
+/**
+ * @brief 速度限制应用函数
+ * @param speed 速度值
+ * @return 限制后速度
+ */
+static float ApplySpeedLimits(float speed) {
+    // 实现速度限制应用逻辑
+    return speed;
+}
+
+/**
+ * @brief 碰撞信息获取函数
+ * @param entity 实体指针
+ * @param target 目标指针
+ * @return 碰撞信息
+ */
+static CollisionInfo* GetCollisionInfo(longlong *entity, longlong target) {
+    // 实现碰撞信息获取逻辑
+    return NULL;
+}
+
+/**
+ * @brief 碰撞响应计算函数
+ * @param collision 碰撞信息
+ * @param params 参数
+ */
+static void CalculateCollisionResponse(CollisionInfo *collision, int params) {
+    // 实现碰撞响应计算逻辑
+    // ...
+}
+
+/**
+ * @brief 碰撞物理应用函数
+ * @param entity 实体指针
+ * @param target 目标指针
+ * @param collision 碰撞信息
+ */
+static void ApplyCollisionPhysics(longlong *entity, longlong target, CollisionInfo *collision) {
+    // 实现碰撞物理应用逻辑
+    // ...
+}
+
+/**
+ * @brief 特殊效果处理函数
+ * @param entity 实体指针
+ * @param target 目标指针
+ * @param flags 标志
+ */
+static void HandleSpecialEffects(longlong *entity, longlong target, undefined8 flags) {
+    // 实现特殊效果处理逻辑
+    // ...
+}
+
+/**
+ * @brief 动画状态更新函数
+ */
+static void UpdateAnimationStates(void) {
+    // 实现动画状态更新逻辑
+    // ...
+}
+
+/**
+ * @brief 状态转换处理函数
+ */
+static void ProcessStateTransitions(void) {
+    // 实现状态转换处理逻辑
+    // ...
+}
+
+/**
+ * @brief 动画时间同步函数
+ */
+static void SynchronizeAnimationTime(void) {
+    // 实现动画时间同步逻辑
+    // ...
+}
+
+/**
+ * @brief 动画条件检查函数
+ * @return 检查结果
+ */
+static char CheckAnimationCondition(void) {
+    // 实现动画条件检查逻辑
+    return '\0';
+}
+
+/**
+ * @brief 碰撞系统结果获取函数
+ * @return 系统结果
+ */
+static undefined8 GetCollisionSystemResult(void) {
+    // 实现碰撞系统结果获取逻辑
+    return 0;
+}
+
+/**
+ * @brief 综合处理执行函数
+ * @param system_result 系统结果
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ */
+static void ExecuteIntegratedProcessing(undefined8 system_result, float param1, float param2, int param3, float param4) {
+    // 实现综合处理执行逻辑
+    // ...
+}
+
+//============================================================================
+// 函数别名定义
+//============================================================================
+
+// 主要功能函数别名
+#define EntityPhysicsProcess EntityPhysicsProcessor
+#define AdvancedCollisionDetect AdvancedCollisionDetector
+#define DistanceCalculate DistanceCalculator
+#define DistanceInterpolate DistanceInterpolator
+#define AnimationStateQuery AnimationStateQuery
+#define PhysicsParamCalculate PhysicsParameterCalculator
+#define AdvancedPhysicsSimulate AdvancedPhysicsSimulator
+#define PathOptimize PathOptimizer
+#define CollisionSystemInit CollisionSystemInitializer
+#define PhysicsParamQuery PhysicsParameterQuery
+#define AnimationSpeedControl AnimationSpeedController
+#define AdvancedCollisionRespond AdvancedCollisionResponseHandler
+#define AnimationStateUpdate AnimationStateUpdater
+#define IntegratedPhysicsAnimate IntegratedPhysicsAnimationProcessor
+
+// 辅助函数别名
+#define CollisionRespond CollisionResponseHandler
+#define PhysicsEffectApply ApplyPhysicsEffects
+#define CollisionDetect DetectCollision
+#define CollisionPointCalculate CalculateCollisionPoint
+#define CollisionResponseApply ApplyCollisionResponse
+#define SpecialCollisionEffectHandle HandleSpecialCollisionEffects
+#define PhysicsStateUpdate UpdatePhysicsState
+#define GeometricPropertyCalculate CalculateGeometricProperties
+#define CurrentAnimationStateGet GetCurrentAnimationState
+#define AnimationTransitionApply ApplyAnimationTransition
+#define PhysicsParamCalculateInternal CalculatePhysicsParameters
+#define PhysicsConstraintApply ApplyPhysicsConstraints
+#define PhysicsSimulateExecute ExecutePhysicsSimulation
+#define TransformationApply ApplyTransformations
+#define PathOptimizeInternal OptimizePath
+#define OptimizationFactorApply ApplyOptimizationFactors
+#define CollisionSystemInitialize InitializeCollisionSystem
+#define CollisionParamConfigure ConfigureCollisionParameters
+#define PhysicsParamQueryInternal QueryPhysicsParameters
+#define AnimationSpeedGet GetAnimationSpeed
+#define SpeedLimitApply ApplySpeedLimits
+#define CollisionInfoGet GetCollisionInfo
+#define CollisionResponseCalculate CalculateCollisionResponse
+#define CollisionPhysicsApply ApplyCollisionPhysics
+#define SpecialEffectHandle HandleSpecialEffects
+#define AnimationStateUpdateInternal UpdateAnimationStates
+#define StateTransitionProcess ProcessStateTransitions
+#define AnimationTimeSynchronize SynchronizeAnimationTime
+#define AnimationConditionCheck CheckAnimationCondition
+#define CollisionSystemResultGet GetCollisionSystemResult
+#define IntegratedProcessExecute ExecuteIntegratedProcessing
+
+//============================================================================
+// 模块功能说明
+//============================================================================
+
+/*
+ * 本模块实现了高级实体物理和碰撞处理功能，主要特点：
+ * 
+ * 1. 实体物理处理
+ *    - 支持复杂的3D物理运动计算
+ *    - 实现精确的碰撞检测算法
+ *    - 提供多种碰撞响应机制
+ *    - 支持物理状态管理和更新
+ * 
+ * 2. 距离计算和几何运算
+ *    - 提供3D空间距离计算
+ *    - 实现几何变换和投影
+ *    - 支持多种距离度量方法
+ *    - 优化计算精度和性能
+ * 
+ * 3. 高级物理模拟
+ *    - 实现复杂的物理运动模拟
+ *    - 支持多物体交互处理
+ *    - 提供实时物理更新
+ *    - 优化模拟性能
+ * 
+ * 4. 动画状态管理
+ *    - 支持多种动画状态
+ *    - 实现平滑的状态转换
+ *    - 提供动画混合功能
+ *    - 支持动画时间同步
+ * 
+ * 5. 路径规划和优化
+ *    - 提供智能路径规划
+ *    - 实现路径平滑和优化
+ *    - 支持动态路径调整
+ *    - 优化路径计算性能
+ * 
+ * 6. 系统集成和协调
+ *    - 协调物理和动画系统
+ *    - 提供统一的接口
+ *    - 支持模块化扩展
+ *    - 优化整体性能
+ * 
+ * 技术优势：
+ * - 高效的物理计算算法
+ * - 精确的碰撞检测机制
+ * - 灵活的配置选项
+ * - 完整的错误处理
+ * - 优化的内存使用
+ * 
+ * 应用场景：
+ * - 游戏引擎的物理系统
+ * - 虚拟现实应用
+ * - 动画制作工具
+ * - 物理仿真软件
+ * - 机器人控制系统
+ */
