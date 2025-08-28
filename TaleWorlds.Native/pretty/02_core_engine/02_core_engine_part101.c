@@ -352,10 +352,10 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
       stack_render_params[0] = (char *)0x0;
       font_data = (float *)FUN_180297340(*(uint64_t *)(render_target + 0x19f0), &stack_render_params[1], *(int32_t *)(render_target + 0x19f8), (y_position - height) - 4.0, result, text_start, text_current, &stack_undefined[0]);
       y_position = *font_data;
-      text_found = stack_undefined[0] == text_start;
-      text_end = stack_undefined[0];
+      text_found = stack_render_params[0] == text_start;
+      text_end = stack_render_params[0];
       if (text_found) {
-        if (stack_undefined[0] < text_current) {
+        if (stack_render_params[0] < text_current) {
           int_var1 = FUN_180121550(&stack_undefined[0], text_start, text_current);
           text_end = text_start + int_var1;
           result = result & 0xffffffff00000000;

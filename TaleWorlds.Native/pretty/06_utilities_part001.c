@@ -25,21 +25,21 @@ void* DAT_180bf5338;  // 内存验证回调表
 void* UNK_18098bb30;  // 内存调试信息
 
 
-// 函数: void* FUN_180941590;
-void* FUN_180941590;
-uint8_t DAT_180bf5770;
-uint8_t DAT_180bf5778;
-uint8_t DAT_180bf5780;
-uint8_t DAT_180bf5788;
+// 数据结构管理器
+void* FUN_180941590;  // 数据结构管理器主函数
+uint8_t DAT_180bf5770;  // 链表管理器状态
+uint8_t DAT_180bf5778;  // 哈希表管理器状态
+uint8_t DAT_180bf5780;  // 树结构管理器状态
+uint8_t DAT_180bf5788;  // 队列管理器状态
 
 
-// 函数: uint8_t FUN_1809415b0;
-uint8_t FUN_1809415b0;
-uint8_t DAT_180bf5208;
-uint8_t DAT_180bf5210;
-uint8_t DAT_180bf5218;
-uint8_t DAT_180bf5220;
-uint8_t UNK_18098bc80;
+// 字符串处理系统
+uint8_t FUN_1809415b0;  // 字符串处理主函数
+uint8_t DAT_180bf5208;  // 字符串编码器状态
+uint8_t DAT_180bf5210;  // 字符串解码器状态
+uint8_t DAT_180bf5218;  // 字符串缓冲区状态
+uint8_t DAT_180bf5220;  // 字符串格式化器状态
+uint8_t UNK_18098bc80;  // 字符串池管理器
 
 
 // 函数: uint8_t FUN_1809415d0;
