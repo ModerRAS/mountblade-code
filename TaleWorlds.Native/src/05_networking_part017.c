@@ -746,43 +746,31 @@ CONNECTION_FAILED:
   NetworkingSystem_SecurityCleaner(security_cookie ^ (unsigned long long)temp_buffer);
 }
 
-/**
- * 网络资源清理器 - 清理网络资源和连接状态
- * 
- * 功能：
- * - 释放网络连接资源
- * - 清理连接状态和数据
- * - 重置连接参数和配置
- * - 执行错误恢复和清理
- * - 管理资源释放顺序
- * 
- * @param connection_context 连接上下文指针
- * @return 清理状态码（0表示成功，非0表示错误）
- */
-void NetworkingSystem_ResourceCleaner(longlong connection_context)
+// 网络资源清理器 - 清理网络资源和连接状态
+void NetworkingSystem_ResourceCleaner(ConnectionContext connection_context)
 
 {
-  undefined8 temp_result_1;
-  undefined4 connection_flags;
-  undefined4 security_flags;
-  undefined4 protocol_flags;
-  undefined1 connection_type;
-  short connection_status;
-  int operation_result;
-  int validation_result;
-  int cleanup_result;
-  longlong network_context;
-  ulonglong buffer_size;
-  uint timeout_value;
-  undefined *protocol_handler;
-  longlong security_context;
-  longlong resource_manager;
-  longlong session_manager;
-  longlong auth_manager;
-  ulonglong resource_limit;
-  longlong *connection_pool;
-  undefined1 cleanup_buffer [40];
-  ulonglong security_cookie;
+  ConnectionHandle temp_result_1;
+  ConnectionFlags connection_flags;
+  SecurityFlags security_flags;
+  ProtocolFlags protocol_flags;
+  NetworkByte connection_type;
+  ConnectionStatus connection_status;
+  NetworkStatus operation_result;
+  NetworkStatus validation_result;
+  NetworkStatus cleanup_result;
+  NetworkContext network_context;
+  unsigned long long buffer_size;
+  unsigned int timeout_value;
+  ProtocolHandle protocol_handler;
+  SecurityContext security_context;
+  ResourceContext resource_manager;
+  SessionContext session_manager;
+  SecurityContext auth_manager;
+  unsigned long long resource_limit;
+  ConnectionHandle *connection_pool;
+  NetworkByte cleanup_buffer [NETWORK_BUFFER_SIZE];
+  unsigned long long security_cookie;
   
   // 初始化连接管理器
   resource_manager = connection_context + 0x38;
@@ -797,7 +785,7 @@ void NetworkingSystem_ResourceCleaner(longlong connection_context)
   resource_manager = connection_context + 0x1d8;
   *(int *)(connection_context + 0x238) = *(int *)(connection_context + 0x238) + 1;
   
-  temp_result_1 = *(undefined8 *)(network_context + 0x18);
+  temp_result_1 = *(ConnectionHandle *)(network_context + 0x18);
   security_context = 0;
   resource_manager = 0;
   
@@ -809,8 +797,8 @@ void NetworkingSystem_ResourceCleaner(longlong connection_context)
   connection_status = func_0x00018084c3d0();
   
   // 根据连接状态进行清理
-  if (connection_status == 0) {
-    if ((*(byte *)(network_context + 0xc4) & 1) != 0) {
+  if (connection_status == CONNECTION_TYPE_TCP) {
+    if ((*(NetworkByte *)(network_context + 0xc4) & NETWORK_FLAG_CONNECTED) != 0) {
       protocol_handler = &UNK_180984c90;
       goto CLEANUP_PROTOCOL_HANDLER;
     }
@@ -822,29 +810,29 @@ CLEANUP_PROTOCOL_COMPLETE:
     session_manager = connection_context + 0x170;
   }
   else {
-    if (connection_status == 1) {
+    if (connection_status == CONNECTION_TYPE_UDP) {
       protocol_handler = &UNK_180984ca0;
 CLEANUP_PROTOCOL_HANDLER:
-      operation_result = FUN_180738d90(temp_result_1, protocol_handler, &security_context);
+      operation_result = NetworkingSystem_ProtocolInitializer(temp_result_1, protocol_handler, &security_context);
 CLEANUP_PROTOCOL_SETUP:
       if (operation_result != 0) goto CLEANUP_PROTOCOL_ERROR;
     }
     else {
-      if (connection_status != 2) {
-        if (connection_status == 3) {
+      if (connection_status != CONNECTION_TYPE_SSL) {
+        if (connection_status == CONNECTION_TYPE_TLS) {
           protocol_handler = &UNK_180984cb0;
         }
         else {
-          if (connection_status != 4) goto CLEANUP_PROTOCOL_COMPLETE;
+          if (connection_status != CONNECTION_TYPE_CUSTOM) goto CLEANUP_PROTOCOL_COMPLETE;
           protocol_handler = &UNK_180984cc0;
         }
         goto CLEANUP_PROTOCOL_HANDLER;
       }
-      operation_result = FUN_180738d90(temp_result_1, &UNK_18095af38, &resource_manager);
+      operation_result = NetworkingSystem_ProtocolInitializer(temp_result_1, &UNK_18095af38, &resource_manager);
       if (operation_result == 0) {
-        operation_result = FUN_180739140(temp_result_1, 0x19, &resource_manager);
-        if ((operation_result != 0) || (operation_result = FUN_180740f10(resource_manager, 1), operation_result != 0)) goto CLEANUP_PROTOCOL_ERROR;
-        operation_result = FUN_18073c020(security_context, 0xfffffffd, resource_manager);
+        operation_result = NetworkingSystem_ConfigInitializer(temp_result_1, 0x19, &resource_manager);
+        if ((operation_result != 0) || (operation_result = NetworkingSystem_ConfigValidator(resource_manager, 1), operation_result != 0)) goto CLEANUP_PROTOCOL_ERROR;
+        operation_result = NetworkingSystem_ParameterSetter(security_context, 0xfffffffd, resource_manager);
         goto CLEANUP_PROTOCOL_SETUP;
       }
 CLEANUP_PROTOCOL_ERROR:
@@ -854,42 +842,42 @@ CLEANUP_PROTOCOL_ERROR:
     // 设置清理参数
     connection_pool[0xd] = resource_manager;
     connection_pool[0xf] = security_context;
-    operation_result = FUN_18073dc80(security_context, 0);
+    operation_result = NetworkingSystem_ConnectionConfigurator(security_context, 0);
     if (operation_result != 0) goto CLEANUP_PROTOCOL_COMPLETE;
     
     // 清理连接安全性
-    network_context = *(longlong *)(network_context + 0x68);
+    network_context = *(ConnectionContext *)(network_context + 0x68);
     if (network_context != 0) {
-      if (*(longlong *)(network_context + 8) != 0) goto CLEANUP_PROTOCOL_COMPLETE;
-      FUN_18088c9b0(network_context, connection_pool);
+      if (*(ConnectionContext *)(network_context + 8) != 0) goto CLEANUP_PROTOCOL_COMPLETE;
+      NetworkingSystem_SecurityConfigurator(network_context, connection_pool);
       connection_pool[9] = network_context;
     }
     
     // 释放网络资源
     if (connection_context == 0) {
-      network_context = *(longlong *)(network_context + 0x10) + 0x290;
+      network_context = *(ConnectionContext *)(network_context + 0x10) + 0x290;
     }
     else {
-      network_context = (**(code **)(*(longlong *)(connection_context + 8) + 0x30))(connection_context + 8);
+      network_context = (**(code **)(*(ConnectionContext *)(connection_context + 8) + 0x30))(connection_context + 8);
     }
-    operation_result = FUN_1808b89f0(network_context, connection_pool);
+    operation_result = NetworkingSystem_ResourceAllocator(network_context, connection_pool);
     if (operation_result != 0) goto CLEANUP_PROTOCOL_COMPLETE;
     
     // 清理会话资源
     network_context = (**(code **)*connection_pool)(connection_pool);
-    resource_limit = *(ulonglong *)(network_context + 0x38);
+    resource_limit = *(unsigned long long *)(network_context + 0x38);
     
     // 处理会话清理
     while (true) {
-      if ((resource_limit < *(ulonglong *)(network_context + 0x38)) ||
-         ((longlong)*(int *)(network_context + 0x40) * 0x10 + *(ulonglong *)(network_context + 0x38) <= resource_limit))
+      if ((resource_limit < *(unsigned long long *)(network_context + 0x38)) ||
+         ((ConnectionContext)*(int *)(network_context + 0x40) * 0x10 + *(unsigned long long *)(network_context + 0x38) <= resource_limit))
       goto SESSION_CLEANUP_COMPLETE;
       
       security_context = 0;
-      operation_result = FUN_1808bc240(*(undefined8 *)(network_context + 0x10), resource_limit, 0xffffffff, &cleanup_buffer);
+      operation_result = NetworkingSystem_BufferAllocator(*(ConnectionHandle *)(network_context + 0x10), resource_limit, NETWORK_TIMEOUT_INFINITE, &cleanup_buffer);
       if ((operation_result != 0) ||
          ((security_context != 0 &&
-          (operation_result = FUN_1808c2ec0(security_context, connection_pool, 1), operation_result != 0)))) break;
+          (operation_result = NetworkingSystem_SessionManager(security_context, connection_pool, 1), operation_result != 0)))) break;
       resource_limit = resource_limit + 0x10;
     }
     if (operation_result != 0) goto CLEANUP_PROTOCOL_COMPLETE;
@@ -897,15 +885,15 @@ CLEANUP_PROTOCOL_ERROR:
 SESSION_CLEANUP_COMPLETE:
     // 完成会话清理
     network_context = (**(code **)*connection_pool)();
-    temp_result_1 = *(undefined8 *)(network_context + 0x10);
-    connection_flags = *(undefined4 *)(network_context + 0x14);
-    protocol_flags = *(undefined4 *)(network_context + 0x18);
-    security_flags = *(undefined4 *)(network_context + 0x1c);
-    operation_result = FUN_180852d40(*(undefined8 *)(network_context + 0x8), &temp_result_1, connection_pool);
+    temp_result_1 = *(ConnectionHandle *)(network_context + 0x10);
+    connection_flags = *(ConnectionFlags *)(network_context + 0x14);
+    protocol_flags = *(ProtocolFlags *)(network_context + 0x18);
+    security_flags = *(SecurityFlags *)(network_context + 0x1c);
+    operation_result = NetworkingSystem_ConnectionBuilder(*(ConnectionHandle *)(network_context + 0x8), &temp_result_1, connection_pool);
     if ((((operation_result != 0) ||
-         (operation_result = FUN_1808c18c0(*(undefined8 *)(network_context + 0x10), connection_pool), operation_result != 0))
-        || (operation_result = FUN_18084e4b0(connection_pool), operation_result != 0)) ||
-       (operation_result = FUN_18084ead0(connection_pool, 0), network_context = connection_context, operation_result != 0))
+         (operation_result = NetworkingSystem_ConnectionValidator(*(ConnectionHandle *)(network_context + 0x10), connection_pool), operation_result != 0))
+        || (operation_result = NetworkingSystem_ConnectionActivator(connection_pool), operation_result != 0)) ||
+       (operation_result = NetworkingSystem_DataTransmitter(connection_pool, 0), network_context = connection_context, operation_result != 0))
     goto CLEANUP_PROTOCOL_COMPLETE;
     
     // 处理数据清理
@@ -914,56 +902,56 @@ SESSION_CLEANUP_COMPLETE:
     if ((operation_result != 0) || (cleanup_result != 0)) {
       connection_count = 0;
       temp_result_1 = 0;
-      validation_result = FUN_18073c380(connection_pool[0xf], 0xfffffffe, &temp_result_1);
+      validation_result = NetworkingSystem_DataAcquirer(connection_pool[0xf], 0xfffffffe, &temp_result_1);
       if (((validation_result == 0) &&
-          (validation_result = FUN_18073c5f0(connection_pool[0xf], temp_result_1, &connection_count), validation_result == 0)) &&
-         ((timeout_value = (int)*(uint *)((longlong)connection_pool + 0x8c) >> 0x1f,
-          operation_result <= (int)((*(uint *)((longlong)connection_pool + 0x8c) ^ timeout_value) - timeout_value) ||
-          (validation_result = FUN_180747f10(connection_pool + 0x10, operation_result), validation_result == 0)))) {
+          (validation_result = NetworkingSystem_DataProcessor(connection_pool[0xf], temp_result_1, &connection_count), validation_result == 0)) &&
+         ((timeout_value = (int)*(unsigned int *)((ConnectionContext)connection_pool + 0x8c) >> 0x1f,
+          operation_result <= (int)((*(unsigned int *)((ConnectionContext)connection_pool + 0x8c) ^ timeout_value) - timeout_value) ||
+          (validation_result = NetworkingSystem_ConnectionCounter(connection_pool + 0x10, operation_result), validation_result == 0)))) {
         buffer_size = 0;
         resource_limit = buffer_size;
         if (0 < operation_result) {
           do {
             security_context = 0;
-            network_context = *(longlong *)(network_context + 0xa0);
-            resource_manager = *(longlong *)(connection_context + 0x80);
-            network_context = *(longlong *)(*(longlong *)(connection_context + 0x38) + 0x10);
+            network_context = *(ConnectionContext *)(network_context + 0xa0);
+            resource_manager = *(ConnectionContext *)(connection_context + 0x80);
+            network_context = *(ConnectionContext *)(*(ConnectionContext *)(connection_context + 0x38) + 0x10);
             connection_type = (**(code **)(*connection_pool + 0x20))(connection_pool);
-            cleanup_result = FUN_1808b4570(network_context + 0x388, (longlong)(int)buffer_size * 0x10 + resource_manager,
-                                  connection_context, connection_type, *(undefined4 *)(network_context + resource_limit * 4));
+            cleanup_result = NetworkingSystem_MessageHandler(network_context + 0x388, (ConnectionContext)(int)buffer_size * 0x10 + resource_manager,
+                                  connection_context, connection_type, *(NetworkDword *)(network_context + resource_limit * 4));
             if (cleanup_result != 0) goto CLEANUP_PROTOCOL_COMPLETE;
-            FUN_180853260(connection_pool + 0x10, &security_context);
-            cleanup_result = FUN_18073c020(connection_pool[0xf], connection_count + 1, *(undefined8 *)(security_context + 0x30));
+            NetworkingSystem_MessageSender(connection_pool + 0x10, &security_context);
+            cleanup_result = NetworkingSystem_ParameterSetter(connection_pool[0xf], connection_count + 1, *(ConnectionHandle *)(security_context + 0x30));
             if (cleanup_result != 0) goto CLEANUP_PROTOCOL_COMPLETE;
-            buffer_size = (ulonglong)((int)buffer_size + 1);
+            buffer_size = (unsigned long long)((int)buffer_size + 1);
             resource_limit = resource_limit + 1;
             network_context = connection_context;
-          } while ((longlong)resource_limit < (longlong)operation_result);
+          } while ((ConnectionContext)resource_limit < (ConnectionContext)operation_result);
           cleanup_result = *(int *)(connection_context + 0x98);
         }
         
-        timeout_value = (int)*(uint *)((longlong)connection_pool + 0x9c) >> 0x1f;
-        if ((cleanup_result <= (int)((*(uint *)((longlong)connection_pool + 0x9c) ^ timeout_value) - timeout_value)) ||
-           (operation_result = FUN_180747f10(connection_pool + 0x12, cleanup_result), operation_result == 0)) {
+        timeout_value = (int)*(unsigned int *)((ConnectionContext)connection_pool + 0x9c) >> 0x1f;
+        if ((cleanup_result <= (int)((*(unsigned int *)((ConnectionContext)connection_pool + 0x9c) ^ timeout_value) - timeout_value)) ||
+           (operation_result = NetworkingSystem_ConnectionCounter(connection_pool + 0x12, cleanup_result), operation_result == 0)) {
           buffer_size = 0;
           resource_limit = buffer_size;
           if (0 < cleanup_result) {
             do {
-              network_context = *(longlong *)(network_context + 0xb0);
+              network_context = *(ConnectionContext *)(network_context + 0xb0);
               security_context = 0;
-              resource_manager = *(longlong *)(connection_context + 0x90);
-              network_context = *(longlong *)(*(longlong *)(connection_context + 0x38) + 0x10);
+              resource_manager = *(ConnectionContext *)(connection_context + 0x90);
+              network_context = *(ConnectionContext *)(*(ConnectionContext *)(connection_context + 0x38) + 0x10);
               connection_type = (**(code **)(*connection_pool + 0x20))(connection_pool);
-              operation_result = FUN_1808b4570(network_context + 0x388, (longlong)(int)buffer_size * 0x10 + resource_manager,
-                                    connection_context, connection_type, *(undefined4 *)(network_context + resource_limit * 4));
+              operation_result = NetworkingSystem_MessageHandler(network_context + 0x388, (ConnectionContext)(int)buffer_size * 0x10 + resource_manager,
+                                    connection_context, connection_type, *(NetworkDword *)(network_context + resource_limit * 4));
               if (operation_result != 0) goto CLEANUP_PROTOCOL_COMPLETE;
-              FUN_180853260(connection_pool + 0x12, &security_context);
-              operation_result = FUN_18073c020(connection_pool[0xf], connection_count, *(undefined8 *)(security_context + 0x30));
+              NetworkingSystem_MessageSender(connection_pool + 0x12, &security_context);
+              operation_result = NetworkingSystem_ParameterSetter(connection_pool[0xf], connection_count, *(ConnectionHandle *)(security_context + 0x30));
               if (operation_result != 0) goto CLEANUP_PROTOCOL_COMPLETE;
-              buffer_size = (ulonglong)((int)buffer_size + 1);
+              buffer_size = (unsigned long long)((int)buffer_size + 1);
               resource_limit = resource_limit + 1;
               network_context = connection_context;
-            } while ((longlong)resource_limit < (longlong)cleanup_result);
+            } while ((ConnectionContext)resource_limit < (ConnectionContext)cleanup_result);
           }
           resource_manager = connection_context + 0x1d8;
           network_context = connection_context + 0x38;
@@ -975,26 +963,26 @@ SESSION_CLEANUP_COMPLETE:
     
 CLEANUP_COMPLETE:
     // 完成清理操作
-    operation_result = FUN_18084e9e0(connection_pool);
+    operation_result = NetworkingSystem_ConnectionCompleter(connection_pool);
     if ((((operation_result != 0) ||
-         (operation_result = FUN_18084ead0(connection_pool,
-                                CONCAT31((uint3)(*(uint *)(connection_pool + 0x18) >> 9),
-                                         (char)(*(uint *)(connection_pool + 0x18) >> 1)) &
+         (operation_result = NetworkingSystem_DataTransmitter(connection_pool,
+                                CONCAT31((uint3)(*(unsigned int *)(connection_pool + 0x18) >> 9),
+                                         (NetworkByte)(*(unsigned int *)(connection_pool + 0x18) >> 1)) &
                                 0xffffff01), operation_result != 0)) && (operation_result != 0)) ||
-       (((operation_result = FUN_1808b2f30(connection_pool, 1), operation_result != 0 ||
-         (operation_result = FUN_1808b2f30(connection_pool, 0), operation_result != 0)) ||
-        ((operation_result = FUN_18084ec10(connection_pool), operation_result != 0 ||
-         (operation_result = FUN_18073dc80(connection_pool[0xf], 1), operation_result != 0)))))) goto CLEANUP_PROTOCOL_COMPLETE;
+       (((operation_result = NetworkingSystem_ConnectionManager(connection_pool, 1), operation_result != 0 ||
+         (operation_result = NetworkingSystem_ConnectionManager(connection_pool, 0), operation_result != 0)) ||
+        ((operation_result = NetworkingSystem_ConnectionCloser(connection_pool), operation_result != 0 ||
+         (operation_result = NetworkingSystem_ConnectionConfigurator(connection_pool[0xf], 1), operation_result != 0)))))) goto CLEANUP_PROTOCOL_COMPLETE;
     
     // 设置清理完成标志
     security_context = 0;
-    operation_result = 0x1c;
+    operation_result = NETWORK_ERROR_CONNECTION_FAILED;
     *(int *)(connection_pool + 0x1d) = (int)connection_pool[0x1d] + 1;
     if (*(int *)(network_context + 0x60) < 1) {
-      cleanup_result = 0x1c;
+      cleanup_result = NETWORK_ERROR_CONNECTION_FAILED;
     }
     else {
-      if ((*(int *)(network_context + 0x60) != 1) || (cleanup_result = FUN_1808501b0(network_context), cleanup_result == 0)) {
+      if ((*(int *)(network_context + 0x60) != 1) || (cleanup_result = NetworkingSystem_ResourceReleaser(network_context), cleanup_result == 0)) {
         *(int *)(network_context + 0x60) = *(int *)(network_context + 0x60) + -1;
         cleanup_result = 0;
       }
@@ -1012,10 +1000,10 @@ CLEANUP_COMPLETE:
     session_manager = connection_context + 0x170;
     if (cleanup_result == 0) {
       if (*(int *)(network_context + 0x60) < 1) {
-        cleanup_result = 0x1c;
+        cleanup_result = NETWORK_ERROR_CONNECTION_FAILED;
       }
       else {
-        if ((*(int *)(network_context + 0x60) != 1) || (cleanup_result = FUN_18084f7f0(network_context), cleanup_result == 0)) {
+        if ((*(int *)(network_context + 0x60) != 1) || (cleanup_result = NetworkingSystem_StateResetter(network_context), cleanup_result == 0)) {
           *(int *)(network_context + 0x60) = *(int *)(network_context + 0x60) + -1;
           cleanup_result = 0;
         }
@@ -1031,10 +1019,10 @@ CLEANUP_COMPLETE:
       session_manager = connection_context + 0x170;
       if (cleanup_result != 0) goto CLEANUP_ERROR;
       if (*(int *)(session_manager + 0x60) < 1) {
-        cleanup_result = 0x1c;
+        cleanup_result = NETWORK_ERROR_CONNECTION_FAILED;
       }
       else {
-        if ((*(int *)(session_manager + 0x60) != 1) || (cleanup_result = FUN_18084fcd0(session_manager), cleanup_result == 0)) {
+        if ((*(int *)(session_manager + 0x60) != 1) || (cleanup_result = NetworkingSystem_SessionCleaner(session_manager), cleanup_result == 0)) {
           *(int *)(session_manager + 0x60) = *(int *)(session_manager + 0x60) + -1;
           cleanup_result = 0;
         }
@@ -1051,7 +1039,7 @@ CLEANUP_COMPLETE:
       if (cleanup_result != 0) goto CLEANUP_ERROR;
       if (0 < *(int *)(resource_manager + 0x60)) {
         if ((*(int *)(resource_manager + 0x60) != 1) ||
-           (operation_result = FUN_180850690(resource_manager), operation_result == 0)) {
+           (operation_result = NetworkingSystem_ConnectionCleaner(resource_manager), operation_result == 0)) {
           *(int *)(resource_manager + 0x60) = *(int *)(resource_manager + 0x60) + -1;
           operation_result = 0;
         }
@@ -1065,7 +1053,7 @@ CLEANUP_COMPLETE:
         operation_result = 0;
       }
       if (operation_result == 0) {
-        cleanup_result = FUN_1808bd690(connection_context + 0x170);
+        cleanup_result = NetworkingSystem_Monitor(connection_context + 0x170);
         if (cleanup_result != 0) goto CLEANUP_ERROR;
         goto FINAL_CLEANUP;
       }
@@ -1074,7 +1062,7 @@ CLEANUP_COMPLETE:
 CLEANUP_ERROR:
       if (cleanup_result == 0) {
 FINAL_CLEANUP:
-        **(undefined8 **)(connection_context + 0x38) = connection_pool;
+        **(ConnectionHandle **)(connection_context + 0x38) = connection_pool;
         goto CLEANUP_EXIT;
       }
     }
@@ -1088,73 +1076,61 @@ FINAL_CLEANUP:
 CLEANUP_EXIT:
   // 按标志清理资源
   if (connection_flags == '\0') {
-    *(undefined4 *)(resource_manager + 0x60) = 0;
-    FUN_18084f560(resource_manager + 0x30);
+    *(ConnectionFlags *)(resource_manager + 0x60) = 0;
+    NetworkingSystem_MemoryCleaner(resource_manager + 0x30);
   }
   if (security_flags == '\0') {
-    *(undefined4 *)(network_context + 0x60) = 0;
-    FUN_18084f040(network_context + 0x30);
+    *(ConnectionFlags *)(network_context + 0x60) = 0;
+    NetworkingSystem_ResourceCleanerInternal(network_context + 0x30);
   }
   if (protocol_flags == '\0') {
-    *(undefined4 *)(session_manager + 0x1d0) = 0;
-    FUN_18084f040(session_manager + 0x1a0);
+    *(ConnectionFlags *)(session_manager + 0x1d0) = 0;
+    NetworkingSystem_ResourceCleanerInternal(session_manager + 0x1a0);
   }
   
   // 清理安全cookie并退出
-  FUN_1808fc050(*(ulonglong *)(connection_context + 0x18) ^ (ulonglong)&cleanup_buffer);
+  NetworkingSystem_SecurityCleaner(*(unsigned long long *)(connection_context + 0x18) ^ (unsigned long long)&cleanup_buffer);
 }
 
-/**
- * 网络状态清理器 - 清理网络状态和临时数据
- * 
- * 功能：
- * - 清理网络连接状态
- * - 释放临时数据和缓冲区
- * - 重置状态标志和计数器
- * - 执行最终清理操作
- * - 确保资源完全释放
- * 
- * @param 无直接参数，使用栈传递的上下文信息
- * @return 清理状态码（0表示成功，非0表示错误）
- */
+// 网络状态清理器 - 清理网络状态和临时数据
 void NetworkingSystem_StateCleaner(void)
 
 {
-  longlong state_context;
-  longlong network_context;
-  longlong connection_context;
-  undefined4 reset_flags;
-  longlong resource_manager;
-  longlong session_manager;
-  undefined8 connection_pool;
-  undefined8 temp_buffer;
-  char cleanup_flag_1;
-  char cleanup_flag_2;
-  char cleanup_flag_3;
+  ConnectionContext state_context;
+  NetworkContext network_context;
+  ConnectionContext connection_context;
+  ConnectionFlags reset_flags;
+  ResourceContext resource_manager;
+  SessionContext session_manager;
+  ConnectionHandle connection_pool;
+  ConnectionHandle temp_buffer;
+  NetworkByte cleanup_flag_1;
+  NetworkByte cleanup_flag_2;
+  NetworkByte cleanup_flag_3;
   
   // 设置连接池引用
-  **(undefined8 **)(state_context + 0x38) = connection_pool;
+  **(ConnectionHandle **)(state_context + 0x38) = connection_pool;
   
   // 根据清理标志执行资源释放
   if (temp_buffer._4_1_ == '\0') {
-    *(undefined4 *)(connection_context + 0x60) = reset_flags;
-    FUN_18084f560(connection_context + 0x30);
+    *(ConnectionFlags *)(connection_context + 0x60) = reset_flags;
+    NetworkingSystem_MemoryCleaner(connection_context + 0x30);
   }
   if (cleanup_flag_1 == '\0') {
-    *(undefined4 *)(network_context + 0x60) = reset_flags;
-    FUN_18084f040(network_context + 0x30);
+    *(ConnectionFlags *)(network_context + 0x60) = reset_flags;
+    NetworkingSystem_ResourceCleanerInternal(network_context + 0x30);
   }
   if (cleanup_flag_2 == '\0') {
-    *(undefined4 *)(session_manager + 0x1d0) = reset_flags;
-    FUN_18084f040(session_manager + 0x1a0);
+    *(ConnectionFlags *)(session_manager + 0x1d0) = reset_flags;
+    NetworkingSystem_ResourceCleanerInternal(session_manager + 0x1a0);
   }
   if (cleanup_flag_3 == '\0') {
-    *(undefined4 *)(resource_manager + 0x60) = reset_flags;
-    FUN_18084f2d0(resource_manager + 0x30);
+    *(ConnectionFlags *)(resource_manager + 0x60) = reset_flags;
+    NetworkingSystem_ConfigCleaner(resource_manager + 0x30);
   }
   
   // 清理安全cookie并退出
-  FUN_1808fc050(*(ulonglong *)(state_context + 0x18) ^ (ulonglong)&cleanup_flag_1);
+  NetworkingSystem_SecurityCleaner(*(unsigned long long *)(state_context + 0x18) ^ (unsigned long long)&cleanup_flag_1);
 }
 
 /* ============================================================================
