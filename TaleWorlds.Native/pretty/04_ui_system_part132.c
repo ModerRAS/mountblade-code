@@ -240,7 +240,7 @@ void UI_System_Callback_Execute(longlong param_1,int *param_2)
 // UI系统资源清理函数
 void UI_System_Resource_Cleanup(longlong param_1,int *param_2)
 {
-  func_0x00018076a7d0(*(uint64_t *)(param_1 + 0x170));
+  UI_Callback_Execute_Resource(*(uint64_t *)(param_1 + 0x170));
   if (param_2 != (int *)0x0) {
     *param_2 = *param_2 - *(int *)(param_1 + 0x110);
   }
@@ -259,7 +259,7 @@ uint64_t UI_System_Event_State_Check(uint64_t param_1,longlong param_2)
     uVar1 = 0x1f;
   }
   else {
-    uVar1 = FUN_180753170(param_2);
+    uVar1 = UI_State_Validate_Handle(param_2);
     if ((int)uVar1 == 0) {
       *(int8_t *)(param_2 + 0x1fe) = 0;
       *(int16_t *)(param_2 + 0x1fc) = 0xffff;
