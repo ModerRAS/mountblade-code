@@ -298,7 +298,7 @@ LAB_1804d4bf3:
   plVar48[0xe] = 0;
   plVar48[0xf] = 0;
   *(int32_t *)(plVar48 + 0x10) = 3;
-  pcStack_378 = FUN_180045af0;
+  pcStack_378 = DataCacheManager;
   uStack_34c = uVar4;
   plStack_348 = plVar48;
   DataStructureManager(plVar48 + 0x12,8,8,&SUB_18005d5f0);

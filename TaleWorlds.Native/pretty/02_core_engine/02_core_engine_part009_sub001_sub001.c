@@ -1370,7 +1370,7 @@ void WotsMain(uint64_t param_1)
 
 
 
-// 函数: void FUN_180045af0(int64_t *param_1)
+// 函数: void DataCacheManager(int64_t *param_1)
 /**
  * 清理对象
  * 功能：清理指定对象和相关资源

@@ -736,7 +736,7 @@ uint64_t * FUN_18023fe10(uint64_t *param_1)
   param_1[0x2c4] = param_1 + 0x2c6;
   *(int32_t *)(param_1 + 0x2c5) = 0;
   *(int8_t *)(param_1 + 0x2c6) = 0;
-  DataStructureManager(param_1 + 0x2cf,8,7,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0x2cf,8,7,&SUB_18005d5f0,DataCacheManager);
   param_1[0x2d6] = &system_state_ptr;
   param_1[0x2d7] = 0;
   *(int32_t *)(param_1 + 0x2d8) = 0;

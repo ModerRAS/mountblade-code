@@ -964,7 +964,7 @@ LAB_180264ddd:
       *(int32_t *)(param_1 + 0x34) = uVar13;
       *(int32_t *)(param_1 + 0x38) = uVar14;
       *(int32_t *)(param_1 + 0x3c) = uVar15;
-      FUN_180045af0(&uStack_428);
+      DataCacheManager(&uStack_428);
     }
     lVar5 = SystemTools_DataManager(lVar4,&unknown_var_6736_ptr,0,1);
     if (lVar5 != 0) {
@@ -988,7 +988,7 @@ LAB_180264ddd:
           FUN_180627020(&unknown_var_6752_ptr,uVar9,uVar7);
         }
         lVar5 = SystemTools_ConfigManager(lVar5,&unknown_var_6216_ptr,0);
-        FUN_180045af0(&uStack_428);
+        DataCacheManager(&uStack_428);
         SystemTools_Validator(apuStack_108);
         param_2 = auStack_420[0];
       }

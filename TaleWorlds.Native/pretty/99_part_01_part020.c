@@ -950,11 +950,11 @@ void FUN_1800b4550(int64_t param_1)
   uVar1 = 0xfffffffffffffffe;
   FUN_1800b3fe0();
   FUN_180057830();
-  SystemDataValidator(param_1 + 0xc60,8,0x14,FUN_180045af0,uVar1);
+  SystemDataValidator(param_1 + 0xc60,8,0x14,DataCacheManager,uVar1);
   if (*(int64_t **)(param_1 + 0xc58) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0xc58) + 0x38))();
   }
-  SystemDataValidator(param_1 + 0xc08,8,10,FUN_180045af0,uVar1);
+  SystemDataValidator(param_1 + 0xc08,8,10,DataCacheManager,uVar1);
   FUN_180058370(param_1 + 0xbd8,*(uint64_t *)(param_1 + 0xbe8));
   FUN_1800b9270(param_1 + 0xba8,*(uint64_t *)(param_1 + 3000));
   _Mtx_destroy_in_situ();
@@ -1045,7 +1045,7 @@ void FUN_1800b4830(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 void FUN_1800b4860(uint64_t param_1)
 
 {
-  SystemDataValidator(param_1,8,10,FUN_180045af0,0xfffffffffffffffe);
+  SystemDataValidator(param_1,8,10,DataCacheManager,0xfffffffffffffffe);
   return;
 }
 
@@ -1235,9 +1235,9 @@ uint64_t * FUN_1800b4a40(uint64_t *param_1)
   param_1[0x17d] = 0;
   *(int8_t *)(param_1 + 0x17e) = 0;
   param_1[0x17f] = 0;
-  DataStructureManager(param_1 + 0x181,8,10,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0x181,8,10,&SUB_18005d5f0,DataCacheManager);
   param_1[0x18b] = 0;
-  DataStructureManager(param_1 + 0x18c,8,0x14,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0x18c,8,0x14,&SUB_18005d5f0,DataCacheManager);
   param_1[0x1a0] = 0;
   param_1[0x1a1] = 0;
   param_1[0x1a2] = 0;

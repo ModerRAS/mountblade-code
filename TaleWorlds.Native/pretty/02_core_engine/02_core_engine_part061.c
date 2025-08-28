@@ -144,7 +144,7 @@ void process_render_state(int64_t render_context, int64_t scene_data)
       uStack_270 = 0;
       uStack_26c = 0;
       plStack_278 = (int64_t *)0x10000010001;
-      pcStack_2d8 = FUN_180045af0;
+      pcStack_2d8 = DataCacheManager;
       DataStructureManager(auStack_238,8,0x10,&SUB_18005d5f0);
       plStack_2b0 = (int64_t *)0x0;
       puStack_2d0 = auStack_1b8;
@@ -466,7 +466,7 @@ void process_render_state(int64_t render_context, int64_t scene_data)
         (**(code **)(*plStack_278 + 0x38))();
       }
       (**(code **)(*plVar19 + 0x38))(plVar19);
-      SystemDataValidator(auStack_238,8,0x10,FUN_180045af0);
+      SystemDataValidator(auStack_238,8,0x10,DataCacheManager);
     }
   }
                     // WARNING: Subroutine does not return
@@ -482,7 +482,7 @@ void process_render_state(int64_t render_context, int64_t scene_data)
 void cleanup_render_memory(uint64_t memory_block)
 
 {
-  SystemDataValidator(memory_block,8,0x10,FUN_180045af0,0xfffffffffffffffe);
+  SystemDataValidator(memory_block,8,0x10,DataCacheManager,0xfffffffffffffffe);
   return;
 }
 

@@ -210,7 +210,7 @@ uint64_t * initialize_engine_core_data(uint64_t *engine_context)
   *engine_context = &RESOURCE_HANDLE_180a13cc0;
   system_ptr = engine_context + 0x17;
   resource_count = 0x10;
-  initialize_resource_pool(system_ptr,8,0x10,&SUB_18005d5f0,FUN_180045af0);
+  initialize_resource_pool(system_ptr,8,0x10,&SUB_18005d5f0,DataCacheManager);
   data_ptr = engine_context + 0x29;
   resource_ptr = engine_context + 0x2c;
   initialize_resource_pool(resource_ptr,0x38,2,FUN_180046480,FUN_180044a30);
@@ -246,7 +246,7 @@ uint64_t * initialize_engine_core_data(uint64_t *engine_context)
   *(int32_t *)(engine_context + 0x70) = 0x11;
   status_ptr = engine_context + 0x7b;
   resource_ptr = engine_context + 0x7c;
-  initialize_resource_pool(resource_ptr,8,0x10,&SUB_18005d5f0,FUN_180045af0);
+  initialize_resource_pool(resource_ptr,8,0x10,&SUB_18005d5f0,DataCacheManager);
   system_count = 5;
   do {
     resource_array = (int64_t *)*resource_ptr;
@@ -344,7 +344,7 @@ void cleanup_resource_pool(int64_t resource_ptr)
 void cleanup_memory_pool(int64_t memory_ptr)
 
 {
-  cleanup_memory_pool(memory_ptr + 8,8,0x10,FUN_180045af0,0xfffffffffffffffe);
+  cleanup_memory_pool(memory_ptr + 8,8,0x10,DataCacheManager,0xfffffffffffffffe);
   return;
 }
 
@@ -377,7 +377,7 @@ void cleanup_engine_internal(uint64_t *engine_context)
   if (system_ptr != (int64_t *)0x0) {
     (**(code **)(*system_ptr + 0x38))();
   }
-  cleanup_memory_pool(engine_context + 0x7c,8,0x10,FUN_180045af0,cleanup_flag);
+  cleanup_memory_pool(engine_context + 0x7c,8,0x10,DataCacheManager,cleanup_flag);
   cleanup_global_resources();
   engine_context[0x5a] = &STRING_TABLE_18098bcb0;
   if (engine_context[0x47] != 0) {
@@ -389,7 +389,7 @@ void cleanup_engine_internal(uint64_t *engine_context)
     (**(code **)(*(int64_t *)engine_context[0x3c] + 0x38))();
   }
   cleanup_memory_pool(engine_context + 0x2c,0x38,2,FUN_180044a30);
-  cleanup_memory_pool(engine_context + 0x17,8,0x10,FUN_180045af0);
+  cleanup_memory_pool(engine_context + 0x17,8,0x10,DataCacheManager);
   *engine_context = &MEMORY_POOL_180a02e68;
   engine_context[2] = &STRING_TABLE_18098bcb0;
   *engine_context = &SYSTEM_TABLE_180a21720;
@@ -739,7 +739,7 @@ LAB_18022c20f:
         } while (texture_flags < (uint64_t)(texture_pitch - bone_offset));
       }
       bone_offset = *(int64_t *)(render_context + 0x1e0);
-      render_callback = FUN_180045af0;
+      render_callback = DataCacheManager;
       initialize_resource_pool(stack_ptr_array_b8,8,0x10,&SUB_18005d5f0);
       texture_data_ptr = 0;
       texture_pitch = texture_data_ptr;
@@ -794,7 +794,7 @@ LAB_18022c20f:
         texture_ptr = texture_ptr + 0xb;
         texture_pitch = texture_pitch + -1;
       } while (texture_pitch != 0);
-      cleanup_resource_pool(stack_ptr_array_b8,8,0x10,FUN_180045af0);
+      cleanup_resource_pool(stack_ptr_array_b8,8,0x10,DataCacheManager);
       resource_ptr = stack_ptr_278;
       texture_ptr = stack_ptr_288;
       render_context = stack_value_280;

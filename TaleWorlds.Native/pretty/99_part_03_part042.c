@@ -363,7 +363,7 @@ LAB_1801f63c6:
     plStack_d8 = plVar6;
     FUN_1801fa180(plVar6);
     *plVar6 = (int64_t)&unknown_var_3952_ptr;
-    pcStack_e8 = FUN_180045af0;
+    pcStack_e8 = DataCacheManager;
     DataStructureManager(plVar6 + 0x8a,8,2,&SUB_18005d5f0);
     plVar6[0x8c] = 0;
     *(int32_t *)(plVar6 + 0x8d) = 0;
@@ -529,7 +529,7 @@ LAB_1801f5b10:
         plStack_d8 = plVar6;
         FUN_1801fa180(plVar6);
         *plVar6 = (int64_t)&unknown_var_6336_ptr;
-        pcStack_e8 = FUN_180045af0;
+        pcStack_e8 = DataCacheManager;
         DataStructureManager(plVar6 + 0x8a,8,2,&SUB_18005d5f0);
         plVar6[0x8d] = 0;
         *(int32_t *)(plVar6 + 0x8c) = 0;
@@ -631,7 +631,7 @@ LAB_1801f5b10:
           plStack_d8 = plVar6;
           FUN_1801fa180(plVar6);
           *plVar6 = (int64_t)&unknown_var_7888_ptr;
-          pcStack_e8 = FUN_180045af0;
+          pcStack_e8 = DataCacheManager;
           DataStructureManager(plVar6 + 0x8b,8,3,&SUB_18005d5f0);
           *(int32_t *)(plVar6 + 0x8a) = 0;
         }

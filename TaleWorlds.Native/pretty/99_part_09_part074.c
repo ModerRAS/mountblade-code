@@ -654,8 +654,8 @@ uint64_t *system_memory_controller(uint64_t *param_1, uint64_t param_2, int32_t 
   
   /* 系统数组初始化 */
   system_array_pointer = param_1 + 0x224;
-  system_function_pointer = FUN_180045af0;
-  DataStructureManager(system_array_pointer, 8, 3, &SUB_18005d5f0, FUN_180045af0);
+  system_function_pointer = DataCacheManager;
+  DataStructureManager(system_array_pointer, 8, 3, &SUB_18005d5f0, DataCacheManager);
   
   /* 系统随机种子设置 */
   *(int32_t *)(param_1 + 0x229) = SYSTEM_RANDOM_SEED1;
@@ -795,7 +795,7 @@ void system_deinitializer(uint64_t *param_1)
   }
   
   /* 系统数组清理 */
-  SystemDataValidator(param_1 + 0x224, 8, 3, FUN_180045af0, 0xfffffffffffffffe);
+  SystemDataValidator(param_1 + 0x224, 8, 3, DataCacheManager, 0xfffffffffffffffe);
   
   /* 系统资源清理 */
   if ((int64_t *)param_1[0x220] != (int64_t *)0x0) {

@@ -1060,7 +1060,7 @@ void SystemDataProcessor_Type2(SystemInt64 param_1)
     FUN_180057830();
     
     /* 初始化内存管理器 */
-    SystemDataValidator(param_1 + 0xc60, 8, 0x14, FUN_180045af0, cleanup_flags);
+    SystemDataValidator(param_1 + 0xc60, 8, 0x14, DataCacheManager, cleanup_flags);
     
     /* 清理资源管理器 */
     if (*(SystemInt64 **)(param_1 + 0xc58) != (SystemInt64 *)0x0) {
@@ -1068,7 +1068,7 @@ void SystemDataProcessor_Type2(SystemInt64 param_1)
     }
     
     /* 配置数据管道 */
-    SystemDataValidator(param_1 + 0xc08, 8, 10, FUN_180045af0, cleanup_flags);
+    SystemDataValidator(param_1 + 0xc08, 8, 10, DataCacheManager, cleanup_flags);
     FUN_180058370(param_1 + 0xbd8, *(SystemUInt8 *)(param_1 + 0xbe8));
     FUN_1800b9270(param_1 + 0xba8, *(SystemUInt8 *)(param_1 + 3000));
     
@@ -1349,7 +1349,7 @@ void SystemStateTracker(SystemInt64 param_1, SystemUInt64 param_2, SystemUInt64 
  */
 void SystemResourceAllocator(SystemUInt64 param_1)
 {
-    SystemDataValidator(param_1, 8, 10, FUN_180045af0, 0xfffffffffffffffe);
+    SystemDataValidator(param_1, 8, 10, DataCacheManager, 0xfffffffffffffffe);
     return;
 }
 
@@ -1844,11 +1844,11 @@ SystemUInt64* SystemInitializer(SystemUInt64 *param_1)
     param_1[0x17f] = 0;
     
     /* 初始化数据处理器 */
-    DataStructureManager(param_1 + 0x181, 8, 10, &SUB_18005d5f0, FUN_180045af0);
+    DataStructureManager(param_1 + 0x181, 8, 10, &SUB_18005d5f0, DataCacheManager);
     
     /* 初始化错误处理器 */
     param_1[0x18b] = 0;
-    DataStructureManager(param_1 + 0x18c, 8, 0x14, &SUB_18005d5f0, FUN_180045af0);
+    DataStructureManager(param_1 + 0x18c, 8, 0x14, &SUB_18005d5f0, DataCacheManager);
     
     /* 配置系统参数 */
     param_1[0x1a0] = 0;

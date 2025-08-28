@@ -86,7 +86,7 @@ extern void FUN_1801b32d0(uint64_t param1);
 extern void FUN_1803048f0(int64_t param1, uint64_t *param2, uint64_t param3, uint64_t param4, uint64_t param5);
 extern void FUN_180095420(int64_t param1);
 extern void SystemDataValidator(int64_t param1, int64_t param2, int64_t param3, void *param4);
-extern void FUN_180045af0(void);
+extern void DataCacheManager(void);
 extern void FUN_1808fc050(uint64_t param1);
 
 /**
@@ -494,7 +494,7 @@ void RenderingSystem_ComplexResourceManagement(int64_t *render_context, int64_t 
       stack_value_7 = resource_manager;
       stack_value_6 = context_manager;
       if (object_pointer == (int64_t *)0x0) {
-        FUN_180045af0();
+        DataCacheManager();
         execution_pointer = (code *)FUN_180244ff0(3);
         (*execution_pointer)();
         return;
@@ -872,7 +872,7 @@ void RenderingSystem_CleanupRenderResources(int64_t render_context)
     if ((context_manager != 0) && (*(char *)(context_manager + 0xf9) != '\0')) {
       if (*(int64_t *)(context_manager + 0x1d8) != 0) {
         // 处理资源清理错误
-        FUN_180045af0();
+        DataCacheManager();
       }
       *(uint64_t *)(context_manager + 0x1d8) = 0;
       FUN_1801c0f40(context_manager + 0xf9);
@@ -883,7 +883,7 @@ void RenderingSystem_CleanupRenderResources(int64_t render_context)
     if ((context_manager != 0) && (*(char *)(context_manager + 0xf9) != '\0')) {
       if (*(int64_t *)(context_manager + 0x1d8) != 0) {
         // 处理资源清理错误
-        FUN_180045af0();
+        DataCacheManager();
       }
       *(uint64_t *)(context_manager + 0x1d8) = 0;
       FUN_1801c0f40(context_manager + 0xf9);
@@ -917,7 +917,7 @@ void RenderingSystem_FinalizeRenderContext(int64_t render_context)
   if ((context_manager != 0) && (*(char *)(context_manager + 0xf9) != '\0')) {
     if (*(int64_t *)(context_manager + 0x1d8) != 0) {
       // 处理资源清理错误
-      FUN_180045af0();
+      DataCacheManager();
     }
     *(uint64_t *)(context_manager + 0x1d8) = 0;
     FUN_1801c0f40(context_manager + 0xf9);
@@ -928,7 +928,7 @@ void RenderingSystem_FinalizeRenderContext(int64_t render_context)
   if ((context_manager != 0) && (*(char *)(context_manager + 0xf9) != '\0')) {
     if (*(int64_t *)(context_manager + 0x1d8) != 0) {
       // 处理资源清理错误
-      FUN_180045af0();
+      DataCacheManager();
     }
     *(uint64_t *)(context_manager + 0x1d8) = 0;
     FUN_1801c0f40(context_manager + 0xf9);
@@ -1010,7 +1010,7 @@ void RenderingSystem_CompleteRenderShutdown(uint64_t *render_context, uint64_t p
   render_context[0x10b] = &global_state_9896_ptr;
   if (render_context[0x10c] != 0) {
     // 处理状态清理错误
-    FUN_180045af0();
+    DataCacheManager();
   }
   render_context[0x10c] = 0;
   *(int32_t *)(render_context + 0x10e) = 0;
@@ -1018,7 +1018,7 @@ void RenderingSystem_CompleteRenderShutdown(uint64_t *render_context, uint64_t p
   render_context[0x106] = &global_state_9896_ptr;
   if (render_context[0x107] != 0) {
     // 处理状态清理错误
-    FUN_180045af0();
+    DataCacheManager();
   }
   render_context[0x107] = 0;
   *(int32_t *)(render_context + 0x109) = 0;
@@ -1080,7 +1080,7 @@ void RenderingSystem_CompleteRenderShutdown(uint64_t *render_context, uint64_t p
   render_context[0x15] = &global_state_3432_ptr;
   if (render_context[0x16] != 0) {
     // 处理最终清理错误
-    FUN_180045af0();
+    DataCacheManager();
   }
   render_context[0x16] = 0;
   *(int32_t *)(render_context + 0x18) = 0;
@@ -1088,7 +1088,7 @@ void RenderingSystem_CompleteRenderShutdown(uint64_t *render_context, uint64_t p
   render_context[0x11] = &global_state_3432_ptr;
   if (render_context[0x12] != 0) {
     // 处理最终清理错误
-    FUN_180045af0();
+    DataCacheManager();
   }
   render_context[0x12] = 0;
   *(int32_t *)(render_context + 0x14) = 0;

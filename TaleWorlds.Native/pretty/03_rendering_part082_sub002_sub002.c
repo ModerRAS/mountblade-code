@@ -53,43 +53,43 @@
 // ============================================================================
 
 // 系统初始化函数
-#define RenderingSystemInitializer FUN_1804354c0        // 渲染系统初始化器
-#define RenderingSystemConfigurator FUN_1804355b0       // 渲染系统配置器
-#define RenderingSystemValidator FUN_180435630          // 渲染系统验证器
-#define RenderingSystemSetupHandler FUN_180435a80       // 渲染系统设置处理器
-#define RenderingSystemResourceManager FUN_180436c30     // 渲染系统资源管理器
-#define RenderingSystemStateController FUN_1804373a0    // 渲染系统状态控制器
-#define RenderingSystemCallbackManager FUN_180436ae0    // 渲染系统回调管理器
-#define RenderingSystemEventHandler FUN_180437320       // 渲染系统事件处理器
-#define RenderingSystemDataProcessor FUN_180436a50     // 渲染系统数据处理器
-#define RenderingSystemSecurityChecker FUN_180437050    // 渲染系统安全检查器
-#define RenderingSystemMemoryAllocator FUN_180436f20    // 渲染系统内存分配器
-#define RenderingSystemThreadManager FUN_180436da0     // 渲染系统线程管理器
-#define RenderingSystemScheduler FUN_180436d00         // 渲染系统调度器
-#define RenderingSystemOptimizer FUN_180436bb0         // 渲染系统优化器
-#define RenderingSystemDebugger FUN_1804369d0           // 渲染系统调试器
+#define RenderingSystemInitializer RenderingSystem_Initializer        // 渲染系统初始化器
+#define RenderingSystemConfigurator RenderingSystem_Configurator       // 渲染系统配置器
+#define RenderingSystemValidator RenderingSystem_Validator          // 渲染系统验证器
+#define RenderingSystemSetupHandler RenderingSystem_Initializer2       // 渲染系统设置处理器
+#define RenderingSystemResourceManager RenderingSystem_ResourceManager     // 渲染系统资源管理器
+#define RenderingSystemStateController RenderingSystem_StateController    // 渲染系统状态控制器
+#define RenderingSystemCallbackManager RenderingSystem_CallbackManager    // 渲染系统回调管理器
+#define RenderingSystemEventHandler RenderingSystem_EventHandler       // 渲染系统事件处理器
+#define RenderingSystemDataProcessor RenderingSystem_DataProcessor     // 渲染系统数据处理器
+#define RenderingSystemSecurityChecker RenderingSystem_SecurityChecker    // 渲染系统安全检查器
+#define RenderingSystemMemoryAllocator RenderingSystem_MemoryAllocator    // 渲染系统内存分配器
+#define RenderingSystemThreadManager RenderingSystem_ThreadManager     // 渲染系统线程管理器
+#define RenderingSystemScheduler RenderingSystem_Scheduler         // 渲染系统调度器
+#define RenderingSystemOptimizer RenderingSystem_Optimizer         // 渲染系统优化器
+#define RenderingSystemDebugger RenderingSystem_Debugger           // 渲染系统调试器
 #define RenderingSystemProfiler RenderingSystemBufferProcessor          // 渲染系统性能分析器
-#define RenderingSystemLogger FUN_180436bf0             // 渲染系统日志记录器
-#define RenderingSystemMonitor FUN_180436a00            // 渲染系统监控器
-#define RenderingSystemCleanupHandler FUN_180436fd0     // 渲染系统清理处理器
-#define RenderingSystemErrorHandler FUN_180437290       // 渲染系统错误处理器
-#define RenderingSystemRecoveryHandler FUN_1804372e0    // 渲染系统恢复处理器
-#define RenderingSystemTextureManager FUN_180437d60     // 渲染系统纹理管理器
-#define RenderingSystemShaderLoader FUN_1804375f0       // 渲染系统着色器加载器
-#define RenderingSystemBufferManager FUN_1804374c0      // 渲染系统缓冲区管理器
-#define RenderingSystemPipelineBuilder FUN_180437560     // 渲染系统管道构建器
-#define RenderingSystemRenderStateManager FUN_180437cf0  // 渲染系统渲染状态管理器
-#define RenderingSystemDrawCallHandler FUN_180437680     // 渲染系统绘制调用处理器
-#define RenderingSystemFrameRenderer FUN_1804377b0       // 渲染系统帧渲染器
+#define RenderingSystemLogger RenderingSystem_Logger             // 渲染系统日志记录器
+#define RenderingSystemMonitor RenderingSystem_Monitor            // 渲染系统监控器
+#define RenderingSystemCleanupHandler RenderingSystem_CleanupHandler     // 渲染系统清理处理器
+#define RenderingSystemErrorHandler RenderingSystem_ErrorHandler       // 渲染系统错误处理器
+#define RenderingSystemRecoveryHandler RenderingSystem_RecoveryHandler    // 渲染系统恢复处理器
+#define RenderingSystemTextureManager RenderingSystem_ConfigHandler2     // 渲染系统纹理管理器
+#define RenderingSystemShaderLoader RenderingSystem_ThreadHandler       // 渲染系统着色器加载器
+#define RenderingSystemBufferManager RenderingSystem_ResourceHandler      // 渲染系统缓冲区管理器
+#define RenderingSystemPipelineBuilder RenderingSystem_MemoryManager     // 渲染系统管道构建器
+#define RenderingSystemRenderStateManager RenderingSystem_StateHandler  // 渲染系统渲染状态管理器
+#define RenderingSystemDrawCallHandler RenderingSystem_ScheduleManager     // 渲染系统绘制调用处理器
+#define RenderingSystemFrameRenderer RenderingSystem_ProcessHandler       // 渲染系统帧渲染器
 #define RenderingSystemPostProcessor FUN_180437e80      // 渲染系统后处理器
-#define RenderingSystemLightingEngine FUN_180437ba0      // 渲染系统光照引擎
-#define RenderingSystemShadowRenderer FUN_180437c40      // 渲染系统阴影渲染器
-#define RenderingSystemEffectProcessor FUN_1804378e0    // 渲染系统效果处理器
-#define RenderingSystemMaterialHandler FUN_1804379d0     // 渲染系统材质处理器
-#define RenderingSystemGeometryProcessor FUN_180437460   // 渲染系统几何体处理器
-#define RenderingSystemAnimationSystem FUN_180437b60     // 渲染系统动画系统
-#define RenderingSystemTransformHandler FUN_180437ca0    // 渲染系统变换处理器
-#define RenderingSystemViewportManager FUN_180437d40     // 渲染系统视口管理器
+#define RenderingSystemLightingEngine RenderingSystem_MonitorManager      // 渲染系统光照引擎
+#define RenderingSystemShadowRenderer RenderingSystem_CallbackHandler      // 渲染系统阴影渲染器
+#define RenderingSystemEffectProcessor RenderingSystem_OptimizeManager    // 渲染系统效果处理器
+#define RenderingSystemMaterialHandler RenderingSystem_DebugManager     // 渲染系统材质处理器
+#define RenderingSystemGeometryProcessor RenderingSystem_DataManager   // 渲染系统几何体处理器
+#define RenderingSystemAnimationSystem RenderingSystem_LogManager     // 渲染系统动画系统
+#define RenderingSystemTransformHandler RenderingSystem_EventManager    // 渲染系统变换处理器
+#define RenderingSystemViewportManager RenderingSystem_ParameterHandler2     // 渲染系统视口管理器
 #define RenderingSystemUIRenderer FUN_18043b930          // 渲染系统UI渲染器
 #define RenderingSystemFontRenderer FUN_18043b290         // 渲染系统字体渲染器
 #define RenderingSystemTextProcessor FUN_180438560        // 渲染系统文本处理器
@@ -103,7 +103,7 @@
 #define RenderingSystemCollisionDetector FUN_1804382b0    // 渲染系统碰撞检测器
 #define RenderingSystemNetworkManager FUN_180438c50       // 渲染系统网络管理器
 #define RenderingSystemResourceManager2 FUN_1804389f0     // 渲染系统资源管理器2
-#define RenderingSystemShaderCompiler FUN_180438680       // 渲染系统着色器编译器
+#define RenderingSystemShaderCompiler RenderingSystem_AdvancedStateManager       // 渲染系统着色器编译器
 #define RenderingSystemTextureCompressor FUN_180438c70    // 渲染系统纹理压缩器
 #define RenderingSystemMemoryOptimizer FUN_18043c350       // 渲染系统内存优化器
 #define RenderingSystemCacheManager FUN_18043c370          // 渲染系统缓存管理器
@@ -128,22 +128,22 @@
 #define RenderingSystemMemoryEncryptor FUN_18043cae0        // 渲染系统内存加密器
 #define RenderingSystemMemoryDecryptor FUN_18043c7a0        // 渲染系统内存解密器
 #define RenderingSystemMemoryArchiver FUN_18043caa0         // 渲染系统内存存档器
-#define RenderingSystemMemoryRestorer FUN_18043d100         // 渲染系统内存恢复器
+#define RenderingSystemMemoryRestorer RenderingSystem_AdvancedComputationProcessor23         // 渲染系统内存恢复器
 #define RenderingSystemMemoryBackup FUN_18043cbd0           // 渲染系统内存备份器
 #define RenderingSystemSystemInitializer RenderingSystemInputManager      // 渲染系统系统初始化器
 #define RenderingSystemSystemFinalizer FUN_1804403d0        // 渲染系统系统终结器
 #define RenderingSystemSystemLoader FUN_18043fe70           // 渲染系统系统加载器
 #define RenderingSystemModuleManager FUN_180442860          // 渲染系统模块管理器
 #define RenderingSystemPluginLoader FUN_180441c50           // 渲染系统插件加载器
-#define RenderingSystemExtensionHandler FUN_18043ea80       // 渲染系统扩展处理器
-#define RenderingSystemComponentRegistry FUN_180443080      // 渲染系统组件注册表
-#define RenderingSystemServiceLocator FUN_18043eb00         // 渲染系统服务定位器
+#define RenderingSystemExtensionHandler RenderingSystem_AdvancedMathProcessor32       // 渲染系统扩展处理器
+#define RenderingSystemComponentRegistry RenderingSystem_AdvancedMathProcessor60      // 渲染系统组件注册表
+#define RenderingSystemServiceLocator RenderingSystem_AdvancedNumericProcessor32         // 渲染系统服务定位器
 #define RenderingSystemDependencyInjector FUN_180440910     // 渲染系统依赖注入器
 #define RenderingSystemObjectFactory FUN_18043ff20           // 渲染系统对象工厂
-#define RenderingSystemSingletonManager FUN_180442180       // 渲染系统单例管理器
+#define RenderingSystemSingletonManager RenderingSystem_AdvancedMathProcessor54       // 渲染系统单例管理器
 #define RenderingSystemContextManager FUN_1804410a0          // 渲染系统上下文管理器
 #define RenderingSystemStateFactory FUN_180440220           // 渲染系统状态工厂
-#define RenderingSystemStateManager2 FUN_180440280          // 渲染系统状态管理器2
+#define RenderingSystemStateManager2 RenderingSystem_AdvancedCalculationProcessor42          // 渲染系统状态管理器2
 #define RenderingSystemStatePersister FUN_1804402e0         // 渲染系统状态持久化器
 #define RenderingSystemStateRestorer FUN_1804401b0          // 渲染系统状态恢复器
 #define RenderingSystemConfigurationManager FUN_180442720  // 渲染系统配置管理器
@@ -154,9 +154,9 @@
 #define RenderingSystemStyleManager FUN_18043e990           // 渲染系统样式管理器
 #define RenderingSystemSkinManager FUN_18043ea60             // 渲染系统皮肤管理器
 #define RenderingSystemLayoutManager FUN_18043e9b0          // 渲染系统布局管理器
-#define RenderingSystemWidgetManager FUN_180442e00          // 渲染系统部件管理器
+#define RenderingSystemWidgetManager RenderingSystem_AdvancedMathProcessor59          // 渲染系统部件管理器
 #define RenderingSystemControlManager FUN_1804414d0         // 渲染系统控件管理器
-#define RenderingSystemWindowManager FUN_18043f300          // 渲染系统窗口管理器
+#define RenderingSystemWindowManager RenderingSystem_AdvancedArithmeticProcessor35          // 渲染系统窗口管理器
 #define RenderingSystemDialogManager FUN_18043f0d0          // 渲染系统对话框管理器
 #define RenderingSystemMenuManager FUN_180443630             // 渲染系统菜单管理器
 #define RenderingSystemToolbarManager FUN_18043e630         // 渲染系统工具栏管理器
@@ -188,11 +188,11 @@
 #define RenderingSystemEnhancer FUN_180442d10                // 渲染系统增强器
 #define RenderingSystemImprover FUN_18043f770                // 渲染系统改进器
 #define RenderingSystemRefiner FUN_180440d20                // 渲染系统精炼器
-#define RenderingSystemPolisher FUN_180440e00                // 渲染系统抛光器
+#define RenderingSystemPolisher RenderingSystem_AdvancedNumericProcessor46                // 渲染系统抛光器
 #define RenderingSystemFinisher FUN_180440e70                // 渲染系统完成器
 
-// 函数: void FUN_180310b50(int64_t param_1)
-void FUN_180310b50(int64_t param_1)
+// 函数: void RenderingSystem_CoreValidator(int64_t param_1)
+void RenderingSystem_CoreValidator(int64_t param_1)
 
 {
   (**(code **)(param_1 + 0x60))(0,RenderingSystemInitializer);
@@ -425,7 +425,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0xe3,FUN_180442d10);
   (**(code **)(param_1 + 0x60))(0xe4,FUN_18043f770);
   (**(code **)(param_1 + 0x60))(0xe5,FUN_180440d20);
-  (**(code **)(param_1 + 0x60))(0xe6,FUN_180440e00);
+  (**(code **)(param_1 + 0x60))(0xe6,RenderingSystem_AdvancedNumericProcessor46);
   (**(code **)(param_1 + 0x60))(0xe7,FUN_180440e70);
   (**(code **)(param_1 + 0x60))(0xe8,FUN_18043f240);
   (**(code **)(param_1 + 0x60))(0xe9,FUN_180440560);
@@ -466,10 +466,10 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x10c,&rendering_state_3856_ptr);
   (**(code **)(param_1 + 0x60))(0x10d,&rendering_state_4928_ptr);
   (**(code **)(param_1 + 0x60))(0x10e,FUN_180442560);
-  (**(code **)(param_1 + 0x60))(0x10f,FUN_180443700);
+  (**(code **)(param_1 + 0x60))(0x10f,RenderingSystem_AdvancedCalculationProcessor63);
   (**(code **)(param_1 + 0x60))(0x110,&rendering_state_5376_ptr);
   (**(code **)(param_1 + 0x60))(0x111,FUN_180442950);
-  (**(code **)(param_1 + 0x60))(0x112,FUN_18043f880);
+  (**(code **)(param_1 + 0x60))(0x112,RenderingSystem_AdvancedCalculationProcessor38);
   (**(code **)(param_1 + 0x60))(0x113,&rendering_state_6656_ptr);
   (**(code **)(param_1 + 0x60))(0x114,FUN_180440aa0);
   (**(code **)(param_1 + 0x60))(0x115,&rendering_state_8528_ptr);
@@ -481,13 +481,13 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x11b,FUN_18043ed10);
   (**(code **)(param_1 + 0x60))(0x11c,&rendering_state_2608_ptr);
   (**(code **)(param_1 + 0x60))(0x11d,FUN_18043fe10);
-  (**(code **)(param_1 + 0x60))(0x11e,FUN_180443680);
+  (**(code **)(param_1 + 0x60))(0x11e,RenderingSystem_AdvancedArithmeticProcessor62);
   (**(code **)(param_1 + 0x60))(0x11f,FUN_180441110);
   (**(code **)(param_1 + 0x60))(0x120,&rendering_state_6944_ptr);
   (**(code **)(param_1 + 0x60))(0x121,_guard_check_icall);
   (**(code **)(param_1 + 0x60))(0x122,&rendering_state_4960_ptr);
   (**(code **)(param_1 + 0x60))(0x123,FUN_1804415d0);
-  (**(code **)(param_1 + 0x60))(0x124,FUN_180443000);
+  (**(code **)(param_1 + 0x60))(0x124,RenderingSystem_AdvancedComputationProcessor61);
   (**(code **)(param_1 + 0x60))(0x125,FUN_180441e90);
   (**(code **)(param_1 + 0x60))(0x126,FUN_180443770);
   (**(code **)(param_1 + 0x60))(0x127,&rendering_state_2336_ptr);
@@ -529,12 +529,12 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x14b,FUN_18043ecc0);
   (**(code **)(param_1 + 0x60))(0x14c,_guard_check_icall);
   (**(code **)(param_1 + 0x60))(0x14d,&rendering_state_1872_ptr);
-  (**(code **)(param_1 + 0x60))(0x14e,FUN_1802e7dc0);
+  (**(code **)(param_1 + 0x60))(0x14e,RenderingSystem_CoreConfigurator);
   (**(code **)(param_1 + 0x60))(0x14f,FUN_180443a40);
   (**(code **)(param_1 + 0x60))(0x150,FUN_180443aa0);
-  (**(code **)(param_1 + 0x60))(0x151,FUN_180443f80);
-  (**(code **)(param_1 + 0x60))(0x152,FUN_180443b80);
-  (**(code **)(param_1 + 0x60))(0x153,FUN_180443b00);
+  (**(code **)(param_1 + 0x60))(0x151,RenderingSystem_AdvancedMathProcessor66);
+  (**(code **)(param_1 + 0x60))(0x152,RenderingSystem_AdvancedArithmeticProcessor64);
+  (**(code **)(param_1 + 0x60))(0x153,RenderingSystem_AdvancedNumericProcessor64);
   (**(code **)(param_1 + 0x60))(0x154,FUN_180443b40);
   (**(code **)(param_1 + 0x60))(0x155,FUN_180443df0);
   (**(code **)(param_1 + 0x60))(0x156,FUN_180443ff0);
@@ -549,9 +549,9 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x15f,&rendering_state_4864_ptr);
   (**(code **)(param_1 + 0x60))(0x160,RenderingSystemVideoInitializer);
   (**(code **)(param_1 + 0x60))(0x161,&rendering_state_4224_ptr);
-  (**(code **)(param_1 + 0x60))(0x162,FUN_180444100);
-  (**(code **)(param_1 + 0x60))(0x163,FUN_180444600);
-  (**(code **)(param_1 + 0x60))(0x164,FUN_180444700);
+  (**(code **)(param_1 + 0x60))(0x162,RenderingSystem_AdvancedCalculationProcessor67);
+  (**(code **)(param_1 + 0x60))(0x163,RenderingSystem_AdvancedCalculationProcessor69);
+  (**(code **)(param_1 + 0x60))(0x164,RenderingSystem_AdvancedMathProcessor69);
   (**(code **)(param_1 + 0x60))(0x165,FUN_1804447c0);
   (**(code **)(param_1 + 0x60))(0x166,FUN_1804448a0);
   (**(code **)(param_1 + 0x60))(0x167,FUN_1804443c0);
@@ -559,9 +559,9 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x169,&rendering_state_4096_ptr);
   (**(code **)(param_1 + 0x60))(0x16a,FUN_1804442e0);
   (**(code **)(param_1 + 0x60))(0x16b,&rendering_state_4880_ptr);
-  (**(code **)(param_1 + 0x60))(0x16c,FUN_180444200);
+  (**(code **)(param_1 + 0x60))(0x16c,RenderingSystem_AdvancedMathProcessor67);
   (**(code **)(param_1 + 0x60))(0x16d,&rendering_state_3968_ptr);
-  (**(code **)(param_1 + 0x60))(0x16e,FUN_180444280);
+  (**(code **)(param_1 + 0x60))(0x16e,RenderingSystem_AdvancedNumericProcessor67);
   (**(code **)(param_1 + 0x60))(0x16f,FUN_180444070);
   (**(code **)(param_1 + 0x60))(0x170,&rendering_state_4896_ptr);
   (**(code **)(param_1 + 0x60))(0x171,&rendering_state_4080_ptr);
@@ -574,7 +574,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x178,&rendering_state_4256_ptr);
   (**(code **)(param_1 + 0x60))(0x179,&rendering_state_4272_ptr);
   (**(code **)(param_1 + 0x60))(0x17a,&rendering_state_7648_ptr);
-  (**(code **)(param_1 + 0x60))(0x17b,FUN_180445180);
+  (**(code **)(param_1 + 0x60))(0x17b,RenderingSystem_AdvancedNumericProcessor73);
   (**(code **)(param_1 + 0x60))(0x17c,&rendering_state_7792_ptr);
   (**(code **)(param_1 + 0x60))(0x17d,&rendering_state_8592_ptr);
   (**(code **)(param_1 + 0x60))(0x17e,&rendering_state_8624_ptr);
@@ -607,7 +607,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x199,_guard_check_icall);
   (**(code **)(param_1 + 0x60))(0x19a,FUN_180445390);
   (**(code **)(param_1 + 0x60))(0x19b,&rendering_state_9200_ptr);
-  (**(code **)(param_1 + 0x60))(0x19c,FUN_180445480);
+  (**(code **)(param_1 + 0x60))(0x19c,RenderingSystem_AdvancedArithmeticProcessor74);
   (**(code **)(param_1 + 0x60))(0x19d,&render_data_ptr);
   (**(code **)(param_1 + 0x60))(0x19e,&rendering_state_9408_ptr);
   (**(code **)(param_1 + 0x60))(0x19f,&rendering_state_9328_ptr);
@@ -638,17 +638,17 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x1b8,&rendering_state_1872_ptr);
   (**(code **)(param_1 + 0x60))(0x1b9,FUN_180446430);
   (**(code **)(param_1 + 0x60))(0x1ba,FUN_180445970);
-  (**(code **)(param_1 + 0x60))(0x1bb,FUN_180445a80);
+  (**(code **)(param_1 + 0x60))(0x1bb,RenderingSystem_AdvancedComputationProcessor78);
   (**(code **)(param_1 + 0x60))(0x1bc,&rendering_state_9824_ptr);
   (**(code **)(param_1 + 0x60))(0x1bd,&rendering_state_4352_ptr);
   (**(code **)(param_1 + 0x60))(0x1be,&rendering_state_4480_ptr);
   (**(code **)(param_1 + 0x60))(0x1bf,&rendering_state_2608_ptr);
   (**(code **)(param_1 + 0x60))(0x1c0,&rendering_state_2624_ptr);
   (**(code **)(param_1 + 0x60))(0x1c1,&rendering_state_2080_ptr);
-  (**(code **)(param_1 + 0x60))(0x1c2,FUN_180445680);
+  (**(code **)(param_1 + 0x60))(0x1c2,RenderingSystem_AdvancedNumericProcessor75);
   (**(code **)(param_1 + 0x60))(0x1c3,&rendering_state_4336_ptr);
   (**(code **)(param_1 + 0x60))(0x1c4,&rendering_state_4800_ptr);
-  (**(code **)(param_1 + 0x60))(0x1c5,FUN_180446080);
+  (**(code **)(param_1 + 0x60))(0x1c5,RenderingSystem_AdvancedNumericProcessor79);
   (**(code **)(param_1 + 0x60))(0x1c6,&rendering_state_4592_ptr);
   (**(code **)(param_1 + 0x60))(0x1c7,FUN_180446760);
   (**(code **)(param_1 + 0x60))(0x1c8,&rendering_state_4272_ptr);
@@ -668,7 +668,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x1d6,&rendering_state_1904_ptr);
   (**(code **)(param_1 + 0x60))(0x1d7,&rendering_state_1952_ptr);
   (**(code **)(param_1 + 0x60))(0x1d8,&rendering_state_3296_ptr);
-  (**(code **)(param_1 + 0x60))(0x1d9,FUN_180446480);
+  (**(code **)(param_1 + 0x60))(0x1d9,RenderingSystem_AdvancedComputationProcessor82);
   (**(code **)(param_1 + 0x60))(0x1da,&rendering_state_4560_ptr);
   (**(code **)(param_1 + 0x60))(0x1db,&rendering_state_4496_ptr);
   (**(code **)(param_1 + 0x60))(0x1dc,FUN_180446690);
@@ -705,7 +705,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x1fb,&rendering_state_6336_ptr);
   (**(code **)(param_1 + 0x60))(0x1fc,&rendering_state_6336_ptr);
   (**(code **)(param_1 + 0x60))(0x1fd,&rendering_state_9264_ptr);
-  (**(code **)(param_1 + 0x60))(0x1fe,FUN_180447c00);
+  (**(code **)(param_1 + 0x60))(0x1fe,RenderingSystem_AdvancedNumericProcessor90);
   (**(code **)(param_1 + 0x60))(0x1ff,RenderingSystemShaderCompilerDebugger);
   (**(code **)(param_1 + 0x60))(0x200,FUN_1804485c0);
   (**(code **)(param_1 + 0x60))(0x201,FUN_1804489a0);
@@ -715,7 +715,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x205,FUN_180447660);
   (**(code **)(param_1 + 0x60))(0x206,FUN_1804475e0);
   (**(code **)(param_1 + 0x60))(0x207,FUN_180447710);
-  (**(code **)(param_1 + 0x60))(0x208,FUN_180449780);
+  (**(code **)(param_1 + 0x60))(0x208,RenderingSystem_AdvancedNumericProcessor101);
   (**(code **)(param_1 + 0x60))(0x209,FUN_1804477f0);
   (**(code **)(param_1 + 0x60))(0x20a,FUN_180448ea0);
   (**(code **)(param_1 + 0x60))(0x20b,FUN_180448470);
@@ -724,7 +724,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x20e,FUN_180448420);
   (**(code **)(param_1 + 0x60))(0x20f,&rendering_param_896_ptr);
   (**(code **)(param_1 + 0x60))(0x210,&rendering_state_1040_ptr);
-  (**(code **)(param_1 + 0x60))(0x211,FUN_180449000);
+  (**(code **)(param_1 + 0x60))(0x211,RenderingSystem_AdvancedNumericProcessor98);
   (**(code **)(param_1 + 0x60))(0x212,FUN_1804491c0);
   (**(code **)(param_1 + 0x60))(0x213,FUN_180447e10);
   (**(code **)(param_1 + 0x60))(0x214,RenderingSystemShaderCompilerController);
@@ -732,7 +732,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x216,RenderingSystemResourceOptimizer);
   (**(code **)(param_1 + 0x60))(0x217,FUN_180447430);
   (**(code **)(param_1 + 0x60))(0x218,&rendering_state_5344_ptr);
-  (**(code **)(param_1 + 0x60))(0x219,FUN_180447b80);
+  (**(code **)(param_1 + 0x60))(0x219,RenderingSystem_AdvancedMathProcessor90);
   (**(code **)(param_1 + 0x60))(0x21a,FUN_1804471a0);
   (**(code **)(param_1 + 0x60))(0x21b,FUN_180448f50);
   (**(code **)(param_1 + 0x60))(0x21c,FUN_1804473b0);
@@ -744,8 +744,8 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x222,&rendering_state_6352_ptr);
   (**(code **)(param_1 + 0x60))(0x223,_guard_check_icall);
   (**(code **)(param_1 + 0x60))(0x224,&rendering_state_1200_ptr);
-  (**(code **)(param_1 + 0x60))(0x225,FUN_180448f00);
-  (**(code **)(param_1 + 0x60))(0x226,FUN_180094f80);
+  (**(code **)(param_1 + 0x60))(0x225,RenderingSystem_AdvancedComputationProcessor99);
+  (**(code **)(param_1 + 0x60))(0x226,RenderingSystem_CoreInitializer);
   (**(code **)(param_1 + 0x60))(0x227,FUN_180447d40);
   (**(code **)(param_1 + 0x60))(0x228,&system_pattern2_ptr);
   (**(code **)(param_1 + 0x60))(0x229,&rendering_state_7520_ptr);
@@ -767,7 +767,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x239,&rendering_state_1184_ptr);
   (**(code **)(param_1 + 0x60))(0x23a,FUN_180447990);
   (**(code **)(param_1 + 0x60))(0x23b,FUN_180447850);
-  (**(code **)(param_1 + 0x60))(0x23c,FUN_180449300);
+  (**(code **)(param_1 + 0x60))(0x23c,RenderingSystem_AdvancedArithmeticProcessor99);
   (**(code **)(param_1 + 0x60))(0x23d,&rendering_state_6704_ptr);
   (**(code **)(param_1 + 0x60))(0x23e,FUN_18044aad0);
   (**(code **)(param_1 + 0x60))(0x23f,&rendering_state_1232_ptr);
@@ -782,24 +782,24 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x248,&rendering_param_368_ptr);
   (**(code **)(param_1 + 0x60))(0x249,&rendering_param_336_ptr);
   (**(code **)(param_1 + 0x60))(0x24a,&rendering_state_1216_ptr);
-  (**(code **)(param_1 + 0x60))(0x24b,FUN_180449a00);
+  (**(code **)(param_1 + 0x60))(0x24b,RenderingSystem_AdvancedNumericProcessor102);
   (**(code **)(param_1 + 0x60))(0x24c,FUN_18044a590);
   (**(code **)(param_1 + 0x60))(0x24d,FUN_180449930);
   (**(code **)(param_1 + 0x60))(0x24e,FUN_18044b3d0);
-  (**(code **)(param_1 + 0x60))(0x24f,FUN_18044b580);
+  (**(code **)(param_1 + 0x60))(0x24f,RenderingSystem_AdvancedNumericProcessor113);
   (**(code **)(param_1 + 0x60))(0x250,FUN_18044b4f0);
   (**(code **)(param_1 + 0x60))(0x251,FUN_18044ac20);
   (**(code **)(param_1 + 0x60))(0x252,FUN_18044ad90);
-  (**(code **)(param_1 + 0x60))(0x253,FUN_18044b080);
+  (**(code **)(param_1 + 0x60))(0x253,RenderingSystem_AdvancedNumericProcessor111);
   (**(code **)(param_1 + 0x60))(0x254,&rendering_state_7312_ptr);
-  (**(code **)(param_1 + 0x60))(0x255,FUN_18044ab80);
+  (**(code **)(param_1 + 0x60))(0x255,RenderingSystem_AdvancedNumericProcessor109);
   (**(code **)(param_1 + 0x60))(0x256,&rendering_state_1264_ptr);
   (**(code **)(param_1 + 0x60))(599,FUN_18044a3a0);
-  (**(code **)(param_1 + 0x60))(600,FUN_180449a80);
+  (**(code **)(param_1 + 0x60))(600,RenderingSystem_AdvancedArithmeticProcessor102);
   (**(code **)(param_1 + 0x60))(0x259,FUN_18044b610);
   (**(code **)(param_1 + 0x60))(0x25a,&rendering_state_3840_ptr);
   (**(code **)(param_1 + 0x60))(0x25b,&rendering_state_4176_ptr);
-  (**(code **)(param_1 + 0x60))(0x25c,FUN_180449c00);
+  (**(code **)(param_1 + 0x60))(0x25c,RenderingSystem_AdvancedMathProcessor103);
   (**(code **)(param_1 + 0x60))(0x25d,FUN_18044b010);
   (**(code **)(param_1 + 0x60))(0x25e,FUN_18044b110);
   (**(code **)(param_1 + 0x60))(0x25f,&rendering_state_3792_ptr);
@@ -808,34 +808,34 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x262,&rendering_state_5168_ptr);
   (**(code **)(param_1 + 0x60))(0x263,&rendering_state_9264_ptr);
   (**(code **)(param_1 + 0x60))(0x264,&rendering_state_5568_ptr);
-  (**(code **)(param_1 + 0x60))(0x265,FUN_18044b700);
+  (**(code **)(param_1 + 0x60))(0x265,RenderingSystem_AdvancedComputationProcessor115);
   (**(code **)(param_1 + 0x60))(0x266,FUN_18044b910);
   (**(code **)(param_1 + 0x60))(0x267,&rendering_state_6672_ptr);
   (**(code **)(param_1 + 0x60))(0x268,_guard_check_icall);
   (**(code **)(param_1 + 0x60))(0x269,&rendering_state_6720_ptr);
-  (**(code **)(param_1 + 0x60))(0x26a,FUN_18044a080);
+  (**(code **)(param_1 + 0x60))(0x26a,RenderingSystem_AdvancedComputationProcessor106);
   (**(code **)(param_1 + 0x60))(0x26b,FUN_180449d70);
   (**(code **)(param_1 + 0x60))(0x26c,&rendering_state_3040_ptr);
   (**(code **)(param_1 + 0x60))(0x26d,RenderingSystemUtilityDebugger);
   (**(code **)(param_1 + 0x60))(0x26e,&rendering_state_6736_ptr);
   (**(code **)(param_1 + 0x60))(0x26f,&rendering_state_1248_ptr);
   (**(code **)(param_1 + 0x60))(0x270,&rendering_state_6656_ptr);
-  (**(code **)(param_1 + 0x60))(0x271,FUN_1804378e0);
+  (**(code **)(param_1 + 0x60))(0x271,RenderingSystem_OptimizeManager);
   (**(code **)(param_1 + 0x60))(0x272,FUN_18043ca10);
-  (**(code **)(param_1 + 0x60))(0x273,FUN_1804378e0);
-  (**(code **)(param_1 + 0x60))(0x274,FUN_18044af00);
+  (**(code **)(param_1 + 0x60))(0x273,RenderingSystem_OptimizeManager);
+  (**(code **)(param_1 + 0x60))(0x274,RenderingSystem_AdvancedCalculationProcessor111);
   (**(code **)(param_1 + 0x60))(0x275,FUN_18044c420);
   (**(code **)(param_1 + 0x60))(0x276,&rendering_state_3648_ptr);
   (**(code **)(param_1 + 0x60))(0x277,&rendering_state_7296_ptr);
   (**(code **)(param_1 + 0x60))(0x278,&rendering_state_6592_ptr);
-  (**(code **)(param_1 + 0x60))(0x279,FUN_180437460);
+  (**(code **)(param_1 + 0x60))(0x279,RenderingSystem_DataManager);
   (**(code **)(param_1 + 0x60))(0x27a,FUN_18044c190);
   (**(code **)(param_1 + 0x60))(0x27b,&rendering_param_400_ptr);
-  (**(code **)(param_1 + 0x60))(0x27c,FUN_180437b60);
+  (**(code **)(param_1 + 0x60))(0x27c,RenderingSystem_LogManager);
   (**(code **)(param_1 + 0x60))(0x27d,FUN_18044afb0);
   (**(code **)(param_1 + 0x60))(0x27e,FUN_18044b1d0);
   (**(code **)(param_1 + 0x60))(0x27f,FUN_18044b6e0);
-  (**(code **)(param_1 + 0x60))(0x280,FUN_18044b280);
+  (**(code **)(param_1 + 0x60))(0x280,RenderingSystem_AdvancedMathProcessor112);
   (**(code **)(param_1 + 0x60))(0x281,&rendering_state_8352_ptr);
   (**(code **)(param_1 + 0x60))(0x282,&rendering_state_8976_ptr);
   (**(code **)(param_1 + 0x60))(0x283,FUN_18044c9c0);
@@ -855,7 +855,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x291,FUN_18044cd30);
   (**(code **)(param_1 + 0x60))(0x292,FUN_18044ce10);
   (**(code **)(param_1 + 0x60))(0x293,&system_state_ptr);
-  (**(code **)(param_1 + 0x60))(0x294,FUN_18044cb80);
+  (**(code **)(param_1 + 0x60))(0x294,RenderingSystem_AdvancedMathProcessor122);
   (**(code **)(param_1 + 0x60))(0x295,&rendering_param_768_ptr);
   (**(code **)(param_1 + 0x60))(0x296,&rendering_callback28_ptr);
   (**(code **)(param_1 + 0x60))(0x297,&rendering_state_1200_ptr);
@@ -878,37 +878,37 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x2a8,FUN_18044d450);
   (**(code **)(param_1 + 0x60))(0x2a9,&rendering_state_2528_ptr);
   (**(code **)(param_1 + 0x60))(0x2aa,&rendering_state_2464_ptr);
-  (**(code **)(param_1 + 0x60))(0x2ab,FUN_18044d680);
+  (**(code **)(param_1 + 0x60))(0x2ab,RenderingSystem_AdvancedArithmeticProcessor126);
   (**(code **)(param_1 + 0x60))(0x2ac,&rendering_state_2624_ptr);
   (**(code **)(param_1 + 0x60))(0x2ad,&rendering_state_2416_ptr);
   (**(code **)(param_1 + 0x60))(0x2ae,&rendering_state_2496_ptr);
   (**(code **)(param_1 + 0x60))(0x2af,&rendering_state_2592_ptr);
   (**(code **)(param_1 + 0x60))(0x2b0,&rendering_state_2560_ptr);
-  (**(code **)(param_1 + 0x60))(0x2b1,FUN_180435f40);
-  (**(code **)(param_1 + 0x60))(0x2b2,FUN_1804357a0);
-  (**(code **)(param_1 + 0x60))(0x2b3,FUN_180435ff0);
+  (**(code **)(param_1 + 0x60))(0x2b1,RenderingSystem_ParameterValidator);
+  (**(code **)(param_1 + 0x60))(0x2b2,RenderingSystem_ParameterHandler);
+  (**(code **)(param_1 + 0x60))(0x2b3,RenderingSystem_StateValidator);
   (**(code **)(param_1 + 0x60))(0x2b4,&rendering_state_6144_ptr);
-  (**(code **)(param_1 + 0x60))(0x2b5,FUN_1804362a0);
-  (**(code **)(param_1 + 0x60))(0x2b6,FUN_1804359d0);
+  (**(code **)(param_1 + 0x60))(0x2b5,RenderingSystem_ProcessManager);
+  (**(code **)(param_1 + 0x60))(0x2b6,RenderingSystem_SetupHandler);
   (**(code **)(param_1 + 0x60))(0x2b7,&rendering_state_7056_ptr);
   (**(code **)(param_1 + 0x60))(0x2b8,&rendering_state_6624_ptr);
-  (**(code **)(param_1 + 0x60))(0x2b9,FUN_180436160);
+  (**(code **)(param_1 + 0x60))(0x2b9,RenderingSystem_SystemHandler);
   (**(code **)(param_1 + 0x60))(0x2ba,&rendering_state_6592_ptr);
-  (**(code **)(param_1 + 0x60))(699,FUN_180435690);
+  (**(code **)(param_1 + 0x60))(699,RenderingSystem_SetupManager);
   (**(code **)(param_1 + 0x60))(700,&rendering_state_5344_ptr);
   (**(code **)(param_1 + 0x60))(0x2bd,&rendering_state_5872_ptr);
-  (**(code **)(param_1 + 0x60))(0x2be,FUN_180435e20);
+  (**(code **)(param_1 + 0x60))(0x2be,RenderingSystem_StateManager);
   (**(code **)(param_1 + 0x60))(0x2bf,&rendering_state_5584_ptr);
-  (**(code **)(param_1 + 0x60))(0x2c0,FUN_180435f90);
-  (**(code **)(param_1 + 0x60))(0x2c1,FUN_180435d10);
+  (**(code **)(param_1 + 0x60))(0x2c0,RenderingSystem_ConfigValidator);
+  (**(code **)(param_1 + 0x60))(0x2c1,RenderingSystem_ConfigManager);
   (**(code **)(param_1 + 0x60))(0x2c2,&rendering_state_4464_ptr);
-  (**(code **)(param_1 + 0x60))(0x2c3,FUN_180436030);
+  (**(code **)(param_1 + 0x60))(0x2c3,RenderingSystem_ParameterManager);
   (**(code **)(param_1 + 0x60))(0x2c4,&rendering_state_5792_ptr);
   (**(code **)(param_1 + 0x60))(0x2c5,&rendering_state_7088_ptr);
   (**(code **)(param_1 + 0x60))(0x2c6,&rendering_state_5488_ptr);
   (**(code **)(param_1 + 0x60))(0x2c7,&rendering_state_5376_ptr);
-  (**(code **)(param_1 + 0x60))(0x2c8,FUN_180435860);
-  (**(code **)(param_1 + 0x60))(0x2c9,FUN_18044fa00);
+  (**(code **)(param_1 + 0x60))(0x2c8,RenderingSystem_StateInitializer);
+  (**(code **)(param_1 + 0x60))(0x2c9,RenderingSystem_AdvancedCalculationProcessor141);
   (**(code **)(param_1 + 0x60))(0x2ca,&rendering_state_8784_ptr);
   (**(code **)(param_1 + 0x60))(0x2cb,FUN_18044ffa0);
   (**(code **)(param_1 + 0x60))(0x2cc,FUN_180450070);
@@ -943,7 +943,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x2e9,FUN_1804511e0);
   (**(code **)(param_1 + 0x60))(0x2ea,FUN_18044e0d0);
   (**(code **)(param_1 + 0x60))(0x2eb,FUN_180455430);
-  (**(code **)(param_1 + 0x60))(0x2ec,FUN_18044e180);
+  (**(code **)(param_1 + 0x60))(0x2ec,RenderingSystem_AdvancedComputationProcessor132);
   (**(code **)(param_1 + 0x60))(0x2ed,&rendering_state_9072_ptr);
   (**(code **)(param_1 + 0x60))(0x2ee,FUN_180455340);
   (**(code **)(param_1 + 0x60))(0x2ef,FUN_180450ba0);
@@ -951,7 +951,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x2f1,FUN_18044f370);
   (**(code **)(param_1 + 0x60))(0x2f2,FUN_180455250);
   (**(code **)(param_1 + 0x60))(0x2f3,FUN_1804555a0);
-  (**(code **)(param_1 + 0x60))(0x2f4,FUN_180455980);
+  (**(code **)(param_1 + 0x60))(0x2f4,RenderingSystem_AdvancedComputationProcessor180);
   (**(code **)(param_1 + 0x60))(0x2f5,FUN_1804559d0);
   (**(code **)(param_1 + 0x60))(0x2f6,&rendering_param_128_ptr);
   (**(code **)(param_1 + 0x60))(0x2f7,FUN_180451d20);
@@ -963,7 +963,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x2fd,&rendering_state_9392_ptr);
   (**(code **)(param_1 + 0x60))(0x2fe,&render_data_ptr);
   (**(code **)(param_1 + 0x60))(0x2ff,FUN_1804531d0);
-  (**(code **)(param_1 + 0x60))(0x300,FUN_180453300);
+  (**(code **)(param_1 + 0x60))(0x300,RenderingSystem_AdvancedArithmeticProcessor163);
   (**(code **)(param_1 + 0x60))(0x301,FUN_18044e2b0);
   (**(code **)(param_1 + 0x60))(0x302,FUN_180453e40);
   (**(code **)(param_1 + 0x60))(0x303,FUN_180453de0);
@@ -994,17 +994,17 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x31c,&rendering_state_5488_ptr);
   (**(code **)(param_1 + 0x60))(0x31d,&SUB_1802bf330);
   (**(code **)(param_1 + 0x60))(0x31e,&rendering_state_5408_ptr);
-  (**(code **)(param_1 + 0x60))(799,FUN_180454d00);
+  (**(code **)(param_1 + 0x60))(799,RenderingSystem_AdvancedComputationProcessor175);
   (**(code **)(param_1 + 0x60))(800,&rendering_state_2608_ptr);
   (**(code **)(param_1 + 0x60))(0x321,FUN_1804541a0);
   (**(code **)(param_1 + 0x60))(0x322,FUN_18044dc10);
   (**(code **)(param_1 + 0x60))(0x323,&rendering_state_1328_ptr);
   (**(code **)(param_1 + 0x60))(0x324,FUN_180453810);
   (**(code **)(param_1 + 0x60))(0x325,FUN_1804537b0);
-  (**(code **)(param_1 + 0x60))(0x326,FUN_180454300);
+  (**(code **)(param_1 + 0x60))(0x326,RenderingSystem_AdvancedComputationProcessor171);
   (**(code **)(param_1 + 0x60))(0x327,&rendering_state_5584_ptr);
   (**(code **)(param_1 + 0x60))(0x328,FUN_1804517c0);
-  (**(code **)(param_1 + 0x60))(0x329,FUN_180454d80);
+  (**(code **)(param_1 + 0x60))(0x329,RenderingSystem_AdvancedMathProcessor174);
   (**(code **)(param_1 + 0x60))(0x32a,0x180069ee0);
   (**(code **)(param_1 + 0x60))(0x32b,&rendering_param_192_ptr);
   (**(code **)(param_1 + 0x60))(0x32c,&rendering_state_5648_ptr);
@@ -1022,7 +1022,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x338,&rendering_state_7760_ptr);
   (**(code **)(param_1 + 0x60))(0x339,&rendering_state_2624_ptr);
   (**(code **)(param_1 + 0x60))(0x33a,&rendering_state_9504_ptr);
-  (**(code **)(param_1 + 0x60))(0x33b,FUN_18044e000);
+  (**(code **)(param_1 + 0x60))(0x33b,RenderingSystem_AdvancedNumericProcessor130);
   (**(code **)(param_1 + 0x60))(0x33c,&rendering_state_8224_ptr);
   (**(code **)(param_1 + 0x60))(0x33d,FUN_1804530a0);
   (**(code **)(param_1 + 0x60))(0x33e,FUN_180453140);
@@ -1030,7 +1030,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x340,&rendering_state_4800_ptr);
   (**(code **)(param_1 + 0x60))(0x341,FUN_180452630);
   (**(code **)(param_1 + 0x60))(0x342,&rendering_state_2480_ptr);
-  (**(code **)(param_1 + 0x60))(0x343,FUN_180452500);
+  (**(code **)(param_1 + 0x60))(0x343,RenderingSystem_AdvancedComputationProcessor159);
   (**(code **)(param_1 + 0x60))(0x344,&rendering_state_8992_ptr);
   (**(code **)(param_1 + 0x60))(0x345,&rendering_param_208_ptr);
   (**(code **)(param_1 + 0x60))(0x346,FUN_180451bd0);
@@ -1073,7 +1073,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x36b,&rendering_state_2560_ptr);
   (**(code **)(param_1 + 0x60))(0x36c,&rendering_state_2544_ptr);
   (**(code **)(param_1 + 0x60))(0x36d,&rendering_param_384_ptr);
-  (**(code **)(param_1 + 0x60))(0x36e,FUN_180453580);
+  (**(code **)(param_1 + 0x60))(0x36e,RenderingSystem_AdvancedArithmeticProcessor164);
   (**(code **)(param_1 + 0x60))(0x36f,&rendering_state_2768_ptr);
   (**(code **)(param_1 + 0x60))(0x370,&rendering_state_2256_ptr);
   (**(code **)(param_1 + 0x60))(0x371,&rendering_state_1968_ptr);
@@ -1122,8 +1122,8 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x39c,&rendering_state_2512_ptr);
   (**(code **)(param_1 + 0x60))(0x39d,&rendering_state12_ptr);
   (**(code **)(param_1 + 0x60))(0x39e,&rendering_param_704_ptr);
-  (**(code **)(param_1 + 0x60))(0x39f,FUN_18044f880);
-  (**(code **)(param_1 + 0x60))(0x3a0,FUN_18044f780);
+  (**(code **)(param_1 + 0x60))(0x39f,RenderingSystem_AdvancedMathProcessor140);
+  (**(code **)(param_1 + 0x60))(0x3a0,RenderingSystem_AdvancedCalculationProcessor140);
   (**(code **)(param_1 + 0x60))(0x3a1,_guard_check_icall);
   (**(code **)(param_1 + 0x60))(0x3a2,&rendering_state_1232_ptr);
   (**(code **)(param_1 + 0x60))(0x3a3,&rendering_state_1200_ptr);

@@ -274,7 +274,7 @@ void FUN_1802aecf0(int64_t param_1,float param_2,int64_t param_3,uint64_t *param
     plVar18 = (int64_t *)FUN_1800f8fc0(*(uint64_t *)(param_1 + 0x18),&uStack_218);
     lVar24 = *plVar18;
     lStack_160 = lVar24;
-    FUN_180045af0(&uStack_218);
+    DataCacheManager(&uStack_218);
     lVar22 = *(int64_t *)(param_1 + 0x20);
     aiStack_210[0] = *(int *)(*(int64_t *)(param_1 + 0x18) + 0x108);
     if ((*(int64_t *)(*(int64_t *)(param_1 + 0x18) + 0x10) != *(int64_t *)(lVar22 + 0x120)) ||
@@ -293,8 +293,8 @@ void FUN_1802aecf0(int64_t param_1,float param_2,int64_t param_3,uint64_t *param
         uStack_208 = (int64_t *)*plVar18;
         *plVar18 = 0;
         func_0x0001800865f0(&uStack_208,lVar22 + 0x128);
-        FUN_180045af0(&uStack_208);
-        FUN_180045af0(auStack_1f0);
+        DataCacheManager(&uStack_208);
+        DataCacheManager(auStack_1f0);
         uVar19 = (uint64_t)(int)(*(int64_t *)(lVar24 + 0x40) - *(int64_t *)(lVar24 + 0x38) >> 4);
         uStack_218 = uVar19;
         if (0 < (int64_t)uVar19) {
@@ -309,7 +309,7 @@ void FUN_1802aecf0(int64_t param_1,float param_2,int64_t param_3,uint64_t *param
                 (**(code **)(*uStack_208 + 0x28))();
               }
               FUN_180076910(uVar7,&uStack_208);
-              FUN_180045af0(&uStack_208);
+              DataCacheManager(&uStack_208);
             }
             lVar24 = lVar24 + 0x10;
             uVar19 = uVar19 - 1;
@@ -405,9 +405,9 @@ void FUN_1802aecf0(int64_t param_1,float param_2,int64_t param_3,uint64_t *param
       plVar18 = (int64_t *)FUN_1800f8fc0(*(uint64_t *)(param_1 + 0x18),&uStack_218);
       uVar19 = *(int64_t *)(*plVar18 + 0x40) - *(int64_t *)(*plVar18 + 0x38) >> 4;
       uStack_200 = 0;
-      FUN_180045af0(&uStack_218);
+      DataCacheManager(&uStack_218);
     }
-    FUN_180045af0(auStack_1f0);
+    DataCacheManager(auStack_1f0);
     uVar10 = auStack_1d8[0];
     iVar5 = aiStack_210[0];
     lStack_158 = (*(int64_t *)(*(int64_t *)(param_1 + 0x20) + 0x60) -
@@ -425,7 +425,7 @@ void FUN_1802aecf0(int64_t param_1,float param_2,int64_t param_3,uint64_t *param
         }
         plVar18 = (int64_t *)FUN_1800f8fc0(*(uint64_t *)(param_1 + 0x18));
         lVar22 = *plVar18;
-        FUN_180045af0(auStack_1d8);
+        DataCacheManager(auStack_1d8);
         if (lVar22 == 0) {
           *(int16_t *)(lVar24 + -0x40) = 0xffff;
         }

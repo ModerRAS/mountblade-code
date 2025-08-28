@@ -1336,7 +1336,7 @@ int32_t *complex_data_structure_initializer(int32_t *data_structure)
     *(uint64_t *)(data_structure + 0xba) = 0;
     
     // 初始化回调函数
-    DataStructureManager(data_structure + 0xc2, 8, 0xd, &SUB_18005d5f0, FUN_180045af0);
+    DataStructureManager(data_structure + 0xc2, 8, 0xd, &SUB_18005d5f0, DataCacheManager);
     
     // 初始化更多数据区域
     *(uint64_t *)(data_structure + 0xdc) = 0;
@@ -1345,7 +1345,7 @@ int32_t *complex_data_structure_initializer(int32_t *data_structure)
     *(uint64_t *)(data_structure + 0xe2) = 0;
     *(uint64_t *)(data_structure + 0xe4) = 0;
     *(uint64_t *)(data_structure + 0xe6) = 0;
-    DataStructureManager(data_structure + 0xea, 8, 0xd, &SUB_18005d5f0, FUN_180045af0);
+    DataStructureManager(data_structure + 0xea, 8, 0xd, &SUB_18005d5f0, DataCacheManager);
     
     // 初始化扩展数据区域
     *(uint64_t *)(data_structure + 0x104) = 0;
@@ -1543,7 +1543,7 @@ void multi_level_resource_cleanup(int64_t resource_manager)
     }
     
     // 执行最终的清理操作
-    SystemDataValidator(resource_manager, 8, 0xd, FUN_180045af0);
+    SystemDataValidator(resource_manager, 8, 0xd, DataCacheManager);
     return;
 }
 

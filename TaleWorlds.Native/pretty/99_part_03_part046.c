@@ -64,9 +64,9 @@ uint64_t * FUN_1801fa180(uint64_t *param_1)
   *(uint64_t *)((int64_t)param_1 + 0x124) = 0;
   *(int32_t *)((int64_t)param_1 + 300) = 0;
   param_1[0x26] = 0x900;
-  DataStructureManager(param_1 + 0x27,8,0x10,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0x27,8,0x10,&SUB_18005d5f0,DataCacheManager);
   DataStructureManager(param_1 + 0x39,0x98,4,FUN_180049970,FUN_180044a30);
-  DataStructureManager(param_1 + 0x85,8,4,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0x85,8,4,&SUB_18005d5f0,DataCacheManager);
   param_1[0x89] = 0;
   param_1[1] = 0x3f8000003f800000;
   param_1[8] = 0;

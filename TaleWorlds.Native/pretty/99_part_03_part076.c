@@ -472,7 +472,7 @@ void FUN_1802423f0(uint64_t *param_1)
   param_1[0x2ec] = &system_state_ptr;
   param_1[0x2e1] = &system_state_ptr;
   param_1[0x2d6] = &system_state_ptr;
-  SystemDataValidator(param_1 + 0x2cf,8,7,FUN_180045af0);
+  SystemDataValidator(param_1 + 0x2cf,8,7,DataCacheManager);
   param_1[0x2c3] = &system_state_ptr;
   FUN_180242610();
   FUN_180170900(param_1 + 0x1d);

@@ -681,7 +681,7 @@ void core_engine_module_cleanup(void)
 #define core_engine_system_configurator FUN_1802285e0
 
 // 内存管理函数别名
-#define core_engine_memory_allocator FUN_180045af0
+#define core_engine_memory_allocator DataCacheManager
 #define core_engine_memory_deallocator FUN_180090020
 #define core_engine_memory_pool_manager FUN_1800900c0
 #define core_engine_memory_optimizer FUN_180086600

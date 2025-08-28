@@ -188,7 +188,7 @@ uint64_t * FUN_18053f6c0(uint64_t *param_1,uint64_t param_2)
   *(int32_t *)(param_1 + 1) = 0;
   *param_1 = &unknown_var_9784_ptr;
   param_1[2] = 0;
-  DataStructureManager(param_1 + 3,8,0xe,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 3,8,0xe,&SUB_18005d5f0,DataCacheManager);
   puVar3 = param_1 + 0x12;
   lVar2 = 5;
   DataStructureManager(puVar3,0x180,5,FUN_180544dc0,FUN_180506660);
@@ -315,7 +315,7 @@ void FUN_18053f930(uint64_t *param_1)
   }
   if (*plVar1 == 0) {
     SystemDataValidator(param_1 + 0x12,0x180,5,FUN_180506660);
-    SystemDataValidator(param_1 + 3,8,0xe,FUN_180045af0);
+    SystemDataValidator(param_1 + 3,8,0xe,DataCacheManager);
     if ((int64_t *)param_1[2] != (int64_t *)0x0) {
       (**(code **)(*(int64_t *)param_1[2] + 0x38))();
     }

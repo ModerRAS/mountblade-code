@@ -404,9 +404,9 @@ uint64_t * initialize_thread_manager(uint64_t *thread_manager)
   
   // 初始化32个线程槽位
   loop_counter = 0x20;
-  DataStructureManager(thread_manager + 1, 8, 0x20, &SUB_18005d5f0, FUN_180045af0);
+  DataStructureManager(thread_manager + 1, 8, 0x20, &SUB_18005d5f0, DataCacheManager);
   thread_pool = thread_manager + 0x21;
-  DataStructureManager(thread_pool, 8, 0x20, &SUB_18005d5f0, FUN_180045af0);
+  DataStructureManager(thread_pool, 8, 0x20, &SUB_18005d5f0, DataCacheManager);
   
   // 初始化状态标志
   thread_manager[0x71] = 0;
@@ -520,10 +520,10 @@ void destroy_thread_manager(int64_t thread_manager)
   FUN_18005d580();
   
   // 清理辅助线程池
-  SystemDataValidator(thread_manager + 0x108, 8, 0x20, FUN_180045af0);
+  SystemDataValidator(thread_manager + 0x108, 8, 0x20, DataCacheManager);
   
   // 清理主线程池
-  SystemDataValidator(thread_manager + 8, 8, 0x20, FUN_180045af0);
+  SystemDataValidator(thread_manager + 8, 8, 0x20, DataCacheManager);
   
   return;
 }
@@ -570,7 +570,7 @@ void cleanup_resource_manager(int64_t *resource_manager)
   SystemDataValidator(resource_manager + 6, 0x20, 0x50, FUN_180627b90, cleanup_flag);
   
   // 清理对象引用
-  SystemDataValidator(resource_manager + 1, 8, 4, FUN_180045af0);
+  SystemDataValidator(resource_manager + 1, 8, 4, DataCacheManager);
   
   // 清理主对象引用
   if ((int64_t *)*resource_manager != (int64_t *)0x0) {
@@ -1025,7 +1025,7 @@ int64_t * create_render_manager(int64_t *render_manager)
   *render_manager = 0;
   
   // 初始化主线程池（4个线程槽位）
-  DataStructureManager(render_manager + 1, 8, 4, &SUB_18005d5f0, FUN_180045af0);
+  DataStructureManager(render_manager + 1, 8, 4, &SUB_18005d5f0, DataCacheManager);
   
   // 初始化资源池（80个资源槽位，每个80字节）
   DataStructureManager(render_manager + 6, 0x20, 0x50, FUN_180627850, FUN_180627b90);

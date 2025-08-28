@@ -279,9 +279,9 @@ uint64_t * FUN_180090130(uint64_t *param_1)
   int64_t *plVar7;
   
   lVar6 = 0x20;
-  DataStructureManager(param_1 + 1,8,0x20,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 1,8,0x20,&SUB_18005d5f0,DataCacheManager);
   plVar7 = param_1 + 0x21;
-  DataStructureManager(plVar7,8,0x20,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(plVar7,8,0x20,&SUB_18005d5f0,DataCacheManager);
   param_1[0x71] = 0;
   param_1[0x72] = 0;
   param_1[0x73] = 0;
@@ -353,8 +353,8 @@ void FUN_180090380(int64_t param_1)
   _Mtx_destroy_in_situ();
   SystemDataValidator(param_1 + 0x3b0,0x20,0x20,FUN_180627b90,uVar1);
   FUN_18005d580();
-  SystemDataValidator(param_1 + 0x108,8,0x20,FUN_180045af0);
-  SystemDataValidator(param_1 + 8,8,0x20,FUN_180045af0);
+  SystemDataValidator(param_1 + 0x108,8,0x20,DataCacheManager);
+  SystemDataValidator(param_1 + 8,8,0x20,DataCacheManager);
   return;
 }
 
@@ -382,7 +382,7 @@ void FUN_180090420(int64_t *param_1)
     (**(code **)(*(int64_t *)param_1[0x1a4] + 0x38))();
   }
   SystemDataValidator(param_1 + 6,0x20,0x50,FUN_180627b90,uVar2);
-  SystemDataValidator(param_1 + 1,8,4,FUN_180045af0);
+  SystemDataValidator(param_1 + 1,8,4,DataCacheManager);
   if ((int64_t *)*param_1 != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)*param_1 + 0x38))();
   }
@@ -702,7 +702,7 @@ int64_t * FUN_180090c80(int64_t *param_1)
   int64_t *plVar3;
   
   *param_1 = 0;
-  DataStructureManager(param_1 + 1,8,4,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 1,8,4,&SUB_18005d5f0,DataCacheManager);
   DataStructureManager(param_1 + 6,0x20,0x50,FUN_180627850,FUN_180627b90);
   param_1[0x1a4] = 0;
   *(int32_t *)(param_1 + 0x1a6) = 0;

@@ -147,9 +147,9 @@ void FUN_1800bc4a0(int64_t param_1)
   if (*(int64_t **)(param_1 + 0x270) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0x270) + 0x38))();
   }
-  SystemDataValidator(param_1 + 0x1f0,8,0x10,FUN_180045af0);
-  SystemDataValidator(param_1 + 0x170,8,0x10,FUN_180045af0);
-  SystemDataValidator(param_1 + 0xf0,8,0x10,FUN_180045af0);
+  SystemDataValidator(param_1 + 0x1f0,8,0x10,DataCacheManager);
+  SystemDataValidator(param_1 + 0x170,8,0x10,DataCacheManager);
+  SystemDataValidator(param_1 + 0xf0,8,0x10,DataCacheManager);
   if (*(int64_t **)(param_1 + 0xe8) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0xe8) + 0x38))();
   }

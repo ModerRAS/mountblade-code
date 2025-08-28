@@ -490,7 +490,7 @@ void FUN_180099430(int64_t param_1,int64_t param_2)
       uStack_270 = 0;
       uStack_26c = 0;
       plStack_278 = (int64_t *)0x10000010001;
-      pcStack_2d8 = FUN_180045af0;
+      pcStack_2d8 = DataCacheManager;
       DataStructureManager(auStack_238,8,0x10,&SUB_18005d5f0);
       plStack_2b0 = (int64_t *)0x0;
       puStack_2d0 = auStack_1b8;
@@ -812,7 +812,7 @@ void FUN_180099430(int64_t param_1,int64_t param_2)
         (**(code **)(*plStack_278 + 0x38))();
       }
       (**(code **)(*plVar19 + 0x38))(plVar19);
-      SystemDataValidator(auStack_238,8,0x10,FUN_180045af0);
+      SystemDataValidator(auStack_238,8,0x10,DataCacheManager);
     }
   }
                     // WARNING: Subroutine does not return
@@ -846,9 +846,9 @@ void SystemDataBufferManager(uint64_t param_1)
   // - param_1: 缓冲区句柄
   // - 8: 缓冲区对齐大小
   // - 0x10: 缓冲区头部大小
-  // - FUN_180045af0: 内存清理回调函数
+  // - DataCacheManager: 内存清理回调函数
   // - 0xfffffffffffffffe: 安全Cookie掩码
-  SystemDataValidator(param_1, 8, 0x10, FUN_180045af0, SYSTEM_SECURITY_COOKIE_MASK);
+  SystemDataValidator(param_1, 8, 0x10, DataCacheManager, SYSTEM_SECURITY_COOKIE_MASK);
   
   // 函数执行完成，返回调用者
   return;

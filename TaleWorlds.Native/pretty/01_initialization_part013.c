@@ -1801,7 +1801,7 @@ void SystemShortStringResetter(int8_t *param_1)
 #define FUN_180044dc0             SystemDebugManagerInitialize
 #define FUN_180045380             SystemThreadCreator
 #define FUN_180045580             SystemExitManager
-#define FUN_180045af0             SystemCallbackCleaner
+#define DataCacheManager             SystemCallbackCleaner
 #define FUN_180045b20             SystemStringCopier
 #define FUN_180045ba0             SystemStringAppender
 #define FUN_180045bc1             SystemMemoryCopier

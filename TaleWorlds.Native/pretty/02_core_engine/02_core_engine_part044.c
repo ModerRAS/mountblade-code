@@ -101,7 +101,7 @@ cleanup_object_resources(uint64_t *object_ptr,uint64_t cleanup_flags,uint64_t pa
 uint64_t * destroy_object_instance(uint64_t *object_ptr,uint destroy_flags)
 
 {
-  SystemDataValidator(object_ptr + 3,8,0x10,FUN_180045af0,0xfffffffffffffffe);
+  SystemDataValidator(object_ptr + 3,8,0x10,DataCacheManager,0xfffffffffffffffe);
   *object_ptr = &GLOBAL_VTABLE_PTR_180a21720;
   *object_ptr = &GLOBAL_VTABLE_PTR_180a21690;
   if ((destroy_flags & 1) != 0) {
@@ -121,7 +121,7 @@ uint64_t * create_object_instance(uint64_t *object_ptr)
   *object_ptr = &GLOBAL_VTABLE_PTR_180a21720;
   *(int32_t *)(object_ptr + 1) = 0;
   *object_ptr = &GLOBAL_VTABLE_PTR_180a00098;
-  DataStructureManager(object_ptr + 3,8,0x10,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(object_ptr + 3,8,0x10,&SUB_18005d5f0,DataCacheManager);
   *(int32_t *)(object_ptr + 2) = 0;
   *(int8_t *)((int64_t)object_ptr + 0x14) = 9;
   *(byte *)(object_ptr + 0x13) = *(byte *)(object_ptr + 0x13) | 1;

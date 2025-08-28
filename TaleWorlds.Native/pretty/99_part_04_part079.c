@@ -829,7 +829,7 @@ void FUN_1802d1460(int32_t *param_1,uint64_t param_2)
   *(uint64_t *)(param_1 + 5) = 0xffffffffffffffff;
   *param_1 = 0;
   puVar1 = param_1 + 0x16;
-  pcStack_a8 = FUN_180045af0;
+  pcStack_a8 = DataCacheManager;
   puStack_98 = puVar1;
   puStack_88 = param_1;
   puStack_80 = param_1;
@@ -868,10 +868,10 @@ void FUN_1802d1460(int32_t *param_1,uint64_t param_2)
   uStack_a0 = 3;
   func_0x0001802d1250(puVar1,0,&uStack_48);
   FUN_1801be9f0(puVar1,*(int32_t *)(SYSTEM_STATE_MANAGER + 0xb60));
-  pcStack_a8 = FUN_180045af0;
+  pcStack_a8 = DataCacheManager;
   DataStructureManager(param_1 + 0xc4,8,2,&SUB_18005d5f0);
   *(uint64_t *)(param_1 + 200) = 0;
-  pcStack_a8 = FUN_180045af0;
+  pcStack_a8 = DataCacheManager;
   DataStructureManager(param_1 + 0xca,8,2,&SUB_18005d5f0);
   *(uint64_t *)(param_1 + 0xce) = 0;
   *(uint64_t *)(param_1 + 0xd0) = 0;

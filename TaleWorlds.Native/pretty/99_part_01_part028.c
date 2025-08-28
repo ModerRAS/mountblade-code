@@ -780,9 +780,9 @@ int64_t FUN_1800bc180(int64_t param_1)
   *(uint64_t *)(param_1 + 0xd8) = 0;
   *(uint64_t *)(param_1 + 0xe0) = 0;
   *(uint64_t *)(param_1 + 0xe8) = 0;
-  DataStructureManager(param_1 + 0xf0,8,0x10,&SUB_18005d5f0,FUN_180045af0);
-  DataStructureManager(param_1 + 0x170,8,0x10,&SUB_18005d5f0,FUN_180045af0);
-  DataStructureManager(param_1 + 0x1f0,8,0x10,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0xf0,8,0x10,&SUB_18005d5f0,DataCacheManager);
+  DataStructureManager(param_1 + 0x170,8,0x10,&SUB_18005d5f0,DataCacheManager);
+  DataStructureManager(param_1 + 0x1f0,8,0x10,&SUB_18005d5f0,DataCacheManager);
   *(uint64_t *)(param_1 + 0x270) = 0;
   *(uint64_t *)(param_1 + 0x278) = 0;
   *(uint64_t *)(param_1 + 0x280) = 0;

@@ -18,7 +18,7 @@ void FUN_1802d18d0(int64_t param_1)
   if (*(int64_t **)(param_1 + 0x40) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0x40) + 0x38))();
   }
-  SystemDataValidator(param_1 + 0x30,8,2,FUN_180045af0);
+  SystemDataValidator(param_1 + 0x30,8,2,DataCacheManager);
   return;
 }
 
@@ -67,11 +67,11 @@ void FUN_1802d1970(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
             if (*(int64_t **)(param_1 + 0x338) != (int64_t *)0x0) {
               (**(code **)(**(int64_t **)(param_1 + 0x338) + 0x38))();
             }
-            SystemDataValidator(param_1 + 0x328,8,2,FUN_180045af0);
+            SystemDataValidator(param_1 + 0x328,8,2,DataCacheManager);
             if (*(int64_t **)(param_1 + 800) != (int64_t *)0x0) {
               (**(code **)(**(int64_t **)(param_1 + 800) + 0x38))();
             }
-            SystemDataValidator(param_1 + 0x310,8,2,FUN_180045af0);
+            SystemDataValidator(param_1 + 0x310,8,2,DataCacheManager);
             FUN_1802d18d0(param_1 + 0x58);
             FUN_180058370(param_1 + 0x20,*(uint64_t *)(param_1 + 0x30));
             return;

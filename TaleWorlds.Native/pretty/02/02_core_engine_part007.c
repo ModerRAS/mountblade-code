@@ -1331,9 +1331,9 @@ int initialize_engine_systems(void)
 {
   int64_t lVar1;
   
-  DataStructureManager(&system_flag_6220,8,5,&SUB_18005d5f0,FUN_180045af0);
-  DataStructureManager(0x180c96248,8,5,&SUB_18005d5f0,FUN_180045af0);
-  DataStructureManager(0x180c96298,8,5,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(&system_flag_6220,8,5,&SUB_18005d5f0,DataCacheManager);
+  DataStructureManager(0x180c96248,8,5,&SUB_18005d5f0,DataCacheManager);
+  DataStructureManager(0x180c96298,8,5,&SUB_18005d5f0,DataCacheManager);
   _Mtx_init_in_situ(0x180c962c0,2);
   core_system_ui = 0;
   core_system_ui = 0;

@@ -830,7 +830,7 @@ void FUN_1803b20e0(int64_t param_1)
       *plVar5 = 0;
       plVar3 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x158,8,3);
       *plVar3 = (int64_t)&unknown_var_7192_ptr;
-      DataStructureManager(plVar3 + 1,8,7,&SUB_18005d5f0,FUN_180045af0);
+      DataStructureManager(plVar3 + 1,8,7,&SUB_18005d5f0,DataCacheManager);
       FUN_180078550(plVar3);
       *plVar5 = (int64_t)plVar3;
       (**(code **)(*plVar3 + 8))

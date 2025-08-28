@@ -1171,8 +1171,8 @@ void WotsMain(uint64_t param_1)
 
 
 
-// 函数: void FUN_180045af0(int64_t *param_1)
-void FUN_180045af0(int64_t *param_1)
+// 函数: void DataCacheManager(int64_t *param_1)
+void DataCacheManager(int64_t *param_1)
 
 {
   if ((int64_t *)*param_1 != (int64_t *)0x0) {

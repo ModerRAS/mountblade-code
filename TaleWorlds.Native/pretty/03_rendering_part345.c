@@ -1,3 +1,6 @@
+/* RenderingProcessor - FUN_180391980 的语义化别名 */
+#define RenderingProcessor FUN_180391980
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 

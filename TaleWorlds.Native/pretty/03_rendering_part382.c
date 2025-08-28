@@ -905,7 +905,7 @@ void FUN_180479a10(char *param_1,int64_t *param_2,uint64_t param_3,uint64_t *par
     uStack_298 = 1;
     if (pcVar9 != acStack_188) {
       if (acStack_188[0] != '\0') {
-        FUN_180067070(&uStack_180);
+        SystemPerformanceOptimizer(&uStack_180);
       }
       acStack_188[0] = *pcVar9;
       if (acStack_188[0] != '\0') {
@@ -943,7 +943,7 @@ void FUN_180479a10(char *param_1,int64_t *param_2,uint64_t param_3,uint64_t *par
     }
     uStack_298 = 0;
     if (acStack_80[0] != '\0') {
-      FUN_180067070(auStack_78);
+      SystemPerformanceOptimizer(auStack_78);
     }
     if (!bVar3) break;
     lVar10 = _Xtime_get_ticks();
@@ -961,12 +961,12 @@ void FUN_180479a10(char *param_1,int64_t *param_2,uint64_t param_3,uint64_t *par
       uStack_298 = 2;
       if (acStack_d8[0] != '\0') {
         puStack_290 = auStack_d0;
-        FUN_180067070(auStack_c8);
+        SystemPerformanceOptimizer(auStack_c8);
       }
       if (acStack_188[0] != '\0') {
-        FUN_180067070(&uStack_180);
+        SystemPerformanceOptimizer(&uStack_180);
       }
-      FUN_180067070(auStack_a0);
+      SystemPerformanceOptimizer(auStack_a0);
       if (0xf < uStack_148) {
         uVar12 = uStack_148 + 1;
         lVar2 = CONCAT71(uStack_15f,uStack_160);
@@ -1008,9 +1008,9 @@ LAB_180479ff8:
   }
   uStack_298 = 2;
   if (acStack_188[0] != '\0') {
-    FUN_180067070(&uStack_180);
+    SystemPerformanceOptimizer(&uStack_180);
   }
-  FUN_180067070(auStack_a0);
+  SystemPerformanceOptimizer(auStack_a0);
   if (0xf < uStack_148) {
     uVar12 = uStack_148 + 1;
     lVar2 = CONCAT71(uStack_15f,uStack_160);

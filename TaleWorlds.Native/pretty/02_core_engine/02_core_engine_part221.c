@@ -336,7 +336,7 @@ void cleanup_engine_resources(uint64_t *engine_context)
     }
     
     // 初始化文件系统
-    SystemDataValidator(engine_context + 0x5e, 8, 4, FUN_180045af0);
+    SystemDataValidator(engine_context + 0x5e, 8, 4, DataCacheManager);
     if (engine_context[0x5a] != 0) {
         CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
