@@ -590,7 +590,7 @@ void ResourceStatusValidation(longlong resource_handle, uint64_t validation_flag
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1808da330(longlong param_1,longlong param_2,int param_3)
+uint64_t ResourceArrayManagement(longlong array_ptr, longlong data_ptr, int array_size)
 
 {
   int iVar1;
