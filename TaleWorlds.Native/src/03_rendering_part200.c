@@ -139,6 +139,9 @@ void RenderingSystem_AdvancedMaterialProcessor(undefined8 render_context, longlo
 /**
  * 渲染材质优化器 - 负责渲染材质的优化和处理
  * 
+ * @param material_context 材质上下文句柄
+ * @param texture_data 纹理数据缓冲区
+ * @param optimization_flags 优化标志位
  * @return void
  * 
  * 技术说明：
@@ -153,13 +156,15 @@ void RenderingSystem_AdvancedMaterialProcessor(undefined8 render_context, longlo
  * - 简化版本专注于核心材质优化功能
  * - 保留了主要的优化处理流程
  */
-void RenderingSystem_MaterialOptimizer(void)
+void RenderingSystem_MaterialOptimizer(undefined8 material_context, undefined8 texture_data, uint optimization_flags)
 
 {
   // 材质优化参数
   float optimization_params[4];
   int texture_dimensions[4];
   longlong render_context;
+  float *material_params;
+  int *texture_flags;
   
   // 优化参数初始化
   optimization_params[0] = 0.05f;
@@ -182,6 +187,11 @@ void RenderingSystem_MaterialOptimizer(void)
     if (texture_dimensions[i] > 512) {
       // 高分辨率纹理优化
       optimization_params[i] = optimization_params[i] * 0.9f;
+    }
+    
+    // 材质参数应用
+    if (material_params != NULL) {
+      material_params[i] = optimization_params[i] * (float)texture_flags[i];
     }
   }
   
