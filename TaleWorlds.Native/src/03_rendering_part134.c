@@ -801,7 +801,13 @@ void FUN_180349a33(void)
 
 
 
-// 函数: void FUN_180349a50(undefined8 param_1)
+// =============================================================================
+// 渲染系统着色器参数设置器 (RenderingSystemShaderParameterSetter)
+// =============================================================================
+// 功能：设置着色器参数和材质属性，支持多种参数类型
+// 参数：param_1 - 渲染上下文
+// 返回值：无
+// =============================================================================
 void FUN_180349a50(undefined8 param_1)
 
 {
@@ -828,6 +834,8 @@ void FUN_180349a50(undefined8 param_1)
   uStack_1b0 = 0xfffffffffffffffe;
   uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_1e8;
   uStack_1c8 = 0;
+  
+  // 设置第一个着色器参数
   puStack_148 = &UNK_1809fcc58;
   puStack_140 = auStack_130;
   auStack_130[0] = 0;
@@ -837,6 +845,8 @@ void FUN_180349a50(undefined8 param_1)
   uStack_150 = 10;
   uStack_1c8 = 1;
   FUN_180180730(param_1,appuStack_1c0,apuStack_1a8);
+  
+  // 设置第二个着色器参数
   uStack_1c8 = 0;
   appuStack_1c0[0] = apuStack_1a8;
   apuStack_1a8[0] = &UNK_18098bcb0;
@@ -850,6 +860,8 @@ void FUN_180349a50(undefined8 param_1)
   uStack_150 = 2;
   uStack_1c8 = 2;
   FUN_180180730(param_1,appuStack_1c0,apuStack_1a8);
+  
+  // 设置第三个着色器参数
   uStack_1c8 = 0;
   appuStack_1c0[0] = apuStack_1a8;
   apuStack_1a8[0] = &UNK_18098bcb0;
@@ -867,7 +879,6 @@ void FUN_180349a50(undefined8 param_1)
   appuStack_1c0[0] = apuStack_1a8;
   apuStack_1a8[0] = &UNK_18098bcb0;
   puStack_88 = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_1e8);
 }
 
