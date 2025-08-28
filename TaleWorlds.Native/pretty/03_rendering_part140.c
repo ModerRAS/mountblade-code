@@ -128,9 +128,12 @@ void render_adapter_update_state(render_adapter_t *adapter);
 
 // 渲染系统函数
 void render_system_initialize(void);
+void render_system_initialize_ex(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
 void render_system_update_state(void);
 void render_system_cleanup(void);
 void render_system_sync(void);
+void render_system_component_register(uint64_t param_1, void *param_2, uint64_t param_3);
+void render_transform_matrix_apply(uint64_t param_1, void *param_2);
 
 // 渲染数据操作函数
 render_matrix4x4_t *render_matrix_create(void);
@@ -552,48 +555,66 @@ render_uint64_t *render_adapter_data_structure_create(render_uint64_t *param_1, 
 
 
 
-// 函数: void FUN_18034fde0(uint64_t *param_1)
-void FUN_18034fde0(uint64_t *param_1)
+//==============================================================================
+// 渲染适配器配置初始化函数
+//==============================================================================
 
+/**
+ * @brief 初始化渲染适配器配置
+ * @param param_1 适配器配置指针
+ * @note 设置渲染适配器的默认配置参数
+ *       包括视场角、宽高比、深度等参数
+ */
+void render_adapter_config_initialize(uint64_t *param_1)
 {
-  int32_t uVar1;
-  uint64_t *puVar2;
-  void *puStack_b8;
-  uint64_t *puStack_b0;
-  int32_t uStack_a8;
-  uint64_t uStack_a0;
-  uint64_t uStack_38;
-  
-  uStack_38 = 0xfffffffffffffffe;
-  puVar2 = param_1;
-  FUN_1803456e0();
-  *puVar2 = &rendering_adapter_ptr;
-  *(int32_t *)(param_1 + 0x14) = 0x3f800000;
-  param_1[0xe] = 0x4044000000000000;
-  param_1[0xf] = 0x4010000000000000;
-  *(int32_t *)(param_1 + 0x12) = 0;
-  *(int32_t *)((int64_t)param_1 + 0x94) = 0;
-  *(int32_t *)(param_1 + 0x13) = 0;
-  *(int32_t *)((int64_t)param_1 + 0x9c) = 0;
-  *(int32_t *)(param_1 + 0x14) = 0x3f800000;
-  param_1[0x10] = 0x4024000000000000;
-  param_1[0x11] = 0x3fd0000000000000;
-  puStack_b8 = &system_data_buffer_ptr;
-  uStack_a0 = 0;
-  puStack_b0 = (uint64_t *)0x0;
-  uStack_a8 = 0;
-  puVar2 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
-  *(int8_t *)puVar2 = 0;
-  puStack_b0 = puVar2;
-  uVar1 = CoreMemoryPoolCleaner(puVar2);
-  uStack_a0 = CONCAT44(uStack_a0._4_4_,uVar1);
-  *puVar2 = 0x6f6d412065766f4d;
-  *(int32_t *)(puVar2 + 1) = 0x746e75;
-  uStack_a8 = 0xb;
-  FUN_1803460a0(param_1,&puStack_b8,param_1 + 0xe,1);
-  puStack_b8 = &system_data_buffer_ptr;
-                    // WARNING: Subroutine does not return
-  CoreMemoryPoolInitializer(puVar2);
+    // 原始函数: void FUN_18034fde0(uint64_t *param_1)
+    int32_t uVar1;
+    uint64_t *puVar2;
+    void *puStack_b8;
+    uint64_t *puStack_b0;
+    int32_t uStack_a8;
+    uint64_t uStack_a0;
+    uint64_t uStack_38;
+    
+    uStack_38 = 0xfffffffffffffffe;
+    puVar2 = param_1;
+    render_system_initialize();
+    *puVar2 = &rendering_adapter_ptr;
+    
+    // 设置默认渲染参数
+    *(int32_t *)(param_1 + 0x14) = 0x3f800000;  // 1.0f
+    param_1[0xe] = 0x4044000000000000;         // 40.0f
+    param_1[0xf] = 0x4010000000000000;         // 4.0f
+    *(int32_t *)(param_1 + 0x12) = 0;           // 0
+    *(int32_t *)((int64_t)param_1 + 0x94) = 0;  // 0
+    *(int32_t *)(param_1 + 0x13) = 0;           // 0
+    *(int32_t *)((int64_t)param_1 + 0x9c) = 0;  // 0
+    *(int32_t *)(param_1 + 0x14) = 0x3f800000;  // 1.0f
+    param_1[0x10] = 0x4024000000000000;         // 10.0f
+    param_1[0x11] = 0x3fd0000000000000;         // 0.25f
+    
+    // 分配内存池
+    puStack_b8 = &system_data_buffer_ptr;
+    uStack_a0 = 0;
+    puStack_b0 = (uint64_t *)0x0;
+    uStack_a8 = 0;
+    puVar2 = (uint64_t *)CoreMemoryPoolAllocator(SYSTEM_MEMORY_POOL_ADDR, 0x10, 0x13);
+    *(int8_t *)puVar2 = 0;
+    puStack_b0 = puVar2;
+    uVar1 = CoreMemoryPoolCleaner(puVar2);
+    uStack_a0 = CONCAT44(uStack_a0._4_4_, uVar1);
+    
+    // 设置适配器标识
+    *puVar2 = 0x6f6d412065766f4d;  // "Move Aom"
+    *(int32_t *)(puVar2 + 1) = 0x746e75;  // "unt"
+    uStack_a8 = 0xb;
+    
+    // 初始化适配器配置
+    render_adapter_config_setup(param_1, &puStack_b8, param_1 + 0xe, 1);
+    puStack_b8 = &system_data_buffer_ptr;
+    
+    // 初始化内存池
+    CoreMemoryPoolInitializer(puVar2);
 }
 
 

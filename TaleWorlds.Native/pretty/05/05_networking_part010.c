@@ -196,7 +196,7 @@ extern void SystemInitializer(void* context, void* data, void* info, int size, i
 extern void FUN_180741e10(void* context, int size, void* info, int flags, int param1, int param2, int param3); /**< 扩展内存分配函数 */
 extern void FUN_1808b02a0(void* connection);          /**< 连接处理函数 */
 extern void FUN_1808b0fb0(void* connection, int flags);/**< 连接标志设置函数 */
-extern void FUN_180847820(void);                     /**< 数据生成函数 */
+extern void SystemCoreProcessor(void);                     /**< 数据生成函数 */
 extern void FUN_18084da10(void);                     /**< 数据验证函数 */
 extern void FUN_180840270(void* buffer);             /**< 缓冲区重置函数 */
 extern void FUN_18084d3f0(void* buffer, int flags);    /**< 缓冲区处理函数 */
