@@ -1906,7 +1906,7 @@ void UISystemFinalProcessor(int32_t param_1, uint64_t param_2, uint64_t param_3,
 //   简化实现：保持原有功能逻辑，添加详细的SIMD说明
 //   优化点：明确SIMD步骤，添加向量计算说明
 //------------------------------------------------------------------------------
-ulonglong FUN_18072ab70(longlong param_1, longlong param_2, uint param_3, uint param_4)
+ulonglong UISystemSIMDProcessor(longlong param_1, longlong param_2, uint param_3, uint param_4)
 {
     // 局部变量定义
     longlong lVar1;                              // 长整型变量
