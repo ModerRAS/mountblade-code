@@ -1461,7 +1461,7 @@ uint64_t UISystem_ValidateComponentAddSimple(void)
     UISystem_ComponentCleaner();
   }
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+  UISystem_MemoryReleaser(*(uint64_t )(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                 *(uint64_t *)(unaff_RDI + 0x30 + *(longlong *)(unaff_RBX + 0x6a0)),&unknown_var_8576_ptr,
                 0x1470,1);
 }
@@ -1491,7 +1491,7 @@ void UISystem_RemoveComponent(void)
   longlong unaff_RDI;
   
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+  UISystem_MemoryReleaser(*(uint64_t )(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                 *(uint64_t *)(unaff_RDI + 0x30 + *(longlong *)(unaff_RBX + 0x6a0)),&unknown_var_8576_ptr,
                 0x1470,1);
 }
@@ -1530,25 +1530,25 @@ uint64_t UISystem_MatchComponentType(longlong param_1,longlong param_2,int32_t *
   if (param_2 == 0) {
     return 0x1f;
   }
-  if ((*(char *)(param_1 + 9) != '\0') || (uVar2 = FUN_180749060(), (int)uVar2 == 0)) {
+  if ((*(char *)(param_1 + 9) != '\0') || (uVar2 = UISystem_StateChecker(), (int)uVar2 == 0)) {
     if (param_3 != (int32_t *)0x0) {
       *param_3 = 0;
     }
-    uVar2 = func_0x000180771d40(*(uint64_t *)(param_1 + 0x11418),aiStackX_10);
+    uVar2 = UISystem_ComponentFinderEx(*(uint64_t *)(param_1 + 0x11418),aiStackX_10);
     if ((int)uVar2 == 0) {
       iVar3 = 0;
       if (0 < aiStackX_10[0]) {
         do {
-          uVar2 = func_0x000180771cd0(*(uint64_t *)(param_1 + 0x11418),iVar3,auStackX_20);
+          uVar2 = UISystem_ComponentInfoGetter(*(uint64_t *)(param_1 + 0x11418),iVar3,auStackX_20);
           if ((int)uVar2 != 0) {
             return uVar2;
           }
-          uVar2 = func_0x000180771c60(*(uint64_t *)(param_1 + 0x11418),auStackX_20[0],&plStack_60)
+          uVar2 = UISystem_ComponentDataGetter(*(uint64_t )(param_1 + 0x11418),auStackX_20[0],&plStack_60)
           ;
           if ((int)uVar2 != 0) {
             return uVar2;
           }
-          iVar1 = func_0x00018076b420(*plStack_60 + 4,param_2 + 4);
+          iVar1 = UISystem_ComponentComparer(*plStack_60 + 4,param_2 + 4);
           if (iVar1 == 0) {
             return 8;
           }

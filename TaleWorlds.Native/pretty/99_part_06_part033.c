@@ -669,7 +669,7 @@ int8_t SystemStateManager(longlong param_1, uint64_t param_2, longlong *param_3)
     
     /* 获取状态指针并更新状态 */
     param_3 = (longlong *)*param_3;
-    FUN_18063a180(*param_3, *(uint64_t *)(param_1 + 8), (longlong)(int)param_3[1]);
+    SystemStateManager(*param_3, *(uint64_t *)(param_1 + 8), (longlong)(int)param_3[1]);
     ((uint64_t *)*param_3)[1] = *(uint64_t *)*param_3;
     
     /* 线程安全的状态更新 */
@@ -793,8 +793,8 @@ uint64_t *SystemResourceManager(uint64_t *param_1, uint64_t *param_2, longlong *
     *(int8_t *)(param_2 + 3) = 0;
     
     /* 获取系统ID并初始化资源 */
-    system_id = FUN_180628ca0();
-    FUN_180627ae0(param_2 + 4, system_id);
+    system_id = SystemIDGenerator();
+    SystemIDSetter(param_2 + 4, system_id);
     resource_data = stack_param2;
     resource_flags = 1;
     
@@ -809,7 +809,7 @@ uint64_t *SystemResourceManager(uint64_t *param_1, uint64_t *param_2, longlong *
     
     /* 处理资源配置 */
     if (param_6 == 0) {
-        FUN_1800f6ad0(param_1, stack_param2);
+        SystemFunctionCaller(param_1, stack_param2);
         param_6 = *param_1;
     }
     
