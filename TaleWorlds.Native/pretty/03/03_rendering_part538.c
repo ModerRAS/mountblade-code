@@ -974,85 +974,109 @@ void TransferRenderContext(RenderContext* source_context, RenderContext* target_
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined1 FUN_180560d50(longlong param_1)
-
+/*==============================================================================
+函数别名: InitializeRenderContext - 初始化渲染上下文
+原始函数: FUN_180560d50
+参数:
+  render_object - 渲染对象指针
+返回:
+  int - 成功返回1，失败返回0
+描述:
+  初始化渲染上下文，包括上下文创建、资源注册和哈希计算。
+===============================================================================*/
+int InitializeRenderContext(RenderObject* render_object)
 {
-  byte bVar1;
-  longlong lVar2;
-  int iVar3;
-  char cVar4;
-  undefined8 uVar5;
-  ulonglong uVar6;
-  longlong *plVar7;
-  byte *pbVar8;
-  undefined *puVar9;
-  uint uVar10;
-  undefined4 auStackX_8 [2];
-  longlong lStackX_10;
-  longlong alStack_38 [4];
+  byte hash_byte;
+  longlong context;
+  int context_id;
+  char init_result;
+  undefined8 context_ptr;
+  ulonglong hash_value;
+  longlong *context_interface;
+  byte *name_ptr;
+  undefined *object_name;
+  uint name_length;
+  undefined4 stack_buffer [2];
+  longlong context_ref;
+  longlong call_stack [4];
   
-  if (*(longlong *)(param_1 + 0xb0) == 0) {
-    alStack_38[1] = 0x180560daa;
-    cVar4 = func_0x00018008a5c0(param_1,*(undefined8 *)(*(longlong *)(param_1 + 0x88) + 8));
-    if (cVar4 == '\0') {
+  // 检查是否已有上下文
+  if (*(longlong *)(render_object + 0xb0) == 0) {
+    call_stack[1] = 0x180560daa;
+    // 调用初始化回调
+    init_result = func_0x00018008a5c0(render_object, *(undefined8 *)(*(longlong *)(render_object + 0x88) + 8));
+    if (init_result == '\0') {
       return 0;
     }
-    alStack_38[1] = 0x180560db6;
-    uVar5 = FUN_180560a90(param_1);
-    *(undefined8 *)(param_1 + 0xb0) = uVar5;
-    alStack_38[1] = 0x180560dc5;
-    FUN_18053cee0(uVar5);
+    call_stack[1] = 0x180560db6;
+    // 创建新的渲染上下文
+    context_ptr = CreateRenderContext(render_object);
+    *(undefined8 *)(render_object + 0xb0) = context_ptr;
+    call_stack[1] = 0x180560dc5;
+    // 执行上下文初始化
+    FUN_18053cee0(context_ptr);
   }
   else {
-    alStack_38[1] = 0x180560d71;
+    call_stack[1] = 0x180560d71;
+    // 已有上下文，进行更新
     FUN_18053a220(&DAT_180c95f30);
-    plVar7 = (longlong *)(*(longlong *)(param_1 + 0xb0) + 0x10);
-    puVar9 = &DAT_18098bc73;
-    if (*(undefined **)(param_1 + 0x70) != (undefined *)0x0) {
-      puVar9 = *(undefined **)(param_1 + 0x70);
+    context_interface = (longlong *)(*(longlong *)(render_object + 0xb0) + 0x10);
+    object_name = &DAT_18098bc73;
+    if (*(undefined **)(render_object + 0x70) != (undefined *)0x0) {
+      object_name = *(undefined **)(render_object + 0x70);
     }
-    alStack_38[1] = 0x180560d98;
-    (**(code **)(*plVar7 + 0x10))(plVar7,puVar9);
+    call_stack[1] = 0x180560d98;
+    // 调用接口更新方法
+    (**(code **)(*context_interface + 0x10))(context_interface, object_name);
   }
-  lVar2 = *(longlong *)(param_1 + 0xb0);
-  lStackX_10 = lVar2;
-  FUN_18053de40(0x180c95f38,alStack_38,lVar2 + 0x10);
-  iVar3 = _DAT_180c95fa8;
-  if (alStack_38[0] == *(longlong *)(_DAT_180c95f40 + _DAT_180c95f48 * 8)) {
-    uVar6 = 0xcbf29ce484222325;
-    pbVar8 = &DAT_18098bc73;
-    if (*(byte **)(lVar2 + 0x18) != (byte *)0x0) {
-      pbVar8 = *(byte **)(lVar2 + 0x18);
+  
+  // 获取上下文引用
+  context = *(longlong *)(render_object + 0xb0);
+  context_ref = context;
+  FUN_18053de40(0x180c95f38, call_stack, context + 0x10);
+  context_id = _DAT_180c95fa8;
+  
+  // 检查是否需要创建新的哈希条目
+  if (call_stack[0] == *(longlong *)(_DAT_180c95f40 + _DAT_180c95f48 * 8)) {
+    // 计算名称哈希值
+    hash_value = HASH_SEED;
+    name_ptr = &DAT_18098bc73;
+    if (*(byte **)(context + 0x18) != (byte *)0x0) {
+      name_ptr = *(byte **)(context + 0x18);
     }
-    uVar10 = 0;
-    if (*(uint *)(lVar2 + 0x20) != 0) {
+    name_length = 0;
+    if (*(uint *)(context + 0x20) != 0) {
       do {
-        bVar1 = *pbVar8;
-        pbVar8 = pbVar8 + 1;
-        uVar10 = uVar10 + 1;
-        uVar6 = (uVar6 ^ bVar1) * 0x100000001b3;
-      } while (uVar10 < *(uint *)(lVar2 + 0x20));
+        hash_byte = *name_ptr;
+        name_ptr = name_ptr + 1;
+        name_length = name_length + 1;
+        hash_value = (hash_value ^ hash_byte) * HASH_MULTIPLIER;
+      } while (name_length < *(uint *)(context + 0x20));
     }
-    FUN_18053df50(0x180c95f38,alStack_38,uVar10,lVar2 + 0x10,uVar6);
-    *(int *)(alStack_38[0] + 0x58) = iVar3;
-    auStackX_8[0] = (undefined4)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
-    FUN_1800571e0(&DAT_180c95f68,auStackX_8);
-    *(int *)(lVar2 + 0x68) = _DAT_180c95fa8;
+    
+    // 注册哈希条目
+    FUN_18053df50(0x180c95f38, call_stack, name_length, context + 0x10, hash_value);
+    *(int *)(call_stack[0] + 0x58) = context_id;
+    stack_buffer[0] = (undefined4)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
+    FUN_1800571e0(&DAT_180c95f68, stack_buffer);
+    *(int *)(context + 0x68) = _DAT_180c95fa8;
     _DAT_180c95fa8 = _DAT_180c95fa8 + 1;
-    FUN_18005ea90(&DAT_180c95f88,&lStackX_10);
+    FUN_18005ea90(&DAT_180c95f88, &context_ref);
   }
   else {
-    if (*(int *)(_DAT_180c95f68 + (longlong)*(int *)(alStack_38[0] + 0x58) * 4) != -1) {
-      puVar9 = &DAT_18098bc73;
-      if (*(undefined **)(lVar2 + 0x18) != (undefined *)0x0) {
-        puVar9 = *(undefined **)(lVar2 + 0x18);
+    // 检查哈希冲突
+    if (*(int *)(_DAT_180c95f68 + (longlong)*(int *)(call_stack[0] + 0x58) * 4) != -1) {
+      object_name = &DAT_18098bc73;
+      if (*(undefined **)(context + 0x18) != (undefined *)0x0) {
+        object_name = *(undefined **)(context + 0x18);
       }
-      FUN_180627020(&UNK_180a338e0,puVar9);
+      FUN_180627020(&UNK_180a338e0, object_name);
       return 0;
     }
-    *(int *)(_DAT_180c95f68 + (longlong)*(int *)(alStack_38[0] + 0x58) * 4) =
+    // 更新哈希表索引
+    *(int *)(_DAT_180c95f68 + (longlong)*(int *)(call_stack[0] + 0x58) * 4) =
          (int)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
-    FUN_18005ea90(&DAT_180c95f88,&lStackX_10);
+    FUN_18005ea90(&DAT_180c95f88, &context_ref);
   }
   return 1;
 }
