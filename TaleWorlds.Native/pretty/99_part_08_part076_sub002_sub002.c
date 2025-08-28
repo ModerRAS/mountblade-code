@@ -1020,7 +1020,7 @@ uint64_t FUN_1805bae51(void)
   char cVar19;
   char cVar20;
   uint64_t unaff_R15;
-  undefined7 uVar21;
+  uint8_t uVar21;
   float fVar22;
   float fVar23;
   float fVar24;
@@ -1334,7 +1334,7 @@ LAB_1805baf4a:
       cVar15 = '\0';
     }
     uVar5 = *(uint64_t *)(unaff_RBP + 0x10);
-    uVar21 = (undefined7)((ulonglong)unaff_R15 >> 8);
+    uVar21 = (uint8_t)((ulonglong)unaff_R15 >> 8);
     if (cVar18 == '\0') {
       fVar25 = (float)func_0x00018051f9a0();
       cVar19 = *(char *)(unaff_RBP + 0x160);
@@ -1952,7 +1952,7 @@ uint64_t FUN_1805bae5d(void)
   char cVar19;
   char cVar20;
   uint64_t unaff_R15;
-  undefined7 uVar21;
+  uint8_t uVar21;
   float fVar22;
   float fVar23;
   float fVar24;
@@ -2266,7 +2266,7 @@ LAB_1805baf4a:
       cVar15 = '\0';
     }
     uVar5 = *(uint64_t *)(unaff_RBP + 0x10);
-    uVar21 = (undefined7)((ulonglong)unaff_R15 >> 8);
+    uVar21 = (uint8_t)((ulonglong)unaff_R15 >> 8);
     if (cVar18 == '\0') {
       fVar25 = (float)func_0x00018051f9a0();
       cVar19 = *(char *)(unaff_RBP + 0x160);

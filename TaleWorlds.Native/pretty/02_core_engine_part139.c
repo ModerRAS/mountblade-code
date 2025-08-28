@@ -8,7 +8,7 @@ void FUN_180133893(float param_1)
 {
   ulonglong *puVar1;
   ulonglong uVar2;
-  undefined7 uVar3;
+  uint8_t uVar3;
   char cVar4;
   byte bVar5;
   char cVar6;
@@ -94,7 +94,7 @@ LAB_1801338ca:
     else {
       fVar17 = 0.0;
     }
-    uVar3 = (undefined7)(unaff_R15 >> 8);
+    uVar3 = (uint8_t)(unaff_R15 >> 8);
     if ((int)CONCAT71(uVar3,unaff_XMM6_Da < fVar18) != (int)CONCAT71(uVar3,unaff_XMM6_Da < fVar17))
     {
       FUN_180133680();
@@ -277,7 +277,7 @@ void FUN_18013396e(void)
 {
   ulonglong *puVar1;
   ulonglong uVar2;
-  undefined7 uVar3;
+  uint8_t uVar3;
   byte bVar4;
   char cVar5;
   char cVar6;
@@ -335,7 +335,7 @@ void FUN_18013396e(void)
     fVar16 = 0.0;
   }
   iVar7 = (int)unaff_R15;
-  uVar3 = (undefined7)(unaff_R15 >> 8);
+  uVar3 = (uint8_t)(unaff_R15 >> 8);
   if ((int)CONCAT71(uVar3,unaff_XMM6_Da < fVar17) != (int)CONCAT71(uVar3,unaff_XMM6_Da < fVar16)) {
     FUN_180133680();
     *(int32_t *)(unaff_RBX + 0x1cf4) = 0x3f800000;

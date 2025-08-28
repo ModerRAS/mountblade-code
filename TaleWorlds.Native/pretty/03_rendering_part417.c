@@ -879,11 +879,11 @@ void FUN_180496270(uint64_t *param_1,int32_t param_2)
   longlong alStack_80 [2];
   uint64_t *puStack_70;
   int8_t uStack_68;
-  undefined7 uStack_67;
+  uint8_t uStack_67;
   uint64_t uStack_58;
   ulonglong uStack_50;
   int8_t uStack_48;
-  undefined7 uStack_47;
+  uint8_t uStack_47;
   uint64_t uStack_38;
   ulonglong uStack_30;
   ulonglong uStack_28;

@@ -33,7 +33,7 @@ void FUN_1803ef940(longlong *param_1,longlong param_2,longlong *param_3,longlong
   void **ppuStack_2e8;
   uint64_t uStack_2e0;
   int8_t uStack_2d8;
-  undefined7 uStack_2d7;
+  uint8_t uStack_2d7;
   uint64_t uStack_2c8;
   ulonglong uStack_2c0;
   ulonglong uStack_2b8;
@@ -41,7 +41,7 @@ void FUN_1803ef940(longlong *param_1,longlong param_2,longlong *param_3,longlong
   ulonglong uStack_2a8;
   ulonglong uStack_2a0;
   int8_t uStack_298;
-  undefined7 uStack_297;
+  uint8_t uStack_297;
   uint64_t uStack_288;
   ulonglong uStack_280;
   void *apuStack_278 [68];

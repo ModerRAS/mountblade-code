@@ -457,7 +457,7 @@ int FUN_1805bf7bc(uint64_t param_1,char param_2)
   float *pfVar7;
   longlong unaff_RBP;
   uint64_t unaff_RSI;
-  undefined7 uVar8;
+  uint8_t uVar8;
   longlong *unaff_RDI;
   longlong unaff_R12;
   longlong unaff_R13;
@@ -540,7 +540,7 @@ LAB_1805bf88b:
                         *(int32_t *)(unaff_R13 + 0x14));
   fVar17 = *(float *)(unaff_R13 + 0x18);
   *(char *)(unaff_RBP + 0xa8) = cVar4;
-  uVar8 = (undefined7)((ulonglong)unaff_RSI >> 8);
+  uVar8 = (uint8_t)((ulonglong)unaff_RSI >> 8);
   if (fVar17 <= fVar12) {
     if (cVar4 == '\0') {
       fVar17 = *(float *)(*(longlong *)(*unaff_RDI + 0x20) + 0x1d0);

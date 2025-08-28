@@ -640,7 +640,7 @@ void FUN_1801337ef(void)
 {
   ulonglong *puVar1;
   ulonglong uVar2;
-  undefined7 uVar3;
+  uint8_t uVar3;
   char cVar4;
   byte bVar5;
   char cVar6;
@@ -742,7 +742,7 @@ LAB_1801338ca:
     else {
       fVar18 = 0.0;
     }
-    uVar3 = (undefined7)(unaff_R15 >> 8);
+    uVar3 = (uint8_t)(unaff_R15 >> 8);
     if ((int)CONCAT71(uVar3,0.0 < fVar19) != (int)CONCAT71(uVar3,0.0 < fVar18)) {
       FUN_180133680();
       *(int32_t *)(unaff_RBX + 0x1cf4) = 0x3f800000;

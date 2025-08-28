@@ -446,7 +446,7 @@ void FUN_1804db620(longlong param_1,ulonglong param_2)
   int8_t auStack_158 [32];
   ulonglong *puStack_138;
   char cStack_130;
-  undefined7 uStack_12f;
+  uint8_t uStack_12f;
   uint64_t uStack_128;
   uint64_t uStack_120;
   ulonglong uStack_118;

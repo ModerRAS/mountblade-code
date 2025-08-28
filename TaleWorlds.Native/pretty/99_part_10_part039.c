@@ -25,7 +25,7 @@ void FUN_1806c0b60(longlong *param_1,uint64_t *param_2)
   uint uStack_60;
   int32_t uStack_5c;
   int8_t uStack_58;
-  undefined7 uStack_57;
+  uint8_t uStack_57;
   int32_t uStack_38;
   int32_t uStack_34;
   int32_t uStack_30;
@@ -332,7 +332,7 @@ void FUN_1806c0f20(longlong *param_1,uint64_t *param_2)
   uint uStack_40;
   int32_t uStack_3c;
   int8_t uStack_38;
-  undefined7 uStack_37;
+  uint8_t uStack_37;
   int32_t uStack_18;
   int32_t uStack_14;
   int32_t uStack_10;

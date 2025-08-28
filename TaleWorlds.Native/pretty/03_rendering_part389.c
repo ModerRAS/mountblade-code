@@ -220,11 +220,11 @@ void FUN_180480ab0(longlong param_1,uint64_t param_2,uint64_t param_3)
   ulonglong uStack_98;
   ulonglong uStack_90;
   int8_t uStack_88;
-  undefined7 uStack_87;
+  uint8_t uStack_87;
   ulonglong uStack_78;
   ulonglong uStack_70;
   int8_t uStack_68;
-  undefined7 uStack_67;
+  uint8_t uStack_67;
   uint64_t uStack_58;
   ulonglong uStack_50;
   ulonglong uStack_48;
@@ -457,7 +457,7 @@ void FUN_180480ef0(uint64_t *param_1,uint64_t *param_2,longlong param_3,longlong
   uint64_t uStack_78;
   uint64_t *puStack_70;
   int8_t uStack_68;
-  undefined7 uStack_67;
+  uint8_t uStack_67;
   uint64_t uStack_58;
   ulonglong uStack_50;
   ulonglong uStack_48;

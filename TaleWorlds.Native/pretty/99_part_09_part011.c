@@ -8,7 +8,7 @@ void FUN_1805c1d81(void)
 {
   bool bVar1;
   bool bVar2;
-  undefined7 uVar3;
+  uint8_t uVar3;
   char cVar4;
   char cVar5;
   longlong lVar6;
@@ -113,7 +113,7 @@ void FUN_1805c1d81(void)
       in_stack_00000170 = unaff_XMM8_Da;
       in_stack_00000178 = unaff_XMM8_Dc;
       if (in_stack_00000040._4_1_ == cVar7) {
-        uVar3 = (undefined7)((ulonglong)unaff_RSI >> 8);
+        uVar3 = (uint8_t)((ulonglong)unaff_RSI >> 8);
         if ((char)unaff_RBX[0x29b] != cVar7) {
           fVar15 = *(float *)(*(longlong *)(lVar6 + 0x20) + 0xc);
           fVar13 = *(float *)(*(longlong *)(lVar6 + 0x20) + 0x10);

@@ -11,7 +11,7 @@ void FUN_180391a3a(void)
   uint64_t *puVar3;
   longlong lVar4;
   bool bVar5;
-  undefined7 uVar6;
+  uint8_t uVar6;
   int iVar7;
   ulonglong uVar8;
   longlong *plVar9;
@@ -265,7 +265,7 @@ void FUN_180391a3a(void)
                       else {
                         FUN_18038d8f0(in_stack_00000150,plVar21);
                       }
-                      uVar6 = (undefined7)(unaff_RBP >> 8);
+                      uVar6 = (uint8_t)(unaff_RBP >> 8);
                       plVar30 = plVar21;
                       if (uVar29 == 0) {
                         if (bVar20) {

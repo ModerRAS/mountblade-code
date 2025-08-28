@@ -76,7 +76,7 @@ void FUN_1800cd410(uint64_t param_1,longlong param_2,char param_3,int8_t param_4
   int32_t uVar30;
   longlong alStackX_10 [2];
   char cStackX_20;
-  undefined7 uStackX_21;
+  uint8_t uStackX_21;
   int8_t auStack_a8 [24];
   uint64_t uStack_90;
   int32_t uStack_88;

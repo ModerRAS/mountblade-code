@@ -67,7 +67,7 @@ ulonglong FUN_180857e50(longlong param_1,uint *param_2,int param_3,uint param_4)
   bool bVar28;
   bool bVar29;
   longlong **in_stack_fffffffffffffe78;
-  undefined7 uVar30;
+  uint8_t uVar30;
   longlong in_stack_fffffffffffffe88;
   uint7 uVar31;
   uint uStack_168;
@@ -515,7 +515,7 @@ LAB_180858c20:
       *(uint *)(param_1 + 300) = *(int *)(param_1 + 300) - uVar25;
     }
     uVar31 = (uint7)((ulonglong)in_stack_fffffffffffffe88 >> 8);
-    uVar30 = (undefined7)((ulonglong)puVar16 >> 8);
+    uVar30 = (uint8_t)((ulonglong)puVar16 >> 8);
     if (lStack_a0 != 0) {
       uStack_134 = uVar20;
       if (uVar20 == uVar6) {

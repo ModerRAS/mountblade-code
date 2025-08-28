@@ -430,7 +430,7 @@ uint64_t FUN_1805b209e(int32_t param_1)
   int32_t uVar5;
   longlong lVar6;
   uint64_t uVar7;
-  undefined7 uVar9;
+  uint8_t uVar9;
   ulonglong uVar8;
   longlong unaff_RBX;
   longlong unaff_RBP;
@@ -500,13 +500,13 @@ uint64_t FUN_1805b209e(int32_t param_1)
       if (uVar1 != 0xffffffff) {
         uVar7 = func_0x0001805b2480();
         *(int32_t *)(unaff_RBX + 0xc4) = 3;
-        uVar9 = (undefined7)((ulonglong)uVar7 >> 8);
+        uVar9 = (uint8_t)((ulonglong)uVar7 >> 8);
         goto LAB_1805b21f2;
       }
     }
   }
   *(int32_t *)(unaff_RBX + 0xc4) = 3;
-  uVar9 = (undefined7)(uVar8 >> 8);
+  uVar9 = (uint8_t)(uVar8 >> 8);
 LAB_1805b21f2:
   return CONCAT71(uVar9,1);
 }
@@ -683,7 +683,7 @@ void FUN_1805b23a0(longlong param_1)
 {
   code *pcVar1;
   char in_AL;
-  undefined7 in_register_00000001;
+  uint8_t in_register_00000001;
   int *piVar2;
   byte *pbStackX_18;
   int8_t auStackX_20 [8];

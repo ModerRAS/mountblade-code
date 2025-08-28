@@ -912,7 +912,7 @@ longlong * FUN_1801427a0(longlong *param_1,longlong param_2,uint64_t param_3,ulo
   longlong *plVar8;
   longlong lVar9;
   char cStackX_8;
-  undefined7 uStackX_9;
+  uint8_t uStackX_9;
   
   plVar5 = param_1;
   if ((longlong *)param_1[2] != (longlong *)0x0) {

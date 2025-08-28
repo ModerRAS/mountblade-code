@@ -39,7 +39,7 @@ void FUN_180760e8e(int32_t param_1)
   int32_t extraout_XMM0_Da;
   int32_t extraout_XMM0_Da_00;
   ulonglong in_stack_00000020;
-  undefined7 uVar26;
+  uint8_t uVar26;
   ulonglong uVar25;
   char cStack0000000000000040;
   uint uStack0000000000000044;
@@ -276,7 +276,7 @@ LAB_180761ebf:
   *(int32_t *)(unaff_RBP + -0xb) = 0xffffffff;
   unaff_RBP[-0xe] = 0;
   unaff_RBP[-0xd] = 0;
-  uVar26 = (undefined7)(in_stack_00000020 >> 8);
+  uVar26 = (uint8_t)(in_stack_00000020 >> 8);
   iVar7 = (int)unaff_R13;
   if (unaff_R15B == '\0') {
     if (((*(float *)(unaff_RBX + 0x1cc) == 0.0) && (*(float *)(unaff_RBX + 0x1d8) == 0.0)) ||

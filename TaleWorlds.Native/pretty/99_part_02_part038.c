@@ -526,7 +526,7 @@ void FUN_1801ad720(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   longlong *plVar12;
   int32_t *puVar13;
   longlong *plVar14;
-  undefined7 uVar15;
+  uint8_t uVar15;
   float fVar16;
   float fVar17;
   int8_t auStack_128 [48];
@@ -559,7 +559,7 @@ void FUN_1801ad720(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   bVar4 = false;
   uStack_d0 = 0;
   if (*(longlong *)(param_1 + 0x60b80) != 0) {
-    uVar15 = (undefined7)((ulonglong)param_4 >> 8);
+    uVar15 = (uint8_t)((ulonglong)param_4 >> 8);
     if (*(int *)(param_1 + 0x60920) < 1) {
       FUN_1802e9fa0(*(uint64_t *)(param_1 + 0x8208),1,1);
     }

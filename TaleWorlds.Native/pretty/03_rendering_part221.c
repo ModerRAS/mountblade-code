@@ -10,7 +10,7 @@ void FUN_180391f2f(int param_1,uint64_t param_2,uint64_t param_3,int param_4,lon
   byte bVar1;
   longlong lVar2;
   longlong lVar3;
-  undefined7 uVar4;
+  uint8_t uVar4;
   bool bVar5;
   int in_EAX;
   int iVar6;
@@ -106,7 +106,7 @@ void FUN_180391f2f(int param_1,uint64_t param_2,uint64_t param_3,int param_4,lon
                     else {
                       FUN_18038d8f0(unaff_R14,plVar17);
                     }
-                    uVar4 = (undefined7)(unaff_RBP >> 8);
+                    uVar4 = (uint8_t)(unaff_RBP >> 8);
                     plVar21 = plVar17;
                     if (uVar9 == 0) {
                       if (bVar5) {

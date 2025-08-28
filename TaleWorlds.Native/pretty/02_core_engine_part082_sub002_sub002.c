@@ -1759,7 +1759,7 @@ int8_t FUN_180110000(int32_t param_1,float *param_2,longlong param_3)
   int32_t uStack_a8;
   int32_t uStack_a4;
   int8_t uStack_a0;
-  undefined7 uStack_9f;
+  uint8_t uStack_9f;
   uint64_t uStack_98;
   longlong lStack_90;
   

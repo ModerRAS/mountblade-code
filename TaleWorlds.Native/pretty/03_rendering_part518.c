@@ -417,7 +417,7 @@ uint64_t * FUN_180548160(longlong param_1,uint64_t *param_2)
   longlong *plStackX_8;        // 栈变量
   uint64_t *puStackX_10;     // 栈指针
   int8_t uStackX_18;        // 栈字符变量
-  undefined7 uStackX_19;        // 栈字符变量
+  uint8_t uStackX_19;        // 栈字符变量
   longlong *plStackX_20;        // 栈变量
   longlong *plStack_b0;        // 栈变量
   longlong *plStack_a8;        // 栈变量

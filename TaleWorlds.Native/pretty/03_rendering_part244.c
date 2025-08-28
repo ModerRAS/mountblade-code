@@ -55,13 +55,13 @@ static uint64_t memory_pool_base;
 static uint64_t memory_pool_current;
 static uint64_t memory_pool_limit;
 static int8_t memory_pool_status;
-static undefined7 memory_pool_padding;
+static uint8_t memory_pool_padding;
 
 /**
  * 状态管理系统全局变量
  */
 static int8_t system_status_flags;
-static undefined7 system_status_padding;
+static uint8_t system_status_padding;
 static uint64_t state_check_data;
 static uint64_t validation_results;
 
@@ -70,7 +70,7 @@ static uint64_t validation_results;
  */
 static uint64_t error_handler_table;
 static int8_t error_status_flags;
-static undefined7 error_status_padding;
+static uint8_t error_status_padding;
 static uint64_t error_context_data;
 
 /*==========================================

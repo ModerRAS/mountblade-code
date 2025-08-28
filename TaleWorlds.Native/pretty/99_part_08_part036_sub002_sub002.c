@@ -23,7 +23,7 @@ void FUN_1805a1630(longlong *param_1,uint64_t param_2,uint64_t param_3)
   int iVar15;
   uint *puVar16;
   longlong lVar17;
-  undefined7 uVar18;
+  uint8_t uVar18;
   longlong lVar19;
   char cVar20;
   int8_t *puVar21;
@@ -442,7 +442,7 @@ LAB_1805a1771:
       uStack_808 = *(int32_t *)(lVar12 + 0x98 + lVar19);
     }
   }
-  uVar18 = (undefined7)((ulonglong)param_3 >> 8);
+  uVar18 = (uint8_t)((ulonglong)param_3 >> 8);
   uStack_814 = *(int32_t *)(lVar2 + 0x6c);
   fVar34 = 0.0;
   cStack_828 = '\x01';

@@ -221,7 +221,7 @@ int8_t FUN_1805a3af1(void)
 {
   float fVar1;
   int8_t in_AL;
-  undefined7 in_register_00000001;
+  uint8_t in_register_00000001;
   float fVar2;
   
   fVar1 = _DAT_180c964fc;

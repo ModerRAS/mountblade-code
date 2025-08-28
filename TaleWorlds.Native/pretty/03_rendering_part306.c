@@ -561,7 +561,7 @@ void rendering_system_pixel_data_optimizer(uint64_t param_1, longlong param_2) {
     char input_data;
     uint sum_value;
     char temp_byte;
-    undefined7 addr_high;
+    uint8_t addr_high;
     char add_value;
     char add_value_2;
     longlong base_addr;

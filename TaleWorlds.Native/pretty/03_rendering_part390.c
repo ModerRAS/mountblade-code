@@ -31,7 +31,7 @@ void FUN_180482450(longlong *param_1,char *param_2)
   uint64_t uStack_a0;
   char *pcStack_98;
   char cStack_90;
-  undefined7 uStack_8f;
+  uint8_t uStack_8f;
   char acStack_88 [8];
   uint64_t uStack_80;
   ulonglong uStack_78;

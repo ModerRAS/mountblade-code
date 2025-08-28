@@ -783,7 +783,7 @@ bool FUN_1804d2c61(void)
 {
   float *pfVar1;
   int iVar2;
-  undefined7 uVar3;
+  uint8_t uVar3;
   float fVar4;
   float fVar5;
   float fVar6;
@@ -905,7 +905,7 @@ bool FUN_1804d2c61(void)
       auVar22 = maxps(auVar27,auVar30);
       lVar13 = lVar13 + -1;
     } while (lVar13 != 0);
-    uVar3 = (undefined7)((ulonglong)unaff_RSI >> 8);
+    uVar3 = (uint8_t)((ulonglong)unaff_RSI >> 8);
     fVar21 = *(float *)(unaff_RDI + 0x994c) * 0.8;
     fVar23 = *(float *)(unaff_RDI + 0x993c) * 0.8;
     fVar19 = *(float *)(unaff_RDI + 0x9950) * 0.8;
@@ -940,7 +940,7 @@ uint64_t FUN_1804d2ccd(uint64_t param_1,uint64_t param_2,int param_3,int param_4
 
 {
   float *pfVar1;
-  undefined7 uVar2;
+  uint8_t uVar2;
   ulonglong uVar3;
   float fVar4;
   float fVar5;
@@ -1050,7 +1050,7 @@ uint64_t FUN_1804d2ccd(uint64_t param_1,uint64_t param_2,int param_3,int param_4
     in_XMM4 = maxps(auVar26,auVar23);
     in_RAX = in_RAX + -1;
   } while (in_RAX != 0);
-  uVar2 = (undefined7)((ulonglong)unaff_RSI >> 8);
+  uVar2 = (uint8_t)((ulonglong)unaff_RSI >> 8);
   fVar17 = *(float *)(unaff_RDI + 0x994c) * 0.8;
   fVar19 = *(float *)(unaff_RDI + 0x993c) * 0.8;
   fVar14 = *(float *)(unaff_RDI + 0x9950) * 0.8;
@@ -1090,7 +1090,7 @@ uint64_t FUN_1804d2ccd(uint64_t param_1,uint64_t param_2,int param_3,int param_4
 uint64_t FUN_1804d2ef8(uint64_t param_1,float param_2,float param_3,float param_4)
 
 {
-  undefined7 uVar1;
+  uint8_t uVar1;
   ulonglong uVar2;
   ulonglong uVar3;
   longlong lVar4;
@@ -1105,7 +1105,7 @@ uint64_t FUN_1804d2ef8(uint64_t param_1,float param_2,float param_3,float param_
   float fStack0000000000000050;
   float fStack0000000000000054;
   
-  uVar1 = (undefined7)((ulonglong)unaff_RSI >> 8);
+  uVar1 = (uint8_t)((ulonglong)unaff_RSI >> 8);
   uVar2 = CONCAT71(uVar1,in_stack_00000040._4_4_ <= param_2);
   uVar3 = uVar2 & 0xffffffff;
   if (((((uint)uVar2 & (uint)CONCAT71(uVar1,param_3 <= in_stack_00000040._4_4_)) != 0) &&

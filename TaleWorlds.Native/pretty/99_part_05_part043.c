@@ -519,7 +519,7 @@ int8_t FUN_1802f5073(void)
 
 {
   int8_t in_AL;
-  undefined7 in_register_00000001;
+  uint8_t in_register_00000001;
   float *in_R11;
   int8_t auVar1 [16];
   int8_t auVar2 [16];

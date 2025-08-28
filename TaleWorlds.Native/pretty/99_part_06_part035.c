@@ -167,7 +167,7 @@ void FUN_1803c7730(longlong *param_1,longlong *param_2)
     else {
       puStackX_10 = (uint64_t *)((ulonglong)puVar9 & 0xffffffffffffff00);
       puVar5 = puStackX_10;
-      puStackX_10._1_7_ = (undefined7)((ulonglong)puVar9 >> 8);
+      puStackX_10._1_7_ = (uint8_t)((ulonglong)puVar9 >> 8);
       puStackX_10 = puVar5;
       if (uVar21 == 0) {
         plVar13 = *(longlong **)(*param_2 + 0xc0);

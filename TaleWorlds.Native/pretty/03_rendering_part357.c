@@ -37,7 +37,7 @@ void FUN_18045fc60(longlong param_1)
   int32_t uStack_88;
   int32_t uStack_84;
   int8_t uStack_80;
-  undefined7 uStack_7f;
+  uint8_t uStack_7f;
   uint64_t uStack_78;
   uint64_t uStack_70;
   uint64_t uStack_68;

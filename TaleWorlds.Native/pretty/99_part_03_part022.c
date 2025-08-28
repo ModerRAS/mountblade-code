@@ -70,7 +70,7 @@ void FUN_1801e1fd0(longlong param_1,longlong *param_2)
   longlong *plStack_a0;
   uint *puStack_98;
   int8_t uStack_90;
-  undefined7 uStack_8f;
+  uint8_t uStack_8f;
   uint auStack_88 [2];
   longlong lStack_80;
   int32_t uStack_78;

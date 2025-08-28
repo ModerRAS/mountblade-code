@@ -955,7 +955,7 @@ void FUN_1805a9ff5(ulonglong param_1,uint64_t param_2,float param_3,float param_
   float fVar2;
   int8_t in_AL;
   char cVar3;
-  undefined7 in_register_00000001;
+  uint8_t in_register_00000001;
   longlong unaff_RBX;
   longlong in_R9;
   longlong in_R11;

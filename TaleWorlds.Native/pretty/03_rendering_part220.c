@@ -14,7 +14,7 @@ void FUN_180391aa6(ulonglong param_1,uint param_2,uint64_t param_3,int param_4,l
   uint64_t *puVar3;
   longlong lVar4;
   longlong lVar5;
-  undefined7 uVar6;
+  uint8_t uVar6;
   bool bVar7;
   byte in_AL;
   ulonglong uVar8;
@@ -260,7 +260,7 @@ void FUN_180391aa6(ulonglong param_1,uint param_2,uint64_t param_3,int param_4,l
                     else {
                       FUN_18038d8f0(in_stack_00000150,plVar20);
                     }
-                    uVar6 = (undefined7)(unaff_RBP >> 8);
+                    uVar6 = (uint8_t)(unaff_RBP >> 8);
                     plVar26 = plVar20;
                     if (uVar11 == 0) {
                       if (bVar7) {

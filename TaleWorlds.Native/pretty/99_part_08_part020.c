@@ -536,7 +536,7 @@ void FUN_1804f41c3(longlong param_1)
   longlong lVar1;
   int8_t in_AL;
   int8_t uVar2;
-  undefined7 in_register_00000001;
+  uint8_t in_register_00000001;
   uint64_t uVar3;
   
   param_1 = CONCAT71(in_register_00000001,in_AL) * 0xa60 + param_1;

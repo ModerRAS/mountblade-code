@@ -520,7 +520,7 @@ int8_t FUN_1801be2e6(float param_1,uint64_t param_2,float param_3)
 {
   longlong lVar1;
   int8_t in_AL;
-  undefined7 in_register_00000001;
+  uint8_t in_register_00000001;
   float *in_RCX;
   float in_XMM5_Da;
   float unaff_XMM6_Da;

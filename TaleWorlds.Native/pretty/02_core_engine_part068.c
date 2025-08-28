@@ -179,7 +179,7 @@ void FUN_18009f170(longlong param_1)
   int8_t *puStack_48;
   uint64_t uStack_40;
   int8_t uStack_38;
-  undefined7 uStack_37;
+  uint8_t uStack_37;
   ulonglong uStack_28;
   ulonglong uStack_20;
   ulonglong uStack_18;

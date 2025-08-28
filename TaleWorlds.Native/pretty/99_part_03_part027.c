@@ -409,7 +409,7 @@ longlong FUN_1801e6800(uint64_t *param_1,uint *param_2)
   uint64_t *puVar4;
   char cVar5;
   char cStackX_8;
-  undefined7 uStackX_9;
+  uint8_t uStackX_9;
   
   puVar2 = param_1;
   if ((uint64_t *)param_1[2] != (uint64_t *)0x0) {
@@ -561,7 +561,7 @@ longlong FUN_1801e6a50(uint64_t *param_1,uint *param_2)
   uint64_t *puVar4;
   char cVar5;
   char cStackX_8;
-  undefined7 uStackX_9;
+  uint8_t uStackX_9;
   
   puVar2 = param_1;
   if ((uint64_t *)param_1[2] != (uint64_t *)0x0) {

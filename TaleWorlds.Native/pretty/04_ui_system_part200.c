@@ -476,7 +476,7 @@ void FUN_180785c80(longlong param_1)
   longlong unaff_RBP;
   float *unaff_RSI;
   int8_t unaff_DIL;
-  undefined7 unaff_00000039;
+  uint8_t unaff_00000039;
   uint64_t *unaff_R12;
   uint64_t *unaff_R13;
   float *unaff_R14;

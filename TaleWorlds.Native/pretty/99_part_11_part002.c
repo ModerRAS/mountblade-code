@@ -638,7 +638,7 @@ void FUN_1806d65b0(longlong *param_1,longlong param_2)
   uint uStack_2b8;
   int32_t uStack_2b4;
   int8_t uStack_2b0;
-  undefined7 uStack_2af;
+  uint8_t uStack_2af;
   int8_t auStack_2a8 [632];
   uint64_t uStack_30;
   

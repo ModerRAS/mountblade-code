@@ -432,7 +432,7 @@ uint64_t FUN_180754c5c(void)
   longlong unaff_RBP;
   longlong unaff_RSI;
   uint64_t uVar2;
-  undefined7 uVar3;
+  uint8_t uVar3;
   uint64_t unaff_R12;
   longlong unaff_R14;
   longlong unaff_R15;
@@ -469,7 +469,7 @@ uint64_t FUN_180754c5c(void)
     if ((int)uVar1 != 0) {
       return uVar1;
     }
-    uVar3 = (undefined7)((ulonglong)uVar2 >> 8);
+    uVar3 = (uint8_t)((ulonglong)uVar2 >> 8);
     uVar1 = FUN_180762b60();
     if ((int)uVar1 != 0) {
       return uVar1;

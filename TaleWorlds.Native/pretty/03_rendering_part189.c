@@ -91,7 +91,7 @@ void FUN_180379810(longlong param_1)
   longlong *plStack_d0;
   longlong *plStack_c8;
   int8_t uStack_a0;
-  undefined7 uStack_9f;
+  uint8_t uStack_9f;
   
   uStack_d8 = 0xfffffffffffffffe;
   uStack_160 = 3;

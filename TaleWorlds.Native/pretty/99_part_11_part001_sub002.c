@@ -312,7 +312,7 @@ int8_t FUN_1806d5620(longlong *param_1)
   uint uStack_20;
   int32_t uStack_1c;
   int8_t uStack_18;
-  undefined7 uStack_17;
+  uint8_t uStack_17;
   
   FUN_1806d56e0();
   lVar3 = *param_1;

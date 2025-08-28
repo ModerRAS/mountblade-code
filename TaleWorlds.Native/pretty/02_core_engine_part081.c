@@ -382,7 +382,7 @@ void FUN_18010ec85(void)
   float *pfVar1;
   int8_t in_AL;
   char cVar2;
-  undefined7 in_register_00000001;
+  uint8_t in_register_00000001;
   longlong unaff_RSI;
   longlong in_R10;
   char unaff_R12B;

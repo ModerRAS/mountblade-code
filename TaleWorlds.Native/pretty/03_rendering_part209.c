@@ -6,7 +6,7 @@
 void FUN_18038b35e(void)
 
 {
-  undefined7 uVar1;
+  uint8_t uVar1;
   longlong in_RAX;
   int iVar2;
   longlong in_R9;
@@ -16,7 +16,7 @@ void FUN_18038b35e(void)
   if (*(char *)(in_RAX + 0x20) != '\x02') {
     iVar2 = (int)in_R10;
   }
-  uVar1 = (undefined7)((ulonglong)in_R10 >> 8);
+  uVar1 = (uint8_t)((ulonglong)in_R10 >> 8);
   if (((int)CONCAT71(uVar1,*(char *)(*(longlong *)(in_R9 + 0x60) + 0x20) == '\x02') +
        (int)CONCAT71(uVar1,*(char *)(*(longlong *)(in_R9 + 0x68) + 0x20) == '\x02') + iVar2 +
        (int)CONCAT71(uVar1,*(char *)(*(longlong *)(in_R9 + 0x70) + 0x20) == '\x02') != 2) &&

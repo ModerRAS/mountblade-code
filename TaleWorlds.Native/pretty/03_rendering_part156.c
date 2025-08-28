@@ -337,7 +337,7 @@ bool FUN_180364da8(uint64_t param_1,float *param_2,float *param_3)
   float fVar5;
   float fVar6;
   int8_t in_AL;
-  undefined7 in_register_00000001;
+  uint8_t in_register_00000001;
   longlong in_R11;
   float fVar7;
   int32_t unaff_XMM8_Da;

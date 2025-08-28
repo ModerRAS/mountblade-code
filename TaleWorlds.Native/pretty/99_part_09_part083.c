@@ -35,7 +35,7 @@ void FUN_1805f3ce0(uint64_t *param_1,int param_2)
   int *piVar27;
   longlong *plVar28;
   int iVar29;
-  undefined7 uVar31;
+  uint8_t uVar31;
   uint *puVar30;
   ulonglong uVar32;
   ulonglong uVar33;
@@ -310,7 +310,7 @@ void FUN_1805f3ce0(uint64_t *param_1,int param_2)
   piStack_188 = (int *)0x0;
   uStack_180 = 3;
   bVar9 = *(float *)((longlong)param_1 + 0x484) < *(float *)(param_1 + 0x85);
-  uVar31 = (undefined7)((ulonglong)pfVar19 >> 8);
+  uVar31 = (uint8_t)((ulonglong)pfVar19 >> 8);
   iVar29 = 0;
   lStackX_20 = 0x10b;
   piVar27 = (int *)0x0;

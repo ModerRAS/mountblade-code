@@ -731,7 +731,7 @@ ulonglong FUN_18089c86d(void)
 {
   longlong *plVar1;
   longlong lVar2;
-  undefined7 uVar3;
+  uint8_t uVar3;
   uint uVar4;
   ulonglong uVar5;
   ulonglong uVar6;
@@ -805,7 +805,7 @@ ulonglong FUN_18089c86d(void)
   if ((int)uVar5 != 0) {
     return uVar5;
   }
-  uVar3 = (undefined7)(unaff_RDI >> 8);
+  uVar3 = (uint8_t)(unaff_RDI >> 8);
   iVar7 = 0;
   fVar12 = extraout_XMM0_Da;
   iVar11 = iVar7;
@@ -980,7 +980,7 @@ ulonglong FUN_18089c872(void)
 {
   longlong *plVar1;
   longlong lVar2;
-  undefined7 uVar3;
+  uint8_t uVar3;
   uint uVar4;
   ulonglong uVar5;
   ulonglong uVar6;
@@ -1055,7 +1055,7 @@ ulonglong FUN_18089c872(void)
   if ((int)uVar5 != 0) {
     return uVar5;
   }
-  uVar3 = (undefined7)(unaff_RDI >> 8);
+  uVar3 = (uint8_t)(unaff_RDI >> 8);
   iVar7 = 0;
   fVar12 = extraout_XMM0_Da;
   iVar11 = iVar7;
@@ -1230,7 +1230,7 @@ ulonglong FUN_18089c94a(float param_1)
 {
   longlong *plVar1;
   longlong lVar2;
-  undefined7 uVar3;
+  uint8_t uVar3;
   uint uVar4;
   ulonglong uVar5;
   ulonglong uVar6;
@@ -1260,7 +1260,7 @@ ulonglong FUN_18089c94a(float param_1)
   float extraout_XMM0_Da_08;
   
   iVar9 = (int)unaff_RDI;
-  uVar3 = (undefined7)(unaff_RDI >> 8);
+  uVar3 = (uint8_t)(unaff_RDI >> 8);
   iVar12 = iVar9;
   iVar11 = unaff_R14D;
   if (in_CF) {

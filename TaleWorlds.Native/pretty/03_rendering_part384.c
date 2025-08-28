@@ -735,7 +735,7 @@ void FUN_18047c260(uint64_t *param_1,int8_t param_2)
   int8_t auStack_47 [15];
   uint64_t uStack_38;
   int8_t uStack_30;
-  undefined7 uStack_2f;
+  uint8_t uStack_2f;
   uint64_t uStack_20;
   ulonglong uStack_18;
   ulonglong uStack_10;

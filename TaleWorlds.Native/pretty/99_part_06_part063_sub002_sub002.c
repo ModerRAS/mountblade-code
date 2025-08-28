@@ -44,7 +44,7 @@ void FUN_1803e3630(longlong param_1,longlong param_2,longlong param_3)
   ulonglong uVar36;
   uint uVar37;
   uint *in_stack_fffffffffffffe38;
-  undefined7 uVar38;
+  uint8_t uVar38;
   void *puStack_1b8;
   int8_t *puStack_1b0;
   uint uStack_1a8;
@@ -390,7 +390,7 @@ LAB_1803e3b44:
             FUN_180628040(&puStack_1b8,&UNK_180a25058,puVar32,puVar34,in_stack_fffffffffffffe38);
             uVar23 = uStack_1a8;
             if (iVar27 == 2) {
-              uVar38 = (undefined7)((ulonglong)in_stack_fffffffffffffe38 >> 8);
+              uVar38 = (uint8_t)((ulonglong)in_stack_fffffffffffffe38 >> 8);
               if (iVar26 == 0x14) {
                 uVar24 = uStack_1a8 + 0x34;
                 if (uVar24 != 0) {

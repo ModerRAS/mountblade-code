@@ -16,6 +16,7 @@ TYPE_MAPPING = {
     'undefined4': 'uint32_t',    # 4字节 -> uint32_t
     'undefined8': 'uint64_t',    # 8字节 -> uint64_t
     'undefined5': 'uint8_t',     # 特殊情况，可能是位域或对齐
+    'undefined7': 'uint8_t',     # 特殊情况，可能是位域或对齐
 }
 
 def fix_undefined_types_in_file(file_path):

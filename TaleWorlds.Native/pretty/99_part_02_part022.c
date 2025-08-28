@@ -442,7 +442,7 @@ void FUN_1800fbfc0(uint64_t param_1,uint64_t *param_2)
   *puVar5 = &UNK_180a05068;
   *puVar5 = &UNK_180a05088;
   puVar1[6] = puVar5;
-  uStackX_8._1_7_ = (undefined7)((ulonglong)puVar5 >> 8);
+  uStackX_8._1_7_ = (uint8_t)((ulonglong)puVar5 >> 8);
   uStackX_8._0_1_ = 2;
   (**(code **)(*(longlong *)puVar1[4] + 0x100))((longlong *)puVar1[4],puVar1 + 0x18,&uStackX_8,0);
   if ((plVar3 != (longlong *)0x0) &&

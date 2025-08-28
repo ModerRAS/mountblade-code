@@ -142,7 +142,7 @@ uint64_t FUN_1808d0490(longlong param_1,ulonglong param_2,int8_t param_3)
   ulonglong uVar9;
   longlong *plVar10;
   char cStackX_8;
-  undefined7 uStackX_9;
+  uint8_t uStackX_9;
   
   plVar1 = (longlong *)(param_1 + 8);
   plVar10 = (longlong *)0x0;

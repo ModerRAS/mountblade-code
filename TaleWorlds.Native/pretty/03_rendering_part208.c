@@ -532,7 +532,7 @@ void FUN_18038b160(ulonglong param_1)
   byte bVar1;
   float *pfVar2;
   ulonglong uVar3;
-  undefined7 uVar4;
+  uint8_t uVar4;
   ulonglong uVar5;
   ulonglong *puVar6;
   ulonglong uVar7;
@@ -620,7 +620,7 @@ void FUN_18038b160(ulonglong param_1)
      (iVar8 = 1, *(char *)(*(longlong *)(param_1 + 0x78) + 0x20) != '\x02')) {
     iVar8 = (int)uVar10;
   }
-  uVar4 = (undefined7)(uVar10 >> 8);
+  uVar4 = (uint8_t)(uVar10 >> 8);
   if (((int)CONCAT71(uVar4,*(char *)(*(longlong *)(param_1 + 0x60) + 0x20) == '\x02') +
        (int)CONCAT71(uVar4,*(char *)(*(longlong *)(param_1 + 0x68) + 0x20) == '\x02') + iVar8 +
        (int)CONCAT71(uVar4,*(char *)(*(longlong *)(param_1 + 0x70) + 0x20) == '\x02') != 2) &&
@@ -641,7 +641,7 @@ void FUN_18038b164(ulonglong param_1)
   byte bVar1;
   float *pfVar2;
   ulonglong uVar3;
-  undefined7 uVar4;
+  uint8_t uVar4;
   ulonglong uVar5;
   ulonglong *puVar6;
   ulonglong uVar7;
@@ -731,7 +731,7 @@ void FUN_18038b164(ulonglong param_1)
      (iVar8 = 1, *(char *)(*(longlong *)(param_1 + 0x78) + 0x20) != '\x02')) {
     iVar8 = (int)uVar10;
   }
-  uVar4 = (undefined7)(uVar10 >> 8);
+  uVar4 = (uint8_t)(uVar10 >> 8);
   if (((int)CONCAT71(uVar4,*(char *)(*(longlong *)(param_1 + 0x60) + 0x20) == '\x02') +
        (int)CONCAT71(uVar4,*(char *)(*(longlong *)(param_1 + 0x68) + 0x20) == '\x02') + iVar8 +
        (int)CONCAT71(uVar4,*(char *)(*(longlong *)(param_1 + 0x70) + 0x20) == '\x02') != 2) &&
@@ -749,7 +749,7 @@ void FUN_18038b164(ulonglong param_1)
 void FUN_18038b295(uint64_t param_1,uint64_t param_2,float *param_3,longlong param_4)
 
 {
-  undefined7 uVar1;
+  uint8_t uVar1;
   int unaff_EBX;
   int unaff_EDI;
   int iVar2;
@@ -787,7 +787,7 @@ void FUN_18038b295(uint64_t param_1,uint64_t param_2,float *param_3,longlong par
      (iVar2 = 1, *(char *)(*(longlong *)(param_4 + 0x78) + 0x20) != '\x02')) {
     iVar2 = (int)in_R10;
   }
-  uVar1 = (undefined7)((ulonglong)in_R10 >> 8);
+  uVar1 = (uint8_t)((ulonglong)in_R10 >> 8);
   if (((int)CONCAT71(uVar1,*(char *)(*(longlong *)(param_4 + 0x60) + 0x20) == '\x02') +
        (int)CONCAT71(uVar1,*(char *)(*(longlong *)(param_4 + 0x68) + 0x20) == '\x02') + iVar2 +
        (int)CONCAT71(uVar1,*(char *)(*(longlong *)(param_4 + 0x70) + 0x20) == '\x02') != 2) &&
@@ -805,7 +805,7 @@ void FUN_18038b295(uint64_t param_1,uint64_t param_2,float *param_3,longlong par
 void FUN_18038b346(void)
 
 {
-  undefined7 uVar1;
+  uint8_t uVar1;
   int iVar2;
   longlong in_R9;
   uint64_t in_R10;
@@ -814,7 +814,7 @@ void FUN_18038b346(void)
      (iVar2 = 1, *(char *)(*(longlong *)(in_R9 + 0x78) + 0x20) != '\x02')) {
     iVar2 = (int)in_R10;
   }
-  uVar1 = (undefined7)((ulonglong)in_R10 >> 8);
+  uVar1 = (uint8_t)((ulonglong)in_R10 >> 8);
   if (((int)CONCAT71(uVar1,*(char *)(*(longlong *)(in_R9 + 0x60) + 0x20) == '\x02') +
        (int)CONCAT71(uVar1,*(char *)(*(longlong *)(in_R9 + 0x68) + 0x20) == '\x02') + iVar2 +
        (int)CONCAT71(uVar1,*(char *)(*(longlong *)(in_R9 + 0x70) + 0x20) == '\x02') != 2) &&

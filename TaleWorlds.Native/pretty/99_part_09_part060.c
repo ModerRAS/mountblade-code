@@ -489,7 +489,7 @@ void FUN_1805de0f1(int param_1,longlong param_2,longlong param_3,uint param_4)
 {
   byte bVar1;
   int iVar2;
-  undefined7 uVar3;
+  uint8_t uVar3;
   char cVar4;
   longlong in_RAX;
   uint64_t *puVar5;
@@ -537,7 +537,7 @@ void FUN_1805de0f1(int param_1,longlong param_2,longlong param_3,uint param_4)
   fVar15 = *(float *)(param_2 + 0x84);
   fVar17 = *(float *)(in_RAX + 0x84);
   iVar9 = (int)unaff_R12;
-  uVar3 = (undefined7)((ulonglong)unaff_R12 >> 8);
+  uVar3 = (uint8_t)((ulonglong)unaff_R12 >> 8);
   uVar8 = in_R10D >> 0x1f ^ 1;
   *(uint *)(unaff_RBP + 0xa8) = uVar8;
   fVar18 = fVar14 * fVar14 + fVar16 * fVar16 + fVar11 * fVar11;

@@ -644,7 +644,7 @@ void FUN_18074b093(void)
   longlong lVar4;
   longlong unaff_RBX;
   char unaff_BPL;
-  undefined7 unaff_00000029;
+  uint8_t unaff_00000029;
   longlong *plVar5;
   ulonglong uVar6;
   ulonglong uVar7;

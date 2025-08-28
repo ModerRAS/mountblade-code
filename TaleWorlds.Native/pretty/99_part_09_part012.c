@@ -7,7 +7,7 @@ void FUN_1805c1ed9(void)
 
 {
   longlong lVar1;
-  undefined7 uVar2;
+  uint8_t uVar2;
   char cVar3;
   longlong lVar4;
   longlong *unaff_RBX;
@@ -56,7 +56,7 @@ void FUN_1805c1ed9(void)
   cVar3 = (char)unaff_RSI;
   fVar15 = (float)unaff_RSI;
   if (cStack0000000000000044 == cVar3) {
-    uVar2 = (undefined7)((ulonglong)unaff_RSI >> 8);
+    uVar2 = (uint8_t)((ulonglong)unaff_RSI >> 8);
     if ((char)unaff_RBX[0x29b] != cVar3) {
       fVar10 = *(float *)(*(longlong *)(in_R11 + 0x20) + 0xc);
       fVar14 = *(float *)(*(longlong *)(in_R11 + 0x20) + 0x10);

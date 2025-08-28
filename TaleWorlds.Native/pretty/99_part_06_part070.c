@@ -45,7 +45,7 @@ void FUN_1803ea0a0(longlong param_1,longlong param_2,uint64_t param_3,longlong p
   uint64_t *puStack_500;
   uint64_t *puStack_4f8;
   int8_t uStack_4f0;
-  undefined7 uStack_4ef;
+  uint8_t uStack_4ef;
   uint64_t uStack_4e8;
   uint64_t uStack_4e0;
   uint64_t uStack_4d8;
@@ -86,7 +86,7 @@ void FUN_1803ea0a0(longlong param_1,longlong param_2,uint64_t param_3,longlong p
   int32_t auStack_338 [16];
   int8_t auStack_2f8 [64];
   int8_t uStack_2b8;
-  undefined7 uStack_2b7;
+  uint8_t uStack_2b7;
   uint64_t uStack_2a8;
   ulonglong uStack_2a0;
   void *puStack_298;
@@ -457,7 +457,7 @@ void FUN_1803eaa70(longlong param_1)
   uint64_t uStack_100;
   int8_t auStack_f8 [64];
   int8_t uStack_b8;
-  undefined7 uStack_b7;
+  uint8_t uStack_b7;
   uint64_t uStack_a8;
   ulonglong uStack_a0;
   char acStack_98 [16];

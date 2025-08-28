@@ -776,7 +776,7 @@ bool FUN_1806e00e1(float param_1,float param_2,int32_t param_3,float param_4,uin
 {
   bool bVar1;
   int8_t in_AL;
-  undefined7 in_register_00000001;
+  uint8_t in_register_00000001;
   float *in_RCX;
   uint64_t unaff_RBX;
   float *unaff_RSI;

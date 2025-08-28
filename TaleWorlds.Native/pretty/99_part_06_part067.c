@@ -115,7 +115,7 @@ uint64_t * FUN_1803e74c0(uint64_t *param_1,uint *param_2)
   uint64_t *puVar6;
   char cVar7;
   char cStackX_8;
-  undefined7 uStackX_9;
+  uint8_t uStackX_9;
   
   puVar4 = param_1;
   if ((uint64_t *)param_1[2] != (uint64_t *)0x0) {

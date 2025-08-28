@@ -112,7 +112,7 @@ void FUN_180316460(int *param_1,longlong param_2,ulonglong param_3)
   int32_t uStack_428;
   int32_t uStack_424;
   int8_t uStack_420;
-  undefined7 uStack_41f;
+  uint8_t uStack_41f;
   longlong *plStack_418;
   longlong *plStack_410;
   longlong *plStack_408;
@@ -149,7 +149,7 @@ void FUN_180316460(int *param_1,longlong param_2,ulonglong param_3)
   int32_t uStack_348;
   int32_t uStack_344;
   int8_t uStack_340;
-  undefined7 uStack_33f;
+  uint8_t uStack_33f;
   void *puStack_338;
   void *puStack_330;
   void *puStack_328;

@@ -366,7 +366,7 @@ void FUN_180621b60(longlong param_1,int param_2,uint64_t param_3)
   longlong *plVar1;
   longlong lVar2;
   int8_t uVar3;
-  undefined7 uVar4;
+  uint8_t uVar4;
   longlong lVar5;
   int32_t uStack_a8;
   int32_t uStack_a4;
@@ -400,7 +400,7 @@ void FUN_180621b60(longlong param_1,int param_2,uint64_t param_3)
   int32_t uStack_10;
   int32_t uStack_c;
   
-  uVar4 = (undefined7)((ulonglong)param_3 >> 8);
+  uVar4 = (uint8_t)((ulonglong)param_3 >> 8);
   uVar3 = (int8_t)param_3;
   lVar5 = (longlong)*(int *)(*(longlong *)(param_1 + 0x1e0) + (longlong)param_2 * 4);
   FUN_18063b5f0(&uStack_38,param_3);

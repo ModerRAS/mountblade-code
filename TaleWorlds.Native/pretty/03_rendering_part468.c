@@ -921,14 +921,14 @@ void FUN_18051bc7a(uint64_t param_1,float param_2,float param_3,uint64_t param_4
   int32_t unaff_EDI;
   int iVar2;
   uint64_t in_R8;
-  undefined7 uVar3;
+  uint8_t uVar3;
   longlong in_R10;
   float unaff_XMM6_Da;
   float fVar4;
   int8_t uStack0000000000000038;
   
   fVar4 = unaff_XMM6_Da * *(float *)(in_R10 + 0x524) + param_3 * *(float *)(in_R10 + 0x520);
-  uVar3 = (undefined7)((ulonglong)in_R8 >> 8);
+  uVar3 = (uint8_t)((ulonglong)in_R8 >> 8);
   if (0.0 <= param_2) {
     iVar2 = (int)CONCAT71(uVar3,0.0 < fVar4) + 6;
   }

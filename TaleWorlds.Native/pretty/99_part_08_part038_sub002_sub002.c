@@ -34,7 +34,7 @@ void FUN_1805a16ee(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   float *unaff_RBP;
   longlong lVar25;
   longlong *unaff_RDI;
-  undefined7 uVar26;
+  uint8_t uVar26;
   float fVar27;
   longlong lVar28;
   char cVar29;
@@ -77,7 +77,7 @@ void FUN_1805a16ee(uint64_t param_1,uint64_t param_2,uint64_t param_3)
 LAB_1805a1778:
   lVar24 = unaff_RDI[1];
   lVar18 = *unaff_RDI;
-  uVar26 = (undefined7)((ulonglong)param_3 >> 8);
+  uVar26 = (uint8_t)((ulonglong)param_3 >> 8);
   fVar38 = 0.0;
   unaff_RBP[-0x1f] = *(float *)(unaff_R13 + 0x44);
   cStack0000000000000070 = '\x01';

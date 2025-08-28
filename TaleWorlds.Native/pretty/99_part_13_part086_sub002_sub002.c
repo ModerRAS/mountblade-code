@@ -504,7 +504,7 @@ uint64_t FUN_1808e5120(longlong param_1,int *param_2,int *param_3)
   int iVar3;
   int iVar4;
   char cStackX_8;
-  undefined7 uStackX_9;
+  uint8_t uStackX_9;
   int aiStackX_20 [2];
   int aiStack_28 [2];
   uint64_t uStack_20;

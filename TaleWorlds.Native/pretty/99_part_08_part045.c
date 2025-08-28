@@ -328,7 +328,7 @@ ulonglong FUN_1805a6e24(uint64_t param_1,longlong param_2,uint64_t param_3,longl
   bool bVar6;
   longlong in_RAX;
   ulonglong uVar7;
-  undefined7 uVar8;
+  uint8_t uVar8;
   longlong lVar9;
   byte unaff_SIL;
   float fVar10;
@@ -367,7 +367,7 @@ ulonglong FUN_1805a6e24(uint64_t param_1,longlong param_2,uint64_t param_3,longl
       else {
         bVar5 = true;
       }
-      uVar8 = (undefined7)((ulonglong)(param_4 * 0x11b0) >> 8);
+      uVar8 = (uint8_t)((ulonglong)(param_4 * 0x11b0) >> 8);
       if ((!bVar5) || (fVar12 < fVar11)) {
         bVar6 = false;
       }
@@ -399,7 +399,7 @@ ulonglong FUN_1805a6e81(float param_1,longlong param_2,uint64_t param_3,int32_t 
   bool bVar2;
   bool bVar3;
   longlong in_RAX;
-  undefined7 uVar5;
+  uint8_t uVar5;
   ulonglong uVar4;
   longlong lVar6;
   longlong *unaff_RBX;
@@ -437,7 +437,7 @@ ulonglong FUN_1805a6e81(float param_1,longlong param_2,uint64_t param_3,int32_t 
   else {
     bVar2 = true;
   }
-  uVar5 = (undefined7)((ulonglong)(unaff_RDI * 0x11b0) >> 8);
+  uVar5 = (uint8_t)((ulonglong)(unaff_RDI * 0x11b0) >> 8);
   if ((!bVar2) || (fVar8 < fVar10)) {
     bVar3 = false;
   }

@@ -692,7 +692,7 @@ void FUN_180187390(void **param_1,longlong param_2)
   uint64_t *puStack_a8;
   void **ppuStack_a0;
   int8_t uStack_98;
-  undefined7 uStack_97;
+  uint8_t uStack_97;
   ulonglong uStack_88;
   ulonglong uStack_80;
   longlong lStack_78;

@@ -1089,7 +1089,7 @@ FUN_18006bda0(longlong param_1,longlong param_2,longlong *param_3,longlong *para
   ulonglong uVar4;
   ulonglong uVar5;
   ulonglong uVar6;
-  undefined7 uVar7;
+  uint8_t uVar7;
   
   lVar3 = *(longlong *)(param_2 + 0x128);
   if (lVar3 != 0) {
@@ -1118,7 +1118,7 @@ FUN_18006bda0(longlong param_1,longlong param_2,longlong *param_3,longlong *para
   uVar6 = uVar5 & 0xfffffffffffff000;
   lVar3 = (-(uint)((uVar5 & 0xfff) != 0) & 0x1000) + uVar6;
   if (*(ulonglong *)(param_1 + 0x360) < uVar4) {
-    uVar7 = (undefined7)(uVar6 >> 8);
+    uVar7 = (uint8_t)(uVar6 >> 8);
     if (lVar1 == 0) {
       if (*param_3 == 0) {
         lVar3 = FUN_18062b420(_DAT_180c8ed18,lVar3,CONCAT71(uVar7,3));

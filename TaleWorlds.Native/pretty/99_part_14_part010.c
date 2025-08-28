@@ -970,10 +970,10 @@ void FUN_1808f0950(char *param_1)
   int16_t uStack_34;
   char cStack_32;
   int8_t uStack_31;
-  undefined7 uStack_30;
+  uint8_t uStack_30;
   int8_t uStack_29;
   int8_t uStack_28;
-  undefined7 uStack_27;
+  uint8_t uStack_27;
   int32_t uStack_20;
   int8_t uStack_1c;
   char cStack_1b;
@@ -1028,7 +1028,7 @@ void FUN_1808f0950(char *param_1)
     cStack_3d = param_1[0x23fc];
     uStack_34 = *(int16_t *)(param_1 + 0x2405);
     uStack_31 = (int8_t)*(uint64_t *)(param_1 + 0x23f2);
-    uStack_30 = (undefined7)((ulonglong)*(uint64_t *)(param_1 + 0x23f2) >> 8);
+    uStack_30 = (uint8_t)((ulonglong)*(uint64_t *)(param_1 + 0x23f2) >> 8);
     uStack_3c = (int32_t)*(uint64_t *)(param_1 + 0x23fd);
     uStack_38 = (int32_t)((ulonglong)*(uint64_t *)(param_1 + 0x23fd) >> 0x20);
   }

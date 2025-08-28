@@ -157,10 +157,10 @@ ulonglong FUN_1808fc074(uint64_t param_1,int param_2,longlong param_3)
   int iVar6;
   longlong *plVar7;
   ulonglong uVar8;
-  undefined7 uVar9;
+  uint8_t uVar9;
   
   if (param_2 == 0) {
-    uVar9 = (undefined7)((ulonglong)param_1 >> 8);
+    uVar9 = (uint8_t)((ulonglong)param_1 >> 8);
     if (_DAT_180c821c4 < 1) {
       uVar8 = 0;
     }

@@ -589,7 +589,7 @@ void FUN_18047aab0(longlong param_1)
   int8_t auStack_b0 [16];
   int8_t auStack_a0 [104];
   int8_t uStack_38;
-  undefined7 uStack_37;
+  uint8_t uStack_37;
   uint64_t uStack_28;
   ulonglong uStack_20;
   ulonglong uStack_18;

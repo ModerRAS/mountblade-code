@@ -698,7 +698,7 @@ void FUN_18031c950(void *param_1,uint64_t param_2,void *param_3)
   int32_t uStack_f8;
   int32_t uStack_f4;
   int8_t uStack_f0;
-  undefined7 uStack_ef;
+  uint8_t uStack_ef;
   void *puStack_e8;
   void *puStack_e0;
   void *puStack_d8;

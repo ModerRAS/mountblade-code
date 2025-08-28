@@ -75,7 +75,7 @@ FUN_18046a8c0(uint64_t param_1,ulonglong *param_2,float *param_3,float *param_4,
   uint64_t uVar32;
   uint64_t uVar33;
   ulonglong uVar34;
-  undefined7 uVar35;
+  uint8_t uVar35;
   int32_t *puVar36;
   int32_t *puVar37;
   float *pfVar38;
@@ -440,7 +440,7 @@ LAB_18046ad5e:
             fStack_1a4 = (float)((ulonglong)*(uint64_t *)pfVar26 >> 0x20);
             fStack_1a0 = (float)*(uint64_t *)(pfStackX_20 + -3);
             fStack_19c = (float)((ulonglong)*(uint64_t *)(pfStackX_20 + -3) >> 0x20);
-            uVar35 = (undefined7)((ulonglong)pfVar26 >> 8);
+            uVar35 = (uint8_t)((ulonglong)pfVar26 >> 8);
             if (pfVar21 < pfVar25) {
               *pfVar21 = fStack_1a8;
               pfVar21[1] = fStack_1a4;

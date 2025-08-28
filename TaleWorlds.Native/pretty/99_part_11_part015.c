@@ -118,7 +118,7 @@ void FUN_1806e9765(void)
   longlong unaff_RBX;
   longlong unaff_RBP;
   int8_t unaff_DIL;
-  undefined7 unaff_00000039;
+  uint8_t unaff_00000039;
   float fVar2;
   int8_t *puStack0000000000000028;
   int8_t uStack0000000000000030;

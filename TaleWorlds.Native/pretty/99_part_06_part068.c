@@ -250,7 +250,7 @@ void FUN_1803e8510(uint64_t param_1,int32_t param_2,uint64_t *param_3,uint64_t p
   int *piStack_130;
   uint64_t uStack_118;
   int8_t uStack_110;
-  undefined7 uStack_10f;
+  uint8_t uStack_10f;
   uint64_t uStack_100;
   ulonglong uStack_f8;
   int aiStack_f0 [2];

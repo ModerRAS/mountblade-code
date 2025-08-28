@@ -397,7 +397,7 @@ void FUN_1806d7000(longlong *param_1,uint64_t param_2)
   int8_t uStack_20;
   uint7 uStack_1f;
   int8_t uStack_18;
-  undefined7 uStack_17;
+  uint8_t uStack_17;
   
   FUN_1806d56e0();
   lVar3 = *param_1;
@@ -437,7 +437,7 @@ void FUN_1806d7080(longlong *param_1,uint64_t param_2)
   int8_t uStack_20;
   uint7 uStack_1f;
   int8_t uStack_18;
-  undefined7 uStack_17;
+  uint8_t uStack_17;
   
   lVar6 = *param_1;
   if (*(int *)(lVar6 + 0x10) != 0) {

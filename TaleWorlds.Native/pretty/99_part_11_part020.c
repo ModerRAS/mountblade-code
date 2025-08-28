@@ -21,7 +21,7 @@ void FUN_1806efb7c(longlong *param_1)
   char *in_stack_00000070;
   char *in_stack_00000078;
   int8_t uStack0000000000000080;
-  undefined7 uStack0000000000000081;
+  uint8_t uStack0000000000000081;
   uint uVar8;
   
   pcVar9 = in_stack_00000078;
@@ -105,7 +105,7 @@ void FUN_1806efba9(longlong *param_1)
   longlong *in_stack_00000060;
   char *in_stack_00000070;
   int8_t uStack0000000000000080;
-  undefined7 uStack0000000000000081;
+  uint8_t uStack0000000000000081;
   
   if (*unaff_RSI != (char)unaff_EDI) {
     do {

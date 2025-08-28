@@ -83,7 +83,7 @@ ulonglong FUN_18011c360(int *param_1,char *param_2,char *param_3,uint param_4,lo
   int32_t uStack_d8;
   int32_t uStack_d4;
   int8_t uStack_d0;
-  undefined7 uStack_cf;
+  uint8_t uStack_cf;
   longlong lStack_c8;
   longlong lStack_c0;
   uint *puVar16;
