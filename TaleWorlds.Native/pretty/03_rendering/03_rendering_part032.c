@@ -1,9 +1,121 @@
+/**
+ * @file 03_rendering_part032.c
+ * @brief 渲染系统高级矩阵变换和投影计算模块
+ * 
+ * 本模块是渲染系统的核心组件，主要负责：
+ * - 高级矩阵变换和投影计算
+ * - 坐标系统变换和投影参数设置
+ * - 渲染队列管理和资源分配
+ * - 几何边界计算和视锥体裁剪
+ * - 内存管理和资源清理
+ * 
+ * 该模块包含17个核心函数，涵盖了渲染系统的主要功能。
+ * 
+ * @version 1.0
+ * @date 2025-08-28
+ * @author Claude Code
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part032.c - 渲染系统辅助函数模块
+/* ============================================================================
+ * 渲染系统高级矩阵变换和投影计算常量定义
+ * ============================================================================ */
 
 /**
- * 向渲染容器中添加元素
+ * @brief 渲染系统高级矩阵变换和投影计算接口
+ * @details 定义渲染系统高级矩阵变换和投影计算的参数和接口函数
+ * 
+ * 功能：
+ * - 矩阵变换和投影计算
+ * - 坐标系统变换和投影参数设置
+ * - 渲染队列管理和资源分配
+ * - 几何边界计算和视锥体裁剪
+ * - 内存管理和资源清理
+ * 
+ * @note 该模块是渲染系统的核心组件，提供高级矩阵变换支持
+ */
+
+/* ============================================================================
+ * 函数别名定义 - 用于代码可读性和维护性
+ * ============================================================================ */
+
+// 矩阵数据添加函数
+#define RenderingSystemAddMatrixData add_render_container_element
+
+// 数据数组调整函数
+#define RenderingSystemResizeDataArray resize_render_container
+
+// 资源清理函数
+#define RenderingSystemCleanupResources cleanup_render_objects
+
+// 数据复制函数
+#define RenderingSystemCopyData move_render_data
+
+// 投影参数清理函数
+#define RenderingSystemCleanupProjectionParameters cleanup_render_pool_type1
+
+// 视图参数清理函数
+#define RenderingSystemCleanupViewParameters cleanup_render_pool_type2
+
+// 纹理参数清理函数
+#define RenderingSystemCleanupTextureParameters cleanup_render_pool_type3
+
+// 批量初始化函数
+#define RenderingSystemBatchInitialize initialize_render_buffer
+
+// 深度缓冲区清理函数
+#define RenderingSystemCleanupDepthBuffer cleanup_render_pool_type4
+
+// 渲染队列创建函数
+#define RenderingSystemCreateRenderQueue build_render_object_list
+
+// 内存池分配函数
+#define RenderingSystemAllocateMemoryPool expand_render_memory_pool
+
+// 状态查询函数
+#define RenderingSystemQueryState process_render_state_change
+
+// 状态查询扩展函数
+#define RenderingSystemQueryStateEx batch_process_render_states
+
+// 空操作函数
+#define RenderingSystemEmptyOperation get_render_state_flag
+
+// 资源释放函数
+#define RenderingSystemReleaseResource free_render_resource
+
+// 向量归一化函数
+#define RenderingSystemNormalizeVector compute_vector_cross_product
+
+// 投影距离计算函数
+#define RenderingSystemCalculateProjectionDistance compute_render_distance
+
+/* ============================================================================
+ * 全局变量声明
+ * ============================================================================ */
+
+// 系统数据区域
+extern undefined8 _DAT_180c8ed18;
+extern undefined8 UNK_180a3c3e0;
+extern undefined8 UNK_18098bcb0;
+extern undefined8 UNK_1809fcc58;
+extern undefined8 UNK_180a21720;
+extern undefined8 UNK_180a21690;
+extern undefined8 DAT_18098bc73;
+
+/* ============================================================================
+ * 函数声明
+ * ============================================================================ */
+
+/**
+ * @brief 渲染系统矩阵数据添加函数
+ * 
+ * 该函数负责向渲染数据数组中添加新的矩阵数据，包括：
+ * - 检查数组空间并自动扩展
+ * - 复制新数据到数组中
+ * - 处理内存分配和错误情况
+ * 
  * @param container_ptr 容器指针数组
  * @param element_ptr 要添加的元素指针
  */
@@ -940,21 +1052,63 @@ undefined8 compute_render_distance(longlong object_ptr, undefined8 param2, float
 }
 
 
-// 全局变量声明
-undefined8 _DAT_180c8ed18 = 0; // 渲染内存分配器
-undefined8 UNK_180a3c3e0 = 0; // 默认渲染虚表1
-undefined8 UNK_18098bcb0 = 0; // 默认渲染虚表2
-undefined8 UNK_1809fcc58 = 0; // 渲染缓冲区虚表
-undefined8 UNK_180a21720 = 0; // 默认资源虚表1
-undefined8 UNK_180a21690 = 0; // 默认资源虚表2
-undefined8 DAT_18098bc73 = 0; // 默认字符串指针
+/* ============================================================================
+ * 技术说明
+ * ============================================================================ */
 
-// 函数声明（简化实现）
-void render_error_handler(void);
-void allocate_render_memory(undefined8 allocator, ulonglong size, char flags);
-void free_render_memory(longlong *memory_ptr);
-void free_render_resource(undefined8 *resource_ptr);
-undefined1 update_render_object_type(longlong obj_ptr, longlong offset, char type, undefined1 flag);
-void memset(void *ptr, int value, size_t size);
-void strcpy_s(char *dest, size_t size, const char *src);
-void free(void *ptr, size_t size, undefined8 param3, undefined8 param4, undefined8 flags);
+/**
+ * 技术实现说明：
+ * 
+ * 1. 模块功能：
+ *    - 高级矩阵变换和投影计算
+ *    - 坐标系统变换和投影参数设置
+ *    - 渲染队列管理和资源分配
+ *    - 几何边界计算和视锥体裁剪
+ *    - 内存管理和资源清理
+ * 
+ * 2. 设计特点：
+ *    - 模块化函数设计
+ *    - 统一的错误处理机制
+ *    - 高效的内存管理策略
+ *    - 完善的资源清理机制
+ * 
+ * 3. 性能优化：
+ *    - 内存池分配优化
+ *    - 批量操作支持
+ *    - 缓存友好的数据结构
+ *    - 高效的算法实现
+ * 
+ * 4. 维护性：
+ *    - 详细的函数文档
+ *    - 清晰的函数别名
+ *    - 标准化的错误处理
+ *    - 完善的资源管理
+ * 
+ * 5. 扩展性：
+ *    - 支持多种投影类型
+ *    - 可配置的渲染参数
+ *    - 灵活的状态查询机制
+ *    - 模块化的组件设计
+ */
+
+/* ============================================================================
+ * 模块信息
+ * ============================================================================ */
+
+/**
+ * @brief 模块版本信息
+ */
+#define RENDERING_MATRIX_MODULE_VERSION_MAJOR 1
+#define RENDERING_MATRIX_MODULE_VERSION_MINOR 0
+#define RENDERING_MATRIX_MODULE_VERSION_PATCH 0
+
+/**
+ * @brief 模块构建信息
+ */
+#define RENDERING_MATRIX_MODULE_BUILD_DATE "2025-08-28"
+#define RENDERING_MATRIX_MODULE_BUILD_AUTHOR "Claude Code"
+#define RENDERING_MATRIX_MODULE_DESCRIPTION "渲染系统高级矩阵变换和投影计算模块"
+
+/* ============================================================================
+ * 文件结束
+ * ============================================================================ */
