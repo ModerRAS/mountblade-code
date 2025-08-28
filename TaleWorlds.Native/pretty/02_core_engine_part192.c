@@ -83,7 +83,7 @@ void CoreEngineDataProcessor(uint64_t system_context,int64_t *data_buffer)
   if (pcStack_50 != (code *)0x0) {
     (*pcStack_50)(auStack_60,0,0);
   }
-  pcStack_50 = (code *)&unknown_var_8752_ptr;
+  pcStack_50 = (code *)&system_callback_handler_ptr;
   pcStack_48 = _guard_check_icall;
   uStack_88 = 0xc0;
   lVar1 = *(int64_t *)(core_system_data_memory + 8);
@@ -113,7 +113,9 @@ void CoreEngineDataProcessor(uint64_t system_context,int64_t *data_buffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180174c70(uint64_t param_1,int64_t *param_2)
+// 函数: uint64_t SystemResourceManager(uint64_t system_handle,int64_t *resource_info)
+// 功能: 系统资源管理器，负责文件操作、资源分配和句柄管理
+uint64_t SystemResourceManager(uint64_t system_handle,int64_t *resource_info)
 
 {
   int64_t lVar1;
