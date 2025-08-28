@@ -412,33 +412,43 @@ void SystemMemoryCopyFunction(void)
 }
 
 
-
-
-
-// 函数: void FUN_180046444(undefined1 *param_1)
-void FUN_180046444(undefined1 *param_1)
-
+/**
+ * @brief 系统字符串初始化器
+ * 
+ * 初始化字符串对象，设置初始状态。
+ * 
+ * @param param_1 字符串对象指针
+ */
+void SystemStringInitializer(undefined1 *param_1)
 {
-  longlong unaff_RDI;
-  
-  *param_1 = 0;
-  *(undefined4 *)(unaff_RDI + 0x10) = 0;
-  return;
+    longlong unaff_RDI;
+    
+    /* 初始化字符串对象 */
+    *param_1 = 0;
+    *(undefined4 *)(unaff_RDI + 0x10) = 0;
 }
-
-
-
-undefined8 * FUN_180046480(undefined8 *param_1)
-
+/**
+ * @brief 系统资源初始化器
+ * 
+ * 初始化系统资源对象，设置初始状态和配置。
+ * 
+ * @param param_1 资源对象指针
+ * @return 初始化后的资源对象指针
+ */
+undefined8 *SystemResourceInitializer(undefined8 *param_1)
 {
-  *param_1 = &UNK_18098bcb0;
-  param_1[1] = 0;
-  *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_18098bc80;
-  param_1[1] = param_1 + 3;
-  *(undefined4 *)(param_1 + 2) = 0;
-  *(undefined1 *)(param_1 + 3) = 0;
-  return param_1;
+    /* 初始化资源对象状态 */
+    *param_1 = &UNK_18098bcb0;
+    param_1[1] = 0;
+    *(undefined4 *)(param_1 + 2) = 0;
+    
+    /* 设置资源对象配置 */
+    *param_1 = &UNK_18098bc80;
+    param_1[1] = param_1 + 3;
+    *(undefined4 *)(param_1 + 2) = 0;
+    *(undefined1 *)(param_1 + 3) = 0;
+    
+    return param_1;
 }
 
 
