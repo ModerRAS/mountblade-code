@@ -32,7 +32,7 @@ void RenderingSystem_EmptyFunction1(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180602d90(longlong param_1,float param_2)
+uint64_t RenderingSystem_ParameterProcessor(longlong param_1,float param_2)
 
 {
   int iVar1;
