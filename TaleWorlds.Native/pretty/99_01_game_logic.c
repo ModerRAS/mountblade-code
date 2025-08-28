@@ -31,7 +31,7 @@
  * - 游戏状态管理
  * - 游戏资源控制
  */
-typedef undefined GameLogic_Processor_type;
+typedef uint64_t GameLogic_Processor_type;
 
 /**
  * @brief 游戏事件管理器类型

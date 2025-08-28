@@ -342,45 +342,45 @@ int32_t InitializationSystem_ErrorHandler(void);
  * 
  * 该函数负责验证系统配置的有效性和完整性。
  * 
- * @return undefined 验证结果状态
+ * @return int32_t 验证结果状态 (0=成功, 非0=错误代码)
  */
-undefined InitializationSystem_ValidateConfig(void);
+int32_t InitializationSystem_ValidateConfig(void);
 
 /**
  * @brief 资源分配器
  * 
  * 该函数负责分配系统所需的资源。
  * 
- * @return undefined 分配结果状态
+ * @return int32_t 分配结果状态 (0=成功, 非0=错误代码)
  */
-undefined InitializationSystem_AllocateResource(void);
+int32_t InitializationSystem_AllocateResource(void);
 
 /**
  * @brief 资源释放器
  * 
  * 该函数负责释放系统占用的资源。
  * 
- * @return undefined 释放结果状态
+ * @return int32_t 释放结果状态 (0=成功, 非0=错误代码)
  */
-undefined InitializationSystem_ReleaseResource(void);
+int32_t InitializationSystem_ReleaseResource(void);
 
 /**
  * @brief 状态更新器
  * 
  * 该函数负责更新系统状态。
  * 
- * @return undefined 更新结果状态
+ * @return int32_t 更新结果状态 (0=成功, 非0=错误代码)
  */
-undefined InitializationSystem_UpdateStatus(void);
+int32_t InitializationSystem_UpdateStatus(void);
 
 /**
  * @brief 事件记录器
  * 
  * 该函数负责记录系统事件。
  * 
- * @return undefined 记录结果状态
+ * @return int32_t 记录结果状态 (0=成功, 非0=错误代码)
  */
-undefined InitializationSystem_LogEvent(void);
+int32_t InitializationSystem_LogEvent(void);
 
 /* ============================================================================
  * 内部工具函数声明
