@@ -822,5 +822,5 @@ FINAL_RENDER_SETUP:
 #define ui_system_calculate_speed_factor FUN_18065c070
 #define ui_system_calculate_weight_factor FUN_18065bf60
 #define ui_system_get_render_data FUN_18065fd40
-#define ui_system_final_render FUN_1808fc050
+#define ui_system_final_render SystemSecurityChecker
 #define memory_allocation_error_handler FUN_1808fd400

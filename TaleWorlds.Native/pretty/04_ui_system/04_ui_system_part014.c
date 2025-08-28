@@ -311,7 +311,7 @@ LAB_18065a765:
       
       // 调用渲染处理函数
       return_address = 0x18065aa9f;
-      FUN_1808fc050(*(uint64_t *)(context_ptr + -0x70) ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(*(uint64_t *)(context_ptr + -0x70) ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }
@@ -414,7 +414,7 @@ void ui_system_vector_normalization_processor(void)
   }
   
   // 调用渲染处理函数
-  FUN_1808fc050(*(uint64_t *)(context_ptr + -0x70) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(context_ptr + -0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // UI系统简单数据设置器 - 处理UI系统中的简单数据设置操作
@@ -431,8 +431,8 @@ void ui_system_simple_data_setter(void)
   *(uint64_t *)(resource_ptr + 0x6178) = input_data;
   
   // 调用渲染处理函数 - 跳转到渲染系统继续处理
-  // FUN_1808fc050 是渲染系统的核心处理函数
-  FUN_1808fc050(*(uint64_t *)(context_ptr + -0x70) ^ (uint64_t)&stack0x00000000);
+  // SystemSecurityChecker 是渲染系统的核心处理函数
+  SystemSecurityChecker(*(uint64_t *)(context_ptr + -0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 // 文件结束标记 - 04_ui_system_part014.c

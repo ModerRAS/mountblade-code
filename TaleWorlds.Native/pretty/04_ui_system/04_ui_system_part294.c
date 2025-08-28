@@ -711,7 +711,7 @@ void UISystemConfigProcessor(uint64_t param_1, uint64_t param_2, int param_3, in
     }
     
     // 应用配置
-    FUN_1808fc050(xor_value ^ (uint64_t)stack_data1);
+    SystemSecurityChecker(xor_value ^ (uint64_t)stack_data1);
 }
 
 /**
@@ -748,7 +748,7 @@ void UISystemErrorHandler(void)
     uint64_t stack_param;            // 栈参数
     
     // 执行错误恢复操作
-    FUN_1808fc050(stack_param ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(stack_param ^ (uint64_t)&stack0x00000000);
 }
 
 /**

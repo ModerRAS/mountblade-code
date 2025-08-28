@@ -537,7 +537,7 @@ void UI_System_ProcessControlData2(UI_System_ControlHandle param_1, UI_System_Ev
     }
     
     // 清理栈数据
-    FUN_1808fc050(stack_checksum ^ (uint64_t)stack_data);
+    SystemSecurityChecker(stack_checksum ^ (uint64_t)stack_data);
 }
 
 /**
@@ -562,7 +562,7 @@ void UI_System_ProcessControlData3(UI_System_ControlHandle* param_1, UI_System_E
     // 验证资源指针
     resource_ptr = (UI_System_ControlHandle *)(resource_data + 0x58);
     if (((UI_System_ControlHandle *)*resource_ptr == resource_ptr) && (*(UI_System_ControlHandle **)(resource_data + 0x60) == resource_ptr)) {
-        FUN_1808fc050(in_stack_00000050 ^ (uint64_t)&stack0x00000000);
+        SystemSecurityChecker(in_stack_00000050 ^ (uint64_t)&stack0x00000000);
     }
     
     // 执行控件操作
@@ -578,7 +578,7 @@ void UI_System_ProcessControlData4(void)
 {
     uint64_t in_stack_00000050;
     
-    FUN_1808fc050(in_stack_00000050 ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(in_stack_00000050 ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -1435,7 +1435,7 @@ void UI_System_AllocateControlResources(UI_System_ControlHandle param_1, UI_Syst
         }
         FUN_1808fd200(control_data, allocation_size & 0xfffffffffffffff0);
     }
-    FUN_1808fc050(stack_checksum ^ (uint64_t)stack_data);
+    SystemSecurityChecker(stack_checksum ^ (uint64_t)stack_data);
 }
 
 // =============================================================================

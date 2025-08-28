@@ -1547,7 +1547,7 @@ LAB_1806654b3:
 LAB_18066375a:
     // 函数结束，调用清理函数
     // WARNING: Subroutine does not return
-    FUN_1808fc050(stack_ulong_1 ^ (uint64_t)stack_buffer_1);
+    SystemSecurityChecker(stack_ulong_1 ^ (uint64_t)stack_buffer_1);
 }
 
 // 函数别名定义

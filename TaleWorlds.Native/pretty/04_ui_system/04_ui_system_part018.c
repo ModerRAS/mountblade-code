@@ -87,7 +87,7 @@ void ui_system_conditional_render_processor(void)
   } while (loop_counter < UI_ARRAY_SIZE_18);
   
   // 调用渲染处理函数
-  FUN_1808fc050(*(uint64_t *)(context_ptr + UI_OFFSET_0XFB0) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(context_ptr + UI_OFFSET_0XFB0) ^ (uint64_t)&stack0x00000000);
 }
 
 // UI系统动画参数计算器 - 计算UI动画的各种参数

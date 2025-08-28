@@ -832,7 +832,7 @@ FINAL_RENDER_STATE:
             }
             stack_return_address = 0x18065aa9f;
             stack_float_13 = stack_float_8;
-            FUN_1808fc050(*(uint64_t *)(register_rbp + -0x70) ^ (uint64_t)&stack0x00000000);
+            SystemSecurityChecker(*(uint64_t *)(register_rbp + -0x70) ^ (uint64_t)&stack0x00000000);
         }
     } while( true );
 }

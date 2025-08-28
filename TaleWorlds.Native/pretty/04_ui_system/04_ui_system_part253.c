@@ -129,7 +129,7 @@ typedef struct {
 // =============================================================================
 #define UISystem_AdvancedCoordinateTransform FUN_18080f83a
 #define UISystem_GetRandomValue func_0x000180815aa0
-#define UISystem_FinalizeProcessing FUN_1808fc050
+#define UISystem_FinalizeProcessing SystemSecurityChecker
 
 // =============================================================================
 // 函数实现

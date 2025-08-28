@@ -534,7 +534,7 @@ LAB_mode_switch:
   }
   
   // 安全检查：函数不会返回
-  FUN_1808fc050(*(uint64_t *)(context_rbp + 0x50) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(context_rbp + 0x50) ^ (uint64_t)&stack0x00000000);
 }
 
 // =============================================================================

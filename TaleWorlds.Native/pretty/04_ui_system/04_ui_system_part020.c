@@ -517,7 +517,7 @@ void ui_system_data_synchronizer(int64_t sync_context, int64_t resource_manager)
   }
   
   // 返回同步结果
-  FUN_1808fc050(security_key ^ (uint64_t)&sync_data_1);
+  SystemSecurityChecker(security_key ^ (uint64_t)&sync_data_1);
 }
 
 // UI系统参数更新器 - 更新UI系统中的参数和状态
