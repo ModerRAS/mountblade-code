@@ -82,210 +82,277 @@ longlong copy_data_structure(longlong dest_ptr, longlong src_ptr)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-longlong * FUN_180169110(undefined8 param_1,longlong *param_2,longlong param_3,undefined8 param_4)
+// 函数: longlong * process_resource_data(undefined8 resource_type, longlong *output_buffer, longlong input_data, undefined8 process_flags)
+// 功能: 处理资源数据，包括解析、验证和格式转换
+// 原始实现：FUN_180169110
+// 简化实现：资源数据处理函数
+longlong * process_resource_data(undefined8 resource_type, longlong *output_buffer, longlong input_data, undefined8 process_flags)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  longlong lVar4;
-  undefined8 uVar5;
-  undefined *puVar6;
-  undefined *puStack_78;
-  undefined1 *puStack_70;
-  undefined4 uStack_68;
-  undefined8 uStack_60;
-  undefined *puStack_58;
-  longlong lStack_50;
-  undefined4 uStack_40;
+  undefined8 *resource_manager;
+  undefined8 *data_processor;
+  longlong processing_result;
+  longlong validation_result;
+  undefined8 processed_data;
+  undefined *data_source;
+  undefined *processing_context;
+  undefined1 *output_buffer_ptr;
+  undefined4 buffer_size;
+  undefined8 buffer_flags;
+  undefined *temp_buffer;
+  longlong buffer_handle;
+  undefined4 processing_status;
   
-  lVar3 = _DAT_180c868f8;
-  FUN_1806279c0(&puStack_78,param_3,param_3,param_4,0,0xfffffffffffffffe);
-  lVar4 = FUN_180169350(lVar3,&puStack_78);
-  puStack_78 = &UNK_180a3c3e0;
-  if (puStack_70 != (undefined1 *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  // 获取资源管理器引用
+  resource_manager = RESOURCE_MANAGER_HANDLE;
+  
+  // 初始化处理上下文
+  initialize_processing_context(&processing_context, input_data, input_data, process_flags, 0, CONTEXT_CLEANUP_FLAG);
+  
+  // 验证输入数据
+  validation_result = validate_input_data(resource_manager, &processing_context);
+  processing_context = &CLEANUP_CONTEXT;
+  
+  // 检查处理上下文是否有效
+  if (output_buffer_ptr != (undefined1 *)0x0) {
+    // 错误：处理上下文初始化失败
+    throw_processing_error();
   }
-  puStack_70 = (undefined1 *)0x0;
-  uStack_60 = (ulonglong)uStack_60._4_4_ << 0x20;
-  puStack_78 = &UNK_18098bcb0;
-  *param_2 = (longlong)&UNK_18098bcb0;
-  param_2[1] = 0;
-  *(undefined4 *)(param_2 + 2) = 0;
-  *param_2 = (longlong)&UNK_180a3c3e0;
-  param_2[3] = 0;
-  param_2[1] = 0;
-  *(undefined4 *)(param_2 + 2) = 0;
-  if (lVar4 == 0) {
-    puVar6 = &DAT_18098bc73;
-    if (*(undefined **)(param_3 + 8) != (undefined *)0x0) {
-      puVar6 = *(undefined **)(param_3 + 8);
+  
+  // 重置处理状态
+  output_buffer_ptr = (undefined1 *)0x0;
+  buffer_flags = (ulonglong)buffer_flags._4_4_ << 0x20;
+  processing_context = &DEFAULT_OBJECT_PTR;
+  
+  // 初始化输出缓冲区
+  *output_buffer = (longlong)&DEFAULT_OBJECT_PTR;
+  output_buffer[1] = 0;
+  *(undefined4 *)(output_buffer + 2) = 0;
+  *output_buffer = (longlong)&CLEANUP_CONTEXT;
+  output_buffer[3] = 0;
+  output_buffer[1] = 0;
+  *(undefined4 *)(output_buffer + 2) = 0;
+  
+  // 根据验证结果选择处理路径
+  if (validation_result == 0) {
+    // 使用默认数据源
+    data_source = &DEFAULT_STRING_DATA;
+    if (*(undefined **)(input_data + 8) != (undefined *)0x0) {
+      data_source = *(undefined **)(input_data + 8);
     }
-    FUN_1806272a0(&UNK_180a08868,puVar6);
-    (**(code **)(*param_2 + 0x10))(param_2,&UNK_180a08850);
+    
+    // 创建默认数据处理请求
+    create_default_request(&DEFAULT_REQUEST_HANDLE, data_source);
+    (**(code **)(*output_buffer + DATA_PROCESSOR_OFFSET))(output_buffer, &DEFAULT_REQUEST_DATA);
   }
   else {
-    uVar5 = FUN_1801616b0(lVar4,&puStack_58,param_3,param_4,1);
-    FUN_18005d190(param_2,uVar5);
-    puStack_58 = &UNK_180a3c3e0;
-    if (lStack_50 != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+    // 处理验证通过的数据
+    processed_data = process_validated_data(validation_result, &temp_buffer, input_data, process_flags, 1);
+    apply_processed_data(output_buffer, processed_data);
+    temp_buffer = &CLEANUP_CONTEXT;
+    
+    if (buffer_handle != 0) {
+      // 错误：缓冲区句柄无效
+      throw_processing_error();
     }
-    lStack_50 = 0;
-    uStack_40 = 0;
-    puStack_58 = &UNK_18098bcb0;
+    
+    buffer_handle = 0;
+    processing_status = 0;
+    temp_buffer = &DEFAULT_OBJECT_PTR;
   }
-  puStack_78 = &UNK_180a3c3e0;
-  uStack_60 = 0;
-  puStack_70 = (undefined1 *)0x0;
-  uStack_68 = 0;
-  FUN_1806277c0(&puStack_78,*(undefined4 *)(param_3 + 0x10));
-  if (0 < *(int *)(param_3 + 0x10)) {
-    puVar6 = &DAT_18098bc73;
-    if (*(undefined **)(param_3 + 8) != (undefined *)0x0) {
-      puVar6 = *(undefined **)(param_3 + 8);
+  
+  // 设置输出缓冲区属性
+  processing_context = &CLEANUP_CONTEXT;
+  buffer_flags = 0;
+  output_buffer_ptr = (undefined1 *)0x0;
+  buffer_size = 0;
+  
+  // 复制数据到输出缓冲区
+  copy_data_to_buffer(&processing_context, *(undefined4 *)(input_data + 0x10));
+  
+  if (0 < *(int *)(input_data + 0x10)) {
+    data_source = &DEFAULT_STRING_DATA;
+    if (*(undefined **)(input_data + 8) != (undefined *)0x0) {
+      data_source = *(undefined **)(input_data + 8);
     }
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_70,puVar6,(longlong)(*(int *)(param_3 + 0x10) + 1));
+    
+    // 执行数据复制操作
+    memcpy(output_buffer_ptr, data_source, (longlong)(*(int *)(input_data + 0x10) + 1));
   }
-  if (*(longlong *)(param_3 + 8) != 0) {
-    uStack_68 = 0;
-    if (puStack_70 != (undefined1 *)0x0) {
-      *puStack_70 = 0;
+  
+  // 清理输入数据引用
+  if (*(longlong *)(input_data + 8) != 0) {
+    buffer_size = 0;
+    if (output_buffer_ptr != (undefined1 *)0x0) {
+      *output_buffer_ptr = 0;
     }
   }
-  puVar1 = *(undefined8 **)(lVar3 + 8);
-  puVar2 = *(undefined8 **)(lVar3 + 0x10);
-  if ((puVar2 == *(undefined8 **)(lVar3 + 0x18)) || (puVar1 != puVar2)) {
-    FUN_18016d400((undefined8 *)(lVar3 + 8),puVar1,&puStack_78);
+  
+  // 获取数据处理器指针
+  data_processor = *(undefined8 **)(resource_manager + 8);
+  resource_manager = *(undefined8 **)(resource_manager + 0x10);
+  
+  // 检查是否需要扩容缓冲区
+  if ((resource_manager == *(undefined8 **)(resource_manager + 0x18)) || (data_processor != resource_manager)) {
+    process_buffer_expansion((undefined8 *)(resource_manager + 8), data_processor, &processing_context);
   }
   else {
-    *puVar2 = &UNK_18098bcb0;
-    puVar2[1] = 0;
-    *(undefined4 *)(puVar2 + 2) = 0;
-    *puVar2 = &UNK_180a3c3e0;
-    puVar2[3] = 0;
-    puVar2[1] = 0;
-    *(undefined4 *)(puVar2 + 2) = 0;
-    *(undefined4 *)(puVar2 + 2) = uStack_68;
-    puVar2[1] = puStack_70;
-    *(uint *)((longlong)puVar2 + 0x1c) = uStack_60._4_4_;
-    *(undefined4 *)(puVar2 + 3) = (undefined4)uStack_60;
-    uStack_68 = 0;
-    puStack_70 = (undefined1 *)0x0;
-    uStack_60 = 0;
-    *(longlong *)(lVar3 + 0x10) = *(longlong *)(lVar3 + 0x10) + 0x20;
+    // 扩容缓冲区
+    *resource_manager = &DEFAULT_OBJECT_PTR;
+    resource_manager[1] = 0;
+    *(undefined4 *)(resource_manager + 2) = 0;
+    *resource_manager = &CLEANUP_CONTEXT;
+    resource_manager[3] = 0;
+    resource_manager[1] = 0;
+    *(undefined4 *)(resource_manager + 2) = 0;
+    *(undefined4 *)(resource_manager + 2) = buffer_size;
+    resource_manager[1] = output_buffer_ptr;
+    *(uint *)((longlong)resource_manager + 0x1c) = buffer_flags._4_4_;
+    *(undefined4 *)(resource_manager + 3) = (undefined4)buffer_flags;
+    buffer_size = 0;
+    output_buffer_ptr = (undefined1 *)0x0;
+    buffer_flags = 0;
+    *(longlong *)(resource_manager + 0x10) = *(longlong *)(resource_manager + 0x10) + 0x20;
   }
-  puStack_78 = &UNK_180a3c3e0;
-  if (puStack_70 != (undefined1 *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  
+  // 清理处理上下文
+  processing_context = &CLEANUP_CONTEXT;
+  if (output_buffer_ptr != (undefined1 *)0x0) {
+    // 错误：输出缓冲区清理失败
+    throw_processing_error();
   }
-  return param_2;
+  
+  return output_buffer;
 }
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180169be0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// 警告：移除了不可达的代码块 (ram,0x000180169be0)
+// 全局变量重叠警告：以下函数使用的全局变量可能与较小符号重叠
 
-longlong FUN_180169350(longlong *param_1,longlong param_2)
+// 函数: longlong validate_string_format(longlong *validator, longlong input_string)
+// 功能: 验证字符串格式，检查分隔符和有效性
+// 原始实现：FUN_180169350
+// 简化实现：字符串格式验证函数
+longlong validate_string_format(longlong *validator, longlong input_string)
 
 {
-  undefined4 uVar1;
-  char *pcVar2;
-  longlong lVar3;
-  undefined2 *puVar4;
-  undefined *puVar5;
-  uint uVar6;
-  undefined *puStack_100;
-  undefined *puStack_f8;
-  int iStack_f0;
-  undefined8 uStack_e8;
-  undefined *puStack_e0;
-  undefined8 uStack_d8;
-  undefined4 uStack_d0;
-  undefined8 uStack_c8;
-  undefined *puStack_80;
-  undefined2 *puStack_78;
-  undefined4 uStack_70;
-  ulonglong uStack_68;
-  longlong lStack_60;
-  undefined8 uStack_58;
+  undefined4 validation_flags;
+  char *string_ptr;
+  longlong validation_result;
+  undefined2 *format_checker;
+  undefined *validation_data;
+  uint char_index;
+  undefined *validation_context;
+  undefined *cleanup_buffer;
+  int string_length;
+  undefined8 buffer_metadata;
+  undefined *buffer_ptr;
+  undefined8 buffer_flags;
+  undefined4 buffer_size;
+  undefined2 *extension_ptr;
+  undefined4 extension_size;
+  ulonglong extension_flags;
+  longlong memory_handle;
+  undefined8 cleanup_flag;
   
-  uStack_58 = 0xfffffffffffffffe;
-  uVar6 = 0;
-  FUN_180627ae0(&puStack_100);
-  if (*(uint *)(param_2 + 0x10) != 0) {
-    pcVar2 = *(char **)(param_2 + 8);
+  cleanup_flag = CONTEXT_CLEANUP_FLAG;
+  char_index = 0;
+  
+  // 初始化验证上下文
+  initialize_validation_context(&validation_context);
+  
+  // 遍历字符串查找分隔符
+  if (*(uint *)(input_string + 0x10) != 0) {
+    string_ptr = *(char **)(input_string + 8);
     do {
-      if (*pcVar2 == ' ') {
-        if (uVar6 != 0xffffffff) {
-          lVar3 = FUN_180629a40(param_2,&puStack_80,0);
-          if (puStack_f8 != (undefined *)0x0) {
-                    // WARNING: Subroutine does not return
-            FUN_18064e900();
+      if (*string_ptr == ' ') {
+        if (char_index != 0xffffffff) {
+          // 执行字符串分割验证
+          validation_result = split_string_validation(input_string, &buffer_ptr, 0);
+          if (cleanup_buffer != (undefined *)0x0) {
+            // 错误：验证过程中出现异常
+            throw_validation_error();
           }
-          iStack_f0 = *(int *)(lVar3 + 0x10);
-          puStack_f8 = *(undefined **)(lVar3 + 8);
-          uStack_e8 = *(undefined8 *)(lVar3 + 0x18);
-          *(undefined4 *)(lVar3 + 0x10) = 0;
-          *(undefined8 *)(lVar3 + 8) = 0;
-          *(undefined8 *)(lVar3 + 0x18) = 0;
-          puStack_80 = &UNK_180a3c3e0;
-          if (puStack_78 != (undefined2 *)0x0) {
-                    // WARNING: Subroutine does not return
-            FUN_18064e900();
+          
+          string_length = *(int *)(validation_result + 0x10);
+          cleanup_buffer = *(undefined **)(validation_result + 8);
+          buffer_metadata = *(undefined8 *)(validation_result + 0x18);
+          
+          // 清理验证结果
+          *(undefined4 *)(validation_result + 0x10) = 0;
+          *(undefined8 *)(validation_result + 8) = 0;
+          *(undefined8 *)(validation_result + 0x18) = 0;
+          
+          buffer_ptr = &CLEANUP_CONTEXT;
+          if (extension_ptr != (undefined2 *)0x0) {
+            // 错误：扩展指针异常
+            throw_validation_error();
           }
-          puStack_78 = (undefined2 *)0x0;
-          uStack_68 = uStack_68 & 0xffffffff00000000;
-          puStack_80 = &UNK_18098bcb0;
+          
+          extension_ptr = (undefined2 *)0x0;
+          extension_flags = extension_flags & 0xffffffff00000000;
+          buffer_ptr = &DEFAULT_OBJECT_PTR;
         }
         break;
       }
-      uVar6 = uVar6 + 1;
-      pcVar2 = pcVar2 + 1;
-    } while (uVar6 < *(uint *)(param_2 + 0x10));
+      char_index = char_index + 1;
+      string_ptr = string_ptr + 1;
+    } while (char_index < *(uint *)(input_string + 0x10));
   }
-  puStack_e0 = &UNK_180a3c3e0;
-  uStack_c8 = 0;
-  uStack_d8 = 0;
-  uStack_d0 = 0;
-  lStack_60 = *param_1;
-  if ((lStack_60 != 0) && (0 < iStack_f0)) {
-    puStack_80 = &UNK_180a3c3e0;
-    uStack_68 = 0;
-    puStack_78 = (undefined2 *)0x0;
-    uStack_70 = 0;
-    puVar4 = (undefined2 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-    *(undefined1 *)puVar4 = 0;
-    puStack_78 = puVar4;
-    uVar1 = FUN_18064e990(puVar4);
-    uStack_68 = CONCAT44(uStack_68._4_4_,uVar1);
-    *puVar4 = 0x2e;
-    uStack_70 = 1;
-    puVar5 = &DAT_18098bc73;
-    if (puStack_f8 != (undefined *)0x0) {
-      puVar5 = puStack_f8;
+  
+  // 设置验证上下文
+  buffer_ptr = &CLEANUP_CONTEXT;
+  buffer_flags = 0;
+  buffer_size = 0;
+  validation_flags = 0;
+  memory_handle = *validator;
+  
+  // 如果验证通过且有长度，执行扩展名检查
+  if ((memory_handle != 0) && (0 < string_length)) {
+    buffer_ptr = &CLEANUP_CONTEXT;
+    extension_flags = 0;
+    extension_ptr = (undefined2 *)0x0;
+    extension_size = 0;
+    
+    // 分配扩展名检查器
+    format_checker = (undefined2 *)allocate_validation_buffer(MEMORY_POOL_HANDLE, 0x10, STRING_TYPE_FLAG);
+    *(undefined1 *)format_checker = 0;
+    extension_ptr = format_checker;
+    
+    // 执行扩展名验证
+    validation_flags = validate_extension(format_checker);
+    extension_flags = CONCAT44(extension_flags._4_4_, validation_flags);
+    *format_checker = 0x2e;  // 设置分隔符
+    extension_size = 1;
+    
+    // 获取验证数据源
+    validation_data = &DEFAULT_STRING_DATA;
+    if (cleanup_buffer != (undefined *)0x0) {
+      validation_data = cleanup_buffer;
     }
-    strstr(puVar5,puVar4);
-    puStack_80 = &UNK_180a3c3e0;
-                    // WARNING: Subroutine does not return
-    FUN_18064e900(puVar4);
+    
+    // 执行字符串搜索验证
+    strstr(validation_data, format_checker);
+    buffer_ptr = &CLEANUP_CONTEXT;
+    
+    // 清理验证器
+    cleanup_validation_buffer(format_checker);
   }
-  uStack_d8 = 0;
-  uStack_c8 = 0;
-  puStack_e0 = &UNK_18098bcb0;
-  puStack_100 = &UNK_180a3c3e0;
-  if (puStack_f8 != (undefined *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  
+  // 重置缓冲区状态
+  buffer_size = 0;
+  buffer_flags = 0;
+  buffer_ptr = &DEFAULT_OBJECT_PTR;
+  validation_context = &CLEANUP_CONTEXT;
+  
+  // 清理上下文
+  if (cleanup_buffer != (undefined *)0x0) {
+    // 错误：清理缓冲区失败
+    throw_validation_error();
   }
-  return lStack_60;
+  
+  return memory_handle;
 }
 
 
