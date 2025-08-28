@@ -160,6 +160,27 @@
 #define RenderingSystemSolutionManager FUN_1804431c0         // 渲染系统解决方案管理器
 #define RenderingSystemBuildManager FUN_180443320            // 渲染系统构建管理器
 #define RenderingSystemDeploymentManager FUN_180441e10      // 渲染系统部署管理器
+#define RenderingSystemTestManager FUN_180441dd0             // 渲染系统测试管理器
+#define RenderingSystemDebugManager FUN_180442b30            // 渲染系统调试管理器
+#define RenderingSystemProfiler2 FUN_1804404b0               // 渲染系统性能分析器2
+#define RenderingSystemAnalyzer FUN_180441950                // 渲染系统分析器
+#define RenderingSystemInspector FUN_180441640               // 渲染系统检查器
+#define RenderingSystemValidator2 FUN_180440cb0              // 渲染系统验证器2
+#define RenderingSystemVerifier FUN_180440d90                // 渲染系统验证器
+#define RenderingSystemChecker FUN_180441420                 // 渲染系统检查器
+#define RenderingSystemAuditor2 FUN_18043f8f0                 // 渲染系统审计器2
+#define RenderingSystemReviewer FUN_180441f60                // 渲染系统审查器
+#define RenderingSystemEvaluator FUN_180441fc0               // 渲染系统评估器
+#define RenderingSystemAssessor FUN_18043f9b0                // 渲染系统评估器
+#define RenderingSystemMeasurer FUN_18043fce0                 // 渲染系统测量器
+#define RenderingSystemCalculator FUN_180441910               // 渲染系统计算器
+#define RenderingSystemProcessor2 FUN_180441cc0              // 渲染系统处理器2
+#define RenderingSystemOptimizer2 FUN_18043ef40              // 渲染系统优化器2
+#define RenderingSystemEnhancer FUN_180442d10                // 渲染系统增强器
+#define RenderingSystemImprover FUN_18043f770                // 渲染系统改进器
+#define RenderingSystemRefiner FUN_180440d20                // 渲染系统精炼器
+#define RenderingSystemPolisher FUN_180440e00                // 渲染系统抛光器
+#define RenderingSystemFinisher FUN_180440e70                // 渲染系统完成器
 
 // 函数: void FUN_180310b50(int64_t param_1)
 void FUN_180310b50(int64_t param_1)
