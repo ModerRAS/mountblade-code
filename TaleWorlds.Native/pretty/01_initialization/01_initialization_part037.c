@@ -1067,7 +1067,7 @@ allocate_system_resources(longlong system_context,longlong resource_context,long
   ulonglong required_size;
   ulonglong allocated_size;
   ulonglong page_size;
-  undefined7 alignment_flags;
+  uint8_t alignment_flags;
   
   buffer_size_value = *(longlong *)(resource_context + 0x128);
   if (buffer_size_value != 0) {
@@ -1096,7 +1096,7 @@ allocate_system_resources(longlong system_context,longlong resource_context,long
   page_size = allocated_size & 0xfffffffffffff000;
   buffer_size_value = (-(uint)((allocated_size & 0xfff) != 0) & 0x1000) + page_size;
   if (*(ulonglong *)(system_context + 0x360) < required_size) {
-    alignment_flags = (undefined7)(page_size >> 8);
+    alignment_flags = (uint8_t)(page_size >> 8);
     if (available_memory == 0) {
       if (*primary_buffer == 0) {
         buffer_size_value = allocate_system_memory(SYSTEM_MEMORY_ALLOCATOR,buffer_size_value,CONCAT71(alignment_flags,3));

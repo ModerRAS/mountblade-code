@@ -106,7 +106,7 @@ void ProcessStringAndMemoryManagement(longlong *param_1, longlong param_2, longl
   uint64_t uStack_d8;
   uint64_t *puStack_d0;
   int8_t uStack_c8;
-  undefined7 uStack_c7;
+  uint8_t uStack_c7;
   uint64_t *puStack_b8;
   ulonglong uStack_b0;
   uint uStack_a8;
@@ -116,7 +116,7 @@ void ProcessStringAndMemoryManagement(longlong *param_1, longlong param_2, longl
   ulonglong uStack_98;
   ulonglong uStack_90;
   int8_t uStack_88;
-  undefined7 uStack_87;
+  uint8_t uStack_87;
   longlong lStack_78;
   ulonglong uStack_70;
   uint uStack_68;

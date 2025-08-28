@@ -1,4 +1,4 @@
-typedef unsigned char   undefined;
+typedef unsigned char   byte;
 
 typedef unsigned char    byte;
 typedef unsigned int    dword;

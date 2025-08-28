@@ -100,7 +100,7 @@ ulonglong process_object_management(int *object_manager, char *object_name, char
     int32_t stack_undef7;
     int32_t stack_undef8;
     int8_t stack_undef9;
-    undefined7 stack_undef10;
+    uint8_t stack_undef10;
     longlong stack_long1;
     longlong stack_long2;
     uint *temp_uint_ptr4;

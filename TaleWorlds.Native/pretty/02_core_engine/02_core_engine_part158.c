@@ -947,7 +947,7 @@ longlong *find_and_insert_structure_item(longlong *structure_root, longlong sear
   longlong *next_item;
   longlong string_offset;
   char temp_char;
-  undefined7 unused_padding;
+  uint8_t unused_padding;
   
   previous_item = structure_root;
   if ((longlong *)structure_root[2] != (longlong *)0x0) {

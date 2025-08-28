@@ -589,7 +589,7 @@ uint64_t * process_config_command(longlong command_context,uint64_t *output_buff
   ulonglong temp_ulong;
   int8_t *temp_ptr1;
   ulonglong temp_ulong2;
-  undefined7 temp_undefined7;
+  uint8_t temp_undefined7;
   longlong temp_long;
   int temp_int1;
   uint temp_uint;
@@ -740,7 +740,7 @@ uint64_t * process_config_command(longlong command_context,uint64_t *output_buff
           
           do {
             command_type = *(int *)((longlong)temp_ptr2 + temp_long + 0x10);
-            temp_undefined7 = (undefined7)(temp_ulong2 >> 8);
+            temp_undefined7 = (uint8_t)(temp_ulong2 >> 8);
             temp_int1 = (int)temp_ptr3;
             
             if (0 < command_type) {

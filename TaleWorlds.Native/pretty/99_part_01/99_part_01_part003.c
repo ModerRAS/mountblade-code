@@ -688,7 +688,7 @@ longlong * AdvancedBufferDataProcessor(longlong *param_1, longlong *param_2, lon
     int32_t *tempBuffer;
     bool hasQuotes;
     longlong stringLength;
-    undefined7 truncatedString;
+    uint8_t truncatedString;
     longlong remainingLength;
     uint64_t quoteChar;
     longlong tempLength;
@@ -776,7 +776,7 @@ longlong * AdvancedBufferDataProcessor(longlong *param_1, longlong *param_2, lon
             hasQuotes = true;
             
         QUOTE_PROCESSING:
-            truncatedString = (undefined7)((ulonglong)(stringStart + stringLength) >> 8);
+            truncatedString = (uint8_t)((ulonglong)(stringStart + stringLength) >> 8);
             
             if (hasQuotes) {
                 WriteCharacterToBuffer(dataLength, CONCAT71(truncatedString, 0x27));

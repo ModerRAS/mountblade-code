@@ -444,7 +444,7 @@ void RenderingSystem_PixelDataOptimizer(uint64_t optimization_context, longlong 
     char char_value;
     uint uint_value;
     char low_byte;
-    undefined7 high_seven_bytes;
+    uint8_t high_seven_bytes;
     char base_pointer_low;
     char stack_index_low;
     longlong dest_index;

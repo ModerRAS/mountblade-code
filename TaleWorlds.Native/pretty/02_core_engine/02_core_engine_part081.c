@@ -402,7 +402,7 @@ void validate_text_layout_bounds(void)
   float *float_pointer;
   int8_t in_al;
   char char_var;
-  undefined7 in_register_1;
+  uint8_t in_register_1;
   longlong unaff_rsi;
   longlong in_r10;
   char unaff_r12b;

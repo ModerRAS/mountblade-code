@@ -768,7 +768,7 @@ void RenderingSystemPipelineInitialize(void *render_device, uint64_t pipeline_co
   int32_t stage_flags;
   int32_t stage_params;
   int8_t stage_type;
-  undefined7 stage_padding;
+  uint8_t stage_padding;
   void *texture_input;
   void *shader_input;
   void *vertex_input;

@@ -467,7 +467,7 @@ uint64_t * FUN_1801616b0(longlong param_1,uint64_t *param_2,uint64_t param_3)
   ulonglong uVar8;
   int8_t *puVar9;
   ulonglong uVar10;
-  undefined7 uVar11;
+  uint8_t uVar11;
   longlong lVar12;
   int iVar13;
   uint uVar14;
@@ -595,7 +595,7 @@ uint64_t * FUN_1801616b0(longlong param_1,uint64_t *param_2,uint64_t param_3)
           puVar16 = puVar9;
           do {
             iVar1 = *(int *)((longlong)puVar15 + lVar12 + 0x10);
-            uVar11 = (undefined7)(uVar10 >> 8);
+            uVar11 = (uint8_t)(uVar10 >> 8);
             iVar13 = (int)puVar16;
             if (0 < iVar1) {
               iVar13 = iVar13 + iVar1;

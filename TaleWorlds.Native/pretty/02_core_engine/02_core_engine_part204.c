@@ -788,7 +788,7 @@ void process_string_map_structure(void **map_ptr, longlong search_key)
   uint64_t *search_node;
   void **node_pointer;
   int8_t temp_string;
-  undefined7 temp_padding;
+  uint8_t temp_padding;
   ulonglong temp_capacity;
   ulonglong temp_size;
   longlong result_start;

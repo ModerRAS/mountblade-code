@@ -18,7 +18,7 @@ void update_object_position_and_animation_state(float time_delta)
 {
   ulonglong *engine_context;
   ulonglong render_state;
-  undefined7 animation_flags;
+  uint8_t animation_flags;
   char animation_enabled;
   byte state_flag;
   char transition_flag;
@@ -104,7 +104,7 @@ LAB_1801338ca:
     else {
       position_x = 0.0;
     }
-    animation_flags = (undefined7)(animation_id >> 8);
+    animation_flags = (uint8_t)(animation_id >> 8);
     if ((int)CONCAT71(animation_flags,time_threshold < position_y) != (int)CONCAT71(animation_flags,time_threshold < position_x))
     {
       trigger_animation_state_update();
@@ -284,7 +284,7 @@ void process_animation_state_transition(void)
 {
   ulonglong *engine_context;
   ulonglong render_state;
-  undefined7 animation_flags;
+  uint8_t animation_flags;
   byte state_flag;
   char animation_enabled;
   char transition_flag;
@@ -346,7 +346,7 @@ void process_animation_state_transition(void)
   }
   // 检查动画权重变化并触发状态更新
   state_index = (int)animation_id;
-  animation_flags = (undefined7)(animation_id >> 8);
+  animation_flags = (uint8_t)(animation_id >> 8);
   if ((int)CONCAT71(animation_flags,min_threshold < position_y) != (int)CONCAT71(animation_flags,min_threshold < position_x)) {
     trigger_animation_state_update();
     *(int32_t *)(object_context + 0x1cf4) = 0x3f800000;

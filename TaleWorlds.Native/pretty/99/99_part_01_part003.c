@@ -630,7 +630,7 @@ longlong * html_attribute_formatter(longlong *output_buffer, longlong *context_b
   int8_t *temp_ptr;
   longlong name_length;
   longlong value_length;
-  undefined7 name_suffix;
+  uint8_t name_suffix;
   longlong temp_long;
   uint64_t quote_char;
   longlong temp_long2;
@@ -727,7 +727,7 @@ longlong * html_attribute_formatter(longlong *output_buffer, longlong *context_b
       has_quotes = true;
       
 QUOTE_CHECK_DONE:
-      name_suffix = (undefined7)((ulonglong)(name_start + name_length) >> 8);
+      name_suffix = (uint8_t)((ulonglong)(name_start + name_length) >> 8);
       
       if (has_quotes) {
         // 使用单引号包围
@@ -841,7 +841,7 @@ void html_attribute_formatter_advanced(uint64_t param1, longlong *context_buffer
   int8_t *temp_ptr;
   longlong name_length;
   longlong value_length;
-  undefined7 name_suffix;
+  uint8_t name_suffix;
   longlong temp_long;
   uint64_t quote_char;
   longlong temp_long2;
@@ -950,7 +950,7 @@ void html_attribute_formatter_advanced(uint64_t param1, longlong *context_buffer
     has_quotes = true;
     
 QUOTE_CHECK_DONE_ADVANCED:
-    name_suffix = (undefined7)((ulonglong)(name_start + name_length) >> 8);
+    name_suffix = (uint8_t)((ulonglong)(name_start + name_length) >> 8);
     
     if (has_quotes) {
       // 使用单引号包围

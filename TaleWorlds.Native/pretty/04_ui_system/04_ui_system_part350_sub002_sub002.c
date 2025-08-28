@@ -1180,9 +1180,9 @@ ulonglong FUN_18085aca0(longlong param_1)
   longlong *plVar28;
   bool bVar29;
   bool bVar30;
-  undefined7 uVar31;
+  uint8_t uVar31;
   ulonglong **in_stack_fffffffffffffe78;
-  undefined7 uVar32;
+  uint8_t uVar32;
   int *in_stack_fffffffffffffe80;
   uint7 uVar33;
   longlong in_stack_fffffffffffffe88;
@@ -1625,8 +1625,8 @@ LAB_180858c20:
       *(uint *)(param_1 + 300) = *(int *)(param_1 + 300) - uVar25;
     }
     uVar33 = (uint7)((ulonglong)in_stack_fffffffffffffe88 >> 8);
-    uVar32 = (undefined7)((ulonglong)in_stack_fffffffffffffe80 >> 8);
-    uVar31 = (undefined7)((ulonglong)puVar15 >> 8);
+    uVar32 = (uint8_t)((ulonglong)in_stack_fffffffffffffe80 >> 8);
+    uVar31 = (uint8_t)((ulonglong)puVar15 >> 8);
     if (lStack_a0 != 0) {
       uStack_134 = uVar21;
       if (uVar21 == uVar27) {

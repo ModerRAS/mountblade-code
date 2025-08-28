@@ -32,7 +32,7 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
     uint64_t stack_ulong2;
     uint64_t *stack_ptr8;
     int8_t stack_byte1;
-    undefined7 stack_pad1;
+    uint8_t stack_pad1;
     uint64_t *stack_ptr9;
     ulonglong stack_ulong3;
     uint stack_uint3;
@@ -42,7 +42,7 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
     ulonglong stack_ulong4;
     ulonglong stack_ulong5;
     int8_t stack_byte2;
-    undefined7 stack_pad2;
+    uint8_t stack_pad2;
     longlong stack_long2;
     ulonglong stack_ulong6;
     uint stack_uint7;

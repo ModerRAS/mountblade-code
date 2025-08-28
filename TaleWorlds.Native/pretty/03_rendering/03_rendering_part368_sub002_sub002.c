@@ -99,7 +99,7 @@ ulonglong *render_bounding_box_calculate_triangles(
   uint64_t temp_ulong3;
   uint64_t temp_ulong4;
   ulonglong vertex_array_size;
-  undefined7 temp_undefined7;
+  uint8_t temp_undefined7;
   int32_t *uint_ptr3;
   int32_t *uint_ptr4;
   float *float_ptr8;
@@ -524,7 +524,7 @@ triangle_processing_start:
             stack_float2 = (float)((ulonglong)*(uint64_t *)current_vertex >> 0x20);
             stack_float3 = (float)*(uint64_t *)(stack_vertex_ptr2 + -3);
             stack_float4 = (float)((ulonglong)*(uint64_t *)(stack_vertex_ptr2 + -3) >> 0x20);
-            temp_undefined7 = (undefined7)((ulonglong)current_vertex >> 8);
+            temp_undefined7 = (uint8_t)((ulonglong)current_vertex >> 8);
             
             if (temp_vertex2 < temp_vertex1) {
               *temp_vertex2 = stack_float1;
