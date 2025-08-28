@@ -873,70 +873,106 @@ void memory_block_cleanup(longlong memory_block)
 
 
 
-// 函数: void FUN_1800ee490(longlong param_1)
-void FUN_1800ee490(longlong param_1)
-
+/**
+ * @brief 资源释放回调函数
+ * @param resource_handle 资源句柄
+ * @return 无返回值
+ * 
+ * 该函数用于释放资源，主要功能包括：
+ * - 检查资源是否有效
+ * - 调用资源的释放回调函数
+ */
+void resource_release_callback(longlong resource_handle)
 {
-  if (*(longlong **)(param_1 + 8) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_1 + 8) + 0x38))();
-  }
-  return;
+    // 检查资源是否有效
+    if (*(longlong **)(resource_handle + 8) != (longlong *)0x0) {
+        // 调用资源的释放回调函数
+        (**(code **)(**(longlong **)(resource_handle + 8) + OFFSET_0x30))();
+    }
+    
+    return;
 }
 
+// 函数别名
+#define resource_release           resource_release_callback
 
 
-undefined8 * FUN_1800ee510(undefined8 *param_1)
 
+/**
+ * @brief 数据结构初始化函数
+ * @param data_structure 数据结构指针
+ * @return 初始化后的数据结构指针
+ * 
+ * 该函数用于初始化数据结构，主要功能包括：
+ * - 设置数据结构的默认值
+ * - 初始化浮点数和双精度浮点数
+ * - 设置标志位和状态字段
+ * - 返回初始化后的数据结构指针
+ */
+undefined8 *data_structure_initializer_ext(undefined8 *data_structure)
 {
-  *param_1 = 0;
-  param_1[1] = 0x7f7fffff00000000;
-  param_1[2] = 0;
-  param_1[3] = 0x7f7fffff00000000;
-  param_1[4] = 0;
-  param_1[5] = 0x7f7fffff00000000;
-  param_1[0x16] = 0;
-  param_1[6] = 0;
-  param_1[7] = 0;
-  param_1[8] = 0;
-  param_1[9] = 0;
-  param_1[10] = 0;
-  param_1[0xb] = 0;
-  param_1[0xc] = 0;
-  param_1[0xd] = 0;
-  param_1[0xe] = 0;
-  param_1[0xf] = 0;
-  param_1[0x10] = 0;
-  param_1[0x11] = 0;
-  param_1[0x12] = 0;
-  param_1[0x13] = 0;
-  param_1[0x14] = 0;
-  param_1[0x15] = 0;
-  *(undefined4 *)(param_1 + 0x25) = 0;
-  param_1[0x1f] = 0;
-  param_1[0x20] = 0;
-  param_1[0x21] = 0;
-  param_1[0x22] = 0;
-  param_1[0x23] = 0;
-  param_1[0x24] = 0;
-  param_1[0x26] = 0;
-  param_1[0x27] = 0;
-  param_1[0x28] = 0;
-  *(undefined4 *)(param_1 + 0x29) = 0xc;
-  param_1[0x2a] = 0;
-  param_1[0x2b] = 0;
-  param_1[0x2c] = 0;
-  *(undefined4 *)(param_1 + 0x2d) = 0xc;
-  param_1[0x17] = 0x3f800000;
-  param_1[0x18] = 0;
-  param_1[0x19] = 0x3f80000000000000;
-  param_1[0x1a] = 0;
-  param_1[0x1b] = 0;
-  param_1[0x1c] = 0x3f800000;
-  param_1[0x1d] = 0;
-  param_1[0x1e] = 0x3f80000000000000;
-  param_1[0x2e] = 0;
-  return param_1;
+    // 初始化基本字段
+    *data_structure = 0;
+    data_structure[1] = DOUBLE_MAX_VALUE;     // 设置最大双精度值
+    data_structure[2] = 0;
+    data_structure[3] = DOUBLE_MAX_VALUE;     // 设置最大双精度值
+    data_structure[4] = 0;
+    data_structure[5] = DOUBLE_MAX_VALUE;     // 设置最大双精度值
+    
+    // 初始化状态字段
+    data_structure[0x16] = 0;
+    data_structure[6] = 0;
+    data_structure[7] = 0;
+    data_structure[8] = 0;
+    data_structure[9] = 0;
+    data_structure[10] = 0;
+    data_structure[0xb] = 0;
+    data_structure[0xc] = 0;
+    data_structure[0xd] = 0;
+    data_structure[0xe] = 0;
+    data_structure[0xf] = 0;
+    data_structure[0x10] = 0;
+    data_structure[0x11] = 0;
+    data_structure[0x12] = 0;
+    data_structure[0x13] = 0;
+    data_structure[0x14] = 0;
+    data_structure[0x15] = 0;
+    
+    // 初始化控制字段
+    *(undefined4 *)(data_structure + 0x25) = 0;
+    data_structure[0x1f] = 0;
+    data_structure[0x20] = 0;
+    data_structure[0x21] = 0;
+    data_structure[0x22] = 0;
+    data_structure[0x23] = 0;
+    data_structure[0x24] = 0;
+    data_structure[0x26] = 0;
+    data_structure[0x27] = 0;
+    data_structure[0x28] = 0;
+    
+    // 设置配置参数
+    *(undefined4 *)(data_structure + 0x29) = 0xc;  // 配置参数1
+    data_structure[0x2a] = 0;
+    data_structure[0x2b] = 0;
+    data_structure[0x2c] = 0;
+    *(undefined4 *)(data_structure + 0x2d) = 0xc;  // 配置参数2
+    
+    // 初始化浮点数
+    data_structure[0x17] = FLOAT_ONE;            // 1.0f
+    data_structure[0x18] = 0;
+    data_structure[0x19] = DOUBLE_ONE;          // 1.0
+    data_structure[0x1a] = 0;
+    data_structure[0x1b] = 0;
+    data_structure[0x1c] = FLOAT_ONE;            // 1.0f
+    data_structure[0x1d] = 0;
+    data_structure[0x1e] = DOUBLE_ONE;          // 1.0
+    data_structure[0x2e] = 0;
+    
+    return data_structure;
 }
+
+// 函数别名
+#define data_structure_init_ext    data_structure_initializer_ext
 
 
 
