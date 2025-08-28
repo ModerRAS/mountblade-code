@@ -104,6 +104,42 @@ typedef enum {
 // 资源清理函数
 #define SystemCleanupAllResources            FUN_1800c5020
 
+// 系统初始化和配置函数
+#define SystemInitializer                     FUN_1808fd200
+
+// 数据处理和验证函数
+#define SystemDataValidator                   FUN_180626f80
+
+// 系统参数处理函数
+#define SystemParameterHandler                FUN_18009ec20
+
+// 系统状态检查函数
+#define SystemStateChecker                    FUN_1800c3bf0
+
+// 数据处理和分析函数
+#define SystemDataAnalyzer                    FUN_1800a1920
+
+// 数据转换和优化函数
+#define SystemDataTransformer                 FUN_18009f9d0
+
+// 资源分配和管理函数
+#define SystemResourceManager                 FUN_1800b6de0
+
+// 系统配置应用函数
+#define SystemConfigApplier                    FUN_1802759e0
+
+// 数据计算和处理函数
+#define SystemDataCalculator                  FUN_180245650
+
+// 系统优化和分析函数
+#define SystemOptimizer                       FUN_180245a60
+
+// 系统错误处理函数
+#define SystemErrorHandler                    FUN_18064e900
+
+// 系统调试和信息输出函数
+#define SystemDebugOutput                     FUN_1800ed380
+
 /*==============================================================================
 技术架构文档
 ==============================================================================*/
@@ -199,7 +235,7 @@ typedef enum {
 void SystemCrashHandler(void)
 {
     // WARNING: 此函数不会返回
-    FUN_1808fd200();
+    SystemInitializer();
 }
 
 
@@ -301,7 +337,7 @@ int SystemFindDataEntry(uint64_t param_1, longlong param_2)
     if (*(void **)(param_2 + 8) != (void *)0x0) {
         puVar5 = *(void **)(param_2 + 8);
     }
-    FUN_180626f80(&unknown_var_1712_ptr, puVar5);
+    SystemDataValidator(&unknown_var_1712_ptr, puVar5);
     
     return -1;
 }
@@ -355,7 +391,7 @@ longlong * SystemInitializeStream(longlong *param_1, uint64_t param_2, uint64_t 
          *(int *)(*param_1 + 4) + -0xb8;
     
     // 初始化流缓冲区
-    FUN_18009ec20(param_1 + 3);
+    SystemParameterHandler(param_1 + 3);
     
     return param_1;
 }
@@ -392,7 +428,7 @@ longlong SystemCleanupStream(longlong param_1, ulonglong param_2)
     param_1 = param_1 + -0xb8;
     
     // 执行流对象清理
-    FUN_1800c3bf0(param_1);
+    SystemStateChecker(param_1);
     
     // 根据标志位决定是否释放内存
     if ((param_2 & 1) != 0) {
@@ -447,12 +483,12 @@ longlong SystemOpenFileStream(longlong param_1, uint64_t param_2, int32_t param_
         
         if (lVar2 != 0) {
             // 配置流对象
-            FUN_1800a1920(param_1, lVar2, 1);
+            SystemDataAnalyzer(param_1, lVar2, 1);
             
             // 获取本地化信息
             uVar3 = _getloc___basic_streambuf_DU__char_traits_D_std___std__QEBA_AVlocale_2_XZ
                             (param_1, auStack_20);
-            uVar3 = FUN_18009f9d0(uVar3);
+            uVar3 = SystemDataTransformer(uVar3);
             
             // 检查编码转换
             cVar1 = _always_noconv_codecvt_base_std__QEBA_NXZ(uVar3);
@@ -515,7 +551,7 @@ uint64_t * SystemAllocateResource(uint64_t param_1, uint64_t *param_2, uint64_t 
     longlong lVar1;
     
     // 调用资源分配器
-    lVar1 = FUN_1800b6de0(system_resource_state, param_3, param_4, param_4, 0, 0xfffffffffffffffe);
+    lVar1 = SystemResourceManager(system_resource_state, param_3, param_4, param_4, 0, 0xfffffffffffffffe);
     
     // 检查分配结果
     if (lVar1 == 0) {
@@ -523,7 +559,7 @@ uint64_t * SystemAllocateResource(uint64_t param_1, uint64_t *param_2, uint64_t 
     }
     else {
         // 初始化资源句柄
-        FUN_1802759e0(lVar1, param_2);
+        SystemConfigApplier(lVar1, param_2);
     }
     
     return param_2;
