@@ -543,3 +543,153 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,longlong param_3,
   *(uint64_t *)((longlong)puVar18 + -8) = 0x180836966;
   FUN_1808fc050(auStack_b8[0] ^ (ulonglong)auStack_b8);
 }
+
+
+// WARNING: Removing unreachable block (ram,0x000180836c0f)
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+// 函数: UI插值计算器 - 浮点数插值和变换
+void UIInterpolatorCalculator(int8_t (*param_1) [32],uint param_2,longlong param_3,uint *param_4,
+                               longlong *param_5)
+
+{
+  longlong lVar1;
+  float fVar2;
+  longlong lVar3;
+  longlong lVar4;
+  int8_t auVar5 [32];
+  ulonglong uVar6;
+  int8_t auVar7 [32];
+  int iVar8;
+  int32_t uVar9;
+  int iVar10;
+  int iVar11;
+  int8_t auVar12 [16];
+  int8_t auVar13 [16];
+  int8_t auVar14 [32];
+  int8_t auVar15 [32];
+  int8_t auVar16 [32];
+  int8_t auVar17 [16];
+  int8_t auVar18 [32];
+  int8_t auVar19 [32];
+  int8_t auVar20 [32];
+  int8_t auVar21 [32];
+  int8_t auVar22 [32];
+  int8_t auVar23 [32];
+  
+  uVar6 = (ulonglong)param_1 & 0x1f;
+  auVar7 = _DAT_180980c40;
+  while ((_DAT_180980c40 = auVar7, uVar6 != 0 && (param_2 != 0))) {
+    param_2 = param_2 - 1;
+    fVar2 = *(float *)(param_3 + (ulonglong)param_4[1] * 4);
+    auVar13 = vfmadd213ss_fma(SUB6416(ZEXT464(UI_VECTOR_CONST_FLOAT_SCALE),0),
+                              ZEXT416((uint)((*(float *)(param_3 + (ulonglong)(param_4[1] + 1) * 4)
+                                             - fVar2) * (float)(*param_4 >> 1))),
+                              ZEXT416((uint)fVar2));
+    *(int *)*param_1 = auVar13._0_4_;
+    param_1 = (int8_t (*) [32])(*param_1 + 4);
+    *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
+    uVar6 = (ulonglong)param_1 & 0x1f;
+    auVar7 = _DAT_180980c40;
+  }
+  iVar11 = (int)param_2 >> 3;
+  if (iVar11 != 0) {
+    lVar3 = *param_5;
+    lVar4 = *(longlong *)param_4;
+    iVar10 = (int)lVar3;
+    auVar13 = vpinsrd_avx((int8_t  [16])0x0,iVar10,1);
+    lVar1 = lVar3 * 8;
+    auVar12 = vpinsrd_avx(ZEXT416((uint)(iVar10 * 4)),iVar10 * 5,1);
+    uVar9 = (int32_t)lVar4;
+    iVar8 = iVar10 * 8;
+    auVar13 = vpinsrd_avx(auVar13,iVar10 * 2,2);
+    auVar13 = vpinsrd_avx(auVar13,iVar10 * 3,3);
+    auVar19._8_8_ = lVar4;
+    auVar19._0_8_ = lVar4;
+    auVar19._16_8_ = lVar4;
+    auVar19._24_8_ = lVar4;
+    auVar12 = vpinsrd_avx(auVar12,iVar10 * 6,2);
+    auVar12 = vpinsrd_avx(auVar12,iVar10 * 7,3);
+    auVar14._16_16_ = auVar12;
+    auVar14._0_16_ = auVar13;
+    auVar13 = vpinsrq_avx((int8_t  [16])0x0,lVar3,1);
+    auVar18._4_4_ = uVar9;
+    auVar18._0_4_ = uVar9;
+    auVar18._8_4_ = uVar9;
+    auVar18._12_4_ = uVar9;
+    auVar18._16_4_ = uVar9;
+    auVar18._20_4_ = uVar9;
+    auVar18._24_4_ = uVar9;
+    auVar18._28_4_ = uVar9;
+    auVar14 = vpaddd_avx2(auVar14,auVar18);
+    auVar12._8_8_ = 0;
+    auVar12._0_8_ = lVar3 * 2;
+    auVar12 = vpinsrq_avx(auVar12,lVar3 * 3,1);
+    auVar15._16_16_ = auVar12;
+    auVar15._0_16_ = auVar13;
+    auVar15 = vpaddq_avx2(auVar15,auVar19);
+    auVar13._8_8_ = 0;
+    auVar13._0_8_ = lVar3 * 6;
+    auVar13 = vpinsrq_avx(auVar13,lVar3 * 7,1);
+    auVar17._8_8_ = 0;
+    auVar17._0_8_ = lVar3 * 4;
+    auVar12 = vpinsrq_avx(auVar17,lVar3 * 5,1);
+    auVar16._16_16_ = auVar13;
+    auVar16._0_16_ = auVar12;
+    auVar16 = vpaddq_avx2(auVar16,auVar19);
+    auVar22._8_8_ = lVar1;
+    auVar22._0_8_ = lVar1;
+    auVar22._16_8_ = lVar1;
+    auVar22._24_8_ = lVar1;
+    auVar23._4_4_ = iVar8;
+    auVar23._0_4_ = iVar8;
+    auVar23._8_4_ = iVar8;
+    auVar23._12_4_ = iVar8;
+    auVar23._16_4_ = iVar8;
+    auVar23._20_4_ = iVar8;
+    auVar23._24_4_ = iVar8;
+    auVar23._28_4_ = iVar8;
+    do {
+      auVar5 = vpermd_avx2(auVar7,auVar16);
+      auVar18 = vpermd_avx2(auVar7,auVar15);
+      vperm2i128_avx2(auVar18,auVar5,0x20);
+      auVar18 = vpcmpeqb_avx2(auVar18,auVar18);
+      auVar21 = vpsrld_avx2(auVar14,1);
+      auVar14 = vpaddd_avx2(auVar14,auVar23);
+      auVar20 = vgatherdps(auVar19,auVar18);
+      auVar18 = vpcmpeqb_avx2((int8_t  [32])0x0,(int8_t  [32])0x0);
+      auVar18 = vgatherdps(auVar5,auVar18);
+      auVar5 = vsubps_avx(auVar18,auVar20);
+      auVar18 = vcvtdq2ps_avx(auVar21);
+      auVar19._0_4_ = auVar5._0_4_ * auVar18._0_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar20._0_4_;
+      auVar19._4_4_ = auVar5._4_4_ * auVar18._4_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar20._4_4_;
+      auVar19._8_4_ = auVar5._8_4_ * auVar18._8_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar20._8_4_;
+      auVar19._12_4_ = auVar5._12_4_ * auVar18._12_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar20._12_4_;
+      auVar19._16_4_ = auVar5._16_4_ * auVar18._16_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar20._16_4_;
+      auVar19._20_4_ = auVar5._20_4_ * auVar18._20_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar20._20_4_;
+      auVar19._24_4_ = auVar5._24_4_ * auVar18._24_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar20._24_4_;
+      auVar19._28_4_ = auVar5._28_4_ + auVar20._28_4_;
+      auVar18 = vmovntps_avx(auVar19);
+      *param_1 = auVar18;
+      param_1 = param_1 + 1;
+      auVar15 = vpaddq_avx2(auVar15,auVar22);
+      auVar16 = vpaddq_avx2(auVar16,auVar22);
+      iVar11 = iVar11 + -1;
+    } while (iVar11 != 0);
+    *(longlong *)param_4 = auVar15._0_8_;
+  }
+  for (param_2 = param_2 & 7; param_2 != 0; param_2 = param_2 - 1) {
+                    // WARNING: Read-only address (ram,0x000180980c40) is written
+    fVar2 = *(float *)(param_3 + (ulonglong)param_4[1] * 4);
+    auVar13 = vfmadd213ss_fma(SUB6416(ZEXT464(UI_VECTOR_CONST_FLOAT_SCALE),0),
+                              ZEXT416((uint)((*(float *)(param_3 + (ulonglong)(param_4[1] + 1) * 4)
+                                             - fVar2) * (float)(*param_4 >> 1))),
+                              ZEXT416((uint)fVar2));
+    *(int *)*param_1 = auVar13._0_4_;
+    *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
+    param_1 = (int8_t (*) [32])(*param_1 + 4);
+  }
+                    // WARNING: Read-only address (ram,0x000180980c40) is written
+  return;
+}
