@@ -1,6 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part041.c - 24 *ıp
+// 02_core_engine_part041.c - 24ä¸ªå‡½æ•°
 
 /**
  * h@8ÏšI
@@ -14,9 +14,9 @@
 #define ENGINE_CACHE_LINE_SIZE 0x40
 
 /**
- * ÎDÊ>ıp
- * ŸıÊ>ÎDì…XŒ(¡p¡
- * Âpresource_ptr - DˆpÄ
+ * ï¿½Dï¿½ï¿½>ï¿½p
+ * ï¿½ï¿½ï¿½>ï¿½Dï¿½ï¿½Xï¿½(ï¿½pï¿½
+ * ï¿½presource_ptr - Dï¿½ï¿½pï¿½
  */
 void release_engine_resources(longlong *resource_ptr)
 
@@ -128,9 +128,9 @@ LAB_1800802aa:
 
 
 /**
- * …XW6ıp
- * ŸıØH6…XW/èu6
- * Âpdest_base - îú0@src_offset - OûÏsrc_data - pnˆsize - 6'
+ * ï¿½XW6ï¿½p
+ * ï¿½ï¿½ï¿½H6ï¿½XW/ï¿½u6
+ * ï¿½pdest_base - ï¿½ï¿½0@src_offset - ï¿½Oï¿½ï¿½src_data - ï¿½pnï¿½size - 6'
  */
 void copy_memory_blocks(longlong dest_base, uint src_offset, undefined8 *src_data, uint size)
 
@@ -192,9 +192,9 @@ void copy_memory_blocks(longlong dest_base, uint src_offset, undefined8 *src_dat
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
- * …XMhıp - 8Kub
- * ŸıM8K'„…Xub/ê¨iU
- * Âpallocator_ptr - Mhˆrequest_size - ÷B'
+ * ï¿½XMhï¿½p - 8Kub
+ * ï¿½ï¿½M8K'ï¿½ï¿½Xub/ï¿½iU
+ * ï¿½pallocator_ptr - Mhï¿½request_size - ï¿½B'
  */
 uint allocate_memory_page_8k(uint *allocator_ptr, int request_size)
 
@@ -264,9 +264,9 @@ uint allocate_memory_page_8k(uint *allocator_ptr, int request_size)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
- * …XubËıp - 8Kub
- * ŸıË8K…Xub¾nub×
- * Âpallocator_base - Mhú0@
+ * ï¿½Xubï¿½ï¿½p - 8Kub
+ * ï¿½ï¿½ï¿½8Kï¿½Xubï¿½nubï¿½
+ * ï¿½pallocator_base - Mhï¿½0@
  */
 undefined4 initialize_memory_pages_8k(longlong allocator_base)
 
@@ -325,7 +325,7 @@ undefined4 initialize_memory_pages_8k(longlong allocator_base)
 
 
 /**
- * zıp`M&
+ * zï¿½p`M&
  */
 undefined4 empty_function_placeholder_1(void)
 
@@ -339,9 +339,9 @@ undefined4 empty_function_placeholder_1(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
- * …XMhıp - 2Kub
- * ŸıM2K'„…Xub/ê¨iU
- * Âpallocator_ptr - Mhˆrequest_size - ÷B'
+ * ï¿½XMhï¿½p - 2Kub
+ * ï¿½ï¿½M2K'ï¿½ï¿½Xub/ï¿½iU
+ * ï¿½pallocator_ptr - Mhï¿½request_size - ï¿½B'
  */
 uint allocate_memory_page_2k(uint *allocator_ptr, int request_size)
 
@@ -418,9 +418,9 @@ uint allocate_memory_page_2k(uint *allocator_ptr, int request_size)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
- * …XubËıp - 2Kub
- * ŸıË2K…Xub¾nub×
- * Âpallocator_base - Mhú0@
+ * ï¿½Xubï¿½ï¿½p - 2Kub
+ * ï¿½ï¿½ï¿½2Kï¿½Xubï¿½nubï¿½
+ * ï¿½pallocator_base - Mhï¿½0@
  */
 undefined4 initialize_memory_pages_2k(longlong allocator_base)
 
@@ -488,7 +488,7 @@ undefined4 initialize_memory_pages_2k(longlong allocator_base)
 
 
 /**
- * zıp`M&
+ * zï¿½p`M&
  */
 undefined4 empty_function_placeholder_2(void)
 
@@ -501,8 +501,8 @@ undefined4 empty_function_placeholder_2(void)
 
 
 /**
- * ËıpA
- * Ÿı(ËıpA
+ * ï¿½ï¿½pA
+ * ï¿½ï¿½(ï¿½ï¿½pï¿½A
  */
 void initialize_system_a(void)
 
@@ -514,8 +514,8 @@ void initialize_system_a(void)
 
 
 /**
- * ËıpB
- * Ÿı(ËıpB
+ * ï¿½ï¿½pB
+ * ï¿½ï¿½(ï¿½ï¿½pï¿½B
  */
 void initialize_system_b(void)
 
@@ -527,9 +527,9 @@ void initialize_system_b(void)
 
 
 /**
- * Dıp
- * Ÿıš„DåÄ
- * Âpresource_handle - DåÄˆ
+ * Dï¿½ï¿½p
+ * ï¿½ï¿½ï¿½ï¿½Dï¿½ï¿½ï¿½
+ * ï¿½presource_handle - Dï¿½ï¿½ï¿½ï¿½
  */
 void cleanup_resource_handle(undefined8 *resource_handle)
 
@@ -547,9 +547,9 @@ void cleanup_resource_handle(undefined8 *resource_handle)
 
 
 /**
- * pnAûÖıp
- * ŸıÎpnA-ûÖpn0²:
- * Âpbuffer_info - ²:áostream_ptr - Aˆ
+ * pnAï¿½ï¿½ï¿½p
+ * ï¿½ï¿½ï¿½pnA-ï¿½ï¿½pn0ï¿½:
+ * ï¿½pbuffer_info - ï¿½:ï¿½ostream_ptr - Aï¿½
  */
 void read_from_stream(int *buffer_info, longlong stream_ptr)
 
@@ -584,9 +584,9 @@ void read_from_stream(int *buffer_info, longlong stream_ptr)
 
 
 /**
- * pnA™eıp
- * Ÿıpn™e0pnA-
- * Âpdata_count - pnpÏstream_info - Aáo
+ * pnAï¿½eï¿½p
+ * ï¿½ï¿½pnï¿½e0pnA-
+ * ï¿½pdata_count - pnpï¿½stream_info - Aï¿½o
  */
 void write_to_stream(int *data_count, longlong *stream_info)
 
@@ -647,9 +647,9 @@ void write_to_stream(int *data_count, longlong *stream_info)
 
 
 /**
- * yÏpnıp
- * ŸıyÏpny
- * Âpoutput_ptr - “úˆ
+ * yï¿½pnï¿½p
+ * ï¿½ï¿½yï¿½pny
+ * ï¿½poutput_ptr - ï¿½ï¿½ï¿½
  */
 void process_data_batch(undefined4 *output_ptr)
 
@@ -687,7 +687,7 @@ void process_data_batch(undefined4 *output_ptr)
 
 
 /**
- * zÍ\ıp
+ * zï¿½\ï¿½p
  */
 void no_operation(void)
 
@@ -697,9 +697,9 @@ void no_operation(void)
 
 
 /**
- * şhÍ\ıp
- * Ÿı(şh-¤b‚¹Mn
- * Âplist_ptr - şhˆnode_ptr - ‚¹ˆ
+ * ï¿½hï¿½\ï¿½p
+ * ï¿½ï¿½(ï¿½h-ï¿½bï¿½ï¿½Mn
+ * ï¿½plist_ptr - ï¿½hï¿½node_ptr - ï¿½ï¿½ï¿½
  */
 longlong * swap_list_nodes(longlong *list_ptr, longlong *node_ptr)
 
@@ -724,9 +724,9 @@ longlong * swap_list_nodes(longlong *list_ptr, longlong *node_ptr)
 
 
 /**
- * ûßıpA
- * ŸıûßDAÊ>øs…X
- * Âpsystem_ptr - ûßˆ
+ * ï¿½ï¿½ï¿½pA
+ * ï¿½ï¿½ï¿½ï¿½Dï¿½Aï¿½>ï¿½sï¿½X
+ * ï¿½psystem_ptr - ï¿½ï¿½ï¿½
  */
 void cleanup_system_a(longlong *system_ptr)
 
@@ -787,9 +787,9 @@ void cleanup_system_a(longlong *system_ptr)
 
 
 /**
- * ûßıpB
- * ŸıûßDBÊ>øs…X
- * Âpsystem_ptr - ûßˆ
+ * ï¿½ï¿½ï¿½pB
+ * ï¿½ï¿½ï¿½ï¿½Dï¿½Bï¿½>ï¿½sï¿½X
+ * ï¿½psystem_ptr - ï¿½ï¿½ï¿½
  */
 void cleanup_system_b(longlong *system_ptr)
 
@@ -831,9 +831,9 @@ void cleanup_system_b(longlong *system_ptr)
 
 
 /**
- * ¨pÄiUıp
- * ŸıiU¨pÄ¹Ï
- * Âparray_info - pÄáorequired_size -  „'
+ * ï¿½pï¿½iUï¿½p
+ * ï¿½ï¿½iUï¿½pÄ¹ï¿½
+ * ï¿½parray_info - pï¿½ï¿½orequired_size -  ï¿½ï¿½'
  */
 void expand_dynamic_array(longlong *array_info, ulonglong required_size)
 
@@ -899,9 +899,9 @@ void expand_dynamic_array(longlong *array_info, ulonglong required_size)
 
 
 /**
- * ¨pÄÍ°Mıp
- * ŸıÍ°M¨pÄ…X
- * Âpelement_count - C pÏarray_info - pÄáo
+ * ï¿½pï¿½Í°Mï¿½p
+ * ï¿½ï¿½Í°Mï¿½pÄ…X
+ * ï¿½pelement_count - C pï¿½array_info - pï¿½ï¿½o
  */
 void reallocate_dynamic_array(longlong element_count, longlong array_info)
 
@@ -948,8 +948,8 @@ void reallocate_dynamic_array(longlong element_count, longlong array_info)
 
 
 /**
- * pÄöıp
- * ŸıpÄ…¹ö
+ * pï¿½ï¿½ï¿½p
+ * ï¿½ï¿½pÄ…ï¿½ï¿½
  */
 void clear_array_content(void)
 
@@ -969,9 +969,9 @@ void clear_array_content(void)
 
 
 /**
- * …XŒÁıp
- * ŸıŒÁ…XW¶
- * Âpmemory_block - …XWˆ
+ * ï¿½Xï¿½ï¿½ï¿½p
+ * ï¿½ï¿½ï¿½ï¿½ï¿½XWï¿½
+ * ï¿½pmemory_block - ï¿½XWï¿½
  */
 void verify_memory_block(longlong memory_block)
 
@@ -986,9 +986,9 @@ void verify_memory_block(longlong memory_block)
 
 
 /**
- * pnÒeıp
- * ŸıpnÆ-Òepn
- * Âpcollection_ptr - Æˆdata_item - pny
+ * pnï¿½eï¿½p
+ * ï¿½ï¿½pnï¿½-ï¿½epn
+ * ï¿½pcollection_ptr - ï¿½ï¿½data_item - pny
  */
 void insert_data_item(int *collection_ptr, undefined8 *data_item)
 
@@ -1039,9 +1039,9 @@ void insert_data_item(int *collection_ptr, undefined8 *data_item)
 
 
 /**
- * ²:iUıp
- * ŸıiU²:¹Ï
- * Âpbuffer_info - ²:áorequired_size -  „'
+ * ï¿½:iUï¿½p
+ * ï¿½ï¿½iUï¿½:ï¿½ï¿½
+ * ï¿½pbuffer_info - ï¿½:ï¿½orequired_size -  ï¿½ï¿½'
  */
 void expand_buffer_capacity(longlong *buffer_info, ulonglong required_size)
 
@@ -1108,9 +1108,9 @@ void expand_buffer_capacity(longlong *buffer_info, ulonglong required_size)
 
 
 /**
- * ²:Í°Mıp
- * ŸıÍ°M²:…X
- * Âpold_size - ç'new_size - °'alignment - ùPÂpbuffer_info - ²:áo
+ * ï¿½:Í°Mï¿½p
+ * ï¿½ï¿½Í°Mï¿½:ï¿½X
+ * ï¿½pold_size - ï¿½'new_size - ï¿½'alignment - ï¿½Pï¿½pbuffer_info - ï¿½:ï¿½o
  */
 void reallocate_buffer(longlong old_size, ulonglong new_size, undefined8 alignment, longlong buffer_info)
 
@@ -1167,8 +1167,8 @@ void reallocate_buffer(longlong old_size, ulonglong new_size, undefined8 alignme
 
 
 /**
- * ²:öıp
- * Ÿı²:…¹ö
+ * ï¿½:ï¿½ï¿½p
+ * ï¿½ï¿½ï¿½:ï¿½ï¿½ï¿½
  */
 void zero_buffer_content(void)
 
@@ -1188,9 +1188,9 @@ void zero_buffer_content(void)
 
 
 /**
- * ²:Oû¾nıp
- * Ÿı¾n²:OûÏ
- * Âpbase_address - ú0@offset - OûÏalignment - ùPÂpbuffer_info - ²:áo
+ * ï¿½:Oï¿½ï¿½nï¿½p
+ * ï¿½ï¿½ï¿½nï¿½:Oï¿½ï¿½
+ * ï¿½pbase_address - ï¿½0@offset - Oï¿½ï¿½alignment - ï¿½Pï¿½pbuffer_info - ï¿½:ï¿½o
  */
 void set_buffer_offset(undefined8 base_address, longlong offset, undefined8 alignment, longlong buffer_info)
 
@@ -1204,9 +1204,9 @@ void set_buffer_offset(undefined8 base_address, longlong offset, undefined8 alig
 
 
 /**
- * DåÄıp
- * ŸıDåÄpÄ
- * Âpresource_array - DpÄˆ
+ * Dï¿½ï¿½ï¿½ï¿½p
+ * ï¿½ï¿½Dï¿½ï¿½ï¿½pï¿½
+ * ï¿½presource_array - Dï¿½pï¿½ï¿½
  */
 void cleanup_resource_handles(longlong *resource_array)
 
@@ -1238,9 +1238,9 @@ void cleanup_resource_handles(longlong *resource_array)
 
 
 /**
- * D ıp
- * ŸıD 0šMn
- * Âpresource_id - DIDresource_data - Dpnresource_ptr - Dˆ
+ * Dï¿½ ï¿½p
+ * ï¿½ï¿½Dï¿½ 0ï¿½Mn
+ * ï¿½presource_id - Dï¿½IDresource_data - Dï¿½pnresource_ptr - Dï¿½ï¿½
  */
 void map_resource_to_location(uint *resource_id, int *resource_data, longlong *resource_ptr)
 
@@ -1301,9 +1301,9 @@ void map_resource_to_location(uint *resource_id, int *resource_data, longlong *r
 
 
 /**
- * DŒÁıp
- * ŸıŒÁDpÄ„	H'
- * Âpresource_array - DpÄˆ
+ * Dï¿½ï¿½ï¿½ï¿½p
+ * ï¿½ï¿½ï¿½ï¿½Dï¿½pÄ„	H'
+ * ï¿½presource_array - Dï¿½pï¿½ï¿½
  */
 void validate_resource_array(longlong *resource_array)
 
@@ -1326,9 +1326,9 @@ void validate_resource_array(longlong *resource_array)
 
 
 /**
- * pÄ„Yıp
- * Ÿı:pÄ„Yš'„zô
- * Âparray_info - pÄáorequired_size -  „'param_3 - Âp3param_4 - Âp4
+ * pÄ„Yï¿½p
+ * ï¿½ï¿½:pÄ„Yï¿½'ï¿½zï¿½
+ * ï¿½parray_info - pï¿½ï¿½orequired_size -  ï¿½ï¿½'param_3 - ï¿½p3param_4 - ï¿½p4
  */
 void reserve_array_space(longlong *array_info, ulonglong required_size, undefined8 param_3, undefined8 param_4)
 
