@@ -392,7 +392,7 @@ void AdvancedDataProcessor(longlong param_1, longlong param_2) {
     context.texture_manager_ptr = (pointer_t)0x0;
     
     // 分配内存资源
-    pointer_t memory_ptr = (pointer_t)MemoryAllocate(_DAT_180c8ed18, MEMORY_POOL_SIZE, 0x13);
+    pointer_t memory_ptr = (pointer_t)MemoryAllocate(system_memory_pool_ptr, MEMORY_POOL_SIZE, 0x13);
     *(byte_t*)memory_ptr = 0;
     context.buffer_manager_ptr = memory_ptr;
     
@@ -407,7 +407,7 @@ void AdvancedDataProcessor(longlong param_1, longlong param_2) {
     if (string_length > 0) {
         if ((string_length != -0xc) && (string_flags < string_length + 0xdU)) {
             // 扩展字符串缓冲区
-            memory_ptr = (pointer_t)MemoryAllocate(_DAT_180c8ed18, memory_ptr, string_length + 0xdU, MEMORY_POOL_SIZE);
+            memory_ptr = (pointer_t)MemoryAllocate(system_memory_pool_ptr, memory_ptr, string_length + 0xdU, MEMORY_POOL_SIZE);
             context.buffer_manager_ptr = memory_ptr;
             string_flags = ResourceCreate(memory_ptr);
             string_length = *(int*)(param_2 + 0x3530);
@@ -420,7 +420,7 @@ void AdvancedDataProcessor(longlong param_1, longlong param_2) {
     }
     
     // 创建系统资源
-    pointer_t resource_ptr = ResourceCreate(_DAT_180c86930, &context.memory_manager_ptr, 
+    pointer_t resource_ptr = ResourceCreate(system_resource_state, &context.memory_manager_ptr, 
                                           &context.callback_function1, &buffer_size_x);
     
     // 清理资源
@@ -483,8 +483,8 @@ void ConfigurationManager(longlong *param_1, uint64_t param_2, longlong param_3,
     // 处理配置字符串
     if (config_name != (pointer_t)0x0) {
         // 执行配置处理
-        StringLength(*(longlong*)(_DAT_180c86938 + 0x1cd8) + 0x7f20, &config_ptr);
-        StringLength(*(longlong*)(_DAT_180c86938 + 0x1cd8) + 0x7f20, &config_ptr);
+        StringLength(*(longlong*)(system_message_buffer + 0x1cd8) + 0x7f20, &config_ptr);
+        StringLength(*(longlong*)(system_message_buffer + 0x1cd8) + 0x7f20, &config_ptr);
     }
     
     // 设置配置标志
@@ -503,7 +503,7 @@ void ConfigurationManager(longlong *param_1, uint64_t param_2, longlong param_3,
     *(int*)((longlong)param_1 + 0x484) = (int)((float32_t)*(int*)((longlong)param_1 + 0x47c) * *(float32_t*)(param_3 + 0x35ac));
     
     // 清理系统状态
-    *(qword_t*)(*(longlong*)(_DAT_180c86938 + 0x1cd8) + 0x83f0) = 0;
+    *(qword_t*)(*(longlong*)(system_message_buffer + 0x1cd8) + 0x83f0) = 0;
     
     // 执行配置操作
     ((void(*)(void))(*(void(**)(void))(*param_1 + 0x50)))(param_1, param_3, (int)param_1[0x8a], 
@@ -520,18 +520,18 @@ void ConfigurationManager(longlong *param_1, uint64_t param_2, longlong param_3,
         uint param_value2 = (uint)(*(word_t*)(param_1[0x85] + 0x32e) >> (param_byte & 0x1f));
         
         // 设置渲染参数
-        *(float32_t*)(*(longlong*)(_DAT_180c86938 + 0x1cd8) + 0x1be0) = DATA_SCALE_FACTOR / (float32_t)param_value1;
-        *(float32_t*)(*(longlong*)(_DAT_180c86938 + 0x1cd8) + 0x1be4) = DATA_SCALE_FACTOR / (float32_t)param_value2;
-        *(float32_t*)(*(longlong*)(_DAT_180c86938 + 0x1cd8) + 0x1be8) = 1.0f / (float32_t)(*(word_t*)(param_1[0x85] + 0x32c) >> (param_byte - 1 & 0x1f));
-        *(float32_t*)(*(longlong*)(_DAT_180c86938 + 0x1cd8) + 0x1bec) = 1.0f / (float32_t)(*(word_t*)(param_1[0x85] + 0x32e) >> (param_byte - 1 & 0x1f));
+        *(float32_t*)(*(longlong*)(system_message_buffer + 0x1cd8) + 0x1be0) = DATA_SCALE_FACTOR / (float32_t)param_value1;
+        *(float32_t*)(*(longlong*)(system_message_buffer + 0x1cd8) + 0x1be4) = DATA_SCALE_FACTOR / (float32_t)param_value2;
+        *(float32_t*)(*(longlong*)(system_message_buffer + 0x1cd8) + 0x1be8) = 1.0f / (float32_t)(*(word_t*)(param_1[0x85] + 0x32c) >> (param_byte - 1 & 0x1f));
+        *(float32_t*)(*(longlong*)(system_message_buffer + 0x1cd8) + 0x1bec) = 1.0f / (float32_t)(*(word_t*)(param_1[0x85] + 0x32e) >> (param_byte - 1 & 0x1f));
         
         // 执行渲染操作
-        ExecuteOperation(*(longlong*)(_DAT_180c86938 + 0x1cd8), *(uint64_t*)(_DAT_180c86938 + 0x1c88),
-                         *(longlong*)(_DAT_180c86938 + 0x1cd8) + 0x1be0, 0x230);
+        ExecuteOperation(*(longlong*)(system_message_buffer + 0x1cd8), *(uint64_t*)(system_message_buffer + 0x1c88),
+                         *(longlong*)(system_message_buffer + 0x1cd8) + 0x1be0, 0x230);
         
         // 更新系统状态
-        _DAT_180c8695c = _DAT_180c8695c - 1;
-        ((void(*)(void))(*(void(**)(void))(*_DAT_180c86968 + 0x20)))();
+        system_system_data_config = system_system_data_config - 1;
+        ((void(*)(void))(*(void(**)(void))(*system_system_data_config + 0x20)))();
     }
     
     // 清理资源
@@ -604,7 +604,7 @@ void ResourceAllocator(longlong param_1, longlong param_2) {
         strcpy_s(render_buffer, SYSTEM_BUFFER_SIZE, config_name);
         
         // 创建资源
-        pointer_t resource_ptr = ResourceCreate(_DAT_180c86930, &context.vertex_buffer_ptr, 
+        pointer_t resource_ptr = ResourceCreate(system_resource_state, &context.vertex_buffer_ptr, 
                                               &context.callback_function1, &width_param);
         
         // 更新资源状态
@@ -764,7 +764,7 @@ void SystemInitializer(longlong *param_1, longlong param_2) {
                     ((void(*)(void))(*(void(**)(void))(*param_1 + 8)))(param_1, &width_param, param_2);
                     
                     // 创建系统资源
-                    qword_t resource_data = ResourceCreate(_DAT_180c86930, &context.pipeline_state_ptr, 
+                    qword_t resource_data = ResourceCreate(system_resource_state, &context.pipeline_state_ptr, 
                                                           &context.callback_function1, &width_param);
                     
                     // 更新系统状态
@@ -830,7 +830,7 @@ void SystemInitializer(longlong *param_1, longlong param_2) {
                 ((void(*)(void))(*(void(**)(void))(*param_1 + 8)))(param_1, &width_param, param_2);
                 
                 // 创建系统资源
-                qword_t resource_data = ResourceCreate(_DAT_180c86930, &context.pipeline_state_ptr, 
+                qword_t resource_data = ResourceCreate(system_resource_state, &context.pipeline_state_ptr, 
                                                       &context.callback_function1, &width_param);
                 
                 // 更新系统状态

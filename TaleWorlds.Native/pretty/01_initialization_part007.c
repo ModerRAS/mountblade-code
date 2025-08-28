@@ -851,7 +851,7 @@ void FUN_180038180(void) {
              &unknown_var_368_ptr, 0xfffffffffffffffe);
     
     // 注册字符串处理函数
-    _DAT_180c91ef8 = FUN_180623800(&string_config);
+    init_system_string = FUN_180623800(&string_config);
     
     return;
 }
@@ -875,7 +875,7 @@ void FUN_180038210(void) {
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
              &unknown_var_520_ptr, 0xfffffffffffffffe);
     
-    _DAT_180c91efc = FUN_180623800(&string_config);
+    init_system_string = FUN_180623800(&string_config);
     
     return;
 }
@@ -899,7 +899,7 @@ void FUN_1800382a0(void) {
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
              &unknown_var_2160_ptr, 0xfffffffffffffffe);
     
-    _DAT_180c91f00 = FUN_180623800(&string_config);
+    init_system_string = FUN_180623800(&string_config);
     
     return;
 }
@@ -923,7 +923,7 @@ void FUN_180038330(void) {
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
              &unknown_var_2672_ptr, 0xfffffffffffffffe);
     
-    _DAT_180c91f04 = FUN_180623800(&string_config);
+    init_system_string = FUN_180623800(&string_config);
     
     return;
 }
@@ -947,7 +947,7 @@ void FUN_1800383c0(void) {
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
              &unknown_var_4304_ptr, 0xfffffffffffffffe);
     
-    _DAT_180c91f08 = FUN_180623800(&string_config);
+    init_system_string = FUN_180623800(&string_config);
     
     return;
 }
@@ -971,7 +971,7 @@ void FUN_180038450(void) {
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
              &unknown_var_4936_ptr, 0xfffffffffffffffe);
     
-    _DAT_180c91f0c = FUN_180623800(&string_config);
+    init_system_string = FUN_180623800(&string_config);
     
     return;
 }
@@ -995,7 +995,7 @@ void FUN_1800384e0(void) {
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
              &unknown_var_7256_ptr, 0xfffffffffffffffe);
     
-    _DAT_180c91f10 = FUN_180623800(&string_config);
+    init_system_string = FUN_180623800(&string_config);
     
     return;
 }
@@ -1019,7 +1019,7 @@ void FUN_180038570(void) {
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
              &unknown_var_4504_ptr, 0xfffffffffffffffe);
     
-    _DAT_180c91f14 = FUN_180623800(&string_config);
+    init_system_string = FUN_180623800(&string_config);
     
     return;
 }
@@ -1043,7 +1043,7 @@ void FUN_180038610(void) {
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
              &unknown_var_2448_ptr, 0xfffffffffffffffe);
     
-    _DAT_180c91f30 = FUN_180623800(&string_config);
+    init_system_string = FUN_180623800(&string_config);
     
     return;
 }

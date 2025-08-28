@@ -137,8 +137,8 @@ void FUN_180250050(uint64_t *param_1,int param_2,int param_3)
           *(int32_t *)(lVar12 + 8) =
                *(int32_t *)(*(longlong *)(param_1[1] + 0x38) + 4 + lVar15 * 0xc);
           puVar14 = (uint64_t *)puVar8[0x54];
-          (**(code **)(**(longlong **)(_DAT_180c86938 + 0x1d78) + 0xc0))
-                    (*(longlong **)(_DAT_180c86938 + 0x1d78),&uStack_b0,&uStack_98);
+          (**(code **)(**(longlong **)(system_message_buffer + 0x1d78) + 0xc0))
+                    (*(longlong **)(system_message_buffer + 0x1d78),&uStack_b0,&uStack_98);
           *puVar14 = uStack_98;
         }
         if ((*(char *)(*(longlong *)param_1[2] + 0x20) != '\0') ||
@@ -157,7 +157,7 @@ void FUN_180250050(uint64_t *param_1,int param_2,int param_3)
                 lVar9 = 0;
               }
               else {
-                lVar9 = FUN_18062b420(_DAT_180c8ed18,uVar20 * 4,*(int8_t *)(puVar8 + 0x3e));
+                lVar9 = FUN_18062b420(system_memory_pool_ptr,uVar20 * 4,*(int8_t *)(puVar8 + 0x3e));
               }
               if (lVar15 != lVar12) {
                     // WARNING: Subroutine does not return
@@ -197,18 +197,18 @@ void FUN_180250050(uint64_t *param_1,int param_2,int param_3)
               }
             }
           }
-          if (*_DAT_180c8a9d8 != '\0') {
+          if (*system_system_data_memory != '\0') {
             LOCK();
-            *(int *)(_DAT_180c8a9d8 + 0x88) = *(int *)(_DAT_180c8a9d8 + 0x88) + 1;
+            *(int *)(system_system_data_memory + 0x88) = *(int *)(system_system_data_memory + 0x88) + 1;
             UNLOCK();
             LOCK();
-            *(int *)(_DAT_180c8a9d8 + 0x84) =
-                 *(int *)(_DAT_180c8a9d8 + 0x84) +
+            *(int *)(system_system_data_memory + 0x84) =
+                 *(int *)(system_system_data_memory + 0x84) +
                  (int)(puVar8[0x3c] - *plVar1 >> 2) * *(int *)(lVar19 + 0x3d4);
             UNLOCK();
             LOCK();
-            *(int *)(_DAT_180c8a9d8 + 0x80) =
-                 *(int *)(_DAT_180c8a9d8 + 0x80) + (int)(puVar8[0x3c] - *plVar1 >> 2);
+            *(int *)(system_system_data_memory + 0x80) =
+                 *(int *)(system_system_data_memory + 0x80) + (int)(puVar8[0x3c] - *plVar1 >> 2);
             UNLOCK();
             puVar8 = puStack_d0;
           }
@@ -223,7 +223,7 @@ void FUN_180250050(uint64_t *param_1,int param_2,int param_3)
               puStack_c8 = (uint64_t *)FUN_1800dae20();
               FUN_180250be0(puStack_c8,puVar8);
             }
-            lVar13 = _DAT_180c86890;
+            lVar13 = system_parameter_buffer;
             lVar15 = *(longlong *)param_1[2];
             uStack_7c = CONCAT22(uStack_7c._2_2_,(ushort)*(byte *)((longlong)puVar8 + 0xc1));
             uVar11 = puVar8[0x41];
@@ -268,7 +268,7 @@ void FUN_180250050(uint64_t *param_1,int param_2,int param_3)
           if ((uVar18 >> 0xe & 1) != 0) {
             uStack_70 = *(uint *)((longlong)puVar8 + 0x314) & 0xfeffffff;
             *(uint *)((longlong)puVar8 + 0x314) = uStack_70;
-            lVar13 = _DAT_180c86890;
+            lVar13 = system_parameter_buffer;
             lVar15 = *(longlong *)param_1[2];
             uStack_6c = CONCAT22(uStack_6c._2_2_,(ushort)*(byte *)((longlong)puVar8 + 0xc1));
             uVar11 = puVar8[0x41];
@@ -293,7 +293,7 @@ void FUN_180250050(uint64_t *param_1,int param_2,int param_3)
                                    in_stack_ffffffffffffff00,in_stack_ffffffffffffff08);
             puVar8[0x11] = uVar11;
             FUN_1800df980(extraout_XMM0_Da_00,puVar8,lVar15);
-            *(byte *)(puVar8 + 0x18) = *(byte *)(_DAT_180c86870 + 0x224) & 1 | 10;
+            *(byte *)(puVar8 + 0x18) = *(byte *)(system_main_module_state + 0x224) & 1 | 10;
             uVar22 = FUN_18024cf70(*(longlong *)param_1[2] + 0x2358,puVar8 + 0x3f,puVar8 + 0x40,
                                    &puStack_d0);
           }
@@ -419,7 +419,7 @@ void FUN_180250050(uint64_t *param_1,int param_2,int param_3)
             *(int16_t *)(puVar8 + 0x12) = 0x100;
             lVar15 = *(longlong *)param_1[2];
             if (((((*(byte *)(lVar15 + 0x1bd8) & 0x20) == 0) &&
-                 ((*(byte *)(lVar15 + 0x1bd9) & 2) == 0)) || (*(int *)(_DAT_180c8a9c8 + 0xa10) == 0)
+                 ((*(byte *)(lVar15 + 0x1bd9) & 2) == 0)) || (*(int *)(system_system_data_memory + 0xa10) == 0)
                 ) || (*(char *)(lVar15 + 0x130) == '\0')) {
               bVar21 = false;
             }

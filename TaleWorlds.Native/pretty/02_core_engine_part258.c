@@ -31,7 +31,7 @@ void FUN_180225ee0(uint64_t param_1,uint64_t param_2,int32_t param_3,uint64_t pa
   int8_t uStack_42;
   ulonglong uStack_38;
   
-  plVar1 = _DAT_180c86938;
+  plVar1 = system_message_buffer;
   uStack_b8 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
   FUN_1806279c0(&puStack_d8);
@@ -111,7 +111,7 @@ void FUN_180226020(longlong *param_1,longlong param_2,uint64_t param_3,uint64_t 
     if (lStackX_18 == 0) goto LAB_1802260bd;
   }
   puVar2 = (uint64_t *)
-           FUN_18062b420(_DAT_180c8ed18,lStackX_18 * 0x78,(char)param_1[3],param_4,
+           FUN_18062b420(system_memory_pool_ptr,lStackX_18 * 0x78,(char)param_1[3],param_4,
                          0xfffffffffffffffe);
   lVar8 = param_1[1];
   lVar5 = *param_1;
@@ -352,7 +352,7 @@ void FUN_1802265d0(uint64_t param_1,uint64_t *param_2)
   uStack_240 = 0;
   uStack_238 = 0;
   puStack_228 = param_2;
-  uVar1 = (*_DAT_180c96828)(1,&system_data_6810,&uStack_240);
+  uVar1 = (*core_system_config)(1,&system_data_6810,&uStack_240);
   if ((uVar1 & 0xfff00000) != 0xbad00000) {
                     // WARNING: Subroutine does not return
     memset(auStack_218,0,0x200);
@@ -423,7 +423,7 @@ void FUN_1802267d0(longlong *param_1)
   uStack_c8 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_e8;
   if (*param_1 == 0) {
-    puStack_c0 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x98,8,3);
+    puStack_c0 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x98,8,3);
     *puStack_c0 = &unknown_var_720_ptr;
     puStack_c0[1] = 0;
     *(int32_t *)(puStack_c0 + 2) = 0;
@@ -471,7 +471,7 @@ void FUN_1802268c0(longlong *param_1,longlong param_2)
   int8_t auStackX_18 [16];
   
   if (*param_1 == 0) {
-    puVar8 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x98,8,3);
+    puVar8 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x98,8,3);
     *puVar8 = &unknown_var_720_ptr;
     puVar8[1] = 0;
     *(int32_t *)(puVar8 + 2) = 0;
@@ -492,10 +492,10 @@ void FUN_1802268c0(longlong *param_1,longlong param_2)
     puVar10 = *(void **)(param_2 + 8);
   }
   strcpy_s(puVar8[1],0x80,puVar10);
-  lVar6 = _DAT_180c8ed70;
+  lVar6 = core_system_data_config;
   lVar3 = *param_1;
   puVar8 = (uint64_t *)param_1[1];
-  lVar1 = _DAT_180c8ed70 + 200;
+  lVar1 = core_system_data_config + 200;
   puStackX_8 = puVar8;
   lStackX_10 = lVar1;
   iVar7 = _Mtx_lock(lVar1);
@@ -992,7 +992,7 @@ uint64_t * FUN_180227230(uint64_t param_1,longlong param_2)
   uint64_t uVar1;
   uint64_t *puVar2;
   
-  puVar2 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,3,0xfffffffffffffffe);
+  puVar2 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x20,8,3,0xfffffffffffffffe);
   *puVar2 = &unknown_var_5192_ptr;
   *puVar2 = &unknown_var_7072_ptr;
   *(int8_t *)(puVar2 + 3) = 0;

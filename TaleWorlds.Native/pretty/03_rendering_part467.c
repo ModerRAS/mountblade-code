@@ -532,7 +532,7 @@ LAB_180519e0e:
       lVar14 = (longlong)*(int *)(unaff_R12 + 0xf0) * 0xa0;
       if (((*(byte *)(lVar14 + 0x50 + *(longlong *)(unaff_R12 + 0xd0)) & 0x40) != 0) &&
          (*(char *)((longlong)*(int *)(lVar14 + 100 + *(longlong *)(unaff_R12 + 0xd0)) * 0x170 +
-                    0x135 + _DAT_180c95ff0) != '\0')) {
+                    0x135 + render_system_memory) != '\0')) {
         lVar11 = (longlong)*(char *)(*(longlong *)(unaff_R15 + 0x590) + 0x25fb);
         FUN_18063b5f0(unaff_RBP + -8,(lVar11 + 0x82) * 0x10 + unaff_R14);
         lVar14 = *(longlong *)(unaff_R15 + 0x728);
