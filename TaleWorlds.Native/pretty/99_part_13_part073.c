@@ -1365,7 +1365,7 @@ int ResourceHandleCleanup(uint cleanup_flags, longlong resource_ptr)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_1808dae5f(longlong param_1)
+int ResourceHandleFinalize(longlong resource_ptr)
 
 {
   longlong *plVar1;
@@ -1439,7 +1439,7 @@ int FUN_1808dae5f(longlong param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_1808dae64(longlong param_1)
+int ResourceHandleValidate(longlong resource_ptr)
 
 {
   longlong *plVar1;
