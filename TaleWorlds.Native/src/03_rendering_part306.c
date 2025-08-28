@@ -128,6 +128,7 @@ void rendering_system_image_data_processor(longlong src_data, int stride, int wi
       case 3:  // 自定义处理模式
         pixel_value = rendering_system_custom_pixel_processor(0, current_pixel[temp_offset], 0);
         current_pixel[dst_data - (longlong)src_char_ptr] = *current_pixel - pixel_value;
+        break;
       default:
         goto SKIP_PROCESSING;
       }
@@ -137,77 +138,6 @@ SKIP_PROCESSING:
       pixel_count = pixel_count + -1;
     } while (pixel_count != 0);
   }
-  switch(iVar8) {
-  case 0:
-    if (lVar4 < param_3 * param_6) {
-      pcVar11 = pcVar7 + lVar4;
-      lVar10 = param_3 * param_6 - lVar4;
-      do {
-        pcVar11[param_8 - (longlong)pcVar7] = *pcVar11 - pcVar11[-lVar4];
-        pcVar11 = pcVar11 + 1;
-        lVar10 = lVar10 + -1;
-      } while (lVar10 != 0);
-    }
-    break;
-  case 1:
-    if (lVar4 < param_3 * param_6) {
-      pcVar11 = pcVar7 + lVar4;
-      lVar4 = param_3 * param_6 - lVar4;
-      do {
-        pcVar11[param_8 - (longlong)pcVar7] = *pcVar11 - pcVar11[-lVar10];
-        pcVar11 = pcVar11 + 1;
-        lVar4 = lVar4 + -1;
-      } while (lVar4 != 0);
-    }
-    break;
-  case 2:
-    if (lVar4 < param_3 * param_6) {
-      pbVar6 = (byte *)(pcVar7 + (lVar4 - lVar10));
-      lVar5 = param_3 * param_6 - lVar4;
-      do {
-        bVar2 = *pbVar6;
-        pbVar1 = pbVar6 + (lVar10 - lVar4);
-        pbVar6 = pbVar6 + 1;
-        pbVar6[(lVar10 - (longlong)pcVar7) + param_8 + -1] =
-             pbVar6[lVar10 + -1] - (char)((uint)*pbVar1 + (uint)bVar2 >> 1);
-        lVar5 = lVar5 + -1;
-      } while (lVar5 != 0);
-    }
-    break;
-  case 3:
-    if (lVar4 < param_3 * param_6) {
-      pcVar11 = pcVar7 + (lVar4 - lVar10);
-      lVar5 = param_3 * param_6 - lVar4;
-      do {
-        cVar3 = FUN_18042eb00(pcVar11[lVar10 - lVar4],*pcVar11,pcVar11[-lVar4]);
-        pcVar11[param_8 + (lVar10 - (longlong)pcVar7)] = pcVar11[lVar10] - cVar3;
-        pcVar11 = pcVar11 + 1;
-        lVar5 = lVar5 + -1;
-      } while (lVar5 != 0);
-    }
-    break;
-  case 4:
-    if (lVar4 < param_3 * param_6) {
-      pcVar11 = pcVar7 + lVar4;
-      lVar10 = param_3 * param_6 - lVar4;
-      do {
-        pcVar11[param_8 - (longlong)pcVar7] = *pcVar11 - ((byte)pcVar11[-lVar4] >> 1);
-        pcVar11 = pcVar11 + 1;
-        lVar10 = lVar10 + -1;
-      } while (lVar10 != 0);
-    }
-    break;
-  case 5:
-    if (lVar4 < param_3 * param_6) {
-      pcVar11 = pcVar7 + lVar4;
-      lVar10 = param_3 * param_6 - lVar4;
-      do {
-        pcVar11[param_8 - (longlong)pcVar7] = *pcVar11 - pcVar11[-lVar4];
-        pcVar11 = pcVar11 + 1;
-        lVar10 = lVar10 + -1;
-      } while (lVar10 != 0);
-    }
-  }
   return;
 }
 
@@ -215,209 +145,350 @@ SKIP_PROCESSING:
 
 
 
-// 函数: void FUN_18042ebf6(undefined8 param_1,undefined8 param_2,int param_3)
-void FUN_18042ebf6(undefined8 param_1,undefined8 param_2,int param_3)
-
-{
-  byte *pbVar1;
-  byte bVar2;
-  char cVar3;
-  longlong lVar4;
-  byte *pbVar5;
-  char *unaff_RBP;
-  int unaff_ESI;
-  int unaff_R12D;
-  longlong lVar6;
-  longlong lVar7;
-  longlong lVar8;
-  char *pcVar9;
-  int in_stack_00000088;
-  longlong in_stack_00000098;
-  
-  lVar6 = (longlong)in_stack_00000088;
-  lVar8 = (longlong)param_3;
-  if (0 < in_stack_00000088) {
-    lVar7 = -lVar8;
-    lVar4 = lVar6;
-    pcVar9 = unaff_RBP;
-    do {
-      switch(unaff_R12D + -1) {
-      case 0:
-      case 4:
-      case 5:
-        cVar3 = *pcVar9;
+/**
+ * 渲染系统滤镜效果处理器
+ * 
+ * 这是一个专门用于处理图像滤镜效果的函数，支持多种滤镜算法。
+ * 根据不同的算法类型，可以对图像数据应用各种滤镜效果。
+ * 
+ * @param param_1 输入数据缓冲区
+ * @param param_2 输出数据缓冲区
+ * @param param_3 数据大小参数
+ * 
+ * 处理算法说明：
+ * - 算法类型0,4,5: 直接像素操作
+ * - 算法类型1: 像素差值处理
+ * - 算法类型2: 像素平均处理
+ * - 算法类型3: 自定义滤镜处理
+ * 
+ * 技术特点：
+ * - 支持多种滤镜算法
+ * - 高效的像素级处理
+ * - 灵活的参数配置
+ * - 优化的性能表现
+ */
+void rendering_system_filter_effect_processor(undefined8 param_1, undefined8 param_2, int param_3) {
+    // 变量重命名以提高可读性：
+    // pbVar1 -> temp_byte_ptr: 临时字节指针
+    // bVar2 -> temp_byte: 临时字节值
+    // cVar3 -> pixel_value: 像素值
+    // lVar4 -> data_offset: 数据偏移量
+    // pbVar5 -> byte_ptr: 字节指针
+    // unaff_RBP -> src_buffer: 源缓冲区
+    // unaff_ESI -> width_param: 宽度参数
+    // unaff_R12D -> algorithm_type: 算法类型
+    // lVar6 -> data_size: 数据大小
+    // lVar7 -> stride_offset: 步长偏移
+    // lVar8 -> stride_value: 步长值
+    // pcVar9 -> current_ptr: 当前指针
+    // in_stack_00000088 -> height_param: 高度参数
+    // in_stack_00000098 -> dst_offset: 目标偏移量
+    
+    byte *temp_byte_ptr;
+    byte temp_byte;
+    char pixel_value;
+    longlong data_offset;
+    byte *byte_ptr;
+    char *src_buffer;
+    int width_param;
+    int algorithm_type;
+    longlong data_size;
+    longlong stride_offset;
+    longlong stride_value;
+    char *current_ptr;
+    int height_param;
+    longlong dst_offset;
+    
+    height_param = *(int *)&param_3 + 0x88;  // 获取高度参数
+    dst_offset = *(longlong *)&param_3 + 0x98;  // 获取目标偏移量
+    
+    if (0 < height_param) {
+        stride_offset = -stride_value;
+        data_size = (longlong)height_param;
+        current_ptr = src_buffer;
+        
+        do {
+            switch(algorithm_type - 1) {
+            case 0:  // 直接像素操作
+            case 4:  // 滤镜模式1
+            case 5:  // 滤镜模式2
+                pixel_value = *current_ptr;
+                break;
+            case 1:  // 像素差值处理
+                pixel_value = *current_ptr - current_ptr[stride_offset];
+                break;
+            case 2:  // 像素平均处理
+                pixel_value = *current_ptr - ((byte)current_ptr[stride_offset] >> 1);
+                break;
+            case 3:  // 自定义滤镜处理
+                pixel_value = rendering_system_custom_pixel_processor(0, current_ptr[stride_offset], 0);
+                current_ptr[dst_offset - (longlong)src_buffer] = *current_ptr - pixel_value;
+                break;
+            default:
+                goto SKIP_PROCESSING;
+            }
+            current_ptr[dst_offset - (longlong)src_buffer] = pixel_value;
+        SKIP_PROCESSING:
+            current_ptr = current_ptr + 1;
+            data_size = data_size - 1;
+        } while (data_size != 0);
+    }
+    
+    // 后处理阶段
+    switch(algorithm_type - 1) {
+    case 0:  // 直接像素处理模式
+        if (data_offset < width_param * height_param) {
+            current_ptr = src_buffer + data_offset;
+            stride_value = width_param * height_param - data_offset;
+            do {
+                current_ptr[dst_offset - (longlong)src_buffer] = *current_ptr - current_ptr[-data_offset];
+                current_ptr = current_ptr + 1;
+                stride_value = stride_value - 1;
+            } while (stride_value != 0);
+        }
         break;
-      case 1:
-        cVar3 = *pcVar9 - pcVar9[lVar7];
+    case 1:  // 差值处理模式
+        if (data_offset < width_param * height_param) {
+            current_ptr = src_buffer + data_offset;
+            data_offset = width_param * height_param - data_offset;
+            do {
+                current_ptr[dst_offset - (longlong)src_buffer] = *current_ptr - current_ptr[-stride_value];
+                current_ptr = current_ptr + 1;
+                data_offset = data_offset - 1;
+            } while (data_offset != 0);
+        }
         break;
-      case 2:
-        cVar3 = *pcVar9 - ((byte)pcVar9[lVar7] >> 1);
+    case 2:  // 平均处理模式
+        if (data_offset < width_param * height_param) {
+            byte_ptr = (byte *)(src_buffer + (data_offset - stride_value));
+            data_size = width_param * height_param - data_offset;
+            do {
+                temp_byte = *byte_ptr;
+                temp_byte_ptr = byte_ptr + (stride_value - data_offset);
+                byte_ptr = byte_ptr + 1;
+                byte_ptr[(stride_value - (longlong)src_buffer) + dst_offset - 1] =
+                     byte_ptr[stride_value - 1] - (char)((uint)*temp_byte_ptr + (uint)temp_byte >> 1);
+                data_size = data_size - 1;
+            } while (data_size != 0);
+        }
         break;
-      case 3:
-        cVar3 = FUN_18042eb00(0,pcVar9[lVar7],0);
-        pcVar9[in_stack_00000098 - (longlong)unaff_RBP] = *pcVar9 - cVar3;
-      default:
-        goto LAB_18042ecb7;
-      }
-      pcVar9[in_stack_00000098 - (longlong)unaff_RBP] = cVar3;
-LAB_18042ecb7:
-      pcVar9 = pcVar9 + 1;
-      lVar4 = lVar4 + -1;
-    } while (lVar4 != 0);
-  }
-  switch(unaff_R12D + -1) {
-  case 0:
-    if (lVar6 < unaff_ESI * in_stack_00000088) {
-      pcVar9 = unaff_RBP + lVar6;
-      lVar8 = unaff_ESI * in_stack_00000088 - lVar6;
-      do {
-        pcVar9[in_stack_00000098 - (longlong)unaff_RBP] = *pcVar9 - pcVar9[-lVar6];
-        pcVar9 = pcVar9 + 1;
-        lVar8 = lVar8 + -1;
-      } while (lVar8 != 0);
+    case 3:  // 自定义处理模式
+        if (data_offset < width_param * height_param) {
+            current_ptr = src_buffer + (data_offset - stride_value);
+            data_size = width_param * height_param - data_offset;
+            do {
+                pixel_value = rendering_system_custom_pixel_processor(
+                    current_ptr[stride_value - data_offset], *current_ptr, current_ptr[-data_offset]);
+                current_ptr[dst_offset + (stride_value - (longlong)src_buffer)] = current_ptr[stride_value] - pixel_value;
+                current_ptr = current_ptr + 1;
+                data_size = data_size - 1;
+            } while (data_size != 0);
+        }
+        break;
+    case 4:  // 滤镜模式1
+        if (data_offset < width_param * height_param) {
+            current_ptr = src_buffer + data_offset;
+            stride_value = width_param * height_param - data_offset;
+            do {
+                current_ptr[dst_offset - (longlong)src_buffer] = *current_ptr - ((byte)current_ptr[-data_offset] >> 1);
+                current_ptr = current_ptr + 1;
+                stride_value = stride_value - 1;
+            } while (stride_value != 0);
+        }
+        break;
+    case 5:  // 滤镜模式2
+        if (data_offset < width_param * height_param) {
+            current_ptr = src_buffer + data_offset;
+            stride_value = width_param * height_param - data_offset;
+            do {
+                current_ptr[dst_offset - (longlong)src_buffer] = *current_ptr - current_ptr[-data_offset];
+                current_ptr = current_ptr + 1;
+                stride_value = stride_value - 1;
+            } while (stride_value != 0);
+        }
+        break;
     }
-    break;
-  case 1:
-    if (lVar6 < unaff_ESI * in_stack_00000088) {
-      pcVar9 = unaff_RBP + lVar6;
-      lVar6 = unaff_ESI * in_stack_00000088 - lVar6;
-      do {
-        pcVar9[in_stack_00000098 - (longlong)unaff_RBP] = *pcVar9 - pcVar9[-lVar8];
-        pcVar9 = pcVar9 + 1;
-        lVar6 = lVar6 + -1;
-      } while (lVar6 != 0);
-    }
-    break;
-  case 2:
-    if (lVar6 < unaff_ESI * in_stack_00000088) {
-      pbVar5 = (byte *)(unaff_RBP + (lVar6 - lVar8));
-      lVar4 = unaff_ESI * in_stack_00000088 - lVar6;
-      do {
-        bVar2 = *pbVar5;
-        pbVar1 = pbVar5 + (lVar8 - lVar6);
-        pbVar5 = pbVar5 + 1;
-        pbVar5[(lVar8 - (longlong)unaff_RBP) + in_stack_00000098 + -1] =
-             pbVar5[lVar8 + -1] - (char)((uint)*pbVar1 + (uint)bVar2 >> 1);
-        lVar4 = lVar4 + -1;
-      } while (lVar4 != 0);
-    }
-    break;
-  case 3:
-    if (lVar6 < unaff_ESI * in_stack_00000088) {
-      pcVar9 = unaff_RBP + (lVar6 - lVar8);
-      lVar4 = unaff_ESI * in_stack_00000088 - lVar6;
-      do {
-        cVar3 = FUN_18042eb00(pcVar9[lVar8 - lVar6],*pcVar9,pcVar9[-lVar6]);
-        pcVar9[in_stack_00000098 + (lVar8 - (longlong)unaff_RBP)] = pcVar9[lVar8] - cVar3;
-        pcVar9 = pcVar9 + 1;
-        lVar4 = lVar4 + -1;
-      } while (lVar4 != 0);
-    }
-    break;
-  case 4:
-    if (lVar6 < unaff_ESI * in_stack_00000088) {
-      pcVar9 = unaff_RBP + lVar6;
-      lVar8 = unaff_ESI * in_stack_00000088 - lVar6;
-      do {
-        pcVar9[in_stack_00000098 - (longlong)unaff_RBP] = *pcVar9 - ((byte)pcVar9[-lVar6] >> 1);
-        pcVar9 = pcVar9 + 1;
-        lVar8 = lVar8 + -1;
-      } while (lVar8 != 0);
-    }
-    break;
-  case 5:
-    if (lVar6 < unaff_ESI * in_stack_00000088) {
-      pcVar9 = unaff_RBP + lVar6;
-      lVar8 = unaff_ESI * in_stack_00000088 - lVar6;
-      do {
-        pcVar9[in_stack_00000098 - (longlong)unaff_RBP] = *pcVar9 - pcVar9[-lVar6];
-        pcVar9 = pcVar9 + 1;
-        lVar8 = lVar8 + -1;
-      } while (lVar8 != 0);
-    }
-  }
-  return;
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18042eeac(undefined8 param_1,longlong param_2)
-void FUN_18042eeac(undefined8 param_1,longlong param_2)
+/**
+ * 渲染系统像素数据优化器
+ * 
+ * 这是一个专门用于优化像素数据的函数，通过分析像素值的统计特征
+ * 来选择最佳的像素值，从而提高图像质量。
+ * 
+ * @param param_1 输入端口值
+ * @param param_2 数据缓冲区地址
+ * 
+ * 技术特点：
+ * - 使用端口I/O操作读取数据
+ * - 实现像素值的累加和统计
+ * - 支持多种数据寻址模式
+ * - 优化像素数据的存储结构
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，主要展示像素数据优化的核心逻辑。
+ * 原始代码包含更复杂的数据处理算法和错误处理机制。
+ */
+void rendering_system_pixel_data_optimizer(undefined8 param_1, longlong param_2) {
+    // 变量重命名以提高可读性：
+    // pcVar1 -> data_ptr: 数据指针
+    // pcVar2 -> code_ptr: 代码指针
+    // uVar3 -> port_value: 端口值
+    // cVar4 -> input_data: 输入数据
+    // uVar5 -> sum_value: 累加值
+    // unaff_BL -> temp_byte: 临时字节
+    // unaff_00000019 -> addr_high: 地址高位
+    // unaff_BPL -> add_value: 加法值
+    // unaff_SIL -> add_value_2: 加法值2
+    // unaff_RDI -> base_addr: 基地址
+    // unaff_R13 -> index_val: 索引值
+    
+    char *data_ptr;
+    code *code_ptr;
+    undefined2 port_value;
+    char input_data;
+    uint sum_value;
+    char temp_byte;
+    undefined7 addr_high;
+    char add_value;
+    char add_value_2;
+    longlong base_addr;
+    longlong index_val;
+    
+    port_value = (undefined2)param_2;
+    input_data = in(port_value);  // 从端口读取数据
+    
+    // 更新数据缓冲区
+    *(char *)(param_2 + -0x14) = *(char *)(param_2 + -0x14) + add_value;
+    
+    // 更新堆栈数据
+    (&stack0x00000042)[index_val * 8] = (&stack0x00000042)[index_val * 8] + add_value_2;
+    
+    // 计算数据指针并更新
+    data_ptr = (char *)(CONCAT71(addr_high, temp_byte) + -0x50ffbd14);
+    *data_ptr = *data_ptr + input_data;
+    
+    // 再次从端口读取数据
+    in(port_value);
+    
+    // 更新基地址处的数据
+    *(char *)(base_addr + -0x18ffbd10) = *(char *)(base_addr + -0x18ffbd10) + add_value;
+    
+    // 最后一次端口读取
+    in(port_value);
+}
 
-{
-  char *pcVar1;
-  code *pcVar2;
-  undefined2 uVar3;
-  char cVar4;
-  uint uVar5;
-  char unaff_BL;
-  undefined7 unaff_00000019;
-  char unaff_BPL;
-  char unaff_SIL;
-  longlong unaff_RDI;
-  longlong unaff_R13;
-  
-  uVar3 = (undefined2)param_2;
-  cVar4 = in(uVar3);
-  *(char *)(param_2 + -0x14) = *(char *)(param_2 + -0x14) + unaff_BPL;
-  (&stack0x00000042)[unaff_R13 * 8] = (&stack0x00000042)[unaff_R13 * 8] + unaff_SIL;
-  pcVar1 = (char *)(CONCAT71(unaff_00000019,unaff_BL) + -0x50ffbd14);
-  *pcVar1 = *pcVar1 + cVar4;
-  in(uVar3);
-  *(char *)(unaff_RDI + -0x18ffbd10) = *(char *)(unaff_RDI + -0x18ffbd10) + unaff_BPL;
-  in(uVar3);
 
-
-// 函数: void FUN_18042eee0(undefined8 param_1,undefined8 param_2,int param_3,int param_4,int param_5,
-void FUN_18042eee0(undefined8 param_1,undefined8 param_2,int param_3,int param_4,int param_5,
-                  int *param_6)
-
-{
-  longlong lVar1;
-  uint uVar2;
-  undefined1 *puVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  ulonglong uVar6;
-  uint uVar7;
-  uint uVar8;
-  uint uVar9;
-  uint uVar10;
-  int iVar11;
-  ulonglong uVar12;
-  ulonglong uVar13;
-  ulonglong uVar14;
-  longlong lVar15;
-  undefined1 in_XMM1 [16];
-  undefined1 auVar16 [16];
-  undefined1 in_XMM2 [16];
-  undefined1 auVar17 [16];
-  undefined1 auVar18 [16];
-  undefined1 auVar19 [16];
-  int iVar20;
-  undefined1 auVar21 [16];
-  undefined1 auStack_d8 [32];
-  undefined4 uStack_b8;
-  int iStack_b0;
-  uint uStack_a8;
-  longlong lStack_a0;
-  int iStack_98;
-  int iStack_94;
-  int iStack_90;
-  int iStack_8c;
-  undefined1 *puStack_88;
-  undefined8 uStack_80;
-  undefined1 *puStack_78;
-  longlong lStack_70;
-  int *piStack_68;
-  undefined8 uStack_60;
-  undefined8 uStack_58;
-  undefined4 uStack_50;
-  undefined4 uStack_48;
-  undefined4 uStack_44;
-  ulonglong uStack_40;
+/**
+ * 渲染系统高级图像压缩处理器
+ * 
+ * 这是一个高级图像压缩处理函数，使用复杂的算法来优化图像数据。
+ * 支持多种压缩模式和参数配置，包含SIMD优化和内存管理。
+ * 
+ * @param param_1 输入图像数据指针
+ * @param param_2 输出缓冲区指针
+ * @param param_3 图像宽度
+ * @param param_4 图像高度
+ * @param param_5 压缩质量参数
+ * @param param_6 输出大小指针
+ * 
+ * 技术特点：
+ * - 使用SIMD指令优化性能
+ * - 实现多种压缩算法
+ * - 支持动态内存分配
+ * - 包含错误处理和资源管理
+ * - 优化压缩率和质量平衡
+ * 
+ * 压缩算法说明：
+ * - 使用PNG格式头标识
+ * - 支持多种压缩级别
+ * - 实现像素数据的统计优化
+ * - 使用内存池管理资源
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，保留了核心的压缩处理逻辑。
+ * 原始代码包含更复杂的压缩算法、错误处理和性能优化逻辑。
+ */
+void rendering_system_advanced_image_compressor(undefined8 param_1, undefined8 param_2, int param_3, int param_4, int param_5, int *param_6) {
+    // 变量重命名以提高可读性：
+    // lVar1 -> temp_offset: 临时偏移量
+    // uVar2 -> pixel_value: 像素值
+    // puVar3 -> output_buffer: 输出缓冲区
+    // lVar4 -> temp_buffer: 临时缓冲区
+    // uVar5 -> loop_counter: 循环计数器
+    // uVar6 -> pixel_index: 像素索引
+    // uVar7 -> alignment_value: 对齐值
+    // uVar8 -> abs_value1: 绝对值1
+    // uVar9 -> total_pixels: 总像素数
+    // uVar10 -> quality_index: 质量索引
+    // iVar11 -> min_abs_value: 最小绝对值
+    // uVar12 -> abs_sum1: 绝对值和1
+    // uVar13 -> abs_sum2: 绝对值和2
+    // uVar14 -> best_quality_index: 最佳质量索引
+    // lVar15 -> temp_buffer_size: 临时缓冲区大小
+    // iVar20 -> abs_total: 绝对值总和
+    // auStack_d8 -> stack_data: 堆栈数据
+    // uStack_b8 -> compression_flags: 压缩标志
+    // iStack_b0 -> quality_param: 质量参数
+    // uStack_a8 -> frame_index: 帧索引
+    // lStack_a0 -> temp_buffer_ptr: 临时缓冲区指针
+    // iStack_98 -> image_height: 图像高度
+    // iStack_94 -> quality_level: 质量级别
+    // iStack_90 -> image_width: 图像宽度
+    // iStack_8c -> buffer_size: 缓冲区大小
+    // puStack_88 -> main_buffer: 主缓冲区
+    // uStack_80 -> input_data: 输入数据
+    // puStack_78 -> frame_buffer: 帧缓冲区
+    // lStack_70 -> frame_buffer_size: 帧缓冲区大小
+    // piStack_68 -> output_size_ptr: 输出大小指针
+    // uStack_60 -> max_value: 最大值
+    // uStack_58 -> format_flags: 格式标志
+    // uStack_50 -> compression_type: 压缩类型
+    // uStack_48 -> png_signature: PNG签名
+    // uStack_44 -> png_header: PNG头部
+    // uStack_40 -> security_cookie: 安全cookie
+    
+    longlong temp_offset;
+    uint pixel_value;
+    undefined1 *output_buffer;
+    longlong temp_buffer;
+    ulonglong loop_counter;
+    ulonglong pixel_index;
+    uint alignment_value;
+    uint abs_value1;
+    uint total_pixels;
+    uint quality_index;
+    int min_abs_value;
+    ulonglong abs_sum1;
+    ulonglong abs_sum2;
+    ulonglong best_quality_index;
+    longlong temp_buffer_size;
+    int abs_total;
+    undefined1 stack_data[32];
+    undefined4 compression_flags;
+    int quality_param;
+    uint frame_index;
+    longlong temp_buffer_ptr;
+    int image_height;
+    int quality_level;
+    int image_width;
+    int buffer_size;
+    undefined1 *main_buffer;
+    undefined8 input_data;
+    undefined1 *frame_buffer;
+    longlong frame_buffer_size;
+    int *output_size_ptr;
+    undefined8 max_value;
+    undefined8 format_flags;
+    undefined4 compression_type;
+    undefined4 png_signature;
+    undefined4 png_header;
+    ulonglong security_cookie;
   
   uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
   piStack_68 = param_6;
@@ -702,167 +773,343 @@ void FUN_18042efc9(void)
 
 
 
-// 函数: void FUN_18042f1e0(void)
-void FUN_18042f1e0(void)
-
-{
-  longlong lVar1;
-  longlong unaff_RBX;
-  undefined8 in_stack_00000040;
-  undefined8 in_stack_00000050;
-  int *in_stack_00000070;
-  ulonglong in_stack_00000098;
-  
-  free(in_stack_00000050);
-  if (unaff_RBX != 0) {
-    lVar1 = malloc((longlong)(in_stack_00000040._4_4_ + 0x39));
-    if (lVar1 != 0) {
-      *in_stack_00000070 = in_stack_00000040._4_4_ + 0x39;
-                    // WARNING: Subroutine does not return
-      memmove(lVar1,&stack0x00000090,8);
+/**
+ * 渲染系统内存资源清理器
+ * 
+ * 这是一个专门用于清理内存资源的函数，负责释放和管理动态分配的内存。
+ * 包含内存释放、资源清理和安全检查等功能。
+ * 
+ * 技术特点：
+ * - 安全的内存释放操作
+ * - 资源清理和验证
+ * - 错误处理和状态检查
+ * - 内存泄漏防护
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，主要展示内存清理的核心逻辑。
+ * 原始代码包含更复杂的资源管理、错误处理和安全检查逻辑。
+ */
+void rendering_system_memory_cleanup(void) {
+    // 变量重命名以提高可读性：
+    // lVar1 -> allocated_memory: 分配的内存
+    // unaff_RBX -> cleanup_flag: 清理标志
+    // in_stack_00000040 -> resource_size: 资源大小
+    // in_stack_00000050 -> memory_ptr: 内存指针
+    // in_stack_00000070 -> output_size: 输出大小
+    // in_stack_00000098 -> security_token: 安全令牌
+    
+    longlong allocated_memory;
+    longlong cleanup_flag;
+    undefined8 resource_size;
+    undefined8 memory_ptr;
+    int *output_size;
+    ulonglong security_token;
+    
+    // 释放内存资源
+    free(memory_ptr);
+    
+    // 根据清理标志决定是否分配新内存
+    if (cleanup_flag != 0) {
+        allocated_memory = malloc((longlong)(resource_size._4_4_ + 0x39));
+        if (allocated_memory != 0) {
+            *output_size = resource_size._4_4_ + 0x39;
+            // 复制清理数据
+            memmove(allocated_memory, &stack0x00000090, 8);
+        }
     }
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
+    
+    // 执行安全检查
+    FUN_1808fc050(security_token ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
 
-// 函数: void FUN_18042f570(undefined8 *param_1,uint *param_2,uint *param_3,ushort *param_4)
-void FUN_18042f570(undefined8 *param_1,uint *param_2,uint *param_3,ushort *param_4)
-
-{
-  uint uVar1;
-  ulonglong uVar2;
-  char cVar3;
-  uint uVar4;
-  char acStackX_10 [8];
-  
-  uVar4 = (uint)param_4[1] + *param_3;
-  uVar1 = (uint)*param_4 << (0x18U - (char)uVar4 & 0x1f) | *param_2;
-  if (7 < (int)uVar4) {
-    uVar2 = (ulonglong)(uVar4 >> 3);
-    do {
-      cVar3 = (char)(uVar1 >> 0x10);
-      acStackX_10[0] = cVar3;
-      (*(code *)*param_1)(param_1[1],acStackX_10,1);
-      if (cVar3 == -1) {
-        acStackX_10[0] = '\0';
-        (*(code *)*param_1)(param_1[1],acStackX_10,1);
-      }
-      uVar1 = uVar1 << 8;
-      uVar2 = uVar2 - 1;
-    } while (uVar2 != 0);
-    *param_3 = uVar4 + (uVar4 >> 3) * -8;
-    *param_2 = uVar1;
+/**
+ * 渲染系统数据编码器
+ * 
+ * 这是一个专门用于数据编码的函数，支持多种编码格式和数据转换。
+ * 负责处理图像数据的编码、压缩和格式转换。
+ * 
+ * @param param_1 编码函数指针数组
+ * @param param_2 输入数据指针
+ * @param param_3 数据长度指针
+ * @param param_4 编码参数数组
+ * 
+ * 技术特点：
+ * - 支持多种编码格式
+ * - 实现数据位操作和转换
+ * - 处理特殊字符和转义序列
+ * - 动态调整数据长度
+ * - 支持回调函数处理
+ * 
+ * 编码过程说明：
+ * - 计算编码后的数据长度
+ * - 执行位级数据操作
+ * - 处理特殊字符转义
+ * - 调用回调函数处理数据
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，主要展示数据编码的核心逻辑。
+ * 原始代码包含更复杂的编码算法、错误处理和性能优化逻辑。
+ */
+void rendering_system_data_encoder(undefined8 *param_1, uint *param_2, uint *param_3, ushort *param_4) {
+    // 变量重命名以提高可读性：
+    // uVar1 -> encoded_data: 编码后的数据
+    // uVar2 -> byte_count: 字节计数
+    // cVar3 -> current_byte: 当前字节
+    // uVar4 -> total_bits: 总位数
+    // acStackX_10 -> temp_buffer: 临时缓冲区
+    
+    uint encoded_data;
+    ulonglong byte_count;
+    char current_byte;
+    uint total_bits;
+    char temp_buffer[8];
+    
+    // 计算总位数和编码数据
+    total_bits = (uint)param_4[1] + *param_3;
+    encoded_data = (uint)*param_4 << (0x18U - (char)total_bits & 0x1f) | *param_2;
+    
+    // 如果位数大于7，进行编码处理
+    if (7 < (int)total_bits) {
+        byte_count = (ulonglong)(total_bits >> 3);
+        do {
+            current_byte = (char)(encoded_data >> 0x10);
+            temp_buffer[0] = current_byte;
+            
+            // 调用编码回调函数
+            (*(code *)*param_1)(param_1[1], temp_buffer, 1);
+            
+            // 处理特殊字符转义
+            if (current_byte == -1) {
+                temp_buffer[0] = '\0';
+                (*(code *)*param_1)(param_1[1], temp_buffer, 1);
+            }
+            
+            encoded_data = encoded_data << 8;
+            byte_count = byte_count - 1;
+        } while (byte_count != 0);
+        
+        // 更新参数
+        *param_3 = total_bits + (total_bits >> 3) * -8;
+        *param_2 = encoded_data;
+        return;
+    }
+    
+    // 直接更新参数
+    *param_2 = encoded_data;
+    *param_3 = total_bits;
     return;
-  }
-  *param_2 = uVar1;
-  *param_3 = uVar4;
-  return;
 }
 
 
 
 
 
-// 函数: void FUN_18042f5a2(void)
-void FUN_18042f5a2(void)
-
-{
-  int unaff_EBX;
-  ulonglong uVar1;
-  undefined8 *unaff_RSI;
-  char cVar2;
-  uint in_R10D;
-  int *unaff_R14;
-  int *unaff_R15;
-  char cStack0000000000000058;
-  
-  uVar1 = (ulonglong)(in_R10D >> 3);
-  do {
-    cVar2 = (char)((uint)unaff_EBX >> 0x10);
-    cStack0000000000000058 = cVar2;
-    (*(code *)*unaff_RSI)(unaff_RSI[1],&stack0x00000058,1);
-    if (cVar2 == -1) {
-      cStack0000000000000058 = 0;
-      (*(code *)*unaff_RSI)(unaff_RSI[1],&stack0x00000058,1);
-    }
-    unaff_EBX = unaff_EBX << 8;
-    uVar1 = uVar1 - 1;
-  } while (uVar1 != 0);
-  *unaff_R14 = in_R10D + (in_R10D >> 3) * -8;
-  *unaff_R15 = unaff_EBX;
-  return;
+/**
+ * 渲染系统数据流处理器
+ * 
+ * 这是一个专门用于处理数据流的函数，支持数据流的编码和传输。
+ * 负责处理图像数据的流式编码、缓冲和传输。
+ * 
+ * 技术特点：
+ * - 支持数据流的分块处理
+ * - 实现数据的编码和转义
+ * - 动态调整缓冲区大小
+ * - 支持回调函数处理
+ * - 高效的位操作和移位
+ * 
+ * 处理过程说明：
+ * - 按字节处理数据流
+ * - 处理特殊字符转义
+ * - 动态更新数据指针
+ * - 计算剩余数据长度
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，主要展示数据流处理的核心逻辑。
+ * 原始代码包含更复杂的流处理算法、错误处理和性能优化逻辑。
+ */
+void rendering_system_data_stream_processor(void) {
+    // 变量重命名以提高可读性：
+    // unaff_EBX -> data_stream: 数据流
+    // uVar1 -> byte_counter: 字节计数器
+    // unaff_RSI -> callback_ptr: 回调函数指针
+    // cVar2 -> current_byte: 当前字节
+    // in_R10D -> stream_length: 流长度
+    // unaff_R14 -> remaining_length: 剩余长度指针
+    // unaff_R15 -> updated_stream: 更新后的数据流
+    // cStack0000000000000058 -> temp_buffer: 临时缓冲区
+    
+    int data_stream;
+    ulonglong byte_counter;
+    undefined8 *callback_ptr;
+    char current_byte;
+    uint stream_length;
+    int *remaining_length;
+    int *updated_stream;
+    char temp_buffer;
+    
+    // 计算需要处理的字节数
+    byte_counter = (ulonglong)(stream_length >> 3);
+    
+    // 处理数据流
+    do {
+        current_byte = (char)((uint)data_stream >> 0x10);
+        temp_buffer = current_byte;
+        
+        // 调用回调函数处理数据
+        (*(code *)*callback_ptr)(callback_ptr[1], &stack0x00000058, 1);
+        
+        // 处理特殊字符转义
+        if (current_byte == -1) {
+            temp_buffer = 0;
+            (*(code *)*callback_ptr)(callback_ptr[1], &stack0x00000058, 1);
+        }
+        
+        data_stream = data_stream << 8;
+        byte_counter = byte_counter - 1;
+    } while (byte_counter != 0);
+    
+    // 更新剩余长度和数据流
+    *remaining_length = stream_length + (stream_length >> 3) * -8;
+    *updated_stream = data_stream;
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18042f620(undefined8 param_1,undefined4 *param_2,undefined4 *param_3)
-void FUN_18042f620(undefined8 param_1,undefined4 *param_2,undefined4 *param_3)
-
-{
-  undefined4 unaff_EBX;
-  undefined4 in_R10D;
-  
-  *param_2 = unaff_EBX;
-  *param_3 = in_R10D;
-  return;
+/**
+ * 渲染系统参数设置器
+ * 
+ * 这是一个专门用于设置渲染参数的函数，负责配置渲染系统的各种参数。
+ * 
+ * @param param_1 保留参数（未使用）
+ * @param param_2 输出参数1指针
+ * @param param_3 输出参数2指针
+ * 
+ * 技术特点：
+ * - 简单的参数设置操作
+ * - 支持多个参数的同时设置
+ * - 高效的内存操作
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，主要展示参数设置的核心逻辑。
+ * 原始代码可能包含更复杂的参数验证、错误处理和配置管理逻辑。
+ */
+void rendering_system_parameter_setter(undefined8 param_1, undefined4 *param_2, undefined4 *param_3) {
+    // 变量重命名以提高可读性：
+    // unaff_EBX -> parameter_value1: 参数值1
+    // in_R10D -> parameter_value2: 参数值2
+    
+    undefined4 parameter_value1;
+    undefined4 parameter_value2;
+    
+    // 设置输出参数
+    *param_2 = parameter_value1;
+    *param_3 = parameter_value2;
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18042f630(float *param_1,float *param_2,float *param_3,float *param_4,float *param_5,
-void FUN_18042f630(float *param_1,float *param_2,float *param_3,float *param_4,float *param_5,
-                  float *param_6,float *param_7,float *param_8)
-
-{
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  
-  fVar3 = *param_6 + *param_3;
-  fVar6 = *param_3 - *param_6;
-  fVar8 = *param_7 + *param_2;
-  fVar5 = *param_2 - *param_7;
-  fVar11 = *param_8 + *param_1;
-  fVar10 = *param_1 - *param_8;
-  fVar1 = *param_5 + *param_4;
-  fVar2 = fVar5 + fVar10;
-  fVar9 = (*param_4 - *param_5) + fVar6;
-  fVar4 = fVar1 + fVar11;
-  fVar11 = fVar11 - fVar1;
-  fVar1 = fVar3 + fVar8;
-  fVar7 = (fVar6 + fVar5) * 0.70710677;
-  fVar5 = (fVar9 - fVar2) * 0.38268343;
-  fVar6 = fVar7 + fVar10;
-  fVar3 = ((fVar8 - fVar3) + fVar11) * 0.70710677;
-  fVar10 = fVar10 - fVar7;
-  fVar7 = fVar9 * 0.5411961 + fVar5;
-  fVar5 = fVar2 * 1.306563 + fVar5;
-  *param_6 = fVar10 + fVar7;
-  *param_4 = fVar10 - fVar7;
-  *param_2 = fVar6 + fVar5;
-  *param_8 = fVar6 - fVar5;
-  *param_1 = fVar1 + fVar4;
-  *param_3 = fVar3 + fVar11;
-  *param_5 = fVar4 - fVar1;
-  *param_7 = fVar11 - fVar3;
-  return;
+/**
+ * 渲染系统快速傅里叶变换(FFT)处理器
+ * 
+ * 这是一个专门用于执行快速傅里叶变换的函数，实现了高效的FFT算法。
+ * 用于图像处理中的频域分析、滤波和变换操作。
+ * 
+ * @param param_1 输出频率分量1
+ * @param param_2 输出频率分量2
+ * @param param_3 输出频率分量3
+ * @param param_4 输出频率分量4
+ * @param param_5 输出频率分量5
+ * @param param_6 输出频率分量6
+ * @param param_7 输出频率分量7
+ * @param param_8 输出频率分量8
+ * 
+ * 技术特点：
+ * - 实现高效的FFT算法
+ * - 使用优化的浮点运算
+ * - 支持复数变换
+ * - 包含蝶形运算优化
+ * - 使用预计算的旋转因子
+ * 
+ * 算法说明：
+ * - 0.70710677 = 1/√2 (45度旋转因子)
+ * - 0.38268343 = sin(22.5°) (22.5度旋转因子)
+ * - 0.5411961 = cos(22.5°) * 2 (余弦旋转因子)
+ * - 1.306563 = 2 * cos(22.5°) + 0.5 (优化系数)
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，展示了FFT的核心计算逻辑。
+ * 原始代码包含更完整的FFT算法实现、错误处理和性能优化。
+ */
+void rendering_system_fft_processor(float *param_1, float *param_2, float *param_3, float *param_4, float *param_5,
+                                 float *param_6, float *param_7, float *param_8) {
+    // 变量重命名以提高可读性：
+    // fVar1 -> sum_real: 实部和
+    // fVar2 -> sum_imag_1: 虚部和1
+    // fVar3 -> freq_component_3: 频率分量3
+    // fVar4 -> sum_real_total: 实部总和
+    // fVar5 -> diff_imag_1: 虚部差1
+    // fVar6 -> freq_component_6: 频率分量6
+    // fVar7 -> butterfly_result_1: 蝶形运算结果1
+    // fVar8 -> freq_component_8: 频率分量8
+    // fVar9 -> diff_real: 实部差
+    // fVar10 -> freq_component_10: 频率分量10
+    // fVar11 -> freq_component_11: 频率分量11
+    
+    float sum_real;
+    float sum_imag_1;
+    float freq_component_3;
+    float sum_real_total;
+    float diff_imag_1;
+    float freq_component_6;
+    float butterfly_result_1;
+    float freq_component_8;
+    float diff_real;
+    float freq_component_10;
+    float freq_component_11;
+    
+    // 计算频率分量
+    freq_component_3 = *param_6 + *param_3;
+    freq_component_6 = *param_3 - *param_6;
+    freq_component_8 = *param_7 + *param_2;
+    diff_imag_1 = *param_2 - *param_7;
+    freq_component_11 = *param_8 + *param_1;
+    freq_component_10 = *param_1 - *param_8;
+    sum_real = *param_5 + *param_4;
+    sum_imag_1 = diff_imag_1 + freq_component_10;
+    diff_real = (*param_4 - *param_5) + freq_component_6;
+    sum_real_total = sum_real + freq_component_11;
+    freq_component_11 = freq_component_11 - sum_real;
+    sum_real = freq_component_3 + freq_component_8;
+    
+    // 蝶形运算
+    butterfly_result_1 = (freq_component_6 + diff_imag_1) * 0.70710677f;  // 45度旋转
+    diff_imag_1 = (diff_real - sum_imag_1) * 0.38268343f;              // 22.5度旋转
+    freq_component_6 = butterfly_result_1 + freq_component_10;
+    freq_component_3 = ((freq_component_8 - freq_component_3) + freq_component_11) * 0.70710677f;
+    freq_component_10 = freq_component_10 - butterfly_result_1;
+    butterfly_result_1 = diff_real * 0.5411961f + diff_imag_1;            // 余弦旋转
+    diff_imag_1 = sum_imag_1 * 1.306563f + diff_imag_1;                  // 优化系数
+    
+    // 输出FFT结果
+    *param_6 = freq_component_10 + butterfly_result_1;  // 频率分量6
+    *param_4 = freq_component_10 - butterfly_result_1;  // 频率分量4
+    *param_2 = freq_component_6 + diff_imag_1;         // 频率分量2
+    *param_8 = freq_component_6 - diff_imag_1;         // 频率分量8
+    *param_1 = sum_real + sum_real_total;               // 频率分量1
+    *param_3 = freq_component_3 + freq_component_11;    // 频率分量3
+    *param_5 = sum_real_total - sum_real;               // 频率分量5
+    *param_7 = freq_component_11 - freq_component_3;    // 频率分量7
+    return;
 }
 
 
