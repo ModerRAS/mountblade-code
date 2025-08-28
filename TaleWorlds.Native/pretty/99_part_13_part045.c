@@ -239,7 +239,7 @@ void SystemDataStructureProcessor(int64_t *param_1, uint64_t *param_2)
     }
     
     // 调用系统验证函数
-    iVar2 = FUN_1808b2950(param_1, param_2);
+    iVar2 = SystemDataValidator(param_1, param_2);
     uStack_98 = (int64_t *)CONCAT44(uStack_98._4_4_, (int32_t)uStack_98);
     
     if (iVar2 == 0) {
@@ -268,7 +268,7 @@ void SystemDataStructureProcessor(int64_t *param_1, uint64_t *param_2)
                 iVar2 = -1;
             LAB_1808c3a9b:
                 if (iVar2 != -1) {
-                    iVar2 = FUN_1808b2f30(param_1, 0);
+                    iVar2 = SystemDataProcessor(param_1, 0);
                     uStack_98 = (int64_t *)CONCAT44(uStack_98._4_4_, (int32_t)uStack_98);
                     if (iVar2 != 0) goto FUN_1808c3dad;
                     plVar10 = (int64_t *)param_1[9];
@@ -468,7 +468,7 @@ void SystemResourceManager(int32_t param_1, uint64_t param_2, int64_t param_3)
             }
             iVar7 = -1;
         LAB_1808c3a9b:
-            if ((iVar7 != -1) && (iVar7 = FUN_1808b2f30(param_1, 0), iVar7 == 0)) {
+            if ((iVar7 != -1) && (iVar7 = SystemDataProcessor(param_1, 0), iVar7 == 0)) {
                 puVar16 = *(uint64_t **)(unaff_RSI + SYSTEM_OFFSET_0X48);
                 puVar1 = (uint64_t *)(unaff_RSI + SYSTEM_OFFSET_0X48);
                 while (puVar16 != puVar1) {
