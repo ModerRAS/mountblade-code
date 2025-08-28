@@ -1,652 +1,631 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part014.c - 3 个函数
+// 03_rendering_part014.c - 渲染系统相关函数
+// 本文件包含3个函数，主要用于渲染对象的管理和变换操作
 
-// 函数: void FUN_1802768b0(longlong param_1,longlong *param_2)
-void FUN_1802768b0(longlong param_1,longlong *param_2)
-
+/**
+ * 更新渲染对象的状态和属性
+ * 
+ * @param render_context 渲染上下文指针
+ * @param object_list 对象列表指针
+ * 
+ * 此函数遍历对象列表，更新每个对象的渲染状态，包括：
+ * - 对象的引用关系管理
+ * - 渲染标志位设置
+ * - 对象属性更新
+ */
+void update_render_object_status(longlong render_context, longlong *object_list)
 {
-  byte bVar1;
-  longlong lVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  undefined1 uVar5;
-  byte bVar6;
-  uint uVar7;
-  longlong *plVar8;
-  longlong lVar9;
-  longlong *plVar10;
+  byte status_flag;
+  longlong object_data;
+  longlong *object_ptr;
+  longlong temp_data;
+  undefined1 render_mode;
+  byte attribute_byte;
+  uint attribute_mask;
+  longlong *list_iterator;
+  longlong loop_counter;
+  longlong *current_object;
   
-  plVar8 = *(longlong **)(param_1 + 0x38);
-  if (plVar8 < *(longlong **)(param_1 + 0x40)) {
+  // 获取对象列表起始位置
+  list_iterator = *(longlong **)(render_context + 0x38);
+  if (list_iterator < *(longlong **)(render_context + 0x40)) {
     do {
-      lVar2 = *plVar8;
-      plVar10 = (longlong *)*param_2;
-      if (plVar10 != *(longlong **)(lVar2 + 0x1b8)) {
-        if (*(char *)(lVar2 + 0xb1) == '\0') {
-          if (plVar10 != (longlong *)0x0) {
-            (**(code **)(*plVar10 + 0x28))(plVar10);
+      object_data = *list_iterator;
+      current_object = (longlong *)*object_list;
+      if (current_object != *(longlong **)(object_data + 0x1b8)) {
+        // 检查对象是否处于非活动状态
+        if (*(char *)(object_data + 0xb1) == '\0') {
+          // 释放旧对象的引用
+          if (current_object != (longlong *)0x0) {
+            (**(code **)(*current_object + 0x28))(current_object);
           }
-          plVar3 = *(longlong **)(lVar2 + 0x1b8);
-          *(longlong **)(lVar2 + 0x1b8) = plVar10;
-          if (plVar3 != (longlong *)0x0) {
-            (**(code **)(*plVar3 + 0x38))();
+          // 更新对象引用关系
+          object_ptr = *(longlong **)(object_data + 0x1b8);
+          *(longlong **)(object_data + 0x1b8) = current_object;
+          if (object_ptr != (longlong *)0x0) {
+            (**(code **)(*object_ptr + 0x38))();
           }
-          lVar4 = *(longlong *)(lVar2 + 0x1b8);
-          if (lVar4 != 0) {
-            bVar6 = (byte)((uint)*(undefined4 *)(*(longlong *)(lVar4 + 0x1e0) + 0x1588) >> 0x1b) <<
-                    7;
-            bVar1 = *(byte *)(lVar2 + 0xfd);
-            *(byte *)(lVar2 + 0xfd) = bVar6 | bVar1 & 0x7f;
-            uVar7 = *(uint *)(lVar4 + 0x138) & 0x3000;
-            if (uVar7 == 0x1000) {
-              *(undefined1 *)(lVar2 + 0xf7) = 1;
+          
+          // 更新对象属性
+          temp_data = *(longlong *)(object_data + 0x1b8);
+          if (temp_data != 0) {
+            // 设置状态标志位
+            status_flag = (byte)((uint)*(undefined4 *)(*(longlong *)(temp_data + 0x1e0) + 0x1588) >> 0x1b) << 7;
+            attribute_byte = *(byte *)(object_data + 0xfd);
+            *(byte *)(object_data + 0xfd) = status_flag | attribute_byte & 0x7f;
+            
+            // 处理属性掩码
+            attribute_mask = *(uint *)(temp_data + 0x138) & 0x3000;
+            if (attribute_mask == 0x1000) {
+              *(undefined1 *)(object_data + 0xf7) = 1;
             }
             else {
-              uVar5 = 0;
-              if (uVar7 == 0x2000) {
-                uVar5 = 2;
+              render_mode = 0;
+              if (attribute_mask == 0x2000) {
+                render_mode = 2;
               }
-              *(undefined1 *)(lVar2 + 0xf7) = uVar5;
+              *(undefined1 *)(object_data + 0xf7) = render_mode;
             }
-            bVar6 = bVar6 | bVar1 & 0x77;
-            *(byte *)(lVar2 + 0xfd) = bVar6;
-            lVar9 = 0;
-            plVar10 = (longlong *)(lVar4 + 0xb8);
+            
+            // 更新状态字节
+            status_flag = status_flag | attribute_byte & 0x77;
+            *(byte *)(object_data + 0xfd) = status_flag;
+            
+            // 检查子对象状态
+            loop_counter = 0;
+            current_object = (longlong *)(temp_data + 0xb8);
             do {
-              if (0xf < lVar9) break;
-              if ((*plVar10 != 0) && (*(int *)(*plVar10 + 0x36c) != 0)) {
-                bVar6 = bVar6 | 8;
-                *(byte *)(lVar2 + 0xfd) = bVar6;
+              if (0xf < loop_counter) break;
+              if ((*current_object != 0) && (*(int *)(*current_object + 0x36c) != 0)) {
+                status_flag = status_flag | 8;
+                *(byte *)(object_data + 0xfd) = status_flag;
               }
-              lVar9 = lVar9 + 1;
-              plVar10 = plVar10 + 1;
-            } while ((bVar6 & 8) == 0);
-            FUN_1800781e0(lVar2);
+              loop_counter = loop_counter + 1;
+              current_object = current_object + 1;
+            } while ((status_flag & 8) == 0);
+            
+            // 触发对象更新
+            FUN_1800781e0(object_data);
           }
         }
         else {
+          // 处理错误情况
           FUN_180626f80(&UNK_1809ffa40);
         }
       }
-      plVar8 = plVar8 + 2;
-    } while (plVar8 < *(longlong **)(param_1 + 0x40));
+      list_iterator = list_iterator + 2;
+    } while (list_iterator < *(longlong **)(render_context + 0x40));
   }
   return;
 }
 
 
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180276a70(undefined8 *param_1,longlong param_2,float *param_3,float *param_4,
-void FUN_180276a70(undefined8 *param_1,longlong param_2,float *param_3,float *param_4,
-                  undefined4 param_5,int param_6,longlong param_7,char param_8)
-
+/**
+ * 执行渲染变换操作
+ * 
+ * @param transform_matrix 变换矩阵指针
+ * @param transform_type 变换类型
+ * @param input_position 输入位置向量
+ * @param output_position 输出位置向量
+ * @param render_flags 渲染标志
+ * @param blend_mode 混合模式
+ * @param shader_data 着色器数据
+ * @param texture_slot 纹理槽位
+ * 
+ * 此函数执行复杂的3D变换计算，包括：
+ * - 矩阵变换
+ * - 位置计算
+ * - 渲染状态设置
+ */
+void perform_render_transform(undefined8 *transform_matrix, longlong transform_type, float *input_position, float *output_position,
+                             undefined4 render_flags, int blend_mode, longlong shader_data, char texture_slot)
 {
-  uint *puVar1;
-  undefined8 *puVar2;
-  float fVar3;
-  uint uVar4;
-  longlong lVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  undefined4 uVar18;
-  float *pfVar19;
-  longlong lVar20;
-  float fVar21;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
-  float fVar32;
-  float fVar33;
-  undefined1 auStack_208 [32];
-  float fStack_1e8;
-  float fStack_1e4;
-  float fStack_1e0;
-  float fStack_1d8;
-  float fStack_1d4;
-  float fStack_1d0;
-  undefined4 uStack_1cc;
-  float fStack_1c8;
-  float fStack_1c4;
-  float fStack_1c0;
-  float fStack_1bc;
-  float fStack_1b8;
-  float fStack_1b4;
-  float fStack_1b0;
-  undefined4 uStack_1ac;
-  float fStack_1a8;
-  float fStack_1a4;
-  float fStack_1a0;
-  float fStack_19c;
-  undefined4 uStack_198;
-  undefined4 uStack_194;
-  undefined4 uStack_190;
-  float fStack_168;
-  float fStack_164;
-  float fStack_160;
-  float fStack_15c;
-  float fStack_158;
-  float fStack_154;
-  float fStack_150;
-  float fStack_14c;
-  float fStack_148;
-  float fStack_144;
-  float fStack_140;
-  float fStack_13c;
-  float fStack_138;
-  float fStack_134;
-  float fStack_130;
-  float fStack_12c;
-  undefined8 uStack_128;
-  undefined8 uStack_120;
-  float fStack_118;
-  float fStack_114;
-  float fStack_110;
-  float fStack_10c;
-  undefined8 uStack_108;
-  undefined8 uStack_100;
-  float fStack_f8;
-  float fStack_f4;
-  float fStack_f0;
-  float fStack_ec;
-  undefined1 auStack_e8 [12];
-  undefined4 uStack_dc;
-  undefined4 uStack_d8;
-  undefined4 uStack_d4;
-  undefined4 uStack_d0;
-  float fStack_cc;
-  undefined8 uStack_c8;
-  undefined8 uStack_c0;
-  float fStack_b8;
-  float fStack_b4;
-  float fStack_b0;
-  float fStack_ac;
-  undefined8 uStack_a8;
-  undefined8 uStack_a0;
-  float fStack_98;
-  float fStack_94;
-  float fStack_90;
-  float fStack_8c;
-  ulonglong uStack_88;
+  uint *lock_ptr;
+  undefined8 *data_ptr;
+  float transform_value;
+  uint lock_status;
+  longlong shader_offset;
+  float matrix_values[16];
+  float input_coords[4];
+  float output_coords[4];
+  float temp_values[16];
+  undefined4 max_float;
+  float *shader_params;
+  longlong transform_offset;
+  float distance_values[4];
+  float stack_vars[64];
+  undefined8 stack_data[4];
+  float transform_result[4];
   
-  uStack_88 = _DAT_180bf00a8 ^ (ulonglong)auStack_208;
-  if (*(int *)(param_1 + 0x42) != 0) {
-    if ((undefined *)*param_1 == &UNK_180a169b8) {
-      pfVar19 = (float *)(param_1 + 0x66);
+  // 栈保护检查
+  stack_data[0] = _DAT_180bf00a8 ^ (ulonglong)stack_vars;
+  
+  // 检查渲染标志
+  if (*(int *)(transform_matrix + 0x42) != 0) {
+    // 获取着色器参数
+    if ((undefined *)*transform_matrix == &UNK_180a169b8) {
+      shader_params = (float *)(transform_matrix + 0x66);
     }
     else {
-      pfVar19 = (float *)(**(code **)((undefined *)*param_1 + 0x158))(param_1);
+      shader_params = (float *)(**(code **)((undefined *)*transform_matrix + 0x158))(transform_matrix);
     }
-    fVar6 = *(float *)(param_7 + 0x70);
-    fVar7 = *(float *)(param_7 + 0x74);
-    fVar8 = *(float *)(param_7 + 0x78);
-    fVar9 = *(float *)(param_7 + 0x7c);
-    fVar10 = *(float *)(param_7 + 0x80);
-    fVar11 = *(float *)(param_7 + 0x84);
-    fVar12 = *(float *)(param_7 + 0x88);
-    fVar13 = *(float *)(param_7 + 0x8c);
-    fVar14 = *(float *)(param_7 + 0x90);
-    fVar15 = *(float *)(param_7 + 0x94);
-    fVar16 = *(float *)(param_7 + 0x98);
-    fVar17 = *(float *)(param_7 + 0x9c);
-    fVar21 = pfVar19[1];
-    fVar22 = *pfVar19;
-    fVar23 = pfVar19[2];
-    fVar24 = pfVar19[5];
-    fVar27 = pfVar19[9];
-    fVar3 = pfVar19[0xd];
-    fVar25 = pfVar19[4];
-    fVar31 = fVar21 * fVar10 + fVar22 * fVar6 + fVar23 * fVar14;
-    fVar32 = fVar21 * fVar11 + fVar22 * fVar7 + fVar23 * fVar15;
-    fVar33 = fVar21 * fVar12 + fVar22 * fVar8 + fVar23 * fVar16;
-    fStack_15c = fVar21 * fVar13 + fVar22 * fVar9 + fVar23 * fVar17;
-    fVar21 = pfVar19[6];
-    fVar22 = pfVar19[8];
-    fVar28 = fVar24 * fVar10 + fVar25 * fVar6 + fVar21 * fVar14;
-    fVar29 = fVar24 * fVar11 + fVar25 * fVar7 + fVar21 * fVar15;
-    fVar30 = fVar24 * fVar12 + fVar25 * fVar8 + fVar21 * fVar16;
-    fStack_14c = fVar24 * fVar13 + fVar25 * fVar9 + fVar21 * fVar17;
-    fVar21 = pfVar19[10];
-    fVar23 = pfVar19[0xc];
-    fVar24 = fVar27 * fVar10 + fVar22 * fVar6 + fVar21 * fVar14;
-    fVar25 = fVar27 * fVar11 + fVar22 * fVar7 + fVar21 * fVar15;
-    fVar26 = fVar27 * fVar12 + fVar22 * fVar8 + fVar21 * fVar16;
-    fVar27 = fVar27 * fVar13 + fVar22 * fVar9 + fVar21 * fVar17;
-    fVar21 = pfVar19[0xe];
-    fStack_138 = fVar3 * fVar10 + fVar23 * fVar6 + fVar21 * fVar14 + *(float *)(param_7 + 0xa0);
-    fStack_134 = fVar3 * fVar11 + fVar23 * fVar7 + fVar21 * fVar15 + *(float *)(param_7 + 0xa4);
-    fStack_130 = fVar3 * fVar12 + fVar23 * fVar8 + fVar21 * fVar16 + *(float *)(param_7 + 0xa8);
-    fStack_12c = fVar3 * fVar13 + fVar23 * fVar9 + fVar21 * fVar17 + *(float *)(param_7 + 0xac);
-    fVar21 = *param_3 - fStack_138;
-    fVar22 = param_3[1] - fStack_134;
-    fVar23 = param_3[2] - fStack_130;
-    fStack_1d8 = fVar21 * fVar31 + fVar22 * fVar32 + fVar23 * fVar33;
-    fStack_1d4 = fVar21 * fVar28 + fVar22 * fVar29 + fVar23 * fVar30;
-    fStack_1d0 = fVar21 * fVar24 + fVar22 * fVar25 + fVar23 * fVar26;
-    _fStack_1c8 = CONCAT44(fStack_1d4,fStack_1d8);
-    _fStack_1c0 = CONCAT44(fVar21 * fVar27 + fVar22 * fVar27 + fVar23 * fVar27,fStack_1d0);
-    lVar20 = (longlong)param_8 * 0x100;
-    lVar5 = *(longlong *)(*(longlong *)(param_7 + 0x260) + 0x18);
+    
+    // 提取变换矩阵数据
+    matrix_values[0] = *(float *)(shader_data + 0x70);
+    matrix_values[1] = *(float *)(shader_data + 0x74);
+    matrix_values[2] = *(float *)(shader_data + 0x78);
+    matrix_values[3] = *(float *)(shader_data + 0x7c);
+    matrix_values[4] = *(float *)(shader_data + 0x80);
+    matrix_values[5] = *(float *)(shader_data + 0x84);
+    matrix_values[6] = *(float *)(shader_data + 0x88);
+    matrix_values[7] = *(float *)(shader_data + 0x8c);
+    matrix_values[8] = *(float *)(shader_data + 0x90);
+    matrix_values[9] = *(float *)(shader_data + 0x94);
+    matrix_values[10] = *(float *)(shader_data + 0x98);
+    matrix_values[11] = *(float *)(shader_data + 0x9c);
+    
+    // 计算变换结果
+    temp_values[0] = shader_params[1];
+    temp_values[1] = shader_params[0];
+    temp_values[2] = shader_params[2];
+    temp_values[3] = shader_params[5];
+    temp_values[4] = shader_params[9];
+    temp_values[5] = shader_params[13];
+    temp_values[6] = shader_params[4];
+    
+    // 执行矩阵乘法
+    transform_result[0] = temp_values[0] * matrix_values[4] + temp_values[1] * matrix_values[0] + temp_values[2] * matrix_values[8];
+    transform_result[1] = temp_values[0] * matrix_values[5] + temp_values[1] * matrix_values[1] + temp_values[2] * matrix_values[9];
+    transform_result[2] = temp_values[0] * matrix_values[6] + temp_values[1] * matrix_values[2] + temp_values[2] * matrix_values[10];
+    stack_vars[15] = temp_values[0] * matrix_values[7] + temp_values[1] * matrix_values[3] + temp_values[2] * matrix_values[11];
+    
+    temp_values[0] = shader_params[6];
+    temp_values[1] = shader_params[8];
+    transform_result[3] = temp_values[3] * matrix_values[4] + temp_values[6] * matrix_values[0] + temp_values[0] * matrix_values[8];
+    transform_result[4] = temp_values[3] * matrix_values[5] + temp_values[6] * matrix_values[1] + temp_values[0] * matrix_values[9];
+    transform_result[5] = temp_values[3] * matrix_values[6] + temp_values[6] * matrix_values[2] + temp_values[0] * matrix_values[10];
+    stack_vars[14] = temp_values[3] * matrix_values[7] + temp_values[6] * matrix_values[3] + temp_values[0] * matrix_values[11];
+    
+    temp_values[0] = shader_params[10];
+    temp_values[2] = shader_params[12];
+    transform_result[6] = temp_values[4] * matrix_values[4] + temp_values[1] * matrix_values[0] + temp_values[0] * matrix_values[8];
+    transform_result[7] = temp_values[4] * matrix_values[5] + temp_values[1] * matrix_values[1] + temp_values[0] * matrix_values[9];
+    transform_result[8] = temp_values[4] * matrix_values[6] + temp_values[1] * matrix_values[2] + temp_values[0] * matrix_values[10];
+    temp_values[4] = temp_values[4] * matrix_values[7] + temp_values[1] * matrix_values[3] + temp_values[0] * matrix_values[11];
+    
+    temp_values[0] = shader_params[14];
+    stack_vars[8] = temp_values[5] * matrix_values[4] + temp_values[2] * matrix_values[0] + temp_values[0] * matrix_values[8] + *(float *)(shader_data + 0xa0);
+    stack_vars[9] = temp_values[5] * matrix_values[5] + temp_values[2] * matrix_values[1] + temp_values[0] * matrix_values[9] + *(float *)(shader_data + 0xa4);
+    stack_vars[10] = temp_values[5] * matrix_values[6] + temp_values[2] * matrix_values[2] + temp_values[0] * matrix_values[10] + *(float *)(shader_data + 0xa8);
+    stack_vars[11] = temp_values[5] * matrix_values[7] + temp_values[2] * matrix_values[3] + temp_values[0] * matrix_values[11] + *(float *)(shader_data + 0xac);
+    
+    // 计算位置差异
+    temp_values[0] = *input_position - stack_vars[8];
+    temp_values[1] = input_position[1] - stack_vars[9];
+    temp_values[2] = input_position[2] - stack_vars[10];
+    stack_vars[13] = temp_values[0] * transform_result[0] + temp_values[1] * transform_result[1] + temp_values[2] * transform_result[2];
+    stack_vars[12] = temp_values[0] * transform_result[3] + temp_values[1] * transform_result[4] + temp_values[2] * transform_result[5];
+    stack_vars[11] = temp_values[0] * transform_result[6] + temp_values[1] * transform_result[7] + temp_values[2] * transform_result[8];
+    
+    // 设置栈变量
+    _fStack_1c8 = CONCAT44(stack_vars[12], stack_vars[13]);
+    _fStack_1c0 = CONCAT44(temp_values[0] * temp_values[4] + temp_values[1] * temp_values[4] + temp_values[2] * temp_values[4], stack_vars[11]);
+    
+    transform_offset = (longlong)texture_slot * 0x100;
+    shader_offset = *(longlong *)(*(longlong *)(shader_data + 0x260) + 0x18);
+    
+    // 加锁操作
     do {
       LOCK();
-      puVar1 = (uint *)(lVar20 + lVar5);
-      uVar4 = *puVar1;
-      *puVar1 = *puVar1 | 1;
+      lock_ptr = (uint *)(transform_offset + shader_offset);
+      lock_status = *lock_ptr;
+      *lock_ptr = *lock_ptr | 1;
       UNLOCK();
-    } while ((uVar4 & 1) != 0);
-    puVar2 = (undefined8 *)(lVar20 + 4 + lVar5);
-    uStack_128 = *puVar2;
-    uStack_120 = puVar2[1];
-    pfVar19 = (float *)(lVar20 + 0x14 + lVar5);
-    fStack_118 = *pfVar19;
-    fStack_114 = pfVar19[1];
-    fStack_110 = pfVar19[2];
-    fStack_10c = pfVar19[3];
-    fStack_1d8 = fStack_1d8 - fStack_118;
-    *(undefined4 *)(lVar20 + lVar5) = 0;
-    uStack_1cc = 0x7f7fffff;
-    fStack_1d4 = fStack_1d4 - fStack_114;
-    fStack_1d0 = fStack_1d0 - fStack_110;
-    fStack_168 = fVar31;
-    fStack_164 = fVar32;
-    fStack_160 = fVar33;
-    fStack_158 = fVar28;
-    fStack_154 = fVar29;
-    fStack_150 = fVar30;
-    fStack_148 = fVar24;
-    fStack_144 = fVar25;
-    fStack_140 = fVar26;
-    fStack_13c = fVar27;
-    uStack_c8 = uStack_128;
-    uStack_c0 = uStack_120;
-    fStack_b8 = fStack_118;
-    fStack_b4 = fStack_114;
-    fStack_b0 = fStack_110;
-    fStack_ac = fStack_10c;
-    FUN_180285b40(&uStack_128,&fStack_1e8,&fStack_1d8);
-    fVar23 = *param_4 - fStack_138;
-    fVar22 = param_4[2] - fStack_130;
-    fVar21 = param_4[1] - fStack_134;
-    lVar5 = *(longlong *)(*(longlong *)(param_7 + 0x260) + 0x18);
-    fStack_1a8 = fVar23 * fVar31 + fVar21 * fVar32 + fVar22 * fVar33;
-    fStack_1a4 = fVar23 * fVar28 + fVar21 * fVar29 + fVar22 * fVar30;
-    fStack_1a0 = fVar23 * fVar24 + fVar21 * fVar25 + fVar22 * fVar26;
-    fStack_19c = fVar23 * fVar27 + fVar21 * fVar27 + fVar22 * fVar27;
+    } while ((lock_status & 1) != 0);
+    
+    // 读取变换数据
+    data_ptr = (undefined8 *)(transform_offset + 4 + shader_offset);
+    stack_data[1] = *data_ptr;
+    stack_data[2] = data_ptr[1];
+    shader_params = (float *)(transform_offset + 0x14 + shader_offset);
+    stack_vars[16] = *shader_params;
+    stack_vars[17] = shader_params[1];
+    stack_vars[18] = shader_params[2];
+    stack_vars[19] = shader_params[3];
+    
+    // 更新变换结果
+    stack_vars[13] = stack_vars[13] - stack_vars[16];
+    *(undefined4 *)(transform_offset + shader_offset) = 0;
+    max_float = 0x7f7fffff;
+    stack_vars[12] = stack_vars[12] - stack_vars[17];
+    stack_vars[11] = stack_vars[11] - stack_vars[18];
+    
+    // 保存变换参数
+    stack_vars[0] = transform_result[0];
+    stack_vars[1] = transform_result[1];
+    stack_vars[2] = transform_result[2];
+    stack_vars[3] = transform_result[3];
+    stack_vars[4] = transform_result[4];
+    stack_vars[5] = transform_result[5];
+    stack_vars[6] = transform_result[6];
+    stack_vars[7] = transform_result[7];
+    stack_vars[8] = transform_result[8];
+    stack_data[3] = stack_data[1];
+    stack_data[4] = stack_data[2];
+    stack_vars[20] = stack_vars[16];
+    stack_vars[21] = stack_vars[17];
+    stack_vars[22] = stack_vars[18];
+    stack_vars[23] = stack_vars[19];
+    
+    // 执行变换操作
+    FUN_180285b40(&stack_data[1], &stack_vars[24], &stack_vars[13]);
+    
+    // 处理输出位置
+    temp_values[2] = *output_position - stack_vars[8];
+    temp_values[1] = output_position[2] - stack_vars[10];
+    temp_values[0] = output_position[1] - stack_vars[9];
+    shader_offset = *(longlong *)(*(longlong *)(shader_data + 0x260) + 0x18);
+    
+    stack_vars[26] = temp_values[2] * transform_result[0] + temp_values[0] * transform_result[1] + temp_values[1] * transform_result[2];
+    stack_vars[25] = temp_values[2] * transform_result[3] + temp_values[0] * transform_result[4] + temp_values[1] * transform_result[5];
+    stack_vars[24] = temp_values[2] * transform_result[6] + temp_values[0] * transform_result[7] + temp_values[1] * transform_result[8];
+    stack_vars[23] = temp_values[2] * temp_values[4] + temp_values[0] * temp_values[4] + temp_values[1] * temp_values[4];
+    
+    // 第二次加锁操作
     do {
       LOCK();
-      puVar1 = (uint *)(lVar20 + lVar5);
-      uVar4 = *puVar1;
-      *puVar1 = *puVar1 | 1;
+      lock_ptr = (uint *)(transform_offset + shader_offset);
+      lock_status = *lock_ptr;
+      *lock_ptr = *lock_ptr | 1;
       UNLOCK();
-    } while ((uVar4 & 1) != 0);
-    puVar2 = (undefined8 *)(lVar20 + 4 + lVar5);
-    uStack_108 = *puVar2;
-    uStack_100 = puVar2[1];
-    pfVar19 = (float *)(lVar20 + 0x14 + lVar5);
-    fStack_f8 = *pfVar19;
-    fStack_f4 = pfVar19[1];
-    fStack_f0 = pfVar19[2];
-    fStack_ec = pfVar19[3];
-    fStack_1b8 = fStack_1a8 - fStack_f8;
-    *(undefined4 *)(lVar20 + lVar5) = 0;
-    uStack_1ac = 0x7f7fffff;
-    fStack_1b4 = fStack_1a4 - fStack_f4;
-    fStack_1b0 = fStack_1a0 - fStack_f0;
-    uStack_a8 = uStack_108;
-    uStack_a0 = uStack_100;
-    fStack_98 = fStack_f8;
-    fStack_94 = fStack_f4;
-    fStack_90 = fStack_f0;
-    fStack_8c = fStack_ec;
-    FUN_180285b40(&uStack_108,&uStack_198,&fStack_1b8);
-    if ((((*(float *)((longlong)param_1 + 0x214) <= fStack_1e8) &&
-         (fStack_1e8 < *(float *)((longlong)param_1 + 0x224) ||
-          fStack_1e8 == *(float *)((longlong)param_1 + 0x224))) &&
-        (*(float *)(param_1 + 0x43) <= fStack_1e4)) &&
-       (((fStack_1e4 < *(float *)(param_1 + 0x45) || fStack_1e4 == *(float *)(param_1 + 0x45) &&
-         (*(float *)((longlong)param_1 + 0x21c) <= fStack_1e0)) &&
-        (fStack_1e0 < *(float *)((longlong)param_1 + 0x22c) ||
-         fStack_1e0 == *(float *)((longlong)param_1 + 0x22c))))) {
-      if (*(int *)(param_1 + 99) == -1) {
-        *(undefined4 *)((longlong)param_1 + 0x314) = param_5;
-        uVar18 = FUN_1801b9a40(param_2 + 0x1218);
-        *(undefined4 *)(param_1 + 99) = uVar18;
+    } while ((lock_status & 1) != 0);
+    
+    // 读取更多数据
+    data_ptr = (undefined8 *)(transform_offset + 4 + shader_offset);
+    stack_data[5] = *data_ptr;
+    stack_data[6] = data_ptr[1];
+    shader_params = (float *)(transform_offset + 0x14 + shader_offset);
+    stack_vars[27] = *shader_params;
+    stack_vars[28] = shader_params[1];
+    stack_vars[29] = shader_params[2];
+    stack_vars[30] = shader_params[3];
+    
+    stack_vars[22] = stack_vars[26] - stack_vars[27];
+    *(undefined4 *)(transform_offset + shader_offset) = 0;
+    stack_vars[21] = 0x7f7fffff;
+    stack_vars[20] = stack_vars[25] - stack_vars[28];
+    stack_vars[19] = stack_vars[24] - stack_vars[29];
+    
+    stack_data[7] = stack_data[5];
+    stack_data[8] = stack_data[6];
+    stack_vars[31] = stack_vars[27];
+    stack_vars[32] = stack_vars[28];
+    stack_vars[33] = stack_vars[29];
+    stack_vars[34] = stack_vars[30];
+    
+    // 执行最终变换
+    FUN_180285b40(&stack_data[5], &stack_vars[35], &stack_vars[22]);
+    
+    // 检查渲染边界
+    if ((((*(float *)((longlong)transform_matrix + 0x214) <= stack_vars[24]) &&
+         (stack_vars[24] < *(float *)((longlong)transform_matrix + 0x224) ||
+          stack_vars[24] == *(float *)((longlong)transform_matrix + 0x224))) &&
+        (*(float *)(transform_matrix + 0x43) <= stack_vars[25]) &&
+       (((stack_vars[25] < *(float *)(transform_matrix + 0x45) || stack_vars[25] == *(float *)(transform_matrix + 0x45) &&
+         (*(float *)((longlong)transform_matrix + 0x21c) <= stack_vars[26])) &&
+        (stack_vars[26] < *(float *)((longlong)transform_matrix + 0x22c) ||
+         stack_vars[26] == *(float *)((longlong)transform_matrix + 0x22c))))) {
+      
+      // 设置渲染状态
+      if (*(int *)(transform_matrix + 99) == -1) {
+        *(undefined4 *)((longlong)transform_matrix + 0x314) = render_flags;
+        render_flags = FUN_1801b9a40(object_list + 0x1218);
+        *(undefined4 *)(transform_matrix + 99) = render_flags;
         LOCK();
-        *(undefined4 *)(param_1 + 0x62) = 0;
+        *(undefined4 *)(transform_matrix + 0x62) = 0;
         UNLOCK();
       }
-      fStack_cc = (float)param_6;
-      uStack_d8 = uStack_198;
-      uStack_d4 = uStack_194;
-      uStack_d0 = uStack_190;
-      uStack_dc = 0x3e19999a;
-      FUN_18020a7b0(param_1 + 0x61,param_2,auStack_e8);
+      
+      // 设置最终渲染参数
+      stack_vars[36] = (float)blend_mode;
+      stack_vars[37] = stack_vars[35];
+      stack_vars[38] = stack_vars[34];
+      stack_vars[39] = stack_vars[33];
+      stack_vars[40] = 0x3e19999a;
+      FUN_18020a7b0(transform_matrix + 0x61, object_list, stack_vars);
     }
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_88 ^ (ulonglong)auStack_208);
+  
+  // 栈保护检查结束
+  FUN_1808fc050(stack_data[0] ^ (ulonglong)stack_vars);
 }
 
 
-
-
-
-// 函数: void FUN_180276ad4(longlong param_1)
-void FUN_180276ad4(longlong param_1)
-
+/**
+ * 执行高级渲染变换操作
+ * 
+ * @param render_params 渲染参数指针
+ * 
+ * 此函数执行更复杂的渲染变换，包括：
+ * - 多重矩阵变换
+ * - 着色器参数处理
+ * - 纹理坐标变换
+ * - 渲染状态管理
+ */
+void perform_advanced_render_transform(longlong render_params)
 {
-  uint *puVar1;
-  undefined8 *puVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  uint uVar8;
-  longlong lVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  undefined8 uVar19;
-  undefined8 uVar20;
-  undefined4 uVar21;
-  longlong in_RAX;
-  float *pfVar22;
-  longlong unaff_RBX;
-  undefined8 *unaff_RBP;
-  float *unaff_RSI;
-  float *unaff_RDI;
-  longlong lVar23;
-  longlong in_R11;
-  char unaff_R12B;
-  longlong unaff_R14;
-  longlong unaff_R15;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
-  undefined4 unaff_XMM6_Da;
-  float fVar32;
-  undefined4 unaff_XMM6_Db;
-  float fVar33;
-  undefined4 unaff_XMM6_Dc;
-  float fVar34;
-  undefined4 unaff_XMM6_Dd;
-  float fVar35;
-  undefined4 unaff_XMM7_Da;
-  float fVar36;
-  undefined4 unaff_XMM7_Db;
-  float fVar37;
-  undefined4 unaff_XMM7_Dc;
-  float fVar38;
-  undefined4 unaff_XMM7_Dd;
-  undefined4 unaff_XMM8_Da;
-  float fVar39;
-  undefined4 unaff_XMM8_Db;
-  float fVar40;
-  undefined4 unaff_XMM8_Dc;
-  float fVar41;
-  undefined4 unaff_XMM8_Dd;
-  undefined4 unaff_XMM9_Da;
-  undefined4 unaff_XMM9_Db;
-  undefined4 unaff_XMM9_Dc;
-  undefined4 unaff_XMM9_Dd;
-  undefined4 unaff_XMM10_Da;
-  undefined4 unaff_XMM10_Db;
-  undefined4 unaff_XMM10_Dc;
-  undefined4 unaff_XMM10_Dd;
-  float fStackX_20;
-  float fStackX_24;
-  float fStack0000000000000028;
-  float in_stack_00000030;
-  float fStack0000000000000034;
-  float in_stack_00000038;
-  undefined4 uStack000000000000003c;
-  undefined8 in_stack_00000040;
-  undefined8 in_stack_00000048;
-  float in_stack_00000050;
-  float fStack0000000000000054;
-  float in_stack_00000058;
-  undefined4 uStack000000000000005c;
-  float in_stack_00000060;
-  float fStack0000000000000064;
-  float in_stack_00000068;
-  float fStack000000000000006c;
-  undefined4 uStack0000000000000070;
-  undefined4 uStack0000000000000074;
-  undefined4 in_stack_00000078;
+  uint *lock_ptr;
+  undefined8 *data_ptr;
+  float transform_value;
+  float matrix_values[16];
+  float shader_params[16];
+  uint lock_status;
+  longlong shader_offset;
+  float transform_result[16];
+  undefined8 u_var1;
+  undefined8 u_var2;
+  undefined4 render_flags;
+  longlong register_data;
+  float *shader_ptr;
+  longlong temp_register;
+  char texture_slot;
+  longlong register_14;
+  float stack_vars[64];
+  undefined4 xmm_regs[16];
+  float final_result[4];
   
-  *(undefined4 *)(in_R11 + -0x38) = unaff_XMM6_Da;
-  *(undefined4 *)(in_R11 + -0x34) = unaff_XMM6_Db;
-  *(undefined4 *)(in_R11 + -0x30) = unaff_XMM6_Dc;
-  *(undefined4 *)(in_R11 + -0x2c) = unaff_XMM6_Dd;
-  *(undefined4 *)(in_R11 + -0x48) = unaff_XMM7_Da;
-  *(undefined4 *)(in_R11 + -0x44) = unaff_XMM7_Db;
-  *(undefined4 *)(in_R11 + -0x40) = unaff_XMM7_Dc;
-  *(undefined4 *)(in_R11 + -0x3c) = unaff_XMM7_Dd;
-  *(undefined4 *)(in_R11 + -0x58) = unaff_XMM8_Da;
-  *(undefined4 *)(in_R11 + -0x54) = unaff_XMM8_Db;
-  *(undefined4 *)(in_R11 + -0x50) = unaff_XMM8_Dc;
-  *(undefined4 *)(in_R11 + -0x4c) = unaff_XMM8_Dd;
-  *(undefined4 *)(in_R11 + -0x68) = unaff_XMM9_Da;
-  *(undefined4 *)(in_R11 + -100) = unaff_XMM9_Db;
-  *(undefined4 *)(in_R11 + -0x60) = unaff_XMM9_Dc;
-  *(undefined4 *)(in_R11 + -0x5c) = unaff_XMM9_Dd;
-  *(undefined4 *)(in_R11 + -0x78) = unaff_XMM10_Da;
-  *(undefined4 *)(in_R11 + -0x74) = unaff_XMM10_Db;
-  *(undefined4 *)(in_R11 + -0x70) = unaff_XMM10_Dc;
-  *(undefined4 *)(in_R11 + -0x6c) = unaff_XMM10_Dd;
-  if (in_RAX == param_1) {
-    pfVar22 = (float *)(unaff_RBX + 0x330);
+  // 保存寄存器状态
+  *(undefined4 *)(register_11 + -0x38) = xmm_regs[0];
+  *(undefined4 *)(register_11 + -0x34) = xmm_regs[1];
+  *(undefined4 *)(register_11 + -0x30) = xmm_regs[2];
+  *(undefined4 *)(register_11 + -0x2c) = xmm_regs[3];
+  *(undefined4 *)(register_11 + -0x48) = xmm_regs[4];
+  *(undefined4 *)(register_11 + -0x44) = xmm_regs[5];
+  *(undefined4 *)(register_11 + -0x40) = xmm_regs[6];
+  *(undefined4 *)(register_11 + -0x3c) = xmm_regs[7];
+  *(undefined4 *)(register_11 + -0x58) = xmm_regs[8];
+  *(undefined4 *)(register_11 + -0x54) = xmm_regs[9];
+  *(undefined4 *)(register_11 + -0x50) = xmm_regs[10];
+  *(undefined4 *)(register_11 + -0x4c) = xmm_regs[11];
+  *(undefined4 *)(register_11 + -0x68) = xmm_regs[12];
+  *(undefined4 *)(register_11 + -100) = xmm_regs[13];
+  *(undefined4 *)(register_11 + -0x60) = xmm_regs[14];
+  *(undefined4 *)(register_11 + -0x5c) = xmm_regs[15];
+  *(undefined4 *)(register_11 + -0x78) = xmm_regs[16];
+  *(undefined4 *)(register_11 + -0x74) = xmm_regs[17];
+  *(undefined4 *)(register_11 + -0x70) = xmm_regs[18];
+  *(undefined4 *)(register_11 + -0x6c) = xmm_regs[19];
+  
+  // 检查渲染参数
+  if (register_data == render_params) {
+    shader_ptr = (float *)(temp_register + 0x330);
   }
   else {
-    pfVar22 = (float *)(**(code **)(in_RAX + 0x158))();
+    shader_ptr = (float *)(**(code **)(register_data + 0x158))();
   }
-  fVar27 = *(float *)(unaff_R15 + 0x70);
-  fVar28 = *(float *)(unaff_R15 + 0x74);
-  fVar29 = *(float *)(unaff_R15 + 0x78);
-  fVar10 = *(float *)(unaff_R15 + 0x7c);
-  fVar11 = *(float *)(unaff_R15 + 0x80);
-  fVar12 = *(float *)(unaff_R15 + 0x84);
-  fVar13 = *(float *)(unaff_R15 + 0x88);
-  fVar14 = *(float *)(unaff_R15 + 0x8c);
-  fVar15 = *(float *)(unaff_R15 + 0x90);
-  fVar16 = *(float *)(unaff_R15 + 0x94);
-  fVar17 = *(float *)(unaff_R15 + 0x98);
-  fVar18 = *(float *)(unaff_R15 + 0x9c);
-  fVar24 = pfVar22[1];
-  fVar26 = *pfVar22;
-  fVar31 = pfVar22[2];
-  fVar3 = pfVar22[5];
-  fVar25 = pfVar22[9];
-  fVar4 = pfVar22[0xd];
-  fVar5 = pfVar22[4];
-  fVar39 = fVar24 * fVar11 + fVar26 * fVar27 + fVar31 * fVar15;
-  fVar40 = fVar24 * fVar12 + fVar26 * fVar28 + fVar31 * fVar16;
-  fVar41 = fVar24 * fVar13 + fVar26 * fVar29 + fVar31 * fVar17;
-  fVar6 = pfVar22[6];
-  fVar30 = unaff_RDI[1];
-  fVar7 = pfVar22[8];
-  fVar36 = fVar3 * fVar11 + fVar5 * fVar27 + fVar6 * fVar15;
-  fVar37 = fVar3 * fVar12 + fVar5 * fVar28 + fVar6 * fVar16;
-  fVar38 = fVar3 * fVar13 + fVar5 * fVar29 + fVar6 * fVar17;
-  *(float *)(unaff_RBP + -0xc) = fVar39;
-  *(float *)((longlong)unaff_RBP + -0x5c) = fVar40;
-  *(float *)(unaff_RBP + -0xb) = fVar41;
-  *(float *)((longlong)unaff_RBP + -0x54) = fVar24 * fVar14 + fVar26 * fVar10 + fVar31 * fVar18;
-  fVar24 = pfVar22[10];
-  fVar26 = pfVar22[0xc];
-  fVar31 = unaff_RDI[2];
-  fVar32 = fVar25 * fVar11 + fVar7 * fVar27 + fVar24 * fVar15;
-  fVar33 = fVar25 * fVar12 + fVar7 * fVar28 + fVar24 * fVar16;
-  fVar34 = fVar25 * fVar13 + fVar7 * fVar29 + fVar24 * fVar17;
-  fVar35 = fVar25 * fVar14 + fVar7 * fVar10 + fVar24 * fVar18;
-  fVar24 = pfVar22[0xe];
-  fVar7 = *(float *)(unaff_R15 + 0xac);
-  fVar25 = *unaff_RDI;
-  fVar27 = fVar4 * fVar11 + fVar26 * fVar27 + fVar24 * fVar15 + *(float *)(unaff_R15 + 0xa0);
-  fVar28 = fVar4 * fVar12 + fVar26 * fVar28 + fVar24 * fVar16 + *(float *)(unaff_R15 + 0xa4);
-  fVar29 = fVar4 * fVar13 + fVar26 * fVar29 + fVar24 * fVar17 + *(float *)(unaff_R15 + 0xa8);
-  *(float *)(unaff_RBP + -10) = fVar36;
-  *(float *)((longlong)unaff_RBP + -0x4c) = fVar37;
-  *(float *)(unaff_RBP + -9) = fVar38;
-  *(float *)((longlong)unaff_RBP + -0x44) = fVar3 * fVar14 + fVar5 * fVar10 + fVar6 * fVar18;
-  *(float *)(unaff_RBP + -8) = fVar32;
-  *(float *)((longlong)unaff_RBP + -0x3c) = fVar33;
-  *(float *)(unaff_RBP + -7) = fVar34;
-  *(float *)((longlong)unaff_RBP + -0x34) = fVar35;
-  fVar25 = fVar25 - fVar27;
-  *(float *)(unaff_RBP + -6) = fVar27;
-  *(float *)((longlong)unaff_RBP + -0x2c) = fVar28;
-  *(float *)(unaff_RBP + -5) = fVar29;
-  *(float *)((longlong)unaff_RBP + -0x24) =
-       fVar4 * fVar14 + fVar26 * fVar10 + fVar24 * fVar18 + fVar7;
-  fVar30 = fVar30 - fVar28;
-  fVar31 = fVar31 - fVar29;
-  in_stack_00000030 = fVar25 * fVar39 + fVar30 * fVar40 + fVar31 * fVar41;
-  fStack0000000000000034 = fVar25 * fVar36 + fVar30 * fVar37 + fVar31 * fVar38;
-  in_stack_00000038 = fVar25 * fVar32 + fVar30 * fVar33 + fVar31 * fVar34;
-  in_stack_00000040 = CONCAT44(fStack0000000000000034,in_stack_00000030);
-  in_stack_00000048 =
-       CONCAT44(fVar25 * fVar35 + fVar30 * fVar35 + fVar31 * fVar35,in_stack_00000038);
-  lVar23 = (longlong)unaff_R12B * 0x100;
-  lVar9 = *(longlong *)(*(longlong *)(unaff_R15 + 0x260) + 0x18);
+  
+  // 提取矩阵数据
+  matrix_values[0] = *(float *)(register_14 + 0x70);
+  matrix_values[1] = *(float *)(register_14 + 0x74);
+  matrix_values[2] = *(float *)(register_14 + 0x78);
+  matrix_values[3] = *(float *)(register_14 + 0x7c);
+  matrix_values[4] = *(float *)(register_14 + 0x80);
+  matrix_values[5] = *(float *)(register_14 + 0x84);
+  matrix_values[6] = *(float *)(register_14 + 0x88);
+  matrix_values[7] = *(float *)(register_14 + 0x8c);
+  matrix_values[8] = *(float *)(register_14 + 0x90);
+  matrix_values[9] = *(float *)(register_14 + 0x94);
+  matrix_values[10] = *(float *)(register_14 + 0x98);
+  matrix_values[11] = *(float *)(register_14 + 0x9c);
+  
+  // 获取着色器参数
+  shader_params[0] = shader_ptr[1];
+  shader_params[2] = shader_ptr[0];
+  shader_params[3] = shader_ptr[2];
+  shader_params[4] = shader_ptr[5];
+  shader_params[5] = shader_ptr[9];
+  shader_params[6] = shader_ptr[13];
+  shader_params[7] = shader_ptr[4];
+  
+  // 计算第一组变换
+  transform_result[0] = shader_params[0] * matrix_values[4] + shader_params[2] * matrix_values[0] + shader_params[3] * matrix_values[8];
+  transform_result[1] = shader_params[0] * matrix_values[5] + shader_params[2] * matrix_values[1] + shader_params[3] * matrix_values[9];
+  transform_result[2] = shader_params[0] * matrix_values[6] + shader_params[2] * matrix_values[2] + shader_params[3] * matrix_values[10];
+  
+  shader_params[8] = shader_ptr[6];
+  shader_params[9] = register_rdi[1];
+  shader_params[10] = shader_ptr[8];
+  
+  transform_result[3] = shader_params[4] * matrix_values[4] + shader_params[7] * matrix_values[0] + shader_params[8] * matrix_values[8];
+  transform_result[4] = shader_params[4] * matrix_values[5] + shader_params[7] * matrix_values[1] + shader_params[8] * matrix_values[9];
+  transform_result[5] = shader_params[4] * matrix_values[6] + shader_params[7] * matrix_values[2] + shader_params[8] * matrix_values[10];
+  
+  // 保存中间结果
+  *(float *)(register_rbp + -0xc) = transform_result[0];
+  *(float *)((longlong)register_rbp + -0x5c) = transform_result[1];
+  *(float *)(register_rbp + -0xb) = transform_result[2];
+  *(float *)((longlong)register_rbp + -0x54) = shader_params[0] * matrix_values[7] + shader_params[2] * matrix_values[3] + shader_params[3] * matrix_values[11];
+  
+  // 计算第二组变换
+  shader_params[0] = shader_ptr[10];
+  shader_params[2] = shader_ptr[12];
+  shader_params[3] = register_rdi[2];
+  transform_result[6] = shader_params[5] * matrix_values[4] + shader_params[10] * matrix_values[0] + shader_params[0] * matrix_values[8];
+  transform_result[7] = shader_params[5] * matrix_values[5] + shader_params[10] * matrix_values[1] + shader_params[0] * matrix_values[9];
+  transform_result[8] = shader_params[5] * matrix_values[6] + shader_params[10] * matrix_values[2] + shader_params[0] * matrix_values[10];
+  transform_result[9] = shader_params[5] * matrix_values[7] + shader_params[10] * matrix_values[3] + shader_params[0] * matrix_values[11];
+  
+  shader_params[0] = shader_ptr[14];
+  shader_params[10] = *(float *)(register_14 + 0xac);
+  shader_params[5] = *register_rdi;
+  
+  // 计算最终变换
+  transform_value = shader_params[6] * matrix_values[4] + shader_params[2] * matrix_values[0] + shader_params[0] * matrix_values[8] + *(float *)(register_14 + 0xa0);
+  transform_result[10] = shader_params[6] * matrix_values[5] + shader_params[2] * matrix_values[1] + shader_params[0] * matrix_values[9] + *(float *)(register_14 + 0xa4);
+  transform_result[11] = shader_params[6] * matrix_values[6] + shader_params[2] * matrix_values[2] + shader_params[0] * matrix_values[10] + *(float *)(register_14 + 0xa8);
+  
+  // 保存结果到栈
+  *(float *)(register_rbp + -10) = transform_result[3];
+  *(float *)((longlong)register_rbp + -0x4c) = transform_result[4];
+  *(float *)(register_rbp + -9) = transform_result[5];
+  *(float *)((longlong)register_rbp + -0x44) = shader_params[4] * matrix_values[7] + shader_params[7] * matrix_values[3] + shader_params[8] * matrix_values[11];
+  *(float *)(register_rbp + -8) = transform_result[6];
+  *(float *)((longlong)register_rbp + -0x3c) = transform_result[7];
+  *(float *)(register_rbp + -7) = transform_result[8];
+  *(float *)((longlong)register_rbp + -0x34) = transform_result[9];
+  
+  // 计算位置差异
+  shader_params[5] = shader_params[5] - transform_value;
+  *(float *)(register_rbp + -6) = transform_value;
+  *(float *)((longlong)register_rbp + -0x2c) = transform_result[10];
+  *(float *)(register_rbp + -5) = transform_result[11];
+  *(float *)((longlong)register_rbp + -0x24) = shader_params[6] * matrix_values[7] + shader_params[2] * matrix_values[3] + shader_params[0] * matrix_values[11] + shader_params[10];
+  
+  shader_params[9] = shader_params[9] - transform_result[10];
+  shader_params[3] = shader_params[3] - transform_result[11];
+  
+  // 计算最终变换结果
+  stack_vars[0] = shader_params[5] * transform_result[0] + shader_params[9] * transform_result[1] + shader_params[3] * transform_result[2];
+  stack_vars[1] = shader_params[5] * transform_result[3] + shader_params[9] * transform_result[4] + shader_params[3] * transform_result[5];
+  stack_vars[2] = shader_params[5] * transform_result[6] + shader_params[9] * transform_result[7] + shader_params[3] * transform_result[8];
+  
+  // 设置栈数据
+  stack_vars[3] = CONCAT44(stack_vars[1], stack_vars[0]);
+  stack_vars[4] = CONCAT44(shader_params[5] * transform_result[9] + shader_params[9] * transform_result[9] + shader_params[3] * transform_result[9], stack_vars[2]);
+  
+  register_data = (longlong)texture_slot * 0x100;
+  shader_offset = *(longlong *)(*(longlong *)(register_14 + 0x260) + 0x18);
+  
+  // 加锁操作
   do {
     LOCK();
-    puVar1 = (uint *)(lVar23 + lVar9);
-    uVar8 = *puVar1;
-    *puVar1 = *puVar1 | 1;
+    lock_ptr = (uint *)(register_data + shader_offset);
+    lock_status = *lock_ptr;
+    *lock_ptr = *lock_ptr | 1;
     UNLOCK();
-  } while ((uVar8 & 1) != 0);
-  puVar2 = (undefined8 *)(lVar23 + 4 + lVar9);
-  uVar19 = *puVar2;
-  uVar20 = puVar2[1];
-  pfVar22 = (float *)(lVar23 + 0x14 + lVar9);
-  fVar24 = *pfVar22;
-  fVar26 = pfVar22[1];
-  fVar31 = pfVar22[2];
-  fVar3 = pfVar22[3];
-  unaff_RBP[8] = uVar19;
-  unaff_RBP[9] = uVar20;
-  *(float *)(unaff_RBP + 10) = fVar24;
-  *(float *)((longlong)unaff_RBP + 0x54) = fVar26;
-  *(float *)(unaff_RBP + 0xb) = fVar31;
-  *(float *)((longlong)unaff_RBP + 0x5c) = fVar3;
-  unaff_RBP[-4] = uVar19;
-  unaff_RBP[-3] = uVar20;
-  in_stack_00000030 = in_stack_00000030 - fVar24;
-  *(float *)(unaff_RBP + -2) = fVar24;
-  *(float *)((longlong)unaff_RBP + -0xc) = fVar26;
-  *(float *)(unaff_RBP + -1) = fVar31;
-  *(float *)((longlong)unaff_RBP + -4) = fVar3;
-  *(undefined4 *)(lVar23 + lVar9) = 0;
-  uStack000000000000003c = 0x7f7fffff;
-  fStack0000000000000034 = fStack0000000000000034 - fVar26;
-  in_stack_00000038 = in_stack_00000038 - fVar31;
-  FUN_180285b40(unaff_RBP + -4,&fStackX_20,&stack0x00000030);
-  in_stack_00000048 = _fStack0000000000000028;
-  fVar31 = *unaff_RSI - *(float *)(unaff_RBP + -6);
-  fVar26 = unaff_RSI[2] - *(float *)(unaff_RBP + -5);
-  fVar24 = unaff_RSI[1] - *(float *)((longlong)unaff_RBP + -0x2c);
-  lVar9 = *(longlong *)(*(longlong *)(unaff_R15 + 0x260) + 0x18);
-  in_stack_00000060 = fVar31 * fVar39 + fVar24 * fVar40 + fVar26 * fVar41;
-  fStack0000000000000064 = fVar31 * fVar36 + fVar24 * fVar37 + fVar26 * fVar38;
-  in_stack_00000068 = fVar31 * fVar32 + fVar24 * fVar33 + fVar26 * fVar34;
-  fStack000000000000006c = fVar31 * fVar35 + fVar24 * fVar35 + fVar26 * fVar35;
+  } while ((lock_status & 1) != 0);
+  
+  // 读取变换数据
+  data_ptr = (undefined8 *)(register_data + 4 + shader_offset);
+  u_var1 = *data_ptr;
+  u_var2 = data_ptr[1];
+  shader_ptr = (float *)(register_data + 0x14 + shader_offset);
+  transform_value = *shader_ptr;
+  transform_result[10] = shader_ptr[1];
+  transform_result[11] = shader_ptr[2];
+  transform_result[0] = shader_ptr[3];
+  
+  // 保存到寄存器
+  register_rbp[8] = u_var1;
+  register_rbp[9] = u_var2;
+  *(float *)(register_rbp + 10) = transform_value;
+  *(float *)((longlong)register_rbp + 0x54) = transform_result[10];
+  *(float *)(register_rbp + 0xb) = transform_result[11];
+  *(float *)((longlong)register_rbp + 0x5c) = transform_result[0];
+  
+  // 更新栈变量
+  register_rbp[-4] = u_var1;
+  register_rbp[-3] = u_var2;
+  stack_vars[0] = stack_vars[0] - transform_value;
+  *(float *)(register_rbp + -2) = transform_value;
+  *(float *)((longlong)register_rbp + -0xc) = transform_result[10];
+  *(float *)(register_rbp + -1) = transform_result[11];
+  *(float *)((longlong)register_rbp + -4) = transform_result[0];
+  
+  *(undefined4 *)(register_data + shader_offset) = 0;
+  stack_vars[5] = 0x7f7fffff;
+  stack_vars[1] = stack_vars[1] - transform_result[10];
+  stack_vars[2] = stack_vars[2] - transform_result[11];
+  
+  // 执行变换操作
+  FUN_180285b40(register_rbp + -4, &stack_vars[6], &stack_vars[0]);
+  
+  // 处理最终结果
+  transform_result[11] = *register_rsi - *(float *)(register_rbp + -6);
+  transform_result[10] = register_rsi[2] - *(float *)(register_rbp + -5);
+  transform_value = register_rsi[1] - *(float *)((longlong)register_rbp + -0x2c);
+  shader_offset = *(longlong *)(*(longlong *)(register_14 + 0x260) + 0x18);
+  
+  stack_vars[7] = transform_result[11] * transform_result[0] + transform_value * transform_result[1] + transform_result[10] * transform_result[2];
+  stack_vars[8] = transform_result[11] * transform_result[3] + transform_value * transform_result[4] + transform_result[10] * transform_result[5];
+  stack_vars[9] = transform_result[11] * transform_result[6] + transform_value * transform_result[7] + transform_result[10] * transform_result[8];
+  stack_vars[10] = transform_result[11] * transform_result[9] + transform_value * transform_result[9] + transform_result[10] * transform_result[9];
+  
+  // 第二次加锁操作
   do {
     LOCK();
-    puVar1 = (uint *)(lVar23 + lVar9);
-    uVar8 = *puVar1;
-    *puVar1 = *puVar1 | 1;
+    lock_ptr = (uint *)(register_data + shader_offset);
+    lock_status = *lock_ptr;
+    *lock_ptr = *lock_ptr | 1;
     UNLOCK();
-  } while ((uVar8 & 1) != 0);
-  puVar2 = (undefined8 *)(lVar23 + 4 + lVar9);
-  uVar19 = *puVar2;
-  uVar20 = puVar2[1];
-  pfVar22 = (float *)(lVar23 + 0x14 + lVar9);
-  fVar24 = *pfVar22;
-  fVar26 = pfVar22[1];
-  in_stack_00000058 = pfVar22[2];
-  fVar31 = pfVar22[3];
-  unaff_RBP[0xc] = uVar19;
-  unaff_RBP[0xd] = uVar20;
-  *(float *)(unaff_RBP + 0xe) = fVar24;
-  *(float *)((longlong)unaff_RBP + 0x74) = fVar26;
-  *(float *)(unaff_RBP + 0xf) = in_stack_00000058;
-  *(float *)((longlong)unaff_RBP + 0x7c) = fVar31;
-  *unaff_RBP = uVar19;
-  unaff_RBP[1] = uVar20;
-  in_stack_00000050 = in_stack_00000060 - fVar24;
-  *(float *)(unaff_RBP + 2) = fVar24;
-  *(float *)((longlong)unaff_RBP + 0x14) = fVar26;
-  *(float *)(unaff_RBP + 3) = in_stack_00000058;
-  *(float *)((longlong)unaff_RBP + 0x1c) = fVar31;
-  *(undefined4 *)(lVar23 + lVar9) = 0;
-  uStack000000000000005c = 0x7f7fffff;
-  fStack0000000000000054 = fStack0000000000000064 - fVar26;
-  in_stack_00000058 = in_stack_00000068 - in_stack_00000058;
-  FUN_180285b40(fVar26,&stack0x00000070,&stack0x00000050);
-  if ((((*(float *)(unaff_RBX + 0x214) <= fStackX_20) &&
-       (fStackX_20 < *(float *)(unaff_RBX + 0x224) || fStackX_20 == *(float *)(unaff_RBX + 0x224)))
-      && (*(float *)(unaff_RBX + 0x218) <= fStackX_24)) &&
-     (((fStackX_24 < *(float *)(unaff_RBX + 0x228) || fStackX_24 == *(float *)(unaff_RBX + 0x228) &&
-       (*(float *)(unaff_RBX + 0x21c) <= fStack0000000000000028)) &&
-      (fStack0000000000000028 < *(float *)(unaff_RBX + 0x22c) ||
-       fStack0000000000000028 == *(float *)(unaff_RBX + 0x22c))))) {
-    if (*(int *)(unaff_RBX + 0x318) == -1) {
-      *(undefined4 *)(unaff_RBX + 0x314) = *(undefined4 *)(unaff_RBP + 0x26);
-      uVar21 = FUN_1801b9a40(unaff_R14 + 0x1218);
-      *(undefined4 *)(unaff_RBX + 0x318) = uVar21;
+  } while ((lock_status & 1) != 0);
+  
+  // 读取最终数据
+  data_ptr = (undefined8 *)(register_data + 4 + shader_offset);
+  u_var1 = *data_ptr;
+  u_var2 = data_ptr[1];
+  shader_ptr = (float *)(register_data + 0x14 + shader_offset);
+  transform_value = *shader_ptr;
+  transform_result[10] = shader_ptr[1];
+  transform_result[11] = shader_ptr[2];
+  transform_result[0] = shader_ptr[3];
+  
+  // 保存最终结果
+  register_rbp[0xc] = u_var1;
+  register_rbp[0xd] = u_var2;
+  *(float *)(register_rbp + 0xe) = transform_value;
+  *(float *)((longlong)register_rbp + 0x74) = transform_result[10];
+  *(float *)(register_rbp + 0xf) = transform_result[11];
+  *(float *)((longlong)register_rbp + 0x7c) = transform_result[0];
+  *register_rbp = u_var1;
+  register_rbp[1] = u_var2;
+  
+  stack_vars[11] = stack_vars[7] - transform_value;
+  *(float *)(register_rbp + 2) = transform_value;
+  *(float *)((longlong)register_rbp + 0x14) = transform_result[10];
+  *(float *)(register_rbp + 3) = transform_result[11];
+  *(float *)((longlong)register_rbp + 0x1c) = transform_result[0];
+  
+  *(undefined4 *)(register_data + shader_offset) = 0;
+  stack_vars[12] = 0x7f7fffff;
+  stack_vars[13] = stack_vars[8] - transform_result[10];
+  stack_vars[14] = stack_vars[9] - transform_result[11];
+  
+  // 执行最终变换
+  FUN_180285b40(transform_result[10], &stack_vars[15], &stack_vars[11]);
+  
+  // 检查渲染边界条件
+  if ((((*(float *)(temp_register + 0x214) <= stack_vars[6]) &&
+       (stack_vars[6] < *(float *)(temp_register + 0x224) || stack_vars[6] == *(float *)(temp_register + 0x224))) &&
+      (*(float *)(temp_register + 0x218) <= stack_vars[7])) &&
+     (((stack_vars[7] < *(float *)(temp_register + 0x228) || stack_vars[7] == *(float *)(temp_register + 0x228) &&
+       (*(float *)(temp_register + 0x21c) <= stack_vars[8])) &&
+      (stack_vars[8] < *(float *)(temp_register + 0x22c) ||
+       stack_vars[8] == *(float *)(temp_register + 0x22c))))) {
+    
+    // 设置渲染状态
+    if (*(int *)(temp_register + 0x318) == -1) {
+      *(undefined4 *)(temp_register + 0x314) = *(undefined4 *)(register_rbp + 0x26);
+      render_flags = FUN_1801b9a40(register_14 + 0x1218);
+      *(undefined4 *)(temp_register + 0x318) = render_flags;
       LOCK();
-      *(undefined4 *)(unaff_RBX + 0x310) = 0;
+      *(undefined4 *)(temp_register + 0x310) = 0;
       UNLOCK();
     }
-    *(undefined4 *)(unaff_RBP + 6) = uStack0000000000000070;
-    *(undefined4 *)((longlong)unaff_RBP + 0x34) = uStack0000000000000074;
-    *(undefined4 *)(unaff_RBP + 7) = in_stack_00000078;
-    *(float *)((longlong)unaff_RBP + 0x3c) = (float)*(int *)(unaff_RBP + 0x27);
-    *(float *)(unaff_RBP + 4) = fStackX_20;
-    *(float *)((longlong)unaff_RBP + 0x24) = fStackX_24;
-    *(float *)(unaff_RBP + 5) = fStack0000000000000028;
-    *(undefined4 *)((longlong)unaff_RBP + 0x2c) = 0x3e19999a;
-    FUN_18020a7b0(unaff_RBX + 0x308,uStack0000000000000074,unaff_RBP + 4);
+    
+    // 设置最终渲染参数
+    *(undefined4 *)(register_rbp + 6) = stack_vars[15];
+    *(undefined4 *)((longlong)register_rbp + 0x34) = stack_vars[16];
+    *(undefined4 *)(register_rbp + 7) = stack_vars[17];
+    *(float *)((longlong)register_rbp + 0x3c) = (float)*(int *)(register_rbp + 0x27);
+    *(float *)(register_rbp + 4) = stack_vars[6];
+    *(float *)((longlong)register_rbp + 0x24) = stack_vars[7];
+    *(float *)(register_rbp + 5) = stack_vars[8];
+    *(undefined4 *)((longlong)register_rbp + 0x2c) = 0x3e19999a;
+    FUN_18020a7b0(temp_register + 0x308, stack_vars[16], register_rbp + 4);
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(unaff_RBP[0x10] ^ (ulonglong)&stack0x00000000);
+  
+  // 栈保护检查结束
+  FUN_1808fc050(register_rbp[0x10] ^ (ulonglong)&stack_vars[0]);
 }
-
-
-
-
-

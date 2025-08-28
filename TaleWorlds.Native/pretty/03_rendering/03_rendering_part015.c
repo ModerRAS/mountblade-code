@@ -3,7 +3,8 @@
 // 03_rendering_part015.c - 5 个函数
 
 // 函数: void FUN_180276ade(longlong param_1)
-void FUN_180276ade(longlong param_1)
+// 渲染对象矩阵变换和可见性检查
+void render_object_matrix_transform(longlong render_context)
 
 {
   uint *puVar1;
@@ -285,8 +286,8 @@ void FUN_180276ade(longlong param_1)
 
 
 // 函数: void FUN_180276d52(undefined8 param_1,longlong param_2,undefined8 param_3,longlong param_4,
-void FUN_180276d52(undefined8 param_1,longlong param_2,undefined8 param_3,longlong param_4,
-                  float param_5)
+// 渲染参数处理和边界检查
+void render_parameter_processor(undefined8 render_system, longlong render_data, undefined8 texture_handle, longlong resource_pool, float depth_value)
 
 {
   uint *puVar1;
@@ -382,7 +383,8 @@ void FUN_180276d52(undefined8 param_1,longlong param_2,undefined8 param_3,longlo
 
 
 // 函数: void FUN_180276eef(void)
-void FUN_180276eef(void)
+// 渲染堆栈清理函数
+void render_stack_cleanup(void)
 
 {
   longlong unaff_RBP;
@@ -396,7 +398,8 @@ void FUN_180276eef(void)
 
 
 // 函数: void FUN_180276f1a(void)
-void FUN_180276f1a(void)
+// 渲染对象深度计算和可见性测试
+void render_object_depth_test(void)
 
 {
   uint *puVar1;
@@ -648,7 +651,8 @@ void FUN_180276f1a(void)
 
 
 // 函数: void FUN_180276f30(longlong param_1,undefined8 *param_2,char param_3)
-void FUN_180276f30(longlong param_1,undefined8 *param_2,char param_3)
+// 渲染边界框计算和碰撞检测
+void render_bounding_box_calculation(longlong render_object, undefined8 *bounding_box, char include_children)
 
 {
   longlong lVar1;

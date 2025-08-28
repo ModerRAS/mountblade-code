@@ -1001,31 +1001,31 @@ resource_section_exit:
   else {
     resource_index = 0;
     if (resource_size != 0) {
-      piVar6 = (int *)((ulonglong)*(uint *)(lVar5 + 0xb8) + 0xc + param_2);
+      section_table_ptr = (int *)((ulonglong)*(uint *)(optional_header_offset + 0xb8) + 0xc + section_offset);
       do {
-        if ((piVar6[1] != 0) && (*piVar6 == 2)) {
-          puVar10 = (uint *)((ulonglong)(uint)piVar6[2] + param_2);
-          if (*puVar10 != 0x53445352) goto LAB_180650c04;
-          *(uint *)(param_1 + 0xac) = puVar10[5];
-          (**(code **)(*(longlong *)(param_1 + 0x78) + 0x10))
-                    ((longlong *)(param_1 + 0x78),puVar10 + 6);
-          uVar4 = (ulonglong)*puVar10;
-          *(uint *)(param_1 + 0xa8) = *puVar10;
-          uVar1 = puVar10[2];
-          uVar2 = puVar10[3];
-          uVar3 = puVar10[4];
-          *(uint *)(param_1 + 0x98) = puVar10[1];
-          *(uint *)(param_1 + 0x9c) = uVar1;
-          *(uint *)(param_1 + 0xa0) = uVar2;
-          *(uint *)(param_1 + 0xa4) = uVar3;
+        if ((section_table_ptr[1] != 0) && (*section_table_ptr == 2)) {
+          resource_data_ptr = (uint *)((ulonglong)(uint)section_table_ptr[2] + section_offset);
+          if (*resource_data_ptr != 0x53445352) goto resource_section_exit;  // RSDS签名检查
+          *(uint *)(pe_header + 0xac) = resource_data_ptr[5];  // 调试信息时间戳
+          (**(code **)(*(longlong *)(pe_header + 0x78) + 0x10))
+                    ((longlong *)(pe_header + 0x78),resource_data_ptr + 6);
+          section_table_offset = (ulonglong)*resource_data_ptr;
+          *(uint *)(pe_header + 0xa8) = *resource_data_ptr;     // 调试信息GUID低32位
+          pe_signature = resource_data_ptr[2];                 // GUID中间32位
+          section_count = resource_data_ptr[3];                 // GUID高32位
+          resource_index = resource_data_ptr[4];                // 调试信息路径偏移
+          *(uint *)(pe_header + 0x98) = resource_data_ptr[1];  // 调试信息签名
+          *(uint *)(pe_header + 0x9c) = pe_signature;
+          *(uint *)(pe_header + 0xa0) = section_count;
+          *(uint *)(pe_header + 0xa4) = resource_index;
         }
-        uVar9 = uVar9 + 1;
-        piVar6 = piVar6 + 7;
-      } while (uVar9 < uVar7);
+        resource_index = resource_index + 1;
+        section_table_ptr = section_table_ptr + 7;
+      } while (resource_index < resource_size);
     }
-    uVar4 = CONCAT71((int7)(uVar4 >> 8),1);
+    section_table_offset = CONCAT71((int7)(section_table_offset >> 8),1);
   }
-  return uVar4;
+  return section_table_offset;
 }
 
 
@@ -1043,38 +1043,38 @@ resource_section_exit:
 void ui_load_library_with_resource_check(longlong library_info)
 
 {
-  short *psVar1;
-  undefined8 *puVar2;
-  undefined8 *puVar3;
-  undefined *puVar4;
-  undefined8 *puVar5;
-  ulonglong uVar6;
-  undefined1 auStack_228 [32];
-  short **ppsStack_208;
-  short *psStack_1f8;
-  undefined8 uStack_1f0;
-  undefined1 auStack_1e8 [16];
-  longlong alStack_1d8 [4];
-  undefined1 auStack_1b8 [8];
-  longlong lStack_1b0;
-  uint uStack_1a8;
-  undefined4 uStack_19c;
-  short *psStack_190;
-  undefined1 auStack_128 [272];
-  ulonglong uStack_18;
+  short *library_handle;
+  undefined8 *library_node_ptr;
+  undefined8 *next_node_ptr;
+  undefined *library_path_ptr;
+  undefined8 *insert_position_ptr;
+  ulonglong path_length;
+  undefined1 stack_guard_buffer [32];
+  short **library_handle_ptr;
+  short *loaded_library_handle;
+  undefined8 operation_flag;
+  undefined1 temp_buffer_1e8 [16];
+  longlong resource_data [4];
+  undefined1 temp_buffer_1b8 [8];
+  longlong pe_base_address;
+  uint library_flags;
+  undefined4 pe_header_offset;
+  short *module_base_ptr;
+  undefined1 resource_buffer [272];
+  ulonglong stack_guard_value;
   
-  uStack_1f0 = 0xfffffffffffffffe;
+  operation_flag = 0xfffffffffffffffe;
   // 栈保护值初始化 - 使用随机种子与栈地址异或生成保护值
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_228;  // _DAT_180bf00a8: 栈保护随机种子
-  puVar4 = &DAT_18098bc73;
-  if (*(undefined **)(param_1 + 8) != (undefined *)0x0) {
-    puVar4 = *(undefined **)(param_1 + 8);
+  stack_guard_value = _DAT_180bf00a8 ^ (ulonglong)stack_guard_buffer;  // _DAT_180bf00a8: 栈保护随机种子
+  library_path_ptr = &DAT_18098bc73;
+  if (*(undefined **)(library_info + 8) != (undefined *)0x0) {
+    library_path_ptr = *(undefined **)(library_info + 8);
   }
-  psVar1 = (short *)LoadLibraryA(puVar4);
-  if (psVar1 != (short *)0x0) {
-    puVar5 = (undefined8 *)&DAT_180c96790;
-    puVar2 = _DAT_180c967a0;
-    psStack_1f8 = psVar1;
+  library_handle = (short *)LoadLibraryA(library_path_ptr);
+  if (library_handle != (short *)0x0) {
+    insert_position_ptr = (undefined8 *)&DAT_180c96790;
+    library_node_ptr = _DAT_180c967a0;
+    loaded_library_handle = library_handle;
     if (_DAT_180c967a0 != (undefined8 *)0x0) {
       do {
         if ((short *)puVar2[4] < psVar1) {
