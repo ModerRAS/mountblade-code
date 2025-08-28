@@ -170,7 +170,7 @@ void RenderingSystem_ProcessResourceRequest(int param_1, uint param_2, float par
     }
     else {
       if (uVar3 <= (uint)uStack_50) goto LAB_18060e38b;
-      puStack_60 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_60,uVar3,0x10,0x13);
+      puStack_60 = (int32_t *)RenderingSystem_MemoryPoolReallocator(system_memory_pool_ptr,puStack_60,uVar3,0x10,0x13);
     }
     uVar2 = RenderingSystem_FormatProcessor(puStack_60);
     uStack_50 = CONCAT44(uStack_50._4_4_,uVar2);
@@ -194,7 +194,7 @@ LAB_18060e38b:
     }
     else {
       if (uVar3 <= (uint)uStack_50) goto LAB_18060e425;
-      puStack_60 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_60,uVar3,0x10,0x13);
+      puStack_60 = (int32_t *)RenderingSystem_MemoryPoolReallocator(system_memory_pool_ptr,puStack_60,uVar3,0x10,0x13);
     }
     uVar2 = RenderingSystem_FormatProcessor(puStack_60);
     uStack_50 = CONCAT44(uStack_50._4_4_,uVar2);
