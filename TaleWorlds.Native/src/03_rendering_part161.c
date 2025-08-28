@@ -612,143 +612,213 @@ void RenderingSystem_FastColorInterpolator(int interpolation_mode, undefined4 de
 
 
 
-// 函数: void FUN_180369ef0(undefined8 *param_1)
-void FUN_180369ef0(undefined8 *param_1)
-
-{
-  longlong *plVar1;
-  longlong *plVar2;
-  undefined4 uVar3;
-  undefined4 *puVar4;
-  undefined8 *puVar5;
-  undefined8 *puVar6;
-  undefined *puStack_168;
-  undefined8 *puStack_160;
-  undefined4 uStack_158;
-  undefined8 uStack_150;
-  undefined8 *puStack_48;
-  undefined8 uStack_40;
-  
-  uStack_40 = 0xfffffffffffffffe;
-  puVar6 = param_1;
-  FUN_1803456e0();
-  *puVar6 = &UNK_180a20f68;
-  puVar5 = puVar6 + 0xe;
-  *puVar5 = &UNK_18098bcb0;
-  puVar6[0xf] = 0;
-  *(undefined4 *)(puVar6 + 0x10) = 0;
-  *puVar5 = &UNK_180a3c3e0;
-  puVar6[0x11] = 0;
-  puVar6[0xf] = 0;
-  *(undefined4 *)(puVar6 + 0x10) = 0;
-  plVar1 = puVar6 + 0x16;
-  *plVar1 = (longlong)&UNK_18098bcb0;
-  puVar6[0x17] = 0;
-  *(undefined4 *)(puVar6 + 0x18) = 0;
-  *plVar1 = (longlong)&UNK_180a3c3e0;
-  puVar6[0x19] = 0;
-  puVar6[0x17] = 0;
-  *(undefined4 *)(puVar6 + 0x18) = 0;
-  puVar6[0x1c] = 0;
-  puVar6[0x1d] = 0;
-  puStack_168 = &UNK_180a3c3e0;
-  uStack_150 = 0;
-  puStack_160 = (undefined8 *)0x0;
-  uStack_158 = 0;
-  puStack_48 = puVar5;
-  puVar4 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-  *(undefined1 *)puVar4 = 0;
-  puStack_160 = (undefined8 *)puVar4;
-  uVar3 = FUN_18064e990(puVar4);
-  *puVar4 = 0x74736554;
-  *(undefined1 *)(puVar4 + 1) = 0;
-  uStack_158 = 4;
-  uStack_150._0_4_ = uVar3;
-  FUN_18005d190(puVar5,&puStack_168);
-  puStack_168 = &UNK_180a3c3e0;
-  if (puStack_160 != (undefined8 *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  puStack_160 = (undefined8 *)0x0;
-  uStack_150 = (ulonglong)uStack_150._4_4_ << 0x20;
-  puStack_168 = &UNK_18098bcb0;
-  plVar2 = (longlong *)param_1[0x1c];
-  param_1[0x1c] = 0;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
-  }
-  param_1[0x13] = 0;
-  *(undefined4 *)((longlong)param_1 + 0xa4) = 0x40200000;
-  *(undefined1 *)(param_1 + 0x15) = 0;
-  (**(code **)(*plVar1 + 0x10))(plVar1,&DAT_18098bc73);
-  *(undefined2 *)(param_1 + 0x1a) = 0x100;
-  *(undefined1 *)((longlong)param_1 + 0xd2) = 1;
-  *(undefined1 *)((longlong)param_1 + 0xd3) = 0;
-  puStack_168 = &UNK_180a3c3e0;
-  uStack_150 = 0;
-  puStack_160 = (undefined8 *)0x0;
-  uStack_158 = 0;
-  puVar5 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-  *(undefined1 *)puVar5 = 0;
-  puStack_160 = puVar5;
-  uVar3 = FUN_18064e990(puVar5);
-  uStack_150 = CONCAT44(uStack_150._4_4_,uVar3);
-  *puVar5 = 0x6d614e2068746150;
-  *(undefined2 *)(puVar5 + 1) = 0x65;
-  uStack_158 = 9;
-  FUN_1803460a0(param_1,&puStack_168,puStack_48,0);
-  puStack_168 = &UNK_180a3c3e0;
-                    // WARNING: Subroutine does not return
-  FUN_18064e900(puVar5);
+/**
+ * 渲染系统字符串管理器初始化器
+ * 
+ * 初始化渲染系统的字符串管理器，包括字符串缓冲区、
+ * 内存分配器和相关的数据结构设置。
+ * 
+ * @param string_manager 字符串管理器指针
+ * 
+ * 初始化流程：
+ * 1. 调用基础初始化函数
+ * 2. 设置字符串管理器的基本结构
+ * 3. 初始化内存管理器
+ * 4. 设置字符串缓冲区
+ * 5. 配置字符串处理器
+ * 6. 初始化相关数据结构
+ */
+void RenderingSystem_StringManagerInitializer(undefined8 *string_manager) {
+    // 调用基础初始化函数
+    FUN_1803456e0();
+    
+    // 设置字符串管理器的基本结构
+    undefined8 *manager_ptr = string_manager;
+    *manager_ptr = &UNK_180a20f68; // 设置基础字符串表
+    
+    undefined8 *processor_ptr = manager_ptr + 0xe;
+    *processor_ptr = &UNK_18098bcb0; // 设置字符串处理器
+    
+    // 初始化基础数据结构
+    manager_ptr[0xf] = 0; // 清零标志位
+    *(undefined4 *)(manager_ptr + 0x10) = 0; // 清零计数器
+    
+    // 设置字符串处理器到内存管理器
+    *processor_ptr = &UNK_180a3c3e0;
+    manager_ptr[0x11] = 0; // 清零状态
+    manager_ptr[0xf] = 0;  // 清零标志
+    *(undefined4 *)(manager_ptr + 0x10) = 0; // 清零计数器
+    
+    // 初始化内存管理器结构
+    longlong *memory_manager = manager_ptr + 0x16;
+    *memory_manager = (longlong)&UNK_18098bcb0; // 设置内存处理器
+    manager_ptr[0x17] = 0; // 清零内存状态
+    *(undefined4 *)(manager_ptr + 0x18) = 0; // 清零内存计数
+    
+    *memory_manager = (longlong)&UNK_180a3c3e0; // 设置内存分配器
+    manager_ptr[0x19] = 0; // 清零分配状态
+    manager_ptr[0x17] = 0; // 清零内存状态
+    *(undefined4 *)(manager_ptr + 0x18) = 0; // 清零内存计数
+    
+    // 清零扩展字段
+    manager_ptr[0x1c] = 0;
+    manager_ptr[0x1d] = 0;
+    
+    // 创建第一个字符串缓冲区
+    undefined *string_buffer = &UNK_180a3c3e0;
+    undefined8 buffer_size = 0;
+    undefined8 *buffer_ptr = (undefined8 *)0x0;
+    undefined4 buffer_length = 0;
+    undefined8 *buffer_target = processor_ptr;
+    
+    // 分配字符串缓冲区内存
+    undefined4 *string_data = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    *(undefined1 *)string_data = 0; // 清零字符串数据
+    buffer_ptr = (undefined8 *)string_data;
+    
+    undefined4 string_hash = FUN_18064e990(string_data);
+    *string_data = 0x74736554; // 设置字符串标识 "Test"
+    *(undefined1 *)(string_data + 1) = 0; // 字符串结束符
+    buffer_length = 4; // 字符串长度
+    buffer_size._0_4_ = string_hash; // 存储哈希值
+    
+    // 初始化字符串处理器
+    FUN_18005d190(processor_ptr, &string_buffer);
+    
+    // 清理临时缓冲区
+    string_buffer = &UNK_180a3c3e0;
+    if (buffer_ptr != (undefined8 *)0x0) {
+        FUN_18064e900(); // 释放缓冲区内存
+    }
+    
+    // 准备第二个字符串缓冲区
+    buffer_ptr = (undefined8 *)0x0;
+    buffer_size = (ulonglong)buffer_size._4_4_ << 0x20;
+    string_buffer = &UNK_18098bcb0;
+    
+    // 清理旧的字符串管理器
+    longlong *old_manager = (longlong *)string_manager[0x1c];
+    string_manager[0x1c] = 0;
+    if (old_manager != (longlong *)0x0) {
+        (**(code **)(*old_manager + 0x38))(); // 调用清理函数
+    }
+    
+    // 设置字符串管理器状态
+    string_manager[0x13] = 0;
+    *(undefined4 *)((longlong)string_manager + 0xa4) = 0x40200000; // 设置浮点常量
+    *(undefined1 *)(string_manager + 0x15) = 0; // 清零状态标志
+    
+    // 初始化内存管理器回调
+    (**(code **)(*memory_manager + 0x10))(memory_manager, &DAT_18098bc73);
+    
+    // 设置字符串管理器参数
+    *(undefined2 *)(string_manager + 0x1a) = 0x100; // 设置缓冲区大小
+    *(undefined1 *)((longlong)string_manager + 0xd2) = 1; // 设置启用标志
+    *(undefined1 *)((longlong)string_manager + 0xd3) = 0; // 清零保留标志
+    
+    // 创建主字符串缓冲区
+    string_buffer = &UNK_180a3c3e0;
+    buffer_size = 0;
+    buffer_ptr = (undefined8 *)0x0;
+    buffer_length = 0;
+    
+    undefined8 *main_buffer = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    *(undefined1 *)main_buffer = 0; // 清零主缓冲区
+    buffer_ptr = main_buffer;
+    
+    undefined4 main_hash = FUN_18064e990(main_buffer);
+    buffer_size = CONCAT44(buffer_size._4_4_, main_hash);
+    *main_buffer = 0x6d614e2068746150; // 设置主字符串 "Path Name"
+    *(undefined2 *)(main_buffer + 1) = 0x65; // 继续字符串
+    buffer_length = 9; // 主字符串长度
+    
+    // 初始化主字符串处理
+    FUN_1803460a0(string_manager, &string_buffer, buffer_target, 0);
+    
+    // 清理主缓冲区
+    string_buffer = &UNK_180a3c3e0;
+    FUN_18064e900(main_buffer); // 释放主缓冲区内存
 }
 
 
 
-undefined8 * FUN_18036a6a0(undefined8 *param_1,ulonglong param_2)
-
-{
-  longlong *plVar1;
-  
-  *param_1 = &UNK_180a20f68;
-  plVar1 = (longlong *)param_1[0x1d];
-  param_1[0x1d] = 0;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))();
-  }
-  plVar1 = (longlong *)param_1[0x1c];
-  param_1[0x1c] = 0;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))();
-  }
-  param_1[0x13] = 0;
-  if ((longlong *)param_1[0x1d] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_1[0x1d] + 0x38))();
-  }
-  if ((longlong *)param_1[0x1c] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_1[0x1c] + 0x38))();
-  }
-  param_1[0x16] = &UNK_180a3c3e0;
-  if (param_1[0x17] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  param_1[0x17] = 0;
-  *(undefined4 *)(param_1 + 0x19) = 0;
-  param_1[0x16] = &UNK_18098bcb0;
-  param_1[0xe] = &UNK_180a3c3e0;
-  if (param_1[0xf] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  param_1[0xf] = 0;
-  *(undefined4 *)(param_1 + 0x11) = 0;
-  param_1[0xe] = &UNK_18098bcb0;
-  FUN_1803457d0(param_1);
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x118);
-  }
-  return param_1;
+/**
+ * 渲染系统管理器清理器
+ * 
+ * 清理渲染系统管理器的资源，包括内存释放、
+ * 回调函数调用和结构体重置。
+ * 
+ * @param manager 要清理的管理器指针
+ * @param cleanup_flags 清理标志位（bit 0: 释放管理器内存）
+ * @return 清理后的管理器指针
+ * 
+ * 清理流程：
+ * 1. 重置管理器基础结构
+ * 2. 清理扩展管理器
+ * 3. 清理主管理器
+ * 4. 释放相关资源
+ * 5. 根据标志决定是否释放管理器本身
+ */
+undefined8 * RenderingSystem_ManagerCleaner(undefined8 *manager, ulonglong cleanup_flags) {
+    // 重置管理器基础结构
+    *manager = &UNK_180a20f68; // 设置基础表
+    
+    // 清理扩展管理器
+    longlong *ext_manager = (longlong *)manager[0x1d];
+    manager[0x1d] = 0;
+    if (ext_manager != (longlong *)0x0) {
+        (**(code **)(*ext_manager + 0x38))(); // 调用扩展管理器清理函数
+    }
+    
+    // 清理主管理器
+    longlong *main_manager = (longlong *)manager[0x1c];
+    manager[0x1c] = 0;
+    if (main_manager != (longlong *)0x0) {
+        (**(code **)(*main_manager + 0x38))(); // 调用主管理器清理函数
+    }
+    
+    // 重置管理器状态
+    manager[0x13] = 0;
+    
+    // 双重检查清理
+    if ((longlong *)manager[0x1d] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)manager[0x1d] + 0x38))(); // 确保扩展管理器清理
+    }
+    if ((longlong *)manager[0x1c] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)manager[0x1c] + 0x38))(); // 确保主管理器清理
+    }
+    
+    // 清理扩展数据区域
+    manager[0x16] = &UNK_180a3c3e0; // 设置扩展数据指针
+    if (manager[0x17] != 0) {
+        FUN_18064e900(); // 释放扩展数据内存
+    }
+    manager[0x17] = 0;
+    *(undefined4 *)(manager + 0x19) = 0; // 清零扩展计数
+    
+    // 重置扩展数据到默认状态
+    manager[0x16] = &UNK_18098bcb0; // 设置默认扩展数据
+    
+    // 清理主数据区域
+    manager[0xe] = &UNK_180a3c3e0; // 设置主数据指针
+    if (manager[0xf] != 0) {
+        FUN_18064e900(); // 释放主数据内存
+    }
+    manager[0xf] = 0;
+    *(undefined4 *)(manager + 0x11) = 0; // 清零主计数
+    
+    // 重置主数据到默认状态
+    manager[0xe] = &UNK_18098bcb0; // 设置默认主数据
+    
+    // 调用最终清理函数
+    FUN_1803457d0(manager);
+    
+    // 根据清理标志决定是否释放管理器本身
+    if ((cleanup_flags & 1) != 0) {
+        free(manager, 0x118); // 释放管理器内存
+    }
+    
+    return manager;
 }
 
 
