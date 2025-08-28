@@ -1412,72 +1412,123 @@ void 发送对象销毁通知(longlong object_ptr) {
 
 /**
  * 按名称查找对象组件
- * @param object_ptr 对象指针
- * @param name_data 名称数据
- * @param search_param 搜索参数
+ * 在对象的组件表中查找指定名称的组件
+ * 
+ * @param object_ptr 对象指针，包含组件表的对象
+ * @param name_data 名称数据，包含要查找的组件名称信息
+ * @param search_param 搜索参数，找到组件后要设置的参数
+ * 
+ * 功能说明：
+ * 1. 获取目标组件名称和长度
+ * 2. 遍历对象的组件表
+ * 3. 比较组件名称
+ * 4. 如果找到匹配的组件，设置组件参数
+ * 5. 如果未找到，记录错误日志
+ * 
+ * 查找逻辑：
+ * - 首先比较名称长度
+ * - 然后逐字符比较名称内容
+ * - 支持空名称的特殊处理
+ * - 使用线性搜索遍历组件表
+ * 
+ * 错误处理：
+ * - 未找到组件时记录详细错误信息
+ * - 包含对象名称、搜索名称、组件名称等信息
+ * - 使用统一的错误日志系统
+ * 
+ * 注意事项：
+ * - 组件表最大包含16个组件
+ * - 名称比较区分大小写
+ * - 搜索成功会直接设置组件参数
  */
-void find_object_component_by_name(longlong object_ptr, longlong name_data, undefined8 search_param) {
-  byte *name_ptr1;
-  int name_length1;
-  int name_length2;
-  byte *name_ptr2;
-  int comparison_result;
-  undefined *default_name;
-  longlong offset_value;
-  undefined *object_name;
-  undefined8 *component_table;
-  undefined *component_name;
-  ulonglong table_index;
-  ulonglong max_index;
+void 按名称查找对象组件(longlong object_ptr, longlong name_data, undefined8 search_param) {
+  byte *target_name_ptr;           // 目标名称指针
+  int target_name_length;          // 目标名称长度
+  int current_component_name_length; // 当前组件名称长度
+  byte *current_component_name_ptr; // 当前组件名称指针
+  int name_comparison_result;      // 名称比较结果
+  undefined *default_name_ptr;     // 默认名称指针
+  longlong name_offset_value;      // 名称偏移值
+  undefined *object_display_name;  // 对象显示名称
+  undefined8 *component_lookup_table; // 组件查找表
+  undefined *component_display_name; // 组件显示名称
+  ulonglong current_table_index;   // 当前表索引
+  ulonglong search_max_index;      // 搜索最大索引
   
-  max_index = 0;
-  name_length1 = *(int *)(name_data + 0x10);
-  component_table = (undefined8 *)(*(longlong *)(object_ptr + 0x1e0) + 0x1c38);
-  table_index = max_index;
+  // 初始化搜索参数
+  search_max_index = 0;
+  target_name_length = *(int *)(name_data + 0x10);  // 获取目标名称长度
   
+  // 获取组件查找表（偏移0x1c38）
+  component_lookup_table = (undefined8 *)(*(longlong *)(object_ptr + OFFSET_OBJECT_TYPE_INFO) + OFFSET_OBJECT_COMPONENT_TABLE);
+  current_table_index = search_max_index;
+  
+  // 遍历组件查找表
   do {
-    name_length2 = *(int *)(component_table + 1);
-    comparison_result = name_length1;
-    if (name_length2 == name_length1) {
-      if (name_length2 != 0) {
-        name_ptr2 = (byte *)*component_table;
-        offset_value = *(longlong *)(name_data + 8) - (longlong)name_ptr2;
+    // 获取当前组件的名称长度
+    current_component_name_length = *(int *)(component_lookup_table + 1);
+    name_comparison_result = target_name_length;
+    
+    // 比较名称长度
+    if (current_component_name_length == target_name_length) {
+      // 如果长度匹配，进行详细比较
+      if (current_component_name_length != 0) {
+        current_component_name_ptr = (byte *)*component_lookup_table;
+        name_offset_value = *(longlong *)(name_data + 8) - (longlong)current_component_name_ptr;
+        
+        // 逐字符比较名称
         do {
-          name_ptr1 = name_ptr2 + offset_value;
-          comparison_result = (uint)*name_ptr2 - (uint)*name_ptr1;
-          if (comparison_result != 0) break;
-          name_ptr2 = name_ptr2 + 1;
-        } while (*name_ptr1 != 0);
+          target_name_ptr = current_component_name_ptr + name_offset_value;
+          name_comparison_result = (uint)*current_component_name_ptr - (uint)*target_name_ptr;
+          if (name_comparison_result != 0) break;
+          current_component_name_ptr = current_component_name_ptr + 1;
+        } while (*target_name_ptr != 0);
       }
-    COMPONENT_FOUND:
-      if (comparison_result == 0) {
-        if (-1 < (int)table_index) {
-          set_object_component(object_ptr, table_index, search_param);
+      
+    组件找到:
+      // 检查比较结果
+      if (name_comparison_result == 0) {
+        // 如果索引有效，设置组件参数
+        if (-1 < (int)current_table_index) {
+          设置对象组件(object_ptr, current_table_index, search_param);
           return;
         }
-        goto COMPONENT_NOT_FOUND;
+        goto 组件未找到;
       }
     }
-    else if (name_length2 == 0) goto COMPONENT_FOUND;
-    table_index = (ulonglong)((int)table_index + 1);
-    max_index = max_index + 1;
-    component_table = component_table + 0xb;
-    if (0xf < (longlong)max_index) {
-    COMPONENT_NOT_FOUND:
-      object_name = *(undefined **)(*(longlong *)(object_ptr + 0x1e0) + 0x18);
-      component_name = &DEFAULT_STRING_DATA;
-      if (object_name != (undefined *)0x0) {
-        component_name = object_name;
+    else if (current_component_name_length == 0) {
+      // 处理空名称的特殊情况
+      goto 组件找到;
+    }
+    
+    // 移动到下一个组件
+    current_table_index = (ulonglong)((int)current_table_index + 1);
+    search_max_index = search_max_index + 1;
+    component_lookup_table = component_lookup_table + 0xb;  // 每个组件条目0xb字节
+    
+    // 检查是否超出最大组件数量
+    if (MAX_COMPONENT_INDEX < (longlong)search_max_index) {
+    组件未找到:
+      // 记录组件查找错误
+      object_display_name = *(undefined **)(*(longlong *)(object_ptr + OFFSET_OBJECT_TYPE_INFO) + 0x18);
+      component_display_name = &DEFAULT_STRING_DATA;
+      
+      if (object_display_name != (undefined *)0x0) {
+        component_display_name = object_display_name;
       }
-      default_name = &DEFAULT_STRING_DATA;
+      
+      default_name_ptr = &DEFAULT_STRING_DATA;
       if (*(undefined **)(name_data + 8) != (undefined *)0x0) {
-        default_name = *(undefined **)(name_data + 8);
+        default_name_ptr = *(undefined **)(name_data + 8);  // 获取搜索的名称
       }
-      object_name = &DEFAULT_STRING_DATA;
+      
+      object_display_name = &DEFAULT_STRING_DATA;
       if (*(undefined **)(object_ptr + 0x18) != (undefined *)0x0) {
-        object_name = *(undefined **)(object_ptr + 0x18);
+        object_display_name = *(undefined **)(object_ptr + 0x18);  // 获取对象名称
       }
-      log_component_error(&COMPONENT_ERROR_MESSAGE, object_name, default_name, component_name);
+      
+      // 记录详细的错误信息
+      log_component_error(&COMPONENT_ERROR_MESSAGE, object_display_name, default_name_ptr, component_display_name);
       return;
     }
   } while( true );

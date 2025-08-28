@@ -1274,8 +1274,11 @@ void initialize_system_module6(void)
 
 
 
-// 函数: void FUN_18021cf80(void)
-void FUN_18021cf80(void)
+/**
+ * 初始化系统模块7
+ * 初始化系统的第七个模块
+ */
+void initialize_system_module7(void)
 
 {
                     // WARNING: Subroutine does not return
