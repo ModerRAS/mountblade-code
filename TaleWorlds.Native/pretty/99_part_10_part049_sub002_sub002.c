@@ -5417,7 +5417,7 @@ int SystemResetter(void)
 
 
 
-int FUN_1806c6f10(uint64_t *param_1,longlong *param_2,int param_3)
+int DataSyncProcessor(uint64_t *param_1,longlong *param_2,int param_3)
 
 {
   int iVar1;
@@ -5586,7 +5586,7 @@ int FUN_1806c6f10(uint64_t *param_1,longlong *param_2,int param_3)
 
 
 
-int FUN_1806c6f2c(int32_t param_1,uint64_t param_2,int param_3,uint64_t param_4,
+int ConfigValidator(int32_t param_1,uint64_t param_2,int param_3,uint64_t param_4,
                  uint64_t param_5,uint64_t param_6,uint64_t param_7,uint64_t param_8,
                  int32_t param_9,uint64_t param_10,uint64_t param_11,uint64_t param_12,
                  int32_t param_13)
@@ -5762,7 +5762,7 @@ LAB_1806c7195:
 
 
 
-int FUN_1806c70ff(longlong *param_1)
+int ResourceHandler(longlong *param_1)
 
 {
   int iVar1;

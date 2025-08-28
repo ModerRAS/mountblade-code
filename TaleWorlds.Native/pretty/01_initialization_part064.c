@@ -240,7 +240,7 @@ typedef struct {
  * ============================================================================ */
 
 // 系统数据区域 - 主要系统状态信息
-extern uint8_t DAT_180d49830[0x100];         // 系统主数据区域 - 256字节系统核心数据
+extern uint8_t system_main_data_area[0x100];         // 系统主数据区域 - 256字节系统核心数据
 extern uint64_t system_control_block;               // 系统控制块 - 主要系统控制信息
 extern int32_t system_status_flags;                // 系统状态标志 - 当前系统状态位
 extern void *system_function_pointer_table;                  // 系统指针表 - 系统函数指针数组
@@ -252,10 +252,10 @@ extern int64_t system_cpu_performance_counter;               // 系统性能计�
 extern int64_t system_memory_performance_counter;               // 系统性能计数器2 - 内存性能计数器
 extern int32_t system_last_error_code;                // 系统错误代码 - 最后错误代码
 extern int32_t system_last_warning_code;                // 系统警告代码 - 最后警告代码
-extern uint8_t DAT_180d49950[0x20];          // 系统配置数据 - 32字节配置数据
-extern uint8_t DAT_180d49970[0x20];          // 系统资源数据 - 32字节资源数据
-extern uint8_t DAT_180bfc140[0x200];         // 系统缓存数据 - 512字节缓存区
-extern uint8_t DAT_1803f48b2[0x10];         // 系统临时数据 - 16字节临时数据
+extern uint8_t system_config_data[0x20];          // 系统配置数据 - 32字节配置数据
+extern uint8_t system_resource_data[0x20];          // 系统资源数据 - 32字节资源数据
+extern uint8_t system_cache_data[0x200];         // 系统缓存数据 - 512字节缓存区
+extern uint8_t system_temp_data[0x10];         // 系统临时数据 - 16字节临时数据
 extern uint8_t system_reserved_area[0x10];          // 系统保留区域1 - 16字节保留区域
 extern int64_t system_memory_usage_stats;               // 系统统计信息1 - 内存使用统计
 extern uint64_t system_cpu_usage_stats;              // 系统统计信息2 - CPU使用统计

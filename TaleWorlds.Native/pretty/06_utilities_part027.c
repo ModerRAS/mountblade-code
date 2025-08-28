@@ -237,7 +237,7 @@ void utilities_system_resource_handler(uint64_t param_1, longlong param_2)
   // 检查资源状态是否为空闲
   if (*(char *)(param_2 + 0x20) == '\0') {
     // 调用系统资源处理函数
-    FUN_1808fc914(*(uint64_t *)(param_2 + 0x50),    // 资源指针1
+    utilities_system_resource_processor(*(uint64_t *)(param_2 + 0x50),    // 资源指针1
                   *(uint64_t *)(param_2 + 0x58),    // 资源指针2
                   *(uint64_t *)(param_2 + 0x28),    // 资源指针3
                   *(uint64_t *)(param_2 + 0x70));   // 资源指针4
@@ -262,7 +262,7 @@ void utilities_system_data_processor(uint64_t param_1, longlong param_2)
   // 检查数据状态是否为空闲
   if (*(char *)(param_2 + 0x20) == '\0') {
     // 调用系统数据处理函数
-    FUN_1808fc914(*(uint64_t *)(param_2 + 0x60),    // 数据指针1
+    utilities_system_resource_processor(*(uint64_t *)(param_2 + 0x60),    // 数据指针1
                   *(uint64_t *)(param_2 + 0x68),    // 数据指针2
                   *(uint64_t *)(param_2 + 0x70),    // 数据指针3
                   *(uint64_t *)(param_2 + 0x78));   // 数据指针4
@@ -315,7 +315,7 @@ void utilities_system_configuration_handler(uint64_t param_1, longlong param_2)
   // 检查配置状态是否为空闲
   if (*(char *)(param_2 + 0x20) == '\0') {
     // 调用系统配置处理函数
-    FUN_1808fc914(*(uint64_t *)(param_2 + 0x60),    // 配置指针1
+    utilities_system_resource_processor(*(uint64_t *)(param_2 + 0x60),    // 配置指针1
                   *(uint64_t *)(param_2 + 0x70),    // 配置指针2
                   *(uint64_t *)(param_2 + 0x28),    // 配置指针3
                   *(uint64_t *)(param_2 + 0x88));   // 配置指针4
@@ -485,7 +485,7 @@ void utilities_system_module_initializer(void)
   // 检查模块状态
   if (*module_status_ptr != 0) {
     // 模块状态异常，终止程序
-    FUN_18064e900();
+    utilities_system_error_handler();
   }
   
   // 重置模块状态
@@ -496,12 +496,12 @@ void utilities_system_module_initializer(void)
   // 检查模块初始化状态
   if (*module_init_ptr == 0) {
     // 执行模块初始化
-    FUN_180048980();
+    utilities_system_module_processor();
     
     // 遍历模块并执行初始化
     module_end = *module_end_ptr;
     for (module_ptr = *module_base_ptr; module_ptr != module_end; module_ptr = module_ptr + 0x100) {
-      FUN_180046b10(module_ptr);
+      utilities_system_submodule_handler(module_ptr);
     }
     
     // 检查模块基地址
@@ -510,11 +510,11 @@ void utilities_system_module_initializer(void)
     }
     
     // 模块初始化失败，终止程序
-    FUN_18064e900();
+    utilities_system_error_handler();
   }
   
   // 模块初始化失败，终止程序
-  FUN_18064e900();
+  utilities_system_error_handler();
 }
 
 
@@ -1136,7 +1136,7 @@ void utilities_system_module_state_manager(void)
   // 检查模块状态
   if (*system_module_status_ptr != 0) {
     // 模块状态异常，终止程序
-    FUN_18064e900();
+    utilities_system_error_handler();
   }
   
   // 重置模块状态
@@ -1168,7 +1168,7 @@ void utilities_system_data_state_manager(void)
   // 检查数据状态
   if (*system_data_status_ptr != 0) {
     // 数据状态异常，终止程序
-    FUN_18064e900();
+    utilities_system_error_handler();
   }
   
   // 重置数据状态
@@ -1266,7 +1266,7 @@ void FUN_180941b20(void)
   // 检查资源状态
   if (*system_resource_status_ptr != 0) {
     // 资源状态异常，终止程序
-    FUN_18064e900();
+    utilities_system_error_handler();
   }
   
   // 重置资源状态
@@ -1357,14 +1357,14 @@ void utilities_system_state_cleaner_and_terminator(void)
     FUN_18005a050();
     if ((1 < *system_sync_count_ptr) && (*system_sync_data_ptr != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      utilities_system_error_handler();
     }
     if (*system_sync_handler_ptr != (longlong *)0x0) {
       (**(code **)(**system_sync_handler_ptr + 0x38))();
     }
     if (*system_sync_flag_ptr != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      utilities_system_error_handler();
     }
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ();
@@ -1406,7 +1406,7 @@ void FUN_180941d50(void)
   *utilities_system_additional_ptr_5 = SYSTEM_INIT_VALUE;
   if (*utilities_system_additional_status_1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    utilities_system_error_handler();
   }
   *utilities_system_additional_status_1 = 0;
   *utilities_system_additional_cleanup_1 = 0;
@@ -1455,11 +1455,11 @@ void FUN_180941e00(void)
   FUN_180320e20(0x180d497e0);
   if (*system_memory_status_ptr != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    utilities_system_error_handler();
   }
   if (*system_memory_cleanup_ptr != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    utilities_system_error_handler();
   }
   FUN_180320b20(0x180d498a0);
   *system_memory_data_ptr = SYSTEM_DEFAULT_VALUE;
@@ -2169,7 +2169,7 @@ void FUN_1809424c0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  utilities_system_error_handler();
 }
 
 
@@ -2199,7 +2199,7 @@ void FUN_180942520(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  utilities_system_error_handler();
 }
 
 
@@ -2229,7 +2229,7 @@ void FUN_180942580(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  utilities_system_error_handler();
 }
 
 
@@ -2482,8 +2482,8 @@ void FUN_180942720(void)
 #define utilities_system_initializer FUN_1808fc5ac
 #define utilities_system_error_handler FUN_18064e900
 #define utilities_system_module_processor FUN_180048980
-#define utilities_system_submodule_handler FUN_180046b10
-#define utilities_system_resource_processor FUN_1808fc914
+#define utilities_system_submodule_handler utilities_system_submodule_handler
+#define utilities_system_resource_processor utilities_system_resource_processor
 #define utilities_system_callback_handler FUN_1808fc074
 #define utilities_system_function_caller FUN_1808fc51c
 #define utilities_system_memory_handler FUN_18008d1f0
