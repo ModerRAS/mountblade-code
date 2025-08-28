@@ -65,66 +65,66 @@ void initialize_engine_render_config(longlong engine_context, longlong render_co
   undefined4 stack_data_60;
   undefined4 stack_data_5c;
   
-  uStack_a8 = 0xfffffffffffffffe;
-  lVar9 = *(longlong *)(param_1 + 0x380);
-  if ((lVar9 != 0) && (*(longlong *)(param_1 + 0x81f0) != 0)) {
-    uVar8 = *(undefined8 *)(*(longlong *)(param_1 + 0x81f0) + 4);
-    fStackX_c = (float)((ulonglong)uVar8 >> 0x20);
-    fStackX_8 = (float)uVar8;
-    fVar13 = fStackX_c * fStackX_c + fStackX_8 * fStackX_8;
-    if (fVar13 <= 1e-07) {
-      fStackX_8 = 0.0;
-      fStackX_c = 1.0;
+  stack_data_a8 = 0xfffffffffffffffe;
+  engine_ptr = *(longlong *)(engine_context + 0x380);
+  if ((engine_ptr != 0) && (*(longlong *)(engine_context + 0x81f0) != 0)) {
+    config_data = *(undefined8 *)(*(longlong *)(engine_context + 0x81f0) + 4);
+    vector_y = (float)((ulonglong)config_data >> 0x20);
+    vector_x = (float)config_data;
+    float_value = vector_y * vector_y + vector_x * vector_x;
+    if (float_value <= 1e-07) {
+      vector_x = 0.0;
+      vector_y = 1.0;
     }
     else {
-      fVar13 = 1.0 / SQRT(fVar13);
-      fStackX_8 = fStackX_8 * fVar13;
-      fStackX_c = fStackX_c * fVar13;
+      float_value = 1.0 / SQRT(float_value);
+      vector_x = vector_x * float_value;
+      vector_y = vector_y * float_value;
     }
-    *(float *)(lVar9 + 0x94) = fStackX_8;
-    *(float *)(lVar9 + 0x98) = fStackX_c;
-    fVar13 = (*(float *)(*(longlong *)(param_1 + 0x81f0) + 0xc) - 1.0) * 0.33333334;
-    if (0.0 <= fVar13) {
-      if (1.0 <= fVar13) {
-        fVar13 = 1.0;
+    *(float *)(engine_ptr + 0x94) = vector_x;
+    *(float *)(engine_ptr + 0x98) = vector_y;
+    float_value = (*(float *)(*(longlong *)(engine_context + 0x81f0) + 0xc) - 1.0) * 0.33333334;
+    if (0.0 <= float_value) {
+      if (1.0 <= float_value) {
+        float_value = 1.0;
       }
     }
     else {
-      fVar13 = 0.0;
+      float_value = 0.0;
     }
-    fVar13 = (4.5 - fVar13 * 3.0) * fVar13 * fVar13 + 1.5;
-    if (fVar13 <= 0.001) {
-      fVar13 = 0.001;
+    float_value = (4.5 - float_value * 3.0) * float_value * float_value + 1.5;
+    if (float_value <= 0.001) {
+      float_value = 0.001;
     }
-    *(float *)(*(longlong *)(param_1 + 0x380) + 0xa4) = fVar13;
-    lVar9 = *(longlong *)(param_1 + 0x380);
+    *(float *)(*(longlong *)(engine_context + 0x380) + 0xa4) = float_value;
+    engine_ptr = *(longlong *)(engine_context + 0x380);
   }
-  FUN_18019cf00(param_2 + 0x125b8,lVar9);
-  lVar9 = *(longlong *)(param_2 + 0x12608);
-  if (lVar9 != 0) {
-    uVar8 = FUN_1801c1880(lVar9,&UNK_180a0b2e8);
-    *(undefined8 *)(param_2 + 0x12610) = uVar8;
-    uVar8 = FUN_1801c1880(lVar9,&UNK_180a0b2e0);
-    *(undefined8 *)(param_2 + 0x12618) = uVar8;
-    uVar8 = FUN_1801c1880(lVar9,&UNK_180a0b300);
-    *(undefined8 *)(param_2 + 0x12620) = uVar8;
-    uVar8 = FUN_1801c1880(lVar9,&UNK_180a0b2f0);
-    *(undefined8 *)(param_2 + 0x12628) = uVar8;
-    uVar8 = FUN_1801c1880(lVar9,&UNK_180a0b318);
-    *(undefined8 *)(param_2 + 0x12630) = uVar8;
-    uVar8 = FUN_1801c1880(lVar9,&UNK_180a0b310);
-    *(undefined8 *)(param_2 + 0x12638) = uVar8;
-    uVar8 = FUN_1801c1880(lVar9,&UNK_180a0b338);
-    *(undefined8 *)(param_2 + 0x12640) = uVar8;
+  swap_resource_pointers(render_context + 0x125b8, engine_ptr);
+  engine_ptr = *(longlong *)(render_context + 0x12608);
+  if (engine_ptr != 0) {
+    config_data = get_resource_handle(engine_ptr, &SHADER_TEXTURE_NORMAL);
+    *(undefined8 *)(render_context + 0x12610) = config_data;
+    config_data = get_resource_handle(engine_ptr, &SHADER_TEXTURE_DIFFUSE);
+    *(undefined8 *)(render_context + 0x12618) = config_data;
+    config_data = get_resource_handle(engine_ptr, &SHADER_TEXTURE_SPECULAR);
+    *(undefined8 *)(render_context + 0x12620) = config_data;
+    config_data = get_resource_handle(engine_ptr, &SHADER_TEXTURE_EMISSION);
+    *(undefined8 *)(render_context + 0x12628) = config_data;
+    config_data = get_resource_handle(engine_ptr, &SHADER_TEXTURE_ROUGHNESS);
+    *(undefined8 *)(render_context + 0x12630) = config_data;
+    config_data = get_resource_handle(engine_ptr, &SHADER_TEXTURE_METALNESS);
+    *(undefined8 *)(render_context + 0x12638) = config_data;
+    config_data = get_resource_handle(engine_ptr, &SHADER_TEXTURE_AMBIENT);
+    *(undefined8 *)(render_context + 0x12640) = config_data;
   }
-  bVar5 = true;
-  for (lVar9 = *(longlong *)(param_1 + 0x60ba0); lVar9 != param_1 + 0x60b98;
-      lVar9 = func_0x00018066bd70(lVar9)) {
-    if (*(char *)(*(longlong *)(lVar9 + 0x20) + 0x821) == '\0') {
-      bVar5 = false;
+  is_initialized = true;
+  for (engine_ptr = *(longlong *)(engine_context + 0x60ba0); engine_ptr != engine_context + 0x60b98;
+      engine_ptr = get_next_engine_component(engine_ptr)) {
+    if (*(char *)(*(longlong *)(engine_ptr + 0x20) + 0x821) == '\0') {
+      is_initialized = false;
     }
   }
-  if (bVar5) {
+  if (is_initialized) {
     *(float *)(*(longlong *)(param_1 + 0x380) + 0x90) =
          *(float *)(param_1 + 0x5b9c) + *(float *)(param_1 + 0x5b9c);
     fVar14 = 1.0 - *(float *)(param_1 + 0x3ecc);

@@ -4,7 +4,7 @@
 // 包含8个函数，主要涉及引擎初始化、内存管理和资源清理
 
 // 函数: 空函数，可能用于初始化或占位
-void initialize_empty_placeholder(void)
+void 初始化空占位函数(void)
 
 {
   return;
@@ -15,87 +15,89 @@ void initialize_empty_placeholder(void)
 // WARNING: 全局变量以'_'开头的可能与较小符号在同一地址重叠
 
 // 函数: 初始化引擎核心组件
-undefined8 * initialize_engine_core(undefined8 *engine_context,longlong config_flags)
+undefined8 * 初始化引擎核心(undefined8 *引擎上下文,longlong 配置标志)
 
 {
-  longlong *plVar1;
-  undefined1 uVar2;
-  int iVar3;
-  undefined4 uVar4;
-  undefined8 uVar5;
-  undefined4 *puVar6;
-  longlong *plVar7;
-  uint uVar8;
-  uint uVar9;
-  undefined *puVar10;
-  undefined8 *puVar11;
-  undefined4 auStackX_18 [2];
-  int iStackX_20;
-  longlong *plStack_190;
-  longlong *plStack_188;
-  undefined1 auStack_180 [8];
-  undefined8 uStack_178;
-  longlong *plStack_168;
-  char cStack_160;
-  char cStack_15f;
-  char cStack_15e;
-  undefined4 uStack_158;
-  undefined4 uStack_154;
-  undefined8 uStack_150;
-  undefined4 uStack_148;
-  undefined4 uStack_144;
-  longlong *plStack_140;
-  longlong *plStack_138;
-  longlong *plStack_130;
-  longlong *plStack_128;
-  longlong *plStack_120;
-  longlong *plStack_118;
-  longlong *plStack_110;
-  longlong *plStack_108;
-  longlong *plStack_100;
-  undefined8 uStack_f8;
-  longlong *plStack_f0;
-  undefined4 uStack_e8;
-  undefined4 uStack_e4;
-  undefined4 uStack_e0;
-  undefined4 uStack_dc;
-  undefined8 uStack_d8;
-  undefined8 uStack_d0;
-  undefined8 uStack_c8;
-  undefined4 uStack_c0;
-  undefined4 uStack_b8;
-  undefined4 uStack_b4;
-  undefined4 uStack_b0;
-  undefined4 uStack_ac;
-  undefined4 uStack_a8;
-  undefined4 uStack_a4;
-  undefined4 uStack_a0;
-  undefined4 uStack_9c;
-  undefined4 uStack_98;
-  undefined4 uStack_94;
-  undefined4 uStack_90;
-  undefined4 uStack_8c;
-  undefined4 uStack_88;
-  undefined4 uStack_84;
-  undefined4 uStack_80;
-  undefined4 uStack_7c;
-  undefined4 uStack_78;
-  undefined4 uStack_74;
-  undefined4 uStack_70;
-  undefined4 uStack_6c;
-  undefined4 uStack_68;
-  undefined4 uStack_64;
-  undefined4 uStack_60;
-  undefined4 uStack_5c;
-  undefined4 uStack_58;
-  undefined4 uStack_54;
-  undefined4 uStack_50;
-  undefined4 uStack_4c;
+  longlong *临时指针1;
+  undefined1 临时字节1;
+  int 临时整数1;
+  undefined4 临时无符号整数1;
+  undefined8 临时无符号长整数1;
+  undefined4 *临时无符号整数指针1;
+  longlong *临时指针2;
+  uint 临时无符号整数2;
+  uint 循环计数器;
+  undefined *临时未定义指针1;
+  undefined8 *临时未定义指针2;
+  undefined4 栈变量数组1[2];
+  int 栈变量整数1;
+  longlong *栈变量指针1;
+  longlong *栈变量指针2;
+  undefined1 栈变量字节数组1[8];
+  undefined8 栈变量无符号长整数1;
+  longlong *栈变量指针3;
+  char 栈变量字符1;
+  char 栈变量字符2;
+  char 栈变量字符3;
+  undefined4 栈变量无符号整数1;
+  undefined4 栈变量无符号整数2;
+  undefined8 栈变量无符号长整数2;
+  undefined4 栈变量无符号整数3;
+  undefined4 栈变量无符号整数4;
+  longlong *栈变量指针4;
+  longlong *栈变量指针5;
+  longlong *栈变量指针6;
+  longlong *栈变量指针7;
+  longlong *栈变量指针8;
+  longlong *栈变量指针9;
+  longlong *栈变量指针10;
+  longlong *栈变量指针11;
+  longlong *栈变量指针12;
+  undefined8 栈变量无符号长整数3;
+  longlong *栈变量指针13;
+  undefined4 栈变量无符号整数5;
+  undefined4 栈变量无符号整数6;
+  undefined4 栈变量无符号整数7;
+  undefined4 栈变量无符号整数8;
+  undefined8 栈变量无符号长整数4;
+  undefined8 栈变量无符号长整数5;
+  undefined8 栈变量无符号长整数6;
+  undefined4 栈变量无符号整数9;
+  undefined4 栈变量无符号整数10;
+  undefined4 栈变量无符号整数11;
+  undefined4 栈变量无符号整数12;
+  undefined4 栈变量无符号整数13;
+  undefined4 栈变量无符号整数14;
+  undefined4 栈变量无符号整数15;
+  undefined4 栈变量无符号整数16;
+  undefined4 栈变量无符号整数17;
+  undefined4 栈变量无符号整数18;
+  undefined4 栈变量无符号整数19;
+  undefined4 栈变量无符号整数20;
+  undefined4 栈变量无符号整数21;
+  undefined4 栈变量无符号整数22;
+  undefined4 栈变量无符号整数23;
+  undefined4 栈变量无符号整数24;
+  undefined4 栈变量无符号整数25;
+  undefined4 栈变量无符号整数26;
+  undefined4 栈变量无符号整数27;
+  undefined4 栈变量无符号整数28;
+  undefined4 栈变量无符号整数29;
+  undefined4 栈变量无符号整数30;
+  undefined4 栈变量无符号整数31;
+  undefined4 栈变量无符号整数32;
+  undefined4 栈变量无符号整数33;
+  undefined4 栈变量无符号整数34;
+  undefined4 栈变量无符号整数35;
+  undefined4 栈变量无符号整数36;
+  undefined4 栈变量无符号整数37;
+  undefined4 栈变量无符号整数38;
+  undefined4 栈变量无符号整数39;
   
-  uStack_f8 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
-  uVar9 = 0;
+  栈变量无符号长整数3 = 0xfffffffffffffffe;
+  *引擎上下文 = &引擎初始化数据1;
+  *引擎上下文 = &引擎初始化数据2;
+  循环计数器 = 0;
   *(undefined4 *)(param_1 + 1) = 0;
   *param_1 = &UNK_180a0c4a0;
   param_1[8] = 0;

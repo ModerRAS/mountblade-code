@@ -1,38 +1,66 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part204.c - 17 个函数
+// 02_core_engine_part204.c - 核心引擎内存管理和数据处理模块 (17个函数)
 
-// 函数: void FUN_180186430(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180186430(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 全局变量声明
+extern undefined8 _DAT_180c8a9e0;    // 核心引擎数据结构指针
+extern undefined8 _DAT_180bf00a8;    // 安全检查相关数据
+extern undefined1 UNK_180a3c3e0;     // 空字符串标记
+extern undefined1 UNK_18098bcb0;      // 字符串常量
+extern undefined1 UNK_180a0aa34;      // 格式化字符串
+extern undefined1 UNK_180a0abe0;      // 处理器标记
+extern undefined1 UNK_180a0ab70;      // 双参数标记
+extern undefined1 UNK_180a0aba8;      // 四参数标记
+extern undefined1 UNK_180a0ab00;      // 数组处理标记
+extern undefined1 UNK_180a0ab38;      // 结果处理标记
+extern undefined1 UNK_180a0ac88;      // 节点类型标记
+extern undefined1 UNK_180a0acd8;      // 链表类型标记
+extern undefined1 UNK_180a0ad28;      // 特殊处理标记
+extern undefined8 _DAT_180c8ed18;    // 内存池标识
+extern undefined1 DAT_18098bc73;      // 默认字符串数据
+
+/**
+ * 清理链表结构的内存
+ * 遍历链表节点，释放每个节点的内存，最后清理整个链表结构
+ * 
+ * @param context 上下文指针
+ * @param param2 保留参数
+ * @param param3 保留参数
+ * @param param4 保留参数
+ */
+void cleanup_linked_list_memory(longlong context, undefined8 param2, undefined8 param3, undefined8 param_4)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  longlong *plVar5;
-  undefined8 uVar6;
+  longlong *list_head;
+  longlong current_node;
+  longlong *next_node;
+  longlong *node_ptr;
+  undefined8 cleanup_flag;
   
-  uVar6 = 0xfffffffffffffffe;
-  plVar1 = (longlong *)(param_1 + 0x28);
-  lVar2 = *plVar1;
-  lVar4 = lVar2;
-  plVar5 = *(longlong **)(lVar2 + 8);
-  if (*(char *)((longlong)*(longlong **)(lVar2 + 8) + 0x19) == '\0') {
+  cleanup_flag = 0xfffffffffffffffe;
+  list_head = (longlong *)(context + 0x28);
+  current_node = *list_head;
+  node_ptr = *(longlong **)(current_node + 8);
+  
+  // 检查是否需要遍历清理链表
+  if (*(char *)((longlong)*(longlong **)(current_node + 8) + 0x19) == '\0') {
     do {
-      FUN_1801885a0(plVar1,plVar5[2],param_3,param_4,uVar6);
-      plVar3 = (longlong *)*plVar5;
-      free(plVar5,0x28);
-      plVar5 = plVar3;
-    } while (*(char *)((longlong)plVar3 + 0x19) == '\0');
-    lVar4 = *plVar1;
+      // 调用清理函数处理每个节点
+      FUN_1801885a0(list_head, node_ptr[2], param3, param4, cleanup_flag);
+      next_node = (longlong *)*node_ptr;
+      free(node_ptr, 0x28);
+      node_ptr = next_node;
+    } while (*(char *)((longlong)next_node + 0x19) == '\0');
+    current_node = *list_head;
   }
-  *(longlong *)(lVar4 + 8) = lVar2;
-  *(longlong *)*plVar1 = lVar2;
-  *(longlong *)(*plVar1 + 0x10) = lVar2;
-  *(undefined8 *)(param_1 + 0x30) = 0;
-  free(*plVar1,0x28);
-  FUN_180067070(param_1 + 8);
+  
+  // 重置链表结构
+  *(longlong *)(current_node + 8) = current_node;
+  *(longlong *)*list_head = current_node;
+  *(longlong *)(*list_head + 0x10) = current_node;
+  *(undefined8 *)(context + 0x30) = 0;
+  free(*list_head, 0x28);
+  FUN_180067070(context + 8);
   return;
 }
 
