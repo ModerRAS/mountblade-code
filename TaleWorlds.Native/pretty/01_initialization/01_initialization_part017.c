@@ -848,72 +848,77 @@ void System_Call_Handler(void)
 
 
 
+// 函数: undefined1 * Initialize_Complex_Object(undefined1 *object, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 初始化复杂对象
 undefined1 *
-FUN_18004c330(undefined1 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+Initialize_Complex_Object(undefined1 *object, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
-  longlong *plVar1;
-  longlong *plVar2;
-  longlong *plVar3;
+  longlong *component_a;
+  longlong *component_b;
+  longlong *component_c;
   
-  plVar3 = (longlong *)(param_1 + 8);
-  *plVar3 = (longlong)&UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x18) = 0;
-  *plVar3 = (longlong)&UNK_180a3c3e0;
-  *(undefined8 *)(param_1 + 0x20) = 0;
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x18) = 0;
-  *(undefined **)(param_1 + 0x38) = &UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 0x40) = 0;
-  *(undefined4 *)(param_1 + 0x48) = 0;
-  *(undefined **)(param_1 + 0x38) = &UNK_180a3c3e0;
-  *(undefined8 *)(param_1 + 0x50) = 0;
-  *(undefined8 *)(param_1 + 0x40) = 0;
-  *(undefined4 *)(param_1 + 0x48) = 0;
-  *(undefined **)(param_1 + 0x58) = &UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 0x60) = 0;
-  *(undefined4 *)(param_1 + 0x68) = 0;
-  *(undefined **)(param_1 + 0x58) = &UNK_180a3c3e0;
-  *(undefined8 *)(param_1 + 0x70) = 0;
-  *(undefined8 *)(param_1 + 0x60) = 0;
-  *(undefined4 *)(param_1 + 0x68) = 0;
-  plVar1 = (longlong *)(param_1 + 0x80);
-  *plVar1 = (longlong)&UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 0x88) = 0;
-  *(undefined4 *)(param_1 + 0x90) = 0;
-  *plVar1 = (longlong)&UNK_180a3c3e0;
-  *(undefined8 *)(param_1 + 0x98) = 0;
-  *(undefined8 *)(param_1 + 0x88) = 0;
-  *(undefined4 *)(param_1 + 0x90) = 0;
-  plVar2 = (longlong *)(param_1 + 0xa0);
-  *plVar2 = (longlong)&UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 0xa8) = 0;
-  *(undefined4 *)(param_1 + 0xb0) = 0;
-  *plVar2 = (longlong)&UNK_180a3c3e0;
-  *(undefined8 *)(param_1 + 0xb8) = 0;
-  *(undefined8 *)(param_1 + 0xa8) = 0;
-  *(undefined4 *)(param_1 + 0xb0) = 0;
-  *param_1 = 0;
-  (**(code **)(*plVar3 + 0x10))(plVar3,&UNK_1809fd118,&UNK_18098bcb0,param_4,0xfffffffffffffffe);
-  *(undefined8 *)(param_1 + 0x28) = 0;
-  *(undefined4 *)(param_1 + 0x30) = 0;
-  param_1[0x7c] = 0;
-  param_1[0xc9] = 1;
-  (**(code **)(*plVar1 + 0x10))(plVar1,&DAT_1809fd128);
-  (**(code **)(*plVar2 + 0x10))(plVar2,&DAT_18098bc73);
-  *(undefined4 *)(param_1 + 0xc0) = 0x461c4000;
-  *(undefined4 *)(param_1 + 0xc4) = 0x461c4000;
-  param_1[200] = 0;
-  *(undefined8 *)(param_1 + 0xd0) = 0;
-  return param_1;
+  component_c = (longlong *)(object + 8);
+  *component_c = (longlong)&UNK_18098bcb0;
+  *(undefined8 *)(object + 0x10) = 0;
+  *(undefined4 *)(object + 0x18) = 0;
+  *component_c = (longlong)&UNK_180a3c3e0;
+  *(undefined8 *)(object + 0x20) = 0;
+  *(undefined8 *)(object + 0x10) = 0;
+  *(undefined4 *)(object + 0x18) = 0;
+  *(undefined **)(object + 0x38) = &UNK_18098bcb0;
+  *(undefined8 *)(object + 0x40) = 0;
+  *(undefined4 *)(object + 0x48) = 0;
+  *(undefined **)(object + 0x38) = &UNK_180a3c3e0;
+  *(undefined8 *)(object + 0x50) = 0;
+  *(undefined8 *)(object + 0x40) = 0;
+  *(undefined4 *)(object + 0x48) = 0;
+  *(undefined **)(object + 0x58) = &UNK_18098bcb0;
+  *(undefined8 *)(object + 0x60) = 0;
+  *(undefined4 *)(object + 0x68) = 0;
+  *(undefined **)(object + 0x58) = &UNK_180a3c3e0;
+  *(undefined8 *)(object + 0x70) = 0;
+  *(undefined8 *)(object + 0x60) = 0;
+  *(undefined4 *)(object + 0x68) = 0;
+  component_a = (longlong *)(object + 0x80);
+  *component_a = (longlong)&UNK_18098bcb0;
+  *(undefined8 *)(object + 0x88) = 0;
+  *(undefined4 *)(object + 0x90) = 0;
+  *component_a = (longlong)&UNK_180a3c3e0;
+  *(undefined8 *)(object + 0x98) = 0;
+  *(undefined8 *)(object + 0x88) = 0;
+  *(undefined4 *)(object + 0x90) = 0;
+  component_b = (longlong *)(object + 0xa0);
+  *component_b = (longlong)&UNK_18098bcb0;
+  *(undefined8 *)(object + 0xa8) = 0;
+  *(undefined4 *)(object + 0xb0) = 0;
+  *component_b = (longlong)&UNK_180a3c3e0;
+  *(undefined8 *)(object + 0xb8) = 0;
+  *(undefined8 *)(object + 0xa8) = 0;
+  *(undefined4 *)(object + 0xb0) = 0;
+  *object = 0;
+  (**(code **)(*component_c + 0x10))(component_c, &UNK_1809fd118, &UNK_18098bcb0, param_4, 0xfffffffffffffffe);
+  *(undefined8 *)(object + 0x28) = 0;
+  *(undefined4 *)(object + 0x30) = 0;
+  object[0x7c] = 0;
+  object[0xc9] = 1;
+  (**(code **)(*component_a + 0x10))(component_a, &DAT_1809fd128);
+  (**(code **)(*component_b + 0x10))(component_b, &DAT_18098bc73);
+  *(undefined4 *)(object + 0xc0) = 0x461c4000;
+  *(undefined4 *)(object + 0xc4) = 0x461c4000;
+  object[200] = 0;
+  *(undefined8 *)(object + 0xd0) = 0;
+  return object;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_18004c480(undefined8 *param_1)
+// 函数: undefined8 * Initialize_Advanced_System_Object(undefined8 *system_object)
+// 初始化高级系统对象 - 这是一个非常复杂的初始化函数
+// 原本实现：FUN_18004c480
+undefined8 * Initialize_Advanced_System_Object(undefined8 *system_object)
 
 {
   longlong *plVar1;
@@ -1153,48 +1158,52 @@ LAB_18004c7ef:
 
 
 
-// 函数: void FUN_18004ca00(longlong *param_1)
-void FUN_18004ca00(longlong *param_1)
+// 函数: void Execute_Callback_Function(longlong *callback_ptr)
+// 执行回调函数
+void Execute_Callback_Function(longlong *callback_ptr)
 
 {
-  if ((longlong *)*param_1 != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*param_1 + 0x38))();
+  if ((longlong *)*callback_ptr != (longlong *)0x0) {
+    (**(code **)(*(longlong *)*callback_ptr + 0x38))();
   }
   return;
 }
 
 
 
+// 函数: undefined8 * Initialize_Special_Object(undefined8 *object, ulonglong flags, undefined8 param_3, undefined8 param_4)
+// 初始化特殊对象
 undefined8 *
-FUN_18004ca30(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+Initialize_Special_Object(undefined8 *object, ulonglong flags, undefined8 param_3, undefined8 param_4)
 
 {
-  if (param_1[2] != 0) {
+  if (object[2] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x30,param_3,param_4,0xfffffffffffffffe);
+  *object = &UNK_180a21720;
+  *object = &UNK_180a21690;
+  if ((flags & 1) != 0) {
+    free(object, 0x30, param_3, param_4, 0xfffffffffffffffe);
   }
-  return param_1;
+  return object;
 }
 
 
 
 
 
-// 函数: void FUN_18004caa0(undefined8 *param_1)
-void FUN_18004caa0(undefined8 *param_1)
+// 函数: void Reset_Special_Object(undefined8 *object)
+// 重置特殊对象
+void Reset_Special_Object(undefined8 *object)
 
 {
-  if (param_1[2] != 0) {
+  if (object[2] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  *object = &UNK_180a21720;
+  *object = &UNK_180a21690;
   return;
 }
 

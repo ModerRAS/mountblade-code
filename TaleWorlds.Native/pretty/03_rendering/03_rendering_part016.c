@@ -514,8 +514,8 @@ void Initialize_Rendering_Distance(void)
 {
   longlong lVar1;
   longlong *plVar2;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
+  longlong *local_obj_ptr;
+  longlong *target_data;
   float fVar3;
   float fVar4;
   float fVar5;
@@ -525,9 +525,9 @@ void Initialize_Rendering_Distance(void)
   float fVar9;
   
   FUN_1800b9f60();
-  plVar2 = *(longlong **)(unaff_RBP + 0x38);
+  plVar2 = *(longlong **)(local_obj_ptr + 0x38);
   fVar5 = 0.0;
-  if (plVar2 < *(longlong **)(unaff_RBP + 0x40)) {
+  if (plVar2 < *(longlong **)(local_obj_ptr + 0x40)) {
     do {
       lVar1 = *plVar2;
       if ((*(uint *)(lVar1 + 0x100) & 0x4000000) == 0) {
@@ -570,9 +570,9 @@ void Initialize_Rendering_Distance(void)
           fVar3 = *(float *)(lVar1 + 0x2a4) * 1.0;
         }
       }
-      fVar8 = *(float *)(unaff_RDI + 0x28) - fVar8;
-      fVar7 = *(float *)(unaff_RDI + 0x24) - fVar7;
-      fVar6 = *(float *)(unaff_RDI + 0x20) - fVar6;
+      fVar8 = *(float *)(target_data + 0x28) - fVar8;
+      fVar7 = *(float *)(target_data + 0x24) - fVar7;
+      fVar6 = *(float *)(target_data + 0x20) - fVar6;
       fVar7 = fVar7 * fVar7 + fVar6 * fVar6 + fVar8 * fVar8;
       fVar6 = fVar5 - fVar3;
       if (fVar6 <= 0.0) {
@@ -582,10 +582,10 @@ void Initialize_Rendering_Distance(void)
         fVar5 = SQRT(fVar7) + fVar3;
       }
       plVar2 = plVar2 + 2;
-    } while (plVar2 < *(longlong **)(unaff_RBP + 0x40));
+    } while (plVar2 < *(longlong **)(local_obj_ptr + 0x40));
     if ((0.0 < fVar5) &&
-       (fVar5 < *(float *)(unaff_RDI + 0x30) || fVar5 == *(float *)(unaff_RDI + 0x30))) {
-      *(float *)(unaff_RDI + 0x30) = fVar5;
+       (fVar5 < *(float *)(target_data + 0x30) || fVar5 == *(float *)(target_data + 0x30))) {
+      *(float *)(target_data + 0x30) = fVar5;
     }
   }
   return;
@@ -605,18 +605,18 @@ void Batch_Process_Rendering_Distance(longlong *obj_start, longlong *obj_end)
 
 {
   longlong lVar1;
-  longlong unaff_RDI;
+  longlong *target_data;
   float fVar2;
   float fVar3;
-  float in_XMM4_Da;
+  float min_distance;
   float fVar4;
   float fVar5;
   float fVar6;
   float fVar7;
-  float unaff_XMM10_Da;
+  float threshold_distance;
   
   do {
-    lVar1 = *param_1;
+    lVar1 = *obj_start;
     if ((*(uint *)(lVar1 + 0x100) & 0x4000000) == 0) {
       fVar4 = *(float *)(lVar1 + 0x294);
       fVar5 = *(float *)(lVar1 + 0x298);
@@ -657,22 +657,22 @@ void Batch_Process_Rendering_Distance(longlong *obj_start, longlong *obj_end)
         fVar2 = *(float *)(lVar1 + 0x2a4) * 1.0;
       }
     }
-    fVar6 = *(float *)(unaff_RDI + 0x28) - fVar6;
-    fVar5 = *(float *)(unaff_RDI + 0x24) - fVar5;
-    fVar4 = *(float *)(unaff_RDI + 0x20) - fVar4;
+    fVar6 = *(float *)(target_data + 0x28) - fVar6;
+    fVar5 = *(float *)(target_data + 0x24) - fVar5;
+    fVar4 = *(float *)(target_data + 0x20) - fVar4;
     fVar5 = fVar5 * fVar5 + fVar4 * fVar4 + fVar6 * fVar6;
-    fVar4 = in_XMM4_Da - fVar2;
-    if (in_XMM4_Da - fVar2 <= unaff_XMM10_Da) {
-      fVar4 = unaff_XMM10_Da;
+    fVar4 = min_distance - fVar2;
+    if (min_distance - fVar2 <= threshold_distance) {
+      fVar4 = threshold_distance;
     }
     if (fVar4 * fVar4 < fVar5) {
-      in_XMM4_Da = SQRT(fVar5) + fVar2;
+      min_distance = SQRT(fVar5) + fVar2;
     }
-    param_1 = param_1 + 2;
-  } while (param_1 < param_2);
-  if ((unaff_XMM10_Da < in_XMM4_Da) &&
-     (in_XMM4_Da < *(float *)(unaff_RDI + 0x30) || in_XMM4_Da == *(float *)(unaff_RDI + 0x30))) {
-    *(float *)(unaff_RDI + 0x30) = in_XMM4_Da;
+    obj_start = obj_start + 2;
+  } while (obj_start < obj_end);
+  if ((threshold_distance < min_distance) &&
+     (min_distance < *(float *)(target_data + 0x30) || min_distance == *(float *)(target_data + 0x30))) {
+    *(float *)(target_data + 0x30) = min_distance;
   }
   return;
 }
@@ -688,11 +688,11 @@ void Batch_Process_Rendering_Distance(longlong *obj_start, longlong *obj_end)
 void Update_Minimum_Rendering_Distance(void)
 
 {
-  longlong unaff_RDI;
-  float in_XMM4_Da;
+  longlong *target_data;
+  float min_distance;
   
-  if (in_XMM4_Da < *(float *)(unaff_RDI + 0x30) || in_XMM4_Da == *(float *)(unaff_RDI + 0x30)) {
-    *(float *)(unaff_RDI + 0x30) = in_XMM4_Da;
+  if (min_distance < *(float *)(target_data + 0x30) || min_distance == *(float *)(target_data + 0x30)) {
+    *(float *)(target_data + 0x30) = min_distance;
   }
   return;
 }
