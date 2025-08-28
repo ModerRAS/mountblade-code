@@ -1237,13 +1237,13 @@ int64_t ResourceAllocator(uint64_t param_1)
     
     plVar2 = (int64_t *)*unaff_R14;
     if ((unaff_RBX == plVar2) || (unaff_RBX == unaff_R14)) {
-        if (unaff_R14[4] == 0) goto FUN_1803a6d7c;
+        if (unaff_R14[4] == 0) goto SystemResourceHandler;
         unaff_RBX = plVar2;
         if (*unaff_RDI <= *(int *)(plVar2 + 4)) {
-            if (*unaff_RDI < *(int *)(plVar2 + 4)) goto FUN_1803a6d7c;
+            if (*unaff_RDI < *(int *)(plVar2 + 4)) goto SystemResourceHandler;
             if ((unaff_RDI[1] <= *(int *)((int64_t)plVar2 + 0x24)) &&
                ((unaff_RDI[1] < *(int *)((int64_t)plVar2 + 0x24) ||
-                (unaff_RDI[2] <= *(int *)(plVar2 + 5))))) goto FUN_1803a6d7c;
+                (unaff_RDI[2] <= *(int *)(plVar2 + 5))))) goto SystemResourceHandler;
         }
     }
     else {
@@ -1251,16 +1251,16 @@ int64_t ResourceAllocator(uint64_t param_1)
         iVar1 = *unaff_RDI;
         param_1 = extraout_XMM0_Qa;
         if (iVar1 <= (int)unaff_RBX[4]) {
-            if (iVar1 < (int)unaff_RBX[4]) goto FUN_1803a6d7c;
+            if (iVar1 < (int)unaff_RBX[4]) goto SystemResourceHandler;
             if ((unaff_RDI[1] <= *(int *)((int64_t)unaff_RBX + 0x24)) &&
                ((unaff_RDI[1] < *(int *)((int64_t)unaff_RBX + 0x24) ||
-                (unaff_RDI[2] <= (int)unaff_RBX[5])))) goto FUN_1803a6d7c;
+                (unaff_RDI[2] <= (int)unaff_RBX[5])))) goto SystemResourceHandler;
         }
         if ((int)plVar2[4] <= iVar1) {
-            if ((int)plVar2[4] < iVar1) goto FUN_1803a6d7c;
+            if ((int)plVar2[4] < iVar1) goto SystemResourceHandler;
             if ((*(int *)((int64_t)plVar2 + 0x24) <= unaff_RDI[1]) &&
                ((*(int *)((int64_t)plVar2 + 0x24) < unaff_RDI[1] || ((int)plVar2[5] <= unaff_RDI[2]))))
-            goto FUN_1803a6d7c;
+            goto SystemResourceHandler;
         }
         if (*unaff_RBX != 0) {
             unaff_RBX = plVar2;
