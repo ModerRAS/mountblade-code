@@ -441,110 +441,139 @@ void FUN_18053598c(undefined4 param_1)
     render_stack_param = 0;
     goto LAB_18052490a;
   }
-  lVar6 = 0;
-  if ((((*(uint *)(lVar3 + 0x56c) >> 0xe & 1) != 0) && (_DAT_180c92514 != 1)) &&
+  
+  // 步骤6：执行标志位检查和对象处理
+  render_loop_counter = 0;
+  if ((((*(uint *)(render_context_ptr + 0x56c) >> 0xe & 1) != 0) && (_DAT_180c92514 != 1)) &&
      (_DAT_180c92514 != 4)) {
-    plVar8 = (longlong *)(*(longlong *)(lVar3 + 0x8f8) + 0x9e8);
-    piVar5 = (int *)(*(longlong *)(lVar3 + 0x8f8) + 0x9e0);
+    render_object_array = (longlong *)(*(longlong *)(render_context_ptr + 0x8f8) + 0x9e8);
+    render_flag_pointer = (int *)(*(longlong *)(render_context_ptr + 0x8f8) + 0x9e0);
+    
+    // 步骤6.1：循环处理渲染对象
     do {
-      if ((*piVar5 != -1) &&
-         ((*(uint *)((longlong)*(int *)(*plVar8 + 0xf0) * 0xa0 + 0x58 +
-                    *(longlong *)(*plVar8 + 0xd0)) & 0x2000) != 0)) {
-        FUN_180524260(lVar3);
+      if ((*render_flag_pointer != -1) &&
+         ((*(uint *)((longlong)*(int *)(*render_object_array + 0xf0) * 0xa0 + 0x58 +
+                    *(longlong *)(*render_object_array + 0xd0)) & 0x2000) != 0)) {
+        FUN_180524260(render_context_ptr);
         break;
       }
-      lVar6 = lVar6 + 1;
-      piVar5 = piVar5 + 1;
-      plVar8 = plVar8 + 1;
-    } while (lVar6 < 2);
+      render_loop_counter = render_loop_counter + 1;
+      render_flag_pointer = render_flag_pointer + 1;
+      render_object_array = render_object_array + 1;
+    } while (render_loop_counter < 2);
   }
+  
+  // 步骤7：执行系统状态检查和更新
   if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
-    FUN_1805ed8d0(*(undefined8 *)(lVar3 + 0x8e0));
+    FUN_1805ed8d0(*(undefined8 *)(render_context_ptr + 0x8e0));
   }
-  lVar6 = *(longlong *)(lVar3 + 0x20);
-  cVar1 = func_0x000180522f60();
-  if (cVar1 != '\0') {
-                    // WARNING: Subroutine does not return
-    FUN_1808fd400(*(undefined4 *)(lVar6 + 0x34));
+  
+  // 步骤8：获取渲染数据指针和状态标志
+  longlong render_data_ptr = *(longlong *)(render_context_ptr + 0x20);
+  render_status_valid = func_0x000180522f60();
+  if (render_status_valid != '\0') {
+    // WARNING: Subroutine does not return
+    FUN_1808fd400(*(undefined4 *)(render_data_ptr + 0x34));
   }
-  if (-0.6 <= *(float *)(lVar6 + 0x20)) {
-    if (0.7 < *(float *)(lVar6 + 0x20)) {
-      fVar9 = (float)atan2f(*(uint *)(lVar6 + 0x1c) ^ 0x80000000,*(undefined4 *)(lVar6 + 0x20));
-      if (0.5 <= ABS(fVar9)) {
-        cVar1 = (fVar9 < 0.0) + '\x03';
+  
+  // 步骤9：执行坐标范围检查和数学计算
+  if (-0.6 <= *(float *)(render_data_ptr + 0x20)) {
+    if (0.7 < *(float *)(render_data_ptr + 0x20)) {
+      // 步骤9.1：计算角度和方向
+      render_coord_x = (float)atan2f(*(uint *)(render_data_ptr + 0x1c) ^ 0x80000000, *(undefined4 *)(render_data_ptr + 0x20));
+      if (0.5 <= ABS(render_coord_x)) {
+        render_condition_flag = (render_coord_x < 0.0) + '\x03';
       }
       else {
-        cVar1 = '\x02';
+        render_condition_flag = '\x02';
       }
-      uStack_8 = 0;
-      uStack_10 = 0;
-      uVar2 = func_0x00018052dcc0(*(undefined4 *)(lVar6 + 0x20),*(undefined4 *)(lVar6 + 0x1c),
-                                  *(undefined1 *)(*(longlong *)(lVar3 + 0x590) + 0x34bc),cVar1);
+      
+      // 步骤9.2：处理角度计算结果
+      render_stack_address = 0;
+      render_stack_param = 0;
+      render_parameter_id = func_0x00018052dcc0(*(undefined4 *)(render_data_ptr + 0x20), *(undefined4 *)(render_data_ptr + 0x1c),
+                                  *(undefined1 *)(*(longlong *)(render_context_ptr + 0x590) + 0x34bc), render_condition_flag);
       goto LAB_18052449f;
     }
-    fVar9 = *(float *)(lVar6 + 0x1c);
-    uVar7 = *(undefined8 *)(lVar3 + 0x598);
-    uStack_8 = 0;
-    uStack_10 = 0;
-    fVar10 = *(float *)(lVar6 + 0x20) * *(float *)(lVar6 + 0x20);
-    if (fVar9 < -0.8) {
-      uVar4 = 1.0 < fVar9 * fVar9 + fVar10;
-      uVar2 = func_0x00018052dcc0(lVar3);
-      iStack_c = FUN_180557b40(uVar7,uVar2,0,0,0,0,uVar4);
-      FUN_18051ec50(lVar3,&uStack_10);
-      if (*(int *)(lVar3 + 0x1fc) == 2) {
+    
+    // 步骤9.3：处理Y坐标范围检查
+    render_coord_y = *(float *)(render_data_ptr + 0x1c);
+    render_mode_config = *(undefined8 *)(render_context_ptr + 0x598);
+    render_stack_address = 0;
+    render_stack_param = 0;
+    render_coord_x = *(float *)(render_data_ptr + 0x20) * *(float *)(render_data_ptr + 0x20);
+    
+    if (render_coord_y < -0.8) {
+      // 步骤9.4：处理下限范围
+      render_condition_flag = 1.0 < render_coord_y * render_coord_y + render_coord_x;
+      render_parameter_id = func_0x00018052dcc0(render_context_ptr);
+      render_result_code = FUN_180557b40(render_mode_config, render_parameter_id, 0, 0, 0, 0, render_condition_flag);
+      FUN_18051ec50(render_context_ptr, &render_stack_param);
+      
+      // 检查渲染状态码
+      if (*(int *)(render_context_ptr + 0x1fc) == 2) {
         return;
       }
-      if (*(int *)(lVar3 + 0x1fc) == 5) {
+      if (*(int *)(render_context_ptr + 0x1fc) == 5) {
         return;
       }
-      func_0x000180525350(lVar3,1);
+      func_0x000180525350(render_context_ptr, 1);
       return;
     }
-    if (0.8 < fVar9) {
-      uVar4 = 1.0 < fVar9 * fVar9 + fVar10;
-      uVar2 = func_0x00018052dcc0(lVar3);
-      iStack_c = FUN_180557b40(uVar7,uVar2,0,1,0,0,uVar4);
-      FUN_18051ec50(lVar3,&uStack_10);
-      if (*(int *)(lVar3 + 0x1fc) == 2) {
+    
+    if (0.8 < render_coord_y) {
+      // 步骤9.5：处理上限范围
+      render_condition_flag = 1.0 < render_coord_y * render_coord_y + render_coord_x;
+      render_parameter_id = func_0x00018052dcc0(render_context_ptr);
+      render_result_code = FUN_180557b40(render_mode_config, render_parameter_id, 0, 1, 0, 0, render_condition_flag);
+      FUN_18051ec50(render_context_ptr, &render_stack_param);
+      
+      // 检查渲染状态码
+      if (*(int *)(render_context_ptr + 0x1fc) == 2) {
         return;
       }
-      if (*(int *)(lVar3 + 0x1fc) == 5) {
+      if (*(int *)(render_context_ptr + 0x1fc) == 5) {
         return;
       }
-      lVar6 = *(longlong *)(lVar3 + 0x590);
-      if (lVar6 == 0) {
+      
+      // 步骤9.6：处理渲染标志位设置
+      longlong render_system_ptr = *(longlong *)(render_context_ptr + 0x590);
+      if (render_system_ptr == 0) {
         return;
       }
-      if ((*(uint *)(lVar3 + 0x56c) & 0x800) == 0) {
+      if ((*(uint *)(render_context_ptr + 0x56c) & 0x800) == 0) {
         return;
       }
-      if (*(char *)(lVar6 + 0x34bc) == '\0') {
+      if (*(char *)(render_system_ptr + 0x34bc) == '\0') {
         return;
       }
-      *(undefined1 *)(lVar6 + 0x34bc) = 0;
+      *(undefined1 *)(render_system_ptr + 0x34bc) = 0;
       return;
     }
-    uVar2 = func_0x00018052dcc0(lVar3);
+    
+    render_parameter_id = func_0x00018052dcc0(render_context_ptr);
   }
   else {
-    uStack_8 = 0;
-    uStack_10 = 0;
-    if (*(int *)(lVar3 + 0x564) == -1) {
-      uVar2 = 0xffffffff;
+    // 步骤9.7：处理负坐标范围
+    render_stack_address = 0;
+    render_stack_param = 0;
+    if (*(int *)(render_context_ptr + 0x564) == -1) {
+      render_parameter_id = 0xffffffff;
     }
     else {
-      uVar2 = *(undefined4 *)
+      render_parameter_id = *(undefined4 *)
                (*(longlong *)
-                 ((longlong)*(int *)(lVar3 + 0x564) * 0xa60 + 0x3638 + *(longlong *)(lVar3 + 0x8d8))
+                 ((longlong)*(int *)(render_context_ptr + 0x564) * 0xa60 + 0x3638 + *(longlong *)(render_context_ptr + 0x8d8))
                + 0x20);
     }
 LAB_18052449f:
-    uVar7 = *(undefined8 *)(lVar3 + 0x598);
+    render_mode_config = *(undefined8 *)(render_context_ptr + 0x598);
   }
-  iStack_c = FUN_180557b40(uVar7,uVar2,0);
+  
+  // 步骤10：执行最终的渲染处理
+  render_result_code = FUN_180557b40(render_mode_config, render_parameter_id, 0);
 LAB_18052490a:
-  FUN_18051ec50(lVar3,&uStack_10);
+  FUN_18051ec50(render_context_ptr, &render_stack_param);
   return;
 }
 
@@ -554,25 +583,50 @@ LAB_18052490a:
 
 
 
-// 函数: void FUN_1805359c5(void)
+//------------------------------------------------------------------------------
+// 渲染系统高级处理函数3
+// 功能：执行渲染系统的标志检查和状态管理
+//       专门处理渲染标志位的检查和状态转换
+//
+// 参数：
+//   无（通过堆栈传递参数）
+//
+// 返回值：
+//   无
+//
+// 处理流程：
+//   1. 从堆栈获取渲染参数和上下文
+//   2. 执行渲染标志位检查和验证
+//   3. 根据标志位状态执行不同的处理路径
+//   4. 处理渲染对象的循环和条件判断
+//   5. 执行数学计算和坐标变换
+//   6. 更新渲染状态和执行系统调用
+//
+// 技术要点：
+//   - 专门处理渲染标志位的检查逻辑
+//   - 支持复杂的条件分支和状态转换
+//   - 包含对象循环处理和标志验证
+//   - 实现了数学计算和角度处理
+//------------------------------------------------------------------------------
 void FUN_1805359c5(void)
 
 {
-  char cVar1;
-  undefined4 uVar2;
-  longlong lVar3;
-  longlong unaff_RDI;
-  undefined1 uVar4;
-  int *piVar5;
-  longlong lVar6;
-  undefined8 uVar7;
-  longlong *plVar8;
-  float fVar9;
-  float fVar10;
-  int in_stack_00000030;
-  undefined4 uStack_10;
-  int iStack_c;
-  undefined8 uStack_8;
+  // 语义化变量定义
+  char render_flag_status;                         // 渲染标志状态
+  undefined4 render_param_value;                    // 渲染参数值
+  longlong render_context_base;                     // 渲染上下文基地址
+  longlong render_system_base;                      // 渲染系统基地址
+  undefined1 render_condition;                      // 渲染条件
+  int *render_flag_array;                          // 渲染标志数组
+  longlong render_object_index;                     // 渲染对象索引
+  undefined8 render_mode_value;                     // 渲染模式值
+  longlong *render_object_list;                     // 渲染对象列表
+  float render_position_x;                           // 渲染位置X
+  float render_position_y;                           // 渲染位置Y
+  int render_stack_parameter;                       // 渲染堆栈参数
+  undefined4 render_stack_value;                     // 渲染堆栈值
+  int render_status_result;                         // 渲染状态结果
+  undefined8 render_stack_control;                  // 渲染堆栈控制
   
   lVar3 = (longlong)in_stack_00000030 * 0xa60 + 0x30a0 + unaff_RDI;
   if ((*(uint *)(lVar3 + 0x56c) >> 0xb & 1) == 0) {
