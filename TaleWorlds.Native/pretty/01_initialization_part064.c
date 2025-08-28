@@ -917,7 +917,7 @@ void FUN_18004bb40(long long param_1)
 void FUN_180058c40(long long param_1)
 {
     // 调用错误处理相关函数
-    FUN_180058420(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
+    InitializationSystem_ProcessError(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
     
     return;
 }
@@ -933,7 +933,7 @@ void FUN_180058c40(long long param_1)
 void FUN_18004bb50(long long param_1)
 {
     // 调用配置验证相关函数
-    FUN_180057010(param_1 + 0x60);
+    InitializationSystem_InitConfig(param_1 + 0x60);
     
     return;
 }
@@ -949,7 +949,7 @@ void FUN_18004bb50(long long param_1)
 void FUN_180058c50(long long param_1)
 {
     // 调用资源分配相关函数
-    FUN_1800582b0(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
+    InitializationSystem_ManageResource(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
     
     return;
 }
