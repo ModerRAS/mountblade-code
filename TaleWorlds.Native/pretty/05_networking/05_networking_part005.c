@@ -300,54 +300,69 @@ EXTENDED_DATA_FAILED:
 
 
 
-// 函数: 获取网络会话统计
-void get_network_session_stats(ulonglong session_handle, uint *stats_buffer)
+// 函数: 获取网络会话统计信息
+// 功能：获取指定会话的统计信息，包括连接数、数据传输量等
+// 参数：session_handle - 会话句柄，stats_buffer - 统计信息缓冲区
+// 返回：无返回值，结果通过stats_buffer返回
+// 注意：函数包含会话验证、数据获取和错误处理机制
+void get_network_session_statistics(ulonglong session_handle, uint *stats_buffer)
 
 {
-  int connection_result;
-  longlong session_data;
-  uint *stats_ptr;
-  undefined1 security_buffer[32];
-  undefined1 *message_buffer;
-  undefined8 security_key;
-  longlong connection_handle;
-  longlong session_info;
-  longlong stats_data;
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
-  ulonglong security_check;
+  int connection_result;       // 连接结果
+  longlong session_data;       // 会话数据
+  uint *stats_ptr;            // 统计指针
+  undefined1 security_buffer[32]; // 安全缓冲区
+  undefined1 *message_buffer;   // 消息缓冲区
+  undefined8 security_key;     // 安全密钥
+  longlong connection_handle;  // 连接句柄
+  longlong session_info;       // 会话信息
+  longlong stats_data;         // 统计数据
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
+  ulonglong security_check;    // 安全检查
   
+  // 生成安全检查密钥
   security_check = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  // 检查统计缓冲区有效性
   if (stats_buffer == (uint *)0x0) {
+    // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
-                    // WARNING: Subroutine does not return
+      // 安全验证失败，执行异常处理（函数不返回）
       FUN_1808fc050(security_check ^ (ulonglong)security_buffer);
     }
+    // 准备错误消息包
     FUN_18074b930(packet_buffer, NETWORK_BUFFER_SIZE, 0);
     message_buffer = packet_buffer;
-                    // WARNING: Subroutine does not return
+    // 发送错误消息（函数不返回）
     FUN_180749ef0(0x1f, 0xc, session_handle, NETWORK_SESSION_MESSAGE);
   }
+  
+  // 初始化统计缓冲区
   *stats_buffer = 0;
   security_key = 0;
   connection_handle = 0;
   session_info = 0;
+  // 获取连接信息
   connection_result = func_0x00018088c590(0, &session_info);
   if (((connection_result == 0) && (connection_result = FUN_18088c740(&security_key, session_info), connection_result == 0)) &&
      (connection_result = func_0x00018088c530(session_handle & 0xffffffff, &stats_data), connection_result == 0)) {
+    // 提取会话信息
     session_info = *(longlong *)(stats_data + 8);
   }
   else if (connection_result != 0) {
-                    // WARNING: Subroutine does not return
+    // 清理安全密钥（函数不返回）
     FUN_18088c790(&security_key);
   }
+  
+  // 获取会话数据
   session_data = FUN_18083fbf0(*(undefined8 *)(session_info + 800), session_info + 0x30);
   if (session_data != 0) {
+    // 获取统计指针并计算统计数据
     stats_ptr = (uint *)FUN_18084cde0(session_data, &stats_data);
     *stats_buffer = *stats_ptr / 0x30;
-                    // WARNING: Subroutine does not return
+    // 清理安全密钥（函数不返回）
     FUN_18088c790(&security_key);
   }
-                    // WARNING: Subroutine does not return
+  // 清理安全密钥（函数不返回）
   FUN_18088c790(&security_key);
 }
 
@@ -356,8 +371,12 @@ void get_network_session_stats(ulonglong session_handle, uint *stats_buffer)
 
 
 
-// 函数: 获取网络连接标志
-void get_network_connection_flags(undefined4 connection_id, undefined4 *flag1, undefined4 *flag2)
+// 函数: 获取网络连接属性
+// 功能：获取网络连接的属性信息，包括连接状态标志和配置参数
+// 参数：connection_id - 连接ID，flag1 - 标志1输出，flag2 - 标志2输出
+// 返回：无返回值，结果通过flag1和flag2返回
+// 注意：函数包含连接验证、属性获取和错误处理机制
+void get_network_connection_attributes(undefined4 connection_id, undefined4 *flag1, undefined4 *flag2)
 
 {
   int connection_result;
