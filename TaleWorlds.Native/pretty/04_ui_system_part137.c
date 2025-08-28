@@ -1,4 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
 // ============================================================================
 // UI系统高级组件管理和状态控制模块
@@ -212,7 +213,8 @@ LAB_180749ae6:
   *(int8_t *)(unaff_RBX + 0x6a8) = 1;
 LAB_180749ddb:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x70) ^ (ulonglong)&stack0x00000000);
+  // 调用UI系统调用处理器，处理系统级调用
+  UISystem_SystemCallHandler(*(ulonglong *)(unaff_RBP + 0x70) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -226,7 +228,8 @@ void FUN_180749e0b(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x70) ^ (ulonglong)&stack0x00000000);
+  // 调用UI系统调用处理器，处理系统级调用
+  UISystem_SystemCallHandler(*(ulonglong *)(unaff_RBP + 0x70) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -240,7 +243,8 @@ void FUN_180749e21(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x70) ^ (ulonglong)&stack0x00000000);
+  // 调用UI系统调用处理器，处理系统级调用
+  UISystem_SystemCallHandler(*(ulonglong *)(unaff_RBP + 0x70) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -256,7 +260,7 @@ uint64_t FUN_180749e60(longlong param_1,longlong *param_2,longlong *param_3)
   
   lVar3 = 0;
   *param_2 = 0;
-  plVar1 = (longlong *)(_DAT_180be12f0 + 0x160);
+  plVar1 = (longlong *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x160);
   while (param_1 != *plVar1) {
     lVar3 = lVar3 + 1;
     plVar1 = plVar1 + 1;
@@ -272,7 +276,8 @@ uint64_t FUN_180749e60(longlong param_1,longlong *param_2,longlong *param_3)
     if (*param_3 != 0) {
       return 0x1c;
     }
-    uVar2 = FUN_180743c40();
+    // 调用UI系统内部函数1，执行内部计算
+    uVar2 = UISystem_InternalFunction1();
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -299,17 +304,17 @@ void FUN_180749ef0(int32_t param_1,int32_t param_2,uint64_t param_3,uint64_t par
   uint64_t uStack_18;
   uint64_t uStack_10;
   
-  if (((*(uint *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) &&
-     (puVar1 = (uint64_t *)(_DAT_180be12f0 + 8), (code *)*puVar1 != (code *)0x0)) {
+  if (((*(uint *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) &&
+     (puVar1 = (uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 8), (code *)*puVar1 != (code *)0x0)) {
     uStack_10 = param_5;
-    if (*(int *)(_DAT_180be12f0 + 0x20) == 0) {
-      *(int32_t *)(_DAT_180be12f0 + 0x20) = 1;
+    if (*(int *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x20) == 0) {
+      *(int32_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x20) = 1;
       uStack_28 = param_1;
       uStack_24 = param_2;
       uStack_20 = param_3;
       uStack_18 = param_4;
-      (*(code *)*puVar1)(0,0x80,&uStack_28,0,*(uint64_t *)(_DAT_180be12f0 + 0x18));
-      *(int *)(_DAT_180be12f0 + 0x20) = *(int *)(_DAT_180be12f0 + 0x20) + -1;
+      (*(code *)*puVar1)(0,0x80,&uStack_28,0,*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x18));
+      *(int *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x20) = *(int *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x20) + -1;
     }
   }
   return;
@@ -461,7 +466,8 @@ uint64_t FUN_18074a310(longlong param_1)
   param_1 = param_1 + 0x11be0;
   lVar1 = 8;
   do {
-    FUN_1807d4800(param_1);
+    // 调用UI系统内部函数2，处理资源初始化
+    UISystem_InternalFunction2(param_1);
     param_1 = param_1 + 0xc0;
     lVar1 = lVar1 + -1;
   } while (lVar1 != 0);
@@ -488,7 +494,8 @@ void FUN_18074a350(longlong param_1)
     uStackX_18 = 0;
     uStackX_20 = 0;
     func_0x0001807d60c0(iVar2,auStackX_10,&uStackX_20,&uStackX_18,0);
-    iVar1 = FUN_1807d4ac0(param_1 + 0x11be0 + (longlong)(iVar2 + -1) * 0xc0,auStackX_10[0],
+    // 调用UI系统内部函数3，处理组件配置
+    iVar1 = UISystem_InternalFunction3(param_1 + 0x11be0 + (longlong)(iVar2 + -1) * 0xc0,auStackX_10[0],
                           uStackX_20,uStackX_18);
     if (iVar1 != 0) {
       return;
@@ -570,7 +577,7 @@ uint64_t FUN_18074a5f0(longlong param_1)
   lVar3 = *plVar2;
   do {
     lVar4 = lVar3;
-    if (lVar4 == 0) goto FUN_18074a895;
+    if (lVar4 == 0) goto UISystem_DataValidator;
     fVar6 = *(float *)(lVar4 + 0x20);
     lVar3 = plVar1[1];
     plVar1 = plVar1 + 1;
@@ -641,7 +648,7 @@ uint64_t FUN_18074a5f0(longlong param_1)
   *(float *)(lVar5 + 0x20) = fVar9;
   fVar6 = (float)atan2f(fVar6);
   *(float *)(lVar5 + 0x24) = fVar6 * 57.295776;
-FUN_18074a895:
+UISystem_DataValidator:
   lVar3 = *plVar2;
   plVar1 = plVar2;
   while (lVar3 != 0) {
@@ -719,7 +726,7 @@ uint64_t FUN_18074a63d(uint64_t param_1,longlong param_2)
     break;
     lVar1 = lVar3;
     if (lVar3 == 0) {
-FUN_18074a885:
+UISystem_StateSynchronizer:
       lVar1 = *unaff_RSI;
       plVar2 = unaff_RSI;
       while (lVar1 != 0) {
@@ -808,7 +815,7 @@ FUN_18074a885:
   *(float *)(lVar4 + 0x20) = fVar5;
   fVar6 = (float)atan2f(fVar6);
   *(float *)(lVar4 + 0x24) = fVar6 * 57.295776;
-  goto FUN_18074a885;
+  goto UISystem_StateSynchronizer;
 }
 
 
@@ -971,7 +978,13 @@ uint64_t FUN_18074a885(void)
 
 
 
-uint64_t FUN_18074a895(void)
+/**
+ * UI系统数据验证器
+ * 验证UI系统数据的完整性和一致性，处理角度计算和状态同步
+ * 
+ * @return 验证结果，0表示成功，非0表示错误
+ */
+uint64_t UISystem_DataValidator(void)
 
 {
   longlong *plVar1;

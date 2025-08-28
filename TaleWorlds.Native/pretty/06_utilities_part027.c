@@ -27,8 +27,8 @@
 #include <stdlib.h>
 
 // 类型定义
-typedef long long long long;
-typedef unsigned long long ulong long;
+typedef long long int64;
+typedef unsigned long long uint64;
 
 // 工具函数模块常量定义
 #define UTILITIES_FLAG_NEGATIVE_0x3FFFFFFB -0x3ffffffb  // 负数标志位
@@ -1045,10 +1045,7 @@ void utilities_system_control_mode_resetter(void)
 void utilities_system_memory_manager(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  long long *plVar1;
-  
-  // 变量重命名以提高可读性：
-  // plVar1 -> memory_ptr: 内存指针
+  long long *memory_ptr;
   
   // 获取内存指针
   memory_ptr = *memory_pool_ptr;
@@ -1070,7 +1067,7 @@ void utilities_system_memory_manager(uint64_t param_1,uint64_t param_2,uint64_t 
   // WARNING: Treating indirect jump as call
   
   // 释放内存
-  free(memory_pool_ptr,0x58);
+  free(memory_ptr);
   return;
 }
 
@@ -1504,7 +1501,7 @@ void utilities_system_temp_cleaner(void)
 
 {
   long long lVar1;
-  ulong long uVar2;
+  unsigned long long uVar2;
   
   if (*system_temp_ptr_1 != 0) {
     uVar2 = *system_temp_ptr_2 - *system_temp_ptr_1 & 0xfffffffffffffff8;
@@ -1517,7 +1514,7 @@ void utilities_system_temp_cleaner(void)
         _invalid_parameter_noinfo_noreturn();
       }
     }
-    free(lVar1,uVar2);
+    free(lVar1);
     *system_temp_ptr_2 = 0;
     *system_temp_ptr_1 = 0;
     *system_temp_ptr_3 = 0;
@@ -2292,16 +2289,12 @@ void utilities_system_buffer_cleaner_2(void)
 void utilities_system_memory_cleaner(void)
 
 {
-  long long lVar1;
-  long long lVar2;
-  
-  // 变量重命名以提高可读性：
-  // lVar1 -> memory_ptr: 内存指针
-  // lVar2 -> memory_base: 内存基地址
+  long long *memory_ptr;
+  long long *memory_base;
   
   // 检查内存使用量
   if (0xf < *system_memory_usage_count) {
-    memory_ptr = CONCAT71(*system_buffer_ptr_7,*system_buffer_ptr_6);
+    memory_ptr = (long long *)CONCAT71(*system_buffer_ptr_7,*system_buffer_ptr_6);
     memory_base = memory_ptr;
     
     // 检查内存块大小
@@ -2338,16 +2331,12 @@ void utilities_system_memory_cleaner(void)
 void utilities_system_data_memory_cleaner(void)
 
 {
-  long long lVar1;
-  long long lVar2;
-  
-  // 变量重命名以提高可读性：
-  // lVar1 -> data_memory_ptr: 数据内存指针
-  // lVar2 -> data_memory_base: 数据内存基地址
+  long long *data_memory_ptr;
+  long long *data_memory_base;
   
   // 检查数据内存使用量
   if (0xf < *system_data_memory_usage_count) {
-    data_memory_ptr = CONCAT71(*system_data_memory_ptr_2,*system_data_memory_ptr_1);
+    data_memory_ptr = (long long *)CONCAT71(*system_data_memory_ptr_2,*system_data_memory_ptr_1);
     data_memory_base = data_memory_ptr;
     
     // 检查数据内存块大小
