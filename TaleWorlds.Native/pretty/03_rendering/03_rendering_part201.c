@@ -412,29 +412,29 @@ rendering_state_set:
  */
 void rendering_parameter_calculator_type2(void)
 {
-    int32_t *uint_ptr;
-    float temp_float;
-    int int_param1;
-    int int_param2;
-    int int_param3;
-    int int_param4;
-    int int_param5;
-    int32_t temp_uint1;
-    int32_t temp_uint2;
-    int32_t temp_uint3;
-    uint64_t temp_var;
-    uint64_t *render_data_ptr1;
-    uint64_t *render_data_ptr2;
-    uint64_t *base_ptr;
-    longlong base_long;
-    longlong loop_counter;
-    uint64_t *context_ptr;
-    ulonglong *ulong_ptr;
-    float *float_ptr;
-    longlong temp_long1;
-    longlong temp_long2;
-    float xmm9_float;
-    ulonglong stack_param;
+    int32_t *uint_ptr;                       // 32位无符号整数指针
+    float temp_float;                       // 临时浮点数变量
+    int int_param1;                          // 整数参数1
+    int int_param2;                          // 整数参数2
+    int int_param3;                          // 整数参数3
+    int int_param4;                          // 整数参数4
+    int int_param5;                          // 整数参数5
+    int32_t temp_uint1;                      // 临时32位无符号整数1
+    int32_t temp_uint2;                      // 临时32位无符号整数2
+    int32_t temp_uint3;                      // 临时32位无符号整数3
+    uint64_t temp_var;                       // 临时64位无符号整数变量
+    uint64_t *render_data_ptr1;              // 渲染数据指针1
+    uint64_t *render_data_ptr2;              // 渲染数据指针2
+    uint64_t *base_ptr;                      // 基础指针
+    longlong base_long;                      // 基础长整型变量
+    longlong loop_counter;                   // 循环计数器
+    uint64_t *context_ptr;                   // 上下文指针
+    ulonglong *ulong_ptr;                    // 无符号长整型指针
+    float *float_ptr;                        // 浮点数指针
+    longlong temp_long1;                     // 临时长整型变量1
+    longlong temp_long2;                     // 临时长整型变量2
+    float xmm9_float;                        // XMM9寄存器浮点数
+    ulonglong stack_param;                   // 栈参数
     
     // 初始化浮点指针
     float_ptr = (float *)(temp_long2 + RENDERING_SIZE_0X50);
