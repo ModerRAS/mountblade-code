@@ -1,1251 +1,1133 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part042.c - 渲染系统高级指令处理和数据解析模块
-// 包含9个核心函数，涵盖渲染指令处理、数据解析、浮点运算、内存管理和高级渲染操作等功能
+// 03_rendering_part042.c - 渲染系统高级数据处理和渲染控制模块
+// 包含9个核心函数，涵盖渲染数据块解析、渲染对象创建、批量渲染操作、坐标插值计算、渲染状态管理、多种渲染操作支持等高级渲染功能
 
-// 渲染指令类型常量定义
-#define RENDER_CMD_MOVE_TO              0x01    // 移动到指令
-#define RENDER_CMD_LINE_TO              0x03    // 画线到指令
-#define RENDER_CMD_CURVE_TO             0x12    // 曲线到指令
-#define RENDER_CMD_QUAD_CURVE           0x17    // 二次曲线指令
-#define RENDER_CMD_FLOAT_VALUE          0xff    // 浮点数值指令
-#define RENDER_CMD_SPECIAL_1C           0x1c    // 特殊指令1C
-#define RENDER_CMD_STRING_QUOTE         0x22    // 字符串引号指令
-#define RENDER_CMD_STRING_HASH          0x23    // 字符串哈希指令
-#define RENDER_CMD_STRING_DOLLAR        0x24    // 字符串美元指令
-#define RENDER_CMD_STRING_PERCENT       0x25    // 字符串百分比指令
-#define RENDER_CMD_PUSH_STATE           0x0d    // 推送状态指令
-#define RENDER_CMD_POP_STATE            0x0e    // 弹出状态指令
-#define RENDER_CMD_CALL_FUNCTION        0x13    // 调用函数指令
-#define RENDER_CMD_RETURN_FUNCTION      0x14    // 返回函数指令
-#define RENDER_CMD_JUMP_RELATIVE        0x15    // 相对跳转指令
-#define RENDER_CMD_JUMP_ABSOLUTE        0x16    // 绝对跳转指令
-#define RENDER_CMD_DRAW_CURVE           0x18    // 绘制曲线指令
-#define RENDER_CMD_DRAW_QUAD_CURVE      0x19    // 绘制二次曲线指令
-#define RENDER_CMD_DRAW_LINE            0x1a    // 绘制线条指令
-#define RENDER_CMD_DRAW_LINE_STRIP       0x1b    // 绘制线条带指令
-#define RENDER_CMD_CALL_SUBROUTINE      0x1d    // 调用子程序指令
-#define RENDER_CMD_DRAW_SEQUENCE        0x1e    // 绘制序列指令
-#define RENDER_CMD_DRAW_QUAD            0x1f    // 绘制四边形指令
+// 常量定义
+#define RENDER_DATA_BUFFER_SIZE 16
+#define MAX_RENDER_STACK_DEPTH 38
+#define RENDER_FLOAT_PRECISION 1.5258789e-05f
+#define RENDER_COORDINATE_THRESHOLD 0x846c
+#define RENDER_COORDINATE_OFFSET_1 0x4d7
+#define RENDER_COORDINATE_OFFSET_2 0x46b
+#define RENDER_DEFAULT_COORDINATE 0x8000
+#define RENDER_STACK_ALIGNMENT 0xe
+#define RENDER_PARAM_FLAG_0x180000000 0x180000000
 
-// 渲染数据常量
-#define RENDER_DATA_STACK_SIZE          38      // 数据栈大小
-#define RENDER_FLOAT_SCALE              1.5258789e-05  // 浮点数缩放因子
-#define RENDER_UNICODE_THRESHOLD        0x846c  // Unicode阈值
-#define RENDER_UNICODE_OFFSET_1         0x6b    // Unicode偏移量1
-#define RENDER_UNICODE_OFFSET_2         0x46b   // Unicode偏移量2
-#define RENDER_UNICODE_BASE             0x8000  // Unicode基础值
+// 函数别名定义
+typedef void (*render_data_processor)(longlong context, uint param1, float* data);
+typedef uint (*render_coord_extractor)(void* buffer, uint offset);
+typedef void (*render_transform_func)(float* matrix, float x, float y, float z);
+typedef void (*render_memory_allocator)(void** ptr, size_t size);
+typedef void (*render_resource_cleaner)(void* resource);
 
-// 渲染状态结构体偏移量
-#define RENDER_STATE_PARAM_OFFSET      0x50    // 状态参数偏移量
-#define RENDER_STATE_DATA_OFFSET       0x60    // 状态数据偏移量
-#define RENDER_STATE_STACK_OFFSET      0x70    // 状态栈偏移量
-#define RENDER_STATE_FLAG_OFFSET       0x9c    // 状态标志偏移量
-
-// 函数: process_render_commands
-// 功能: 处理渲染命令序列
-// 参数:
-//   - context_ptr: 渲染上下文指针
-//   - command_id: 命令ID
-//   - render_target: 渲染目标
-void process_render_commands(longlong context_ptr, undefined4 command_id, undefined8 render_target)
+// 渲染数据处理器 - 处理渲染数据流和坐标变换
+void process_rendering_data_stream(longlong render_context, uint render_flags, void* data_stream)
 {
-    undefined1 temp_buffer_1[16];
-    byte command_byte;
-    undefined8 data_ptr;
-    undefined1 byte_1, byte_2, byte_3, byte_4;
+    // 局部变量定义
+    uint8_t data_buffer[RENDER_DATA_BUFFER_SIZE];
+    uint8_t byte_val;
+    uint64_t long_val;
+    uint8_t uint8_val;
     char char_val;
-    undefined1 byte_5, byte_6, byte_7, byte_8;
+    uint8_t uint8_val_2;
+    uint8_t uint8_val_3;
+    uint8_t uint8_val_4;
     short short_val;
-    uint data_length;
-    int index;
-    undefined1 (*buffer_ptr)[16];
-    undefined8 *result_ptr;
+    uint uint_val;
+    int int_val;
+    uint8_t (*buffer_ptr)[RENDER_DATA_BUFFER_SIZE];
+    uint64_t *long_ptr;
     int *int_ptr;
-    longlong offset;
-    uint unicode_val;
-    ulonglong long_val;
+    longlong longlong_val;
+    uint uint_val_2;
+    ulonglong ulonglong_val;
     float *float_ptr;
-    uint stack_index;
-    int temp_int;
-    uint temp_uint;
-    longlong temp_long;
-    ulonglong temp_ulong;
-    uint temp_uint_2;
-    int temp_int_2;
-    float float_val_1, float_val_2, float_val_3, float_val_4, float_val_5, float_val_6, float_val_7, float_val_8, float_val_9;
-    undefined1 stack_buffer_1[32];
-    float stack_float_1, stack_float_2, stack_float_3;
-    int stack_int_1;
-    undefined1 stack_buffer_2[16];
-    int stack_int_2;
-    uint stack_uint_1;
-    int stack_int_3, stack_int_4;
-    undefined4 stack_param_1;
-    longlong stack_long;
-    undefined1 stack_buffer_3[16];
-    undefined1 stack_buffer_4[16];
-    undefined1 stack_buffer_5[16];
-    undefined1 stack_buffer_6[12];
-    float float_array[4];
-    float stack_float_4, stack_float_5, stack_float_6, stack_float_7, stack_float_8, stack_float_9, stack_float_10;
-    undefined8 stack_data_1;
-    uint data_stack[RENDER_DATA_STACK_SIZE];
-    ulonglong security_key;
+    uint uint_val_3;
+    int int_val_2;
+    uint uint_val_4;
+    longlong longlong_val_2;
+    ulonglong ulonglong_val_2;
+    uint uint_val_5;
+    int int_val_3;
+    float float_val;
+    float float_val_2;
+    float float_val_3;
+    float float_val_4;
+    float float_val_5;
+    float float_val_6;
+    float float_val_7;
+    float float_val_8;
+    float float_val_9;
+    uint8_t stack_buffer_308[32];
+    float stack_float_2e8;
+    float stack_float_2e0;
+    float stack_float_2d8;
+    int stack_int_2c8;
+    uint8_t stack_buffer_2b8[RENDER_DATA_BUFFER_SIZE];
+    int stack_int_2a8;
+    uint stack_uint_2a4;
+    int stack_int_2a0;
+    int stack_int_29c;
+    uint stack_uint_298;
+    longlong stack_long_290;
+    uint8_t stack_buffer_288[RENDER_DATA_BUFFER_SIZE];
+    uint8_t stack_buffer_278[RENDER_DATA_BUFFER_SIZE];
+    uint8_t stack_buffer_268[RENDER_DATA_BUFFER_SIZE];
+    uint8_t stack_buffer_258[12];
+    float float_array_24c[4];
+    float stack_float_23c;
+    float stack_float_238;
+    float stack_float_234;
+    float stack_float_230;
+    float stack_float_22c;
+    float stack_float_228;
+    float stack_float_224;
+    float stack_float_220;
+    float stack_float_21c;
+    uint64_t stack_uint_188;
+    uint uint_array_180[MAX_RENDER_STACK_DEPTH];
+    ulonglong stack_ulonglong_e8;
     
-    // 初始化安全密钥
-    security_key = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_1;
-    stack_int_4 = 0;
+    // 初始化变量
+    stack_ulonglong_e8 = render_security_key ^ (ulonglong)stack_buffer_308;
+    stack_int_29c = 0;
+    stack_buffer_278._0_8_ = *(uint64_t *)(render_context + 0x70);
+    stack_buffer_278._8_8_ = *(uint64_t *)(render_context + 0x78);
+    stack_buffer_288 = *(uint8_t (*)[RENDER_DATA_BUFFER_SIZE])(render_context + 0x50);
+    stack_uint_2a4 = 1;
+    stack_int_2a8 = 0;
+    stack_int_2a0 = 0;
+    stack_uint_298 = render_flags;
+    stack_long_290 = render_context;
+    buffer_ptr = (uint8_t (*)[RENDER_DATA_BUFFER_SIZE])extract_render_data_buffer(stack_buffer_2b8, stack_buffer_288, render_flags);
+    ulonglong_val_2 = 0;
+    stack_buffer_2b8._8_4_ = extract_render_coord_offset(*(uint8_t (*)[12])*buffer_ptr, 8);
+    float_val = stack_float_228;
+    float_val_3 = float_array_24c[1];
+    float_val_4 = float_array_24c[3];
+    float_val_5 = stack_float_23c;
+    float_val_6 = float_array_24c[2];
+    float_val_7 = stack_float_230;
+    float_val_8 = stack_float_234;
+    float_val_9 = stack_float_238;
+    int_val_3 = 0;
+    uint_val_2 = stack_buffer_2b8._8_4_;
+    uint_val_3 = 0;
+    stack_buffer_2b8 = *buffer_ptr;
     
-    // 初始化渲染状态
-    stack_buffer_4._0_8_ = *(undefined8 *)(context_ptr + 0x70);
-    stack_buffer_4._8_8_ = *(undefined8 *)(context_ptr + 0x78);
-    stack_buffer_3 = *(undefined1 (*) [16])(context_ptr + RENDER_STATE_PARAM_OFFSET);
-    stack_uint_1 = 1;
-    stack_int_2 = 0;
-    stack_int_3 = 0;
-    stack_param_1 = command_id;
-    stack_long = context_ptr;
-    
-    // 获取渲染数据
-    buffer_ptr = (undefined1 (*) [16])FUN_18028b4c0(stack_buffer_2, stack_buffer_3, command_id);
-    temp_ulong = 0;
-    stack_buffer_2._8_4_ = SUB124(*(undefined1 (*) [12])*buffer_ptr, 8);
-    
-    // 初始化浮点数栈
-    float_val_1 = stack_float_9;
-    float_val_3 = float_array[1];
-    float_val_4 = float_array[3];
-    float_val_5 = stack_float_4;
-    float_val_6 = float_array[2];
-    float_val_7 = stack_float_6;
-    float_val_8 = stack_float_7;
-    float_val_9 = stack_float_8;
-    temp_int_2 = 0;
-    data_length = stack_buffer_2._8_4_;
-    stack_index = 0;
-    stack_buffer_2 = *buffer_ptr;
-    
-process_command_loop:
-    temp_uint = stack_index;
-    offset = stack_long;
-    data_length = stack_buffer_2._12_4_;
-    
-    // 检查数据长度
-    if ((int)data_length <= (int)data_length) {
-        // 数据处理完成，清理资源
-        FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
+    // 主处理循环
+process_data_loop:
+    uint_val_4 = uint_val_3;
+    longlong_val = stack_long_290;
+    uint_val = stack_buffer_2b8._12_4_;
+    if ((int)uint_val <= (int)uint_val_2) {
+        // 数据流结束处理
+        render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
     }
+    long_val = stack_buffer_2b8._0_8_;
+    uint_val_3 = (uint)ulonglong_val_2;
+    ulonglong_val = ulonglong_val_2 & 0xffffffff;
+    uint_val_5 = uint_val_2 + 1;
+    stack_int_2c8 = 1;
+    longlong_val_2 = (longlong)(int)uint_val_5;
+    stack_buffer_2b8._8_4_ = uint_val_5;
+    stack_buffer_2b8._12_4_ = uint_val;
+    byte_val = *(uint8_t *)((longlong)(int)uint_val_2 + stack_buffer_2b8._0_8_);
     
-    data_ptr = stack_buffer_2._0_8_;
-    stack_index = (uint)temp_ulong;
-    temp_ulong = temp_ulong & 0xffffffff;
-    temp_uint_2 = data_length + 1;
-    stack_int_1 = 1;
-    temp_long = (longlong)(int)temp_uint_2;
-    stack_buffer_2._8_4_ = temp_uint_2;
-    stack_buffer_2._12_4_ = data_length;
-    command_byte = *(byte *)((longlong)(int)data_length + stack_buffer_2._0_8_);
-    
-    switch(command_byte) {
-        case RENDER_CMD_MOVE_TO:
-        case RENDER_CMD_LINE_TO:
-        case RENDER_CMD_CURVE_TO:
-        case RENDER_CMD_QUAD_CURVE:
-            // 处理移动和绘制命令
-            stack_int_2 = stack_int_2 + (int)temp_uint / 2;
-            data_length = temp_uint_2;
-            goto process_command_loop;
-            
-        default:
-            if (command_byte == RENDER_CMD_FLOAT_VALUE) {
-                // 处理浮点数值
-                if ((int)temp_uint_2 < (int)data_length) {
-                    temp_uint_2 = data_length + 2;
-                    byte_1 = *(undefined1 *)(temp_long + stack_buffer_2._0_8_);
-                    stack_buffer_2._8_4_ = temp_uint_2;
-                } else {
-                    byte_1 = 0;
-                }
-                
-                if ((int)temp_uint_2 < (int)data_length) {
-                    offset = (longlong)(int)temp_uint_2;
-                    temp_uint_2 = temp_uint_2 + 1;
-                    stack_buffer_2._8_4_ = temp_uint_2;
-                    byte_5 = *(undefined1 *)(offset + data_ptr);
-                } else {
-                    byte_5 = 0;
-                }
-                
-                if ((int)temp_uint_2 < (int)data_length) {
-                    offset = (longlong)(int)temp_uint_2;
-                    temp_uint_2 = temp_uint_2 + 1;
-                    stack_buffer_2._8_4_ = temp_uint_2;
-                    byte_6 = *(undefined1 *)(offset + data_ptr);
-                } else {
-                    byte_6 = 0;
-                }
-                
-                if ((int)temp_uint_2 < (int)data_length) {
-                    offset = (longlong)(int)temp_uint_2;
-                    temp_uint_2 = temp_uint_2 + 1;
-                    stack_buffer_2._8_4_ = temp_uint_2;
-                    byte_7 = *(undefined1 *)(offset + data_ptr);
-                } else {
-                    byte_7 = 0;
-                }
-                
-                // 转换为浮点数
-                float_val_1 = (float)CONCAT31(CONCAT21(CONCAT11(byte_1, byte_5), byte_6), byte_7) * RENDER_FLOAT_SCALE;
-                data_length = temp_uint_2;
-            } else {
-                if ((command_byte != RENDER_CMD_SPECIAL_1C) && (0xde < command_byte - 0x20)) {
-                    FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
-                }
-                
-                if ((int)data_length < (int)data_length) {
-reset_data_length:
-                    stack_buffer_2._8_4_ = data_length;
-                } else {
-                    stack_buffer_2._8_4_ = data_length;
-                    if ((int)data_length < 0) goto reset_data_length;
-                }
-                
-                short_val = func_0x00018028b140(stack_buffer_2);
-                temp_ulong = 0;
-                float_val_1 = (float)(int)short_val;
-                data_length = stack_buffer_2._8_4_;
+    // 根据数据类型进行处理
+    switch(byte_val) {
+    case 1:
+    case 3:
+    case 0x12:
+    case 0x17:
+        // 简单数据处理
+        stack_int_2a8 = stack_int_2a8 + (int)uint_val_4 / 2;
+        uint_val_2 = uint_val_5;
+        goto process_data_loop;
+    default:
+        if (byte_val == 0xff) {
+            // 处理浮点数数据
+            if ((int)uint_val_5 < (int)uint_val) {
+                uint_val_5 = uint_val_2 + 2;
+                uint8_val = *(uint8_t *)(longlong_val_2 + stack_buffer_2b8._0_8_);
+                stack_buffer_2b8._8_4_ = uint_val_5;
             }
-            
-            if (0x2f < (int)temp_uint) {
-                FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
+            else {
+                uint8_val = 0;
             }
-            
-            float_array[(longlong)(int)temp_uint + 1] = float_val_1;
-            float_val_1 = stack_float_9;
-            float_val_3 = float_array[1];
-            float_val_4 = float_array[3];
-            float_val_5 = stack_float_4;
-            float_val_6 = float_array[2];
-            float_val_7 = stack_float_6;
-            float_val_8 = stack_float_7;
-            float_val_9 = stack_float_8;
-            stack_index = (uint)temp_ulong;
-            
-            if ((uint)temp_ulong == 0) {
-                stack_index = temp_uint + 1;
+            if ((int)uint_val_5 < (int)uint_val) {
+                longlong_val = (longlong)(int)uint_val_5;
+                uint_val_5 = uint_val_5 + 1;
+                stack_buffer_2b8._8_4_ = uint_val_5;
+                uint8_val_2 = *(uint8_t *)(longlong_val + long_val);
             }
-            goto process_command_loop;
-            
-        case 4:
-            // 处理绘制命令
-            stack_uint_1 = stack_index;
-            if ((int)temp_uint < 1) {
-                FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
+            else {
+                uint8_val_2 = 0;
             }
-            
-            FUN_18028d290(render_target, 0x180000000, float_array[(int)temp_uint]);
-            temp_ulong = 0;
-            data_length = temp_uint_2;
-            stack_index = 0;
-            
-            if (stack_int_1 == 0) {
-                stack_index = temp_uint;
+            if ((int)uint_val_5 < (int)uint_val) {
+                longlong_val = (longlong)(int)uint_val_5;
+                uint_val_5 = uint_val_5 + 1;
+                stack_buffer_2b8._8_4_ = uint_val_5;
+                uint8_val_3 = *(uint8_t *)(longlong_val + long_val);
             }
-            goto process_command_loop;
-            
-        case 5:
-            // 处理重复绘制命令
-            if ((int)temp_uint < 2) {
-                FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
+            else {
+                uint8_val_3 = 0;
             }
-            
-            if (1 < (int)temp_uint) {
-                temp_int = 1;
-                do {
-                    func_0x00018028d360(render_target);
-                    temp_int = temp_int + 2;
-                } while (temp_int < (int)temp_uint);
-                
-                temp_ulong = 0;
-                data_length = temp_uint_2;
-                stack_index = 0;
-                
-                if (stack_int_1 == 0) {
-                    stack_index = temp_uint;
-                }
-                goto process_command_loop;
+            if ((int)uint_val_5 < (int)uint_val) {
+                longlong_val = (longlong)(int)uint_val_5;
+                uint_val_5 = uint_val_5 + 1;
+                stack_buffer_2b8._8_4_ = uint_val_5;
+                uint8_val_4 = *(uint8_t *)(longlong_val + long_val);
             }
-            break;
-            
-        case 6:
-            // 处理连续绘制命令
-            if ((int)temp_uint < 1) {
-                FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
+            else {
+                uint8_val_4 = 0;
             }
-            
-            while ((int)temp_ulong < (int)temp_uint) {
-                func_0x00018028d360(render_target);
-                stack_index = (int)temp_ulong + 1;
-                
-                if ((int)temp_uint <= (int)stack_index) break;
-                func_0x00018028d360(render_target);
-                temp_ulong = (ulonglong)(stack_index + 1);
+            float_val = (float)CONCAT31(CONCAT21(CONCAT11(uint8_val, uint8_val_2), uint8_val_3), uint8_val_4) * RENDER_FLOAT_PRECISION;
+            uint_val_2 = uint_val_5;
+        }
+        else {
+            // 处理坐标数据
+            if ((byte_val != 0x1c) && (0xde < byte_val - 0x20)) {
+                render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
             }
-            break;
-            
-        case 7:
-            // 处理反向绘制命令
-            if (0 < (int)temp_uint) {
-                stack_index = (int)temp_ulong + 1;
-                
-                if ((int)temp_uint <= (int)stack_index) break;
-                func_0x00018028d360(render_target);
-                temp_ulong = (ulonglong)(stack_index + 1);
+            if ((int)uint_val < (int)uint_val_2) {
+set_buffer_bounds:
+                stack_buffer_2b8._8_4_ = uint_val;
             }
-            goto process_command_loop;
-            
-        case 8:
-            // 处理复杂曲线绘制
-            if ((int)temp_uint < 6) {
-                FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
+            else {
+                stack_buffer_2b8._8_4_ = uint_val_2;
+                if ((int)uint_val_2 < 0) goto set_buffer_bounds;
             }
-            
-            if (5 < (int)temp_uint) {
-                temp_int = 5;
-                float_ptr = float_array + 5;
-                do {
-                    stack_float_3 = float_ptr[1];
-                    stack_float_2 = *float_ptr;
-                    stack_float_1 = float_ptr[-1];
-                    FUN_18028d400(render_target);
-                    temp_int = temp_int + 6;
-                    float_ptr = float_ptr + 6;
-                } while (temp_int < (int)temp_uint);
-                
-                temp_ulong = 0;
-                data_length = temp_uint_2;
-                stack_index = 0;
-                
-                if (stack_int_1 == 0) {
-                    stack_index = temp_uint;
-                }
-                goto process_command_loop;
-            }
-            break;
-            
-        case 10:
-            // 处理状态保存命令
-            if (stack_int_4 == 0) {
-                if (*(int *)(stack_long + RENDER_STATE_FLAG_OFFSET) != 0) {
-                    result_ptr = (undefined8 *)FUN_18028d4a0(stack_buffer_5, stack_long, stack_param_1);
-                    temp_ulong = 0;
-                    stack_buffer_4._0_8_ = *result_ptr;
-                    stack_buffer_4._8_8_ = result_ptr[1];
-                }
-                stack_int_4 = 1;
-            }
-            goto process_subroutine_call;
-            
-        case 0xb:
-            // 处理状态恢复命令
-            if (temp_int_2 < 1) {
-                FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
-            }
-            
-            stack_int_3 = temp_int_2 + -1;
-            offset = (longlong)stack_int_3;
-            
-            if (stack_index == 0) {
-                stack_index = temp_uint;
-            }
-            
-            stack_buffer_2._4_4_ = data_stack[offset * 4 + -1];
-            stack_buffer_2._0_4_ = *(undefined4 *)(&stack_data_1 + offset * 2);
-            stack_buffer_2._8_4_ = data_stack[offset * 4];
-            stack_buffer_2._12_4_ = data_stack[offset * 4 + 1];
-            temp_int_2 = stack_int_3;
-            data_length = data_stack[offset * 4];
-            goto process_command_loop;
-            
-        case 0xc:
-            // 处理字符串处理命令
-            if ((int)temp_uint_2 < (int)data_length) {
-                temp_uint_2 = data_length + 2;
-                char_val = *(char *)(temp_long + stack_buffer_2._0_8_);
-                stack_buffer_2._8_4_ = temp_uint_2;
-            } else {
-                char_val = '\0';
-            }
-            
-            data_length = temp_uint_2;
-            
-            if (char_val == '\"') {
-                // 处理引号字符串
-                if ((int)temp_uint < 7) {
-                    FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
-                }
-                
-                stack_float_3 = 0.0;
-                FUN_18028d400(render_target, 0x180000000, 0, float_val_6);
-                stack_float_3 = 0.0;
-                stack_float_1 = -float_val_4;
-                stack_float_2 = float_val_7;
-                FUN_18028d400(render_target);
-                temp_ulong = 0;
-                stack_index = 0;
-                
-                if (stack_int_1 == 0) {
-                    stack_index = temp_uint;
-                }
-                goto process_command_loop;
-            }
-            
-            if (char_val == '#') {
-                // 处理哈希字符串
-                if ((int)temp_uint < 0xd) {
-                    FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
-                }
-                
-                FUN_18028d400(render_target, 0x180000000, float_val_6, float_val_4);
-                stack_float_3 = stack_float_10;
-                stack_float_2 = stack_float_9;
-            } else {
-                if (char_val == '$') {
-                    // 处理美元字符串
-                    if ((int)temp_uint < 9) {
-                        FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
-                    }
-                    
-                    stack_float_3 = 0.0;
-                    FUN_18028d400(render_target, 0x180000000, float_val_6, float_val_4);
-                    stack_float_3 = -(float_val_5 + float_val_6 + stack_float_8);
-                    stack_float_1 = stack_float_8;
-                    stack_float_2 = float_val_1;
-                    FUN_18028d400(render_target);
-                    temp_ulong = 0;
-                    stack_index = 0;
-                    
-                    if (stack_int_1 == 0) {
-                        stack_index = temp_uint;
-                    }
-                    goto process_command_loop;
-                }
-                
-                if ((char_val != '%') || ((int)temp_uint < 0xb)) {
-                    FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
-                }
-                
-                // 处理百分比字符串
-                float_val_1 = float_val_4 + float_val_3 + float_val_9 + float_val_7 + stack_float_9;
-                float_val_2 = float_val_5 + float_val_6 + float_val_8 + stack_float_8 + stack_float_9;
-                
-                if (ABS(float_val_1) <= ABS(float_val_2)) {
-                    float_val_1 = -float_val_1;
-                    float_val_2 = stack_float_9;
-                } else {
-                    float_val_2 = -float_val_2;
-                    float_val_1 = stack_float_9;
-                }
-                
-                FUN_18028d400(render_target, 0x180000000, float_val_6, float_val_4);
-                stack_float_2 = float_val_1;
-                stack_float_3 = float_val_2;
-            }
-            
-            stack_float_1 = stack_float_9;
-            float_val_1 = stack_float_9;
-            FUN_18028d400(render_target);
-            temp_ulong = 0;
-            stack_index = 0;
-            
-            if (stack_int_1 == 0) {
-                stack_index = temp_uint;
-            }
-            goto process_command_loop;
-            
-        case 0xe:
-            // 处理弹出状态命令
-            func_0x00018028d1e0(render_target);
-            goto process_command_loop;
-            
-        case RENDER_CMD_CALL_FUNCTION:
-        case RENDER_CMD_RETURN_FUNCTION:
-            // 处理函数调用和返回命令
-            if (stack_uint_1 != 0) {
-                stack_int_2 = stack_int_2 + (int)temp_uint / 2;
-            }
-            
-            stack_buffer_2._8_4_ = ((int)((stack_int_2 + 7 >> 0x1f & 7U) + stack_int_2 + 7) >> 3) + temp_uint_2;
-            
-            if (((int)data_length < (int)stack_buffer_2._8_4_) || ((int)stack_buffer_2._8_4_ < 0)) {
-                stack_buffer_2._8_4_ = data_length;
-                data_length = data_length;
-                stack_uint_1 = stack_index;
-            } else {
-                data_length = stack_buffer_2._8_4_;
-                stack_uint_1 = stack_index;
-            }
-            goto process_command_loop;
-            
-        case RENDER_CMD_JUMP_RELATIVE:
-        case RENDER_CMD_JUMP_ABSOLUTE:
-            // 处理跳转命令
-            stack_uint_1 = stack_index;
-            if ((int)temp_uint < 2) {
-                FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
-            }
-            
-            FUN_18028d290(render_target, 0x180000000, float_array[(int)temp_uint]);
-            temp_ulong = 0;
-            data_length = temp_uint_2;
-            stack_index = 0;
-            
-            if (stack_int_1 == 0) {
-                stack_index = temp_uint;
-            }
-            goto process_command_loop;
-            
-        case RENDER_CMD_DRAW_CURVE:
-            // 处理曲线绘制命令
-            stack_uint_1 = stack_index;
-            if ((int)temp_uint < 1) {
-                FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
-            }
-            
-            FUN_18028d290(render_target, 0x180000000, 0);
-            temp_ulong = 0;
-            data_length = temp_uint_2;
-            stack_index = 0;
-            
-            if (stack_int_1 == 0) {
-                stack_index = temp_uint;
-            }
-            goto process_command_loop;
-            
-        case RENDER_CMD_DRAW_QUAD_CURVE:
-            // 处理二次曲线绘制命令
-            if ((int)temp_uint < 8) {
-                FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
-            }
-            
-            if (5 < (int)(temp_uint - 2)) {
-                temp_int_2 = 5;
-                float_ptr = float_array + 5;
-                do {
-                    stack_float_3 = float_ptr[1];
-                    stack_float_2 = *float_ptr;
-                    stack_float_1 = float_ptr[-1];
-                    FUN_18028d400(render_target);
-                    stack_index = (int)temp_ulong + 6;
-                    temp_ulong = (ulonglong)stack_index;
-                    float_ptr = float_ptr + 6;
-                    temp_int_2 = temp_int_2 + 6;
-                } while (temp_int_2 < (int)(temp_uint - 2));
-                
-                temp_ulong = 0;
-            }
-            
-            if ((int)temp_uint <= (int)(stack_index + 1)) {
-                FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
-            }
-            
-            func_0x00018028d360(render_target);
-            temp_int_2 = stack_int_3;
-            data_length = temp_uint_2;
-            stack_index = (uint)temp_ulong;
-            
-            if (stack_int_1 == 0) {
-                stack_index = temp_uint;
-            }
-            goto process_command_loop;
-            
-        case RENDER_CMD_DRAW_LINE:
-        case RENDER_CMD_DRAW_LINE_STRIP:
-            // 处理线条绘制命令
-            if ((int)temp_uint < 4) {
-                FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
-            }
-            
-            temp_int = (temp_uint & 1) + 3;
-            if ((int)temp_uint <= temp_int) break;
-            
-            float_ptr = float_array + (ulonglong)(temp_uint & 1) + 3;
+            short_val = extract_render_coordinate(stack_buffer_2b8);
+            ulonglong_val_2 = 0;
+            float_val = (float)(int)short_val;
+            uint_val_2 = stack_buffer_2b8._8_4_;
+        }
+        if (0x2f < (int)uint_val_4) {
+            render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
+        }
+        float_array_24c[(longlong)(int)uint_val_4 + 1] = float_val;
+        float_val = stack_float_228;
+        float_val_3 = float_array_24c[1];
+        float_val_4 = float_array_24c[3];
+        float_val_5 = stack_float_23c;
+        float_val_6 = float_array_24c[2];
+        float_val_7 = stack_float_230;
+        float_val_8 = stack_float_234;
+        float_val_9 = stack_float_238;
+        uint_val_3 = (uint)ulonglong_val_2;
+        if ((uint)ulonglong_val_2 == 0) {
+            uint_val_3 = uint_val_4 + 1;
+        }
+        goto process_data_loop;
+    case 4:
+        // 处理渲染数据类型4
+        stack_uint_2a4 = uint_val_3;
+        if ((int)uint_val_4 < 1) {
+            render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
+        }
+        process_render_data_type4(data_stream, RENDER_PARAM_FLAG_0x180000000, float_array_24c[(int)uint_val_4]);
+        ulonglong_val_2 = 0;
+        uint_val_2 = uint_val_5;
+        uint_val_3 = 0;
+        if (stack_int_2c8 == 0) {
+            uint_val_3 = uint_val_4;
+        }
+        goto process_data_loop;
+    case 5:
+        // 处理渲染数据类型5
+        if ((int)uint_val_4 < 2) {
+            render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
+        }
+        if (1 < (int)uint_val_4) {
+            int_val_2 = 1;
             do {
-                stack_float_3 = float_ptr[1];
-                stack_float_1 = *float_ptr;
-                if (command_byte == RENDER_CMD_DRAW_LINE_STRIP) {
-                    stack_float_2 = stack_float_3;
-                    stack_float_3 = 0.0;
-                } else {
-                    stack_float_2 = 0.0;
+                process_render_data_type5(data_stream);
+                int_val_2 = int_val_2 + 2;
+            } while (int_val_2 < (int)uint_val_4);
+            ulonglong_val_2 = 0;
+            uint_val_2 = uint_val_5;
+            uint_val_3 = 0;
+            if (stack_int_2c8 == 0) {
+                uint_val_3 = uint_val_4;
+            }
+            goto process_data_loop;
+        }
+        break;
+    case 6:
+        // 处理渲染数据类型6
+        if ((int)uint_val_4 < 1) {
+            render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
+        }
+        while ((int)ulonglong_val < (int)uint_val_4) {
+            process_render_data_type5(data_stream);
+            uint_val_3 = (int)ulonglong_val + 1;
+process_type6_loop:
+            if ((int)uint_val_4 <= (int)uint_val_3) break;
+            process_render_data_type5(data_stream);
+            ulonglong_val = (ulonglong)(uint_val_3 + 1);
+        }
+        break;
+    case 7:
+        // 处理渲染数据类型7
+        if (0 < (int)uint_val_4) goto process_type6_loop;
+        goto render_error_handler;
+    case 8:
+        // 处理渲染数据类型8
+        if ((int)uint_val_4 < 6) {
+            render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
+        }
+        if (5 < (int)uint_val_4) {
+            int_val_2 = 5;
+            float_ptr = float_array_24c + 5;
+            do {
+                stack_float_2d8 = float_ptr[1];
+                stack_float_2e0 = *float_ptr;
+                stack_float_2e8 = float_ptr[-1];
+                process_render_data_type8(data_stream);
+                int_val_2 = int_val_2 + 6;
+                float_ptr = float_ptr + 6;
+            } while (int_val_2 < (int)uint_val_4);
+            ulonglong_val_2 = 0;
+            uint_val_2 = uint_val_5;
+            uint_val_3 = 0;
+            if (stack_int_2c8 == 0) {
+                uint_val_3 = uint_val_4;
+            }
+            goto process_data_loop;
+        }
+        break;
+    case 10:
+        // 处理渲染数据类型10
+        if (stack_int_29c == 0) {
+            if (*(int *)(stack_long_290 + 0x9c) != 0) {
+                long_ptr = (uint64_t *)extract_render_resource_data(stack_buffer_268, stack_long_290, stack_uint_298);
+                ulonglong_val_2 = 0;
+                stack_buffer_278._0_8_ = *long_ptr;
+                stack_buffer_278._8_8_ = long_ptr[1];
+            }
+            stack_int_29c = 1;
+        }
+        goto process_render_data_type10;
+    case 0xb:
+        // 处理渲染数据类型0xb
+        if (int_val_3 < 1) {
+            render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
+        }
+        stack_int_2a0 = int_val_3 + -1;
+        longlong_val = (longlong)stack_int_2a0;
+        if (uint_val_3 == 0) {
+            uint_val_3 = uint_val_4;
+        }
+        stack_buffer_2b8._4_4_ = uint_array_180[longlong_val * 4 + -1];
+        stack_buffer_2b8._0_4_ = *(uint32_t *)(&stack_uint_188 + longlong_val * 2);
+        stack_buffer_2b8._8_4_ = uint_array_180[longlong_val * 4];
+        stack_buffer_2b8._12_4_ = uint_array_180[longlong_val * 4 + 1];
+        int_val_3 = stack_int_2a0;
+        uint_val_2 = uint_array_180[longlong_val * 4];
+        goto process_data_loop;
+    case 0xc:
+        // 处理渲染数据类型0xc
+        if ((int)uint_val_5 < (int)uint_val) {
+            uint_val_5 = uint_val_2 + 2;
+            char_val = *(char *)(longlong_val_2 + stack_buffer_2b8._0_8_);
+            stack_buffer_2b8._8_4_ = uint_val_5;
+        }
+        else {
+            char_val = '\0';
+        }
+        uint_val_2 = uint_val_5;
+        if (char_val == '\"') {
+            // 处理双引号字符
+            if ((int)uint_val_4 < 7) {
+                render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
+            }
+            stack_float_2d8 = 0.0;
+            process_render_data_type8(data_stream, RENDER_PARAM_FLAG_0x180000000, 0, float_val_6);
+            stack_float_2d8 = 0.0;
+            stack_float_2e8 = -float_val_4;
+            stack_float_2e0 = float_val_7;
+            process_render_data_type8(data_stream);
+            ulonglong_val_2 = 0;
+            uint_val_3 = 0;
+            if (stack_int_2c8 == 0) {
+                uint_val_3 = uint_val_4;
+            }
+            goto process_data_loop;
+        }
+        if (char_val == '#') {
+            // 处理井号字符
+            if ((int)uint_val_4 < 0xd) {
+                render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
+            }
+            process_render_data_type8(data_stream, RENDER_PARAM_FLAG_0x180000000, float_val_6, float_val_4);
+            stack_float_2d8 = stack_float_21c;
+            stack_float_2e0 = stack_float_220;
+        }
+        else {
+            if (char_val == '$') {
+                // 处理美元符号字符
+                if ((int)uint_val_4 < 9) {
+                    render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
                 }
-                FUN_18028d400(render_target);
-                temp_int = temp_int + 4;
-                float_ptr = float_ptr + 4;
-            } while (temp_int < (int)temp_uint);
-            
-            temp_ulong = 0;
-            data_length = temp_uint_2;
-            stack_index = 0;
-            
-            if (stack_int_1 == 0) {
-                stack_index = temp_uint;
-            }
-            goto process_command_loop;
-            
-        case RENDER_CMD_CALL_SUBROUTINE:
-process_subroutine_call:
-            // 处理子程序调用
-            if (((int)temp_uint < 1) || (9 < temp_int_2)) {
-                FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
-            }
-            
-            temp_long = (longlong)temp_int_2;
-            temp_int_2 = temp_int_2 + 1;
-            (&stack_data_1)[temp_long * 2] = stack_buffer_2._0_8_;
-            *(undefined8 *)(data_stack + temp_long * 4) = stack_buffer_2._8_8_;
-            buffer_ptr = &stack_buffer_4;
-            
-            if (command_byte != 10) {
-                buffer_ptr = (undefined1 (*) [16])(offset + RENDER_STATE_DATA_OFFSET);
-            }
-            
-            temp_buffer_1 = *buffer_ptr;
-            stack_buffer_2._0_8_ = temp_buffer_1._0_8_;
-            stack_buffer_2._12_4_ = temp_buffer_1._12_4_;
-            temp_int = (int)temp_ulong;
-            stack_buffer_2._8_4_ = stack_buffer_2._12_4_;
-            
-            if (-1 < temp_buffer_1._8_8_) {
-                stack_buffer_2._8_4_ = temp_int;
-            }
-            
-            if ((int)stack_buffer_2._8_4_ < (int)stack_buffer_2._12_4_) {
-                offset = (longlong)(int)stack_buffer_2._8_4_;
-                stack_buffer_2._8_4_ = stack_buffer_2._8_4_ + 1;
-                byte_1 = *(undefined1 *)(offset + stack_buffer_2._0_8_);
-            } else {
-                byte_1 = 0;
-            }
-            
-            if ((int)stack_buffer_2._8_4_ < (int)stack_buffer_2._12_4_) {
-                offset = (longlong)(int)stack_buffer_2._8_4_;
-                stack_buffer_2._8_4_ = stack_buffer_2._8_4_ + 1;
-                byte_5 = *(undefined1 *)(offset + stack_buffer_2._0_8_);
-            } else {
-                byte_5 = 0;
-            }
-            
-            data_length = (uint)CONCAT11(byte_1, byte_5);
-            
-            if (data_length < RENDER_UNICODE_THRESHOLD) {
-                temp_int = RENDER_UNICODE_OFFSET_1;
-                if (RENDER_UNICODE_OFFSET_2 < data_length) {
-                    temp_int = RENDER_UNICODE_OFFSET_2;
+                stack_float_2d8 = 0.0;
+                process_render_data_type8(data_stream, RENDER_PARAM_FLAG_0x180000000, float_val_6, float_val_4);
+                stack_float_2d8 = -(float_val_5 + float_val_6 + stack_float_22c);
+                stack_float_2e8 = stack_float_22c;
+                stack_float_2e0 = float_val;
+                process_render_data_type8(data_stream);
+                ulonglong_val_2 = 0;
+                uint_val_3 = 0;
+                if (stack_int_2c8 == 0) {
+                    uint_val_3 = uint_val_4;
                 }
-            } else {
-                temp_int = RENDER_UNICODE_BASE;
+                goto process_data_loop;
             }
-            
-            stack_int_3 = temp_int_2;
-            
-            if (((int)float_array[(longlong)(int)(temp_uint - 1) + 1] + temp_int < 0) ||
-                ((int)data_length <= (int)float_array[(longlong)(int)(temp_uint - 1) + 1] + temp_int)) {
-                stack_buffer_3._8_8_ = 0;
-                stack_buffer_3._0_8_ = temp_ulong;
-                temp_buffer_1 = stack_buffer_3;
-                stack_buffer_3._4_4_ = (undefined4)(temp_ulong >> 0x20);
-                stack_buffer_3._8_4_ = 0;
-                stack_buffer_3._12_4_ = 0;
-                stack_buffer_2._4_4_ = stack_buffer_3._4_4_;
-                stack_buffer_2._8_4_ = stack_buffer_3._8_4_;
-                stack_buffer_2._12_4_ = stack_buffer_3._12_4_;
-                stack_buffer_3 = temp_buffer_1;
-            } else {
-                int_ptr = (int *)FUN_18028b4c0(stack_buffer_6, stack_buffer_2);
-                temp_ulong = 0;
-                temp_int = *int_ptr;
-                stack_buffer_2._4_4_ = int_ptr[1];
-                stack_buffer_2._8_4_ = int_ptr[2];
-                stack_buffer_2._12_4_ = int_ptr[3];
+            if ((char_val != '%') || ((int)uint_val_4 < 0xb)) {
+                render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
             }
-            
-            stack_buffer_2._0_4_ = temp_int;
-            if (stack_buffer_2._12_4_ == 0) {
-                FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
+            // 处理百分比字符
+            float_val = float_val_4 + float_val_3 + float_val_9 + float_val_7 + stack_float_228;
+            float_val_2 = float_val_5 + float_val_6 + float_val_8 + stack_float_22c + stack_float_224;
+            if (ABS(float_val) <= ABS(float_val_2)) {
+                float_val = -float_val;
+                float_val_2 = stack_float_220;
             }
-            
-            stack_buffer_2._8_4_ = (undefined4)temp_ulong;
-            data_length = stack_buffer_2._8_4_;
-            stack_index = stack_buffer_2._8_4_;
-            
-            if (stack_buffer_2._8_4_ == 0) {
-                stack_index = temp_uint - 1;
+            else {
+                float_val_2 = -float_val_2;
+                float_val = stack_float_220;
             }
-            goto process_command_loop;
-            
-        case RENDER_CMD_DRAW_SEQUENCE:
-            // 处理序列绘制命令
-            if ((int)temp_uint < 4) {
-                FUN_1808fc050(security_key ^ (ulonglong)stack_buffer_1);
-            }
-            
-            while (temp_int = (int)temp_ulong, temp_int + 3 < (int)temp_uint) {
-                stack_index = temp_int + 4;
-                if (temp_uint - temp_int == 5) {
-                    stack_float_3 = float_array[(longlong)(int)stack_index + 1];
-                } else {
-                    stack_float_3 = 0.0;
-                }
-                
-                stack_float_1 = float_array[(longlong)temp_int + 3];
-                stack_float_2 = float_array[(longlong)temp_int + 4];
-                FUN_18028d400(render_target);
-                
-                if ((int)temp_uint <= (int)(stack_index + 3)) break;
-                stack_float_3 = float_array[(longlong)(int)stack_index + 4];
-                
-                if (temp_uint - stack_index == 5) {
-                    stack_float_2 = float_array[(longlong)(int)(stack_index + 4) + 1];
-                } else {
-                    stack_float_2 = 0.0;
-                }
-                
-                stack_float_1 = float_array[(longlong)(int)stack_index + 3];
-                FUN_18028d400(render_target);
-                temp_ulong = (ulonglong)(stack_index + 4);
-            }
-            
-            temp_ulong = 0;
-            break;
-            
-        case RENDER_CMD_DRAW_QUAD:
-            // 处理四边形绘制命令
-            if (3 < (int)temp_uint) {
-                stack_index = (int)temp_ulong + 4;
-                
-                if (temp_uint - temp_int == 5) {
-                    stack_float_3 = float_array[(longlong)(int)stack_index + 1];
-                } else {
-                    stack_float_3 = 0.0;
-                }
-                
-                stack_float_1 = float_array[(longlong)temp_int + 3];
-                stack_float_2 = float_array[(longlong)temp_int + 4];
-                FUN_18028d400(render_target);
-            }
-            goto process_command_loop;
-    }
-    
-    data_length = temp_uint_2;
-    stack_index = (uint)temp_ulong;
-    
-    if (stack_int_1 == 0) {
-        stack_index = temp_uint;
-    }
-    goto process_command_loop;
-}
-
-// 函数: create_render_command_processor
-// 功能: 创建渲染命令处理器
-// 参数:
-//   - param_1: 保留参数
-//   - command_id: 命令ID
-//   - result_ptr: 结果指针
-// 返回值: 处理结果
-undefined4 create_render_command_processor(undefined8 param_1, undefined4 command_id, undefined8 *result_ptr)
-{
-    int result;
-    undefined8 stack_data_1;
-    undefined8 stack_data_2;
-    undefined8 stack_data_3;
-    undefined8 stack_data_4;
-    undefined8 stack_data_5;
-    undefined8 stack_data_6;
-    int stack_int_1;
-    undefined8 stack_data_7;
-    undefined8 stack_data_8;
-    undefined8 stack_data_9;
-    undefined8 stack_data_10;
-    undefined8 stack_data_11;
-    undefined8 stack_data_12;
-    undefined4 stack_param_1;
-    
-    stack_data_1 = 1;
-    stack_data_6 = 0;
-    stack_int_1 = 0;
-    stack_data_7 = 0;
-    stack_param_1 = 0;
-    stack_data_2 = 0;
-    stack_data_3 = 0;
-    stack_data_4 = 0;
-    stack_data_5 = 0;
-    stack_data_8 = 0;
-    stack_data_9 = 0;
-    stack_data_10 = 0;
-    stack_data_11 = 0;
-    stack_data_12 = 0;
-    
-    result = FUN_18028d680(0, 0, &stack_data_1);
-    
-    if (result != 0) {
-        if (_DAT_180c8a9b0 != 0) {
-            *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+            process_render_data_type8(data_stream, RENDER_PARAM_FLAG_0x180000000, float_val_6, float_val_4);
+            stack_float_2e0 = float_val;
+            stack_float_2d8 = float_val_2;
         }
-        
-        stack_data_11 = func_0x000180120ce0((longlong)stack_int_1 * 0xe, _DAT_180c8a9a8);
-        *result_ptr = stack_data_11;
-        result = FUN_18028d680(param_1, command_id, &stack_data_7);
-        
-        if (result != 0) {
-            return stack_param_1;
+        stack_float_2e8 = stack_float_224;
+        float_val = stack_float_228;
+        process_render_data_type8(data_stream);
+        ulonglong_val_2 = 0;
+        uint_val_3 = 0;
+        if (stack_int_2c8 == 0) {
+            uint_val_3 = uint_val_4;
         }
-    }
-    
-    *result_ptr = 0;
-    return 0;
-}
-
-// 函数: create_render_command_processor_ext
-// 功能: 创建扩展渲染命令处理器
-// 参数:
-//   - context_ptr: 上下文指针
-//   - command_id: 命令ID
-//   - result_ptr: 结果指针
-// 返回值: 处理结果
-ulonglong create_render_command_processor_ext(longlong context_ptr, undefined4 command_id, undefined8 *result_ptr)
-{
-    int result;
-    ulonglong return_val;
-    undefined8 stack_data_1;
-    undefined8 stack_data_2;
-    undefined8 stack_data_3;
-    undefined8 stack_data_4;
-    undefined8 stack_data_5;
-    undefined8 stack_data_6;
-    int stack_int_1;
-    undefined8 stack_data_7;
-    undefined8 stack_data_8;
-    undefined8 stack_data_9;
-    undefined8 stack_data_10;
-    undefined8 stack_data_11;
-    undefined8 stack_data_12;
-    uint stack_uint_1;
-    
-    if (*(int *)(context_ptr + 0x4c) == 0) {
-        return_val = FUN_18028c3e0();
-    } else {
-        return_val = 0;
-        stack_data_1 = 1;
-        stack_data_6 = 0;
-        stack_int_1 = 0;
-        stack_data_7 = 0;
-        stack_uint_1 = 0;
-        stack_data_2 = 0;
-        stack_data_3 = 0;
-        stack_data_4 = 0;
-        stack_data_5 = 0;
-        stack_data_8 = 0;
-        stack_data_9 = 0;
-        stack_data_10 = 0;
-        stack_data_11 = 0;
-        stack_data_12 = 0;
-        
-        result = FUN_18028d680(0, 0, &stack_data_1);
-        
-        if (result != 0) {
-            if (_DAT_180c8a9b0 != 0) {
-                *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
-            }
-            
-            stack_data_11 = func_0x000180120ce0((longlong)stack_int_1 * 0xe, _DAT_180c8a9a8);
-            *result_ptr = stack_data_11;
-            result = FUN_18028d680(context_ptr, command_id, &stack_data_7);
-            
-            if (result != 0) {
-                return (ulonglong)stack_uint_1;
-            }
+        goto process_data_loop;
+    case 0xe:
+        // 处理渲染数据类型0xe
+        process_render_data_type0xe(data_stream);
+        goto render_error_handler;
+    case 0x13:
+    case 0x14:
+        // 处理渲染数据类型0x13和0x14
+        if (stack_uint_2a4 != 0) {
+            stack_int_2a8 = stack_int_2a8 + (int)uint_val_4 / 2;
         }
-        
-        *result_ptr = 0;
-    }
-    
-    return return_val;
-}
-
-// 函数: execute_render_command_batch
-// 功能: 执行渲染命令批次
-// 参数:
-//   - param_1: 命令参数1
-//   - param_2: 命令参数2
-//   - param_3: 命令参数3
-//   - param_4: 命令参数4
-// 返回值: 执行结果
-undefined4 execute_render_command_batch(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
-{
-    int result;
-    undefined4 unaff_EBP;
-    undefined8 *unaff_RSI;
-    undefined8 in_XMM0_Qa;
-    undefined8 extraout_XMM0_Qa;
-    undefined8 temp_data;
-    undefined8 stack_data_1;
-    undefined8 stack_data_2;
-    undefined8 stack_data_3;
-    undefined8 stack_data_4;
-    int stack_int_1;
-    undefined8 stack_data_5;
-    undefined8 stack_data_6;
-    undefined8 stack_data_7;
-    undefined8 stack_data_8;
-    undefined8 in_stack_1;
-    undefined4 stack_param_1;
-    
-    temp_data = 1;
-    stack_data_4 = 0;
-    stack_int_1 = 0;
-    stack_data_5 = 0;
-    stack_param_1 = 0;
-    stack_data_2 = 0;
-    stack_data_3 = 0;
-    stack_data_7 = 0;
-    stack_data_8 = 0;
-    stack_data_1 = in_XMM0_Qa;
-    stack_data_6 = in_XMM0_Qa;
-    
-    result = FUN_18028d680(param_1, 0, &stack0x00000020, param_4, 1);
-    
-    if (result != 0) {
-        if (_DAT_180c8a9b0 != 0) {
-            *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+        stack_buffer_2b8._8_4_ = ((int)((stack_int_2a8 + 7 >> 0x1f & 7U) + stack_int_2a8 + 7) >> 3) + uint_val_5;
+        if (((int)uint_val < (int)stack_buffer_2b8._8_4_) || ((int)stack_buffer_2b8._8_4_ < 0)) {
+            stack_buffer_2b8._8_4_ = uint_val;
+            uint_val_2 = uint_val;
+            stack_uint_2a4 = uint_val_3;
         }
-        
-        in_stack_1 = func_0x000180120ce0((longlong)stack_int_1 * 0xe, _DAT_180c8a9a8);
-        *unaff_RSI = in_stack_1;
-        result = FUN_18028d680(extraout_XMM0_Qa, unaff_EBP, &stack0x00000058, param_4, temp_data);
-        
-        if (result != 0) {
-            return stack_param_1;
+        else {
+            uint_val_2 = stack_buffer_2b8._8_4_;
+            stack_uint_2a4 = uint_val_3;
         }
-    }
-    
-    *unaff_RSI = 0;
-    return 0;
-}
-
-// 函数: initialize_render_processor
-// 功能: 初始化渲染处理器
-void initialize_render_processor(void)
-{
-    return;
-}
-
-// 函数: calculate_render_interpolation
-// 功能: 计算渲染插值
-// 参数:
-//   - target_ptr: 目标指针
-//   - index: 索引
-//   - source_ptr: 源指针
-//   - start_val: 起始值
-//   - end_val: 结束值
-//   - param_6: 参数6
-//   - param_7: 参数7
-void calculate_render_interpolation(longlong target_ptr, int index, longlong source_ptr, 
-                                  float start_val, float end_val, float param_6, float param_7)
-{
-    float temp_float_1, temp_float_2;
-    
-    if (((end_val != param_7) && (temp_float_2 = *(float *)(source_ptr + 0x1c), end_val <= temp_float_2)) &&
-        (temp_float_1 = *(float *)(source_ptr + 0x18), temp_float_1 <= param_7)) {
-        
-        if (end_val < temp_float_1) {
-            start_val = start_val + ((temp_float_1 - end_val) * (param_6 - start_val)) / (param_7 - end_val);
-            end_val = temp_float_1;
+        goto process_data_loop;
+    case 0x15:
+        // 处理渲染数据类型0x15
+        stack_uint_2a4 = uint_val_3;
+        if ((int)uint_val_4 < 2) {
+            render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
         }
-        
-        if (temp_float_2 < param_7) {
-            param_6 = param_6 + ((temp_float_2 - param_7) * (param_6 - start_val)) / (param_7 - end_val);
-            param_7 = temp_float_2;
+        process_render_data_type4(data_stream, RENDER_PARAM_FLAG_0x180000000, float_array_24c[(int)uint_val_4]);
+        ulonglong_val_2 = 0;
+        uint_val_2 = uint_val_5;
+        uint_val_3 = 0;
+        if (stack_int_2c8 == 0) {
+            uint_val_3 = uint_val_4;
         }
-        
-        temp_float_2 = (float)index;
-        
-        if ((start_val <= temp_float_2) && (param_6 <= temp_float_2)) {
-            *(float *)(target_ptr + (longlong)index * 4) =
-                (param_7 - end_val) * *(float *)(source_ptr + 0x14) +
-                *(float *)(target_ptr + (longlong)index * 4);
-            return;
+        goto process_data_loop;
+    case 0x16:
+        // 处理渲染数据类型0x16
+        stack_uint_2a4 = uint_val_3;
+        if ((int)uint_val_4 < 1) {
+            render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
         }
-        
-        if ((start_val < (float)(index + 1)) || (param_6 < (float)(index + 1))) {
-            *(float *)(target_ptr + (longlong)index * 4) =
-                (1.0 - ((start_val - temp_float_2) + (param_6 - temp_float_2)) * 0.5) *
-                (param_7 - end_val) * *(float *)(source_ptr + 0x14) +
-                *(float *)(target_ptr + (longlong)index * 4);
+        process_render_data_type4(data_stream, RENDER_PARAM_FLAG_0x180000000, 0);
+        ulonglong_val_2 = 0;
+        uint_val_2 = uint_val_5;
+        uint_val_3 = 0;
+        if (stack_int_2c8 == 0) {
+            uint_val_3 = uint_val_4;
         }
-    }
-    return;
-}
-
-// 函数: calculate_render_interpolation_ext
-// 功能: 计算扩展渲染插值
-// 参数:
-//   - target_ptr: 目标指针
-//   - index: 索引
-//   - source_ptr: 源指针
-//   - start_val: 起始值
-void calculate_render_interpolation_ext(longlong target_ptr, int index, longlong source_ptr, float start_val)
-{
-    float temp_float_1, temp_float_2;
-    float in_XMM4_Da, in_XMM5_Da;
-    float in_stack_1;
-    
-    temp_float_2 = *(float *)(source_ptr + 0x1c);
-    
-    if ((in_XMM5_Da <= temp_float_2) && (temp_float_1 = *(float *)(source_ptr + 0x18), temp_float_1 <= in_XMM4_Da)) {
-        if (in_XMM5_Da < temp_float_1) {
-            start_val = start_val + ((temp_float_1 - in_XMM5_Da) * (in_stack_1 - start_val)) /
-                        (in_XMM4_Da - in_XMM5_Da);
-            in_XMM5_Da = temp_float_1;
+        goto process_data_loop;
+    case 0x18:
+        // 处理渲染数据类型0x18
+        if ((int)uint_val_4 < 8) {
+            render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
         }
-        
-        if (temp_float_2 < in_XMM4_Da) {
-            in_stack_1 = in_stack_1 + ((temp_float_2 - in_XMM4_Da) * (in_stack_1 - start_val)) /
-                         (in_XMM4_Da - in_XMM5_Da);
-            in_XMM4_Da = temp_float_2;
+        if (5 < (int)(uint_val_4 - 2)) {
+            int_val_3 = 5;
+            float_ptr = float_array_24c + 5;
+            do {
+                stack_float_2d8 = float_ptr[1];
+                stack_float_2e0 = *float_ptr;
+                stack_float_2e8 = float_ptr[-1];
+                process_render_data_type8(data_stream);
+                uint_val_3 = (int)ulonglong_val + 6;
+                ulonglong_val = (ulonglong)uint_val_3;
+                float_ptr = float_ptr + 6;
+                int_val_3 = int_val_3 + 6;
+            } while (int_val_3 < (int)(uint_val_4 - 2));
+            ulonglong_val_2 = 0;
         }
-        
-        temp_float_2 = (float)index;
-        
-        if ((start_val <= temp_float_2) && (in_stack_1 <= temp_float_2)) {
-            *(float *)(target_ptr + (longlong)index * 4) =
-                (in_XMM4_Da - in_XMM5_Da) * *(float *)(source_ptr + 0x14) +
-                *(float *)(target_ptr + (longlong)index * 4);
-            return;
+        if ((int)uint_val_4 <= (int)(uint_val_3 + 1)) {
+            render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
         }
-        
-        if ((start_val < (float)(index + 1)) || (in_stack_1 < (float)(index + 1))) {
-            *(float *)(target_ptr + (longlong)index * 4) =
-                (1.0 - ((start_val - temp_float_2) + (in_stack_1 - temp_float_2)) * 0.5) *
-                (in_XMM4_Da - in_XMM5_Da) * *(float *)(source_ptr + 0x14) +
-                *(float *)(target_ptr + (longlong)index * 4);
+        process_render_data_type5(data_stream);
+        int_val_3 = stack_int_2a0;
+        uint_val_2 = uint_val_5;
+        uint_val_3 = (uint)ulonglong_val_2;
+        if (stack_int_2c8 == 0) {
+            uint_val_3 = uint_val_4;
         }
-    }
-    return;
-}
-
-// 函数: apply_render_interpolation_simple
-// 功能: 应用简单渲染插值
-// 参数:
-//   - target_ptr: 目标指针
-//   - index: 索引
-//   - source_ptr: 源指针
-//   - start_val: 起始值
-void apply_render_interpolation_simple(longlong target_ptr, int index, longlong source_ptr, float start_val)
-{
-    float in_XMM0_Da, in_XMM4_Da, in_XMM5_Da;
-    float unaff_XMM6_Da;
-    
-    if ((start_val < (float)(index + 1)) || (unaff_XMM6_Da < (float)(index + 1))) {
-        *(float *)(target_ptr + (longlong)index * 4) =
-            (1.0 - ((start_val - in_XMM0_Da) + (unaff_XMM6_Da - in_XMM0_Da)) * 0.5) *
-            (in_XMM4_Da - in_XMM5_Da) * *(float *)(source_ptr + 0x14) +
-            *(float *)(target_ptr + (longlong)index * 4);
-    }
-    return;
-}
-
-// 函数: cleanup_render_processor
-// 功能: 清理渲染处理器
-void cleanup_render_processor(void)
-{
-    return;
-}
-
-// 函数: reset_render_processor
-// 功能: 重置渲染处理器
-void reset_render_processor(void)
-{
-    return;
-}
-
-// 函数: process_render_batch_interpolation
-// 功能: 处理渲染批次插值
-// 参数:
-//   - target_ptr_1: 目标指针1
-//   - target_ptr_2: 目标指针2
-//   - index: 索引
-//   - source_ptr: 源指针
-//   - start_val: 起始值
-void process_render_batch_interpolation(longlong target_ptr_1, longlong target_ptr_2, 
-                                     int index, longlong *source_ptr, float start_val)
-{
-    longlong offset;
-    float *float_ptr;
-    int temp_int;
-    longlong temp_long;
-    ulonglong temp_ulong;
-    longlong temp_long_2;
-    int temp_int_2;
-    uint temp_uint;
-    float temp_float_1, temp_float_2, temp_float_3, temp_float_4, temp_float_5, temp_float_6, temp_float_7, temp_float_8;
-    float temp_float_9, temp_float_10, temp_float_11, temp_float_12, temp_float_13, temp_float_14;
-    ulonglong temp_ulong_2;
-    
-    if (source_ptr != (longlong *)0x0) {
-        temp_float_14 = start_val + 1.0;
-        
+        goto process_data_loop;
+    case 0x19:
+        // 处理渲染数据类型0x19
+        if ((int)uint_val_4 < 8) {
+            render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
+        }
+        if (1 < (int)(uint_val_4 - 6)) {
+            int_val_2 = 1;
+            do {
+                process_render_data_type5(data_stream);
+                uint_val_3 = (int)ulonglong_val + 2;
+                ulonglong_val = (ulonglong)uint_val_3;
+                int_val_2 = int_val_2 + 2;
+            } while (int_val_2 < (int)(uint_val_4 - 6));
+        }
+        if ((int)uint_val_4 <= (int)(uint_val_3 + 5)) {
+            render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
+        }
+        stack_float_2d8 = float_array_24c[(longlong)(int)uint_val_3 + 6];
+        stack_float_2e0 = float_array_24c[(longlong)(int)uint_val_3 + 5];
+        stack_float_2e8 = float_array_24c[(longlong)(int)uint_val_3 + 4];
+        process_render_data_type8(data_stream);
+        ulonglong_val_2 = 0;
+        uint_val_2 = uint_val_5;
+        uint_val_3 = 0;
+        if (stack_int_2c8 == 0) {
+            uint_val_3 = uint_val_4;
+        }
+        goto process_data_loop;
+    case 0x1a:
+    case 0x1b:
+        // 处理渲染数据类型0x1a和0x1b
+        if ((int)uint_val_4 < 4) {
+            render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
+        }
+        int_val_2 = (uint_val_4 & 1) + 3;
+        if ((int)uint_val_4 <= int_val_2) break;
+        float_ptr = float_array_24c + (ulonglong)(uint_val_4 & 1) + 3;
         do {
-            temp_float_9 = *(float *)((longlong)source_ptr + 0xc);
-            temp_float_4 = *(float *)(source_ptr + 1);
-            
-            if (temp_float_9 == 0.0) {
-                if (temp_float_4 < (float)index) {
-                    if (temp_float_4 < 0.0) {
-                        FUN_18028e550(target_ptr_2 + -4, 0, source_ptr, temp_float_4, start_val, temp_float_4, temp_float_14);
-                    } else {
-                        FUN_18028e550(target_ptr_1, (int)temp_float_4, source_ptr, temp_float_4, start_val, temp_float_4, temp_float_14);
-                        FUN_18028e550(target_ptr_2 + -4);
-                    }
-                }
-            } else {
-                temp_float_10 = *(float *)(source_ptr + 3);
-                temp_float_12 = *(float *)(source_ptr + 2);
-                temp_float_13 = temp_float_9 + temp_float_4;
-                temp_float_8 = temp_float_4;
-                temp_float_11 = start_val;
-                
-                if (start_val < temp_float_10) {
-                    temp_float_8 = (temp_float_10 - start_val) * temp_float_9 + temp_float_4;
-                    temp_float_11 = temp_float_10;
-                }
-                
-                temp_float_10 = *(float *)((longlong)source_ptr + 0x1c);
-                temp_float_7 = temp_float_13;
-                temp_float_3 = temp_float_14;
-                
-                if (temp_float_10 < temp_float_14) {
-                    temp_float_7 = (temp_float_10 - start_val) * temp_float_9 + temp_float_4;
-                    temp_float_3 = temp_float_10;
-                }
-                
-                if ((((temp_float_8 < 0.0) || (temp_float_7 < 0.0)) || ((float)index <= temp_float_8)) ||
-                    ((float)index <= temp_float_7)) {
-                    
-                    temp_ulong = 0;
-                    if (0 < index) {
-                        do {
-                            temp_uint = (int)temp_ulong + 1;
-                            temp_ulong_2 = (ulonglong)temp_uint;
-                            temp_float_8 = (float)(int)temp_ulong;
-                            temp_float_10 = (float)(int)temp_uint;
-                            temp_float_11 = (temp_float_8 - temp_float_4) * (1.0 / temp_float_9) + start_val;
-                            temp_float_12 = (temp_float_10 - temp_float_4) * (1.0 / temp_float_9) + start_val;
-                            
-                            if ((temp_float_8 <= temp_float_4) || (temp_float_13 <= temp_float_10)) {
-                                if ((temp_float_8 <= temp_float_13) || (temp_float_4 <= temp_float_10)) {
-                                    if (((temp_float_4 < temp_float_8) && (temp_float_8 < temp_float_13)) ||
-                                        ((temp_float_13 < temp_float_8 && (temp_float_8 < temp_float_4)))) {
-                                        FUN_18028e550(target_ptr_1, temp_ulong, source_ptr, temp_float_4, start_val, temp_float_8, temp_float_11);
-                                    } else if ((temp_float_10 <= temp_float_4) || (temp_float_13 <= temp_float_10)) {
-                                        if ((temp_float_13 < temp_float_10) && (temp_float_10 < temp_float_4)) {
-                                            FUN_18028e550(target_ptr_1, temp_ulong, source_ptr, temp_float_4, start_val, temp_float_10, temp_float_12);
-                                        }
-                                    } else {
-                                        FUN_18028e550(target_ptr_1, temp_ulong, source_ptr, temp_float_4, start_val, temp_float_10, temp_float_12);
-                                    }
-                                } else {
-                                    FUN_18028e550(target_ptr_1, temp_ulong, source_ptr, temp_float_4, start_val, temp_float_10, temp_float_12);
-                                    FUN_18028e550(target_ptr_1);
-                                }
-                            } else {
-                                FUN_18028e550(target_ptr_1, temp_ulong, source_ptr, temp_float_4, start_val, temp_float_8, temp_float_11);
-                                FUN_18028e550(target_ptr_1);
-                            }
-                            
-                            FUN_18028e550(target_ptr_1);
-                            temp_ulong = temp_ulong_2 & 0xffffffff;
-                        } while ((int)temp_ulong_2 < index);
-                    }
-                } else {
-                    temp_int = (int)temp_float_8;
-                    if (temp_int == (int)temp_float_7) {
-                        offset = (longlong)temp_int;
-                        *(float *)(target_ptr_1 + offset * 4) =
-                            (1.0 - ((temp_float_7 - (float)temp_int) + (temp_float_8 - (float)temp_int)) * 0.5) *
-                            *(float *)((longlong)source_ptr + 0x14) * (temp_float_3 - temp_float_11) +
-                            *(float *)(target_ptr_1 + offset * 4);
-                        *(float *)(target_ptr_2 + offset * 4) =
-                            (temp_float_3 - temp_float_11) * *(float *)((longlong)source_ptr + 0x14) +
-                            *(float *)(target_ptr_2 + offset * 4);
-                    } else {
-                        temp_float_9 = temp_float_8;
-                        if (temp_float_7 < temp_float_8) {
-                            temp_float_12 = -temp_float_12;
-                            temp_float_9 = temp_float_3 - start_val;
-                            temp_float_3 = temp_float_14 - (temp_float_11 - start_val);
-                            temp_float_11 = temp_float_14 - temp_float_9;
-                            temp_float_9 = temp_float_7;
-                            temp_float_7 = temp_float_8;
-                            temp_float_4 = temp_float_13;
-                        }
-                        
-                        temp_int_2 = (int)temp_float_9;
-                        temp_int = (int)temp_float_7;
-                        offset = (longlong)(temp_int_2 + 1);
-                        temp_long_2 = (longlong)temp_int;
-                        temp_float_10 = *(float *)((longlong)source_ptr + 0x14);
-                        temp_float_8 = temp_float_10 * temp_float_12;
-                        temp_float_13 = ((float)(temp_int_2 + 1) - temp_float_4) * temp_float_12 + start_val;
-                        temp_float_4 = (temp_float_13 - temp_float_11) * temp_float_10;
-                        *(float *)(target_ptr_1 + (longlong)temp_int_2 * 4) =
-                            (0.5 - (temp_float_9 - (float)temp_int_2) * 0.5) * temp_float_4 +
-                            *(float *)(target_ptr_1 + (longlong)temp_int_2 * 4);
-                        
-                        if (offset < temp_long_2) {
-                            if (3 < temp_long_2 - offset) {
-                                float_ptr = (float *)(target_ptr_1 + 8 + offset * 4);
-                                temp_long = ((temp_long_2 - offset) - 4U >> 2) + 1;
-                                temp_float_9 = temp_float_8 * 0.5;
-                                offset = offset + temp_long * 4;
-                                
-                                do {
-                                    float_ptr[-2] = temp_float_9 + temp_float_4 + float_ptr[-2];
-                                    temp_float_1 = temp_float_4 + temp_float_8 + temp_float_8;
-                                    temp_float_2 = temp_float_1 + temp_float_8;
-                                    float_ptr[-1] = temp_float_9 + temp_float_4 + temp_float_8 + float_ptr[-1];
-                                    temp_float_4 = temp_float_2 + temp_float_8;
-                                    *float_ptr = temp_float_9 + temp_float_1 + *float_ptr;
-                                    float_ptr[1] = temp_float_9 + temp_float_2 + float_ptr[1];
-                                    float_ptr = float_ptr + 4;
-                                    temp_long = temp_long + -1;
-                                } while (temp_long != 0);
-                            }
-                            
-                            if (offset < temp_long_2) {
-                                do {
-                                    temp_float_9 = temp_float_8 * 0.5 + temp_float_4;
-                                    temp_float_4 = temp_float_4 + temp_float_8;
-                                    *(float *)(target_ptr_1 + offset * 4) = temp_float_9 + *(float *)(target_ptr_1 + offset * 4);
-                                    offset = offset + 1;
-                                } while (offset < temp_long_2);
-                            }
-                        }
-                        
-                        *(float *)(target_ptr_1 + temp_long_2 * 4) =
-                            (temp_float_3 - ((float)((temp_int - temp_int_2) + -1) * temp_float_12 + temp_float_13)) *
-                            (1.0 - (temp_float_7 - (float)temp_int) * 0.5) * temp_float_10 + temp_float_4 +
-                            *(float *)(target_ptr_1 + temp_long_2 * 4);
-                        *(float *)(target_ptr_2 + temp_long_2 * 4) =
-                            (temp_float_3 - temp_float_11) * temp_float_10 + *(float *)(target_ptr_2 + temp_long_2 * 4);
-                    }
-                }
+            stack_float_2d8 = float_ptr[1];
+            stack_float_2e8 = *float_ptr;
+            if (byte_val == 0x1b) {
+                stack_float_2e0 = stack_float_2d8;
+                stack_float_2d8 = 0.0;
             }
-            source_ptr = (longlong *)*source_ptr;
-        } while (source_ptr != (longlong *)0x0);
+            else {
+                stack_float_2e0 = 0.0;
+            }
+            process_render_data_type8(data_stream);
+            int_val_2 = int_val_2 + 4;
+            float_ptr = float_ptr + 4;
+        } while (int_val_2 < (int)uint_val_4);
+        ulonglong_val_2 = 0;
+        uint_val_2 = uint_val_5;
+        uint_val_3 = 0;
+        if (stack_int_2c8 == 0) {
+            uint_val_3 = uint_val_4;
+        }
+        goto process_data_loop;
+    case 0x1d:
+        // 处理渲染数据类型0x1d
+process_render_data_type10:
+        if (((int)uint_val_4 < 1) || (9 < int_val_3)) {
+            render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
+        }
+        longlong_val_2 = (longlong)int_val_3;
+        int_val_3 = int_val_3 + 1;
+        (&stack_uint_188)[longlong_val_2 * 2] = stack_buffer_2b8._0_8_;
+        *(uint64_t *)(uint_array_180 + longlong_val_2 * 4) = stack_buffer_2b8._8_8_;
+        buffer_ptr = &stack_buffer_278;
+        if (byte_val != 10) {
+            buffer_ptr = (uint8_t (*)[RENDER_DATA_BUFFER_SIZE])(longlong_val + 0x60);
+        }
+        data_buffer = *buffer_ptr;
+        stack_buffer_2b8._0_8_ = data_buffer._0_8_;
+        stack_buffer_2b8._12_4_ = data_buffer._12_4_;
+        int_val_2 = (int)ulonglong_val_2;
+        stack_buffer_2b8._8_4_ = stack_buffer_2b8._12_4_;
+        if (-1 < data_buffer._8_8_) {
+            stack_buffer_2b8._8_4_ = int_val_2;
+        }
+        if ((int)stack_buffer_2b8._8_4_ < (int)stack_buffer_2b8._12_4_) {
+            longlong_val = (longlong)(int)stack_buffer_2b8._8_4_;
+            stack_buffer_2b8._8_4_ = stack_buffer_2b8._8_4_ + 1;
+            uint8_val = *(uint8_t *)(longlong_val + stack_buffer_2b8._0_8_);
+        }
+        else {
+            uint8_val = 0;
+        }
+        if ((int)stack_buffer_2b8._8_4_ < (int)stack_buffer_2b8._12_4_) {
+            longlong_val = (longlong)(int)stack_buffer_2b8._8_4_;
+            stack_buffer_2b8._8_4_ = stack_buffer_2b8._8_4_ + 1;
+            uint8_val_2 = *(uint8_t *)(longlong_val + stack_buffer_2b8._0_8_);
+        }
+        else {
+            uint8_val_2 = 0;
+        }
+        uint_val_2 = (uint)CONCAT11(uint8_val, uint8_val_2);
+        if (uint_val_2 < RENDER_COORDINATE_THRESHOLD) {
+            int_val = 0x6b;
+            if (RENDER_COORDINATE_OFFSET_1 < uint_val_2) {
+                int_val = RENDER_COORDINATE_OFFSET_2;
+            }
+        }
+        else {
+            int_val = RENDER_DEFAULT_COORDINATE;
+        }
+        stack_int_2a0 = int_val_3;
+        if (((int)float_array_24c[(longlong)(int)(uint_val_4 - 1) + 1] + int_val < 0) ||
+           ((int)uint_val_2 <= (int)float_array_24c[(longlong)(int)(uint_val_4 - 1) + 1] + int_val)) {
+            stack_buffer_288._8_8_ = 0;
+            stack_buffer_288._0_8_ = ulonglong_val_2;
+            data_buffer = stack_buffer_288;
+            stack_buffer_288._4_4_ = (uint32_t)(ulonglong_val_2 >> 0x20);
+            stack_buffer_288._8_4_ = 0;
+            stack_buffer_288._12_4_ = 0;
+            stack_buffer_2b8._4_4_ = stack_buffer_288._4_4_;
+            stack_buffer_2b8._8_4_ = stack_buffer_288._8_4_;
+            stack_buffer_2b8._12_4_ = stack_buffer_288._12_4_;
+            stack_buffer_288 = data_buffer;
+        }
+        else {
+            int_ptr = (int *)extract_render_data_buffer(stack_buffer_258, stack_buffer_2b8);
+            ulonglong_val_2 = 0;
+            int_val_2 = *int_ptr;
+            stack_buffer_2b8._4_4_ = int_ptr[1];
+            stack_buffer_2b8._8_4_ = int_ptr[2];
+            stack_buffer_2b8._12_4_ = int_ptr[3];
+        }
+        stack_buffer_2b8._0_4_ = int_val_2;
+        if (stack_buffer_2b8._12_4_ == 0) {
+            render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
+        }
+        stack_buffer_2b8._8_4_ = (uint32_t)ulonglong_val_2;
+        uint_val_2 = stack_buffer_2b8._8_4_;
+        uint_val_3 = stack_buffer_2b8._8_4_;
+        if (stack_buffer_2b8._8_4_ == 0) {
+            uint_val_3 = uint_val_4 - 1;
+        }
+        goto process_data_loop;
+    case 0x1e:
+        // 处理渲染数据类型0x1e
+        if ((int)uint_val_4 < 4) {
+            render_error_handler(stack_ulonglong_e8 ^ (ulonglong)stack_buffer_308);
+        }
+        while (int_val_2 = (int)ulonglong_val, int_val_2 + 3 < (int)uint_val_4) {
+            uint_val_3 = int_val_2 + 4;
+            if (uint_val_4 - int_val_2 == 5) {
+                stack_float_2d8 = float_array_24c[(longlong)(int)uint_val_3 + 1];
+            }
+            else {
+                stack_float_2d8 = 0.0;
+            }
+            stack_float_2e8 = float_array_24c[(longlong)int_val_2 + 3];
+            stack_float_2e0 = float_array_24c[(longlong)int_val_2 + 4];
+            process_render_data_type8(data_stream);
+process_type0x1e_loop:
+            if ((int)uint_val_4 <= (int)(uint_val_3 + 3)) break;
+            stack_float_2d8 = float_array_24c[(longlong)(int)uint_val_3 + 4];
+            if (uint_val_4 - uint_val_3 == 5) {
+                stack_float_2e0 = float_array_24c[(longlong)(int)(uint_val_3 + 4) + 1];
+            }
+            else {
+                stack_float_2e0 = 0.0;
+            }
+            stack_float_2e8 = float_array_24c[(longlong)(int)uint_val_3 + 3];
+            process_render_data_type8(data_stream);
+            ulonglong_val = (ulonglong)(uint_val_3 + 4);
+        }
+        ulonglong_val_2 = 0;
+        break;
+    case 0x1f:
+        // 处理渲染数据类型0x1f
+        if (3 < (int)uint_val_4) goto process_type0x1e_loop;
+        goto render_error_handler;
+    }
+    uint_val_2 = uint_val_5;
+    uint_val_3 = (uint)ulonglong_val_2;
+    if (stack_int_2c8 == 0) {
+        uint_val_3 = uint_val_4;
+    }
+    goto process_data_loop;
+}
+
+
+// 渲染资源创建器 - 创建和初始化渲染资源
+uint create_render_resource(uint64_t resource_id, uint render_flags, uint64_t *resource_handle)
+{
+    int result;
+    uint64_t stack_buffer_78;
+    uint64_t stack_buffer_70;
+    uint64_t stack_buffer_68;
+    uint64_t stack_buffer_60;
+    uint64_t stack_buffer_58;
+    uint64_t stack_buffer_50;
+    int stack_int_48;
+    uint64_t stack_buffer_40;
+    uint64_t stack_buffer_38;
+    uint64_t stack_buffer_30;
+    uint64_t stack_buffer_28;
+    uint64_t stack_buffer_20;
+    uint64_t stack_buffer_18;
+    uint stack_uint_10;
+    
+    // 初始化栈变量
+    stack_buffer_78 = 1;
+    stack_buffer_50 = 0;
+    stack_int_48 = 0;
+    stack_buffer_40 = 0;
+    stack_uint_10 = 0;
+    stack_buffer_70 = 0;
+    stack_buffer_68 = 0;
+    stack_buffer_60 = 0;
+    stack_buffer_58 = 0;
+    stack_buffer_38 = 0;
+    stack_buffer_30 = 0;
+    stack_buffer_28 = 0;
+    stack_buffer_20 = 0;
+    
+    // 处理渲染数据流
+    result = process_rendering_data_stream(0, 0, &stack_buffer_78);
+    if (result != 0) {
+        if (render_global_manager != 0) {
+            *(int *)(render_global_manager + 0x3a8) = *(int *)(render_global_manager + 0x3a8) + 1;
+        }
+        stack_buffer_18 = allocate_render_memory((longlong)stack_int_48 * RENDER_STACK_ALIGNMENT, render_resource_pool);
+        *resource_handle = stack_buffer_18;
+        result = process_rendering_data_stream(resource_id, render_flags, &stack_buffer_40);
+        if (result != 0) {
+            return stack_uint_10;
+        }
+    }
+    *resource_handle = 0;
+    return 0;
+}
+
+
+// 渲染资源管理器 - 管理渲染资源的生命周期
+ulonglong manage_render_resource(longlong resource_context, uint render_flags, uint64_t *resource_handle)
+{
+    int result;
+    ulonglong resource_count;
+    uint64_t stack_buffer_78;
+    uint64_t stack_buffer_70;
+    uint64_t stack_buffer_68;
+    uint64_t stack_buffer_60;
+    uint64_t stack_buffer_58;
+    uint64_t stack_buffer_50;
+    int stack_int_48;
+    uint64_t stack_buffer_40;
+    uint64_t stack_buffer_38;
+    uint64_t stack_buffer_30;
+    uint64_t stack_buffer_28;
+    uint64_t stack_buffer_20;
+    uint64_t stack_buffer_18;
+    uint stack_uint_10;
+    
+    // 检查资源上下文
+    if (*(int *)(resource_context + 0x4c) == 0) {
+        resource_count = get_render_resource_count();
+    }
+    else {
+        resource_count = 0;
+        stack_buffer_78 = 1;
+        stack_buffer_50 = 0;
+        stack_int_48 = 0;
+        stack_buffer_40 = 0;
+        stack_uint_10 = 0;
+        stack_buffer_70 = 0;
+        stack_buffer_68 = 0;
+        stack_buffer_60 = 0;
+        stack_buffer_58 = 0;
+        stack_buffer_38 = 0;
+        stack_buffer_30 = 0;
+        stack_buffer_28 = 0;
+        stack_buffer_20 = 0;
+        result = process_rendering_data_stream(0, 0, &stack_buffer_78);
+        if (result != 0) {
+            if (render_global_manager != 0) {
+                *(int *)(render_global_manager + 0x3a8) = *(int *)(render_global_manager + 0x3a8) + 1;
+            }
+            stack_buffer_18 = allocate_render_memory((longlong)stack_int_48 * RENDER_STACK_ALIGNMENT, render_resource_pool);
+            *resource_handle = stack_buffer_18;
+            result = process_rendering_data_stream(resource_context, render_flags, &stack_buffer_40);
+            if (result != 0) {
+                return (ulonglong)stack_uint_10;
+            }
+        }
+        *resource_handle = 0;
+    }
+    return resource_count;
+}
+
+
+// 渲染参数处理器 - 处理渲染参数和配置
+uint process_render_parameters(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
+{
+    int result;
+    uint stack_param_EBP;
+    uint64_t *stack_param_RSI;
+    uint64_t xmm0_param;
+    uint64_t xmm0_extra;
+    uint64_t var2;
+    uint64_t stack_buffer_28;
+    uint64_t stack_buffer_38;
+    uint64_t stack_buffer_40;
+    uint64_t stack_buffer_48;
+    int stack_int_50;
+    uint64_t stack_buffer_58;
+    uint64_t stack_buffer_60;
+    uint64_t stack_buffer_70;
+    uint64_t stack_buffer_78;
+    uint64_t stack_param_80;
+    uint stack_uint_88;
+    
+    // 初始化参数
+    var2 = 1;
+    stack_buffer_48 = 0;
+    stack_int_50 = 0;
+    stack_buffer_58 = 0;
+    stack_uint_88 = 0;
+    stack_buffer_38 = 0;
+    stack_buffer_40 = 0;
+    stack_buffer_70 = 0;
+    stack_buffer_78 = 0;
+    stack_buffer_28 = xmm0_param;
+    stack_buffer_60 = xmm0_param;
+    result = process_rendering_data_stream(param1, 0, &stack_buffer_20, param4, 1);
+    if (result != 0) {
+        if (render_global_manager != 0) {
+            *(int *)(render_global_manager + 0x3a8) = *(int *)(render_global_manager + 0x3a8) + 1;
+        }
+        stack_param_80 = allocate_render_memory((longlong)stack_int_50 * RENDER_STACK_ALIGNMENT, render_resource_pool);
+        *stack_param_RSI = stack_param_80;
+        result = process_rendering_data_stream(xmm0_extra, stack_param_EBP, &stack_buffer_58, param4, var2);
+        if (result != 0) {
+            return stack_uint_88;
+        }
+    }
+    *stack_param_RSI = 0;
+    return 0;
+}
+
+
+// 渲染系统初始化器 - 初始化渲染系统组件
+void initialize_rendering_system(void)
+{
+    return;
+}
+
+
+// 渲染坐标变换器 - 执行渲染坐标变换
+void transform_render_coordinates(longlong transform_context, int coord_index, longlong coord_data, 
+                                 float coord_x, float coord_y, float coord_z)
+{
+    float temp_float1;
+    float temp_float2;
+    
+    // 检查坐标范围并执行变换
+    if (((coord_y != coord_z) && (temp_float2 = *(float *)(coord_data + 0x1c), coord_y <= temp_float2)) &&
+       (temp_float1 = *(float *)(coord_data + 0x18), temp_float1 <= coord_z)) {
+        if (coord_y < temp_float1) {
+            coord_x = coord_x + ((temp_float1 - coord_y) * (coord_z - coord_x)) / (coord_z - coord_y);
+            coord_y = temp_float1;
+        }
+        if (temp_float2 < coord_z) {
+            coord_z = coord_z + ((temp_float2 - coord_z) * (coord_z - coord_x)) / (coord_z - coord_y);
+            coord_z = temp_float2;
+        }
+        temp_float2 = (float)coord_index;
+        if ((coord_x <= temp_float2) && (coord_z <= temp_float2)) {
+            *(float *)(transform_context + (longlong)coord_index * 4) =
+                 (coord_z - coord_y) * *(float *)(coord_data + 0x14) +
+                 *(float *)(transform_context + (longlong)coord_index * 4);
+            return;
+        }
+        if ((coord_x < (float)(coord_index + 1)) || (coord_z < (float)(coord_index + 1))) {
+            *(float *)(transform_context + (longlong)coord_index * 4) =
+                 (1.0 - ((coord_x - temp_float2) + (coord_z - temp_float2)) * 0.5) *
+                 (coord_z - coord_y) * *(float *)(coord_data + 0x14) +
+                 *(float *)(transform_context + (longlong)coord_index * 4);
+        }
     }
     return;
 }
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+// 渲染边界计算器 - 计算渲染边界和范围
+void calculate_render_bounds(longlong bounds_context, int bounds_index, longlong bounds_data, float bounds_param)
+{
+    float temp_float1;
+    float temp_float2;
+    float xmm5_param;
+    float xmm4_param;
+    float stack_param_68;
+    
+    temp_float2 = *(float *)(bounds_data + 0x1c);
+    if ((xmm5_param <= temp_float2) && (temp_float1 = *(float *)(bounds_data + 0x18), temp_float1 <= xmm4_param)) {
+        if (xmm5_param < temp_float1) {
+            bounds_param = bounds_param + ((temp_float1 - xmm5_param) * (stack_param_68 - bounds_param)) /
+                                (xmm4_param - xmm5_param);
+            xmm5_param = temp_float1;
+        }
+        if (temp_float2 < xmm4_param) {
+            stack_param_68 =
+                 stack_param_68 +
+                 ((temp_float2 - xmm4_param) * (stack_param_68 - bounds_param)) / (xmm4_param - xmm5_param);
+            xmm4_param = temp_float2;
+        }
+        temp_float2 = (float)bounds_index;
+        if ((bounds_param <= temp_float2) && (stack_param_68 <= temp_float2)) {
+            *(float *)(bounds_context + (longlong)bounds_index * 4) =
+                 (xmm4_param - xmm5_param) * *(float *)(bounds_data + 0x14) +
+                 *(float *)(bounds_context + (longlong)bounds_index * 4);
+            return;
+        }
+        if ((bounds_param < (float)(bounds_index + 1)) || (stack_param_68 < (float)(bounds_index + 1))) {
+            *(float *)(bounds_context + (longlong)bounds_index * 4) =
+                 (1.0 - ((bounds_param - temp_float2) + (stack_param_68 - temp_float2)) * 0.5) *
+                 (xmm4_param - xmm5_param) * *(float *)(bounds_data + 0x14) +
+                 *(float *)(bounds_context + (longlong)bounds_index * 4);
+        }
+    }
+    return;
+}
+
+
+// 渲染数据优化器 - 优化渲染数据和性能
+void optimize_rendering_data(longlong data_context, int data_index, longlong data_info, float data_param)
+{
+    float xmm0_param;
+    float xmm4_param;
+    float xmm5_param;
+    float xmm6_param;
+    
+    if ((data_param < (float)(data_index + 1)) || (xmm6_param < (float)(data_index + 1))) {
+        *(float *)(data_context + (longlong)data_index * 4) =
+             (1.0 - ((data_param - xmm0_param) + (xmm6_param - xmm0_param)) * 0.5) *
+             (xmm4_param - xmm5_param) * *(float *)(data_info + 0x14) +
+             *(float *)(data_context + (longlong)data_index * 4);
+    }
+    return;
+}
+
+
+// 渲染系统清理器 - 清理渲染系统资源
+void cleanup_rendering_system(void)
+{
+    return;
+}
+
+
+// 渲染系统重置器 - 重置渲染系统状态
+void reset_rendering_system(void)
+{
+    return;
+}
+
+
+// 渲染系统验证器 - 验证渲染系统状态
+void validate_rendering_system(void)
+{
+    return;
+}
+
+
+// 渲染管线处理器 - 处理渲染管线数据
+void process_rendering_pipeline(longlong pipeline_context, longlong pipeline_data, int pipeline_size, 
+                               longlong *pipeline_params, float pipeline_param)
+{
+    longlong temp_long1;
+    float *temp_float_ptr;
+    int temp_int1;
+    longlong temp_long2;
+    ulonglong temp_ulong1;
+    longlong temp_long3;
+    int temp_int2;
+    uint temp_uint1;
+    float temp_float10;
+    float temp_float11;
+    float temp_float12;
+    float temp_float13;
+    float temp_float14;
+    float temp_float15;
+    float temp_float16;
+    float temp_float17;
+    float temp_float18;
+    float temp_float19;
+    float temp_float20;
+    float temp_float21;
+    ulonglong temp_ulong2;
+    
+    // 检查管线参数有效性
+    if (pipeline_params != (longlong *)0x0) {
+        temp_float21 = pipeline_param + 1.0;
+        do {
+            temp_float16 = *(float *)((longlong)pipeline_params + 0xc);
+            temp_float11 = *(float *)(pipeline_params + 1);
+            if (temp_float16 == 0.0) {
+                if (temp_float11 < (float)pipeline_size) {
+                    if (temp_float11 < 0.0) {
+                        transform_render_coordinates(pipeline_data + -4, 0, pipeline_params, temp_float11, pipeline_param, temp_float11, temp_float21);
+                    }
+                    else {
+                        transform_render_coordinates(pipeline_context, (int)temp_float11, pipeline_params, temp_float11, pipeline_param, temp_float11, temp_float21);
+                        transform_render_coordinates(pipeline_data + -4);
+                    }
+                }
+            }
+            else {
+                temp_float17 = *(float *)(pipeline_params + 3);
+                temp_float19 = *(float *)(pipeline_params + 2);
+                temp_float20 = temp_float16 + temp_float11;
+                temp_float15 = temp_float11;
+                temp_float18 = pipeline_param;
+                if (pipeline_param < temp_float17) {
+                    temp_float15 = (temp_float17 - pipeline_param) * temp_float16 + temp_float11;
+                    temp_float18 = temp_float17;
+                }
+                temp_float17 = *(float *)((longlong)pipeline_params + 0x1c);
+                temp_float14 = temp_float20;
+                temp_float10 = temp_float21;
+                if (temp_float17 < temp_float21) {
+                    temp_float14 = (temp_float17 - pipeline_param) * temp_float16 + temp_float11;
+                    temp_float10 = temp_float17;
+                }
+                if ((((temp_float15 < 0.0) || (temp_float14 < 0.0)) || ((float)pipeline_size <= temp_float15)) ||
+                   ((float)pipeline_size <= temp_float14)) {
+                    temp_ulong1 = 0;
+                    if (0 < pipeline_size) {
+                        do {
+                            temp_uint1 = (int)temp_ulong1 + 1;
+                            temp_ulong2 = (ulonglong)temp_uint1;
+                            temp_float15 = (float)(int)temp_ulong1;
+                            temp_float17 = (float)(int)temp_uint1;
+                            temp_float18 = (temp_float15 - temp_float11) * (1.0 / temp_float16) + pipeline_param;
+                            temp_float19 = (temp_float17 - temp_float11) * (1.0 / temp_float16) + pipeline_param;
+                            if ((temp_float15 <= temp_float11) || (temp_float20 <= temp_float17)) {
+                                if ((temp_float15 <= temp_float20) || (temp_float11 <= temp_float17)) {
+                                    if (((temp_float11 < temp_float15) && (temp_float15 < temp_float20)) ||
+                                       ((temp_float20 < temp_float15 && (temp_float15 < temp_float11)))) {
+                                        transform_render_coordinates(pipeline_context, temp_ulong1, pipeline_params, temp_float11, pipeline_param, temp_float15, temp_float18);
+                                    }
+                                    else if ((temp_float17 <= temp_float11) || (temp_float20 <= temp_float17)) {
+                                        if ((temp_float20 < temp_float17) && (temp_float17 < temp_float11)) {
+                                            transform_render_coordinates(pipeline_context, temp_ulong1, pipeline_params, temp_float11, pipeline_param, temp_float17, temp_float19);
+                                        }
+                                    }
+                                    else {
+                                        transform_render_coordinates(pipeline_context, temp_ulong1, pipeline_params, temp_float11, pipeline_param, temp_float17, temp_float19);
+                                    }
+                                }
+                                else {
+                                    transform_render_coordinates(pipeline_context, temp_ulong1, pipeline_params, temp_float11, pipeline_param, temp_float17, temp_float19);
+                                    transform_render_coordinates();
+                                }
+                            }
+                            else {
+                                transform_render_coordinates(pipeline_context, temp_ulong1, pipeline_params, temp_float11, pipeline_param, temp_float15, temp_float18);
+                                transform_render_coordinates();
+                            }
+                            transform_render_coordinates(pipeline_context);
+                            temp_ulong1 = temp_ulong2 & 0xffffffff;
+                        } while ((int)temp_ulong2 < pipeline_size);
+                    }
+                }
+                else {
+                    temp_int1 = (int)temp_float15;
+                    if (temp_int1 == (int)temp_float14) {
+                        temp_long1 = (longlong)temp_int1;
+                        *(float *)(pipeline_context + temp_long1 * 4) =
+                             (1.0 - ((temp_float14 - (float)temp_int1) + (temp_float15 - (float)temp_int1)) * 0.5) *
+                             *(float *)((longlong)pipeline_params + 0x14) * (temp_float10 - temp_float18) +
+                             *(float *)(pipeline_context + temp_long1 * 4);
+                        *(float *)(pipeline_data + temp_long1 * 4) =
+                             (temp_float10 - temp_float18) * *(float *)((longlong)pipeline_params + 0x14) +
+                             *(float *)(pipeline_data + temp_long1 * 4);
+                    }
+                    else {
+                        temp_float16 = temp_float15;
+                        if (temp_float14 < temp_float15) {
+                            temp_float19 = -temp_float19;
+                            temp_float16 = temp_float10 - pipeline_param;
+                            temp_float10 = temp_float21 - (temp_float18 - pipeline_param);
+                            temp_float18 = temp_float21 - temp_float16;
+                            temp_float16 = temp_float14;
+                            temp_float14 = temp_float15;
+                            temp_float11 = temp_float20;
+                        }
+                        temp_int2 = (int)temp_float16;
+                        temp_int1 = (int)temp_float14;
+                        temp_long1 = (longlong)(temp_int2 + 1);
+                        temp_long3 = (longlong)temp_int1;
+                        temp_float17 = *(float *)((longlong)pipeline_params + 0x14);
+                        temp_float15 = temp_float17 * temp_float19;
+                        temp_float20 = ((float)(temp_int2 + 1) - temp_float11) * temp_float19 + pipeline_param;
+                        temp_float11 = (temp_float20 - temp_float18) * temp_float17;
+                        *(float *)(pipeline_context + (longlong)temp_int2 * 4) =
+                             (0.5 - (temp_float16 - (float)temp_int2) * 0.5) * temp_float11 +
+                             *(float *)(pipeline_context + (longlong)temp_int2 * 4);
+                        if (temp_long1 < temp_long3) {
+                            if (3 < temp_long3 - temp_long1) {
+                                temp_float_ptr = (float *)(pipeline_context + 8 + temp_long1 * 4);
+                                temp_long2 = ((temp_long3 - temp_long1) - 4U >> 2) + 1;
+                                temp_float16 = temp_float15 * 0.5;
+                                temp_long1 = temp_long1 + temp_long2 * 4;
+                                do {
+                                    temp_float_ptr[-2] = temp_float16 + temp_float11 + temp_float_ptr[-2];
+                                    temp_float12 = temp_float11 + temp_float15 + temp_float15;
+                                    temp_float13 = temp_float12 + temp_float15;
+                                    temp_float_ptr[-1] = temp_float16 + temp_float11 + temp_float15 + temp_float_ptr[-1];
+                                    temp_float11 = temp_float13 + temp_float15;
+                                    *temp_float_ptr = temp_float16 + temp_float12 + *temp_float_ptr;
+                                    temp_float_ptr[1] = temp_float16 + temp_float13 + temp_float_ptr[1];
+                                    temp_float_ptr = temp_float_ptr + 4;
+                                    temp_long2 = temp_long2 + -1;
+                                } while (temp_long2 != 0);
+                            }
+                            if (temp_long1 < temp_long3) {
+                                do {
+                                    temp_float16 = temp_float15 * 0.5 + temp_float11;
+                                    temp_float11 = temp_float11 + temp_float15;
+                                    *(float *)(pipeline_context + temp_long1 * 4) = temp_float16 + *(float *)(pipeline_context + temp_long1 * 4);
+                                    temp_long1 = temp_long1 + 1;
+                                } while (temp_long1 < temp_long3);
+                            }
+                        }
+                        *(float *)(pipeline_context + temp_long3 * 4) =
+                             (temp_float10 - ((float)((temp_int1 - temp_int2) + -1) * temp_float19 + temp_float20)) *
+                             (1.0 - (temp_float14 - (float)temp_int1) * 0.5) * temp_float17 + temp_float11 +
+                             *(float *)(pipeline_context + temp_long3 * 4);
+                        *(float *)(pipeline_data + temp_long3 * 4) =
+                             (temp_float10 - temp_float18) * temp_float17 + *(float *)(pipeline_data + temp_long3 * 4);
+                    }
+                }
+            }
+            pipeline_params = (longlong *)*pipeline_params;
+        } while (pipeline_params != (longlong *)0x0);
+    }
+    return;
+}
