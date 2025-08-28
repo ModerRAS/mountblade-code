@@ -882,7 +882,7 @@ void UISystemStateUpdater(void)
          (int)*(short *)(&unknown_var_9600_ptr + (longlong)*(char *)(unaff_RBX + 0xae9) * 2);
     
     // 执行安全退出检查
-    FUN_1808fc050(in_stack_00000070 ^ (ulonglong)&stack0x00000000);
+    UISystemSecurityChecker(in_stack_00000070 ^ (ulonglong)&stack0x00000000);
 }
 
 //------------------------------------------------------------------------------
