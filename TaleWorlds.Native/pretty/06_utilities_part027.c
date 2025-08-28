@@ -1114,9 +1114,9 @@ void utilities_system_data_state_manager(void)
   }
   
   // 重置数据状态
-  _DAT_180d49248 = 0;
-  _DAT_180d49258 = 0;
-  _DAT_180d49240 = &UNK_18098bcb0;
+  *system_data_status_ptr = 0;
+  *system_data_cleanup_ptr = 0;
+  *system_data_state_ptr = SYSTEM_DEFAULT_VALUE;
   return;
 }
 

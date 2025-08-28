@@ -303,54 +303,86 @@ void SystemRenderer_UpdateRenderParameters(longlong *rendererContext, uint64_t r
   int32_t qualitySetting2;
   ulonglong securityChecksum;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
-  iVar5 = (int)param_1[0x8b];
-  lVar6 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-  uStack_48 = 0x3f5555553e2aaaab;
-  uStack_40 = 0x3f2aaaab3f000000;
-  uStack_38 = 0x3eaaaaab;
-  uStack_34 = 0;
-  uStack_58 = 0;
-  *(int32_t *)(lVar6 + 0x1c88) =
+  /* 安全检查和初始化 */
+  securityChecksum = _DAT_180bf00a8 ^ (ulonglong)securityBuffer;
+  qualityLevel = (int)rendererContext[0x8b];
+  renderSystem = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+  
+  /* 质量设置矩阵初始化 */
+  qualityMatrix1 = 0x3f5555553e2aaaab;
+  qualityMatrix2 = 0x3f2aaaab3f000000;
+  qualitySetting1 = 0x3eaaaaab;
+  qualitySetting2 = 0;
+  renderState = 0;
+  
+  /* 根据质量级别设置渲染参数 */
+  *(int32_t *)(renderSystem + 0x1c88) =
        *(int32_t *)
-        ((longlong)&uStack_48 +
+        ((longlong)&qualityMatrix1 +
         (longlong)
-        (iVar5 + (iVar5 / 6 + (iVar5 >> 0x1f) +
-                 (int)(((longlong)iVar5 / 6 + ((longlong)iVar5 >> 0x3f) & 0xffffffffU) >> 0x1f)) *
+        (qualityLevel + (qualityLevel / 6 + (qualityLevel >> 0x1f) +
+                 (int)(((longlong)qualityLevel / 6 + ((longlong)qualityLevel >> 0x3f) & 0xffffffffU) >> 0x1f)) *
                  -6) * 4);
-  fVar7 = 1.0 / *(float *)(param_3 + 0x12a54);
-  fVar1 = *(float *)(param_3 + 0x12a40);
-  fVar2 = *(float *)(param_3 + 0x11c24);
-  fVar3 = *(float *)(param_3 + 0x12a60);
-  uStack_60 = param_5;
-  fVar4 = *(float *)(param_3 + 0x12a64);
-  *(float *)(lVar6 + 0x1cd0) = 2.0 / ((float)(int)*(float *)(param_3 + 0x11c20) * fVar1);
-  *(float *)(lVar6 + 0x1cd4) = (fVar7 * -2.0) / (float)(int)fVar2;
-  *(float *)(lVar6 + 0x1cd8) = (0.1 / fVar1) * fVar3 - 1.0 / fVar1;
-  *(float *)(lVar6 + 0x1cdc) = fVar7 - fVar7 * 0.1 * fVar4;
-  *(int *)(param_1 + 0x8b) = (int)param_1[0x8b] + 1;
-  uStack_68 = param_4;
-  (**(code **)(*param_1 + 0x50))
-            (param_1,param_3,(int)param_1[0x8a],*(int32_t *)((longlong)param_1 + 0x454));
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_88);
+  
+  /* 从渲染数据中提取参数 */
+  inverseDepth = 1.0 / *(float *)(renderData + 0x12a54);
+  renderScale = *(float *)(renderData + 0x12a40);
+  aspectRatio = *(float *)(renderData + 0x11c24);
+  fieldOfView = *(float *)(renderData + 0x12a60);
+  renderHeight = performanceFlags;
+  nearPlane = *(float *)(renderData + 0x12a64);
+  
+  /* 计算渲染矩阵参数 */
+  *(float *)(renderSystem + 0x1cd0) = 2.0 / ((float)(int)*(float *)(renderData + 0x11c20) * renderScale);
+  *(float *)(renderSystem + 0x1cd4) = (inverseDepth * -2.0) / (float)(int)aspectRatio;
+  *(float *)(renderSystem + 0x1cd8) = (0.1 / renderScale) * fieldOfView - 1.0 / renderScale;
+  *(float *)(renderSystem + 0x1cdc) = inverseDepth - inverseDepth * 0.1 * nearPlane;
+  
+  /* 更新质量级别计数器 */
+  *(int *)(rendererContext + 0x8b) = (int)rendererContext[0x8b] + 1;
+  renderWidth = qualityFlags;
+  
+  /* 调用渲染更新函数 */
+  (**(code **)(*rendererContext + 0x50))
+            (rendererContext, renderData, (int)rendererContext[0x8a], *(int32_t *)((longlong)rendererContext + 0x454));
+  
+  /* 安全检查和清理 */
+  SecurityManager_VerifyChecksum(securityChecksum ^ (ulonglong)securityBuffer);
 }
 
 
 
-uint64_t *
-FUN_1803f82e0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
-
+/**
+ * @brief 渲染系统内存管理器析构函数
+ * 
+ * 专门负责渲染系统内存资源的释放和管理
+ * 确保渲染相关的内存资源在系统关闭时被正确清理
+ * 
+ * @param renderMemoryManager 渲染内存管理器指针
+ * @param destroyFlags 销毁标志位
+ * @param renderContext 渲染上下文
+ * @param additionalData 附加数据指针
+ * 
+ * @return 渲染内存管理器指针
+ */
+uint64_t * RenderMemoryManager_Destroy(uint64_t *renderMemoryManager, ulonglong destroyFlags, 
+                                      uint64_t renderContext, uint64_t additionalData)
 {
-  uint64_t uVar1;
+  uint64_t memoryFlags;
   
-  uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a26420;
-  FUN_1801f9920();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x458,param_3,param_4,uVar1);
+  /* 设置内存管理器标志 */
+  memoryFlags = 0xfffffffffffffffe;
+  *renderMemoryManager = &RenderMemoryManager_VTable_Destroy;
+  
+  /* 执行渲染系统清理 */
+  SystemRenderManager_PerformCleanup();
+  
+  /* 根据标志位决定是否释放渲染内存 */
+  if ((destroyFlags & 1) != 0) {
+    MemoryManager_FreeRenderMemory(renderMemoryManager, 0x458, renderContext, additionalData, memoryFlags);
   }
-  return param_1;
+  
+  return renderMemoryManager;
 }
 
 
