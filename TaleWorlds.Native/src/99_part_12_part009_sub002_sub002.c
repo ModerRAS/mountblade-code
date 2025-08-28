@@ -708,7 +708,18 @@ undefined8 ParameterizedDataProcessor(longlong system_context, char operation_fl
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1807cd7f0(longlong param_1)
+/**
+ * 系统资源管理器 - 管理系统资源分配和释放
+ * 
+ * 功能：
+ * - 管理系统资源分配
+ * - 处理资源释放
+ * - 执行资源状态检查
+ * 
+ * @param system_context 系统上下文指针
+ * @return 处理状态码（0表示成功，非0表示错误）
+ */
+undefined8 SystemResourceManager(longlong system_context)
 
 {
   longlong *plVar1;
