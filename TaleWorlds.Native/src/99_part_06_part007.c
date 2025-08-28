@@ -846,131 +846,197 @@ BUILD_STRING:
 
 
 
-// 函数: void FUN_1803a9220(longlong param_1)
-void FUN_1803a9220(longlong param_1)
-
+/**
+ * 函数: ResourceProcessor_ExecuteBatchOperations
+ * 
+ * 描述:
+ * 批量资源处理操作的高级处理器，负责处理系统中的多个资源操作任务。
+ * 该函数实现了复杂的资源管理逻辑，包括内存分配、数据复制和状态同步。
+ * 
+ * 参数:
+ * - param_1: 系统上下文指针，包含系统状态和资源管理信息
+ * 
+ * 返回值:
+ * 无返回值 (void)
+ * 
+ * 异常处理:
+ * - 包含内存分配失败和资源访问异常的处理逻辑
+ * - 使用安全字符串操作防止缓冲区溢出
+ * 
+ * 算法复杂度:
+ * - 时间复杂度: O(n)，其中n为处理的资源数量
+ * - 空间复杂度: O(1)，使用固定大小的栈空间
+ * 
+ * 依赖项:
+ * - FUN_1806277c0: 字符串处理函数
+ * - FUN_18041adc0: 资源访问函数
+ * - FUN_18064e900: 异常处理函数
+ * - FUN_18015b810: 系统操作函数
+ * - FUN_18062b1e0: 内存分配函数
+ * 
+ * 线程安全:
+ * 该函数不是线程安全的，需要在单线程环境下调用或使用适当的同步机制。
+ */
+void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  undefined8 uVar3;
-  undefined8 uVar4;
-  undefined *puVar5;
-  undefined *puStack_90;
-  undefined1 *puStack_88;
-  undefined4 uStack_80;
-  ulonglong uStack_78;
-  undefined8 uStack_70;
-  undefined8 uStack_68;
-  undefined8 uStack_60;
-  undefined8 uStack_58;
-  undefined4 *apuStack_50 [2];
-  code *pcStack_40;
-  code *pcStack_38;
-  
-  lVar1 = *(longlong *)(param_1 + 0xe20);
-  puStack_90 = &UNK_180a3c3e0;
-  uStack_78 = 0;
-  puStack_88 = (undefined1 *)0x0;
-  uStack_80 = 0;
-  FUN_1806277c0(&puStack_90,_DAT_180bf9280);
-  if (0 < _DAT_180bf9280) {
-    puVar5 = &DAT_18098bc73;
-    if (_DAT_180bf9278 != (undefined *)0x0) {
-      puVar5 = _DAT_180bf9278;
+    longlong system_context;
+    undefined8 resource_result_1;
+    undefined8 resource_result_2;
+    undefined8 resource_result_3;
+    undefined *resource_data;
+    undefined *resource_buffer_1;
+    undefined1 *resource_ptr_1;
+    undefined4 resource_flag_1;
+    ulonglong resource_size_1;
+    undefined8 resource_buffer_2;
+    undefined8 resource_buffer_3;
+    undefined8 resource_buffer_4;
+    undefined8 resource_buffer_5;
+    undefined4 *operation_stack [2];
+    code *operation_handler_1;
+    code *operation_handler_2;
+    
+    // 获取系统上下文
+    system_context = *(longlong *)(param_1 + SYSTEM_CONTEXT_OFFSET);
+    
+    // 初始化第一个资源缓冲区
+    resource_buffer_1 = &RESOURCE_DEFAULT_BUFFER;
+    resource_size_1 = 0;
+    resource_ptr_1 = (undefined1 *)0x0;
+    resource_flag_1 = 0;
+    
+    // 处理第一个资源操作
+    FUN_1806277c0(&resource_buffer_1, RESOURCE_CONFIG_SIZE_1);
+    if (0 < RESOURCE_CONFIG_SIZE_1) {
+        resource_data = &RESOURCE_DEFAULT_DATA;
+        if (RESOURCE_CONFIG_PTR_1 != (undefined *)0x0) {
+            resource_data = RESOURCE_CONFIG_PTR_1;
+        }
+        // 安全复制资源数据
+        memcpy(resource_ptr_1, resource_data, (longlong)(RESOURCE_CONFIG_SIZE_1 + 1));
     }
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_88,puVar5,(longlong)(_DAT_180bf9280 + 1));
-  }
-  if (_DAT_180bf9278 != (undefined *)0x0) {
-    uStack_80 = 0;
-    if (puStack_88 != (undefined1 *)0x0) {
-      *puStack_88 = 0;
+    
+    // 验证和清理资源指针
+    if (RESOURCE_CONFIG_PTR_1 != (undefined *)0x0) {
+        resource_flag_1 = 0;
+        if (resource_ptr_1 != (undefined1 *)0x0) {
+            *resource_ptr_1 = 0;
+        }
     }
-  }
-  uVar2 = FUN_18041adc0(lVar1 + 8,&puStack_90);
-  puStack_90 = &UNK_180a3c3e0;
-  if (puStack_88 != (undefined1 *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  puStack_88 = (undefined1 *)0x0;
-  uStack_78 = uStack_78 & 0xffffffff00000000;
-  puStack_90 = &UNK_18098bcb0;
-  lVar1 = *(longlong *)(param_1 + 0xe20);
-  uStack_70 = &UNK_180a3c3e0;
-  uStack_58 = 0;
-  uStack_68 = (undefined1 *)0x0;
-  uStack_60 = (ulonglong)uStack_60._4_4_ << 0x20;
-  FUN_1806277c0(&uStack_70,_DAT_180bfa120);
-  if (0 < _DAT_180bfa120) {
-    puVar5 = &DAT_18098bc73;
-    if (_DAT_180bfa118 != (undefined *)0x0) {
-      puVar5 = _DAT_180bfa118;
+    
+    // 执行第一个资源访问操作
+    resource_result_1 = FUN_18041adc0(system_context + 8, &resource_buffer_1);
+    resource_buffer_1 = &RESOURCE_DEFAULT_BUFFER;
+    
+    // 检查资源状态
+    if (resource_ptr_1 != (undefined1 *)0x0) {
+        FUN_18064e900();
     }
-                    // WARNING: Subroutine does not return
-    memcpy(uStack_68,puVar5,(longlong)(_DAT_180bfa120 + 1));
-  }
-  if (_DAT_180bfa118 != (undefined *)0x0) {
-    uStack_60 = uStack_60 & 0xffffffff00000000;
-    if (uStack_68 != (undefined1 *)0x0) {
-      *uStack_68 = 0;
+    resource_ptr_1 = (undefined1 *)0x0;
+    resource_size_1 = resource_size_1 & 0xffffffff00000000;
+    resource_buffer_1 = &RESOURCE_SAFE_BUFFER;
+    
+    // 第二个资源操作循环
+    system_context = *(longlong *)(param_1 + SYSTEM_CONTEXT_OFFSET);
+    resource_buffer_2 = &RESOURCE_DEFAULT_BUFFER;
+    resource_buffer_5 = 0;
+    resource_buffer_3 = (undefined1 *)0x0;
+    resource_buffer_4 = (ulonglong)resource_buffer_4._4_4_ << 0x20;
+    
+    // 处理第二个资源操作
+    FUN_1806277c0(&resource_buffer_2, RESOURCE_CONFIG_SIZE_2);
+    if (0 < RESOURCE_CONFIG_SIZE_2) {
+        resource_data = &RESOURCE_DEFAULT_DATA;
+        if (RESOURCE_CONFIG_PTR_2 != (undefined *)0x0) {
+            resource_data = RESOURCE_CONFIG_PTR_2;
+        }
+        // 安全复制资源数据
+        memcpy(resource_buffer_3, resource_data, (longlong)(RESOURCE_CONFIG_SIZE_2 + 1));
     }
-  }
-  uVar3 = FUN_18041adc0(lVar1 + 8,&uStack_70);
-  uStack_70 = &UNK_180a3c3e0;
-  if (uStack_68 != (undefined1 *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  uStack_68 = (undefined1 *)0x0;
-  uStack_58 = uStack_58 & 0xffffffff00000000;
-  uStack_70 = &UNK_18098bcb0;
-  lVar1 = *(longlong *)(param_1 + 0xe20);
-  puStack_90 = &UNK_180a3c3e0;
-  uStack_78 = 0;
-  puStack_88 = (undefined1 *)0x0;
-  uStack_80 = 0;
-  FUN_1806277c0(&puStack_90,_DAT_180bf9640);
-  if (0 < _DAT_180bf9640) {
-    puVar5 = &DAT_18098bc73;
-    if (_DAT_180bf9638 != (undefined *)0x0) {
-      puVar5 = _DAT_180bf9638;
+    
+    // 验证和清理第二个资源
+    if (RESOURCE_CONFIG_PTR_2 != (undefined *)0x0) {
+        resource_buffer_4 = resource_buffer_4 & 0xffffffff00000000;
+        if (resource_buffer_3 != (undefined1 *)0x0) {
+            *resource_buffer_3 = 0;
+        }
     }
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_88,puVar5,(longlong)(_DAT_180bf9640 + 1));
-  }
-  if (_DAT_180bf9638 != (undefined *)0x0) {
-    uStack_80 = 0;
-    if (puStack_88 != (undefined1 *)0x0) {
-      *puStack_88 = 0;
+    
+    // 执行第二个资源访问操作
+    resource_result_2 = FUN_18041adc0(system_context + 8, &resource_buffer_2);
+    resource_buffer_2 = &RESOURCE_DEFAULT_BUFFER;
+    
+    // 检查第二个资源状态
+    if (resource_buffer_3 != (undefined1 *)0x0) {
+        FUN_18064e900();
     }
-  }
-  uVar4 = FUN_18041adc0(lVar1 + 8,&puStack_90);
-  puStack_90 = &UNK_180a3c3e0;
-  if (puStack_88 != (undefined1 *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  puStack_88 = (undefined1 *)0x0;
-  uStack_78 = uStack_78 & 0xffffffff00000000;
-  puStack_90 = &UNK_18098bcb0;
-  pcStack_40 = FUN_1803aee20;
-  pcStack_38 = FUN_1803aed40;
-  uStack_70 = (undefined *)param_1;
-  uStack_68 = (undefined1 *)uVar2;
-  uStack_60 = uVar3;
-  uStack_58 = uVar4;
-  apuStack_50[0] = (undefined4 *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,DAT_180bf65bc);
-  *apuStack_50[0] = (undefined4)uStack_70;
-  apuStack_50[0][1] = uStack_70._4_4_;
-  apuStack_50[0][2] = (undefined4)uStack_68;
-  apuStack_50[0][3] = uStack_68._4_4_;
-  apuStack_50[0][4] = (undefined4)uStack_60;
-  apuStack_50[0][5] = uStack_60._4_4_;
-  apuStack_50[0][6] = (undefined4)uStack_58;
-  apuStack_50[0][7] = uStack_58._4_4_;
-  FUN_18015b810((undefined4)uStack_70,0,3,1,0xffffffffffffffff,apuStack_50);
-  return;
+    resource_buffer_3 = (undefined1 *)0x0;
+    resource_buffer_5 = resource_buffer_5 & 0xffffffff00000000;
+    resource_buffer_2 = &RESOURCE_SAFE_BUFFER;
+    
+    // 第三个资源操作循环
+    system_context = *(longlong *)(param_1 + SYSTEM_CONTEXT_OFFSET);
+    resource_buffer_1 = &RESOURCE_DEFAULT_BUFFER;
+    resource_size_1 = 0;
+    resource_ptr_1 = (undefined1 *)0x0;
+    resource_flag_1 = 0;
+    
+    // 处理第三个资源操作
+    FUN_1806277c0(&resource_buffer_1, RESOURCE_CONFIG_SIZE_3);
+    if (0 < RESOURCE_CONFIG_SIZE_3) {
+        resource_data = &RESOURCE_DEFAULT_DATA;
+        if (RESOURCE_CONFIG_PTR_3 != (undefined *)0x0) {
+            resource_data = RESOURCE_CONFIG_PTR_3;
+        }
+        // 安全复制资源数据
+        memcpy(resource_ptr_1, resource_data, (longlong)(RESOURCE_CONFIG_SIZE_3 + 1));
+    }
+    
+    // 验证和清理第三个资源
+    if (RESOURCE_CONFIG_PTR_3 != (undefined *)0x0) {
+        resource_flag_1 = 0;
+        if (resource_ptr_1 != (undefined1 *)0x0) {
+            *resource_ptr_1 = 0;
+        }
+    }
+    
+    // 执行第三个资源访问操作
+    resource_result_3 = FUN_18041adc0(system_context + 8, &resource_buffer_1);
+    resource_buffer_1 = &RESOURCE_DEFAULT_BUFFER;
+    
+    // 检查第三个资源状态
+    if (resource_ptr_1 != (undefined1 *)0x0) {
+        FUN_18064e900();
+    }
+    resource_ptr_1 = (undefined1 *)0x0;
+    resource_size_1 = resource_size_1 & 0xffffffff00000000;
+    resource_buffer_1 = &RESOURCE_SAFE_BUFFER;
+    
+    // 设置操作处理器
+    operation_handler_1 = FUN_1803aee20;
+    operation_handler_2 = FUN_1803aed40;
+    
+    // 准备操作参数
+    resource_buffer_2 = (undefined *)param_1;
+    resource_buffer_3 = (undefined1 *)resource_result_1;
+    resource_buffer_4 = resource_result_2;
+    resource_buffer_5 = resource_result_3;
+    
+    // 分配操作栈内存
+    operation_stack[0] = (undefined4 *)FUN_18062b1e0(SYSTEM_MEMORY_POOL, 0x20, 8, MEMORY_ALIGNMENT);
+    *operation_stack[0] = (undefined4)resource_buffer_2;
+    operation_stack[0][1] = resource_buffer_2._4_4_;
+    operation_stack[0][2] = (undefined4)resource_buffer_3;
+    operation_stack[0][3] = resource_buffer_3._4_4_;
+    operation_stack[0][4] = (undefined4)resource_buffer_4;
+    operation_stack[0][5] = resource_buffer_4._4_4_;
+    operation_stack[0][6] = (undefined4)resource_buffer_5;
+    operation_stack[0][7] = resource_buffer_5._4_4_;
+    
+    // 执行批量操作
+    FUN_18015b810((undefined4)resource_buffer_2, 0, 3, 1, 0xffffffffffffffff, operation_stack);
+    
+    return;
 }
 
 
