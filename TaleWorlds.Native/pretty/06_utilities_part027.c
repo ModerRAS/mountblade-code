@@ -1255,7 +1255,7 @@ void FUN_180941b90(void)
 void utilities_system_additional_resetter_1(void)
 
 {
-  _DAT_180bf72b0 = &UNK_18098bcb0;
+  *utilities_system_additional_ptr_1 = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1275,7 +1275,7 @@ void utilities_system_additional_resetter_1(void)
 void utilities_system_additional_resetter_2(void)
 
 {
-  _DAT_180bf7310 = &UNK_18098bcb0;
+  *utilities_system_additional_ptr_2 = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
