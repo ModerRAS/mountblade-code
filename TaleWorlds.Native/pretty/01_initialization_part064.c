@@ -667,7 +667,7 @@ int32_t InitializationSystem_ComponentInitializer(void)
 void FUN_180058c20(longlong param_1)
 {
     // 调用初始化准备函数
-    FUN_1800591c0();
+    InitializationSystem_PrepareInit();
     
     // 设置组件虚函数表指针
     *(uint64_t *)(param_1 + 8) = &UNK_180a3c3e0;
@@ -675,7 +675,7 @@ void FUN_180058c20(longlong param_1)
     // 检查组件是否已经初始化
     if (*(longlong *)(param_1 + 0x10) != 0) {
         // 如果已经初始化，执行错误处理
-        FUN_18064e900();
+        InitializationSystem_HandleInitError();
     }
     
     // 清空组件状态指针
@@ -869,7 +869,7 @@ int32_t InitializationSystem_ConfigProcessor(void)
 void FUN_18004bb30(longlong param_1)
 {
     // 调用配置初始化函数
-    FUN_180057010(param_1 + 0x60);
+    InitializationSystem_InitConfig(param_1 + 0x60);
     
     return;
 }
@@ -885,7 +885,7 @@ void FUN_18004bb30(longlong param_1)
 void FUN_180058c30(long long param_1)
 {
     // 调用资源管理相关函数
-    FUN_1800582b0(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
+    InitializationSystem_ManageResource(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
     
     return;
 }
@@ -901,7 +901,7 @@ void FUN_180058c30(long long param_1)
 void FUN_18004bb40(long long param_1)
 {
     // 调用状态监控相关函数
-    FUN_180058370(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
+    InitializationSystem_ManageState(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
     
     return;
 }
