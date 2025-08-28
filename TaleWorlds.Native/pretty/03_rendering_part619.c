@@ -145,7 +145,7 @@ void RenderingSystem_ProcessResourceRequest(int param_1, uint param_2, float par
   uStack_50 = 0;
   puStack_60 = (int32_t *)0x0;
   uStack_58 = 0;
-  puStack_60 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x17,0x13);
+  puStack_60 = (int32_t *)RenderingSystem_MemoryPoolAllocator(system_memory_pool_ptr,0x17,0x13);
   *(int8_t *)puStack_60 = 0;
   uVar2 = FUN_18064e990(puStack_60);
   uStack_50 = CONCAT44(uStack_50._4_4_,uVar2);
