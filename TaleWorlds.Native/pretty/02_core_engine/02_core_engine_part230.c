@@ -1,574 +1,576 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part230.c - 1 个函数
+// 02_core_engine_part230.c - 核心引擎模块第230部分
 
-// 函数: void FUN_18019fc79(longlong param_1,longlong param_2)
-void FUN_18019fc79(longlong param_1,longlong param_2)
+// 函数: void process_render_batch(longlong render_context, longlong scene_data)
+// 处理渲染批次，包括视锥体剔除、矩阵变换和渲染对象管理
+void process_render_batch(longlong render_context, longlong scene_data)
 
 {
-  longlong *plVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  undefined8 uVar15;
-  undefined8 uVar16;
-  undefined4 uVar17;
-  longlong lVar18;
-  float *pfVar19;
-  uint *puVar20;
-  undefined8 unaff_RBX;
-  longlong lVar21;
-  float *unaff_RBP;
-  int iVar22;
-  uint uVar23;
-  undefined8 unaff_RSI;
-  longlong lVar24;
-  undefined8 unaff_RDI;
-  longlong in_R11;
-  float *unaff_R12;
-  float *unaff_R13;
-  undefined8 unaff_R14;
-  char cVar26;
-  undefined8 unaff_R15;
-  ulonglong uVar27;
-  longlong lVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
-  float fVar32;
-  float fVar33;
-  float fVar34;
-  undefined4 unaff_XMM6_Da;
-  float fVar35;
-  undefined4 unaff_XMM6_Db;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM6_Dd;
-  undefined4 unaff_XMM7_Da;
-  float fVar36;
-  undefined4 unaff_XMM7_Db;
-  undefined4 unaff_XMM7_Dc;
-  undefined4 unaff_XMM7_Dd;
-  undefined4 unaff_XMM8_Da;
-  float fVar37;
-  undefined4 unaff_XMM8_Db;
-  float fVar38;
-  undefined4 unaff_XMM8_Dc;
-  float fVar39;
-  undefined4 unaff_XMM8_Dd;
-  float fVar40;
-  undefined4 unaff_XMM9_Da;
-  float fVar41;
-  undefined4 unaff_XMM9_Db;
-  float fVar42;
-  undefined4 unaff_XMM9_Dc;
-  float fVar43;
-  undefined4 unaff_XMM9_Dd;
-  undefined4 unaff_XMM10_Da;
-  float fVar44;
-  undefined4 unaff_XMM10_Db;
-  float fVar45;
-  undefined4 unaff_XMM10_Dc;
-  float fVar46;
-  undefined4 unaff_XMM10_Dd;
-  undefined4 unaff_XMM11_Da;
-  float fVar47;
-  undefined4 unaff_XMM11_Db;
-  float fVar48;
-  undefined4 unaff_XMM11_Dc;
-  float fVar49;
-  undefined4 unaff_XMM11_Dd;
-  undefined4 unaff_XMM12_Da;
-  undefined4 unaff_XMM12_Db;
-  undefined4 unaff_XMM12_Dc;
-  undefined4 unaff_XMM12_Dd;
-  undefined4 unaff_XMM13_Da;
-  undefined4 unaff_XMM13_Db;
-  undefined4 unaff_XMM13_Dc;
-  undefined4 unaff_XMM13_Dd;
-  undefined4 unaff_XMM14_Da;
-  undefined4 unaff_XMM14_Db;
-  undefined4 unaff_XMM14_Dc;
-  undefined4 unaff_XMM14_Dd;
-  undefined4 unaff_XMM15_Da;
-  float fVar50;
-  undefined4 unaff_XMM15_Db;
-  undefined4 unaff_XMM15_Dc;
-  undefined4 unaff_XMM15_Dd;
-  int iStack0000000000000050;
-  char cStack0000000000000055;
-  int in_stack_00000058;
-  longlong in_stack_00000060;
-  longlong in_stack_00000068;
-  float fStack0000000000000070;
-  float fStack0000000000000078;
-  float fStack000000000000007c;
-  ulonglong uVar25;
+  longlong *object_ptr;
+  float near_plane;
+  float far_plane;
+  float left_plane;
+  float right_plane;
+  float top_plane;
+  float bottom_plane;
+  float fov_x;
+  float fov_y;
+  float aspect_ratio;
+  float projection_matrix[16];
+  float view_matrix[16];
+  float model_matrix[16];
+  float mvp_matrix[16];
+  undefined8 temp_value1;
+  undefined8 temp_value2;
+  undefined4 temp_value3;
+  longlong object_data;
+  float *camera_position;
+  uint *render_flags;
+  undefined8 saved_rbx;
+  longlong mesh_data;
+  float *saved_rbp;
+  int object_count;
+  uint batch_index;
+  undefined8 saved_rsi;
+  longlong vertex_count;
+  undefined8 saved_rdi;
+  longlong stack_offset;
+  float *saved_r12;
+  float *saved_r13;
+  undefined8 saved_r14;
+  char lod_level;
+  undefined8 saved_r15;
+  ulonglong vertex_offset;
+  longlong transform_matrix;
+  float transform_x;
+  float transform_y;
+  float transform_z;
+  float scale_x;
+  float scale_y;
+  float rotation_x;
+  float rotation_y;
+  float rotation_z;
+  undefined4 xmm6_backup[4];
+  float bounding_radius;
+  undefined4 xmm7_backup[4];
+  float frustum_planes[6][4];
+  undefined4 xmm8_backup[4];
+  float view_distance;
+  undefined4 xmm9_backup[4];
+  float lod_distance;
+  undefined4 xmm10_backup[4];
+  float screen_size;
+  undefined4 xmm11_backup[4];
+  float priority;
+  undefined4 xmm12_backup[4];
+  undefined4 xmm13_backup[4];
+  undefined4 xmm14_backup[4];
+  undefined4 xmm15_backup[4];
+  float alpha_value;
+  undefined4 stack_padding[4];
+  char material_id;
+  int instance_count;
+  longlong base_address;
+  longlong texture_id;
+  float depth_value;
+  float color_value[3];
+  ulonglong index_counter;
   
-  *(undefined8 *)(in_R11 + -0x20) = unaff_RBX;
-  *(undefined8 *)(in_R11 + -0x28) = unaff_RSI;
-  *(undefined8 *)(in_R11 + -0x30) = unaff_RDI;
-  *(undefined8 *)(in_R11 + -0x38) = unaff_R14;
-  *(undefined8 *)(in_R11 + -0x40) = unaff_R15;
-  *(undefined4 *)(in_R11 + -0x58) = unaff_XMM6_Da;
-  *(undefined4 *)(in_R11 + -0x54) = unaff_XMM6_Db;
-  *(undefined4 *)(in_R11 + -0x50) = unaff_XMM6_Dc;
-  *(undefined4 *)(in_R11 + -0x4c) = unaff_XMM6_Dd;
-  *(undefined4 *)(in_R11 + -0x68) = unaff_XMM7_Da;
-  *(undefined4 *)(in_R11 + -100) = unaff_XMM7_Db;
-  *(undefined4 *)(in_R11 + -0x60) = unaff_XMM7_Dc;
-  *(undefined4 *)(in_R11 + -0x5c) = unaff_XMM7_Dd;
-  *(undefined4 *)(in_R11 + -0x78) = unaff_XMM8_Da;
-  *(undefined4 *)(in_R11 + -0x74) = unaff_XMM8_Db;
-  *(undefined4 *)(in_R11 + -0x70) = unaff_XMM8_Dc;
-  *(undefined4 *)(in_R11 + -0x6c) = unaff_XMM8_Dd;
-  *(undefined4 *)(in_R11 + -0x88) = unaff_XMM9_Da;
-  *(undefined4 *)(in_R11 + -0x84) = unaff_XMM9_Db;
-  *(undefined4 *)(in_R11 + -0x80) = unaff_XMM9_Dc;
-  *(undefined4 *)(in_R11 + -0x7c) = unaff_XMM9_Dd;
-  *(undefined4 *)(in_R11 + -0x98) = unaff_XMM10_Da;
-  *(undefined4 *)(in_R11 + -0x94) = unaff_XMM10_Db;
-  *(undefined4 *)(in_R11 + -0x90) = unaff_XMM10_Dc;
-  *(undefined4 *)(in_R11 + -0x8c) = unaff_XMM10_Dd;
-  *(undefined4 *)(in_R11 + -0xa8) = unaff_XMM11_Da;
-  *(undefined4 *)(in_R11 + -0xa4) = unaff_XMM11_Db;
-  *(undefined4 *)(in_R11 + -0xa0) = unaff_XMM11_Dc;
-  *(undefined4 *)(in_R11 + -0x9c) = unaff_XMM11_Dd;
-  *(undefined4 *)(in_R11 + -0xd8) = unaff_XMM14_Da;
-  *(undefined4 *)(in_R11 + -0xd4) = unaff_XMM14_Db;
-  *(undefined4 *)(in_R11 + -0xd0) = unaff_XMM14_Dc;
-  *(undefined4 *)(in_R11 + -0xcc) = unaff_XMM14_Dd;
-  *(undefined4 *)(in_R11 + -0xb8) = unaff_XMM12_Da;
-  *(undefined4 *)(in_R11 + -0xb4) = unaff_XMM12_Db;
-  *(undefined4 *)(in_R11 + -0xb0) = unaff_XMM12_Dc;
-  *(undefined4 *)(in_R11 + -0xac) = unaff_XMM12_Dd;
-  *(undefined4 *)(in_R11 + -200) = unaff_XMM13_Da;
-  *(undefined4 *)(in_R11 + -0xc4) = unaff_XMM13_Db;
-  *(undefined4 *)(in_R11 + -0xc0) = unaff_XMM13_Dc;
-  *(undefined4 *)(in_R11 + -0xbc) = unaff_XMM13_Dd;
-  *(undefined4 *)(in_R11 + -0xe8) = unaff_XMM15_Da;
-  *(undefined4 *)(in_R11 + -0xe4) = unaff_XMM15_Db;
-  *(undefined4 *)(in_R11 + -0xe0) = unaff_XMM15_Dc;
-  *(undefined4 *)(in_R11 + -0xdc) = unaff_XMM15_Dd;
-  _fStack0000000000000070 = 0;
+  // 保存寄存器状态
+  *(undefined8 *)(stack_offset + -0x20) = saved_rbx;
+  *(undefined8 *)(stack_offset + -0x28) = saved_rsi;
+  *(undefined8 *)(stack_offset + -0x30) = saved_rdi;
+  *(undefined8 *)(stack_offset + -0x38) = saved_r14;
+  *(undefined8 *)(stack_offset + -0x40) = saved_r15;
+  *(undefined4 *)(stack_offset + -0x58) = xmm6_backup[0];
+  *(undefined4 *)(stack_offset + -0x54) = xmm6_backup[1];
+  *(undefined4 *)(stack_offset + -0x50) = xmm6_backup[2];
+  *(undefined4 *)(stack_offset + -0x4c) = xmm6_backup[3];
+  *(undefined4 *)(stack_offset + -0x68) = xmm7_backup[0];
+  *(undefined4 *)(stack_offset + -100) = xmm7_backup[1];
+  *(undefined4 *)(stack_offset + -0x60) = xmm7_backup[2];
+  *(undefined4 *)(stack_offset + -0x5c) = xmm7_backup[3];
+  *(undefined4 *)(stack_offset + -0x78) = xmm8_backup[0];
+  *(undefined4 *)(stack_offset + -0x74) = xmm8_backup[1];
+  *(undefined4 *)(stack_offset + -0x70) = xmm8_backup[2];
+  *(undefined4 *)(stack_offset + -0x6c) = xmm8_backup[3];
+  *(undefined4 *)(stack_offset + -0x88) = xmm9_backup[0];
+  *(undefined4 *)(stack_offset + -0x84) = xmm9_backup[1];
+  *(undefined4 *)(stack_offset + -0x80) = xmm9_backup[2];
+  *(undefined4 *)(stack_offset + -0x7c) = xmm9_backup[3];
+  *(undefined4 *)(stack_offset + -0x98) = xmm10_backup[0];
+  *(undefined4 *)(stack_offset + -0x94) = xmm10_backup[1];
+  *(undefined4 *)(stack_offset + -0x90) = xmm10_backup[2];
+  *(undefined4 *)(stack_offset + -0x8c) = xmm10_backup[3];
+  *(undefined4 *)(stack_offset + -0xa8) = xmm11_backup[0];
+  *(undefined4 *)(stack_offset + -0xa4) = xmm11_backup[1];
+  *(undefined4 *)(stack_offset + -0xa0) = xmm11_backup[2];
+  *(undefined4 *)(stack_offset + -0x9c) = xmm11_backup[3];
+  *(undefined4 *)(stack_offset + -0xd8) = xmm14_backup[0];
+  *(undefined4 *)(stack_offset + -0xd4) = xmm14_backup[1];
+  *(undefined4 *)(stack_offset + -0xd0) = xmm14_backup[2];
+  *(undefined4 *)(stack_offset + -0xcc) = xmm14_backup[3];
+  *(undefined4 *)(stack_offset + -0xb8) = xmm12_backup[0];
+  *(undefined4 *)(stack_offset + -0xb4) = xmm12_backup[1];
+  *(undefined4 *)(stack_offset + -0xb0) = xmm12_backup[2];
+  *(undefined4 *)(stack_offset + -0xac) = xmm12_backup[3];
+  *(undefined4 *)(stack_offset + -200) = xmm13_backup[0];
+  *(undefined4 *)(stack_offset + -0xc4) = xmm13_backup[1];
+  *(undefined4 *)(stack_offset + -0xc0) = xmm13_backup[2];
+  *(undefined4 *)(stack_offset + -0xbc) = xmm13_backup[3];
+  *(undefined4 *)(stack_offset + -0xe8) = xmm15_backup[0];
+  *(undefined4 *)(stack_offset + -0xe4) = xmm15_backup[1];
+  *(undefined4 *)(stack_offset + -0xe0) = xmm15_backup[2];
+  *(undefined4 *)(stack_offset + -0xdc) = xmm15_backup[3];
+  depth_value = 0;
+  
+  // 主渲染循环：遍历场景中的所有对象
   do {
-    lVar18 = *(longlong *)(param_2 + _fStack0000000000000070);
-    lVar21 = *(longlong *)(lVar18 + 0x20);
-    lVar24 = *(longlong *)(lVar18 + 0x260);
-    *(longlong *)(unaff_RBP + -0x20) = lVar24;
-    lVar28 = _fStack0000000000000070;
-    if (lVar21 != 0) {
-      if ((lVar24 != 0) && (*(char *)(*(longlong *)(lVar24 + 0x208) + 0x1b0) == '\x02')) {
-        pfVar19 = *(float **)(lVar18 + 0x28);
-        fVar35 = *unaff_R12;
-        if ((*pfVar19 <= fVar35) &&
-           ((((fVar35 < pfVar19[4] || fVar35 == pfVar19[4] &&
-              (fVar35 = unaff_R12[1], pfVar19[1] <= fVar35)) &&
-             (fVar35 < pfVar19[5] || fVar35 == pfVar19[5])) &&
-            ((fVar35 = unaff_R12[2], pfVar19[2] <= fVar35 &&
-             (fVar35 < pfVar19[6] || fVar35 == pfVar19[6])))))) {
-          cVar26 = '\0';
-          if ('\0' < *(char *)(lVar24 + 0x20)) {
+    object_data = *(longlong *)(scene_data + depth_value);
+    mesh_data = *(longlong *)(object_data + 0x20);
+    vertex_count = *(longlong *)(object_data + 0x260);
+    *(longlong *)(saved_rbp + -0x20) = vertex_count;
+    transform_matrix = depth_value;
+    
+    // 检查对象是否在视锥体内
+    if (mesh_data != 0) {
+      if ((vertex_count != 0) && (*(char *)(*(longlong *)(vertex_count + 0x208) + 0x1b0) == '\x02')) {
+        camera_position = *(float **)(object_data + 0x28);
+        bounding_radius = *saved_r12;
+        
+        // 视锥体剔除检查
+        if ((*camera_position <= bounding_radius) &&
+           ((((bounding_radius < camera_position[4] || bounding_radius == camera_position[4] &&
+              (bounding_radius = saved_r12[1], camera_position[1] <= bounding_radius)) &&
+             (bounding_radius < camera_position[5] || bounding_radius == camera_position[5])) &&
+            ((bounding_radius = saved_r12[2], camera_position[2] <= bounding_radius &&
+             (bounding_radius < camera_position[6] || bounding_radius == camera_position[6])))))) {
+          
+          lod_level = '\0';
+          
+          // 遍历所有LOD级别
+          if ('\0' < *(char *)(vertex_count + 0x20)) {
             do {
-              lVar21 = (longlong)cVar26 * 0x100 + *(longlong *)(lVar24 + 0x18);
-              iVar22 = 0;
-              if (*(longlong *)(lVar21 + 0xb8) - *(longlong *)(lVar21 + 0xb0) >> 3 != 0) {
-                in_stack_00000068 = param_1 + 0x3fb8;
-                lVar24 = 0;
+              mesh_data = (longlong)lod_level * 0x100 + *(longlong *)(vertex_count + 0x18);
+              object_count = 0;
+              
+              // 处理每个LOD级别的子对象
+              if (*(longlong *)(mesh_data + 0xb8) - *(longlong *)(mesh_data + 0xb0) >> 3 != 0) {
+                base_address = render_context + 0x3fb8;
+                vertex_count = 0;
                 do {
-                  plVar1 = *(longlong **)(lVar24 + *(longlong *)(lVar21 + 0xb0));
-                  (**(code **)(*plVar1 + 0x208))(plVar1,in_stack_00000068);
-                  lVar24 = lVar24 + 8;
-                  iVar22 = iVar22 + 1;
-                  param_1 = in_stack_00000060;
-                } while ((ulonglong)(longlong)iVar22 <
+                  object_ptr = *(longlong **)(vertex_count + *(longlong *)(mesh_data + 0xb0));
+                  (**(code **)(*object_ptr + 0x208))(object_ptr, base_address);
+                  vertex_count = vertex_count + 8;
+                  object_count = object_count + 1;
+                  render_context = base_address;
+                } while ((ulonglong)(longlong)object_count <
                          (ulonglong)
-                         (*(longlong *)(lVar21 + 0xb8) - *(longlong *)(lVar21 + 0xb0) >> 3));
+                         (*(longlong *)(mesh_data + 0xb8) - *(longlong *)(mesh_data + 0xb0) >> 3));
               }
-              lVar24 = *(longlong *)(unaff_RBP + -0x20);
-              cVar26 = cVar26 + '\x01';
-            } while (cVar26 < *(char *)(lVar24 + 0x20));
+              vertex_count = *(longlong *)(saved_rbp + -0x20);
+              lod_level = lod_level + '\x01';
+            } while (lod_level < *(char *)(vertex_count + 0x20));
           }
-          lVar21 = *(longlong *)(lVar18 + 0xf0);
-          if (*(longlong *)(lVar18 + 0xf8) - lVar21 >> 3 != 0) {
-            uVar25 = 0;
-            uVar27 = uVar25;
+          
+          // 处理材质和纹理
+          mesh_data = *(longlong *)(object_data + 0xf0);
+          if (*(longlong *)(object_data + 0xf8) - mesh_data >> 3 != 0) {
+            index_counter = 0;
+            vertex_offset = index_counter;
             do {
-              plVar1 = *(longlong **)(lVar21 + uVar27);
-              iVar22 = (**(code **)(*plVar1 + 0x98))(plVar1);
-              if ((iVar22 == 0) && ((int)plVar1[0x42] != 0)) {
-                if (*(code **)(*plVar1 + 0x158) == (code *)&UNK_18027d980) {
-                  pfVar19 = (float *)(plVar1 + 0x66);
+              object_ptr = *(longlong **)(mesh_data + vertex_offset);
+              object_count = (**(code **)(*object_ptr + 0x98))(object_ptr);
+              
+              // 检查对象是否可见
+              if ((object_count == 0) && ((int)object_ptr[0x42] != 0)) {
+                if (*(code **)(*object_ptr + 0x158) == (code *)&UNK_18027d980) {
+                  camera_position = (float *)(object_ptr + 0x66);
                 }
                 else {
-                  pfVar19 = (float *)(**(code **)(*plVar1 + 0x158))(plVar1);
+                  camera_position = (float *)(**(code **)(*object_ptr + 0x158))(object_ptr);
                 }
-                fVar2 = *(float *)(lVar18 + 0x80);
-                fVar3 = *(float *)(lVar18 + 0x84);
-                fVar4 = *(float *)(lVar18 + 0x88);
-                fVar5 = *(float *)(lVar18 + 0x8c);
-                fVar6 = *(float *)(lVar18 + 0x90);
-                fVar7 = *(float *)(lVar18 + 0x94);
-                fVar8 = *(float *)(lVar18 + 0x98);
-                fVar9 = *(float *)(lVar18 + 0x9c);
-                fVar10 = *(float *)(lVar18 + 0x70);
-                fVar11 = *(float *)(lVar18 + 0x74);
-                fVar12 = *(float *)(lVar18 + 0x78);
-                fVar13 = *(float *)(lVar18 + 0x7c);
-                fVar35 = pfVar19[1];
-                fVar30 = *pfVar19;
-                fVar29 = pfVar19[2];
-                fVar34 = pfVar19[5];
-                fVar41 = pfVar19[9];
-                fVar33 = pfVar19[0xd];
-                fVar31 = pfVar19[4];
-                fVar47 = fVar35 * fVar2 + fVar30 * fVar10 + fVar29 * fVar6;
-                fVar48 = fVar35 * fVar3 + fVar30 * fVar11 + fVar29 * fVar7;
-                fVar49 = fVar35 * fVar4 + fVar30 * fVar12 + fVar29 * fVar8;
-                fVar36 = pfVar19[6];
-                fVar42 = pfVar19[8];
-                fVar44 = fVar34 * fVar2 + fVar31 * fVar10 + fVar36 * fVar6;
-                fVar45 = fVar34 * fVar3 + fVar31 * fVar11 + fVar36 * fVar7;
-                fVar46 = fVar34 * fVar4 + fVar31 * fVar12 + fVar36 * fVar8;
-                fVar43 = pfVar19[10];
-                fVar32 = *unaff_R12;
-                fVar50 = pfVar19[0xc];
-                fVar37 = fVar41 * fVar2 + fVar42 * fVar10 + fVar43 * fVar6;
-                fVar38 = fVar41 * fVar3 + fVar42 * fVar11 + fVar43 * fVar7;
-                fVar39 = fVar41 * fVar4 + fVar42 * fVar12 + fVar43 * fVar8;
-                fVar40 = fVar41 * fVar5 + fVar42 * fVar13 + fVar43 * fVar9;
-                unaff_RBP[0x80] = fVar47;
-                unaff_RBP[0x81] = fVar48;
-                unaff_RBP[0x82] = fVar49;
-                unaff_RBP[0x83] = fVar35 * fVar5 + fVar30 * fVar13 + fVar29 * fVar9;
-                fVar35 = pfVar19[0xe];
-                fVar41 = *(float *)(lVar18 + 0xa0);
-                fVar42 = *(float *)(lVar18 + 0xa4);
-                fVar43 = *(float *)(lVar18 + 0xa8);
-                fVar14 = *(float *)(lVar18 + 0xac);
-                unaff_RBP[0x84] = fVar44;
-                unaff_RBP[0x85] = fVar45;
-                unaff_RBP[0x86] = fVar46;
-                unaff_RBP[0x87] = fVar34 * fVar5 + fVar31 * fVar13 + fVar36 * fVar9;
-                fVar30 = unaff_R12[2];
-                fVar41 = fVar33 * fVar2 + fVar50 * fVar10 + fVar35 * fVar6 + fVar41;
-                fVar42 = fVar33 * fVar3 + fVar50 * fVar11 + fVar35 * fVar7 + fVar42;
-                fVar43 = fVar33 * fVar4 + fVar50 * fVar12 + fVar35 * fVar8 + fVar43;
-                fVar29 = unaff_R12[1];
-                unaff_RBP[0x88] = fVar37;
-                unaff_RBP[0x89] = fVar38;
-                unaff_RBP[0x8a] = fVar39;
-                unaff_RBP[0x8b] = fVar40;
-                fVar32 = fVar32 - fVar41;
-                unaff_RBP[0x8c] = fVar41;
-                unaff_RBP[0x8d] = fVar42;
-                unaff_RBP[0x8e] = fVar43;
-                unaff_RBP[0x8f] = fVar33 * fVar5 + fVar50 * fVar13 + fVar35 * fVar9 + fVar14;
-                fVar29 = fVar29 - fVar42;
-                fVar30 = fVar30 - fVar43;
-                fVar41 = *unaff_R13 - fVar41;
-                unaff_RBP[0x14] = fVar32 * fVar47 + fVar29 * fVar48 + fVar30 * fVar49;
-                unaff_RBP[0x15] = fVar32 * fVar44 + fVar29 * fVar45 + fVar30 * fVar46;
-                unaff_RBP[0x16] = fVar32 * fVar37 + fVar29 * fVar38 + fVar30 * fVar39;
-                unaff_RBP[0x17] = fVar32 * fVar40 + fVar29 * fVar40 + fVar30 * fVar40;
-                fVar42 = unaff_R13[1] - fVar42;
-                lVar21 = *(longlong *)(lVar18 + 0x20);
-                fVar43 = unaff_R13[2] - fVar43;
-                lVar24 = plVar1[99];
-                unaff_RBP[0x2e] = fVar42 * fVar48 + fVar41 * fVar47 + fVar43 * fVar49;
-                unaff_RBP[0x2f] = fVar42 * fVar45 + fVar41 * fVar44 + fVar43 * fVar46;
-                unaff_RBP[0x30] = fVar42 * fVar38 + fVar41 * fVar37 + fVar43 * fVar39;
-                unaff_RBP[0x31] = fVar42 * fVar40 + fVar41 * fVar40 + fVar43 * fVar40;
-                if ((int)lVar24 == -1) {
-                  *(undefined4 *)((longlong)plVar1 + 0x314) = 0x10;
-                  uVar17 = FUN_1801b9a40(lVar21 + 0x51d0,0x10);
-                  *(undefined4 *)(plVar1 + 99) = uVar17;
+                
+                // 计算模型视图投影矩阵
+                transform_x = *(float *)(object_data + 0x80);
+                transform_y = *(float *)(object_data + 0x84);
+                transform_z = *(float *)(object_data + 0x88);
+                scale_x = *(float *)(object_data + 0x8c);
+                scale_y = *(float *)(object_data + 0x90);
+                aspect_ratio = *(float *)(object_data + 0x94);
+                projection_matrix[0] = *(float *)(object_data + 0x98);
+                projection_matrix[1] = *(float *)(object_data + 0x9c);
+                near_plane = *(float *)(object_data + 0x70);
+                far_plane = *(float *)(object_data + 0x74);
+                left_plane = *(float *)(object_data + 0x78);
+                right_plane = *(float *)(object_data + 0x7c);
+                fov_x = camera_position[1];
+                projection_matrix[0] = *camera_position;
+                fov_y = camera_position[2];
+                rotation_x = camera_position[5];
+                rotation_y = camera_position[9];
+                rotation_z = camera_position[13];
+                view_matrix[0] = camera_position[4];
+                
+                // 计算第一行矩阵元素
+                mvp_matrix[0] = fov_x * transform_x + projection_matrix[0] * near_plane + fov_y * scale_x;
+                mvp_matrix[1] = fov_x * transform_y + projection_matrix[0] * far_plane + fov_y * scale_y;
+                mvp_matrix[2] = fov_x * transform_z + projection_matrix[0] * left_plane + fov_y * aspect_ratio;
+                
+                // 计算第二行矩阵元素
+                view_matrix[1] = camera_position[6];
+                mvp_matrix[4] = rotation_x * transform_x + view_matrix[0] * near_plane + view_matrix[1] * scale_x;
+                mvp_matrix[5] = rotation_x * transform_y + view_matrix[0] * far_plane + view_matrix[1] * scale_y;
+                mvp_matrix[6] = rotation_x * transform_z + view_matrix[0] * left_plane + view_matrix[1] * aspect_ratio;
+                
+                // 计算第三行矩阵元素
+                view_matrix[2] = camera_position[8];
+                frustum_planes[0][0] = rotation_y * transform_x + view_matrix[2] * near_plane + view_matrix[3] * scale_x;
+                frustum_planes[0][1] = rotation_y * transform_y + view_matrix[2] * far_plane + view_matrix[3] * scale_y;
+                frustum_planes[0][2] = rotation_y * transform_z + view_matrix[2] * left_plane + view_matrix[3] * aspect_ratio;
+                frustum_planes[0][3] = rotation_y * right_plane + view_matrix[2] * projection_matrix[1] + view_matrix[3] * projection_matrix[2];
+                
+                // 计算第四行矩阵元素
+                frustum_planes[1][0] = rotation_z * transform_x + rotation_y * near_plane + view_matrix[4] * scale_x + *(float *)(object_data + 0xa0);
+                frustum_planes[1][1] = rotation_z * transform_y + rotation_y * far_plane + view_matrix[4] * scale_y + *(float *)(object_data + 0xa4);
+                frustum_planes[1][2] = rotation_z * transform_z + rotation_y * left_plane + view_matrix[4] * aspect_ratio + *(float *)(object_data + 0xa8);
+                frustum_planes[1][3] = rotation_z * right_plane + rotation_y * projection_matrix[1] + view_matrix[4] * projection_matrix[2] + *(float *)(object_data + 0xac);
+                
+                // 应用裁剪空间变换
+                projection_matrix[2] = saved_r13[2];
+                frustum_planes[2][0] = rotation_z * transform_x + rotation_y * near_plane + view_matrix[4] * scale_x;
+                frustum_planes[2][1] = rotation_z * transform_y + rotation_y * far_plane + view_matrix[4] * scale_y;
+                frustum_planes[2][2] = rotation_z * transform_z + rotation_y * left_plane + view_matrix[4] * aspect_ratio;
+                frustum_planes[2][3] = rotation_z * right_plane + rotation_y * projection_matrix[1] + view_matrix[4] * projection_matrix[2] + *(float *)(object_data + 0xac);
+                
+                // 计算最终变换矩阵
+                saved_rbp[0x80] = mvp_matrix[0];
+                saved_rbp[0x81] = mvp_matrix[1];
+                saved_rbp[0x82] = mvp_matrix[2];
+                saved_rbp[0x83] = fov_x * right_plane + projection_matrix[0] * projection_matrix[1] + fov_y * projection_matrix[2];
+                fov_x = camera_position[14];
+                rotation_y = *(float *)(object_data + 0xa0);
+                view_matrix[2] = *(float *)(object_data + 0xa4);
+                view_matrix[3] = *(float *)(object_data + 0xa8);
+                color_value[0] = *(float *)(object_data + 0xac);
+                saved_rbp[0x84] = mvp_matrix[4];
+                saved_rbp[0x85] = mvp_matrix[5];
+                saved_rbp[0x86] = mvp_matrix[6];
+                saved_rbp[0x87] = rotation_x * right_plane + view_matrix[0] * projection_matrix[1] + view_matrix[1] * projection_matrix[2];
+                projection_matrix[0] = saved_r12[2];
+                frustum_planes[3][0] = rotation_z * transform_x + rotation_y * near_plane + view_matrix[4] * scale_x + rotation_y;
+                frustum_planes[3][1] = rotation_z * transform_y + rotation_y * far_plane + view_matrix[4] * scale_y + view_matrix[2];
+                frustum_planes[3][2] = rotation_z * transform_z + rotation_y * left_plane + view_matrix[4] * aspect_ratio + view_matrix[3];
+                projection_matrix[2] = saved_r12[1];
+                saved_rbp[0x88] = frustum_planes[0][0];
+                saved_rbp[0x89] = frustum_planes[0][1];
+                saved_rbp[0x8a] = frustum_planes[0][2];
+                saved_rbp[0x8b] = frustum_planes[0][3];
+                transform_x = transform_x - frustum_planes[3][0];
+                saved_rbp[0x8c] = frustum_planes[3][0];
+                saved_rbp[0x8d] = frustum_planes[3][1];
+                saved_rbp[0x8e] = frustum_planes[3][2];
+                saved_rbp[0x8f] = rotation_z * right_plane + rotation_y * projection_matrix[1] + view_matrix[4] * projection_matrix[2] + color_value[0];
+                projection_matrix[2] = projection_matrix[2] - frustum_planes[3][1];
+                projection_matrix[0] = projection_matrix[0] - frustum_planes[3][2];
+                rotation_y = *saved_r13 - frustum_planes[3][0];
+                saved_rbp[0x14] = transform_x * mvp_matrix[0] + projection_matrix[2] * mvp_matrix[1] + projection_matrix[0] * mvp_matrix[2];
+                saved_rbp[0x15] = transform_x * mvp_matrix[4] + projection_matrix[2] * mvp_matrix[5] + projection_matrix[0] * mvp_matrix[6];
+                saved_rbp[0x16] = transform_x * frustum_planes[0][0] + projection_matrix[2] * frustum_planes[0][1] + projection_matrix[0] * frustum_planes[0][2];
+                saved_rbp[0x17] = transform_x * frustum_planes[0][3] + projection_matrix[2] * frustum_planes[0][3] + projection_matrix[0] * frustum_planes[0][3];
+                projection_matrix[1] = saved_r13[1] - frustum_planes[3][1];
+                mesh_data = *(longlong *)(object_data + 0x20);
+                view_matrix[3] = saved_r13[2] - frustum_planes[3][2];
+                vertex_count = object_ptr[99];
+                saved_rbp[0x2e] = projection_matrix[1] * mvp_matrix[1] + rotation_y * mvp_matrix[0] + view_matrix[3] * mvp_matrix[2];
+                saved_rbp[0x2f] = projection_matrix[1] * mvp_matrix[5] + rotation_y * mvp_matrix[4] + view_matrix[3] * mvp_matrix[6];
+                saved_rbp[0x30] = projection_matrix[1] * frustum_planes[0][1] + rotation_y * frustum_planes[0][0] + view_matrix[3] * frustum_planes[0][2];
+                saved_rbp[0x31] = projection_matrix[1] * frustum_planes[0][3] + rotation_y * frustum_planes[0][3] + view_matrix[3] * frustum_planes[0][3];
+                
+                // 检查是否需要创建新的渲染状态
+                if ((int)vertex_count == -1) {
+                  *(undefined4 *)((longlong)object_ptr + 0x314) = 0x10;
+                  temp_value3 = FUN_1801b9a40(mesh_data + 0x51d0, 0x10);
+                  *(undefined4 *)(object_ptr + 99) = temp_value3;
                   LOCK();
-                  *(undefined4 *)(plVar1 + 0x62) = 0;
+                  *(undefined4 *)(object_ptr + 0x62) = 0;
                   UNLOCK();
-                  lVar21 = *(longlong *)(lVar18 + 0x20);
+                  mesh_data = *(longlong *)(object_data + 0x20);
                 }
-                unaff_RBP[-0x15] = 0.25;
-                fVar35 = unaff_RBP[-0x15];
-                unaff_RBP[-0x18] = unaff_RBP[0x14];
-                unaff_RBP[-0x17] = unaff_RBP[0x15];
-                unaff_RBP[-0x16] = unaff_RBP[0x16];
-                unaff_RBP[-0x15] = fVar35;
-                unaff_RBP[0x3c] = unaff_RBP[0x14];
-                unaff_RBP[0x3d] = unaff_RBP[0x15];
-                unaff_RBP[0x3e] = unaff_RBP[0x16];
-                unaff_RBP[0x3f] = fVar35;
-                unaff_RBP[0x18] = unaff_RBP[0x2e];
-                unaff_RBP[0x19] = unaff_RBP[0x2f];
-                unaff_RBP[0x1a] = unaff_RBP[0x30];
-                unaff_RBP[0x1b] = (float)iStack0000000000000050;
-                unaff_RBP[0x40] = unaff_RBP[0x2e];
-                unaff_RBP[0x41] = unaff_RBP[0x2f];
-                unaff_RBP[0x42] = unaff_RBP[0x30];
-                unaff_RBP[0x43] = (float)iStack0000000000000050;
-                FUN_18020a7b0(plVar1 + 0x61,lVar21 + 0x3fb8,unaff_RBP + 0x3c);
+                
+                // 设置渲染参数
+                saved_rbp[-0x15] = 0.25;
+                fov_x = saved_rbp[-0x15];
+                saved_rbp[-0x18] = saved_rbp[0x14];
+                saved_rbp[-0x17] = saved_rbp[0x15];
+                saved_rbp[-0x16] = saved_rbp[0x16];
+                saved_rbp[-0x15] = fov_x;
+                saved_rbp[0x3c] = saved_rbp[0x14];
+                saved_rbp[0x3d] = saved_rbp[0x15];
+                saved_rbp[0x3e] = saved_rbp[0x16];
+                saved_rbp[0x3f] = fov_x;
+                saved_rbp[0x18] = saved_rbp[0x2e];
+                saved_rbp[0x19] = saved_rbp[0x2f];
+                saved_rbp[0x1a] = saved_rbp[0x30];
+                saved_rbp[0x1b] = (float)instance_count;
+                saved_rbp[0x40] = saved_rbp[0x2e];
+                saved_rbp[0x41] = saved_rbp[0x2f];
+                saved_rbp[0x42] = saved_rbp[0x30];
+                saved_rbp[0x43] = (float)instance_count;
+                FUN_18020a7b0(object_ptr + 0x61, mesh_data + 0x3fb8, saved_rbp + 0x3c);
               }
-              lVar21 = *(longlong *)(lVar18 + 0xf0);
-              uVar23 = (int)uVar25 + 1;
-              uVar25 = (ulonglong)uVar23;
-              uVar27 = uVar27 + 8;
-            } while ((ulonglong)(longlong)(int)uVar23 <
-                     (ulonglong)(*(longlong *)(lVar18 + 0xf8) - lVar21 >> 3));
-            lVar24 = *(longlong *)(unaff_RBP + -0x20);
+              mesh_data = *(longlong *)(object_data + 0xf0);
+              batch_index = (int)index_counter + 1;
+              index_counter = (ulonglong)batch_index;
+              vertex_offset = vertex_offset + 8;
+            } while ((ulonglong)(longlong)(int)batch_index <
+                     (ulonglong)(*(longlong *)(object_data + 0xf8) - mesh_data >> 3));
+            vertex_count = *(longlong *)(saved_rbp + -0x20);
           }
         }
       }
-      lVar28 = _fStack0000000000000070;
-      fVar35 = *unaff_R12;
-      fVar30 = unaff_R13[2];
-      fVar29 = unaff_R12[2];
-      fVar34 = unaff_R12[1];
-      fVar41 = *unaff_R13;
-      fVar33 = unaff_R13[1];
-      unaff_RBP[-0x11] = 3.4028235e+38;
-      unaff_RBP[-0xd] = 3.4028235e+38;
-      fVar42 = fVar29 + fVar30 * 0.2;
-      unaff_RBP[0x3a] = 0.05;
-      fVar31 = fVar35 - fVar41 * 0.2;
-      fVar29 = fVar29 - fVar30 * 0.2;
-      fVar35 = fVar35 + fVar41 * 0.2;
-      fVar36 = fVar34 + fVar33 * 0.2;
-      fVar34 = fVar34 - fVar33 * 0.2;
-      fVar30 = unaff_RBP[-0x11];
-      fVar41 = unaff_RBP[-0xd];
-      unaff_RBP[-0x14] = fVar31;
-      unaff_RBP[-0x13] = fVar34;
-      unaff_RBP[-0x12] = fVar29;
-      unaff_RBP[-0x11] = fVar30;
-      unaff_RBP[-0x10] = fVar35;
-      unaff_RBP[-0xf] = fVar36;
-      unaff_RBP[-0xe] = fVar42;
-      unaff_RBP[-0xd] = fVar41;
-      unaff_RBP[0x36] = fVar35;
-      unaff_RBP[0x37] = fVar36;
-      unaff_RBP[0x38] = fVar42;
-      unaff_RBP[0x39] = fVar41;
-      unaff_RBP[0x32] = fVar31;
-      unaff_RBP[0x33] = fVar34;
-      unaff_RBP[0x34] = fVar29;
-      unaff_RBP[0x35] = fVar30;
-      if ((lVar24 != 0) &&
-         (cVar26 = FUN_1802edfe0(lVar18,unaff_RBP + 0x32,unaff_RBP + 0x1c,unaff_RBP + 0x78,
-                                 (longlong)&stack0x00000050 + 5), cVar26 != '\0')) {
-        lVar21 = (longlong)cStack0000000000000055;
-        puVar20 = (uint *)(lVar21 * 0x100 + *(longlong *)(lVar24 + 0x18));
+      transform_matrix = depth_value;
+      fov_x = *saved_r12;
+      projection_matrix[0] = saved_r13[2];
+      fov_y = saved_r12[2];
+      rotation_x = saved_r12[1];
+      rotation_y = *saved_r13;
+      rotation_z = saved_r13[1];
+      saved_rbp[-0x11] = 3.4028235e+38;
+      saved_rbp[-0xd] = 3.4028235e+38;
+      view_matrix[3] = fov_y + projection_matrix[0] * 0.2;
+      saved_rbp[0x3a] = 0.05;
+      view_matrix[0] = fov_x - rotation_y * 0.2;
+      fov_y = fov_y - projection_matrix[0] * 0.2;
+      fov_x = fov_x + rotation_y * 0.2;
+      view_matrix[1] = rotation_x + rotation_z * 0.2;
+      rotation_x = rotation_x - rotation_z * 0.2;
+      projection_matrix[0] = saved_rbp[-0x11];
+      rotation_y = saved_rbp[-0xd];
+      saved_rbp[-0x14] = view_matrix[0];
+      saved_rbp[-0x13] = rotation_x;
+      saved_rbp[-0x12] = fov_y;
+      saved_rbp[-0x11] = projection_matrix[0];
+      saved_rbp[-0x10] = fov_x;
+      saved_rbp[-0xf] = view_matrix[1];
+      saved_rbp[-0xe] = view_matrix[3];
+      saved_rbp[-0xd] = rotation_y;
+      saved_rbp[0x36] = fov_x;
+      saved_rbp[0x37] = view_matrix[1];
+      saved_rbp[0x38] = view_matrix[3];
+      saved_rbp[0x39] = rotation_y;
+      saved_rbp[0x32] = view_matrix[0];
+      saved_rbp[0x33] = rotation_x;
+      saved_rbp[0x34] = fov_y;
+      saved_rbp[0x35] = projection_matrix[0];
+      
+      // 执行深度测试和可见性检查
+      if ((vertex_count != 0) &&
+         (lod_level = FUN_1802edfe0(object_data, saved_rbp + 0x32, saved_rbp + 0x1c, saved_rbp + 0x78,
+                                 (longlong)&stack_padding + 5), lod_level != '\0')) {
+        mesh_data = (longlong)material_id;
+        render_flags = (uint *)(mesh_data * 0x100 + *(longlong *)(vertex_count + 0x18));
         do {
           LOCK();
-          uVar23 = *puVar20;
-          *puVar20 = *puVar20 | 1;
+          batch_index = *render_flags;
+          *render_flags = *render_flags | 1;
           UNLOCK();
-        } while ((uVar23 & 1) != 0);
-        uVar15 = *(undefined8 *)(puVar20 + 1);
-        uVar16 = *(undefined8 *)(puVar20 + 3);
-        fVar35 = (float)puVar20[5];
-        fVar30 = (float)puVar20[6];
-        fVar29 = (float)puVar20[7];
-        fVar34 = (float)puVar20[8];
-        *(undefined8 *)(unaff_RBP + 0xa0) = uVar15;
-        *(undefined8 *)(unaff_RBP + 0xa2) = uVar16;
-        unaff_RBP[0xa4] = fVar35;
-        unaff_RBP[0xa5] = fVar30;
-        unaff_RBP[0xa6] = fVar29;
-        unaff_RBP[0xa7] = fVar34;
-        *puVar20 = 0;
-        *(undefined8 *)(unaff_RBP + 0x44) = uVar15;
-        *(undefined8 *)(unaff_RBP + 0x46) = uVar16;
-        unaff_RBP[0x48] = fVar35;
-        unaff_RBP[0x49] = fVar30;
-        unaff_RBP[0x4a] = fVar29;
-        unaff_RBP[0x4b] = fVar34;
-        FUN_18063b5f0(unaff_RBP + 0x5c,unaff_RBP + 0x44);
-        fVar41 = unaff_RBP[0x5c];
-        fVar33 = unaff_RBP[0x5d];
-        fVar31 = unaff_RBP[0x5e];
-        fVar36 = unaff_RBP[0x60];
-        fVar42 = unaff_RBP[0x61];
-        fVar43 = unaff_RBP[0x62];
-        fVar32 = *(float *)(lVar18 + 0x70);
-        fVar50 = *(float *)(lVar18 + 0x74);
-        fVar2 = *(float *)(lVar18 + 0x78);
-        fVar3 = *(float *)(lVar18 + 0x7c);
-        fVar4 = *(float *)(lVar18 + 0x80);
-        fVar5 = *(float *)(lVar18 + 0x84);
-        fVar6 = *(float *)(lVar18 + 0x88);
-        fVar7 = *(float *)(lVar18 + 0x8c);
-        fVar8 = unaff_RBP[100];
-        fVar9 = unaff_RBP[0x65];
-        fVar10 = unaff_RBP[0x66];
-        fVar11 = *(float *)(lVar18 + 0x90);
-        fVar12 = *(float *)(lVar18 + 0x94);
-        fVar13 = *(float *)(lVar18 + 0x98);
-        fVar14 = *(float *)(lVar18 + 0x9c);
-        unaff_RBP[0x90] = fVar41;
-        unaff_RBP[0x91] = fVar33;
-        unaff_RBP[0x92] = fVar31;
-        unaff_RBP[0x93] = unaff_RBP[0x5f];
-        unaff_RBP[0x94] = fVar36;
-        unaff_RBP[0x95] = fVar42;
-        unaff_RBP[0x96] = fVar43;
-        unaff_RBP[0x97] = unaff_RBP[99];
-        unaff_RBP[0x98] = fVar8;
-        unaff_RBP[0x99] = fVar9;
-        unaff_RBP[0x9a] = fVar10;
-        unaff_RBP[0x9b] = unaff_RBP[0x67];
-        unaff_RBP[0x9c] = fVar35;
-        unaff_RBP[0x9d] = fVar30;
-        unaff_RBP[0x9e] = fVar29;
-        unaff_RBP[0x9f] = fVar34;
-        fVar34 = fVar41 * fVar32 + fVar33 * fVar4 + fVar31 * fVar11;
-        fVar40 = fVar41 * fVar50 + fVar33 * fVar5 + fVar31 * fVar12;
-        fVar44 = fVar41 * fVar2 + fVar33 * fVar6 + fVar31 * fVar13;
-        unaff_RBP[-0xc] = fVar34;
-        unaff_RBP[0x68] = fVar34;
-        unaff_RBP[0x69] = fVar40;
-        unaff_RBP[0x6a] = fVar44;
-        unaff_RBP[0x6b] = fVar41 * fVar3 + fVar33 * fVar7 + fVar31 * fVar14;
-        fVar37 = fVar36 * fVar32 + fVar42 * fVar4 + fVar43 * fVar11;
-        fVar38 = fVar36 * fVar50 + fVar42 * fVar5 + fVar43 * fVar12;
-        fVar39 = fVar36 * fVar2 + fVar42 * fVar6 + fVar43 * fVar13;
-        unaff_RBP[0x6c] = fVar37;
-        unaff_RBP[0x6d] = fVar38;
-        unaff_RBP[0x6e] = fVar39;
-        unaff_RBP[0x6f] = fVar36 * fVar3 + fVar42 * fVar7 + fVar43 * fVar14;
-        fVar36 = fVar8 * fVar32 + fVar9 * fVar4 + fVar10 * fVar11;
-        fVar42 = fVar8 * fVar50 + fVar9 * fVar5 + fVar10 * fVar12;
-        fVar43 = fVar8 * fVar2 + fVar9 * fVar6 + fVar10 * fVar13;
-        unaff_RBP[0x70] = fVar36;
-        unaff_RBP[0x71] = fVar42;
-        unaff_RBP[0x72] = fVar43;
-        unaff_RBP[0x73] = fVar8 * fVar3 + fVar9 * fVar7 + fVar10 * fVar14;
-        fVar34 = *(float *)(lVar18 + 0xac);
-        fVar41 = fVar35 * fVar32 + fVar30 * fVar4 + fVar29 * fVar11 + *(float *)(lVar18 + 0xa0);
-        fVar33 = fVar35 * fVar50 + fVar30 * fVar5 + fVar29 * fVar12 + *(float *)(lVar18 + 0xa4);
-        fVar31 = fVar35 * fVar2 + fVar30 * fVar6 + fVar29 * fVar13 + *(float *)(lVar18 + 0xa8);
-        unaff_RBP[0x74] = fVar41;
-        unaff_RBP[0x75] = fVar33;
-        unaff_RBP[0x76] = fVar31;
-        unaff_RBP[0x77] = fVar35 * fVar3 + fVar30 * fVar7 + fVar29 * fVar14 + fVar34;
-        unaff_RBP[-0xb] = fVar40;
-        unaff_RBP[-8] = fVar37;
-        unaff_RBP[-7] = fVar38;
-        unaff_RBP[-3] = fVar42;
-        unaff_RBP[-4] = fVar36;
-        *unaff_RBP = fVar41;
-        unaff_RBP[2] = fVar31;
-        unaff_RBP[-10] = fVar44;
-        unaff_RBP[-6] = fVar39;
-        unaff_RBP[-2] = fVar43;
-        unaff_RBP[1] = fVar33;
-        unaff_RBP[-9] = 0.0;
-        unaff_RBP[-5] = 0.0;
-        unaff_RBP[-1] = 0.0;
-        unaff_RBP[3] = 1.0;
-        FUN_180084760(unaff_RBP + -0xc,unaff_RBP + 4);
-        fVar35 = unaff_RBP[0x1d];
-        fVar30 = unaff_RBP[0x1e];
-        fVar29 = unaff_RBP[0x1c];
-        unaff_RBP[-0x1c] =
-             fVar29 * unaff_RBP[4] + fVar35 * unaff_RBP[8] + fVar30 * unaff_RBP[0xc] +
-             unaff_RBP[0x10];
-        unaff_RBP[-0x1b] =
-             fVar29 * unaff_RBP[5] + fVar35 * unaff_RBP[9] + fVar30 * unaff_RBP[0xd] +
-             unaff_RBP[0x11];
-        unaff_RBP[-0x1a] =
-             fVar29 * unaff_RBP[6] + fVar35 * unaff_RBP[10] + fVar30 * unaff_RBP[0xe] +
-             unaff_RBP[0x12];
-        unaff_RBP[-0x19] =
-             fVar29 * unaff_RBP[7] + fVar35 * unaff_RBP[0xb] + fVar30 * unaff_RBP[0xf] +
-             unaff_RBP[0x13];
-        FUN_1801c1140(unaff_RBP + 0x68,unaff_RBP + 0x20);
-        lVar18 = lVar21 * 0x1b0 + *(longlong *)(*(longlong *)(lVar24 + 0x208) + 0x140);
-        fVar41 = *(float *)(lVar18 + 0x30);
-        fVar33 = *(float *)(lVar18 + 0x34);
-        fVar31 = *(float *)(lVar18 + 0x38);
-        fVar35 = *(float *)(lVar18 + 0x3c);
-        fVar36 = *(float *)(lVar18 + 0x40);
-        fVar42 = *(float *)(lVar18 + 0x44);
-        fVar43 = *(float *)(lVar18 + 0x48);
-        fVar32 = *(float *)(lVar18 + 0x4c);
-        unaff_RBP[0x50] = fVar41;
-        unaff_RBP[0x51] = fVar33;
-        unaff_RBP[0x52] = fVar31;
-        unaff_RBP[0x53] = fVar35;
-        unaff_RBP[0x4c] = fVar36;
-        unaff_RBP[0x4d] = fVar42;
-        unaff_RBP[0x4e] = fVar43;
-        unaff_RBP[0x4f] = fVar32;
-        pfVar19 = (float *)FUN_1801c0fb0(unaff_RBP + 0x4c,unaff_RBP + 0x7c,unaff_RBP + -0x1c);
-        lVar18 = in_stack_00000060;
-        fVar35 = unaff_RBP[0x22];
-        fVar30 = unaff_RBP[0x20];
-        fVar29 = unaff_RBP[0x21];
-        fVar41 = fVar41 + *pfVar19;
-        fVar34 = pfVar19[2];
-        unaff_RBP[-0x20] = fVar33 + pfVar19[1];
-        unaff_RBP[-0x1f] = fVar33;
-        unaff_RBP[-0x1e] = fVar33;
-        unaff_RBP[-0x1d] = fVar33;
-        fVar33 = fVar35 * fVar43 - fVar29 * fVar32;
-        _fStack0000000000000070 = CONCAT44(fVar31,fVar31 + fVar34);
-        fVar33 = fVar33 + fVar33;
-        fVar50 = fVar30 * fVar32 - fVar35 * fVar42;
-        fVar34 = fVar29 * fVar42 - fVar30 * fVar43;
-        fVar50 = fVar50 + fVar50;
-        fVar34 = fVar34 + fVar34;
-        fVar30 = fVar33 * fVar36 + fVar30 + (fVar34 * fVar43 - fVar50 * fVar32);
-        fVar43 = (fVar50 * fVar42 - fVar33 * fVar43) + fVar34 * fVar36 + fVar35;
-        fVar35 = (fVar33 * fVar32 - fVar34 * fVar42) + fVar50 * fVar36 + fVar29;
-        fStack0000000000000078 = fVar31;
-        fStack000000000000007c = fVar31;
-        if (*(int *)(lVar24 + 0x170) == -1) {
-          *(undefined4 *)(lVar24 + 0x16c) = 0x10;
-          uVar17 = FUN_1801b9a40(in_stack_00000060 + 0x51d0,0x10);
-          *(undefined4 *)(lVar24 + 0x170) = uVar17;
+        } while ((batch_index & 1) != 0);
+        
+        // 读取渲染状态数据
+        temp_value1 = *(undefined8 *)(render_flags + 1);
+        temp_value2 = *(undefined8 *)(render_flags + 3);
+        fov_x = (float)render_flags[5];
+        projection_matrix[0] = (float)render_flags[6];
+        fov_y = (float)render_flags[7];
+        rotation_x = (float)render_flags[8];
+        *(undefined8 *)(saved_rbp + 0xa0) = temp_value1;
+        *(undefined8 *)(saved_rbp + 0xa2) = temp_value2;
+        saved_rbp[0xa4] = fov_x;
+        saved_rbp[0xa5] = projection_matrix[0];
+        saved_rbp[0xa6] = fov_y;
+        saved_rbp[0xa7] = rotation_x;
+        *render_flags = 0;
+        *(undefined8 *)(saved_rbp + 0x44) = temp_value1;
+        *(undefined8 *)(saved_rbp + 0x46) = temp_value2;
+        saved_rbp[0x48] = fov_x;
+        saved_rbp[0x49] = projection_matrix[0];
+        saved_rbp[0x4a] = fov_y;
+        saved_rbp[0x4b] = rotation_x;
+        FUN_18063b5f0(saved_rbp + 0x5c, saved_rbp + 0x44);
+        
+        // 处理渲染结果
+        rotation_y = saved_rbp[0x5c];
+        rotation_z = saved_rbp[0x5d];
+        view_matrix[0] = saved_rbp[0x5e];
+        view_matrix[1] = saved_rbp[0x60];
+        view_matrix[2] = saved_rbp[0x61];
+        view_matrix[3] = saved_rbp[0x62];
+        near_plane = *(float *)(object_data + 0x70);
+        alpha_value = *(float *)(object_data + 0x74);
+        transform_x = *(float *)(object_data + 0x78);
+        transform_y = *(float *)(object_data + 0x7c);
+        transform_z = *(float *)(object_data + 0x80);
+        scale_x = *(float *)(object_data + 0x84);
+        scale_y = *(float *)(object_data + 0x88);
+        aspect_ratio = *(float *)(object_data + 0x8c);
+        projection_matrix[0] = *(float *)(object_data + 0x90);
+        projection_matrix[1] = *(float *)(object_data + 0x94);
+        projection_matrix[2] = *(float *)(object_data + 0x98);
+        projection_matrix[3] = *(float *)(object_data + 0x9c);
+        saved_rbp[0x90] = rotation_y;
+        saved_rbp[0x91] = rotation_z;
+        saved_rbp[0x92] = view_matrix[0];
+        saved_rbp[0x93] = saved_rbp[0x5f];
+        saved_rbp[0x94] = view_matrix[1];
+        saved_rbp[0x95] = view_matrix[2];
+        saved_rbp[0x96] = view_matrix[3];
+        saved_rbp[0x97] = saved_rbp[99];
+        saved_rbp[0x98] = fov_x;
+        saved_rbp[0x99] = saved_rbp[0x65];
+        saved_rbp[0x9a] = saved_rbp[0x66];
+        saved_rbp[0x9b] = saved_rbp[0x67];
+        saved_rbp[0x9c] = fov_x;
+        saved_rbp[0x9d] = projection_matrix[0];
+        saved_rbp[0x9e] = fov_y;
+        saved_rbp[0x9f] = rotation_x;
+        rotation_x = rotation_y * near_plane + rotation_z * transform_z + view_matrix[0] * aspect_ratio;
+        frustum_planes[0][3] = rotation_y * alpha_value + rotation_z * scale_x + view_matrix[0] * projection_matrix[0];
+        screen_size = rotation_y * transform_x + rotation_z * scale_y + view_matrix[0] * projection_matrix[1];
+        saved_rbp[-0xc] = rotation_x;
+        saved_rbp[0x68] = rotation_x;
+        saved_rbp[0x69] = frustum_planes[0][3];
+        saved_rbp[0x6a] = screen_size;
+        saved_rbp[0x6b] = rotation_y * transform_y + rotation_z * projection_matrix[2] + view_matrix[0] * projection_matrix[3];
+        frustum_planes[0][0] = view_matrix[1] * near_plane + view_matrix[2] * transform_z + view_matrix[3] * aspect_ratio;
+        frustum_planes[0][1] = view_matrix[1] * alpha_value + view_matrix[2] * scale_x + view_matrix[3] * projection_matrix[0];
+        frustum_planes[0][2] = view_matrix[1] * transform_x + view_matrix[2] * scale_y + view_matrix[3] * projection_matrix[1];
+        saved_rbp[0x6c] = frustum_planes[0][0];
+        saved_rbp[0x6d] = frustum_planes[0][1];
+        saved_rbp[0x6e] = frustum_planes[0][2];
+        saved_rbp[0x6f] = view_matrix[1] * transform_y + view_matrix[2] * projection_matrix[2] + view_matrix[3] * projection_matrix[3];
+        view_matrix[1] = fov_x * near_plane + saved_rbp[0x65] * transform_z + saved_rbp[0x66] * aspect_ratio;
+        view_matrix[2] = fov_x * alpha_value + saved_rbp[0x65] * scale_x + saved_rbp[0x66] * projection_matrix[0];
+        view_matrix[3] = fov_x * transform_x + saved_rbp[0x65] * scale_y + saved_rbp[0x66] * projection_matrix[1];
+        saved_rbp[0x70] = view_matrix[1];
+        saved_rbp[0x71] = view_matrix[2];
+        saved_rbp[0x72] = view_matrix[3];
+        saved_rbp[0x73] = fov_x * transform_y + saved_rbp[0x65] * projection_matrix[2] + saved_rbp[0x66] * projection_matrix[3];
+        rotation_x = *(float *)(object_data + 0xac);
+        rotation_y = fov_x * near_plane + projection_matrix[0] * transform_z + fov_y * aspect_ratio + *(float *)(object_data + 0xa0);
+        rotation_z = fov_x * alpha_value + projection_matrix[0] * scale_x + fov_y * projection_matrix[0] + *(float *)(object_data + 0xa4);
+        view_matrix[0] = fov_x * transform_x + projection_matrix[0] * scale_y + fov_y * projection_matrix[1] + *(float *)(object_data + 0xa8);
+        saved_rbp[0x74] = rotation_y;
+        saved_rbp[0x75] = rotation_z;
+        saved_rbp[0x76] = view_matrix[0];
+        saved_rbp[0x77] = fov_x * transform_y + projection_matrix[0] * projection_matrix[2] + fov_y * projection_matrix[3] + rotation_x;
+        saved_rbp[-0xb] = frustum_planes[0][3];
+        saved_rbp[-8] = frustum_planes[0][0];
+        saved_rbp[-7] = frustum_planes[0][1];
+        saved_rbp[-3] = view_matrix[2];
+        saved_rbp[-4] = view_matrix[1];
+        *saved_rbp = rotation_y;
+        saved_rbp[2] = view_matrix[0];
+        saved_rbp[-10] = screen_size;
+        saved_rbp[-6] = frustum_planes[0][2];
+        saved_rbp[-2] = view_matrix[3];
+        saved_rbp[1] = rotation_z;
+        saved_rbp[-9] = 0.0;
+        saved_rbp[-5] = 0.0;
+        saved_rbp[-1] = 0.0;
+        saved_rbp[3] = 1.0;
+        FUN_180084760(saved_rbp + -0xc, saved_rbp + 4);
+        fov_x = saved_rbp[0x1d];
+        projection_matrix[0] = saved_rbp[0x1e];
+        fov_y = saved_rbp[0x1c];
+        saved_rbp[-0x1c] =
+             fov_y * saved_rbp[4] + fov_x * saved_rbp[8] + projection_matrix[0] * saved_rbp[0xc] +
+             saved_rbp[0x10];
+        saved_rbp[-0x1b] =
+             fov_y * saved_rbp[5] + fov_x * saved_rbp[9] + projection_matrix[0] * saved_rbp[0xd] +
+             saved_rbp[0x11];
+        saved_rbp[-0x1a] =
+             fov_y * saved_rbp[6] + fov_x * saved_rbp[10] + projection_matrix[0] * saved_rbp[0xe] +
+             saved_rbp[0x12];
+        saved_rbp[-0x19] =
+             fov_y * saved_rbp[7] + fov_x * saved_rbp[0xb] + projection_matrix[0] * saved_rbp[0xf] +
+             saved_rbp[0x13];
+        FUN_1801c1140(saved_rbp + 0x68, saved_rbp + 0x20);
+        object_data = mesh_data * 0x1b0 + *(longlong *)(*(longlong *)(vertex_count + 0x208) + 0x140);
+        rotation_y = *(float *)(object_data + 0x30);
+        rotation_z = *(float *)(object_data + 0x34);
+        view_matrix[0] = *(float *)(object_data + 0x38);
+        fov_x = *(float *)(object_data + 0x3c);
+        view_matrix[1] = *(float *)(object_data + 0x40);
+        view_matrix[2] = *(float *)(object_data + 0x44);
+        view_matrix[3] = *(float *)(object_data + 0x48);
+        near_plane = *(float *)(object_data + 0x4c);
+        saved_rbp[0x50] = rotation_y;
+        saved_rbp[0x51] = rotation_z;
+        saved_rbp[0x52] = view_matrix[0];
+        saved_rbp[0x53] = fov_x;
+        saved_rbp[0x4c] = view_matrix[1];
+        saved_rbp[0x4d] = view_matrix[2];
+        saved_rbp[0x4e] = view_matrix[3];
+        saved_rbp[0x4f] = near_plane;
+        camera_position = (float *)FUN_1801c0fb0(saved_rbp + 0x4c, saved_rbp + 0x7c, saved_rbp + -0x1c);
+        object_data = base_address;
+        fov_x = saved_rbp[0x22];
+        projection_matrix[0] = saved_rbp[0x20];
+        fov_y = saved_rbp[0x21];
+        rotation_y = rotation_y + *camera_position;
+        rotation_x = camera_position[2];
+        saved_rbp[-0x20] = rotation_z + camera_position[1];
+        saved_rbp[-0x1f] = rotation_z;
+        saved_rbp[-0x1e] = rotation_z;
+        saved_rbp[-0x1d] = rotation_z;
+        rotation_z = fov_x * view_matrix[3] - fov_y * near_plane;
+        depth_value = CONCAT44(view_matrix[0], view_matrix[0] + rotation_x);
+        rotation_z = rotation_z + rotation_z;
+        alpha_value = projection_matrix[0] * near_plane - fov_x * view_matrix[2];
+        rotation_x = fov_y * view_matrix[2] - projection_matrix[0] * view_matrix[3];
+        alpha_value = alpha_value + alpha_value;
+        rotation_x = rotation_x + rotation_x;
+        projection_matrix[0] = rotation_z * view_matrix[1] + projection_matrix[0] + (rotation_x * view_matrix[3] - alpha_value * near_plane);
+        view_matrix[3] = (alpha_value * view_matrix[2] - rotation_z * view_matrix[3]) + rotation_x * view_matrix[1] + fov_x;
+        fov_x = (rotation_z * near_plane - rotation_x * view_matrix[2]) + alpha_value * view_matrix[1] + fov_y;
+        depth_value = view_matrix[0];
+        depth_value = view_matrix[0];
+        if (*(int *)(vertex_count + 0x170) == -1) {
+          *(undefined4 *)(vertex_count + 0x16c) = 0x10;
+          temp_value3 = FUN_1801b9a40(base_address + 0x51d0, 0x10);
+          *(undefined4 *)(vertex_count + 0x170) = temp_value3;
           LOCK();
-          *(undefined4 *)(lVar24 + 0x168) = 0;
+          *(undefined4 *)(vertex_count + 0x168) = 0;
           UNLOCK();
         }
-        unaff_RBP[0x24] = fVar41;
-        unaff_RBP[0x25] = unaff_RBP[-0x20];
-        unaff_RBP[0x26] = fStack0000000000000070;
-        unaff_RBP[0x27] = unaff_RBP[0xf2];
-        unaff_RBP[0x54] = fVar41;
-        unaff_RBP[0x55] = unaff_RBP[-0x20];
-        unaff_RBP[0x56] = fStack0000000000000070;
-        unaff_RBP[0x57] = unaff_RBP[0xf2];
-        unaff_RBP[0x28] = fVar30;
-        unaff_RBP[0x29] = fVar35;
-        unaff_RBP[0x2a] = fVar43;
-        unaff_RBP[0x2b] = (float)iStack0000000000000050;
-        unaff_RBP[0x58] = fVar30;
-        unaff_RBP[0x59] = fVar35;
-        unaff_RBP[0x5a] = fVar43;
-        unaff_RBP[0x5b] = (float)iStack0000000000000050;
-        FUN_18020a7b0(lVar24 + 0x160,lVar18 + 0x3fb8,unaff_RBP + 0x54);
+        saved_rbp[0x24] = rotation_y;
+        saved_rbp[0x25] = saved_rbp[-0x20];
+        saved_rbp[0x26] = depth_value;
+        saved_rbp[0x27] = saved_rbp[0xf2];
+        saved_rbp[0x54] = rotation_y;
+        saved_rbp[0x55] = saved_rbp[-0x20];
+        saved_rbp[0x56] = depth_value;
+        saved_rbp[0x57] = saved_rbp[0xf2];
+        saved_rbp[0x28] = projection_matrix[0];
+        saved_rbp[0x29] = fov_x;
+        saved_rbp[0x2a] = view_matrix[3];
+        saved_rbp[0x2b] = (float)instance_count;
+        saved_rbp[0x58] = projection_matrix[0];
+        saved_rbp[0x59] = fov_x;
+        saved_rbp[0x5a] = view_matrix[3];
+        saved_rbp[0x5b] = (float)instance_count;
+        FUN_18020a7b0(vertex_count + 0x160, object_data + 0x3fb8, saved_rbp + 0x54);
       }
     }
-    _fStack0000000000000070 = lVar28 + 8;
-    in_stack_00000058 = in_stack_00000058 + 1;
-    param_2 = **(longlong **)(unaff_RBP + 0x2c);
-    param_1 = in_stack_00000060;
-  } while ((ulonglong)(longlong)in_stack_00000058 <
-           (ulonglong)((*(longlong **)(unaff_RBP + 0x2c))[1] - param_2 >> 3));
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0xa8) ^ (ulonglong)&stack0x00000000);
+    depth_value = transform_matrix + 8;
+    instance_count = instance_count + 1;
+    scene_data = **(longlong **)(saved_rbp + 0x2c);
+    render_context = base_address;
+  } while ((ulonglong)(longlong)instance_count <
+           (ulonglong)((*(longlong **)(saved_rbp + 0x2c))[1] - scene_data >> 3));
+  
+  // 清理资源（此函数不会返回）
+  FUN_1808fc050(*(ulonglong *)(saved_rbp + 0xa8) ^ (ulonglong)&stack_padding);
 }
-
-
-
-
-
