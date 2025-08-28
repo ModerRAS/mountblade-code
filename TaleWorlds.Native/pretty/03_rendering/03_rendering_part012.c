@@ -416,17 +416,17 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
 undefined8 * initialize_render_state(undefined8 *render_state)
 
 {
-  *render_state = &RENDER_STATE_NULL;
+  *render_state = &UNK_18098bcb0;
   render_state[1] = 0;
   *(undefined4 *)(render_state + 2) = 0;
-  *render_state = &RENDER_SHADER_TABLE;
+  *render_state = &UNK_180a14860;
   render_state[1] = render_state + 3;
   *(undefined4 *)(render_state + 2) = 0;
   *(undefined1 *)(render_state + 3) = 0;
-  render_state[0x22] = &RENDER_STATE_NULL;
+  render_state[0x22] = &UNK_18098bcb0;
   render_state[0x23] = 0;
   *(undefined4 *)(render_state + 0x24) = 0;
-  render_state[0x22] = &RENDER_MATERIAL_TABLE;
+  render_state[0x22] = &UNK_180a3c3e0;
   render_state[0x25] = 0;
   render_state[0x23] = 0;
   *(undefined4 *)(render_state + 0x24) = 0;

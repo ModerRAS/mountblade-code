@@ -1205,7 +1205,7 @@ void ui_tree_operation_wrapper(undefined8 operation_data, undefined8 root_node,
                              undefined8 param_3, undefined8 param_4)
 
 {
-  FUN_180651560(param_1,_DAT_180c967a0,param_3,param_4,0xfffffffffffffffe);  // _DAT_180c967a0: 库资源树根节点指针
+  ui_perform_tree_node_operation(operation_data,_DAT_180c967a0,param_3,param_4,0xfffffffffffffffe);  // _DAT_180c967a0: 库资源树根节点指针
   return;
 }
 
@@ -1228,10 +1228,10 @@ void ui_tree_cleanup_operation(undefined8 param_1, undefined8 *node_ptr,
 
 {
   if (param_2 != (undefined8 *)0x0) {
-    FUN_180651560(&DAT_180c96790,*param_2,param_3,param_4,0xfffffffffffffffe);
-    FUN_18063cfe0(param_2 + 5);
+    ui_perform_tree_node_operation(&DAT_180c96790,*node_ptr,param_3,param_4,0xfffffffffffffffe);
+    ui_cleanup_tree_node_resources(node_ptr + 5);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(param_2);
+    ui_free_tree_node_memory(node_ptr);
   }
   return;
 }
