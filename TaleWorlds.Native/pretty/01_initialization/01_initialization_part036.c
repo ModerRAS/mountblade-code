@@ -1103,87 +1103,122 @@ void reset_string(undefined1 *string_struct)
 
 
 
-// 函数: void FUN_180069280(longlong param_1,longlong param_2,longlong param_3)
-void FUN_180069280(longlong param_1,longlong param_2,longlong param_3)
+// 函数: 字符串搜索和替换
+// 功能: 在字符串中搜索子字符串并进行替换操作
+// 参数: param_1 - 目标字符串结构指针
+//       param_2 - 搜索字符串指针
+//       param_3 - 替换字符串指针
+// 注意: 这是一个简化实现，原始实现可能包含更复杂的搜索替换逻辑
+void string_search_and_replace(longlong target_string, longlong search_string, longlong replace_string)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined1 auStack_198 [32];
-  undefined8 uStack_178;
-  undefined *puStack_168;
-  undefined1 *puStack_160;
-  undefined4 uStack_158;
-  undefined1 auStack_150 [264];
-  ulonglong uStack_48;
+  longlong search_pos;
+  longlong search_len;
+  longlong replace_len;
+  undefined1 stack_buffer [32];
+  undefined8 stack_guard;
+  undefined *temp_ptr;
+  undefined1 *result_buffer;
+  undefined4 result_len;
+  undefined1 work_buffer [264];
+  ulonglong security_cookie;
   
-  uStack_178 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
-  puStack_168 = &UNK_1809feda8;
-  puStack_160 = auStack_150;
-  uStack_158 = 0;
-  auStack_150[0] = 0;
-  lVar1 = strstr(*(undefined8 *)(param_1 + 8));
-  if (lVar1 != 0) {
-    lVar2 = -1;
-    lVar3 = -1;
+  // 初始化栈保护
+  stack_guard = 0xfffffffffffffffe;
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  temp_ptr = &UNK_1809feda8;
+  result_buffer = work_buffer;
+  result_len = 0;
+  work_buffer[0] = 0;
+  
+  // 搜索目标字符串中的子字符串
+  search_pos = strstr(*(undefined8 *)(target_string + 8));
+  if (search_pos != 0) {
+    // 计算搜索字符串长度
+    search_len = -1;
+    replace_len = -1;
     do {
-      lVar3 = lVar3 + 1;
-    } while (*(char *)(param_2 + lVar3) != '\0');
+      search_len = search_len + 1;
+    } while (*(char *)(search_string + search_len) != '\0');
+    
+    // 计算替换字符串长度
     do {
-      lVar2 = lVar2 + 1;
-    } while (*(char *)(lVar2 + param_3) != '\0');
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_160,*(longlong *)(param_1 + 8),lVar1 - *(longlong *)(param_1 + 8));
+      replace_len = replace_len + 1;
+    } while (*(char *)(replace_len + replace_string) != '\0');
+    
+    // WARNING: 子函数不返回
+    // 复制搜索位置之前的内容
+    memcpy(result_buffer, *(longlong *)(target_string + 8), search_pos - *(longlong *)(target_string + 8));
   }
-  puStack_168 = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_198);
+  
+  temp_ptr = &UNK_18098bcb0;
+  // WARNING: 子函数不返回
+  // 执行安全检查
+  perform_security_check(security_cookie ^ (ulonglong)stack_buffer);
 }
 
 
 
 
 
-// 函数: void FUN_1800693f0(longlong param_1,longlong param_2)
-void FUN_1800693f0(longlong param_1,longlong param_2)
+// 函数: 设置字符串值
+// 功能: 为字符串结构设置新的字符串值，处理长度限制和缓冲区大小
+// 参数: param_1 - 目标字符串结构指针
+//       param_2 - 源字符串指针
+void set_string_value(longlong target_string, longlong source_string)
 
 {
-  longlong lVar1;
+  longlong string_length;
   
-  if (param_2 == 0) {
-    *(undefined4 *)(param_1 + 0x10) = 0;
-    **(undefined1 **)(param_1 + 8) = 0;
+  if (source_string == 0) {
+    // 清空字符串
+    *(undefined4 *)(target_string + 0x10) = 0;
+    **(undefined1 **)(target_string + 8) = 0;
     return;
   }
-  lVar1 = -1;
+  
+  // 计算源字符串长度
+  string_length = -1;
   do {
-    lVar1 = lVar1 + 1;
-  } while (*(char *)(param_2 + lVar1) != '\0');
-  if ((int)lVar1 < 0x100) {
-    *(int *)(param_1 + 0x10) = (int)lVar1;
-                    // WARNING: Could not recover jumptable at 0x000180069429. Too many branches
-                    // WARNING: Treating indirect jump as call
-    strcpy_s(*(undefined8 *)(param_1 + 8),0x100);
+    string_length = string_length + 1;
+  } while (*(char *)(source_string + string_length) != '\0');
+  
+  if ((int)string_length < 0x100) {
+    // 字符串长度在限制范围内
+    *(int *)(target_string + 0x10) = (int)string_length;
+    // WARNING: 无法恢复跳转表，分支过多
+    // WARNING: 将间接跳转视为调用
+    strcpy_s(*(undefined8 *)(target_string + 8), 0x100);
     return;
   }
-  FUN_180626f80(&UNK_18098bc48,0x100,param_2);
-  *(undefined4 *)(param_1 + 0x10) = 0;
-  **(undefined1 **)(param_1 + 8) = 0;
+  
+  // 字符串过长，处理错误情况
+  handle_string_too_long_error(&UNK_18098bc48, 0x100, source_string);
+  *(undefined4 *)(target_string + 0x10) = 0;
+  **(undefined1 **)(target_string + 8) = 0;
   return;
 }
 
 
 
-longlong FUN_180069470(longlong param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: 释放文件表项
+// 功能: 释放文件表项，根据标志决定是否实际释放内存
+// 参数: param_1 - 文件表项指针
+//       param_2 - 释放标志（位0表示是否释放内存）
+//       param_3 - 保留参数
+//       param_4 - 保留参数
+// 返回: 文件表项指针
+longlong release_file_table_entry(longlong file_entry, ulonglong release_flags, undefined8 param_3, undefined8 param_4)
 
 {
-  *(undefined **)(param_1 + 8) = &UNK_18098bcb0;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x130,param_3,param_4,0xfffffffffffffffe);
+  // 设置默认文件路径
+  *(undefined **)(file_entry + 8) = &UNK_18098bcb0;
+  
+  // 根据标志决定是否释放内存
+  if ((release_flags & 1) != 0) {
+    free(file_entry, 0x130, param_3, param_4, 0xfffffffffffffffe);
   }
-  return param_1;
+  return file_entry;
 }
 
 
@@ -1208,51 +1243,80 @@ void FUN_180069530(undefined8 *param_1,undefined8 param_2,undefined8 param_3,und
 
 
 
-// 函数: void FUN_1800695a0(longlong param_1)
-void FUN_1800695a0(longlong param_1)
+// 函数: 重置文件信息
+// 功能: 重置文件信息结构，设置默认文件路径
+// 参数: param_1 - 文件信息指针
+void reset_file_info(longlong file_info)
 
 {
-  *(undefined **)(param_1 + 8) = &UNK_18098bcb0;
+  // 设置默认文件路径
+  *(undefined **)(file_info + 8) = &UNK_18098bcb0;
   return;
 }
 
 
 
+// 函数: 释放内存管理器
+// 功能: 释放内存管理器，根据标志决定是否实际释放内存
+// 参数: param_1 - 内存管理器指针
+//       param_2 - 释放标志（位0表示是否释放内存）
+//       param_3 - 保留参数
+//       param_4 - 保留参数
+// 返回: 内存管理器指针
 undefined8 *
-FUN_1800696d0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+release_memory_manager(undefined8 *memory_manager, ulonglong release_flags, undefined8 param_3, undefined8 param_4)
 
 {
-  *param_1 = &UNK_18098bdc8;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x30,param_3,param_4,0xfffffffffffffffe);
+  // 重置内存管理器的各个字段
+  *memory_manager = &UNK_18098bdc8;
+  *memory_manager = &UNK_180a21720;
+  *memory_manager = &UNK_180a21690;
+  
+  // 根据标志决定是否释放内存
+  if ((release_flags & 1) != 0) {
+    free(memory_manager, 0x30, param_3, param_4, 0xfffffffffffffffe);
   }
-  return param_1;
+  return memory_manager;
 }
 
 
 
-undefined8 * FUN_180069720(undefined8 *param_1,ulonglong param_2)
+// 函数: 释放字符串缓冲区
+// 功能: 释放字符串缓冲区，根据标志决定是否实际释放内存
+// 参数: param_1 - 字符串缓冲区指针
+//       param_2 - 释放标志（位0表示是否释放内存）
+// 返回: 字符串缓冲区指针
+undefined8 * release_string_buffer(undefined8 *string_buffer, ulonglong release_flags)
 
 {
-  *param_1 = &UNK_1809feeb8;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x58);
+  // 重置字符串缓冲区
+  *string_buffer = &UNK_1809feeb8;
+  
+  // 根据标志决定是否释放内存
+  if ((release_flags & 1) != 0) {
+    free(string_buffer, 0x58);
   }
-  return param_1;
+  return string_buffer;
 }
 
 
 
-undefined8 FUN_180069760(undefined8 param_1,ulonglong param_2)
+// 函数: 释放扩展属性
+// 功能: 释放扩展属性结构，根据标志决定是否实际释放内存
+// 参数: param_1 - 扩展属性指针
+//       param_2 - 释放标志（位0表示是否释放内存）
+// 返回: 扩展属性指针
+undefined8 release_extended_attributes(undefined8 extended_attr, ulonglong release_flags)
 
 {
-  FUN_1800697a0();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x68);
+  // 执行清理操作
+  cleanup_extended_attributes();
+  
+  // 根据标志决定是否释放内存
+  if ((release_flags & 1) != 0) {
+    free(extended_attr, 0x68);
   }
-  return param_1;
+  return extended_attr;
 }
 
 
