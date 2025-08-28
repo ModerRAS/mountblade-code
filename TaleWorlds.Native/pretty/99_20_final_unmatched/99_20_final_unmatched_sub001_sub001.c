@@ -1,8 +1,8 @@
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
-/* SystemEventHandler - FUN_1808fd200 的语义化别名 */
-#define SystemEventHandler FUN_1808fd200
+/* SystemEventHandler - SystemCore_MemoryManager0 的语义化别名 */
+#define SystemEventHandler SystemCore_MemoryManager0
 
 /**
  * 99_20_final_unmatched_sub001_sub001.c - 高级系统管理和资源处理模块
