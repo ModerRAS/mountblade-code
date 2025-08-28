@@ -165,7 +165,7 @@ void RenderingSystem_ProcessResourceRequest(int param_1, uint param_2, float par
       if ((int)uVar3 < 0x10) {
         uVar3 = 0x10;
       }
-      puStack_60 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,(longlong)(int)uVar3,0x13);
+      puStack_60 = (int32_t *)RenderingSystem_MemoryPoolAllocator(system_memory_pool_ptr,(longlong)(int)uVar3,0x13);
       *(int8_t *)puStack_60 = 0;
     }
     else {
@@ -181,7 +181,7 @@ LAB_18060e38b:
   *(int32_t *)(puVar7 + 1) = 0x20726564;
   *(int8_t *)((longlong)puVar7 + 0xc) = 0;
   uStack_58 = uVar11;
-  FUN_180628380(&puStack_68,param_2);
+  RenderingSystem_DataContextInitializer(&puStack_68,param_2);
   uVar11 = uStack_58 + 0x13;
   if (uVar11 != 0) {
     uVar3 = uStack_58 + 0x14;
@@ -189,7 +189,7 @@ LAB_18060e38b:
       if ((int)uVar3 < 0x10) {
         uVar3 = 0x10;
       }
-      puStack_60 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,(longlong)(int)uVar3,0x13);
+      puStack_60 = (int32_t *)RenderingSystem_MemoryPoolAllocator(system_memory_pool_ptr,(longlong)(int)uVar3,0x13);
       *(int8_t *)puStack_60 = 0;
     }
     else {
