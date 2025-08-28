@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 /**
  * @file 04_ui_system_part350_sub002_sub002.c
  * @brief UI系统高级数据处理和状态管理模块

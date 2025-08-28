@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -907,7 +909,7 @@ void ResourceConfigurationSet(uint64_t *config_ptr, longlong *resource_ptr)
     func_0x00018076b450(&uStack_20,&unknown_var_7984_ptr,8);
     if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                 0x48) < system_system_config) {
-      FUN_1808fcb90(&system_state_f508);
+      SystemInitializer(&system_state_f508);
       if (system_system_config == -1) {
         uRam0000000180c4f4fc = CONCAT22(uStack_22,uStack_24);
         uRam0000000180c4f504 = CONCAT22(uStack_1a,uStack_1c);
