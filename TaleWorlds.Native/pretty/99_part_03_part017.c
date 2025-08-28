@@ -570,7 +570,7 @@ uint32_t AdvancedDataStructureProcessor(uint64_t process_context, uint64_t* data
                     /* 检查元素标志 */
                     if ((*(uint32_t*)(*(uint64_t*)(search_index + structure_offset) + 0x100) & 0x400000) != 0) {
                         structure_offset = *(uint64_t*)(*(uint64_t*)(search_index + structure_offset) + 0x1b8);
-                        stack_pointer = &UNK_180a3c3e0system_null_ptrsystem_null_ptr;
+                        stack_pointer = &system_null_ptr;
                         stack_offset = 0;
                         string_buffer = (uint8_t*)0x0;
                         buffer_size = 0;
@@ -662,7 +662,7 @@ uint32_t AdvancedDataStructureProcessor(uint64_t process_context, uint64_t* data
                         stack_param_16 = 0;
                         FUN_1801eac40(data_structure, stack_buffer);
                         stack_pptr = &stack_data;
-                        stack_data = &UNK_180a3c3e0system_null_ptrsystem_null_ptr;
+                        stack_data = &system_null_ptr;
                         
                         if (stack_value != 0) {
                             /* 错误处理 */
@@ -748,13 +748,13 @@ uint32_t AdvancedDataStructureProcessor(uint64_t process_context, uint64_t* data
                         }
                         
                         /* 清理资源 */
-                        stack_pointer = &UNK_180a3c3e0system_null_ptrsystem_null_ptr;
+                        stack_pointer = &system_null_ptr;
                         if (string_buffer != (uint8_t*)0x0) {
                             FUN_18064e900();
                         }
                         string_buffer = (uint8_t*)0x0;
                         stack_offset = stack_offset & 0xffffffff00000000;
-                        stack_pointer = &UNK_18098bcb0;
+                        stack_pointer = &system_alt_null_ptr;
                     }
                     
                     /* 更新循环计数器 */
