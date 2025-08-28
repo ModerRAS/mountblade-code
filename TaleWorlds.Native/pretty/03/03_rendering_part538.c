@@ -920,9 +920,17 @@ void ProcessRenderBatch(void)
 
 
 
-// 函数: void FUN_180560c97(void)
-void FUN_180560c97(void)
-
+/*==============================================================================
+函数别名: RenderNoOperation - 渲染空操作
+原始函数: FUN_180560c97
+参数:
+  void
+返回:
+  void
+描述:
+  空操作函数，用于填充渲染管线中的占位符或调试目的。
+===============================================================================*/
+void RenderNoOperation(void)
 {
   return;
 }
@@ -931,19 +939,34 @@ void FUN_180560c97(void)
 
 
 
-// 函数: void FUN_180560ce0(longlong param_1,longlong param_2)
-void FUN_180560ce0(longlong param_1,longlong param_2)
-
+/*==============================================================================
+函数别名: TransferRenderContext - 转移渲染上下文
+原始函数: FUN_180560ce0
+参数:
+  source_context - 源渲染上下文
+  target_context - 目标渲染上下文
+返回:
+  void
+描述:
+  将渲染上下文从源对象转移到目标对象，处理资源所有权变更。
+===============================================================================*/
+void TransferRenderContext(RenderContext* source_context, RenderContext* target_context)
 {
-  if (*(longlong *)(param_2 + 0xb0) == 0) {
-    *(undefined8 *)(param_2 + 0xb0) = *(undefined8 *)(param_1 + 0xb0);
-    *(longlong *)(*(longlong *)(param_1 + 0xb0) + 0x200) = param_2;
-    *(undefined8 *)(param_1 + 0xb0) = 0;
+  // 检查目标是否已有渲染上下文
+  if (*(longlong *)(target_context + 0xb0) == 0) {
+    // 直接转移上下文
+    *(undefined8 *)(target_context + 0xb0) = *(undefined8 *)(source_context + 0xb0);
+    // 更新上下文的父对象引用
+    *(longlong *)(*(longlong *)(source_context + 0xb0) + 0x200) = target_context;
+    // 清空源的上下文引用
+    *(undefined8 *)(source_context + 0xb0) = 0;
     return;
   }
-  FUN_18053a220(&DAT_180c95f30,*(undefined8 *)(param_1 + 0xb0));
-  FUN_18053e3f0(*(undefined8 *)(param_1 + 0xb0));
-  *(undefined8 *)(param_1 + 0xb0) = 0;
+  
+  // 目标已有上下文，需要释放源的上下文
+  FUN_18053a220(&DAT_180c95f30, *(undefined8 *)(source_context + 0xb0));
+  FUN_18053e3f0(*(undefined8 *)(source_context + 0xb0));
+  *(undefined8 *)(source_context + 0xb0) = 0;
   return;
 }
 
