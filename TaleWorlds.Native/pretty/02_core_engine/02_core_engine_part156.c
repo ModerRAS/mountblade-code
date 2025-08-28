@@ -2,134 +2,134 @@
 
 // 02_core_engine_part156.c - 27 个函数
 
-// 函数: void FUN_18013d378(undefined8 param_1,ulonglong param_2)
-void FUN_18013d378(undefined8 param_1,ulonglong param_2)
+/**
+ * 处理游戏对象的动画数据
+ * @param object_ptr 对象指针
+ * @param animation_id 动画ID
+ */
+void process_object_animation_data(undefined8 object_ptr, ulonglong animation_id)
 
 {
-  float fVar1;
-  float fVar2;
-  short sVar3;
-  longlong lVar4;
-  undefined1 auVar5 [16];
-  int *piVar6;
-  ulonglong uVar7;
-  longlong lVar8;
-  int iVar9;
-  undefined8 *unaff_RBX;
-  longlong lVar10;
-  uint uVar11;
-  ulonglong unaff_RBP;
-  longlong unaff_RSI;
-  int unaff_EDI;
+  float position_x;
+  float position_y;
+  short animation_flag;
+  longlong data_offset;
+  undefined1 animation_data [16];
+  int *frame_count_ptr;
+  ulonglong current_offset;
+  longlong animation_length;
+  int current_frame;
+  undefined8 *object_table;
+  longlong timeline_offset;
+  uint animation_index;
+  ulonglong timeline_base;
+  longlong timeline_position;
+  int timeline_frame;
   longlong in_R10;
-  undefined8 *unaff_R12;
-  longlong unaff_R13;
-  int *unaff_R14;
-  longlong unaff_R15;
   undefined8 extraout_XMM0_Qa;
-  undefined8 uVar12;
-  ulonglong uVar13;
+  undefined8 texture_id;
+  ulonglong render_param;
   
 code_r0x00018013d378:
-  uVar7 = (longlong)(int)param_2 * 0x38 + in_R10;
+  current_offset = (longlong)(int)animation_id * 0x38 + in_R10;
   do {
     do {
       while( true ) {
-        if (uVar7 == 0) {
-          uVar7 = FUN_18013c940(*unaff_RBX);
-          auVar5 = SEXT816(unaff_R13) *
-                   SEXT816((longlong)(uVar7 - *(longlong *)(unaff_R15 + 0x2e30)));
-          *(int *)(unaff_RBX + 0x5c) = (int)(auVar5._8_8_ >> 4) - (auVar5._12_4_ >> 0x1f);
+        if (current_offset == 0) {
+          current_offset = allocate_animation_buffer(*object_table);
+          animation_data = SEXT816(timeline_position) *
+                   SEXT816((longlong)(current_offset - *(longlong *)(object_table + 0x2e30)));
+          *(int *)(object_table + 0x5c) = (int)(animation_data._8_8_ >> 4) - (animation_data._12_4_ >> 0x1f);
         }
-        fVar1 = *(float *)(unaff_RBX + 8);
-        fVar2 = *(float *)((longlong)unaff_RBX + 0x34);
-        *(float *)(uVar7 + 0x10) =
-             *(float *)((longlong)unaff_RBX + 0x44) - *(float *)(unaff_RBX + 7);
-        *(float *)(uVar7 + 0xc) = fVar1 - fVar2;
-        *(undefined8 *)(uVar7 + 0x14) = unaff_RBX[10];
-        *(undefined4 *)(uVar7 + 0x24) = *(undefined4 *)(unaff_RBX + 6);
-        uVar12 = *(undefined8 *)((longlong)unaff_RBX + 0x34);
-        *(undefined8 *)(uVar7 + 0x1c) = uVar12;
-        *(undefined4 *)(uVar7 + 0x28) = *(undefined4 *)(unaff_RBX + 0x83);
-        *(undefined4 *)(uVar7 + 0x2c) = *(undefined4 *)((longlong)unaff_RBX + 0x14);
-        *(undefined2 *)(uVar7 + 0x30) = *(undefined2 *)(unaff_RBX + 0x86);
-        *(undefined1 *)(uVar7 + 0x32) = *(undefined1 *)((longlong)unaff_RBX + 0xb2);
+        position_x = *(float *)(object_table + 8);
+        position_y = *(float *)((longlong)object_table + 0x34);
+        *(float *)(current_offset + 0x10) =
+             *(float *)((longlong)object_table + 0x44) - *(float *)(object_table + 7);
+        *(float *)(current_offset + 0xc) = position_x - position_y;
+        *(undefined8 *)(current_offset + 0x14) = object_table[10];
+        *(undefined4 *)(current_offset + 0x24) = *(undefined4 *)(object_table + 6);
+        texture_id = *(undefined8 *)((longlong)object_table + 0x34);
+        *(undefined8 *)(current_offset + 0x1c) = texture_id;
+        *(undefined4 *)(current_offset + 0x28) = *(undefined4 *)(object_table + 0x83);
+        *(undefined4 *)(current_offset + 0x2c) = *(undefined4 *)((longlong)object_table + 0x14);
+        *(undefined2 *)(current_offset + 0x30) = *(undefined2 *)(object_table + 0x86);
+        *(undefined1 *)(current_offset + 0x32) = *(undefined1 *)((longlong)object_table + 0xb2);
         do {
-          unaff_EDI = unaff_EDI + 1;
-          unaff_RSI = unaff_RSI + 8;
-          if (unaff_EDI == *(int *)(unaff_R15 + 0x1aa0)) {
-            iVar9 = (int)unaff_RBP;
-            if (*(ulonglong *)(unaff_R14 + 2) != unaff_RBP) {
-              iVar9 = *unaff_R14 + -1;
+          timeline_frame = timeline_frame + 1;
+          timeline_position = timeline_position + 8;
+          if (timeline_frame == *(int *)(object_table + 0x1aa0)) {
+            current_frame = (int)timeline_base;
+            if (*(ulonglong *)(frame_count_ptr + 2) != timeline_base) {
+              current_frame = *frame_count_ptr + -1;
             }
-            FUN_18011da00(uVar12,*(int *)(unaff_R15 + 0x2e28) * 0x60 + iVar9);
-            uVar7 = unaff_RBP;
-            if (*(int *)(unaff_R15 + 0x2e28) != (int)unaff_RBP) {
+            render_animation_frame(texture_id,*(int *)(object_table + 0x2e28) * 0x60 + current_frame);
+            current_offset = timeline_base;
+            if (*(int *)(object_table + 0x2e28) != (int)timeline_base) {
               do {
-                lVar4 = *(longlong *)(unaff_R15 + 0x2e30);
-                lVar10 = *(longlong *)(uVar7 + lVar4);
-                lVar8 = strstr(lVar10,&UNK_180a06808);
-                if (lVar8 != 0) {
-                  lVar10 = lVar8;
+                data_offset = *(longlong *)(object_table + 0x2e30);
+                timeline_offset = *(longlong *)(current_offset + data_offset);
+                animation_length = strstr(timeline_offset,&ANIMATION_START_MARKER);
+                if (animation_length != 0) {
+                  timeline_offset = animation_length;
                 }
-                uVar12 = FUN_180122210(extraout_XMM0_Qa,&UNK_180a06838,*unaff_R12,lVar10);
-                iVar9 = *(int *)(uVar7 + 0x24 + lVar4);
-                if ((iVar9 != 0) && (iVar9 != 0x11111111)) {
-                  uVar12 = FUN_180122210(uVar12,&UNK_180a06820,(int)*(float *)(uVar7 + 0x1c + lVar4)
-                                         ,(int)*(float *)(uVar7 + 0x20 + lVar4));
-                  FUN_180122210(uVar12,&UNK_180a06858,*(undefined4 *)(uVar7 + 0x24 + lVar4));
+                texture_id = render_texture_data(extraout_XMM0_Qa,&TEXTURE_FORMAT_TABLE,*object_table,timeline_offset);
+                current_frame = *(int *)(current_offset + 0x24 + data_offset);
+                if ((current_frame != 0) && (current_frame != 0x11111111)) {
+                  texture_id = render_texture_data(texture_id,&POSITION_DATA_TABLE,(int)*(float *)(current_offset + 0x1c + data_offset)
+                                         ,(int)*(float *)(current_offset + 0x20 + data_offset));
+                  render_texture_data(texture_id,&FRAME_DATA_TABLE,*(undefined4 *)(current_offset + 0x24 + data_offset));
                 }
-                fVar1 = *(float *)(uVar7 + 0xc + lVar4);
-                if (((fVar1 != 0.0) || (*(float *)(uVar7 + 0x10 + lVar4) != 0.0)) ||
-                   (*(int *)(uVar7 + 0x24 + lVar4) == 0x11111111)) {
-                  FUN_180122210(fVar1,&UNK_180a06848,(int)fVar1,
-                                (int)*(float *)(uVar7 + 0x10 + lVar4));
+                position_x = *(float *)(current_offset + 0xc + data_offset);
+                if (((position_x != 0.0) || (*(float *)(current_offset + 0x10 + data_offset) != 0.0)) ||
+                   (*(int *)(current_offset + 0x24 + data_offset) == 0x11111111)) {
+                  render_texture_data(position_x,&COORDINATE_DATA_TABLE,(int)position_x,
+                                (int)*(float *)(current_offset + 0x10 + data_offset));
                 }
-                fVar1 = *(float *)(uVar7 + 0x14 + lVar4);
-                uVar13 = (ulonglong)(uint)fVar1;
-                if ((fVar1 != 0.0) || (*(float *)(uVar7 + 0x18 + lVar4) != 0.0)) {
-                  uVar13 = FUN_180122210(uVar13,&UNK_180a06880,(int)fVar1,
-                                         (int)*(float *)(uVar7 + 0x18 + lVar4));
+                position_x = *(float *)(current_offset + 0x14 + data_offset);
+                render_param = (ulonglong)(uint)position_x;
+                if ((position_x != 0.0) || (*(float *)(current_offset + 0x18 + data_offset) != 0.0)) {
+                  render_param = render_texture_data(render_param,&RENDER_PARAMS_TABLE,(int)position_x,
+                                         (int)*(float *)(current_offset + 0x18 + data_offset));
                 }
-                uVar12 = FUN_180122210(uVar13,&UNK_180a06870,*(undefined1 *)(uVar7 + 0x32 + lVar4));
-                iVar9 = *(int *)(uVar7 + 0x28 + lVar4);
-                if (iVar9 != 0) {
-                  sVar3 = *(short *)(uVar7 + 0x30 + lVar4);
-                  if (sVar3 == -1) {
-                    uVar12 = FUN_180122210(uVar12,&UNK_180a068a8);
+                texture_id = render_texture_data(render_param,&TEXTURE_PARAMS_TABLE,*(undefined1 *)(current_offset + 0x32 + data_offset));
+                current_frame = *(int *)(current_offset + 0x28 + data_offset);
+                if (current_frame != 0) {
+                  animation_flag = *(short *)(current_offset + 0x30 + data_offset);
+                  if (animation_flag == -1) {
+                    texture_id = render_texture_data(texture_id,&ANIMATION_FLAG_TABLE);
                   }
                   else {
-                    uVar12 = FUN_180122210(uVar12,&UNK_180a06890,iVar9,(int)sVar3);
+                    texture_id = render_texture_data(texture_id,&FRAME_INDEX_TABLE,current_frame,(int)animation_flag);
                   }
-                  if (*(int *)(uVar7 + 0x2c + lVar4) != 0) {
-                    uVar12 = FUN_180122210(uVar12,&UNK_180a068b8);
+                  if (*(int *)(current_offset + 0x2c + data_offset) != 0) {
+                    texture_id = render_texture_data(texture_id,&RENDER_STATE_TABLE);
                   }
                 }
-                FUN_180122210(uVar12,&DAT_1809fcc18);
-                uVar11 = (int)unaff_RBP + 1;
-                unaff_RBP = (ulonglong)uVar11;
-                uVar7 = uVar7 + 0x38;
-              } while (uVar11 != *(uint *)(unaff_R15 + 0x2e28));
+                render_texture_data(texture_id,&GLOBAL_RENDER_CONTEXT);
+                animation_index = (int)timeline_base + 1;
+                timeline_base = (ulonglong)animation_index;
+                current_offset = current_offset + 0x38;
+              } while (animation_index != *(uint *)(object_table + 0x2e28));
             }
             return;
           }
-          unaff_RBX = *(undefined8 **)(unaff_RSI + *(longlong *)(unaff_R15 + 0x1aa8));
-        } while ((*(uint *)((longlong)unaff_RBX + 0xc) & 0x100) != 0);
-        if (*(int *)(unaff_RBX + 0x5c) == -1) break;
-        uVar7 = (longlong)*(int *)(unaff_RBX + 0x5c) * 0x38 + *(longlong *)(unaff_R15 + 0x2e30);
+          object_table = *(undefined8 **)(timeline_position + *(longlong *)(object_table + 0x1aa8));
+        } while ((*(uint *)((longlong)object_table + 0xc) & 0x100) != 0);
+        if (*(int *)(object_table + 0x5c) == -1) break;
+        current_offset = (longlong)*(int *)(object_table + 0x5c) * 0x38 + *(longlong *)(object_table + 0x2e30);
       }
-      param_2 = unaff_RBP & 0xffffffff;
-      uVar7 = unaff_RBP;
-    } while (*(int *)(_DAT_180c8a9b0 + 0x2e28) == 0);
-    in_R10 = *(longlong *)(_DAT_180c8a9b0 + 0x2e30);
-    piVar6 = (int *)(in_R10 + 8);
-    uVar13 = unaff_RBP;
+      animation_id = timeline_base & 0xffffffff;
+      current_offset = timeline_base;
+    } while (*(int *)(GLOBAL_ENGINE_CONTEXT + 0x2e28) == 0);
+    in_R10 = *(longlong *)(GLOBAL_ENGINE_CONTEXT + 0x2e30);
+    frame_count_ptr = (int *)(in_R10 + 8);
+    render_param = timeline_base;
     do {
-      if (*piVar6 == *(int *)(unaff_RBX + 1)) goto code_r0x00018013d378;
-      param_2 = (ulonglong)((int)param_2 + 1);
-      uVar13 = uVar13 + 1;
-      piVar6 = piVar6 + 0xe;
-    } while (uVar13 != (longlong)*(int *)(_DAT_180c8a9b0 + 0x2e28));
+      if (*frame_count_ptr == *(int *)(object_table + 1)) goto code_r0x00018013d378;
+      animation_id = (ulonglong)((int)animation_id + 1);
+      render_param = render_param + 1;
+      frame_count_ptr = frame_count_ptr + 0xe;
+    } while (render_param != (longlong)*(int *)(GLOBAL_ENGINE_CONTEXT + 0x2e28));
   } while( true );
 }
 

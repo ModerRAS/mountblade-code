@@ -428,81 +428,90 @@ void manage_game_object_links(longlong context, longlong obj_data)
 
 
 
-// 函数: void FUN_180136850(longlong param_1,undefined4 *param_2)
-void FUN_180136850(longlong param_1,undefined4 *param_2)
+/**
+ * 处理游戏对象创建和初始化
+ * @param context 上下文指针
+ * @param obj_ptr 对象指针
+ */
+void create_and_initialize_game_object(longlong context, undefined4 *obj_ptr)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
-  undefined4 uVar3;
-  longlong lVar4;
-  undefined4 *puVar5;
-  undefined4 *puVar6;
-  uint uVar7;
-  undefined4 *puVar8;
-  undefined1 auStackX_10 [8];
-  longlong lStackX_18;
-  undefined1 *puStackX_20;
+  longlong *link_ptr;                // 链接指针
+  longlong context_data;             // 上下文数据
+  undefined4 obj_type;               // 对象类型
+  longlong offset_val;               // 偏移值
+  undefined4 *new_obj_ptr;           // 新对象指针
+  undefined4 *temp_obj_ptr;          // 临时对象指针
+  uint obj_flags;                    // 对象标志
+  undefined4 *iter_obj_ptr;          // 迭代对象指针
+  undefined1 stack_buffer[8];        // 栈缓冲区
+  longlong stack_obj_handle;         // 栈对象句柄
+  undefined1 *stack_data_ptr;        // 栈数据指针
   
-  lVar2 = *(longlong *)(param_2 + 2);
-  if ((lVar2 == 0) || ((*(byte *)(param_2 + 0x28) & 0x20) != 0)) {
-    uVar3 = FUN_1801358c0(param_1);
+  context_data = *(longlong *)(obj_ptr + 2);
+  
+  // 如果对象不存在或已有特殊标志，则创建新对象
+  if ((context_data == 0) || ((*(byte *)(obj_ptr + 0x28) & 0x20) != 0)) {
+    obj_type = FUN_1801358c0(context);
     if (_DAT_180c8a9b0 != 0) {
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
     }
-    lStackX_18 = func_0x000180120ce0(0xa8,_DAT_180c8a9a8);
-    puStackX_20 = auStackX_10;
-    puVar6 = (undefined4 *)0x0;
-    puVar5 = puVar6;
-    if (lStackX_18 != 0) {
-      puVar5 = (undefined4 *)FUN_180136a10(lStackX_18,uVar3);
+    stack_obj_handle = func_0x000180120ce0(0xa8, _DAT_180c8a9a8);
+    stack_data_ptr = stack_buffer;
+    temp_obj_ptr = (undefined4 *)0x0;
+    new_obj_ptr = temp_obj_ptr;
+    if (stack_obj_handle != 0) {
+      new_obj_ptr = (undefined4 *)FUN_180136a10(stack_obj_handle, obj_type);
     }
-    *(byte *)(puVar5 + 0x28) = *(byte *)(puVar5 + 0x28) | 3;
-    FUN_180122160(*(undefined8 *)(param_1 + 0x2df8),*puVar5,puVar5);
-    FUN_180136f60(puVar5,param_2);
-    FUN_18013bf60(*param_2,*puVar5);
-    puVar8 = puVar6;
-    if (0 < (int)puVar5[8]) {
+    *(byte *)(new_obj_ptr + 0x28) = *(byte *)(new_obj_ptr + 0x28) | 3;
+    FUN_180122160(*(undefined8 *)(context + 0x2df8), *new_obj_ptr, new_obj_ptr);
+    FUN_180136f60(new_obj_ptr, obj_ptr);
+    FUN_18013bf60(*obj_ptr, *new_obj_ptr);
+    iter_obj_ptr = temp_obj_ptr;
+    if (0 < (int)new_obj_ptr[8]) {
       do {
-        lVar2 = *(longlong *)((longlong)puVar8 + *(longlong *)(puVar5 + 10));
-        *(undefined8 *)(lVar2 + 0x398) = 0;
-        plVar1 = (longlong *)(lVar2 + 0x3b8);
-        *plVar1 = lVar2;
-        *(longlong *)(lVar2 + 0x3b0) = lVar2;
-        *(longlong *)(lVar2 + 0x3a8) = lVar2;
-        *(longlong *)(lVar2 + 0x3a0) = lVar2;
-        uVar7 = *(uint *)(lVar2 + 0xc);
-        while ((uVar7 & 0x800000) != 0) {
-          lVar2 = *(longlong *)(lVar2 + 0x398);
-          *plVar1 = lVar2;
-          uVar7 = *(uint *)(lVar2 + 0xc);
+        context_data = *(longlong *)((longlong)iter_obj_ptr + *(longlong *)(new_obj_ptr + 10));
+        *(undefined8 *)(context_data + 0x398) = 0;
+        link_ptr = (longlong *)(context_data + 0x3b8);
+        *link_ptr = context_data;
+        *(longlong *)(context_data + 0x3b0) = context_data;
+        *(longlong *)(context_data + 0x3a8) = context_data;
+        *(longlong *)(context_data + 0x3a0) = context_data;
+        obj_flags = *(uint *)(context_data + 0xc);
+        while ((obj_flags & 0x800000) != 0) {
+          context_data = *(longlong *)(context_data + 0x398);
+          *link_ptr = context_data;
+          obj_flags = *(uint *)(context_data + 0xc);
         }
-        uVar7 = (int)puVar6 + 1;
-        puVar6 = (undefined4 *)(ulonglong)uVar7;
-        puVar8 = puVar8 + 2;
-      } while ((int)uVar7 < (int)puVar5[8]);
+        obj_flags = (int)temp_obj_ptr + 1;
+        temp_obj_ptr = (undefined4 *)(ulonglong)obj_flags;
+        iter_obj_ptr = iter_obj_ptr + 2;
+      } while ((int)obj_flags < (int)new_obj_ptr[8]);
     }
-    *(byte *)((longlong)puVar5 + 0xa1) = *(byte *)((longlong)puVar5 + 0xa1) | 8;
+    *(byte *)((longlong)new_obj_ptr + 0xa1) = *(byte *)((longlong)new_obj_ptr + 0xa1) | 8;
   }
   else {
-    puVar5 = *(undefined4 **)(lVar2 + 0x10);
-    lVar4 = 0x10;
-    if (puVar5 != param_2) {
-      lVar4 = 0x18;
+    // 处理现有对象的链接关系
+    new_obj_ptr = *(undefined4 **)(context_data + 0x10);
+    offset_val = 0x10;
+    if (new_obj_ptr != obj_ptr) {
+      offset_val = 0x18;
     }
-    *(undefined8 *)(lVar4 + lVar2) = 0;
-    uVar7 = 0x18;
-    if (puVar5 != param_2) {
-      uVar7 = 0x10;
+    *(undefined8 *)(offset_val + context_data) = 0;
+    obj_flags = 0x18;
+    if (new_obj_ptr != obj_ptr) {
+      obj_flags = 0x10;
     }
-    FUN_18013a3d0(param_1,*(longlong *)(param_2 + 2),
-                  *(undefined8 *)((ulonglong)uVar7 + *(longlong *)(param_2 + 2)),puVar5,
+    FUN_18013a3d0(context, *(longlong *)(obj_ptr + 2),
+                  *(undefined8 *)((ulonglong)obj_flags + *(longlong *)(obj_ptr + 2)), new_obj_ptr,
                   0xfffffffffffffffe);
-    *(byte *)(*(longlong *)(param_2 + 2) + 0xa0) = *(byte *)(*(longlong *)(param_2 + 2) + 0xa0) | 2;
-    *(undefined8 *)(param_2 + 2) = 0;
-    *(byte *)(param_2 + 0x28) = *(byte *)(param_2 + 0x28) | 1;
-    *(byte *)((longlong)param_2 + 0xa1) = *(byte *)((longlong)param_2 + 0xa1) | 8;
+    *(byte *)(*(longlong *)(obj_ptr + 2) + 0xa0) = *(byte *)(*(longlong *)(obj_ptr + 2) + 0xa0) | 2;
+    *(undefined8 *)(obj_ptr + 2) = 0;
+    *(byte *)(obj_ptr + 0x28) = *(byte *)(obj_ptr + 0x28) | 1;
+    *(byte *)((longlong)obj_ptr + 0xa1) = *(byte *)((longlong)obj_ptr + 0xa1) | 8;
   }
+  
+  // 更新全局时间值
   if (*(float *)(_DAT_180c8a9b0 + 0x2e04) <= 0.0) {
     *(undefined4 *)(_DAT_180c8a9b0 + 0x2e04) = *(undefined4 *)(_DAT_180c8a9b0 + 0x1c);
   }
