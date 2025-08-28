@@ -965,7 +965,7 @@ void FUN_180058c50(long long param_1)
 void FUN_18004bb60(long long param_1)
 {
     // 调用资源释放相关函数
-    FUN_180057010(param_1 + 0x60);
+    InitializationSystem_InitConfig(param_1 + 0x60);
     
     return;
 }
@@ -981,7 +981,7 @@ void FUN_18004bb60(long long param_1)
 void FUN_180058c60(long long param_1)
 {
     // 调用状态更新相关函数
-    FUN_180058370(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
+    InitializationSystem_ManageState(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
     
     return;
 }
