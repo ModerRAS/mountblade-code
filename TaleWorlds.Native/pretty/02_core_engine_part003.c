@@ -1797,7 +1797,7 @@ void core_engine_data_processor_type3(void)
     // 设置数据处理器配置
     parent_node[6] = 0x406be72011d07d37;
     parent_node[7] = 0x71876af946c867ab;
-    parent_node[8] = &global_var_5032_ptr;
+    parent_node[8] = (uint64_t)&global_var_5032_ptr;
     parent_node[9] = 0;
     parent_node[10] = callback_function;
     
