@@ -126,11 +126,15 @@
 // 系统全局变量
 #define system_file_counter _DAT_180c8ed60         // 系统文件计数器
 #define system_handle_counter _DAT_180c8ed64       // 系统句柄计数器
-#define system_debug_flag system_debug_flag             // 系统调试标志
-#define system_debug_flag2 system_debug_flag2            // 系统调试标志2
-#define system_module_state system_module_state         // 系统模块状态
-#define system_message_context system_message_context      // 系统消息上下文
-#define system_main_module_state system_main_module_state    // 系统主模块状态
+#define system_debug_flag DAT_180c82860             // 系统调试标志
+#define system_debug_flag2 DAT_180c82842            // 系统调试标志2
+#define system_module_state _DAT_180c86908         // 系统模块状态
+#define system_message_context _DAT_180c86928      // 系统消息上下文
+#define system_main_module_state _DAT_180c86870    // 系统主模块状态
+
+// 系统函数地址
+#define system_config_func1 0x180627c06            // 系统配置函数1
+#define system_config_func2 0x180627c1a            // 系统配置函数2
 
 // ============================================================================
 // 核心函数实现
@@ -913,7 +917,7 @@ void FileDataWriter(uint64_t param_1)
             fread(&iStack_d8,4,1,lVar1);
             if (iStack_d8 < 9) {
                 if (iStack_d8 + 1 != 0) {
-                    uVar2 = SystemMemoryManager(_DAT_180c8ed18,(longlong)(iStack_d8 + 1),3);
+                    uVar2 = SystemMemoryManager(system_memory_pool_ptr,(longlong)(iStack_d8 + 1),3);
                 }
                 // WARNING: Subroutine does not return
                 memset(uVar2,0,(longlong)(iStack_d8 + 1));
@@ -1237,7 +1241,7 @@ longlong StringPathProcessor(longlong param_1, longlong param_2)
     uVar1 = *(uint *)(param_2 + 0x2c0);
     uVar5 = (ulonglong)uVar1;
     if (*(longlong *)(param_2 + 0x2b8) != 0) {
-        puStack_30 = (void *)0x180627c06;
+        puStack_30 = (void *)system_config_func1;
         SystemConfigurator(param_1,uVar5);
     }
     if (uVar1 != 0) {

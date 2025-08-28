@@ -64,7 +64,7 @@
 #define SYSTEM_POOL_SIZE 0x200              // 系统内存池大小
 
 // 系统状态标志常量
-#define SYSTEM_FLAG_INITIALIZED 0x00000001   // 系统已初始化标志
+#define SYSTEM_FLAG_INITIALIZED 0x00000004   // 系统已初始化标志 (与数据定义文件保持一致)
 #define SYSTEM_FLAG_ACTIVE 0x00000002        // 系统活动状态标志
 #define SYSTEM_FLAG_ERROR 0x00000004         // 系统错误状态标志
 #define SYSTEM_FLAG_SUSPENDED 0x00000008     // 系统暂停状态标志
@@ -81,7 +81,7 @@
 #define COMPONENT_STATE_DESTROYED 0x06      // 组件已销毁状态
 
 // 系统错误代码常量
-#define SYSTEM_SUCCESS 0x00000000           // 系统操作成功
+#define SYSTEM_SUCCESS 0x00000000           // 系统操作成功 (与数据定义文件保持一致)
 #define SYSTEM_ERROR_INIT_FAILED 0xFFFF0001 // 系统初始化失败
 #define SYSTEM_ERROR_CONFIG_INVALID 0xFFFF0002 // 系统配置无效
 #define SYSTEM_ERROR_RESOURCE_BUSY 0xFFFF0003  // 系统资源忙
@@ -129,7 +129,7 @@ typedef enum {
     SYSTEM_STATE_INITIALIZED = 2,           // 系统已初始化状态
     SYSTEM_STATE_RUNNING = 3,                // 系统运行中状态
     SYSTEM_STATE_PAUSED = 4,                // 系统暂停状态
-    SYSTEM_STATE_ERROR = 5,                  // 系统错误状态
+    SYSTEM_STATE_FAULT = 5,                  // 系统故障状态 (避免与数据定义文件冲突)
     SYSTEM_STATE_SHUTDOWN = 6,                // 系统关闭状态
     SYSTEM_STATE_MAINTENANCE = 7              // 系统维护状态
 } SystemState;
@@ -281,7 +281,7 @@ int32_t InitializationSystem_ComponentInitializer(void);
  * @param param_1 组件参数指针
  * @return void 无返回值
  */
-void FUN_180058c20(longlong param_1);
+void FUN_180058c20(long long param_1);
 
 /**
  * @brief 系统配置处理器
@@ -306,7 +306,7 @@ int32_t InitializationSystem_ConfigProcessor(void);
  * @param param_1 配置参数指针
  * @return void 无返回值
  */
-void FUN_18004bb30(longlong param_1);
+void FUN_18004bb30(long long param_1);
 
 /**
  * @brief 系统资源管理器
@@ -379,7 +379,7 @@ void FUN_18064e900(void);
  * @param param_1 配置参数指针
  * @return void 无返回值
  */
-void FUN_180057010(longlong param_1);
+void FUN_180057010(long long param_1);
 
 /* ============================================================================
  * 辅助功能函数声明
@@ -874,7 +874,7 @@ void FUN_18004bb30(longlong param_1)
  * @param param_1 资源参数指针
  * @return void 无返回值
  */
-void FUN_180058c30(longlong param_1)
+void FUN_180058c30(long long param_1)
 {
     // 调用资源管理相关函数
     FUN_1800582b0(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
@@ -890,7 +890,7 @@ void FUN_180058c30(longlong param_1)
  * @param param_1 监控参数指针
  * @return void 无返回值
  */
-void FUN_18004bb40(longlong param_1)
+void FUN_18004bb40(long long param_1)
 {
     // 调用状态监控相关函数
     FUN_180058370(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
@@ -906,7 +906,7 @@ void FUN_18004bb40(longlong param_1)
  * @param param_1 错误参数指针
  * @return void 无返回值
  */
-void FUN_180058c40(longlong param_1)
+void FUN_180058c40(long long param_1)
 {
     // 调用错误处理相关函数
     FUN_180058420(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
@@ -922,7 +922,7 @@ void FUN_180058c40(longlong param_1)
  * @param param_1 验证参数指针
  * @return void 无返回值
  */
-void FUN_18004bb50(longlong param_1)
+void FUN_18004bb50(long long param_1)
 {
     // 调用配置验证相关函数
     FUN_180057010(param_1 + 0x60);
@@ -938,7 +938,7 @@ void FUN_18004bb50(longlong param_1)
  * @param param_1 分配参数指针
  * @return void 无返回值
  */
-void FUN_180058c50(longlong param_1)
+void FUN_180058c50(long long param_1)
 {
     // 调用资源分配相关函数
     FUN_1800582b0(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
@@ -954,7 +954,7 @@ void FUN_180058c50(longlong param_1)
  * @param param_1 释放参数指针
  * @return void 无返回值
  */
-void FUN_18004bb60(longlong param_1)
+void FUN_18004bb60(long long param_1)
 {
     // 调用资源释放相关函数
     FUN_180057010(param_1 + 0x60);
@@ -970,7 +970,7 @@ void FUN_18004bb60(longlong param_1)
  * @param param_1 更新参数指针
  * @return void 无返回值
  */
-void FUN_180058c60(longlong param_1)
+void FUN_180058c60(long long param_1)
 {
     // 调用状态更新相关函数
     FUN_180058370(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
@@ -986,7 +986,7 @@ void FUN_180058c60(longlong param_1)
  * @param param_1 记录参数指针
  * @return void 无返回值
  */
-void FUN_18004bb70(longlong param_1)
+void FUN_18004bb70(long long param_1)
 {
     // 调用事件记录相关函数
     FUN_180058420(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
@@ -1002,7 +1002,7 @@ void FUN_18004bb70(longlong param_1)
  * @param param_1 初始化参数指针
  * @return void 无返回值
  */
-void FUN_180058c70(longlong param_1)
+void FUN_180058c70(long long param_1)
 {
     // 调用内部初始化相关函数
     FUN_1800582b0(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
@@ -1018,7 +1018,7 @@ void FUN_180058c70(longlong param_1)
  * @param param_1 清理参数指针
  * @return void 无返回值
  */
-void FUN_18004bb80(longlong param_1)
+void FUN_18004bb80(long long param_1)
 {
     // 调用清理相关函数
     FUN_180057010(param_1 + 0x60);
@@ -1034,7 +1034,7 @@ void FUN_18004bb80(longlong param_1)
  * @param param_1 验证参数指针
  * @return void 无返回值
  */
-void FUN_180058c80(longlong param_1)
+void FUN_180058c80(long long param_1)
 {
     // 调用状态验证相关函数
     FUN_180058370(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
@@ -1050,7 +1050,7 @@ void FUN_180058c80(longlong param_1)
  * @param param_1 处理参数指针
  * @return void 无返回值
  */
-void FUN_18004bb90(longlong param_1)
+void FUN_18004bb90(long long param_1)
 {
     // 调用错误处理相关函数
     FUN_180058420(param_1, *(uint64_t *)(param_1 + 0x10), 0, 0, 0xfffffffffffffffe);
@@ -1088,7 +1088,7 @@ void FUN_18064e900(void);
  * @param param_1 配置参数指针
  * @return void 无返回值
  */
-void FUN_180057010(longlong param_1);
+void FUN_180057010(long long param_1);
 
 /**
  * @brief 资源管理函数
@@ -1102,7 +1102,7 @@ void FUN_180057010(longlong param_1);
  * @param param_5 资源参数5
  * @return void 无返回值
  */
-void FUN_1800582b0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5);
+void FUN_1800582b0(long long param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5);
 
 /**
  * @brief 状态管理函数
@@ -1116,7 +1116,7 @@ void FUN_1800582b0(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
  * @param param_5 状态参数5
  * @return void 无返回值
  */
-void FUN_180058370(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5);
+void FUN_180058370(long long param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5);
 
 /**
  * @brief 错误处理函数
@@ -1130,7 +1130,7 @@ void FUN_180058370(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_
  * @param param_5 错误参数5
  * @return void 无返回值
  */
-void FUN_180058420(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5);
+void FUN_180058420(long long param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5);
 
 /* ============================================================================
  * 辅助功能函数实现

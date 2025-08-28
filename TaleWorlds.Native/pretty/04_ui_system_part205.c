@@ -90,6 +90,144 @@ typedef struct {
 #define UI_HandleInitError FUN_180789798
 #define UI_ProcessData FUN_1807897b0
 
+// 简化实现：剩余的FUN_函数调用
+// 这些函数保持原始实现，但在后续优化中需要进一步完善
+
+/**
+ * UI_BatchProcess - UI系统批量处理
+ * 
+ * 批量处理UI系统中的操作和资源
+ * 
+ * @param system_ptr 系统指针
+ * @return 处理结果：0=成功
+ * 
+ * 原始实现：FUN_180789283
+ */
+uint64_t UI_BatchProcess(longlong system_ptr)
+{
+    uint64_t *current_node;
+    uint64_t *list_head;
+    
+    // 批量处理渲染资源
+    if (*(longlong *)(system_ptr + UI_OFFSET_RENDER) != 0) {
+        list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+        for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
+            // 调用渲染处理函数
+            (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((longlong)current_node + 0x24));
+        }
+    }
+    
+    return UI_SYSTEM_SUCCESS;
+}
+
+/**
+ * UI_ProcessLinkedList - UI系统链表处理
+ * 
+ * 处理UI系统中的链表结构
+ * 
+ * @param system_ptr 系统指针
+ * @return 处理结果：0=成功
+ * 
+ * 原始实现：FUN_180789292
+ */
+uint64_t UI_ProcessLinkedList(longlong system_ptr)
+{
+    uint64_t *current_node;
+    uint64_t *list_head;
+    
+    // 处理链表结构
+    list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+    for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
+        // 调用链表处理函数
+        (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((longlong)current_node + 0x24));
+    }
+    
+    return UI_SYSTEM_SUCCESS;
+}
+
+/**
+ * UI_EmptyFunction2 - 空函数2
+ * 
+ * 占位函数，不执行任何操作
+ * 
+ * 原始实现：FUN_1807892d1
+ */
+void UI_EmptyFunction2(void)
+{
+    return;
+}
+
+/**
+ * UI_EmptyFunction3 - 空函数3
+ * 
+ * 占位函数，不执行任何操作
+ * 
+ * 原始实现：FUN_1807892d6
+ */
+void UI_EmptyFunction3(void)
+{
+    return;
+}
+
+/**
+ * UI_CheckStatus - UI系统状态检查
+ * 
+ * 检查UI系统的状态和配置
+ * 
+ * @param system_ptr 系统指针
+ * @return 检查结果：0=正常，其他=错误代码
+ * 
+ * 原始实现：FUN_180789300
+ */
+uint64_t UI_CheckStatus(longlong system_ptr)
+{
+    uint64_t result;
+    
+    // 检查状态函数是否存在
+    if ((*(code **)(system_ptr + 0x370) != (code *)0x0) &&
+        (result = (**(code **)(system_ptr + 0x370))(system_ptr + 8), (int)result != 0)) {
+        return result;
+    }
+    
+    return UI_SYSTEM_SUCCESS;
+}
+
+/**
+ * UI_RecursiveProcess - UI系统递归处理
+ * 
+ * 递归处理UI系统中的数据和结构
+ * 
+ * @param data_array 数据数组
+ * @param base_value 基础值
+ * @param step_size 步长
+ * @param data_size 数据大小
+ * @param mask_value 掩码值
+ * 
+ * 原始实现：FUN_180789360
+ */
+void UI_RecursiveProcess(uint *data_array, uint base_value, int step_size, int data_size, uint mask_value)
+{
+    int sub_size;
+    
+    if (data_size != 1) {
+        do {
+            if (data_size == 2) {
+                data_array[1] = base_value + step_size & mask_value;
+                break;
+            }
+            sub_size = (int)((data_size >> 0x1f & 3U) + data_size) >> 2;
+            UI_RecursiveProcess(data_array, base_value, step_size * 2, data_size / 2, mask_value);
+            UI_RecursiveProcess(data_array + data_size / 2, base_value + step_size, step_size * 4, sub_size, mask_value);
+            base_value = base_value + (data_size + -1) * step_size;
+            data_array = data_array + sub_size * 3;
+            data_size = sub_size;
+            step_size = step_size * 4;
+        } while (sub_size != 1);
+    }
+    *data_array = base_value & mask_value;
+    return;
+}
+
 /**
  * UI_EmptyFunction - 空函数
  * 
@@ -664,32 +802,49 @@ uint64_t UI_ResetSystem2(longlong data_ptr, longlong system_ptr)
 
 
 
-uint64_t FUN_18078923c(void)
-
+/**
+ * UI_ClearSystem - UI系统清理
+ * 
+ * 清理UI系统所有资源和状态，恢复到初始状态
+ * 
+ * @param system_ptr 系统指针
+ * @param resource_count 资源数量
+ * @return 清理结果：0=成功
+ * 
+ * 原始实现：FUN_18078923c
+ */
+uint64_t UI_ClearSystem(longlong system_ptr, longlong resource_count)
 {
-  longlong lVar1;
-  uint64_t *puVar2;
-  longlong unaff_RBX;
-  uint64_t *puVar3;
-  longlong lVar4;
-  longlong unaff_R14;
-  
-  lVar4 = 0;
-  do {
-    lVar1 = *(longlong *)(*(longlong *)(*(longlong *)(unaff_RBX + 0x48) + 0x127e0) + lVar4 * 8);
-    if (*(longlong *)(lVar1 + 0x18) != 0) {
-      (**(code **)(unaff_RBX + 0x398))(unaff_RBX + 8);
-      *(uint64_t *)(lVar1 + 0x18) = 0;
+    longlong resource_ptr;
+    uint64_t *current_node;
+    longlong index;
+    
+    // 清理所有资源
+    index = 0;
+    do {
+        // 获取资源指针
+        resource_ptr = *(longlong *)(*(longlong *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127e0) + index * 8);
+        
+        // 如果资源存在则清理
+        if (*(longlong *)(resource_ptr + 0x18) != 0) {
+            // 调用资源清理函数
+            (**(code **)(system_ptr + 0x398))(system_ptr + 8);
+            *(uint64_t *)(resource_ptr + 0x18) = 0;
+        }
+        
+        index = index + 1;
+    } while (index < resource_count);
+    
+    // 清理渲染资源
+    if (*(longlong *)(system_ptr + UI_OFFSET_RENDER) != 0) {
+        uint64_t *list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+        for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
+            // 调用渲染清理函数
+            (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((longlong)current_node + 0x24));
+        }
     }
-    lVar4 = lVar4 + 1;
-  } while (lVar4 < unaff_R14);
-  if (*(longlong *)(unaff_RBX + 0x3b0) != 0) {
-    puVar3 = (uint64_t *)(*(longlong *)(unaff_RBX + 0x48) + 0x6c0);
-    for (puVar2 = (uint64_t *)*puVar3; puVar2 != puVar3; puVar2 = (uint64_t *)*puVar2) {
-      (**(code **)(unaff_RBX + 0x3b0))(unaff_RBX + 8,*(int32_t *)((longlong)puVar2 + 0x24));
-    }
-  }
-  return 0;
+    
+    return UI_SYSTEM_SUCCESS;
 }
 
 
