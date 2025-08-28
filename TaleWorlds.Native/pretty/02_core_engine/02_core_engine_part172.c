@@ -441,8 +441,12 @@ LAB_180157b3b:
 // WARNING: Removing unreachable block (ram,0x000180157e88)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// 函数: 创建引擎定时器事件
+// 功能: 创建一个定时器事件对象
+// 参数: param_1 - 引擎上下文, param_2 - 输出参数, param_3 - 定时器ID, param_4 - 定时器参数, param_5 - 标志位
+// 返回: 定时器事件对象指针
 longlong *
-FUN_180157b70(longlong *param_1,longlong *param_2,int param_3,undefined8 param_4,char param_5)
+EngineTimerEvent_Create(longlong *param_1,longlong *param_2,int param_3,undefined8 param_4,char param_5)
 
 {
   longlong *plVar1;
@@ -470,11 +474,11 @@ FUN_180157b70(longlong *param_1,longlong *param_2,int param_3,undefined8 param_4
   undefined8 uStack_48;
   longlong *plStack_40;
   
-  plVar2 = _DAT_180c86878;
+  plVar2 = g_pEngineContext;  // 获取引擎全局上下文
   uStack_48 = 0xfffffffffffffffe;
   plStackX_8 = param_1;
   plStackX_10 = param_2;
-  if ((char)_DAT_180c86878[0x42] != '\0') {
+  if ((char)g_pEngineContext[0x42] != '\0') {
     plVar2 = (longlong *)_DAT_180c86878[0x3d];
     *param_2 = (longlong)plVar2;
     if (plVar2 == (longlong *)0x0) {
@@ -491,8 +495,8 @@ FUN_180157b70(longlong *param_1,longlong *param_2,int param_3,undefined8 param_4
   }
   iVar5 = *(int *)(plVar2[0x3f] + 0x50);
   if (iVar5 <= param_3) {
-    FUN_1801582f0(plVar2,&ppuStack_90,
-                  (longlong)(param_3 - iVar5) * 0x60 + *(longlong *)(plVar2[0x3f] + 0x30));
+    TimerManager_ExpandPool(plVar2,&ppuStack_90,
+                                 (longlong)(param_3 - iVar5) * 0x60 + *(longlong *)(plVar2[0x3f] + 0x30));  // 扩展定时器池
     *param_2 = (longlong)ppuStack_90;
     ppuStack_90 = (undefined **)0x0;
     goto LAB_180157eb5;
@@ -596,9 +600,13 @@ LAB_180157eb5:
 // WARNING: Removing unreachable block (ram,0x00018015807b)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// 函数: 创建引擎渲染事件
+// 功能: 创建一个渲染相关的事件对象
+// 参数: param_1 - 引擎上下文, param_2 - 输出参数, param_3 - 渲染目标, param_4 - 渲染参数1, param_5 - 渲染参数2, param_6 - 渲染标志, param_7 - 渲染模式
+// 返回: 渲染事件对象指针
 longlong *
-FUN_180157ef0(longlong *param_1,longlong *param_2,undefined8 param_3,longlong param_4,
-             longlong param_5,undefined8 param_6,undefined1 param_7)
+EngineRenderEvent_Create(longlong *param_1,longlong *param_2,undefined8 param_3,longlong param_4,
+                           longlong param_5,undefined8 param_6,undefined1 param_7)
 
 {
   longlong *plVar1;
@@ -620,11 +628,11 @@ FUN_180157ef0(longlong *param_1,longlong *param_2,undefined8 param_3,longlong pa
   longlong *plStack_60;
   undefined1 auStack_58 [32];
   
-  plVar2 = _DAT_180c86878;
+  plVar2 = g_pEngineContext;  // 获取引擎全局上下文
   uStack_68 = 0xfffffffffffffffe;
   plStackX_8 = param_1;
   plStackX_10 = param_2;
-  if ((char)_DAT_180c86878[0x42] == '\0') {
+  if ((char)g_pEngineContext[0x42] == '\0') {
     plVar1 = _DAT_180c86878 + 0x1a;
     plStack_60 = plVar1;
     iVar4 = _Mtx_lock(plVar1);
@@ -641,7 +649,7 @@ FUN_180157ef0(longlong *param_1,longlong *param_2,undefined8 param_3,longlong pa
     uStack_88 = 0;
     auStack_b0[0] = 0;
     FUN_180627c50(&puStack_a8,param_3);
-    (**(code **)(*plVar2 + 0x208))(plVar2,&plStackX_8,auStack_b0,(int)lVar3,param_6);
+    EngineContext_CreateRenderEvent(plVar2,&plStackX_8,auStack_b0,(int)lVar3,param_6);  // 创建渲染事件
     *(undefined4 *)(plStackX_8 + 2) = 2;
     plStackX_8[7] = param_4;
     plStackX_8[8] = param_5;
@@ -650,7 +658,7 @@ FUN_180157ef0(longlong *param_1,longlong *param_2,undefined8 param_3,longlong pa
     auStack_78[0] = (undefined4)plStackX_8[10];
     plStack_70 = plStackX_8;
     (**(code **)(*plStackX_8 + 0x28))();
-    FUN_18015b6b0(plVar2 + 6,auStack_58,auStack_78);
+    RenderQueue_Push(plVar2 + 6,auStack_58,auStack_78);  // 推入渲染队列
     if (plStack_70 != (longlong *)0x0) {
       (**(code **)(*plStack_70 + 0x38))();
     }
@@ -684,9 +692,13 @@ FUN_180157ef0(longlong *param_1,longlong *param_2,undefined8 param_3,longlong pa
 
 // WARNING: Removing unreachable block (ram,0x000180158286)
 
+// 函数: 创建引擎资源事件
+// 功能: 创建一个资源加载/释放相关的事件对象
+// 参数: param_1 - 引擎上下文, param_2 - 输出参数, param_3 - 资源类型, param_4 - 资源描述符, param_5 - 资源标志, param_6 - 加载标志, param_7 - 异步标志
+// 返回: 资源事件对象指针
 longlong *
-FUN_1801580f0(longlong *param_1,longlong *param_2,undefined8 param_3,longlong param_4,
-             undefined8 param_5,undefined1 param_6,undefined1 param_7)
+EngineResourceEvent_Create(longlong *param_1,longlong *param_2,undefined8 param_3,longlong param_4,
+                              undefined8 param_5,undefined1 param_6,undefined1 param_7)
 
 {
   longlong *plVar1;
@@ -710,7 +722,7 @@ FUN_1801580f0(longlong *param_1,longlong *param_2,undefined8 param_3,longlong pa
   
   uStack_68 = 0xfffffffffffffffe;
   plStackX_10 = param_2;
-  if ((char)param_1[0x42] == '\0') {
+  if ((char)param_1[0x42] == '\0') {  // 检查引擎上下文状态
     plVar1 = param_1 + 0x1a;
     plStack_60 = plVar1;
     iVar3 = _Mtx_lock(plVar1);
@@ -727,19 +739,19 @@ FUN_1801580f0(longlong *param_1,longlong *param_2,undefined8 param_3,longlong pa
     FUN_180627c50(&puStack_a8,param_3);
     lVar2 = param_1[5];
     *(int *)(param_1 + 5) = (int)lVar2 + 1;
-    (**(code **)(*param_1 + 0x208))(param_1,&plStackX_8,auStack_b0,(int)lVar2,param_5);
+    EngineContext_CreateResourceEvent(param_1,&plStackX_8,auStack_b0,(int)lVar2,param_5);  // 创建资源事件
     *(undefined4 *)(plStackX_8 + 2) = 1;
     puVar4 = &DAT_18098bc73;
     if (*(undefined **)(param_4 + 8) != (undefined *)0x0) {
       puVar4 = *(undefined **)(param_4 + 8);
     }
-    (**(code **)(plStackX_8[3] + 0x10))(plStackX_8 + 3,puVar4);
+    ResourceDescriptor_SetName(plStackX_8 + 3,puVar4);  // 设置资源描述符名称
     *(undefined1 *)(plStackX_8 + 9) = param_7;
     *(undefined1 *)((longlong)plStackX_8 + 0x49) = param_6;
     auStack_78[0] = (undefined4)plStackX_8[10];
     plStack_70 = plStackX_8;
     (**(code **)(*plStackX_8 + 0x28))();
-    FUN_18015b6b0(param_1 + 6,auStack_58,auStack_78);
+    ResourceQueue_Push(param_1 + 6,auStack_58,auStack_78);  // 推入资源队列
     if (plStack_70 != (longlong *)0x0) {
       (**(code **)(*plStack_70 + 0x38))();
     }
