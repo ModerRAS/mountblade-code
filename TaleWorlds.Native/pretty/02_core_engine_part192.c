@@ -257,12 +257,13 @@ void SystemResourceCleaner(uint64_t *resource_handle)
 
 
 
-uint64_t *
-FUN_180175020(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: uint64_t* SystemMemoryAllocator(uint64_t *memory_pool,uint64_t allocation_flags,uint64_t size,uint64_t alignment)
+// 功能: 系统内存分配器，负责内存分配、标志处理和内存池管理
+uint64_t * SystemMemoryAllocator(uint64_t *memory_pool,uint64_t allocation_flags,uint64_t size,uint64_t alignment)
 
 {
-  *param_1 = &unknown_var_5240_ptr;
-  *param_1 = &unknown_var_5168_ptr;
+  *param_1 = &system_memory_pool_ptr;
+  *param_1 = &system_heap_manager_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8,param_3,param_4,0xfffffffffffffffe);
   }

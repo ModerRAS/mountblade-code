@@ -503,7 +503,7 @@ void initialize_render_frame(uint64_t frame_params, uint64_t render_context)
           *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        ResourceManager_Release(camera_ptr, SYSTEM_DATA_MANAGER_B);
+        FUN_180059ba0(camera_ptr, SYSTEM_DATA_MANAGER_B);
       }
     }
     *(int8_t *)(engine_context + 0x2e00) = 1;
@@ -738,7 +738,7 @@ void update_render_frame(uint64_t frame_params, uint64_t render_context)
           *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        ResourceManager_Release(material_ptr, SYSTEM_DATA_MANAGER_B);
+        FUN_180059ba0(material_ptr, SYSTEM_DATA_MANAGER_B);
       }
     }
     *(int8_t *)(engine_context + 0x2e00) = 1;
