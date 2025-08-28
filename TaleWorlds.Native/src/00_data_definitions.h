@@ -359,4 +359,421 @@ static inline const char* system_state_to_string(SystemState state) {
 
 /** @} */
 
+/*=============================================================================
+ * 函数别名定义
+=============================================================================*/
+
+/** 
+ * @defgroup FunctionAliases 函数别名
+ * @brief 为FUN_*函数创建有意义的别名
+ * @{
+ */
+
+/** 系统初始化函数别名 */
+#define FUN_18002ce30 engine_initialize_core_systems
+#define FUN_18002ce80 engine_initialize_memory_manager
+#define FUN_18002ced0 engine_initialize_resource_manager
+#define FUN_18002cf20 engine_initialize_render_system
+#define FUN_18002cf70 engine_initialize_audio_system
+#define FUN_18002cfc0 engine_initialize_input_system
+#define FUN_18002d010 engine_initialize_network_system
+#define FUN_18002d060 engine_initialize_physics_system
+#define FUN_18002d0b0 engine_initialize_ui_system
+#define FUN_18002d100 engine_initialize_script_system
+
+/** 系统注册函数别名 */
+#define FUN_18002e450 engine_register_core_services
+#define FUN_18002e4c0 engine_register_memory_services
+#define FUN_18002e530 engine_register_resource_services
+#define FUN_18002e5a0 engine_register_render_services
+#define FUN_18002e610 engine_register_audio_services
+#define FUN_18002e680 engine_register_input_services
+#define FUN_18002e6f0 engine_register_network_services
+#define FUN_18002e760 engine_register_physics_services
+#define FUN_18002e7d0 engine_register_ui_services
+#define FUN_18002e840 engine_register_script_services
+
+/** 模块初始化函数别名 */
+#define FUN_18002e8b0 module_initialize_game_state
+#define FUN_180031350 module_initialize_world_system
+#define FUN_1800313c0 module_initialize_character_system
+#define FUN_180031430 module_initialize_combat_system
+#define FUN_1800314b0 module_initialize_economy_system
+#define FUN_180031b50 module_initialize_quest_system
+#define FUN_180031bc0 module_initialize_weather_system
+#define FUN_180031c30 module_initialize_camera_system
+#define FUN_180031ca0 module_initialize_particle_system
+#define FUN_180031d10 module_initialize_animation_system
+
+/** 系统配置函数别名 */
+#define FUN_180036c50 system_configure_graphics
+#define FUN_180036cc0 system_configure_audio
+#define FUN_180036d30 system_configure_input
+#define FUN_180036da0 system_configure_network
+#define FUN_180036e10 system_configure_physics
+#define FUN_180036e80 system_configure_ui
+#define FUN_180036ef0 system_configure_script
+#define FUN_180036f60 system_configure_debug
+#define FUN_180036fd0 system_configure_performance
+#define FUN_180037040 system_configure_localization
+
+/** 游戏模式初始化函数别名 */
+#define FUN_18003adb0 game_mode_initialize_campaign
+#define FUN_18003ae20 game_mode_initialize_custom_battle
+#define FUN_18003ae90 game_mode_initialize_multiplayer
+#define FUN_18003af00 game_mode_initialize_tutorial
+#define FUN_18003af70 game_mode_initialize_scene_editor
+#define FUN_18003afe0 game_mode_initialize_character_editor
+#define FUN_18003b050 game_mode_initialize_module_editor
+#define FUN_18003b0c0 game_mode_initialize_test_mode
+#define FUN_18003b130 game_mode_initialize_developer_mode
+#define FUN_18003b1a0 game_mode_initialize_server_mode
+#define FUN_18003b210 game_mode_initialize_client_mode
+
+/** 核心函数指针别名 */
+#define FUN_1808fc7d0 core_function_dispatcher
+#define FUN_1808fc7e0 core_system_call
+#define FUN_1808fc7f0 core_error_handler
+#define FUN_1808fc800 core_memory_manager
+#define FUN_1808fc810 core_resource_manager
+#define FUN_1808fc820 core_thread_manager
+#define FUN_1808fc830 core_event_system
+#define FUN_1808fc840 core_configuration_system
+#define FUN_1808fc850 core_debug_system
+#define FUN_1808fc860 core_performance_monitor
+
+/** @} */
+
+/*=============================================================================
+ * 核心数据结构扩展
+=============================================================================*/
+
+/** 
+ * @defgroup CoreStructures 核心数据结构扩展
+ * @brief 引擎核心数据结构的扩展定义
+ * @{
+ */
+
+/** 引擎核心结构 */
+typedef struct {
+    uint64_t engine_version;        /**< 引擎版本 */
+    uint64_t memory_manager;        /**< 内存管理器指针 */
+    uint64_t resource_manager;      /**< 资源管理器指针 */
+    uint64_t game_state;            /**< 游戏状态指针 */
+    uint64_t render_context;        /**< 渲染上下文 */
+    uint64_t audio_system;           /**< 音频系统指针 */
+    uint64_t input_manager;          /**< 输入管理器指针 */
+    uint64_t network_manager;        /**< 网络管理器指针 */
+    uint64_t physics_system;        /**< 物理系统指针 */
+    uint64_t ui_system;             /**< UI系统指针 */
+    uint64_t script_system;         /**< 脚本系统指针 */
+} engine_core_t;
+
+/** 游戏状态结构 */
+typedef struct {
+    uint64_t current_scene;         /**< 当前场景 */
+    uint64_t player_character;      /**< 玩家角色 */
+    uint64_t camera_system;         /**< 相机系统 */
+    uint64_t world_data;            /**< 世界数据 */
+    uint64_t faction_system;        /**< 派系系统 */
+    uint64_t party_system;          /**< 队伍系统 */
+    uint64_t battle_system;         /**< 战斗系统 */
+    uint64_t economy_system;        /**< 经济系统 */
+    uint64_t quest_system;          /**< 任务系统 */
+    uint64_t weather_system;        /**< 天气系统 */
+} game_state_t;
+
+/** 渲染系统结构 */
+typedef struct {
+    uint64_t device;                /**< 渲染设备 */
+    uint64_t context;               /**< 渲染上下文 */
+    uint64_t swap_chain;            /**< 交换链 */
+    uint64_t render_targets;        /**< 渲染目标 */
+    uint64_t depth_stencil;         /**< 深度模板 */
+    uint64_t vertex_buffer;         /**< 顶点缓冲区 */
+    uint64_t index_buffer;          /**< 索引缓冲区 */
+    uint64_t constant_buffer;       /**< 常量缓冲区 */
+    uint64_t shader_program;        /**< 着色器程序 */
+} render_system_t;
+
+/** 音频系统结构 */
+typedef struct {
+    uint64_t device;                /**< 音频设备 */
+    uint64_t context;               /**< 音频上下文 */
+    uint64_t listener;              /**< 监听器 */
+    uint64_t sound_sources;         /**< 声音源 */
+    uint64_t audio_buffers;         /**< 音频缓冲区 */
+    uint64_t music_player;          /**< 音乐播放器 */
+    uint64_t sound_effects;         /**< 音效系统 */
+} audio_system_t;
+
+/** 输入系统结构 */
+typedef struct {
+    uint64_t keyboard;              /**< 键盘设备 */
+    uint64_t mouse;                 /**< 鼠标设备 */
+    uint64_t controller;            /**< 控制器设备 */
+    uint64_t touch;                 /**< 触摸设备 */
+    uint64_t input_mappings;        /**< 输入映射 */
+    uint64_t input_events;          /**< 输入事件 */
+} input_system_t;
+
+/** 物理系统结构 */
+typedef struct {
+    uint64_t world;                 /**< 物理世界 */
+    uint64_t rigid_bodies;          /**< 刚体 */
+    uint64_t collision_shapes;      /**< 碰撞形状 */
+    uint64_t constraints;           /**< 约束 */
+    uint64_t character_controller;  /**< 角色控制器 */
+    uint64_t raycast_results;       /**< 射线检测结果 */
+} physics_system_t;
+
+/** @} */
+
+/*=============================================================================
+ * 技术架构说明
+=============================================================================*/
+
+/** 
+ * @defgroup TechnicalArchitecture 技术架构
+ * @brief 引擎技术架构说明
+ * @{
+ */
+
+/**
+ * @brief 引擎架构概述
+ * 
+ * Mount & Blade II: Bannerlord引擎采用模块化架构设计，包含以下核心模块：
+ * 
+ * 1. 系统核心模块：负责引擎的初始化、配置和生命周期管理
+ * 2. 内存管理模块：提供高效的内存分配和管理机制
+ * 3. 资源管理模块：管理游戏资源的加载、卸载和缓存
+ * 4. 渲染系统模块：处理图形渲染和视觉效果
+ * 5. 音频系统模块：管理声音和音乐的播放
+ * 6. 输入系统模块：处理用户输入和交互
+ * 7. 物理系统模块：提供物理模拟和碰撞检测
+ * 8. UI系统模块：处理用户界面和交互
+ * 9. 脚本系统模块：支持游戏逻辑的脚本化
+ * 10. 网络系统模块：处理多人游戏功能
+ * 
+ * 各模块之间通过统一的接口进行通信，实现了高度的模块化和可扩展性。
+ */
+
+/**
+ * @brief 内存管理架构
+ * 
+ * 内存管理采用分层设计：
+ * - 底层：操作系统内存分配
+ * - 中层：内存池和缓存管理
+ * - 高层：智能指针和垃圾回收
+ * 
+ * 特点：
+ * - 高效的内存池分配
+ * - 智能的内存缓存
+ * - 自动垃圾回收
+ * - 内存泄漏检测
+ * - 性能监控
+ */
+
+/**
+ * @brief 渲染管线架构
+ * 
+ * 渲染管线采用现代设计：
+ * - 可编程着色器
+ * - 延迟渲染
+ * - 物理基础渲染(PBR)
+ * - 实时阴影
+ * - 后处理效果
+ * - 抗锯齿
+ * - 环境光遮蔽
+ */
+
+/**
+ * @brief 性能优化策略
+ * 
+ * 性能优化包括：
+ * - 多线程渲染
+ * - 资源预加载
+ * - LOD(Level of Detail)系统
+ * - 视锥剔除
+ * - 遮挡剔除
+ * - 实例化渲染
+ * - GPU计算
+ * - 内存优化
+ */
+
+/**
+ * @brief 安全机制
+ * 
+ * 安全机制包括：
+ * - 内存访问保护
+ * - 输入验证
+ * - 错误处理
+ * - 异常捕获
+ * - 日志记录
+ * - 调试信息
+ * - 性能监控
+ */
+
+/** @} */
+
+/*=============================================================================
+ * 性能优化常量
+=============================================================================*/
+
+/** 
+ * @defgroup PerformanceConstants 性能优化常量
+ * @brief 性能优化相关的常量定义
+ * @{
+ */
+
+/** 缓存大小配置 */
+#define CACHE_SIZE_TEXTURES           1024 * 1024 * 1024    /**< 纹理缓存大小：1GB */
+#define CACHE_SIZE_MODELS             512 * 1024 * 1024     /**< 模型缓存大小：512MB */
+#define CACHE_SIZE_SOUNDS             256 * 1024 * 1024     /**< 声音缓存大小：256MB */
+#define CACHE_SIZE_ANIMATIONS         128 * 1024 * 1024     /**< 动画缓存大小：128MB */
+
+/** 线程池配置 */
+#define THREAD_POOL_SIZE              8                    /**< 线程池大小 */
+#define THREAD_STACK_SIZE             2 * 1024 * 1024      /**< 线程栈大小：2MB */
+#define THREAD_PRIORITY_NORMAL        0                    /**< 普通优先级 */
+#define THREAD_PRIORITY_HIGH          1                    /**< 高优先级 */
+#define THREAD_PRIORITY_LOW           -1                   /**< 低优先级 */
+
+/** 渲染配置 */
+#define RENDER_TARGET_WIDTH          1920                 /**< 渲染目标宽度 */
+#define RENDER_TARGET_HEIGHT         1080                 /**< 渲染目标高度 */
+#define RENDER_TARGET_FORMAT         DXGI_FORMAT_R8G8B8A8_UNORM /**< 渲染目标格式 */
+#define RENDER_DEPTH_FORMAT          DXGI_FORMAT_D32_FLOAT /**< 深度格式 */
+#define RENDER_MSAA_SAMPLES          4                    /**< MSAA采样数 */
+
+/** 物理配置 */
+#define PHYSICS_MAX_RIGID_BODIES     10000                /**< 最大刚体数量 */
+#define PHYSICS_MAX_CONSTRAINTS      5000                 /**< 最大约束数量 */
+#define PHYSICS_MAX_COLLISION_SHAPES 20000                /**< 最大碰撞形状数量 */
+#define PHYSICS_SUBSTEPS             3                    /**< 物理子步数 */
+#define PHYSICS_FIXED_TIMESTEP       1.0f / 60.0f        /**< 固定时间步长 */
+
+/** 音频配置 */
+#define AUDIO_MAX_SOURCES            128                  /**< 最大音源数量 */
+#define AUDIO_MAX_BUFFERS            256                  /**< 最大缓冲区数量 */
+#define AUDIO_SAMPLE_RATE            44100                /**< 采样率 */
+#define AUDIO_CHANNELS               2                    /**< 声道数 */
+#define AUDIO_BITS_PER_SAMPLE        16                   /**< 每样本位数 */
+
+/** 网络配置 */
+#define NETWORK_MAX_CONNECTIONS      64                   /**< 最大连接数 */
+#define NETWORK_BUFFER_SIZE          8192                 /**< 网络缓冲区大小 */
+#define NETWORK_TIMEOUT              5000                 /**< 网络超时(ms) */
+#define NETWORK_PING_INTERVAL        1000                 /**< 心跳间隔(ms) */
+
+/** @} */
+
+/*=============================================================================
+ * 调试和日志常量
+=============================================================================*/
+
+/** 
+ * @defgroup DebugConstants 调试和日志常量
+ * @brief 调试和日志相关的常量定义
+ * @{
+ */
+
+/** 日志级别 */
+#define LOG_LEVEL_DEBUG              0                    /**< 调试级别 */
+#define LOG_LEVEL_INFO               1                    /**< 信息级别 */
+#define LOG_LEVEL_WARNING            2                    /**< 警告级别 */
+#define LOG_LEVEL_ERROR              3                    /**< 错误级别 */
+#define LOG_LEVEL_FATAL              4                    /**< 致命错误级别 */
+
+/** 调试标志 */
+#define DEBUG_FLAG_MEMORY            0x00000001           /**< 内存调试标志 */
+#define DEBUG_FLAG_RENDER            0x00000002           /**< 渲染调试标志 */
+#define DEBUG_FLAG_PHYSICS           0x00000004           /**< 物理调试标志 */
+#define DEBUG_FLAG_AUDIO             0x00000008           /**< 音频调试标志 */
+#define DEBUG_FLAG_NETWORK           0x00000010           /**< 网络调试标志 */
+#define DEBUG_FLAG_INPUT             0x00000020           /**< 输入调试标志 */
+#define DEBUG_FLAG_UI                0x00000040           /**< UI调试标志 */
+#define DEBUG_FLAG_SCRIPT            0x00000080           /**< 脚本调试标志 */
+
+/** 性能监控标志 */
+#define PERF_FLAG_FPS                0x00000001           /**< FPS监控标志 */
+#define PERF_FLAG_MEMORY             0x00000002           /**< 内存监控标志 */
+#define PERF_FLAG_CPU                0x00000004           /**< CPU监控标志 */
+#define PERF_FLAG_GPU                0x00000008           /**< GPU监控标志 */
+#define PERF_FLAG_NETWORK            0x00000010           /**< 网络监控标志 */
+#define PERF_FLAG_DISK               0x00000020           /**< 磁盘监控标志 */
+
+/** @} */
+
+/*=============================================================================
+ * 平台特定定义
+=============================================================================*/
+
+/** 
+ * @defgroup PlatformSpecific 平台特定定义
+ * @brief 不同平台的特定定义
+ * @{
+ */
+
+#ifdef _WIN32
+/** Windows平台特定定义 */
+#define PLATFORM_WINDOWS            1
+#define WINAPI_CALL                __stdcall
+#define PLATFORM_DLL_EXPORT        __declspec(dllexport)
+#define PLATFORM_DLL_IMPORT        __declspec(dllimport)
+#define THREAD_LOCAL               __declspec(thread)
+#elif __linux__
+/** Linux平台特定定义 */
+#define PLATFORM_LINUX             1
+#define PLATFORM_DLL_EXPORT        __attribute__((visibility("default")))
+#define PLATFORM_DLL_IMPORT        __attribute__((visibility("default")))
+#define THREAD_LOCAL               __thread
+#elif __APPLE__
+/** macOS平台特定定义 */
+#define PLATFORM_MACOS             1
+#define PLATFORM_DLL_EXPORT        __attribute__((visibility("default")))
+#define PLATFORM_DLL_IMPORT        __attribute__((visibility("default")))
+#define THREAD_LOCAL               __thread
+#else
+/** 其他平台特定定义 */
+#define PLATFORM_UNKNOWN           0
+#define PLATFORM_DLL_EXPORT
+#define PLATFORM_DLL_IMPORT
+#define THREAD_LOCAL
+#endif
+
+/** @} */
+
+/*=============================================================================
+ * 版本信息
+=============================================================================*/
+
+/** 
+ * @defgroup VersionInformation 版本信息
+ * @brief 引擎版本信息
+ * @{
+ */
+
+/** 版本号定义 */
+#define ENGINE_VERSION_MAJOR        2
+#define ENGINE_VERSION_MINOR        0
+#define ENGINE_VERSION_PATCH        0
+#define ENGINE_VERSION_REVISION     0
+
+/** 版本字符串 */
+#define ENGINE_VERSION_STRING       "2.0.0.0"
+
+/** 构建信息 */
+#define BUILD_DATE                  __DATE__
+#define BUILD_TIME                  __TIME__
+#define BUILD_COMPILER              __VERSION__
+
+/** 版本检查宏 */
+#define ENGINE_VERSION_CHECK(major, minor, patch) \
+    ((ENGINE_VERSION_MAJOR > (major)) || \
+     (ENGINE_VERSION_MAJOR == (major) && ENGINE_VERSION_MINOR > (minor)) || \
+     (ENGINE_VERSION_MAJOR == (major) && ENGINE_VERSION_MINOR == (minor) && ENGINE_VERSION_PATCH >= (patch)))
+
+/** @} */
+
 #endif /* DATA_DEFINITIONS_H */

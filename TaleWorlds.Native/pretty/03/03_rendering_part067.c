@@ -463,7 +463,7 @@ void rendering_system_process_render_parameters(longlong param1, longlong param2
                     (**(code **)(*ptr_ptr_var1 + 0x28))(ptr_ptr_var1);
                 }
                 
-                undefined_var1 = _DAT;
+                data_section_ptr = _DAT;  // 数据区指针
                 stack_ptr_ptr1 = stack_ptr_array;
                 stack_ptr_array[0] = ptr_ptr_var1;
                 
@@ -471,7 +471,7 @@ void rendering_system_process_render_parameters(longlong param1, longlong param2
                     (**(code **)(*ptr_ptr_var1 + 0x28))(ptr_ptr_var1);
                 }
                 
-                FUN_18005e370(undefined_var1, stack_ptr_array);
+                FUN_18005e370(temp_var1, stack_ptr_array);
                 
                 if (ptr_ptr_var1 != (void **)0x0) {
                     (**(code **)(*ptr_ptr_var1 + 0x38))(ptr_ptr_var1);
@@ -532,8 +532,8 @@ void rendering_system_update_projection_parameters(longlong param1)
     longlong long_var1;
     int32_t render_param1;  // 渲染参数1
     int32_t render_param2;  // 渲染参数2
-    int32_t undefined_var3;
-    uint64_t undefined_var4;
+    int32_t temp_var3;
+    uint64_t temp_var4;
     uint64_t *ptr_var1;
     uint64_t *ptr_var2;
     uint64_t *ptr_var3;
@@ -557,26 +557,26 @@ void rendering_system_update_projection_parameters(longlong param1)
     
     if (long_var1 != 0) {
         // 设置投影参数
-        undefined_var4 = *(uint64_t *)(long_var2 + 0x78);
+        temp_var4 = *(uint64_t *)(long_var2 + 0x78);
         *(uint64_t *)(param1 + 0x130) = *(uint64_t *)(long_var2 + 0x70);
-        *(uint64_t *)(param1 + 0x138) = undefined_var4;
+        *(uint64_t *)(param1 + 0x138) = temp_var4;
         
-        undefined_var4 = *(uint64_t *)(long_var2 + 0x88);
+        temp_var4 = *(uint64_t *)(long_var2 + 0x88);
         *(uint64_t *)(param1 + 0x140) = *(uint64_t *)(long_var2 + 0x80);
-        *(uint64_t *)(param1 + 0x148) = undefined_var4;
+        *(uint64_t *)(param1 + 0x148) = temp_var4;
         
-        undefined_var4 = *(uint64_t *)(long_var2 + 0x98);
+        temp_var4 = *(uint64_t *)(long_var2 + 0x98);
         *(uint64_t *)(param1 + 0x150) = *(uint64_t *)(long_var2 + 0x90);
-        *(uint64_t *)(param1 + 0x158) = undefined_var4;
+        *(uint64_t *)(param1 + 0x158) = temp_var4;
         
         render_param1 = *(int32_t *)(long_var2 + 0xa4);
-        undefined_var2 = *(int32_t *)(long_var2 + 0xa8);
-        undefined_var3 = *(int32_t *)(long_var2 + 0xac);
+        temp_var2 = *(int32_t *)(long_var2 + 0xa8);
+        temp_var3 = *(int32_t *)(long_var2 + 0xac);
         
         *(int32_t *)(param1 + 0x160) = *(int32_t *)(long_var2 + 0xa0);
         *(int32_t *)(param1 + 0x164) = render_param1;
-        *(int32_t *)(param1 + 0x168) = undefined_var2;
-        *(int32_t *)(param1 + 0x16c) = undefined_var3;
+        *(int32_t *)(param1 + 0x168) = temp_var2;
+        *(int32_t *)(param1 + 0x16c) = temp_var3;
         
         FUN_1802864f0(param1 + 0x70);
         
@@ -605,18 +605,18 @@ void rendering_system_update_projection_parameters(longlong param1)
         do {
             ptr_var4 = ptr_var2;
             ptr_var3 = ptr_var1;
-            undefined_var4 = ptr_var4[1];
+            temp_var4 = ptr_var4[1];
             ptr_var2 = ptr_var4 + 0x10;
             *ptr_var3 = *ptr_var4;
-            ptr_var3[1] = undefined_var4;
+            ptr_var3[1] = temp_var4;
             
-            undefined_var4 = ptr_var4[3];
+            temp_var4 = ptr_var4[3];
             ptr_var3[2] = ptr_var4[2];
-            ptr_var3[3] = undefined_var4;
+            ptr_var3[3] = temp_var4;
             
-            undefined_var4 = ptr_var4[5];
+            temp_var4 = ptr_var4[5];
             ptr_var3[4] = ptr_var4[4];
-            ptr_var3[5] = undefined_var4;
+            ptr_var3[5] = temp_var4;
             
             undefined_var4 = ptr_var4[7];
             ptr_var3[6] = ptr_var4[6];

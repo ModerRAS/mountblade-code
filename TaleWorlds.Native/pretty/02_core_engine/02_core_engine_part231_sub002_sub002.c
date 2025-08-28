@@ -39,10 +39,10 @@ void process_engine_data(uint64_t engine_context, int operation_type, void **dat
   float *float_ptr_6;
   int8_t *byte_ptr_3;
   longlong long_var_3;
-  void *ptr_undefined_1;
+  void *data_ptr_1;
   char *char_ptr_2;
   longlong long_var_4;
-  void *ptr_undefined_2;
+  void *data_ptr_2;
   int int_var_3;
   double double_var_1;
   double double_var_2;
