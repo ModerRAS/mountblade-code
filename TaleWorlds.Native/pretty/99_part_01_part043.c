@@ -752,7 +752,7 @@ STATE_HANDLER_COMPLETE:
   
   // 清理安全cookie并退出
   // WARNING: Subroutine does not return
-  SystemCleaner(security_cookie ^ (ulonglong)security_buffer);
+  SystemCleaner(security_cookie ^ (ulonglong)local_buffer);
 }
 
 

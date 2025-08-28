@@ -35,7 +35,7 @@ void process_engine_component_initialization(longlong *component_context)
   engine_data = component_context[0x60];
   stack_ulonglong_1 = GET_SECURITY_COOKIE() ^ (ulonglong)temp_array_1;
   stack_long_1 = 0;
-  index = FUN_180754f10(engine_data,&stack_8_1,&stack_long_1);
+  index = ComponentManager_ProcessEngineComponent(engine_data,&stack_8_1,&stack_long_1);
   
   // 检查错误状态
   if (((index != 0) || (index = func_0x000180753860(stack_8_1), index != 0)) &&
@@ -43,14 +43,14 @@ void process_engine_component_initialization(longlong *component_context)
     temp_ptr_1 = temp_array_2;
     temp_array_2[0] = 0;
     // 处理错误情况
-    FUN_180749ef0(index,3,engine_data,&unknown_var_7112_ptr);
+    ComponentManager_HandleEngineError(index,3,engine_data,&unknown_var_7112_ptr);
   }
   
   if (stack_long_1 != 0) {
-    FUN_180743d80();
+    ComponentManager_CleanupResources();
   }
   // 清理栈数据
-  FUN_1808fc050(stack_ulonglong_1 ^ (ulonglong)temp_array_1);
+  ComponentManager_ReleaseSecurityCookie(stack_ulonglong_1 ^ (ulonglong)temp_array_1);
 }
 
 /**
@@ -69,8 +69,8 @@ void initialize_engine_manager(longlong manager_context)
   int8_t temp_array_2 [200];
   
   // 分配管理器内存
-  allocated_memory = FUN_18062b1e0(system_memory_pool_ptr,0xb8,8,3);
-  manager_ptr = (longlong *)FUN_180211930(allocated_memory);
+  allocated_memory = MemoryPool_Allocate(system_memory_pool_ptr,0xb8,8,3);
+  manager_ptr = (longlong *)MemoryPool_GetPointer(allocated_memory);
   
   if (manager_ptr != (longlong *)0x0) {
     temp_manager_ptr = manager_ptr;
@@ -96,10 +96,10 @@ void initialize_engine_manager(longlong manager_context)
   *(int32_t *)(manager_context + 0x480) = 0;
   
   temp_array_1[0] = 0;
-  FUN_18073acc0(*(uint64_t *)(manager_context + 0x370),0,temp_array_1);
+  ComponentManager_UpdateManagerParameters(*(uint64_t *)(manager_context + 0x370),0,temp_array_1);
   
   if (*(longlong *)(handle + 0x60) != 0) {
-    FUN_18073ebd0();
+    ComponentManager_InitializeSecondaryComponents();
   }
   // 清理临时数据
   memset(temp_array_2,0,200);
@@ -120,8 +120,8 @@ void shutdown_engine_manager(longlong manager_context,uint64_t param_2,uint64_t 
   longlong *old_manager;
   
   handle = *(longlong *)(manager_context + 0x488);
-  FUN_18073b310(*(uint64_t *)(manager_context + 0x370),0,param_3,param_4,0xfffffffffffffffe);
-  FUN_18073ebd0(*(uint64_t *)(handle + 0x60));
+  ComponentManager_ShutdownManagerComponents(*(uint64_t *)(manager_context + 0x370),0,param_3,param_4,0xfffffffffffffffe);
+  ComponentManager_CleanupManagerResources(*(uint64_t *)(handle + 0x60));
   
   old_manager = *(longlong **)(manager_context + 0x488);
   *(uint64_t *)(manager_context + 0x488) = 0;
@@ -155,7 +155,7 @@ void process_engine_queue(longlong queue_context,uint64_t param_2,uint64_t param
   
   // 检查队列是否有数据需要处理
   if (*(longlong *)(queue_context + 0x2b8) - *(longlong *)(queue_context + 0x2b0) >> 4 != 0) {
-    FUN_180062300(system_message_context,&unknown_var_5328_ptr,0,param_4,queue_param);
+    QueueManager_ProcessSystemMessage(system_message_context,&unknown_var_5328_ptr,0,param_4,queue_param);
   }
   
   // 释放队列锁
@@ -190,8 +190,8 @@ void read_from_engine_buffer(longlong buffer_context,uint64_t output_buffer,uint
   temp_int_array_1[0] = 0;
   
   // 获取缓冲区大小
-  FUN_18073e110(*(uint64_t *)(handle + 0x60),temp_int_array_1,2);
-  temp_int_1 = FUN_18073a710(*(uint64_t *)(buffer_context + 0x370),0,temp_int_array_2);
+  BufferManager_GetBufferSize(*(uint64_t *)(handle + 0x60),temp_int_array_1,2);
+  temp_int_1 = BufferManager_GetBufferStatus(*(uint64_t *)(buffer_context + 0x370),0,temp_int_array_2);
   result = *(int *)(buffer_context + 0x480);
   
   // 检查是否有新数据
@@ -202,7 +202,7 @@ void read_from_engine_buffer(longlong buffer_context,uint64_t output_buffer,uint
     }
     
     // 读取数据到临时数组
-    FUN_18073e940(*(uint64_t *)(handle + 0x60),result * 2,temp_int_array_2[0] * 2,temp_data_array,0,actual_size,0);
+    BufferManager_ReadData(*(uint64_t *)(handle + 0x60),result * 2,temp_int_array_2[0] * 2,temp_data_array,0,actual_size,0);
     
     buffer_size = *actual_size;
     if (max_size < *actual_size) {
@@ -242,7 +242,7 @@ void write_to_engine_buffer(longlong buffer_context,uint64_t input_buffer,int da
   buffer_start = *buffer_ptr;
   
   // 调整缓冲区大小
-  FUN_1800f6ad0(buffer_ptr,(longlong)((buffer_start - buffer_start) + data_size));
+  BufferManager_ResizeBuffer(buffer_ptr,(longlong)((buffer_start - buffer_start) + data_size));
   
   // 写入数据
   memcpy((longlong)(buffer_start - buffer_start) + *(longlong *)*buffer_header,input_buffer,(longlong)data_size);
@@ -282,7 +282,7 @@ void process_engine_components(longlong component_context)
   stack_ulonglong_1 = GET_SECURITY_COOKIE() ^ (ulonglong)temp_array_1;
   
   // 初始化组件处理
-  FUN_1801299b0(&unknown_var_5280_ptr,0,0);
+  ComponentProcessor_InitializeProcessing(&unknown_var_5280_ptr,0,0);
   component_list = *(longlong **)(component_context + 0x38);
   current_component = *component_list;
   component_ptr = component_list;
@@ -301,12 +301,12 @@ void process_engine_components(longlong component_context)
   if (current_component != component_list[*(longlong *)(component_context + 0x40)]) {
     do {
       component_list = *(longlong **)(current_component + 8);
-      FUN_180846610(component_list[0xf],temp_array_4,0x100,temp_array_3);
+      ComponentProcessor_GetComponentInfo(component_list[0xf],temp_array_4,0x100,temp_array_3);
       
       // 检查组件类型
       if ((void *)*component_list == &unknown_var_2656_ptr) {
-        temp_int = FUN_180846a90(component_list[0x10],&temp_int_1);
-        FUN_180211a30(temp_int,&system_buffer_ptr);
+        temp_int = ComponentProcessor_EvaluateComponent(component_list[0x10],&temp_int_1);
+        ComponentProcessor_RegisterComponent(temp_int,&system_buffer_ptr);
         if ((temp_int == 0) && ((temp_int_1 == 0 || (temp_int_1 == 3)))) {
           should_process = '\x01';
         }
@@ -320,7 +320,7 @@ void process_engine_components(longlong component_context)
       
       // 获取组件状态信息
       if ((void *)*component_list == &unknown_var_2656_ptr) {
-        FUN_180846810(component_list[0x10],temp_array_2);
+        ComponentProcessor_GetComponentState(component_list[0x10],temp_array_2);
       }
       else {
         (**(code **)((void *)*component_list + 0x90))(component_list);
@@ -329,7 +329,7 @@ void process_engine_components(longlong component_context)
       // 处理组件
       if (should_process != '\0') {
         if ((void *)*component_list == &unknown_var_2656_ptr) {
-          temp_int = FUN_1808473f0(component_list[0x10],&temp_float,0);
+          temp_int = ComponentProcessor_GetComponentValue(component_list[0x10],&temp_float,0);
           component_value = temp_float;
           if (temp_int != 0) {
             component_value = 0.0;
@@ -340,22 +340,22 @@ void process_engine_components(longlong component_context)
         }
         
         // 记录组件信息
-        FUN_18010f010(&unknown_var_5296_ptr,temp_array_4,(double)component_value);
+        ComponentLogger_LogComponentInfo(&unknown_var_5296_ptr,temp_array_4,(double)component_value);
         temp_ptr_1 = &unknown_var_3456_ptr;
         temp_ulonglong = 0;
         temp_ptr_2 = (int32_t *)0x0;
         temp_uint_1 = 0;
         
         // 创建临时字符串
-        temp_ptr_2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+        temp_ptr_2 = (int32_t *)MemoryPool_AllocateString(system_memory_pool_ptr,0x10,0x13);
         *(int8_t *)temp_ptr_2 = 0;
-        temp_uint = FUN_18064e990(temp_ptr_2);
+        temp_uint = StringProcessor_CreateString(temp_ptr_2);
         temp_ulonglong = CONCAT44(temp_ulonglong._4_4_,temp_uint);
         *temp_ptr_2 = 0x706f7453;  // "Spot"
         *(int16_t *)(temp_ptr_2 + 1) = 0x5f;
         temp_uint_1 = 5;
         
-        FUN_180628040(&temp_ptr_1,&unknown_var_552_ptr,temp_array_4);
+        ComponentLogger_ProcessComponentString(&temp_ptr_1,&unknown_var_552_ptr,temp_array_4);
         temp_8_1 = 0;
         temp_ptr = (int32_t *)&system_buffer_ptr;
         
@@ -363,7 +363,7 @@ void process_engine_components(longlong component_context)
           temp_ptr = temp_ptr_2;
         }
         
-        should_process = FUN_18010f6f0(temp_ptr,&temp_8_1,0);
+        should_process = ComponentLogger_ValidateComponentString(temp_ptr,&temp_8_1,0);
         if (should_process != '\0') {
           (**(code **)(*component_list + 0x68))(component_list);
         }
@@ -371,7 +371,7 @@ void process_engine_components(longlong component_context)
         // 清理临时字符串
         temp_ptr_1 = &unknown_var_3456_ptr;
         if (temp_ptr_2 != (int32_t *)0x0) {
-          FUN_18064e900();
+          StringProcessor_ReleaseString();
         }
         temp_ptr_2 = (int32_t *)0x0;
         temp_ulonglong = temp_ulonglong & 0xffffffff00000000;
@@ -388,8 +388,8 @@ void process_engine_components(longlong component_context)
                        (*(longlong *)(component_context + 0x38) + *(longlong *)(component_context + 0x40) * 8));
   }
   
-  FUN_18012cfe0();
-  FUN_1808fc050(stack_ulonglong_1 ^ (ulonglong)temp_array_1);
+  ComponentProcessor_FinalizeProcessing();
+  MemoryPool_ReleaseSecurityCookie(stack_ulonglong_1 ^ (ulonglong)temp_array_1);
 }
 
 /**

@@ -12,12 +12,12 @@
 #define RENDERING_MUTEX_LOCK_SUCCESS 0
 
 // 全局数据结构
-static const uint64_t DAT_RenderingFileHeader = 0x18098bc73;
-static const uint64_t UNK_RenderingResourceTable = 0x18098bcb0;
-static const uint64_t UNK_RenderingDataArray = 0x180a3c3e0;
-static const uint64_t DAT_RenderingAllocator = 0x180c8ed18;
-static const uint64_t DAT_RenderingMemoryPool = 0x180c82868;
-static const uint64_t DAT_RenderingFilePointer = 0x180a1b248;
+static const uint64_t RENDERING_FILE_HEADER_ADDRESS = 0x18098bc73;
+static const uint64_t RENDERING_RESOURCE_TABLE_ADDRESS = 0x18098bcb0;
+static const uint64_t RENDERING_DATA_ARRAY_ADDRESS = 0x180a3c3e0;
+static const uint64_t RENDERING_ALLOCATOR_ADDRESS = 0x180c8ed18;
+static const uint64_t RENDERING_MEMORY_POOL_ADDRESS = 0x180c82868;
+static const uint64_t RENDERING_FILE_POINTER_ADDRESS = 0x180a1b248;
 
 // 函数别名定义
 #define RenderingSystem_WriteResourceData RenderingSystem_WriteResourceData
@@ -120,7 +120,7 @@ void RenderingSystem_WriteResourceData(longlong resource_context, longlong file_
         
         // 获取资源数据指针
         data_buffer = *(void **)(current_resource + 0x90);
-        data_buffer = &DAT_RenderingFileHeader;
+        data_buffer = &RENDERING_FILE_HEADER_ADDRESS;
         if (data_buffer != (void *)0x0) {
           data_buffer = data_buffer;
         }
@@ -225,21 +225,21 @@ void RenderingSystem_ReadResourceData(longlong resource_context, longlong file_c
       do {
         // 创建资源节点
         next_resource = (uint64_t *)0x0;
-        resource_block = (int32_t *)FUN_18062b1e0(DAT_RenderingAllocator, RENDERING_RESOURCE_MAGIC_NUMBER, 8, 3);
+        resource_block = (int32_t *)FUN_18062b1e0(RENDERING_ALLOCATOR_ADDRESS, RENDERING_RESOURCE_MAGIC_NUMBER, 8, 3);
         resource_ptr = (longlong *)(resource_block + 0x22);
         
         // 初始化资源结构
-        *resource_ptr = (longlong)&UNK_RenderingResourceTable;
+        *resource_ptr = (longlong)&RENDERING_RESOURCE_TABLE_ADDRESS;
         *(uint64_t *)(resource_block + 0x24) = 0;
         resource_block[0x26] = 0;
         
-        *resource_ptr = (longlong)&UNK_RenderingDataArray;
+        *resource_ptr = (longlong)&RENDERING_DATA_ARRAY_ADDRESS;
         *(uint64_t *)(resource_block + 0x28) = 0;
         *(uint64_t *)(resource_block + 0x24) = 0;
         resource_block[0x26] = 0;
         
         *resource_block = 0xffffffff;
-        (**(code **)(*resource_ptr + 0x10))(resource_ptr, &DAT_RenderingFileHeader);
+        (**(code **)(*resource_ptr + 0x10))(resource_ptr, &RENDERING_FILE_HEADER_ADDRESS);
         
         // 设置资源参数
         *(uint64_t *)(resource_block + 1) = 0x3f800000;
@@ -299,7 +299,7 @@ void RenderingSystem_ReadResourceData(longlong resource_context, longlong file_c
             current_pos = 1;
             // 重新分配内存
             next_resource = (uint64_t *)
-                     FUN_18062b420(DAT_RenderingAllocator, current_pos * 8, *(int8_t *)(resource_data + 8));
+                     FUN_18062b420(RENDERING_ALLOCATOR_ADDRESS, current_pos * 8, *(int8_t *)(resource_data + 8));
             list_start = (uint64_t *)resource_data[6];
             list_end = (uint64_t *)resource_data[5];
           }
@@ -307,7 +307,7 @@ void RenderingSystem_ReadResourceData(longlong resource_context, longlong file_c
             current_pos = current_pos * 2;
             if (current_pos != 0) {
               next_resource = (uint64_t *)
-                       FUN_18062b420(DAT_RenderingAllocator, current_pos * 8, *(int8_t *)(resource_data + 8));
+                       FUN_18062b420(RENDERING_ALLOCATOR_ADDRESS, current_pos * 8, *(int8_t *)(resource_data + 8));
             }
             else {
               next_resource = (uint64_t *)0x0;
@@ -434,7 +434,7 @@ void RenderingSystem_ProcessResourceChunk(longlong resource_context, longlong fi
         
         // 获取资源数据指针
         resource_data = *(void **)(current_resource + 0x30);
-        data_buffer = &DAT_RenderingFileHeader;
+        data_buffer = &RENDERING_FILE_HEADER_ADDRESS;
         if (resource_data != (void *)0x0) {
           data_buffer = resource_data;
         }
@@ -545,21 +545,21 @@ void RenderingSystem_HandleResourceFile(longlong resource_context, longlong file
       
       do {
         // 创建资源块
-        resource_block = (int32_t *)FUN_18062b1e0(DAT_RenderingAllocator, RENDERING_DATA_BLOCK_SIZE, 8, 3);
+        resource_block = (int32_t *)FUN_18062b1e0(RENDERING_ALLOCATOR_ADDRESS, RENDERING_DATA_BLOCK_SIZE, 8, 3);
         resource_node = (longlong *)(resource_block + 10);
         
         // 初始化资源结构
-        *resource_node = (longlong)&UNK_RenderingResourceTable;
+        *resource_node = (longlong)&RENDERING_RESOURCE_TABLE_ADDRESS;
         *(uint64_t *)(resource_block + 0xc) = 0;
         resource_block[0xe] = 0;
         
-        *resource_node = (longlong)&UNK_RenderingDataArray;
+        *resource_node = (longlong)&RENDERING_DATA_ARRAY_ADDRESS;
         *(uint64_t *)(resource_block + 0x10) = 0;
         *(uint64_t *)(resource_block + 0xc) = 0;
         resource_block[0xe] = 0;
         
         *resource_block = 0xffffffff;
-        (**(code **)(*resource_node + 0x10))(resource_node, &DAT_RenderingFileHeader);
+        (**(code **)(*resource_node + 0x10))(resource_node, &RENDERING_FILE_HEADER_ADDRESS);
         
         // 设置资源参数
         *(uint64_t *)(resource_block + 1) = 0;
@@ -627,7 +627,7 @@ void RenderingSystem_HandleResourceFile(longlong resource_context, longlong file
             current_pos = 1;
             // 重新分配内存
             next_resource = (uint64_t *)
-                     FUN_18062b420(DAT_RenderingAllocator, current_pos * 8, *(int8_t *)(resource_data + 8));
+                     FUN_18062b420(RENDERING_ALLOCATOR_ADDRESS, current_pos * 8, *(int8_t *)(resource_data + 8));
             list_start = (uint64_t *)resource_data[6];
             list_end = (uint64_t *)resource_data[5];
           }
@@ -635,7 +635,7 @@ void RenderingSystem_HandleResourceFile(longlong resource_context, longlong file
             current_pos = current_pos * 2;
             if (current_pos != 0) {
               next_resource = (uint64_t *)
-                       FUN_18062b420(DAT_RenderingAllocator, current_pos * 8, *(int8_t *)(resource_data + 8));
+                       FUN_18062b420(RENDERING_ALLOCATOR_ADDRESS, current_pos * 8, *(int8_t *)(resource_data + 8));
             }
             else {
               next_resource = (uint64_t *)0x0;
@@ -745,10 +745,10 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
   buffer_size = 0xfffffffffffffffe;
   
   // 创建资源表
-  resource_ptr = (longlong *)FUN_18062b1e0(DAT_RenderingAllocator, RENDERING_HASH_TABLE_SIZE, 8, 3);
+  resource_ptr = (longlong *)FUN_18062b1e0(RENDERING_ALLOCATOR_ADDRESS, RENDERING_HASH_TABLE_SIZE, 8, 3);
   FUN_180049830(resource_ptr);
   
-  *resource_ptr = (longlong)&DAT_RenderingFilePointer;
+  *resource_ptr = (longlong)&RENDERING_FILE_POINTER_ADDRESS;
   hash_table = (ulonglong *)(resource_ptr + 0x18);
   *hash_table = 0;
   resource_ptr[0x19] = 0;
@@ -793,7 +793,7 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
                     (ulonglong)*(uint *)(resource_context + 0xa00),
                     *(int32_t *)(resource_context + 0xa08), 1);
       
-      hash_entry = (uint *)FUN_18062b420(DAT_RenderingAllocator, 0x18, *(int8_t *)(resource_context + 0xa1c));
+      hash_entry = (uint *)FUN_18062b420(RENDERING_ALLOCATOR_ADDRESS, 0x18, *(int8_t *)(resource_context + 0xa1c));
       *hash_entry = resource_id;
       hash_entry[2] = 0;
       hash_entry[3] = 0;
@@ -868,14 +868,14 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
         if (table_size == 0) {
           table_size = 1;
           // 重新分配内存
-          table_data = (uint64_t *)FUN_18062b420(DAT_RenderingAllocator, table_size * 8, (char)resource_ptr[0x1b]);
+          table_data = (uint64_t *)FUN_18062b420(RENDERING_ALLOCATOR_ADDRESS, table_size * 8, (char)resource_ptr[0x1b]);
           resource_info = (uint64_t *)resource_ptr[0x19];
           next_resource = (uint64_t *)*hash_table;
         }
         else {
           table_size = table_size * 2;
           if (table_size != 0) {
-            table_data = (uint64_t *)FUN_18062b420(DAT_RenderingAllocator, table_size * 8, (char)resource_ptr[0x1b]);
+            table_data = (uint64_t *)FUN_18062b420(RENDERING_ALLOCATOR_ADDRESS, table_size * 8, (char)resource_ptr[0x1b]);
           }
           else {
             table_data = (uint64_t *)0x0;
@@ -912,7 +912,7 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
     __Throw_C_error_std__YAXH_Z(lock_status);
   }
   
-  resource_data = DAT_RenderingMemoryPool;
+  resource_data = RENDERING_MEMORY_POOL_ADDRESS;
   (**(code **)(*resource_ptr + 0x28))(resource_ptr);
   FUN_18005e110(resource_data, &stack0x00000018);
   
@@ -946,7 +946,7 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
                     (ulonglong)*(uint *)(resource_context + 0x6c8),
                     *(int32_t *)(resource_context + 0x6d0), 1);
       
-      hash_entry = (uint *)FUN_18062b420(DAT_RenderingAllocator, 0x18, *(int8_t *)(resource_context + 0x6e4));
+      hash_entry = (uint *)FUN_18062b420(RENDERING_ALLOCATOR_ADDRESS, 0x18, *(int8_t *)(resource_context + 0x6e4));
       *hash_entry = resource_id;
       hash_entry[2] = 0;
       hash_entry[3] = 0;
@@ -979,7 +979,7 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
       
       if (hash_entry != *(uint **)(list_ptr + list_ptr * 8)) {
         if (*(longlong *)(hash_entry + 2) != 0) {
-          *(void **)(*(longlong *)(hash_entry + 2) + 0x50) = &UNK_RenderingResourceTable;
+          *(void **)(*(longlong *)(hash_entry + 2) + 0x50) = &RENDERING_RESOURCE_TABLE_ADDRESS;
           FUN_18064e900();
         }
         
@@ -1104,12 +1104,12 @@ void RenderingSystem_CleanupResourceTable(longlong resource_context, uint resour
     if (table_size != 0) {
       FUN_1808fc8a8(table_size + 0x38, 0x30, 4, FUN_18004a130);
       buffer_ptr8 = (uint64_t *)(table_size + 0x18);
-      *buffer_ptr8 = &UNK_RenderingDataArray;
+      *buffer_ptr8 = &RENDERING_DATA_ARRAY_ADDRESS;
       
       if (*(longlong)(table_size + 0x20) == 0) {
         *(uint64_t *)(table_size + 0x20) = 0;
         *(int32_t *)(table_size + 0x30) = 0;
-        *buffer_ptr8 = &UNK_RenderingResourceTable;
+        *buffer_ptr8 = &RENDERING_RESOURCE_TABLE_ADDRESS;
         FUN_18064e900(table_size);
       }
       
