@@ -232,28 +232,52 @@ void SystemResourceCleanup(void)
  */
 longlong ResourceObjectRelease(longlong resource_ptr, uint flags)
 
-
-
-longlong FUN_1808d9ce0(longlong param_1,uint param_2)
-
 {
   longlong *plVar1;
   
-  plVar1 = (longlong *)(param_1 + 0x30);
-  **(longlong **)(param_1 + 0x38) = *plVar1;
-  *(undefined8 *)(*plVar1 + 8) = *(undefined8 *)(param_1 + 0x38);
-  *(longlong **)(param_1 + 0x38) = plVar1;
+  // 获取资源链表头指针
+  plVar1 = (longlong *)(resource_ptr + 0x30);
+  
+  // 从活动链表中移除资源节点
+  **(longlong **)(resource_ptr + 0x38) = *plVar1;
+  *(undefined8 *)(*plVar1 + 8) = *(undefined8 *)(resource_ptr + 0x38);
+  *(longlong **)(resource_ptr + 0x38) = plVar1;
   *plVar1 = (longlong)plVar1;
-  **(longlong **)(param_1 + 0x38) = (longlong)plVar1;
-  *(undefined8 *)(*plVar1 + 8) = *(undefined8 *)(param_1 + 0x38);
-  *(longlong **)(param_1 + 0x38) = plVar1;
+  
+  // 确保链表操作的完整性（重复操作）
+  **(longlong **)(resource_ptr + 0x38) = (longlong)plVar1;
+  *(undefined8 *)(*plVar1 + 8) = *(undefined8 *)(resource_ptr + 0x38);
+  *(longlong **)(resource_ptr + 0x38) = plVar1;
   *plVar1 = (longlong)plVar1;
+  
+  // 调用资源释放后处理函数
   FUN_1808b02a0();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x60);
+  
+  // 根据标志位决定是否释放内存
+  if ((flags & 1) != 0) {
+    free(resource_ptr, 0x60);
   }
-  return param_1;
+  
+  return resource_ptr;
 }
+
+/**
+ * @brief 扩展资源清理函数
+ * 
+ * 执行更完整的资源清理操作，包括额外的内存区域清理。
+ * 适用于需要深度清理的资源对象。
+ * 
+ * 功能特点：
+ * - 清理多个内存区域
+ * - 支持更大的内存块释放
+ * - 提供更全面的清理操作
+ * - 确保资源完全释放
+ * 
+ * @param resource_ptr 资源对象指针
+ * @param cleanup_flags 清理标志（bit 0: 是否释放内存）
+ * @return 资源对象指针（用于链式操作）
+ */
+longlong ExtendedResourceCleanup(longlong resource_ptr, ulonglong cleanup_flags)
 
 
 
