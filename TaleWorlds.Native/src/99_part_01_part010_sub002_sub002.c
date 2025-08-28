@@ -239,38 +239,51 @@ void FUN_1800a73e0(longlong param_1, undefined8 param_2, longlong param_3, undef
   // 安全栈变量
   ulonglong uStack_58;                  // 栈保护变量
   
-  uStack_6b8 = 0xfffffffffffffffe;
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_9c8;
-  uStack_7e8 = param_7;
-  uStack_838 = 0;
-  uStack_990 = param_6;
-  uStack_998 = param_5;
-  uStack_9a0 = param_9;
-  uStack_9a8 = param_4;
-  lStack_7f0 = param_3;
-  uStack_790 = param_2;
-  FUN_1802230e0(param_1,&lStack_810,param_10,param_11);
-  uVar5 = FUN_180624440(apuStack_2d8,param_2);
-  FUN_1806279c0(auStack_7b0,uVar5);
-  apuStack_2d8[0] = &UNK_18098bcb0;
-  puStack_858 = &UNK_180a3c3e0;
-  uStack_840 = 0;
-  uStack_850 = 0;
-  uStack_848 = 0;
-  LOCK();
-  piVar1 = (int *)(param_1 + 0x121e8);
-  iVar17 = *piVar1;
-  *piVar1 = *piVar1 + 1;
-  uVar5 = _DAT_180bf5210;
-  UNLOCK();
-  cStack_93c = '\0';
-  cStack_968 = '\0';
-  cStack_93d = '\0';
-  cStack_940 = '\0';
-  cStack_93e = '\0';
-  cStack_93f = '\0';
-  cStack_93b = '\0';
-  cStack_93a = '\0';
+  // ==================== 初始化阶段 ====================
+  
+  // 基本参数初始化
+  uStack_6b8 = 0xfffffffffffffffe;          // 初始化文件控制变量
+  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_9c8;  // 栈保护变量初始化
+  uStack_7e8 = param_7;                      // 存储附加路径参数2
+  uStack_838 = 0;                            // 重置路径控制变量11
+  uStack_990 = param_6;                      // 存储附加路径参数1
+  uStack_998 = param_5;                      // 存储路径构建模式
+  uStack_9a0 = param_9;                      // 存储文件处理选项
+  uStack_9a8 = param_4;                      // 存储文件类型标识符
+  lStack_7f0 = param_3;                      // 存储输出文件路径指针
+  uStack_790 = param_2;                      // 存储文件路径基础字符串
+  
+  // 调用外部初始化函数
+  FUN_1802230e0(param_1, &lStack_810, param_10, param_11);  // 初始化文件系统参数
+  
+  // 路径处理初始化
+  uVar5 = FUN_180624440(apuStack_2d8, param_2);  // 处理基础路径字符串
+  FUN_1806279c0(auStack_7b0, uVar5);               // 初始化路径缓冲区
+  apuStack_2d8[0] = &UNK_18098bcb0;                // 设置路径数组初始值
+  
+  // 字符串处理初始化
+  puStack_858 = &UNK_180a3c3e0;             // 初始化字符串指针
+  uStack_840 = 0;                            // 重置路径控制变量10
+  uStack_850 = 0;                            // 重置路径控制变量8
+  uStack_848 = 0;                            // 重置路径控制变量9
+  
+  // 线程安全的计数器操作
+  LOCK();                                    // 获取线程锁
+  piVar1 = (int *)(param_1 + 0x121e8);       // 获取计数器指针
+  iVar17 = *piVar1;                          // 读取当前计数值
+  *piVar1 = *piVar1 + 1;                     // 递增计数器
+  uVar5 = _DAT_180bf5210;                    // 获取系统数据
+  UNLOCK();                                  // 释放线程锁
+  
+  // 状态标志初始化
+  cStack_93c = '\0';                         // 重置状态标志5
+  cStack_968 = '\0';                         // 重置字符栈变量1
+  cStack_93d = '\0';                         // 重置状态标志4
+  cStack_940 = '\0';                         // 重置状态标志1
+  cStack_93e = '\0';                         // 重置状态标志3
+  cStack_93f = '\0';                         // 重置状态标志2
+  cStack_93b = '\0';                         // 重置状态标志6
+  cStack_93a = '\0';                         // 重置状态标志7
   if (_DAT_180bf5218 == 10) {
     iVar2 = strcmp(_DAT_180bf5210,&UNK_180a01db8);
     if (iVar2 != 0) goto LAB_1800a7646;
