@@ -65,6 +65,23 @@
 #define RenderingSystemCleanupHandler FUN_180436fd0     // 渲染系统清理处理器
 #define RenderingSystemErrorHandler FUN_180437290       // 渲染系统错误处理器
 #define RenderingSystemRecoveryHandler FUN_1804372e0    // 渲染系统恢复处理器
+#define RenderingSystemTextureManager FUN_180437d60     // 渲染系统纹理管理器
+#define RenderingSystemShaderLoader FUN_1804375f0       // 渲染系统着色器加载器
+#define RenderingSystemBufferManager FUN_1804374c0      // 渲染系统缓冲区管理器
+#define RenderingSystemPipelineBuilder FUN_180437560     // 渲染系统管道构建器
+#define RenderingSystemRenderStateManager FUN_180437cf0  // 渲染系统渲染状态管理器
+#define RenderingSystemDrawCallHandler FUN_180437680     // 渲染系统绘制调用处理器
+#define RenderingSystemFrameRenderer FUN_1804377b0       // 渲染系统帧渲染器
+#define RenderingSystemPostProcessor FUN_180437e80      // 渲染系统后处理器
+#define RenderingSystemLightingEngine FUN_180437ba0      // 渲染系统光照引擎
+#define RenderingSystemShadowRenderer FUN_180437c40      // 渲染系统阴影渲染器
+#define RenderingSystemEffectProcessor FUN_1804378e0    // 渲染系统效果处理器
+#define RenderingSystemMaterialHandler FUN_1804379d0     // 渲染系统材质处理器
+#define RenderingSystemGeometryProcessor FUN_180437460   // 渲染系统几何体处理器
+#define RenderingSystemAnimationSystem FUN_180437b60     // 渲染系统动画系统
+#define RenderingSystemTransformHandler FUN_180437ca0    // 渲染系统变换处理器
+#define RenderingSystemViewportManager FUN_180437d40     // 渲染系统视口管理器
+#define RenderingSystemUIRenderer FUN_18043b930          // 渲染系统UI渲染器
 
 // 函数: void FUN_180310b50(int64_t param_1)
 void FUN_180310b50(int64_t param_1)
