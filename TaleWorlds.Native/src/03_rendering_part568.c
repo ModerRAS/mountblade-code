@@ -19,6 +19,26 @@
 
 #include "TaleWorlds.Native.Split.h"
 
+/* ============================================================================
+ * 常量定义 - 渲染系统数学计算常量
+ * ============================================================================ */
+
+#define PI 3.1415927f                              // 圆周率常量
+#define TWO_PI 6.2831855f                          // 2倍圆周率
+#define NORMALIZATION_THRESHOLD_LOW 0.98010004f   // 标准化阈值下限
+#define NORMALIZATION_THRESHOLD_HIGH 1.0201f      // 标准化阈值上限
+#define FLOAT_MIN_NORMAL 1.1754944e-38f           // 最小标准化浮点数
+#define FLOAT_MAX 3.4028235e+38f                  // 最大浮点数
+#define EPSILON 1e-07f                              // 浮点数比较精度
+#define VERY_SMALL_EPSILON 1e-09f                  // 极小浮点数精度
+#define INFINITY_FLOAT -1e+30f                     // 浮点数无穷大
+#define NORMALIZATION_FACTOR 0.5f                  // 标准化因子
+#define SCALE_FACTOR_100 100.0f                    // 100倍缩放因子
+#define ANGLE_SCALE_FACTOR 17.5f                   // 角度缩放因子
+#define DISTANCE_SCALE_FACTOR 1.25f                // 距离缩放因子
+#define VECTOR_SCALE_FACTOR 0.2f                   // 向量缩放因子
+#define MAX_FLOAT_VALUE 0x7f7fffff                 // 最大浮点数值
+
 /**
  * @brief 渲染系统高级数学计算器
  * @details 执行渲染系统中的高级数学计算和矩阵变换操作
@@ -38,76 +58,92 @@
  */
 void rendering_system_advanced_math_calculator(longlong param_1, undefined8 param_2)
 {
-  int iVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  undefined8 uVar5;
-  undefined8 uVar6;
-  undefined8 uVar7;
-  undefined8 uVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float *pfVar12;
-  longlong lVar13;
-  longlong unaff_RBX;
-  float *unaff_RBP;
-  char unaff_R13B;
-  longlong unaff_R14;
-  float in_XMM1_Da;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  undefined1 in_XMM2 [16];
-  undefined1 auVar17 [16];
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
-  float fStack0000000000000030;
-  float fStack0000000000000034;
-  float fStack0000000000000038;
-  undefined4 uStack000000000000003c;
-  float in_stack_00000040;
-  int in_stack_00000048;
-  float in_stack_00000050;
-  float in_stack_00000060;
-  float fStack0000000000000064;
-  float in_stack_00000068;
-  float fStack000000000000006c;
-  float in_stack_00000070;
-  float fStack0000000000000074;
-  float in_stack_00000078;
-  float fStack000000000000007c;
+  /* ============================================================================
+   * 变量声明区域
+   * ============================================================================ */
   
+  // 基础变量声明
+  int iVar1;                                    // 整数临时变量，用于循环计数和条件判断
+  float fVar2, fVar3, fVar4;                     // 浮点数临时变量，用于存储中间计算结果
+  undefined8 uVar5, uVar6, uVar7, uVar8;        // 8位未定义变量，用于数据传输和存储
+  float fVar9, fVar10, fVar11;                   // 浮点数计算变量，用于向量运算
+  float *pfVar12;                                // 浮点数指针，指向渲染数据数组
+  longlong lVar13;                               // 长整型临时变量，用于内存地址计算
+  
+  // 寄存器相关变量
+  longlong unaff_RBX;                           // RBX寄存器值，存储渲染对象指针
+  float *unaff_RBP;                             // RBP寄存器值，作为栈基址指针
+  char unaff_R13B;                              // R13B寄存器值，用于索引计算
+  longlong unaff_R14;                           // R14寄存器值，存储渲染上下文
+  
+  // SIMD和数学计算相关变量
+  float in_XMM1_Da;                             // XMM1寄存器值，用于SIMD计算
+  float fVar14, fVar15, fVar16;                 // 浮点数计算变量，用于向量和矩阵运算
+  undefined1 in_XMM2 [16];                      // XMM2寄存器数组，用于SIMD数据传输
+  undefined1 auVar17 [16];                      // 计算结果数组，存储SIMD运算结果
+  
+  // 主要计算变量
+  float fVar18, fVar19, fVar20;                  // 主要浮点数计算变量，用于距离和角度计算
+  float fVar21, fVar22, fVar23;                  // 向量和矩阵计算变量
+  float fVar24, fVar25, fVar26;                  // 距离和角度计算变量
+  float fVar27, fVar28, fVar29;                  // 坐标变换变量
+  float fVar30, fVar31;                          // 最终结果变量，存储计算输出
+  
+  // 栈变量声明
+  float fStack0000000000000030;                 // 栈浮点数变量1，存储矩阵元素
+  float fStack0000000000000034;                 // 栈浮点数变量2，存储矩阵元素
+  float fStack0000000000000038;                 // 栈浮点数变量3，存储矩阵元素
+  undefined4 uStack000000000000003c;            // 栈未定义4位变量，用于数据对齐
+  
+  // 输入栈变量
+  float in_stack_00000040;                      // 输入栈浮点数1，存储向量X分量
+  int in_stack_00000048;                         // 输入栈整数，存储索引值
+  float in_stack_00000050;                      // 输入栈浮点数2，存储缩放因子
+  float in_stack_00000060;                      // 输入栈浮点数3，存储向量X分量
+  float fStack0000000000000064;                 // 栈浮点数变量4，存储向量Y分量
+  float in_stack_00000068;                      // 输入栈浮点数4，存储向量Y分量
+  float fStack000000000000006c;                 // 栈浮点数变量5，存储向量Z分量
+  float in_stack_00000070;                      // 输入栈浮点数5，存储向量X分量
+  float fStack0000000000000074;                 // 栈浮点数变量6，存储向量Y分量
+  float in_stack_00000078;                      // 输入栈浮点数6，存储向量Z分量
+  float fStack000000000000007c;                 // 栈浮点数变量7，存储向量W分量
+  
+  /* ============================================================================
+   * 主要计算逻辑开始
+   * ============================================================================ */
+  
+  // 第一阶段：SIMD数据初始化和平方根计算
+  // 从XMM2寄存器复制高位数据到结果数组
   auVar17._4_12_ = in_XMM2._4_12_;
+  // 计算平方根：sqrt(XMM2的低32位 + XMM1的值)
   auVar17._0_4_ = SQRT(in_XMM2._0_4_ + in_XMM1_Da);
+  // 调用渲染数据获取函数，返回浮点数数组指针
   pfVar12 = (float *)FUN_180535610(param_1,param_2,auVar17._0_8_);
+  
+  // 第二阶段：从渲染上下文提取数据指针
+  // 从参数1的0x30偏移处获取第一个8位数据
   uVar5 = *(undefined8 *)(param_1 + 0x30);
+  // 从参数1的0x38偏移处获取第二个8位数据
   uVar6 = *(undefined8 *)(param_1 + 0x38);
-  in_stack_00000040 = pfVar12[4];
-  fStack0000000000000074 = pfVar12[5];
-  in_stack_00000078 = pfVar12[6];
-  fStack000000000000007c = pfVar12[7];
-  fVar15 = pfVar12[8];
-  fVar21 = pfVar12[9];
-  fVar29 = pfVar12[10];
-  fVar23 = pfVar12[0xb];
-  in_stack_00000060 = *pfVar12;
-  fStack0000000000000064 = pfVar12[1];
-  in_stack_00000068 = pfVar12[2];
-  fStack000000000000006c = pfVar12[3];
+  
+  // 第三阶段：从渲染数据数组加载向量分量
+  // 加载第一个向量的各个分量
+  in_stack_00000040 = pfVar12[4];                // 向量1的X分量
+  fStack0000000000000074 = pfVar12[5];          // 向量1的Y分量
+  in_stack_00000078 = pfVar12[6];                // 向量1的Z分量
+  fStack000000000000007c = pfVar12[7];          // 向量1的W分量
+  
+  // 加载第二个向量的各个分量
+  fVar15 = pfVar12[8];                           // 向量2的X分量
+  fVar21 = pfVar12[9];                           // 向量2的Y分量
+  fVar29 = pfVar12[10];                          // 向量2的Z分量
+  fVar23 = pfVar12[0xb];                         // 向量2的W分量
+  
+  // 加载第三个向量的各个分量
+  in_stack_00000060 = *pfVar12;                  // 向量3的X分量
+  fStack0000000000000064 = pfVar12[1];           // 向量3的Y分量
+  in_stack_00000068 = pfVar12[2];                // 向量3的Z分量
+  fStack000000000000006c = pfVar12[3];           // 向量3的W分量
   *(undefined8 *)(unaff_RBP + -0x1c) = uVar5;
   *(undefined8 *)(unaff_RBP + -0x1a) = uVar6;
   *(undefined8 *)(unaff_RBP + -0x10) = uVar5;
@@ -612,11 +648,50 @@ LAB_18057b795:
   unaff_RBP[9] = fVar25 * fVar10 + fVar22 * fVar9 + fVar18 * fVar11;
   unaff_RBP[10] = fVar25 * fVar21 + fVar22 * fVar15 + fVar18 * fVar29;
   unaff_RBP[0xb] = fVar25 * fVar23 + fVar22 * fVar23 + fVar18 * fVar23;
-  in_stack_00000050 = fVar31;
+  // 最终阶段：设置缩放因子并调用渲染处理函数
+  in_stack_00000050 = fVar31;                        // 设置最终缩放因子
+  // 调用渲染处理函数（不返回）
   FUN_18063b470(&stack0x00000030);
                     // WARNING: Subroutine does not return
+  // 调用最终渲染函数，应用最终的变换效果
   FUN_1808fd400(fVar31 * *(float *)(unaff_RBX + 0x58) * 0.5);
 }
+
+/* ============================================================================
+ * 函数别名定义 - 用于代码可读性和维护性
+ * ============================================================================ */
+
+// 主函数别名：渲染系统高级数学计算器
+#define RenderingSystem_AdvancedMathCalculator FUN_18057a9d2
+
+/* ============================================================================
+ * 技术说明
+ * ============================================================================ */
+/**
+ * 本函数实现了渲染系统中的高级数学计算功能，包括：
+ * 
+ * 1. 向量标准化和归一化处理
+ *    - 使用快速平方根倒数算法进行向量标准化
+ *    - 处理数值稳定性，避免除零错误
+ * 
+ * 2. 矩阵变换和坐标系统转换
+ *    - 执行3x3矩阵乘法运算
+ *    - 处理齐次坐标变换
+ * 
+ * 3. 角度和距离计算
+ *    - 实现3D空间中的角度标准化（-PI到PI范围）
+ *    - 计算欧几里得距离和归一化距离
+ * 
+ * 4. SIMD优化
+ *    - 使用XMM寄存器进行并行计算
+ *    - 优化浮点数运算精度
+ * 
+ * 5. 渲染参数调整
+ *    - 动态调整渲染参数以优化性能
+ *    - 处理边界条件和特殊情况
+ * 
+ * 该函数是渲染管线中的关键数学计算组件，为3D渲染提供高精度的数学支持。
+ */
 
 
 
