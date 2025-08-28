@@ -176,14 +176,6 @@ void simple_text_processing(void)
 
 /**
  * 渲染2D矩形元素
- * @param param_1 渲染上下文
- * @param param_2 矩形位置
- * @param param_3 矩形尺寸
- * @param param_4 渲染标志
- * @param param_5 颜色参数
- */
-/**
- * 渲染2D矩形元素
  * @param render_context 渲染上下文
  * @param position 矩形位置
  * @param size 矩形尺寸
@@ -267,14 +259,14 @@ void render_2d_rectangle_simple(undefined8 render_context, undefined8 position, 
     undefined4 uStack_30;
     float fStack_2c;
     
-    fVar1 = *(float *)(_DAT_180c8a9b0 + 0x1668);
-    lVar2 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
+    fVar1 = *(float *)(global_render_manager + 0x1668);
+    lVar2 = *(longlong *)(global_render_manager + 0x1af8);
     if (0.0 < fVar1) {
-        fStack_38 = *(float *)(_DAT_180c8a9b0 + 0x1728);
-        fStack_34 = *(float *)(_DAT_180c8a9b0 + 0x172c);
-        uStack_30 = *(undefined4 *)(_DAT_180c8a9b0 + 0x1730);
-        fStack_2c = *(float *)(_DAT_180c8a9b0 + 0x1734) * *(float *)(_DAT_180c8a9b0 + 0x1628);
-        lVar4 = _DAT_180c8a9b0;
+        fStack_38 = *(float *)(global_render_manager + 0x1728);
+        fStack_34 = *(float *)(global_render_manager + 0x172c);
+        uStack_30 = *(undefined4 *)(global_render_manager + 0x1730);
+        fStack_2c = *(float *)(global_render_manager + 0x1734) * *(float *)(global_render_manager + 0x1628);
+        lVar4 = global_render_manager;
         uStack_48 = param_2;
         uStack_40 = param_1;
         uVar3 = func_0x000180121e20(&fStack_38);
@@ -284,7 +276,7 @@ void render_2d_rectangle_simple(undefined8 render_context, undefined8 position, 
         fStack_34 = uStack_40._4_4_ + 1.0;
         if ((uVar3 & 0xff000000) != 0) {
             FUN_180293e80(*(undefined8 *)(lVar2 + 0x2e8),&fStack_38,&fStackX_20,uVar3,param_3,0xf,fVar1);
-            lVar4 = _DAT_180c8a9b0;
+            lVar4 = global_render_manager;
         }
         fStack_38 = *(float *)(lVar4 + 0x1718);
         fStack_34 = *(float *)(lVar4 + 0x171c);
@@ -732,7 +724,7 @@ void process_advanced_bounding_box(float *bbox_coords, undefined8 display_params
                 FUN_180291b40(*(undefined8 *)(lVar5 + 0x2e8),CONCAT44(fVar16,fVar17),CONCAT44(fVar12,fVar14)
                               ,0);
             }
-            lVar9 = _DAT_180c8a9b0;
+            lVar9 = global_render_manager;
             uVar6 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19ac);
             uVar7 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19b0);
             fVar2 = *(float *)(_DAT_180c8a9b0 + 0x19b4);
@@ -756,7 +748,7 @@ void process_advanced_bounding_box(float *bbox_coords, undefined8 display_params
                 FUN_180291950();
             }
         }
-        lVar9 = _DAT_180c8a9b0;
+        lVar9 = global_render_manager;
         if ((unaff_RDI & 2) != 0) {
             lVar5 = *(longlong *)(lVar5 + 0x2e8);
             uVar6 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19ac);
@@ -878,7 +870,7 @@ void process_enhanced_bounding_box(float *bbox_coords, undefined8 display_params
             FUN_180291b40(*(undefined8 *)(unaff_RBX + 0x2e8),CONCAT44(fVar16,fVar17),
                           CONCAT44(fVar12,fVar14),0);
         }
-        lVar9 = _DAT_180c8a9b0;
+        lVar9 = global_render_manager;
         uVar6 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19ac);
         uVar7 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19b0);
         fVar2 = *(float *)(_DAT_180c8a9b0 + 0x19b4);
@@ -902,7 +894,7 @@ void process_enhanced_bounding_box(float *bbox_coords, undefined8 display_params
             FUN_180291950();
         }
     }
-    lVar9 = _DAT_180c8a9b0;
+    lVar9 = global_render_manager;
     if ((unaff_RDI & 2) != 0) {
         lVar5 = *(longlong *)(unaff_RBX + 0x2e8);
         uVar6 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19ac);
