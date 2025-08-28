@@ -849,36 +849,62 @@ uint64_t UI_ClearSystem(longlong system_ptr, longlong resource_count)
 
 
 
-uint64_t FUN_180789283(void)
-
+/**
+ * UI_BatchProcess - UI系统批量处理
+ * 
+ * 批量处理UI系统中的渲染资源，检查渲染函数是否存在后执行批量操作
+ * 
+ * @return 处理结果：0=成功
+ * 
+ * 原始实现：FUN_180789283
+ */
+uint64_t UI_BatchProcess(void)
 {
-  uint64_t *puVar1;
-  longlong unaff_RBX;
-  uint64_t *puVar2;
-  
-  if (*(longlong *)(unaff_RBX + 0x3b0) != 0) {
-    puVar2 = (uint64_t *)(*(longlong *)(unaff_RBX + 0x48) + 0x6c0);
-    for (puVar1 = (uint64_t *)*puVar2; puVar1 != puVar2; puVar1 = (uint64_t *)*puVar1) {
-      (**(code **)(unaff_RBX + 0x3b0))(unaff_RBX + 8,*(int32_t *)((longlong)puVar1 + 0x24));
+    uint64_t *current_node;
+    longlong system_ptr;
+    uint64_t *list_head;
+    
+    // 检查渲染函数是否存在
+    if (*(longlong *)(system_ptr + UI_OFFSET_RENDER) != 0) {
+        list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+        
+        // 遍历链表执行批量处理
+        for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
+            // 调用渲染处理函数
+            (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((longlong)current_node + 0x24));
+        }
     }
-  }
-  return 0;
+    
+    return UI_SYSTEM_SUCCESS;
 }
 
 
 
-uint64_t FUN_180789292(void)
-
+/**
+ * UI_ProcessLinkedList - UI系统链表处理
+ * 
+ * 处理UI系统中的链表结构，遍历链表节点并执行相应的处理函数
+ * 
+ * @return 处理结果：0=成功
+ * 
+ * 原始实现：FUN_180789292
+ */
+uint64_t UI_ProcessLinkedList(void)
 {
-  uint64_t *puVar1;
-  longlong unaff_RBX;
-  uint64_t *puVar2;
-  
-  puVar2 = (uint64_t *)(*(longlong *)(unaff_RBX + 0x48) + 0x6c0);
-  for (puVar1 = (uint64_t *)*puVar2; puVar1 != puVar2; puVar1 = (uint64_t *)*puVar1) {
-    (**(code **)(unaff_RBX + 0x3b0))(unaff_RBX + 8,*(int32_t *)((longlong)puVar1 + 0x24));
-  }
-  return 0;
+    uint64_t *current_node;
+    longlong system_ptr;
+    uint64_t *list_head;
+    
+    // 获取链表头指针
+    list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+    
+    // 遍历链表处理每个节点
+    for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
+        // 调用链表节点处理函数
+        (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((longlong)current_node + 0x24));
+    }
+    
+    return UI_SYSTEM_SUCCESS;
 }
 
 
