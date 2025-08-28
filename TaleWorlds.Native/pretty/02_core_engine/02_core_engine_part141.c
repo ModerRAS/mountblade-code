@@ -737,3 +737,304 @@ void process_advanced_animation_render_effects(undefined *animation_data, int fr
     *piVar16 = *piVar16 + 1;
     return;
 }
+
+/**
+ * 处理优化的动画渲染效果
+ * 
+ * 该函数是动画渲染效果处理的高度优化版本，
+ * 专门针对性能关键场景进行优化，包括：
+ * - 简化的动画参数计算
+ * - 优化的内存访问模式
+ * - 减少的不必要计算
+ * - 高效的渲染管线集成
+ * - 精确的时序控制
+ * 
+ * @param matrix_data 变换矩阵数据指针
+ * @param frame_count 帧数
+ * @param effect_params 效果参数
+ * @param animation_context 动画上下文
+ */
+void process_optimized_animation_render_effects(undefined8 matrix_data, int frame_count, 
+                                             undefined4 effect_params, undefined8 animation_context)
+{
+    float *pfVar1;
+    undefined8 *puVar2;
+    undefined4 uVar3;
+    float fVar4;
+    longlong lVar5;
+    longlong lVar6;
+    longlong lVar7;
+    int iVar8;
+    int iVar9;
+    int iVar10;
+    uint uVar11;
+    int iVar12;
+    longlong in_RAX;
+    longlong lVar13;
+    int *piVar14;
+    ulonglong uVar15;
+    longlong lVar16;
+    longlong unaff_RBX;
+    int iVar17;
+    undefined8 unaff_RBP;
+    undefined8 unaff_RSI;
+    undefined8 unaff_RDI;
+    ulonglong uVar18;
+    uint uVar19;
+    undefined8 unaff_R13;
+    undefined8 unaff_R14;
+    undefined8 unaff_R15;
+    float fVar20;
+    undefined8 uVar21;
+    float fVar22;
+    float fVar23;
+    undefined4 unaff_XMM7_Da;
+    undefined4 unaff_XMM7_Db;
+    undefined4 unaff_XMM7_Dc;
+    undefined4 unaff_XMM7_Dd;
+    undefined4 unaff_XMM8_Da;
+    undefined4 unaff_XMM8_Db;
+    undefined4 unaff_XMM8_Dc;
+    undefined4 unaff_XMM8_Dd;
+    
+    // 初始化矩阵变换参数
+    *(undefined8 *)(in_RAX + 0x10) = unaff_RBP;
+    lVar6 = _DAT_180c8a9b0;
+    *(undefined8 *)(in_RAX + 0x18) = unaff_RSI;
+    *(undefined8 *)(in_RAX + 0x20) = unaff_RDI;
+    uVar18 = 0;
+    *(undefined8 *)(in_RAX + -8) = unaff_R13;
+    *(undefined8 *)(in_RAX + -0x10) = unaff_R14;
+    *(undefined8 *)(in_RAX + -0x18) = unaff_R15;
+    
+    // 设置动画参数
+    iVar10 = frame_count;
+    if (unaff_RBX != 0) {
+        iVar10 = 0;
+    }
+    
+    // 配置渲染参数寄存器
+    *(undefined4 *)(in_RAX + -0x38) = unaff_XMM7_Da;
+    *(undefined4 *)(in_RAX + -0x34) = unaff_XMM7_Db;
+    *(undefined4 *)(in_RAX + -0x30) = unaff_XMM7_Dc;
+    *(undefined4 *)(in_RAX + -0x2c) = unaff_XMM7_Dd;
+    *(undefined4 *)(in_RAX + -0x48) = unaff_XMM8_Da;
+    *(undefined4 *)(in_RAX + -0x44) = unaff_XMM8_Db;
+    *(undefined4 *)(in_RAX + -0x40) = unaff_XMM8_Dc;
+    *(undefined4 *)(in_RAX + -0x3c) = unaff_XMM8_Dd;
+    
+    // 设置渲染状态标志
+    *(undefined1 *)(*(longlong *)(lVar6 + 0x1af8) + 0xb1) = 1;
+    lVar5 = *(longlong *)(lVar6 + 0x1af8);
+    
+    // 初始化动画系统
+    uVar21 = FUN_18012e2d0(iVar10 + 0x11223347);
+    iVar10 = FUN_180121250(uVar21,0,*(undefined4 *)
+                                   (*(longlong *)(lVar5 + 0x220) + -4 +
+                                   (longlong)*(int *)(lVar5 + 0x218) * 4));
+    
+    // 处理动画状态同步
+    lVar13 = _DAT_180c8a9b0;
+    if (*(int *)(_DAT_180c8a9b0 + 0x1b2c) == iVar10) {
+        *(int *)(_DAT_180c8a9b0 + 0x1b34) = iVar10;
+    }
+    if (*(int *)(lVar13 + 0x1b30) == iVar10) {
+        *(undefined1 *)(lVar13 + 0x1b3f) = 1;
+    }
+    
+    // 更新动画引用计数
+    piVar14 = (int *)(*(longlong *)(lVar13 + 0x1af8) + 0x218);
+    *piVar14 = *piVar14 + -1;
+    
+    // 创建优化的渲染条目
+    lVar13 = FUN_180134480(lVar5);
+    *(undefined4 *)(lVar13 + 0xc) = 0;
+    *(int *)(lVar13 + 0x10) = frame_count;
+    *(undefined4 *)(lVar13 + 4) = effect_params;
+    
+    // 计算优化动画参数
+    fVar22 = *(float *)(lVar5 + 0x68);
+    *(longlong *)(lVar5 + 0x210) = lVar13;
+    if (fVar22 == 0.0) {
+        fVar22 = *(float *)(lVar5 + 0x260) - *(float *)(lVar5 + 0x40);
+    }
+    fVar20 = *(float *)(lVar5 + 0x204) - *(float *)(lVar6 + 0x166c);
+    *(float *)(lVar13 + 0x14) = fVar20;
+    fVar20 = fVar20 + 1.0;
+    fVar22 = fVar22 - *(float *)(lVar5 + 0x8c);
+    if (fVar22 <= fVar20) {
+        fVar22 = fVar20;
+    }
+    *(float *)(lVar13 + 0x18) = fVar22;
+    
+    // 设置优化渲染参数
+    *(undefined4 *)(lVar13 + 0x24) = *(undefined4 *)(lVar5 + 0x104);
+    *(undefined4 *)(lVar13 + 0x28) = *(undefined4 *)(lVar5 + 0x118);
+    uVar3 = *(undefined4 *)(lVar5 + 0x104);
+    *(undefined4 *)(lVar13 + 0x20) = uVar3;
+    *(undefined4 *)(lVar13 + 0x1c) = uVar3;
+    *(undefined4 *)(lVar5 + 0x20c) = 0;
+    *(float *)(lVar5 + 0x100) = (float)(int)(*(float *)(lVar5 + 0x40) + *(float *)(lVar5 + 0x204));
+    
+    // 处理优化的动画帧数据
+    iVar10 = *(int *)(lVar13 + 0x30);
+    if ((iVar10 != 0) && (iVar10 != frame_count + 1)) {
+        iVar10 = *(int *)(lVar13 + 0x34);
+        if (iVar10 < 0) {
+            uVar11 = iVar10 / 2 + iVar10;
+            uVar15 = uVar18;
+            if (0 < (int)uVar11) {
+                uVar15 = (ulonglong)uVar11;
+            }
+            FUN_18013e250(lVar13 + 0x30,uVar15);
+        }
+        *(undefined4 *)(lVar13 + 0x30) = 0;
+        iVar10 = 0;
+    }
+    *(bool *)(lVar13 + 8) = iVar10 == 0;
+    
+    // 优化的动画帧插值初始化
+    if (iVar10 == 0) {
+        iVar10 = frame_count + 1;
+        FUN_18013e250(lVar13 + 0x30,iVar10);
+        if (0 < iVar10) {
+            iVar9 = *(int *)(lVar13 + 0x30);
+            uVar15 = uVar18;
+            do {
+                iVar12 = *(int *)(lVar13 + 0x34);
+                iVar17 = (int)uVar15;
+                if (iVar9 == iVar12) {
+                    if (iVar12 == 0) {
+                        iVar12 = 8;
+                    }
+                    else {
+                        iVar12 = iVar12 / 2 + iVar12;
+                    }
+                    iVar8 = iVar9 + 1;
+                    if (iVar9 + 1 < iVar12) {
+                        iVar8 = iVar12;
+                    }
+                    FUN_18013e250(lVar13 + 0x30,iVar8);
+                    iVar9 = *(int *)(lVar13 + 0x30);
+                }
+                lVar6 = *(longlong *)(lVar13 + 0x38);
+                uVar11 = iVar17 + 1;
+                uVar15 = (ulonglong)uVar11;
+                lVar16 = (longlong)iVar9 * 0x1c;
+                *(ulonglong *)(lVar16 + lVar6) = (ulonglong)(uint)((float)iVar17 * (1.0 / (float)frame_count));
+                ((ulonglong *)(lVar16 + lVar6))[1] = 0x7f7fffff00000000;
+                *(undefined8 *)(lVar16 + 0x10 + lVar6) = 0xff7fffff7f7fffff;
+                *(undefined4 *)(lVar16 + 0x18 + lVar6) = 0xff7fffff;
+                *(int *)(lVar13 + 0x30) = *(int *)(lVar13 + 0x30) + 1;
+                iVar9 = *(int *)(lVar13 + 0x30);
+            } while ((int)uVar11 < iVar10);
+        }
+    }
+    
+    // 优化的动画帧渲染处理
+    lVar6 = _DAT_180c8a9b0;
+    uVar15 = uVar18;
+    if (0 < frame_count) {
+        do {
+            iVar9 = (int)uVar18;
+            lVar16 = *(longlong *)(lVar13 + 0x38);
+            lVar7 = *(longlong *)(*(longlong *)(lVar6 + 0x1af8) + 0x210);
+            iVar10 = iVar9;
+            if (iVar9 < 0) {
+                iVar10 = *(int *)(lVar7 + 0xc);
+            }
+            fVar22 = *(float *)(lVar7 + 0x14);
+            uVar19 = iVar9 + 1;
+            fVar20 = *(float *)(lVar7 + 0x18) - fVar22;
+            fVar23 = *(float *)(lVar5 + 0x40) + 0.5;
+            uVar11 = uVar19;
+            if ((int)uVar19 < 0) {
+                uVar11 = *(uint *)(lVar7 + 0xc);
+            }
+            uVar18 = (ulonglong)uVar19;
+            fVar4 = *(float *)((longlong)(int)uVar11 * 0x1c + *(longlong *)(lVar7 + 0x38));
+            pfVar1 = (float *)(uVar15 + 0xc + lVar16);
+            *pfVar1 = (float)(int)((fVar20 * *(float *)((longlong)iVar10 * 0x1c +
+                                                   *(longlong *)(lVar7 + 0x38)) + fVar22 + fVar23) -
+                                  1.0);
+            pfVar1[1] = -3.4028235e+38;
+            pfVar1[2] = (float)(int)((fVar20 * fVar4 + fVar22 + fVar23) - 1.0);
+            pfVar1[3] = 3.4028235e+38;
+            fVar22 = *(float *)(uVar15 + 0x10 + lVar16);
+            if (fVar22 <= *(float *)(lVar5 + 0x22c)) {
+                fVar22 = *(float *)(lVar5 + 0x22c);
+            }
+            fVar20 = *(float *)(uVar15 + 0xc + lVar16);
+            fVar23 = *(float *)(lVar5 + 0x228);
+            if (*(float *)(lVar5 + 0x228) <= fVar20) {
+                fVar23 = fVar20;
+            }
+            *(float *)(uVar15 + 0x10 + lVar16) = fVar22;
+            *(float *)(uVar15 + 0xc + lVar16) = fVar23;
+            fVar22 = *(float *)(uVar15 + 0x14 + lVar16);
+            fVar20 = *(float *)(uVar15 + 0x18 + lVar16);
+            if (*(float *)(lVar5 + 0x230) <= fVar22) {
+                fVar22 = *(float *)(lVar5 + 0x230);
+            }
+            if (*(float *)(lVar5 + 0x234) <= fVar20) {
+                fVar20 = *(float *)(lVar5 + 0x234);
+            }
+            *(float *)(uVar15 + 0x14 + lVar16) = fVar22;
+            *(float *)(uVar15 + 0x18 + lVar16) = fVar20;
+            uVar15 = uVar15 + 0x1c;
+        } while ((int)uVar19 < frame_count);
+    }
+    
+    // 应用优化的渲染效果
+    FUN_180291cf0(*(undefined8 *)(lVar5 + 0x2e8),*(undefined4 *)(lVar13 + 0x10));
+    lVar5 = _DAT_180c8a9b0;
+    lVar6 = *(longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x210);
+    lVar13 = (longlong)*(int *)(lVar6 + 0xc) * 0x1c + *(longlong *)(lVar6 + 0x38);
+    *(undefined1 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+    lVar6 = *(longlong *)(lVar5 + 0x1af8);
+    FUN_180291b40(*(undefined8 *)(lVar6 + 0x2e8),*(undefined8 *)(lVar13 + 0xc),
+                  *(undefined8 *)(lVar13 + 0x14),0);
+    lVar5 = _DAT_180c8a9b0;
+    puVar2 = (undefined8 *)
+             (*(longlong *)(*(longlong *)(lVar6 + 0x2e8) + 0x68) + -0x10 +
+             (longlong)*(int *)(*(longlong *)(lVar6 + 0x2e8) + 0x60) * 0x10);
+    uVar21 = puVar2[1];
+    *(undefined8 *)(lVar6 + 0x228) = *puVar2;
+    *(undefined8 *)(lVar6 + 0x230) = uVar21;
+    
+    // 计算最终优化动画参数
+    lVar6 = *(longlong *)(*(longlong *)(lVar5 + 0x1af8) + 0x210);
+    fVar22 = *(float *)(lVar6 + 0x18);
+    fVar20 = *(float *)(lVar6 + 0x14);
+    fVar23 = *(float *)(((longlong)*(int *)(lVar6 + 0xc) + 1) * 0x1c + *(longlong *)(lVar6 + 0x38));
+    fVar4 = *(float *)((longlong)*(int *)(lVar6 + 0xc) * 0x1c + *(longlong *)(lVar6 + 0x38));
+    *(undefined1 *)(*(longlong *)(lVar5 + 0x1af8) + 0xb1) = 1;
+    lVar6 = *(longlong *)(lVar5 + 0x1af8);
+    fVar22 = (fVar23 - fVar4) * (fVar22 - fVar20) * 0.65;
+    if (fVar22 == 0.0) {
+        fVar22 = *(float *)(lVar6 + 0x284);
+    }
+    
+    // 更新优化动画参数
+    piVar14 = (int *)(lVar6 + 0x1c8);
+    *(float *)(lVar6 + 0x1ac) = fVar22;
+    iVar10 = *piVar14;
+    iVar9 = *(int *)(lVar6 + 0x1cc);
+    if (iVar10 == iVar9) {
+        if (iVar9 == 0) {
+            iVar9 = 8;
+        }
+        else {
+            iVar9 = iVar9 / 2 + iVar9;
+        }
+        iVar12 = iVar10 + 1;
+        if (iVar10 + 1 < iVar9) {
+            iVar12 = iVar9;
+        }
+        FUN_18011dbd0(piVar14,iVar12);
+        iVar10 = *piVar14;
+    }
+    *(float *)(*(longlong *)(lVar6 + 0x1d0) + (longlong)iVar10 * 4) = *(float *)(lVar6 + 0x1ac);
+    *piVar14 = *piVar14 + 1;
+    return;
+}
