@@ -137,12 +137,12 @@ extern uint64_t system_memory_64c8;      // 数据引用64c8
  * - 0xFF: 扩展数据流控制
  * - 0x00-0xEF: 普通数据处理
  */
-void data_stream_processor(longlong *param_1, char param_2, int8_t param_3)
+void data_stream_processor(int64_t *param_1, char param_2, int8_t param_3)
 {
     int8_t uVar1;
     char cVar2;
-    longlong lVar3;
-    longlong lVar4;
+    int64_t lVar3;
+    int64_t lVar4;
     byte bVar5;
     byte bVar6;
     uint uVar7;
@@ -160,14 +160,14 @@ void data_stream_processor(longlong *param_1, char param_2, int8_t param_3)
     byte bStack_146;
     int iStack_144;
     int8_t auStack_138[256];
-    ulonglong uStack_38;
-    ulonglong uVar9;
+    uint64_t uStack_38;
+    uint64_t uVar9;
     
     // 安全检查初始化
-    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_188;
     
     // 检查数据流状态和条件
-    if ((param_1[1] != 0) && (*(char *)((longlong)param_1 + 0x24) == '\0')) {
+    if ((param_1[1] != 0) && (*(char *)((int64_t)param_1 + 0x24) == '\0')) {
         lVar4 = *param_1;
         fVar13 = *(float *)(param_1 + 4);
         
@@ -175,60 +175,60 @@ void data_stream_processor(longlong *param_1, char param_2, int8_t param_3)
         if (fVar13 < *(float *)(lVar4 + 0x3bec) || fVar13 == *(float *)(lVar4 + 0x3bec)) {
         LAB_1807bb170:
             // 检查处理状态
-            if (*(char *)((longlong)param_1 + 0x1c) == '\0') {
+            if (*(char *)((int64_t)param_1 + 0x1c) == '\0') {
                 cVar10 = '\0';
                 uVar7 = *(uint *)(param_1 + 2);
                 uVar11 = 0;
                 
                 // 处理数据流解析
-                if (uVar7 < *(uint *)((longlong)param_1 + 0x14)) {
+                if (uVar7 < *(uint *)((int64_t)param_1 + 0x14)) {
                     while (true) {
                         if (cVar10 == '\x04') goto LAB_1807bb1c0;
                         cVar10 = cVar10 + '\x01';
-                        bVar6 = *(byte *)((ulonglong)uVar7 + param_1[1]);
+                        bVar6 = *(byte *)((uint64_t)uVar7 + param_1[1]);
                         uVar11 = uVar11 * 0x80 + (bVar6 & 0x7f);
                         uVar7 = uVar7 + 1;
                         *(uint *)(param_1 + 2) = uVar7;
                         if (-1 < (char)bVar6) break;
-                        if (*(uint *)((longlong)param_1 + 0x14) <= uVar7) goto LAB_1807bb1c0;
+                        if (*(uint *)((int64_t)param_1 + 0x14) <= uVar7) goto LAB_1807bb1c0;
                     }
                     
                     // 更新数据流状态
                     lVar4 = *param_1;
-                    *(int8_t *)((longlong)param_1 + 0x1c) = 0;
+                    *(int8_t *)((int64_t)param_1 + 0x1c) = 0;
                     fVar13 = (float)uVar11 + *(float *)(param_1 + 4);
                     *(float *)(param_1 + 4) = fVar13;
                     goto LAB_1807bb1ea;
                 }
             LAB_1807bb1c0:
                 // 设置错误状态
-                *(int8_t *)((longlong)param_1 + 0x24) = 1;
+                *(int8_t *)((int64_t)param_1 + 0x24) = 1;
             }
             else {
             LAB_1807bb1ea:
                 // 继续数据处理
                 if (fVar13 < *(float *)(lVar4 + 0x3bec) || fVar13 == *(float *)(lVar4 + 0x3bec)) {
                     uVar7 = *(uint *)(param_1 + 2);
-                    uVar11 = *(uint *)((longlong)param_1 + 0x14);
-                    *(int8_t *)((longlong)param_1 + 0x1c) = 0;
+                    uVar11 = *(uint *)((int64_t)param_1 + 0x14);
+                    *(int8_t *)((int64_t)param_1 + 0x1c) = 0;
                     
                     if (uVar11 <= uVar7) goto LAB_1807bb1c0;
                     lVar3 = param_1[1];
-                    bVar6 = *(byte *)((ulonglong)uVar7 + lVar3);
+                    bVar6 = *(byte *)((uint64_t)uVar7 + lVar3);
                     uVar8 = uVar7 + 1;
-                    uVar9 = (ulonglong)uVar8;
+                    uVar9 = (uint64_t)uVar8;
                     *(uint *)(param_1 + 2) = uVar8;
                     
                     // 处理不同类型的控制字节
                     if (bVar6 < 0xf0) {
                         bVar5 = bVar6;
                         if (bVar6 < 0x80) {
-                            bVar5 = *(byte *)((longlong)param_1 + 0x26);
+                            bVar5 = *(byte *)((int64_t)param_1 + 0x26);
                         }
                         uStack_160 = CONCAT31(uStack_160._1_3_, param_3);
-                        lVar3 = (ulonglong)(bVar5 & 0xf) * 0x378;
+                        lVar3 = (uint64_t)(bVar5 & 0xf) * 0x378;
                         uStack_168 = CONCAT31(uStack_168._1_3_, param_2);
-                        *(longlong **)(lVar4 + 0x440 + lVar3) = param_1;
+                        *(int64_t **)(lVar4 + 0x440 + lVar3) = param_1;
                         data_flow_controller(lVar3 + *param_1 + 0x428, bVar5, CONCAT31((int3)(uVar8 >> 8), bVar6 < 0x80));
                         bVar6 = bVar5;
                     }
@@ -248,13 +248,13 @@ void data_stream_processor(longlong *param_1, char param_2, int8_t param_3)
                                     *(uint *)(param_1 + 2) = uVar7 + iVar12;
                                     goto LAB_1807bb778;
                                 }
-                                uVar9 = (ulonglong)uVar7;
+                                uVar9 = (uint64_t)uVar7;
                             } while (uVar7 < uVar11);
-                            *(int8_t *)((longlong)param_1 + 0x24) = 1;
+                            *(int8_t *)((int64_t)param_1 + 0x24) = 1;
                         }
                         else {
                         LAB_1807bb47c:
-                            *(int8_t *)((longlong)param_1 + 0x24) = 1;
+                            *(int8_t *)((int64_t)param_1 + 0x24) = 1;
                         }
                     }
                     else if (bVar6 == 0xf7) {
@@ -268,9 +268,9 @@ void data_stream_processor(longlong *param_1, char param_2, int8_t param_3)
                             uVar7 = (int)uVar9 + 1;
                             *(uint *)(param_1 + 2) = uVar7;
                             if (-1 < cVar2) goto LAB_1807bb778;
-                            uVar9 = (ulonglong)uVar7;
+                            uVar9 = (uint64_t)uVar7;
                         } while (uVar7 < uVar11);
-                        *(int8_t *)((longlong)param_1 + 0x24) = 1;
+                        *(int8_t *)((int64_t)param_1 + 0x24) = 1;
                     }
                     else if (bVar6 == 0xff) {
                         // 处理FF控制字节（扩展数据处理）
@@ -278,7 +278,7 @@ void data_stream_processor(longlong *param_1, char param_2, int8_t param_3)
                             uVar1 = *(int8_t *)(uVar9 + lVar3);
                             cVar10 = '\0';
                             uVar7 = uVar7 + 2;
-                            uVar9 = (ulonglong)uVar7;
+                            uVar9 = (uint64_t)uVar7;
                             uVar8 = 0;
                             *(uint *)(param_1 + 2) = uVar7;
                             
@@ -290,7 +290,7 @@ void data_stream_processor(longlong *param_1, char param_2, int8_t param_3)
                                     uVar8 = uVar8 * 0x80 + (bVar5 & 0x7f);
                                     iVar12 = (int)uVar9;
                                     uVar7 = iVar12 + 1;
-                                    uVar9 = (ulonglong)uVar7;
+                                    uVar9 = (uint64_t)uVar7;
                                     *(uint *)(param_1 + 2) = uVar7;
                                     if ((char)bVar5 < '\0') goto code_r0x0001807bb29c;
                                     
@@ -354,12 +354,12 @@ void data_stream_processor(longlong *param_1, char param_2, int8_t param_3)
                                     case 0x21:
                                         if (uVar8 != 0) {
                                             if (uVar7 < uVar11) {
-                                                *(int8_t *)((longlong)param_1 + 0x25) = *(int8_t *)(uVar9 + lVar3);
+                                                *(int8_t *)((int64_t)param_1 + 0x25) = *(int8_t *)(uVar9 + lVar3);
                                             code_r0x0001807bb4a3:
                                                 *(int *)(param_1 + 2) = iVar12 + 2;
                                             }
                                             else {
-                                                *(int8_t *)((longlong)param_1 + 0x24) = 1;
+                                                *(int8_t *)((int64_t)param_1 + 0x24) = 1;
                                             }
                                         }
                                         break;
@@ -378,17 +378,17 @@ void data_stream_processor(longlong *param_1, char param_2, int8_t param_3)
                                         if (uVar11 <= uVar7) goto LAB_1807bb47c;
                                         *(int8_t *)(*param_1 + 0x3bd4) = *(int8_t *)(uVar9 + lVar3);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
-                                        if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
-                                        *(int8_t *)(*param_1 + 0x3bd5) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        if (*(uint *)((int64_t)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
+                                        *(int8_t *)(*param_1 + 0x3bd5) = *(int8_t *)((uint64_t)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
-                                        if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
-                                        *(int8_t *)(*param_1 + 0x3bd6) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        if (*(uint *)((int64_t)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
+                                        *(int8_t *)(*param_1 + 0x3bd6) = *(int8_t *)((uint64_t)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
-                                        if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
-                                        *(int8_t *)(*param_1 + 0x3bd7) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        if (*(uint *)((int64_t)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
+                                        *(int8_t *)(*param_1 + 0x3bd7) = *(int8_t *)((uint64_t)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
-                                        if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
-                                        *(int8_t *)(*param_1 + 0x3bd8) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        if (*(uint *)((int64_t)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
+                                        *(int8_t *)(*param_1 + 0x3bd8) = *(int8_t *)((uint64_t)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         break;
                                     case 0x58:
@@ -396,14 +396,14 @@ void data_stream_processor(longlong *param_1, char param_2, int8_t param_3)
                                         if (uVar11 <= uVar7) goto LAB_1807bb47c;
                                         *(int8_t *)(*param_1 + 0x3bd9) = *(int8_t *)(uVar9 + lVar3);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
-                                        if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
-                                        *(int8_t *)(*param_1 + 0x3bda) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        if (*(uint *)((int64_t)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
+                                        *(int8_t *)(*param_1 + 0x3bda) = *(int8_t *)((uint64_t)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
-                                        if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
-                                        *(int8_t *)(*param_1 + 0x3bdb) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        if (*(uint *)((int64_t)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
+                                        *(int8_t *)(*param_1 + 0x3bdb) = *(int8_t *)((uint64_t)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
-                                        if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
-                                        *(int8_t *)(*param_1 + 0x3bdc) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        if (*(uint *)((int64_t)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
+                                        *(int8_t *)(*param_1 + 0x3bdc) = *(int8_t *)((uint64_t)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         break;
                                     case 0x59:
@@ -411,8 +411,8 @@ void data_stream_processor(longlong *param_1, char param_2, int8_t param_3)
                                         if (uVar11 <= uVar7) goto LAB_1807bb47c;
                                         *(int8_t *)(*param_1 + 0x3bdd) = *(int8_t *)(uVar9 + lVar3);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
-                                        if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
-                                        *(int8_t *)(*param_1 + 0x3bde) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        if (*(uint *)((int64_t)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
+                                        *(int8_t *)(*param_1 + 0x3bde) = *(int8_t *)((uint64_t)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         break;
                                     case 0x7f:
@@ -423,25 +423,25 @@ void data_stream_processor(longlong *param_1, char param_2, int8_t param_3)
                             }
                             goto LAB_1807bb47c;
                         }
-                        *(int8_t *)((longlong)param_1 + 0x24) = 1;
+                        *(int8_t *)((int64_t)param_1 + 0x24) = 1;
                     }
                     goto LAB_1807bb778;
                 }
-                *(int8_t *)((longlong)param_1 + 0x1c) = 1;
+                *(int8_t *)((int64_t)param_1 + 0x1c) = 1;
             }
         }
     }
 LAB_1807bb79f:
     // 安全退出处理
-    security_checker(uStack_38 ^ (ulonglong)auStack_188);
+    security_checker(uStack_38 ^ (uint64_t)auStack_188);
 code_r0x0001807bb29c:
     if (uVar11 <= uVar7) goto code_r0x0001807bb2a1;
     goto LAB_1807bb271;
 code_r0x0001807bb2a1:
-    *(int8_t *)((longlong)param_1 + 0x24) = 1;
+    *(int8_t *)((int64_t)param_1 + 0x24) = 1;
 LAB_1807bb778:
-    *(byte *)((longlong)param_1 + 0x26) = bVar6;
-    if (*(char *)((longlong)param_1 + 0x24) != '\0') goto LAB_1807bb79f;
+    *(byte *)((int64_t)param_1 + 0x26) = bVar6;
+    if (*(char *)((int64_t)param_1 + 0x24) != '\0') goto LAB_1807bb79f;
     lVar4 = *param_1;
     fVar13 = *(float *)(param_1 + 4);
     if (*(float *)(lVar4 + 0x3bec) <= fVar13 && fVar13 != *(float *)(lVar4 + 0x3bec)) goto LAB_1807bb79f;
@@ -481,7 +481,7 @@ LAB_1807bb778:
  * - 状态管理：设置适当的错误状态
  * - 内存安全：确保所有内存操作都在边界内
  */
-uint64_t memory_boundary_checker(longlong param_1, longlong param_2, int param_3)
+uint64_t memory_boundary_checker(int64_t param_1, int64_t param_2, int param_3)
 {
     uint uVar1;
     uint uVar2;
@@ -503,7 +503,7 @@ uint64_t memory_boundary_checker(longlong param_1, longlong param_2, int param_3
     
     // 执行安全的内存复制
     if (param_2 != 0) {
-        memcpy(param_2, (ulonglong)uVar1 + *(longlong *)(param_1 + 8), (longlong)param_3);
+        memcpy(param_2, (uint64_t)uVar1 + *(int64_t *)(param_1 + 8), (int64_t)param_3);
     }
     
     // 更新缓冲区位置

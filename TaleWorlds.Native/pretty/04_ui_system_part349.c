@@ -207,7 +207,7 @@ typedef struct {
     uint process_id;          // 进程ID
     uint resource_count;       // 资源计数
     int error_code;           // 错误代码
-    longlong timestamp;        // 时间戳
+    int64_t timestamp;        // 时间戳
 } UISystem_StateStruct;
 
 /**
@@ -228,7 +228,7 @@ typedef struct {
     uint data_size;           // 数据大小
     uint data_type;           // 数据类型
     uint data_flags;          // 数据标志
-    longlong *data_pointer;   // 数据指针
+    int64_t *data_pointer;   // 数据指针
 } UISystem_DataStruct;
 
 /**
@@ -248,7 +248,7 @@ typedef struct {
     uint event_type;          // 事件类型
     uint event_id;            // 事件ID
     uint event_flags;         // 事件标志
-    longlong event_timestamp; // 事件时间戳
+    int64_t event_timestamp; // 事件时间戳
     uint64_t event_data;    // 事件数据
 } UISystem_EventStruct;
 
@@ -273,16 +273,16 @@ typedef struct {
  * @note 该函数是UI系统的核心状态处理函数，承担着重要的状态管理功能
  * @warning 该函数可能调用不返回的子程序
  */
-void UISystem_StateProcessor(longlong param_1, longlong param_2)
+void UISystem_StateProcessor(int64_t param_1, int64_t param_2)
 {
     uint uVar1;
     uint uVar2;
     uint uVar3;
     uint *puVar4;
     int iVar5;
-    longlong lVar6;
-    longlong *plVar7;
-    longlong *plVar8;
+    int64_t lVar6;
+    int64_t *plVar7;
+    int64_t *plVar8;
     uint64_t uVar9;
     int32_t uVar10;
     float fVar11;
@@ -299,15 +299,15 @@ void UISystem_StateProcessor(longlong param_1, longlong param_2)
     uint uStack_88;
     uint uStack_80;
     uint uStack_78;
-    longlong lStack_70;
+    int64_t lStack_70;
     int8_t auStack_68 [40];
-    ulonglong uStack_40;
+    uint64_t uStack_40;
     
     // 安全检查和数据初始化
-    uStack_40 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_e8;
-    lVar6 = **(longlong **)(param_1 + UI_SYSTEM_OFFSET_38);
-    plVar8 = (longlong *)(lVar6 + UI_SYSTEM_OFFSET_60);
-    plVar7 = (longlong *)*plVar8;
+    uStack_40 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_e8;
+    lVar6 = **(int64_t **)(param_1 + UI_SYSTEM_OFFSET_38);
+    plVar8 = (int64_t *)(lVar6 + UI_SYSTEM_OFFSET_60);
+    plVar7 = (int64_t *)*plVar8;
     uVar1 = *(uint *)(lVar6 + UI_SYSTEM_OFFSET_A0);
     uStack_78 = uVar1;
     lStack_70 = param_1;
@@ -316,27 +316,27 @@ void UISystem_StateProcessor(longlong param_1, longlong param_2)
     if (plVar7 != plVar8) {
         do {
             // 检查UI组件状态匹配
-            if ((*(longlong *)(*(longlong *)(param_2 + UI_SYSTEM_OFFSET_28) + UI_SYSTEM_OFFSET_10) == plVar7[2]) &&
-               (*(longlong *)(*(longlong *)(param_2 + UI_SYSTEM_OFFSET_28) + UI_SYSTEM_OFFSET_18) == plVar7[3])) {
+            if ((*(int64_t *)(*(int64_t *)(param_2 + UI_SYSTEM_OFFSET_28) + UI_SYSTEM_OFFSET_10) == plVar7[2]) &&
+               (*(int64_t *)(*(int64_t *)(param_2 + UI_SYSTEM_OFFSET_28) + UI_SYSTEM_OFFSET_18) == plVar7[3])) {
                 
                 // 调用UI系统渲染控制器
-                lVar6 = (**(code **)(**(longlong **)(param_1 + UI_SYSTEM_OFFSET_170) + UI_SYSTEM_OFFSET_268))
-                                 (*(longlong **)(param_1 + UI_SYSTEM_OFFSET_170),plVar7 + 4,
-                                  CONCAT71((int7)((ulonglong)plVar8 >> 8),UI_SYSTEM_FLAG_1));
+                lVar6 = (**(code **)(**(int64_t **)(param_1 + UI_SYSTEM_OFFSET_170) + UI_SYSTEM_OFFSET_268))
+                                 (*(int64_t **)(param_1 + UI_SYSTEM_OFFSET_170),plVar7 + 4,
+                                  CONCAT71((int7)((uint64_t)plVar8 >> 8),UI_SYSTEM_FLAG_1));
                 
                 // 处理渲染控制器返回结果
                 if (lVar6 == 0) {
                     // 提取UI组件状态数据
-                    uStack_80 = (uint)*(byte *)((longlong)plVar7 + UI_SYSTEM_OFFSET_2F);
-                    uStack_88 = (uint)*(byte *)((longlong)plVar7 + UI_SYSTEM_OFFSET_2E);
-                    uStack_90 = (uint)*(byte *)((longlong)plVar7 + UI_SYSTEM_OFFSET_2D);
-                    uStack_98 = (uint)*(byte *)((longlong)plVar7 + UI_SYSTEM_OFFSET_2C);
-                    uStack_a0 = (uint)*(byte *)((longlong)plVar7 + UI_SYSTEM_OFFSET_2B);
-                    uStack_a8 = (uint)*(byte *)((longlong)plVar7 + UI_SYSTEM_OFFSET_2A);
-                    uStack_b0 = (uint)*(byte *)((longlong)plVar7 + UI_SYSTEM_OFFSET_29);
+                    uStack_80 = (uint)*(byte *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_2F);
+                    uStack_88 = (uint)*(byte *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_2E);
+                    uStack_90 = (uint)*(byte *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_2D);
+                    uStack_98 = (uint)*(byte *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_2C);
+                    uStack_a0 = (uint)*(byte *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_2B);
+                    uStack_a8 = (uint)*(byte *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_2A);
+                    uStack_b0 = (uint)*(byte *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_29);
                     uStack_b8 = (uint)*(byte *)(plVar7 + UI_SYSTEM_VALUE_5);
-                    uStack_c0 = (uint)*(ushort *)((longlong)plVar7 + UI_SYSTEM_OFFSET_26);
-                    uStack_c8 = (uint)*(ushort *)((longlong)plVar7 + UI_SYSTEM_OFFSET_24);
+                    uStack_c0 = (uint)*(ushort *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_26);
+                    uStack_c8 = (uint)*(ushort *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_24);
                     
                     // 调用UI系统资源管理器
                     UISystem_ResourceManager(auStack_68, UI_SYSTEM_FLAG_27, &unknown_var_8960_ptr, (int)plVar7[4]);
@@ -351,7 +351,7 @@ void UISystem_StateProcessor(longlong param_1, longlong param_2)
                     fVar11 = (float)uVar2 / (float)*puVar4;
                     
                     // 检查UI系统渲染模式
-                    if (*(int *)(*(longlong *)(param_2 + UI_SYSTEM_OFFSET_28) + UI_SYSTEM_OFFSET_40) == UI_SYSTEM_FLAG_4) {
+                    if (*(int *)(*(int64_t *)(param_2 + UI_SYSTEM_OFFSET_28) + UI_SYSTEM_OFFSET_40) == UI_SYSTEM_FLAG_4) {
                         if (UI_SYSTEM_FLOAT_EPSILON <= ABS((float)puVar4[1])) {
                             fVar11 = UI_SYSTEM_FLOAT_0_0;
                         }
@@ -363,7 +363,7 @@ void UISystem_StateProcessor(longlong param_1, longlong param_2)
                 }
                 else {
                     // 处理UI系统数据边界
-                    uVar3 = puVar4[(longlong)*(int *)(lVar6 + UI_SYSTEM_OFFSET_38) * UI_SYSTEM_VALUE_6 + -UI_SYSTEM_VALUE_6];
+                    uVar3 = puVar4[(int64_t)*(int *)(lVar6 + UI_SYSTEM_OFFSET_38) * UI_SYSTEM_VALUE_6 + -UI_SYSTEM_VALUE_6];
                     if (uVar2 <= uVar3) {
                         uVar9 = UI_SYSTEM_FLAG_1;
                         goto LAB_180859953;
@@ -384,36 +384,36 @@ void UISystem_StateProcessor(longlong param_1, longlong param_2)
                 if (iVar5 != 0) goto LAB_1808597c2;
                 goto LAB_18085996b;
             }
-        } while ((plVar7 != plVar8) && (plVar7 = (longlong *)*plVar7, plVar7 != plVar8));
+        } while ((plVar7 != plVar8) && (plVar7 = (int64_t *)*plVar7, plVar7 != plVar8));
     }
     
     // 处理UI系统资源清理
-    plVar8 = (longlong *)(lVar6 + UI_SYSTEM_OFFSET_70);
-    if (*(longlong **)(lVar6 + UI_SYSTEM_OFFSET_70) != plVar8) {
-        plVar7 = *(longlong **)(lVar6 + UI_SYSTEM_OFFSET_70);
+    plVar8 = (int64_t *)(lVar6 + UI_SYSTEM_OFFSET_70);
+    if (*(int64_t **)(lVar6 + UI_SYSTEM_OFFSET_70) != plVar8) {
+        plVar7 = *(int64_t **)(lVar6 + UI_SYSTEM_OFFSET_70);
         do {
             // 检查UI系统资源匹配
-            if ((*(longlong *)(*(longlong *)(param_2 + UI_SYSTEM_OFFSET_28) + UI_SYSTEM_OFFSET_10) == plVar7[2]) &&
-               (*(longlong *)(*(longlong *)(param_2 + UI_SYSTEM_OFFSET_28) + UI_SYSTEM_OFFSET_18) == plVar7[3])) {
+            if ((*(int64_t *)(*(int64_t *)(param_2 + UI_SYSTEM_OFFSET_28) + UI_SYSTEM_OFFSET_10) == plVar7[2]) &&
+               (*(int64_t *)(*(int64_t *)(param_2 + UI_SYSTEM_OFFSET_28) + UI_SYSTEM_OFFSET_18) == plVar7[3])) {
                 
                 // 调用UI系统渲染控制器
-                lVar6 = (**(code **)(**(longlong **)(param_1 + UI_SYSTEM_OFFSET_170) + UI_SYSTEM_OFFSET_268))
-                                 (*(longlong **)(param_1 + UI_SYSTEM_OFFSET_170),plVar7 + 4,
-                                  CONCAT71((int7)((ulonglong)plVar8 >> 8),UI_SYSTEM_FLAG_1));
+                lVar6 = (**(code **)(**(int64_t **)(param_1 + UI_SYSTEM_OFFSET_170) + UI_SYSTEM_OFFSET_268))
+                                 (*(int64_t **)(param_1 + UI_SYSTEM_OFFSET_170),plVar7 + 4,
+                                  CONCAT71((int7)((uint64_t)plVar8 >> 8),UI_SYSTEM_FLAG_1));
                 
                 // 处理渲染控制器返回结果
                 if (lVar6 == 0) {
                     // 提取UI组件状态数据
-                    uStack_80 = (uint)*(byte *)((longlong)plVar7 + UI_SYSTEM_OFFSET_2F);
-                    uStack_88 = (uint)*(byte *)((longlong)plVar7 + UI_SYSTEM_OFFSET_2E);
-                    uStack_90 = (uint)*(byte *)((longlong)plVar7 + UI_SYSTEM_OFFSET_2D);
-                    uStack_98 = (uint)*(byte *)((longlong)plVar7 + UI_SYSTEM_OFFSET_2C);
-                    uStack_a0 = (uint)*(byte *)((longlong)plVar7 + UI_SYSTEM_OFFSET_2B);
-                    uStack_a8 = (uint)*(byte *)((longlong)plVar7 + UI_SYSTEM_OFFSET_2A);
-                    uStack_b0 = (uint)*(byte *)((longlong)plVar7 + UI_SYSTEM_OFFSET_29);
+                    uStack_80 = (uint)*(byte *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_2F);
+                    uStack_88 = (uint)*(byte *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_2E);
+                    uStack_90 = (uint)*(byte *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_2D);
+                    uStack_98 = (uint)*(byte *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_2C);
+                    uStack_a0 = (uint)*(byte *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_2B);
+                    uStack_a8 = (uint)*(byte *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_2A);
+                    uStack_b0 = (uint)*(byte *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_29);
                     uStack_b8 = (uint)*(byte *)(plVar7 + UI_SYSTEM_VALUE_5);
-                    uStack_c0 = (uint)*(ushort *)((longlong)plVar7 + UI_SYSTEM_OFFSET_26);
-                    uStack_c8 = (uint)*(ushort *)((longlong)plVar7 + UI_SYSTEM_OFFSET_24);
+                    uStack_c0 = (uint)*(ushort *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_26);
+                    uStack_c8 = (uint)*(ushort *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_24);
                     
                     // 调用UI系统资源管理器
                     UISystem_ResourceManager(auStack_68, UI_SYSTEM_FLAG_27, &unknown_var_8960_ptr, (int)plVar7[4]);
@@ -431,7 +431,7 @@ LAB_18085996b:
                 }
                 goto LAB_1808597c2;
             }
-        } while ((plVar7 != plVar8) && (plVar7 = (longlong *)*plVar7, plVar7 != plVar8));
+        } while ((plVar7 != plVar8) && (plVar7 = (int64_t *)*plVar7, plVar7 != plVar8));
     }
     
     // 处理UI系统最终状态
@@ -441,7 +441,7 @@ LAB_18085996b:
     
 LAB_1808597c2:
     // 调用UI系统清理管理器
-    UISystem_CleanupManager(uStack_40 ^ (ulonglong)auStack_e8);
+    UISystem_CleanupManager(uStack_40 ^ (uint64_t)auStack_e8);
 }
 
 /**
@@ -460,37 +460,37 @@ LAB_1808597c2:
  * @note 该函数是UI系统的核心数据管理函数，承担着重要的数据管理功能
  * @warning 该函数包含复杂的资源管理和状态验证逻辑
  */
-uint64_t UISystem_DataManager(longlong param_1)
+uint64_t UISystem_DataManager(int64_t param_1)
 {
     int32_t uVar1;
-    longlong *plVar2;
+    int64_t *plVar2;
     uint64_t uVar3;
-    longlong *plVar4;
-    longlong *plVar5;
-    longlong *plVar6;
+    int64_t *plVar4;
+    int64_t *plVar5;
+    int64_t *plVar6;
     
     // 检查UI系统状态
     if (*(int *)(param_1 + UI_SYSTEM_OFFSET_34) - UI_SYSTEM_VALUE_4U < UI_SYSTEM_VALUE_2) {
         // 处理UI系统初始化状态
-        if (*(longlong **)(param_1 + UI_SYSTEM_OFFSET_38) == (longlong *)UI_SYSTEM_FLAG_0) {
+        if (*(int64_t **)(param_1 + UI_SYSTEM_OFFSET_38) == (int64_t *)UI_SYSTEM_FLAG_0) {
             return UI_SYSTEM_FLAG_1C;
         }
-        if (**(longlong **)(param_1 + UI_SYSTEM_OFFSET_38) != UI_SYSTEM_FLAG_0) {
-            plVar6 = (longlong *)UI_SYSTEM_FLAG_0;
-            plVar4 = (longlong *)(param_1 + UI_SYSTEM_OFFSET_118);
-            plVar5 = (longlong *)(*plVar4 + UI_SYSTEM_OFFSET_18_NEG);
+        if (**(int64_t **)(param_1 + UI_SYSTEM_OFFSET_38) != UI_SYSTEM_FLAG_0) {
+            plVar6 = (int64_t *)UI_SYSTEM_FLAG_0;
+            plVar4 = (int64_t *)(param_1 + UI_SYSTEM_OFFSET_118);
+            plVar5 = (int64_t *)(*plVar4 + UI_SYSTEM_OFFSET_18_NEG);
             if (*plVar4 == UI_SYSTEM_FLAG_0) {
                 plVar5 = plVar6;
             }
             plVar2 = plVar6;
-            if (plVar5 != (longlong *)UI_SYSTEM_FLAG_0) {
+            if (plVar5 != (int64_t *)UI_SYSTEM_FLAG_0) {
                 plVar2 = plVar5 + UI_SYSTEM_VALUE_3;
             }
             
             // 遍历UI系统数据结构
             while (plVar2 != plVar4) {
                 plVar5 = plVar2 + -UI_SYSTEM_VALUE_3;
-                if (plVar2 == (longlong *)UI_SYSTEM_FLAG_0) {
+                if (plVar2 == (int64_t *)UI_SYSTEM_FLAG_0) {
                     plVar5 = plVar6;
                 }
                 
@@ -504,12 +504,12 @@ uint64_t UISystem_DataManager(longlong param_1)
                     return UI_SYSTEM_FLAG_0;
                 }
                 
-                plVar5 = (longlong *)(*plVar2 + UI_SYSTEM_OFFSET_18_NEG);
+                plVar5 = (int64_t *)(*plVar2 + UI_SYSTEM_OFFSET_18_NEG);
                 if (*plVar2 == UI_SYSTEM_FLAG_0) {
                     plVar5 = plVar6;
                 }
                 plVar2 = plVar6;
-                if (plVar5 != (longlong *)UI_SYSTEM_FLAG_0) {
+                if (plVar5 != (int64_t *)UI_SYSTEM_FLAG_0) {
                     plVar2 = plVar5 + UI_SYSTEM_VALUE_3;
                 }
             }
@@ -518,21 +518,21 @@ uint64_t UISystem_DataManager(longlong param_1)
     else {
         // 处理UI系统运行状态
         uVar1 = *(int32_t *)(param_1 + UI_SYSTEM_OFFSET_20);
-        plVar6 = (longlong *)(param_1 + UI_SYSTEM_OFFSET_118);
-        plVar5 = (longlong *)UI_SYSTEM_FLAG_0;
-        plVar4 = (longlong *)(*plVar6 + UI_SYSTEM_OFFSET_18_NEG);
+        plVar6 = (int64_t *)(param_1 + UI_SYSTEM_OFFSET_118);
+        plVar5 = (int64_t *)UI_SYSTEM_FLAG_0;
+        plVar4 = (int64_t *)(*plVar6 + UI_SYSTEM_OFFSET_18_NEG);
         if (*plVar6 == UI_SYSTEM_FLAG_0) {
             plVar4 = plVar5;
         }
         plVar2 = plVar5;
-        if (plVar4 != (longlong *)UI_SYSTEM_FLAG_0) {
+        if (plVar4 != (int64_t *)UI_SYSTEM_FLAG_0) {
             plVar2 = plVar4 + UI_SYSTEM_VALUE_3;
         }
         
         // 遍历UI系统数据结构
         while (plVar2 != plVar6) {
             plVar4 = plVar2 + -UI_SYSTEM_VALUE_3;
-            if (plVar2 == (longlong *)UI_SYSTEM_FLAG_0) {
+            if (plVar2 == (int64_t *)UI_SYSTEM_FLAG_0) {
                 plVar4 = plVar5;
             }
             
@@ -546,12 +546,12 @@ uint64_t UISystem_DataManager(longlong param_1)
                 return UI_SYSTEM_FLAG_0;
             }
             
-            plVar4 = (longlong *)(*plVar2 + UI_SYSTEM_OFFSET_18_NEG);
+            plVar4 = (int64_t *)(*plVar2 + UI_SYSTEM_OFFSET_18_NEG);
             if (*plVar2 == UI_SYSTEM_FLAG_0) {
                 plVar4 = plVar5;
             }
             plVar2 = plVar5;
-            if (plVar4 != (longlong *)UI_SYSTEM_FLAG_0) {
+            if (plVar4 != (int64_t *)UI_SYSTEM_FLAG_0) {
                 plVar2 = plVar4 + UI_SYSTEM_VALUE_3;
             }
         }
@@ -564,19 +564,19 @@ uint64_t UISystem_DataManager(longlong param_1)
  * ============================================================================ */
 
 // UI系统状态处理器函数别名
-void UISystem_StateProcessor_ALIAS(longlong param_1, longlong param_2)
+void UISystem_StateProcessor_ALIAS(int64_t param_1, int64_t param_2)
 {
     UISystem_StateProcessor(param_1, param_2);
 }
 
 // UI系统数据管理器函数别名
-uint64_t UISystem_DataManager_ALIAS(longlong param_1)
+uint64_t UISystem_DataManager_ALIAS(int64_t param_1)
 {
     return UISystem_DataManager(param_1);
 }
 
 // UI系统回调处理器函数别名
-int UISystem_CallbackHandler_ALIAS(longlong param_1, float param_2, uint64_t param_3)
+int UISystem_CallbackHandler_ALIAS(int64_t param_1, float param_2, uint64_t param_3)
 {
     return func_0x0001808c6c40(param_1, param_2, param_3);
 }
@@ -588,13 +588,13 @@ void UISystem_ResourceManager_ALIAS(uint64_t param_1, int param_2, uint64_t para
 }
 
 // UI系统渲染控制器函数别名
-int32_t UISystem_RenderController_ALIAS(longlong param_1, int32_t param_2)
+int32_t UISystem_RenderController_ALIAS(int64_t param_1, int32_t param_2)
 {
     return UISystem_RenderController(param_1, param_2);
 }
 
 // UI系统事件分发器函数别名
-void UISystem_EventDispatcher_ALIAS(longlong param_1, int32_t param_2)
+void UISystem_EventDispatcher_ALIAS(int64_t param_1, int32_t param_2)
 {
     UISystem_EventDispatcher(param_1, param_2);
 }
@@ -606,7 +606,7 @@ void UISystem_CleanupManager_ALIAS(uint64_t param_1)
 }
 
 // UI系统初始化器函数别名
-uint64_t UISystem_Initializer_ALIAS(longlong param_1, int32_t param_2)
+uint64_t UISystem_Initializer_ALIAS(int64_t param_1, int32_t param_2)
 {
     return UISystem_Initializer(param_1, param_2);
 }

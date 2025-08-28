@@ -295,10 +295,10 @@ extern int32_t global_state_3656;
 extern void *global_state_3664;
 extern int8_t *global_state_3672;
 extern int32_t global_state_3680;
-extern longlong global_state_3752;
-extern longlong global_state_3760;
-extern longlong global_state_3784;
-extern longlong global_state_3792;
+extern int64_t global_state_3752;
+extern int64_t global_state_3760;
+extern int64_t global_state_3784;
+extern int64_t global_state_3792;
 extern int32_t global_state_3816;
 extern int32_t global_state_3820;
 extern uint8_t system_resource_config;
@@ -306,10 +306,10 @@ extern uint8_t system_module_config;
 extern uint8_t system_cache_config;
 extern uint8_t system_temp_config;
 extern uint8_t global_state_4856;
-extern longlong global_state_4872;
+extern int64_t global_state_4872;
 extern uint64_t global_state_4880;
-extern longlong global_state_4888;
-extern longlong *global_state_9112;
+extern int64_t global_state_4888;
+extern int64_t *global_state_9112;
 
 /* ============================================================================
  * 函数声明
@@ -329,7 +329,7 @@ extern longlong *global_state_9112;
  * @param param_2 渲染数据参数数组
  * @return uint8_t 处理结果状态
  */
-int32_t RenderingSystem_AdvancedProcessor(longlong param_1, longlong *param_2);
+int32_t RenderingSystem_AdvancedProcessor(int64_t param_1, int64_t *param_2);
 
 /**
  * @brief 渲染系统效果处理器
@@ -345,7 +345,7 @@ int32_t RenderingSystem_AdvancedProcessor(longlong param_1, longlong *param_2);
  * @param param_2 渲染效果参数数组
  * @return uint8_t 效果处理结果状态
  */
-int32_t RenderingSystem_EffectProcessor(longlong param_1, longlong *param_2);
+int32_t RenderingSystem_EffectProcessor(int64_t param_1, int64_t *param_2);
 
 /**
  * @brief 渲染系统数据代码分析器
@@ -365,7 +365,7 @@ int32_t RenderingSystem_EffectProcessor(longlong param_1, longlong *param_2);
  * @param param_6 转换标志
  * @return uint8_t 转换结果状态
  */
-int32_t RenderingSystem_DataTransformer(longlong param_1, int param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6);
+int32_t RenderingSystem_DataTransformer(int64_t param_1, int param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6);
 
 /**
  * @brief 渲染系统资源管理器
@@ -385,7 +385,7 @@ int32_t RenderingSystem_DataTransformer(longlong param_1, int param_2, int param
  * @param param_6 资源配置
  * @return uint8_t 管理结果状态
  */
-int32_t RenderingSystem_ResourceManager(longlong param_1, uint64_t param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6);
+int32_t RenderingSystem_ResourceManager(int64_t param_1, uint64_t param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6);
 
 /**
  * @brief 渲染系统参数处理器
@@ -405,7 +405,7 @@ int32_t RenderingSystem_ResourceManager(longlong param_1, uint64_t param_2, int 
  * @param param_6 参数配置
  * @return uint8_t 处理结果状态
  */
-int32_t RenderingSystem_ParameterProcessor(longlong param_1, int param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6);
+int32_t RenderingSystem_ParameterProcessor(int64_t param_1, int param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6);
 
 /**
  * @brief 渲染系统状态控制器
@@ -445,7 +445,7 @@ int32_t RenderingSystem_StateController(int8_t *param_1, int param_2, int param_
  * @param param_6 优化配置
  * @return uint8_t 优化结果状态
  */
-int32_t RenderingSystem_Optimizer(longlong param_1, int param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6);
+int32_t RenderingSystem_Optimizer(int64_t param_1, int param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6);
 
 /**
  * @brief 渲染系统质量控制器
@@ -465,7 +465,7 @@ int32_t RenderingSystem_Optimizer(longlong param_1, int param_2, int param_3, in
  * @param param_6 质量配置
  * @return uint8_t 控制结果状态
  */
-int32_t RenderingSystem_QualityController(longlong param_1, uint64_t param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6);
+int32_t RenderingSystem_QualityController(int64_t param_1, uint64_t param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6);
 
 /**
  * @brief 渲染系统性能监控器
@@ -485,7 +485,7 @@ int32_t RenderingSystem_QualityController(longlong param_1, uint64_t param_2, in
  * @param param_6 监控配置
  * @return uint8_t 监控结果状态
  */
-int32_t RenderingSystem_PerformanceMonitor(longlong param_1, int param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6);
+int32_t RenderingSystem_PerformanceMonitor(int64_t param_1, int param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6);
 
 /**
  * @brief 渲染系统内存管理器
@@ -505,7 +505,7 @@ int32_t RenderingSystem_PerformanceMonitor(longlong param_1, int param_2, int pa
  * @param param_6 内存配置
  * @return uint8_t 管理结果状态
  */
-int32_t RenderingSystem_MemoryManager(longlong param_1, uint64_t param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6);
+int32_t RenderingSystem_MemoryManager(int64_t param_1, uint64_t param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6);
 
 /**
  * @brief 渲染系统批量处理器
@@ -525,7 +525,7 @@ int32_t RenderingSystem_MemoryManager(longlong param_1, uint64_t param_2, int pa
  * @param param_6 批量标志
  * @return uint8_t 处理结果状态
  */
-int32_t RenderingSystem_BatchProcessor(longlong param_1, uint64_t param_2, longlong param_3, uint64_t param_4, short *param_5);
+int32_t RenderingSystem_BatchProcessor(int64_t param_1, uint64_t param_2, int64_t param_3, uint64_t param_4, short *param_5);
 
 /**
  * @brief 渲染系统清理器
@@ -559,7 +559,7 @@ int32_t RenderingSystem_Cleaner(void);
  * @param param_2 渲染数据参数数组
  * @return uint8_t 处理结果状态
  */
-int32_t RenderingSystem_AdvancedProcessor(longlong param_1, longlong *param_2)
+int32_t RenderingSystem_AdvancedProcessor(int64_t param_1, int64_t *param_2)
 {
     // 渲染系统高级处理逻辑
     // 包括数据处理、资源管理、参数配置等功能
@@ -620,7 +620,7 @@ int32_t RenderingSystem_AdvancedProcessor(longlong param_1, longlong *param_2)
  * @param param_2 渲染效果参数数组
  * @return uint8_t 效果处理结果状态
  */
-int32_t RenderingSystem_EffectProcessor(longlong param_1, longlong *param_2)
+int32_t RenderingSystem_EffectProcessor(int64_t param_1, int64_t *param_2)
 {
     // 渲染系统效果处理逻辑
     // 包括效果初始化、参数调整、实时计算等功能
@@ -685,7 +685,7 @@ int32_t RenderingSystem_EffectProcessor(longlong param_1, longlong *param_2)
  * @param param_6 转换标志
  * @return uint8_t 转换结果状态
  */
-int32_t RenderingSystem_DataTransformer(longlong param_1, int param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6)
+int32_t RenderingSystem_DataTransformer(int64_t param_1, int param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6)
 {
     // 渲染系统数据转换逻辑
     // 包括格式转换、坐标变换、标准化等功能
@@ -750,7 +750,7 @@ int32_t RenderingSystem_DataTransformer(longlong param_1, int param_2, int param
  * @param param_6 资源配置
  * @return uint8_t 管理结果状态
  */
-int32_t RenderingSystem_ResourceManager(longlong param_1, uint64_t param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6)
+int32_t RenderingSystem_ResourceManager(int64_t param_1, uint64_t param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6)
 {
     // 渲染系统资源管理逻辑
     // 包括资源创建、加载、分配等功能
@@ -815,7 +815,7 @@ int32_t RenderingSystem_ResourceManager(longlong param_1, uint64_t param_2, int 
  * @param param_6 参数配置
  * @return uint8_t 处理结果状态
  */
-int32_t RenderingSystem_ParameterProcessor(longlong param_1, int param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6)
+int32_t RenderingSystem_ParameterProcessor(int64_t param_1, int param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6)
 {
     // 渲染系统参数处理逻辑
     // 包括参数解析、验证、调整等功能
@@ -945,7 +945,7 @@ int32_t RenderingSystem_StateController(int8_t *param_1, int param_2, int param_
  * @param param_6 优化配置
  * @return uint8_t 优化结果状态
  */
-int32_t RenderingSystem_Optimizer(longlong param_1, int param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6)
+int32_t RenderingSystem_Optimizer(int64_t param_1, int param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6)
 {
     // 渲染系统优化逻辑
     // 包括性能优化、内存优化、GPU优化等功能
@@ -1010,7 +1010,7 @@ int32_t RenderingSystem_Optimizer(longlong param_1, int param_2, int param_3, in
  * @param param_6 质量配置
  * @return uint8_t 控制结果状态
  */
-int32_t RenderingSystem_QualityController(longlong param_1, uint64_t param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6)
+int32_t RenderingSystem_QualityController(int64_t param_1, uint64_t param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6)
 {
     // 渲染系统质量控制逻辑
     // 包括质量级别设置、参数配置、性能平衡等功能
@@ -1075,7 +1075,7 @@ int32_t RenderingSystem_QualityController(longlong param_1, uint64_t param_2, in
  * @param param_6 监控配置
  * @return uint8_t 监控结果状态
  */
-int32_t RenderingSystem_PerformanceMonitor(longlong param_1, int param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6)
+int32_t RenderingSystem_PerformanceMonitor(int64_t param_1, int param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6)
 {
     // 渲染系统性能监控逻辑
     // 包括帧率统计、GPU监控、内存监控等功能
@@ -1140,7 +1140,7 @@ int32_t RenderingSystem_PerformanceMonitor(longlong param_1, int param_2, int pa
  * @param param_6 内存配置
  * @return uint8_t 管理结果状态
  */
-int32_t RenderingSystem_MemoryManager(longlong param_1, uint64_t param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6)
+int32_t RenderingSystem_MemoryManager(int64_t param_1, uint64_t param_2, int param_3, int param_4, uint64_t param_5, int32_t param_6)
 {
     // 渲染系统内存管理逻辑
     // 包括内存分配、池管理、碎片整理等功能
@@ -1205,7 +1205,7 @@ int32_t RenderingSystem_MemoryManager(longlong param_1, uint64_t param_2, int pa
  * @param param_6 批量标志
  * @return uint8_t 处理结果状态
  */
-int32_t RenderingSystem_BatchProcessor(longlong param_1, uint64_t param_2, longlong param_3, uint64_t param_4, short *param_5)
+int32_t RenderingSystem_BatchProcessor(int64_t param_1, uint64_t param_2, int64_t param_3, uint64_t param_4, short *param_5)
 {
     // 渲染系统批量处理逻辑
     // 包括批量数据处理、批量渲染优化等功能

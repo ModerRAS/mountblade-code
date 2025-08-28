@@ -123,20 +123,20 @@ typedef uint64_t UIRenderHandle;               // UI渲染句柄
 //   简化实现：保持原有功能逻辑，添加详细的参数说明和技术注释
 //   优化点：明确参数用途，添加状态管理说明，提高代码可读性
 //------------------------------------------------------------------------------
-void UISystemAdvancedSubmoduleProcessor(longlong param_1, int param_2, int32_t *param_3, longlong param_4,
+void UISystemAdvancedSubmoduleProcessor(int64_t param_1, int param_2, int32_t *param_3, int64_t param_4,
                                   int32_t param_5)
 {
     // 局部变量定义
-    longlong lVar1;                              // 组件管理器指针
+    int64_t lVar1;                              // 组件管理器指针
     int iVar2;                                  // 操作结果
     int8_t *puVar3;                          // 数据缓冲区指针
     int8_t auStack_68 [32];                  // 栈缓冲区1 (32字节)
     int32_t auStack_48 [2];                    // 结果缓冲区 (8字节)
     int8_t auStack_40 [32];                  // 栈缓冲区2 (32字节)
-    ulonglong uStack_20;                        // 安全检查值
+    uint64_t uStack_20;                        // 安全检查值
     
     // 安全检查：栈保护机制
-    uStack_20 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
+    uStack_20 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_68;
     
     // 初始化数据缓冲区
     puVar3 = (int8_t *)0x0;                 // 初始化为NULL
@@ -144,14 +144,14 @@ void UISystemAdvancedSubmoduleProcessor(longlong param_1, int param_2, int32_t *
     
     // 参数有效性检查
     if ((((-1 < param_2) &&                     // 检查索引是否有效
-          (lVar1 = *(longlong *)(param_1 + UI_OFFSET_COMPONENT), lVar1 != 0)) &&  // 获取组件管理器
+          (lVar1 = *(int64_t *)(param_1 + UI_OFFSET_COMPONENT), lVar1 != 0)) &&  // 获取组件管理器
          (param_2 < *(int *)(lVar1 + UI_OFFSET_STATE))) &&    // 检查索引范围
-        ((*(longlong *)(lVar1 + UI_OFFSET_CALLBACK) != 0 &&  // 检查回调函数是否有效
-         (**(int **)(*(longlong *)(lVar1 + UI_OFFSET_CONFIG) + (longlong)param_2 * 8) == 1)))) {  // 检查组件状态
+        ((*(int64_t *)(lVar1 + UI_OFFSET_CALLBACK) != 0 &&  // 检查回调函数是否有效
+         (**(int **)(*(int64_t *)(lVar1 + UI_OFFSET_CONFIG) + (int64_t)param_2 * 8) == 1)))) {  // 检查组件状态
          
         // 初始化处理缓冲区
         auStack_40[0] = 0;                      // 清空处理缓冲区
-        *(longlong *)(param_1 + UI_OFFSET_CONTEXT) = param_1;  // 设置上下文
+        *(int64_t *)(param_1 + UI_OFFSET_CONTEXT) = param_1;  // 设置上下文
         
         // 检查是否需要异步处理
         if ((param_4 != 0) || (*(int *)(param_1 + UI_OFFSET_FLAGS) == 0)) {
@@ -159,7 +159,7 @@ void UISystemAdvancedSubmoduleProcessor(longlong param_1, int param_2, int32_t *
         }
         
         // 调用UI系统处理函数
-        iVar2 = (**(code **)(lVar1 + UI_OFFSET_CALLBACK))((longlong *)(param_1 + UI_OFFSET_CONTEXT), param_2, auStack_48, puVar3);
+        iVar2 = (**(code **)(lVar1 + UI_OFFSET_CALLBACK))((int64_t *)(param_1 + UI_OFFSET_CONTEXT), param_2, auStack_48, puVar3);
         
         // 处理操作结果
         if (iVar2 == UI_ERROR_SUCCESS) {        // 检查操作是否成功
@@ -173,7 +173,7 @@ void UISystemAdvancedSubmoduleProcessor(longlong param_1, int param_2, int32_t *
     }
     
     // 安全退出：栈保护检查
-    UISystem_SecurityValidate(uStack_20 ^ (ulonglong)auStack_68);
+    UISystem_SecurityValidate(uStack_20 ^ (uint64_t)auStack_68);
 }
 
 //------------------------------------------------------------------------------
@@ -235,7 +235,7 @@ uint64_t UISystemSystemCaller(void)
 //   param_5 - 输出参数指针数组
 //
 // 返回值：
-//   ulonglong - 处理结果或状态码
+//   uint64_t - 处理结果或状态码
 //
 // 处理流程：
 //   1. 检查系统状态和权限
@@ -262,20 +262,20 @@ uint64_t UISystemSystemCaller(void)
 //   简化实现：保持原有功能逻辑，添加详细的参数说明和技术注释
 //   优化点：明确数据流处理步骤，添加内存管理说明
 //------------------------------------------------------------------------------
-ulonglong UISystemDataFlowProcessor(longlong *param_1, ulonglong param_2, ulonglong param_3, int param_4,
-                      longlong *param_5)
+uint64_t UISystemDataFlowProcessor(int64_t *param_1, uint64_t param_2, uint64_t param_3, int param_4,
+                      int64_t *param_5)
 {
     // 局部变量定义
-    longlong lVar1;                              // 上下文管理器指针
+    int64_t lVar1;                              // 上下文管理器指针
     bool bVar2;                                  // 状态标志
     int iVar3;                                  // 操作结果
-    ulonglong uVar4;                             // 数据处理结果
-    longlong lVar5;                              // 资源管理器指针
+    uint64_t uVar4;                             // 数据处理结果
+    int64_t lVar5;                              // 资源管理器指针
     uint64_t *puVar6;                          // 数据指针
-    ulonglong uVar7;                             // 控制参数
+    uint64_t uVar7;                             // 控制参数
     uint64_t *puVar8;                          // 缓冲区指针
     uint64_t uVar9;                            // 数据值
-    ulonglong uVar10;                            // 状态值
+    uint64_t uVar10;                            // 状态值
     uint uVar11;                                 // 无符号整型值
     uint in_stack_fffffffffffffef0;              // 栈参数
     uint uStack_f8;                              // 栈变量
@@ -295,7 +295,7 @@ ulonglong UISystemDataFlowProcessor(longlong *param_1, ulonglong param_2, ulongl
     uint64_t uStack_88;                         // 栈变量
     int32_t uStack_50;                         // 栈变量
     uint64_t uStack_48;                         // 栈变量
-    ulonglong uVar12;                             // 最终结果
+    uint64_t uVar12;                             // 最终结果
     
     // 检查系统状态和权限
     if (((*(uint *)(*param_1 + 0x78) & 0x10000) == 0) &&  // 检查系统状态

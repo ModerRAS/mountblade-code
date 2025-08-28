@@ -73,7 +73,7 @@
 #define SystemCommandProcessor                             FUN_1800623b0  /* 系统命令处理器 */
 
 /* 渲染系统全局变量 */
-extern longlong SYSTEM_STATE_MANAGER;      /* 渲染系统全局数据指针 */
+extern int64_t SYSTEM_STATE_MANAGER;      /* 渲染系统全局数据指针 */
 extern char system_debug_flag;           /* 渲染系统标志位 */
 extern void *system_buffer_ptr;     /* 渲染系统默认数据指针 */
 extern uint64_t global_var_544_ptr;     /* 渲染系统未知数据 */
@@ -90,7 +90,7 @@ extern uint8_t global_var_4576_ptr;     /* 渲染系统格式化数据 */
  *=============================================================================*/
 void RenderingSystem_ProcessParameterSet1(void)
 {
-  longlong render_context;
+  int64_t render_context;
   char status_check;
   void *data_pointer;
   float parameter_value;
@@ -102,7 +102,7 @@ void RenderingSystem_ProcessParameterSet1(void)
   parameter_int = (int)parameter_value;
   
   /* 检查渲染系统状态和条件 */
-  if ((*(longlong *)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_4C0) != 0) &&
+  if ((*(int64_t *)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_4C0) != 0) &&
      (status_check = (**(code **)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_4C8))(&stack0x00000048), 
       status_check == '\0')) {
     
@@ -134,7 +134,7 @@ void RenderingSystem_ProcessParameterSet1(void)
  *=============================================================================*/
 void RenderingSystem_ProcessParameterSet2(void)
 {
-  longlong render_context;
+  int64_t render_context;
   char status_check;
   void *data_pointer;
   float parameter_value;
@@ -146,7 +146,7 @@ void RenderingSystem_ProcessParameterSet2(void)
   parameter_int = (int)parameter_value;
   
   /* 检查渲染系统高级状态 */
-  if ((*(longlong *)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_21A0) != 0) &&
+  if ((*(int64_t *)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_21A0) != 0) &&
      (status_check = (**(code **)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_21A8))(&stack0x00000048), 
       status_check == '\0')) {
     
@@ -646,7 +646,7 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
 float RenderingSystem_GetRenderValue(int32_t param_1)
 {
   bool system_status;
-  longlong render_context;
+  int64_t render_context;
   int int_value;
   int temp_value1;
   int temp_value2;
@@ -660,7 +660,7 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
   render_context = SYSTEM_STATE_MANAGER;
   
   /* 检查渲染系统状态 */
-  if ((*(longlong *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
+  if ((*(int64_t *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
     system_status = false;
   }
   else {
@@ -720,18 +720,18 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
     int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x2300);
     break;
   case 0x10:
-    if ((*(int *)(*(longlong *)(render_system_data_config + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
+    if ((*(int *)(*(int64_t *)(render_system_data_config + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
       int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x2450);
       break;
     }
     goto code_r0x00018043b131;
   case 0x11:
-    if ((*(int *)(*(longlong *)(render_system_data_config + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
+    if ((*(int *)(*(int64_t *)(render_system_data_config + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
       float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x24c0);
     }
     goto code_r0x00018043b131;
   case 0x12:
-    if ((*(int *)(*(longlong *)(render_system_data_config + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
+    if ((*(int *)(*(int64_t *)(render_system_data_config + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
       int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x2530);
       break;
     }
@@ -764,7 +764,7 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
         temp_data = FUN_1804386b0(int_value);
         stack_data._0_4_ = (float)temp_data;
         if (((float)stack_data == (float)*(int *)(SYSTEM_STATE_MANAGER + 0x1d50)) &&
-           (stack_data._4_4_ = (float)((ulonglong)temp_data >> 0x20),
+           (stack_data._4_4_ = (float)((uint64_t)temp_data >> 0x20),
            stack_data._4_4_ == (float)*(int *)(SYSTEM_STATE_MANAGER + 0x1dc0))) goto code_r0x00018043b12e;
         int_value = int_value + 1;
         stack_data = temp_data;
@@ -964,12 +964,12 @@ FUN_18043b139:
  * 执行渲染系统的跳转表操作，支持动态函数调用和参数传递。
  * 用于处理复杂的渲染操作和系统调用。
  *=============================================================================*/
-void RenderingSystem_ExecuteJumpTable(uint64_t param_1, uint64_t param_2, longlong param_3)
+void RenderingSystem_ExecuteJumpTable(uint64_t param_1, uint64_t param_2, int64_t param_3)
 {
-  longlong register_data;
+  int64_t register_data;
   code *jump_table;
   
-  jump_table = (code *)((ulonglong)*(uint *)(param_3 + 0x43b168 + register_data * 4) + param_3);
+  jump_table = (code *)((uint64_t)*(uint *)(param_3 + 0x43b168 + register_data * 4) + param_3);
                     // WARNING: Could not recover jumptable at 0x00018043abbf. Too many branches
                     // WARNING: Treating indirect jump as call
   (*jump_table)(jump_table);
@@ -997,7 +997,7 @@ void RenderingSystem_ProcessRenderActions(int32_t param_1)
   bool system_status;
   
   /* 检查渲染系统状态 */
-  if ((*(longlong *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
+  if ((*(int64_t *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
     system_status = false;
   }
   else {
@@ -1039,17 +1039,17 @@ void RenderingSystem_ProcessRenderActions(int32_t param_1)
   case 0xf:
     return;
   case 0x10:
-    if ((*(int *)(*(longlong *)(render_system_data_config + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
+    if ((*(int *)(*(int64_t *)(render_system_data_config + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
       return;
     }
     break;
   case 0x11:
-    if ((*(int *)(*(longlong *)(render_system_data_config + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
+    if ((*(int *)(*(int64_t *)(render_system_data_config + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
       return;
     }
     break;
   case 0x12:
-    if ((*(int *)(*(longlong *)(render_system_data_config + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
+    if ((*(int *)(*(int64_t *)(render_system_data_config + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
       return;
     }
     break;
@@ -1204,10 +1204,10 @@ void RenderingSystem_ExecuteRenderBatch(int param_1, int param_2, int param_3, i
   int32_t temp_value;
   int8_t temp_buffer[128];
   int32_t buffer_value;
-  ulonglong stack_guard;
+  uint64_t stack_guard;
   
   stack_data = 0xfffffffffffffffe;
-  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)temp_buffer;
   
   /* 处理渲染参数 */
   if (param_3 != 0) {
@@ -1273,7 +1273,7 @@ void RenderingSystem_ExecuteRenderBatch(int param_1, int param_2, int param_3, i
   buffer_pointer = &global_var_720_ptr;
   FUN_18004b1f0(0);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_guard ^ (ulonglong)temp_buffer);
+  FUN_1808fc050(stack_guard ^ (uint64_t)temp_buffer);
 }
 
 /*=============================================================================
@@ -1286,8 +1286,8 @@ void RenderingSystem_ProcessRenderString(int param_1)
 {
   void *data_pointer;
   int string_length;
-  longlong data_offset;
-  longlong base_address;
+  int64_t data_offset;
+  int64_t base_address;
   void *temp_pointer;
   int8_t temp_buffer[32];
   uint64_t stack_data;
@@ -1296,12 +1296,12 @@ void RenderingSystem_ProcessRenderString(int param_1)
   uint buffer_size;
   int8_t work_buffer[72];
   char format_buffer[16];
-  ulonglong stack_guard;
+  uint64_t stack_guard;
   
   stack_data = 0xfffffffffffffffe;
-  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)temp_buffer;
   
-  base_address = (longlong)param_1 * 0x70 + *(longlong *)(*(longlong *)(system_main_module_state + 8) + 0x18);
+  base_address = (int64_t)param_1 * 0x70 + *(int64_t *)(*(int64_t *)(system_main_module_state + 8) + 0x18);
   stack_pointer = &global_var_3480_ptr;
   string_buffer = work_buffer;
   work_buffer[0] = 0;
@@ -1317,7 +1317,7 @@ void RenderingSystem_ProcessRenderString(int param_1)
   
   if (buffer_size + 2 < 0x3f) {
     *(int16_t *)(string_buffer + buffer_size) = 0x2820;
-    *(int8_t *)((longlong)(string_buffer + buffer_size) + 2) = 0;
+    *(int8_t *)((int64_t)(string_buffer + buffer_size) + 2) = 0;
     buffer_size = buffer_size + 2;
   }
   
@@ -1333,7 +1333,7 @@ void RenderingSystem_ProcessRenderString(int param_1)
   
   if ((0 < string_length) && (buffer_size + string_length < 0x3f)) {
                     // WARNING: Subroutine does not return
-    memcpy(string_buffer + buffer_size, format_buffer, (longlong)((int)base_address + 2));
+    memcpy(string_buffer + buffer_size, format_buffer, (int64_t)((int)base_address + 2));
   }
   
   if (buffer_size + 1 < 0x3f) {
@@ -1344,7 +1344,7 @@ void RenderingSystem_ProcessRenderString(int param_1)
   (**(code **)(*system_cache_buffer + 0x70))(system_cache_buffer, &stack_pointer);
   stack_pointer = &global_var_720_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_guard ^ (ulonglong)temp_buffer);
+  FUN_1808fc050(stack_guard ^ (uint64_t)temp_buffer);
 }
 
 /*=============================================================================
@@ -1353,16 +1353,16 @@ void RenderingSystem_ProcessRenderString(int param_1)
  * 执行渲染系统的数据复制操作，包括字符串复制和缓冲区管理。
  * 支持安全的数据复制和内存管理。
  *=============================================================================*/
-void RenderingSystem_ExecuteRenderCopy(longlong param_1, int32_t param_2)
+void RenderingSystem_ExecuteRenderCopy(int64_t param_1, int32_t param_2)
 {
-  longlong data_offset;
+  int64_t data_offset;
   int string_length;
-  longlong temp_offset;
+  int64_t temp_offset;
   int8_t temp_buffer[32];
   char format_buffer[16];
-  ulonglong stack_guard;
+  uint64_t stack_guard;
   
-  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)temp_buffer;
   FUN_180060680(format_buffer, &global_var_4576_ptr, param_2);
   
   data_offset = -1;
@@ -1375,11 +1375,11 @@ void RenderingSystem_ExecuteRenderCopy(longlong param_1, int32_t param_2)
   
   if ((0 < string_length) && (*(uint *)(param_1 + 0x10) + string_length < 0x3f)) {
                     // WARNING: Subroutine does not return
-    memcpy((ulonglong)*(uint *)(param_1 + 0x10) + *(longlong *)(param_1 + 8), 
-           format_buffer, (longlong)((int)temp_offset + 2));
+    memcpy((uint64_t)*(uint *)(param_1 + 0x10) + *(int64_t *)(param_1 + 8), 
+           format_buffer, (int64_t)((int)temp_offset + 2));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_guard ^ (ulonglong)temp_buffer);
+  FUN_1808fc050(stack_guard ^ (uint64_t)temp_buffer);
 }
 
 /*=============================================================================
@@ -1391,17 +1391,17 @@ void RenderingSystem_ExecuteRenderCopy(longlong param_1, int32_t param_2)
 void RenderingSystem_ExecuteRenderCopyEx(uint64_t param_1, uint param_2)
 {
   int copy_length;
-  longlong target_address;
+  int64_t target_address;
   int8_t source_buffer[8];
-  ulonglong stack_data;
+  uint64_t stack_data;
   
   if (param_2 + copy_length < 0x3f) {
                     // WARNING: Subroutine does not return
-    memcpy((ulonglong)param_2 + *(longlong *)(target_address + 8), 
-           source_buffer, (longlong)(copy_length + 1));
+    memcpy((uint64_t)param_2 + *(int64_t *)(target_address + 8), 
+           source_buffer, (int64_t)(copy_length + 1));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_data ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(stack_data ^ (uint64_t)&stack0x00000000);
 }
 
 /*=============================================================================
@@ -1411,10 +1411,10 @@ void RenderingSystem_ExecuteRenderCopyEx(uint64_t param_1, uint param_2)
  *=============================================================================*/
 void RenderingSystem_EmptyFunction3(void)
 {
-  ulonglong stack_data;
+  uint64_t stack_data;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_data ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(stack_data ^ (uint64_t)&stack0x00000000);
 }
 
 /*=============================================================================
@@ -1425,14 +1425,14 @@ void RenderingSystem_EmptyFunction3(void)
  *=============================================================================*/
 void RenderingSystem_ProcessParameterSet3(uint64_t param_1, int32_t param_2)
 {
-  longlong render_context;
+  int64_t render_context;
   char status_check;
   void *data_pointer;
   int32_t temp_stack[6];
   
   render_context = SYSTEM_STATE_MANAGER;
   
-  if ((*(longlong *)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_1800) != 0) &&
+  if ((*(int64_t *)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_1800) != 0) &&
      (temp_stack[0] = param_2, 
       status_check = (**(code **)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_1808))(temp_stack),
       param_2 = temp_stack[0], status_check == '\0')) {
@@ -1462,14 +1462,14 @@ void RenderingSystem_ProcessParameterSet3(uint64_t param_1, int32_t param_2)
  *=============================================================================*/
 void RenderingSystem_ProcessParameterSet4(uint64_t param_1, int32_t param_2)
 {
-  longlong render_context;
+  int64_t render_context;
   char status_check;
   void *data_pointer;
   int32_t temp_stack[6];
   
   render_context = SYSTEM_STATE_MANAGER;
   
-  if ((*(longlong *)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_1170) != 0) &&
+  if ((*(int64_t *)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_1170) != 0) &&
      (temp_stack[0] = param_2, 
       status_check = (**(code **)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_1178))(temp_stack),
       param_2 = temp_stack[0], status_check == '\0')) {

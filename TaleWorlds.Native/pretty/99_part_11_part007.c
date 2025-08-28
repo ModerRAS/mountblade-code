@@ -222,15 +222,15 @@ void AngleCalculator(void);
 void AdvancedMathCalculator(uint param_1)
 {
     char cVar1;
-    longlong lVar2;
+    int64_t lVar2;
     uint uVar3;
     float *pfVar4;
     int32_t *puVar5;
     uint uVar6;
     float *unaff_RBP;
-    longlong unaff_RSI;
+    int64_t unaff_RSI;
     uint64_t uVar7;
-    longlong *unaff_R14;
+    int64_t *unaff_R14;
     float fVar8;
     float fVar9;
     int32_t uVar10;
@@ -553,15 +553,15 @@ LAB_1806db1d3:
 void VectorTransformProcessor(uint param_1, float param_2, uint64_t param_3, float param_4)
 {
     char cVar1;
-    longlong lVar2;
+    int64_t lVar2;
     uint uVar3;
     float *pfVar4;
     int32_t *puVar5;
     uint uVar6;
     float *unaff_RBP;
-    longlong unaff_RSI;
+    int64_t unaff_RSI;
     uint64_t uVar7;
-    longlong *unaff_R14;
+    int64_t *unaff_R14;
     float fVar8;
     float fVar9;
     int32_t uVar10;
@@ -877,13 +877,13 @@ LAB_1806db1d3:
 void GeometryTransformCalculator(void)
 {
     char cVar1;
-    longlong lVar2;
+    int64_t lVar2;
     uint uVar3;
     int32_t *puVar4;
     uint uVar5;
-    longlong unaff_RBP;
-    longlong unaff_RSI;
-    longlong *unaff_R14;
+    int64_t unaff_RBP;
+    int64_t unaff_RSI;
+    int64_t *unaff_R14;
     float fVar6;
     int32_t uVar7;
     int32_t uVar8;
@@ -1049,10 +1049,10 @@ void GeometryTransformCalculator(void)
 void PhysicsSimulationProcessor(void)
 {
     float fVar1;
-    longlong lVar2;
-    longlong unaff_RBP;
-    longlong unaff_RSI;
-    longlong *unaff_R14;
+    int64_t lVar2;
+    int64_t unaff_RBP;
+    int64_t unaff_RSI;
+    int64_t *unaff_R14;
     float fVar3;
     float fVar4;
     int32_t uVar5;
@@ -1087,7 +1087,7 @@ void PhysicsSimulationProcessor(void)
 // 返回值：无
 void AngleCalculator(void)
 {
-    longlong unaff_RSI;
+    int64_t unaff_RSI;
     int8_t uStack0000000000000028;
     
     // 检查是否需要计算角度

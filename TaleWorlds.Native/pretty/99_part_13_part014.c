@@ -61,7 +61,7 @@ typedef void* ObjectPtr;
 typedef void* DataBuffer;
 
 /** 状态码类型 */
-typedef ulonglong StatusCode;
+typedef uint64_t StatusCode;
 
 /** 索引类型 */
 typedef int IndexType;
@@ -212,7 +212,7 @@ void SystemEmptyFunctionHandler(void)
  * @note 这是一个简化实现
  * @see SystemDataProcessorAndObjectCreator
  */
-StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param_2, int param_3)
+StatusCode SystemDataProcessorAndObjectCreator(int64_t param_1, int64_t *param_2, int param_3)
 {
     ObjectPtr object_ptr;
     IndexType index;
@@ -238,7 +238,7 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
     
     /* 处理对象创建 */
     if (*object_ptr != 0) {
-        if (((longlong *)object_ptr)[2] == 0) {
+        if (((int64_t *)object_ptr)[2] == 0) {
             /* 处理简单对象创建 */
             flags = 0;
             status_code = FUN_180769ed0(*object_ptr, &flags, 1, 4, 0);
@@ -248,7 +248,7 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
             status_code = func_0x00018076a7d0(*object_ptr, &flags);
             
             if ((int)status_code == 0) {
-                if ((flags & 0xffffffff) + 4 <= (ulonglong)((longlong *)object_ptr)[2]) {
+                if ((flags & 0xffffffff) + 4 <= (uint64_t)((int64_t *)object_ptr)[2]) {
                     /* 继续处理 */
                     status_code = FUN_180769ed0(*object_ptr, &flags, 1, 4, 0);
                 } else {
@@ -287,7 +287,7 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
         object_ptr = (ObjectPtr)
                  FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x112, 
-                              (ulonglong)flags << 0x20, 0, 1);
+                              (uint64_t)flags << 0x20, 0, 1);
         
         if (object_ptr == (ObjectPtr)0x0) {
             return SYSTEM_ERROR_OBJECT_CREATE;
@@ -298,7 +298,7 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
         *(uint64_t *)object_ptr = &global_state_9360_ptr;
         ((uint64_t *)object_ptr)[1] = 0;
         *(int32_t *)((char *)object_ptr + 2) = 0;
-        *(ObjectPtr **)((longlong *)(param_1 + SYSTEM_OFFSET_0X48) + size * 8) = object_ptr;
+        *(ObjectPtr **)((int64_t *)(param_1 + SYSTEM_OFFSET_0X48) + size * 8) = object_ptr;
         
         /* 验证状态 */
         if (*(int *)(param_2[1] + SYSTEM_OFFSET_0X18) != 0) {
@@ -330,7 +330,7 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
         object_ptr = (ObjectPtr)
                  FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &global_state_9456_ptr, 0x120, 
-                              (ulonglong)flags << 0x20, 0, 1);
+                              (uint64_t)flags << 0x20, 0, 1);
         
         if (object_ptr == (ObjectPtr)0x0) {
             return SYSTEM_ERROR_OBJECT_CREATE;
@@ -341,7 +341,7 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
         *(uint64_t *)object_ptr = &global_state_9360_ptr;
         ((uint64_t *)object_ptr)[1] = 0;
         *(int32_t *)((char *)object_ptr + 2) = 2;
-        *(ObjectPtr **)((longlong *)(param_1 + SYSTEM_OFFSET_0X48) + size * 8) = object_ptr;
+        *(ObjectPtr **)((int64_t *)(param_1 + SYSTEM_OFFSET_0X48) + size * 8) = object_ptr;
         
         if (*(int *)(param_2[1] + SYSTEM_OFFSET_0X18) != 0) {
             return SYSTEM_ERROR_STATE_CHECK;
@@ -372,7 +372,7 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
         *(uint64_t *)((char *)object_ptr - 3) = &global_state_9368_ptr;
         func_0x00018005d5f0(object_ptr);
         flags = flags & 0xffffffff00000000;
-        *(ObjectPtr **)((longlong *)(param_1 + SYSTEM_OFFSET_0X48) + size * 8) = (ObjectPtr)((char *)object_ptr - 3);
+        *(ObjectPtr **)((int64_t *)(param_1 + SYSTEM_OFFSET_0X48) + size * 8) = (ObjectPtr)((char *)object_ptr - 3);
         
         status_code = FUN_1808afe30(*param_2, &flags);
         
@@ -380,7 +380,7 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
             return status_code;
         }
         
-        size = (longlong)(int)flags;
+        size = (int64_t)(int)flags;
         if ((int)flags == 0) {
             return SYSTEM_SUCCESS_CODE;
         }
@@ -434,7 +434,7 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
  * @note 这是一个简化实现
  * @see SystemDataValidatorAndStateManager
  */
-StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, longlong *param_2)
+StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, int64_t *param_2)
 {
     ObjectPtr object_ptr;
     IndexType index;
@@ -443,22 +443,22 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, longlong *param_
     ObjectPtr created_object;
     uint64_t temp_value;
     IndexType type_index;
-    longlong offset;
+    int64_t offset;
     uint64_t stack_param;
     int32_t validation_flags;
     
     /* 获取验证参数 */
-    validation_flags = (int32_t)((ulonglong)stack_param >> 0x20);
-    param_2 = (longlong *)*param_2;
-    index = (IndexType)(*((ulonglong *)&stack_param + 1));
+    validation_flags = (int32_t)((uint64_t)stack_param >> 0x20);
+    param_2 = (int64_t *)*param_2;
+    index = (IndexType)(*((uint64_t *)&stack_param + 1));
     type_index = index + 1;
     status_code = (StatusCode)(index + 0x1c);
     
     /* 验证数据完整性 */
     if (*param_2 != 0) {
-        if (((longlong *)param_2)[2] == *((ulonglong *)&stack_param + 1)) {
+        if (((int64_t *)param_2)[2] == *((uint64_t *)&stack_param + 1)) {
             /* 处理数据验证 */
-            validation_result = *((ulonglong *)&stack_param + 1);
+            validation_result = *((uint64_t *)&stack_param + 1);
             status_code = FUN_180769ed0(*param_2, &validation_result, type_index, 4);
             validation_flags = (int32_t)(validation_result >> 0x20);
         } else {
@@ -467,8 +467,8 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, longlong *param_
             status_code = func_0x00018076a7d0(*param_2, &stack_param);
             
             if ((int)status_code == 0) {
-                if ((stack_param & 0xffffffff) + 4 <= (ulonglong)((longlong *)param_2)[2]) {
-                    validation_result = *((ulonglong *)&stack_param + 1);
+                if ((stack_param & 0xffffffff) + 4 <= (uint64_t)((int64_t *)param_2)[2]) {
+                    validation_result = *((uint64_t *)&stack_param + 1);
                     status_code = FUN_180769ed0(*param_2, &validation_result, type_index, 4);
                     validation_flags = (int32_t)(validation_result >> 0x20);
                 } else {
@@ -492,7 +492,7 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, longlong *param_
                     type_index = 4;
                 }
             }
-            status_code = *((ulonglong *)&stack_param + 1) & 0xffffffff;
+            status_code = *((uint64_t *)&stack_param + 1) & 0xffffffff;
         } else {
             status_code = SYSTEM_ERROR_INVALID_PARAM;
         }
@@ -520,31 +520,31 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, longlong *param_
         /* 初始化验证对象 */
         *(int *)((char *)created_object + 3) = index;
         *(uint64_t *)created_object = &global_state_9360_ptr;
-        ((uint64_t *)created_object)[1] = *((ulonglong *)&stack_param + 1);
+        ((uint64_t *)created_object)[1] = *((uint64_t *)&stack_param + 1);
         *(int *)((char *)created_object + 2) = index;
-        *(ObjectPtr **)((longlong *)(*((longlong *)&stack_param + 3)) + *((longlong *)&stack_param + 2) * 8) = created_object;
+        *(ObjectPtr **)((int64_t *)(*((int64_t *)&stack_param + 3)) + *((int64_t *)&stack_param + 2) * 8) = created_object;
         
-        if (*(int *)(*((longlong **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) != index) {
+        if (*(int *)(*((int64_t **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) != index) {
             return status_code;
         }
         
-        validation_result = FUN_1808995c0(*((longlong **)&stack_param + 1)[0], (char *)created_object + 3);
+        validation_result = FUN_1808995c0(*((int64_t **)&stack_param + 1)[0], (char *)created_object + 3);
         status_code = (StatusCode)validation_result;
         
     } else if (type_index == 1) {
         /* 扩展类型验证 */
-        stack_param = *((ulonglong *)&stack_param + 1);
+        stack_param = *((uint64_t *)&stack_param + 1);
         status_code = FUN_1808ae8e0();
         
         if ((int)status_code != 0) {
             return status_code;
         }
         
-        if (*(int *)(*((longlong **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) != index) {
+        if (*(int *)(*((int64_t **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) != index) {
             return status_code;
         }
         
-        status_code = FUN_1808aed00(*((longlong **)&stack_param + 1)[0], stack_param + SYSTEM_OFFSET_0X18, 4);
+        status_code = FUN_1808aed00(*((int64_t **)&stack_param + 1)[0], stack_param + SYSTEM_OFFSET_0X18, 4);
         validation_result = (uint)status_code;
         
     } else if (type_index == 2) {
@@ -559,17 +559,17 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, longlong *param_
         }
         
         /* 初始化特殊验证对象 */
-        *(char *)((char *)created_object + 3) = (char)*((ulonglong *)&stack_param + 1);
+        *(char *)((char *)created_object + 3) = (char)*((uint64_t *)&stack_param + 1);
         *(uint64_t *)created_object = &global_state_9360_ptr;
-        ((uint64_t *)created_object)[1] = *((ulonglong *)&stack_param + 1);
+        ((uint64_t *)created_object)[1] = *((uint64_t *)&stack_param + 1);
         *(int32_t *)((char *)created_object + 2) = 2;
-        *(ObjectPtr **)((longlong *)(*((longlong *)&stack_param + 3)) + *((longlong *)&stack_param + 2) * 8) = created_object;
+        *(ObjectPtr **)((int64_t *)(*((int64_t *)&stack_param + 3)) + *((int64_t *)&stack_param + 2) * 8) = created_object;
         
-        if (*(int *)(*((longlong **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) != index) {
+        if (*(int *)(*((int64_t **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) != index) {
             return status_code;
         }
         
-        status_code = FUN_1808a2e00(*((longlong **)&stack_param + 1)[0], (char *)created_object + 3);
+        status_code = FUN_1808a2e00(*((int64_t **)&stack_param + 1)[0], (char *)created_object + 3);
         validation_result = (uint)status_code;
         
     } else {
@@ -588,21 +588,21 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, longlong *param_
         }
         
         /* 初始化自定义验证对象 */
-        ((uint64_t *)created_object)[1] = *((ulonglong *)&stack_param + 1);
+        ((uint64_t *)created_object)[1] = *((uint64_t *)&stack_param + 1);
         object_ptr = (ObjectPtr)((char *)created_object + 3);
         *(int32_t *)((char *)created_object + 2) = 3;
         *(uint64_t *)created_object = &global_state_9368_ptr;
         func_0x00018005d5f0(object_ptr);
         stack_param = CONCAT44(validation_flags, index);
-        *(ObjectPtr **)((longlong *)(*((longlong *)&stack_param + 3)) + *((longlong *)&stack_param + 2) * 8) = created_object;
+        *(ObjectPtr **)((int64_t *)(*((int64_t *)&stack_param + 3)) + *((int64_t *)&stack_param + 2) * 8) = created_object;
         
-        status_code = FUN_1808afe30(*((longlong **)&stack_param + 1)[0], &stack_param);
+        status_code = FUN_1808afe30(*((int64_t **)&stack_param + 1)[0], &stack_param);
         
         if ((int)status_code != 0) {
             return status_code;
         }
         
-        offset = (longlong)stack_param;
+        offset = (int64_t)stack_param;
         if (stack_param == 0) {
             return SYSTEM_SUCCESS_CODE;
         }
@@ -615,8 +615,8 @@ StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, longlong *param_
         
         temp_value = func_0x0001808d9e70(object_ptr);
         
-        if (*(int *)(*((longlong **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) == index) {
-            status_code = FUN_1808aed00(*((longlong **)&stack_param + 1)[0], temp_value, offset);
+        if (*(int *)(*((int64_t **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) == index) {
+            status_code = FUN_1808aed00(*((int64_t **)&stack_param + 1)[0], temp_value, offset);
             
             if ((int)status_code != 0) {
                 return status_code;
@@ -663,12 +663,12 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
     ObjectPtr created_object;
     uint64_t temp_value;
     IndexType type_index;
-    longlong size;
+    int64_t size;
     uint64_t stack_param[2];
     int32_t allocation_flags;
     
     /* 获取分配参数 */
-    index = (IndexType)(*((ulonglong *)&stack_param + 1));
+    index = (IndexType)(*((uint64_t *)&stack_param + 1));
     
     /* 检查分配大小 */
     if (*((uint *)&stack_param + 1) < 4) {
@@ -684,7 +684,7 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
                 type_index = 4;
             }
         }
-        status_code = *((ulonglong *)&stack_param + 1) & 0xffffffff;
+        status_code = *((uint64_t *)&stack_param + 1) & 0xffffffff;
     } else {
         status_code = SYSTEM_ERROR_INVALID_PARAM;
         type_index = (IndexType)stack_param[0];
@@ -699,18 +699,18 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
     if (type_index != 0) {
         if (type_index == 1) {
             /* 扩展类型分配 */
-            stack_param[0] = *((ulonglong *)&stack_param + 1);
+            stack_param[0] = *((uint64_t *)&stack_param + 1);
             status_code = FUN_1808ae8e0();
             
             if ((int)status_code != 0) {
                 return status_code;
             }
             
-            if (*(int *)(*((longlong **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) != index) {
+            if (*(int *)(*((int64_t **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) != index) {
                 goto LAB_1808acf0b;
             }
             
-            status_code = FUN_1808aed00(*((longlong **)&stack_param + 1)[0], stack_param[0] + SYSTEM_OFFSET_0X18, 4);
+            status_code = FUN_1808aed00(*((int64_t **)&stack_param + 1)[0], stack_param[0] + SYSTEM_OFFSET_0X18, 4);
             index = (int)status_code;
             
         } else if (type_index == 2) {
@@ -724,17 +724,17 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
             }
             
             /* 初始化特殊对象 */
-            *(char *)((char *)created_object + 3) = (char)*((ulonglong *)&stack_param + 1);
+            *(char *)((char *)created_object + 3) = (char)*((uint64_t *)&stack_param + 1);
             *(uint64_t *)created_object = &global_state_9360_ptr;
-            ((uint64_t *)created_object)[1] = *((ulonglong *)&stack_param + 1);
+            ((uint64_t *)created_object)[1] = *((uint64_t *)&stack_param + 1);
             *(int32_t *)((char *)created_object + 2) = 2;
-            *(ObjectPtr **)((longlong *)(*((longlong *)&stack_param + 3)) + *((longlong *)&stack_param + 2) * 8) = created_object;
+            *(ObjectPtr **)((int64_t *)(*((int64_t *)&stack_param + 3)) + *((int64_t *)&stack_param + 2) * 8) = created_object;
             
-            if (*(int *)(*((longlong **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) != index) {
+            if (*(int *)(*((int64_t **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) != index) {
                 goto LAB_1808acf0b;
             }
             
-            status_code = FUN_1808a2e00(*((longlong **)&stack_param + 1)[0], (char *)created_object + 3);
+            status_code = FUN_1808a2e00(*((int64_t **)&stack_param + 1)[0], (char *)created_object + 3);
             index = (int)status_code;
             
         } else {
@@ -752,21 +752,21 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
             }
             
             /* 初始化自定义对象 */
-            ((uint64_t *)created_object)[1] = *((ulonglong *)&stack_param + 1);
+            ((uint64_t *)created_object)[1] = *((uint64_t *)&stack_param + 1);
             object_ptr = (ObjectPtr)((char *)created_object + 3);
             *(int32_t *)((char *)created_object + 2) = 3;
             *(uint64_t *)created_object = &global_state_9368_ptr;
             func_0x00018005d5f0(object_ptr);
             stack_param[0] = CONCAT44(allocation_flags, index);
-            *(ObjectPtr **)((longlong *)(*((longlong *)&stack_param + 3)) + *((longlong *)&stack_param + 2) * 8) = created_object;
+            *(ObjectPtr **)((int64_t *)(*((int64_t *)&stack_param + 3)) + *((int64_t *)&stack_param + 2) * 8) = created_object;
             
-            status_code = FUN_1808afe30(*((longlong **)&stack_param + 1)[0], &stack_param[0]);
+            status_code = FUN_1808afe30(*((int64_t **)&stack_param + 1)[0], &stack_param[0]);
             
             if ((int)status_code != 0) {
                 return status_code;
             }
             
-            size = (longlong)stack_param[0];
+            size = (int64_t)stack_param[0];
             if (stack_param[0] == 0) {
                 return SYSTEM_SUCCESS_CODE;
             }
@@ -779,8 +779,8 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
             
             temp_value = func_0x0001808d9e70(object_ptr);
             
-            if (*(int *)(*((longlong **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) == index) {
-                status_code = FUN_1808aed00(*((longlong **)&stack_param + 1)[0], temp_value, size);
+            if (*(int *)(*((int64_t **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) == index) {
+                status_code = FUN_1808aed00(*((int64_t **)&stack_param + 1)[0], temp_value, size);
                 
                 if ((int)status_code != 0) {
                     return status_code;
@@ -792,7 +792,7 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
                     return SYSTEM_SUCCESS_CODE;
                 }
             } else {
-                status_code = *((ulonglong *)&stack_param + 4) & 0xffffffff;
+                status_code = *((uint64_t *)&stack_param + 4) & 0xffffffff;
             }
             
             index = (int)status_code;
@@ -817,13 +817,13 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
     /* 初始化基础对象 */
     *(int *)((char *)created_object + 3) = index;
     *(uint64_t *)created_object = &global_state_9360_ptr;
-    ((uint64_t *)created_object)[1] = *((ulonglong *)&stack_param + 1);
+    ((uint64_t *)created_object)[1] = *((uint64_t *)&stack_param + 1);
     *(int *)((char *)created_object + 2) = index;
-    *(ObjectPtr **)((longlong *)(*((longlong *)&stack_param + 3)) + *((longlong *)&stack_param + 2) * 8) = created_object;
+    *(ObjectPtr **)((int64_t *)(*((int64_t *)&stack_param + 3)) + *((int64_t *)&stack_param + 2) * 8) = created_object;
     
-    if (*(int *)(*((longlong **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) == index) {
-        allocation_result = FUN_1808995c0(*((longlong **)&stack_param + 1)[0], (char *)created_object + 3);
-        *((ulonglong *)&stack_param + 4) = (ulonglong)allocation_result;
+    if (*(int *)(*((int64_t **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) == index) {
+        allocation_result = FUN_1808995c0(*((int64_t **)&stack_param + 1)[0], (char *)created_object + 3);
+        *((uint64_t *)&stack_param + 4) = (uint64_t)allocation_result;
         
         if (allocation_result == 0) {
             return SYSTEM_SUCCESS_CODE;
@@ -831,7 +831,7 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
     }
 
 LAB_1808acf0b:
-    return *((ulonglong *)&stack_param + 4) & 0xffffffff;
+    return *((uint64_t *)&stack_param + 4) & 0xffffffff;
 }
 
 /**
@@ -856,29 +856,29 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
     StatusCode status_code;
     ObjectPtr error_object;
     uint64_t temp_value;
-    longlong error_code;
+    int64_t error_code;
     uint64_t stack_param[2];
     int32_t error_flags;
     
     /* 获取错误处理参数 */
-    index = (IndexType)(*((ulonglong *)&stack_param + 1));
+    index = (IndexType)(*((uint64_t *)&stack_param + 1));
     
     /* 检查错误类型 */
     if (*((int *)&stack_param + 1) != 0) {
         if (*((int *)&stack_param + 1) == 1) {
             /* 处理类型1错误 */
-            stack_param[0] = *((ulonglong *)&stack_param + 1);
+            stack_param[0] = *((uint64_t *)&stack_param + 1);
             status_code = FUN_1808ae8e0();
             
             if ((int)status_code != 0) {
                 return status_code;
             }
             
-            if (*(int *)(*((longlong **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) != index) {
+            if (*(int *)(*((int64_t **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) != index) {
                 goto LAB_1808acf0b;
             }
             
-            status_code = FUN_1808aed00(*((longlong **)&stack_param + 1)[0], stack_param[0] + SYSTEM_OFFSET_0X18, 4);
+            status_code = FUN_1808aed00(*((int64_t **)&stack_param + 1)[0], stack_param[0] + SYSTEM_OFFSET_0X18, 4);
             index = (int)status_code;
             
         } else if (*((int *)&stack_param + 1) == 2) {
@@ -892,17 +892,17 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
             }
             
             /* 初始化错误对象 */
-            *(char *)((char *)error_object + 3) = (char)*((ulonglong *)&stack_param + 1);
+            *(char *)((char *)error_object + 3) = (char)*((uint64_t *)&stack_param + 1);
             *(uint64_t *)error_object = &global_state_9360_ptr;
-            ((uint64_t *)error_object)[1] = *((ulonglong *)&stack_param + 1);
+            ((uint64_t *)error_object)[1] = *((uint64_t *)&stack_param + 1);
             *(int32_t *)((char *)error_object + 2) = 2;
-            *(ObjectPtr **)((longlong *)(*((longlong *)&stack_param + 3)) + *((longlong *)&stack_param + 2) * 8) = error_object;
+            *(ObjectPtr **)((int64_t *)(*((int64_t *)&stack_param + 3)) + *((int64_t *)&stack_param + 2) * 8) = error_object;
             
-            if (*(int *)(*((longlong **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) != index) {
+            if (*(int *)(*((int64_t **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) != index) {
                 goto LAB_1808acf0b;
             }
             
-            status_code = FUN_1808a2e00(*((longlong **)&stack_param + 1)[0], (char *)error_object + 3);
+            status_code = FUN_1808a2e00(*((int64_t **)&stack_param + 1)[0], (char *)error_object + 3);
             index = (int)status_code;
             
         } else {
@@ -920,21 +920,21 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
             }
             
             /* 初始化错误对象 */
-            ((uint64_t *)error_object)[1] = *((ulonglong *)&stack_param + 1);
+            ((uint64_t *)error_object)[1] = *((uint64_t *)&stack_param + 1);
             object_ptr = (ObjectPtr)((char *)error_object + 3);
             *(int32_t *)((char *)error_object + 2) = 3;
             *(uint64_t *)error_object = &global_state_9368_ptr;
             func_0x00018005d5f0(object_ptr);
             stack_param[0] = CONCAT44(error_flags, index);
-            *(ObjectPtr **)((longlong *)(*((longlong *)&stack_param + 3)) + *((longlong *)&stack_param + 2) * 8) = error_object;
+            *(ObjectPtr **)((int64_t *)(*((int64_t *)&stack_param + 3)) + *((int64_t *)&stack_param + 2) * 8) = error_object;
             
-            status_code = FUN_1808afe30(*((longlong **)&stack_param + 1)[0], &stack_param[0]);
+            status_code = FUN_1808afe30(*((int64_t **)&stack_param + 1)[0], &stack_param[0]);
             
             if ((int)status_code != 0) {
                 return status_code;
             }
             
-            error_code = (longlong)stack_param[0];
+            error_code = (int64_t)stack_param[0];
             if (stack_param[0] == 0) {
                 return SYSTEM_SUCCESS_CODE;
             }
@@ -947,8 +947,8 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
             
             temp_value = func_0x0001808d9e70(object_ptr);
             
-            if (*(int *)(*((longlong **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) == index) {
-                status_code = FUN_1808aed00(*((longlong **)&stack_param + 1)[0], temp_value, error_code);
+            if (*(int *)(*((int64_t **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) == index) {
+                status_code = FUN_1808aed00(*((int64_t **)&stack_param + 1)[0], temp_value, error_code);
                 
                 if ((int)status_code != 0) {
                     return status_code;
@@ -960,7 +960,7 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
                     return SYSTEM_SUCCESS_CODE;
                 }
             } else {
-                status_code = *((ulonglong *)&stack_param + 4) & 0xffffffff;
+                status_code = *((uint64_t *)&stack_param + 4) & 0xffffffff;
             }
             
             index = (int)status_code;
@@ -985,13 +985,13 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
     /* 初始化通用错误对象 */
     *(int *)((char *)error_object + 3) = index;
     *(uint64_t *)error_object = &global_state_9360_ptr;
-    ((uint64_t *)error_object)[1] = *((ulonglong *)&stack_param + 1);
+    ((uint64_t *)error_object)[1] = *((uint64_t *)&stack_param + 1);
     *(int *)((char *)error_object + 2) = index;
-    *(ObjectPtr **)((longlong *)(*((longlong *)&stack_param + 3)) + *((longlong *)&stack_param + 2) * 8) = error_object;
+    *(ObjectPtr **)((int64_t *)(*((int64_t *)&stack_param + 3)) + *((int64_t *)&stack_param + 2) * 8) = error_object;
     
-    if (*(int *)(*((longlong **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) == index) {
-        error_result = FUN_1808995c0(*((longlong **)&stack_param + 1)[0], (char *)error_object + 3);
-        *((ulonglong *)&stack_param + 4) = (ulonglong)error_result;
+    if (*(int *)(*((int64_t **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) == index) {
+        error_result = FUN_1808995c0(*((int64_t **)&stack_param + 1)[0], (char *)error_object + 3);
+        *((uint64_t *)&stack_param + 4) = (uint64_t)error_result;
         
         if (error_result == 0) {
             return SYSTEM_SUCCESS_CODE;
@@ -999,5 +999,5 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
     }
 
 LAB_1808acf0b:
-    return *((ulonglong *)&stack_param + 4) & 0xffffffff;
+    return *((uint64_t *)&stack_param + 4) & 0xffffffff;
 }

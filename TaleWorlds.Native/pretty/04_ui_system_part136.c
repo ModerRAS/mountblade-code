@@ -199,19 +199,19 @@ typedef struct {
 // 参数：context - UI上下文, stateValue - 状态值
 // 返回值：无
 void UISystem_ComponentStateHandler(void);                    // UI系统组件状态处理器1
-void UISystem_ComponentStateHandler_SetState(longlong context, int32_t stateValue); // UI系统组件状态设置器
+void UISystem_ComponentStateHandler_SetState(int64_t context, int32_t stateValue); // UI系统组件状态设置器
 
 // UI系统资源初始化器 (UISystem_ResourceInitializer)
 // 功能：初始化UI系统资源并管理资源生命周期
 // 参数：context - UI上下文
 // 返回值：UIErrorCode - 初始化结果
-int UISystem_ResourceInitializer(longlong context);            // UI系统资源初始化器1
+int UISystem_ResourceInitializer(int64_t context);            // UI系统资源初始化器1
 
 // UI系统事件处理器 (UISystem_EventProcessor)
 // 功能：处理UI系统事件和回调
 // 参数：context - UI上下文
 // 返回值：无
-void UISystem_EventProcessor(longlong context);                // UI系统事件处理器1
+void UISystem_EventProcessor(int64_t context);                // UI系统事件处理器1
 
 // UI系统数据管理器 (UISystem_DataManager)
 // 功能：管理UI系统数据结构和操作
@@ -223,14 +223,14 @@ void UISystem_DataManager(void);                               // UI系统数据
 // 功能：控制UI系统渲染和更新
 // 参数：context - UI上下文
 // 返回值：无
-void UISystem_RenderController(longlong context);             // UI系统渲染控制器1
+void UISystem_RenderController(int64_t context);             // UI系统渲染控制器1
 
 // UI系统状态验证器 (UISystem_StateValidator)
 // 功能：验证UI系统状态和一致性
 // 参数：context - UI上下文
 // 返回值：UIErrorCode - 验证结果
-int UISystem_StateValidator(longlong context);                 // UI系统状态验证器1
-int UISystem_StateValidator_Validate(longlong context);        // UI系统状态验证器2
+int UISystem_StateValidator(int64_t context);                 // UI系统状态验证器1
+int UISystem_StateValidator_Validate(int64_t context);        // UI系统状态验证器2
 
 // UI系统回调处理器 (UISystem_CallbackHandler)
 // 功能：处理UI系统回调函数
@@ -242,7 +242,7 @@ void UISystem_CallbackHandler(void);                           // UI系统回调
 // 功能：清理UI系统资源和状态
 // 参数：context - UI上下文
 // 返回值：无
-void UISystem_CleanupManager(longlong context);                // UI系统清理管理器1
+void UISystem_CleanupManager(int64_t context);                // UI系统清理管理器1
 
 // ============================================================================
 // 原始函数映射
@@ -336,7 +336,7 @@ void UISystem_CleanupManager(longlong context);                // UI系统清理
 
 // UI系统全局变量
 static uint64_t *puRam0000000000012780 = (uint64_t *)0x12780;  // UI系统全局指针
-static longlong lRam0000000000012770 = 0;                       // UI系统全局锁
+static int64_t lRam0000000000012770 = 0;                       // UI系统全局锁
 static code *pcRam0000000000011838 = (code *)0x0;               // UI系统全局代码指针
 static uint uRam0000000000011840 = 0;                           // UI系统全局标志
 static float *pfRam0000000000011670 = (float *)0x0;              // UI系统全局浮点指针
@@ -364,7 +364,7 @@ static float *pfRam0000000000011670 = (float *)0x0;              // UI系统全�
  * - 提供详细的状态错误信息
  * - 支持状态回滚机制
  */
-void UISystem_ComponentStateHandler(longlong context, int32_t stateValue)
+void UISystem_ComponentStateHandler(int64_t context, int32_t stateValue)
 {
     int validation_result;
     
@@ -405,32 +405,32 @@ void UISystem_ComponentStateHandler(longlong context, int32_t stateValue)
  * - 支持异步初始化
  * - 提供资源缓存机制
  */
-int UISystem_ResourceInitializer(longlong context)
+int UISystem_ResourceInitializer(int64_t context)
 {
-    longlong resourceHandle;
-    longlong *resourcePtr;
+    int64_t resourceHandle;
+    int64_t *resourcePtr;
     uint64_t eventHandle;
-    longlong *statePtr;
+    int64_t *statePtr;
     int result;
-    ulonglong stack_param;
+    uint64_t stack_param;
     int32_t tempValue;
     
     // 创建主资源句柄
     resourceHandle = UISystem_MemoryAllocator(GET_SYSTEM_MEMORY_ALLOCATOR(), UI_CONST_0X4D0, &ui_system_memory_pool, UI_CONST_0X146,
                                   stack_param & 0xffffffff00000000, 0, 1);
-    resourcePtr = (longlong *)0x0;
+    resourcePtr = (int64_t *)0x0;
     if (resourceHandle != 0) {
-        resourcePtr = (longlong *)UISystem_SyncManager(resourceHandle);
+        resourcePtr = (int64_t *)UISystem_SyncManager(resourceHandle);
     }
     
     // 设置资源指针
-    statePtr = (longlong *)(context + UI_OFFSET_11418);
-    *statePtr = (longlong)resourcePtr;
+    statePtr = (int64_t *)(context + UI_OFFSET_11418);
+    *statePtr = (int64_t)resourcePtr;
     
     // 检查资源创建结果
-    if (resourcePtr == (longlong *)0x0) {
+    if (resourcePtr == (int64_t *)0x0) {
         result = UI_CONST_0X26;
-        statePtr = (longlong *)0x0;
+        statePtr = (int64_t *)0x0;
     }
     else {
         // 初始化资源管理器
@@ -662,7 +662,7 @@ int UISystem_ResourceInitializer(longlong context)
     }
     
     // 资源初始化失败，清理已分配的资源
-    if ((statePtr != (longlong *)0x0) && (*statePtr != 0)) {
+    if ((statePtr != (int64_t *)0x0) && (*statePtr != 0)) {
         UISystem_NotificationHandler(*statePtr, 0);
         *statePtr = 0;
     }
@@ -688,7 +688,7 @@ int UISystem_ResourceInitializer(longlong context)
  * - 初始化失败时跳过事件处理
  * - 提供事件处理状态反馈
  */
-void UISystem_EventProcessor(longlong context, int32_t eventValue)
+void UISystem_EventProcessor(int64_t context, int32_t eventValue)
 {
     int result;
     
@@ -722,18 +722,18 @@ void UISystem_EventProcessor(longlong context, int32_t eventValue)
  * - 包含资源管理和优化
  * - 支持异步数据处理
  */
-void UISystem_DataManager(longlong context)
+void UISystem_DataManager(int64_t context)
 {
     uint64_t *componentPtr;
     int32_t renderValue;
     uint64_t *resourcePtr;
     uint64_t resourceHandle;
     int result;
-    longlong stateHandle;
-    ulonglong stackVar;
+    int64_t stateHandle;
+    uint64_t stackVar;
     uint eventCount;
-    ulonglong indexVar;
-    ulonglong dataVar;
+    uint64_t indexVar;
+    uint64_t dataVar;
     float floatVar;
     int8_t stackBuffer[32];
     float *floatPtr;
@@ -763,9 +763,9 @@ void UISystem_DataManager(longlong context)
     uint64_t stackVar19;
     uint64_t stackVar20;
     int8_t stackBuffer2[48];
-    ulonglong stackVar21;
+    uint64_t stackVar21;
     
-    stackVar21 = GET_SECURITY_COOKIE() ^ (ulonglong)stackBuffer;
+    stackVar21 = GET_SECURITY_COOKIE() ^ (uint64_t)stackBuffer;
     if (*(char *)(context + 8) != '\0') {
         if ((*(code **)(context + UI_OFFSET_11838) != (code *)0x0) &&
            ((*(uint *)(context + UI_OFFSET_11840) & UI_CONST_0X400) != 0)) {
@@ -782,7 +782,7 @@ void UISystem_DataManager(longlong context)
             eventCount = eventValue - *(int *)(context + UI_OFFSET_116B4);
         }
         *(uint *)(context + UI_OFFSET_116B4) = eventValue;
-        if ((*(longlong *)(context + 0x6b0) == 0) || (result = UISystem_SystemChecker(), result == 0)) {
+        if ((*(int64_t *)(context + 0x6b0) == 0) || (result = UISystem_SystemChecker(), result == 0)) {
             componentPtr = (uint64_t *)(context + 0x12758);
             resourcePtr = (uint64_t *)*componentPtr;
             floatVar = 0.0;
@@ -838,7 +838,7 @@ void UISystem_DataManager(longlong context)
                 if (componentPtr == (uint64_t *)(context + 0x11708)) {
                     result = UISystem_AnimationManager(context, eventCount);
                     if ((result != 0) || (result = UISystem_ProcessEvent(context, eventCount), result != 0)) break;
-                    if (*(longlong *)(context + 0x670) != 0) {
+                    if (*(int64_t *)(context + 0x670) != 0) {
                         UISystem_ListManager(context + UI_OFFSET_11678, 1);
                         result = UISystem_CheckStatus(*(uint64_t *)(context + 0x670));
                         if (result != 0) break;
@@ -863,16 +863,16 @@ void UISystem_DataManager(longlong context)
     goto UISystem_ExecuteTask;
     while( true ) {
         eventCount = (int)indexVar + 1;
-        indexVar = (ulonglong)eventCount;
+        indexVar = (uint64_t)eventCount;
         stackVar21 = stackVar21 + 0x38;
         if (*(int *)(context + 0x694) <= (int)eventCount) break;
 LAB_18078c440:
-        stateHandle = *(longlong *)(*(longlong *)(context + 0x6a0) + 0x30 + stackVar21);
+        stateHandle = *(int64_t *)(*(int64_t *)(context + 0x6a0) + 0x30 + stackVar21);
         if (((stateHandle != 0) && (*(char *)(stateHandle + 0x31) != '\0')) &&
            (result = UISystem_StateManager(context, indexVar), result != 0)) goto UISystem_ExecuteTask;
     }
 LAB_18078c477:
-    if (((*(longlong *)(context + UI_OFFSET_11838) != 0) && ((*(uint *)(context + UI_OFFSET_11840) & UI_CONST_0X1000) != 0)) &&
+    if (((*(int64_t *)(context + UI_OFFSET_11838) != 0) && ((*(uint *)(context + UI_OFFSET_11840) & UI_CONST_0X1000) != 0)) &&
        (result = UISystem_CleanupManager(context), result != UI_CONST_0X39)) {
         if (result != 0) goto UISystem_ExecuteTask;
         if (*(char *)(context + 0x6a8) != '\0') {
@@ -887,18 +887,18 @@ LAB_18078c477:
             *(int16_t *)(stateHandle + -1) = 0;
             stateHandle = stateHandle + 0x70;
             eventCount = (int)dataVar + 1;
-            dataVar = (ulonglong)eventCount;
+            dataVar = (uint64_t)eventCount;
         } while ((int)eventCount < *(int *)(context + 0x11400));
     }
     *(int8_t *)(context + 0x12440) = 0;
     if ((*(byte *)(context + 0x78) & 1) != 0) {
         UISystem_UpdateFrame(context);
     }
-    stateHandle = *(longlong *)(context + 0x670);
+    stateHandle = *(int64_t *)(context + 0x670);
     if ((stateHandle != 0) && (0 < *(int *)(context + 0x10f70))) {
         if (context != 0) {
             UISystem_ContextManager(context, UI_CONST_0X7);
-            stateHandle = *(longlong *)(context + 0x670);
+            stateHandle = *(int64_t *)(context + 0x670);
         }
         renderValue = *(int32_t *)(stateHandle + 0x318);
         for (componentPtr = *(uint64_t **)(context + 0x10f58); componentPtr != (uint64_t *)(context + 0x10f58);
@@ -924,7 +924,7 @@ LAB_18078c477:
         while (componentPtr != (uint64_t *)(context + 0x10ff0)) {
             stateHandle = componentPtr[2];
             componentPtr = (uint64_t *)*componentPtr;
-            if (((*(longlong *)(stateHandle + 0x120) != 0) && ((*(byte *)(stateHandle + 0x11a) & 0x40) != 0)) &&
+            if (((*(int64_t *)(stateHandle + 0x120) != 0) && ((*(byte *)(stateHandle + 0x11a) & 0x40) != 0)) &&
                ((*(uint *)(stateHandle + 100) >> 10 & 1) == 0)) {
                 (**(code **)(stateHandle + 0x120))(stateHandle + 0xb0, 0x40, 0);
             }
@@ -949,7 +949,7 @@ LAB_18078c477:
         }
     }
 UISystem_ExecuteTask:
-    UISystem_UnlockSharedMemory(stackVar21 ^ (ulonglong)stackBuffer);
+    UISystem_UnlockSharedMemory(stackVar21 ^ (uint64_t)stackBuffer);
 }
 
 /**
@@ -972,10 +972,10 @@ UISystem_ExecuteTask:
  * - 支持渲染状态缓存
  * - 提供渲染性能监控
  */
-int UISystem_RenderController(longlong context)
+int UISystem_RenderController(int64_t context)
 {
     int result;
-    longlong stateHandle;
+    int64_t stateHandle;
     int index;
     
     if (context != 0) {
@@ -985,7 +985,7 @@ int UISystem_RenderController(longlong context)
     if (0 < *(int *)(context + 0x694)) {
         stateHandle = 0;
         do {
-            if (*(longlong *)(stateHandle + 0x30 + *(longlong *)(context + 0x6a0)) != 0) {
+            if (*(int64_t *)(stateHandle + 0x30 + *(int64_t *)(context + 0x6a0)) != 0) {
                 result = UISystem_InitializeSystem(*(uint64_t *)(context + 0x670));
                 if (result != 0) goto LAB_1807499b3;
             }
@@ -1022,10 +1022,10 @@ LAB_1807499b3:
  * - 状态转换有效性
  * - 系统资源状态
  */
-int UISystem_StateValidator_Validate(longlong context)
+int UISystem_StateValidator_Validate(int64_t context)
 {
     int result;
-    longlong stateHandle;
+    int64_t stateHandle;
     int index;
     
     if (context != 0) {
@@ -1035,7 +1035,7 @@ int UISystem_StateValidator_Validate(longlong context)
     if (0 < *(int *)(context + 0x694)) {
         stateHandle = 0;
         do {
-            if (*(longlong *)(stateHandle + 0x30 + *(longlong *)(context + 0x6a0)) != 0) {
+            if (*(int64_t *)(stateHandle + 0x30 + *(int64_t *)(context + 0x6a0)) != 0) {
                 result = UISystem_InitializeSystem(*(uint64_t *)(context + 0x670));
                 if (result != 0) goto LAB_1807499b3;
             }
@@ -1091,29 +1091,29 @@ void UISystem_CallbackHandler(void)
  * - 确保资源正确释放
  * - 避免重复清理
  */
-void UISystem_CleanupManager(longlong context)
+void UISystem_CleanupManager(int64_t context)
 {
     int *statePtr;
     uint *eventPtr;
-    longlong resourceHandle;
+    int64_t resourceHandle;
     int result;
     uint eventValue;
-    ulonglong dataVar;
+    uint64_t dataVar;
     int8_t stackBuffer[64];
     int intArray[3];
     int intVar;
     int intArray2[8];
     int8_t stackBuffer2[256];
-    ulonglong stackVar;
-    ulonglong indexVar;
+    uint64_t stackVar;
+    uint64_t indexVar;
     
-    stackVar = GET_SECURITY_COOKIE() ^ (ulonglong)stackBuffer;
+    stackVar = GET_SECURITY_COOKIE() ^ (uint64_t)stackBuffer;
     if (*(char *)(context + 8) == '\0') goto UISystem_ErrorHandler;
     indexVar = 0;
     intVar = 0;
     intArray2[0] = 0;
     statePtr = (int *)(context + 0x698);
-    if (*(longlong *)(*(longlong *)(context + 0x670) + 0x3e0) == 0) {
+    if (*(int64_t *)(*(int64_t *)(context + 0x670) + 0x3e0) == 0) {
 LAB_180749ae6:
         if (intVar == *statePtr) goto UISystem_ErrorHandler;
     }
@@ -1123,7 +1123,7 @@ LAB_180749ae6:
         intVar = *statePtr;
         if ((*(int *)(context + 0x6ac) == 0) ||
            (999 < (uint)(intArray[0] - *(int *)(context + 0x6ac)))) {
-            resourceHandle = *(longlong *)(context + 0x670);
+            resourceHandle = *(int64_t *)(context + 0x670);
             *(int *)(context + 0x6ac) = intArray[0];
             dataVar = resourceHandle + 8;
             if (resourceHandle == 0) {
@@ -1138,8 +1138,8 @@ LAB_180749ae6:
     if (0 < *(int *)(context + 0x694)) {
         do {
             eventValue = (int)indexVar + 1;
-            indexVar = (ulonglong)eventValue;
-            eventPtr = (uint *)(dataVar + 0x18 + *(longlong *)(context + 0x6a0));
+            indexVar = (uint64_t)eventValue;
+            eventPtr = (uint *)(dataVar + 0x18 + *(int64_t *)(context + 0x6a0));
             *eventPtr = *eventPtr & 0xfffffffe;
             dataVar = dataVar + 0x38;
         } while ((int)eventValue < *(int *)(context + 0x694));
@@ -1150,7 +1150,7 @@ LAB_180749ae6:
     }
     *(int8_t *)(context + 0x6a8) = 1;
 UISystem_ErrorHandler:
-    UISystem_UnlockSharedMemory(stackVar ^ (ulonglong)stackBuffer);
+    UISystem_UnlockSharedMemory(stackVar ^ (uint64_t)stackBuffer);
 #define UISystem_StackProcessor UISystem_UpdateFrame
 #define UISystem_BufferProcessor UISystem_ProcessEvent
 #define UISystem_ContextProcessor UISystem_ExecuteTask

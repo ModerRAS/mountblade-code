@@ -36,12 +36,12 @@
 // 类型别名定义
 // ============================================================================
 
-typedef longlong*                      ArrayPointer;            // 数组指针类型
+typedef int64_t*                      ArrayPointer;            // 数组指针类型
 typedef uint64_t*                    DataBuffer;             // 数据缓冲区类型
 typedef int32_t*                    UInt32Buffer;           // 32位无符号整数缓冲区
 typedef char*                          CharBuffer;             // 字符缓冲区类型
 typedef int16_t*                    UInt16Buffer;           // 16位无符号整数缓冲区
-typedef longlong                       MemorySize;             // 内存大小类型
+typedef int64_t                       MemorySize;             // 内存大小类型
 typedef uint                            UInt32;                 // 32位无符号整数
 typedef ushort                          UInt16;                 // 16位无符号整数
 typedef bool                            Boolean;                // 布尔类型
@@ -102,11 +102,11 @@ typedef struct {
 void DynamicArrayProcessor_104ByteElements(ArrayControlBlock* array_control, uint64_t param_2);
 void DynamicArrayProcessor_26ByteElements(ArrayControlBlock* array_control, uint64_t param_2);
 void DynamicArrayProcessor_48ByteElements(ArrayControlBlock* array_control, uint64_t param_2);
-void SortProcessor_BitmaskIndexed(longlong param_1, longlong param_2);
+void SortProcessor_BitmaskIndexed(int64_t param_1, int64_t param_2);
 void SortProcessor_BitmaskOptimized(void);
 void EmptyOperationHandler(void);
 void StringInsertionSortProcessor(CharBuffer start_ptr, CharBuffer end_ptr);
-void StringInsertionSortProcessor_Range(CharBuffer start_ptr, CharBuffer end_ptr, longlong range_limit);
+void StringInsertionSortProcessor_Range(CharBuffer start_ptr, CharBuffer end_ptr, int64_t range_limit);
 void StringInsertionSortProcessor_Loop(void);
 void StringInsertionSortProcessor_Secondary(void);
 void UInt16InsertionSortProcessor(void);
@@ -193,7 +193,7 @@ void DynamicArrayProcessor_104ByteElements(ArrayControlBlock* array_control, uin
     // 计算当前元素数量和新的容量
     old_end = (DataBuffer)array_control->data_end;
     old_buffer = (DataBuffer)array_control->data_start;
-    element_count = ((longlong)old_end - (longlong)old_buffer) / ARRAY_ELEMENT_SIZE_104;
+    element_count = ((int64_t)old_end - (int64_t)old_buffer) / ARRAY_ELEMENT_SIZE_104;
     new_buffer = NULL;
     
     // 确定新的容量
@@ -219,7 +219,7 @@ capacity_calculation_complete:
     
     // 执行数据迁移
     if (old_buffer != old_end) {
-        offset = (longlong)new_buffer - (longlong)old_buffer;
+        offset = (int64_t)new_buffer - (int64_t)old_buffer;
         old_buffer = old_buffer + 9;
         
         do {
@@ -232,33 +232,33 @@ capacity_calculation_complete:
             write_position[2] = old_buffer[-7];
             write_position[3] = temp_data_2;
             
-            int32_t temp_data_3 = *(int32_t *)((longlong)old_buffer + -0x24);
+            int32_t temp_data_3 = *(int32_t *)((int64_t)old_buffer + -0x24);
             int32_t temp_data_4 = *(int32_t *)(old_buffer + -4);
-            int32_t temp_data_5 = *(int32_t *)((longlong)old_buffer + -0x1c);
+            int32_t temp_data_5 = *(int32_t *)((int64_t)old_buffer + -0x1c);
             
             *(int32_t *)(write_position + 4) = *(int32_t *)(old_buffer + -5);
-            *(int32_t *)((longlong)write_position + 0x24) = temp_data_3;
+            *(int32_t *)((int64_t)write_position + 0x24) = temp_data_3;
             *(int32_t *)(write_position + 5) = temp_data_4;
-            *(int32_t *)((longlong)write_position + 0x2c) = temp_data_5;
+            *(int32_t *)((int64_t)write_position + 0x2c) = temp_data_5;
             
             uint64_t temp_data_6 = old_buffer[-2];
             write_position[6] = old_buffer[-3];
             write_position[7] = temp_data_6;
             
             // 迁移并清零复杂数据结构
-            *(uint64_t *)(offset + -8 + (longlong)old_buffer) = old_buffer[-1];
+            *(uint64_t *)(offset + -8 + (int64_t)old_buffer) = old_buffer[-1];
             old_buffer[-1] = 0;
-            *(uint64_t *)(offset + (longlong)old_buffer) = *old_buffer;
+            *(uint64_t *)(offset + (int64_t)old_buffer) = *old_buffer;
             *old_buffer = 0;
-            *(int8_t *)(offset + 8 + (longlong)old_buffer) = *(int8_t *)(old_buffer + 1);
-            *(int32_t *)(offset + 0xc + (longlong)old_buffer) = *(int32_t *)((longlong)old_buffer + 0xc);
-            *(int32_t *)((longlong)old_buffer + offset + 0x10) = *(int32_t *)(old_buffer + 2);
-            *(int32_t *)((longlong)old_buffer + offset + 0x14) = *(int32_t *)((longlong)old_buffer + 0x14);
-            *(int32_t *)((longlong)old_buffer + offset + 0x18) = *(int32_t *)(old_buffer + 3);
-            *(int8_t *)((longlong)old_buffer + offset + 0x1c) = *(int8_t *)((longlong)old_buffer + 0x1c);
+            *(int8_t *)(offset + 8 + (int64_t)old_buffer) = *(int8_t *)(old_buffer + 1);
+            *(int32_t *)(offset + 0xc + (int64_t)old_buffer) = *(int32_t *)((int64_t)old_buffer + 0xc);
+            *(int32_t *)((int64_t)old_buffer + offset + 0x10) = *(int32_t *)(old_buffer + 2);
+            *(int32_t *)((int64_t)old_buffer + offset + 0x14) = *(int32_t *)((int64_t)old_buffer + 0x14);
+            *(int32_t *)((int64_t)old_buffer + offset + 0x18) = *(int32_t *)(old_buffer + 3);
+            *(int8_t *)((int64_t)old_buffer + offset + 0x1c) = *(int8_t *)((int64_t)old_buffer + 0x1c);
             
             write_position = write_position + ARRAY_ELEMENT_SIZE_13;
-            current_position = (longlong)old_buffer + 4;
+            current_position = (int64_t)old_buffer + 4;
             old_buffer = old_buffer + ARRAY_ELEMENT_SIZE_13;
         } while (current_position != old_end);
     }
@@ -272,11 +272,11 @@ capacity_calculation_complete:
     if (current_position != offset) {
         do {
             // 执行资源清理回调
-            if (*(longlong **)(current_position + 0x48) != (longlong *)0x0) {
-                (**(code **)(**(longlong **)(current_position + 0x48) + 0x38))();
+            if (*(int64_t **)(current_position + 0x48) != (int64_t *)0x0) {
+                (**(code **)(**(int64_t **)(current_position + 0x48) + 0x38))();
             }
-            if (*(longlong **)(current_position + 0x40) != (longlong *)0x0) {
-                (**(code **)(**(longlong **)(current_position + 0x40) + 0x38))();
+            if (*(int64_t **)(current_position + 0x40) != (int64_t *)0x0) {
+                (**(code **)(**(int64_t **)(current_position + 0x40) + 0x38))();
             }
             current_position = current_position + ARRAY_ELEMENT_SIZE_104;
         } while (current_position != offset);
@@ -331,7 +331,7 @@ void DynamicArrayProcessor_26ByteElements(ArrayControlBlock* array_control, uint
     // 计算当前元素数量和新的容量
     old_end = (DataBuffer)array_control->data_end;
     old_buffer = (DataBuffer)array_control->data_start;
-    element_count = ((longlong)old_end - (longlong)old_buffer) / ARRAY_ELEMENT_SIZE_26;
+    element_count = ((int64_t)old_end - (int64_t)old_buffer) / ARRAY_ELEMENT_SIZE_26;
     new_buffer = NULL;
     
     // 确定新的容量
@@ -357,50 +357,50 @@ capacity_calculation_complete:
     
     // 执行数据迁移
     if (old_buffer != old_end) {
-        offset = (longlong)new_buffer - (longlong)old_buffer;
+        offset = (int64_t)new_buffer - (int64_t)old_buffer;
         old_buffer = old_buffer + 1;
         
         do {
             // 高效的数据块复制和清零操作
             *write_position = *(int32_t *)(old_buffer + -1);
-            *(int8_t *)((longlong)old_buffer + offset + -4) = *(int8_t *)((longlong)old_buffer + -4);
-            *(int8_t *)((longlong)old_buffer + offset + -3) = *(int8_t *)((longlong)old_buffer + -3);
-            *(uint64_t *)((longlong)old_buffer + offset) = *old_buffer;
+            *(int8_t *)((int64_t)old_buffer + offset + -4) = *(int8_t *)((int64_t)old_buffer + -4);
+            *(int8_t *)((int64_t)old_buffer + offset + -3) = *(int8_t *)((int64_t)old_buffer + -3);
+            *(uint64_t *)((int64_t)old_buffer + offset) = *old_buffer;
             *old_buffer = 0;
-            *(uint64_t *)((longlong)old_buffer + offset + 8) = old_buffer[1];
+            *(uint64_t *)((int64_t)old_buffer + offset + 8) = old_buffer[1];
             old_buffer[1] = 0;
-            *(int32_t *)((longlong)old_buffer + offset + 0x10) = *(int32_t *)(old_buffer + 2);
+            *(int32_t *)((int64_t)old_buffer + offset + 0x10) = *(int32_t *)(old_buffer + 2);
             
-            uint64_t temp_data = *(uint64_t *)((longlong)old_buffer + 0x1c);
-            DataBuffer temp_ptr = (DataBuffer)((longlong)old_buffer + offset + 0x14);
-            *temp_ptr = *(uint64_t *)((longlong)old_buffer + 0x14);
+            uint64_t temp_data = *(uint64_t *)((int64_t)old_buffer + 0x1c);
+            DataBuffer temp_ptr = (DataBuffer)((int64_t)old_buffer + offset + 0x14);
+            *temp_ptr = *(uint64_t *)((int64_t)old_buffer + 0x14);
             temp_ptr[1] = temp_data;
             
-            temp_data = *(uint64_t *)((longlong)old_buffer + 0x2c);
-            temp_ptr = (DataBuffer)((longlong)old_buffer + offset + 0x24);
-            *temp_ptr = *(uint64_t *)((longlong)old_buffer + 0x24);
+            temp_data = *(uint64_t *)((int64_t)old_buffer + 0x2c);
+            temp_ptr = (DataBuffer)((int64_t)old_buffer + offset + 0x24);
+            *temp_ptr = *(uint64_t *)((int64_t)old_buffer + 0x24);
             temp_ptr[1] = temp_data;
             
             int32_t temp_data_1 = *(int32_t *)(old_buffer + 7);
-            int32_t temp_data_2 = *(int32_t *)((longlong)old_buffer + 0x3c);
+            int32_t temp_data_2 = *(int32_t *)((int64_t)old_buffer + 0x3c);
             int32_t temp_data_3 = *(int32_t *)(old_buffer + 8);
-            UInt32Buffer temp_ptr_2 = (UInt32Buffer)((longlong)old_buffer + offset + 0x34);
-            *temp_ptr_2 = *(int32_t *)((longlong)old_buffer + 0x34);
+            UInt32Buffer temp_ptr_2 = (UInt32Buffer)((int64_t)old_buffer + offset + 0x34);
+            *temp_ptr_2 = *(int32_t *)((int64_t)old_buffer + 0x34);
             temp_ptr_2[1] = temp_data_1;
             temp_ptr_2[2] = temp_data_2;
             temp_ptr_2[3] = temp_data_3;
             
-            temp_data = *(uint64_t *)((longlong)old_buffer + 0x4c);
-            temp_ptr = (DataBuffer)((longlong)old_buffer + offset + 0x44);
-            *temp_ptr = *(uint64_t *)((longlong)old_buffer + 0x44);
+            temp_data = *(uint64_t *)((int64_t)old_buffer + 0x4c);
+            temp_ptr = (DataBuffer)((int64_t)old_buffer + offset + 0x44);
+            *temp_ptr = *(uint64_t *)((int64_t)old_buffer + 0x44);
             temp_ptr[1] = temp_data;
             
-            *(int32_t *)((longlong)old_buffer + offset + 0x54) = *(int32_t *)((longlong)old_buffer + 0x54);
-            *(int32_t *)((longlong)old_buffer + offset + 0x58) = *(int32_t *)(old_buffer + 0xb);
-            *(int32_t *)((longlong)old_buffer + offset + 0x5c) = *(int32_t *)((longlong)old_buffer + 0x5c);
+            *(int32_t *)((int64_t)old_buffer + offset + 0x54) = *(int32_t *)((int64_t)old_buffer + 0x54);
+            *(int32_t *)((int64_t)old_buffer + offset + 0x58) = *(int32_t *)(old_buffer + 0xb);
+            *(int32_t *)((int64_t)old_buffer + offset + 0x5c) = *(int32_t *)((int64_t)old_buffer + 0x5c);
             
             write_position = write_position + ARRAY_ELEMENT_SIZE_26;
-            current_position = (longlong)old_buffer + 0xc;
+            current_position = (int64_t)old_buffer + 0xc;
             old_buffer = old_buffer + 0xd;
         } while (current_position != old_end);
     }
@@ -414,11 +414,11 @@ capacity_calculation_complete:
     if (current_position != offset) {
         do {
             // 执行资源清理回调
-            if (*(longlong **)(current_position + 0x10) != (longlong *)0x0) {
-                (**(code **)(**(longlong **)(current_position + 0x10) + 0x38))();
+            if (*(int64_t **)(current_position + 0x10) != (int64_t *)0x0) {
+                (**(code **)(**(int64_t **)(current_position + 0x10) + 0x38))();
             }
-            if (*(longlong **)(current_position + 8) != (longlong *)0x0) {
-                (**(code **)(**(longlong **)(current_position + 8) + 0x38))();
+            if (*(int64_t **)(current_position + 8) != (int64_t *)0x0) {
+                (**(code **)(**(int64_t **)(current_position + 8) + 0x38))();
             }
             current_position = current_position + ARRAY_ELEMENT_SIZE_26;
         } while (current_position != offset);
@@ -473,7 +473,7 @@ void DynamicArrayProcessor_48ByteElements(ArrayControlBlock* array_control, uint
     // 计算当前元素数量和新的容量
     old_end = (DataBuffer)array_control->data_end;
     old_buffer = (DataBuffer)array_control->data_start;
-    element_count = ((longlong)old_end - (longlong)old_buffer) / ARRAY_ELEMENT_SIZE_48;
+    element_count = ((int64_t)old_end - (int64_t)old_buffer) / ARRAY_ELEMENT_SIZE_48;
     new_buffer = NULL;
     
     // 确定新的容量
@@ -499,24 +499,24 @@ capacity_calculation_complete:
     
     // 执行数据迁移
     if (old_buffer != old_end) {
-        offset = (longlong)new_buffer - (longlong)old_buffer;
+        offset = (int64_t)new_buffer - (int64_t)old_buffer;
         old_buffer = old_buffer + 2;
         
         do {
             // 高效的数据块复制和清零操作
             *write_position = *(int32_t *)(old_buffer + -2);
-            *(uint64_t *)(offset + -8 + (longlong)old_buffer) = old_buffer[-1];
+            *(uint64_t *)(offset + -8 + (int64_t)old_buffer) = old_buffer[-1];
             old_buffer[-1] = 0;
-            *(uint64_t *)(offset + (longlong)old_buffer) = *old_buffer;
+            *(uint64_t *)(offset + (int64_t)old_buffer) = *old_buffer;
             *old_buffer = 0;
-            *(uint64_t *)(offset + 8 + (longlong)old_buffer) = old_buffer[1];
+            *(uint64_t *)(offset + 8 + (int64_t)old_buffer) = old_buffer[1];
             old_buffer[1] = 0;
-            *(int32_t *)(offset + 0x10 + (longlong)old_buffer) = *(int32_t *)(old_buffer + 2);
-            *(int32_t *)(offset + 0x14 + (longlong)old_buffer) = *(int32_t *)((longlong)old_buffer + 0x14);
-            *(int32_t *)(offset + 0x18 + (longlong)old_buffer) = *(int32_t *)(old_buffer + 3);
+            *(int32_t *)(offset + 0x10 + (int64_t)old_buffer) = *(int32_t *)(old_buffer + 2);
+            *(int32_t *)(offset + 0x14 + (int64_t)old_buffer) = *(int32_t *)((int64_t)old_buffer + 0x14);
+            *(int32_t *)(offset + 0x18 + (int64_t)old_buffer) = *(int32_t *)(old_buffer + 3);
             
             write_position = write_position + ARRAY_ELEMENT_SIZE_48;
-            current_position = (longlong)old_buffer + 4;
+            current_position = (int64_t)old_buffer + 4;
             old_buffer = old_buffer + 6;
         } while (current_position != old_end);
     }
@@ -530,14 +530,14 @@ capacity_calculation_complete:
     if (current_position != offset) {
         do {
             // 执行资源清理回调
-            if (*(longlong **)(current_position + 0x18) != (longlong *)0x0) {
-                (**(code **)(**(longlong **)(current_position + 0x18) + 0x38))();
+            if (*(int64_t **)(current_position + 0x18) != (int64_t *)0x0) {
+                (**(code **)(**(int64_t **)(current_position + 0x18) + 0x38))();
             }
-            if (*(longlong **)(current_position + 0x10) != (longlong *)0x0) {
-                (**(code **)(**(longlong **)(current_position + 0x10) + 0x38))();
+            if (*(int64_t **)(current_position + 0x10) != (int64_t *)0x0) {
+                (**(code **)(**(int64_t **)(current_position + 0x10) + 0x38))();
             }
-            if (*(longlong **)(current_position + 8) != (longlong *)0x0) {
-                (**(code **)(**(longlong **)(current_position + 8) + 0x38))();
+            if (*(int64_t **)(current_position + 8) != (int64_t *)0x0) {
+                (**(code **)(**(int64_t **)(current_position + 8) + 0x38))();
             }
             current_position = current_position + ARRAY_ELEMENT_SIZE_48;
         } while (current_position != offset);
@@ -576,38 +576,38 @@ capacity_calculation_complete:
  * - 复杂的排序算法实现
  * - 高效的内存访问模式
  */
-void SortProcessor_BitmaskIndexed(longlong param_1, longlong param_2)
+void SortProcessor_BitmaskIndexed(int64_t param_1, int64_t param_2)
 {
     UInt32 bitmask_value;
     UInt32 secondary_key;
-    longlong hash_table_ptr;
+    int64_t hash_table_ptr;
     int element_count;
-    longlong index_offset;
-    longlong current_index;
+    int64_t index_offset;
+    int64_t current_index;
     
     // 计算元素数量
-    element_count = (int)(*(longlong *)(param_1 + 0x20) - *(longlong *)(param_1 + 0x18) >> 2);
+    element_count = (int)(*(int64_t *)(param_1 + 0x20) - *(int64_t *)(param_1 + 0x18) >> 2);
     if (0 < element_count) {
         current_index = 0;
         do {
             // 获取当前元素的位掩码值
-            bitmask_value = *(UInt32 *)(*(longlong *)(param_1 + 0x18) + current_index * 4);
+            bitmask_value = *(UInt32 *)(*(int64_t *)(param_1 + 0x18) + current_index * 4);
             if (bitmask_value != 0xffffffff) {
                 // 计算哈希表偏移量
-                index_offset = (longlong)(int)(*(UInt32 *)(param_2 + 0x2b18) & bitmask_value) * SORT_ELEMENT_SIZE_216;
-                hash_table_ptr = *(longlong *)(*(longlong *)(param_2 + 11000) + (longlong)((int)bitmask_value >> 10) * 8);
+                index_offset = (int64_t)(int)(*(UInt32 *)(param_2 + 0x2b18) & bitmask_value) * SORT_ELEMENT_SIZE_216;
+                hash_table_ptr = *(int64_t *)(*(int64_t *)(param_2 + 11000) + (int64_t)((int)bitmask_value >> 10) * 8);
                 bitmask_value = *(UInt32 *)(hash_table_ptr + 0x1c + index_offset);
                 if (bitmask_value != 0xffffffff) {
                     // 获取辅助键值
                     secondary_key = *(UInt32 *)(hash_table_ptr + 0x18 + index_offset);
                     // 执行排序操作
                     SortingOperation_Execute(*(uint64_t *)
-                                   (*(longlong *)
-                                     (*(longlong *)(param_2 + 0x698) + (longlong)((int)bitmask_value >> 10) * 8) + 8 +
-                                   (longlong)(int)(*(UInt32 *)(param_2 + 0x6b8) & bitmask_value) * SORT_ELEMENT_SIZE_24),
-                                  *(longlong *)
-                                   (*(longlong *)(param_2 + 0x488) + (longlong)((int)secondary_key >> 10) * 8) +
-                                  ((longlong)(int)(*(UInt32 *)(param_2 + 0x4a8) & secondary_key) * SORT_ELEMENT_SIZE_9 + 1) * 8);
+                                   (*(int64_t *)
+                                     (*(int64_t *)(param_2 + 0x698) + (int64_t)((int)bitmask_value >> 10) * 8) + 8 +
+                                   (int64_t)(int)(*(UInt32 *)(param_2 + 0x6b8) & bitmask_value) * SORT_ELEMENT_SIZE_24),
+                                  *(int64_t *)
+                                   (*(int64_t *)(param_2 + 0x488) + (int64_t)((int)secondary_key >> 10) * 8) +
+                                  ((int64_t)(int)(*(UInt32 *)(param_2 + 0x4a8) & secondary_key) * SORT_ELEMENT_SIZE_9 + 1) * 8);
                 }
             }
             current_index = current_index + 1;
@@ -637,33 +637,33 @@ void SortProcessor_BitmaskOptimized(void)
 {
     UInt32 bitmask_value;
     UInt32 secondary_key;
-    longlong hash_table_ptr;
-    longlong index_offset;
-    longlong current_index;
-    longlong loop_count;
-    longlong data_source;
-    longlong control_block;
+    int64_t hash_table_ptr;
+    int64_t index_offset;
+    int64_t current_index;
+    int64_t loop_count;
+    int64_t data_source;
+    int64_t control_block;
     
     current_index = 0;
     do {
         // 从控制块中获取位掩码值
-        bitmask_value = *(UInt32 *)(*(longlong *)(control_block + 0x18) + current_index * 4);
+        bitmask_value = *(UInt32 *)(*(int64_t *)(control_block + 0x18) + current_index * 4);
         if (bitmask_value != 0xffffffff) {
             // 计算优化的索引偏移量
-            index_offset = (longlong)(int)(*(UInt32 *)(data_source + 0x2b18) & bitmask_value) * SORT_ELEMENT_SIZE_216;
-            hash_table_ptr = *(longlong *)(*(longlong *)(data_source + 11000) + (longlong)((int)bitmask_value >> 10) * 8);
+            index_offset = (int64_t)(int)(*(UInt32 *)(data_source + 0x2b18) & bitmask_value) * SORT_ELEMENT_SIZE_216;
+            hash_table_ptr = *(int64_t *)(*(int64_t *)(data_source + 11000) + (int64_t)((int)bitmask_value >> 10) * 8);
             bitmask_value = *(UInt32 *)(hash_table_ptr + 0x1c + index_offset);
             if (bitmask_value != 0xffffffff) {
                 // 获取辅助键值
                 secondary_key = *(UInt32 *)(hash_table_ptr + 0x18 + index_offset);
                 // 执行优化的排序操作
                 SortingOperation_Execute(*(uint64_t *)
-                               (*(longlong *)
-                                 (*(longlong *)(data_source + 0x698) + (longlong)((int)bitmask_value >> 10) * 8) + 8 +
-                               (longlong)(int)(*(UInt32 *)(data_source + 0x6b8) & bitmask_value) * SORT_ELEMENT_SIZE_24),
-                              *(longlong *)
-                               (*(longlong *)(data_source + 0x488) + (longlong)((int)secondary_key >> 10) * 8) +
-                              ((longlong)(int)(*(UInt32 *)(data_source + 0x4a8) & secondary_key) * SORT_ELEMENT_SIZE_9 + 1) * 8);
+                               (*(int64_t *)
+                                 (*(int64_t *)(data_source + 0x698) + (int64_t)((int)bitmask_value >> 10) * 8) + 8 +
+                               (int64_t)(int)(*(UInt32 *)(data_source + 0x6b8) & bitmask_value) * SORT_ELEMENT_SIZE_24),
+                              *(int64_t *)
+                               (*(int64_t *)(data_source + 0x488) + (int64_t)((int)secondary_key >> 10) * 8) +
+                              ((int64_t)(int)(*(UInt32 *)(data_source + 0x4a8) & secondary_key) * SORT_ELEMENT_SIZE_9 + 1) * 8);
             }
         }
         current_index = current_index + 1;
@@ -719,8 +719,8 @@ void StringInsertionSortProcessor(CharBuffer start_ptr, CharBuffer end_ptr)
     char compare_char;
     UInt16 current_word;
     char temp_char;
-    longlong element_count;
-    longlong sort_depth;
+    int64_t element_count;
+    int64_t sort_depth;
     int depth_bits;
     CharBuffer scan_ptr;
     CharBuffer compare_ptr;
@@ -734,7 +734,7 @@ void StringInsertionSortProcessor(CharBuffer start_ptr, CharBuffer end_ptr)
     
     if (start_ptr != end_ptr) {
         depth_bits = 0;
-        element_count = ((longlong)end_ptr - (longlong)start_ptr) / 3;
+        element_count = ((int64_t)end_ptr - (int64_t)start_ptr) / 3;
         
         // 计算排序深度
         for (sort_depth = element_count; sort_depth != 0; sort_depth = sort_depth >> 1) {
@@ -742,7 +742,7 @@ void StringInsertionSortProcessor(CharBuffer start_ptr, CharBuffer end_ptr)
         }
         
         // 执行预排序
-        PreSorting_Process(start_ptr, end_ptr, (longlong)(depth_bits + -1) * 2);
+        PreSorting_Process(start_ptr, end_ptr, (int64_t)(depth_bits + -1) * 2);
         
         if (element_count < INSERTION_SORT_THRESHOLD) {
             // 小规模数据直接插入排序
@@ -870,14 +870,14 @@ void StringInsertionSortProcessor(CharBuffer start_ptr, CharBuffer end_ptr)
  * - 3字节字符单元处理
  * - 高效的内存访问模式
  */
-void StringInsertionSortProcessor_Range(CharBuffer start_ptr, CharBuffer end_ptr, longlong range_limit)
+void StringInsertionSortProcessor_Range(CharBuffer start_ptr, CharBuffer end_ptr, int64_t range_limit)
 {
     char current_char;
     char compare_char;
     UInt16 current_word;
     char temp_char;
-    longlong element_count;
-    longlong sort_depth;
+    int64_t element_count;
+    int64_t sort_depth;
     int depth_bits;
     CharBuffer scan_ptr;
     CharBuffer compare_ptr;
@@ -890,7 +890,7 @@ void StringInsertionSortProcessor_Range(CharBuffer start_ptr, CharBuffer end_ptr
     char high_byte;
     
     depth_bits = 0;
-    element_count = (range_limit - (longlong)start_ptr) / 3;
+    element_count = (range_limit - (int64_t)start_ptr) / 3;
     
     // 计算排序深度
     for (sort_depth = element_count; sort_depth != 0; sort_depth = sort_depth >> 1) {
@@ -898,7 +898,7 @@ void StringInsertionSortProcessor_Range(CharBuffer start_ptr, CharBuffer end_ptr
     }
     
     // 执行预排序
-    PreSorting_Process(start_ptr, end_ptr, (longlong)(depth_bits + -1) * 2);
+    PreSorting_Process(start_ptr, end_ptr, (int64_t)(depth_bits + -1) * 2);
     
     if (element_count < INSERTION_SORT_THRESHOLD) {
         // 小规模数据直接插入排序
@@ -1214,7 +1214,7 @@ void UInt16InsertionSortProcessor(void)
     char high_byte;
     UInt16Buffer compare_ptr;
     
-    loop_ptr = (UInt16Buffer)((longlong)start_bound + 3);
+    loop_ptr = (UInt16Buffer)((int64_t)start_bound + 3);
     do {
         if (loop_ptr == end_bound) {
             return;
@@ -1227,8 +1227,8 @@ void UInt16InsertionSortProcessor(void)
             insert_char = (char)current_value;
             current_ptr = loop_ptr;
             do {
-                compare_char = *(char *)((longlong)current_ptr + -3);
-                scan_ptr = (UInt16Buffer)((longlong)current_ptr + -3);
+                compare_char = *(char *)((int64_t)current_ptr + -3);
+                scan_ptr = (UInt16Buffer)((int64_t)current_ptr + -3);
                 borrow_flag = SBORROW1(insert_char, compare_char);
                 temp_char = insert_char - compare_char;
                 equal_flag = insert_char == compare_char;
@@ -1240,12 +1240,12 @@ void UInt16InsertionSortProcessor(void)
                 }
                 if (equal_flag || borrow_flag != temp_char < '\0') break;
                 *insert_ptr = *scan_ptr;
-                *(int8_t *)(insert_ptr + 1) = *(int8_t *)((longlong)current_ptr + -1);
-                insert_ptr = (UInt16Buffer)((longlong)insert_ptr + -3);
+                *(int8_t *)(insert_ptr + 1) = *(int8_t *)((int64_t)current_ptr + -1);
+                insert_ptr = (UInt16Buffer)((int64_t)insert_ptr + -3);
                 current_ptr = scan_ptr;
             } while (scan_ptr != start_bound);
         }
-        loop_ptr = (UInt16Buffer)((longlong)loop_ptr + 3);
+        loop_ptr = (UInt16Buffer)((int64_t)loop_ptr + 3);
         *insert_ptr = current_value;
         *(int8_t *)(insert_ptr + 1) = low_byte;
     } while( true );

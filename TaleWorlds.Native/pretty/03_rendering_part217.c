@@ -61,13 +61,13 @@
 // 类型别名定义
 //============================================================================
 
-typedef longlong RenderContextHandle;              // 渲染上下文句柄
+typedef int64_t RenderContextHandle;              // 渲染上下文句柄
 typedef int RenderParameterID;                      // 渲染参数ID
 typedef int RenderGeometryID;                       // 渲染几何体ID
 typedef uint64_t RenderConnectionHandle;           // 渲染连接句柄
 typedef float RenderCoordinate;                      // 渲染坐标
 typedef uint RenderStatusFlags;                      // 渲染状态标志
-typedef ulonglong RenderConnectionIndex;             // 渲染连接索引
+typedef uint64_t RenderConnectionIndex;             // 渲染连接索引
 typedef byte RenderStateByte;                        // 渲染状态字节
 typedef bool RenderValidationFlag;                   // 渲染验证标志
 typedef char RenderOperationCode;                    // 渲染操作代码
@@ -278,7 +278,7 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
     source_handle = 0;
     target_handle = 0;
     middle_handle = 0;
-    total_connections = *(longlong*)(param_1 + RENDER_OFFSET_CONNECTION_COUNT) - (longlong)connection_table_ptr >> 3;
+    total_connections = *(int64_t*)(param_1 + RENDER_OFFSET_CONNECTION_COUNT) - (int64_t)connection_table_ptr >> 3;
     search_index = source_handle;
     loop_counter = source_handle;
     optimization_index = source_handle;
@@ -303,11 +303,11 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
             if (((new_connection_handle != 0) && (optimization_result != 0)) && (target_handle != 0)) break;
             
             temp_index = (int)optimization_index + 1;
-            optimization_index = (ulonglong)temp_index;
+            optimization_index = (uint64_t)temp_index;
             connection_table_ptr = connection_table_ptr + 1;
             search_index = new_connection_handle;
             optimization_flags = optimization_result;
-        } while ((ulonglong)(longlong)(int)temp_index < total_connections);
+        } while ((uint64_t)(int64_t)(int)temp_index < total_connections);
         
         // 第二阶段：处理找到的连接
         if (((new_connection_handle != 0) && (optimization_result != 0)) && (target_handle != 0)) {
@@ -446,7 +446,7 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                                         }
                                         
                                         temp_index = (int)optimization_index + 1;
-                                        optimization_index = (ulonglong)temp_index;
+                                        optimization_index = (uint64_t)temp_index;
                                         target_connection_array = target_connection_array + 1;
                                     } while ((int)temp_index < (int)(uint)*(byte*)(target_handle + RENDER_OFFSET_STATUS_FLAGS));
                                 }
@@ -454,7 +454,7 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                                 current_geometry_id = (int)optimization_result;
                                 best_source_index = (int)optimization_flags;
                                 source_connection_index = (int)new_connection_handle + 1;
-                                new_connection_handle = (ulonglong)source_connection_index;
+                                new_connection_handle = (uint64_t)source_connection_index;
                                 target_connection_array = target_connection_array + 1;
                                 optimization_index = search_index;
                                 temp_index = source_distance_threshold;
@@ -483,7 +483,7 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                     }
                     
                     temp_index = source_connection_index + 1;
-                    search_index = (ulonglong)temp_index;
+                    search_index = (uint64_t)temp_index;
                     source_connection_array = source_connection_array + 1;
                 } while ((int)temp_index < (int)(uint)connection_state_byte);
             }
@@ -495,10 +495,10 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                ((source_connection_index < (int)(uint)*(byte*)(target_handle + RENDER_OFFSET_STATUS_FLAGS)) && (optimization_index != 0)))) {
                 
                 temp_index = 0;
-                source_geometry_ptr = *(longlong*)(new_connection_handle + RENDER_OFFSET_CONNECTION_LIST + (longlong)(int)temp_index * 8);
-                target_geometry_ptr = *(longlong*)(target_handle + RENDER_OFFSET_CONNECTION_LIST + (longlong)source_connection_index * 8);
+                source_geometry_ptr = *(int64_t*)(new_connection_handle + RENDER_OFFSET_CONNECTION_LIST + (int64_t)(int)temp_index * 8);
+                target_geometry_ptr = *(int64_t*)(target_handle + RENDER_OFFSET_CONNECTION_LIST + (int64_t)source_connection_index * 8);
                 connection_state_byte = *(byte*)(optimization_index + RENDER_OFFSET_STATUS_FLAGS);
-                middle_geometry_ptr = *(longlong*)(optimization_index + RENDER_OFFSET_CONNECTION_LIST + (longlong)best_source_index * 8);
+                middle_geometry_ptr = *(int64_t*)(optimization_index + RENDER_OFFSET_CONNECTION_LIST + (int64_t)best_source_index * 8);
                 
                 // 处理中间几何体的连接点
                 if (connection_state_byte != 0) {
@@ -521,11 +521,11 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                                     
                                     do {
                                         source_connection_index = (uint)optimization_flags;
-                                        if (*existing_connection_point == *(longlong*)(source_geometry_ptr + search_index * 8)) break;
-                                        optimization_flags = (ulonglong)((uint)optimization_flags + 1);
+                                        if (*existing_connection_point == *(int64_t*)(source_geometry_ptr + search_index * 8)) break;
+                                        optimization_flags = (uint64_t)((uint)optimization_flags + 1);
                                         search_index = search_index + 1;
                                         source_connection_index = 0xffffffff;
-                                    } while ((longlong)search_index < 2);
+                                    } while ((int64_t)search_index < 2);
                                     
                                     search_index = source_handle;
                                     optimization_flags = source_handle;
@@ -533,11 +533,11 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                                     do {
                                         new_connection_handle = source_handle;
                                         source_connection_index = (uint)optimization_flags;
-                                        if (existing_connection_point[1] == *(longlong*)(source_geometry_ptr + search_index * 8)) break;
-                                        optimization_flags = (ulonglong)((uint)optimization_flags + 1);
+                                        if (existing_connection_point[1] == *(int64_t*)(source_geometry_ptr + search_index * 8)) break;
+                                        optimization_flags = (uint64_t)((uint)optimization_flags + 1);
                                         search_index = search_index + 1;
                                         source_connection_index = temp_index;
-                                    } while ((longlong)search_index < 2);
+                                    } while ((int64_t)search_index < 2);
                                     
                                     do {
                                         temp_connection_handle = existing_connection_point[new_connection_handle];
@@ -546,7 +546,7 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                                         
                                         do {
                                             existing_connection_point = temp_connection_point;
-                                            if (temp_connection_handle == *(longlong*)(new_connection_handle + search_index * 8)) {
+                                            if (temp_connection_handle == *(int64_t*)(new_connection_handle + search_index * 8)) {
                                                 is_better_match = source_state_byte == '\0';
                                                 
                                                 if ((char)temp_connection_point[4] == '\x02') {
@@ -569,17 +569,17 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                                                 
                                                 if (new_connection_handle == 0) {
                                                     if (is_better_match) {
-                                                        final_connection_point = (RenderConnectionPoint*)((longlong)(int)(uint)(source_connection_index == 0) * 8 + target_geometry_ptr);
+                                                        final_connection_point = (RenderConnectionPoint*)((int64_t)(int)(uint)(source_connection_index == 0) * 8 + target_geometry_ptr);
                                                     } else {
-                                                        final_connection_point = (RenderConnectionPoint*)((longlong)(int)source_connection_index * 8 + target_geometry_ptr);
+                                                        final_connection_point = (RenderConnectionPoint*)((int64_t)(int)source_connection_index * 8 + target_geometry_ptr);
                                                     }
                                                 }
                                                 
                                                 if (new_connection_handle == 1) {
                                                     if (is_better_match) {
-                                                        new_connection_handle = *(longlong*)(target_geometry_ptr + (longlong)(int)(uint)(source_connection_index == 0) * 8);
+                                                        new_connection_handle = *(int64_t*)(target_geometry_ptr + (int64_t)(int)(uint)(source_connection_index == 0) * 8);
                                                     } else {
-                                                        new_connection_handle = *(longlong*)(target_geometry_ptr + (longlong)(int)source_connection_index * 8);
+                                                        new_connection_handle = *(int64_t*)(target_geometry_ptr + (int64_t)(int)source_connection_index * 8);
                                                     }
                                                 } else {
                                                     new_connection_handle = temp_connection_point[1];
@@ -587,7 +587,7 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                                                 
                                                 // 检查渲染队列
                                                 source_connection_array = *(RenderConnectionHandle**)(param_1 + RENDER_OFFSET_RENDER_QUEUE);
-                                                optimization_flags = *(longlong*)(param_1 + RENDER_OFFSET_QUEUE_COUNT) - (longlong)source_connection_array >> 3;
+                                                optimization_flags = *(int64_t*)(param_1 + RENDER_OFFSET_QUEUE_COUNT) - (int64_t)source_connection_array >> 3;
                                                 optimization_index = source_handle;
                                                 
                                                 if (optimization_flags != 0) {
@@ -601,7 +601,7 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                                                             
                                                             *(int8_t*)(existing_connection_point + 4) = 2;
                                                             existing_connection_point[3] = search_index;
-                                                            *middle_connection_point = (longlong)existing_connection_point;
+                                                            *middle_connection_point = (int64_t)existing_connection_point;
                                                             RenderingSystem_ConnectionHandleCleanup(existing_connection_point[2]);
                                                             new_connection_handle = middle_geometry_ptr;
                                                             optimization_index = search_index;
@@ -609,16 +609,16 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                                                         }
                                                         
                                                         temp_index = (int)optimization_index + 1;
-                                                        optimization_index = (ulonglong)temp_index;
+                                                        optimization_index = (uint64_t)temp_index;
                                                         source_connection_array = source_connection_array + 1;
-                                                    } while ((ulonglong)(longlong)(int)temp_index < optimization_flags);
+                                                    } while ((uint64_t)(int64_t)(int)temp_index < optimization_flags);
                                                 }
                                                 
                                                 if (new_connection_handle == 1) {
                                                     if (is_better_match) {
-                                                        new_connection_handle = *(longlong*)(target_geometry_ptr + (longlong)(int)(uint)(source_connection_index == 0) * 8);
+                                                        new_connection_handle = *(int64_t*)(target_geometry_ptr + (int64_t)(int)(uint)(source_connection_index == 0) * 8);
                                                     } else {
-                                                        new_connection_handle = *(longlong*)(target_geometry_ptr + (longlong)(int)source_connection_index * 8);
+                                                        new_connection_handle = *(int64_t*)(target_geometry_ptr + (int64_t)(int)source_connection_index * 8);
                                                     }
                                                 } else {
                                                     new_connection_handle = temp_connection_point[1];
@@ -628,7 +628,7 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                                                         if (is_better_match) {
                                                             temp_index = (uint)(source_connection_index == 0);
                                                         }
-                                                        temp_connection_point = (RenderConnectionPoint*)((longlong)(int)temp_index * 8 + target_geometry_ptr);
+                                                        temp_connection_point = (RenderConnectionPoint*)((int64_t)(int)temp_index * 8 + target_geometry_ptr);
                                                     }
                                                 }
                                                 
@@ -638,7 +638,7 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                                                 *existing_connection_point = temp_connection_handle;
                                                 *(int8_t*)(existing_connection_point + 4) = 1;
                                                 existing_connection_point[2] = search_index;
-                                                *middle_connection_point = (longlong)existing_connection_point;
+                                                *middle_connection_point = (int64_t)existing_connection_point;
                                                 new_connection_handle = middle_geometry_ptr;
                                                 optimization_index = search_index;
                                             }
@@ -647,11 +647,11 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                                             search_index = search_index + 1;
                                             temp_connection_point = existing_connection_point;
                                             source_state_byte = source_state_byte;
-                                        } while ((longlong)search_index < 2);
+                                        } while ((int64_t)search_index < 2);
                                         
                                         new_connection_handle = new_connection_handle + 1;
                                         temp_index = temp_index;
-                                    } while ((longlong)new_connection_handle < 2);
+                                    } while ((int64_t)new_connection_handle < 2);
                                     
                                     goto connection_processing_complete;
                                 }
@@ -664,13 +664,13 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                             func_0x00018038ac80(existing_connection_point);
                             *middle_connection_point = target_geometry_ptr;
                             *(int8_t*)(target_geometry_ptr + 0x20) = 2;
-                            *(ulonglong*)(target_geometry_ptr + 0x18) = optimization_index;
+                            *(uint64_t*)(target_geometry_ptr + 0x18) = optimization_index;
                         }
                         
                     connection_processing_complete:
                         connection_state_byte = *(byte*)(optimization_index + RENDER_OFFSET_STATUS_FLAGS);
                         temp_index = temp_index + 1;
-                        search_index = (ulonglong)temp_index;
+                        search_index = (uint64_t)temp_index;
                         middle_connection_point = middle_connection_point + 1;
                         source_state_byte = source_state_byte;
                     } while ((int)temp_index < (int)(uint)connection_state_byte);
@@ -684,25 +684,25 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                     do {
                         new_connection_handle = *middle_connection_point;
                         *(int8_t*)(new_connection_handle + 0x20) = 0;
-                        source_state_byte = *(longlong*)(new_connection_handle + 0x10) != 0;
+                        source_state_byte = *(int64_t*)(new_connection_handle + 0x10) != 0;
                         
                         if ((bool)source_state_byte) {
                             *(int8_t*)(new_connection_handle + 0x20) = 1;
                         }
                         
-                        if (*(longlong*)(new_connection_handle + 0x18) != 0) {
+                        if (*(int64_t*)(new_connection_handle + 0x18) != 0) {
                             source_state_byte = source_state_byte + '\x01';
                             *(char*)(new_connection_handle + 0x20) = source_state_byte;
                         }
                         
-                        if ((source_state_byte == '\x01') && (*(longlong*)(new_connection_handle + 0x18) != 0)) {
-                            *(longlong*)(new_connection_handle + 0x10) = *(longlong*)(new_connection_handle + 0x18);
+                        if ((source_state_byte == '\x01') && (*(int64_t*)(new_connection_handle + 0x18) != 0)) {
+                            *(int64_t*)(new_connection_handle + 0x10) = *(int64_t*)(new_connection_handle + 0x18);
                             *(uint64_t*)(new_connection_handle + 0x18) = 0;
                         }
                         
                         connection_state_byte = *(byte*)(optimization_index + RENDER_OFFSET_STATUS_FLAGS);
                         temp_index = (int)search_index + 1;
-                        search_index = (ulonglong)temp_index;
+                        search_index = (uint64_t)temp_index;
                         middle_connection_point = middle_connection_point + 1;
                     } while ((int)temp_index < (int)(uint)connection_state_byte);
                 }
@@ -739,9 +739,9 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                             search_index = 8;
                         }
                         
-                        *(uint64_t*)(search_index + 0x80 + optimization_flags * 8) = *(uint64_t*)(search_index + (longlong)middle_connection_point);
+                        *(uint64_t*)(search_index + 0x80 + optimization_flags * 8) = *(uint64_t*)(search_index + (int64_t)middle_connection_point);
                         connection_state_byte = *(byte*)(search_index + RENDER_OFFSET_STATUS_FLAGS);
-                        search_index = (ulonglong)temp_index;
+                        search_index = (uint64_t)temp_index;
                         optimization_flags = optimization_flags + 1;
                         optimization_index = search_index;
                     } while ((int)temp_index < (int)(uint)connection_state_byte);
@@ -752,20 +752,20 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                 RenderingSystem_ConnectionAllocator(new_connection_handle);
                 temp_index = middle_handle;
                 
-                if (*(longlong*)(new_connection_handle + 0xb0) != 0) {
-                    temp_index = *(uint*)(*(longlong*)(new_connection_handle + 0xb0) + RENDER_OFFSET_GEOMETRY_DATA);
+                if (*(int64_t*)(new_connection_handle + 0xb0) != 0) {
+                    temp_index = *(uint*)(*(int64_t*)(new_connection_handle + 0xb0) + RENDER_OFFSET_GEOMETRY_DATA);
                 }
                 
-                if (*(longlong*)(new_connection_handle + 0xb8) != 0) {
-                    temp_index = temp_index | *(uint*)(*(longlong*)(new_connection_handle + 0xb8) + RENDER_OFFSET_GEOMETRY_DATA);
+                if (*(int64_t*)(new_connection_handle + 0xb8) != 0) {
+                    temp_index = temp_index | *(uint*)(*(int64_t*)(new_connection_handle + 0xb8) + RENDER_OFFSET_GEOMETRY_DATA);
                 }
                 
-                if (*(longlong*)(new_connection_handle + 0xc0) != 0) {
-                    temp_index = temp_index | *(uint*)(*(longlong*)(new_connection_handle + 0xc0) + RENDER_OFFSET_GEOMETRY_DATA);
+                if (*(int64_t*)(new_connection_handle + 0xc0) != 0) {
+                    temp_index = temp_index | *(uint*)(*(int64_t*)(new_connection_handle + 0xc0) + RENDER_OFFSET_GEOMETRY_DATA);
                 }
                 
-                if (*(longlong*)(new_connection_handle + 200) != 0) {
-                    temp_index = temp_index | *(uint*)(*(longlong*)(new_connection_handle + 200) + RENDER_OFFSET_GEOMETRY_DATA);
+                if (*(int64_t*)(new_connection_handle + 200) != 0) {
+                    temp_index = temp_index | *(uint*)(*(int64_t*)(new_connection_handle + 200) + RENDER_OFFSET_GEOMETRY_DATA);
                 }
                 
                 source_connection_index = 0xffffffff;
@@ -779,20 +779,20 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                 RenderingSystem_ConnectionHandleCleanup(optimization_result);
                 RenderingSystem_ConnectionAllocator(optimization_result);
                 
-                if (*(longlong*)(optimization_result + 0xb0) != 0) {
-                    middle_handle = *(uint*)(*(longlong*)(optimization_result + 0xb0) + RENDER_OFFSET_GEOMETRY_DATA);
+                if (*(int64_t*)(optimization_result + 0xb0) != 0) {
+                    middle_handle = *(uint*)(*(int64_t*)(optimization_result + 0xb0) + RENDER_OFFSET_GEOMETRY_DATA);
                 }
                 
-                if (*(longlong*)(optimization_result + 0xb8) != 0) {
-                    middle_handle = middle_handle | *(uint*)(*(longlong*)(optimization_result + 0xb8) + RENDER_OFFSET_GEOMETRY_DATA);
+                if (*(int64_t*)(optimization_result + 0xb8) != 0) {
+                    middle_handle = middle_handle | *(uint*)(*(int64_t*)(optimization_result + 0xb8) + RENDER_OFFSET_GEOMETRY_DATA);
                 }
                 
-                if (*(longlong*)(optimization_result + 0xc0) != 0) {
-                    middle_handle = middle_handle | *(uint*)(*(longlong*)(optimization_result + 0xc0) + RENDER_OFFSET_GEOMETRY_DATA);
+                if (*(int64_t*)(optimization_result + 0xc0) != 0) {
+                    middle_handle = middle_handle | *(uint*)(*(int64_t*)(optimization_result + 0xc0) + RENDER_OFFSET_GEOMETRY_DATA);
                 }
                 
-                if (*(longlong*)(optimization_result + 200) != 0) {
-                    middle_handle = middle_handle | *(uint*)(*(longlong*)(optimization_result + 200) + RENDER_OFFSET_GEOMETRY_DATA);
+                if (*(int64_t*)(optimization_result + 200) != 0) {
+                    middle_handle = middle_handle | *(uint*)(*(int64_t*)(optimization_result + 200) + RENDER_OFFSET_GEOMETRY_DATA);
                 }
                 
                 temp_index = 0xffffffff;
@@ -807,20 +807,20 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                 RenderingSystem_ConnectionAllocator(target_handle);
                 middle_handle = target_handle;
                 
-                if (*(longlong*)(target_handle + 0xb0) != 0) {
-                    middle_handle = *(uint*)(*(longlong*)(target_handle + 0xb0) + RENDER_OFFSET_GEOMETRY_DATA);
+                if (*(int64_t*)(target_handle + 0xb0) != 0) {
+                    middle_handle = *(uint*)(*(int64_t*)(target_handle + 0xb0) + RENDER_OFFSET_GEOMETRY_DATA);
                 }
                 
-                if (*(longlong*)(target_handle + 0xb8) != 0) {
-                    middle_handle = middle_handle | *(uint*)(*(longlong*)(target_handle + 0xb8) + RENDER_OFFSET_GEOMETRY_DATA);
+                if (*(int64_t*)(target_handle + 0xb8) != 0) {
+                    middle_handle = middle_handle | *(uint*)(*(int64_t*)(target_handle + 0xb8) + RENDER_OFFSET_GEOMETRY_DATA);
                 }
                 
-                if (*(longlong*)(target_handle + 0xc0) != 0) {
-                    middle_handle = middle_handle | *(uint*)(*(longlong*)(target_handle + 0xc0) + RENDER_OFFSET_GEOMETRY_DATA);
+                if (*(int64_t*)(target_handle + 0xc0) != 0) {
+                    middle_handle = middle_handle | *(uint*)(*(int64_t*)(target_handle + 0xc0) + RENDER_OFFSET_GEOMETRY_DATA);
                 }
                 
-                if (*(longlong*)(target_handle + 200) != 0) {
-                    middle_handle = middle_handle | *(uint*)(*(longlong*)(target_handle + 200) + RENDER_OFFSET_GEOMETRY_DATA);
+                if (*(int64_t*)(target_handle + 200) != 0) {
+                    middle_handle = middle_handle | *(uint*)(*(int64_t*)(target_handle + 200) + RENDER_OFFSET_GEOMETRY_DATA);
                 }
                 
                 temp_index = 0xffffffff;
@@ -834,20 +834,20 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                 RenderingSystem_ConnectionHandleCleanup(search_index);
                 optimization_result = RenderingSystem_ConnectionAllocator(search_index);
                 
-                if (*(longlong*)(search_index + 0xb0) != 0) {
-                    target_handle = *(uint*)(*(longlong*)(search_index + 0xb0) + RENDER_OFFSET_GEOMETRY_DATA);
+                if (*(int64_t*)(search_index + 0xb0) != 0) {
+                    target_handle = *(uint*)(*(int64_t*)(search_index + 0xb0) + RENDER_OFFSET_GEOMETRY_DATA);
                 }
                 
-                if (*(longlong*)(search_index + 0xb8) != 0) {
-                    target_handle = target_handle | *(uint*)(*(longlong*)(search_index + 0xb8) + RENDER_OFFSET_GEOMETRY_DATA);
+                if (*(int64_t*)(search_index + 0xb8) != 0) {
+                    target_handle = target_handle | *(uint*)(*(int64_t*)(search_index + 0xb8) + RENDER_OFFSET_GEOMETRY_DATA);
                 }
                 
-                if (*(longlong*)(search_index + 0xc0) != 0) {
-                    target_handle = target_handle | *(uint*)(*(longlong*)(search_index + 0xc0) + RENDER_OFFSET_GEOMETRY_DATA);
+                if (*(int64_t*)(search_index + 0xc0) != 0) {
+                    target_handle = target_handle | *(uint*)(*(int64_t*)(search_index + 0xc0) + RENDER_OFFSET_GEOMETRY_DATA);
                 }
                 
-                if (*(longlong*)(search_index + 200) != 0) {
-                    target_handle = target_handle | *(uint*)(*(longlong*)(search_index + 200) + RENDER_OFFSET_GEOMETRY_DATA);
+                if (*(int64_t*)(search_index + 200) != 0) {
+                    target_handle = target_handle | *(uint*)(*(int64_t*)(search_index + 200) + RENDER_OFFSET_GEOMETRY_DATA);
                 }
                 
                 middle_handle = 0xffffffff;

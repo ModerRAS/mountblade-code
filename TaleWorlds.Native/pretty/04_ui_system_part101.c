@@ -228,14 +228,14 @@ typedef uint64_t UIAlgorithmHandle;               // UI算法句柄
 //   简化实现：保持原有功能逻辑，添加详细的参数说明和技术注释
 //   优化点：明确数据处理步骤，添加状态管理说明
 //------------------------------------------------------------------------------
-void UISystemAdvancedDataProcessor(longlong param_1, longlong param_2)
+void UISystemAdvancedDataProcessor(int64_t param_1, int64_t param_2)
 {
     // 局部变量定义
     uint uVar1;                                  // 无符号整型变量
     int16_t uVar2;                            // 未定义2字节变量
     int iVar3;                                  // 整型变量
-    longlong lVar4;                              // 长整型变量
-    ulonglong uVar5;                             // 无符号长整型变量
+    int64_t lVar4;                              // 长整型变量
+    uint64_t uVar5;                             // 无符号长整型变量
     int iVar6;                                  // 整型变量
     int iVar7;                                  // 整型变量
     
@@ -246,7 +246,7 @@ void UISystemAdvancedDataProcessor(longlong param_1, longlong param_2)
     // 检查UI系统状态
     if (*(char *)(param_1 + UI_OFFSET_STATE) == '\x02') {
         // 获取数据指针和大小
-        uVar5 = (ulonglong)*(int *)(param_1 + UI_OFFSET_DATA);
+        uVar5 = (uint64_t)*(int *)(param_1 + UI_OFFSET_DATA);
         iVar6 = 0;
         
         // 检查数据有效性
@@ -256,8 +256,8 @@ void UISystemAdvancedDataProcessor(longlong param_1, longlong param_2)
                 iVar7 = (int)uVar5;
                 if (iVar6 == iVar7) break;
                 uVar1 = *(uint *)(param_1 + UI_OFFSET_DATA);
-                uVar5 = (ulonglong)uVar1;
-                lVar4 = (longlong)((iVar7 - iVar6) * 5);
+                uVar5 = (uint64_t)uVar1;
+                lVar4 = (int64_t)((iVar7 - iVar6) * 5);
                 
                 // 计算数据值
                 iVar7 = (int)*(short *)(param_2 + 0x5e + lVar4 * 2) +
@@ -268,15 +268,15 @@ void UISystemAdvancedDataProcessor(longlong param_1, longlong param_2)
                 
                 // 更新最大值
                 if (iVar3 < iVar7) {
-                    lVar4 = (longlong)((short)(*(short *)(param_1 + UI_OFFSET_DATA) - (short)iVar6) * 5 + -5);
+                    lVar4 = (int64_t)((short)(*(short *)(param_1 + UI_OFFSET_DATA) - (short)iVar6) * 5 + -5);
                     *(uint64_t *)(param_1 + UI_OFFSET_BUFFER) = *(uint64_t *)(param_2 + 0x60 + lVar4 * 2);
                     *(int16_t *)(param_1 + UI_OFFSET_BUFFER + 8) = *(int16_t *)(param_2 + 0x68 + lVar4 * 2);
                     *(int *)(param_1 + UI_OFFSET_RESULT) =
-                         *(int *)(param_2 + -4 + (longlong)(int)(uVar1 - iVar6) * 4) << 8;
+                         *(int *)(param_2 + -4 + (int64_t)(int)(uVar1 - iVar6) * 4) << 8;
                     iVar3 = iVar7;
                 }
                 iVar6 = iVar6 + 1;
-            } while (*(int *)(param_1 + UI_OFFSET_CONFIG) * iVar6 < *(int *)(param_2 + -4 + (longlong)(int)uVar1 * 4));
+            } while (*(int *)(param_1 + UI_OFFSET_CONFIG) * iVar6 < *(int *)(param_2 + -4 + (int64_t)(int)uVar1 * 4));
         }
         
         // 清空缓冲区
@@ -290,7 +290,7 @@ void UISystemAdvancedDataProcessor(longlong param_1, longlong param_2)
             if (1 < iVar3) {
                 iVar6 = iVar3;
             }
-            iVar3 = (int)(short)(UI_CONST_VALUE_0xb33400 / (longlong)iVar6);
+            iVar3 = (int)(short)(UI_CONST_VALUE_0xb33400 / (int64_t)iVar6);
             *(short *)(param_1 + UI_OFFSET_BUFFER) = (short)(*(short *)(param_1 + UI_OFFSET_BUFFER) * iVar3 >> UI_CONST_SHIFT_10);
             *(short *)(param_1 + UI_OFFSET_BUFFER + 2) = (short)(*(short *)(param_1 + UI_OFFSET_BUFFER + 2) * iVar3 >> UI_CONST_SHIFT_10);
             *(short *)(param_1 + UI_OFFSET_BUFFER + 4) = (short)(*(short *)(param_1 + UI_OFFSET_BUFFER + 4) * iVar3 >> UI_CONST_SHIFT_10);
@@ -306,7 +306,7 @@ void UISystemAdvancedDataProcessor(longlong param_1, longlong param_2)
             if (1 < iVar3) {
                 iVar6 = iVar3;
             }
-            iVar3 = (int)(short)(UI_CONST_VALUE_0xf334000 / (longlong)iVar6);
+            iVar3 = (int)(short)(UI_CONST_VALUE_0xf334000 / (int64_t)iVar6);
             *(short *)(param_1 + UI_OFFSET_BUFFER) = (short)(*(short *)(param_1 + UI_OFFSET_BUFFER) * iVar3 >> UI_CONST_SHIFT_14);
             *(short *)(param_1 + UI_OFFSET_BUFFER + 2) = (short)(*(short *)(param_1 + UI_OFFSET_BUFFER + 2) * iVar3 >> UI_CONST_SHIFT_14);
             *(short *)(param_1 + UI_OFFSET_BUFFER + 4) = (short)(*(short *)(param_1 + UI_OFFSET_BUFFER + 4) * iVar3 >> UI_CONST_SHIFT_14);
@@ -326,7 +326,7 @@ void UISystemAdvancedDataProcessor(longlong param_1, longlong param_2)
     
 LAB_180729492:
     // 执行内存复制操作
-    memcpy(param_1 + UI_OFFSET_BUFFER + 10, param_2 + 0x40, (longlong)*(int *)(param_1 + 0x924) * 2);
+    memcpy(param_1 + UI_OFFSET_BUFFER + 10, param_2 + 0x40, (int64_t)*(int *)(param_1 + 0x924) * 2);
 }
 
 //------------------------------------------------------------------------------
@@ -372,12 +372,12 @@ LAB_180729492:
 //   简化实现：保持原有功能逻辑，添加详细的配置管理说明
 //   优化点：明确配置管理步骤，添加内存管理说明
 //------------------------------------------------------------------------------
-void UISystemConfigInitializer(longlong param_1, longlong param_2, uint64_t param_3, int param_4)
+void UISystemConfigInitializer(int64_t param_1, int64_t param_2, uint64_t param_3, int param_4)
 {
     // 局部变量定义
-    longlong lVar1;                              // 长整型变量
+    int64_t lVar1;                              // 长整型变量
     int16_t *puVar2;                          // 未定义2字节指针
-    ulonglong uVar3;                             // 无符号长整型变量
+    uint64_t uVar3;                             // 无符号长整型变量
     int iVar4;                                  // 整型变量
     int iVar5;                                  // 整型变量
     short *psVar6;                              // 短整型指针
@@ -385,10 +385,10 @@ void UISystemConfigInitializer(longlong param_1, longlong param_2, uint64_t para
     int iVar8;                                  // 整型变量
     int *piVar9;                                // 整型指针
     int8_t auStack_68 [32];                  // 栈缓冲区 (32字节)
-    ulonglong uStack_48;                         // 安全检查值
+    uint64_t uStack_48;                         // 安全检查值
     
     // 安全检查：栈保护机制
-    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_68;
     
     // 获取系统配置信息
     iVar8 = *(int *)(param_1 + 0x90c);
@@ -404,7 +404,7 @@ void UISystemConfigInitializer(longlong param_1, longlong param_2, uint64_t para
         if (0 < iVar5) {
             puVar2 = (int16_t *)(param_1 + 0xfec);
             do {
-                iVar4 = iVar4 + (int)(0x7fff / (longlong)(iVar5 + 1));
+                iVar4 = iVar4 + (int)(0x7fff / (int64_t)(iVar5 + 1));
                 iVar7 = iVar7 + 1;
                 *puVar2 = (short)iVar4;
                 puVar2 = puVar2 + 1;
@@ -427,8 +427,8 @@ void UISystemConfigInitializer(longlong param_1, longlong param_2, uint64_t para
                 psVar6 = (short *)(param_1 + 0xfec);
                 do {
                     iVar8 = iVar8 + 1;
-                    *psVar6 = (short)((ulonglong)
-                                      (uint)((int)*(short *)((param_1 - lVar1) + 0x428 + (longlong)psVar6) -
+                    *psVar6 = (short)((uint64_t)
+                                      (uint)((int)*(short *)((param_1 - lVar1) + 0x428 + (int64_t)psVar6) -
                                             (int)*psVar6) * 0x3fdc >> 0x10) + *psVar6;
                     psVar6 = psVar6 + 1;
                 } while (iVar8 < *(int *)(param_1 + 0x924));
@@ -452,19 +452,19 @@ void UISystemConfigInitializer(longlong param_1, longlong param_2, uint64_t para
             }
             
             // 执行内存移动操作
-            memmove(lVar1 + (longlong)*(int *)(param_1 + 0x91c) * 4, lVar1,
-                    (longlong)((iVar8 + -1) * *(int *)(param_1 + 0x91c)) << 2);
+            memmove(lVar1 + (int64_t)*(int *)(param_1 + 0x91c) * 4, lVar1,
+                    (int64_t)((iVar8 + -1) * *(int *)(param_1 + 0x91c)) << 2);
         }
         
         // 检查并清理内存
         if (*(int *)(param_1 + 0x1058) == 0) {
-            memset(param_1 + 0x100c, 0, (longlong)*(int *)(param_1 + 0x924) << 2);
+            memset(param_1 + 0x100c, 0, (int64_t)*(int *)(param_1 + 0x924) << 2);
         }
     }
     
     // 计算内存分配大小
-    uVar3 = (longlong)param_4 * 4 + 0x4f;
-    if (uVar3 <= (longlong)param_4 * 4 + 0x40U) {
+    uVar3 = (int64_t)param_4 * 4 + 0x4f;
+    if (uVar3 <= (int64_t)param_4 * 4 + 0x40U) {
         uVar3 = 0xffffffffffffff0;
     }
     
@@ -514,22 +514,22 @@ void UISystemConfigInitializer(longlong param_1, longlong param_2, uint64_t para
 //   简化实现：保持原有功能逻辑，添加详细的转换说明
 //   优化点：明确转换步骤，添加格式处理说明
 //------------------------------------------------------------------------------
-void UISystemDataTransformer(longlong param_1, longlong param_2, int param_3)
+void UISystemDataTransformer(int64_t param_1, int64_t param_2, int param_3)
 {
     // 局部变量定义
     short sVar1;                                // 短整型变量
     uint uVar2;                                 // 无符号整型变量
     char cVar3;                                 // 字符变量
-    longlong lVar4;                             // 长整型变量
-    ulonglong uVar5;                            // 无符号长整型变量
+    int64_t lVar4;                             // 长整型变量
+    uint64_t uVar5;                            // 无符号长整型变量
     int8_t auStack_a8 [32];                 // 栈缓冲区1 (32字节)
     int32_t uStack_88;                      // 栈变量
     short asStack_78 [16];                      // 栈数组1 (16个短整型)
     short asStack_58 [16];                      // 栈数组2 (16个短整型)
-    ulonglong uStack_38;                        // 安全检查值
+    uint64_t uStack_38;                        // 安全检查值
     
     // 安全检查：栈保护机制
-    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_a8;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_a8;
     
     // 初始化变量
     lVar4 = 0;
@@ -555,16 +555,16 @@ void UISystemDataTransformer(longlong param_1, longlong param_2, int param_3)
     
     // 根据配置执行不同的处理逻辑
     if ('\x03' < cVar3) {
-        memcpy(param_2 + 0x20, param_2 + 0x40, (longlong)(int)uVar2 * 2);
+        memcpy(param_2 + 0x20, param_2 + 0x40, (int64_t)(int)uVar2 * 2);
     }
     
     // 批量数据处理
     if (0 < (int)uVar2) {
-        uVar5 = (ulonglong)uVar2;
+        uVar5 = (uint64_t)uVar2;
         do {
-            sVar1 = *(short *)((param_1 - (longlong)asStack_78) + 0x928 + (longlong)asStack_78 + lVar4);
-            *(short *)((longlong)asStack_58 + lVar4) =
-                 (short)(((int)*(short *)((longlong)asStack_78 + lVar4) - (int)sVar1) * (int)cVar3 >> 2) +
+            sVar1 = *(short *)((param_1 - (int64_t)asStack_78) + 0x928 + (int64_t)asStack_78 + lVar4);
+            *(short *)((int64_t)asStack_58 + lVar4) =
+                 (short)(((int)*(short *)((int64_t)asStack_78 + lVar4) - (int)sVar1) * (int)cVar3 >> 2) +
                  sVar1;
             lVar4 = lVar4 + 2;
             uVar5 = uVar5 - 1;
@@ -572,10 +572,10 @@ void UISystemDataTransformer(longlong param_1, longlong param_2, int param_3)
     }
     
     // 执行最终数据处理
-    UISystemDataValidator(param_2 + 0x20, asStack_58, (longlong)(int)uVar2, *(int32_t *)(param_1 + 0x1060));
+    UISystemDataValidator(param_2 + 0x20, asStack_58, (int64_t)(int)uVar2, *(int32_t *)(param_1 + 0x1060));
     
     // 执行内存复制操作
-    memcpy(param_1 + 0x928, asStack_78, (longlong)*(int *)(param_1 + 0x924) * 2);
+    memcpy(param_1 + 0x928, asStack_78, (int64_t)*(int *)(param_1 + 0x924) * 2);
 }
 
 //------------------------------------------------------------------------------
@@ -620,15 +620,15 @@ void UISystemDataTransformer(longlong param_1, longlong param_2, int param_3)
 //   简化实现：保持原有功能逻辑，添加详细的算法说明
 //   优化点：明确算法步骤，添加计算精度说明
 //------------------------------------------------------------------------------
-void UISystemAlgorithmProcessor(longlong param_1, uint64_t param_2, int param_3)
+void UISystemAlgorithmProcessor(int64_t param_1, uint64_t param_2, int param_3)
 {
     // 局部变量定义
     short sVar1;                                // 短整型变量
     uint uVar2;                                 // 无符号整型变量
     char cVar3;                                 // 字符变量
-    longlong unaff_RSI;                         // 未使用寄存器变量
-    longlong lVar4;                             // 长整型变量
-    ulonglong uVar5;                            // 无符号长整型变量
+    int64_t unaff_RSI;                         // 未使用寄存器变量
+    int64_t lVar4;                             // 长整型变量
+    uint64_t uVar5;                            // 无符号长整型变量
     
     // 初始化变量
     lVar4 = 0;
@@ -654,15 +654,15 @@ void UISystemAlgorithmProcessor(longlong param_1, uint64_t param_2, int param_3)
     
     // 根据配置执行不同的处理逻辑
     if ('\x03' < cVar3) {
-        memcpy(unaff_RSI + 0x20, unaff_RSI + 0x40, (longlong)(int)uVar2 * 2);
+        memcpy(unaff_RSI + 0x20, unaff_RSI + 0x40, (int64_t)(int)uVar2 * 2);
     }
     
     // 批量数据处理
     if (0 < (int)uVar2) {
-        uVar5 = (ulonglong)uVar2;
+        uVar5 = (uint64_t)uVar2;
         do {
-            sVar1 = *(short *)((param_1 - (longlong)&stack0x00000030) + 0x928 +
-                              (longlong)(&stack0x00000030 + lVar4));
+            sVar1 = *(short *)((param_1 - (int64_t)&stack0x00000030) + 0x928 +
+                              (int64_t)(&stack0x00000030 + lVar4));
             *(short *)(&stack0x00000050 + lVar4) =
                  (short)(((int)*(short *)(&stack0x00000030 + lVar4) - (int)sVar1) * (int)cVar3 >> 2) +
                  sVar1;
@@ -672,11 +672,11 @@ void UISystemAlgorithmProcessor(longlong param_1, uint64_t param_2, int param_3)
     }
     
     // 执行最终数据处理
-    UISystemDataValidator(unaff_RSI + 0x20, &stack0x00000050, (longlong)(int)uVar2,
+    UISystemDataValidator(unaff_RSI + 0x20, &stack0x00000050, (int64_t)(int)uVar2,
                          *(int32_t *)(param_1 + 0x1060));
     
     // 执行内存复制操作
-    memcpy(param_1 + 0x928, &stack0x00000030, (longlong)*(int *)(param_1 + 0x924) * 2);
+    memcpy(param_1 + 0x928, &stack0x00000030, (int64_t)*(int *)(param_1 + 0x924) * 2);
 }
 
 //------------------------------------------------------------------------------
@@ -721,23 +721,23 @@ void UISystemAlgorithmProcessor(longlong param_1, uint64_t param_2, int param_3)
 //   简化实现：保持原有功能逻辑，添加详细的循环说明
 //   优化点：明确循环步骤，添加迭代控制说明
 //------------------------------------------------------------------------------
-void UISystemLoopProcessor(uint64_t param_1, uint64_t param_2, ulonglong param_3)
+void UISystemLoopProcessor(uint64_t param_1, uint64_t param_2, uint64_t param_3)
 {
     // 局部变量定义
     short sVar1;                                // 短整型变量
     char in_AL;                                 // AL寄存器变量
-    longlong unaff_RBX;                         // 未使用寄存器变量
-    longlong unaff_RSI;                         // 未使用寄存器变量
-    longlong unaff_RDI;                         // 未使用寄存器变量
-    ulonglong uVar2;                            // 无符号长整型变量
+    int64_t unaff_RBX;                         // 未使用寄存器变量
+    int64_t unaff_RSI;                         // 未使用寄存器变量
+    int64_t unaff_RDI;                         // 未使用寄存器变量
+    uint64_t uVar2;                            // 无符号长整型变量
     
     // 初始化循环变量
     uVar2 = param_3 & 0xffffffff;
     
     // 执行循环处理操作
     do {
-        sVar1 = *(short *)((unaff_RBX - (longlong)&stack0x00000030) + 0x928 +
-                          (longlong)(&stack0x00000030 + unaff_RDI));
+        sVar1 = *(short *)((unaff_RBX - (int64_t)&stack0x00000030) + 0x928 +
+                          (int64_t)(&stack0x00000030 + unaff_RDI));
         *(short *)(&stack0x00000050 + unaff_RDI) =
              (short)(((int)*(short *)(&stack0x00000030 + unaff_RDI) - (int)sVar1) * (int)in_AL >> 2) +
              sVar1;
@@ -749,7 +749,7 @@ void UISystemLoopProcessor(uint64_t param_1, uint64_t param_2, ulonglong param_3
     UISystemDataValidator(unaff_RSI + 0x20, &stack0x00000050, param_3, *(int32_t *)(unaff_RBX + 0x1060));
     
     // 执行内存复制操作
-    memcpy(unaff_RBX + 0x928, &stack0x00000030, (longlong)*(int *)(unaff_RBX + 0x924) * 2);
+    memcpy(unaff_RBX + 0x928, &stack0x00000030, (int64_t)*(int *)(unaff_RBX + 0x924) * 2);
 }
 
 //------------------------------------------------------------------------------
@@ -797,14 +797,14 @@ void UISystemLoopProcessor(uint64_t param_1, uint64_t param_2, ulonglong param_3
 void UISystemSimplifiedProcessor(uint64_t param_1, uint64_t param_2, uint64_t param_3)
 {
     // 局部变量定义
-    longlong unaff_RBX;                         // 未使用寄存器变量
-    longlong unaff_RSI;                         // 未使用寄存器变量
+    int64_t unaff_RBX;                         // 未使用寄存器变量
+    int64_t unaff_RSI;                         // 未使用寄存器变量
     
     // 执行简化的数据处理
     UISystemDataValidator(unaff_RSI + 0x20, &stack0x00000050, param_3, *(int32_t *)(unaff_RBX + 0x1060));
     
     // 执行内存复制操作
-    memcpy(unaff_RBX + 0x928, &stack0x00000030, (longlong)*(int *)(unaff_RBX + 0x924) * 2);
+    memcpy(unaff_RBX + 0x928, &stack0x00000030, (int64_t)*(int *)(unaff_RBX + 0x924) * 2);
 }
 
 //------------------------------------------------------------------------------
@@ -851,18 +851,18 @@ void UISystemStateUpdater(void)
 {
     // 局部变量定义
     char cVar1;                                 // 字符变量
-    longlong lVar2;                             // 长整型变量
-    longlong lVar3;                             // 长整型变量
+    int64_t lVar2;                             // 长整型变量
+    int64_t lVar3;                             // 长整型变量
     short *psVar4;                              // 短整型指针
-    longlong unaff_RBX;                         // 未使用寄存器变量
-    longlong unaff_RSI;                         // 未使用寄存器变量
+    int64_t unaff_RBX;                         // 未使用寄存器变量
+    int64_t unaff_RSI;                         // 未使用寄存器变量
     int unaff_EDI;                              // 未使用寄存器变量
     char *pcVar5;                               // 字符指针
-    ulonglong in_stack_00000070;                // 栈参数
+    uint64_t in_stack_00000070;                // 栈参数
     
     // 执行状态更新操作
     UISystemEventHandler(*(int16_t *)(unaff_RBX + 0xae2), *(int8_t *)(unaff_RBX + 0xae4));
-    lVar2 = *(longlong *)(&unknown_var_4360_ptr + (longlong)*(char *)(unaff_RBX + 0xae8) * 8);
+    lVar2 = *(int64_t *)(&unknown_var_4360_ptr + (int64_t)*(char *)(unaff_RBX + 0xae8) * 8);
     
     // 检查并更新状态
     if (unaff_EDI < *(int *)(unaff_RBX + 0x914)) {
@@ -872,7 +872,7 @@ void UISystemStateUpdater(void)
             cVar1 = *pcVar5;
             pcVar5 = pcVar5 + 1;
             unaff_EDI = unaff_EDI + 1;
-            lVar3 = (longlong)cVar1 * 5;
+            lVar3 = (int64_t)cVar1 * 5;
             psVar4[-1] = (short)*(char *)(lVar3 + lVar2) << 7;
             *psVar4 = (short)*(char *)(lVar2 + 1 + lVar3) << 7;
             psVar4[1] = (short)*(char *)(lVar2 + 2 + lVar3) << 7;
@@ -884,10 +884,10 @@ void UISystemStateUpdater(void)
     
     // 更新状态信息
     *(int *)(unaff_RSI + 0x88) =
-         (int)*(short *)(&unknown_var_9600_ptr + (longlong)*(char *)(unaff_RBX + 0xae9) * 2);
+         (int)*(short *)(&unknown_var_9600_ptr + (int64_t)*(char *)(unaff_RBX + 0xae9) * 2);
     
     // 执行安全退出检查
-    UISystemSecurityChecker(in_stack_00000070 ^ (ulonglong)&stack0x00000000);
+    UISystemSecurityChecker(in_stack_00000070 ^ (uint64_t)&stack0x00000000);
 }
 
 //------------------------------------------------------------------------------
@@ -932,21 +932,21 @@ void UISystemStateUpdater(void)
 //   简化实现：保持原有功能逻辑，添加详细的内存管理说明
 //   优化点：明确分配步骤，添加资源管理说明
 //------------------------------------------------------------------------------
-void UISystemAdvancedController(longlong param_1, uint64_t param_2, uint64_t param_3)
+void UISystemAdvancedController(int64_t param_1, uint64_t param_2, uint64_t param_3)
 {
     // 局部变量定义
-    ulonglong uVar1;                            // 无符号长整型变量
-    ulonglong uVar2;                            // 无符号长整型变量
+    uint64_t uVar1;                            // 无符号长整型变量
+    uint64_t uVar2;                            // 无符号长整型变量
     int8_t auStack_108 [72];                 // 栈缓冲区 (72字节)
     uint64_t uStack_c0;                       // 栈变量
     uint64_t uStack_a8;                       // 栈变量
-    ulonglong uStack_48;                        // 安全检查值
+    uint64_t uStack_48;                        // 安全检查值
     
     // 安全检查：栈保护机制
-    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_108;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_108;
     
     // 计算内存分配需求
-    uVar1 = (longlong)*(int *)(param_1 + 0x920) * 2;
+    uVar1 = (int64_t)*(int *)(param_1 + 0x920) * 2;
     uVar2 = uVar1 + 0xf;
     if (uVar2 <= uVar1) {
         uVar2 = 0xffffffffffffff0;
@@ -1004,24 +1004,24 @@ void UISystemAdvancedController(longlong param_1, uint64_t param_2, uint64_t par
 //   简化实现：保持原有功能逻辑，添加详细的编码说明
 //   优化点：明确编码步骤，添加压缩算法说明
 //------------------------------------------------------------------------------
-void UISystemBasicProcessor(int *param_1, longlong param_2, longlong param_3, short *param_4, int param_5)
+void UISystemBasicProcessor(int *param_1, int64_t param_2, int64_t param_3, short *param_4, int param_5)
 {
     // 局部变量定义
     int iVar1;                                  // 整型变量
-    longlong lVar2;                             // 长整型变量
-    longlong lVar3;                             // 长整型变量
+    int64_t lVar2;                             // 长整型变量
+    int64_t lVar3;                             // 长整型变量
     
     // 检查数据有效性
-    if (0 < (longlong)param_5) {
+    if (0 < (int64_t)param_5) {
         lVar3 = 0;
         do {
             // 执行数据编码操作
             iVar1 = *(short *)(param_3 + lVar3 * 2) * 0x100 + *param_1;
             *(int *)(param_2 + lVar3 * 4) = iVar1;
             lVar3 = lVar3 + 1;
-            lVar2 = (longlong)(iVar1 * 4);
-            *param_1 = (int)((ulonglong)(*param_4 * lVar2) >> 0x10) + param_1[1];
-            param_1[1] = (int)((ulonglong)(param_4[1] * lVar2) >> 0x10);
+            lVar2 = (int64_t)(iVar1 * 4);
+            *param_1 = (int)((uint64_t)(*param_4 * lVar2) >> 0x10) + param_1[1];
+            param_1[1] = (int)((uint64_t)(param_4[1] * lVar2) >> 0x10);
         } while (lVar3 < param_5);
     }
     return;
@@ -1077,7 +1077,7 @@ void UISystemAdvancedProcessor(int *param_1, int *param_2, short *param_3, uint 
     short sVar2;                                // 短整型变量
     uint uVar3;                                 // 无符号整型变量
     byte bVar4;                                 // 字节变量
-    ulonglong uVar5;                            // 无符号长整型变量
+    uint64_t uVar5;                            // 无符号长整型变量
     uint uVar6;                                 // 无符号整型变量
     short *psVar7;                              // 短整型指针
     int iVar8;                                  // 整型变量
@@ -1106,7 +1106,7 @@ void UISystemAdvancedProcessor(int *param_1, int *param_2, short *param_3, uint 
     // 批量数据处理
     if (0 < (int)(param_4 - 1)) {
         uVar3 = (param_4 - 2 >> 1) + 1;
-        uVar5 = (ulonglong)uVar3;
+        uVar5 = (uint64_t)uVar3;
         iVar10 = uVar3 * 2;
         psVar7 = param_3;
         do {
@@ -1147,7 +1147,7 @@ void UISystemAdvancedProcessor(int *param_1, int *param_2, short *param_3, uint 
     iVar10 = iVar8;
     if (0 < (int)(param_4 - 1)) {
         uVar6 = (param_4 - 2 >> 1) + 1;
-        uVar5 = (ulonglong)uVar6;
+        uVar5 = (uint64_t)uVar6;
         iVar10 = uVar6 * 2;
         psVar7 = param_3;
         do {
@@ -1221,7 +1221,7 @@ void UISystemAdvancedProcessorV2(int *param_1, int *param_2, short *param_3, uin
     short sVar2;                                // 短整型变量
     uint uVar3;                                 // 无符号整型变量
     byte bVar4;                                 // 字节变量
-    ulonglong uVar5;                            // 无符号长整型变量
+    uint64_t uVar5;                            // 无符号长整型变量
     uint uVar6;                                 // 无符号整型变量
     short *psVar7;                              // 短整型指针
     int iVar8;                                  // 整型变量
@@ -1250,7 +1250,7 @@ void UISystemAdvancedProcessorV2(int *param_1, int *param_2, short *param_3, uin
     // 批量数据处理
     if (0 < (int)(param_4 - 1)) {
         uVar3 = (param_4 - 2 >> 1) + 1;
-        uVar5 = (ulonglong)uVar3;
+        uVar5 = (uint64_t)uVar3;
         iVar10 = uVar3 * 2;
         psVar7 = param_3;
         do {
@@ -1291,7 +1291,7 @@ void UISystemAdvancedProcessorV2(int *param_1, int *param_2, short *param_3, uin
     iVar10 = iVar8;
     if (0 < (int)(param_4 - 1)) {
         uVar6 = (param_4 - 2 >> 1) + 1;
-        uVar5 = (ulonglong)uVar6;
+        uVar5 = (uint64_t)uVar6;
         iVar10 = uVar6 * 2;
         psVar7 = param_3;
         do {
@@ -1366,7 +1366,7 @@ void UISystemAdvancedProcessorV3(int *param_1, int *param_2, short *param_3, int
     uint uVar3;                                 // 无符号整型变量
     byte bVar4;                                 // 字节变量
     uint unaff_EBX;                             // 未使用寄存器变量
-    ulonglong uVar5;                            // 无符号长整型变量
+    uint64_t uVar5;                            // 无符号长整型变量
     uint uVar6;                                 // 无符号整型变量
     short *psVar7;                              // 短整型指针
     int iVar8;                                  // 整型变量
@@ -1396,7 +1396,7 @@ void UISystemAdvancedProcessorV3(int *param_1, int *param_2, short *param_3, int
     // 批量数据处理
     if (0 < (int)(unaff_EBX - 1)) {
         uVar3 = (unaff_EBX - 2 >> 1) + 1;
-        uVar5 = (ulonglong)uVar3;
+        uVar5 = (uint64_t)uVar3;
         iVar10 = uVar3 * 2;
         psVar7 = param_3;
         do {
@@ -1437,7 +1437,7 @@ void UISystemAdvancedProcessorV3(int *param_1, int *param_2, short *param_3, int
     // 执行最终优化计算
     if (0 < (int)(unaff_EBX - 1)) {
         uVar6 = (unaff_EBX - 2 >> 1) + 1;
-        uVar5 = (ulonglong)uVar6;
+        uVar5 = (uint64_t)uVar6;
         iVar11 = uVar6 * 2;
         psVar7 = param_3;
         do {
@@ -1513,7 +1513,7 @@ void UISystemOptimizedProcessor(int param_1, uint64_t param_2, uint param_3, int
     uint uVar3;                                 // 无符号整型变量
     int unaff_EBX;                              // 未使用寄存器变量
     int unaff_ESI;                              // 未使用寄存器变量
-    ulonglong uVar4;                            // 无符号长整型变量
+    uint64_t uVar4;                            // 无符号长整型变量
     short *psVar5;                              // 短整型指针
     int in_R11D;                                // R11D寄存器变量
     int iVar6;                                  // 整型变量
@@ -1524,7 +1524,7 @@ void UISystemOptimizedProcessor(int param_1, uint64_t param_2, uint param_3, int
     
     // 计算高级参数
     uVar3 = (in_EAX >> 1) + 1;
-    uVar4 = (ulonglong)uVar3;
+    uVar4 = (uint64_t)uVar3;
     iVar6 = uVar3 * 2;
     psVar5 = unaff_R14;
     
@@ -1567,7 +1567,7 @@ void UISystemOptimizedProcessor(int param_1, uint64_t param_2, uint param_3, int
     iVar7 = param_4;
     if (0 < unaff_ESI) {
         uVar3 = (unaff_ESI - 1U >> 1) + 1;
-        uVar4 = (ulonglong)uVar3;
+        uVar4 = (uint64_t)uVar3;
         iVar7 = uVar3 * 2;
         psVar5 = unaff_R14;
         do {
@@ -1645,7 +1645,7 @@ void UISystemOptimizedProcessorV2(int param_1, uint64_t param_2, uint param_3, i
     int unaff_EBP;                              // 未使用寄存器变量
     int unaff_ESI;                              // 未使用寄存器变量
     short *psVar4;                              // 短整型指针
-    ulonglong uVar5;                            // 无符号长整型变量
+    uint64_t uVar5;                            // 无符号长整型变量
     int in_R11D;                                // R11D寄存器变量
     int iVar6;                                  // 整型变量
     int iVar7;                                  // 整型变量
@@ -1682,7 +1682,7 @@ void UISystemOptimizedProcessorV2(int param_1, uint64_t param_2, uint param_3, i
     iVar7 = param_4;
     if (0 < unaff_ESI) {
         uVar3 = (unaff_ESI - 1U >> 1) + 1;
-        uVar5 = (ulonglong)uVar3;
+        uVar5 = (uint64_t)uVar3;
         iVar7 = uVar3 * 2;
         psVar4 = unaff_R14;
         do {
@@ -1760,7 +1760,7 @@ void UISystemOptimizedProcessorV3(int param_1, uint64_t param_2, uint param_3, i
     int unaff_EBX;                              // 未使用寄存器变量
     int unaff_ESI;                              // 未使用寄存器变量
     short *psVar5;                              // 短整型指针
-    ulonglong uVar6;                            // 无符号长整型变量
+    uint64_t uVar6;                            // 无符号长整型变量
     int in_R11D;                                // R11D寄存器变量
     int iVar7;                                  // 整型变量
     int *unaff_R12;                             // 未使用寄存器指针
@@ -1784,7 +1784,7 @@ void UISystemOptimizedProcessorV3(int param_1, uint64_t param_2, uint param_3, i
     iVar7 = param_4;
     if (0 < unaff_ESI) {
         uVar3 = (unaff_ESI - 1U >> 1) + 1;
-        uVar6 = (ulonglong)uVar3;
+        uVar6 = (uint64_t)uVar3;
         iVar7 = uVar3 * 2;
         psVar5 = unaff_R14;
         do {
@@ -1858,11 +1858,11 @@ void UISystemFinalProcessor(int32_t param_1, uint64_t param_2, uint64_t param_3,
     int iVar1;                                  // 整型变量
     int in_R11D;                                // R11D寄存器变量
     int *unaff_R12;                             // 未使用寄存器指针
-    longlong unaff_R14;                         // 未使用寄存器变量
+    int64_t unaff_R14;                         // 未使用寄存器变量
     int32_t *unaff_R15;                      // 未使用寄存器指针
     
     // 执行简单处理
-    iVar1 = (int)*(short *)(unaff_R14 + (longlong)in_R11D * 2);
+    iVar1 = (int)*(short *)(unaff_R14 + (int64_t)in_R11D * 2);
     *unaff_R15 = param_1;
     *unaff_R12 = param_4 + ((uint)(iVar1 * iVar1) >> ((byte)param_1 & 0x1f));
     return;
@@ -1884,7 +1884,7 @@ void UISystemFinalProcessor(int32_t param_1, uint64_t param_2, uint64_t param_3,
 //   param_4 - 无符号整型，包含SIMD标志
 //
 // 返回值：
-//   ulonglong - SIMD处理结果
+//   uint64_t - SIMD处理结果
 //
 // 处理流程：
 //   1. 验证输入参数和SIMD上下文
@@ -1911,20 +1911,20 @@ void UISystemFinalProcessor(int32_t param_1, uint64_t param_2, uint64_t param_3,
 //   简化实现：保持原有功能逻辑，添加详细的SIMD说明
 //   优化点：明确SIMD步骤，添加向量计算说明
 //------------------------------------------------------------------------------
-ulonglong UISystemSIMDProcessor(longlong param_1, longlong param_2, uint param_3, uint param_4)
+uint64_t UISystemSIMDProcessor(int64_t param_1, int64_t param_2, uint param_3, uint param_4)
 {
     // 局部变量定义
-    longlong lVar1;                              // 长整型变量
+    int64_t lVar1;                              // 长整型变量
     short *psVar2;                              // 短整型指针
     byte bVar3;                                 // 字节变量
     uint uVar4;                                 // 无符号整型变量
-    ulonglong *puVar5;                          // 无符号长整型指针
-    ulonglong uVar6;                            // 无符号长整型变量
-    ulonglong uVar7;                            // 无符号长整型变量
-    longlong lVar8;                              // 长整型变量
+    uint64_t *puVar5;                          // 无符号长整型指针
+    uint64_t uVar6;                            // 无符号长整型变量
+    uint64_t uVar7;                            // 无符号长整型变量
+    int64_t lVar8;                              // 长整型变量
     uint uVar9;                                 // 无符号整型变量
-    longlong lVar11;                             // 长整型变量
-    longlong lVar12;                             // 长整型变量
+    int64_t lVar11;                             // 长整型变量
+    int64_t lVar12;                             // 长整型变量
     uint uVar13;                                // 无符号整型变量
     int iVar14;                                 // 整型变量
     int iVar15;                                 // 整型变量
@@ -1941,11 +1941,11 @@ ulonglong UISystemSIMDProcessor(longlong param_1, longlong param_2, uint param_3
     int8_t in_XMM2 [16];                     // XMM2寄存器变量
     int8_t auVar26 [16];                     // 数组变量
     int8_t auVar27 [16];                     // 数组变量
-    ulonglong uVar10;                            // 无符号长整型变量
+    uint64_t uVar10;                            // 无符号长整型变量
     
     // 初始化SIMD变量
     uVar7 = 0;
-    lVar8 = (longlong)(int)param_4;
+    lVar8 = (int64_t)(int)param_4;
     uVar13 = 0;
     auVar27 = ZEXT416(param_3);
     uVar6 = uVar7;
@@ -1966,16 +1966,16 @@ ulonglong UISystemSIMDProcessor(longlong param_1, longlong param_2, uint param_3
         if ((int)uVar4 < 0) {
             uVar4 = (uVar4 - 1 | 0xfffffff8) + 1;
         }
-        puVar5 = (ulonglong *)(param_1 + 8);
+        puVar5 = (uint64_t *)(param_1 + 8);
         uVar6 = uVar7;
         uVar10 = uVar7;
         
         // 执行SIMD批量处理
         do {
             auVar16._8_8_ = 0;
-            auVar16._0_8_ = *(ulonglong *)((param_2 - param_1) + -8 + (longlong)puVar5);
+            auVar16._0_8_ = *(uint64_t *)((param_2 - param_1) + -8 + (int64_t)puVar5);
             uVar9 = (int)uVar10 + 8;
-            uVar10 = (ulonglong)uVar9;
+            uVar10 = (uint64_t)uVar9;
             auVar24._8_8_ = 0;
             auVar24._0_8_ = puVar5[-1];
             auVar26 = pmovsxwd(in_XMM2, auVar16);
@@ -1989,7 +1989,7 @@ ulonglong UISystemSIMDProcessor(longlong param_1, longlong param_2, uint param_3
             iVar20 = (auVar16._8_4_ >> auVar27) + iVar20;
             iVar22 = (auVar16._12_4_ >> auVar27) + iVar22;
             auVar17._8_8_ = 0;
-            auVar17._0_8_ = *(ulonglong *)((param_2 - param_1) + -0x10 + (longlong)(puVar5 + 2));
+            auVar17._0_8_ = *(uint64_t *)((param_2 - param_1) + -0x10 + (int64_t)(puVar5 + 2));
             in_XMM2 = pmovsxwd(auVar26, auVar17);
             auVar16 = pmovsxwd(auVar17, auVar25);
             auVar16 = pmulld(auVar16, in_XMM2);
@@ -1998,14 +1998,14 @@ ulonglong UISystemSIMDProcessor(longlong param_1, longlong param_2, uint param_3
             iVar21 = (auVar16._8_4_ >> auVar27) + iVar21;
             iVar23 = (auVar16._12_4_ >> auVar27) + iVar23;
             puVar5 = puVar5 + 2;
-        } while ((longlong)uVar6 < (longlong)(int)(param_4 - uVar4));
+        } while ((int64_t)uVar6 < (int64_t)(int)(param_4 - uVar4));
         
         // 计算SIMD处理结果
-        uVar6 = (ulonglong)(uint)(iVar15 + iVar14 + iVar21 + iVar20 + iVar19 + iVar18 + iVar23 + iVar22);
+        uVar6 = (uint64_t)(uint)(iVar15 + iVar14 + iVar21 + iVar20 + iVar19 + iVar18 + iVar23 + iVar22);
     }
     
     // 处理剩余数据
-    lVar12 = (longlong)(int)uVar9;
+    lVar12 = (int64_t)(int)uVar9;
     uVar9 = 0;
     iVar14 = (int)uVar6;
     if (lVar12 < lVar8) {
@@ -2018,13 +2018,13 @@ ulonglong UISystemSIMDProcessor(longlong param_1, longlong param_2, uint param_3
             uVar6 = uVar7;
             do {
                 uVar13 = (int)uVar6 +
-                         ((int)*(short *)((param_1 - param_2) + -2 + (longlong)psVar2) * (int)psVar2[-1] >>
+                         ((int)*(short *)((param_1 - param_2) + -2 + (int64_t)psVar2) * (int)psVar2[-1] >>
                          (bVar3 & 0x1f));
-                uVar6 = (ulonglong)uVar13;
+                uVar6 = (uint64_t)uVar13;
                 uVar9 = (int)uVar7 +
-                        ((int)*(short *)((param_1 - param_2) + -4 + (longlong)(psVar2 + 2)) * (int)*psVar2
+                        ((int)*(short *)((param_1 - param_2) + -4 + (int64_t)(psVar2 + 2)) * (int)*psVar2
                         >> (bVar3 & 0x1f));
-                uVar7 = (ulonglong)uVar9;
+                uVar7 = (uint64_t)uVar9;
                 lVar11 = lVar11 + -1;
                 psVar2 = psVar2 + 2;
             } while (lVar11 != 0);
@@ -2033,7 +2033,7 @@ ulonglong UISystemSIMDProcessor(longlong param_1, longlong param_2, uint param_3
             iVar14 = iVar14 + ((int)*(short *)(param_1 + lVar12 * 2) *
                                (int)*(short *)(param_2 + lVar12 * 2) >> (bVar3 & 0x1f));
         }
-        uVar6 = (ulonglong)(uVar9 + uVar13 + iVar14);
+        uVar6 = (uint64_t)(uVar9 + uVar13 + iVar14);
     }
     
     return uVar6;
@@ -2084,7 +2084,7 @@ ulonglong UISystemSIMDProcessor(longlong param_1, longlong param_2, uint param_3
 //   简化实现：保持原有功能逻辑，添加详细的解码说明
 //   优化点：明确解码步骤，添加解压缩算法说明
 //------------------------------------------------------------------------------
-void UISystemUltimateProcessor(longlong param_1, int *param_2, int *param_3, int *param_4, int16_t *param_5,
+void UISystemUltimateProcessor(int64_t param_1, int *param_2, int *param_3, int *param_4, int16_t *param_5,
                   int param_6)
 {
     // 局部变量定义
@@ -2092,32 +2092,32 @@ void UISystemUltimateProcessor(longlong param_1, int *param_2, int *param_3, int
     int iVar2;                                  // 整型变量
     int16_t uVar3;                           // 未定义2字节变量
     int iVar4;                                  // 整型变量
-    longlong lVar5;                              // 长整型变量
+    int64_t lVar5;                              // 长整型变量
     int iVar6;                                  // 整型变量
-    longlong lVar7;                              // 长整型变量
-    longlong lVar8;                              // 长整型变量
+    int64_t lVar7;                              // 长整型变量
+    int64_t lVar8;                              // 长整型变量
     
     // 获取解码参数
     iVar1 = *param_3;
     iVar2 = param_3[1];
-    lVar8 = (longlong)param_6;
+    lVar8 = (int64_t)param_6;
     
     // 检查解码条件
     if (0 < lVar8) {
-        param_1 = param_1 - (longlong)param_5;
+        param_1 = param_1 - (int64_t)param_5;
         do {
             // 执行数据解码操作
-            lVar7 = (longlong)*(short *)(param_1 + (longlong)param_5);
-            iVar6 = *param_4 * 4 + (int)((ulonglong)(*param_2 * lVar7) >> 0x10) * 4;
-            lVar5 = (longlong)iVar6;
-            iVar4 = (((int)((ulonglong)(-iVar1 & 0x3fff) * lVar5 >> 0x10) >> 0xd) + 1 >> 1) +
-                    (int)((ulonglong)((short)(-iVar1 >> 0xe) * lVar5) >> 0x10) + param_4[1];
+            lVar7 = (int64_t)*(short *)(param_1 + (int64_t)param_5);
+            iVar6 = *param_4 * 4 + (int)((uint64_t)(*param_2 * lVar7) >> 0x10) * 4;
+            lVar5 = (int64_t)iVar6;
+            iVar4 = (((int)((uint64_t)(-iVar1 & 0x3fff) * lVar5 >> 0x10) >> 0xd) + 1 >> 1) +
+                    (int)((uint64_t)((short)(-iVar1 >> 0xe) * lVar5) >> 0x10) + param_4[1];
             *param_4 = iVar4;
-            *param_4 = (int)((ulonglong)(param_2[1] * lVar7) >> 0x10) + iVar4;
-            iVar4 = (((int)((ulonglong)(-iVar2 & 0x3fff) * lVar5 >> 0x10) >> 0xd) + 1 >> 1) +
-                    (int)((ulonglong)((short)(-iVar2 >> 0xe) * lVar5) >> 0x10);
+            *param_4 = (int)((uint64_t)(param_2[1] * lVar7) >> 0x10) + iVar4;
+            iVar4 = (((int)((uint64_t)(-iVar2 & 0x3fff) * lVar5 >> 0x10) >> 0xd) + 1 >> 1) +
+                    (int)((uint64_t)((short)(-iVar2 >> 0xe) * lVar5) >> 0x10);
             param_4[1] = iVar4;
-            param_4[1] = (int)((ulonglong)(param_2[2] * lVar7) >> 0x10) + iVar4;
+            param_4[1] = (int)((uint64_t)(param_2[2] * lVar7) >> 0x10) + iVar4;
             iVar4 = iVar6 + 0x3fff >> 0xe;
             
             // 处理解码结果

@@ -144,14 +144,14 @@ typedef struct {
  * @param renderContext 渲染上下文句柄
  * @return void 无返回值
  */
-void matrix_transform_interpolator(longlong renderContext)
+void matrix_transform_interpolator(int64_t renderContext)
 {
     // 局部变量声明
     float *sourceMatrix1;                       // 源矩阵1指针
     float *sourceMatrix2;                       // 源矩阵2指针
     float *sourceMatrix3;                       // 源矩阵3指针
     float *sourceMatrix4;                       // 源矩阵4指针
-    longlong matrixDataPtr;                     // 矩阵数据指针
+    int64_t matrixDataPtr;                     // 矩阵数据指针
     uint blendFactor;                           // 混合因子
     uint matrixIndex;                           // 矩阵索引
     uint vertexCount;                           // 顶点数量
@@ -191,15 +191,15 @@ void matrix_transform_interpolator(longlong renderContext)
     uint batchIndices[4];                      // 批次索引数组
     
     // 栈帧保护和安全检查
-    ulonglong stackGuard;                       // 栈保护变量
+    uint64_t stackGuard;                       // 栈保护变量
     uint stackParam1;                           // 栈参数1
-    longlong stackParam2;                       // 栈参数2
-    longlong stackParam3;                       // 栈参数3
+    int64_t stackParam2;                       // 栈参数2
+    int64_t stackParam3;                       // 栈参数3
     char stackParam4;                           // 栈参数4
     uint stackParam5;                           // 栈参数5
     
     // 初始化栈保护
-    stackGuard = GET_SECURITY_COOKIE() ^ (ulonglong)&stackParam1;
+    stackGuard = GET_SECURITY_COOKIE() ^ (uint64_t)&stackParam1;
     
     // 初始化渲染参数
     blendFactor = SIMD_MASK_0F;                  // 初始化混合因子
@@ -217,7 +217,7 @@ void matrix_transform_interpolator(longlong renderContext)
         }
         
         // 获取矩阵数据指针
-        matrixDataPtr = *(longlong *)(renderContext + RENDER_PARAM_OFFSET + (ulonglong)stackParam5 * 8);
+        matrixDataPtr = *(int64_t *)(renderContext + RENDER_PARAM_OFFSET + (uint64_t)stackParam5 * 8);
         uint currentVertex = vertexCount;
         
         if (currentBatch <= stackParam5) {
@@ -225,9 +225,9 @@ void matrix_transform_interpolator(longlong renderContext)
         }
         
         // 获取渲染数据指针
-        longlong renderDataPtr = *(longlong *)(renderContext + RENDER_DATA_OFFSET);
-        ulonglong matrixOffset = (ulonglong)*(uint *)(renderDataPtr + (ulonglong)(matrixIndex * 3) * 4);
-        renderDataPtr = renderDataPtr + (ulonglong)(matrixIndex * 3) * 4;
+        int64_t renderDataPtr = *(int64_t *)(renderContext + RENDER_DATA_OFFSET);
+        uint64_t matrixOffset = (uint64_t)*(uint *)(renderDataPtr + (uint64_t)(matrixIndex * 3) * 4);
+        renderDataPtr = renderDataPtr + (uint64_t)(matrixIndex * 3) * 4;
         
         // 条件渲染路径选择
         if (stackParam4 == '\0') {
@@ -285,25 +285,25 @@ void matrix_transform_interpolator(longlong renderContext)
  * @param stackParam2 栈参数2
  * @param stackParam3 栈参数3
  */
-static void process_standard_render_path(longlong renderContext, longlong matrixDataPtr, ulonglong matrixOffset,
-                                       longlong renderDataPtr, uint currentVertex, float **matrices,
+static void process_standard_render_path(int64_t renderContext, int64_t matrixDataPtr, uint64_t matrixOffset,
+                                       int64_t renderDataPtr, uint currentVertex, float **matrices,
                                        float *vertexBuffers[4], int *matrixData[4],
                                        uint *interpolationParams, float *interpolationValues, uint *clipParams,
                                        RenderBatch *renderBatches, uint *batchIndices,
-                                       longlong stackParam2, longlong stackParam3)
+                                       int64_t stackParam2, int64_t stackParam3)
 {
     // 计算矩阵偏移量
-    longlong offset1 = 0;
+    int64_t offset1 = 0;
     if (1 < currentVertex) {
         offset1 = 0xc;                          // 第一矩阵偏移
     }
     
-    longlong offset2 = 0;
+    int64_t offset2 = 0;
     if (2 < currentVertex) {
         offset2 = 0x18;                         // 第二矩阵偏移
     }
     
-    longlong offset3 = 0;
+    int64_t offset3 = 0;
     if (3 < currentVertex) {
         offset3 = 0x24;                         // 第三矩阵偏移
     }
@@ -313,16 +313,16 @@ static void process_standard_render_path(longlong renderContext, longlong matrix
     vertexBuffers[0][0] = matrices[0][1];
     vertexBuffers[1][0] = matrices[0][2];
     
-    matrices[1] = (float *)(matrixDataPtr + (ulonglong)*(uint *)(offset1 + renderDataPtr) * VECTOR_SIZE);
+    matrices[1] = (float *)(matrixDataPtr + (uint64_t)*(uint *)(offset1 + renderDataPtr) * VECTOR_SIZE);
     vertexBuffers[1][1] = matrices[1][1];
     vertexBuffers[2][0] = matrices[1][2];
     
-    matrices[2] = (float *)(matrixDataPtr + (ulonglong)*(uint *)(offset2 + renderDataPtr) * VECTOR_SIZE);
+    matrices[2] = (float *)(matrixDataPtr + (uint64_t)*(uint *)(offset2 + renderDataPtr) * VECTOR_SIZE);
     vertexBuffers[2][1] = *matrices[2];
     vertexBuffers[3][0] = matrices[2][1];
     vertexBuffers[3][1] = matrices[2][2];
     
-    matrices[3] = (float *)(matrixDataPtr + (ulonglong)*(uint *)(offset3 + renderDataPtr) * VECTOR_SIZE);
+    matrices[3] = (float *)(matrixDataPtr + (uint64_t)*(uint *)(offset3 + renderDataPtr) * VECTOR_SIZE);
     vertexBuffers[3][2] = *matrices[3];
     vertexBuffers[3][3] = matrices[3][1];
     
@@ -351,12 +351,12 @@ static void process_standard_render_path(longlong renderContext, longlong matrix
  * @param stackParam2 栈参数2
  * @param stackParam3 栈参数3
  */
-static void process_optimized_render_path(longlong renderContext, longlong matrixDataPtr, ulonglong matrixOffset,
-                                        longlong renderDataPtr, uint currentVertex, float **matrices,
+static void process_optimized_render_path(int64_t renderContext, int64_t matrixDataPtr, uint64_t matrixOffset,
+                                        int64_t renderDataPtr, uint currentVertex, float **matrices,
                                         float *vertexBuffers[4], int *matrixData[4],
                                         uint *interpolationParams, float *interpolationValues, uint *clipParams,
                                         RenderBatch *renderBatches, uint *batchIndices,
-                                        longlong stackParam2, longlong stackParam3)
+                                        int64_t stackParam2, int64_t stackParam3)
 {
     // 优化渲染路径实现
     // 这里使用更高效的内存访问模式和SIMD指令
@@ -385,7 +385,7 @@ static void process_optimized_render_path(longlong renderContext, longlong matri
 static void execute_simd_vector_operations(float **matrices, float *vertexBuffers[4], int *matrixData[4],
                                           uint *interpolationParams, float *interpolationValues, uint *clipParams,
                                           RenderBatch *renderBatches, uint *batchIndices,
-                                          longlong renderContext, longlong stackParam2, longlong stackParam3)
+                                          int64_t renderContext, int64_t stackParam2, int64_t stackParam3)
 {
     // SIMD向量操作实现
     // 使用SIMD指令进行高效的矩阵变换和插值计算
@@ -402,11 +402,11 @@ static void execute_simd_vector_operations(float **matrices, float *vertexBuffer
  * @param renderContext 渲染上下文
  * @param stackGuard 栈保护变量
  */
-static void cleanup_and_return(longlong renderContext, ulonglong stackGuard)
+static void cleanup_and_return(int64_t renderContext, uint64_t stackGuard)
 {
     // 执行安全清理
     // 注意：原函数不返回，而是调用另一个函数
-    FUN_1808fc050(stackGuard ^ (ulonglong)&renderContext);
+    FUN_1808fc050(stackGuard ^ (uint64_t)&renderContext);
 }
 
 /**
@@ -422,8 +422,8 @@ static void cleanup_and_return(longlong renderContext, ulonglong stackGuard)
  * @param offset2 偏移量2
  * @param offset3 偏移量3
  */
-static void load_additional_matrix_data(float **matrices, float *vertexBuffers[4], longlong matrixDataPtr,
-                                       longlong renderDataPtr, longlong offset1, longlong offset2, longlong offset3)
+static void load_additional_matrix_data(float **matrices, float *vertexBuffers[4], int64_t matrixDataPtr,
+                                       int64_t renderDataPtr, int64_t offset1, int64_t offset2, int64_t offset3)
 {
     // 实现额外的矩阵数据加载逻辑
     // 这里包含了原函数中的复杂矩阵加载和计算逻辑
@@ -441,8 +441,8 @@ static void load_additional_matrix_data(float **matrices, float *vertexBuffers[4
  * @param renderDataPtr 渲染数据指针
  * @param currentVertex 当前顶点
  */
-static void optimized_matrix_loading(float **matrices, float *vertexBuffers[4], longlong matrixDataPtr,
-                                    ulonglong matrixOffset, longlong renderDataPtr, uint currentVertex)
+static void optimized_matrix_loading(float **matrices, float *vertexBuffers[4], int64_t matrixDataPtr,
+                                    uint64_t matrixOffset, int64_t renderDataPtr, uint currentVertex)
 {
     // 实现优化模式下的矩阵加载逻辑
 }
@@ -608,7 +608,7 @@ static void simd_batch_optimization(RenderBatch *renderBatches, uint *batchIndic
 // ============================================================================
 
 // 为了保持与原代码的兼容性，定义函数别名
-void FUN_18049c310(longlong param_1) __attribute__((alias("matrix_transform_interpolator")));
+void FUN_18049c310(int64_t param_1) __attribute__((alias("matrix_transform_interpolator")));
 
 // ============================================================================
 // 全局变量和符号处理

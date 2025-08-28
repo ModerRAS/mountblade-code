@@ -99,10 +99,10 @@ void RenderingSystem_InitializeRenderState(uint64_t render_context)
     int8_t config_buffer[RENDERING_SYSTEM_BUFFER_SIZE_72];
     void *resource_array[11];
     int32_t operation_flag;
-    ulonglong security_hash;
+    uint64_t security_hash;
     
     thread_counter = 0xfffffffffffffffe;
-    security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+    security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
     status_flag = 0;
     cleanup_handler = &unknown_var_3480_ptr;
     string_buffer = config_buffer;
@@ -117,7 +117,7 @@ void RenderingSystem_InitializeRenderState(uint64_t render_context)
     callback_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
     cleanup_handler = &system_state_ptr;
-    SystemSecurityChecker(security_hash ^ (ulonglong)security_buffer);
+    SystemSecurityChecker(security_hash ^ (uint64_t)security_buffer);
 }
 
 
@@ -180,7 +180,7 @@ void RenderingSystem_CreateRenderContext(uint64_t *context_ptr)
  * @param alignment_param 对齐参数
  * @return uint64_t 分配的内存指针
  */
-uint64_t RenderingSystem_AllocateRenderMemory(uint64_t memory_ptr, ulonglong allocation_flags, uint64_t size_param, uint64_t alignment_param)
+uint64_t RenderingSystem_AllocateRenderMemory(uint64_t memory_ptr, uint64_t allocation_flags, uint64_t size_param, uint64_t alignment_param)
 {
     uint64_t thread_counter;
     
@@ -259,7 +259,7 @@ void RenderingSystem_SetupRenderParameters(uint64_t param_1, uint64_t param_2)
  * @param param_2 参数2（包含验证条件）
  * @return void
  */
-void RenderingSystem_ValidateRenderParameters(longlong param_1, longlong param_2)
+void RenderingSystem_ValidateRenderParameters(int64_t param_1, int64_t param_2)
 
 {
   int iVar1;
@@ -325,10 +325,10 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   int8_t *puStack_80;
   int32_t uStack_78;
   int8_t auStack_70 [72];
-  ulonglong uStack_28;
+  uint64_t uStack_28;
   
   uStack_330 = 0xfffffffffffffffe;
-  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_368;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_368;
   uStack_348 = 0;
   puStack_2c8 = &unknown_var_3480_ptr;
   puStack_2c0 = auStack_2b0;
@@ -422,7 +422,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   apuStack_328[0] = &system_state_ptr;
   puStack_88 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_28 ^ (ulonglong)auStack_368);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_368);
 }
 
 
@@ -446,9 +446,9 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
  * 4. 应用相应的插值算法
  * 5. 设置最终颜色值
  */
-void RenderingSystem_ColorInterpolatorBase(longlong render_context) {
+void RenderingSystem_ColorInterpolatorBase(int64_t render_context) {
     // 获取渲染对象句柄
-    longlong render_object = SystemRenderObjectGetter(*(uint64_t *)(render_context + 0x18));
+    int64_t render_object = SystemRenderObjectGetter(*(uint64_t *)(render_context + 0x18));
     if (render_object == 0) {
         return;
     }
@@ -460,7 +460,7 @@ void RenderingSystem_ColorInterpolatorBase(longlong render_context) {
     
     // 计算时间相关的插值因子
     float interpolation_factor = (float)fmodf(
-        (float)(*(longlong *)(&system_error_code + (longlong)render_system_string * 8) - render_system_string) * 1e-05 + 
+        (float)(*(int64_t *)(&system_error_code + (int64_t)render_system_string * 8) - render_system_string) * 1e-05 + 
         *(float *)(render_context + 0x88)
     );
     
@@ -539,8 +539,8 @@ void RenderingSystem_ColorInterpolatorBase(longlong render_context) {
  * 4. 应用高级插值算法
  * 5. 将结果写入目标寄存器
  */
-void RenderingSystem_ColorInterpolatorAdvanced(longlong color_index, longlong register_base, 
-                                              longlong dest_register, longlong array_index) {
+void RenderingSystem_ColorInterpolatorAdvanced(int64_t color_index, int64_t register_base, 
+                                              int64_t dest_register, int64_t array_index) {
     // 从寄存器获取颜色区间参数
     float color_range_start = *(float *)(register_base + 0x78);
     float color_range_mid = *(float *)(register_base + 0x74) + color_range_start;
@@ -548,7 +548,7 @@ void RenderingSystem_ColorInterpolatorAdvanced(longlong color_index, longlong re
     
     // 基于索引计算插值因子
     float interpolation_factor = (float)fmodf(
-        (float)(*(longlong *)(color_index + array_index * 8) - render_system_string) * 1e-05 +
+        (float)(*(int64_t *)(color_index + array_index * 8) - render_system_string) * 1e-05 +
         *(float *)(register_base + 0x88)
     );
     
@@ -627,7 +627,7 @@ void RenderingSystem_ColorInterpolatorAdvanced(longlong color_index, longlong re
  * 5. 其他模式: 使用默认颜色
  */
 void RenderingSystem_FastColorInterpolator(int interpolation_mode, int32_t default_color, 
-                                         longlong source_register, longlong dest_register, 
+                                         int64_t source_register, int64_t dest_register, 
                                          float xmm_factor) {
     if (interpolation_mode == 1) {
         // 模式1: 直接使用中间颜色
@@ -700,12 +700,12 @@ void RenderingSystem_StringManagerInitializer(uint64_t *string_manager) {
     *(int32_t *)(manager_ptr + 0x10) = 0; // 清零计数器
     
     // 初始化内存管理器结构
-    longlong *memory_manager = manager_ptr + 0x16;
-    *memory_manager = (longlong)&system_state_ptr; // 设置内存处理器
+    int64_t *memory_manager = manager_ptr + 0x16;
+    *memory_manager = (int64_t)&system_state_ptr; // 设置内存处理器
     manager_ptr[0x17] = 0; // 清零内存状态
     *(int32_t *)(manager_ptr + 0x18) = 0; // 清零内存计数
     
-    *memory_manager = (longlong)&system_data_buffer_ptr; // 设置内存分配器
+    *memory_manager = (int64_t)&system_data_buffer_ptr; // 设置内存分配器
     manager_ptr[0x19] = 0; // 清零分配状态
     manager_ptr[0x17] = 0; // 清零内存状态
     *(int32_t *)(manager_ptr + 0x18) = 0; // 清零内存计数
@@ -743,19 +743,19 @@ void RenderingSystem_StringManagerInitializer(uint64_t *string_manager) {
     
     // 准备第二个字符串缓冲区
     buffer_ptr = (uint64_t *)0x0;
-    buffer_size = (ulonglong)buffer_size._4_4_ << 0x20;
+    buffer_size = (uint64_t)buffer_size._4_4_ << 0x20;
     string_buffer = &system_state_ptr;
     
     // 清理旧的字符串管理器
-    longlong *old_manager = (longlong *)string_manager[0x1c];
+    int64_t *old_manager = (int64_t *)string_manager[0x1c];
     string_manager[0x1c] = 0;
-    if (old_manager != (longlong *)0x0) {
+    if (old_manager != (int64_t *)0x0) {
         (**(code **)(*old_manager + 0x38))(); // 调用清理函数
     }
     
     // 设置字符串管理器状态
     string_manager[0x13] = 0;
-    *(int32_t *)((longlong)string_manager + 0xa4) = 0x40200000; // 设置浮点常量
+    *(int32_t *)((int64_t)string_manager + 0xa4) = 0x40200000; // 设置浮点常量
     *(int8_t *)(string_manager + 0x15) = 0; // 清零状态标志
     
     // 初始化内存管理器回调
@@ -763,8 +763,8 @@ void RenderingSystem_StringManagerInitializer(uint64_t *string_manager) {
     
     // 设置字符串管理器参数
     *(int16_t *)(string_manager + 0x1a) = 0x100; // 设置缓冲区大小
-    *(int8_t *)((longlong)string_manager + 0xd2) = 1; // 设置启用标志
-    *(int8_t *)((longlong)string_manager + 0xd3) = 0; // 清零保留标志
+    *(int8_t *)((int64_t)string_manager + 0xd2) = 1; // 设置启用标志
+    *(int8_t *)((int64_t)string_manager + 0xd3) = 0; // 清零保留标志
     
     // 创建主字符串缓冲区
     string_buffer = &system_data_buffer_ptr;
@@ -809,21 +809,21 @@ void RenderingSystem_StringManagerInitializer(uint64_t *string_manager) {
  * 4. 释放相关资源
  * 5. 根据标志决定是否释放管理器本身
  */
-uint64_t * RenderingSystem_ManagerCleaner(uint64_t *manager, ulonglong cleanup_flags) {
+uint64_t * RenderingSystem_ManagerCleaner(uint64_t *manager, uint64_t cleanup_flags) {
     // 重置管理器基础结构
     *manager = &unknown_var_1720_ptr; // 设置基础表
     
     // 清理扩展管理器
-    longlong *ext_manager = (longlong *)manager[0x1d];
+    int64_t *ext_manager = (int64_t *)manager[0x1d];
     manager[0x1d] = 0;
-    if (ext_manager != (longlong *)0x0) {
+    if (ext_manager != (int64_t *)0x0) {
         (**(code **)(*ext_manager + 0x38))(); // 调用扩展管理器清理函数
     }
     
     // 清理主管理器
-    longlong *main_manager = (longlong *)manager[0x1c];
+    int64_t *main_manager = (int64_t *)manager[0x1c];
     manager[0x1c] = 0;
-    if (main_manager != (longlong *)0x0) {
+    if (main_manager != (int64_t *)0x0) {
         (**(code **)(*main_manager + 0x38))(); // 调用主管理器清理函数
     }
     
@@ -831,11 +831,11 @@ uint64_t * RenderingSystem_ManagerCleaner(uint64_t *manager, ulonglong cleanup_f
     manager[0x13] = 0;
     
     // 双重检查清理
-    if ((longlong *)manager[0x1d] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)manager[0x1d] + 0x38))(); // 确保扩展管理器清理
+    if ((int64_t *)manager[0x1d] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)manager[0x1d] + 0x38))(); // 确保扩展管理器清理
     }
-    if ((longlong *)manager[0x1c] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)manager[0x1c] + 0x38))(); // 确保主管理器清理
+    if ((int64_t *)manager[0x1c] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)manager[0x1c] + 0x38))(); // 确保主管理器清理
     }
     
     // 清理扩展数据区域
@@ -895,7 +895,7 @@ uint64_t * RenderingSystem_ManagerCleaner(uint64_t *manager, ulonglong cleanup_f
  * 4. 配置浮点参数范围
  * 5. 初始化状态标志
  */
-void RenderingSystem_ParameterInitializer(longlong render_context, uint64_t param_2, 
+void RenderingSystem_ParameterInitializer(int64_t render_context, uint64_t param_2, 
                                          uint64_t param_3, uint64_t param_4) {
     // 创建测试字符串缓冲区
     void *string_buffer = &system_data_buffer_ptr;
@@ -925,13 +925,13 @@ void RenderingSystem_ParameterInitializer(longlong render_context, uint64_t para
     
     // 准备参数清理
     string_ptr = (int32_t *)0x0;
-    buffer_hash = (ulonglong)buffer_hash._4_4_ << 0x20;
+    buffer_hash = (uint64_t)buffer_hash._4_4_ << 0x20;
     string_buffer = &system_state_ptr;
     
     // 清理旧的参数管理器
-    longlong *old_param_manager = *(longlong **)(render_context + 0xe0);
+    int64_t *old_param_manager = *(int64_t **)(render_context + 0xe0);
     *(uint64_t *)(render_context + 0xe0) = 0;
-    if (old_param_manager != (longlong *)0x0) {
+    if (old_param_manager != (int64_t *)0x0) {
         (**(code **)(*old_param_manager + 0x38))(); // 调用清理函数
     }
     
@@ -973,11 +973,11 @@ void RenderingSystem_ParameterInitializer(longlong render_context, uint64_t para
  * 6. 执行后初始化步骤
  * 7. 处理回调函数
  */
-void RenderingSystem_ProcessorInitializer_Standard(longlong render_context) {
+void RenderingSystem_ProcessorInitializer_Standard(int64_t render_context) {
     // 设置安全栈保护
     uint64_t stack_guard = 0xfffffffffffffffe;
     int8_t security_buffer[32];
-    ulonglong security_key = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+    uint64_t security_key = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
     
     // 配置处理器模式为标准模式
     *(int8_t *)(render_context + 0xf0) = 0; // 标准模式
@@ -1000,13 +1000,13 @@ void RenderingSystem_ProcessorInitializer_Standard(longlong render_context) {
     
     // 设置处理器句柄
     uint64_t *processor_handle = (uint64_t *)
-        SystemHandleProcessor(*(longlong *)(*(longlong *)(render_context + 0x18) + 0x20) + 0x2970, 
-                     (longlong **)&security_buffer, render_context + 0x70);
+        SystemHandleProcessor(*(int64_t *)(*(int64_t *)(render_context + 0x18) + 0x20) + 0x2970, 
+                     (int64_t **)&security_buffer, render_context + 0x70);
     *(uint64_t *)(render_context + 0xd8) = *processor_handle;
     
     // 清理临时内存
-    if ((longlong *)security_buffer != (longlong *)0x0) {
-        (**(code **)(*(longlong *)security_buffer + 0x38))(); // 调用清理函数
+    if ((int64_t *)security_buffer != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)security_buffer + 0x38))(); // 调用清理函数
     }
     
     // 执行后初始化步骤
@@ -1014,12 +1014,12 @@ void RenderingSystem_ProcessorInitializer_Standard(longlong render_context) {
     
     // 处理回调函数
     if (*(int *)(render_context + 0xc0) == 0) {
-        (**(code **)(*(longlong *)(render_context + 0xb0) + 0x10))
-            ((longlong *)(render_context + 0xb0), &system_memory_0e58);
+        (**(code **)(*(int64_t *)(render_context + 0xb0) + 0x10))
+            ((int64_t *)(render_context + 0xb0), &system_memory_0e58);
     }
     
     // 安全退出
-    SystemSecurityChecker(security_key ^ (ulonglong)security_buffer);
+    SystemSecurityChecker(security_key ^ (uint64_t)security_buffer);
 }
 
 
@@ -1045,11 +1045,11 @@ void RenderingSystem_ProcessorInitializer_Standard(longlong render_context) {
  * 6. 执行后初始化步骤
  * 7. 处理回调函数
  */
-void RenderingSystem_ProcessorInitializer_Enhanced(longlong render_context) {
+void RenderingSystem_ProcessorInitializer_Enhanced(int64_t render_context) {
     // 设置安全栈保护
     uint64_t stack_guard = 0xfffffffffffffffe;
     int8_t security_buffer[32];
-    ulonglong security_key = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+    uint64_t security_key = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
     
     // 配置处理器模式为增强模式
     *(int8_t *)(render_context + 0xf0) = 1; // 增强模式
@@ -1072,13 +1072,13 @@ void RenderingSystem_ProcessorInitializer_Enhanced(longlong render_context) {
     
     // 设置处理器句柄
     uint64_t *processor_handle = (uint64_t *)
-        SystemHandleProcessor(*(longlong *)(*(longlong *)(render_context + 0x18) + 0x20) + 0x2970, 
-                     (longlong **)&security_buffer, render_context + 0x70);
+        SystemHandleProcessor(*(int64_t *)(*(int64_t *)(render_context + 0x18) + 0x20) + 0x2970, 
+                     (int64_t **)&security_buffer, render_context + 0x70);
     *(uint64_t *)(render_context + 0xd8) = *processor_handle;
     
     // 清理临时内存
-    if ((longlong *)security_buffer != (longlong *)0x0) {
-        (**(code **)(*(longlong *)security_buffer + 0x38))(); // 调用清理函数
+    if ((int64_t *)security_buffer != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)security_buffer + 0x38))(); // 调用清理函数
     }
     
     // 执行后初始化步骤
@@ -1086,12 +1086,12 @@ void RenderingSystem_ProcessorInitializer_Enhanced(longlong render_context) {
     
     // 处理回调函数
     if (*(int *)(render_context + 0xc0) == 0) {
-        (**(code **)(*(longlong *)(render_context + 0xb0) + 0x10))
-            ((longlong *)(render_context + 0xb0), &system_memory_0e58);
+        (**(code **)(*(int64_t *)(render_context + 0xb0) + 0x10))
+            ((int64_t *)(render_context + 0xb0), &system_memory_0e58);
     }
     
     // 安全退出
-    SystemSecurityChecker(security_key ^ (ulonglong)security_buffer);
+    SystemSecurityChecker(security_key ^ (uint64_t)security_buffer);
 }
 
 
@@ -1144,12 +1144,12 @@ void RenderingSystem_ManagerCreator(uint64_t param_1, uint64_t param_2) {
     *(int32_t *)(manager_ptr + 0x10) = 0; // 清零计数器
     
     // 初始化内存管理器结构
-    longlong *memory_manager = manager_ptr + 0x16;
-    *memory_manager = (longlong)&system_state_ptr; // 设置内存处理器
+    int64_t *memory_manager = manager_ptr + 0x16;
+    *memory_manager = (int64_t)&system_state_ptr; // 设置内存处理器
     manager_ptr[0x17] = 0; // 清零内存状态
     *(int32_t *)(manager_ptr + 0x18) = 0; // 清零内存计数
     
-    *memory_manager = (longlong)&system_data_buffer_ptr; // 设置内存分配器
+    *memory_manager = (int64_t)&system_data_buffer_ptr; // 设置内存分配器
     manager_ptr[0x19] = 0; // 清零分配状态
     manager_ptr[0x17] = 0; // 清零内存状态
     *(int32_t *)(manager_ptr + 0x18) = 0; // 清零内存计数
@@ -1187,19 +1187,19 @@ void RenderingSystem_ManagerCreator(uint64_t param_1, uint64_t param_2) {
     
     // 准备主字符串缓冲区
     buffer_ptr = (uint64_t *)0x0;
-    buffer_size = (ulonglong)buffer_size._4_4_ << 0x20;
+    buffer_size = (uint64_t)buffer_size._4_4_ << 0x20;
     string_buffer = &system_state_ptr;
     
     // 清理旧的字符串管理器
-    longlong *old_manager = (longlong *)manager[0x1c];
+    int64_t *old_manager = (int64_t *)manager[0x1c];
     manager[0x1c] = 0;
-    if (old_manager != (longlong *)0x0) {
+    if (old_manager != (int64_t *)0x0) {
         (**(code **)(*old_manager + 0x38))(); // 调用清理函数
     }
     
     // 设置管理器状态
     manager[0x13] = 0;
-    *(int32_t *)((longlong)manager + 0xa4) = 0x40200000; // 设置浮点常量
+    *(int32_t *)((int64_t)manager + 0xa4) = 0x40200000; // 设置浮点常量
     *(int8_t *)(manager + 0x15) = 0; // 清零状态标志
     
     // 初始化内存管理器回调
@@ -1207,8 +1207,8 @@ void RenderingSystem_ManagerCreator(uint64_t param_1, uint64_t param_2) {
     
     // 设置管理器参数
     *(int16_t *)(manager + 0x1a) = 0x100; // 设置缓冲区大小
-    *(int8_t *)((longlong)manager + 0xd2) = 1; // 设置启用标志
-    *(int8_t *)((longlong)manager + 0xd3) = 0; // 清零保留标志
+    *(int8_t *)((int64_t)manager + 0xd2) = 1; // 设置启用标志
+    *(int8_t *)((int64_t)manager + 0xd3) = 0; // 清零保留标志
     
     // 创建主字符串缓冲区
     string_buffer = &system_data_buffer_ptr;
@@ -1256,22 +1256,22 @@ void RenderingSystem_ManagerCreator(uint64_t param_1, uint64_t param_2) {
  * 4. 更新状态标志
  * 5. 执行回调函数
  */
-void RenderingSystem_HandleUpdater(longlong render_context, uint64_t param_2, 
+void RenderingSystem_HandleUpdater(int64_t render_context, uint64_t param_2, 
                                  uint64_t param_3, uint64_t param_4) {
     // 获取新的句柄
-    longlong *new_handle = (longlong *)
-        SystemHandleProcessor(*(longlong *)(*(longlong *)(render_context + 0x18) + 0x20) + 0x2970,
-                     (longlong **)&render_context, render_context + 0x70, param_4, 0xfffffffffffffffe);
+    int64_t *new_handle = (int64_t *)
+        SystemHandleProcessor(*(int64_t *)(*(int64_t *)(render_context + 0x18) + 0x20) + 0x2970,
+                     (int64_t **)&render_context, render_context + 0x70, param_4, 0xfffffffffffffffe);
     
-    longlong handle_value = *new_handle;
+    int64_t handle_value = *new_handle;
     
     // 清理临时内存
-    if ((longlong *)render_context != (longlong *)0x0) {
-        (**(code **)(*(longlong *)render_context + 0x38))(); // 调用清理函数
+    if ((int64_t *)render_context != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)render_context + 0x38))(); // 调用清理函数
     }
     
     // 获取当前句柄
-    longlong current_handle = *(longlong *)(render_context + 0xd8);
+    int64_t current_handle = *(int64_t *)(render_context + 0xd8);
     
     // 验证句柄变化
     if (handle_value != current_handle) {
@@ -1284,10 +1284,10 @@ void RenderingSystem_HandleUpdater(longlong render_context, uint64_t param_2,
          ((current_handle != 0) && (*(int *)(render_context + 0xf4) < *(int *)(current_handle + 0x70))))) {
         
         // 更新句柄
-        *(longlong *)(render_context + 0xd8) = handle_value;
+        *(int64_t *)(render_context + 0xd8) = handle_value;
         
         // 获取回调处理器
-        longlong *callback_handler = (longlong *)(*(longlong *)(render_context + 0x18) + 0x288);
+        int64_t *callback_handler = (int64_t *)(*(int64_t *)(render_context + 0x18) + 0x288);
         void *callback_param = &system_buffer_ptr;
         
         // 检查是否有自定义回调参数
@@ -1302,7 +1302,7 @@ void RenderingSystem_HandleUpdater(longlong render_context, uint64_t param_2,
         SystemRenderPostProcessor(render_context);
         
         // 更新状态值
-        *(int32_t *)(render_context + 0xf4) = *(int32_t *)(*(longlong *)(render_context + 0xd8) + 0x70);
+        *(int32_t *)(render_context + 0xf4) = *(int32_t *)(*(int64_t *)(render_context + 0xd8) + 0x70);
     }
 }
 
@@ -1327,25 +1327,25 @@ void RenderingSystem_HandleUpdater(longlong render_context, uint64_t param_2,
  * 3. 清理临时内存
  * 4. 执行后处理
  */
-void RenderingSystem_SimpleHandleSetter(longlong render_context, uint64_t param_2, 
+void RenderingSystem_SimpleHandleSetter(int64_t render_context, uint64_t param_2, 
                                       uint64_t param_3, uint64_t param_4) {
     // 获取句柄指针
     uint64_t *handle_ptr = (uint64_t *)
-        SystemHandleProcessor(*(longlong *)(*(longlong *)(render_context + 0x18) + 0x20) + 0x2970,
-                     (longlong **)render_context, render_context + 0x70, param_4, 0xfffffffffffffffe);
+        SystemHandleProcessor(*(int64_t *)(*(int64_t *)(render_context + 0x18) + 0x20) + 0x2970,
+                     (int64_t **)render_context, render_context + 0x70, param_4, 0xfffffffffffffffe);
     
     // 设置句柄值
     *(uint64_t *)(render_context + 0xd8) = *handle_ptr;
     
     // 清理临时内存
-    if ((longlong *)render_context != (longlong *)0x0) {
-        (**(code **)(*(longlong *)render_context + 0x38))(); // 调用清理函数
+    if ((int64_t *)render_context != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)render_context + 0x38))(); // 调用清理函数
     }
     
     // 如果句柄有效，执行后处理
-    if (*(longlong *)(render_context + 0xd8) != 0) {
+    if (*(int64_t *)(render_context + 0xd8) != 0) {
         SystemRenderPostProcessor(render_context); // 调用后处理函数
-        *(int32_t *)(render_context + 0xf4) = *(int32_t *)(*(longlong *)(render_context + 0xd8) + 0x70);
+        *(int32_t *)(render_context + 0xf4) = *(int32_t *)(*(int64_t *)(render_context + 0xd8) + 0x70);
     }
 }
 
@@ -1367,11 +1367,11 @@ void RenderingSystem_SimpleHandleSetter(longlong render_context, uint64_t param_
  * 3. 检查特定字符串模式
  * 4. 返回验证结果
  */
-uint64_t RenderingSystem_StringValidator(uint64_t param_1, longlong string_info) {
+uint64_t RenderingSystem_StringValidator(uint64_t param_1, int64_t string_info) {
     int string_length;
     int compare_result;
-    longlong char_index;
-    longlong next_index;
+    int64_t char_index;
+    int64_t next_index;
     
     // 获取字符串长度
     string_length = *(int *)(string_info + 0x10);
@@ -1381,7 +1381,7 @@ uint64_t RenderingSystem_StringValidator(uint64_t param_1, longlong string_info)
         char_index = 0;
         // 逐字符比较固定格式
         while (next_index = char_index + 1,
-               *(char *)(*(longlong *)(string_info + 8) + char_index) == (&system_memory_0e40)[char_index]) {
+               *(char *)(*(int64_t *)(string_info + 8) + char_index) == (&system_memory_0e40)[char_index]) {
             char_index = next_index;
             if (next_index == 8) {
                 return 0; // 验证成功

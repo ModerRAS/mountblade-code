@@ -144,12 +144,12 @@
 void advanced_data_processor(void)
 {
   int32_t system_result;
-  longlong stack_pointer;
-  longlong system_context;
+  int64_t stack_pointer;
+  int64_t system_context;
   int32_t parameter_data;
   
   /* 系统数据初始化 */
-  *(int32_t *)(*(longlong *)(system_context + 8) + 0x18) = MAX_STRING_LENGTH;
+  *(int32_t *)(*(int64_t *)(system_context + 8) + 0x18) = MAX_STRING_LENGTH;
   
   /* 系统资源初始化检查 */
   if (*(int *)(system_context + 0x110) == 0) {
@@ -161,7 +161,7 @@ void advanced_data_processor(void)
   *(int32_t *)(system_context + 0x18) = parameter_data;
   
   /* 系统栈处理 */
-  SystemSecurityChecker(*(ulonglong *)(stack_pointer + 0x218) ^ (ulonglong)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(stack_pointer + 0x218) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -181,7 +181,7 @@ void advanced_data_processor(void)
  * @param result_pointer 结果指针
  * @return 处理状态码（0表示成功，非0表示错误）
  */
-uint64_t string_parser(longlong data_context, ulonglong buffer_address, uint data_size, int32_t *result_pointer)
+uint64_t string_parser(int64_t data_context, uint64_t buffer_address, uint data_size, int32_t *result_pointer)
 
 {
   char string_char;
@@ -191,18 +191,18 @@ uint64_t string_parser(longlong data_context, ulonglong buffer_address, uint dat
   uint64_t *function_pointer;
   uint operation_result;
   int string_length;
-  longlong data_alignment;
-  longlong *string_array;
+  int64_t data_alignment;
+  int64_t *string_array;
   int data_type;
-  ulonglong alignment_size;
+  uint64_t alignment_size;
   char *key_string;
   char *current_char;
   char *value_string;
   int16_t *data_buffer;
-  ulonglong processed_count;
+  uint64_t processed_count;
   
   /* 数据类型对齐大小计算 */
-  data_type = *(int *)(*(longlong *)(data_context + 8) + 8);
+  data_type = *(int *)(*(int64_t *)(data_context + 8) + 8);
   if (data_type == 1) {
     data_alignment = 8;
   }
@@ -216,11 +216,11 @@ uint64_t string_parser(longlong data_context, ulonglong buffer_address, uint dat
     if ((data_type != 4) && (data_type != 5)) goto SKIP_ALIGNMENT_CALC;
     data_alignment = 0x20;
   }
-  data_size = (uint)((ulonglong)data_size * data_alignment >> 3);
+  data_size = (uint)((uint64_t)data_size * data_alignment >> 3);
 SKIP_ALIGNMENT_CALC:
   operation_result = data_processor_function(data_context, data_context + 0x178, buffer_address,
-                        *(int *)(*(longlong *)(data_context + 8) + 0xc) * data_size, 0, 2, 1, 0);
-  processed_count = (ulonglong)operation_result;
+                        *(int *)(*(int64_t *)(data_context + 8) + 0xc) * data_size, 0, 2, 1, 0);
+  processed_count = (uint64_t)operation_result;
   if ((int)operation_result < 1) {
     if (operation_result == 0xffffff7d) {
       return ERROR_INVALID_FORMAT;
@@ -233,7 +233,7 @@ SKIP_ALIGNMENT_CALC:
       return ERROR_PROCESSING_FAILED;
     }
   }
-  data_type = *(int *)(*(longlong *)(data_context + 8) + 0xc);
+  data_type = *(int *)(*(int64_t *)(data_context + 8) + 0xc);
   if (data_type == 6) {
     if (buffer_address < processed_count + buffer_address) {
       data_buffer = (int16_t *)(buffer_address + 4);
@@ -270,8 +270,8 @@ SKIP_ALIGNMENT_CALC:
       data_alignment = data_alignment + -1;
     } while (data_alignment != 0);
   }
-  string_array = (longlong *)get_string_array_function(data_context + 0x178);
-  if ((string_array != (longlong *)0x0) && ((int)string_array[2] != 0)) {
+  string_array = (int64_t *)get_string_array_function(data_context + 0x178);
+  if ((string_array != (int64_t *)0x0) && ((int)string_array[2] != 0)) {
     if (0 < (int)string_array[2]) {
       data_type = 0;
       data_alignment = 0;
@@ -303,9 +303,9 @@ PARSE_COMPLETE:
   }
   alignment_size = 0x20;
   if (result_pointer != (int32_t *)0x0) {
-    operation_result = *(uint *)(*(longlong *)(data_context + 8) + 0xc);
+    operation_result = *(uint *)(*(int64_t *)(data_context + 8) + 0xc);
     if (operation_result != 0) {
-      data_type = *(int *)(*(longlong *)(data_context + 8) + 8);
+      data_type = *(int *)(*(int64_t *)(data_context + 8) + 8);
       if (data_type == 1) {
         alignment_size = 8;
       }
@@ -319,7 +319,7 @@ PARSE_COMPLETE:
         *result_pointer = (int)processed_count;
         return 0;
       }
-      *result_pointer = (int)(((processed_count << 3) / alignment_size & 0xffffffff) / (ulonglong)operation_result);
+      *result_pointer = (int)(((processed_count << 3) / alignment_size & 0xffffffff) / (uint64_t)operation_result);
     }
   }
   return 0;
@@ -352,17 +352,17 @@ uint64_t data_flow_controller(void)
   int16_t swap_data3;
   uint data_size;
   uint64_t *function_pointer;
-  longlong system_context;
-  longlong *string_array;
-  longlong loop_counter;
-  ulonglong buffer_address;
+  int64_t system_context;
+  int64_t *string_array;
+  int64_t loop_counter;
+  uint64_t buffer_address;
   int item_count;
-  ulonglong alignment_size;
+  uint64_t alignment_size;
   char *current_char;
   char *value_string;
   int16_t *data_buffer;
   uint *result_pointer;
-  longlong data_context;
+  int64_t data_context;
   uint data_count;
   uint *stack_param;
   
@@ -370,7 +370,7 @@ uint64_t data_flow_controller(void)
   if (*(int *)(system_context + 0xc) == 6) {
     if (buffer_address < data_count + buffer_address) {
       data_buffer = (int16_t *)(buffer_address + 4);
-      loop_counter = ((ulonglong)data_count - 1) / 0xc + 1;
+      loop_counter = ((uint64_t)data_count - 1) / 0xc + 1;
       do {
         swap_data1 = data_buffer[-1];
         swap_data2 = data_buffer[1];
@@ -388,7 +388,7 @@ uint64_t data_flow_controller(void)
   /* 数据类型8处理 */
   else if ((*(int *)(system_context + 0xc) == 8) && (buffer_address < data_count + buffer_address)) {
     data_buffer = (int16_t *)(buffer_address + 4);
-    loop_counter = ((ulonglong)data_count - 1 >> 4) + 1;
+    loop_counter = ((uint64_t)data_count - 1 >> 4) + 1;
     do {
       swap_data1 = data_buffer[-1];
       swap_data2 = data_buffer[1];
@@ -405,8 +405,8 @@ uint64_t data_flow_controller(void)
     } while (loop_counter != 0);
   }
   /* 字符串数组处理 */
-  string_array = (longlong *)get_string_array_function(data_context + 0x178);
-  if ((string_array != (longlong *)0x0) && ((int)string_array[2] != 0)) {
+  string_array = (int64_t *)get_string_array_function(data_context + 0x178);
+  if ((string_array != (int64_t *)0x0) && ((int)string_array[2] != 0)) {
     if (0 < (int)string_array[2]) {
       item_count = 0;
       loop_counter = 0;
@@ -437,9 +437,9 @@ uint64_t data_flow_controller(void)
   }
   /* 结果计算 */
   if (result_pointer != (uint *)0x0) {
-    data_size = *(uint *)(*(longlong *)(data_context + 8) + 0xc);
+    data_size = *(uint *)(*(int64_t *)(data_context + 8) + 0xc);
     if (data_size != 0) {
-      item_count = *(int *)(*(longlong *)(data_context + 8) + 8);
+      item_count = *(int *)(*(int64_t *)(data_context + 8) + 8);
       if (item_count == 1) {
         alignment_size = 8;
       }
@@ -453,7 +453,7 @@ uint64_t data_flow_controller(void)
         *result_pointer = data_count;
         return 0;
       }
-      *result_pointer = (uint)((((ulonglong)data_count << 3) / alignment_size & 0xffffffff) / (ulonglong)data_size
+      *result_pointer = (uint)((((uint64_t)data_count << 3) / alignment_size & 0xffffffff) / (uint64_t)data_size
                          );
     }
   }
@@ -481,15 +481,15 @@ uint64_t parameter_calculator(void)
 {
   uint data_size;
   int parameter_type;
-  ulonglong alignment_size;
+  uint64_t alignment_size;
   uint *result_pointer;
-  longlong data_context;
+  int64_t data_context;
   uint parameter_value;
   
   /* 获取数据大小 */
-  data_size = *(uint *)(*(longlong *)(data_context + 8) + 0xc);
+  data_size = *(uint *)(*(int64_t *)(data_context + 8) + 0xc);
   if (data_size != 0) {
-    parameter_type = *(int *)(*(longlong *)(data_context + 8) + 8);
+    parameter_type = *(int *)(*(int64_t *)(data_context + 8) + 8);
     if (parameter_type == 1) {
       alignment_size = 8;
     }
@@ -503,7 +503,7 @@ uint64_t parameter_calculator(void)
       *result_pointer = parameter_value;
       return 0;
     }
-    *result_pointer = (uint)((((ulonglong)parameter_value << 3) / alignment_size & 0xffffffff) / (ulonglong)data_size);
+    *result_pointer = (uint)((((uint64_t)parameter_value << 3) / alignment_size & 0xffffffff) / (uint64_t)data_size);
   }
   return 0;
 }
@@ -524,7 +524,7 @@ uint64_t parameter_calculator(void)
  * @param validation_flag 验证标志
  * @return 验证状态码（0表示成功，非0表示错误）
  */
-uint64_t data_validator(longlong data_context, uint64_t validation_context, int validation_flag)
+uint64_t data_validator(int64_t data_context, uint64_t validation_context, int validation_flag)
 
 {
   int validation_result;
@@ -534,7 +534,7 @@ uint64_t data_validator(longlong data_context, uint64_t validation_context, int 
     if (validation_result == -0x8b) {
       return ERROR_BUFFER_OVERFLOW;
     }
-    if ((validation_flag != 0) || (*(longlong *)(data_context + 0x1f0) != 0)) {
+    if ((validation_flag != 0) || (*(int64_t *)(data_context + 0x1f0) != 0)) {
       return ERROR_INVALID_FORMAT;
     }
   }
@@ -562,10 +562,10 @@ uint64_t data_validator(longlong data_context, uint64_t validation_context, int 
  * @param multiplicand 被乘数
  * @return 无返回值
  */
-void data_multiplier(longlong data_context, int multiplier, int multiplicand)
+void data_multiplier(int64_t data_context, int multiplier, int multiplicand)
 
 {
-  longlong operation_result;
+  int64_t operation_result;
   
   operation_result = data_multiplication_function(*(uint64_t *)(GLOBAL_DATA_ADDRESS + 0x1a0), multiplier * multiplicand, &GLOBAL_BUFFER_ADDRESS,
                         0x22, 0);
@@ -622,10 +622,10 @@ void data_handler(uint64_t operation_context, uint64_t data_buffer)
  * @param increment_value 递增值
  * @return 无返回值
  */
-void data_incrementer(longlong data_context, int increment_value)
+void data_incrementer(int64_t data_context, int increment_value)
 
 {
-  longlong operation_result;
+  int64_t operation_result;
   
   operation_result = data_increment_function(*(uint64_t *)(GLOBAL_DATA_ADDRESS + 0x1a0), increment_value, &GLOBAL_BUFFER_ADDRESS, 0x15, 0, 0, 1);
   if ((operation_result != 0) && (data_context != 0)) {
@@ -655,10 +655,10 @@ void data_incrementer(longlong data_context, int increment_value)
  * @param data_size 数据大小
  * @return 无返回值
  */
-void data_processor_advanced(longlong data_context, uint64_t data_buffer, int data_size)
+void data_processor_advanced(int64_t data_context, uint64_t data_buffer, int data_size)
 
 {
-  longlong operation_result;
+  int64_t operation_result;
   
   operation_result = advanced_data_processing_function(*(uint64_t *)(GLOBAL_DATA_ADDRESS + 0x1a0), data_buffer, data_size, &GLOBAL_BUFFER_ADDRESS, 0x3c,
                         0);
@@ -686,12 +686,12 @@ void data_processor_advanced(longlong data_context, uint64_t data_buffer, int da
  * @param content_size 内容大小指针
  * @return 解析状态码（0表示成功，非0表示错误）
  */
-uint64_t xml_parser(longlong xml_context, char *tag_buffer, int *tag_size, longlong content_buffer, int *content_size)
+uint64_t xml_parser(int64_t xml_context, char *tag_buffer, int *tag_size, int64_t content_buffer, int *content_size)
 
 {
   uint64_t parse_result;
-  ulonglong char_index;
-  ulonglong content_index;
+  uint64_t char_index;
+  uint64_t content_index;
   int max_content_size;
   char temp_char[8];
   char whitespace_buffer[16];
@@ -727,7 +727,7 @@ uint64_t xml_parser(longlong xml_context, char *tag_buffer, int *tag_size, longl
         return parse_result;
       }
       if ((int)char_index < *tag_size) {
-        char_index = (ulonglong)((int)char_index + 1);
+        char_index = (uint64_t)((int)char_index + 1);
         *tag_buffer = temp_char[0];
         tag_buffer = tag_buffer + 1;
       }
@@ -748,8 +748,8 @@ uint64_t xml_parser(longlong xml_context, char *tag_buffer, int *tag_size, longl
         if ((int)parse_result != 0) {
           return parse_result;
         }
-        if ((longlong)content_index < (longlong)max_content_size) {
-          char_index = (ulonglong)((int)char_index + 1);
+        if ((int64_t)content_index < (int64_t)max_content_size) {
+          char_index = (uint64_t)((int)char_index + 1);
           *(char *)(content_index + content_buffer) = temp_char[0];
           content_index = content_index + 1;
         }
@@ -800,11 +800,11 @@ uint64_t xml_parser(longlong xml_context, char *tag_buffer, int *tag_size, longl
  * @param value_size 值大小指针
  * @return 解析状态码（0表示成功，非0表示错误）
  */
-ulonglong config_parser(longlong config_context, char *key_buffer, int key_size, int *value_size)
+uint64_t config_parser(int64_t config_context, char *key_buffer, int key_size, int *value_size)
 
 {
-  ulonglong parse_result;
-  ulonglong char_result;
+  uint64_t parse_result;
+  uint64_t char_result;
   int char_count;
   int line_length;
   int whitespace_count;
@@ -928,22 +928,22 @@ PARSE_COMPLETE:
  * @param result_pointer 结果指针（通过寄存器传递）
  * @return 处理状态码（0表示成功，非0表示错误）
  */
-ulonglong line_processor(void)
+uint64_t line_processor(void)
 
 {
-  ulonglong parse_result;
-  longlong text_context;
+  uint64_t parse_result;
+  int64_t text_context;
   int buffer_index;
   int char_count;
   int line_length;
-  ulonglong char_result;
+  uint64_t char_result;
   int whitespace_count;
   int max_line_size;
   char *line_pointer;
   char temp_char;
   char next_buffer[7];
   char current_char;
-  longlong result_buffer;
+  int64_t result_buffer;
   int original_max_size;
   int *result_size_pointer;
   
@@ -1060,7 +1060,7 @@ void empty_function_1(void)
  * @param check_char 要检查的字符
  * @return 检查结果（1表示行结束，0表示未结束）
  */
-int8_t line_end_checker(longlong text_context, char check_char)
+int8_t line_end_checker(int64_t text_context, char check_char)
 
 {
   char next_buffer[24];
@@ -1097,21 +1097,21 @@ int8_t line_end_checker(longlong text_context, char check_char)
  * @param system_context 系统上下文指针
  * @return 无返回值
  */
-void system_initializer(longlong system_context)
+void system_initializer(int64_t system_context)
 
 {
   int init_result;
-  ulonglong parse_result;
-  longlong string_length;
+  uint64_t parse_result;
+  int64_t string_length;
   int8_t stack_protection[32];
   uint64_t init_flag;
   char temp_buffer[8];
-  longlong temp_value1;
-  longlong temp_value2;
+  int64_t temp_value1;
+  int64_t temp_value2;
   uint64_t temp_value3;
-  ulonglong stack_checksum;
+  uint64_t stack_checksum;
   
-  stack_checksum = GLOBAL_STACK_CHECKSUM ^ (ulonglong)stack_protection;
+  stack_checksum = GLOBAL_STACK_CHECKSUM ^ (uint64_t)stack_protection;
   
   /* 初始化系统参数 */
   *(int32_t *)(system_context + 0x28) = 0xb;
@@ -1166,7 +1166,7 @@ void system_initializer(longlong system_context)
                 init_result = read_string_function(*(uint64_t *)(system_context + 0x170), &temp_value1);
                 if (init_result != 0) goto CLEANUP_AND_EXIT;
                 init_result = get_string_length_function(temp_value1);
-                string_length = (longlong)(init_result + -4);
+                string_length = (int64_t)(init_result + -4);
                 init_result = string_compare_function(temp_value1 + string_length, &GLOBAL_STRING_TABLE6, 4);
                 if (((init_result != 0) &&
                     (init_result = string_compare_function(temp_value1 + string_length, &GLOBAL_STRING_TABLE7, 4), init_result != 0))
@@ -1202,7 +1202,7 @@ void system_initializer(longlong system_context)
   }
 CLEANUP_AND_EXIT:
   /* 清理并退出 */
-  stack_cleanup_function(stack_checksum ^ (ulonglong)stack_protection);
+  stack_cleanup_function(stack_checksum ^ (uint64_t)stack_protection);
 }
 
 
@@ -1229,11 +1229,11 @@ void resource_initializer(void)
 
 {
   int init_result;
-  longlong resource_context;
+  int64_t resource_context;
   int32_t resource_flag;
-  longlong string_length;
-  longlong temp_string;
-  ulonglong stack_checksum;
+  int64_t string_length;
+  int64_t temp_string;
+  uint64_t stack_checksum;
   
   init_result = string_compare_function(&GLOBAL_STRING_TABLE, &STACK_TEMP_BUFFER);
   if (init_result == 0) {
@@ -1263,7 +1263,7 @@ void resource_initializer(void)
             init_result = read_string_function(*(uint64_t *)(resource_context + 0x170), &temp_string);
             if (init_result != 0) goto CLEANUP_AND_EXIT;
             init_result = get_string_length_function(temp_string);
-            string_length = (longlong)(init_result + -4);
+            string_length = (int64_t)(init_result + -4);
             init_result = string_compare_function(temp_string + string_length, &GLOBAL_STRING_TABLE6, 4);
             if ((((init_result != 0) &&
                  (init_result = string_compare_function(temp_string + string_length, &GLOBAL_STRING_TABLE7, 4),
@@ -1297,7 +1297,7 @@ void resource_initializer(void)
   }
 CLEANUP_AND_EXIT:
   /* 清理并退出 */
-  stack_cleanup_function(stack_checksum ^ (ulonglong)&stack_base_address);
+  stack_cleanup_function(stack_checksum ^ (uint64_t)&stack_base_address);
 }
 
 
@@ -1320,10 +1320,10 @@ CLEANUP_AND_EXIT:
 void stack_cleanup(void)
 
 {
-  ulonglong stack_checksum;
+  uint64_t stack_checksum;
   
   /* 执行栈清理 - 此函数不返回 */
-  stack_cleanup_function(stack_checksum ^ (ulonglong)&stack_base_address);
+  stack_cleanup_function(stack_checksum ^ (uint64_t)&stack_base_address);
 }
 
 

@@ -37,9 +37,9 @@
  * 实现资源的分配、释放和生命周期管理。
  */
 typedef struct ResourceManager {
-    longlong* resource_pool;          // 资源池指针
-    longlong* active_resources;       // 活动资源链表
-    longlong* free_resources;         // 空闲资源链表
+    int64_t* resource_pool;          // 资源池指针
+    int64_t* active_resources;       // 活动资源链表
+    int64_t* free_resources;         // 空闲资源链表
     uint resource_count;              // 资源计数器
     uint max_resources;               // 最大资源数量
     void* cleanup_handler;            // 清理处理函数
@@ -52,7 +52,7 @@ typedef struct ResourceManager {
  * 当引用计数降为0时自动释放资源。
  */
 typedef struct ReferenceManager {
-    longlong* ref_table;              // 引用表指针
+    int64_t* ref_table;              // 引用表指针
     uint table_size;                  // 表大小
     uint active_entries;              // 活动条目数
     void* release_callback;          // 释放回调函数
@@ -67,7 +67,7 @@ typedef struct ReferenceManager {
 typedef struct SystemStateManager {
     uint system_flags;                // 系统状态标志
     uint error_code;                 // 错误代码
-    longlong* error_log;              // 错误日志指针
+    int64_t* error_log;              // 错误日志指针
     void* recovery_handler;           // 恢复处理函数
 } SystemStateManager;
 
@@ -294,9 +294,9 @@ typedef struct SystemStateManager {
 void SystemResourceCleanup(void)
 
 {
-  longlong *plVar1;
-  longlong *plVar2;
-  longlong *plVar3;
+  int64_t *plVar1;
+  int64_t *plVar2;
+  int64_t *plVar3;
   uint64_t *unaff_R14;
   
   // 调用资源清理前处理函数
@@ -304,24 +304,24 @@ void SystemResourceCleanup(void)
   plVar1 = unaff_R14 + 6;
   
   // 处理资源链表节点：从活动链表移除并加入空闲链表
-  *(longlong *)unaff_R14[7] = *plVar1;
+  *(int64_t *)unaff_R14[7] = *plVar1;
   *(uint64_t *)(*plVar1 + 8) = unaff_R14[7];
   unaff_R14[7] = plVar1;
-  *plVar1 = (longlong)plVar1;
+  *plVar1 = (int64_t)plVar1;
   
   // 重复链表操作以确保完整性
-  *(longlong **)unaff_R14[7] = plVar1;
+  *(int64_t **)unaff_R14[7] = plVar1;
   *(uint64_t *)(*plVar1 + 8) = unaff_R14[7];
   unaff_R14[7] = plVar1;
-  *plVar1 = (longlong)plVar1;
+  *plVar1 = (int64_t)plVar1;
   
   // 设置系统状态标志
   *unaff_R14 = &unknown_var_936_ptr;
   plVar1 = unaff_R14 + 4;
-  plVar2 = (longlong *)*plVar1;
+  plVar2 = (int64_t *)*plVar1;
   
   // 检查是否需要立即清理
-  if ((plVar2 == plVar1) && ((longlong *)unaff_R14[5] == plVar1)) {
+  if ((plVar2 == plVar1) && ((int64_t *)unaff_R14[5] == plVar1)) {
     func_0x00018085dda0(plVar1);
     *unaff_R14 = &unknown_var_1544_ptr;
     *(int32_t *)(unaff_R14 + 1) = 0xdeadf00d;
@@ -329,27 +329,27 @@ void SystemResourceCleanup(void)
   }
   
   // 准备延迟清理操作
-  plVar3 = (longlong *)0x0;
+  plVar3 = (int64_t *)0x0;
   if (plVar2 != plVar1) {
     plVar3 = plVar2;
   }
   
   // 设置清理标志并执行清理操作
-  *(int32_t *)((longlong)plVar3 + 0x44) = 0xffffffff;
+  *(int32_t *)((int64_t)plVar3 + 0x44) = 0xffffffff;
   FUN_18084c220(plVar3 + 4);
   FUN_18084c220(plVar3 + 2);
   
   // 处理资源对象的双向链表操作
-  *(longlong *)plVar3[1] = *plVar3;
-  *(longlong *)(*plVar3 + 8) = plVar3[1];
-  plVar3[1] = (longlong)plVar3;
-  *plVar3 = (longlong)plVar3;
+  *(int64_t *)plVar3[1] = *plVar3;
+  *(int64_t *)(*plVar3 + 8) = plVar3[1];
+  plVar3[1] = (int64_t)plVar3;
+  *plVar3 = (int64_t)plVar3;
   
   // 确保链表操作的完整性
-  *(longlong **)plVar3[1] = plVar3;
-  *(longlong *)(*plVar3 + 8) = plVar3[1];
-  plVar3[1] = (longlong)plVar3;
-  *plVar3 = (longlong)plVar3;
+  *(int64_t **)plVar3[1] = plVar3;
+  *(int64_t *)(*plVar3 + 8) = plVar3[1];
+  plVar3[1] = (int64_t)plVar3;
+  *plVar3 = (int64_t)plVar3;
   
   // 执行最终的资源释放操作（不返回）
   FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar3,&unknown_var_976_ptr,0x30);
@@ -371,25 +371,25 @@ void SystemResourceCleanup(void)
  * @param flags 释放标志位（bit 0: 是否释放内存）
  * @return 资源对象指针（用于链式操作）
  */
-longlong ResourceObjectRelease(longlong resource_ptr, uint flags)
+int64_t ResourceObjectRelease(int64_t resource_ptr, uint flags)
 
 {
-  longlong *plVar1;
+  int64_t *plVar1;
   
   // 获取资源链表头指针
-  plVar1 = (longlong *)(resource_ptr + 0x30);
+  plVar1 = (int64_t *)(resource_ptr + 0x30);
   
   // 从活动链表中移除资源节点
-  **(longlong **)(resource_ptr + 0x38) = *plVar1;
+  **(int64_t **)(resource_ptr + 0x38) = *plVar1;
   *(uint64_t *)(*plVar1 + 8) = *(uint64_t *)(resource_ptr + 0x38);
-  *(longlong **)(resource_ptr + 0x38) = plVar1;
-  *plVar1 = (longlong)plVar1;
+  *(int64_t **)(resource_ptr + 0x38) = plVar1;
+  *plVar1 = (int64_t)plVar1;
   
   // 确保链表操作的完整性（重复操作）
-  **(longlong **)(resource_ptr + 0x38) = (longlong)plVar1;
+  **(int64_t **)(resource_ptr + 0x38) = (int64_t)plVar1;
   *(uint64_t *)(*plVar1 + 8) = *(uint64_t *)(resource_ptr + 0x38);
-  *(longlong **)(resource_ptr + 0x38) = plVar1;
-  *plVar1 = (longlong)plVar1;
+  *(int64_t **)(resource_ptr + 0x38) = plVar1;
+  *plVar1 = (int64_t)plVar1;
   
   // 调用资源释放后处理函数
   FUN_1808b02a0();
@@ -418,10 +418,10 @@ longlong ResourceObjectRelease(longlong resource_ptr, uint flags)
  * @param cleanup_flags 清理标志（bit 0: 是否释放内存）
  * @return 资源对象指针（用于链式操作）
  */
-longlong ExtendedResourceCleanup(longlong resource_ptr, ulonglong cleanup_flags)
+int64_t ExtendedResourceCleanup(int64_t resource_ptr, uint64_t cleanup_flags)
 
 {
-  longlong *plVar1;
+  int64_t *plVar1;
   
   // 清理额外的内存区域（0x58 偏移）
   FUN_18084c220(resource_ptr + 0x58);
@@ -430,19 +430,19 @@ longlong ExtendedResourceCleanup(longlong resource_ptr, ulonglong cleanup_flags)
   FUN_18084c220(resource_ptr + 0x48);
   
   // 获取资源链表头指针
-  plVar1 = (longlong *)(resource_ptr + 0x30);
+  plVar1 = (int64_t *)(resource_ptr + 0x30);
   
   // 从活动链表中移除资源节点
-  **(longlong **)(resource_ptr + 0x38) = *plVar1;
+  **(int64_t **)(resource_ptr + 0x38) = *plVar1;
   *(uint64_t *)(*plVar1 + 8) = *(uint64_t *)(resource_ptr + 0x38);
-  *(longlong **)(resource_ptr + 0x38) = plVar1;
-  *plVar1 = (longlong)plVar1;
+  *(int64_t **)(resource_ptr + 0x38) = plVar1;
+  *plVar1 = (int64_t)plVar1;
   
   // 确保链表操作的完整性（重复操作）
-  **(longlong **)(resource_ptr + 0x38) = (longlong)plVar1;
+  **(int64_t **)(resource_ptr + 0x38) = (int64_t)plVar1;
   *(uint64_t *)(*plVar1 + 8) = *(uint64_t *)(resource_ptr + 0x38);
-  *(longlong **)(resource_ptr + 0x38) = plVar1;
-  *plVar1 = (longlong)plVar1;
+  *(int64_t **)(resource_ptr + 0x38) = plVar1;
+  *plVar1 = (int64_t)plVar1;
   
   // 调用资源释放后处理函数（带参数）
   FUN_1808b02a0(resource_ptr);
@@ -473,7 +473,7 @@ longlong ExtendedResourceCleanup(longlong resource_ptr, ulonglong cleanup_flags)
  * @param ref_ptr 引用指针输出参数
  * @return 状态码（0: 成功，0x26: 内存分配失败）
  */
-uint64_t ReferenceCountInitialize(int ref_type, longlong *ref_ptr)
+uint64_t ReferenceCountInitialize(int ref_type, int64_t *ref_ptr)
 
 {
   int *piVar1;
@@ -490,7 +490,7 @@ uint64_t ReferenceCountInitialize(int ref_type, longlong *ref_ptr)
   // 初始化引用对象
   *piVar1 = ref_type;      // 设置引用类型
   piVar1[1] = 0;          // 初始化引用计数为0
-  *ref_ptr = (longlong)piVar1;  // 返回引用对象指针
+  *ref_ptr = (int64_t)piVar1;  // 返回引用对象指针
   
   return 0;  // 成功
 }
@@ -512,10 +512,10 @@ uint64_t ReferenceCountInitialize(int ref_type, longlong *ref_ptr)
  * @param ref_ptr 引用对象指针的指针
  * @return 状态码（0: 成功，0x1c: 引用计数无效）
  */
-uint64_t ReferenceCountRelease(longlong *ref_ptr)
+uint64_t ReferenceCountRelease(int64_t *ref_ptr)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   
   // 获取引用对象指针
   lVar1 = *ref_ptr;
@@ -559,16 +559,16 @@ uint64_t ReferenceCountRelease(longlong *ref_ptr)
  * @param validation_flags 验证标志位
  * @note 此函数可能执行不返回的操作
  */
-void ResourceStatusValidation(longlong resource_handle, uint64_t validation_flags)
+void ResourceStatusValidation(int64_t resource_handle, uint64_t validation_flags)
 
 {
   int iVar1;
   int8_t auStack_48 [8];
   uint64_t uStack_40;
-  ulonglong uStack_38;
+  uint64_t uStack_38;
   
   // 初始化堆栈保护变量
-  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_48;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_48;
   
   // 检查资源状态标志
   if (*(int *)(resource_handle + 0x60) == 1) {
@@ -585,26 +585,26 @@ void ResourceStatusValidation(longlong resource_handle, uint64_t validation_flag
   }
   
   // 执行最终的状态检查（不返回）
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_48);
+  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_48);
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t ResourceArrayManagement(longlong array_ptr, longlong data_ptr, int array_size)
+uint64_t ResourceArrayManagement(int64_t array_ptr, int64_t data_ptr, int array_size)
 
 {
   int iVar1;
   int *piVar2;
   uint64_t uVar3;
   uint64_t *puVar4;
-  ulonglong uVar5;
+  uint64_t uVar5;
   uint uVar6;
-  ulonglong uVar7;
-  longlong lVar8;
+  uint64_t uVar7;
+  int64_t lVar8;
   
-  lVar8 = (longlong)*(int *)(param_1 + 0x50);
+  lVar8 = (int64_t)*(int *)(param_1 + 0x50);
   uVar5 = 0;
   if (*(int *)(param_1 + 0x50) < param_3) {
     uVar6 = (int)*(uint *)(param_1 + 0x54) >> 0x1f;
@@ -615,7 +615,7 @@ uint64_t ResourceArrayManagement(longlong array_ptr, longlong data_ptr, int arra
     iVar1 = *(int *)(param_1 + 0x50);
     if (iVar1 < param_3) {
                     // WARNING: Subroutine does not return
-      memset(*(longlong *)(param_1 + 0x48) + (longlong)iVar1 * 8,0,(longlong)(param_3 - iVar1) << 3)
+      memset(*(int64_t *)(param_1 + 0x48) + (int64_t)iVar1 * 8,0,(int64_t)(param_3 - iVar1) << 3)
       ;
     }
     *(int *)(param_1 + 0x50) = param_3;
@@ -634,7 +634,7 @@ LAB_1808da52e:
         puVar4[1] = 0;
         *puVar4 = &unknown_var_9360_ptr;
         *(int32_t *)(puVar4 + 3) = 0;
-        *(uint64_t **)(*(longlong *)(param_1 + 0x48) + lVar8 * 8) = puVar4;
+        *(uint64_t **)(*(int64_t *)(param_1 + 0x48) + lVar8 * 8) = puVar4;
         *(int *)(puVar4 + 3) = piVar2[0xe];
       }
       else {
@@ -659,7 +659,7 @@ LAB_1808da52e:
           *puVar4 = &unknown_var_9360_ptr;
           *(int32_t *)(puVar4 + 2) = 2;
           *(int8_t *)(puVar4 + 3) = 0;
-          *(uint64_t **)(*(longlong *)(param_1 + 0x48) + lVar8 * 8) = puVar4;
+          *(uint64_t **)(*(int64_t *)(param_1 + 0x48) + lVar8 * 8) = puVar4;
           *(bool *)(puVar4 + 3) = piVar2[0xc] != 0;
         }
         else {
@@ -676,7 +676,7 @@ LAB_1808da52e:
           *puVar4 = &unknown_var_9368_ptr;
           *(int32_t *)(puVar4 + 2) = 3;
           puVar4[3] = 0;
-          *(uint64_t **)(*(longlong *)(param_1 + 0x48) + lVar8 * 8) = puVar4;
+          *(uint64_t **)(*(int64_t *)(param_1 + 0x48) + lVar8 * 8) = puVar4;
         }
       }
     }
@@ -684,14 +684,14 @@ LAB_1808da52e:
   uVar7 = uVar5;
   if (0 < param_3) {
     do {
-      lVar8 = *(longlong *)(uVar5 + *(longlong *)(param_1 + 0x48));
+      lVar8 = *(int64_t *)(uVar5 + *(int64_t *)(param_1 + 0x48));
       if (*(int *)(lVar8 + 0x10) != **(int **)(uVar5 + param_2)) {
         return 0x35;
       }
       uVar6 = (int)uVar7 + 1;
       *(int **)(lVar8 + 8) = *(int **)(uVar5 + param_2);
       uVar5 = uVar5 + 8;
-      uVar7 = (ulonglong)uVar6;
+      uVar7 = (uint64_t)uVar6;
     } while ((int)uVar6 < param_3);
   }
   *(int *)(param_1 + 0x58) = param_3;
@@ -705,16 +705,16 @@ LAB_1808da52e:
 
 
 
-// 函数: void ResourceConfigurationApply(longlong config_ptr, uint64_t resource_ptr)
-void ResourceConfigurationApply(longlong config_ptr, uint64_t resource_ptr)
+// 函数: void ResourceConfigurationApply(int64_t config_ptr, uint64_t resource_ptr)
+void ResourceConfigurationApply(int64_t config_ptr, uint64_t resource_ptr)
 
 {
   int iVar1;
   void *puVar2;
   uint64_t uStack_18;
-  ulonglong uStack_10;
+  uint64_t uStack_10;
   
-  uStack_10 = GET_SECURITY_COOKIE() ^ (ulonglong)&uStack_18;
+  uStack_10 = GET_SECURITY_COOKIE() ^ (uint64_t)&uStack_18;
   if (*(int *)(param_1 + 0x68) < 1) {
     puVar2 = &system_buffer_ptr;
   }
@@ -728,19 +728,19 @@ void ResourceConfigurationApply(longlong config_ptr, uint64_t resource_ptr)
     FUN_1808fd200();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)&uStack_18);
+  FUN_1808fc050(uStack_10 ^ (uint64_t)&uStack_18);
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t ResourceObjectCreate(longlong resource_handle, uint64_t *create_params, uint create_flags, longlong *output_ptr)
+uint64_t ResourceObjectCreate(int64_t resource_handle, uint64_t *create_params, uint create_flags, int64_t *output_ptr)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
-  longlong lVar3;
+  int64_t lVar3;
   uint64_t uStack_58;
   uint64_t uStack_50;
   uint64_t uStack_48;
@@ -751,7 +751,7 @@ uint64_t ResourceObjectCreate(longlong resource_handle, uint64_t *create_params,
   uint64_t uStack_20;
   uint64_t uStack_18;
   
-  if (param_4 == (longlong *)0x0) {
+  if (param_4 == (int64_t *)0x0) {
     uVar2 = 0x1f;
   }
   else {
@@ -808,12 +808,12 @@ void ResourceSystemInitialize(void)
 
 {
   int iVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong unaff_RBP;
+  int64_t lVar2;
+  int64_t lVar3;
+  int64_t unaff_RBP;
   uint unaff_ESI;
   uint64_t *unaff_RDI;
-  longlong *unaff_R14;
+  int64_t *unaff_R14;
   uint64_t in_stack_00000040;
   uint64_t in_stack_00000048;
   uint64_t in_stack_00000050;
@@ -879,11 +879,11 @@ void ResourceEmptyFunction(void)
 
 
 
-// 函数: void ResourceConfigurationSet(uint64_t *config_ptr, longlong *resource_ptr)
-void ResourceConfigurationSet(uint64_t *config_ptr, longlong *resource_ptr)
+// 函数: void ResourceConfigurationSet(uint64_t *config_ptr, int64_t *resource_ptr)
+void ResourceConfigurationSet(uint64_t *config_ptr, int64_t *resource_ptr)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   int32_t uVar2;
   int32_t uVar3;
   int32_t uVar4;
@@ -895,9 +895,9 @@ void ResourceConfigurationSet(uint64_t *config_ptr, longlong *resource_ptr)
   int32_t uStack_20;
   int16_t uStack_1c;
   int16_t uStack_1a;
-  ulonglong uStack_18;
+  uint64_t uStack_18;
   
-  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_48;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_48;
   iVar5 = (**(code **)*param_1)(param_1,0,0,param_2);
   if (iVar5 == 0) {
     uStack_1a = 0;
@@ -907,7 +907,7 @@ void ResourceConfigurationSet(uint64_t *config_ptr, longlong *resource_ptr)
     uStack_24 = 0xffff;
     uStack_28 = 0xffffffff;
     func_0x00018076b450(&uStack_20,&unknown_var_7984_ptr,8);
-    if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
+    if (*(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +
                 0x48) < system_system_config) {
       SystemInitializer(&system_state_f508);
       if (system_system_config == -1) {
@@ -929,12 +929,12 @@ void ResourceConfigurationSet(uint64_t *config_ptr, longlong *resource_ptr)
     *(int32_t *)(*param_2 + 0x218) = 0x8e;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_48);
+  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_48);
 }
 
 
 
-uint64_t ResourceStatusGet(uint64_t resource_handle, longlong resource_ptr)
+uint64_t ResourceStatusGet(uint64_t resource_handle, int64_t resource_ptr)
 
 {
   uint64_t uVar1;
@@ -943,8 +943,8 @@ uint64_t ResourceStatusGet(uint64_t resource_handle, longlong resource_ptr)
     return 0x1f;
   }
   if ((((*(ushort *)(param_2 + 0xe) & 0x3fff) == 1) &&
-      (*(longlong **)(param_2 + 0x20) != (longlong *)0x0)) &&
-     (uVar1 = (**(code **)(**(longlong **)(param_2 + 0x20) + 0x58))(), (int)uVar1 != 0)) {
+      (*(int64_t **)(param_2 + 0x20) != (int64_t *)0x0)) &&
+     (uVar1 = (**(code **)(**(int64_t **)(param_2 + 0x20) + 0x58))(), (int)uVar1 != 0)) {
     return uVar1;
   }
   uVar1 = FUN_1808db3f0(param_1,param_2);
@@ -953,46 +953,46 @@ uint64_t ResourceStatusGet(uint64_t resource_handle, longlong resource_ptr)
 
 
 
-uint64_t ResourceSearch(longlong search_key, uint *result_ptr)
+uint64_t ResourceSearch(int64_t search_key, uint *result_ptr)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
+  int64_t *plVar1;
+  int64_t lVar2;
   uint uVar3;
   uint uVar4;
   uint uVar5;
   uint uVar6;
-  longlong lVar7;
-  longlong lVar8;
-  longlong *plVar9;
+  int64_t lVar7;
+  int64_t lVar8;
+  int64_t *plVar9;
   uint64_t uVar10;
   int iVar11;
-  longlong lVar12;
-  longlong lVar13;
+  int64_t lVar12;
+  int64_t lVar13;
   
   if ((((*param_2 == 0) && (param_2[1] == 0)) && (param_2[2] == 0)) && (param_2[3] == 0)) {
     return 0x1c;
   }
   uVar3 = *param_2;
   uVar4 = param_2[1];
-  lVar8 = *(longlong *)param_2;
+  lVar8 = *(int64_t *)param_2;
   uVar5 = param_2[2];
   uVar6 = param_2[3];
-  lVar7 = *(longlong *)(param_2 + 2);
+  lVar7 = *(int64_t *)(param_2 + 2);
   lVar13 = 0;
-  plVar1 = *(longlong **)(param_1 + 8);
+  plVar1 = *(int64_t **)(param_1 + 8);
   lVar2 = plVar1[5];
   lVar12 = lVar13;
   if (lVar2 != 0) {
     FUN_180768360(lVar2);
     lVar12 = lVar2;
   }
-  if (((*(int *)((longlong)plVar1 + 0x24) != 0) && ((int)plVar1[1] != 0)) &&
+  if (((*(int *)((int64_t)plVar1 + 0x24) != 0) && ((int)plVar1[1] != 0)) &&
      (iVar11 = *(int *)(*plVar1 +
-                       (longlong)(int)((uVar4 ^ uVar5 ^ uVar3 ^ uVar6) & (int)plVar1[1] - 1U) * 4),
+                       (int64_t)(int)((uVar4 ^ uVar5 ^ uVar3 ^ uVar6) & (int)plVar1[1] - 1U) * 4),
      iVar11 != -1)) {
     do {
-      plVar9 = (longlong *)((longlong)iVar11 * 0x20 + plVar1[2]);
+      plVar9 = (int64_t *)((int64_t)iVar11 * 0x20 + plVar1[2]);
       if ((*plVar9 == lVar8) && (plVar9[1] == lVar7)) {
         lVar13 = plVar9[3];
         break;
@@ -1013,23 +1013,23 @@ uint64_t ResourceSearch(longlong search_key, uint *result_ptr)
 
 
 
-uint64_t ResourceQuickSearch(longlong resource_handle)
+uint64_t ResourceQuickSearch(int64_t resource_handle)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
-  longlong *plVar3;
+  int64_t *plVar1;
+  int64_t lVar2;
+  int64_t *plVar3;
   uint64_t uVar4;
-  longlong in_RCX;
+  int64_t in_RCX;
   int iVar5;
-  longlong lVar6;
-  longlong lVar7;
-  longlong in_XMM0_Qb;
+  int64_t lVar6;
+  int64_t lVar7;
+  int64_t in_XMM0_Qb;
   uint uStackX_24;
-  longlong lStack0000000000000028;
+  int64_t lStack0000000000000028;
   
   lVar7 = 0;
-  plVar1 = *(longlong **)(in_RCX + 8);
+  plVar1 = *(int64_t **)(in_RCX + 8);
   lVar2 = plVar1[5];
   lVar6 = lVar7;
   lStack0000000000000028 = in_XMM0_Qb;
@@ -1037,15 +1037,15 @@ uint64_t ResourceQuickSearch(longlong resource_handle)
     FUN_180768360(lVar2);
     lVar6 = lVar2;
   }
-  if ((*(int *)((longlong)plVar1 + 0x24) != 0) && ((int)plVar1[1] != 0)) {
-    uStackX_24 = (uint)((ulonglong)param_1 >> 0x20);
+  if ((*(int *)((int64_t)plVar1 + 0x24) != 0) && ((int)plVar1[1] != 0)) {
+    uStackX_24 = (uint)((uint64_t)param_1 >> 0x20);
     iVar5 = *(int *)(*plVar1 +
-                    (longlong)
+                    (int64_t)
                     (int)((uStackX_24 ^ (uint)lStack0000000000000028 ^ (uint)param_1 ^
                           lStack0000000000000028._4_4_) & (int)plVar1[1] - 1U) * 4);
     if (iVar5 != -1) {
       do {
-        plVar3 = (longlong *)((longlong)iVar5 * 0x20 + plVar1[2]);
+        plVar3 = (int64_t *)((int64_t)iVar5 * 0x20 + plVar1[2]);
         if ((*plVar3 == param_1) && (plVar3[1] == lStack0000000000000028)) {
           lVar7 = plVar3[3];
           break;
@@ -1094,30 +1094,30 @@ uint64_t ResourceStatusCheck(void)
 
 
 
-int32_t ResourceHandleAcquire(longlong resource_ptr, longlong access_params)
+int32_t ResourceHandleAcquire(int64_t resource_ptr, int64_t access_params)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   int iVar2;
   int iVar3;
-  longlong lVar4;
+  int64_t lVar4;
   uint64_t uStackX_10;
   
   if (param_2 == 0) {
     return 0x1f;
   }
   uStackX_10 = 0;
-  if ((((*(ushort *)(param_2 + 0xe) & 0x3fff) < 2) && (*(longlong *)(param_2 + 0xd0) != 0)) &&
+  if ((((*(ushort *)(param_2 + 0xe) & 0x3fff) < 2) && (*(int64_t *)(param_2 + 0xd0) != 0)) &&
      ((*(uint *)(param_2 + 0xf8) >> 7 & 1) == 0)) {
     iVar2 = FUN_18088c740(&uStackX_10,*(uint64_t *)(param_1 + 0x38));
     if ((iVar2 != 0) || (iVar2 = FUN_18088c620(*(uint64_t *)(param_2 + 0xd0)), iVar2 != 0))
     goto LAB_1808dac65;
-    lVar1 = *(longlong *)(param_2 + 0xd0);
+    lVar1 = *(int64_t *)(param_2 + 0xd0);
     iVar2 = 0;
     if (0 < *(int *)(lVar1 + 0x28)) {
       lVar4 = 0;
       do {
-        if (*(longlong *)(*(longlong *)(lVar4 + *(longlong *)(lVar1 + 0x20)) + 0x10) == 0) {
+        if (*(int64_t *)(*(int64_t *)(lVar4 + *(int64_t *)(lVar1 + 0x20)) + 0x10) == 0) {
           iVar3 = FUN_180867d60();
           if (iVar3 != 0) goto LAB_1808dac65;
         }
@@ -1136,7 +1136,7 @@ LAB_1808dac65:
 
 
 
-int32_t ResourceHandleRelease(longlong resource_ptr, longlong release_params)
+int32_t ResourceHandleRelease(int64_t resource_ptr, int64_t release_params)
 
 {
   int iVar1;
@@ -1158,7 +1158,7 @@ LAB_1808dacfc:
 
 
 
-uint64_t ResourceValidation(uint64_t resource_handle, longlong validation_ptr)
+uint64_t ResourceValidation(uint64_t resource_handle, int64_t validation_ptr)
 
 {
   uint64_t uVar1;
@@ -1167,8 +1167,8 @@ uint64_t ResourceValidation(uint64_t resource_handle, longlong validation_ptr)
     return 0x1f;
   }
   if ((((*(ushort *)(param_2 + 0xe) & 0x3fff) < 2) &&
-      (*(longlong **)(param_2 + 0x20) != (longlong *)0x0)) &&
-     (uVar1 = (**(code **)(**(longlong **)(param_2 + 0x20) + 0x58))(), (int)uVar1 != 0)) {
+      (*(int64_t **)(param_2 + 0x20) != (int64_t *)0x0)) &&
+     (uVar1 = (**(code **)(**(int64_t **)(param_2 + 0x20) + 0x58))(), (int)uVar1 != 0)) {
     return uVar1;
   }
   uVar1 = FUN_1808db3f0(param_1,param_2);
@@ -1177,7 +1177,7 @@ uint64_t ResourceValidation(uint64_t resource_handle, longlong validation_ptr)
 
 
 
-int32_t ResourceReferenceUpdate(longlong resource_ptr, longlong ref_params)
+int32_t ResourceReferenceUpdate(int64_t resource_ptr, int64_t ref_params)
 
 {
   int iVar1;
@@ -1188,8 +1188,8 @@ int32_t ResourceReferenceUpdate(longlong resource_ptr, longlong ref_params)
   }
   uStackX_10 = 0;
   if (((((*(ushort *)(param_2 + 0xe) & 0x3fff) < 2) && ((*(byte *)(param_2 + 0xc4) & 1) != 0)) &&
-      (*(longlong *)(param_1 + 0x20) != 0)) &&
-     (*(longlong *)(*(longlong *)(param_1 + 0x20) + 0xad0) == param_2)) {
+      (*(int64_t *)(param_1 + 0x20) != 0)) &&
+     (*(int64_t *)(*(int64_t *)(param_1 + 0x20) + 0xad0) == param_2)) {
     iVar1 = FUN_18088c740(&uStackX_10);
     if (iVar1 != 0) goto LAB_1808dae06;
     FUN_18088a0c0(*(uint64_t *)(param_1 + 0x20),0);
@@ -1204,39 +1204,39 @@ LAB_1808dae06:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int ResourceHandleInitialize(longlong resource_ptr, uint64_t *init_params)
+int ResourceHandleInitialize(int64_t resource_ptr, uint64_t *init_params)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
+  int64_t *plVar1;
+  int64_t lVar2;
   uint uVar3;
   uint uVar4;
   uint uVar5;
   uint uVar6;
-  longlong lVar7;
+  int64_t lVar7;
   int iVar8;
-  longlong lVar9;
-  longlong lVar10;
-  longlong lVar11;
+  int64_t lVar9;
+  int64_t lVar10;
+  int64_t lVar11;
   int iVar12;
   int *piVar13;
   
   if (param_2 == (uint64_t *)0x0) {
     return 0x1f;
   }
-  if ((*(ushort *)((longlong)param_2 + 0xe) & 0x7fff) != 0) {
+  if ((*(ushort *)((int64_t)param_2 + 0xe) & 0x7fff) != 0) {
     uVar3 = *(uint *)(param_2 + 2);
-    uVar4 = *(uint *)((longlong)param_2 + 0x14);
+    uVar4 = *(uint *)((int64_t)param_2 + 0x14);
     lVar11 = param_2[2];
     uVar5 = *(uint *)(param_2 + 3);
-    uVar6 = *(uint *)((longlong)param_2 + 0x1c);
+    uVar6 = *(uint *)((int64_t)param_2 + 0x1c);
     lVar7 = param_2[3];
-    plVar1 = *(longlong **)(param_1 + 8);
+    plVar1 = *(int64_t **)(param_1 + 8);
     lVar2 = plVar1[5];
     if (lVar2 != 0) {
       FUN_180768360(lVar2);
     }
-    if (*(int *)((longlong)plVar1 + 0x24) == 0) {
+    if (*(int *)((int64_t)plVar1 + 0x24) == 0) {
       iVar12 = 0;
     }
     else if ((int)plVar1[1] == 0) {
@@ -1244,21 +1244,21 @@ int ResourceHandleInitialize(longlong resource_ptr, uint64_t *init_params)
     }
     else {
       iVar12 = 0;
-      lVar10 = (longlong)(int)((uVar4 ^ uVar3 ^ uVar5 ^ uVar6) & (int)plVar1[1] - 1U);
+      lVar10 = (int64_t)(int)((uVar4 ^ uVar3 ^ uVar5 ^ uVar6) & (int)plVar1[1] - 1U);
       piVar13 = (int *)(*plVar1 + lVar10 * 4);
       iVar8 = *(int *)(*plVar1 + lVar10 * 4);
       if (iVar8 != -1) {
         lVar10 = plVar1[2];
         do {
-          lVar9 = (longlong)iVar8 * 0x20;
-          if ((*(longlong *)(lVar9 + lVar10) == lVar11) &&
-             (*(longlong *)(lVar9 + 8 + lVar10) == lVar7)) {
+          lVar9 = (int64_t)iVar8 * 0x20;
+          if ((*(int64_t *)(lVar9 + lVar10) == lVar11) &&
+             (*(int64_t *)(lVar9 + 8 + lVar10) == lVar7)) {
             iVar12 = *piVar13;
-            lVar11 = (longlong)iVar12 * 0x20;
+            lVar11 = (int64_t)iVar12 * 0x20;
             *(uint64_t *)(lVar11 + 0x18 + lVar10) = 0;
             *piVar13 = *(int *)(lVar11 + 0x10 + lVar10);
             *(int *)(lVar11 + 0x10 + lVar10) = (int)plVar1[4];
-            *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
+            *(int *)((int64_t)plVar1 + 0x24) = *(int *)((int64_t)plVar1 + 0x24) + -1;
             *(int *)(plVar1 + 4) = iVar12;
             iVar12 = 0;
             break;
@@ -1285,22 +1285,22 @@ int ResourceHandleInitialize(longlong resource_ptr, uint64_t *init_params)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int ResourceHandleCleanup(uint cleanup_flags, longlong resource_ptr)
+int ResourceHandleCleanup(uint cleanup_flags, int64_t resource_ptr)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
+  int64_t *plVar1;
+  int64_t lVar2;
   uint uVar3;
   uint uVar4;
   uint uVar5;
   uint uVar6;
-  longlong lVar7;
+  int64_t lVar7;
   ushort in_AX;
   int iVar8;
-  longlong lVar9;
-  longlong in_RCX;
-  longlong lVar10;
-  longlong lVar11;
+  int64_t lVar9;
+  int64_t in_RCX;
+  int64_t lVar10;
+  int64_t lVar11;
   int iVar12;
   uint64_t *unaff_RSI;
   int *piVar13;
@@ -1308,17 +1308,17 @@ int ResourceHandleCleanup(uint cleanup_flags, longlong resource_ptr)
   if ((*(ushort *)(param_2 + 0xe) & in_AX) != 0) {
     uVar3 = *(uint *)(param_2 + 0x10);
     uVar4 = *(uint *)(param_2 + 0x14);
-    lVar11 = *(longlong *)(param_2 + 0x10);
+    lVar11 = *(int64_t *)(param_2 + 0x10);
     uVar5 = *(uint *)(param_2 + 0x18);
     uVar6 = *(uint *)(param_2 + 0x1c);
-    lVar7 = *(longlong *)(param_2 + 0x18);
-    plVar1 = *(longlong **)(in_RCX + 8);
+    lVar7 = *(int64_t *)(param_2 + 0x18);
+    plVar1 = *(int64_t **)(in_RCX + 8);
     lVar2 = plVar1[5];
     param_1 = uVar3;
     if (lVar2 != 0) {
       param_1 = FUN_180768360(lVar2);
     }
-    if (*(int *)((longlong)plVar1 + 0x24) == 0) {
+    if (*(int *)((int64_t)plVar1 + 0x24) == 0) {
       iVar12 = 0;
     }
     else if ((int)plVar1[1] == 0) {
@@ -1326,21 +1326,21 @@ int ResourceHandleCleanup(uint cleanup_flags, longlong resource_ptr)
     }
     else {
       iVar12 = 0;
-      lVar10 = (longlong)(int)((uVar4 ^ uVar3 ^ uVar5 ^ uVar6) & (int)plVar1[1] - 1U);
+      lVar10 = (int64_t)(int)((uVar4 ^ uVar3 ^ uVar5 ^ uVar6) & (int)plVar1[1] - 1U);
       piVar13 = (int *)(*plVar1 + lVar10 * 4);
       iVar8 = *(int *)(*plVar1 + lVar10 * 4);
       if (iVar8 != -1) {
         lVar10 = plVar1[2];
         do {
-          lVar9 = (longlong)iVar8 * 0x20;
-          if ((*(longlong *)(lVar9 + lVar10) == lVar11) &&
-             (*(longlong *)(lVar9 + 8 + lVar10) == lVar7)) {
+          lVar9 = (int64_t)iVar8 * 0x20;
+          if ((*(int64_t *)(lVar9 + lVar10) == lVar11) &&
+             (*(int64_t *)(lVar9 + 8 + lVar10) == lVar7)) {
             iVar12 = *piVar13;
-            lVar11 = (longlong)iVar12 * 0x20;
+            lVar11 = (int64_t)iVar12 * 0x20;
             *(uint64_t *)(lVar11 + 0x18 + lVar10) = 0;
             *piVar13 = *(int *)(lVar11 + 0x10 + lVar10);
             *(int *)(lVar11 + 0x10 + lVar10) = (int)plVar1[4];
-            *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
+            *(int *)((int64_t)plVar1 + 0x24) = *(int *)((int64_t)plVar1 + 0x24) + -1;
             *(int *)(plVar1 + 4) = iVar12;
             iVar12 = 0;
             break;
@@ -1367,30 +1367,30 @@ int ResourceHandleCleanup(uint cleanup_flags, longlong resource_ptr)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int ResourceHandleFinalize(longlong resource_ptr)
+int ResourceHandleFinalize(int64_t resource_ptr)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
+  int64_t *plVar1;
+  int64_t lVar2;
   int iVar3;
-  longlong lVar4;
-  longlong in_RCX;
-  longlong lVar5;
+  int64_t lVar4;
+  int64_t in_RCX;
+  int64_t lVar5;
   int iVar6;
   uint64_t *unaff_RSI;
   int *piVar7;
-  longlong in_XMM0_Qb;
-  longlong lStack0000000000000030;
-  longlong lStack0000000000000038;
+  int64_t in_XMM0_Qb;
+  int64_t lStack0000000000000030;
+  int64_t lStack0000000000000038;
   
-  plVar1 = *(longlong **)(in_RCX + 8);
+  plVar1 = *(int64_t **)(in_RCX + 8);
   lVar2 = plVar1[5];
   lStack0000000000000030 = param_1;
   lStack0000000000000038 = in_XMM0_Qb;
   if (lVar2 != 0) {
     FUN_180768360(lVar2);
   }
-  if (*(int *)((longlong)plVar1 + 0x24) == 0) {
+  if (*(int *)((int64_t)plVar1 + 0x24) == 0) {
     iVar6 = 0;
   }
   else if ((int)plVar1[1] == 0) {
@@ -1398,7 +1398,7 @@ int ResourceHandleFinalize(longlong resource_ptr)
   }
   else {
     iVar6 = 0;
-    lVar5 = (longlong)
+    lVar5 = (int64_t)
             (int)((lStack0000000000000030._4_4_ ^ (uint)lStack0000000000000030 ^
                    (uint)lStack0000000000000038 ^ lStack0000000000000038._4_4_) &
                  (int)plVar1[1] - 1U);
@@ -1407,15 +1407,15 @@ int ResourceHandleFinalize(longlong resource_ptr)
     if (iVar3 != -1) {
       lVar5 = plVar1[2];
       do {
-        lVar4 = (longlong)iVar3 * 0x20;
-        if ((*(longlong *)(lVar4 + lVar5) == lStack0000000000000030) &&
-           (*(longlong *)(lVar4 + 8 + lVar5) == lStack0000000000000038)) {
+        lVar4 = (int64_t)iVar3 * 0x20;
+        if ((*(int64_t *)(lVar4 + lVar5) == lStack0000000000000030) &&
+           (*(int64_t *)(lVar4 + 8 + lVar5) == lStack0000000000000038)) {
           iVar6 = *piVar7;
-          lVar4 = (longlong)iVar6 * 0x20;
+          lVar4 = (int64_t)iVar6 * 0x20;
           *(uint64_t *)(lVar4 + 0x18 + lVar5) = 0;
           *piVar7 = *(int *)(lVar4 + 0x10 + lVar5);
           *(int *)(lVar4 + 0x10 + lVar5) = (int)plVar1[4];
-          *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
+          *(int *)((int64_t)plVar1 + 0x24) = *(int *)((int64_t)plVar1 + 0x24) + -1;
           *(int *)(plVar1 + 4) = iVar6;
           iVar6 = 0;
           break;
@@ -1441,30 +1441,30 @@ int ResourceHandleFinalize(longlong resource_ptr)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int ResourceHandleValidate(longlong resource_ptr)
+int ResourceHandleValidate(int64_t resource_ptr)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
+  int64_t *plVar1;
+  int64_t lVar2;
   int iVar3;
-  longlong lVar4;
-  longlong lVar5;
+  int64_t lVar4;
+  int64_t lVar5;
   int iVar6;
   uint64_t *unaff_RSI;
   int *piVar7;
-  longlong in_XMM0_Qa;
-  longlong in_XMM0_Qb;
-  longlong lStack0000000000000030;
-  longlong lStack0000000000000038;
+  int64_t in_XMM0_Qa;
+  int64_t in_XMM0_Qb;
+  int64_t lStack0000000000000030;
+  int64_t lStack0000000000000038;
   
-  plVar1 = *(longlong **)(param_1 + 8);
+  plVar1 = *(int64_t **)(param_1 + 8);
   lVar2 = plVar1[5];
   lStack0000000000000030 = in_XMM0_Qa;
   lStack0000000000000038 = in_XMM0_Qb;
   if (lVar2 != 0) {
     FUN_180768360(lVar2);
   }
-  if (*(int *)((longlong)plVar1 + 0x24) == 0) {
+  if (*(int *)((int64_t)plVar1 + 0x24) == 0) {
     iVar6 = 0;
   }
   else if ((int)plVar1[1] == 0) {
@@ -1472,7 +1472,7 @@ int ResourceHandleValidate(longlong resource_ptr)
   }
   else {
     iVar6 = 0;
-    lVar5 = (longlong)
+    lVar5 = (int64_t)
             (int)((lStack0000000000000030._4_4_ ^ (uint)lStack0000000000000030 ^
                    (uint)lStack0000000000000038 ^ lStack0000000000000038._4_4_) &
                  (int)plVar1[1] - 1U);
@@ -1481,15 +1481,15 @@ int ResourceHandleValidate(longlong resource_ptr)
     if (iVar3 != -1) {
       lVar5 = plVar1[2];
       do {
-        lVar4 = (longlong)iVar3 * 0x20;
-        if ((*(longlong *)(lVar4 + lVar5) == lStack0000000000000030) &&
-           (*(longlong *)(lVar4 + 8 + lVar5) == lStack0000000000000038)) {
+        lVar4 = (int64_t)iVar3 * 0x20;
+        if ((*(int64_t *)(lVar4 + lVar5) == lStack0000000000000030) &&
+           (*(int64_t *)(lVar4 + 8 + lVar5) == lStack0000000000000038)) {
           iVar6 = *piVar7;
-          lVar4 = (longlong)iVar6 * 0x20;
+          lVar4 = (int64_t)iVar6 * 0x20;
           *(uint64_t *)(lVar4 + 0x18 + lVar5) = 0;
           *piVar7 = *(int *)(lVar4 + 0x10 + lVar5);
           *(int *)(lVar4 + 0x10 + lVar5) = (int)plVar1[4];
-          *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
+          *(int *)((int64_t)plVar1 + 0x24) = *(int *)((int64_t)plVar1 + 0x24) + -1;
           *(int *)(plVar1 + 4) = iVar6;
           iVar6 = 0;
           break;

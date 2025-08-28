@@ -204,13 +204,13 @@ static uint32_t g_system_flags = 0;
  * 该函数是容器数据处理的核心函数，负责处理容器中的数据元素。
  * 使用双重循环结构处理二维数据，支持动态扩容和数据验证。
  */
-void container_data_processor(int param_1, int param_2, uint64_t param_3, longlong *param_4)
+void container_data_processor(int param_1, int param_2, uint64_t param_3, int64_t *param_4)
 {
-    longlong lVar1;
-    longlong *plVar2;
+    int64_t lVar1;
+    int64_t *plVar2;
     int iVar3;
-    longlong lVar4;
-    ulonglong uVar5;
+    int64_t lVar4;
+    uint64_t uVar5;
     int32_t *puVar6;
     int32_t *puVar7;
     int32_t *puVar8;
@@ -219,7 +219,7 @@ void container_data_processor(int param_1, int param_2, uint64_t param_3, longlo
     int unaff_R15D;
     int iStackX_20;
     int iStackX_24;
-    longlong *in_stack_00000060;
+    int64_t *in_stack_00000060;
     
     iVar3 = param_1;
     do {
@@ -230,9 +230,9 @@ void container_data_processor(int param_1, int param_2, uint64_t param_3, longlo
                 return;
             }
         }
-        lVar4 = (longlong)(unaff_R13D * *(int *)((longlong)param_4 + 0x24) + param_1);
+        lVar4 = (int64_t)(unaff_R13D * *(int *)((int64_t)param_4 + 0x24) + param_1);
         lVar1 = *param_4 + lVar4 * 0x28;
-        data_block_processor(lVar1 + 8, (longlong)*(int *)(*param_4 + lVar4 * 0x28));
+        data_block_processor(lVar1 + 8, (int64_t)*(int *)(*param_4 + lVar4 * 0x28));
         puVar7 = *(int32_t **)(lVar1 + 0x10);
         if (puVar7 < *(int32_t **)(lVar1 + 0x18)) {
             *(int32_t **)(lVar1 + 0x10) = puVar7 + 1;
@@ -240,12 +240,12 @@ void container_data_processor(int param_1, int param_2, uint64_t param_3, longlo
         }
         else {
             puVar6 = *(int32_t **)(lVar1 + 8);
-            lVar4 = (longlong)puVar7 - (longlong)puVar6 >> 2;
+            lVar4 = (int64_t)puVar7 - (int64_t)puVar6 >> 2;
             if (lVar4 == 0) {
                 lVar4 = 1;
 LAB_1801b9874:
-                plVar2 = *(longlong **)(lVar1 + 0x20);
-                uVar5 = (longlong)((int)plVar2[2] + 0xf) & 0xfffffffffffffff0;
+                plVar2 = *(int64_t **)(lVar1 + 0x20);
+                uVar5 = (int64_t)((int)plVar2[2] + 0xf) & 0xfffffffffffffff0;
                 puVar8 = (int32_t *)(*plVar2 + uVar5);
                 *(int *)(plVar2 + 2) = (int)uVar5 + (int)lVar4 * 4;
                 puVar7 = *(int32_t **)(lVar1 + 0x10);
@@ -258,7 +258,7 @@ LAB_1801b9874:
             }
             if (puVar6 != puVar7) {
                 // WARNING: Subroutine does not return
-                memmove(puVar8, puVar6, (longlong)puVar7 - (longlong)puVar6);
+                memmove(puVar8, puVar6, (int64_t)puVar7 - (int64_t)puVar6);
             }
             *puVar8 = unaff_R12D;
             *(int32_t **)(lVar1 + 0x10) = puVar8 + 1;
@@ -308,11 +308,11 @@ void system_empty_function_1(void)
  * 该函数负责清理容器中的所有数据，包括释放内存和重置状态。
  * 使用双重循环结构处理二维容器数据。
  */
-void container_cleaner(longlong *param_1)
+void container_cleaner(int64_t *param_1)
 {
-    longlong *plVar1;
+    int64_t *plVar1;
     int iVar2;
-    longlong lVar3;
+    int64_t lVar3;
     int iVar4;
     int iVar5;
     
@@ -320,19 +320,19 @@ void container_cleaner(longlong *param_1)
     if (0 < (int)param_1[4]) {
         do {
             iVar4 = 0;
-            if (0 < *(int *)((longlong)param_1 + 0x24)) {
+            if (0 < *(int *)((int64_t)param_1 + 0x24)) {
                 do {
-                    iVar2 = *(int *)((longlong)param_1 + 0x24) * iVar5 + iVar4;
+                    iVar2 = *(int *)((int64_t)param_1 + 0x24) * iVar5 + iVar4;
                     iVar4 = iVar4 + 1;
-                    lVar3 = (longlong)iVar2;
+                    lVar3 = (int64_t)iVar2;
                     *(uint64_t *)(*param_1 + 0x10 + lVar3 * 0x28) =
                          *(uint64_t *)(*param_1 + 8 + lVar3 * 0x28);
-                } while (iVar4 < *(int *)((longlong)param_1 + 0x24));
+                } while (iVar4 < *(int *)((int64_t)param_1 + 0x24));
             }
             iVar5 = iVar5 + 1;
         } while (iVar5 < (int)param_1[4]);
     }
-    if ((*param_1 != 0) && (plVar1 = (longlong *)param_1[5], plVar1 != (longlong *)0x0)) {
+    if ((*param_1 != 0) && (plVar1 = (int64_t *)param_1[5], plVar1 != (int64_t *)0x0)) {
         if (*plVar1 != 0) {
             // WARNING: Subroutine does not return
             system_error_handler();
@@ -364,23 +364,23 @@ void container_cleaner(longlong *param_1)
  */
 void memory_manager_cleaner(void)
 {
-    longlong *plVar1;
-    longlong unaff_RBX;
-    longlong unaff_RSI;
+    int64_t *plVar1;
+    int64_t unaff_RBX;
+    int64_t unaff_RSI;
     
-    plVar1 = *(longlong **)(unaff_RBX + 0x28);
-    if (plVar1 != (longlong *)0x0) {
+    plVar1 = *(int64_t **)(unaff_RBX + 0x28);
+    if (plVar1 != (int64_t *)0x0) {
         if (*plVar1 != 0) {
             // WARNING: Subroutine does not return
             system_error_handler();
         }
         *plVar1 = unaff_RSI;
-        *(longlong *)(unaff_RBX + 0x28) = unaff_RSI;
+        *(int64_t *)(unaff_RBX + 0x28) = unaff_RSI;
     }
-    *(longlong *)(unaff_RBX + 8) = unaff_RSI;
-    *(longlong *)(unaff_RBX + 0x10) = unaff_RSI;
-    *(longlong *)(unaff_RBX + 0x18) = unaff_RSI;
-    *(longlong *)(unaff_RBX + 0x20) = unaff_RSI;
+    *(int64_t *)(unaff_RBX + 8) = unaff_RSI;
+    *(int64_t *)(unaff_RBX + 0x10) = unaff_RSI;
+    *(int64_t *)(unaff_RBX + 0x18) = unaff_RSI;
+    *(int64_t *)(unaff_RBX + 0x20) = unaff_RSI;
     return;
 }
 
@@ -401,7 +401,7 @@ void memory_manager_cleaner(void)
  */
 void memory_block_cleaner(void)
 {
-    longlong unaff_RBX;
+    int64_t unaff_RBX;
     uint64_t unaff_RSI;
     
     *(uint64_t *)(unaff_RBX + 8) = unaff_RSI;
@@ -427,20 +427,20 @@ void memory_block_cleaner(void)
  * 该函数负责初始化数组数据结构，包括内存分配和状态设置。
  * 支持最大1024个元素的数组初始化。
  */
-void array_initializer(longlong param_1)
+void array_initializer(int64_t param_1)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint uVar2;
-    longlong *plVar3;
+    int64_t *plVar3;
     
     uVar2 = 0;
-    plVar3 = (longlong *)(param_1 + 8);
+    plVar3 = (int64_t *)(param_1 + 8);
     do {
         if (*plVar3 != 0) {
             // WARNING: Subroutine does not return
             system_error_handler();
         }
-        lVar1 = (longlong)(int)uVar2;
+        lVar1 = (int64_t)(int)uVar2;
         plVar3 = plVar3 + 1;
         uVar2 = uVar2 + 1;
         *(uint64_t *)(param_1 + 8 + lVar1 * 8) = 0;
@@ -468,12 +468,12 @@ void array_initializer(longlong param_1)
 uint hash_table_allocator(uint *param_1, int param_2)
 {
     uint uVar1;
-    longlong lVar2;
+    int64_t lVar2;
     char *pcVar3;
     int iVar4;
-    ulonglong uVar5;
-    ulonglong uVar6;
-    longlong lVar7;
+    uint64_t uVar5;
+    uint64_t uVar6;
+    int64_t lVar7;
     uint *puVar8;
     bool bVar9;
     
@@ -484,26 +484,26 @@ uint hash_table_allocator(uint *param_1, int param_2)
     uVar1 = *param_1;
     *param_1 = *param_1 + param_2;
     UNLOCK();
-    uVar5 = (ulonglong)(uVar1 >> 0xc);
-    uVar6 = (ulonglong)(param_2 + -1 + uVar1 >> 0xc);
+    uVar5 = (uint64_t)(uVar1 >> 0xc);
+    uVar6 = (uint64_t)(param_2 + -1 + uVar1 >> 0xc);
     if (uVar5 <= uVar6) {
-        pcVar3 = (char *)((longlong)param_1 + uVar5 + 0x808);
+        pcVar3 = (char *)((int64_t)param_1 + uVar5 + 0x808);
         lVar7 = (uVar6 - uVar5) + 1;
-        puVar8 = param_1 + (ulonglong)(uVar1 >> 0xc) * 2 + 2;
+        puVar8 = param_1 + (uint64_t)(uVar1 >> 0xc) * 2 + 2;
         do {
             iVar4 = (int)uVar5;
-            if (*(longlong *)puVar8 == 0) {
+            if (*(int64_t *)puVar8 == 0) {
                 lVar2 = memory_pool_allocator(system_memory_pool_ptr, 0x20000, 0x25);
                 LOCK();
-                bVar9 = *(longlong *)(param_1 + (longlong)iVar4 * 2 + 2) == 0;
+                bVar9 = *(int64_t *)(param_1 + (int64_t)iVar4 * 2 + 2) == 0;
                 if (bVar9) {
-                    *(longlong *)(param_1 + (longlong)iVar4 * 2 + 2) = lVar2;
+                    *(int64_t *)(param_1 + (int64_t)iVar4 * 2 + 2) = lVar2;
                 }
                 UNLOCK();
                 if (bVar9) {
                     func_0x0001801bb270(param_1, iVar4 << 0xc);
                     LOCK();
-                    *(int8_t *)((longlong)iVar4 + 0x808 + (longlong)param_1) = 0;
+                    *(int8_t *)((int64_t)iVar4 + 0x808 + (int64_t)param_1) = 0;
                     UNLOCK();
                 }
                 else {
@@ -519,7 +519,7 @@ uint hash_table_allocator(uint *param_1, int param_2)
                 do {
                 } while (*pcVar3 != '\0');
             }
-            uVar5 = (ulonglong)(iVar4 + 1);
+            uVar5 = (uint64_t)(iVar4 + 1);
             puVar8 = puVar8 + 2;
             pcVar3 = pcVar3 + 1;
             lVar7 = lVar7 + -1;
@@ -543,29 +543,29 @@ uint hash_table_allocator(uint *param_1, int param_2)
  * 技术说明：
  * 该函数负责分配内存块，支持线程安全的内存分配和初始化操作。
  */
-int32_t memory_block_allocator(longlong param_1)
+int32_t memory_block_allocator(int64_t param_1)
 {
-    longlong *plVar1;
-    longlong in_RAX;
-    longlong lVar2;
+    int64_t *plVar1;
+    int64_t in_RAX;
+    int64_t lVar2;
     char *pcVar3;
-    longlong unaff_RBP;
+    int64_t unaff_RBP;
     int iVar4;
-    ulonglong unaff_RDI;
+    uint64_t unaff_RDI;
     int32_t unaff_R12D;
-    longlong unaff_R14;
-    longlong lVar5;
-    longlong *plVar6;
+    int64_t unaff_R14;
+    int64_t lVar5;
+    int64_t *plVar6;
     bool bVar7;
     
     pcVar3 = (char *)(param_1 + 0x808 + unaff_RDI);
     lVar5 = (unaff_R14 - unaff_RDI) + 1;
-    plVar6 = (longlong *)(param_1 + 8 + in_RAX * 8);
+    plVar6 = (int64_t *)(param_1 + 8 + in_RAX * 8);
     do {
         iVar4 = (int)unaff_RDI;
         if (*plVar6 == 0) {
             lVar2 = memory_pool_allocator(system_memory_pool_ptr, 0x20000, 0x25);
-            plVar1 = (longlong *)(unaff_RBP + 8 + (longlong)iVar4 * 8);
+            plVar1 = (int64_t *)(unaff_RBP + 8 + (int64_t)iVar4 * 8);
             LOCK();
             bVar7 = *plVar1 == 0;
             if (bVar7) {
@@ -575,7 +575,7 @@ int32_t memory_block_allocator(longlong param_1)
             if (bVar7) {
                 func_0x0001801bb270();
                 LOCK();
-                *(int8_t *)((longlong)iVar4 + 0x808 + unaff_RBP) = 0;
+                *(int8_t *)((int64_t)iVar4 + 0x808 + unaff_RBP) = 0;
                 UNLOCK();
             }
             else {
@@ -591,7 +591,7 @@ int32_t memory_block_allocator(longlong param_1)
             do {
             } while (*pcVar3 != '\0');
         }
-        unaff_RDI = (ulonglong)(iVar4 + 1);
+        unaff_RDI = (uint64_t)(iVar4 + 1);
         plVar6 = plVar6 + 1;
         pcVar3 = pcVar3 + 1;
         lVar5 = lVar5 + -1;
@@ -637,24 +637,24 @@ int32_t system_empty_function_2(void)
  * 技术说明：
  * 该函数负责在哈希表中查找指定的键值，支持动态内存分配和线程安全操作。
  */
-char hash_table_lookup(longlong param_1, int param_2)
+char hash_table_lookup(int64_t param_1, int param_2)
 {
-    longlong *plVar1;
+    int64_t *plVar1;
     char *pcVar2;
     char cVar3;
-    longlong lVar4;
-    longlong lVar5;
+    int64_t lVar4;
+    int64_t lVar5;
     bool bVar6;
     
-    lVar5 = (longlong)param_2;
-    if (*(longlong *)(param_1 + 8 + lVar5 * 8) != 0) {
+    lVar5 = (int64_t)param_2;
+    if (*(int64_t *)(param_1 + 8 + lVar5 * 8) != 0) {
         do {
             cVar3 = *(char *)(lVar5 + 0x808 + param_1);
         } while (cVar3 != '\0');
         return cVar3;
     }
     lVar4 = memory_pool_allocator(system_memory_pool_ptr, 0x8000, 0x25);
-    plVar1 = (longlong *)(param_1 + 8 + lVar5 * 8);
+    plVar1 = (int64_t *)(param_1 + 8 + lVar5 * 8);
     LOCK();
     bVar6 = *plVar1 == 0;
     if (bVar6) {
@@ -692,25 +692,25 @@ char hash_table_lookup(longlong param_1, int param_2)
  *   param_4 - 保留参数
  * 
  * 返回值：
- *   longlong* - 扩容后的容器指针
+ *   int64_t* - 扩容后的容器指针
  * 
  * 技术说明：
  * 该函数负责扩展容器容量，支持动态扩容和数据迁移操作。
  * 使用指数扩容策略以提高性能。
  */
-longlong * container_expander(longlong *param_1, longlong *param_2, uint64_t param_3, uint64_t param_4)
+int64_t * container_expander(int64_t *param_1, int64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
     uint uVar1;
-    longlong lVar2;
-    longlong lVar3;
-    longlong *plVar4;
-    longlong lVar5;
-    longlong lVar6;
-    longlong *plStackX_8;
+    int64_t lVar2;
+    int64_t lVar3;
+    int64_t *plVar4;
+    int64_t lVar5;
+    int64_t lVar6;
+    int64_t *plStackX_8;
     
-    plVar4 = (longlong *)param_1[1];
-    if (plVar4 < (longlong *)param_1[2]) {
-        param_1[1] = (longlong)(plVar4 + 0x11);
+    plVar4 = (int64_t *)param_1[1];
+    if (plVar4 < (int64_t *)param_1[2]) {
+        param_1[1] = (int64_t)(plVar4 + 0x11);
         lVar6 = param_2[1] - *param_2 >> 3;
         uVar1 = *(uint *)(param_2 + 3);
         *(uint *)(plVar4 + 3) = uVar1;
@@ -784,7 +784,7 @@ longlong * container_expander(longlong *param_1, longlong *param_2, uint64_t par
         memmove(lVar2, lVar6, param_2[6] - lVar6);
     }
     lVar2 = *param_1;
-    lVar3 = ((longlong)plVar4 - lVar2) / 0x88;
+    lVar3 = ((int64_t)plVar4 - lVar2) / 0x88;
     if (lVar3 == 0) {
         lVar3 = 1;
     }
@@ -796,7 +796,7 @@ longlong * container_expander(longlong *param_1, longlong *param_2, uint64_t par
         }
     }
     lVar6 = memory_pool_allocator(system_memory_pool_ptr, lVar3 * 0x88, (char)param_1[3]);
-    plVar4 = (longlong *)param_1[1];
+    plVar4 = (int64_t *)param_1[1];
     lVar2 = *param_1;
 LAB_1801b9d0f:
     data_binder(&plStackX_8, lVar2, plVar4, lVar6);
@@ -811,10 +811,10 @@ LAB_1801b9d0f:
         lVar5 = *param_1;
     }
     if (lVar5 == 0) {
-        plVar4 = (longlong *)(lVar3 * 0x88 + lVar6);
+        plVar4 = (int64_t *)(lVar3 * 0x88 + lVar6);
         *param_1 = lVar6;
-        param_1[1] = (longlong)(plStackX_8 + 0x11);
-        param_1[2] = (longlong)plVar4;
+        param_1[1] = (int64_t)(plStackX_8 + 0x11);
+        param_1[2] = (int64_t)plVar4;
         return plVar4;
     }
     // WARNING: Subroutine does not return
@@ -838,17 +838,17 @@ LAB_1801b9d0f:
  * 技术说明：
  * 该函数负责重新分配容器内存，支持动态调整容器大小。
  */
-void container_reallocator(uint64_t param_1, uint64_t param_2, longlong param_3)
+void container_reallocator(uint64_t param_1, uint64_t param_2, int64_t param_3)
 {
-    longlong lVar1;
-    longlong lVar2;
-    longlong in_RAX;
-    longlong lVar3;
-    longlong lVar4;
-    longlong lVar5;
-    longlong *unaff_RDI;
-    longlong in_R10;
-    longlong in_stack_00000050;
+    int64_t lVar1;
+    int64_t lVar2;
+    int64_t in_RAX;
+    int64_t lVar3;
+    int64_t lVar4;
+    int64_t lVar5;
+    int64_t *unaff_RDI;
+    int64_t in_R10;
+    int64_t in_stack_00000050;
     
     lVar4 = SUB168(SEXT816(in_RAX) * SEXT816(param_3 - in_R10), 8);
     lVar4 = (lVar4 >> 6) - (lVar4 >> 0x3f);
@@ -927,14 +927,14 @@ void system_error_handler(void)
  * 技术说明：
  * 该函数负责重分配12字节元素的数组，支持动态调整数组大小。
  */
-void array_reallocator_12byte(longlong *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void array_reallocator_12byte(int64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint uVar1;
-    longlong lVar2;
-    longlong lVar3;
-    longlong lVar4;
-    longlong lVar5;
-    longlong lVar6;
+    int64_t lVar2;
+    int64_t lVar3;
+    int64_t lVar4;
+    int64_t lVar5;
+    int64_t lVar6;
     uint64_t uVar7;
     
     uVar7 = 0xfffffffffffffffe;
@@ -984,14 +984,14 @@ void array_reallocator_12byte(longlong *param_1, uint64_t param_2, uint64_t para
  * 技术说明：
  * 该函数负责重分配52字节元素的数组，支持动态调整数组大小。
  */
-void array_reallocator_52byte(longlong *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void array_reallocator_52byte(int64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint uVar1;
-    longlong lVar2;
-    longlong lVar3;
-    longlong lVar4;
-    longlong lVar5;
-    longlong lVar6;
+    int64_t lVar2;
+    int64_t lVar3;
+    int64_t lVar4;
+    int64_t lVar5;
+    int64_t lVar6;
     uint64_t uVar7;
     
     uVar7 = 0xfffffffffffffffe;
@@ -1040,33 +1040,33 @@ void array_reallocator_52byte(longlong *param_1, uint64_t param_2, uint64_t para
  * 技术说明：
  * 该函数负责重分配1056字节元素的数组，支持动态调整数组大小和数据迁移。
  */
-void array_reallocator_1056byte(longlong *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void array_reallocator_1056byte(int64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    longlong *plVar1;
+    int64_t *plVar1;
     int *piVar2;
     byte *pbVar3;
     uint uVar4;
-    longlong *plVar5;
-    longlong lVar6;
+    int64_t *plVar5;
+    int64_t lVar6;
     int32_t uVar7;
     int32_t uVar8;
-    longlong lVar9;
-    longlong lVar10;
-    longlong *plVar11;
-    longlong *plVar12;
+    int64_t lVar9;
+    int64_t lVar10;
+    int64_t *plVar11;
+    int64_t *plVar12;
     
-    plVar5 = (longlong *)param_1[1];
-    plVar12 = (longlong *)*param_1;
+    plVar5 = (int64_t *)param_1[1];
+    plVar12 = (int64_t *)*param_1;
     lVar9 = 0;
     uVar4 = *(uint *)(param_1 + 3);
-    lVar10 = ((longlong)plVar5 - (longlong)plVar12) / 0x420;
+    lVar10 = ((int64_t)plVar5 - (int64_t)plVar12) / 0x420;
     if (lVar10 != 0) {
         lVar9 = memory_pool_allocator(system_memory_pool_ptr, lVar10 * 0x420, uVar4 & 0xff, param_4, 0xfffffffffffffffe, 0, 0,
                               0);
     }
     lVar10 = lVar10 * 0x420 + lVar9;
     if (plVar12 != plVar5) {
-        plVar11 = (longlong *)(lVar9 + 8);
+        plVar11 = (int64_t *)(lVar9 + 8);
         do {
             plVar1 = plVar11 + -1;
             *plVar1 = 0;
@@ -1120,16 +1120,16 @@ void array_reallocator_1056byte(longlong *param_1, uint64_t param_2, uint64_t pa
             lVar6 = plVar12[0x18];
             plVar11[0x16] = plVar12[0x17];
             plVar11[0x17] = lVar6;
-            uVar7 = *(int32_t *)((longlong)plVar12 + 0xcc);
+            uVar7 = *(int32_t *)((int64_t)plVar12 + 0xcc);
             lVar6 = plVar12[0x1a];
-            uVar8 = *(int32_t *)((longlong)plVar12 + 0xd4);
+            uVar8 = *(int32_t *)((int64_t)plVar12 + 0xd4);
             *(int *)(plVar11 + 0x18) = (int)plVar12[0x19];
-            *(int32_t *)((longlong)plVar11 + 0xc4) = uVar7;
+            *(int32_t *)((int64_t)plVar11 + 0xc4) = uVar7;
             *(int *)(plVar11 + 0x19) = (int)lVar6;
-            *(int32_t *)((longlong)plVar11 + 0xcc) = uVar8;
+            *(int32_t *)((int64_t)plVar11 + 0xcc) = uVar8;
             plVar11[0x1a] = plVar12[0x1b];
             *(int *)(plVar11 + 0x1b) = (int)plVar12[0x1c];
-            *(int32_t *)((longlong)plVar11 + 0xdc) = *(int32_t *)((longlong)plVar12 + 0xe4);
+            *(int32_t *)((int64_t)plVar11 + 0xdc) = *(int32_t *)((int64_t)plVar12 + 0xe4);
             data_converter(plVar11 + 0x1d, plVar12 + 0x1e);
             plVar12 = plVar12 + 0x84;
             plVar11 = plVar11 + 0x84;
@@ -1169,14 +1169,14 @@ void array_reallocator_1056byte(longlong *param_1, uint64_t param_2, uint64_t pa
  * 技术说明：
  * 该函数负责重分配188字节元素的数组，支持动态调整数组大小。
  */
-void array_reallocator_188byte(longlong *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void array_reallocator_188byte(int64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint uVar1;
-    longlong lVar2;
-    longlong lVar3;
-    longlong lVar4;
-    longlong lVar5;
-    longlong lVar6;
+    int64_t lVar2;
+    int64_t lVar3;
+    int64_t lVar4;
+    int64_t lVar5;
+    int64_t lVar6;
     uint64_t uVar7;
     
     uVar7 = 0xfffffffffffffffe;
@@ -1222,15 +1222,15 @@ void array_reallocator_188byte(longlong *param_1, uint64_t param_2, uint64_t par
  * 技术说明：
  * 该函数负责清理数组数据，包括释放内存和重置状态。
  */
-void array_cleaner(longlong param_1)
+void array_cleaner(int64_t param_1)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint64_t *puVar2;
-    ulonglong uVar3;
-    ulonglong uVar4;
+    uint64_t uVar3;
+    uint64_t uVar4;
     
-    uVar3 = *(ulonglong *)(param_1 + 0x10);
-    lVar1 = *(longlong *)(param_1 + 8);
+    uVar3 = *(uint64_t *)(param_1 + 0x10);
+    lVar1 = *(int64_t *)(param_1 + 8);
     uVar4 = 0;
     if (uVar3 != 0) {
         do {
@@ -1243,10 +1243,10 @@ void array_cleaner(longlong param_1)
             *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
             uVar4 = uVar4 + 1;
         } while (uVar4 < uVar3);
-        uVar3 = *(ulonglong *)(param_1 + 0x10);
+        uVar3 = *(uint64_t *)(param_1 + 0x10);
     }
     *(uint64_t *)(param_1 + 0x18) = 0;
-    if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
+    if ((1 < uVar3) && (*(int64_t *)(param_1 + 8) != 0)) {
         // WARNING: Subroutine does not return
         system_error_handler();
     }
@@ -1265,17 +1265,17 @@ void array_cleaner(longlong param_1)
  *   param_3 - 键值指针
  * 
  * 返回值：
- *   longlong* - 结果存储指针
+ *   int64_t* - 结果存储指针
  * 
  * 技术说明：
  * 该函数负责在哈希表中查找条目，使用64位哈希算法进行快速查找。
  */
-longlong * hash_table_entry_finder(longlong param_1, longlong *param_2, longlong param_3)
+int64_t * hash_table_entry_finder(int64_t param_1, int64_t *param_2, int64_t param_3)
 {
     byte bVar1;
-    ulonglong uVar2;
-    longlong lVar3;
-    longlong lVar4;
+    uint64_t uVar2;
+    int64_t lVar3;
+    int64_t lVar4;
     byte *pbVar5;
     uint uVar6;
     
@@ -1293,15 +1293,15 @@ longlong * hash_table_entry_finder(longlong param_1, longlong *param_2, longlong
             uVar2 = (uVar2 ^ bVar1) * 0x100000001b3;
         } while (uVar6 < *(uint *)(param_3 + 0x10));
     }
-    lVar4 = (uVar2 % (ulonglong)*(uint *)(param_1 + 0x10)) * 8;
-    lVar3 = func_0x0001801bb330((ulonglong)*(uint *)(param_1 + 0x10),
-                              *(uint64_t *)(*(longlong *)(param_1 + 8) + lVar4));
+    lVar4 = (uVar2 % (uint64_t)*(uint *)(param_1 + 0x10)) * 8;
+    lVar3 = func_0x0001801bb330((uint64_t)*(uint *)(param_1 + 0x10),
+                              *(uint64_t *)(*(int64_t *)(param_1 + 8) + lVar4));
     if (lVar3 == 0) {
-        lVar4 = *(longlong *)(param_1 + 8) + *(longlong *)(param_1 + 0x10) * 8;
-        lVar3 = *(longlong *)(*(longlong *)(param_1 + 8) + *(longlong *)(param_1 + 0x10) * 8);
+        lVar4 = *(int64_t *)(param_1 + 8) + *(int64_t *)(param_1 + 0x10) * 8;
+        lVar3 = *(int64_t *)(*(int64_t *)(param_1 + 8) + *(int64_t *)(param_1 + 0x10) * 8);
     }
     else {
-        lVar4 = *(longlong *)(param_1 + 8) + lVar4;
+        lVar4 = *(int64_t *)(param_1 + 8) + lVar4;
     }
     *param_2 = lVar3;
     param_2[1] = lVar4;
@@ -1326,18 +1326,18 @@ longlong * hash_table_entry_finder(longlong param_1, longlong *param_2, longlong
  * 技术说明：
  * 该函数负责迭代容器中的元素，执行清理和资源释放操作。
  */
-void container_iterator(longlong *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void container_iterator(int64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    longlong *plVar1;
-    longlong *plVar2;
-    longlong *plVar3;
+    int64_t *plVar1;
+    int64_t *plVar2;
+    int64_t *plVar3;
     uint64_t uVar4;
     
     uVar4 = 0xfffffffffffffffe;
-    plVar1 = (longlong *)param_1[1];
-    for (plVar3 = (longlong *)*param_1; plVar3 != plVar1; plVar3 = plVar3 + 8) {
-        plVar2 = (longlong *)plVar3[7];
-        if (plVar2 != (longlong *)0x0) {
+    plVar1 = (int64_t *)param_1[1];
+    for (plVar3 = (int64_t *)*param_1; plVar3 != plVar1; plVar3 = plVar3 + 8) {
+        plVar2 = (int64_t *)plVar3[7];
+        if (plVar2 != (int64_t *)0x0) {
             (**(code **)(*plVar2 + 0x20))(plVar2, plVar2 != plVar3, param_3, param_4, uVar4);
             plVar3[7] = 0;
         }
@@ -1365,37 +1365,37 @@ void container_iterator(longlong *param_1, uint64_t param_2, uint64_t param_3, u
  * 技术说明：
  * 该函数负责从数组中移除指定元素，支持动态调整数组大小。
  */
-void array_element_remover(ulonglong *param_1, longlong param_2)
+void array_element_remover(uint64_t *param_1, int64_t param_2)
 {
-    ulonglong uVar1;
-    ulonglong uVar2;
-    ulonglong uVar3;
-    ulonglong uVar4;
-    ulonglong uVar5;
-    ulonglong uVar6;
+    uint64_t uVar1;
+    uint64_t uVar2;
+    uint64_t uVar3;
+    uint64_t uVar4;
+    uint64_t uVar5;
+    uint64_t uVar6;
     int iVar7;
     
     uVar2 = 0;
     uVar5 = *param_1;
-    iVar7 = (int)((longlong)(param_1[1] - uVar5) >> 3);
+    iVar7 = (int)((int64_t)(param_1[1] - uVar5) >> 3);
     if (0 < iVar7) {
         uVar1 = uVar2;
         uVar4 = uVar2;
-        while (*(longlong *)(uVar5 + uVar1 * 8) != param_2) {
-            uVar4 = (ulonglong)((int)uVar4 + 1);
+        while (*(int64_t *)(uVar5 + uVar1 * 8) != param_2) {
+            uVar4 = (uint64_t)((int)uVar4 + 1);
             uVar1 = uVar1 + 1;
-            if ((longlong)iVar7 <= (longlong)uVar1) {
+            if ((int64_t)iVar7 <= (int64_t)uVar1) {
                 return;
             }
         }
-        uVar3 = (ulonglong)(iVar7 + -1);
-        *(uint64_t *)(uVar5 + (longlong)(int)uVar4 * 8) = *(uint64_t *)(uVar3 * 8 + uVar5);
+        uVar3 = (uint64_t)(iVar7 + -1);
+        *(uint64_t *)(uVar5 + (int64_t)(int)uVar4 * 8) = *(uint64_t *)(uVar3 * 8 + uVar5);
         uVar5 = param_1[1];
         uVar1 = *param_1;
-        uVar4 = (longlong)(uVar5 - uVar1) >> 3;
+        uVar4 = (int64_t)(uVar5 - uVar1) >> 3;
         if (uVar4 < uVar3) {
             uVar6 = uVar3 - uVar4;
-            if ((ulonglong)((longlong)(param_1[2] - uVar5) >> 3) < uVar6) {
+            if ((uint64_t)((int64_t)(param_1[2] - uVar5) >> 3) < uVar6) {
                 if (uVar4 == 0) {
                     uVar4 = 1;
                 }
@@ -1459,24 +1459,24 @@ void array_element_remover(ulonglong *param_1, longlong param_2)
  * 技术说明：
  * 该函数负责移动数组元素，支持动态调整数组结构和大小。
  */
-void array_element_mover(int param_1, uint64_t param_2, longlong param_3, int param_4)
+void array_element_mover(int param_1, uint64_t param_2, int64_t param_3, int param_4)
 {
-    longlong lVar1;
-    ulonglong uVar2;
-    longlong *unaff_RBX;
-    ulonglong uVar3;
-    longlong lVar4;
-    ulonglong uVar5;
-    longlong unaff_R14;
+    int64_t lVar1;
+    uint64_t uVar2;
+    int64_t *unaff_RBX;
+    uint64_t uVar3;
+    int64_t lVar4;
+    uint64_t uVar5;
+    int64_t unaff_R14;
     
-    uVar2 = (ulonglong)(param_4 + -1);
-    *(uint64_t *)(param_3 + (longlong)param_1 * 8) = *(uint64_t *)(uVar2 * 8 + param_3);
+    uVar2 = (uint64_t)(param_4 + -1);
+    *(uint64_t *)(param_3 + (int64_t)param_1 * 8) = *(uint64_t *)(uVar2 * 8 + param_3);
     lVar4 = unaff_RBX[1];
     lVar1 = *unaff_RBX;
     uVar3 = lVar4 - lVar1 >> 3;
     if (uVar3 < uVar2) {
         uVar5 = uVar2 - uVar3;
-        if ((ulonglong)(unaff_RBX[2] - lVar4 >> 3) < uVar5) {
+        if ((uint64_t)(unaff_RBX[2] - lVar4 >> 3) < uVar5) {
             if (uVar3 == 0) {
                 uVar3 = 1;
             }
@@ -1537,18 +1537,18 @@ void array_element_mover(int param_1, uint64_t param_2, longlong param_3, int pa
  * 技术说明：
  * 该函数负责扩展数组容量，支持动态扩容和内存重分配。
  */
-void array_expander(longlong param_1, ulonglong param_2)
+void array_expander(int64_t param_1, uint64_t param_2)
 {
-    longlong in_RAX;
-    longlong *unaff_RBX;
-    longlong unaff_RBP;
-    ulonglong uVar1;
-    longlong unaff_RSI;
-    ulonglong uVar2;
-    longlong unaff_R14;
+    int64_t in_RAX;
+    int64_t *unaff_RBX;
+    int64_t unaff_RBP;
+    uint64_t uVar1;
+    int64_t unaff_RSI;
+    uint64_t uVar2;
+    int64_t unaff_R14;
     
     uVar2 = param_2 - unaff_RBP;
-    if ((ulonglong)(in_RAX - unaff_RSI >> 3) < uVar2) {
+    if ((uint64_t)(in_RAX - unaff_RSI >> 3) < uVar2) {
         if (unaff_RBP == 0) {
             uVar1 = 1;
         }
@@ -1606,9 +1606,9 @@ void array_expander(longlong param_1, ulonglong param_2)
  */
 void system_empty_function_3(void)
 {
-    longlong unaff_RBX;
+    int64_t unaff_RBX;
     uint64_t unaff_RSI;
-    longlong unaff_RDI;
+    int64_t unaff_RDI;
     
     if (unaff_RDI != 0) {
         // WARNING: Subroutine does not return
@@ -1636,11 +1636,11 @@ void system_empty_function_3(void)
  * 技术说明：
  * 该函数负责计算指针偏移量，支持指针运算和地址计算。
  */
-void pointer_offset_calculator(longlong param_1, uint64_t param_2, uint64_t param_3, longlong param_4)
+void pointer_offset_calculator(int64_t param_1, uint64_t param_2, uint64_t param_3, int64_t param_4)
 {
-    longlong unaff_RBX;
+    int64_t unaff_RBX;
     
-    *(longlong *)(unaff_RBX + 8) = param_4 + param_1;
+    *(int64_t *)(unaff_RBX + 8) = param_4 + param_1;
     return;
 }
 

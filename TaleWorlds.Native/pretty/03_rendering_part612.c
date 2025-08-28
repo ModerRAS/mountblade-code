@@ -84,10 +84,10 @@ LAB_180602e68:
     return 0;
   }
   uVar9 = *(uint64_t *)(param_1 + 0x6e0);
-  uVar8 = FUN_1805bd4d0(uVar9,lVar6,iVar5,lVar2);
+  uVar8 = RenderingSystem_ParameterValidator(uVar9,lVar6,iVar5,lVar2);
   lVar2 = *(longlong *)(param_1 + 0x20);
   uVar10 = CONCAT44(uVar12,*(int32_t *)(lVar2 + 0x1d0));
-  FUN_1805bd570(uVar9,lVar2,*(float *)(lVar2 + 0x14) - param_2,uVar8,uVar10,
+  RenderingSystem_StateController(uVar9,lVar2,*(float *)(lVar2 + 0x14) - param_2,uVar8,uVar10,
                 CONCAT44(uVar13,render_system_memory));
   uVar12 = (int32_t)((ulonglong)uVar10 >> 0x20);
   if ((*(longlong *)(param_1 + 0x628) == lVar6) && (*(int *)(param_1 + 0x644) == iVar5)) {
@@ -99,14 +99,14 @@ LAB_180602e68:
     auStackX_20[0] = 0xffffffff;
     auStackX_18[0] = 0xffffffff;
     auStackX_8[0] = 0xffffffff;
-    FUN_18050e440(param_1,lVar6,auStackX_18,auStackX_8,puVar11,auStack_38,iVar5);
+    RenderingSystem_DataProcessor(param_1,lVar6,auStackX_18,auStackX_8,puVar11,auStack_38,iVar5);
     uVar12 = (int32_t)((ulonglong)puVar11 >> 0x20);
     uVar9 = *(uint64_t *)(param_1 + 0x6e0);
     uVar8 = auStackX_8[0];
     uVar13 = auStackX_18[0];
   }
   lVar2 = *(longlong *)(param_1 + 0x8d8);
-  uVar9 = FUN_1805bdb70(uVar9,lVar2,
+  uVar9 = RenderingSystem_ConfigManager(uVar9,lVar2,
                         (float)(*(longlong *)
                                  (&system_error_code + (longlong)*(int *)(lVar2 + 0x87b790) * 8) -
                                *(longlong *)(lVar2 + 0x87b788)) * 1e-05,uVar13,
@@ -139,10 +139,10 @@ void FUN_180602e71(void)
   
   uVar3 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
   uVar4 = *(uint64_t *)(unaff_RBX + 0x6e0);
-  uVar5 = FUN_1805bd4d0(uVar4);
+  uVar5 = RenderingSystem_ParameterValidator(uVar4);
   lVar2 = *(longlong *)(unaff_RBX + 0x20);
   uVar6 = CONCAT44(uVar3,*(int32_t *)(lVar2 + 0x1d0));
-  FUN_1805bd570(uVar4,lVar2,*(float *)(lVar2 + 0x14) - in_XMM3_Da,uVar5,uVar6);
+  RenderingSystem_StateController(uVar4,lVar2,*(float *)(lVar2 + 0x14) - in_XMM3_Da,uVar5,uVar6);
   uVar5 = (int32_t)((ulonglong)uVar6 >> 0x20);
   if ((*(longlong *)(unaff_RBX + 0x628) == unaff_RSI) && (*(int *)(unaff_RBX + 0x644) == unaff_EBP))
   {
@@ -152,13 +152,13 @@ void FUN_180602e71(void)
   else {
     uVar5 = (int32_t)((ulonglong)&stack0x00000098 >> 0x20);
     in_stack_00000098 = 0xffffffff;
-    FUN_18050e440();
+    RenderingSystem_DataProcessor();
     uVar3 = 0xffffffff;
     uVar1 = 0xffffffff;
     uVar4 = *(uint64_t *)(unaff_RBX + 0x6e0);
   }
   lVar2 = *(longlong *)(unaff_RBX + 0x8d8);
-  FUN_1805bdb70(uVar4,lVar2,
+  RenderingSystem_ConfigManager(uVar4,lVar2,
                 (float)(*(longlong *)(&system_error_code + (longlong)*(int *)(lVar2 + 0x87b790) * 8) -
                        *(longlong *)(lVar2 + 0x87b788)) * 1e-05,uVar1,CONCAT44(uVar5,uVar3));
   return;

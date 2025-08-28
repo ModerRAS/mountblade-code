@@ -1918,10 +1918,10 @@ extern int32_t matrix_operation_flag;
 extern void *coordinate_system_ptr;
 extern int8_t *vector_buffer_ptr;
 extern int32_t calculation_status;
-extern longlong transform_matrix_ptr;
-extern longlong surface_normal_table;
-extern longlong projection_matrix_ptr;
-extern longlong math_context_ptr;
+extern int64_t transform_matrix_ptr;
+extern int64_t surface_normal_table;
+extern int64_t projection_matrix_ptr;
+extern int64_t math_context_ptr;
 extern int32_t vector_operation_flag;
 extern int32_t matrix_operation_status;
 extern uint8_t system_resource_config;
@@ -1929,10 +1929,10 @@ extern uint8_t system_module_config;
 extern uint8_t system_cache_config;
 extern uint8_t system_temp_config;
 extern uint8_t system_precision_config;
-extern longlong geometry_data_ptr;
+extern int64_t geometry_data_ptr;
 extern uint64_t math_constants_table;
-extern longlong collision_data_ptr;
-extern longlong *trigonometry_table;
+extern int64_t collision_data_ptr;
+extern int64_t *trigonometry_table;
 
 /*==============================================================================
  * 技术说明

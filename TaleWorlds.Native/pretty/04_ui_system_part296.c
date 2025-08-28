@@ -235,8 +235,8 @@ void UISystem_ResourceInitializer(void)
  */
 int UISystem_StateChecker(void)
 {
-    longlong lVar1;
-    longlong unaff_RSI;
+    int64_t lVar1;
+    int64_t unaff_RSI;
     int unaff_R14D;
     int iVar2;
     uint64_t unaff_R15;
@@ -244,7 +244,7 @@ int UISystem_StateChecker(void)
     iVar2 = (int)unaff_R15;
     if (*(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x68) != 0) {
         lVar1 = FUN_1807c4260();
-        *(longlong *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x58) = lVar1;
+        *(int64_t *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x58) = lVar1;
         *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_100) = 
             *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_100) + 
             *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x68);
@@ -259,7 +259,7 @@ int UISystem_StateChecker(void)
     if (unaff_R14D != 0) {
         return unaff_R14D;
     }
-    if (*(longlong *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x58) != 0) {
+    if (*(int64_t *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x58) != 0) {
         FUN_1807c41d0();
     }
     memset();
@@ -289,14 +289,14 @@ int UISystem_StateChecker(void)
  */
 int UISystem_StateValidator(void)
 {
-    longlong lVar1;
-    longlong unaff_RSI;
+    int64_t lVar1;
+    int64_t unaff_RSI;
     int iVar2;
     int iVar3;
     uint64_t unaff_R15;
     
     lVar1 = FUN_1807c4260();
-    *(longlong *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x58) = lVar1;
+    *(int64_t *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x58) = lVar1;
     *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_100) = 
         *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_100) + 
         *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x68);
@@ -311,7 +311,7 @@ int UISystem_StateValidator(void)
     if (iVar2 != 0) {
         return iVar2;
     }
-    if (*(longlong *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x58) != 0) {
+    if (*(int64_t *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x58) != 0) {
         FUN_1807c41d0();
     }
     memset();
@@ -398,25 +398,25 @@ void UISystem_MemoryInitializer(uint64_t param_1, uint64_t param_2, uint64_t par
  * - 包含资源生命周期管理
  * - 提供资源清理功能
  */
-void UISystem_ResourceProcessor(uint64_t param_1, longlong *param_2)
+void UISystem_ResourceProcessor(uint64_t param_1, int64_t *param_2)
 {
-    longlong lVar1;
-    longlong lVar2;
-    longlong lVar3;
-    ulonglong uVar4;
-    ulonglong uVar5;
+    int64_t lVar1;
+    int64_t lVar2;
+    int64_t lVar3;
+    uint64_t uVar4;
+    uint64_t uVar5;
     int *piVar6;
     uint uVar7;
-    ulonglong uVar8;
+    uint64_t uVar8;
     
-    if (param_2 == (longlong *)0x0) {
+    if (param_2 == (int64_t *)0x0) {
         return;
     }
     uVar4 = 0;
     lVar1 = *param_2;
     uVar5 = uVar4;
     if (lVar1 != 0) {
-        uVar5 = *(ulonglong *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20);
+        uVar5 = *(uint64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20);
     }
     lVar2 = param_2[0xe];
     if (lVar2 != 0) {
@@ -428,37 +428,37 @@ void UISystem_ResourceProcessor(uint64_t param_1, longlong *param_2)
             FUN_18083dff0(param_1, **(uint64_t **)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x10));
             FUN_1807c41d0(param_1, **(uint64_t **)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x10));
         }
-        lVar3 = *(longlong *)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x20);
+        lVar3 = *(int64_t *)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x20);
         if (lVar3 != 0) {
             if ((uVar5 != 0) && (0 < *(int *)(uVar5 + UI_SYSTEM_DATA_OFFSET_0x10))) {
                 piVar6 = (int *)(uVar5 + UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x520);
                 uVar8 = uVar4;
                 do {
-                    (**(code **)(*(longlong *)(&unknown_var_4216_ptr + (longlong)*piVar6 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
-                        (param_1, *(uint64_t *)(*(longlong *)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x20) + uVar8));
+                    (**(code **)(*(int64_t *)(&unknown_var_4216_ptr + (int64_t)*piVar6 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
+                        (param_1, *(uint64_t *)(*(int64_t *)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x20) + uVar8));
                     uVar7 = (int)uVar4 + 1;
-                    uVar4 = (ulonglong)uVar7;
+                    uVar4 = (uint64_t)uVar7;
                     piVar6 = piVar6 + 1;
                     uVar8 = uVar8 + 8;
                 } while ((int)uVar7 < *(int *)(uVar5 + UI_SYSTEM_DATA_OFFSET_0x10));
-                lVar3 = *(longlong *)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x20);
+                lVar3 = *(int64_t *)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x20);
             }
             FUN_1807c41d0(param_1, lVar3);
         }
-        lVar3 = *(longlong *)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x28);
+        lVar3 = *(int64_t *)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x28);
         if (lVar3 != 0) {
             if ((uVar5 != 0) && (0 < *(int *)(uVar5 + UI_SYSTEM_DATA_OFFSET_0x14))) {
                 piVar6 = (int *)(uVar5 + UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x820);
                 uVar8 = uVar4;
                 do {
-                    (**(code **)(*(longlong *)(&unknown_var_4232_ptr + (longlong)*piVar6 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
-                        (param_1, *(uint64_t *)(uVar8 + *(longlong *)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x28)));
+                    (**(code **)(*(int64_t *)(&unknown_var_4232_ptr + (int64_t)*piVar6 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
+                        (param_1, *(uint64_t *)(uVar8 + *(int64_t *)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x28)));
                     uVar7 = (int)uVar4 + 1;
-                    uVar4 = (ulonglong)uVar7;
+                    uVar4 = (uint64_t)uVar7;
                     piVar6 = piVar6 + 1;
                     uVar8 = uVar8 + 8;
                 } while ((int)uVar7 < *(int *)(uVar5 + UI_SYSTEM_DATA_OFFSET_0x14));
-                lVar3 = *(longlong *)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x28);
+                lVar3 = *(int64_t *)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x28);
             }
             FUN_1807c41d0(param_1, lVar3);
         }
@@ -472,11 +472,11 @@ void UISystem_ResourceProcessor(uint64_t param_1, longlong *param_2)
     }
     if ((lVar1 != 0) && (uVar5 = uVar4, 0 < *(int *)(lVar1 + 4))) {
         do {
-            if (*(longlong *)(uVar5 + lVar3) != 0) {
+            if (*(int64_t *)(uVar5 + lVar3) != 0) {
                 FUN_1807c41d0(param_1);
             }
             uVar7 = (int)uVar4 + 1;
-            uVar4 = (ulonglong)uVar7;
+            uVar4 = (uint64_t)uVar7;
             uVar5 = uVar5 + 8;
         } while ((int)uVar7 < *(int *)(lVar1 + 4));
     }
@@ -506,22 +506,22 @@ void UISystem_ResourceProcessor(uint64_t param_1, longlong *param_2)
  * - 包含资源生命周期管理
  * - 提供资源清理功能
  */
-void UISystem_ResourceHandler(uint64_t param_1, longlong *param_2)
+void UISystem_ResourceHandler(uint64_t param_1, int64_t *param_2)
 {
-    longlong lVar1;
-    longlong lVar2;
-    ulonglong uVar3;
-    ulonglong uVar4;
+    int64_t lVar1;
+    int64_t lVar2;
+    uint64_t uVar3;
+    uint64_t uVar4;
     int *piVar5;
     uint uVar6;
-    ulonglong uVar7;
-    longlong lStack0000000000000078;
+    uint64_t uVar7;
+    int64_t lStack0000000000000078;
     
     uVar3 = 0;
     lStack0000000000000078 = *param_2;
     uVar4 = uVar3;
     if (lStack0000000000000078 != 0) {
-        uVar4 = *(ulonglong *)(lStack0000000000000078 + UI_SYSTEM_DATA_OFFSET_0x20);
+        uVar4 = *(uint64_t *)(lStack0000000000000078 + UI_SYSTEM_DATA_OFFSET_0x20);
     }
     lVar1 = param_2[0xe];
     if (lVar1 != 0) {
@@ -533,37 +533,37 @@ void UISystem_ResourceHandler(uint64_t param_1, longlong *param_2)
             FUN_18083dff0(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x10));
             FUN_1807c41d0(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x10));
         }
-        lVar2 = *(longlong *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20);
+        lVar2 = *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20);
         if (lVar2 != 0) {
             if ((uVar4 != 0) && (0 < *(int *)(uVar4 + UI_SYSTEM_DATA_OFFSET_0x10))) {
                 piVar5 = (int *)(uVar4 + UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x520);
                 uVar7 = uVar3;
                 do {
-                    (**(code **)(*(longlong *)(&unknown_var_4216_ptr + (longlong)*piVar5 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
-                        (param_1, *(uint64_t *)(*(longlong *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20) + uVar7));
+                    (**(code **)(*(int64_t *)(&unknown_var_4216_ptr + (int64_t)*piVar5 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
+                        (param_1, *(uint64_t *)(*(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20) + uVar7));
                     uVar6 = (int)uVar3 + 1;
-                    uVar3 = (ulonglong)uVar6;
+                    uVar3 = (uint64_t)uVar6;
                     piVar5 = piVar5 + 1;
                     uVar7 = uVar7 + 8;
                 } while ((int)uVar6 < *(int *)(uVar4 + UI_SYSTEM_DATA_OFFSET_0x10));
-                lVar2 = *(longlong *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20);
+                lVar2 = *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20);
             }
             FUN_1807c41d0(param_1, lVar2);
         }
-        lVar2 = *(longlong *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x28);
+        lVar2 = *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x28);
         if (lVar2 != 0) {
             if ((uVar4 != 0) && (0 < *(int *)(uVar4 + UI_SYSTEM_DATA_OFFSET_0x14))) {
                 piVar5 = (int *)(uVar4 + UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x820);
                 uVar7 = uVar3;
                 do {
-                    (**(code **)(*(longlong *)(&unknown_var_4232_ptr + (longlong)*piVar5 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
-                        (param_1, *(uint64_t *)(uVar7 + *(longlong *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x28)));
+                    (**(code **)(*(int64_t *)(&unknown_var_4232_ptr + (int64_t)*piVar5 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
+                        (param_1, *(uint64_t *)(uVar7 + *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x28)));
                     uVar6 = (int)uVar3 + 1;
-                    uVar3 = (ulonglong)uVar6;
+                    uVar3 = (uint64_t)uVar6;
                     piVar5 = piVar5 + 1;
                     uVar7 = uVar7 + 8;
                 } while ((int)uVar6 < *(int *)(uVar4 + UI_SYSTEM_DATA_OFFSET_0x14));
-                lVar2 = *(longlong *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x28);
+                lVar2 = *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x28);
             }
             FUN_1807c41d0(param_1, lVar2);
         }
@@ -577,11 +577,11 @@ void UISystem_ResourceHandler(uint64_t param_1, longlong *param_2)
     }
     if ((lStack0000000000000078 != 0) && (uVar4 = uVar3, 0 < *(int *)(lStack0000000000000078 + 4))) {
         do {
-            if (*(longlong *)(uVar4 + lVar2) != 0) {
+            if (*(int64_t *)(uVar4 + lVar2) != 0) {
                 FUN_1807c41d0(param_1);
             }
             uVar6 = (int)uVar3 + 1;
-            uVar3 = (ulonglong)uVar6;
+            uVar3 = (uint64_t)uVar6;
             uVar4 = uVar4 + 8;
         } while ((int)uVar6 < *(int *)(lStack0000000000000078 + 4));
     }
@@ -611,23 +611,23 @@ void UISystem_ResourceHandler(uint64_t param_1, longlong *param_2)
  * - 包含状态同步机制
  * - 提供错误处理功能
  */
-void UISystem_StateController(uint64_t param_1, longlong *param_2)
+void UISystem_StateController(uint64_t param_1, int64_t *param_2)
 {
-    longlong lVar1;
-    longlong lVar2;
-    ulonglong uVar3;
-    ulonglong uVar4;
+    int64_t lVar1;
+    int64_t lVar2;
+    uint64_t uVar3;
+    uint64_t uVar4;
     int *piVar5;
     uint uVar6;
-    ulonglong uVar7;
-    longlong unaff_R15;
-    longlong lStack0000000000000078;
+    uint64_t uVar7;
+    int64_t unaff_R15;
+    int64_t lStack0000000000000078;
     
     uVar3 = 0;
     lStack0000000000000078 = *param_2;
     uVar4 = uVar3;
     if (lStack0000000000000078 != 0) {
-        uVar4 = *(ulonglong *)(lStack0000000000000078 + UI_SYSTEM_DATA_OFFSET_0x20);
+        uVar4 = *(uint64_t *)(lStack0000000000000078 + UI_SYSTEM_DATA_OFFSET_0x20);
     }
     lVar1 = param_2[0xe];
     if (lVar1 != 0) {
@@ -639,42 +639,42 @@ void UISystem_StateController(uint64_t param_1, longlong *param_2)
             FUN_18083dff0(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x10));
             FUN_1807c41d0(param_1, **(uint64_t **)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x10));
         }
-        lVar2 = *(longlong *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20);
+        lVar2 = *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20);
         if (lVar2 != 0) {
             if ((uVar4 != 0) && (0 < *(int *)(uVar4 + UI_SYSTEM_DATA_OFFSET_0x10))) {
                 piVar5 = (int *)(uVar4 + UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x520);
                 uVar7 = uVar3;
                 do {
-                    (**(code **)(*(longlong *)(&unknown_var_4216_ptr + (longlong)*piVar5 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
-                        (param_1, *(uint64_t *)(*(longlong *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20) + uVar7));
+                    (**(code **)(*(int64_t *)(&unknown_var_4216_ptr + (int64_t)*piVar5 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
+                        (param_1, *(uint64_t *)(*(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20) + uVar7));
                     uVar6 = (int)uVar3 + 1;
-                    uVar3 = (ulonglong)uVar6;
+                    uVar3 = (uint64_t)uVar6;
                     piVar5 = piVar5 + 1;
                     uVar7 = uVar7 + 8;
                 } while ((int)uVar6 < *(int *)(uVar4 + UI_SYSTEM_DATA_OFFSET_0x10));
-                lVar2 = *(longlong *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20);
+                lVar2 = *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20);
             }
             FUN_1807c41d0(param_1, lVar2);
         }
-        lVar2 = *(longlong *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x28);
+        lVar2 = *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x28);
         if (lVar2 != 0) {
             if ((uVar4 != 0) && (0 < *(int *)(uVar4 + UI_SYSTEM_DATA_OFFSET_0x14))) {
                 piVar5 = (int *)(uVar4 + UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x820);
                 uVar7 = uVar3;
                 do {
-                    (**(code **)(*(longlong *)(&unknown_var_4232_ptr + (longlong)*piVar5 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
-                        (param_1, *(uint64_t *)(uVar7 + *(longlong *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x28)));
+                    (**(code **)(*(int64_t *)(&unknown_var_4232_ptr + (int64_t)*piVar5 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
+                        (param_1, *(uint64_t *)(uVar7 + *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x28)));
                     uVar6 = (int)uVar3 + 1;
-                    uVar3 = (ulonglong)uVar6;
+                    uVar3 = (uint64_t)uVar6;
                     piVar5 = piVar5 + 1;
                     uVar7 = uVar7 + 8;
                 } while ((int)uVar6 < *(int *)(uVar4 + UI_SYSTEM_DATA_OFFSET_0x14));
-                lVar2 = *(longlong *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x28);
+                lVar2 = *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x28);
             }
             FUN_1807c41d0(param_1, lVar2);
         }
     }
-    lVar2 = *(longlong *)(unaff_R15 + UI_SYSTEM_DATA_OFFSET_0x8);
+    lVar2 = *(int64_t *)(unaff_R15 + UI_SYSTEM_DATA_OFFSET_0x8);
     if (lVar2 == 0) {
         if (lVar1 == 0) {
             memset();
@@ -683,11 +683,11 @@ void UISystem_StateController(uint64_t param_1, longlong *param_2)
     }
     if ((lStack0000000000000078 != 0) && (uVar4 = uVar3, 0 < *(int *)(lStack0000000000000078 + 4))) {
         do {
-            if (*(longlong *)(uVar4 + lVar2) != 0) {
+            if (*(int64_t *)(uVar4 + lVar2) != 0) {
                 FUN_1807c41d0(param_1);
             }
             uVar6 = (int)uVar3 + 1;
-            uVar3 = (ulonglong)uVar6;
+            uVar3 = (uint64_t)uVar6;
             uVar4 = uVar4 + 8;
         } while ((int)uVar6 < *(int *)(lStack0000000000000078 + 4));
     }
@@ -717,17 +717,17 @@ void UISystem_StateController(uint64_t param_1, longlong *param_2)
  * - 包含状态重置机制
  * - 提供错误处理功能
  */
-void UISystem_ResourceCleaner(uint64_t param_1, longlong param_2)
+void UISystem_ResourceCleaner(uint64_t param_1, int64_t param_2)
 {
     int iVar1;
-    ulonglong unaff_RBX;
-    longlong unaff_RBP;
-    longlong unaff_RSI;
+    uint64_t unaff_RBX;
+    int64_t unaff_RBP;
+    int64_t unaff_RSI;
     int *piVar2;
     uint uVar3;
-    longlong unaff_R13;
-    ulonglong uVar4;
-    longlong unaff_R15;
+    int64_t unaff_R13;
+    uint64_t uVar4;
+    int64_t unaff_R15;
     
     iVar1 = (int)unaff_RBX;
     if (param_2 != 0) {
@@ -735,16 +735,16 @@ void UISystem_ResourceCleaner(uint64_t param_1, longlong param_2)
             piVar2 = (int *)(unaff_RBP + UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x520);
             uVar4 = unaff_RBX & 0xffffffff;
             do {
-                (**(code **)(*(longlong *)(&unknown_var_4216_ptr + (longlong)*piVar2 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))();
+                (**(code **)(*(int64_t *)(&unknown_var_4216_ptr + (int64_t)*piVar2 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))();
                 uVar3 = (int)uVar4 + 1;
-                uVar4 = (ulonglong)uVar3;
+                uVar4 = (uint64_t)uVar3;
                 piVar2 = piVar2 + 1;
             } while ((int)uVar3 < *(int *)(unaff_RBP + UI_SYSTEM_DATA_OFFSET_0x10));
         }
         FUN_1807c41d0();
     }
-    if (*(longlong *)(unaff_RSI + UI_SYSTEM_DATA_OFFSET_0x28) == 0) {
-        if (*(longlong *)(unaff_R15 + UI_SYSTEM_DATA_OFFSET_0x8) == 0) {
+    if (*(int64_t *)(unaff_RSI + UI_SYSTEM_DATA_OFFSET_0x28) == 0) {
+        if (*(int64_t *)(unaff_R15 + UI_SYSTEM_DATA_OFFSET_0x8) == 0) {
             if (unaff_RSI == 0) {
                 memset();
             }
@@ -752,11 +752,11 @@ void UISystem_ResourceCleaner(uint64_t param_1, longlong param_2)
         }
         if ((unaff_R13 != 0) && (uVar4 = unaff_RBX, iVar1 < *(int *)(unaff_R13 + 4))) {
             do {
-                if (*(longlong *)(uVar4 + *(longlong *)(unaff_R15 + UI_SYSTEM_DATA_OFFSET_0x8)) != 0) {
+                if (*(int64_t *)(uVar4 + *(int64_t *)(unaff_R15 + UI_SYSTEM_DATA_OFFSET_0x8)) != 0) {
                     FUN_1807c41d0();
                 }
                 uVar3 = (int)unaff_RBX + 1;
-                unaff_RBX = (ulonglong)uVar3;
+                unaff_RBX = (uint64_t)uVar3;
                 uVar4 = uVar4 + 8;
             } while ((int)uVar3 < *(int *)(unaff_R13 + 4));
         }
@@ -766,9 +766,9 @@ void UISystem_ResourceCleaner(uint64_t param_1, longlong param_2)
         piVar2 = (int *)(unaff_RBP + UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x820);
         uVar4 = unaff_RBX & 0xffffffff;
         do {
-            (**(code **)(*(longlong *)(&unknown_var_4232_ptr + (longlong)*piVar2 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))();
+            (**(code **)(*(int64_t *)(&unknown_var_4232_ptr + (int64_t)*piVar2 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))();
             uVar3 = (int)uVar4 + 1;
-            uVar4 = (ulonglong)uVar3;
+            uVar4 = (uint64_t)uVar3;
             piVar2 = piVar2 + 1;
         } while ((int)uVar3 < *(int *)(unaff_RBP + UI_SYSTEM_DATA_OFFSET_0x14));
     }
@@ -800,13 +800,13 @@ void UISystem_ResourceCleaner(uint64_t param_1, longlong param_2)
 void UISystem_MemoryCleaner(void)
 {
     uint uVar1;
-    ulonglong unaff_RBX;
-    longlong unaff_RSI;
-    longlong unaff_R13;
-    ulonglong uVar2;
-    longlong unaff_R15;
+    uint64_t unaff_RBX;
+    int64_t unaff_RSI;
+    int64_t unaff_R13;
+    uint64_t uVar2;
+    int64_t unaff_R15;
     
-    if (*(longlong *)(unaff_R15 + UI_SYSTEM_DATA_OFFSET_0x8) == 0) {
+    if (*(int64_t *)(unaff_R15 + UI_SYSTEM_DATA_OFFSET_0x8) == 0) {
         if (unaff_RSI == 0) {
             memset();
         }
@@ -814,11 +814,11 @@ void UISystem_MemoryCleaner(void)
     }
     if ((unaff_R13 != 0) && (uVar2 = unaff_RBX, (int)unaff_RBX < *(int *)(unaff_R13 + 4))) {
         do {
-            if (*(longlong *)(uVar2 + *(longlong *)(unaff_R15 + UI_SYSTEM_DATA_OFFSET_0x8)) != 0) {
+            if (*(int64_t *)(uVar2 + *(int64_t *)(unaff_R15 + UI_SYSTEM_DATA_OFFSET_0x8)) != 0) {
                 FUN_1807c41d0();
             }
             uVar1 = (int)unaff_RBX + 1;
-            unaff_RBX = (ulonglong)uVar1;
+            unaff_RBX = (uint64_t)uVar1;
             uVar2 = uVar2 + 8;
         } while ((int)uVar1 < *(int *)(unaff_R13 + 4));
     }
@@ -849,19 +849,19 @@ void UISystem_MemoryCleaner(void)
  */
 void UISystem_StateCleaner(void)
 {
-    longlong in_RAX;
+    int64_t in_RAX;
     uint uVar1;
-    ulonglong unaff_RBX;
-    longlong unaff_R13;
-    ulonglong uVar2;
+    uint64_t unaff_RBX;
+    int64_t unaff_R13;
+    uint64_t uVar2;
     
     if ((unaff_R13 != 0) && (uVar2 = unaff_RBX, (int)unaff_RBX < *(int *)(unaff_R13 + 4))) {
         do {
-            if (*(longlong *)(uVar2 + in_RAX) != 0) {
+            if (*(int64_t *)(uVar2 + in_RAX) != 0) {
                 FUN_1807c41d0();
             }
             uVar1 = (int)unaff_RBX + 1;
-            unaff_RBX = (ulonglong)uVar1;
+            unaff_RBX = (uint64_t)uVar1;
             uVar2 = uVar2 + 8;
         } while ((int)uVar1 < *(int *)(unaff_R13 + 4));
     }

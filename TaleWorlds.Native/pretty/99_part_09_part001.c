@@ -168,14 +168,14 @@ static int g_animation_count = 0;                        // 动画对象计数
  * - 更新实体的物理状态
  * - 处理复杂的物理交互
  */
-void EntityPhysicsProcessor(longlong *entity, longlong target, float distance_threshold) {
+void EntityPhysicsProcessor(int64_t *entity, int64_t target, float distance_threshold) {
     if (!entity || distance_threshold <= 0.0f) {
         return;
     }
     
     // 获取实体和目标的物理属性
-    longlong entity_physics = *(longlong *)(target + 0x20);
-    longlong target_physics = *(longlong *)(*entity + 0x20);
+    int64_t entity_physics = *(int64_t *)(target + 0x20);
+    int64_t target_physics = *(int64_t *)(*entity + 0x20);
     
     // 计算距离差值
     float dx = *(float *)(entity_physics + 0x10) - *(float *)(target_physics + 0x10);
@@ -216,15 +216,15 @@ void EntityPhysicsProcessor(longlong *entity, longlong target, float distance_th
  * - 应用物理响应和效果
  * - 处理复杂的碰撞场景
  */
-void AdvancedCollisionDetector(longlong object1, longlong object2, float *collision_point, 
+void AdvancedCollisionDetector(int64_t object1, int64_t object2, float *collision_point, 
                                uint64_t collision_flags, uint64_t additional_params) {
     if (!object1 || !object2 || !collision_point) {
         return;
     }
     
     // 获取对象物理属性
-    PhysicsProperties* props1 = (PhysicsProperties*)*(longlong *)(object1 + 0x20);
-    PhysicsProperties* props2 = (PhysicsProperties*)*(longlong *)(object2 + 0x20);
+    PhysicsProperties* props1 = (PhysicsProperties*)*(int64_t *)(object1 + 0x20);
+    PhysicsProperties* props2 = (PhysicsProperties*)*(int64_t *)(object2 + 0x20);
     
     // 执行碰撞检测
     if (DetectCollision(props1, props2)) {
@@ -257,7 +257,7 @@ void AdvancedCollisionDetector(longlong object1, longlong object2, float *collis
  * - 处理各种距离度量
  * - 优化计算性能
  */
-void DistanceCalculator(ulonglong position1, longlong position2, float *distance_output, int calculation_flags) {
+void DistanceCalculator(uint64_t position1, int64_t position2, float *distance_output, int calculation_flags) {
     if (!position2 || !distance_output) {
         return;
     }
@@ -372,7 +372,7 @@ float PhysicsParameterCalculator(float *param1, float *param2, int32_t *param3, 
  * - 3D变换和矩阵运算
  * - 实时物理更新
  */
-uint64_t AdvancedPhysicsSimulator(longlong *entity, longlong target, int simulation_params, uint64_t transform_flags) {
+uint64_t AdvancedPhysicsSimulator(int64_t *entity, int64_t target, int simulation_params, uint64_t transform_flags) {
     if (!entity || !target) {
         return 0;
     }
@@ -401,7 +401,7 @@ uint64_t AdvancedPhysicsSimulator(longlong *entity, longlong target, int simulat
  * - 距离计算优化
  * - 速度调整
  */
-uint64_t PathOptimizer(longlong path_data, uint64_t optimization_params, float distance_factor, float speed_factor) {
+uint64_t PathOptimizer(int64_t path_data, uint64_t optimization_params, float distance_factor, float speed_factor) {
     if (!path_data) {
         return 0;
     }
@@ -482,7 +482,7 @@ float AnimationSpeedController(void) {
  * - 多物体碰撞处理
  * - 特殊效果应用
  */
-void AdvancedCollisionResponseHandler(longlong *entity, longlong target, int response_params, uint64_t collision_flags) {
+void AdvancedCollisionResponseHandler(int64_t *entity, int64_t target, int response_params, uint64_t collision_flags) {
     if (!entity || !target) {
         return;
     }
@@ -532,13 +532,13 @@ void AnimationStateUpdater(void) {
  * - 优化整体性能
  */
 void IntegratedPhysicsAnimationProcessor(void) {
-    longlong entity_data;
+    int64_t entity_data;
     char condition_flag;
     int animation_index;
-    longlong *entity_pointer;
+    int64_t *entity_pointer;
     int entity_state;
-    longlong target_entity;
-    longlong reference_entity;
+    int64_t target_entity;
+    int64_t reference_entity;
     float speed_factor;
     uint64_t system_result;
     float unaff_XMM6_Da;
@@ -555,7 +555,7 @@ void IntegratedPhysicsAnimationProcessor(void) {
     // 检查实体状态条件
     if ((entity_pointer[0x41e] == 0) ||
         ((1 < (int)entity_pointer[0x295] - 5U &&
-         (((*(byte *)((longlong)entity_pointer + 0x209c) & 1) == 0 ||
+         (((*(byte *)((int64_t)entity_pointer + 0x209c) & 1) == 0 ||
            ((*(byte *)(entity_pointer + 0x413) & 1) == 0)))))) {
         
         if (reference_entity == 0) {
@@ -563,26 +563,26 @@ void IntegratedPhysicsAnimationProcessor(void) {
             condition_flag = CheckAnimationCondition();
             if (condition_flag != '\0') {
                 if ((char)entity_pointer[0x438] == '\0') {
-                    animation_index = *(int *)((longlong)entity_pointer + 0x14b4);
+                    animation_index = *(int *)((int64_t)entity_pointer + 0x14b4);
                 } else {
-                    animation_index = *(int *)((longlong)entity_pointer + 0x21c4);
+                    animation_index = *(int *)((int64_t)entity_pointer + 0x21c4);
                 }
-                unaff_XMM6_Da = *(float *)(*(longlong *)(target_entity + 0x20) + 0x14) -
-                              *(float *)(*(longlong *)((longlong)animation_index * 0xa60 + 0x30c0 + entity_pointer[0x291]) + 0x14);
+                unaff_XMM6_Da = *(float *)(*(int64_t *)(target_entity + 0x20) + 0x14) -
+                              *(float *)(*(int64_t *)((int64_t)animation_index * 0xa60 + 0x30c0 + entity_pointer[0x291]) + 0x14);
             }
         } else {
-            unaff_XMM6_Da = *(float *)(*(longlong *)(entity_data + 0x20) + 0x14) -
-                           *(float *)(*(longlong *)(reference_entity + 0x20) + 0x14);
+            unaff_XMM6_Da = *(float *)(*(int64_t *)(entity_data + 0x20) + 0x14) -
+                           *(float *)(*(int64_t *)(reference_entity + 0x20) + 0x14);
         }
     } else {
-        unaff_XMM6_Da = *(float *)(*(longlong *)(entity_data + 0x20) + 0x14) -
+        unaff_XMM6_Da = *(float *)(*(int64_t *)(entity_data + 0x20) + 0x14) -
                        *(float *)(entity_pointer[0x41e] + 0xa8);
     }
     
     // 获取系统结果并执行综合处理
     system_result = GetCollisionSystemResult();
     ExecuteIntegratedProcessing(system_result, 
-                               (float)*(int *)(reference_entity * 0xa0 + 0x70 + *(longlong *)(target_entity + 0xd0)) *
+                               (float)*(int *)(reference_entity * 0xa0 + 0x70 + *(int64_t *)(target_entity + 0xd0)) *
                                *(float *)(entity_data + 0x3b8), 
                                unaff_XMM6_Da, (int)system_result, unaff_XMM7_Da * speed_factor);
 }
@@ -596,7 +596,7 @@ void IntegratedPhysicsAnimationProcessor(void) {
  * @param entity 实体指针
  * @param target 目标指针
  */
-static void CollisionResponseHandler(longlong *entity, longlong target) {
+static void CollisionResponseHandler(int64_t *entity, int64_t target) {
     // 实现碰撞响应处理逻辑
     // ...
 }
@@ -607,7 +607,7 @@ static void CollisionResponseHandler(longlong *entity, longlong target) {
  * @param target 目标指针
  * @param distance 距离值
  */
-static void ApplyPhysicsEffects(longlong *entity, longlong target, float distance) {
+static void ApplyPhysicsEffects(int64_t *entity, int64_t target, float distance) {
     // 实现物理效果应用逻辑
     // ...
 }
@@ -651,7 +651,7 @@ static void ApplyCollisionResponse(PhysicsProperties *props1, PhysicsProperties 
  * @param object2 对象2
  * @param flags 标志
  */
-static void HandleSpecialCollisionEffects(longlong object1, longlong object2, uint64_t flags) {
+static void HandleSpecialCollisionEffects(int64_t object1, int64_t object2, uint64_t flags) {
     // 实现特殊碰撞效果处理逻辑
     // ...
 }
@@ -661,7 +661,7 @@ static void HandleSpecialCollisionEffects(longlong object1, longlong object2, ui
  * @param object 对象指针
  * @param props 物理属性
  */
-static void UpdatePhysicsState(longlong object, PhysicsProperties *props) {
+static void UpdatePhysicsState(int64_t object, PhysicsProperties *props) {
     // 实现物理状态更新逻辑
     // ...
 }
@@ -726,7 +726,7 @@ static float ApplyPhysicsConstraints(float value) {
  * @param params 参数
  * @return 执行结果
  */
-static uint64_t ExecutePhysicsSimulation(longlong *entity, longlong target, int params) {
+static uint64_t ExecutePhysicsSimulation(int64_t *entity, int64_t target, int params) {
     // 实现物理模拟执行逻辑
     return 0;
 }
@@ -737,7 +737,7 @@ static uint64_t ExecutePhysicsSimulation(longlong *entity, longlong target, int 
  * @param target 目标指针
  * @param flags 标志
  */
-static void ApplyTransformations(longlong *entity, longlong target, uint64_t flags) {
+static void ApplyTransformations(int64_t *entity, int64_t target, uint64_t flags) {
     // 实现变换应用逻辑
     // ...
 }
@@ -748,7 +748,7 @@ static void ApplyTransformations(longlong *entity, longlong target, uint64_t fla
  * @param params 参数
  * @return 优化结果
  */
-static uint64_t OptimizePath(longlong path_data, uint64_t params) {
+static uint64_t OptimizePath(int64_t path_data, uint64_t params) {
     // 实现路径优化逻辑
     return 0;
 }
@@ -815,7 +815,7 @@ static float ApplySpeedLimits(float speed) {
  * @param target 目标指针
  * @return 碰撞信息
  */
-static CollisionInfo* GetCollisionInfo(longlong *entity, longlong target) {
+static CollisionInfo* GetCollisionInfo(int64_t *entity, int64_t target) {
     // 实现碰撞信息获取逻辑
     return NULL;
 }
@@ -836,7 +836,7 @@ static void CalculateCollisionResponse(CollisionInfo *collision, int params) {
  * @param target 目标指针
  * @param collision 碰撞信息
  */
-static void ApplyCollisionPhysics(longlong *entity, longlong target, CollisionInfo *collision) {
+static void ApplyCollisionPhysics(int64_t *entity, int64_t target, CollisionInfo *collision) {
     // 实现碰撞物理应用逻辑
     // ...
 }
@@ -847,7 +847,7 @@ static void ApplyCollisionPhysics(longlong *entity, longlong target, CollisionIn
  * @param target 目标指针
  * @param flags 标志
  */
-static void HandleSpecialEffects(longlong *entity, longlong target, uint64_t flags) {
+static void HandleSpecialEffects(int64_t *entity, int64_t target, uint64_t flags) {
     // 实现特殊效果处理逻辑
     // ...
 }

@@ -502,24 +502,24 @@
  * @see UISystem_DataValidator
  * @see UISystem_StateManager
  */
-void UISystem_AdvancedDataProcessor(longlong system_context, longlong *data_buffer)
+void UISystem_AdvancedDataProcessor(int64_t system_context, int64_t *data_buffer)
 
 {
   int *state_flag_ptr;           // 状态标志指针，用于管理系统状态
   uint64_t *data_list_ptr;      // 数据链表指针，管理数据节点
-  longlong data_context;         // 数据上下文，包含数据处理环境
+  int64_t data_context;         // 数据上下文，包含数据处理环境
   uint64_t *next_node_ptr;      // 下一个节点指针，用于链表遍历
   int node_count;               // 节点计数器，统计链表节点数量
-  ulonglong buffer_size;        // 缓冲区大小，动态计算所需内存
-  longlong operation_result;    // 操作结果，存储函数执行状态
+  uint64_t buffer_size;        // 缓冲区大小，动态计算所需内存
+  int64_t operation_result;    // 操作结果，存储函数执行状态
   int8_t temp_buffer [40];      // 临时缓冲区，用于数据交换和处理
-  ulonglong security_cookie;    // 安全cookie，防止栈溢出攻击
+  uint64_t security_cookie;    // 安全cookie，防止栈溢出攻击
   
   // 安全检查：设置栈保护cookie，防止缓冲区溢出攻击
-  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)&operation_result;
+  security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)&operation_result;
   
   // 参数有效性检查：验证数据缓冲区及其上下文是否有效
-  if ((data_buffer != (longlong *)0x0) && (data_context = *data_buffer, data_context != 0)) {
+  if ((data_buffer != (int64_t *)0x0) && (data_context = *data_buffer, data_context != 0)) {
     // 获取状态标志指针，用于管理系统状态和状态转换
     state_flag_ptr = (int *)(data_context + UI_STATE_FLAG_OFFSET);
     node_count = 0;
@@ -534,8 +534,8 @@ void UISystem_AdvancedDataProcessor(longlong system_context, longlong *data_buff
     else {
       // 调用系统处理函数处理状态变化和状态转换
       // 通过系统上下文获取处理函数指针并执行
-      operation_result = (**(code **)(**(longlong **)(system_context + 0x170) + 0x260))
-                            (*(longlong **)(system_context + 0x170),state_flag_ptr,1);
+      operation_result = (**(code **)(**(int64_t **)(system_context + 0x170) + 0x260))
+                            (*(int64_t **)(system_context + 0x170),state_flag_ptr,1);
       if (operation_result == 0) {
         // 处理失败，调用错误处理函数进行错误恢复和清理
         // 此函数不返回，会继续执行后续的错误处理流程
@@ -552,9 +552,9 @@ void UISystem_AdvancedDataProcessor(longlong system_context, longlong *data_buff
     
     // 计算所需缓冲区大小：采用16字节对齐优化内存访问效率
     // 每个节点需要4字节空间，加上对齐偏移量
-    buffer_size = (longlong)node_count * 4 + 0xf;
+    buffer_size = (int64_t)node_count * 4 + 0xf;
     // 整数溢出检查：防止计算结果超出有效范围
-    if (buffer_size <= (ulonglong)((longlong)node_count * 4)) {
+    if (buffer_size <= (uint64_t)((int64_t)node_count * 4)) {
       buffer_size = 0xffffffffffffff0;  // 设置安全上限，防止溢出
     }
     
@@ -585,14 +585,14 @@ void UISystem_AdvancedDataProcessor(longlong system_context, longlong *data_buff
  * @param operation_flag 操作标志
  * @return 验证状态码（0表示成功，非0表示错误）
  */
-uint64_t UISystem_DataValidator(longlong system_context, longlong *source_data, longlong *target_data, int8_t operation_flag)
+uint64_t UISystem_DataValidator(int64_t system_context, int64_t *source_data, int64_t *target_data, int8_t operation_flag)
 
 {
   int match_index;
   int32_t *temp_ptr;
   uint64_t operation_result;
-  longlong *data_item;
-  longlong item_offset;
+  int64_t *data_item;
+  int64_t item_offset;
   int source_count;
   int8_t temp_buffer [8];
   
@@ -601,19 +601,19 @@ uint64_t UISystem_DataValidator(longlong system_context, longlong *source_data, 
     item_offset = 0;
     do {
       match_index = 0;
-      data_item = (longlong *)(*source_data + item_offset);
+      data_item = (int64_t *)(*source_data + item_offset);
       if (0 < (int)target_data[1]) {
         do {
           // 检查数据项是否匹配目标数据
-          if ((*(longlong *)(*target_data + (longlong)match_index * 0x18) == *data_item) &&
-             (*(longlong *)(*target_data + 8 + (longlong)match_index * 0x18) == data_item[1]))
+          if ((*(int64_t *)(*target_data + (int64_t)match_index * 0x18) == *data_item) &&
+             (*(int64_t *)(*target_data + 8 + (int64_t)match_index * 0x18) == data_item[1]))
           goto LAB_180859ef9;
           match_index = match_index + 1;
         } while (match_index < (int)target_data[1]);
       }
       // 检查数据项是否为空
-      if (((((int)*data_item == 0) && (*(int *)((longlong)data_item + 4) == 0)) && ((int)data_item[1] == 0))
-         && (*(int *)((longlong)data_item + 0xc) == 0)) {
+      if (((((int)*data_item == 0) && (*(int *)((int64_t)data_item + 4) == 0)) && ((int)data_item[1] == 0))
+         && (*(int *)((int64_t)data_item + 0xc) == 0)) {
         return UI_ERROR_INVALID_PARAM;
       }
       temp_ptr = (int32_t *)UISystem_ResourceAllocator(*(uint64_t *)(system_context + 0x110),temp_buffer);
@@ -649,7 +649,7 @@ LAB_180859ef9:
  * @param frequency 频率参数
  * @return 处理状态码（0表示成功，非0表示错误）
  */
-int UISystem_ParameterProcessor(longlong system_context, int *param_array, uint start_pos, uint end_pos, uint time_scale, uint frequency)
+int UISystem_ParameterProcessor(int64_t system_context, int *param_array, uint start_pos, uint end_pos, uint time_scale, uint frequency)
 
 {
   int *piVar1;
@@ -660,25 +660,25 @@ int UISystem_ParameterProcessor(longlong system_context, int *param_array, uint 
   int iVar6;
   int32_t *puVar7;
   uint *puVar8;
-  longlong *plVar9;
-  longlong lVar10;
+  int64_t *plVar9;
+  int64_t lVar10;
   uint uVar11;
-  ulonglong uVar12;
-  longlong lVar13;
+  uint64_t uVar12;
+  int64_t lVar13;
   uint uVar14;
   uint uVar15;
-  ulonglong uVar16;
+  uint64_t uVar16;
   uint uVar17;
-  ulonglong uVar18;
-  ulonglong in_stack_ffffffffffffff08;
+  uint64_t uVar18;
+  uint64_t in_stack_ffffffffffffff08;
   uint64_t uVar19;
   uint auStack_d8 [2];
   uint64_t uStack_d0;
-  longlong lStack_c8;
+  int64_t lStack_c8;
   uint uStack_c0;
   int iStack_bc;
-  longlong lStack_b8;
-  longlong lStack_a8;
+  int64_t lStack_b8;
+  int64_t lStack_a8;
   uint uStack_a0;
   uint uStack_9c;
   int32_t uStack_98;
@@ -686,22 +686,22 @@ int UISystem_ParameterProcessor(longlong system_context, int *param_array, uint 
   uint uStack_90;
   int32_t uStack_8c;
   uint64_t uStack_88;
-  longlong lStack_80;
-  longlong lStack_78;
+  int64_t lStack_80;
+  int64_t lStack_78;
   uint64_t uStack_70;
   uint64_t uStack_68;
   int8_t uStack_60;
-  longlong lStack_58;
-  longlong lStack_50;
+  int64_t lStack_58;
+  int64_t lStack_50;
   uint64_t uStack_48;
   uint uStack_40;
   int32_t uStack_3c;
   
-  uVar18 = (ulonglong)param_6;
-  uVar16 = (ulonglong)param_5;
+  uVar18 = (uint64_t)param_6;
+  uVar16 = (uint64_t)param_5;
   puVar7 = (int32_t *)UISystem_ResourceAllocator(*(uint64_t *)(param_1 + 0x110),auStack_d8);
   *(int32_t *)(param_1 + 0x10c) = *puVar7;
-  if (*(int *)(*(longlong *)(param_1 + 0x160) + 0x2e4) < 3) {
+  if (*(int *)(*(int64_t *)(param_1 + 0x160) + 0x2e4) < 3) {
     return 0;
   }
   if ((((*param_2 == 0) && (param_2[1] == 0)) && (param_2[2] == 0)) && (param_2[3] == 0)) {
@@ -729,8 +729,8 @@ int UISystem_ParameterProcessor(longlong system_context, int *param_array, uint 
     uVar15 = (uint)uStack_d0;
     if (cVar4 == '\0') {
       if (((uint)uStack_d0 < param_5) || (uVar14 <= (uint)uStack_d0)) goto LAB_18085a4fd;
-      lVar10 = *(longlong *)(param_1 + 0x160);
-      uStack_70 = (**(code **)(*(longlong *)(lVar10 + 8) + 0x30))(lVar10 + 8);
+      lVar10 = *(int64_t *)(param_1 + 0x160);
+      uStack_70 = (**(code **)(*(int64_t *)(lVar10 + 8) + 0x30))(lVar10 + 8);
       uStack_88 = uStack_d0;
       lStack_80 = lVar10 + 0x3f8;
       uStack_68 = 0;
@@ -741,16 +741,16 @@ int UISystem_ParameterProcessor(longlong system_context, int *param_array, uint 
       uStack_94 = uStack_48._4_4_;
       uStack_90 = uStack_40;
       uStack_8c = uStack_3c;
-      uVar15 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
+      uVar15 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
       if (param_5 < uVar11) {
         uVar11 = uVar11 - param_5;
         if (uVar15 != 48000) {
-          uVar11 = (uint)(((ulonglong)uVar11 * (ulonglong)uVar15) / 48000);
+          uVar11 = (uint)(((uint64_t)uVar11 * (uint64_t)uVar15) / 48000);
         }
-        uVar18 = -(ulonglong)uVar11;
+        uVar18 = -(uint64_t)uVar11;
       }
       else {
-        uVar18 = (ulonglong)(param_5 - uVar11);
+        uVar18 = (uint64_t)(param_5 - uVar11);
         if (uVar15 != 48000) {
           uVar18 = (uVar18 * uVar15) / 48000;
         }
@@ -762,9 +762,9 @@ int UISystem_ParameterProcessor(longlong system_context, int *param_array, uint 
                             0);
     }
     else {
-      uVar15 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
+      uVar15 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
       if (uVar14 < uVar11) {
-        uVar18 = (ulonglong)(uVar11 - uVar14);
+        uVar18 = (uint64_t)(uVar11 - uVar14);
         if (uVar15 != 48000) {
           uVar18 = (uVar18 * uVar15) / 48000;
         }
@@ -773,18 +773,18 @@ int UISystem_ParameterProcessor(longlong system_context, int *param_array, uint 
       else {
         uVar11 = uVar14 - uVar11;
         if (uVar15 != 48000) {
-          uVar11 = (uint)(((ulonglong)uVar11 * (ulonglong)uVar15) / 48000);
+          uVar11 = (uint)(((uint64_t)uVar11 * (uint64_t)uVar15) / 48000);
         }
-        uVar18 = (ulonglong)uVar11;
+        uVar18 = (uint64_t)uVar11;
       }
       lVar13 = uVar18 + lVar13;
-      lVar10 = *(longlong *)(param_1 + 0x160);
+      lVar10 = *(int64_t *)(param_1 + 0x160);
       if (uVar14 <= (uint)uStack_d0) {
         uVar19 = 0;
         goto LAB_18085a4b5;
       }
-      plVar9 = (longlong *)UISystem_ResourceCreator(lVar10 + 0x378,param_2,0);
-      if (plVar9 == (longlong *)0x0) goto LAB_18085a4fd;
+      plVar9 = (int64_t *)UISystem_ResourceCreator(lVar10 + 0x378,param_2,0);
+      if (plVar9 == (int64_t *)0x0) goto LAB_18085a4fd;
       iVar5 = (**(code **)(*plVar9 + 0x70))(plVar9,lVar13,1);
     }
   }
@@ -792,7 +792,7 @@ int UISystem_ParameterProcessor(longlong system_context, int *param_array, uint 
     if (cVar4 != '\0') {
       iVar5 = UISystem_StateGetter(param_1);
       iVar5 = UISystem_StateUpdater(*(uint64_t *)(param_1 + 0x160),param_2,
-                            (longlong)iVar5 + *(longlong *)(param_1 + 0x10),1,
+                            (int64_t)iVar5 + *(int64_t *)(param_1 + 0x10),1,
                             in_stack_ffffffffffffff08 & 0xffffffffffffff00,0);
       if (iVar5 != 0) goto LAB_18085a4c4;
     }
@@ -802,7 +802,7 @@ int UISystem_ParameterProcessor(longlong system_context, int *param_array, uint 
     if (param_5 < (uint)uStack_d0) {
 LAB_18085a294:
       iVar5 = 0x40;
-      uVar17 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
+      uVar17 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
       if ((uVar17 != 48000) &&
          (auVar3 = (ZEXT816(0) << 0x40 | ZEXT816(0x2ee000)) / ZEXT416(uVar17), iVar5 = auVar3._0_4_,
          0xffffffff < auVar3._0_8_)) {
@@ -815,7 +815,7 @@ LAB_18085a294:
       uVar17 = (uint)uStack_d0;
       if ((uint)uStack_d0 < (uint)(iVar6 - iVar5)) {
 LAB_18085a2e9:
-        lVar10 = *(longlong *)(param_1 + 0x160);
+        lVar10 = *(int64_t *)(param_1 + 0x160);
         lStack_50 = lVar10 + 0x378;
         lStack_58 = lVar10 + 0x3f8;
         if (uVar18 + uVar16 < 0x100000000) {
@@ -824,7 +824,7 @@ LAB_18085a2e9:
         else {
           auStack_d8[0] = 0xffffffff;
         }
-        uStack_70 = (**(code **)(*(longlong *)(lVar10 + 8) + 0x30))(lVar10 + 8);
+        uStack_70 = (**(code **)(*(int64_t *)(lVar10 + 8) + 0x30))(lVar10 + 8);
         uStack_9c = auStack_d8[0];
         uStack_88 = uStack_d0;
         uStack_68 = 0;
@@ -835,16 +835,16 @@ LAB_18085a2e9:
         uStack_94 = uStack_48._4_4_;
         uStack_90 = uStack_40;
         uStack_8c = uStack_3c;
-        uVar2 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
+        uVar2 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
         if (param_5 < uVar11) {
-          uVar12 = (ulonglong)(uVar11 - param_5);
+          uVar12 = (uint64_t)(uVar11 - param_5);
           if (uVar2 != 48000) {
             uVar12 = (uVar12 * uVar2) / 48000;
           }
           uVar12 = -(uVar12 & 0xffffffff);
         }
         else {
-          uVar12 = (ulonglong)(param_5 - uVar11);
+          uVar12 = (uint64_t)(param_5 - uVar11);
           if (uVar2 != 48000) {
             uVar12 = (uVar12 * uVar2) / 48000;
           }
@@ -866,23 +866,23 @@ LAB_18085a2e9:
       uVar15 = param_6 + param_5;
     }
     if ((uVar15 < uVar14) || (uStack_d0._4_4_ <= uVar15)) goto LAB_18085a4fd;
-    uVar14 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
+    uVar14 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
     if (uVar15 < uVar11) {
       uVar11 = uVar11 - uVar15;
       if (uVar14 != 48000) {
-        uVar11 = (uint)(((ulonglong)uVar11 * (ulonglong)uVar14) / 48000);
+        uVar11 = (uint)(((uint64_t)uVar11 * (uint64_t)uVar14) / 48000);
       }
-      uVar18 = -(ulonglong)uVar11;
+      uVar18 = -(uint64_t)uVar11;
     }
     else {
       uVar15 = uVar15 - uVar11;
       if (uVar14 != 48000) {
-        uVar15 = (uint)(((ulonglong)uVar15 * (ulonglong)uVar14) / 48000);
+        uVar15 = (uint)(((uint64_t)uVar15 * (uint64_t)uVar14) / 48000);
       }
-      uVar18 = (ulonglong)uVar15;
+      uVar18 = (uint64_t)uVar15;
     }
     lVar13 = uVar18 + lVar13;
-    lVar10 = *(longlong *)(param_1 + 0x160);
+    lVar10 = *(int64_t *)(param_1 + 0x160);
     uVar19 = 1;
 LAB_18085a4b5:
     iVar5 = UISystem_StateUpdater(lVar10,param_2,lVar13,1,uVar19,0);
@@ -933,7 +933,7 @@ LAB_18085a4fd:
  * @param frequency 频率参数
  * @return 处理状态码（0表示成功，非0表示错误）
  */
-int UISystem_StateManager(longlong system_context, int *state_array, uint start_pos, uint end_pos, uint time_scale, uint frequency)
+int UISystem_StateManager(int64_t system_context, int *state_array, uint start_pos, uint end_pos, uint time_scale, uint frequency)
 
 {
   int *piVar1;
@@ -945,23 +945,23 @@ int UISystem_StateManager(longlong system_context, int *state_array, uint start_
   uint uVar7;
   int32_t *puVar8;
   uint *puVar9;
-  longlong lVar10;
-  ulonglong uVar11;
+  int64_t lVar10;
+  uint64_t uVar11;
   uint uVar12;
-  ulonglong uVar13;
-  ulonglong in_stack_ffffffffffffff08;
+  uint64_t uVar13;
+  uint64_t in_stack_ffffffffffffff08;
   int aiStack_d8 [2];
   uint64_t uStack_d0;
-  longlong lStack_c8;
+  int64_t lStack_c8;
   uint uStack_c0;
   int32_t uStack_bc;
-  longlong lStack_b8;
-  longlong lStack_b0;
-  longlong lStack_a8;
+  int64_t lStack_b8;
+  int64_t lStack_b0;
+  int64_t lStack_a8;
   uint64_t uStack_a0;
   uint uStack_98;
   int32_t uStack_94;
-  longlong lStack_88;
+  int64_t lStack_88;
   uint uStack_80;
   int iStack_7c;
   int32_t uStack_78;
@@ -969,20 +969,20 @@ int UISystem_StateManager(longlong system_context, int *state_array, uint start_
   uint uStack_70;
   int32_t uStack_6c;
   uint64_t uStack_68;
-  longlong lStack_60;
-  longlong lStack_58;
+  int64_t lStack_60;
+  int64_t lStack_58;
   uint64_t uStack_50;
   uint64_t uStack_48;
   int8_t uStack_40;
   
-  uVar11 = (ulonglong)param_5;
-  uVar13 = (ulonglong)param_6;
+  uVar11 = (uint64_t)param_5;
+  uVar13 = (uint64_t)param_6;
   if ((((*param_2 == 0) && (param_2[1] == 0)) && (param_2[2] == 0)) && (param_2[3] == 0)) {
     return 0x1c;
   }
   puVar8 = (int32_t *)UISystem_ExternalResourceManager(*(uint64_t *)(param_1 + 0x110),aiStack_d8);
   *(int32_t *)(param_1 + 0x10c) = *puVar8;
-  if (*(int *)(*(longlong *)(param_1 + 0x160) + 0x2e4) < 3) {
+  if (*(int *)(*(int64_t *)(param_1 + 0x160) + 0x2e4) < 3) {
     return 0;
   }
   uStack_d0 = 0;
@@ -998,13 +998,13 @@ int UISystem_StateManager(longlong system_context, int *state_array, uint start_
   if (param_3 < (uint)uStack_d0) {
 LAB_18085a652:
     uVar6 = 0xffffffff;
-    if ((ulonglong)param_4 + (ulonglong)param_3 < 0x100000000) {
+    if ((uint64_t)param_4 + (uint64_t)param_3 < 0x100000000) {
       uVar6 = param_3 + param_4;
     }
     if (uVar6 <= (uint)uStack_d0) goto LAB_18085a689;
 LAB_18085a66c:
     uVar6 = 0xffffffff;
-    if ((ulonglong)param_3 + (ulonglong)param_4 < 0x100000000) {
+    if ((uint64_t)param_3 + (uint64_t)param_4 < 0x100000000) {
       uVar6 = param_3 + param_4;
     }
     if (((uint)uStack_d0 <= uVar6) && (uVar6 < uStack_d0._4_4_)) goto LAB_18085a689;
@@ -1039,12 +1039,12 @@ LAB_18085a6ac:
       iVar5 = UISystem_StateGetter(param_1);
       in_stack_ffffffffffffff08 = in_stack_ffffffffffffff08 & 0xffffffffffffff00;
       iVar5 = UISystem_StateUpdater(*(uint64_t *)(param_1 + 0x160),param_2,
-                            (longlong)iVar5 + *(longlong *)(param_1 + 0x10),0,
+                            (int64_t)iVar5 + *(int64_t *)(param_1 + 0x10),0,
                             in_stack_ffffffffffffff08,0);
       if (iVar5 != 0) goto LAB_18085a91b;
-      lVar10 = UISystem_ResourceCreator(*(longlong *)(param_1 + 0x160) + 0x3f8,param_2,0);
+      lVar10 = UISystem_ResourceCreator(*(int64_t *)(param_1 + 0x160) + 0x3f8,param_2,0);
       if (lVar10 != 0) {
-        iVar5 = UISystem_ResourceReleaser(*(longlong *)(param_1 + 0x160) + 0x3f8,lVar10);
+        iVar5 = UISystem_ResourceReleaser(*(int64_t *)(param_1 + 0x160) + 0x3f8,lVar10);
         goto joined_r0x00018085a8b5;
       }
       goto LAB_18085a742;
@@ -1069,7 +1069,7 @@ LAB_18085a7de:
         goto LAB_18085a7de;
       }
     }
-    lVar10 = *(longlong *)(param_1 + 0x160);
+    lVar10 = *(int64_t *)(param_1 + 0x160);
     lStack_a8 = lVar10 + 0x378;
     lStack_b0 = lVar10 + 0x3f8;
     uStack_a0 = lStack_c8;
@@ -1080,7 +1080,7 @@ LAB_18085a7de:
     else {
       aiStack_d8[0] = -1;
     }
-    uStack_50 = (**(code **)(*(longlong *)(lVar10 + 8) + 0x30))(lVar10 + 8);
+    uStack_50 = (**(code **)(*(int64_t *)(lVar10 + 8) + 0x30))(lVar10 + 8);
     iStack_7c = aiStack_d8[0];
     uStack_68 = uStack_d0;
     lStack_60 = lStack_b0;
@@ -1104,9 +1104,9 @@ LAB_18085a746:
     uVar12 = param_5 + param_6;
   }
   if ((uVar2 <= uVar12) && (uVar12 < uStack_d0._4_4_)) {
-    uVar2 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
+    uVar2 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
     if (uVar12 < uStack_c0) {
-      uVar11 = (ulonglong)(uStack_c0 - uVar12);
+      uVar11 = (uint64_t)(uStack_c0 - uVar12);
       if (uVar2 != 48000) {
         uVar11 = (uVar11 * uVar2) / 48000;
       }
@@ -1115,9 +1115,9 @@ LAB_18085a746:
     else {
       uVar12 = uVar12 - uStack_c0;
       if (uVar2 != 48000) {
-        uVar12 = (uint)(((ulonglong)uVar12 * (ulonglong)uVar2) / 48000);
+        uVar12 = (uint)(((uint64_t)uVar12 * (uint64_t)uVar2) / 48000);
       }
-      uVar11 = (ulonglong)uVar12;
+      uVar11 = (uint64_t)uVar12;
     }
     iVar5 = UISystem_StateUpdater(*(uint64_t *)(param_1 + 0x160),param_2,uVar11 + lStack_c8,0,
                           in_stack_ffffffffffffff08 & 0xffffffffffffff00,0);
@@ -1163,21 +1163,21 @@ int UISystem_StateChecker(void)
   uint uVar7;
   uint uVar8;
   int32_t *puVar9;
-  longlong lVar10;
+  int64_t lVar10;
   uint64_t uVar11;
-  ulonglong uVar12;
+  uint64_t uVar12;
   uint uVar13;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
+  int64_t unaff_RBX;
+  int64_t unaff_RBP;
+  int64_t unaff_RSI;
   uint64_t uVar14;
   uint uVar15;
   uint uVar16;
-  longlong unaff_R14;
-  longlong unaff_R15;
-  longlong lVar17;
+  int64_t unaff_R14;
+  int64_t unaff_R15;
+  int64_t lVar17;
   int32_t extraout_XMM0_Da;
-  ulonglong in_stack_00000020;
+  uint64_t in_stack_00000020;
   int iStack0000000000000040;
   uint uStack0000000000000048;
   
@@ -1196,13 +1196,13 @@ int UISystem_StateChecker(void)
   if (uVar13 < uStack0000000000000048) {
 LAB_18085a652:
     uVar7 = 0xffffffff;
-    if ((ulonglong)(unaff_R15 + unaff_RSI) < 0x100000000) {
+    if ((uint64_t)(unaff_R15 + unaff_RSI) < 0x100000000) {
       uVar7 = uVar13 + (int)unaff_R15;
     }
     if (uVar7 <= uStack0000000000000048) goto LAB_18085a689;
 LAB_18085a66c:
     uVar7 = 0xffffffff;
-    if ((ulonglong)(unaff_RSI + unaff_R15) < 0x100000000) {
+    if ((uint64_t)(unaff_RSI + unaff_R15) < 0x100000000) {
       uVar7 = uVar13 + (int)unaff_R15;
     }
     if ((uStack0000000000000048 <= uVar7) && (uVar7 < uVar15)) goto LAB_18085a689;
@@ -1219,7 +1219,7 @@ LAB_18085a689:
   if (uVar13 < uStack0000000000000048) {
 LAB_18085a698:
     uVar7 = 0xffffffff;
-    if ((ulonglong)(unaff_R14 + unaff_RBX) < 0x100000000) {
+    if ((uint64_t)(unaff_R14 + unaff_RBX) < 0x100000000) {
       uVar7 = uVar13 + iVar3;
     }
     if (uStack0000000000000048 < uVar7) goto LAB_18085a6ac;
@@ -1235,17 +1235,17 @@ LAB_18085a6ac:
     bVar5 = true;
   }
   if (bVar4) {
-    lVar17 = *(longlong *)(unaff_RBP + 0x57);
+    lVar17 = *(int64_t *)(unaff_RBP + 0x57);
     if (bVar5) goto LAB_18085a8c1;
     iVar6 = UISystem_StateGetter(lVar17);
     in_stack_00000020 = in_stack_00000020 & 0xffffffffffffff00;
     iVar6 = UISystem_StateUpdater(*(uint64_t *)(lVar17 + 0x160),*(uint64_t *)(unaff_RBP + 0x5f),
-                          (longlong)iVar6 + *(longlong *)(lVar17 + 0x10),0,in_stack_00000020);
+                          (int64_t)iVar6 + *(int64_t *)(lVar17 + 0x10),0,in_stack_00000020);
     if (iVar6 != 0) goto LAB_18085a91b;
     uVar14 = *(uint64_t *)(unaff_RBP + 0x5f);
-    lVar10 = UISystem_ResourceCreator(*(longlong *)(lVar17 + 0x160) + 0x3f8,uVar14,0);
+    lVar10 = UISystem_ResourceCreator(*(int64_t *)(lVar17 + 0x160) + 0x3f8,uVar14,0);
     if (lVar10 != 0) {
-      iVar6 = UISystem_ResourceReleaser(*(longlong *)(lVar17 + 0x160) + 0x3f8,lVar10);
+      iVar6 = UISystem_ResourceReleaser(*(int64_t *)(lVar17 + 0x160) + 0x3f8,lVar10);
       goto joined_r0x00018085a8b5;
     }
 LAB_18085a742:
@@ -1258,7 +1258,7 @@ LAB_18085a742:
       if (uVar13 < uVar2) {
 LAB_18085a7de:
         uVar8 = 0xffffffff;
-        if ((ulonglong)(unaff_R14 + unaff_RBX) < 0x100000000) {
+        if ((uint64_t)(unaff_R14 + unaff_RBX) < 0x100000000) {
           uVar8 = uVar13 + iVar3;
         }
         uVar7 = uVar2;
@@ -1271,25 +1271,25 @@ LAB_18085a7de:
           goto LAB_18085a7de;
         }
       }
-      lVar17 = *(longlong *)(unaff_RBP + 0x57);
-      lVar10 = *(longlong *)(lVar17 + 0x160);
-      *(longlong *)(unaff_RBP + -0x59) = lVar10 + 0x378;
-      *(longlong *)(unaff_RBP + -0x61) = lVar10 + 0x3f8;
+      lVar17 = *(int64_t *)(unaff_RBP + 0x57);
+      lVar10 = *(int64_t *)(lVar17 + 0x160);
+      *(int64_t *)(unaff_RBP + -0x59) = lVar10 + 0x378;
+      *(int64_t *)(unaff_RBP + -0x61) = lVar10 + 0x3f8;
       *(uint64_t *)(unaff_RBP + -0x51) = *(uint64_t *)(unaff_RBP + -0x79);
       *(int32_t *)(unaff_RBP + -0x49) = *(int32_t *)(unaff_RBP + -0x71);
-      if ((ulonglong)(unaff_RBX + unaff_R14) < 0x100000000) {
+      if ((uint64_t)(unaff_RBX + unaff_R14) < 0x100000000) {
         iStack0000000000000040 = uVar13 + iVar3;
       }
       else {
         iStack0000000000000040 = -1;
       }
-      uVar11 = (**(code **)(*(longlong *)(lVar10 + 8) + 0x30))(lVar10 + 8);
+      uVar11 = (**(code **)(*(int64_t *)(lVar10 + 8) + 0x30))(lVar10 + 8);
       *(int *)(unaff_RBP + -0x2d) = iStack0000000000000040;
       *(uint64_t *)(unaff_RBP + -0x19) = _uStack0000000000000048;
       *(uint64_t *)(unaff_RBP + -0x11) = *(uint64_t *)(unaff_RBP + -0x61);
       *(uint64_t *)(unaff_RBP + -9) = *(uint64_t *)(unaff_RBP + -0x59);
       uVar14 = *(uint64_t *)(lVar17 + 0x160);
-      *(longlong *)(unaff_RBP + -0x39) = lVar17;
+      *(int64_t *)(unaff_RBP + -0x39) = lVar17;
       *(uint *)(unaff_RBP + -0x31) = uVar7;
       *(int32_t *)(unaff_RBP + -0x29) = *(int32_t *)(unaff_RBP + -0x51);
       *(int32_t *)(unaff_RBP + -0x25) = *(int32_t *)(unaff_RBP + -0x4d);
@@ -1306,29 +1306,29 @@ joined_r0x00018085a8b5:
       goto LAB_18085a742;
     }
 LAB_18085a8bd:
-    lVar17 = *(longlong *)(unaff_RBP + 0x57);
+    lVar17 = *(int64_t *)(unaff_RBP + 0x57);
 LAB_18085a8c1:
     uVar14 = *(uint64_t *)(unaff_RBP + 0x5f);
   }
-  if ((ulonglong)(unaff_R14 + unaff_RBX) < 0x100000000) {
+  if ((uint64_t)(unaff_R14 + unaff_RBX) < 0x100000000) {
     uVar16 = uVar13 + iVar3;
   }
   if ((uVar2 <= uVar16) && (uVar16 < uVar15)) {
     uVar15 = *(uint *)(unaff_RBP + -0x71);
-    uVar2 = *(uint *)(*(longlong *)(lVar17 + 0x168) + 0x774);
+    uVar2 = *(uint *)(*(int64_t *)(lVar17 + 0x168) + 0x774);
     if (uVar16 < uVar15) {
-      uVar12 = (ulonglong)(uVar15 - uVar16);
+      uVar12 = (uint64_t)(uVar15 - uVar16);
       if (uVar2 != 48000) {
         uVar12 = (uVar12 * uVar2) / 48000;
       }
-      lVar10 = *(longlong *)(unaff_RBP + -0x79) - (uVar12 & 0xffffffff);
+      lVar10 = *(int64_t *)(unaff_RBP + -0x79) - (uVar12 & 0xffffffff);
     }
     else {
       uVar16 = uVar16 - uVar15;
       if (uVar2 != 48000) {
-        uVar16 = (uint)(((ulonglong)uVar16 * (ulonglong)uVar2) / 48000);
+        uVar16 = (uint)(((uint64_t)uVar16 * (uint64_t)uVar2) / 48000);
       }
-      lVar10 = (ulonglong)uVar16 + *(longlong *)(unaff_RBP + -0x79);
+      lVar10 = (uint64_t)uVar16 + *(int64_t *)(unaff_RBP + -0x79);
     }
     iVar6 = UISystem_StateUpdater(*(uint64_t *)(lVar17 + 0x160),uVar14,lVar10,0,
                           in_stack_00000020 & 0xffffffffffffff00);
@@ -1336,7 +1336,7 @@ LAB_18085a8c1:
   }
   iVar6 = 0;
 LAB_18085a91b:
-  lVar17 = *(longlong *)(unaff_RBP + -0x69);
+  lVar17 = *(int64_t *)(unaff_RBP + -0x69);
   if (lVar17 != 0) {
     piVar1 = (int *)(lVar17 + 0x10);
     *piVar1 = *piVar1 + -1;
@@ -1365,7 +1365,7 @@ LAB_18085a91b:
  * @param cleanup_context 清理上下文指针
  * @return 清理状态码（0表示成功，非0表示错误）
  */
-int32_t UISystem_ResourceCleaner(uint64_t resource_handle, longlong cleanup_context)
+int32_t UISystem_ResourceCleaner(uint64_t resource_handle, int64_t cleanup_context)
 
 {
   int *piVar1;
@@ -1396,35 +1396,35 @@ int32_t UISystem_ResourceCleaner(uint64_t resource_handle, longlong cleanup_cont
  * @param system_context 系统上下文指针
  * @return 初始化状态码（0表示成功，非0表示错误）
  */
-uint64_t UISystem_Initializer(longlong system_context)
+uint64_t UISystem_Initializer(int64_t system_context)
 
 {
   int *piVar1;
-  longlong *plVar2;
-  longlong *plVar3;
+  int64_t *plVar2;
+  int64_t *plVar3;
   int iVar4;
   uint64_t uVar5;
   int32_t *puVar6;
-  longlong *plVar7;
-  longlong *plVar8;
+  int64_t *plVar7;
+  int64_t *plVar8;
   uint64_t uStack_28;
   int32_t uStack_20;
   int32_t uStack_1c;
-  longlong lStack_18;
+  int64_t lStack_18;
   
-  plVar8 = (longlong *)0x0;
-  plVar2 = (longlong *)(param_1 + 0x118);
-  plVar7 = (longlong *)(*plVar2 + -0x18);
+  plVar8 = (int64_t *)0x0;
+  plVar2 = (int64_t *)(param_1 + 0x118);
+  plVar7 = (int64_t *)(*plVar2 + -0x18);
   if (*plVar2 == 0) {
     plVar7 = plVar8;
   }
   plVar3 = plVar8;
-  if (plVar7 != (longlong *)0x0) {
+  if (plVar7 != (int64_t *)0x0) {
     plVar3 = plVar7 + 3;
   }
   while (plVar3 != plVar2) {
     plVar7 = plVar3 + -3;
-    if (plVar3 == (longlong *)0x0) {
+    if (plVar3 == (int64_t *)0x0) {
       plVar7 = plVar8;
     }
     uVar5 = UISystem_ComponentProcessor(plVar7);
@@ -1432,12 +1432,12 @@ uint64_t UISystem_Initializer(longlong system_context)
       return uVar5;
     }
     if (plVar3 == plVar2) break;
-    plVar7 = (longlong *)(*plVar3 + -0x18);
+    plVar7 = (int64_t *)(*plVar3 + -0x18);
     if (*plVar3 == 0) {
       plVar7 = plVar8;
     }
     plVar3 = plVar8;
-    if (plVar7 != (longlong *)0x0) {
+    if (plVar7 != (int64_t *)0x0) {
       plVar3 = plVar7 + 3;
     }
   }
@@ -1498,32 +1498,32 @@ uint64_t UISystem_Initializer(longlong system_context)
  * @param system_context 系统上下文指针
  * @return 时间计算结果
  */
-ulonglong UISystem_TimeCalculator(longlong system_context)
+uint64_t UISystem_TimeCalculator(int64_t system_context)
 
 {
   char cVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int iVar3;
   uint64_t uVar4;
-  longlong lVar5;
-  ulonglong uVar6;
+  int64_t lVar5;
+  uint64_t uVar6;
   float afStackX_8 [2];
   uint auStackX_10 [2];
   
-  uVar4 = (**(code **)(*(longlong *)(*(longlong *)(param_1 + 0x160) + 8) + 0x30))();
+  uVar4 = (**(code **)(*(int64_t *)(*(int64_t *)(param_1 + 0x160) + 8) + 0x30))();
   lVar5 = UISystem_TimeParameterCalculator(uVar4);
-  uVar6 = (ulonglong)*(uint *)(lVar5 + 0x1f8);
+  uVar6 = (uint64_t)*(uint *)(lVar5 + 0x1f8);
   if (*(uint *)(lVar5 + 0x1f8) == 0xffffffff) {
-    uVar4 = (*(code *)**(uint64_t **)(*(longlong *)(lVar5 + 0x228) + 8))();
+    uVar4 = (*(code *)**(uint64_t **)(*(int64_t *)(lVar5 + 0x228) + 8))();
     iVar3 = UISystem_TimeStateVerifier(uVar4);
     if (iVar3 != 0) {
       if (iVar3 == 1) {
 LAB_18085abe3:
-        lVar2 = *(longlong *)(lVar5 + 0x230);
+        lVar2 = *(int64_t *)(lVar5 + 0x230);
         afStackX_8[0] = 1.0;
         cVar1 = *(char *)(lVar2 + 0x782);
-        if (*(longlong *)(lVar5 + 200) != 0) {
-          iVar3 = UISystem_MemoryManager(*(uint64_t *)(*(longlong *)(lVar5 + 200) + 0x78),afStackX_8);
+        if (*(int64_t *)(lVar5 + 200) != 0) {
+          iVar3 = UISystem_MemoryManager(*(uint64_t *)(*(int64_t *)(lVar5 + 200) + 0x78),afStackX_8);
           if (iVar3 != 0) {
             return 0;
           }
@@ -1531,13 +1531,13 @@ LAB_18085abe3:
         auStackX_10[0] = 0;
         uVar6 = UISystem_DataGetter(*(uint64_t *)(lVar2 + 0x4c0),auStackX_10,0);
         if ((int)uVar6 == 0) {
-          uVar6 = (ulonglong)
+          uVar6 = (uint64_t)
                   ((float)(int)(2 - (uint)(cVar1 != '\0')) * afStackX_8[0] * (float)auStackX_10[0]);
         }
         return uVar6;
       }
       if (iVar3 == 2) {
-        return (ulonglong)*(uint *)(*(longlong *)(lVar5 + 0x230) + 0x7b8);
+        return (uint64_t)*(uint *)(*(int64_t *)(lVar5 + 0x230) + 0x7b8);
       }
       if (iVar3 == 3) goto LAB_18085abe3;
     }
@@ -1560,18 +1560,18 @@ LAB_18085abe3:
  * @param data_context 数据上下文指针
  * @return 数据处理结果
  */
-longlong UISystem_DataHandler(longlong data_context)
+int64_t UISystem_DataHandler(int64_t data_context)
 
 {
   char cVar1;
   int iVar2;
-  longlong lVar3;
-  longlong unaff_RBX;
+  int64_t lVar3;
+  int64_t unaff_RBX;
   float in_XMM0_Da;
   float fStack0000000000000030;
   uint in_stack_00000038;
   
-  lVar3 = *(longlong *)(unaff_RBX + 0x230);
+  lVar3 = *(int64_t *)(unaff_RBX + 0x230);
   cVar1 = *(char *)(lVar3 + 0x782);
   fStack0000000000000030 = in_XMM0_Da;
   if (param_1 != 0) {
@@ -1583,7 +1583,7 @@ longlong UISystem_DataHandler(longlong data_context)
   in_stack_00000038 = 0;
   lVar3 = UISystem_DataGetter(*(uint64_t *)(lVar3 + 0x4c0),&stack0x00000038,0);
   if ((int)lVar3 == 0) {
-    lVar3 = (longlong)
+    lVar3 = (int64_t)
             ((float)(int)(2 - (uint)(cVar1 != '\0')) * fStack0000000000000030 *
             (float)in_stack_00000038);
   }
@@ -1603,19 +1603,19 @@ longlong UISystem_DataHandler(longlong data_context)
  * 
  * @return 空操作结果
  */
-longlong UISystem_EmptyOperationProcessor(void)
+int64_t UISystem_EmptyOperationProcessor(void)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   char unaff_SIL;
-  longlong unaff_RDI;
+  int64_t unaff_RDI;
   float in_stack_00000030;
   uint uStack0000000000000038;
   
   uStack0000000000000038 = 0;
   lVar1 = UISystem_DataGetter(*(uint64_t *)(unaff_RDI + 0x4c0),&stack0x00000038,0);
   if ((int)lVar1 == 0) {
-    lVar1 = (longlong)
+    lVar1 = (int64_t)
             ((float)(int)(2 - (uint)(unaff_SIL != '\0')) * in_stack_00000030 *
             (float)uStack0000000000000038);
   }
@@ -1639,11 +1639,11 @@ longlong UISystem_EmptyOperationProcessor(void)
  * @param system_context 系统上下文指针
  * @return 控制操作结果
  */
-ulonglong UISystem_AdvancedController(longlong system_context)
+uint64_t UISystem_AdvancedController(int64_t system_context)
 
 {
   int *piVar1;
-  ulonglong *puVar2;
+  uint64_t *puVar2;
   int32_t uVar3;
   byte bVar4;
   char cVar5;
@@ -1652,32 +1652,32 @@ ulonglong UISystem_AdvancedController(longlong system_context)
   uint uVar8;
   int iVar9;
   uint64_t uVar10;
-  ulonglong *puVar11;
-  longlong lVar12;
+  uint64_t *puVar11;
+  int64_t lVar12;
   int32_t *puVar13;
-  longlong lVar14;
+  int64_t lVar14;
   uint *puVar15;
-  ulonglong uVar16;
-  longlong *plVar17;
-  longlong *plVar18;
-  ulonglong uVar19;
+  uint64_t uVar16;
+  int64_t *plVar17;
+  int64_t *plVar18;
+  uint64_t uVar19;
   uint uVar20;
   uint uVar21;
-  longlong *plVar22;
+  int64_t *plVar22;
   byte bVar23;
   uint64_t uVar24;
   uint uVar25;
-  ulonglong uVar26;
+  uint64_t uVar26;
   uint uVar27;
-  longlong *plVar28;
+  int64_t *plVar28;
   bool bVar29;
   bool bVar30;
   uint8_t uVar31;
-  ulonglong **in_stack_fffffffffffffe78;
+  uint64_t **in_stack_fffffffffffffe78;
   uint8_t uVar32;
   int *in_stack_fffffffffffffe80;
   uint7 uVar33;
-  longlong in_stack_fffffffffffffe88;
+  int64_t in_stack_fffffffffffffe88;
   uint uStack_168;
   int iStack_164;
   byte bStack_160;
@@ -1686,20 +1686,20 @@ ulonglong UISystem_AdvancedController(longlong system_context)
   char cStack_154;
   char acStack_153 [3];
   uint uStack_150;
-  ulonglong *puStack_148;
+  uint64_t *puStack_148;
   uint auStack_140 [2];
   uint uStack_138;
   uint uStack_134;
-  ulonglong *puStack_130;
-  ulonglong uStack_128;
-  ulonglong uStack_120;
+  uint64_t *puStack_130;
+  uint64_t uStack_128;
+  uint64_t uStack_120;
   uint uStack_118;
   int32_t uStack_114;
-  ulonglong *puStack_110;
+  uint64_t *puStack_110;
   int iStack_108;
   int *piStack_100;
-  longlong lStack_f8;
-  ulonglong uStack_f0;
+  int64_t lStack_f8;
+  uint64_t uStack_f0;
   uint uStack_e8;
   uint uStack_e0;
   uint uStack_dc;
@@ -1707,13 +1707,13 @@ ulonglong UISystem_AdvancedController(longlong system_context)
   int iStack_d4;
   uint uStack_d0;
   int iStack_cc;
-  longlong *plStack_c8;
-  longlong lStack_c0;
-  longlong *plStack_b8;
+  int64_t *plStack_c8;
+  int64_t lStack_c0;
+  int64_t *plStack_b8;
   uint auStack_b0 [2];
-  longlong lStack_a8;
-  longlong lStack_a0;
-  longlong lStack_98;
+  int64_t lStack_a8;
+  int64_t lStack_a0;
+  int64_t lStack_98;
   int aiStack_90 [4];
   uint64_t uStack_80;
   int aiStack_70 [4];
@@ -1727,15 +1727,15 @@ ulonglong UISystem_AdvancedController(longlong system_context)
   *(int32_t *)(param_1 + 0xc) = 0;
   uVar26 = 0;
   uVar8 = *(uint *)(param_1 + 0x20);
-  uVar10 = (**(code **)(*(longlong *)(*(longlong *)(param_1 + 0x160) + 8) + 0x30))();
+  uVar10 = (**(code **)(*(int64_t *)(*(int64_t *)(param_1 + 0x160) + 8) + 0x30))();
   lVar14 = UISystem_TimeParameterCalculator(uVar10);
-  uVar19 = (ulonglong)*(uint *)(lVar14 + 0x1fc);
+  uVar19 = (uint64_t)*(uint *)(lVar14 + 0x1fc);
   if (*(uint *)(lVar14 + 0x1fc) != 0xffffffff) goto LAB_180857f18;
-  lVar14 = (*(code *)**(uint64_t **)(*(longlong *)(param_1 + 0x160) + 8))();
+  lVar14 = (*(code *)**(uint64_t **)(*(int64_t *)(param_1 + 0x160) + 8))();
   iVar9 = *(int *)(lVar14 + 0xe4);
   if (-1 < iVar9) {
     if (iVar9 < 3) {
-      uVar19 = (ulonglong)*(uint *)(*(longlong *)(param_1 + 0x168) + 0x77c);
+      uVar19 = (uint64_t)*(uint *)(*(int64_t *)(param_1 + 0x168) + 0x77c);
       goto LAB_180857f18;
     }
     if ((iVar9 != 3) && (iVar9 == 4)) {
@@ -1747,12 +1747,12 @@ ulonglong UISystem_AdvancedController(longlong system_context)
 LAB_180857f18:
   iVar9 = UISystem_StateGetter(param_1);
   if (0 < iVar9) {
-    uVar27 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
-    uVar26 = (longlong)iVar9;
+    uVar27 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
+    uVar26 = (int64_t)iVar9;
     if (uVar27 != 48000) {
-      uVar26 = ((longlong)iVar9 * 48000) / (longlong)(ulonglong)uVar27;
+      uVar26 = ((int64_t)iVar9 * 48000) / (int64_t)(uint64_t)uVar27;
     }
-    if (0xffffffff < (longlong)uVar26) {
+    if (0xffffffff < (int64_t)uVar26) {
       uVar26 = 0xffffffff;
     }
   }
@@ -1766,19 +1766,19 @@ LAB_180857f18:
     uStack_15c = 0xffffffff;
   }
   *(uint *)(param_1 + 0x108) = uStack_15c;
-  plVar17 = (longlong *)(param_1 + 0x70);
-  if (((longlong *)*plVar17 == plVar17) && (*(longlong **)(param_1 + 0x78) == plVar17)) {
-    uVar26 = *(ulonglong *)(param_1 + 0x28);
+  plVar17 = (int64_t *)(param_1 + 0x70);
+  if (((int64_t *)*plVar17 == plVar17) && (*(int64_t **)(param_1 + 0x78) == plVar17)) {
+    uVar26 = *(uint64_t *)(param_1 + 0x28);
     uStack_e8 = *(uint *)(param_1 + 0x30);
-    lVar14 = *(longlong *)(param_1 + 0x38);
+    lVar14 = *(int64_t *)(param_1 + 0x38);
   }
   else {
-    lVar14 = *(longlong *)(param_1 + 0x78);
-    uVar26 = *(ulonglong *)(lVar14 + 0x10);
+    lVar14 = *(int64_t *)(param_1 + 0x78);
+    uVar26 = *(uint64_t *)(lVar14 + 0x10);
     uStack_e8 = *(uint *)(lVar14 + 0x18);
-    lVar14 = *(longlong *)(lVar14 + 0x20);
+    lVar14 = *(int64_t *)(lVar14 + 0x20);
   }
-  uStack_128 = (ulonglong)uStack_e8;
+  uStack_128 = (uint64_t)uStack_e8;
   uStack_f0 = uVar26;
   plStack_b8 = plVar17;
   if (lVar14 != 0) {
@@ -1790,13 +1790,13 @@ LAB_180857f18:
       UISystem_MemoryCleaner(GET_SYSTEM_MEMORY_ALLOCATOR(),lVar14,&unknown_var_2208_ptr,0x76,1);
     }
   }
-  if (((longlong *)*plVar17 == plVar17) && (*(longlong **)(param_1 + 0x78) == plVar17)) {
+  if (((int64_t *)*plVar17 == plVar17) && (*(int64_t **)(param_1 + 0x78) == plVar17)) {
     iVar9 = *(int *)(param_1 + 0x34);
-    lVar14 = *(longlong *)(param_1 + 0x38);
+    lVar14 = *(int64_t *)(param_1 + 0x38);
   }
   else {
-    iVar9 = *(int *)(*(longlong *)(param_1 + 0x78) + 0x1c);
-    lVar14 = *(longlong *)(*(longlong *)(param_1 + 0x78) + 0x20);
+    iVar9 = *(int *)(*(int64_t *)(param_1 + 0x78) + 0x1c);
+    lVar14 = *(int64_t *)(*(int64_t *)(param_1 + 0x78) + 0x20);
   }
   if ((lVar14 != 0) && (*(int *)(lVar14 + 0x10) = *(int *)(lVar14 + 0x10) + 1, lVar14 != 0)) {
     piVar1 = (int *)(lVar14 + 0x10);
@@ -1811,7 +1811,7 @@ LAB_180857f18:
   }
   iStack_164 = 0;
   iStack_108 = 0;
-  plStack_c8 = (longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+  plStack_c8 = (int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
   lStack_c0 = *plStack_c8;
   piStack_100 = (int *)(lStack_c0 + 0x48);
   uVar27 = uStack_15c;
@@ -1826,29 +1826,29 @@ LAB_1808580a0:
       if (uVar27 <= ui_system_memory) {
         return 0;
       }
-      if (*(longlong *)(param_1 + 0x140) == 0) break;
-      if (((longlong *)*plVar17 == plVar17) && ((longlong *)plVar17[1] == plVar17)) {
+      if (*(int64_t *)(param_1 + 0x140) == 0) break;
+      if (((int64_t *)*plVar17 == plVar17) && ((int64_t *)plVar17[1] == plVar17)) {
         uStack_150 = *(uint *)(param_1 + 0x34);
-        puVar11 = *(ulonglong **)(param_1 + 0x38);
+        puVar11 = *(uint64_t **)(param_1 + 0x38);
       }
       else {
-        uStack_150 = *(uint *)(*(longlong *)(param_1 + 0x78) + 0x1c);
-        puVar11 = *(ulonglong **)(*(longlong *)(param_1 + 0x78) + 0x20);
+        uStack_150 = *(uint *)(*(int64_t *)(param_1 + 0x78) + 0x1c);
+        puVar11 = *(uint64_t **)(*(int64_t *)(param_1 + 0x78) + 0x20);
       }
-      if (puVar11 != (ulonglong *)0x0) {
+      if (puVar11 != (uint64_t *)0x0) {
         *(int *)(puVar11 + 2) = (int)puVar11[2] + 1;
       }
       puStack_130 = puVar11;
-      if ((1 < uStack_150 - 4) || (puVar11 == (ulonglong *)0x0)) {
+      if ((1 < uStack_150 - 4) || (puVar11 == (uint64_t *)0x0)) {
         uVar19 = 0x1c;
         goto LAB_180859163;
       }
-      puStack_148 = *(ulonglong **)(param_1 + 0x140);
+      puStack_148 = *(uint64_t **)(param_1 + 0x140);
       uVar21 = (int)puStack_148[0x14] - (int)puStack_148[0x15];
-      uVar7 = *(uint *)((longlong)puStack_148 + 0xa4);
+      uVar7 = *(uint *)((int64_t)puStack_148 + 0xa4);
       if ((uVar7 <= *(uint *)(param_1 + 0x148)) && ((*(byte *)(param_1 + 0x128) & 2) == 0)) {
         uVar6 = UISystem_EventProcessor(param_1,uVar26);
-        uVar19 = (ulonglong)uVar6;
+        uVar19 = (uint64_t)uVar6;
         puVar11 = puStack_130;
         if (uVar6 != 0) goto LAB_180859163;
       }
@@ -1864,7 +1864,7 @@ LAB_1808580a0:
       if ((*(uint *)(param_1 + 0x128) & 2) == 0) {
         if ((*(uint *)(param_1 + 0x128) & 1) == 0) {
           UISystem_StateSynchronizer(*(uint64_t *)(param_1 + 0x160),uVar26);
-          lStack_f8 = *(longlong *)(param_1 + 0x140) + 0x10;
+          lStack_f8 = *(int64_t *)(param_1 + 0x140) + 0x10;
           UISystem_QueueManager(param_1 + 0x90,&uStack_120,lStack_f8);
           if ((int)puStack_110 == -1) {
             uStack_158 = (uint)uStack_128;
@@ -1872,42 +1872,42 @@ LAB_1808580a0:
               uStack_158 = *(uint *)(param_1 + 0x154);
             }
             UISystem_DataSender(param_1 + 0x90,lStack_f8,&uStack_158);
-            puVar11 = (ulonglong *)
-                      UISystem_QueueManager(param_1 + 0x90,auStack_50,*(longlong *)(param_1 + 0x140) + 0x10)
+            puVar11 = (uint64_t *)
+                      UISystem_QueueManager(param_1 + 0x90,auStack_50,*(int64_t *)(param_1 + 0x140) + 0x10)
             ;
             uStack_120 = *puVar11;
             uStack_118 = (uint)puVar11[1];
-            uStack_114 = *(int32_t *)((longlong)puVar11 + 0xc);
-            puStack_110 = (ulonglong *)puVar11[2];
+            uStack_114 = *(int32_t *)((int64_t)puVar11 + 0xc);
+            puStack_110 = (uint64_t *)puVar11[2];
           }
           else if (uStack_150 == 4) {
             uVar6 = (uint)uStack_128;
             if (*(char *)(param_1 + 0x13f) != '\0') {
               uVar6 = *(uint *)(param_1 + 0x154);
             }
-            *(uint *)(*(longlong *)(uStack_120 + 0x10) + 0x14 + (longlong)(int)puStack_110 * 0x18) =
+            *(uint *)(*(int64_t *)(uStack_120 + 0x10) + 0x14 + (int64_t)(int)puStack_110 * 0x18) =
                  uVar6;
           }
           *(int32_t *)(param_1 + 0x154) =
                *(int32_t *)
-                (*(longlong *)(uStack_120 + 0x10) + 0x14 + (longlong)(int)puStack_110 * 0x18);
+                (*(int64_t *)(uStack_120 + 0x10) + 0x14 + (int64_t)(int)puStack_110 * 0x18);
           *(int32_t *)(param_1 + 0x14c) = *(int32_t *)(param_1 + 0x148);
           *(int8_t *)(param_1 + 0x13f) = 0;
           *(int8_t *)(param_1 + 0x13d) = 0;
         }
         uStack_d8 = 0xffffffff;
-        if ((ulonglong)*(uint *)(param_1 + 0x14c) + (ulonglong)*(uint *)(param_1 + 0x154) <
+        if ((uint64_t)*(uint *)(param_1 + 0x14c) + (uint64_t)*(uint *)(param_1 + 0x154) <
             0x100000000) {
           uStack_d8 = *(uint *)(param_1 + 0x14c) + *(uint *)(param_1 + 0x154);
         }
         iStack_d4 = -1;
-        if ((ulonglong)uStack_d8 + (ulonglong)uVar20 < 0x100000000) {
+        if ((uint64_t)uStack_d8 + (uint64_t)uVar20 < 0x100000000) {
           iStack_d4 = uStack_d8 + uVar20;
         }
         in_stack_fffffffffffffe88 = param_1 + 0xb8;
         in_stack_fffffffffffffe80 = aiStack_70;
         in_stack_fffffffffffffe78 =
-             (ulonglong **)((ulonglong)in_stack_fffffffffffffe78 & 0xffffffffffffff00);
+             (uint64_t **)((uint64_t)in_stack_fffffffffffffe78 & 0xffffffffffffff00);
         UISystem_ParameterManager(param_1,&uStack_d8,0,1,in_stack_fffffffffffffe78,in_stack_fffffffffffffe80,
                       in_stack_fffffffffffffe88,&cStack_154);
         uVar6 = *(uint *)(param_1 + 0x148);
@@ -1933,25 +1933,25 @@ LAB_1808580a0:
       }
       else {
         if ((*(byte *)(param_1 + 0x128) & 4) == 0) {
-          uVar3 = *(int32_t *)((longlong)puStack_130 + 0xc);
+          uVar3 = *(int32_t *)((int64_t)puStack_130 + 0xc);
           *(uint *)(param_1 + 0x150) = uVar6 - uVar21;
           *(int32_t *)(param_1 + 0x158) = uVar3;
           *(int32_t *)(param_1 + 0x15c) = uVar3;
           *(int8_t *)(param_1 + 0x13e) = 0;
         }
         uStack_d0 = 0xffffffff;
-        if ((ulonglong)*(uint *)(param_1 + 0x150) + (ulonglong)*(uint *)(param_1 + 0x158) <
+        if ((uint64_t)*(uint *)(param_1 + 0x150) + (uint64_t)*(uint *)(param_1 + 0x158) <
             0x100000000) {
           uStack_d0 = *(uint *)(param_1 + 0x150) + *(uint *)(param_1 + 0x158);
         }
         iStack_cc = -1;
-        if ((ulonglong)uStack_d0 + (ulonglong)uVar20 < 0x100000000) {
+        if ((uint64_t)uStack_d0 + (uint64_t)uVar20 < 0x100000000) {
           iStack_cc = uStack_d0 + uVar20;
         }
         in_stack_fffffffffffffe88 = param_1 + 0xb8;
         in_stack_fffffffffffffe80 = aiStack_90;
         in_stack_fffffffffffffe78 =
-             (ulonglong **)((ulonglong)in_stack_fffffffffffffe78 & 0xffffffffffffff00);
+             (uint64_t **)((uint64_t)in_stack_fffffffffffffe78 & 0xffffffffffffff00);
         UISystem_ParameterManager(param_1,&uStack_d0,0,1,in_stack_fffffffffffffe78,in_stack_fffffffffffffe80,
                       in_stack_fffffffffffffe88,acStack_153);
         if ((acStack_153[0] != '\0') && (uVar6 = aiStack_90[0] - uStack_d0, uVar6 <= uVar20)) {
@@ -1990,7 +1990,7 @@ LAB_1808580a0:
           uVar24 = uStack_60;
         }
         uVar7 = UISystem_EventHandler(param_1,uStack_158,uVar24,uVar10);
-        uVar19 = (ulonglong)uVar7;
+        uVar19 = (uint64_t)uVar7;
         if (uVar7 != 0) goto LAB_180859163;
         uVar27 = uVar27 - uStack_158;
         uStack_15c = uVar27;
@@ -1999,35 +1999,35 @@ LAB_1808580a0:
       if ((uint)puStack_148[0x14] <= *(uint *)(param_1 + 0x148)) {
         if ((*(byte *)(param_1 + 0x128) & 2) == 0) {
           uVar8 = UISystem_EventProcessor(param_1,uVar26,puVar11 + 1);
-          uVar19 = (ulonglong)uVar8;
+          uVar19 = (uint64_t)uVar8;
           if (uVar8 != 0) goto LAB_180859163;
         }
         if ((*(uint *)(param_1 + 0x128) & 4) == 0) {
-          *(int32_t *)(param_1 + 0x158) = *(int32_t *)((longlong)puVar11 + 0xc);
+          *(int32_t *)(param_1 + 0x158) = *(int32_t *)((int64_t)puVar11 + 0xc);
           *(uint *)(param_1 + 0x150) = *(int *)(param_1 + 0x148) - uVar21;
         }
-        uVar19 = (ulonglong)(uint)((int)puStack_148[0x14] - (int)puVar11[1]);
-        uVar8 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
+        uVar19 = (uint64_t)(uint)((int)puStack_148[0x14] - (int)puVar11[1]);
+        uVar8 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
         if (uVar8 != 48000) {
           uVar19 = (uVar8 * uVar19) / 48000;
         }
         uVar8 = 0xffffffff;
         uVar26 = uVar26 + (uVar19 & 0xffffffff);
-        if ((ulonglong)*(uint *)(param_1 + 0x158) + (ulonglong)*(uint *)(param_1 + 0x150) <
+        if ((uint64_t)*(uint *)(param_1 + 0x158) + (uint64_t)*(uint *)(param_1 + 0x150) <
             0x100000000) {
           uVar8 = *(uint *)(param_1 + 0x150) + *(uint *)(param_1 + 0x158);
         }
-        uStack_128 = (ulonglong)uVar8;
+        uStack_128 = (uint64_t)uVar8;
         *(uint *)(param_1 + 8) = uVar8;
         *(int32_t *)(param_1 + 0x138) = 0xffffffff;
         *(uint *)(param_1 + 0xc) = ~(*(uint *)(param_1 + 0x128) >> 2) & 1 | 2;
         uStack_f0 = uVar26;
         uStack_e8 = uVar8;
         uVar7 = UISystem_DataFormatter(param_1,uVar26,uVar8,0);
-        uVar19 = (ulonglong)uVar7;
+        uVar19 = (uint64_t)uVar7;
         if (uVar7 != 0) {
 LAB_180859163:
-          if (puVar11 == (ulonglong *)0x0) {
+          if (puVar11 == (uint64_t *)0x0) {
             return uVar19;
           }
           puVar2 = puVar11 + 2;
@@ -2045,7 +2045,7 @@ LAB_180859163:
         }
         *(uint *)(param_1 + 0x148) = ui_system_memory;
         uVar7 = UISystem_DataSynchronizer(param_1,uVar26);
-        uVar19 = (ulonglong)uVar7;
+        uVar19 = (uint64_t)uVar7;
         if (uVar7 != 0) goto LAB_180859163;
       }
       puVar2 = puVar11 + 2;
@@ -2055,14 +2055,14 @@ LAB_180859163:
         UISystem_MemoryCleaner(GET_SYSTEM_MEMORY_ALLOCATOR(),puVar11,&unknown_var_2208_ptr,0x76,1);
       }
 LAB_180858c20:
-      plVar17 = (longlong *)(param_1 + 0x70);
+      plVar17 = (int64_t *)(param_1 + 0x70);
     }
     uStack_134 = 0xffffffff;
-    if ((ulonglong)uVar27 + (ulonglong)uVar8 < 0x100000000) {
+    if ((uint64_t)uVar27 + (uint64_t)uVar8 < 0x100000000) {
       uStack_134 = uVar27 + uVar8;
     }
     puVar15 = (uint *)(param_1 + 0xb8);
-    in_stack_fffffffffffffe80 = (int *)((ulonglong)in_stack_fffffffffffffe80 & 0xffffffffffffff00);
+    in_stack_fffffffffffffe80 = (int *)((uint64_t)in_stack_fffffffffffffe80 & 0xffffffffffffff00);
     auStack_b0[0] = 0;
     lStack_98 = 0;
     lStack_a8 = 0;
@@ -2087,8 +2087,8 @@ LAB_180858c20:
       return uVar19;
     }
     uStack_168 = 0;
-    puVar11 = (ulonglong *)(*(longlong *)(param_1 + 0x110) + 0x58);
-    puStack_148 = (ulonglong *)*puVar11;
+    puVar11 = (uint64_t *)(*(int64_t *)(param_1 + 0x110) + 0x58);
+    puStack_148 = (uint64_t *)*puVar11;
     puStack_130 = puVar11;
     uVar25 = 0;
     if (puStack_148 != puVar11) {
@@ -2109,16 +2109,16 @@ LAB_180858c20:
         }
         uVar25 = uStack_168;
         if ((puStack_148 == puVar11) ||
-           (puStack_148 = (ulonglong *)*puStack_148, puStack_148 == puVar11)) break;
+           (puStack_148 = (uint64_t *)*puStack_148, puStack_148 == puVar11)) break;
       }
     }
     lVar14 = lStack_a0;
     if ((int)uVar25 <= *(int *)(param_1 + 300)) {
       *(uint *)(param_1 + 300) = *(int *)(param_1 + 300) - uVar25;
     }
-    uVar33 = (uint7)((ulonglong)in_stack_fffffffffffffe88 >> 8);
-    uVar32 = (uint8_t)((ulonglong)in_stack_fffffffffffffe80 >> 8);
-    uVar31 = (uint8_t)((ulonglong)puVar15 >> 8);
+    uVar33 = (uint7)((uint64_t)in_stack_fffffffffffffe88 >> 8);
+    uVar32 = (uint8_t)((uint64_t)in_stack_fffffffffffffe80 >> 8);
+    uVar31 = (uint8_t)((uint64_t)puVar15 >> 8);
     if (lStack_a0 != 0) {
       uStack_134 = uVar21;
       if (uVar21 == uVar27) {
@@ -2127,19 +2127,19 @@ LAB_180858c20:
       else {
         iStack_108 = iStack_108 + 1;
         bVar29 = *(int *)(param_1 + 0xc) != 2;
-        lVar12 = (ulonglong)uVar33 << 8;
+        lVar12 = (uint64_t)uVar33 << 8;
         iStack_164 = 0;
         uVar24 = CONCAT71(uVar32,bVar29);
         uVar10 = CONCAT71(uVar31,1);
-        uVar19 = UISystem_ConfigManager(param_1,&uStack_f0,&uStack_138,*(longlong *)(param_1 + 0x110) + 0x48,
+        uVar19 = UISystem_ConfigManager(param_1,&uStack_f0,&uStack_138,*(int64_t *)(param_1 + 0x110) + 0x48,
                                uVar10,uVar24,lVar12);
         if ((int)uVar19 != 0) {
           return uVar19;
         }
-        in_stack_fffffffffffffe88 = CONCAT71((int7)((ulonglong)lVar12 >> 8),(char)uVar19);
-        in_stack_fffffffffffffe80 = (int *)CONCAT71((int7)((ulonglong)uVar24 >> 8),bVar29);
-        puVar15 = (uint *)CONCAT71((int7)((ulonglong)uVar10 >> 8),(char)uVar19);
-        uVar19 = UISystem_ConfigManager(param_1,&uStack_f0,&uStack_138,*(longlong *)(param_1 + 0x110) + 0x38,
+        in_stack_fffffffffffffe88 = CONCAT71((int7)((uint64_t)lVar12 >> 8),(char)uVar19);
+        in_stack_fffffffffffffe80 = (int *)CONCAT71((int7)((uint64_t)uVar24 >> 8),bVar29);
+        puVar15 = (uint *)CONCAT71((int7)((uint64_t)uVar10 >> 8),(char)uVar19);
+        uVar19 = UISystem_ConfigManager(param_1,&uStack_f0,&uStack_138,*(int64_t *)(param_1 + 0x110) + 0x38,
                                puVar15,in_stack_fffffffffffffe80,in_stack_fffffffffffffe88);
         if ((int)uVar19 != 0) {
           return uVar19;
@@ -2147,17 +2147,17 @@ LAB_180858c20:
         *(uint *)(param_1 + 8) = uVar21;
         uStack_15c = uStack_15c - (uVar21 - uVar27);
       }
-      uVar27 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
+      uVar27 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
       uVar7 = (uint)uStack_128;
       if (uVar21 < uVar7) {
         uVar7 = uVar7 - uVar21;
         if (uVar27 != 48000) {
-          uVar7 = (uint)(((ulonglong)uVar7 * (ulonglong)uVar27) / 48000);
+          uVar7 = (uint)(((uint64_t)uVar7 * (uint64_t)uVar27) / 48000);
         }
-        uVar19 = -(ulonglong)uVar7;
+        uVar19 = -(uint64_t)uVar7;
       }
       else {
-        uVar19 = (ulonglong)(uVar21 - uVar7);
+        uVar19 = (uint64_t)(uVar21 - uVar7);
         if (uVar27 != 48000) {
           uVar19 = (uVar19 * uVar27) / 48000;
         }
@@ -2188,21 +2188,21 @@ LAB_180858c20:
       if (*(uint *)(lVar14 + 0xa0) != ui_system_memory) {
         puVar13 = (int32_t *)UISystem_TimeGetter();
         uVar7 = auStack_140[0];
-        plVar17 = (longlong *)(param_1 + 0x70);
+        plVar17 = (int64_t *)(param_1 + 0x70);
         *(int32_t *)(param_1 + 0x148) = *puVar13;
-        if (((longlong *)*plVar17 == plVar17) && (*(longlong **)(param_1 + 0x78) == plVar17)) {
-          uVar19 = *(ulonglong *)(param_1 + 0x28);
-          puStack_148 = *(ulonglong **)(param_1 + 0x38);
+        if (((int64_t *)*plVar17 == plVar17) && (*(int64_t **)(param_1 + 0x78) == plVar17)) {
+          uVar19 = *(uint64_t *)(param_1 + 0x28);
+          puStack_148 = *(uint64_t **)(param_1 + 0x38);
         }
         else {
-          uVar19 = *(ulonglong *)(*(longlong *)(param_1 + 0x78) + 0x10);
-          puStack_148 = *(ulonglong **)(*(longlong *)(param_1 + 0x78) + 0x20);
+          uVar19 = *(uint64_t *)(*(int64_t *)(param_1 + 0x78) + 0x10);
+          puStack_148 = *(uint64_t **)(*(int64_t *)(param_1 + 0x78) + 0x20);
         }
-        if (puStack_148 != (ulonglong *)0x0) {
+        if (puStack_148 != (uint64_t *)0x0) {
           *(int *)(puStack_148 + 2) = (int)puStack_148[2] + 1;
         }
         if (uVar26 < uVar19) {
-          if (puStack_148 == (ulonglong *)0x0) {
+          if (puStack_148 == (uint64_t *)0x0) {
             return 0x1c;
           }
           puVar11 = puStack_148 + 2;
@@ -2212,23 +2212,23 @@ LAB_180858c20:
           goto joined_r0x0001808591a3;
         }
         *(int8_t *)(param_1 + 0x13c) = 0;
-        puStack_130 = (ulonglong *)0x0;
+        puStack_130 = (uint64_t *)0x0;
         puVar13 = (int32_t *)UISystem_TimeGetter();
         in_stack_fffffffffffffe78 = &puStack_130;
         uVar7 = UISystem_ResourceManager(param_1,lVar14,*puVar13,uVar7,in_stack_fffffffffffffe78);
         puVar11 = puStack_130;
-        uVar19 = (ulonglong)uVar7;
+        uVar19 = (uint64_t)uVar7;
         if (uVar7 == 0) {
           uStack_118 = uVar21;
           uStack_114 = 4;
           puStack_110 = puStack_130;
-          if (puStack_130 != (ulonglong *)0x0) {
+          if (puStack_130 != (uint64_t *)0x0) {
             *(int *)(puStack_130 + 2) = (int)puStack_130[2] + 1;
           }
           uStack_120 = uVar26;
           uVar7 = UISystem_DataInserter(param_1 + 0x70,&uStack_120);
-          uVar19 = (ulonglong)uVar7;
-          if (puVar11 != (ulonglong *)0x0) {
+          uVar19 = (uint64_t)uVar7;
+          if (puVar11 != (uint64_t *)0x0) {
             puVar2 = puVar11 + 2;
             *(int *)puVar2 = (int)*puVar2 + -1;
             if ((int)*puVar2 == 0) {
@@ -2237,7 +2237,7 @@ LAB_180858c20:
             }
           }
         }
-        if (puStack_148 != (ulonglong *)0x0) {
+        if (puStack_148 != (uint64_t *)0x0) {
           puVar11 = puStack_148 + 2;
           *(int *)puVar11 = (int)*puVar11 + -1;
           if ((int)*puVar11 == 0) {
@@ -2249,22 +2249,22 @@ LAB_180858c20:
         if ((int)uVar19 != 0) {
           return uVar19;
         }
-        uStack_128 = (ulonglong)uVar21;
+        uStack_128 = (uint64_t)uVar21;
         uStack_e8 = uVar21;
         if (lStack_98 != 0) {
           lVar14 = UISystem_ExternalResourceGetter(*(uint64_t *)(param_1 + 0x110),lStack_98 + 0x20);
           *(int32_t *)(param_1 + 0x154) = *(int32_t *)(lVar14 + 0x20);
           *(int8_t *)(param_1 + 0x13f) = 1;
-          if ((ulonglong)*(uint *)(lStack_f8 + 0x20) + (ulonglong)auStack_140[0] < 0x100000000) {
+          if ((uint64_t)*(uint *)(lStack_f8 + 0x20) + (uint64_t)auStack_140[0] < 0x100000000) {
             uStack_158 = auStack_140[0] + *(uint *)(lStack_f8 + 0x20);
           }
           else {
             uStack_158 = 0xffffffff;
           }
           in_stack_fffffffffffffe78 =
-               (ulonglong **)((ulonglong)in_stack_fffffffffffffe78 & 0xffffffffffffff00);
+               (uint64_t **)((uint64_t)in_stack_fffffffffffffe78 & 0xffffffffffffff00);
           uVar19 = UISystem_StateLoader(*(uint64_t *)(param_1 + 0x160),uVar26,
-                                 *(longlong *)(param_1 + 0x110) + 0x48,1,in_stack_fffffffffffffe78);
+                                 *(int64_t *)(param_1 + 0x110) + 0x48,1,in_stack_fffffffffffffe78);
           if ((int)uVar19 != 0) {
             return uVar19;
           }
@@ -2276,13 +2276,13 @@ LAB_180858c20:
         goto LAB_180858c20;
       }
       uVar8 = 0xffffffff;
-      if ((ulonglong)auStack_140[0] + (ulonglong)*(uint *)(lVar12 + 0x20) < 0x100000000) {
+      if ((uint64_t)auStack_140[0] + (uint64_t)*(uint *)(lVar12 + 0x20) < 0x100000000) {
         uVar8 = auStack_140[0] + *(uint *)(lVar12 + 0x20);
       }
-      in_stack_fffffffffffffe78 = (ulonglong **)((ulonglong)puVar15 & 0xffffffffffffff00);
+      in_stack_fffffffffffffe78 = (uint64_t **)((uint64_t)puVar15 & 0xffffffffffffff00);
       uStack_158 = uVar8;
       uVar19 = UISystem_StateLoader(*(uint64_t *)(param_1 + 0x160),uVar26,
-                             *(longlong *)(param_1 + 0x110) + 0x48,1,in_stack_fffffffffffffe78);
+                             *(int64_t *)(param_1 + 0x110) + 0x48,1,in_stack_fffffffffffffe78);
       if ((int)uVar19 != 0) {
         return uVar19;
       }
@@ -2290,7 +2290,7 @@ LAB_180858c20:
       if ((int)uVar19 != 0) {
         return uVar19;
       }
-      uStack_128 = (ulonglong)uVar8;
+      uStack_128 = (uint64_t)uVar8;
       *(uint *)(param_1 + 8) = uVar8;
       *(int32_t *)(param_1 + 0x138) = 0xffffffff;
       uStack_e8 = uVar8;
@@ -2299,46 +2299,46 @@ LAB_180858c20:
         if ((int)uVar19 != 0) {
           return uVar19;
         }
-        plVar17 = (longlong *)(param_1 + 0x70);
+        plVar17 = (int64_t *)(param_1 + 0x70);
       }
       else {
         uVar27 = 0xffffffff;
-        if ((ulonglong)uVar8 + (ulonglong)uStack_15c < 0x100000000) {
+        if ((uint64_t)uVar8 + (uint64_t)uStack_15c < 0x100000000) {
           uVar27 = uStack_15c + uVar8;
         }
-        uVar7 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
+        uVar7 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
         if (uVar27 < uVar8) {
           uVar27 = uVar8 - uVar27;
           if (uVar7 != 48000) {
-            uVar27 = (uint)(((ulonglong)uVar27 * (ulonglong)uVar7) / 48000);
+            uVar27 = (uint)(((uint64_t)uVar27 * (uint64_t)uVar7) / 48000);
           }
-          uVar19 = -(ulonglong)uVar27;
+          uVar19 = -(uint64_t)uVar27;
         }
         else {
           uVar27 = uVar27 - uVar8;
           if (uVar7 != 48000) {
-            uVar27 = (uint)(((ulonglong)uVar27 * (ulonglong)uVar7) / 48000);
+            uVar27 = (uint)(((uint64_t)uVar27 * (uint64_t)uVar7) / 48000);
           }
-          uVar19 = (ulonglong)uVar27;
+          uVar19 = (uint64_t)uVar27;
         }
         if (uVar19 + uVar26 < uVar26) {
           return 0x1c;
         }
-        plVar17 = (longlong *)(param_1 + 0x70);
-        if (((longlong *)*plVar17 == plVar17) && (*(longlong **)(param_1 + 0x78) == plVar17)) {
-          uVar16 = *(ulonglong *)(param_1 + 0x28);
-          puVar11 = *(ulonglong **)(param_1 + 0x38);
+        plVar17 = (int64_t *)(param_1 + 0x70);
+        if (((int64_t *)*plVar17 == plVar17) && (*(int64_t **)(param_1 + 0x78) == plVar17)) {
+          uVar16 = *(uint64_t *)(param_1 + 0x28);
+          puVar11 = *(uint64_t **)(param_1 + 0x38);
         }
         else {
-          uVar16 = *(ulonglong *)(*(longlong *)(param_1 + 0x78) + 0x10);
-          puVar11 = *(ulonglong **)(*(longlong *)(param_1 + 0x78) + 0x20);
+          uVar16 = *(uint64_t *)(*(int64_t *)(param_1 + 0x78) + 0x10);
+          puVar11 = *(uint64_t **)(*(int64_t *)(param_1 + 0x78) + 0x20);
         }
-        if (puVar11 != (ulonglong *)0x0) {
+        if (puVar11 != (uint64_t *)0x0) {
           *(int *)(puVar11 + 2) = (int)puVar11[2] + 1;
         }
         if (uVar26 < uVar16) {
 LAB_1808591d6:
-          if (puVar11 == (ulonglong *)0x0) {
+          if (puVar11 == (uint64_t *)0x0) {
             return 0x1c;
           }
           puVar2 = puVar11 + 2;
@@ -2353,18 +2353,18 @@ joined_r0x0001808591a3:
         }
         *(int8_t *)(param_1 + 0x13c) = 0;
         uStack_114 = 2;
-        puStack_110 = (ulonglong *)0x0;
+        puStack_110 = (uint64_t *)0x0;
         uStack_120 = uVar26;
         uStack_118 = uVar8;
         uVar27 = UISystem_DataInserter(plVar17,&uStack_120);
         if (uVar27 == 0) {
           uStack_114 = 3;
-          puStack_110 = (ulonglong *)0x0;
+          puStack_110 = (uint64_t *)0x0;
           uStack_120 = uVar19 + uVar26;
           uStack_118 = uVar8;
           uVar27 = UISystem_DataInserter(plVar17,&uStack_120);
           if (uVar27 != 0) goto LAB_180858e04;
-          if (puVar11 != (ulonglong *)0x0) {
+          if (puVar11 != (uint64_t *)0x0) {
             puVar2 = puVar11 + 2;
             *(int *)puVar2 = (int)*puVar2 + -1;
             if ((int)*puVar2 == 0) {
@@ -2375,7 +2375,7 @@ joined_r0x0001808591a3:
         }
         else {
 LAB_180858e04:
-          if (puVar11 != (ulonglong *)0x0) {
+          if (puVar11 != (uint64_t *)0x0) {
             puVar2 = puVar11 + 2;
             *(int *)puVar2 = (int)*puVar2 + -1;
             if ((int)*puVar2 == 0) {
@@ -2384,11 +2384,11 @@ LAB_180858e04:
             }
           }
           if (uVar27 != 0) {
-            return (ulonglong)uVar27;
+            return (uint64_t)uVar27;
           }
         }
         puVar15 = (uint *)UISystem_TimeGetter();
-        plVar17 = (longlong *)(param_1 + 0x70);
+        plVar17 = (int64_t *)(param_1 + 0x70);
         uVar27 = *puVar15;
         uStack_15c = uVar27;
       }
@@ -2400,18 +2400,18 @@ LAB_180858e04:
       uStack_134 = uVar7;
     }
     bVar30 = *(int *)(param_1 + 0xc) != 2;
-    lVar14 = (ulonglong)uVar33 << 8;
+    lVar14 = (uint64_t)uVar33 << 8;
     uVar24 = CONCAT71(uVar32,bVar30);
     uVar10 = CONCAT71(uVar31,1);
-    uVar19 = UISystem_ConfigManager(param_1,&uStack_f0,&uStack_138,*(longlong *)(param_1 + 0x110) + 0x48,
+    uVar19 = UISystem_ConfigManager(param_1,&uStack_f0,&uStack_138,*(int64_t *)(param_1 + 0x110) + 0x48,
                            uVar10,uVar24,lVar14);
     if ((int)uVar19 != 0) {
       return uVar19;
     }
-    in_stack_fffffffffffffe88 = CONCAT71((int7)((ulonglong)lVar14 >> 8),(char)uVar19);
-    in_stack_fffffffffffffe80 = (int *)CONCAT71((int7)((ulonglong)uVar24 >> 8),bVar30);
-    in_stack_fffffffffffffe78 = (ulonglong **)CONCAT71((int7)((ulonglong)uVar10 >> 8),(char)uVar19);
-    uVar19 = UISystem_ConfigManager(param_1,&uStack_f0,&uStack_138,*(longlong *)(param_1 + 0x110) + 0x38,
+    in_stack_fffffffffffffe88 = CONCAT71((int7)((uint64_t)lVar14 >> 8),(char)uVar19);
+    in_stack_fffffffffffffe80 = (int *)CONCAT71((int7)((uint64_t)uVar24 >> 8),bVar30);
+    in_stack_fffffffffffffe78 = (uint64_t **)CONCAT71((int7)((uint64_t)uVar10 >> 8),(char)uVar19);
+    uVar19 = UISystem_ConfigManager(param_1,&uStack_f0,&uStack_138,*(int64_t *)(param_1 + 0x110) + 0x38,
                            in_stack_fffffffffffffe78,in_stack_fffffffffffffe80,
                            in_stack_fffffffffffffe88);
     if ((int)uVar19 != 0) {
@@ -2425,12 +2425,12 @@ LAB_180858e04:
       UISystem_BufferCleaner(&system_buffer_ea98);
     }
     uVar27 = ui_system_memory;
-    plVar17 = (longlong *)(param_1 + 0x70);
+    plVar17 = (int64_t *)(param_1 + 0x70);
     if (bVar29) {
-      uVar21 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
+      uVar21 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
       uVar6 = (uint)uStack_128;
       if (uVar7 < uVar6) {
-        uVar19 = (ulonglong)(uVar6 - uVar7);
+        uVar19 = (uint64_t)(uVar6 - uVar7);
         if (uVar21 != 48000) {
           uVar19 = (uVar19 * uVar21) / 48000;
         }
@@ -2439,38 +2439,38 @@ LAB_180858e04:
       else {
         uVar6 = uVar7 - uVar6;
         if (uVar21 != 48000) {
-          uVar6 = (uint)(((ulonglong)uVar6 * (ulonglong)uVar21) / 48000);
+          uVar6 = (uint)(((uint64_t)uVar6 * (uint64_t)uVar21) / 48000);
         }
-        uVar19 = (ulonglong)uVar6;
+        uVar19 = (uint64_t)uVar6;
       }
       uVar19 = uVar19 + uVar26;
-      plVar17 = (longlong *)(*(longlong *)(param_1 + 0x160) + 0x380);
+      plVar17 = (int64_t *)(*(int64_t *)(param_1 + 0x160) + 0x380);
       lVar14 = *plVar17 + -0x20;
       if (*plVar17 == 0) {
         lVar14 = 0;
       }
       if (lVar14 == 0) {
-        plVar22 = (longlong *)0x0;
+        plVar22 = (int64_t *)0x0;
       }
       else {
-        plVar22 = (longlong *)(lVar14 + 0x20);
+        plVar22 = (int64_t *)(lVar14 + 0x20);
       }
       if (plVar22 != plVar17) {
-        plVar28 = (longlong *)0x0;
+        plVar28 = (int64_t *)0x0;
         do {
           plVar18 = plVar22 + -4;
-          if (plVar22 == (longlong *)0x0) {
+          if (plVar22 == (int64_t *)0x0) {
             plVar18 = plVar28;
           }
           iVar9 = (**(code **)(*plVar18 + 0x88))(plVar18,uVar19);
           uVar7 = uStack_134;
           if ((iVar9 != 0) || (plVar22 == plVar17)) break;
-          plVar18 = (longlong *)(*plVar22 + -0x20);
+          plVar18 = (int64_t *)(*plVar22 + -0x20);
           if (*plVar22 == 0) {
             plVar18 = plVar28;
           }
           plVar22 = plVar28;
-          if (plVar18 != (longlong *)0x0) {
+          if (plVar18 != (int64_t *)0x0) {
             plVar22 = plVar18 + 4;
           }
         } while (plVar22 != plVar17);
@@ -2479,26 +2479,26 @@ LAB_180858e04:
       if ((int)uVar16 != 0) {
         return uVar16;
       }
-      plVar17 = (longlong *)(param_1 + 0x70);
-      if (((longlong *)*plVar17 == plVar17) && (*(longlong **)(param_1 + 0x78) == plVar17)) {
-        uVar16 = *(ulonglong *)(param_1 + 0x28);
-        puVar11 = *(ulonglong **)(param_1 + 0x38);
+      plVar17 = (int64_t *)(param_1 + 0x70);
+      if (((int64_t *)*plVar17 == plVar17) && (*(int64_t **)(param_1 + 0x78) == plVar17)) {
+        uVar16 = *(uint64_t *)(param_1 + 0x28);
+        puVar11 = *(uint64_t **)(param_1 + 0x38);
       }
       else {
-        uVar16 = *(ulonglong *)(*(longlong *)(param_1 + 0x78) + 0x10);
-        puVar11 = *(ulonglong **)(*(longlong *)(param_1 + 0x78) + 0x20);
+        uVar16 = *(uint64_t *)(*(int64_t *)(param_1 + 0x78) + 0x10);
+        puVar11 = *(uint64_t **)(*(int64_t *)(param_1 + 0x78) + 0x20);
       }
-      if (puVar11 != (ulonglong *)0x0) {
+      if (puVar11 != (uint64_t *)0x0) {
         *(int *)(puVar11 + 2) = (int)puVar11[2] + 1;
       }
       if (uVar19 < uVar16) goto LAB_1808591d6;
       *(int8_t *)(param_1 + 0x13c) = 1;
-      puStack_110 = (ulonglong *)0x0;
+      puStack_110 = (uint64_t *)0x0;
       uStack_114 = 1;
       uStack_120 = uVar19;
       uStack_118 = uVar7;
       uVar7 = UISystem_DataInserter(param_1 + 0x70,&uStack_120);
-      if (puVar11 != (ulonglong *)0x0) {
+      if (puVar11 != (uint64_t *)0x0) {
         puVar2 = puVar11 + 2;
         *(int *)puVar2 = (int)*puVar2 + -1;
         if ((int)*puVar2 == 0) {
@@ -2508,7 +2508,7 @@ LAB_180858e04:
       }
       plVar17 = plStack_b8;
       if (uVar7 != 0) {
-        return (ulonglong)uVar7;
+        return (uint64_t)uVar7;
       }
     }
     uStack_15c = uVar27;
@@ -2538,24 +2538,24 @@ LAB_180858e04:
  * @return 配置管理结果
  */
 uint64_t
-UISystem_ConfigManager(longlong system_context, longlong *config_data, uint *time_params, 
-                      ulonglong *resource_data, char operation_flag, char sync_flag, int8_t extra_param)
+UISystem_ConfigManager(int64_t system_context, int64_t *config_data, uint *time_params, 
+                      uint64_t *resource_data, char operation_flag, char sync_flag, int8_t extra_param)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
+  int64_t *plVar1;
+  int64_t lVar2;
   bool bVar3;
   uint uVar4;
   uint64_t uVar5;
   uint uVar6;
-  ulonglong uVar7;
+  uint64_t uVar7;
   uint uVar8;
   uint uVar9;
   uint uVar10;
   int iVar11;
-  longlong lVar12;
-  ulonglong uVar13;
-  longlong lStack_88;
+  int64_t lVar12;
+  uint64_t uVar13;
+  int64_t lStack_88;
   uint uStack_80;
   int iStack_7c;
   int32_t uStack_78;
@@ -2563,16 +2563,16 @@ UISystem_ConfigManager(longlong system_context, longlong *config_data, uint *tim
   int32_t uStack_70;
   int32_t uStack_6c;
   uint64_t uStack_68;
-  longlong lStack_60;
-  longlong lStack_58;
+  int64_t lStack_60;
+  int64_t lStack_58;
   uint64_t uStack_50;
   uint64_t uStack_48;
   int8_t uStack_40;
   
   uVar13 = *param_4;
-  plVar1 = (longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+  plVar1 = (int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
   do {
-    if ((uVar13 < *param_4) || (*param_4 + (longlong)(int)param_4[1] * 0x18 <= uVar13)) {
+    if ((uVar13 < *param_4) || (*param_4 + (int64_t)(int)param_4[1] * 0x18 <= uVar13)) {
       return 0;
     }
     bVar3 = false;
@@ -2587,7 +2587,7 @@ UISystem_ConfigManager(longlong system_context, longlong *config_data, uint *tim
       uVar10 = ui_system_memory;
       if ((param_6 != '\0') && (uVar8 <= uVar4)) {
         uVar6 = 0xffffffff;
-        if ((ulonglong)*(uint *)(uVar13 + 0x14) + (ulonglong)uVar8 < 0x100000000) {
+        if ((uint64_t)*(uint *)(uVar13 + 0x14) + (uint64_t)uVar8 < 0x100000000) {
           uVar6 = *(uint *)(uVar13 + 0x14) + uVar8;
         }
         uVar9 = uVar4;
@@ -2605,9 +2605,9 @@ LAB_18085add0:
       }
       else {
         uVar4 = *(uint *)(param_2 + 1);
-        uVar9 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
+        uVar9 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
         if (uVar8 < uVar4) {
-          uVar7 = (ulonglong)(uVar4 - uVar8);
+          uVar7 = (uint64_t)(uVar4 - uVar8);
           if (uVar9 != 48000) {
             uVar7 = (uVar7 * uVar9) / 48000;
           }
@@ -2616,21 +2616,21 @@ LAB_18085add0:
         else {
           uVar4 = uVar8 - uVar4;
           if (uVar9 != 48000) {
-            uVar4 = (uint)(((ulonglong)uVar4 * (ulonglong)uVar9) / 48000);
+            uVar4 = (uint)(((uint64_t)uVar4 * (uint64_t)uVar9) / 48000);
           }
-          lVar12 = (ulonglong)uVar4 + *param_2;
+          lVar12 = (uint64_t)uVar4 + *param_2;
         }
       }
-      lVar2 = *(longlong *)(param_1 + 0x160);
+      lVar2 = *(int64_t *)(param_1 + 0x160);
       iVar11 = -1;
-      if ((ulonglong)*(uint *)(uVar13 + 0x14) + (ulonglong)uVar8 < 0x100000000) {
+      if ((uint64_t)*(uint *)(uVar13 + 0x14) + (uint64_t)uVar8 < 0x100000000) {
         iVar11 = *(uint *)(uVar13 + 0x14) + uVar8;
       }
-      uStack_50 = (**(code **)(*(longlong *)(lVar2 + 8) + 0x30))(lVar2 + 8);
+      uStack_50 = (**(code **)(*(int64_t *)(lVar2 + 8) + 0x30))(lVar2 + 8);
       uStack_78 = (int32_t)*param_2;
-      uStack_74 = *(int32_t *)((longlong)param_2 + 4);
+      uStack_74 = *(int32_t *)((int64_t)param_2 + 4);
       uStack_70 = (int32_t)param_2[1];
-      uStack_6c = *(int32_t *)((longlong)param_2 + 0xc);
+      uStack_6c = *(int32_t *)((int64_t)param_2 + 0xc);
       uStack_68 = *(uint64_t *)param_3;
       uStack_48 = 0;
       uStack_40 = 0;
@@ -2645,7 +2645,7 @@ LAB_18085add0:
         return uVar5;
       }
     }
-    if ((ulonglong)*(uint *)(uVar13 + 0x10) + (ulonglong)*(uint *)(uVar13 + 0x14) < 0x100000000) {
+    if ((uint64_t)*(uint *)(uVar13 + 0x10) + (uint64_t)*(uint *)(uVar13 + 0x14) < 0x100000000) {
       uVar8 = *(uint *)(uVar13 + 0x10) + *(uint *)(uVar13 + 0x14);
     }
     else {
@@ -2653,9 +2653,9 @@ LAB_18085add0:
     }
     if ((*param_3 <= uVar8) && (uVar8 < param_3[1])) {
       uVar4 = *(uint *)(param_2 + 1);
-      uVar9 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
+      uVar9 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
       if (uVar8 < uVar4) {
-        uVar7 = (ulonglong)(uVar4 - uVar8);
+        uVar7 = (uint64_t)(uVar4 - uVar8);
         if (uVar9 != 48000) {
           uVar7 = (uVar7 * uVar9) / 48000;
         }
@@ -2664,9 +2664,9 @@ LAB_18085add0:
       else {
         uVar8 = uVar8 - uVar4;
         if (uVar9 != 48000) {
-          uVar8 = (uint)(((ulonglong)uVar8 * (ulonglong)uVar9) / 48000);
+          uVar8 = (uint)(((uint64_t)uVar8 * (uint64_t)uVar9) / 48000);
         }
-        lVar12 = (ulonglong)uVar8 + *param_2;
+        lVar12 = (uint64_t)uVar8 + *param_2;
       }
       uVar5 = UISystem_StateUpdater(*(uint64_t *)(param_1 + 0x160),uVar13,lVar12,param_5,1,param_7);
       if ((int)uVar5 != 0) {
@@ -2699,8 +2699,8 @@ LAB_18085add0:
  * @return 缓冲区管理结果
  */
 uint64_t
-UISystem_BufferManager(longlong system_context, uint64_t buffer_data, uint *size_params, 
-                      uint *offset_params, uint *resource_params, longlong extra_context, 
+UISystem_BufferManager(int64_t system_context, uint64_t buffer_data, uint *size_params, 
+                      uint *offset_params, uint *resource_params, int64_t extra_context, 
                       int8_t operation_flag, int8_t sync_flag)
 
 {
@@ -2709,9 +2709,9 @@ UISystem_BufferManager(longlong system_context, uint64_t buffer_data, uint *size
   int8_t uVar3;
   int iVar4;
   uint64_t uVar5;
-  longlong lVar6;
+  int64_t lVar6;
   uint uVar7;
-  ulonglong uVar8;
+  uint64_t uVar8;
   
   uVar3 = param_8;
   uVar2 = param_7;
@@ -2719,22 +2719,22 @@ UISystem_BufferManager(longlong system_context, uint64_t buffer_data, uint *size
   uVar7 = 0xffffffff;
   iVar4 = -1;
   uVar8 = 0xffffffff;
-  if ((ulonglong)*param_4 + (ulonglong)*param_5 < 0x100000000) {
-    uVar8 = (ulonglong)(*param_5 + *param_4);
+  if ((uint64_t)*param_4 + (uint64_t)*param_5 < 0x100000000) {
+    uVar8 = (uint64_t)(*param_5 + *param_4);
   }
   param_5._0_4_ = (int)uVar8;
   if (uVar8 + *param_3 < 0x100000000) {
     iVar4 = *param_3 + (int)param_5;
   }
   param_5._4_4_ = iVar4;
-  uVar5 = UISystem_ConfigManager(param_1,param_2,&param_5,*(longlong *)(param_1 + 0x110) + 0x48,1,param_8,
+  uVar5 = UISystem_ConfigManager(param_1,param_2,&param_5,*(int64_t *)(param_1 + 0x110) + 0x48,1,param_8,
                         param_7);
   if ((((int)uVar5 == 0) &&
-      (uVar5 = UISystem_ConfigManager(param_1,param_2,&param_5,*(longlong *)(param_1 + 0x110) + 0x38,
+      (uVar5 = UISystem_ConfigManager(param_1,param_2,&param_5,*(int64_t *)(param_1 + 0x110) + 0x38,
                              (char)uVar5,uVar3,uVar2), (int)uVar5 == 0)) &&
      (uVar5 = UISystem_StateChecker(param_1,&param_5,param_2), (int)uVar5 == 0)) {
     *(int32_t *)(param_1 + 0xc) = 2;
-    if ((ulonglong)*puVar1 + (ulonglong)*param_3 < 0x100000000) {
+    if ((uint64_t)*puVar1 + (uint64_t)*param_3 < 0x100000000) {
       uVar7 = *param_3 + *puVar1;
     }
     *puVar1 = uVar7;
@@ -2772,7 +2772,7 @@ UISystem_BufferManager(longlong system_context, uint64_t buffer_data, uint *size
  * @param resource_params 资源参数指针
  * @return 验证处理结果
  */
-uint64_t UISystem_AdvancedDataValidator(longlong system_context, uint *time_params, longlong *resource_params)
+uint64_t UISystem_AdvancedDataValidator(int64_t system_context, uint *time_params, int64_t *resource_params)
 
 {
   uint uVar1;
@@ -2781,29 +2781,29 @@ uint64_t UISystem_AdvancedDataValidator(longlong system_context, uint *time_para
   uint uVar4;
   uint uVar5;
   uint uVar6;
-  longlong lVar7;
-  longlong lVar8;
-  ulonglong uVar9;
+  int64_t lVar7;
+  int64_t lVar8;
+  uint64_t uVar9;
   int iVar10;
-  longlong lVar11;
+  int64_t lVar11;
   uint uVar12;
-  longlong lStackX_8;
+  int64_t lStackX_8;
   
-  if ((*(int *)(*(longlong *)(param_1 + 0x110) + 0x80) != 0) ||
-     (*(int *)(*(longlong *)(param_1 + 0x110) + 0x90) != 0)) {
+  if ((*(int *)(*(int64_t *)(param_1 + 0x110) + 0x80) != 0) ||
+     (*(int *)(*(int64_t *)(param_1 + 0x110) + 0x90) != 0)) {
     uVar4 = UISystem_DataStateGetter(*(uint64_t *)(param_1 + 0x160));
-    lStackX_8 = *(longlong *)(param_1 + 0x110);
+    lStackX_8 = *(int64_t *)(param_1 + 0x110);
     if (((uVar4 >> 0xb & 1) != 0) && (iVar10 = 0, 0 < *(int *)(lStackX_8 + 0x80))) {
       lVar11 = 0;
       do {
-        lVar8 = *(longlong *)(lStackX_8 + 0x78);
+        lVar8 = *(int64_t *)(lStackX_8 + 0x78);
         uVar6 = *(uint *)(lVar8 + 0x20 + lVar11);
         if (((*param_2 <= uVar6) && (uVar6 < param_2[1])) && (*(int *)(lVar8 + 0x18 + lVar11) != 0))
         {
           uVar1 = *(uint *)(param_3 + 1);
-          uVar12 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
+          uVar12 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
           if (uVar6 < uVar1) {
-            uVar9 = (ulonglong)(uVar1 - uVar6);
+            uVar9 = (uint64_t)(uVar1 - uVar6);
             if (uVar12 != 48000) {
               uVar9 = (uVar9 * uVar12) / 48000;
             }
@@ -2812,20 +2812,20 @@ uint64_t UISystem_AdvancedDataValidator(longlong system_context, uint *time_para
           else {
             uVar6 = uVar6 - uVar1;
             if (uVar12 != 48000) {
-              uVar6 = (uint)(((ulonglong)uVar6 * (ulonglong)uVar12) / 48000);
+              uVar6 = (uint)(((uint64_t)uVar6 * (uint64_t)uVar12) / 48000);
             }
-            lVar7 = (ulonglong)uVar6 + *param_3;
+            lVar7 = (uint64_t)uVar6 + *param_3;
           }
-          UISystem_DataCalculator(param_1,lVar7,*(int32_t *)(lVar8 + 0x20 + (longlong)iVar10 * 0x28),0,
+          UISystem_DataCalculator(param_1,lVar7,*(int32_t *)(lVar8 + 0x20 + (int64_t)iVar10 * 0x28),0,
                         iVar10,0);
         }
         iVar10 = iVar10 + 1;
         lVar11 = lVar11 + 0x28;
       } while (iVar10 < *(int *)(lStackX_8 + 0x80));
-      lStackX_8 = *(longlong *)(param_1 + 0x110);
+      lStackX_8 = *(int64_t *)(param_1 + 0x110);
     }
     uVar6 = 0x1000;
-    if (*(longlong *)(*(longlong *)(param_1 + 0x160) + 0x350) != 0) {
+    if (*(int64_t *)(*(int64_t *)(param_1 + 0x160) + 0x350) != 0) {
       uVar6 = 0x40000;
     }
     if (((uVar4 & uVar6) != 0) && (*(int *)(lStackX_8 + 0x90) != 0)) {
@@ -2834,11 +2834,11 @@ uint64_t UISystem_AdvancedDataValidator(longlong system_context, uint *time_para
         uVar4 = param_2[1];
         uVar6 = uVar4;
         if (iVar10 + 1 < *(int *)(lStackX_8 + 0x90)) {
-          uVar6 = *(uint *)((longlong)iVar10 * 0x20 + 0x38 + *(longlong *)(lStackX_8 + 0x88));
+          uVar6 = *(uint *)((int64_t)iVar10 * 0x20 + 0x38 + *(int64_t *)(lStackX_8 + 0x88));
         }
         if (-1 < iVar10) {
           uVar1 = *param_2;
-          lVar11 = (longlong)iVar10 * 0x20 + *(longlong *)(lStackX_8 + 0x88);
+          lVar11 = (int64_t)iVar10 * 0x20 + *(int64_t *)(lStackX_8 + 0x88);
           if (uVar1 < uVar6) {
             if (*(float *)(lVar11 + 0x1c) == 0.0) {
               return 0x1c;
@@ -2857,9 +2857,9 @@ uint64_t UISystem_AdvancedDataValidator(longlong system_context, uint *time_para
               if (uVar1 <= uVar12) {
                 if (uVar4 <= uVar12) break;
                 uVar5 = *(uint *)(param_3 + 1);
-                uVar2 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
+                uVar2 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
                 if (uVar12 < uVar5) {
-                  uVar9 = (ulonglong)(uVar5 - uVar12);
+                  uVar9 = (uint64_t)(uVar5 - uVar12);
                   if (uVar2 != 48000) {
                     uVar9 = (uVar9 * uVar2) / 48000;
                   }
@@ -2868,9 +2868,9 @@ uint64_t UISystem_AdvancedDataValidator(longlong system_context, uint *time_para
                 else {
                   uVar5 = uVar12 - uVar5;
                   if (uVar2 != 48000) {
-                    uVar5 = (uint)(((ulonglong)uVar5 * (ulonglong)uVar2) / 48000);
+                    uVar5 = (uint)(((uint64_t)uVar5 * (uint64_t)uVar2) / 48000);
                   }
-                  lVar8 = (ulonglong)uVar5 + *param_3;
+                  lVar8 = (uint64_t)uVar5 + *param_3;
                 }
                 UISystem_DataCalculator(param_1,lVar8,uVar12,1,*(int32_t *)(param_1 + 0x138),iVar10);
               }
@@ -2907,61 +2907,61 @@ uint64_t UISystem_AdvancedDataValidator(longlong system_context, uint *time_para
  * @param resource_context 资源上下文
  * @return 数据处理结果
  */
-int UISystem_AdvancedDataProcessor(longlong system_context, uint data_size, longlong extra_context, longlong resource_context)
+int UISystem_AdvancedDataProcessor(int64_t system_context, uint data_size, int64_t extra_context, int64_t resource_context)
 
 {
-  longlong *plVar1;
+  int64_t *plVar1;
   int *piVar2;
   byte bVar3;
   int iVar4;
   uint uVar5;
   uint uVar6;
-  longlong lVar7;
+  int64_t lVar7;
   int8_t uVar8;
   int iVar9;
   int iVar10;
-  ulonglong uVar11;
-  ulonglong uVar12;
-  longlong lVar13;
+  uint64_t uVar11;
+  uint64_t uVar12;
+  int64_t lVar13;
   int iVar14;
-  longlong lVar15;
+  int64_t lVar15;
   uint uStackX_8;
   int iStackX_c;
   uint auStackX_10 [2];
   uint *in_stack_ffffffffffffff88;
-  longlong in_stack_ffffffffffffff90;
-  ulonglong uVar16;
-  longlong lStack_50;
+  int64_t in_stack_ffffffffffffff90;
+  uint64_t uVar16;
+  int64_t lStack_50;
   int iStack_48;
   
-  plVar1 = (longlong *)(param_1 + 0x70);
-  uVar12 = (ulonglong)param_2;
-  if (((longlong *)*plVar1 == plVar1) && (*(longlong **)(param_1 + 0x78) == plVar1)) {
-    lVar13 = *(longlong *)(param_1 + 0x28);
-    lVar15 = *(longlong *)(param_1 + 0x38);
+  plVar1 = (int64_t *)(param_1 + 0x70);
+  uVar12 = (uint64_t)param_2;
+  if (((int64_t *)*plVar1 == plVar1) && (*(int64_t **)(param_1 + 0x78) == plVar1)) {
+    lVar13 = *(int64_t *)(param_1 + 0x28);
+    lVar15 = *(int64_t *)(param_1 + 0x38);
   }
   else {
-    lVar13 = *(longlong *)(*(longlong *)(param_1 + 0x78) + 0x10);
-    lVar15 = *(longlong *)(*(longlong *)(param_1 + 0x78) + 0x20);
+    lVar13 = *(int64_t *)(*(int64_t *)(param_1 + 0x78) + 0x10);
+    lVar15 = *(int64_t *)(*(int64_t *)(param_1 + 0x78) + 0x20);
   }
   if (lVar15 != 0) {
     *(int *)(lVar15 + 0x10) = *(int *)(lVar15 + 0x10) + 1;
   }
-  lVar7 = *(longlong *)(param_1 + 0x140);
+  lVar7 = *(int64_t *)(param_1 + 0x140);
   iVar14 = -1;
   iVar10 = *(int *)(lVar7 + 0xa0);
   iVar4 = *(int *)(lVar7 + 0xa8);
   auStackX_10[0] = param_2;
   if ((*(byte *)(param_1 + 0x128) & 2) == 0) {
     in_stack_ffffffffffffff88 = (uint *)(param_1 + 0x14c);
-    uVar11 = (ulonglong)(*(int *)(param_1 + 0x148) - *in_stack_ffffffffffffff88);
-    uVar5 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
+    uVar11 = (uint64_t)(*(int *)(param_1 + 0x148) - *in_stack_ffffffffffffff88);
+    uVar5 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
     if (uVar5 != 48000) {
       uVar11 = (uVar11 * uVar5) / 48000;
     }
     lStack_50 = (uVar11 & 0xffffffff) + lVar13;
     iStack_48 = -1;
-    if ((ulonglong)*(uint *)(lVar15 + 8) + (ulonglong)*(uint *)(param_1 + 0x154) < 0x100000000) {
+    if ((uint64_t)*(uint *)(lVar15 + 8) + (uint64_t)*(uint *)(param_1 + 0x154) < 0x100000000) {
       iStack_48 = *(uint *)(param_1 + 0x154) + *(uint *)(lVar15 + 8);
     }
     if ((*(int *)(param_1 + 0xc) == 2) && (*(char *)(param_1 + 0x13d) == '\0')) {
@@ -2980,15 +2980,15 @@ int UISystem_AdvancedDataProcessor(longlong system_context, uint data_size, long
   if ((uint)(iVar10 - iVar4) <= uVar5) {
     in_stack_ffffffffffffff88 = (uint *)(param_1 + 0x150);
     uVar6 = *in_stack_ffffffffffffff88;
-    uVar11 = (ulonglong)(uVar5 - uVar6);
-    uVar5 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
+    uVar11 = (uint64_t)(uVar5 - uVar6);
+    uVar5 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
     if (uVar5 != 48000) {
       uVar11 = (uVar11 * uVar5) / 48000;
     }
     uVar5 = *(uint *)(param_1 + 0x158);
     lStack_50 = (uVar11 & 0xffffffff) + lVar13;
     iStack_48 = -1;
-    if ((ulonglong)uVar5 + (ulonglong)*(uint *)(lVar15 + 8) < 0x100000000) {
+    if ((uint64_t)uVar5 + (uint64_t)*(uint *)(lVar15 + 8) < 0x100000000) {
       iStack_48 = uVar5 + *(uint *)(lVar15 + 8);
     }
     if (((*(byte *)(param_1 + 0x128) & 4) == 0) || (*(char *)(param_1 + 0x13e) != '\0')) {
@@ -3000,7 +3000,7 @@ int UISystem_AdvancedDataProcessor(longlong system_context, uint data_size, long
     if (param_4 != 0) {
       uVar11 = 0xffffffff;
       if (uVar5 + uVar12 < 0x100000000) {
-        uVar11 = (ulonglong)(uVar5 + param_2);
+        uVar11 = (uint64_t)(uVar5 + param_2);
       }
       iVar10 = -1;
       if (uVar11 + uVar6 < 0x100000000) {
@@ -3022,8 +3022,8 @@ int UISystem_AdvancedDataProcessor(longlong system_context, uint data_size, long
     iStackX_c = uVar5 + param_2;
   }
   bVar3 = *(byte *)(param_1 + 0x128);
-  uVar16 = CONCAT71((int7)((ulonglong)in_stack_ffffffffffffff90 >> 8),~bVar3) & 0xffffffffffffff01;
-  uVar11 = CONCAT71((int7)((ulonglong)in_stack_ffffffffffffff88 >> 8),1);
+  uVar16 = CONCAT71((int7)((uint64_t)in_stack_ffffffffffffff90 >> 8),~bVar3) & 0xffffffffffffff01;
+  uVar11 = CONCAT71((int7)((uint64_t)in_stack_ffffffffffffff88 >> 8),1);
   uStackX_8 = uVar5;
   lStack_50 = lVar13;
   iVar9 = UISystem_ConfigManager(param_1,&lStack_50,&uStackX_8,lVar7 + 0x80,uVar11,uVar16,0);
@@ -3200,37 +3200,37 @@ LAB_18085b8b5:
  * @param resource_context 资源上下文
  * @return 数据流处理结果
  */
-int UISystem_DataStreamProcessor(longlong system_context, uint stream_size, longlong stream_context, longlong resource_context)
+int UISystem_DataStreamProcessor(int64_t system_context, uint stream_size, int64_t stream_context, int64_t resource_context)
 
 {
-  longlong *plVar1;
+  int64_t *plVar1;
   int *piVar2;
   int iVar3;
   uint uVar4;
   uint uVar5;
-  longlong lVar6;
+  int64_t lVar6;
   int iVar7;
   int iVar8;
-  longlong in_RAX;
-  ulonglong uVar9;
+  int64_t in_RAX;
+  uint64_t uVar9;
   uint64_t unaff_RBX;
-  ulonglong uVar10;
+  uint64_t uVar10;
   uint64_t unaff_RBP;
   uint64_t unaff_RSI;
-  longlong lVar11;
+  int64_t lVar11;
   uint64_t unaff_RDI;
   int iVar12;
   uint64_t unaff_R12;
   uint64_t unaff_R13;
-  longlong lVar13;
+  int64_t lVar13;
   uint *in_stack_00000020;
   int8_t uStack0000000000000030;
-  longlong lStack0000000000000040;
-  longlong lStack0000000000000048;
+  int64_t lStack0000000000000040;
+  int64_t lStack0000000000000048;
   int iStack0000000000000050;
   uint uStack00000000000000a0;
   int iStack00000000000000a4;
-  longlong in_stack_000000b8;
+  int64_t in_stack_000000b8;
   
   *(uint64_t *)(in_RAX + 0x18) = unaff_RBX;
   *(uint64_t *)(in_RAX + -0x18) = unaff_RBP;
@@ -3238,33 +3238,33 @@ int UISystem_DataStreamProcessor(longlong system_context, uint stream_size, long
   *(uint64_t *)(in_RAX + -0x28) = unaff_RDI;
   *(uint64_t *)(in_RAX + -0x30) = unaff_R12;
   *(uint64_t *)(in_RAX + -0x38) = unaff_R13;
-  plVar1 = (longlong *)(param_1 + 0x70);
-  uVar10 = (ulonglong)param_2;
-  if (((longlong *)*plVar1 == plVar1) && (*(longlong **)(param_1 + 0x78) == plVar1)) {
-    lVar11 = *(longlong *)(param_1 + 0x28);
-    lVar13 = *(longlong *)(param_1 + 0x38);
+  plVar1 = (int64_t *)(param_1 + 0x70);
+  uVar10 = (uint64_t)param_2;
+  if (((int64_t *)*plVar1 == plVar1) && (*(int64_t **)(param_1 + 0x78) == plVar1)) {
+    lVar11 = *(int64_t *)(param_1 + 0x28);
+    lVar13 = *(int64_t *)(param_1 + 0x38);
   }
   else {
-    lVar11 = *(longlong *)(*(longlong *)(param_1 + 0x78) + 0x10);
-    lVar13 = *(longlong *)(*(longlong *)(param_1 + 0x78) + 0x20);
+    lVar11 = *(int64_t *)(*(int64_t *)(param_1 + 0x78) + 0x10);
+    lVar13 = *(int64_t *)(*(int64_t *)(param_1 + 0x78) + 0x20);
   }
   if (lVar13 != 0) {
     *(int *)(lVar13 + 0x10) = *(int *)(lVar13 + 0x10) + 1;
   }
-  lStack0000000000000040 = *(longlong *)(param_1 + 0x140);
+  lStack0000000000000040 = *(int64_t *)(param_1 + 0x140);
   iVar12 = -1;
   iVar8 = *(int *)(lStack0000000000000040 + 0xa0);
   iVar3 = *(int *)(lStack0000000000000040 + 0xa8);
   if ((*(byte *)(param_1 + 0x128) & 2) == 0) {
     in_stack_00000020 = (uint *)(param_1 + 0x14c);
-    uVar9 = (ulonglong)(*(int *)(param_1 + 0x148) - *in_stack_00000020);
-    uVar4 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
+    uVar9 = (uint64_t)(*(int *)(param_1 + 0x148) - *in_stack_00000020);
+    uVar4 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
     if (uVar4 != 48000) {
       uVar9 = (uVar9 * uVar4) / 48000;
     }
     lStack0000000000000048 = (uVar9 & 0xffffffff) + lVar11;
     iStack0000000000000050 = -1;
-    if ((ulonglong)*(uint *)(lVar13 + 8) + (ulonglong)*(uint *)(param_1 + 0x154) < 0x100000000) {
+    if ((uint64_t)*(uint *)(lVar13 + 8) + (uint64_t)*(uint *)(param_1 + 0x154) < 0x100000000) {
       iStack0000000000000050 = *(uint *)(param_1 + 0x154) + *(uint *)(lVar13 + 8);
     }
     uStack0000000000000030 = 1;
@@ -3278,21 +3278,21 @@ int UISystem_DataStreamProcessor(longlong system_context, uint stream_size, long
   if ((uint)(iVar8 - iVar3) <= uVar4) {
     in_stack_00000020 = (uint *)(param_1 + 0x150);
     uVar5 = *in_stack_00000020;
-    uVar9 = (ulonglong)(uVar4 - uVar5);
-    uVar4 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
+    uVar9 = (uint64_t)(uVar4 - uVar5);
+    uVar4 = *(uint *)(*(int64_t *)(param_1 + 0x168) + 0x774);
     if (uVar4 != 48000) {
       uVar9 = (uVar9 * uVar4) / 48000;
     }
     uVar4 = *(uint *)(param_1 + 0x158);
     lStack0000000000000048 = (uVar9 & 0xffffffff) + lVar11;
     iStack0000000000000050 = -1;
-    if ((ulonglong)uVar4 + (ulonglong)*(uint *)(lVar13 + 8) < 0x100000000) {
+    if ((uint64_t)uVar4 + (uint64_t)*(uint *)(lVar13 + 8) < 0x100000000) {
       iStack0000000000000050 = uVar4 + *(uint *)(lVar13 + 8);
     }
     if (param_4 != 0) {
       uVar9 = 0xffffffff;
       if (uVar4 + uVar10 < 0x100000000) {
-        uVar9 = (ulonglong)(uVar4 + param_2);
+        uVar9 = (uint64_t)(uVar4 + param_2);
       }
       iVar8 = -1;
       if (uVar9 + uVar5 < 0x100000000) {
@@ -3315,7 +3315,7 @@ int UISystem_DataStreamProcessor(longlong system_context, uint stream_size, long
     iStack00000000000000a4 = uVar4 + param_2;
   }
   uStack0000000000000030 = 0;
-  uVar9 = CONCAT71((int7)((ulonglong)in_stack_00000020 >> 8),1);
+  uVar9 = CONCAT71((int7)((uint64_t)in_stack_00000020 >> 8),1);
   lStack0000000000000048 = lVar11;
   uStack00000000000000a0 = uVar4;
   iVar7 = UISystem_ConfigManager(param_1,&stack0x00000048,&stack0x000000a0,lStack0000000000000040 + 0x80,

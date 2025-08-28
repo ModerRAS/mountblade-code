@@ -92,7 +92,7 @@ typedef enum {
  * @param param_2 要添加的数据指针
  * @note 向渲染数据数组中添加新的矩阵数据
  */
-void RenderingSystemAddMatrixData(ulonglong *param_1, uint64_t *param_2);
+void RenderingSystemAddMatrixData(uint64_t *param_1, uint64_t *param_2);
 
 /**
  * @brief 渲染系统数据数组调整函数
@@ -100,7 +100,7 @@ void RenderingSystemAddMatrixData(ulonglong *param_1, uint64_t *param_2);
  * @param param_2 调整大小
  * @note 调整渲染数据数组的大小以适应新的数据需求
  */
-void RenderingSystemResizeDataArray(longlong *param_1, ulonglong param_2);
+void RenderingSystemResizeDataArray(int64_t *param_1, uint64_t param_2);
 
 /**
  * @brief 渲染系统资源清理函数
@@ -108,7 +108,7 @@ void RenderingSystemResizeDataArray(longlong *param_1, ulonglong param_2);
  * @param param_2 结束资源指针
  * @note 清理渲染系统中的资源，释放内存
  */
-void RenderingSystemCleanupResources(longlong *param_1, longlong *param_2);
+void RenderingSystemCleanupResources(int64_t *param_1, int64_t *param_2);
 
 /**
  * @brief 渲染系统数据复制函数
@@ -125,21 +125,21 @@ uint64_t *RenderingSystemCopyData(uint64_t *param_1, uint64_t *param_2, uint64_t
  * @param param_1 投影参数指针
  * @note 清理渲染系统的投影参数，释放相关资源
  */
-void RenderingSystemCleanupProjectionParameters(longlong param_1);
+void RenderingSystemCleanupProjectionParameters(int64_t param_1);
 
 /**
  * @brief 渲染系统视图参数清理函数
  * @param param_1 视图参数指针
  * @note 清理渲染系统的视图参数，释放相关资源
  */
-void RenderingSystemCleanupViewParameters(longlong param_1);
+void RenderingSystemCleanupViewParameters(int64_t param_1);
 
 /**
  * @brief 渲染系统纹理参数清理函数
  * @param param_1 纹理参数指针
  * @note 清理渲染系统的纹理参数，释放相关资源
  */
-void RenderingSystemCleanupTextureParameters(longlong param_1);
+void RenderingSystemCleanupTextureParameters(int64_t param_1);
 
 /**
  * @brief 渲染系统批量初始化函数
@@ -147,21 +147,21 @@ void RenderingSystemCleanupTextureParameters(longlong param_1);
  * @param param_2 初始化数量
  * @note 批量初始化渲染系统的各种参数和状态
  */
-void RenderingSystemBatchInitialize(longlong param_1, longlong param_2);
+void RenderingSystemBatchInitialize(int64_t param_1, int64_t param_2);
 
 /**
  * @brief 渲染系统深度缓冲区清理函数
  * @param param_1 深度缓冲区指针
  * @note 清理渲染系统的深度缓冲区，释放相关资源
  */
-void RenderingSystemCleanupDepthBuffer(longlong param_1);
+void RenderingSystemCleanupDepthBuffer(int64_t param_1);
 
 /**
  * @brief 渲染系统模板缓冲区清理函数
  * @param param_1 模板缓冲区指针
  * @note 清理渲染系统的模板缓冲区，释放相关资源
  */
-void RenderingSystemCleanupStencilBuffer(longlong param_1);
+void RenderingSystemCleanupStencilBuffer(int64_t param_1);
 
 /**
  * @brief 渲染系统渲染队列创建函数
@@ -172,7 +172,7 @@ void RenderingSystemCleanupStencilBuffer(longlong param_1);
  * @return 创建后的渲染队列指针
  * @note 创建渲染系统的渲染队列，准备渲染操作
  */
-longlong *RenderingSystemCreateRenderQueue(longlong *param_1, int32_t *param_2, int32_t *param_3, uint64_t *param_4);
+int64_t *RenderingSystemCreateRenderQueue(int64_t *param_1, int32_t *param_2, int32_t *param_3, uint64_t *param_4);
 
 /**
  * @brief 渲染系统内存池分配函数
@@ -180,7 +180,7 @@ longlong *RenderingSystemCreateRenderQueue(longlong *param_1, int32_t *param_2, 
  * @param param_2 分配大小
  * @note 在渲染系统的内存池中分配内存
  */
-void RenderingSystemAllocateMemoryPool(longlong param_1, longlong param_2);
+void RenderingSystemAllocateMemoryPool(int64_t param_1, int64_t param_2);
 
 /**
  * @brief 渲染系统状态查询函数
@@ -189,7 +189,7 @@ void RenderingSystemAllocateMemoryPool(longlong param_1, longlong param_2);
  * @return 查询结果状态
  * @note 查询渲染系统的各种状态信息
  */
-int8_t RenderingSystemQueryState(longlong param_1, int8_t param_2);
+int8_t RenderingSystemQueryState(int64_t param_1, int8_t param_2);
 
 /**
  * @brief 渲染系统状态查询扩展函数
@@ -199,7 +199,7 @@ int8_t RenderingSystemQueryState(longlong param_1, int8_t param_2);
  * @return 查询结果状态
  * @note 扩展的渲染系统状态查询功能
  */
-int8_t RenderingSystemQueryStateEx(uint64_t param_1, uint64_t param_2, longlong param_3);
+int8_t RenderingSystemQueryStateEx(uint64_t param_1, uint64_t param_2, int64_t param_3);
 
 /**
  * @brief 渲染系统空操作函数
@@ -217,7 +217,7 @@ int8_t RenderingSystemEmptyOperation(void);
  * @return 释放后的资源指针
  * @note 释放渲染系统中的各种资源
  */
-uint64_t *RenderingSystemReleaseResource(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4);
+uint64_t *RenderingSystemReleaseResource(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
 
 /**
  * @brief 渲染系统向量归一化函数
@@ -237,7 +237,7 @@ float *RenderingSystemNormalizeVector(float *param_1, float *param_2, float *par
  * @return 计算后的距离参数
  * @note 计算渲染系统中的投影距离
  */
-uint64_t RenderingSystemCalculateProjectionDistance(longlong param_1, uint64_t param_2, float *param_3);
+uint64_t RenderingSystemCalculateProjectionDistance(int64_t param_1, uint64_t param_2, float *param_3);
 
 // ============================================================================
 // 函数实现
@@ -252,7 +252,7 @@ uint64_t RenderingSystemCalculateProjectionDistance(longlong param_1, uint64_t p
  * @param param_1 渲染数据指针数组
  * @param param_2 要添加的数据指针
  */
-void RenderingSystemAddMatrixData(ulonglong *param_1, uint64_t *param_2)
+void RenderingSystemAddMatrixData(uint64_t *param_1, uint64_t *param_2)
 {
     int32_t uVar1;
     int32_t uVar2;
@@ -261,13 +261,13 @@ void RenderingSystemAddMatrixData(ulonglong *param_1, uint64_t *param_2)
     uint64_t *puVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
-    longlong lVar8;
+    int64_t lVar8;
     uint64_t *puVar9;
     
     puVar9 = (uint64_t *)param_1[1];
     if (puVar9 < (uint64_t *)param_1[2]) {
         // 数组有足够空间，直接添加数据
-        param_1[1] = (ulonglong)(puVar9 + 2);
+        param_1[1] = (uint64_t)(puVar9 + 2);
         uVar4 = param_2[1];
         *puVar9 = *param_2;
         puVar9[1] = uVar4;
@@ -276,7 +276,7 @@ void RenderingSystemAddMatrixData(ulonglong *param_1, uint64_t *param_2)
     
     // 数组空间不足，需要扩展
     puVar6 = (uint64_t *)*param_1;
-    lVar8 = (longlong)puVar9 - (longlong)puVar6 >> 4;
+    lVar8 = (int64_t)puVar9 - (int64_t)puVar6 >> 4;
     if (lVar8 == 0) {
         lVar8 = 1;
     } else {
@@ -304,19 +304,19 @@ joined_r0x000180284d76:
     }
     
     // 添加新数据
-    uVar1 = *(int32_t *)((longlong)param_2 + 4);
+    uVar1 = *(int32_t *)((int64_t)param_2 + 4);
     uVar2 = *(int32_t *)(param_2 + 1);
-    uVar3 = *(int32_t *)((longlong)param_2 + 0xc);
+    uVar3 = *(int32_t *)((int64_t)param_2 + 0xc);
     *(int32_t *)puVar5 = *(int32_t *)param_2;
-    *(int32_t *)((longlong)puVar5 + 4) = uVar1;
+    *(int32_t *)((int64_t)puVar5 + 4) = uVar1;
     *(int32_t *)(puVar5 + 1) = uVar2;
-    *(int32_t *)((longlong)puVar5 + 0xc) = uVar3;
+    *(int32_t *)((int64_t)puVar5 + 0xc) = uVar3;
     
     // 更新数组指针
     if (*param_1 == 0) {
-        *param_1 = (ulonglong)puVar7;
-        param_1[2] = (ulonglong)(puVar7 + lVar8 * 2);
-        param_1[1] = (ulonglong)(puVar5 + 2);
+        *param_1 = (uint64_t)puVar7;
+        param_1[2] = (uint64_t)(puVar7 + lVar8 * 2);
+        param_1[1] = (uint64_t)(puVar5 + 2);
         return;
     }
     
@@ -333,25 +333,25 @@ joined_r0x000180284d76:
  * @param param_1 渲染数据指针数组
  * @param param_2 调整大小
  */
-void RenderingSystemResizeDataArray(longlong *param_1, ulonglong param_2)
+void RenderingSystemResizeDataArray(int64_t *param_1, uint64_t param_2)
 {
     int32_t *puVar1;
-    longlong *plVar2;
+    int64_t *plVar2;
     uint64_t *puVar3;
     uint64_t *puVar4;
     uint64_t *puVar5;
-    longlong lVar6;
+    int64_t lVar6;
     uint64_t *puVar7;
-    ulonglong uVar8;
-    longlong *plVar9;
-    ulonglong uVar10;
-    longlong lVar11;
+    uint64_t uVar8;
+    int64_t *plVar9;
+    uint64_t uVar10;
+    int64_t lVar11;
     
     puVar5 = (uint64_t *)param_1[1];
-    if ((ulonglong)(param_1[2] - (longlong)puVar5 >> 4) < param_2) {
+    if ((uint64_t)(param_1[2] - (int64_t)puVar5 >> 4) < param_2) {
         // 需要扩展数组
         puVar4 = (uint64_t *)*param_1;
-        lVar6 = (longlong)puVar5 - (longlong)puVar4 >> 4;
+        lVar6 = (int64_t)puVar5 - (int64_t)puVar4 >> 4;
         uVar10 = lVar6 * 2;
         if (lVar6 == 0) {
             uVar10 = 1;
@@ -371,13 +371,13 @@ void RenderingSystemResizeDataArray(longlong *param_1, ulonglong param_2)
         puVar7 = puVar3;
         if (puVar4 != puVar5) {
             // 复制数据到新位置
-            lVar11 = (longlong)puVar4 - (longlong)puVar3;
-            lVar6 = 8 - (longlong)puVar4;
+            lVar11 = (int64_t)puVar4 - (int64_t)puVar3;
+            lVar6 = 8 - (int64_t)puVar4;
             do {
                 *puVar7 = *puVar4;
                 *puVar4 = 0;
-                puVar1 = (int32_t *)((longlong)puVar3 + lVar6 + (longlong)puVar4);
-                *puVar1 = *(int32_t *)((longlong)puVar1 + lVar11);
+                puVar1 = (int32_t *)((int64_t)puVar3 + lVar6 + (int64_t)puVar4);
+                *puVar1 = *(int32_t *)((int64_t)puVar1 + lVar11);
                 puVar4 = puVar4 + 2;
                 puVar7 = puVar7 + 2;
             } while (puVar4 != puVar5);
@@ -396,26 +396,26 @@ void RenderingSystemResizeDataArray(longlong *param_1, ulonglong param_2)
         }
         
         // 清理旧资源
-        plVar2 = (longlong *)param_1[1];
-        plVar9 = (longlong *)*param_1;
+        plVar2 = (int64_t *)param_1[1];
+        plVar9 = (int64_t *)*param_1;
         if (plVar9 != plVar2) {
             do {
-                if ((longlong *)*plVar9 != (longlong *)0x0) {
-                    (**(code **)(*(longlong *)*plVar9 + 0x38))();
+                if ((int64_t *)*plVar9 != (int64_t *)0x0) {
+                    (**(code **)(*(int64_t *)*plVar9 + 0x38))();
                 }
                 plVar9 = plVar9 + 2;
             } while (plVar9 != plVar2);
-            plVar9 = (longlong *)*param_1;
+            plVar9 = (int64_t *)*param_1;
         }
         
-        if (plVar9 != (longlong *)0x0) {
+        if (plVar9 != (int64_t *)0x0) {
             ResourceReleaser(plVar9);
         }
         
         // 更新指针
-        *param_1 = (longlong)puVar3;
-        param_1[1] = (longlong)(puVar7 + param_2 * 2);
-        param_1[2] = (longlong)(puVar3 + uVar10 * 2);
+        *param_1 = (int64_t)puVar3;
+        param_1[1] = (int64_t)(puVar7 + param_2 * 2);
+        param_1[2] = (int64_t)(puVar3 + uVar10 * 2);
     } else {
         // 调整现有空间
         uVar10 = param_2;
@@ -428,7 +428,7 @@ void RenderingSystemResizeDataArray(longlong *param_1, ulonglong param_2)
             } while (uVar10 != 0);
             puVar5 = (uint64_t *)param_1[1];
         }
-        param_1[1] = (longlong)(puVar5 + param_2 * 2);
+        param_1[1] = (int64_t)(puVar5 + param_2 * 2);
     }
     return;
 }
@@ -442,12 +442,12 @@ void RenderingSystemResizeDataArray(longlong *param_1, ulonglong param_2)
  * @param param_1 起始资源指针
  * @param param_2 结束资源指针
  */
-void RenderingSystemCleanupResources(longlong *param_1, longlong *param_2)
+void RenderingSystemCleanupResources(int64_t *param_1, int64_t *param_2)
 {
     if (param_1 != param_2) {
         do {
-            if ((longlong *)*param_1 != (longlong *)0x0) {
-                (**(code **)(*(longlong *)*param_1 + 0x38))();
+            if ((int64_t *)*param_1 != (int64_t *)0x0) {
+                (**(code **)(*(int64_t *)*param_1 + 0x38))();
             }
             param_1 = param_1 + 2;
         } while (param_1 != param_2);
@@ -469,17 +469,17 @@ void RenderingSystemCleanupResources(longlong *param_1, longlong *param_2)
 uint64_t *RenderingSystemCopyData(uint64_t *param_1, uint64_t *param_2, uint64_t *param_3)
 {
     int32_t *puVar1;
-    longlong lVar2;
-    longlong lVar3;
+    int64_t lVar2;
+    int64_t lVar3;
     
     if (param_1 != param_2) {
-        lVar2 = (longlong)param_1 - (longlong)param_3;
-        lVar3 = (longlong)param_3 + (8 - (longlong)param_1);
+        lVar2 = (int64_t)param_1 - (int64_t)param_3;
+        lVar3 = (int64_t)param_3 + (8 - (int64_t)param_1);
         do {
             *param_3 = *param_1;
             *param_1 = 0;
-            puVar1 = (int32_t *)(lVar3 + (longlong)param_1);
-            *puVar1 = *(int32_t *)((longlong)puVar1 + lVar2);
+            puVar1 = (int32_t *)(lVar3 + (int64_t)param_1);
+            *puVar1 = *(int32_t *)((int64_t)puVar1 + lVar2);
             param_1 = param_1 + 2;
             param_3 = param_3 + 2;
         } while (param_1 != param_2);
@@ -495,15 +495,15 @@ uint64_t *RenderingSystemCopyData(uint64_t *param_1, uint64_t *param_2, uint64_t
  * 
  * @param param_1 投影参数指针
  */
-void RenderingSystemCleanupProjectionParameters(longlong param_1)
+void RenderingSystemCleanupProjectionParameters(int64_t param_1)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint64_t *puVar2;
-    ulonglong uVar3;
-    ulonglong uVar4;
+    uint64_t uVar3;
+    uint64_t uVar4;
     
-    uVar3 = *(ulonglong *)(param_1 + 0x10);
-    lVar1 = *(longlong *)(param_1 + 8);
+    uVar3 = *(uint64_t *)(param_1 + 0x10);
+    lVar1 = *(int64_t *)(param_1 + 8);
     uVar4 = 0;
     if (uVar3 != 0) {
         do {
@@ -524,10 +524,10 @@ void RenderingSystemCleanupProjectionParameters(longlong param_1)
             *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
             uVar4 = uVar4 + 1;
         } while (uVar4 < uVar3);
-        uVar3 = *(ulonglong *)(param_1 + 0x10);
+        uVar3 = *(uint64_t *)(param_1 + 0x10);
     }
     *(uint64_t *)(param_1 + 0x18) = 0;
-    if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
+    if ((1 < uVar3) && (*(int64_t *)(param_1 + 8) != 0)) {
         ResourceReleaser();
     }
     return;
@@ -541,15 +541,15 @@ void RenderingSystemCleanupProjectionParameters(longlong param_1)
  * 
  * @param param_1 视图参数指针
  */
-void RenderingSystemCleanupViewParameters(longlong param_1)
+void RenderingSystemCleanupViewParameters(int64_t param_1)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint64_t *puVar2;
-    ulonglong uVar3;
-    ulonglong uVar4;
+    uint64_t uVar3;
+    uint64_t uVar4;
     
-    uVar3 = *(ulonglong *)(param_1 + 0x10);
-    lVar1 = *(longlong *)(param_1 + 8);
+    uVar3 = *(uint64_t *)(param_1 + 0x10);
+    lVar1 = *(int64_t *)(param_1 + 8);
     uVar4 = 0;
     if (uVar3 != 0) {
         do {
@@ -570,10 +570,10 @@ void RenderingSystemCleanupViewParameters(longlong param_1)
             *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
             uVar4 = uVar4 + 1;
         } while (uVar4 < uVar3);
-        uVar3 = *(ulonglong *)(param_1 + 0x10);
+        uVar3 = *(uint64_t *)(param_1 + 0x10);
     }
     *(uint64_t *)(param_1 + 0x18) = 0;
-    if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
+    if ((1 < uVar3) && (*(int64_t *)(param_1 + 8) != 0)) {
         ResourceReleaser();
     }
     return;
@@ -587,15 +587,15 @@ void RenderingSystemCleanupViewParameters(longlong param_1)
  * 
  * @param param_1 纹理参数指针
  */
-void RenderingSystemCleanupTextureParameters(longlong param_1)
+void RenderingSystemCleanupTextureParameters(int64_t param_1)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint64_t *puVar2;
-    ulonglong uVar3;
-    ulonglong uVar4;
+    uint64_t uVar3;
+    uint64_t uVar4;
     
-    uVar3 = *(ulonglong *)(param_1 + 0x10);
-    lVar1 = *(longlong *)(param_1 + 8);
+    uVar3 = *(uint64_t *)(param_1 + 0x10);
+    lVar1 = *(int64_t *)(param_1 + 8);
     uVar4 = 0;
     if (uVar3 != 0) {
         do {
@@ -616,10 +616,10 @@ void RenderingSystemCleanupTextureParameters(longlong param_1)
             *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
             uVar4 = uVar4 + 1;
         } while (uVar4 < uVar3);
-        uVar3 = *(ulonglong *)(param_1 + 0x10);
+        uVar3 = *(uint64_t *)(param_1 + 0x10);
     }
     *(uint64_t *)(param_1 + 0x18) = 0;
-    if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
+    if ((1 < uVar3) && (*(int64_t *)(param_1 + 8) != 0)) {
         ResourceReleaser();
     }
     return;
@@ -634,7 +634,7 @@ void RenderingSystemCleanupTextureParameters(longlong param_1)
  * @param param_1 初始化目标指针
  * @param param_2 初始化数量
  */
-void RenderingSystemBatchInitialize(longlong param_1, longlong param_2)
+void RenderingSystemBatchInitialize(int64_t param_1, int64_t param_2)
 {
     int32_t *puVar1;
     
@@ -715,15 +715,15 @@ void RenderingSystemBatchInitialize(longlong param_1, longlong param_2)
  * 
  * @param param_1 深度缓冲区指针
  */
-void RenderingSystemCleanupDepthBuffer(longlong param_1)
+void RenderingSystemCleanupDepthBuffer(int64_t param_1)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint64_t *puVar2;
-    ulonglong uVar3;
-    ulonglong uVar4;
+    uint64_t uVar3;
+    uint64_t uVar4;
     
-    uVar3 = *(ulonglong *)(param_1 + 0x18);
-    lVar1 = *(longlong *)(param_1 + 0x10);
+    uVar3 = *(uint64_t *)(param_1 + 0x18);
+    lVar1 = *(int64_t *)(param_1 + 0x10);
     uVar4 = 0;
     if (uVar3 != 0) {
         do {
@@ -744,10 +744,10 @@ void RenderingSystemCleanupDepthBuffer(longlong param_1)
             *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
             uVar4 = uVar4 + 1;
         } while (uVar4 < uVar3);
-        uVar3 = *(ulonglong *)(param_1 + 0x18);
+        uVar3 = *(uint64_t *)(param_1 + 0x18);
     }
     *(uint64_t *)(param_1 + 0x20) = 0;
-    if ((1 < uVar3) && (*(longlong *)(param_1 + 0x10) != 0)) {
+    if ((1 < uVar3) && (*(int64_t *)(param_1 + 0x10) != 0)) {
         ResourceReleaser();
     }
     return;
@@ -765,7 +765,7 @@ void RenderingSystemCleanupDepthBuffer(longlong param_1)
  * @param param_4 纹理数据指针
  * @return 创建后的渲染队列指针
  */
-longlong *RenderingSystemCreateRenderQueue(longlong *param_1, int32_t *param_2, int32_t *param_3, uint64_t *param_4)
+int64_t *RenderingSystemCreateRenderQueue(int64_t *param_1, int32_t *param_2, int32_t *param_3, uint64_t *param_4)
 {
     uint64_t *puVar1;
     int32_t *puVar2;
@@ -776,7 +776,7 @@ longlong *RenderingSystemCreateRenderQueue(longlong *param_1, int32_t *param_2, 
     int32_t *puVar7;
     void *puVar8;
     
-    *param_1 = (longlong)param_4;
+    *param_1 = (int64_t)param_4;
     if (param_2 != param_3) {
         puVar7 = param_2 + 0x5a;
         do {
@@ -795,15 +795,15 @@ longlong *RenderingSystemCreateRenderQueue(longlong *param_1, int32_t *param_2, 
             }
             strcpy_s(param_4[1], 0x40, puVar8);
             *(int32_t *)(param_4 + 0xb) = puVar7[-0x44];
-            *(int32_t *)((longlong)param_4 + 0x5c) = puVar7[-0x43];
+            *(int32_t *)((int64_t)param_4 + 0x5c) = puVar7[-0x43];
             *(int32_t *)(param_4 + 0xc) = puVar7[-0x42];
-            *(int32_t *)((longlong)param_4 + 100) = puVar7[-0x41];
+            *(int32_t *)((int64_t)param_4 + 100) = puVar7[-0x41];
             *(int32_t *)(param_4 + 0xd) = puVar7[-0x40];
-            *(int32_t *)((longlong)param_4 + 0x6c) = puVar7[-0x3f];
+            *(int32_t *)((int64_t)param_4 + 0x6c) = puVar7[-0x3f];
             *(int32_t *)(param_4 + 0xe) = puVar7[-0x3e];
-            *(int32_t *)((longlong)param_4 + 0x74) = puVar7[-0x3d];
+            *(int32_t *)((int64_t)param_4 + 0x74) = puVar7[-0x3d];
             *(int32_t *)(param_4 + 0xf) = puVar7[-0x3c];
-            *(int32_t *)((longlong)param_4 + 0x7c) = puVar7[-0x3b];
+            *(int32_t *)((int64_t)param_4 + 0x7c) = puVar7[-0x3b];
             uVar4 = *(uint64_t *)(puVar7 + -0x38);
             param_4[0x10] = *(uint64_t *)(puVar7 + -0x3a);
             param_4[0x11] = uVar4;
@@ -829,16 +829,16 @@ longlong *RenderingSystemCreateRenderQueue(longlong *param_1, int32_t *param_2, 
             uVar5 = puVar7[-0x1c];
             uVar6 = puVar7[-0x1b];
             *(int32_t *)(param_4 + 0x1e) = puVar7[-0x1e];
-            *(int32_t *)((longlong)param_4 + 0xf4) = uVar3;
+            *(int32_t *)((int64_t)param_4 + 0xf4) = uVar3;
             *(int32_t *)(param_4 + 0x1f) = uVar5;
-            *(int32_t *)((longlong)param_4 + 0xfc) = uVar6;
+            *(int32_t *)((int64_t)param_4 + 0xfc) = uVar6;
             uVar3 = puVar7[-0x19];
             uVar5 = puVar7[-0x18];
             uVar6 = puVar7[-0x17];
             *(int32_t *)(param_4 + 0x20) = puVar7[-0x1a];
-            *(int32_t *)((longlong)param_4 + 0x104) = uVar3;
+            *(int32_t *)((int64_t)param_4 + 0x104) = uVar3;
             *(int32_t *)(param_4 + 0x21) = uVar5;
-            *(int32_t *)((longlong)param_4 + 0x10c) = uVar6;
+            *(int32_t *)((int64_t)param_4 + 0x10c) = uVar6;
             param_4[0x22] = RenderingSystemVTableData1;
             param_4[0x23] = 0;
             *(int32_t *)(param_4 + 0x24) = 0;
@@ -848,7 +848,7 @@ longlong *RenderingSystemCreateRenderQueue(longlong *param_1, int32_t *param_2, 
             *(int32_t *)(param_4 + 0x24) = 0;
             *(int32_t *)(param_4 + 0x24) = puVar7[-0x12];
             param_4[0x23] = *(uint64_t *)(puVar7 + -0x14);
-            *(int32_t *)((longlong)param_4 + 300) = puVar7[-0xf];
+            *(int32_t *)((int64_t)param_4 + 300) = puVar7[-0xf];
             *(int32_t *)(param_4 + 0x25) = puVar7[-0x10];
             puVar7[-0x12] = 0;
             *(uint64_t *)(puVar7 + -0x14) = 0;
@@ -924,13 +924,13 @@ longlong *RenderingSystemCreateRenderQueue(longlong *param_1, int32_t *param_2, 
  * @param param_1 内存池指针
  * @param param_2 分配大小
  */
-void RenderingSystemAllocateMemoryPool(longlong param_1, longlong param_2)
+void RenderingSystemAllocateMemoryPool(int64_t param_1, int64_t param_2)
 {
-    longlong *plVar1;
-    ulonglong uVar2;
+    int64_t *plVar1;
+    uint64_t uVar2;
     
-    plVar1 = *(longlong **)(param_1 + 0x30);
-    uVar2 = (longlong)(int)plVar1[2] + 7U & 0xfffffffffffffff8;
+    plVar1 = *(int64_t **)(param_1 + 0x30);
+    uVar2 = (int64_t)(int)plVar1[2] + 7U & 0xfffffffffffffff8;
     *(int *)(plVar1 + 2) = (int)uVar2 + ((int)param_2 + 1) * 8;
     memset(*plVar1 + uVar2, 0, param_2 * 8);
 }
@@ -945,27 +945,27 @@ void RenderingSystemAllocateMemoryPool(longlong param_1, longlong param_2)
  * @param param_2 查询标志
  * @return 查询结果状态
  */
-int8_t RenderingSystemQueryState(longlong param_1, int8_t param_2)
+int8_t RenderingSystemQueryState(int64_t param_1, int8_t param_2)
 {
     uint uVar1;
-    longlong lVar2;
+    int64_t lVar2;
     char cVar3;
     int8_t uVar4;
     uint uVar5;
     int8_t uVar6;
-    longlong lVar7;
-    longlong lVar8;
+    int64_t lVar7;
+    int64_t lVar8;
     int iVar9;
     
-    lVar8 = *(longlong *)(param_1 + 0x38);
+    lVar8 = *(int64_t *)(param_1 + 0x38);
     iVar9 = 0;
     uVar4 = 1;
-    if (*(longlong *)(param_1 + 0x40) - lVar8 >> 4 != 0) {
+    if (*(int64_t *)(param_1 + 0x40) - lVar8 >> 4 != 0) {
         lVar7 = 0;
         uVar6 = uVar4;
         do {
-            lVar8 = *(longlong *)(lVar7 + lVar8);
-            lVar2 = *(longlong *)(lVar8 + 0x1b8);
+            lVar8 = *(int64_t *)(lVar7 + lVar8);
+            lVar2 = *(int64_t *)(lVar8 + 0x1b8);
             cVar3 = *(char *)(lVar2 + 0x38c);
             if (cVar3 == '\t') {
                 uVar1 = *(uint *)(lVar2 + 0x388);
@@ -995,7 +995,7 @@ int8_t RenderingSystemQueryState(longlong param_1, int8_t param_2)
             if (cVar3 == '\0') {
                 *(byte *)(lVar8 + 0xfe) = *(byte *)(lVar8 + 0xfe) & 0xfb;
             }
-            lVar8 = *(longlong *)(param_1 + 0x38);
+            lVar8 = *(int64_t *)(param_1 + 0x38);
             uVar4 = 0;
             if (cVar3 != '\0') {
                 uVar4 = uVar6;
@@ -1003,7 +1003,7 @@ int8_t RenderingSystemQueryState(longlong param_1, int8_t param_2)
             iVar9 = iVar9 + 1;
             lVar7 = lVar7 + 0x10;
             uVar6 = uVar4;
-        } while ((ulonglong)(longlong)iVar9 < (ulonglong)(*(longlong *)(param_1 + 0x40) - lVar8 >> 4));
+        } while ((uint64_t)(int64_t)iVar9 < (uint64_t)(*(int64_t *)(param_1 + 0x40) - lVar8 >> 4));
     }
     return uVar4;
 }
@@ -1019,24 +1019,24 @@ int8_t RenderingSystemQueryState(longlong param_1, int8_t param_2)
  * @param param_3 查询目标指针
  * @return 查询结果状态
  */
-int8_t RenderingSystemQueryStateEx(uint64_t param_1, uint64_t param_2, longlong param_3)
+int8_t RenderingSystemQueryStateEx(uint64_t param_1, uint64_t param_2, int64_t param_3)
 {
     uint uVar1;
-    longlong lVar2;
-    longlong lVar3;
+    int64_t lVar2;
+    int64_t lVar3;
     char cVar4;
     int8_t uVar5;
     uint uVar6;
-    longlong unaff_RBP;
+    int64_t unaff_RBP;
     int8_t unaff_SIL;
-    longlong lVar7;
+    int64_t lVar7;
     int unaff_R14D;
     int8_t unaff_R15B;
     
     lVar7 = 0;
     do {
-        lVar2 = *(longlong *)(lVar7 + param_3);
-        lVar3 = *(longlong *)(lVar2 + 0x1b8);
+        lVar2 = *(int64_t *)(lVar7 + param_3);
+        lVar3 = *(int64_t *)(lVar2 + 0x1b8);
         cVar4 = *(char *)(lVar3 + 0x38c);
         if (cVar4 == '\t') {
             uVar1 = *(uint *)(lVar3 + 0x388);
@@ -1066,7 +1066,7 @@ int8_t RenderingSystemQueryStateEx(uint64_t param_1, uint64_t param_2, longlong 
         if (cVar4 == '\0') {
             *(byte *)(lVar2 + 0xfe) = *(byte *)(lVar2 + 0xfe) & 0xfb;
         }
-        param_3 = *(longlong *)(unaff_RBP + 0x38);
+        param_3 = *(int64_t *)(unaff_RBP + 0x38);
         uVar5 = 0;
         if (cVar4 != '\0') {
             uVar5 = unaff_SIL;
@@ -1074,8 +1074,8 @@ int8_t RenderingSystemQueryStateEx(uint64_t param_1, uint64_t param_2, longlong 
         unaff_R14D = unaff_R14D + 1;
         lVar7 = lVar7 + 0x10;
         unaff_SIL = uVar5;
-    } while ((ulonglong)(longlong)unaff_R14D <
-           (ulonglong)(*(longlong *)(unaff_RBP + 0x40) - param_3 >> 4));
+    } while ((uint64_t)(int64_t)unaff_R14D <
+           (uint64_t)(*(int64_t *)(unaff_RBP + 0x40) - param_3 >> 4));
     return uVar5;
 }
 
@@ -1105,16 +1105,16 @@ int8_t RenderingSystemEmptyOperation(void)
  * @param param_4 释放参数2
  * @return 释放后的资源指针
  */
-uint64_t *RenderingSystemReleaseResource(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t *RenderingSystemReleaseResource(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint64_t uVar1;
     
     uVar1 = 0xfffffffffffffffe;
-    if ((longlong *)param_1[4] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[4] + 0x38))();
+    if ((int64_t *)param_1[4] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[4] + 0x38))();
     }
-    if ((longlong *)param_1[3] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)param_1[3] + 0x38))();
+    if ((int64_t *)param_1[3] != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)param_1[3] + 0x38))();
     }
     *param_1 = RenderingSystemVTableData4;
     *param_1 = RenderingSystemVTableData5;
@@ -1180,7 +1180,7 @@ float *RenderingSystemNormalizeVector(float *param_1, float *param_2, float *par
  * @param param_3 坐标指针
  * @return 计算后的距离参数
  */
-uint64_t RenderingSystemCalculateProjectionDistance(longlong param_1, uint64_t param_2, float *param_3)
+uint64_t RenderingSystemCalculateProjectionDistance(int64_t param_1, uint64_t param_2, float *param_3)
 {
     float fStack_18;
     float fStack_14;

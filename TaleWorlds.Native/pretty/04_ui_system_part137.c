@@ -224,28 +224,28 @@ static void* g_ui_system_context = NULL;                            // UI系统�
  * @param param_1 组件上下文指针
  * @return 无返回值
  */
-void UISystem_ComponentStateManager(longlong param_1)
+void UISystem_ComponentStateManager(int64_t param_1)
 
 {
   int *piVar1;
   uint *puVar2;
-  longlong lVar3;
+  int64_t lVar3;
   int iVar4;
-  longlong in_RAX;
+  int64_t in_RAX;
   uint uVar5;
-  ulonglong uVar6;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
+  uint64_t uVar6;
+  int64_t unaff_RBX;
+  int64_t unaff_RBP;
   int in_stack_00000040;
   int iStack000000000000004c;
   int iStack0000000000000050;
-  ulonglong uVar7;
+  uint64_t uVar7;
   
   uVar7 = 0;
   iStack000000000000004c = 0;
   iStack0000000000000050 = 0;
   piVar1 = (int *)(param_1 + 0x698);
-  if (*(longlong *)(in_RAX + 0x3e0) == 0) {
+  if (*(int64_t *)(in_RAX + 0x3e0) == 0) {
 LAB_180749ae6:
     if (iStack000000000000004c == *piVar1) goto LAB_180749ddb;
   }
@@ -256,7 +256,7 @@ LAB_180749ae6:
     iStack000000000000004c = *piVar1;
     if ((*(int *)(unaff_RBX + 0x6ac) == 0) ||
        (999 < (uint)(in_stack_00000040 - *(int *)(unaff_RBX + 0x6ac)))) {
-      lVar3 = *(longlong *)(unaff_RBX + 0x670);
+      lVar3 = *(int64_t *)(unaff_RBX + 0x670);
       *(int *)(unaff_RBX + 0x6ac) = in_stack_00000040;
       uVar6 = lVar3 + 8;
       if (lVar3 == 0) {
@@ -271,8 +271,8 @@ LAB_180749ae6:
   if (0 < *(int *)(unaff_RBX + 0x694)) {
     do {
       uVar5 = (int)uVar7 + 1;
-      uVar7 = (ulonglong)uVar5;
-      puVar2 = (uint *)(uVar6 + 0x18 + *(longlong *)(unaff_RBX + 0x6a0));
+      uVar7 = (uint64_t)uVar5;
+      puVar2 = (uint *)(uVar6 + 0x18 + *(int64_t *)(unaff_RBX + 0x6a0));
       *puVar2 = *puVar2 & 0xfffffffe;
       uVar6 = uVar6 + 0x38;
     } while ((int)uVar5 < *(int *)(unaff_RBX + 0x694));
@@ -286,7 +286,7 @@ LAB_180749ae6:
 LAB_180749ddb:
                     // WARNING: Subroutine does not return
   // 调用UI系统调用处理器，处理系统级调用
-  UISystem_SystemCallHandler(*(ulonglong *)(unaff_RBP + 0x70) ^ (ulonglong)&stack0x00000000);
+  UISystem_SystemCallHandler(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -297,11 +297,11 @@ LAB_180749ddb:
 void FUN_180749e0b(void)
 
 {
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
   // 调用UI系统调用处理器，处理系统级调用
-  UISystem_SystemCallHandler(*(ulonglong *)(unaff_RBP + 0x70) ^ (ulonglong)&stack0x00000000);
+  UISystem_SystemCallHandler(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -312,11 +312,11 @@ void FUN_180749e0b(void)
 void FUN_180749e21(void)
 
 {
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
   // 调用UI系统调用处理器，处理系统级调用
-  UISystem_SystemCallHandler(*(ulonglong *)(unaff_RBP + 0x70) ^ (ulonglong)&stack0x00000000);
+  UISystem_SystemCallHandler(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -383,16 +383,16 @@ void FUN_180749e21(void)
  * 包含了完整的UI系统组件管理、状态控制、数据处理和系统服务功能。
  */
 
-uint64_t FUN_180749e60(longlong param_1,longlong *param_2,longlong *param_3)
+uint64_t FUN_180749e60(int64_t param_1,int64_t *param_2,int64_t *param_3)
 
 {
-  longlong *plVar1;
+  int64_t *plVar1;
   uint64_t uVar2;
-  longlong lVar3;
+  int64_t lVar3;
   
   lVar3 = 0;
   *param_2 = 0;
-  plVar1 = (longlong *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x160);
+  plVar1 = (int64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x160);
   while (param_1 != *plVar1) {
     lVar3 = lVar3 + 1;
     plVar1 = plVar1 + 1;
@@ -404,7 +404,7 @@ uint64_t FUN_180749e60(longlong param_1,longlong *param_2,longlong *param_3)
   if (param_1 == 0) {
     return 0x1e;
   }
-  if (param_3 != (longlong *)0x0) {
+  if (param_3 != (int64_t *)0x0) {
     if (*param_3 != 0) {
       return 0x1c;
     }
@@ -514,11 +514,11 @@ void FUN_180749ef0(int32_t param_1,int32_t param_2,uint64_t param_3,uint64_t par
 
 
 
-uint64_t FUN_180749f70(longlong param_1)
+uint64_t FUN_180749f70(int64_t param_1)
 
 {
   float *pfVar1;
-  longlong lVar2;
+  int64_t lVar2;
   float fVar3;
   float fVar4;
   float fVar5;
@@ -650,10 +650,10 @@ uint64_t FUN_180749f70(longlong param_1)
 
 
 
-uint64_t FUN_18074a310(longlong param_1)
+uint64_t FUN_18074a310(int64_t param_1)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   
   param_1 = param_1 + 0x11be0;
   lVar1 = 8;
@@ -677,7 +677,7 @@ uint64_t FUN_18074a310(longlong param_1)
  * @param param_1 组件基础指针
  * @return 无返回值
  */
-void UISystem_ComponentConfigurator(longlong param_1)
+void UISystem_ComponentConfigurator(int64_t param_1)
 {
   int iVar1;
   int iVar2;
@@ -693,7 +693,7 @@ void UISystem_ComponentConfigurator(longlong param_1)
     // 调用UI系统配置处理器，处理组件配置
     UISystem_ConfigProcessor(iVar2,auStackX_10,&uStackX_20,&uStackX_18,0);
     // 调用UI系统内部函数3，处理组件配置
-    iVar1 = UISystem_InternalFunction3(param_1 + UI_SYSTEM_TRANSFORM_OFFSET + (longlong)(iVar2 + -1) * 0xc0,auStackX_10[0],
+    iVar1 = UISystem_InternalFunction3(param_1 + UI_SYSTEM_TRANSFORM_OFFSET + (int64_t)(iVar2 + -1) * 0xc0,auStackX_10[0],
                           uStackX_20,uStackX_18);
     if (iVar1 != 0) {
       return;
@@ -716,7 +716,7 @@ void UISystem_ComponentConfigurator(longlong param_1)
  * @param param_5 内存大小参数
  * @return 操作状态码，0表示成功，非0表示错误
  */
-uint64_t UISystem_MemoryManager(longlong param_1,int param_2,int param_3,longlong param_4,uint param_5)
+uint64_t UISystem_MemoryManager(int64_t param_1,int param_2,int param_3,int64_t param_4,uint param_5)
 {
   if ((((param_4 != 0) && (param_5 < 0x21)) && (param_2 != 1)) && (param_3 != 1)) {
     if (param_2 == 0) {
@@ -731,12 +731,12 @@ uint64_t UISystem_MemoryManager(longlong param_1,int param_2,int param_3,longlon
       }
       if (param_3 - 1U < UI_SYSTEM_MAX_COMPONENTS) {
         if (param_5 == 0) {
-          param_5 = *(uint *)((longlong)(int)(param_2 - 1U) * 0xc0 + param_1 + UI_SYSTEM_TRANSFORM_OFFSET);
+          param_5 = *(uint *)((int64_t)(int)(param_2 - 1U) * 0xc0 + param_1 + UI_SYSTEM_TRANSFORM_OFFSET);
         }
         // WARNING: Subroutine does not return
         memset(param_4,0,
-               (longlong)
-               (int)(*(int *)((longlong)(int)(param_3 - 1U) * 0xc0 + param_1 + UI_SYSTEM_TRANSFORM_OFFSET) * param_5)
+               (int64_t)
+               (int)(*(int *)((int64_t)(int)(param_3 - 1U) * 0xc0 + param_1 + UI_SYSTEM_TRANSFORM_OFFSET) * param_5)
                << 2);
       }
     }
@@ -783,20 +783,20 @@ uint64_t UISystem_StatusChecker(void)
  * @param param_1 系统基础指针
  * @return 处理结果，0表示成功
  */
-uint64_t UISystem_TransformProcessor(longlong param_1)
+uint64_t UISystem_TransformProcessor(int64_t param_1)
 {
-  longlong *plVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  longlong lVar4;
-  longlong lVar5;
+  int64_t *plVar1;
+  int64_t *plVar2;
+  int64_t lVar3;
+  int64_t lVar4;
+  int64_t lVar5;
   float fVar6;
   int32_t uVar7;
   float fVar8;
   float fVar9;
   float fStack_70;
   
-  plVar2 = (longlong *)(param_1 + UI_SYSTEM_LIST_OFFSET);
+  plVar2 = (int64_t *)(param_1 + UI_SYSTEM_LIST_OFFSET);
   plVar1 = plVar2;
   lVar3 = *plVar2;
   do {
@@ -827,7 +827,7 @@ uint64_t UISystem_TransformProcessor(longlong param_1)
     fVar8 = 0.0;
     fVar6 = 0.0;
   }
-  *(ulonglong *)(lVar4 + UI_SYSTEM_VECTOR_OFFSET) = CONCAT44(fVar6,fVar8);
+  *(uint64_t *)(lVar4 + UI_SYSTEM_VECTOR_OFFSET) = CONCAT44(fVar6,fVar8);
   *(float *)(lVar4 + UI_SYSTEM_VECTOR_OFFSET + 8) = fStack_70;
   *(float *)(lVar5 + UI_SYSTEM_VECTOR_OFFSET) = -fVar8;
   *(float *)(lVar5 + UI_SYSTEM_VECTOR_OFFSET + 4) = -fVar6;
@@ -917,15 +917,15 @@ UISystem_DataValidator:
  * @param param_2 组件列表指针
  * @return 检测结果，0表示成功
  */
-uint64_t UISystem_CollisionDetector(uint64_t param_1,longlong param_2)
+uint64_t UISystem_CollisionDetector(uint64_t param_1,int64_t param_2)
 {
-  longlong in_RAX;
-  longlong lVar1;
-  longlong *plVar2;
-  longlong lVar3;
+  int64_t in_RAX;
+  int64_t lVar1;
+  int64_t *plVar2;
+  int64_t lVar3;
   uint64_t unaff_RBX;
-  longlong lVar4;
-  longlong *unaff_RSI;
+  int64_t lVar4;
+  int64_t *unaff_RSI;
   uint64_t unaff_RDI;
   float fVar5;
   float fVar6;
@@ -1003,7 +1003,7 @@ UISystem_StateSynchronizer:
     fVar6 = fVar5 * fVar8;
     fVar7 = fVar5 * fVar9;
   }
-  *(ulonglong *)(lVar1 + UI_SYSTEM_VECTOR_OFFSET) = CONCAT44(fVar7,fVar6);
+  *(uint64_t *)(lVar1 + UI_SYSTEM_VECTOR_OFFSET) = CONCAT44(fVar7,fVar6);
   *(float *)(lVar1 + UI_SYSTEM_VECTOR_OFFSET + 8) = fStack0000000000000028;
   *(float *)(lVar4 + UI_SYSTEM_VECTOR_OFFSET) = -fVar6;
   *(float *)(lVar4 + UI_SYSTEM_VECTOR_OFFSET + 4) = -fVar7;
@@ -1059,12 +1059,12 @@ UISystem_StateSynchronizer:
  */
 uint64_t UISystem_PhysicsProcessor(void)
 {
-  longlong *plVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong unaff_RBX;
-  longlong *unaff_RSI;
-  longlong unaff_RDI;
+  int64_t *plVar1;
+  int64_t lVar2;
+  int64_t lVar3;
+  int64_t unaff_RBX;
+  int64_t *unaff_RSI;
+  int64_t unaff_RDI;
   float fVar4;
   float fVar5;
   float fVar6;
@@ -1088,7 +1088,7 @@ uint64_t UISystem_PhysicsProcessor(void)
     fVar5 = fVar4 * in_XMM4_Da;
     fVar6 = fVar4 * in_XMM5_Da;
   }
-  *(ulonglong *)(unaff_RDI + UI_SYSTEM_VECTOR_OFFSET) = CONCAT44(fVar6,fVar5);
+  *(uint64_t *)(unaff_RDI + UI_SYSTEM_VECTOR_OFFSET) = CONCAT44(fVar6,fVar5);
   *(float *)(unaff_RDI + UI_SYSTEM_VECTOR_OFFSET + 8) = fStack0000000000000028;
   *(float *)(unaff_RBX + UI_SYSTEM_VECTOR_OFFSET) = -fVar5;
   *(float *)(unaff_RBX + UI_SYSTEM_VECTOR_OFFSET + 4) = -fVar6;
@@ -1173,10 +1173,10 @@ uint64_t UISystem_PhysicsProcessor(void)
  */
 uint64_t UISystem_StateSynchronizer(void)
 {
-  longlong *plVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong *unaff_RSI;
+  int64_t *plVar1;
+  int64_t lVar2;
+  int64_t lVar3;
+  int64_t *unaff_RSI;
   float fVar4;
   int32_t uVar5;
   float fVar6;
@@ -1227,10 +1227,10 @@ uint64_t UISystem_StateSynchronizer(void)
  */
 uint64_t UISystem_DataValidator(void)
 {
-  longlong *plVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong *unaff_RSI;
+  int64_t *plVar1;
+  int64_t lVar2;
+  int64_t lVar3;
+  int64_t *unaff_RSI;
   float fVar4;
   int32_t uVar5;
   float fVar6;

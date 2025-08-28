@@ -209,17 +209,17 @@ typedef StructureHeader** StructureHeaderArray;             // 结构头部数�
 //============================================================================
 
 // 核心数据管理函数
-typedef int (*RenderDataProcessor)(longlong*, void*, void*, void*, ...);  // 渲染数据处理器
-typedef int (*RenderObjectManager)(longlong*, unsigned int, void*);       // 渲染对象管理器
-typedef int (*RenderParamHandler)(longlong*, void*, unsigned int);        // 渲染参数处理器
+typedef int (*RenderDataProcessor)(int64_t*, void*, void*, void*, ...);  // 渲染数据处理器
+typedef int (*RenderObjectManager)(int64_t*, unsigned int, void*);       // 渲染对象管理器
+typedef int (*RenderParamHandler)(int64_t*, void*, unsigned int);        // 渲染参数处理器
 typedef int (*MemoryAllocator)(MemoryManagerPtr, unsigned int);           // 内存分配器
 typedef int (*StructureManager)(StructureHeaderPtr, void*);               // 结构管理器
 
 // 高级处理函数
-typedef int (*BatchProcessor)(longlong*, void**, unsigned int);           // 批处理器
+typedef int (*BatchProcessor)(int64_t*, void**, unsigned int);           // 批处理器
 typedef int (*StateController)(RenderObjectPtr, RenderObjectState);       // 状态控制器
 typedef int (*DataValidator)(void*, unsigned int);                         // 数据验证器
-typedef int (*PerformanceOptimizer)(longlong*, unsigned int);            // 性能优化器
+typedef int (*PerformanceOptimizer)(int64_t*, unsigned int);            // 性能优化器
 
 //============================================================================
 // 全局变量声明
@@ -248,10 +248,10 @@ static unsigned int g_initialized = 0;                     // 初始化标志
  * - 支持多种数据类型的操作
  * - 提供错误处理和状态管理
  */
-void FUN_1804485c0(longlong *param_1, void *param_2, void *param_3, void *param_4,
+void FUN_1804485c0(int64_t *param_1, void *param_2, void *param_3, void *param_4,
                   void *param_5, void *param_6, void *param_7, unsigned int param_8)
 {
-    longlong *data_manager;
+    int64_t *data_manager;
     void *input_data1, *input_data2, *input_data3;
     void *additional_data1, *additional_data2, *additional_data3;
     unsigned int operation_flags;
@@ -416,11 +416,11 @@ void FUN_1804485c0(longlong *param_1, void *param_2, void *param_3, void *param_
  * - 提供扩展的错误处理机制
  * - 优化大数据量处理性能
  */
-void FUN_1804489a0(longlong *param_1, void *param_2, void *param_3, void *param_4,
+void FUN_1804489a0(int64_t *param_1, void *param_2, void *param_3, void *param_4,
                   void *param_5, void *param_6, void *param_7, unsigned int param_8,
                   unsigned int param_9, unsigned int param_10)
 {
-    longlong *data_manager;
+    int64_t *data_manager;
     void *input_data1, *input_data2, *input_data3;
     void *additional_data1, *additional_data2, *additional_data3;
     unsigned int operation_flags1, operation_flags2, operation_flags3;
@@ -586,7 +586,7 @@ void FUN_1804489a0(longlong *param_1, void *param_2, void *param_3, void *param_
  * - 实现状态验证和控制
  * - 处理对象的激活和停用
  */
-void FUN_180448d90(longlong *param_1)
+void FUN_180448d90(int64_t *param_1)
 {
     RenderObjectPtr object_ptr;
     unsigned char *status_flag;
@@ -599,7 +599,7 @@ void FUN_180448d90(longlong *param_1)
     object_ptr = (RenderObjectPtr)param_1;
     
     // 检查状态标志
-    status_flag = (unsigned char*)((longlong)object_ptr + 0xfb);
+    status_flag = (unsigned char*)((int64_t)object_ptr + 0xfb);
     if (*status_flag != 0x01) {
         // 更新状态标志
         *status_flag = 0x01;
@@ -624,7 +624,7 @@ void FUN_180448d90(longlong *param_1)
  * - 实现参数验证和更新
  * - 管理参数的生命周期
  */
-void FUN_180448df0(longlong *param_1)
+void FUN_180448df0(int64_t *param_1)
 {
     RenderParamElementPtr param_ptr;
     unsigned char *status_flag;
@@ -637,7 +637,7 @@ void FUN_180448df0(longlong *param_1)
     param_ptr = (RenderParamElementPtr)param_1;
     
     // 检查状态标志
-    status_flag = (unsigned char*)((longlong)param_ptr + 0xfa);
+    status_flag = (unsigned char*)((int64_t)param_ptr + 0xfa);
     if (*status_flag != 0x01) {
         // 更新状态标志
         *status_flag = 0x01;
@@ -662,7 +662,7 @@ void FUN_180448df0(longlong *param_1)
  * - 释放分配的内存
  * - 重置系统状态
  */
-void FUN_180448e50(longlong *param_1)
+void FUN_180448e50(int64_t *param_1)
 {
     if (param_1 == NULL) {
         return;
@@ -687,7 +687,7 @@ void FUN_180448e50(longlong *param_1)
  * - 验证状态的有效性
  * - 返回状态查询结果
  */
-unsigned char FUN_180448ea0(longlong *param_1)
+unsigned char FUN_180448ea0(int64_t *param_1)
 {
     unsigned char status_value;
     
@@ -696,7 +696,7 @@ unsigned char FUN_180448ea0(longlong *param_1)
     }
     
     // 获取状态值
-    status_value = *(unsigned char*)((longlong)param_1 + 0xf7);
+    status_value = *(unsigned char*)((int64_t)param_1 + 0xf7);
     
     return status_value;
 }
@@ -713,14 +713,14 @@ unsigned char FUN_180448ea0(longlong *param_1)
  * - 验证状态值的合法性
  * - 更新系统状态
  */
-void FUN_180448f00(longlong *param_1, unsigned char param_2)
+void FUN_180448f00(int64_t *param_1, unsigned char param_2)
 {
     if (param_1 == NULL) {
         return;
     }
     
     // 设置状态值
-    *(unsigned char*)((longlong)param_1 + 0xf7) = param_2;
+    *(unsigned char*)((int64_t)param_1 + 0xf7) = param_2;
     
     // 更新系统状态
     update_system_state(param_1);
@@ -738,7 +738,7 @@ void FUN_180448f00(longlong *param_1, unsigned char param_2)
  * - 验证参数的有效性
  * - 返回参数查询结果
  */
-unsigned int FUN_180448f50(longlong *param_1)
+unsigned int FUN_180448f50(int64_t *param_1)
 {
     unsigned int param_value;
     
@@ -747,7 +747,7 @@ unsigned int FUN_180448f50(longlong *param_1)
     }
     
     // 获取参数值
-    param_value = *(unsigned int*)((longlong)param_1 + 0x4e);
+    param_value = *(unsigned int*)((int64_t)param_1 + 0x4e);
     
     return param_value;
 }
@@ -764,14 +764,14 @@ unsigned int FUN_180448f50(longlong *param_1)
  * - 验证参数值的合法性
  * - 更新系统参数
  */
-void FUN_180448fb0(longlong *param_1, unsigned int param_2)
+void FUN_180448fb0(int64_t *param_1, unsigned int param_2)
 {
     if (param_1 == NULL) {
         return;
     }
     
     // 设置参数值
-    *(unsigned int*)((longlong)param_1 + 0x4e) = param_2;
+    *(unsigned int*)((int64_t)param_1 + 0x4e) = param_2;
     
     // 更新系统参数
     update_system_parameters(param_1);
@@ -790,11 +790,11 @@ void FUN_180448fb0(longlong *param_1, unsigned int param_2)
  * - 验证参数的有效性
  * - 返回高级参数查询结果
  */
-unsigned int FUN_180449000(longlong *param_1)
+unsigned int FUN_180449000(int64_t *param_1)
 {
     unsigned int param_value;
     unsigned char *flag_ptr;
-    longlong *object_ptr;
+    int64_t *object_ptr;
     
     if (param_1 == NULL) {
         return 0;
@@ -804,14 +804,14 @@ unsigned int FUN_180449000(longlong *param_1)
     object_ptr = param_1;
     
     // 检查标志位
-    flag_ptr = (unsigned char*)((longlong)param_1 + 0xfd);
+    flag_ptr = (unsigned char*)((int64_t)param_1 + 0xfd);
     if ((*flag_ptr & 0x20) == 0) {
         // 需要额外的处理
-        object_ptr = (longlong*)process_object_reference(param_1[0x36]);
+        object_ptr = (int64_t*)process_object_reference(param_1[0x36]);
     }
     
     // 获取参数值
-    param_value = *(unsigned int*)((longlong)object_ptr + 0x40);
+    param_value = *(unsigned int*)((int64_t)object_ptr + 0x40);
     
     return param_value;
 }
@@ -828,7 +828,7 @@ unsigned int FUN_180449000(longlong *param_1)
  * - 验证参数索引的合法性
  * - 处理参数更新的副作用
  */
-void FUN_180449070(longlong *param_1, int param_2, unsigned int param_3)
+void FUN_180449070(int64_t *param_1, int param_2, unsigned int param_3)
 {
     StructureHeaderPtr structure_ptr;
     MemoryManagerPtr memory_ptr;
@@ -853,7 +853,7 @@ void FUN_180449070(longlong *param_1, int param_2, unsigned int param_3)
     }
     
     // 更新参数值
-    *(unsigned int*)((longlong)param_2 * 0x5c + 0x54 + structure_ptr->data_ptr) = param_3;
+    *(unsigned int*)((int64_t)param_2 * 0x5c + 0x54 + structure_ptr->data_ptr) = param_3;
     
     // 设置状态标志
     status_flags = 0x01;
@@ -875,7 +875,7 @@ void FUN_180449070(longlong *param_1, int param_2, unsigned int param_3)
  * - 验证参数索引的合法性
  * - 返回参数获取结果
  */
-unsigned int FUN_1804491c0(longlong *param_1, int param_2)
+unsigned int FUN_1804491c0(int64_t *param_1, int param_2)
 {
     unsigned int param_value;
     
@@ -883,7 +883,7 @@ unsigned int FUN_1804491c0(longlong *param_1, int param_2)
     
     if (param_1 != NULL) {
         // 获取参数值
-        param_value = *(unsigned int*)((longlong)param_2 * 0x5c + 0x54 + *(longlong*)(param_1[0x42] + 0x68));
+        param_value = *(unsigned int*)((int64_t)param_2 * 0x5c + 0x54 + *(int64_t*)(param_1[0x42] + 0x68));
     }
     
     return param_value;
@@ -901,7 +901,7 @@ unsigned int FUN_1804491c0(longlong *param_1, int param_2)
  * - 验证操作的有效性
  * - 处理操作的副作用
  */
-void FUN_180449230(longlong *param_1)
+void FUN_180449230(int64_t *param_1)
 {
     void *operation_params[8];
     int operation_result;
@@ -944,7 +944,7 @@ void FUN_180449230(longlong *param_1)
  */
 unsigned int* FUN_180449300(unsigned int *param_1, int param_2, unsigned int *param_3, 
                            unsigned int param_4, unsigned int *param_5,
-                           int param_6, longlong param_7)
+                           int param_6, int64_t param_7)
 {
     StructureHeaderPtr structure_ptr;
     MemoryManagerPtr memory_ptr;
@@ -1045,7 +1045,7 @@ unsigned int* FUN_180449300(unsigned int *param_1, int param_2, unsigned int *pa
  * - 验证数据的有效性
  * - 处理数据的副作用
  */
-void FUN_1804496f0(longlong *param_1, unsigned int *param_2, unsigned char param_3, char param_4)
+void FUN_1804496f0(int64_t *param_1, unsigned int *param_2, unsigned char param_3, char param_4)
 {
     unsigned int data_value1, data_value2, data_value3;
     unsigned char status_flag;
@@ -1061,9 +1061,9 @@ void FUN_1804496f0(longlong *param_1, unsigned int *param_2, unsigned char param
     
     // 设置数据值
     *(unsigned int*)(param_1 + 0x34) = data_value1;
-    *(unsigned int*)((longlong)param_1 + 0x1a4) = data_value2;
+    *(unsigned int*)((int64_t)param_1 + 0x1a4) = data_value2;
     *(unsigned int*)(param_1 + 0x35) = data_value3;
-    *(unsigned int*)((longlong)param_1 + 0x1ac) = param_2[3];
+    *(unsigned int*)((int64_t)param_1 + 0x1ac) = param_2[3];
     
     // 计算状态标志
     status_flag = (param_3 ^ 1) + 1;
@@ -1087,7 +1087,7 @@ void FUN_1804496f0(longlong *param_1, unsigned int *param_2, unsigned char param
  * - 重置系统状态
  * - 释放相关资源
  */
-void FUN_180449780(longlong *param_1)
+void FUN_180449780(int64_t *param_1)
 {
     if (param_1 == NULL) {
         return;
@@ -1096,9 +1096,9 @@ void FUN_180449780(longlong *param_1)
     // 清理数据值
     *(unsigned char*)(param_1 + 0x1f) = 0;
     *(unsigned int*)(param_1 + 0x34) = 0;
-    *(unsigned int*)((longlong)param_1 + 0x1a4) = 0;
+    *(unsigned int*)((int64_t)param_1 + 0x1a4) = 0;
     *(unsigned int*)(param_1 + 0x35) = 0;
-    *(unsigned int*)((longlong)param_1 + 0x1ac) = 0x7f7fffff;
+    *(unsigned int*)((int64_t)param_1 + 0x1ac) = 0x7f7fffff;
     
     // 重置系统状态
     reset_system_state(param_1);
@@ -1109,7 +1109,7 @@ void FUN_180449780(longlong *param_1)
  * 
  * 功能：创建渲染系统的对象
  * 参数：param_1 - 系统指针
- * 返回：longlong* - 创建的对象指针
+ * 返回：int64_t* - 创建的对象指针
  * 
  * 技术实现：
  * - 创建新的渲染对象
@@ -1117,9 +1117,9 @@ void FUN_180449780(longlong *param_1)
  * - 设置对象的初始状态
  * - 返回创建的对象指针
  */
-longlong* FUN_180449850(longlong *param_1)
+int64_t* FUN_180449850(int64_t *param_1)
 {
-    longlong *object_ptr;
+    int64_t *object_ptr;
     
     // 创建对象
     object_ptr = create_render_object();
@@ -1395,7 +1395,7 @@ void manage_parameter_lifecycle(RenderParamElementPtr param)
  * @brief 清理渲染资源
  * @param manager 资源管理器指针
  */
-void cleanup_rendering_resources(longlong *manager)
+void cleanup_rendering_resources(int64_t *manager)
 {
     // 实现资源清理逻辑
 }
@@ -1404,7 +1404,7 @@ void cleanup_rendering_resources(longlong *manager)
  * @brief 重置系统状态
  * @param system 系统指针
  */
-void reset_system_state(longlong *system)
+void reset_system_state(int64_t *system)
 {
     // 实现状态重置逻辑
 }
@@ -1413,7 +1413,7 @@ void reset_system_state(longlong *system)
  * @brief 更新系统状态
  * @param system 系统指针
  */
-void update_system_state(longlong *system)
+void update_system_state(int64_t *system)
 {
     // 实现系统状态更新逻辑
 }
@@ -1422,7 +1422,7 @@ void update_system_state(longlong *system)
  * @brief 更新系统参数
  * @param system 系统指针
  */
-void update_system_parameters(longlong *system)
+void update_system_parameters(int64_t *system)
 {
     // 实现系统参数更新逻辑
 }
@@ -1432,7 +1432,7 @@ void update_system_parameters(longlong *system)
  * @param object_id 对象ID
  * @return 处理结果指针
  */
-longlong* process_object_reference(unsigned int object_id)
+int64_t* process_object_reference(unsigned int object_id)
 {
     // 实现对象引用处理逻辑
     return NULL;
@@ -1444,7 +1444,7 @@ longlong* process_object_reference(unsigned int object_id)
  * @param params 操作参数
  * @return 处理结果
  */
-int process_system_operation(longlong *system, void **params)
+int process_system_operation(int64_t *system, void **params)
 {
     // 实现系统操作处理逻辑
     return 0;
@@ -1497,10 +1497,10 @@ unsigned int* build_result_data(StructureHeaderPtr header, unsigned int *output)
  * @brief 创建渲染对象
  * @return 对象指针
  */
-longlong* create_render_object(void)
+int64_t* create_render_object(void)
 {
     // 实现对象创建逻辑
-    return (longlong*)malloc(sizeof(RenderObject));
+    return (int64_t*)malloc(sizeof(RenderObject));
 }
 
 /**
@@ -1508,7 +1508,7 @@ longlong* create_render_object(void)
  * @param object 对象指针
  * @param system 系统指针
  */
-void associate_object_with_system(longlong *object, longlong *system)
+void associate_object_with_system(int64_t *object, int64_t *system)
 {
     // 实现对象关联逻辑
 }
