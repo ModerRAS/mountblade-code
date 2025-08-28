@@ -69,8 +69,8 @@
 // 03_rendering_part514.c - 7 个函数
 
 
-// 函数: void FUN_180541920(int64_t param_1,int64_t param_2)
-void FUN_180541920(int64_t param_1,int64_t param_2)
+// 函数: void RenderMainProcessor(int64_t param_1,int64_t param_2)
+void RenderMainProcessor(int64_t param_1,int64_t param_2)
 
 {
   char cVar1;
@@ -146,8 +146,8 @@ void FUN_180541920(int64_t param_1,int64_t param_2)
 
 
 
-// 函数: void FUN_180542260(int64_t param_1)
-void FUN_180542260(int64_t param_1)
+// 函数: void RenderSceneProcessor(int64_t param_1)
+void RenderSceneProcessor(int64_t param_1)
 
 {
   uint64_t uVar1;
@@ -175,8 +175,8 @@ void FUN_180542260(int64_t param_1)
 
 
 
-// 函数: void FUN_180542286(void)
-void FUN_180542286(void)
+// 函数: void RenderWorldProcessor(void)
+void RenderWorldProcessor(void)
 
 {
   uint64_t uVar1;
@@ -202,8 +202,8 @@ void FUN_180542286(void)
 
 
 
-// 函数: void FUN_1805422e2(void)
-void FUN_1805422e2(void)
+// 函数: void RenderNullProcessor(void)
+void RenderNullProcessor(void)
 
 {
   return;
@@ -217,8 +217,8 @@ void FUN_1805422e2(void)
 
 
 
-// 函数: void FUN_1805422f0(int64_t param_1,uint *param_2,float *param_3,uint64_t param_4)
-void FUN_1805422f0(int64_t param_1,uint *param_2,float *param_3,uint64_t param_4)
+// 函数: void RenderComplexProcessor(int64_t param_1,uint *param_2,float *param_3,uint64_t param_4)
+void RenderComplexProcessor(int64_t param_1,uint *param_2,float *param_3,uint64_t param_4)
 
 {
   uint uVar1;
@@ -697,8 +697,8 @@ LAB_180542d7d:
 
 
 
-// 函数: void FUN_180542ed0(int64_t param_1,uint *param_2,float *param_3,int8_t param_4)
-void FUN_180542ed0(int64_t param_1,uint *param_2,float *param_3,int8_t param_4)
+// 函数: void RenderFinalProcessor(int64_t param_1,uint *param_2,float *param_3,int8_t param_4)
+void RenderFinalProcessor(int64_t param_1,uint *param_2,float *param_3,int8_t param_4)
 
 {
   uint64_t *puVar1;

@@ -293,7 +293,7 @@ uint64_t UtilitiesSystem_MemoryManager(int64_t *param_1, int param_2)
         if (param_2 * UTILITIES_MEMORY_BLOCK_SIZE - 1U < UTILITIES_MEMORY_MAX_ALLOCATION) {
             /* 分配内存块 */
             target_buffer = (uint64_t *)
-                     FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UTILITIES_SYSTEM_CONFIG_OFFSET), 
+                     SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                                   param_2 * UTILITIES_MEMORY_BLOCK_SIZE, 
                                   &unknown_var_8432_ptr, 
                                   UTILITIES_SYSTEM_TIMEOUT, 
@@ -326,7 +326,7 @@ MEMORY_CLEANUP:
     /* 清理现有资源 */
     if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
         /* 释放现有内存资源 */
-        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UTILITIES_SYSTEM_CONFIG_OFFSET), 
+        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                       *param_1, 
                       &unknown_var_8432_ptr, 
                       UTILITIES_SYSTEM_STACK_SIZE, 
@@ -371,7 +371,7 @@ uint64_t UtilitiesSystem_ResourceHandler(uint64_t param_1, int param_2)
     /* 资源分配逻辑 */
     if (param_2 * UTILITIES_MEMORY_BLOCK_SIZE - 1U < UTILITIES_MEMORY_MAX_ALLOCATION) {
         target_buffer = (uint64_t *)
-                 FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UTILITIES_SYSTEM_CONFIG_OFFSET), 
+                 SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                               param_2 * UTILITIES_MEMORY_BLOCK_SIZE, 
                               &unknown_var_8432_ptr, 
                               UTILITIES_SYSTEM_TIMEOUT, 
@@ -403,7 +403,7 @@ RESOURCE_CLEANUP:
     /* 资源清理逻辑 */
     if ((0 < *(int *)((int64_t)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
         /* 释放资源内存 */
-        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UTILITIES_SYSTEM_CONFIG_OFFSET), 
+        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                       *unaff_RBX, 
                       &unknown_var_8432_ptr, 
                       UTILITIES_SYSTEM_STACK_SIZE, 
@@ -455,7 +455,7 @@ uint64_t UtilitiesSystem_ConfigManager(int64_t *param_1, int param_2)
         /* 检查配置大小是否在安全范围内 */
         if (param_2 * UTILITIES_MEMORY_BLOCK_SIZE - 1U < UTILITIES_MEMORY_MAX_ALLOCATION) {
             /* 分配配置内存 */
-            configuration_address = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UTILITIES_SYSTEM_CONFIG_OFFSET), 
+            configuration_address = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                                                  param_2 * UTILITIES_MEMORY_BLOCK_SIZE, 
                                                  &unknown_var_8432_ptr, 
                                                  UTILITIES_SYSTEM_TIMEOUT, 
@@ -480,7 +480,7 @@ CONFIG_CLEANUP:
     /* 清理现有配置 */
     if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
         /* 释放配置内存 */
-        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UTILITIES_SYSTEM_CONFIG_OFFSET), 
+        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                       *param_1, 
                       &unknown_var_8432_ptr, 
                       UTILITIES_SYSTEM_STACK_SIZE, 
@@ -672,7 +672,7 @@ uint64_t UtilitiesSystem_AdvancedProcessor(int64_t param_1)
             if (0 < index_value) goto RESOURCE_CLEANUP_PHASE;
             if ((0 < processing_status) && (final_result != 0)) {
                 /* 释放资源 */
-                FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UTILITIES_SYSTEM_CONFIG_OFFSET), 
+                SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                               final_result, 
                               &unknown_var_8432_ptr, 
                               UTILITIES_SYSTEM_STACK_SIZE, 
@@ -724,7 +724,7 @@ RESOURCE_CLEANUP_PHASE:
     }
     
     /* 系统状态验证 */
-    processing_status = FUN_180744cc0(param_1 + 0x70);
+    processing_status = SystemStatusChecker(param_1 + 0x70);
     if ((processing_status == 0) && (processing_status = FUN_180895130(param_1 + 0x80), processing_status == 0)) {
         *(int32_t *)(param_1 + 0x90) = 0xffffffff;
         *(int32_t *)(param_1 + 0x94) = 0;

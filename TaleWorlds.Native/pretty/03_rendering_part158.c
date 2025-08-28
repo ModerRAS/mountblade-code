@@ -308,7 +308,7 @@ joined_r0x000180366abe:
     CoreEngineMemoryPoolCleaner(puVar2);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_108);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_108);
 }
 
 
@@ -416,7 +416,7 @@ void FUN_180366b10(int64_t param_1,int64_t param_2)
   }
 LAB_180366d62:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_118);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_118);
 joined_r0x000180366cdc:
   for (; puVar2 != puVar4; puVar2 = puVar2 + 4) {
     (**(code **)*puVar2)(puVar2,0);

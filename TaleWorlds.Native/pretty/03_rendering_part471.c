@@ -273,7 +273,7 @@ typedef struct {
 #define RenderingSystemDataExtractor FUN_180534e20          // 渲染系统数据提取器
 #define RenderingSystemContextManager FUN_18055dcf0        // 渲染系统上下文管理器
 #define RenderingSystemResourceAllocator FUN_180516bd0      // 渲染系统资源分配器
-#define RenderingSystemMemoryCleanup FUN_1808fc050          // 渲染系统内存清理器
+#define RenderingSystemMemoryCleanup SystemSecurityChecker          // 渲染系统内存清理器
 #define RenderingSystemSystemInitializer FUN_1808fd400      // 渲染系统系统初始化器
 
 // ============================================================================

@@ -1271,7 +1271,7 @@ void RenderingSystem_ExecuteRenderBatch(int param_1, int param_2, int param_3, i
   
   triple_pointer = (void ***)&buffer_pointer;
   buffer_pointer = &global_var_720_ptr;
-  FUN_18004b1f0(0);
+  SystemExitHandler(0);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(stack_guard ^ (uint64_t)temp_buffer);
 }
@@ -1321,7 +1321,7 @@ void RenderingSystem_ProcessRenderString(int param_1)
     buffer_size = buffer_size + 2;
   }
   
-  FUN_180060680(format_buffer, &global_var_4576_ptr, param_1);
+  SystemStringFormatter(format_buffer, &global_var_4576_ptr, param_1);
   data_offset = -1;
   
   do {
@@ -1363,7 +1363,7 @@ void RenderingSystem_ExecuteRenderCopy(int64_t param_1, int32_t param_2)
   uint64_t stack_guard;
   
   stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)temp_buffer;
-  FUN_180060680(format_buffer, &global_var_4576_ptr, param_2);
+  SystemStringFormatter(format_buffer, &global_var_4576_ptr, param_2);
   
   data_offset = -1;
   do {
@@ -1499,7 +1499,7 @@ void RenderingSystem_ProcessParameterSet4(uint64_t param_1, int32_t param_2)
  *=============================================================================*/
 void RenderingSystem_ExecuteRenderCommand(int32_t param_1, uint64_t param_2, int32_t param_3, uint64_t param_4)
 {
-  FUN_1800623b0(system_message_context, param_1, param_4, param_3, &global_var_6496_ptr, param_2);
+  SystemCommandProcessor(system_message_context, param_1, param_4, param_3, &global_var_6496_ptr, param_2);
   return;
 }
 

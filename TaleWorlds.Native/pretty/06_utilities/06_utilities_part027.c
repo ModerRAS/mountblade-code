@@ -331,7 +331,7 @@ void utilities_system_initializer(void)
     g_system_global_ptr1 = &system_initialization_ptr;
     if (g_system_initialized_flag != 0) {
         // 系统已经初始化，执行错误处理
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     
     // 重置系统状态
@@ -350,10 +350,10 @@ void utilities_system_initializer(void)
             return;
         }
         // 初始化失败，执行错误处理
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     // 系统组件已存在，执行错误处理
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
 }
 
 /**
@@ -707,7 +707,7 @@ void utilities_system_state_resetter_1(void)
     system_config_pointer_data_9218 = &system_initialization_ptr;
     if (system_config_pointer_data_9220 != 0) {
         // 系统状态异常，执行错误处理
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     system_config_pointer_data_9220 = 0;
     system_config_pointer_data_9230 = 0;
@@ -726,7 +726,7 @@ void utilities_system_state_resetter_2(void)
     system_config_pointer_data_9240 = &system_initialization_ptr;
     if (system_config_pointer_data_9248 != 0) {
         // 系统状态异常，执行错误处理
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     system_config_pointer_data_9248 = 0;
     system_config_pointer_data_9258 = 0;
@@ -762,7 +762,7 @@ void utilities_exception_handler(void)
             exception_counter = (int *)(exception_address + 0x18);
             *exception_counter = *exception_counter + -1;
             if (*exception_counter == 0) {
-                FUN_18064d630();
+                SystemDataCleaner();
                 return;
             }
         }
@@ -785,7 +785,7 @@ void utilities_system_state_resetter_3(void)
     system_config_pointer_data_9638 = &system_initialization_ptr;
     if (system_config_pointer_data_9640 != 0) {
         // 系统状态异常，执行错误处理
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     system_config_pointer_data_9640 = 0;
     system_config_pointer_data_9650 = 0;
@@ -841,14 +841,14 @@ void utilities_system_cleaner(void)
         FUN_18005a050();
         if ((1 < system_pointer_data_1d30) && (system_pointer_data_1d28 != 0)) {
             // 系统资源未正确释放，执行错误处理
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         if (system_pointer_data_1d18 != (int64_t *)0x0) {
             (**(code **)(*system_pointer_data_1d18 + 0x38))();
         }
         if (system_pointer_data_1cf0 != 0) {
             // 系统资源未正确释放，执行错误处理
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         _Mtx_destroy_in_situ();
         _Cnd_destroy_in_situ();
@@ -892,7 +892,7 @@ void utilities_system_state_resetter_4(void)
     system_config_pointer_data_8db8 = &system_initialization_ptr;
     if (system_config_pointer_data_8dc0 != 0) {
         // 系统状态异常，执行错误处理
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     system_config_pointer_data_8dc0 = 0;
     system_config_pointer_data_8dd0 = 0;
@@ -936,11 +936,11 @@ void utilities_system_initializer_2(void)
     FUN_180320e20(0x180d497e0);
     if (system_module_config != 0) {
         // 系统已经初始化，执行错误处理
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     if (system_resource_config != 0) {
         // 系统组件已存在，执行错误处理
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     FUN_180320b20(0x180d498a0);
     system_config_data = &system_data_ptr;
@@ -1558,7 +1558,7 @@ void utilities_callback_executor_1(uint64_t param_1, uint64_t param_2, uint64_t 
         return;
     }
     // 回调执行失败，执行错误处理
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
 }
 
 /**
@@ -1590,7 +1590,7 @@ void utilities_callback_executor_2(uint64_t param_1, uint64_t param_2, uint64_t 
         return;
     }
     // 回调执行失败，执行错误处理
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
 }
 
 /**
@@ -1622,7 +1622,7 @@ void utilities_callback_executor_3(uint64_t param_1, uint64_t param_2, uint64_t 
         return;
     }
     // 回调执行失败，执行错误处理
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
 }
 
 /**

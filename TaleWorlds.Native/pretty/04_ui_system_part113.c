@@ -252,7 +252,7 @@ void FUN_180735d0e(void)
     dVar24 = unaff_XMM13_Qa * unaff_XMM14_Qa;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050((float)dVar24);
+  SystemSecurityChecker((float)dVar24);
 }
 
 
@@ -384,7 +384,7 @@ void FUN_180735d37(uint64_t param_1,int64_t param_2,uint64_t param_3,int8_t *par
     } while (uVar19 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050((float)(unaff_XMM13_Qa * unaff_XMM14_Qa));
+  SystemSecurityChecker((float)(unaff_XMM13_Qa * unaff_XMM14_Qa));
 }
 
 

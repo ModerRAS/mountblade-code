@@ -268,7 +268,7 @@ void Utilities_ProcessData(int64_t system_handle, int8_t *output_ptr, int *count
     
 cleanup_handler:
     // 清理处理
-    FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer_738);
+    SystemSecurityChecker(security_cookie ^ (uint64_t)stack_buffer_738);
     return;
 
 data_copy_handler:
@@ -426,7 +426,7 @@ void Utilities_HandleOperation(int64_t param1, uint64_t param2, int *param3) {
     
 cleanup_handler:
     // 清理处理
-    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x5f0) ^ (uint64_t)&in_stack_00000040);
+    SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x5f0) ^ (uint64_t)&in_stack_00000040);
     return;
 
 data_copy_handler:
@@ -442,7 +442,7 @@ void Utilities_CleanupContext(void) {
     int64_t unaff_RBP;
     
     // 清理处理
-    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x5f0) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x5f0) ^ (uint64_t)&stack0x00000000);
 }
 
 /**

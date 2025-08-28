@@ -162,7 +162,7 @@ void utilities_initialize_global_variables(uint64_t param_1, uint64_t param_2, u
         // 检查数据状态，如果非零则报错
         if (data_ptr2[1] != 0) {
             // 系统错误处理函数调用
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         
         data_ptr2[1] = 0;
@@ -175,7 +175,7 @@ void utilities_initialize_global_variables(uint64_t param_1, uint64_t param_2, u
     // 最终状态检查
     if (system_control_pointer_data_aea0 != (uint64_t*)0x0) {
         // 系统错误处理函数调用
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
 }
 
@@ -749,7 +749,7 @@ void utilities_process_parameters_1(uint64_t param_1, uint64_t param_2, uint64_t
         FUN_1804a9b80(param_1, *system_config_pointer_data_9e18, param_3, param_4, 0xfffffffffffffffe);
         
         // 系统错误处理函数调用
-        FUN_18064e900(data_ptr);
+        CoreEngineMemoryPoolCleaner(data_ptr);
     }
 }
 
@@ -797,7 +797,7 @@ void utilities_check_system_state_3(void)
     if (system_memory_6028 != '\0') {
         if (system_pointer_data_6010 != 0) {
             // 系统错误处理函数调用
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         system_pointer_data_6010 = 0;
     }
@@ -904,7 +904,7 @@ void utilities_check_system_state_9(void)
     if (system_memory_6140 != '\0') {
         if (system_pointer_data_6120 != 0) {
             // 系统错误处理函数调用
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         
         system_pointer_data_6120 = 0;
@@ -918,7 +918,7 @@ void utilities_check_system_state_9(void)
             FUN_1804a9e30();
             
             // 系统错误处理函数调用
-            FUN_18064e900(state_ptr);
+            CoreEngineMemoryPoolCleaner(state_ptr);
         }
         
         system_pointer_data_6138 = 0;
@@ -971,7 +971,7 @@ void utilities_check_system_state_11(void)
         
         if (system_pointer_data_5ef8 != 0) {
             // 系统错误处理函数调用
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
     }
 }
@@ -989,7 +989,7 @@ void utilities_check_system_state_12(void)
     if (system_memory_5fe8 != '\0') {
         if (system_pointer_data_5fc8 != 0) {
             // 系统错误处理函数调用
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
     }
 }
@@ -1114,7 +1114,7 @@ void utilities_cleanup_data_1(void)
     
     if (system_config_pointer_data_a070 != 0) {
         // 系统错误处理函数调用
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     
     // 重置数据状态
@@ -1174,7 +1174,7 @@ void utilities_process_parameters_2(uint64_t param_1, uint64_t param_2, uint64_t
         FUN_18063cfe0(data_ptr + 5);
         
         // 系统错误处理函数调用
-        FUN_18064e900(data_ptr);
+        CoreEngineMemoryPoolCleaner(data_ptr);
     }
 }
 
@@ -1197,7 +1197,7 @@ void utilities_process_tls(void)
     
     if (*(int64_t*)(tls_ptr + 0x20) != 0) {
         // 系统错误处理函数调用
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     
     // 重置TLS数据状态
@@ -1237,7 +1237,7 @@ void utilities_process_parameters_3(uint64_t param_1, uint64_t param_2, uint64_t
     
     if (data_ptr[5] != 0) {
         // 系统错误处理函数调用
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     
     // 重置数据状态
@@ -1246,7 +1246,7 @@ void utilities_process_parameters_3(uint64_t param_1, uint64_t param_2, uint64_t
     data_ptr[4] = &system_state_ptr;
     
     // 系统错误处理函数调用
-    FUN_18064e900(data_ptr);
+    CoreEngineMemoryPoolCleaner(data_ptr);
 }
 
 // =============================================================================

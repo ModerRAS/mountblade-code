@@ -219,7 +219,7 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       vertex_shader = render_pass;
       
       // 执行渲染管线配置
-      FUN_180627ae0(alignment_buffer, &pixel_shader);
+      CoreEngineDataTransformer(alignment_buffer, &pixel_shader);
       primitive_restart = (int32_t)constant_buffer_update;
       sample_mask = constant_buffer_update._4_4_;
       stencil_ref = (int32_t)frame_buffer;
@@ -283,7 +283,7 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       depth_stencil_state._4_4_ = 0x10;
       FUN_1800b0a10(blend_state, &domain_shader, *(int32_t *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
       vertex_shader = (code *)&system_state_ptr;
-      render_pass = (code **)FUN_18062b1e0(system_memory_pool_ptr, 0x48, 8, 3);
+      render_pass = (code **)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x48, 8, 3);
       shader_program = domain_shader;
       render_pass[1] = (code *)0x0;
       render_pass[2] = (code *)0x0;
@@ -362,7 +362,7 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       pixel_shader = (code *)&system_data_buffer_ptr;
       if (instance_buffer != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       instance_buffer = 0;
       frame_sync = frame_sync & 0xffffffff00000000;
@@ -385,7 +385,7 @@ LAB_18031df5a:
     (**(code **)(*input_layout + 0x38))();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(frame_sync ^ (uint64_t)alignment_buffer);
+  SystemSecurityChecker(frame_sync ^ (uint64_t)alignment_buffer);
 }
 
 
@@ -420,7 +420,7 @@ void RenderingSystem_ResourceCleaner(int64_t resource_context)
   if (texture_resource != 0) {
     FUN_18045fb80(texture_resource);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(texture_resource);
+    CoreEngineMemoryPoolCleaner(texture_resource);
   }
   *(uint64_t *)(resource_context + 0x3c8) = 0;
   
@@ -556,7 +556,7 @@ void RenderingSystem_ObjectProcessor(int64_t render_object)
   (**(code **)(shader_program + 0x38))(render_context);
 LAB_18031e20e:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(frame_sync ^ (uint64_t)alignment_buffer);
+  SystemSecurityChecker(frame_sync ^ (uint64_t)alignment_buffer);
 }
 
 
@@ -909,10 +909,10 @@ void RenderingSystem_DataTransfer(int64_t source_context, int64_t target_context
   frame_buffer = 0;
   constant_buffer = (uint64_t *)0x0;
   buffer_size = 0;
-  vertex_buffer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x1c, 0x13);
+  vertex_buffer = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x1c, 0x13);
   *(int8_t *)vertex_buffer = 0;
   constant_buffer = vertex_buffer;
-  buffer_size = FUN_18064e990(vertex_buffer);
+  buffer_size = CoreEngineSystemCleanup(vertex_buffer);
   *vertex_buffer = 0x666669645f747270;
   vertex_buffer[1] = 0x69626d615f657375;
   vertex_buffer[2] = 0x757365725f746e65;
@@ -926,7 +926,7 @@ void RenderingSystem_DataTransfer(int64_t source_context, int64_t target_context
       user_flag = 0x13;
       vertex_buffer = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, vertex_buffer, texture_index + 0x1cU, 0x10);
       constant_buffer = vertex_buffer;
-      frame_buffer._0_4_ = FUN_18064e990(vertex_buffer);
+      frame_buffer._0_4_ = CoreEngineSystemCleanup(vertex_buffer);
       texture_index = *(int *)(shader_program + 0x4e8);
     }
                     // WARNING: Subroutine does not return
@@ -997,7 +997,7 @@ LAB_18031eaf0:
   render_target = &system_data_buffer_ptr;
   if (vertex_buffer != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(vertex_buffer);
+    CoreEngineMemoryPoolCleaner(vertex_buffer);
   }
   constant_buffer = (uint64_t *)0x0;
   frame_buffer = (uint64_t)frame_buffer._4_4_ << 0x20;
@@ -1042,7 +1042,7 @@ LAB_18031ebd1:
   *(float *)(target_context + 0x9798) = (float)render_state;
   *(int32_t *)(target_context + 0x979c) = 0x3f800000;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(frame_sync ^ (uint64_t)alignment_buffer);
+  SystemSecurityChecker(frame_sync ^ (uint64_t)alignment_buffer);
 }
 
 
@@ -1127,7 +1127,7 @@ void RenderingSystem_MemoryManager(uint64_t **memory_pool, int64_t *memory_conte
 LAB_18031ee56:
         // 处理内存块复制
         if (0 < block_size) {
-          FUN_1806277c0(memory_context, (int)memory_context[2] + block_size);
+          CoreEngineDataBufferProcessor(memory_context, (int)memory_context[2] + block_size);
                     // WARNING: Subroutine does not return
           memcpy((uint64_t)*(uint *)(memory_context + 2) + memory_context[1], *(uint64_t *)(string_data + -2),
                  (int64_t)(*string_data + 1));
@@ -1135,7 +1135,7 @@ LAB_18031ee56:
         
         // 更新内存块索引
         block_size = (int)memory_context[2] + 1;
-        FUN_1806277c0(memory_context, block_size);
+        CoreEngineDataBufferProcessor(memory_context, block_size);
         *(int16_t *)((uint64_t)*(uint *)(memory_context + 2) + memory_context[1]) = 0x20;
         *(int *)(memory_context + 2) = block_size;
       }
@@ -1153,7 +1153,7 @@ LAB_18031ee56:
   // 释放内存
   if (memory_ptr != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(memory_ptr);
+    CoreEngineMemoryPoolCleaner(memory_ptr);
   }
   return;
 }

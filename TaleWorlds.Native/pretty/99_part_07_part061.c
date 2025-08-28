@@ -167,7 +167,7 @@ void FUN_1804d4b50(int64_t param_1,int32_t param_2,int64_t *param_3,int32_t para
   plStack_330 = param_3;
   if (param_3 == (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_68 ^ (uint64_t)auStack_398);
+    SystemSecurityChecker(uStack_68 ^ (uint64_t)auStack_398);
   }
   lVar46 = *(int64_t *)(param_1 + 0x2b28);
   plVar48 = (int64_t *)(lVar46 + ((uint64_t)param_3 % (uint64_t)*(uint *)(param_1 + 0x2b30)) * 8)
@@ -216,7 +216,7 @@ LAB_1804d4bf3:
     plStack_280 = plVar44;
     plStack_278 = plVar48;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(plVar44);
+    CoreEngineMemoryPoolCleaner(plVar44);
   }
   iVar50 = 0;
   if (param_3[0x1f] - param_3[0x1e] >> 3 != 0) {
