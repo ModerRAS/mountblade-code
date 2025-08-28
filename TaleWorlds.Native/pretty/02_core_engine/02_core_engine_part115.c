@@ -8,24 +8,24 @@
 void find_and_process_entity_collisions(void)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  longlong lVar5;
-  longlong lVar6;
+  float position_x;
+  float position_y;
+  float test_x;
+  longlong saved_ptr;
+  longlong candidate_object;
   longlong in_RAX;
-  longlong lVar7;
-  longlong lVar8;
+  longlong current_object;
+  longlong array_index;
   undefined8 unaff_RBP;
-  longlong lVar9;
-  longlong *plVar10;
+  longlong null_value;
+  longlong *object_array_ptr;
   undefined8 unaff_RDI;
-  longlong lVar11;
-  longlong lVar12;
+  longlong alternate_object;
+  longlong temp_object;
   longlong in_R10;
-  longlong lVar13;
-  float fVar14;
-  float fVar15;
+  longlong object_ptr;
+  float threshold_y;
+  float threshold_x;
   undefined4 unaff_XMM6_Da;
   undefined4 unaff_XMM6_Db;
   undefined4 unaff_XMM6_Dc;
@@ -42,11 +42,11 @@ void find_and_process_entity_collisions(void)
   undefined4 unaff_XMM9_Db;
   undefined4 unaff_XMM9_Dc;
   undefined4 unaff_XMM9_Dd;
-  float fStackX_8;
-  float fStackX_c;
-  float fStack0000000000000070;
-  float fStack0000000000000074;
-  float fVar4;
+  float size_x;
+  float size_y;
+  float min_size_x;
+  float min_size_y;
+  float test_y;
   
   *(undefined8 *)(in_RAX + 0x18) = unaff_RBP;
   lVar9 = 0;

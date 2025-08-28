@@ -116,16 +116,6 @@ void initialize_render_state(void)
 
 /**
  * 处理文本字符串的解析和分割
- * @param param_1 上下文参数1
- * @param param_2 上下文参数2
- * @param param_3 源字符串起始位置
- * @param param_4 源字符串结束位置
- * @param param_5 处理参数1
- * @param param_6 处理参数2
- * @param param_7 处理参数3
- */
-/**
- * 处理文本字符串的解析和分割
  * @param context1 上下文参数1
  * @param context2 上下文参数2
  * @param text_start 源字符串起始位置
@@ -161,9 +151,6 @@ void process_text_string(undefined8 context1, undefined8 context2, char *text_st
     return;
 }
 
-/**
- * 执行默认的文本处理流程
- */
 /**
  * 执行默认的文本处理流程
  */
