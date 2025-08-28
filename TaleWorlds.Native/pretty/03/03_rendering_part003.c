@@ -1,574 +1,689 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part003.c - 6 个函数
+// 03_rendering_part003.c - 渲染系统相关函数
+// 本文件包含渲染缓冲区管理、内存分配和比较等功能
 
-// 函数: void FUN_1802700ba(undefined8 param_1,undefined8 *param_2)
-void FUN_1802700ba(undefined8 param_1,undefined8 *param_2)
-
+// 函数: 初始化渲染缓冲区
+// 参数: param_1 - 渲染上下文, param_2 - 缓冲区指针
+// 功能: 清零并初始化渲染缓冲区
+void initialize_render_buffer(undefined8 render_context, undefined8 *buffer_ptr)
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
+  longlong buffer_offset;
+  longlong counter;
+  longlong context_offset;
+  longlong buffer_size;
   
-  if (unaff_RDI != 0) {
-    lVar1 = (longlong)param_2 + 0x1c;
-    lVar2 = unaff_RDI;
+  if (buffer_size != 0) {
+    buffer_offset = (longlong)buffer_ptr + 0x1c;
+    counter = buffer_size;
     do {
-      *param_2 = 0;
-      param_2[1] = 0;
-      param_2[2] = 0;
-      param_2[3] = 0;
-      param_2 = param_2 + 4;
-      *(undefined8 *)(lVar1 + -0x14) = 0;
-      *(undefined8 *)(lVar1 + -4) = 0;
-      lVar2 = lVar2 + -1;
-      lVar1 = lVar1 + 0x20;
-    } while (lVar2 != 0);
-    param_2 = *(undefined8 **)(unaff_RSI + 8);
+      // 清零缓冲区块
+      *buffer_ptr = 0;
+      buffer_ptr[1] = 0;
+      buffer_ptr[2] = 0;
+      buffer_ptr[3] = 0;
+      buffer_ptr = buffer_ptr + 4;
+      
+      // 清零相关数据结构
+      *(undefined8 *)(buffer_offset + -0x14) = 0;
+      *(undefined8 *)(buffer_offset + -4) = 0;
+      
+      counter = counter + -1;
+      buffer_offset = buffer_offset + 0x20;
+    } while (counter != 0);
+    
+    buffer_ptr = *(undefined8 **)(context_offset + 8);
   }
-  *(undefined8 **)(unaff_RSI + 8) = param_2 + unaff_RDI * 4;
+  
+  // 设置缓冲区指针
+  *(undefined8 **)(context_offset + 8) = buffer_ptr + buffer_size * 4;
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180270120(longlong param_1,undefined8 param_2,longlong param_3)
-void FUN_180270120(longlong param_1,undefined8 param_2,longlong param_3)
-
+// 函数: 处理渲染数据
+// 参数: param_1 - 渲染目标, param_2 - 数据源, param_3 - 数据大小
+// 功能: 处理和转换渲染数据，应用缩放因子
+void process_render_data(longlong render_target, undefined8 data_source, longlong data_size)
 {
-  longlong *plVar1;
-  float fVar2;
-  longlong lVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  ulonglong uVar6;
-  longlong lVar7;
-  longlong lVar8;
-  longlong lVar9;
+  longlong *target_ptr;
+  float scale_factor;
+  longlong temp_var1;
+  longlong temp_var2;
+  ulonglong data_count;
+  ulonglong remaining_count;
+  longlong loop_counter;
+  longlong base_offset;
+  longlong chunk_counter;
   
-  lVar8 = *(longlong *)(param_3 + 8);
-  plVar1 = (longlong *)(param_1 + 8);
-  *(undefined4 *)(param_1 + 0x2c) = *(undefined4 *)(lVar8 + 4);
-  *(undefined4 *)(param_1 + 0x28) = *(undefined4 *)(lVar8 + 8);
-  *(int **)(param_3 + 8) = (int *)(lVar8 + 0xc);
-  uVar6 = (ulonglong)*(int *)(lVar8 + 0xc);
-  *(longlong *)(param_3 + 8) = lVar8 + 0x10;
-  uVar5 = *(longlong *)(param_1 + 0x10) - *plVar1 >> 5;
-  if (uVar5 < uVar6) {
-    FUN_18026ff90(plVar1,uVar6 - uVar5);
+  temp_var1 = *(longlong *)(data_size + 8);
+  target_ptr = (longlong *)(render_target + 8);
+  
+  // 设置渲染参数
+  *(undefined4 *)(render_target + 0x2c) = *(undefined4 *)(temp_var1 + 4);
+  *(undefined4 *)(render_target + 0x28) = *(undefined4 *)(temp_var1 + 8);
+  *(int **)(data_size + 8) = (int *)(temp_var1 + 0xc);
+  
+  remaining_count = (ulonglong)*(int *)(temp_var1 + 0xc);
+  *(longlong *)(data_size + 8) = temp_var1 + 0x10;
+  
+  // 检查并分配缓冲区空间
+  data_count = *(longlong *)(render_target + 0x10) - *target_ptr >> 5;
+  if (data_count < remaining_count) {
+    allocate_render_buffer(target_ptr, remaining_count - data_count);
   }
   else {
-    *(ulonglong *)(param_1 + 0x10) = uVar6 * 0x20 + *plVar1;
+    *(ulonglong *)(render_target + 0x10) = remaining_count * 0x20 + *target_ptr;
   }
-  lVar8 = 0;
-  if (3 < (longlong)uVar6) {
-    lVar9 = (uVar6 - 4 >> 2) + 1;
-    lVar8 = lVar9 * 4;
-    lVar7 = 0;
+  
+  // 批量处理数据块（每块4个元素）
+  temp_var1 = 0;
+  if (3 < (longlong)remaining_count) {
+    chunk_counter = (remaining_count - 4 >> 2) + 1;
+    temp_var1 = chunk_counter * 4;
+    base_offset = 0;
+    
     do {
-      lVar3 = *plVar1;
-      fVar2 = **(float **)(param_3 + 8);
-      *(float **)(param_3 + 8) = *(float **)(param_3 + 8) + 1;
-      *(int *)(lVar7 + lVar3) = (int)(fVar2 * 29.0);
-      *(undefined4 *)(lVar7 + 4 + lVar3) = **(undefined4 **)(param_3 + 8);
-      lVar4 = *(longlong *)(param_3 + 8);
-      *(undefined4 *)(lVar7 + 8 + lVar3) = *(undefined4 *)(lVar4 + 4);
-      *(undefined4 *)(lVar7 + 0xc + lVar3) = *(undefined4 *)(lVar4 + 8);
-      *(longlong *)(param_3 + 8) = lVar4 + 0xc;
-      *(float *)(lVar7 + 8 + lVar3) = *(float *)(lVar7 + 8 + lVar3) * 29.0;
-      fVar2 = **(float **)(param_3 + 8);
-      *(float **)(param_3 + 8) = *(float **)(param_3 + 8) + 1;
-      *(int *)(lVar7 + 0x10 + lVar3) = (int)(fVar2 * 29.0);
-      *(undefined4 *)(lVar7 + 0x14 + lVar3) = **(undefined4 **)(param_3 + 8);
-      lVar4 = *(longlong *)(param_3 + 8);
-      *(undefined4 *)(lVar7 + 0x18 + lVar3) = *(undefined4 *)(lVar4 + 4);
-      *(undefined4 *)(lVar7 + 0x1c + lVar3) = *(undefined4 *)(lVar4 + 8);
-      *(longlong *)(param_3 + 8) = lVar4 + 0xc;
-      *(float *)(lVar7 + 0x18 + lVar3) = *(float *)(lVar7 + 0x18 + lVar3) * 29.0;
-      lVar3 = *plVar1;
-      fVar2 = **(float **)(param_3 + 8);
-      *(float **)(param_3 + 8) = *(float **)(param_3 + 8) + 1;
-      *(int *)(lVar3 + 0x20 + lVar7) = (int)(fVar2 * 29.0);
-      *(undefined4 *)(lVar3 + 0x24 + lVar7) = **(undefined4 **)(param_3 + 8);
-      lVar4 = *(longlong *)(param_3 + 8);
-      *(undefined4 *)(lVar3 + 0x28 + lVar7) = *(undefined4 *)(lVar4 + 4);
-      *(undefined4 *)(lVar3 + 0x2c + lVar7) = *(undefined4 *)(lVar4 + 8);
-      *(longlong *)(param_3 + 8) = lVar4 + 0xc;
-      *(float *)(lVar3 + 0x28 + lVar7) = *(float *)(lVar3 + 0x28 + lVar7) * 29.0;
-      fVar2 = **(float **)(param_3 + 8);
-      *(float **)(param_3 + 8) = *(float **)(param_3 + 8) + 1;
-      *(int *)(lVar3 + 0x30 + lVar7) = (int)(fVar2 * 29.0);
-      *(undefined4 *)(lVar3 + 0x34 + lVar7) = **(undefined4 **)(param_3 + 8);
-      lVar4 = *(longlong *)(param_3 + 8);
-      *(undefined4 *)(lVar3 + 0x38 + lVar7) = *(undefined4 *)(lVar4 + 4);
-      *(undefined4 *)(lVar3 + 0x3c + lVar7) = *(undefined4 *)(lVar4 + 8);
-      *(longlong *)(param_3 + 8) = lVar4 + 0xc;
-      *(float *)(lVar3 + 0x38 + lVar7) = *(float *)(lVar3 + 0x38 + lVar7) * 29.0;
-      lVar3 = *plVar1;
-      fVar2 = **(float **)(param_3 + 8);
-      *(float **)(param_3 + 8) = *(float **)(param_3 + 8) + 1;
-      *(int *)(lVar3 + 0x40 + lVar7) = (int)(fVar2 * 29.0);
-      *(undefined4 *)(lVar3 + 0x44 + lVar7) = **(undefined4 **)(param_3 + 8);
-      lVar4 = *(longlong *)(param_3 + 8);
-      *(undefined4 *)(lVar3 + 0x48 + lVar7) = *(undefined4 *)(lVar4 + 4);
-      *(undefined4 *)(lVar3 + 0x4c + lVar7) = *(undefined4 *)(lVar4 + 8);
-      *(longlong *)(param_3 + 8) = lVar4 + 0xc;
-      *(float *)(lVar3 + 0x48 + lVar7) = *(float *)(lVar3 + 0x48 + lVar7) * 29.0;
-      fVar2 = **(float **)(param_3 + 8);
-      *(float **)(param_3 + 8) = *(float **)(param_3 + 8) + 1;
-      *(int *)(lVar3 + 0x50 + lVar7) = (int)(fVar2 * 29.0);
-      *(undefined4 *)(lVar3 + 0x54 + lVar7) = **(undefined4 **)(param_3 + 8);
-      lVar4 = *(longlong *)(param_3 + 8);
-      *(undefined4 *)(lVar3 + 0x58 + lVar7) = *(undefined4 *)(lVar4 + 4);
-      *(undefined4 *)(lVar3 + 0x5c + lVar7) = *(undefined4 *)(lVar4 + 8);
-      *(longlong *)(param_3 + 8) = lVar4 + 0xc;
-      *(float *)(lVar3 + 0x58 + lVar7) = *(float *)(lVar3 + 0x58 + lVar7) * 29.0;
-      lVar3 = *plVar1;
-      fVar2 = **(float **)(param_3 + 8);
-      *(float **)(param_3 + 8) = *(float **)(param_3 + 8) + 1;
-      *(int *)(lVar7 + 0x60 + lVar3) = (int)(fVar2 * 29.0);
-      *(undefined4 *)(lVar7 + 100 + lVar3) = **(undefined4 **)(param_3 + 8);
-      lVar4 = *(longlong *)(param_3 + 8);
-      *(undefined4 *)(lVar7 + 0x68 + lVar3) = *(undefined4 *)(lVar4 + 4);
-      *(undefined4 *)(lVar7 + 0x6c + lVar3) = *(undefined4 *)(lVar4 + 8);
-      *(longlong *)(param_3 + 8) = lVar4 + 0xc;
-      *(float *)(lVar7 + 0x68 + lVar3) = *(float *)(lVar7 + 0x68 + lVar3) * 29.0;
-      fVar2 = **(float **)(param_3 + 8);
-      *(float **)(param_3 + 8) = *(float **)(param_3 + 8) + 1;
-      *(int *)(lVar7 + 0x70 + lVar3) = (int)(fVar2 * 29.0);
-      *(undefined4 *)(lVar7 + 0x74 + lVar3) = **(undefined4 **)(param_3 + 8);
-      lVar4 = *(longlong *)(param_3 + 8);
-      *(undefined4 *)(lVar7 + 0x78 + lVar3) = *(undefined4 *)(lVar4 + 4);
-      *(undefined4 *)(lVar7 + 0x7c + lVar3) = *(undefined4 *)(lVar4 + 8);
-      *(longlong *)(param_3 + 8) = lVar4 + 0xc;
-      *(float *)(lVar7 + 0x78 + lVar3) = *(float *)(lVar7 + 0x78 + lVar3) * 29.0;
-      lVar9 = lVar9 + -1;
-      lVar7 = lVar7 + 0x80;
-    } while (lVar9 != 0);
+      temp_var2 = *target_ptr;
+      scale_factor = **(float **)(data_size + 8);
+      *(float **)(data_size + 8) = *(float **)(data_size + 8) + 1;
+      
+      // 应用缩放因子并存储数据
+      *(int *)(base_offset + temp_var2) = (int)(scale_factor * 29.0);
+      *(undefined4 *)(base_offset + 4 + temp_var2) = **(undefined4 **)(data_size + 8);
+      
+      temp_var1 = *(longlong *)(data_size + 8);
+      *(undefined4 *)(base_offset + 8 + temp_var2) = *(undefined4 *)(temp_var1 + 4);
+      *(undefined4 *)(base_offset + 0xc + temp_var2) = *(undefined4 *)(temp_var1 + 8);
+      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      
+      // 对Y分量应用缩放
+      *(float *)(base_offset + 8 + temp_var2) = *(float *)(base_offset + 8 + temp_var2) * 29.0;
+      
+      // 处理后续数据点
+      scale_factor = **(float **)(data_size + 8);
+      *(float **)(data_size + 8) = *(float **)(data_size + 8) + 1;
+      *(int *)(base_offset + 0x10 + temp_var2) = (int)(scale_factor * 29.0);
+      *(undefined4 *)(base_offset + 0x14 + temp_var2) = **(undefined4 **)(data_size + 8);
+      
+      temp_var1 = *(longlong *)(data_size + 8);
+      *(undefined4 *)(base_offset + 0x18 + temp_var2) = *(undefined4 *)(temp_var1 + 4);
+      *(undefined4 *)(base_offset + 0x1c + temp_var2) = *(undefined4 *)(temp_var1 + 8);
+      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(float *)(base_offset + 0x18 + temp_var2) = *(float *)(base_offset + 0x18 + temp_var2) * 29.0;
+      
+      // 继续处理更多数据点...
+      temp_var2 = *target_ptr;
+      scale_factor = **(float **)(data_size + 8);
+      *(float **)(data_size + 8) = *(float **)(data_size + 8) + 1;
+      *(int *)(temp_var2 + 0x20 + base_offset) = (int)(scale_factor * 29.0);
+      *(undefined4 *)(temp_var2 + 0x24 + base_offset) = **(undefined4 **)(data_size + 8);
+      
+      temp_var1 = *(longlong *)(data_size + 8);
+      *(undefined4 *)(temp_var2 + 0x28 + base_offset) = *(undefined4 *)(temp_var1 + 4);
+      *(undefined4 *)(temp_var2 + 0x2c + base_offset) = *(undefined4 *)(temp_var1 + 8);
+      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(float *)(temp_var2 + 0x28 + base_offset) = *(float *)(temp_var2 + 0x28 + base_offset) * 29.0;
+      
+      scale_factor = **(float **)(data_size + 8);
+      *(float **)(data_size + 8) = *(float **)(data_size + 8) + 1;
+      *(int *)(temp_var2 + 0x30 + base_offset) = (int)(scale_factor * 29.0);
+      *(undefined4 *)(temp_var2 + 0x34 + base_offset) = **(undefined4 **)(data_size + 8);
+      
+      temp_var1 = *(longlong *)(data_size + 8);
+      *(undefined4 *)(temp_var2 + 0x38 + base_offset) = *(undefined4 *)(temp_var1 + 4);
+      *(undefined4 *)(temp_var2 + 0x3c + base_offset) = *(undefined4 *)(temp_var1 + 8);
+      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(float *)(temp_var2 + 0x38 + base_offset) = *(float *)(temp_var2 + 0x38 + base_offset) * 29.0;
+      
+      temp_var2 = *target_ptr;
+      scale_factor = **(float **)(data_size + 8);
+      *(float **)(data_size + 8) = *(float **)(data_size + 8) + 1;
+      *(int *)(temp_var2 + 0x40 + base_offset) = (int)(scale_factor * 29.0);
+      *(undefined4 *)(temp_var2 + 0x44 + base_offset) = **(undefined4 **)(data_size + 8);
+      
+      temp_var1 = *(longlong *)(data_size + 8);
+      *(undefined4 *)(temp_var2 + 0x48 + base_offset) = *(undefined4 *)(temp_var1 + 4);
+      *(undefined4 *)(temp_var2 + 0x4c + base_offset) = *(undefined4 *)(temp_var1 + 8);
+      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(float *)(temp_var2 + 0x48 + base_offset) = *(float *)(temp_var2 + 0x48 + base_offset) * 29.0;
+      
+      scale_factor = **(float **)(data_size + 8);
+      *(float **)(data_size + 8) = *(float **)(data_size + 8) + 1;
+      *(int *)(temp_var2 + 0x50 + base_offset) = (int)(scale_factor * 29.0);
+      *(undefined4 *)(temp_var2 + 0x54 + base_offset) = **(undefined4 **)(data_size + 8);
+      
+      temp_var1 = *(longlong *)(data_size + 8);
+      *(undefined4 *)(temp_var2 + 0x58 + base_offset) = *(undefined4 *)(temp_var1 + 4);
+      *(undefined4 *)(temp_var2 + 0x5c + base_offset) = *(undefined4 *)(temp_var1 + 8);
+      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(float *)(temp_var2 + 0x58 + base_offset) = *(float *)(temp_var2 + 0x58 + base_offset) * 29.0;
+      
+      temp_var2 = *target_ptr;
+      scale_factor = **(float **)(data_size + 8);
+      *(float **)(data_size + 8) = *(float **)(data_size + 8) + 1;
+      *(int *)(base_offset + 0x60 + temp_var2) = (int)(scale_factor * 29.0);
+      *(undefined4 *)(base_offset + 100 + temp_var2) = **(undefined4 **)(data_size + 8);
+      
+      temp_var1 = *(longlong *)(data_size + 8);
+      *(undefined4 *)(base_offset + 0x68 + temp_var2) = *(undefined4 *)(temp_var1 + 4);
+      *(undefined4 *)(base_offset + 0x6c + temp_var2) = *(undefined4 *)(temp_var1 + 8);
+      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(float *)(base_offset + 0x68 + temp_var2) = *(float *)(base_offset + 0x68 + temp_var2) * 29.0;
+      
+      scale_factor = **(float **)(data_size + 8);
+      *(float **)(data_size + 8) = *(float **)(data_size + 8) + 1;
+      *(int *)(base_offset + 0x70 + temp_var2) = (int)(scale_factor * 29.0);
+      *(undefined4 *)(base_offset + 0x74 + temp_var2) = **(undefined4 **)(data_size + 8);
+      
+      temp_var1 = *(longlong *)(data_size + 8);
+      *(undefined4 *)(base_offset + 0x78 + temp_var2) = *(undefined4 *)(temp_var1 + 4);
+      *(undefined4 *)(base_offset + 0x7c + temp_var2) = *(undefined4 *)(temp_var1 + 8);
+      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(float *)(base_offset + 0x78 + temp_var2) = *(float *)(base_offset + 0x78 + temp_var2) * 29.0;
+      
+      chunk_counter = chunk_counter + -1;
+      base_offset = base_offset + 0x80;
+    } while (chunk_counter != 0);
   }
-  if (lVar8 < (longlong)uVar6) {
-    lVar7 = uVar6 - lVar8;
-    lVar8 = lVar8 << 5;
+  
+  // 处理剩余的数据元素
+  if (temp_var1 < (longlong)remaining_count) {
+    base_offset = remaining_count - temp_var1;
+    temp_var1 = temp_var1 << 5;
+    
     do {
-      lVar9 = *plVar1;
-      fVar2 = **(float **)(param_3 + 8);
-      *(float **)(param_3 + 8) = *(float **)(param_3 + 8) + 1;
-      *(int *)(lVar8 + lVar9) = (int)(fVar2 * 29.0);
-      *(undefined4 *)(lVar8 + 4 + lVar9) = **(undefined4 **)(param_3 + 8);
-      lVar3 = *(longlong *)(param_3 + 8);
-      fVar2 = *(float *)(lVar3 + 4);
-      *(float *)(lVar8 + 8 + lVar9) = fVar2;
-      *(undefined4 *)(lVar8 + 0xc + lVar9) = *(undefined4 *)(lVar3 + 8);
-      *(longlong *)(param_3 + 8) = lVar3 + 0xc;
-      *(float *)(lVar8 + 8 + lVar9) = fVar2 * 29.0;
-      fVar2 = **(float **)(param_3 + 8);
-      *(float **)(param_3 + 8) = *(float **)(param_3 + 8) + 1;
-      *(int *)(lVar8 + 0x10 + lVar9) = (int)(fVar2 * 29.0);
-      *(undefined4 *)(lVar8 + 0x14 + lVar9) = **(undefined4 **)(param_3 + 8);
-      lVar3 = *(longlong *)(param_3 + 8);
-      fVar2 = *(float *)(lVar3 + 4);
-      *(float *)(lVar8 + 0x18 + lVar9) = fVar2;
-      *(undefined4 *)(lVar8 + 0x1c + lVar9) = *(undefined4 *)(lVar3 + 8);
-      *(longlong *)(param_3 + 8) = lVar3 + 0xc;
-      *(float *)(lVar8 + 0x18 + lVar9) = fVar2 * 29.0;
-      lVar7 = lVar7 + -1;
-      lVar8 = lVar8 + 0x20;
-    } while (lVar7 != 0);
+      temp_var2 = *target_ptr;
+      scale_factor = **(float **)(data_size + 8);
+      *(float **)(data_size + 8) = *(float **)(data_size + 8) + 1;
+      
+      *(int *)(temp_var1 + temp_var2) = (int)(scale_factor * 29.0);
+      *(undefined4 *)(temp_var1 + 4 + temp_var2) = **(undefined4 **)(data_size + 8);
+      
+      temp_var1 = *(longlong *)(data_size + 8);
+      scale_factor = *(float *)(temp_var1 + 4);
+      *(float *)(temp_var1 + 8 + temp_var2) = scale_factor;
+      *(undefined4 *)(temp_var1 + 0xc + temp_var2) = *(undefined4 *)(temp_var1 + 8);
+      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(float *)(temp_var1 + 8 + temp_var2) = scale_factor * 29.0;
+      
+      scale_factor = **(float **)(data_size + 8);
+      *(float **)(data_size + 8) = *(float **)(data_size + 8) + 1;
+      *(int *)(temp_var1 + 0x10 + temp_var2) = (int)(scale_factor * 29.0);
+      *(undefined4 *)(temp_var1 + 0x14 + temp_var2) = **(undefined4 **)(data_size + 8);
+      
+      temp_var1 = *(longlong *)(data_size + 8);
+      scale_factor = *(float *)(temp_var1 + 4);
+      *(float *)(temp_var1 + 0x18 + temp_var2) = scale_factor;
+      *(undefined4 *)(temp_var1 + 0x1c + temp_var2) = *(undefined4 *)(temp_var1 + 8);
+      *(longlong *)(data_size + 8) = temp_var1 + 0xc;
+      *(float *)(temp_var1 + 0x18 + temp_var2) = scale_factor * 29.0;
+      
+      base_offset = base_offset + -1;
+      temp_var1 = temp_var1 + 0x20;
+    } while (base_offset != 0);
   }
+  
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180270570(undefined8 *param_1)
-void FUN_180270570(undefined8 *param_1)
-
+// 函数: 释放渲染资源
+// 参数: param_1 - 资源指针
+// 功能: 释放渲染相关的内存资源
+void free_render_resources(undefined8 *resource_ptr)
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *ref_count;
+  undefined8 *resource_data;
+  longlong memory_block;
+  ulonglong memory_address;
   
-  *param_1 = &UNK_180a16270;
-  FUN_1802708b0(param_1 + 1);
-  puVar2 = (undefined8 *)param_1[1];
-  if (puVar2 == (undefined8 *)0x0) {
+  *resource_ptr = &GLOBAL_RENDER_TABLE;
+  cleanup_render_buffer(resource_ptr + 1);
+  
+  resource_data = (undefined8 *)resource_ptr[1];
+  if (resource_data == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
-        FUN_18064d630();
+  
+  // 检查内存地址有效性
+  memory_address = (ulonglong)resource_data & 0xffffffffffc00000;
+  if (memory_address != 0) {
+    memory_block = memory_address + 0x80 + ((longlong)resource_data - memory_address >> 0x10) * 0x50;
+    memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
+    
+    // 检查是否为有效的渲染资源
+    if ((*(void ***)(memory_address + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
+      // 从链表中移除资源
+      *resource_data = *(undefined8 *)(memory_block + 0x20);
+      *(undefined8 **)(memory_block + 0x20) = resource_data;
+      
+      // 减少引用计数
+      ref_count = (int *)(memory_block + 0x18);
+      *ref_count = *ref_count + -1;
+      
+      // 如果引用计数为0，执行清理
+      if (*ref_count == 0) {
+        cleanup_render_manager();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      // 处理异常情况
+      handle_memory_exception(memory_address, 
+                             CONCAT71(0xff000000, *(void ***)(memory_address + 0x70) == &ExceptionList),
+                             resource_data, memory_address, 0xfffffffffffffffe);
     }
   }
+  
   return;
 }
 
-
-
-undefined8 * FUN_1802705c0(undefined8 *param_1)
-
+// 函数: 初始化渲染状态
+// 参数: param_1 - 状态指针
+// 功能: 初始化渲染状态参数为单位矩阵和默认值
+undefined8 * initialize_render_state(undefined8 *state_ptr)
 {
-  param_1[100] = 0;
-  param_1[0x65] = 0;
-  param_1[0x66] = 0;
-  *(undefined4 *)(param_1 + 0x67) = 3;
-  param_1[0x68] = 0;
-  param_1[0x69] = 0;
-  param_1[0x6a] = 0;
-  *(undefined4 *)(param_1 + 0x6b) = 3;
-  *param_1 = 0x3f8000003f800000;
-  param_1[1] = 0x3f8000003f800000;
-  param_1[2] = 0x3f8000003f800000;
-  param_1[3] = 0x3f8000003f800000;
-  param_1[4] = 0x3f8000003f800000;
-  param_1[5] = 0x3f8000003f800000;
-  param_1[6] = 0x3f8000003f800000;
-  param_1[7] = 0x3f8000003f800000;
-  param_1[8] = 0x3f8000003f800000;
-  param_1[9] = 0x3f8000003f800000;
-  param_1[10] = 0x3f8000003f800000;
-  param_1[0xb] = 0x3f8000003f800000;
-  param_1[0xc] = 0x3f8000003f800000;
-  param_1[0xd] = 0x3f8000003f800000;
-  param_1[0xe] = 0x3f8000003f800000;
-  param_1[0xf] = 0x3f8000003f800000;
-  param_1[0x10] = 0x3f8000003f800000;
-  param_1[0x11] = 0x3f8000003f800000;
-  param_1[0x12] = 0x3f8000003f800000;
-  param_1[0x13] = 0x3f8000003f800000;
-  param_1[0x14] = 0x3f8000003f800000;
-  param_1[0x15] = 0x3f8000003f800000;
-  param_1[0x16] = 0x3f8000003f800000;
-  param_1[0x17] = 0x3f8000003f800000;
-  param_1[0x18] = 0x3f8000003f800000;
-  param_1[0x19] = 0x3f8000003f800000;
-  param_1[0x1a] = 0x3f8000003f800000;
-  param_1[0x1b] = 0x3f8000003f800000;
-  param_1[0x1c] = 0x3f8000003f800000;
-  param_1[0x1d] = 0x3f8000003f800000;
-  param_1[0x1e] = 0x3f8000003f800000;
-  param_1[0x1f] = 0x3f8000003f800000;
-  param_1[0x20] = 0x3f8000003f800000;
-  param_1[0x21] = 0x3f8000003f800000;
-  param_1[0x22] = 0x3f8000003f800000;
-  param_1[0x23] = 0x3f8000003f800000;
-  param_1[0x24] = 0x3f8000003f800000;
-  param_1[0x25] = 0x3f8000003f800000;
-  param_1[0x26] = 0x3f8000003f800000;
-  param_1[0x27] = 0x3f8000003f800000;
-  param_1[0x28] = 0x3f8000003f800000;
-  param_1[0x29] = 0x3f8000003f800000;
-  param_1[0x2a] = 0x3f8000003f800000;
-  param_1[0x2b] = 0x3f8000003f800000;
-  param_1[0x2c] = 0x3f8000003f800000;
-  param_1[0x2d] = 0x3f8000003f800000;
-  param_1[0x2e] = 0x3f8000003f800000;
-  param_1[0x2f] = 0x3f8000003f800000;
-  param_1[0x30] = 0x3f8000003f800000;
-  param_1[0x31] = 0x3f8000003f800000;
-  param_1[0x32] = 0x3f8000003f800000;
-  param_1[0x33] = 0x3f8000003f800000;
-  param_1[0x34] = 0x3f8000003f800000;
-  param_1[0x35] = 0x3f8000003f800000;
-  param_1[0x36] = 0x3f8000003f800000;
-  param_1[0x37] = 0x3f8000003f800000;
-  param_1[0x38] = 0x3f8000003f800000;
-  param_1[0x39] = 0x3f8000003f800000;
-  param_1[0x3a] = 0x3f8000003f800000;
-  param_1[0x3b] = 0x3f8000003f800000;
-  param_1[0x3c] = 0x3f8000003f800000;
-  param_1[0x3d] = 0x3f8000003f800000;
-  param_1[0x3e] = 0x3f8000003f800000;
-  param_1[0x3f] = 0x3f8000003f800000;
-  param_1[0x40] = 0x3f8000003f800000;
-  param_1[0x41] = 0x3f8000003f800000;
-  param_1[0x42] = 0x3f8000003f800000;
-  param_1[0x43] = 0x3f8000003f800000;
-  param_1[0x44] = 0x3f8000003f800000;
-  param_1[0x45] = 0x3f8000003f800000;
-  param_1[0x46] = 0x3f8000003f800000;
-  param_1[0x47] = 0x3f8000003f800000;
-  param_1[0x48] = 0x3f8000003f800000;
-  param_1[0x49] = 0x3f8000003f800000;
-  param_1[0x4a] = 0x3f8000003f800000;
-  param_1[0x4b] = 0x3f8000003f800000;
-  param_1[0x4c] = 0x3f8000003f800000;
-  param_1[0x4d] = 0x3f8000003f800000;
-  param_1[0x4e] = 0x3f8000003f800000;
-  param_1[0x4f] = 0x3f8000003f800000;
-  param_1[0x50] = 0x3f8000003f800000;
-  param_1[0x51] = 0x3f8000003f800000;
-  param_1[0x52] = 0x3f8000003f800000;
-  param_1[0x53] = 0x3f8000003f800000;
-  param_1[0x54] = 0x3f8000003f800000;
-  param_1[0x55] = 0x3f8000003f800000;
-  param_1[0x56] = 0x3f8000003f800000;
-  param_1[0x57] = 0x3f8000003f800000;
-  param_1[0x58] = 0x3f8000003f800000;
-  param_1[0x59] = 0x3f8000003f800000;
-  param_1[0x5a] = 0x3f8000003f800000;
-  param_1[0x5b] = 0x3f8000003f800000;
-  param_1[0x5c] = 0x3f8000003f800000;
-  param_1[0x5d] = 0x3f8000003f800000;
-  param_1[0x5e] = 0x3f8000003f800000;
-  param_1[0x5f] = 0x3f8000003f800000;
-  param_1[0x60] = 0x3f8000003f800000;
-  param_1[0x61] = 0x3f8000003f800000;
-  param_1[0x62] = 0x3f8000003f800000;
-  param_1[99] = 0x3f8000003f800000;
-  return param_1;
+  // 清零状态字段
+  state_ptr[100] = 0;
+  state_ptr[0x65] = 0;
+  state_ptr[0x66] = 0;
+  *(undefined4 *)(state_ptr + 0x67) = 3;
+  state_ptr[0x68] = 0;
+  state_ptr[0x69] = 0;
+  state_ptr[0x6a] = 0;
+  *(undefined4 *)(state_ptr + 0x6b) = 3;
+  
+  // 设置为单位矩阵 (1.0f)
+  *state_ptr = 0x3f8000003f800000;
+  state_ptr[1] = 0x3f8000003f800000;
+  state_ptr[2] = 0x3f8000003f800000;
+  state_ptr[3] = 0x3f8000003f800000;
+  state_ptr[4] = 0x3f8000003f800000;
+  state_ptr[5] = 0x3f8000003f800000;
+  state_ptr[6] = 0x3f8000003f800000;
+  state_ptr[7] = 0x3f8000003f800000;
+  state_ptr[8] = 0x3f8000003f800000;
+  state_ptr[9] = 0x3f8000003f800000;
+  state_ptr[10] = 0x3f8000003f800000;
+  state_ptr[0xb] = 0x3f8000003f800000;
+  state_ptr[0xc] = 0x3f8000003f800000;
+  state_ptr[0xd] = 0x3f8000003f800000;
+  state_ptr[0xe] = 0x3f8000003f800000;
+  state_ptr[0xf] = 0x3f8000003f800000;
+  state_ptr[0x10] = 0x3f8000003f800000;
+  state_ptr[0x11] = 0x3f8000003f800000;
+  state_ptr[0x12] = 0x3f8000003f800000;
+  state_ptr[0x13] = 0x3f8000003f800000;
+  state_ptr[0x14] = 0x3f8000003f800000;
+  state_ptr[0x15] = 0x3f8000003f800000;
+  state_ptr[0x16] = 0x3f8000003f800000;
+  state_ptr[0x17] = 0x3f8000003f800000;
+  state_ptr[0x18] = 0x3f8000003f800000;
+  state_ptr[0x19] = 0x3f8000003f800000;
+  state_ptr[0x1a] = 0x3f8000003f800000;
+  state_ptr[0x1b] = 0x3f8000003f800000;
+  state_ptr[0x1c] = 0x3f8000003f800000;
+  state_ptr[0x1d] = 0x3f8000003f800000;
+  state_ptr[0x1e] = 0x3f8000003f800000;
+  state_ptr[0x1f] = 0x3f8000003f800000;
+  state_ptr[0x20] = 0x3f8000003f800000;
+  state_ptr[0x21] = 0x3f8000003f800000;
+  state_ptr[0x22] = 0x3f8000003f800000;
+  state_ptr[0x23] = 0x3f8000003f800000;
+  state_ptr[0x24] = 0x3f8000003f800000;
+  state_ptr[0x25] = 0x3f8000003f800000;
+  state_ptr[0x26] = 0x3f8000003f800000;
+  state_ptr[0x27] = 0x3f8000003f800000;
+  state_ptr[0x28] = 0x3f8000003f800000;
+  state_ptr[0x29] = 0x3f8000003f800000;
+  state_ptr[0x2a] = 0x3f8000003f800000;
+  state_ptr[0x2b] = 0x3f8000003f800000;
+  state_ptr[0x2c] = 0x3f8000003f800000;
+  state_ptr[0x2d] = 0x3f8000003f800000;
+  state_ptr[0x2e] = 0x3f8000003f800000;
+  state_ptr[0x2f] = 0x3f8000003f800000;
+  state_ptr[0x30] = 0x3f8000003f800000;
+  state_ptr[0x31] = 0x3f8000003f800000;
+  state_ptr[0x32] = 0x3f8000003f800000;
+  state_ptr[0x33] = 0x3f8000003f800000;
+  state_ptr[0x34] = 0x3f8000003f800000;
+  state_ptr[0x35] = 0x3f8000003f800000;
+  state_ptr[0x36] = 0x3f8000003f800000;
+  state_ptr[0x37] = 0x3f8000003f800000;
+  state_ptr[0x38] = 0x3f8000003f800000;
+  state_ptr[0x39] = 0x3f8000003f800000;
+  state_ptr[0x3a] = 0x3f8000003f800000;
+  state_ptr[0x3b] = 0x3f8000003f800000;
+  state_ptr[0x3c] = 0x3f8000003f800000;
+  state_ptr[0x3d] = 0x3f8000003f800000;
+  state_ptr[0x3e] = 0x3f8000003f800000;
+  state_ptr[0x3f] = 0x3f8000003f800000;
+  state_ptr[0x40] = 0x3f8000003f800000;
+  state_ptr[0x41] = 0x3f8000003f800000;
+  state_ptr[0x42] = 0x3f8000003f800000;
+  state_ptr[0x43] = 0x3f8000003f800000;
+  state_ptr[0x44] = 0x3f8000003f800000;
+  state_ptr[0x45] = 0x3f8000003f800000;
+  state_ptr[0x46] = 0x3f8000003f800000;
+  state_ptr[0x47] = 0x3f8000003f800000;
+  state_ptr[0x48] = 0x3f8000003f800000;
+  state_ptr[0x49] = 0x3f8000003f800000;
+  state_ptr[0x4a] = 0x3f8000003f800000;
+  state_ptr[0x4b] = 0x3f8000003f800000;
+  state_ptr[0x4c] = 0x3f8000003f800000;
+  state_ptr[0x4d] = 0x3f8000003f800000;
+  state_ptr[0x4e] = 0x3f8000003f800000;
+  state_ptr[0x4f] = 0x3f8000003f800000;
+  state_ptr[0x50] = 0x3f8000003f800000;
+  state_ptr[0x51] = 0x3f8000003f800000;
+  state_ptr[0x52] = 0x3f8000003f800000;
+  state_ptr[0x53] = 0x3f8000003f800000;
+  state_ptr[0x54] = 0x3f8000003f800000;
+  state_ptr[0x55] = 0x3f8000003f800000;
+  state_ptr[0x56] = 0x3f8000003f800000;
+  state_ptr[0x57] = 0x3f8000003f800000;
+  state_ptr[0x58] = 0x3f8000003f800000;
+  state_ptr[0x59] = 0x3f8000003f800000;
+  state_ptr[0x5a] = 0x3f8000003f800000;
+  state_ptr[0x5b] = 0x3f8000003f800000;
+  state_ptr[0x5c] = 0x3f8000003f800000;
+  state_ptr[0x5d] = 0x3f8000003f800000;
+  state_ptr[0x5e] = 0x3f8000003f800000;
+  state_ptr[0x5f] = 0x3f8000003f800000;
+  state_ptr[0x60] = 0x3f8000003f800000;
+  state_ptr[0x61] = 0x3f8000003f800000;
+  state_ptr[0x62] = 0x3f8000003f800000;
+  state_ptr[99] = 0x3f8000003f800000;
+  
+  return state_ptr;
 }
 
-
-
-undefined8 *
-FUN_180270770(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: 清理渲染上下文 (48字节)
+// 参数: param_1 - 上下文指针, param_2 - 清理标志, param_3/4 - 保留参数
+// 功能: 清理48字节的渲染上下文
+undefined8 * cleanup_render_context_48(undefined8 *context_ptr, ulonglong cleanup_flags, undefined8 reserved1, undefined8 reserved2)
 {
-  undefined8 uVar1;
+  undefined8 cleanup_code;
   
-  uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a16270;
-  FUN_1802708b0(param_1 + 1);
-  if (param_1[1] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  cleanup_code = 0xfffffffffffffffe;
+  *context_ptr = &GLOBAL_RENDER_TABLE;
+  cleanup_render_buffer(context_ptr + 1);
+  
+  if (context_ptr[1] != 0) {
+    // 严重错误：不应返回的函数调用
+    handle_critical_error();
   }
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x30,param_3,param_4,uVar1);
+  
+  if ((cleanup_flags & 1) != 0) {
+    free(context_ptr, 0x30, reserved1, reserved2, cleanup_code);
   }
-  return param_1;
+  
+  return context_ptr;
 }
 
-
-
-undefined8 *
-FUN_180270830(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数: 清理渲染上下文 (40字节)
+// 参数: param_1 - 上下文指针, param_2 - 清理标志, param_3/4 - 保留参数
+// 功能: 清理40字节的渲染上下文
+undefined8 * cleanup_render_context_40(undefined8 *context_ptr, ulonglong cleanup_flags, undefined8 reserved1, undefined8 reserved2)
 {
-  undefined8 uVar1;
+  undefined8 cleanup_code;
   
-  uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a16270;
-  FUN_1802708b0(param_1 + 1);
-  if (param_1[1] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  cleanup_code = 0xfffffffffffffffe;
+  *context_ptr = &GLOBAL_RENDER_TABLE;
+  cleanup_render_buffer(context_ptr + 1);
+  
+  if (context_ptr[1] != 0) {
+    // 严重错误：不应返回的函数调用
+    handle_critical_error();
   }
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x28,param_3,param_4,uVar1);
+  
+  if ((cleanup_flags & 1) != 0) {
+    free(context_ptr, 0x28, reserved1, reserved2, cleanup_code);
   }
-  return param_1;
+  
+  return context_ptr;
 }
 
-
-
-
-
-// 函数: void FUN_1802708b0(ulonglong *param_1)
-void FUN_1802708b0(ulonglong *param_1)
-
+// 函数: 清理渲染缓冲区
+// 参数: param_1 - 缓冲区指针
+// 功能: 清理和重置渲染缓冲区
+void cleanup_render_buffer(ulonglong *buffer_ptr)
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *ref_count;
+  undefined8 *buffer_data;
+  longlong memory_block;
+  ulonglong memory_address;
   
-  puVar2 = (undefined8 *)*param_1;
-  *param_1 = 0;
-  param_1[1] = 0;
-  param_1[2] = 0;
-  *(undefined4 *)(param_1 + 3) = 3;
-  if (puVar2 == (undefined8 *)0x0) {
+  buffer_data = (undefined8 *)*buffer_ptr;
+  *buffer_ptr = 0;
+  buffer_ptr[1] = 0;
+  buffer_ptr[2] = 0;
+  *(undefined4 *)(buffer_ptr + 3) = 3;
+  
+  if (buffer_data == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
-        FUN_18064d630();
+  
+  // 检查内存地址有效性
+  memory_address = (ulonglong)buffer_data & 0xffffffffffc00000;
+  if (memory_address != 0) {
+    memory_block = memory_address + 0x80 + ((longlong)buffer_data - memory_address >> 0x10) * 0x50;
+    memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
+    
+    // 检查是否为有效的渲染缓冲区
+    if ((*(void ***)(memory_address + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
+      // 从链表中移除缓冲区
+      *buffer_data = *(undefined8 *)(memory_block + 0x20);
+      *(undefined8 **)(memory_block + 0x20) = buffer_data;
+      
+      // 减少引用计数
+      ref_count = (int *)(memory_block + 0x18);
+      *ref_count = *ref_count + -1;
+      
+      // 如果引用计数为0，执行清理
+      if (*ref_count == 0) {
+        cleanup_render_manager();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      // 处理异常情况
+      handle_memory_exception(memory_address, 
+                             CONCAT71(0xff000000, *(void ***)(memory_address + 0x70) == &ExceptionList),
+                             buffer_data, memory_address, 0xfffffffffffffffe);
     }
   }
+  
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180270920(undefined8 *param_1)
-void FUN_180270920(undefined8 *param_1)
-
+// 函数: 重置渲染管线
+// 参数: param_1 - 管线指针
+// 功能: 重置渲染管线状态
+void reset_render_pipeline(undefined8 *pipeline_ptr)
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *ref_count;
+  undefined8 *pipeline_data;
+  longlong memory_block;
+  ulonglong memory_address;
   
-  *param_1 = &UNK_180a16270;
-  FUN_1802708b0(param_1 + 1);
-  puVar2 = (undefined8 *)param_1[1];
-  if (puVar2 == (undefined8 *)0x0) {
+  *pipeline_ptr = &GLOBAL_RENDER_TABLE;
+  cleanup_render_buffer(pipeline_ptr + 1);
+  
+  pipeline_data = (undefined8 *)pipeline_ptr[1];
+  if (pipeline_data == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
-        FUN_18064d630();
+  
+  // 检查内存地址有效性
+  memory_address = (ulonglong)pipeline_data & 0xffffffffffc00000;
+  if (memory_address != 0) {
+    memory_block = memory_address + 0x80 + ((longlong)pipeline_data - memory_address >> 0x10) * 0x50;
+    memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
+    
+    // 检查是否为有效的渲染管线
+    if ((*(void ***)(memory_address + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
+      // 从链表中移除管线
+      *pipeline_data = *(undefined8 *)(memory_block + 0x20);
+      *(undefined8 **)(memory_block + 0x20) = pipeline_data;
+      
+      // 减少引用计数
+      ref_count = (int *)(memory_block + 0x18);
+      *ref_count = *ref_count + -1;
+      
+      // 如果引用计数为0，执行清理
+      if (*ref_count == 0) {
+        cleanup_render_manager();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      // 处理异常情况
+      handle_memory_exception(memory_address, 
+                             CONCAT71(0xff000000, *(void ***)(memory_address + 0x70) == &ExceptionList),
+                             pipeline_data, memory_address, 0xfffffffffffffffe);
     }
   }
+  
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180270970(undefined8 *param_1)
-void FUN_180270970(undefined8 *param_1)
-
+// 函数: 重置着色器状态
+// 参数: param_1 - 着色器指针
+// 功能: 重置着色器状态
+void reset_shader_state(undefined8 *shader_ptr)
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *ref_count;
+  undefined8 *shader_data;
+  longlong memory_block;
+  ulonglong memory_address;
   
-  *param_1 = &UNK_180a16270;
-  FUN_1802708b0(param_1 + 1);
-  puVar2 = (undefined8 *)param_1[1];
-  if (puVar2 == (undefined8 *)0x0) {
+  *shader_ptr = &GLOBAL_RENDER_TABLE;
+  cleanup_render_buffer(shader_ptr + 1);
+  
+  shader_data = (undefined8 *)shader_ptr[1];
+  if (shader_data == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
-        FUN_18064d630();
+  
+  // 检查内存地址有效性
+  memory_address = (ulonglong)shader_data & 0xffffffffffc00000;
+  if (memory_address != 0) {
+    memory_block = memory_address + 0x80 + ((longlong)shader_data - memory_address >> 0x10) * 0x50;
+    memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
+    
+    // 检查是否为有效的着色器
+    if ((*(void ***)(memory_address + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
+      // 从链表中移除着色器
+      *shader_data = *(undefined8 *)(memory_block + 0x20);
+      *(undefined8 **)(memory_block + 0x20) = shader_data;
+      
+      // 减少引用计数
+      ref_count = (int *)(memory_block + 0x18);
+      *ref_count = *ref_count + -1;
+      
+      // 如果引用计数为0，执行清理
+      if (*ref_count == 0) {
+        cleanup_render_manager();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      // 处理异常情况
+      handle_memory_exception(memory_address, 
+                             CONCAT71(0xff000000, *(void ***)(memory_address + 0x70) == &ExceptionList),
+                             shader_data, memory_address, 0xfffffffffffffffe);
     }
   }
+  
   return;
 }
 
-
-
-ulonglong FUN_1802709c0(longlong param_1,longlong param_2)
-
+// 函数: 比较渲染缓冲区
+// 参数: param_1 - 第一个缓冲区, param_2 - 第二个缓冲区
+// 功能: 比较两个渲染缓冲区是否相同
+ulonglong compare_render_buffers(longlong buffer1, longlong buffer2)
 {
-  float *pfVar1;
-  float *pfVar2;
-  float *pfVar3;
-  longlong lVar4;
+  float *buffer1_ptr;
+  float *buffer2_ptr;
+  float *buffer1_start;
+  float *buffer1_end;
+  longlong offset_diff;
   
-  pfVar1 = *(float **)(param_1 + 0x328);
-  pfVar3 = *(float **)(param_1 + 800);
-  pfVar2 = (float *)-((longlong)pfVar1 - (longlong)pfVar3 >> 0x3f);
-  if (((longlong)pfVar1 - (longlong)pfVar3) / 0x14 ==
-      (*(longlong *)(param_2 + 0x328) - *(longlong *)(param_2 + 800)) / 0x14) {
-    if (pfVar3 != pfVar1) {
-      pfVar2 = (float *)(*(longlong *)(param_2 + 800) + 8);
-      do {
-        if ((((pfVar2[-2] != *pfVar3) || (pfVar2[-1] != pfVar3[1])) || (*pfVar2 != pfVar3[2])) ||
-           (pfVar2[1] != pfVar3[3])) goto LAB_180270af4;
-        pfVar3 = pfVar3 + 5;
-        pfVar2 = pfVar2 + 5;
-      } while (pfVar3 != pfVar1);
-    }
-    pfVar1 = *(float **)(param_1 + 0x348);
-    pfVar3 = *(float **)(param_1 + 0x340);
-    pfVar2 = (float *)((longlong)pfVar1 - (longlong)pfVar3);
-    if (((*(longlong *)(param_2 + 0x348) - *(longlong *)(param_2 + 0x340) ^ (ulonglong)pfVar2) &
-        0xfffffffffffffff8) == 0) {
-      if (pfVar3 != pfVar1) {
-        lVar4 = *(longlong *)(param_2 + 0x340) - (longlong)pfVar3;
-        do {
-          if ((*(float *)(lVar4 + (longlong)pfVar3) != *pfVar3) ||
-             (*(float *)(lVar4 + 4 + (longlong)pfVar3) != pfVar3[1])) goto LAB_180270af4;
-          pfVar3 = pfVar3 + 2;
-        } while (pfVar3 != pfVar1);
-      }
-      return CONCAT71((int7)((ulonglong)pfVar2 >> 8),1);
-    }
+  buffer1_ptr = *(float **)(buffer1 + 0x328);
+  buffer1_end = *(float **)(buffer1 + 800);
+  buffer1_start = (float *)-((longlong)buffer1_ptr - (longlong)buffer1_end >> 0x3f);
+  
+  // 比较缓冲区大小
+  if (((longlong)buffer1_ptr - (longlong)buffer1_end) / 0x14 !=
+      (*(longlong *)(buffer2 + 0x328) - *(longlong *)(buffer2 + 800)) / 0x14) {
+    return 0;
   }
-LAB_180270af4:
-  return (ulonglong)pfVar2 & 0xffffffffffffff00;
+  
+  // 比较缓冲区内容
+  if (buffer1_end != buffer1_ptr) {
+    buffer2_ptr = (float *)(*(longlong *)(buffer2 + 800) + 8);
+    
+    do {
+      // 检查5个浮点数是否相等
+      if ((((buffer2_ptr[-2] != *buffer1_end) || (buffer2_ptr[-1] != buffer1_end[1])) || 
+           (*buffer2_ptr != buffer1_end[2])) || (buffer2_ptr[1] != buffer1_end[3])) {
+        return 0;
+      }
+      
+      buffer1_end = buffer1_end + 5;
+      buffer2_ptr = buffer2_ptr + 5;
+    } while (buffer1_end != buffer1_ptr);
+  }
+  
+  // 比较第二组数据
+  buffer1_ptr = *(float **)(buffer1 + 0x348);
+  buffer1_end = *(float **)(buffer1 + 0x340);
+  buffer1_start = (float *)((longlong)buffer1_ptr - (longlong)buffer1_end);
+  
+  // 检查数据长度是否匹配
+  if (((*(longlong *)(buffer2 + 0x348) - *(longlong *)(buffer2 + 0x340) ^ (ulonglong)buffer1_start) &
+      0xfffffffffffffff8) != 0) {
+    return 0;
+  }
+  
+  // 比较第二组数据内容
+  if (buffer1_end != buffer1_ptr) {
+    offset_diff = *(longlong *)(buffer2 + 0x340) - (longlong)buffer1_end;
+    
+    do {
+      // 检查2个浮点数是否相等
+      if ((*(float *)(offset_diff + (longlong)buffer1_end) != *buffer1_end) ||
+         (*(float *)(offset_diff + 4 + (longlong)buffer1_end) != buffer1_end[1])) {
+        return 0;
+      }
+      
+      buffer1_end = buffer1_end + 2;
+    } while (buffer1_end != buffer1_ptr);
+  }
+  
+  // 缓冲区相同
+  return CONCAT71((int7)((ulonglong)buffer1_start >> 8), 1);
 }
 
-
-
-undefined1 FUN_180270b10(float *param_1,float *param_2)
-
+// 函数: 比较渲染材质
+// 参数: param_1 - 第一个材质, param_2 - 第二个材质
+// 功能: 比较两个渲染材质是否相同
+undefined1 compare_render_materials(float *material1, float *material2)
 {
-  char cVar1;
+  char comparison_result;
   
-  if ((param_1[1] == param_2[1]) && (*param_1 == *param_2)) {
-    cVar1 = func_0x000180417730(param_2 + 2,param_1 + 2);
-    if (cVar1 != '\0') {
-      cVar1 = func_0x000180417730(param_2 + 0xe,param_1 + 0xe);
-      if (cVar1 != '\0') {
-        return 1;
+  // 比较材质的基本属性
+  if ((material1[1] == material2[1]) && (*material1 == *material2)) {
+    comparison_result = compare_material_properties(material2 + 2, material1 + 2);
+    
+    if (comparison_result != '\0') {
+      comparison_result = compare_material_properties(material2 + 0xe, material1 + 0xe);
+      
+      if (comparison_result != '\0') {
+        return 1; // 材质相同
       }
     }
   }
-  return 0;
+  
+  return 0; // 材质不同
 }
-
-
-
-
-

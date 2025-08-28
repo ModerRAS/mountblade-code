@@ -321,69 +321,77 @@ void create_extended_buffer(undefined8 param1, longlong *buffer_ptr, undefined4 
 
 
 
-// 函数: void FUN_1800816c0(longlong param_1,longlong *param_2)
-void FUN_1800816c0(longlong param_1,longlong *param_2)
-
+/**
+ * 动态数组扩展函数 - 4字节元素
+ * 当数组空间不足时，重新分配更大的内存空间并复制现有数据
+ * 
+ * @param source_array 源数组指针
+ * @param target_ptr 指向目标数组指针的指针
+ */
+void expand_dynamic_array_4byte(longlong source_array, longlong *target_ptr)
 {
-  int iVar1;
-  undefined8 uVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  undefined1 auStack_d8 [32];
-  undefined4 uStack_b8;
-  longlong *plStack_b0;
-  longlong *plStack_a8;
-  undefined8 uStack_a0;
-  undefined *puStack_98;
-  undefined1 *puStack_90;
-  undefined4 uStack_88;
-  undefined1 auStack_80 [72];
-  ulonglong uStack_38;
+  int array_size;
+  undefined8 system_data;
+  longlong *new_buffer;
+  longlong allocated_memory;
+  undefined1 stack_buffer [32];
+  undefined4 stack_flag;
+  longlong *temp_buffer;
+  longlong *old_buffer;
+  undefined8 stack_param;
+  undefined *stack_ptr1;
+  undefined1 *stack_ptr2;
+  undefined4 stack_size;
+  undefined1 stack_data [72];
+  ulonglong stack_guard;
   
-  uStack_a0 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
-  uStack_b8 = 0;
-  iVar1 = **(int **)(param_1 + 8);
-  *(int **)(param_1 + 8) = *(int **)(param_1 + 8) + 1;
-  uVar2 = _DAT_180c8a998;
-  if (iVar1 != 0) {
-    iVar1 = iVar1 * 4;
-    puStack_98 = &UNK_1809fcc58;
-    puStack_90 = auStack_80;
-    auStack_80[0] = 0;
-    uStack_88 = 0x1c;
-    strcpy_s(auStack_80,0x40,&DAT_1809ffc60);
-    FUN_1802037e0();
-    puStack_98 = &UNK_18098bcb0;
-    lVar4 = FUN_18062b1e0(_DAT_180c8ed18,iVar1,0x10,0x1e);
-    FUN_180083520(uVar2,&plStack_b0);
-    plVar3 = plStack_b0;
-    plStack_b0[2] = lVar4;
-    *(int *)(plStack_b0 + 3) = iVar1;
-    *(int *)((longlong)plStack_b0 + 0x1c) = iVar1;
-    *(undefined1 *)(plStack_b0 + 4) = 0;
-    uStack_b8 = 1;
-    plStack_b0 = (longlong *)0x0;
-    plStack_a8 = (longlong *)*param_2;
-    *param_2 = (longlong)plVar3;
-    if (plStack_a8 != (longlong *)0x0) {
-      (**(code **)(*plStack_a8 + 0x38))();
+  stack_param = 0xfffffffffffffffe;
+  stack_guard = STACK_GUARD_VALUE ^ (ulonglong)stack_buffer;
+  stack_flag = 0;
+  array_size = **(int **)(source_array + 8);
+  *(int **)(source_array + 8) = *(int **)(source_array + 8) + 1;
+  system_data = system_config_data;
+  if (array_size != 0) {
+    array_size = array_size * 4;  // 4字节元素
+    // 设置栈参数
+    stack_ptr1 = &debug_info_ptr;
+    stack_ptr2 = stack_data;
+    stack_data[0] = 0;
+    stack_size = 0x1c;
+    strcpy_s(stack_data, 0x40, &debug_string_data);
+    initialize_debug_system();
+    stack_ptr1 = &system_debug_ptr;
+    
+    // 分配新内存
+    allocated_memory = allocate_buffer_memory(memory_allocator_ptr, array_size, 0x10, 0x1e);
+    initialize_4byte_array(system_data, &temp_buffer);
+    new_buffer = temp_buffer;
+    temp_buffer[2] = allocated_memory;
+    *(int *)(temp_buffer + 3) = array_size;
+    *(int *)((longlong)temp_buffer + 0x1c) = array_size;
+    *(undefined1 *)(temp_buffer + 4) = 0;
+    stack_flag = 1;
+    temp_buffer = (longlong *)0x0;
+    old_buffer = (longlong *)*target_ptr;
+    *target_ptr = (longlong)new_buffer;
+    if (old_buffer != (longlong *)0x0) {
+      (**(code **)(*old_buffer + 0x38))();  // 调用旧缓冲区的析构函数
     }
-    uStack_b8 = 0;
-    if (plStack_b0 != (longlong *)0x0) {
-      (**(code **)(*plStack_b0 + 0x38))();
+    stack_flag = 0;
+    if (temp_buffer != (longlong *)0x0) {
+      (**(code **)(*temp_buffer + 0x38))();
     }
-                    // WARNING: Subroutine does not return
-    memcpy(*(undefined8 *)(*param_2 + 0x10),*(undefined8 *)(param_1 + 8),
-           (longlong)*(int *)(*param_2 + 0x1c));
+    // 复制数据到新缓冲区
+    memcpy(*(undefined8 *)(*target_ptr + 0x10), *(undefined8 *)(source_array + 8),
+           (longlong)*(int *)(*target_ptr + 0x1c));
   }
-  plStack_a8 = (longlong *)*param_2;
-  *param_2 = 0;
-  if (plStack_a8 != (longlong *)0x0) {
-    (**(code **)(*plStack_a8 + 0x38))();
+  old_buffer = (longlong *)*target_ptr;
+  *target_ptr = 0;
+  if (old_buffer != (longlong *)0x0) {
+    (**(code **)(*old_buffer + 0x38))();
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_d8);
+  // 执行缓冲区操作（该函数不会返回）
+  execute_buffer_operation(stack_guard ^ (ulonglong)stack_buffer);
 }
 
 

@@ -760,19 +760,25 @@ uint initialize_graphics_driver_config(void)
 
 
 
-// 函数: void FUN_18004eb00(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004eb00(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 管理配置缓冲区
+ * 主要功能：管理和处理多个配置缓冲区的数据复制和清理
+ * 
+ * 原始实现：FUN_18004eb00
+ * 简化实现：配置缓冲区管理函数
+ */
+void manage_config_buffers(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
-  uint uVar1;
-  uint uVar2;
-  longlong lVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  undefined *puStack_68;
-  longlong lStack_60;
-  uint uStack_58;
-  undefined8 uStack_50;
+  uint buffer_size1;          // 缓冲区大小1
+  uint buffer_size2;          // 缓冲区大小2
+  longlong config_ptr1;       // 配置指针1
+  longlong config_ptr2;       // 配置指针2
+  ulonglong data_size;        // 数据大小
+  undefined *cleanup_ptr;     // 清理指针
+  longlong buffer_ptr;        // 缓冲区指针
+  uint buffer_size_total;     // 总缓冲区大小
+  undefined8 result_flags;    // 结果标志
   
   lVar3 = _DAT_180c868b0;
   puStack_68 = &UNK_180a3c3e0;
@@ -997,51 +1003,66 @@ void FUN_18004ef60(void)
 
 
 
-// 函数: void FUN_18004f8e0(longlong param_1)
-void FUN_18004f8e0(longlong param_1)
-
+/**
+ * 释放资源数组
+ * 主要功能：释放和清理资源数组中的所有元素
+ * 
+ * 原始实现：FUN_18004f8e0
+ * 简化实现：资源数组释放函数
+ */
+void free_resource_array(longlong resource_array)
 {
-  int *piVar1;
-  longlong lVar2;
-  undefined8 *puVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  ulonglong uVar6;
+  int *ref_count;           // 引用计数指针
+  longlong element_ptr;     // 元素指针
+  undefined8 *array_ptr;    // 数组指针
+  longlong mem_ptr;         // 内存指针
+  ulonglong index;          // 索引
+  ulonglong array_size;     // 数组大小
   
-  uVar6 = *(ulonglong *)(param_1 + 0x10);
-  lVar4 = *(longlong *)(param_1 + 8);
-  uVar5 = 0;
-  if (uVar6 != 0) {
+  array_size = *(ulonglong *)(resource_array + 0x10);
+  mem_ptr = *(longlong *)(resource_array + 8);
+  index = 0;
+  
+  // 遍历并释放数组中的所有元素
+  if (array_size != 0) {
     do {
-      lVar2 = *(longlong *)(lVar4 + uVar5 * 8);
-      if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900(lVar2);
+      element_ptr = *(longlong *)(mem_ptr + index * 8);
+      if (element_ptr != 0) {
+        // 警告：子程序不返回
+        FUN_18064e900(element_ptr);
       }
-      *(undefined8 *)(lVar4 + uVar5 * 8) = 0;
-      uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar6);
-    uVar6 = *(ulonglong *)(param_1 + 0x10);
+      *(undefined8 *)(mem_ptr + index * 8) = 0;
+      index = index + 1;
+    } while (index < array_size);
+    array_size = *(ulonglong *)(resource_array + 0x10);
   }
-  *(undefined8 *)(param_1 + 0x18) = 0;
-  if ((1 < uVar6) && (puVar3 = *(undefined8 **)(param_1 + 8), puVar3 != (undefined8 *)0x0)) {
-    uVar6 = (ulonglong)puVar3 & 0xffffffffffc00000;
-    if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)puVar3 - uVar6 >> 0x10) * 0x50;
-      lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
-      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *puVar3 = *(undefined8 *)(lVar4 + 0x20);
-        *(undefined8 **)(lVar4 + 0x20) = puVar3;
-        piVar1 = (int *)(lVar4 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+  
+  *(undefined8 *)(resource_array + 0x18) = 0;
+  
+  // 处理内存管理
+  if ((1 < array_size) && (array_ptr = *(undefined8 **)(resource_array + 8), array_ptr != (undefined8 *)0x0)) {
+    // 计算内存块地址
+    array_size = (ulonglong)array_ptr & 0xffffffffffc00000;
+    if (array_size != 0) {
+      mem_ptr = array_size + 0x80 + ((longlong)array_ptr - array_size >> 0x10) * 0x50;
+      mem_ptr = mem_ptr - (ulonglong)*(uint *)(mem_ptr + 4);
+      
+      // 检查异常列表和内存状态
+      if ((*(void ***)(array_size + 0x70) == &ExceptionList) && (*(char *)(mem_ptr + 0xe) == '\0')) {
+        // 更新内存链表
+        *array_ptr = *(undefined8 *)(mem_ptr + 0x20);
+        *(undefined8 **)(mem_ptr + 0x20) = array_ptr;
+        ref_count = (int *)(mem_ptr + 0x18);
+        *ref_count = *ref_count + -1;
+        if (*ref_count == 0) {
           FUN_18064d630();
           return;
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar3,uVar6,0xfffffffffffffffe);
+        // 使用特殊内存管理函数
+        func_0x00018064e870(array_size, CONCAT71(0xff000000, *(void ***)(array_size + 0x70) == &ExceptionList),
+                            array_ptr, array_size, 0xfffffffffffffffe);
       }
     }
     return;

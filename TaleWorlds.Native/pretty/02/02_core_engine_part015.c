@@ -44,35 +44,47 @@ void cleanup_object_array(longlong object_array_ptr)
 
 
 
-longlong FUN_180055e80(longlong param_1)
+/**
+ * 初始化对象容器
+ * 设置对象容器的基本结构和初始值
+ * 
+ * @param container_ptr 容器指针
+ * @return 返回初始化后的容器指针
+ */
+longlong initialize_object_container(longlong container_ptr)
 
 {
-  *(undefined8 *)(param_1 + 8) = &UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x18) = 0;
-  *(undefined8 *)(param_1 + 8) = &UNK_180a3c3e0;
-  *(undefined8 *)(param_1 + 0x20) = 0;
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x18) = 0;
-  return param_1;
+  *(undefined8 *)(container_ptr + 8) = &UNK_18098bcb0;
+  *(undefined8 *)(container_ptr + 0x10) = 0;
+  *(undefined4 *)(container_ptr + 0x18) = 0;
+  *(undefined8 *)(container_ptr + 8) = &UNK_180a3c3e0;
+  *(undefined8 *)(container_ptr + 0x20) = 0;
+  *(undefined8 *)(container_ptr + 0x10) = 0;
+  *(undefined4 *)(container_ptr + 0x18) = 0;
+  return container_ptr;
 }
 
 
 
 
 
-// 函数: void FUN_180055ed0(longlong param_1)
-void FUN_180055ed0(longlong param_1)
+/**
+ * 清理并重置对象容器
+ * 释放容器资源并重置为初始状态
+ * 
+ * @param container_ptr 容器指针
+ */
+void cleanup_and_reset_container(longlong container_ptr)
 
 {
-  *(undefined8 *)(param_1 + 8) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_1 + 0x10) != 0) {
+  *(undefined8 *)(container_ptr + 8) = &UNK_180a3c3e0;
+  if (*(longlong *)(container_ptr + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x20) = 0;
-  *(undefined8 *)(param_1 + 8) = &UNK_18098bcb0;
+  *(undefined8 *)(container_ptr + 0x10) = 0;
+  *(undefined4 *)(container_ptr + 0x20) = 0;
+  *(undefined8 *)(container_ptr + 8) = &UNK_18098bcb0;
   return;
 }
 
@@ -80,11 +92,19 @@ void FUN_180055ed0(longlong param_1)
 
 
 
-// 函数: void FUN_180055f20(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180055f20(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 处理对象容器操作
+ * 调用内部函数处理容器的具体操作
+ * 
+ * @param container_ptr 容器指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ */
+void process_container_operation(longlong container_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
 
 {
-  FUN_180058210(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058210(container_ptr, *(undefined8 *)(container_ptr + 0x10), param3, param4, 0xfffffffffffffffe);
   return;
 }
 
@@ -92,35 +112,40 @@ void FUN_180055f20(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_180055f50(longlong param_1)
-void FUN_180055f50(longlong param_1)
+/**
+ * 清理对象数组资源
+ * 释放数组中所有对象的内存和资源
+ * 
+ * @param array_ptr 数组指针
+ */
+void cleanup_object_array_resources(longlong array_ptr)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
+  longlong array_data_ptr;
+  longlong object_ptr;
+  ulonglong array_size;
+  ulonglong index;
   
-  uVar3 = *(ulonglong *)(param_1 + 0x10);
-  lVar1 = *(longlong *)(param_1 + 8);
-  uVar4 = 0;
-  if (uVar3 != 0) {
+  array_size = *(ulonglong *)(array_ptr + 0x10);
+  array_data_ptr = *(longlong *)(array_ptr + 8);
+  index = 0;
+  if (array_size != 0) {
     do {
-      lVar2 = *(longlong *)(lVar1 + uVar4 * 8);
-      if (lVar2 != 0) {
-        if (*(longlong **)(lVar2 + 0x10) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(lVar2 + 0x10) + 0x38))();
+      object_ptr = *(longlong *)(array_data_ptr + index * 8);
+      if (object_ptr != 0) {
+        if (*(longlong **)(object_ptr + 0x10) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(object_ptr + 0x10) + 0x38))();
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900(lVar2);
+        FUN_18064e900(object_ptr);
       }
-      *(undefined8 *)(lVar1 + uVar4 * 8) = 0;
-      uVar4 = uVar4 + 1;
-    } while (uVar4 < uVar3);
-    uVar3 = *(ulonglong *)(param_1 + 0x10);
+      *(undefined8 *)(array_data_ptr + index * 8) = 0;
+      index = index + 1;
+    } while (index < array_size);
+    array_size = *(ulonglong *)(array_ptr + 0x10);
   }
-  *(undefined8 *)(param_1 + 0x18) = 0;
-  if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
+  *(undefined8 *)(array_ptr + 0x18) = 0;
+  if ((1 < array_size) && (*(longlong *)(array_ptr + 8) != 0)) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
@@ -133,8 +158,14 @@ void FUN_180055f50(longlong param_1)
 
 
 
-// 函数: void FUN_180055f70(undefined8 param_1,undefined4 param_2)
-void FUN_180055f70(undefined8 param_1,undefined4 param_2)
+/**
+ * 安全退出程序
+ * 等待2秒后安全退出程序
+ * 
+ * @param param1 参数1
+ * @param exit_code 退出代码
+ */
+void safe_exit_program(undefined8 param1, undefined4 exit_code)
 
 {
   code *pcVar1;
@@ -143,7 +174,7 @@ void FUN_180055f70(undefined8 param_1,undefined4 param_2)
     func_0x00018005a410(_DAT_180c8f008 + 8);
   }
   Sleep(2000);
-  _Exit(param_2);
+  _Exit(exit_code);
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
