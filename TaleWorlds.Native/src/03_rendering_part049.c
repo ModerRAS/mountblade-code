@@ -1120,7 +1120,9 @@ void RenderingSystem_ProcessQuadVertices(longlong render_context, undefined8 *ve
 
 
 // 函数: void FUN_180293fc5(undefined8 param_1,undefined8 param_2)
-void FUN_180293fc5(undefined8 param_1,undefined8 param_2)
+// 功能: 渲染系统四边形顶点处理函数（寄存器变量版本）
+// 参数: param_1 - 顶点数量, param_2 - 顶点数据
+void RenderingSystem_ProcessQuadVerticesReg(undefined8 vertex_count, undefined8 vertex_data)
 
 {
   undefined4 uVar1;
@@ -1185,9 +1187,11 @@ void FUN_180293fc5(undefined8 param_1,undefined8 param_2)
 
 
 // 函数: void FUN_1802940cd(void)
-void FUN_1802940cd(void)
+// 功能: 渲染系统空操作函数5
+void RenderingSystem_NoOperation5(void)
 
 {
+  // 空操作函数
   return;
 }
 
@@ -1196,16 +1200,22 @@ void FUN_1802940cd(void)
 
 
 // 函数: void FUN_1802940f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-void FUN_1802940f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                  uint param_5)
+// 功能: 渲染系统三坐标点处理函数
+// 参数: param_1 - 渲染上下文指针, param_2 - 数据指针1, param_3 - 数据指针2, param_4 - 数据指针3, param_5 - 渲染标志
+void RenderingSystem_ProcessTripleCoordinates(longlong render_context, undefined8 data_ptr1, undefined8 data_ptr2, undefined8 data_ptr3, uint render_flags)
 
 {
-  if ((param_5 & 0xff000000) != 0) {
-    FUN_18011d9a0(param_1 + 0x80);
-    FUN_18011d9a0(param_1 + 0x80,param_3);
-    FUN_18011d9a0(param_1 + 0x80,param_4);
-    FUN_180293190(param_1,*(undefined8 *)(param_1 + 0x88),*(undefined4 *)(param_1 + 0x80),param_5);
-    *(undefined4 *)(param_1 + 0x80) = 0;
+  // 检查渲染标志是否有效
+  if ((render_flags & 0xff000000) != 0) {
+    // 清理缓冲区
+    FUN_18011d9a0(render_context + 0x80);
+    // 添加三个坐标点到缓冲区
+    FUN_18011d9a0(render_context + 0x80, data_ptr2);
+    FUN_18011d9a0(render_context + 0x80, data_ptr3);
+    // 处理顶点索引缓冲区
+    FUN_180293190(render_context, *(undefined8 *)(render_context + 0x88), *(undefined4 *)(render_context + 0x80), render_flags);
+    // 重置缓冲区计数器
+    *(undefined4 *)(render_context + 0x80) = 0;
   }
   return;
 }
@@ -1215,7 +1225,8 @@ void FUN_1802940f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 // 函数: void FUN_180294117(void)
-void FUN_180294117(void)
+// 功能: 渲染系统三坐标点处理函数（寄存器变量版本）
+void RenderingSystem_ProcessTripleCoordinatesReg(void)
 
 {
   longlong unaff_RSI;
