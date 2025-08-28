@@ -151,29 +151,35 @@ void empty_function_placeholder(void)
 
 
 
-// 函数: void FUN_180136440(longlong param_1)
-void FUN_180136440(longlong param_1)
+/**
+ * 处理游戏对象状态更新
+ * @param context 上下文指针
+ */
+void process_game_object_status_update(longlong context)
 
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  int iVar3;
-  longlong lVar4;
+  longlong game_obj_ptr;              // 游戏对象指针
+  undefined8 context_handle;          // 上下文句柄
+  int obj_index;                     // 对象索引
+  longlong array_offset;             // 数组偏移量
   
-  iVar3 = 0;
-  if (0 < *(int *)(param_1 + 0x1aa0)) {
-    lVar4 = 0;
+  obj_index = 0;
+  // 检查是否有需要处理的对象
+  if (0 < *(int *)(context + 0x1aa0)) {
+    array_offset = 0;
     do {
-      lVar1 = *(longlong *)(lVar4 + *(longlong *)(param_1 + 0x1aa8));
-      if (((*(int *)(lVar1 + 0x418) != 0) &&
-          (*(int *)(param_1 + 0x1a90) + -1 <= *(int *)(lVar1 + 0x280))) &&
-         (*(longlong *)(lVar1 + 0x408) == 0)) {
-        uVar2 = FUN_180121fa0(*(undefined8 *)(param_1 + 0x2df8));
-        FUN_180136b10(uVar2,lVar1,1);
+      game_obj_ptr = *(longlong *)(array_offset + *(longlong *)(context + 0x1aa8));
+      // 检查对象状态条件
+      if (((*(int *)(game_obj_ptr + 0x418) != 0) &&
+          (*(int *)(context + 0x1a90) + -1 <= *(int *)(game_obj_ptr + 0x280))) &&
+         (*(longlong *)(game_obj_ptr + 0x408) == 0)) {
+        // 获取上下文句柄并处理对象
+        context_handle = FUN_180121fa0(*(undefined8 *)(context + 0x2df8));
+        FUN_180136b10(context_handle, game_obj_ptr, 1);
       }
-      iVar3 = iVar3 + 1;
-      lVar4 = lVar4 + 8;
-    } while (iVar3 < *(int *)(param_1 + 0x1aa0));
+      obj_index = obj_index + 1;
+      array_offset = array_offset + 8;
+    } while (obj_index < *(int *)(context + 0x1aa0));
   }
   return;
 }
@@ -182,28 +188,33 @@ void FUN_180136440(longlong param_1)
 
 
 
-// 函数: void FUN_180136457(void)
-void FUN_180136457(void)
+/**
+ * 批量处理游戏对象状态（使用寄存器变量版本）
+ * 使用ESI和RDI寄存器作为参数
+ */
+void process_game_object_batch_register(void)
 
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  uint unaff_ESI;
-  longlong unaff_RDI;
-  ulonglong uVar3;
+  longlong game_obj_ptr;              // 游戏对象指针
+  undefined8 context_handle;          // 上下文句柄
+  uint obj_counter;                   // 对象计数器
+  longlong context_ptr;               // 上下文指针
+  ulonglong array_offset;             // 数组偏移量
   
-  uVar3 = (ulonglong)unaff_ESI;
+  array_offset = (ulonglong)obj_counter;
   do {
-    lVar1 = *(longlong *)(uVar3 + *(longlong *)(unaff_RDI + 0x1aa8));
-    if (((*(int *)(lVar1 + 0x418) != 0) &&
-        (*(int *)(unaff_RDI + 0x1a90) + -1 <= *(int *)(lVar1 + 0x280))) &&
-       (*(longlong *)(lVar1 + 0x408) == 0)) {
-      uVar2 = FUN_180121fa0(*(undefined8 *)(unaff_RDI + 0x2df8));
-      FUN_180136b10(uVar2,lVar1,1);
+    game_obj_ptr = *(longlong *)(array_offset + *(longlong *)(context_ptr + 0x1aa8));
+    // 检查对象状态条件
+    if (((*(int *)(game_obj_ptr + 0x418) != 0) &&
+        (*(int *)(context_ptr + 0x1a90) + -1 <= *(int *)(game_obj_ptr + 0x280))) &&
+       (*(longlong *)(game_obj_ptr + 0x408) == 0)) {
+      // 获取上下文句柄并处理对象
+      context_handle = FUN_180121fa0(*(undefined8 *)(context_ptr + 0x2df8));
+      FUN_180136b10(context_handle, game_obj_ptr, 1);
     }
-    unaff_ESI = unaff_ESI + 1;
-    uVar3 = uVar3 + 8;
-  } while ((int)unaff_ESI < *(int *)(unaff_RDI + 0x1aa0));
+    obj_counter = obj_counter + 1;
+    array_offset = array_offset + 8;
+  } while ((int)obj_counter < *(int *)(context_ptr + 0x1aa0));
   return;
 }
 
@@ -211,8 +222,10 @@ void FUN_180136457(void)
 
 
 
-// 函数: void FUN_1801364c5(void)
-void FUN_1801364c5(void)
+/**
+ * 空函数2 - 另一个占位符函数
+ */
+void empty_function_placeholder2(void)
 
 {
   return;

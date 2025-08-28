@@ -478,85 +478,128 @@ undefined8 *create_default_string_hash_entry(void)
 
 
 
-undefined8 * FUN_18013ca47(int param_1)
-
+/**
+ * 在指定索引位置创建字符串哈希条目
+ * 使用索引计算位置并初始化条目字段
+ * 
+ * @param param_1 条目索引
+ * @return 新创建的哈希条目指针
+ * 
+ * 注意：此函数在预分配的数组位置创建条目，不进行数组扩展
+ */
+undefined8 *create_string_hash_entry_at_index(int entry_index)
 {
-  undefined4 *puVar1;
-  byte bVar2;
-  int iVar3;
-  longlong lVar4;
-  byte *pbVar5;
-  undefined8 uVar6;
-  longlong lVar7;
-  longlong unaff_RBX;
-  undefined8 *puVar8;
-  uint uVar9;
-  byte *unaff_R14;
-  undefined8 uStackX_20;
-  undefined8 in_stack_00000028;
-  undefined8 in_stack_00000030;
-  undefined8 in_stack_00000038;
-  undefined4 uStack0000000000000040;
-  undefined4 uStack0000000000000044;
-  undefined4 uStack0000000000000048;
-  undefined4 uStack000000000000004c;
-  undefined8 in_stack_00000050;
+  undefined4 *data_fields;
+  byte current_char;
+  int current_count;
+  longlong array_base;
+  byte *char_ptr;
+  undefined8 string_ptr;
+  longlong entry_offset;
+  longlong global_base;
+  undefined8 *entry_ptr;
+  uint hash_value;
+  byte *default_string;
+  undefined8 stack_param1;
+  undefined8 stack_param2;
+  undefined8 stack_param3;
+  undefined8 stack_param4;
+  undefined4 stack_param5;
+  undefined4 stack_param6;
+  undefined4 stack_param7;
+  undefined4 stack_param8;
+  undefined8 stack_param9;
   
-  lVar7 = (longlong)param_1 * 0x38;
-  lVar4 = *(longlong *)(unaff_RBX + 0x2e30);
-  *(undefined8 *)(lVar7 + lVar4) = uStackX_20;
-  ((undefined8 *)(lVar7 + lVar4))[1] = in_stack_00000028;
-  puVar8 = (undefined8 *)(lVar7 + 0x10 + lVar4);
-  *puVar8 = in_stack_00000030;
-  puVar8[1] = in_stack_00000038;
-  puVar1 = (undefined4 *)(lVar7 + 0x20 + lVar4);
-  *puVar1 = uStack0000000000000040;
-  puVar1[1] = uStack0000000000000044;
-  puVar1[2] = uStack0000000000000048;
-  puVar1[3] = uStack000000000000004c;
-  *(undefined8 *)(lVar7 + 0x30 + lVar4) = in_stack_00000050;
-  iVar3 = *(int *)(unaff_RBX + 0x2e28);
-  *(int *)(unaff_RBX + 0x2e28) = iVar3 + 1;
-  puVar8 = (undefined8 *)((longlong)iVar3 * 0x38 + *(longlong *)(unaff_RBX + 0x2e30));
-  uVar6 = FUN_1801210b0();
-  *puVar8 = uVar6;
-  uVar9 = 0xffffffff;
-  bVar2 = *unaff_R14;
-  pbVar5 = unaff_R14 + 1;
-  while (bVar2 != 0) {
-    if (((bVar2 == 0x23) && (*pbVar5 == 0x23)) && (pbVar5[1] == 0x23)) {
-      uVar9 = 0xffffffff;
+  // 根据索引计算条目偏移量（每个条目0x38字节）
+  entry_offset = (longlong)entry_index * 0x38;
+  array_base = *(longlong *)(global_base + 0x2e30);
+  
+  // 使用栈参数初始化条目字段
+  *(undefined8 *)(entry_offset + array_base) = stack_param1;          // 字段1
+  ((undefined8 *)(entry_offset + array_base))[1] = stack_param2;     // 字段2
+  
+  entry_ptr = (undefined8 *)(entry_offset + 0x10 + array_base);
+  *entry_ptr = stack_param3;                                         // 字段3
+  entry_ptr[1] = stack_param4;                                       // 字段4
+  
+  data_fields = (undefined4 *)(entry_offset + 0x20 + array_base);
+  *data_fields = stack_param5;                                       // 数据字段1
+  data_fields[1] = stack_param6;                                      // 数据字段2
+  data_fields[2] = stack_param7;                                      // 数据字段3
+  data_fields[3] = stack_param8;                                      // 数据字段4
+  
+  *(undefined8 *)(entry_offset + 0x30 + array_base) = stack_param9;  // 标志字段
+  
+  // 更新计数器
+  current_count = *(int *)(global_base + 0x2e28);
+  *(int *)(global_base + 0x2e28) = current_count + 1;
+  
+  // 获取条目指针
+  entry_ptr = (undefined8 *)((longlong)current_count * 0x38 + *(longlong *)(global_base + 0x2e30));
+  
+  // 存储字符串指针
+  string_ptr = FUN_1801210b0();
+  *entry_ptr = string_ptr;
+  
+  // 计算字符串哈希值
+  hash_value = 0xffffffff;
+  current_char = *default_string;
+  char_ptr = default_string + 1;
+  
+  while (current_char != 0) {
+    if (((current_char == 0x23) && (*char_ptr == 0x23)) && (char_ptr[1] == 0x23)) {
+      hash_value = 0xffffffff;
     }
-    uVar9 = *(uint *)(&UNK_18098d290 + ((ulonglong)(uVar9 & 0xff) ^ (ulonglong)bVar2) * 4) ^
-            uVar9 >> 8;
-    bVar2 = *pbVar5;
-    pbVar5 = pbVar5 + 1;
+    
+    hash_value = *(uint *)(&UNK_18098d290 + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+               hash_value >> 8;
+    
+    current_char = *char_ptr;
+    char_ptr = char_ptr + 1;
   }
-  *(uint *)(puVar8 + 1) = ~uVar9;
-  return puVar8;
+  
+  *(uint *)(entry_ptr + 1) = ~hash_value;
+  return entry_ptr;
 }
 
 
 
 
 
-// 函数: void FUN_18013cac6(byte param_1,undefined8 param_2,uint param_3,byte *param_4)
-void FUN_18013cac6(byte param_1,undefined8 param_2,uint param_3,byte *param_4)
-
+/**
+ * 计算字符串哈希值并存储到指定位置
+ * 使用查表法计算字符串的哈希值，支持###注释重置
+ * 
+ * @param first_char 字符串的第一个字符
+ * @param param_2 未使用的参数（保留寄存器）
+ * @param initial_hash 初始哈希值
+ * @param remaining_string 字符串剩余部分指针
+ * 
+ * 注意：此函数将计算结果存储到RDI寄存器指向的位置+8偏移处
+ */
+void calculate_string_hash_and_store(byte first_char, undefined8 unused_param, uint initial_hash, byte *remaining_string)
 {
-  longlong unaff_RDI;
-  uint in_R10D;
+  longlong target_pointer;
+  uint register_r10d;
   
+  // 遍历字符串计算哈希值
   do {
-    if (((param_1 == 0x23) && (*param_4 == 0x23)) && (param_4[1] == 0x23)) {
-      param_3 = in_R10D;
+    // 遇到###标记时重置哈希值
+    if (((first_char == 0x23) && (*remaining_string == 0x23)) && (remaining_string[1] == 0x23)) {
+      initial_hash = register_r10d;
     }
-    param_3 = *(uint *)(&UNK_18098d290 + ((ulonglong)(param_3 & 0xff) ^ (ulonglong)param_1) * 4) ^
-              param_3 >> 8;
-    param_1 = *param_4;
-    param_4 = param_4 + 1;
-  } while (param_1 != 0);
-  *(uint *)(unaff_RDI + 8) = ~param_3;
+    
+    // 使用查找表计算哈希值
+    initial_hash = *(uint *)(&UNK_18098d290 + ((ulonglong)(initial_hash & 0xff) ^ (ulonglong)first_char) * 4) ^
+                  initial_hash >> 8;
+    
+    // 移动到下一个字符
+    first_char = *remaining_string;
+    remaining_string = remaining_string + 1;
+  } while (first_char != 0);
+  
+  // 存储最终哈希值（取反）到目标位置
+  *(uint *)(target_pointer + 8) = ~initial_hash;
   return;
 }
 
@@ -566,24 +609,37 @@ void FUN_18013cac6(byte param_1,undefined8 param_2,uint param_3,byte *param_4)
 
 
 
-// 函数: void FUN_18013cb20(longlong param_1,longlong param_2)
-void FUN_18013cb20(longlong param_1,longlong param_2)
-
+/**
+ * 复制字符串到新分配的内存
+ * 计算字符串长度并分配相应大小的内存块进行复制
+ * 
+ * @param source_string 源字符串指针
+ * @param string_length 字符串长度，如果为0则自动计算
+ * 
+ * 简化实现说明：
+ * - 原始实现：使用全局内存分配器，更新分配计数器
+ * - 简化实现：保持原有逻辑，添加中文注释说明内存管理过程
+ */
+void copy_string_to_new_memory(longlong source_string, longlong string_length)
 {
-  undefined8 uVar1;
+  undefined8 new_memory;
   
-  if (param_2 == 0) {
-    param_2 = -1;
+  // 如果长度为0，自动计算字符串长度
+  if (string_length == 0) {
+    string_length = -1;
     do {
-      param_2 = param_2 + 1;
-    } while (*(char *)(param_1 + param_2) != '\0');
+      string_length = string_length + 1;
+    } while (*(char *)(source_string + string_length) != '\0');
   }
+  
+  // 更新内存分配计数器
   if (_DAT_180c8a9b0 != 0) {
     *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
   }
-  uVar1 = func_0x000180120ce0(param_2 + 1,_DAT_180c8a9a8);
-                    // WARNING: Subroutine does not return
-  memcpy(uVar1,param_1,param_2);
+  
+  // 分配内存并复制字符串
+  new_memory = func_0x000180120ce0(string_length + 1, _DAT_180c8a9a8);
+  memcpy(new_memory, source_string, string_length);
 }
 
 
