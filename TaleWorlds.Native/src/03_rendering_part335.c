@@ -336,9 +336,35 @@ void RenderingSystem_ConvertColorToRGBA(longlong param_1,undefined4 param_2,unde
 
 
 
-// 函数: void FUN_180445970(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-void FUN_180445970(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                  undefined8 param_5,undefined8 param_6,undefined8 param_7,float *param_8)
+/**
+ * 渲染系统多颜色数据处理器
+ * 
+ * 处理多个颜色数据集的转换和操作，支持批量颜色处理。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   颜色数据参数1
+ * @param param_3   颜色数据参数2
+ * @param param_4   颜色数据参数3
+ * @param param_5   颜色数据参数4
+ * @param param_6   颜色数据参数5
+ * @param param_7   颜色数据参数6
+ * @param param_8   颜色数据参数7
+ * @param param_9   颜色数据参数8
+ * @param param_10  颜色数据参数9
+ * @param param_11  浮点颜色数组1(R,G,B,A)
+ * @param param_12  浮点颜色数组2(R,G,B,A)
+ * @param param_13  浮点颜色数组3(R,G,B,A)
+ * 
+ * 处理流程：
+ * 1. 转换三个浮点颜色数组为RGBA格式
+ * 2. 对每个颜色进行范围限制和格式转换
+ * 3. 调用底层批量颜色处理函数
+ */
+void RenderingSystem_ProcessMultiColorData(longlong param_1,undefined8 param_2,undefined8 param_3,
+                                          undefined8 param_4,undefined8 param_5,undefined8 param_6,
+                                          undefined8 param_7,undefined8 param_8,undefined8 param_9,
+                                          undefined8 param_10,float *param_11,float *param_12,
+                                          float *param_13)
 
 {
   uint uVar1;
@@ -459,9 +485,26 @@ void FUN_180445a80(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_180445cd0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-void FUN_180445cd0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                  undefined8 param_5,float *param_6)
+/**
+ * 渲染系统颜色参数设置器
+ * 
+ * 设置渲染系统的颜色参数，支持多种颜色格式转换。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   颜色格式参数
+ * @param param_3   颜色目标参数
+ * @param param_4   保留参数
+ * @param param_5   颜色数据参数
+ * @param param_6   浮点颜色数组(R,G,B,A)
+ * 
+ * 处理流程：
+ * 1. 将浮点颜色值转换为RGBA格式
+ * 2. 对颜色分量进行范围限制
+ * 3. 组合颜色分量为RGBA格式
+ * 4. 调用底层参数设置函数
+ */
+void RenderingSystem_SetColorParameter(longlong param_1,undefined8 param_2,undefined8 param_3,
+                                     undefined8 param_4,undefined8 param_5,float *param_6)
 
 {
   uint uVar1;
@@ -498,9 +541,26 @@ void FUN_180445cd0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_180445dc0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-void FUN_180445dc0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                  undefined8 param_5,float *param_6)
+/**
+ * 渲染系统颜色通道更新器
+ * 
+ * 更新指定颜色通道的值，支持单独颜色通道的调整。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   颜色格式参数
+ * @param param_3   颜色目标参数
+ * @param param_4   保留参数
+ * @param param_5   颜色数据参数
+ * @param param_6   浮点颜色数组(R,G,B,A)
+ * 
+ * 处理流程：
+ * 1. 将浮点颜色值转换为RGBA格式
+ * 2. 对颜色分量进行范围限制
+ * 3. 组合颜色分量为RGBA格式
+ * 4. 调用底层通道更新函数
+ */
+void RenderingSystem_UpdateColorChannel(longlong param_1,undefined8 param_2,undefined8 param_3,
+                                      undefined8 param_4,undefined8 param_5,float *param_6)
 
 {
   uint uVar1;
@@ -537,9 +597,26 @@ void FUN_180445dc0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_180445eb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-void FUN_180445eb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                  undefined8 param_5,float *param_6)
+/**
+ * 渲染系统颜色伽马调整器
+ * 
+ * 调整颜色的伽马值，支持颜色伽马校正。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   颜色格式参数
+ * @param param_3   颜色目标参数
+ * @param param_4   保留参数
+ * @param param_5   颜色数据参数
+ * @param param_6   浮点颜色数组(R,G,B,A)
+ * 
+ * 处理流程：
+ * 1. 将浮点颜色值转换为RGBA格式
+ * 2. 对颜色分量进行范围限制
+ * 3. 组合颜色分量为RGBA格式
+ * 4. 调用底层伽马调整函数
+ */
+void RenderingSystem_AdjustColorGamma(longlong param_1,undefined8 param_2,undefined8 param_3,
+                                     undefined8 param_4,undefined8 param_5,float *param_6)
 
 {
   uint uVar1;
@@ -576,8 +653,19 @@ void FUN_180445eb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_180445fd0(longlong param_1,undefined4 param_2)
-void FUN_180445fd0(longlong param_1,undefined4 param_2)
+/**
+ * 渲染系统参数设置器
+ * 
+ * 设置渲染系统的基本参数，用于配置渲染行为。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   渲染参数值
+ * 
+ * 处理流程：
+ * 1. 准备参数数据结构
+ * 2. 调用底层参数设置函数
+ */
+void RenderingSystem_SetRenderParameter(longlong param_1,undefined4 param_2)
 
 {
   undefined4 auStackX_10 [6];
@@ -591,8 +679,18 @@ void FUN_180445fd0(longlong param_1,undefined4 param_2)
 
 
 
-// 函数: void FUN_180446010(longlong param_1)
-void FUN_180446010(longlong param_1)
+/**
+ * 渲染系统状态清理器
+ * 
+ * 清理渲染系统的状态信息，重置为默认状态。
+ * 
+ * @param param_1   渲染对象指针
+ * 
+ * 处理流程：
+ * 1. 调用底层状态清理函数
+ * 2. 重置渲染状态为默认值
+ */
+void RenderingSystem_ClearRenderState(longlong param_1)
 
 {
   FUN_180235ca0(param_1 + 0x10);
@@ -603,8 +701,21 @@ void FUN_180446010(longlong param_1)
 
 
 
-// 函数: void FUN_180446080(longlong param_1,undefined8 param_2,undefined8 param_3)
-void FUN_180446080(longlong param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 渲染系统颜色矩阵初始化器
+ * 
+ * 初始化颜色变换矩阵，用于颜色空间转换和变换操作。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   矩阵参数1
+ * @param param_3   矩阵参数2
+ * 
+ * 处理流程：
+ * 1. 准备单位矩阵数据
+ * 2. 设置最大浮点值参数
+ * 3. 调用底层矩阵初始化函数
+ */
+void RenderingSystem_InitializeColorMatrix(longlong param_1,undefined8 param_2,undefined8 param_3)
 
 {
   undefined4 uStack_18;
@@ -624,9 +735,23 @@ void FUN_180446080(longlong param_1,undefined8 param_2,undefined8 param_3)
 
 
 
-// 函数: void FUN_1804460c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4,
-void FUN_1804460c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4,
-                  undefined4 param_5)
+/**
+ * 渲染系统颜色滤镜应用器
+ * 
+ * 应用颜色滤镜效果，支持基本的颜色过滤操作。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   滤镜参数1
+ * @param param_3   滤镜参数2
+ * @param param_4   滤镜类型
+ * @param param_5   滤镜强度
+ * 
+ * 处理流程：
+ * 1. 准备滤镜参数数据
+ * 2. 调用底层滤镜应用函数
+ */
+void RenderingSystem_ApplyColorFilter(longlong param_1,undefined8 param_2,undefined8 param_3,
+                                     undefined4 param_4,undefined4 param_5)
 
 {
   undefined4 auStackX_20 [2];
@@ -640,9 +765,23 @@ void FUN_1804460c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_1804460f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4,
-void FUN_1804460f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4,
-                  undefined4 param_5)
+/**
+ * 渲染系统混合模式设置器
+ * 
+ * 设置渲染的混合模式，控制颜色混合方式。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   混合参数1
+ * @param param_3   混合参数2
+ * @param param_4   混合模式
+ * @param param_5   混合系数
+ * 
+ * 处理流程：
+ * 1. 准备混合模式参数
+ * 2. 调用底层混合模式设置函数
+ */
+void RenderingSystem_SetBlendMode(longlong param_1,undefined8 param_2,undefined8 param_3,
+                                 undefined4 param_4,undefined4 param_5)
 
 {
   undefined4 auStackX_20 [2];
@@ -656,9 +795,24 @@ void FUN_1804460f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_180446120(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4,
-void FUN_180446120(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4,
-                  undefined4 param_5,undefined4 param_6)
+/**
+ * 渲染系统预乘Alpha转换器
+ * 
+ * 将颜色转换为预乘Alpha格式，用于优化的混合操作。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   转换参数1
+ * @param param_3   转换参数2
+ * @param param_4   转换标志1
+ * @param param_5   转换标志2
+ * @param param_6   转换标志3
+ * 
+ * 处理流程：
+ * 1. 准备转换参数数据
+ * 2. 调用底层预乘Alpha转换函数
+ */
+void RenderingSystem_ConvertToPremultipliedAlpha(longlong param_1,undefined8 param_2,undefined8 param_3,
+                                               undefined4 param_4,undefined4 param_5,undefined4 param_6)
 
 {
   undefined4 auStackX_20 [2];
@@ -672,9 +826,23 @@ void FUN_180446120(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_180446160(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4,
-void FUN_180446160(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4,
-                  undefined4 param_5,undefined4 param_6)
+/**
+ * 渲染系统标准混合模式设置器
+ * 
+ * 设置标准混合模式，提供常用的颜色混合效果。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   混合参数1
+ * @param param_3   混合参数2
+ * @param param_4   混合模式
+ * @param param_5   混合系数
+ * 
+ * 处理流程：
+ * 1. 准备标准混合参数
+ * 2. 调用底层混合模式设置函数
+ */
+void RenderingSystem_SetStandardBlendMode(longlong param_1,undefined8 param_2,undefined8 param_3,
+                                         undefined4 param_4,undefined4 param_5)
 
 {
   undefined4 auStackX_20 [2];
@@ -688,9 +856,25 @@ void FUN_180446160(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_1804461b0(longlong param_1,undefined8 param_2,undefined8 param_3,float *param_4,
-void FUN_1804461b0(longlong param_1,undefined8 param_2,undefined8 param_3,float *param_4,
-                  undefined4 param_5)
+/**
+ * 渲染系统颜色值设置器
+ * 
+ * 设置渲染系统的颜色值，支持浮点颜色格式。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   颜色参数1
+ * @param param_3   颜色参数2
+ * @param param_4   浮点颜色数组(R,G,B,A)
+ * @param param_5   颜色标志
+ * 
+ * 处理流程：
+ * 1. 将浮点颜色值转换为RGBA格式
+ * 2. 对颜色分量进行范围限制
+ * 3. 组合颜色分量为RGBA格式
+ * 4. 调用底层颜色值设置函数
+ */
+void RenderingSystem_SetColorValue(longlong param_1,undefined8 param_2,undefined8 param_3,
+                                  float *param_4,undefined4 param_5)
 
 {
   uint uVar1;
@@ -728,8 +912,20 @@ void FUN_1804461b0(longlong param_1,undefined8 param_2,undefined8 param_3,float 
 
 
 
-// 函数: void FUN_1804462a0(longlong param_1,undefined8 param_2,undefined8 param_3)
-void FUN_1804462a0(longlong param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 渲染系统默认颜色设置器
+ * 
+ * 设置渲染系统的默认颜色值，初始化为标准白色。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   颜色参数1
+ * @param param_3   颜色参数2
+ * 
+ * 处理流程：
+ * 1. 准备标准白色颜色数据(1.0,1.0,1.0,1.0)
+ * 2. 调用底层默认颜色设置函数
+ */
+void RenderingSystem_SetDefaultColor(longlong param_1,undefined8 param_2,undefined8 param_3)
 
 {
   undefined4 uStack_18;
@@ -749,8 +945,18 @@ void FUN_1804462a0(longlong param_1,undefined8 param_2,undefined8 param_3)
 
 
 
-// 函数: void FUN_1804462e0(longlong param_1)
-void FUN_1804462e0(longlong param_1)
+/**
+ * 渲染系统状态清理器2
+ * 
+ * 第二个版本的渲染系统状态清理器，提供额外的状态重置功能。
+ * 
+ * @param param_1   渲染对象指针
+ * 
+ * 处理流程：
+ * 1. 调用底层状态清理函数
+ * 2. 重置渲染状态为默认值
+ */
+void RenderingSystem_ClearRenderState2(longlong param_1)
 
 {
   FUN_180235ca0(param_1 + 0x10);
@@ -761,9 +967,24 @@ void FUN_1804462e0(longlong param_1)
 
 
 
-// 函数: void FUN_180446320(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 *param_4,
-void FUN_180446320(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 *param_4,
-                  undefined1 param_5)
+/**
+ * 渲染系统自定义颜色应用器
+ * 
+ * 应用自定义颜色效果，支持用户定义的颜色操作。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   颜色参数1
+ * @param param_3   颜色参数2
+ * @param param_4   自定义颜色数据指针
+ * @param param_5   应用标志
+ * 
+ * 处理流程：
+ * 1. 提取自定义颜色数据
+ * 2. 准备颜色应用参数
+ * 3. 调用底层自定义颜色应用函数
+ */
+void RenderingSystem_ApplyCustomColor(longlong param_1,undefined8 param_2,undefined8 param_3,
+                                     undefined4 *param_4,undefined1 param_5)
 
 {
   undefined4 uStack_18;
@@ -783,8 +1004,18 @@ void FUN_180446320(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_180446370(longlong param_1)
-void FUN_180446370(longlong param_1)
+/**
+ * 渲染系统状态清理器3
+ * 
+ * 第三个版本的渲染系统状态清理器，提供完整的状态重置功能。
+ * 
+ * @param param_1   渲染对象指针
+ * 
+ * 处理流程：
+ * 1. 调用底层状态清理函数
+ * 2. 重置渲染状态为默认值
+ */
+void RenderingSystem_ClearRenderState3(longlong param_1)
 
 {
   FUN_180235ca0(param_1 + 0x10);
@@ -795,8 +1026,20 @@ void FUN_180446370(longlong param_1)
 
 
 
-// 函数: void FUN_1804463b0(longlong param_1,undefined8 param_2,undefined8 param_3)
-void FUN_1804463b0(longlong param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 渲染系统加法混合模式设置器
+ * 
+ * 设置加法混合模式，用于亮度和颜色增强效果。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   混合参数1
+ * @param param_3   混合参数2
+ * 
+ * 处理流程：
+ * 1. 准备加法混合参数(1.0,1.0,1.0,1.0)
+ * 2. 调用底层加法混合模式设置函数
+ */
+void RenderingSystem_SetAdditiveBlendMode(longlong param_1,undefined8 param_2,undefined8 param_3)
 
 {
   undefined4 uStack_18;
@@ -816,8 +1059,20 @@ void FUN_1804463b0(longlong param_1,undefined8 param_2,undefined8 param_3)
 
 
 
-// 函数: void FUN_1804463f0(longlong param_1,undefined8 param_2,undefined8 param_3)
-void FUN_1804463f0(longlong param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 渲染系统减法混合模式设置器
+ * 
+ * 设置减法混合模式，用于暗化和颜色减少效果。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   混合参数1
+ * @param param_3   混合参数2
+ * 
+ * 处理流程：
+ * 1. 准备减法混合参数(1.0,1.0,1.0,1.0)
+ * 2. 调用底层减法混合模式设置函数
+ */
+void RenderingSystem_SetSubtractiveBlendMode(longlong param_1,undefined8 param_2,undefined8 param_3)
 
 {
   undefined4 uStack_18;
@@ -837,9 +1092,23 @@ void FUN_1804463f0(longlong param_1,undefined8 param_2,undefined8 param_3)
 
 
 
-// 函数: void FUN_180446430(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 *param_4,
-void FUN_180446430(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 *param_4,
-                  undefined1 param_5)
+/**
+ * 渲染系统Alpha混合模式设置器
+ * 
+ * 设置Alpha混合模式，用于透明度混合效果。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   混合参数1
+ * @param param_3   混合参数2
+ * @param param_4   混合模式
+ * @param param_5   混合系数
+ * 
+ * 处理流程：
+ * 1. 准备Alpha混合参数
+ * 2. 调用底层Alpha混合模式设置函数
+ */
+void RenderingSystem_SetAlphaBlendMode(longlong param_1,undefined8 param_2,undefined8 param_3,
+                                       undefined4 param_4,undefined4 param_5)
 
 {
   undefined4 uStack_18;
@@ -859,8 +1128,23 @@ void FUN_180446430(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_180446480(longlong param_1,int param_2,float *param_3)
-void FUN_180446480(longlong param_1,int param_2,float *param_3)
+/**
+ * 渲染系统像素颜色设置器
+ * 
+ * 设置指定像素的颜色值，支持精确的像素级颜色控制。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   像素索引
+ * @param param_3   浮点颜色数组(R,G,B,A)
+ * 
+ * 处理流程：
+ * 1. 将浮点颜色值转换为RGBA格式
+ * 2. 对颜色分量进行范围限制
+ * 3. 组合颜色分量为RGBA格式
+ * 4. 将颜色值写入指定像素位置
+ * 5. 设置颜色修改标志
+ */
+void RenderingSystem_SetPixelColor(longlong param_1,int param_2,float *param_3)
 
 {
   uint uVar1;
@@ -899,8 +1183,20 @@ void FUN_180446480(longlong param_1,int param_2,float *param_3)
 
 
 
-// 函数: void FUN_180446610(longlong param_1,undefined8 *param_2)
-void FUN_180446610(longlong param_1,undefined8 *param_2)
+/**
+ * 渲染系统颜色数据复制器
+ * 
+ * 复制颜色数据到目标位置，支持批量颜色数据操作。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   颜色数据源指针
+ * 
+ * 处理流程：
+ * 1. 提取源颜色数据
+ * 2. 准备数据复制参数
+ * 3. 调用底层颜色数据复制函数
+ */
+void RenderingSystem_CopyColorData(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 uStack_48;
@@ -936,8 +1232,20 @@ void FUN_180446610(longlong param_1,undefined8 *param_2)
 
 
 
-// 函数: void FUN_180446650(longlong param_1,undefined8 *param_2)
-void FUN_180446650(longlong param_1,undefined8 *param_2)
+/**
+ * 渲染系统颜色数据设置器
+ * 
+ * 设置颜色数据到目标位置，支持批量颜色数据操作。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   颜色数据源指针
+ * 
+ * 处理流程：
+ * 1. 提取源颜色数据
+ * 2. 准备数据设置参数
+ * 3. 调用底层颜色数据设置函数
+ */
+void RenderingSystem_SetColorData(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 uStack_48;
@@ -973,8 +1281,22 @@ void FUN_180446650(longlong param_1,undefined8 *param_2)
 
 
 
-// 函数: void FUN_180446690(longlong param_1,float *param_2)
-void FUN_180446690(longlong param_1,float *param_2)
+/**
+ * 渲染系统全局颜色应用器
+ * 
+ * 将指定颜色应用到所有像素，支持批量颜色设置。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   浮点颜色数组(R,G,B,A)
+ * 
+ * 处理流程：
+ * 1. 将浮点颜色值转换为RGBA格式
+ * 2. 对颜色分量进行范围限制
+ * 3. 组合颜色分量为RGBA格式
+ * 4. 遍历所有像素并设置颜色值
+ * 5. 设置颜色修改标志
+ */
+void RenderingSystem_ApplyColorToAll(longlong param_1,float *param_2)
 
 {
   uint uVar1;
@@ -1021,7 +1343,23 @@ void FUN_180446690(longlong param_1,float *param_2)
 
 
 
-float * FUN_180446760(float *param_1,longlong param_2,int param_3)
+/**
+ * 渲染系统像素颜色获取器
+ * 
+ * 获取指定像素的颜色值，支持像素级颜色读取。
+ * 
+ * @param param_1   输出颜色数组指针
+ * @param param_2   渲染对象指针
+ * @param param_3   像素索引
+ * @return          颜色数组指针
+ * 
+ * 处理流程：
+ * 1. 检查像素索引的有效性
+ * 2. 读取指定像素的颜色值
+ * 3. 将RGBA颜色值转换为浮点格式
+ * 4. 返回颜色数组指针
+ */
+float * RenderingSystem_GetPixelColor(float *param_1,longlong param_2,int param_3)
 
 {
   uint uVar1;
@@ -1046,8 +1384,23 @@ float * FUN_180446760(float *param_1,longlong param_2,int param_3)
 
 
 
-// 函数: void FUN_180446810(longlong param_1,float param_2)
-void FUN_180446810(longlong param_1,float param_2)
+/**
+ * 渲染系统颜色亮度调整器
+ * 
+ * 调整所有像素的颜色亮度，支持整体亮度控制。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   亮度调整系数
+ * 
+ * 处理流程：
+ * 1. 遍历所有像素
+ * 2. 提取每个像素的颜色值
+ * 3. 应用亮度调整系数
+ * 4. 对调整后的颜色进行范围限制
+ * 5. 更新像素颜色值
+ * 6. 设置颜色修改标志
+ */
+void RenderingSystem_AdjustColorBrightness(longlong param_1,float param_2)
 
 {
   uint uVar1;
@@ -1100,8 +1453,23 @@ void FUN_180446810(longlong param_1,float param_2)
 
 
 
-// 函数: void FUN_18044682c(longlong param_1,float param_2)
-void FUN_18044682c(longlong param_1,float param_2)
+/**
+ * 渲染系统颜色饱和度调整器
+ * 
+ * 调整所有像素的颜色饱和度，支持色彩饱和度控制。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   饱和度调整系数
+ * 
+ * 处理流程：
+ * 1. 遍历所有像素
+ * 2. 提取每个像素的颜色值
+ * 3. 应用饱和度调整系数
+ * 4. 对调整后的颜色进行范围限制
+ * 5. 更新像素颜色值
+ * 6. 设置颜色修改标志
+ */
+void RenderingSystem_AdjustColorSaturation(longlong param_1,float param_2)
 
 {
   uint uVar1;
@@ -1149,8 +1517,16 @@ void FUN_18044682c(longlong param_1,float param_2)
 
 
 
-// 函数: void FUN_1804468f7(void)
-void FUN_1804468f7(void)
+/**
+ * 渲染系统颜色缓存失效器
+ * 
+ * 使颜色缓存失效，强制重新计算颜色值。
+ * 
+ * 处理流程：
+ * 1. 设置颜色缓存失效标志
+ * 2. 触发颜色重新计算
+ */
+void RenderingSystem_InvalidateColorCache(longlong param_1)
 
 {
   longlong in_R11;
@@ -1163,8 +1539,23 @@ void FUN_1804468f7(void)
 
 
 
-// 函数: void FUN_180446960(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4)
-void FUN_180446960(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4)
+/**
+ * 渲染系统渲染效果处理器
+ * 
+ * 处理各种渲染效果，支持特效和滤镜应用。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   效果参数1
+ * @param param_3   效果参数2
+ * @param param_4   效果类型
+ * 
+ * 处理流程：
+ * 1. 准备效果处理参数
+ * 2. 调用底层效果处理函数
+ * 3. 处理效果相关的资源管理
+ */
+void RenderingSystem_ProcessRenderEffect(longlong param_1,undefined8 param_2,undefined8 param_3,
+                                        undefined4 param_4)
 
 {
   undefined1 auStack_40 [16];
@@ -1183,8 +1574,20 @@ void FUN_180446960(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_180446a60(longlong param_1,int param_2)
-void FUN_180446a60(longlong param_1,int param_2)
+/**
+ * 渲染系统颜色条目移除器
+ * 
+ * 从颜色管理器中移除指定的颜色条目。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   要移除的颜色条目索引
+ * 
+ * 处理流程：
+ * 1. 查找指定的颜色条目
+ * 2. 如果找到，从数组中移除该条目
+ * 3. 更新颜色管理器状态
+ */
+void RenderingSystem_RemoveColorEntry(longlong param_1,int param_2)
 
 {
   int iVar1;
@@ -1220,8 +1623,24 @@ void FUN_180446a60(longlong param_1,int param_2)
 
 
 
-undefined4 *
-FUN_180446b20(undefined4 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 渲染系统颜色数据查询器
+ * 
+ * 查询指定的颜色数据，支持颜色数据的读取和验证。
+ * 
+ * @param param_1   输出参数指针
+ * @param param_2   查询参数1
+ * @param param_3   查询参数2
+ * @param param_4   查询参数3
+ * @return          查询结果指针
+ * 
+ * 处理流程：
+ * 1. 执行颜色数据查询操作
+ * 2. 处理查询结果
+ * 3. 返回查询结果指针
+ */
+undefined4 * RenderingSystem_QueryColorData(undefined4 *param_1,undefined8 param_2,undefined8 param_3,
+                                          undefined8 param_4)
 
 {
   longlong *plVar1;
@@ -1256,7 +1675,20 @@ FUN_180446b20(undefined4 *param_1,undefined8 param_2,undefined8 param_3,undefine
 
 // WARNING: Removing unreachable block (ram,0x000180446c4b)
 
-undefined8 * FUN_180446ba0(undefined8 *param_1)
+/**
+ * 渲染系统颜色缓冲区分配器
+ * 
+ * 分配颜色缓冲区内存，用于存储颜色数据。
+ * 
+ * @param param_1   输出参数指针
+ * @return          分配的缓冲区指针
+ * 
+ * 处理流程：
+ * 1. 执行缓冲区分配操作
+ * 2. 处理分配结果
+ * 3. 返回分配的缓冲区指针
+ */
+undefined8 * RenderingSystem_AllocateColorBuffer(undefined8 *param_1)
 
 {
   undefined4 uVar1;
@@ -1298,7 +1730,20 @@ undefined8 * FUN_180446ba0(undefined8 *param_1)
 
 
 
-undefined4 * FUN_180446ca0(undefined4 *param_1)
+/**
+ * 渲染系统颜色缓冲区获取器
+ * 
+ * 获取颜色缓冲区指针，用于访问颜色数据。
+ * 
+ * @param param_1   输出参数指针
+ * @return          颜色缓冲区指针
+ * 
+ * 处理流程：
+ * 1. 执行缓冲区获取操作
+ * 2. 处理获取结果
+ * 3. 返回颜色缓冲区指针
+ */
+undefined4 * RenderingSystem_GetColorBuffer(undefined4 *param_1)
 
 {
   longlong *plVar1;
@@ -1331,7 +1776,22 @@ undefined4 * FUN_180446ca0(undefined4 *param_1)
 
 
 
-undefined4 * FUN_180446d20(undefined4 *param_1,longlong param_2)
+/**
+ * 渲染系统颜色缓冲区扩展获取器
+ * 
+ * 获取扩展的颜色缓冲区指针，支持附加参数。
+ * 
+ * @param param_1   输出参数指针
+ * @param param_2   扩展参数
+ * @return          颜色缓冲区指针
+ * 
+ * 处理流程：
+ * 1. 检查扩展参数状态
+ * 2. 执行扩展缓冲区获取操作
+ * 3. 处理获取结果
+ * 4. 返回颜色缓冲区指针
+ */
+undefined4 * RenderingSystem_GetColorBufferEx(undefined4 *param_1,longlong param_2)
 
 {
   longlong *plVar1;
@@ -1375,8 +1835,23 @@ undefined4 * FUN_180446d20(undefined4 *param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180446dc0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180446dc0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 渲染系统资源指针设置器
+ * 
+ * 设置渲染系统的资源指针，用于资源管理。
+ * 
+ * @param param_1   资源指针值
+ * @param param_2   渲染对象指针
+ * @param param_3   资源参数1
+ * @param param_4   资源参数2
+ * 
+ * 处理流程：
+ * 1. 执行资源指针设置操作
+ * 2. 更新资源管理状态
+ * 3. 设置资源状态标志
+ */
+void RenderingSystem_SetResourcePointer(undefined8 param_1,longlong param_2,undefined8 param_3,
+                                       undefined8 param_4)
 
 {
   undefined8 uVar1;
@@ -1389,7 +1864,23 @@ void FUN_180446dc0(undefined8 param_1,longlong param_2,undefined8 param_3,undefi
 
 
 
-longlong * FUN_180446e70(longlong *param_1,longlong param_2,int param_3)
+/**
+ * 渲染系统资源指针获取器
+ * 
+ * 获取指定索引的资源指针，支持资源访问。
+ * 
+ * @param param_1   输出参数指针
+ * @param param_2   渲染对象指针
+ * @param param_3   资源索引
+ * @return          资源指针
+ * 
+ * 处理流程：
+ * 1. 根据索引计算资源指针位置
+ * 2. 执行资源获取操作
+ * 3. 处理获取结果
+ * 4. 返回资源指针
+ */
+longlong * RenderingSystem_GetResourcePointer(longlong *param_1,longlong param_2,int param_3)
 
 {
   longlong *plStack_20;
@@ -1414,7 +1905,22 @@ longlong * FUN_180446e70(longlong *param_1,longlong param_2,int param_3)
 
 
 
-longlong * FUN_180446f00(longlong *param_1,longlong param_2)
+/**
+ * 渲染系统主资源指针获取器
+ * 
+ * 获取主资源指针，用于访问主要资源。
+ * 
+ * @param param_1   输出参数指针
+ * @param param_2   渲染对象指针
+ * @return          主资源指针
+ * 
+ * 处理流程：
+ * 1. 计算主资源指针位置
+ * 2. 执行主资源获取操作
+ * 3. 处理获取结果
+ * 4. 返回主资源指针
+ */
+longlong * RenderingSystem_GetMainResourcePointer(longlong *param_1,longlong param_2)
 
 {
   longlong *plStack_20;
@@ -1441,8 +1947,20 @@ longlong * FUN_180446f00(longlong *param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180446fa0(longlong param_1,undefined8 param_2)
-void FUN_180446fa0(longlong param_1,undefined8 param_2)
+/**
+ * 渲染系统资源指针更新器
+ * 
+ * 更新资源指针，用于资源管理操作。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   新的资源指针值
+ * 
+ * 处理流程：
+ * 1. 更新资源指针值
+ * 2. 执行资源更新操作
+ * 3. 设置资源状态标志
+ */
+void RenderingSystem_UpdateResourcePointer(undefined8 param_1,undefined8 param_2)
 
 {
   *(undefined8 *)(param_1 + 0x140) = param_2;
@@ -1455,9 +1973,23 @@ void FUN_180446fa0(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_180446fd0(longlong param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
-void FUN_180446fd0(longlong param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
-                  undefined4 param_5)
+/**
+ * 渲染系统资源参数设置器
+ * 
+ * 设置渲染系统的资源参数，用于资源配置。
+ * 
+ * @param param_1   渲染对象指针
+ * @param param_2   资源参数1
+ * @param param_3   资源参数2
+ * @param param_4   资源参数3
+ * @param param_5   资源参数4
+ * 
+ * 处理流程：
+ * 1. 将资源参数写入指定偏移位置
+ * 2. 更新资源配置状态
+ */
+void RenderingSystem_SetResourceParameters(longlong param_1,undefined4 param_2,undefined4 param_3,
+                                          undefined4 param_4,undefined4 param_5)
 
 {
   *(undefined4 *)(param_1 + RENDERING_SYSTEM_OFFSET_0X288) = param_2;
@@ -1471,17 +2003,59 @@ void FUN_180446fd0(longlong param_1,undefined4 param_2,undefined4 param_3,undefi
     函数别名定义
 ===================================================================================*/
 
+/*===================================================================================
+    函数别名定义
+===================================================================================*/
+
+// 渲染系统颜色处理函数
 #define RenderingSystem_ProcessColorTransform          FUN_180445570  // 渲染系统颜色变换处理器
 #define RenderingSystem_AllocateResourceMemory          FUN_180445610  // 渲染系统资源内存分配器
 #define RenderingSystem_CreateColorBuffer               FUN_180445680  // 渲染系统颜色缓冲区创建器
 #define RenderingSystem_ConvertColorToARGB              FUN_1804457b0  // 渲染系统颜色转换器(ARGB)
 #define RenderingSystem_ConvertColorToRGBA              FUN_180445870  // 渲染系统颜色转换器(RGBA)
+#define RenderingSystem_ProcessMultiColorData           FUN_180445970  // 渲染系统多颜色数据处理器
+#define RenderingSystem_SetColorParameter               FUN_180445cd0  // 渲染系统颜色参数设置器
+#define RenderingSystem_UpdateColorChannel              FUN_180445dc0  // 渲染系统颜色通道更新器
+#define RenderingSystem_AdjustColorGamma                 FUN_180445eb0  // 渲染系统颜色伽马调整器
+
+// 渲染系统参数和状态管理函数
 #define RenderingSystem_SetRenderParameter               FUN_180445fd0  // 渲染系统参数设置器
 #define RenderingSystem_ClearRenderState                 FUN_180446010  // 渲染系统状态清理器
+#define RenderingSystem_InitializeColorMatrix            FUN_180446080  // 渲染系统颜色矩阵初始化器
+#define RenderingSystem_ApplyColorFilter                 FUN_1804460c0  // 渲染系统颜色滤镜应用器
+#define RenderingSystem_SetBlendMode                     FUN_1804460f0  // 渲染系统混合模式设置器
+#define RenderingSystem_ConvertToPremultipliedAlpha      FUN_180446120  // 渲染系统预乘Alpha转换器
+#define RenderingSystem_SetStandardBlendMode             FUN_180446160  // 渲染系统标准混合模式设置器
+#define RenderingSystem_SetColorValue                    FUN_1804461b0  // 渲染系统颜色值设置器
+#define RenderingSystem_SetDefaultColor                  FUN_1804462a0  // 渲染系统默认颜色设置器
+#define RenderingSystem_ClearRenderState2                FUN_1804462e0  // 渲染系统状态清理器2
+#define RenderingSystem_SetAdditiveBlendMode             FUN_1804463b0  // 渲染系统加法混合模式设置器
+#define RenderingSystem_SetSubtractiveBlendMode          FUN_1804463f0  // 渲染系统减法混合模式设置器
+#define RenderingSystem_ApplyCustomColor                 FUN_180446320  // 渲染系统自定义颜色应用器
+#define RenderingSystem_ClearRenderState3                FUN_180446370  // 渲染系统状态清理器3
+#define RenderingSystem_SetAlphaBlendMode               FUN_180446430  // 渲染系统Alpha混合模式设置器
+
+// 渲染系统像素和颜色数据操作函数
 #define RenderingSystem_SetPixelColor                   FUN_180446480  // 渲染系统像素颜色设置器
+#define RenderingSystem_CopyColorData                   FUN_180446610  // 渲染系统颜色数据复制器
+#define RenderingSystem_SetColorData                    FUN_180446650  // 渲染系统颜色数据设置器
+#define RenderingSystem_ApplyColorToAll                 FUN_180446690  // 渲染系统全局颜色应用器
 #define RenderingSystem_GetPixelColor                   FUN_180446760  // 渲染系统像素颜色获取器
 #define RenderingSystem_AdjustColorBrightness            FUN_180446810  // 渲染系统颜色亮度调整器
 #define RenderingSystem_AdjustColorSaturation           FUN_18044682c  // 渲染系统颜色饱和度调整器
+#define RenderingSystem_InvalidateColorCache             FUN_1804468f7  // 渲染系统颜色缓存失效器
+
+// 渲染系统效果和资源管理函数
+#define RenderingSystem_ProcessRenderEffect              FUN_180446960  // 渲染系统渲染效果处理器
+#define RenderingSystem_RemoveColorEntry                 FUN_180446a60  // 渲染系统颜色条目移除器
+#define RenderingSystem_QueryColorData                   FUN_180446b20  // 渲染系统颜色数据查询器
+#define RenderingSystem_AllocateColorBuffer              FUN_180446ba0  // 渲染系统颜色缓冲区分配器
+#define RenderingSystem_GetColorBuffer                   FUN_180446ca0  // 渲染系统颜色缓冲区获取器
+#define RenderingSystem_GetColorBufferEx                 FUN_180446d20  // 渲染系统颜色缓冲区扩展获取器
+#define RenderingSystem_SetResourcePointer              FUN_180446dc0  // 渲染系统资源指针设置器
+#define RenderingSystem_GetResourcePointer              FUN_180446e70  // 渲染系统资源指针获取器
+#define RenderingSystem_GetMainResourcePointer           FUN_180446f00  // 渲染系统主资源指针获取器
+#define RenderingSystem_UpdateResourcePointer            FUN_180446fa0  // 渲染系统资源指针更新器
 #define RenderingSystem_SetResourceParameters            FUN_180446fd0  // 渲染系统资源参数设置器
 
 /*===================================================================================
