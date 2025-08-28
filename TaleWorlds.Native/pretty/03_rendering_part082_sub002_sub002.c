@@ -59,7 +59,7 @@
 #define RenderingSystemScheduler FUN_180436d00         // 渲染系统调度器
 #define RenderingSystemOptimizer FUN_180436bb0         // 渲染系统优化器
 #define RenderingSystemDebugger FUN_1804369d0           // 渲染系统调试器
-#define RenderingSystemProfiler FUN_180437110          // 渲染系统性能分析器
+#define RenderingSystemProfiler RenderingSystemBufferProcessor          // 渲染系统性能分析器
 #define RenderingSystemLogger FUN_180436bf0             // 渲染系统日志记录器
 #define RenderingSystemMonitor FUN_180436a00            // 渲染系统监控器
 #define RenderingSystemCleanupHandler FUN_180436fd0     // 渲染系统清理处理器
@@ -84,7 +84,7 @@
 #define RenderingSystemUIRenderer FUN_18043b930          // 渲染系统UI渲染器
 #define RenderingSystemFontRenderer FUN_18043b290         // 渲染系统字体渲染器
 #define RenderingSystemTextProcessor FUN_180438560        // 渲染系统文本处理器
-#define RenderingSystemInputHandler FUN_180438210         // 渲染系统输入处理器
+#define RenderingSystemInputHandler RenderingSystemStateCleaner         // 渲染系统输入处理器
 #define RenderingSystemEventDispatcher FUN_18043bbe0      // 渲染系统事件分发器
 #define RenderingSystemUIManager FUN_180438940            // 渲染系统UI管理器
 #define RenderingSystemAudioProcessor FUN_1804386b0       // 渲染系统音频处理器
@@ -106,13 +106,13 @@
 #define RenderingSystemPageManager FUN_18043c020           // 渲染系统页面管理器
 #define RenderingSystemMemoryTracker FUN_18043c060         // 渲染系统内存跟踪器
 #define RenderingSystemMemoryProfiler FUN_18043c290         // 渲染系统内存分析器
-#define RenderingSystemMemoryDebugger FUN_18043c2e0        // 渲染系统内存调试器
+#define RenderingSystemMemoryDebugger RenderingSystemEffectCleaner        // 渲染系统内存调试器
 #define RenderingSystemMemoryMonitor FUN_18043c0b0         // 渲染系统内存监控器
 #define RenderingSystemMemoryAuditor FUN_18043c230         // 渲染系统内存审计器
 #define RenderingSystemMemoryValidator FUN_18043c160       // 渲染系统内存验证器
 #define RenderingSystemMemoryCleaner FUN_18043c6e0         // 渲染系统内存清理器
 #define RenderingSystemMemoryCompactor FUN_18043bff0        // 渲染系统内存压缩器
-#define RenderingSystemMemoryDefragmenter FUN_18043bfb0    // 渲染系统内存碎片整理器
+#define RenderingSystemMemoryDefragmenter RenderingSystemEffectAnalyzer    // 渲染系统内存碎片整理器
 #define RenderingSystemMemoryMapper FUN_18043cb50           // 渲染系统内存映射器
 #define RenderingSystemMemorySerializer FUN_18043c820       // 渲染系统内存序列化器
 #define RenderingSystemMemoryDeserializer FUN_18043c8e0    // 渲染系统内存反序列化器
@@ -121,7 +121,7 @@
 #define RenderingSystemMemoryArchiver FUN_18043caa0         // 渲染系统内存存档器
 #define RenderingSystemMemoryRestorer FUN_18043d100         // 渲染系统内存恢复器
 #define RenderingSystemMemoryBackup FUN_18043cbd0           // 渲染系统内存备份器
-#define RenderingSystemSystemInitializer FUN_180441a00      // 渲染系统系统初始化器
+#define RenderingSystemSystemInitializer RenderingSystemInputManager      // 渲染系统系统初始化器
 #define RenderingSystemSystemFinalizer FUN_1804403d0        // 渲染系统系统终结器
 #define RenderingSystemSystemLoader FUN_18043fe70           // 渲染系统系统加载器
 #define RenderingSystemModuleManager FUN_180442860          // 渲染系统模块管理器
@@ -431,7 +431,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0xf2,&unknown_var_5936_ptr);
   (**(code **)(param_1 + 0x60))(0xf3,FUN_18043e5c0);
   (**(code **)(param_1 + 0x60))(0xf4,&unknown_var_768_ptr);
-  (**(code **)(param_1 + 0x60))(0xf5,FUN_180441180);
+  (**(code **)(param_1 + 0x60))(0xf5,RenderingSystemTextOptimizer);
   (**(code **)(param_1 + 0x60))(0xf6,FUN_180441260);
   (**(code **)(param_1 + 0x60))(0xf7,&unknown_var_2064_ptr);
   (**(code **)(param_1 + 0x60))(0xf8,FUN_180442450);
@@ -448,8 +448,8 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x103,&unknown_var_7088_ptr);
   (**(code **)(param_1 + 0x60))(0x104,&unknown_var_1168_ptr);
   (**(code **)(param_1 + 0x60))(0x105,FUN_180443510);
-  (**(code **)(param_1 + 0x60))(0x106,FUN_180441070);
-  (**(code **)(param_1 + 0x60))(0x107,FUN_18043ee70);
+  (**(code **)(param_1 + 0x60))(0x106,RenderingSystemTextProcessor2);
+  (**(code **)(param_1 + 0x60))(0x107,RenderingSystemTransformInitializer);
   (**(code **)(param_1 + 0x60))(0x108,FUN_18043fef0);
   (**(code **)(param_1 + 0x60))(0x109,&unknown_var_8224_ptr);
   (**(code **)(param_1 + 0x60))(0x10a,&unknown_var_80_ptr);
@@ -507,7 +507,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x13e,FUN_18043fc20);
   (**(code **)(param_1 + 0x60))(0x13f,FUN_180441830);
   (**(code **)(param_1 + 0x60))(0x140,&unknown_var_1632_ptr);
-  (**(code **)(param_1 + 0x60))(0x141,FUN_1804429f0);
+  (**(code **)(param_1 + 0x60))(0x141,RenderingSystemEventAnalyzer);
   (**(code **)(param_1 + 0x60))(0x142,FUN_18043ef90);
   (**(code **)(param_1 + 0x60))(0x143,&unknown_var_6944_ptr);
   (**(code **)(param_1 + 0x60))(0x144,&unknown_var_1984_ptr);
@@ -529,7 +529,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x154,FUN_180443b40);
   (**(code **)(param_1 + 0x60))(0x155,FUN_180443df0);
   (**(code **)(param_1 + 0x60))(0x156,FUN_180443ff0);
-  (**(code **)(param_1 + 0x60))(0x157,FUN_180443d10);
+  (**(code **)(param_1 + 0x60))(0x157,RenderingSystemVideoValidator);
   (**(code **)(param_1 + 0x60))(0x158,FUN_180443d70);
   (**(code **)(param_1 + 0x60))(0x159,&unknown_var_4128_ptr);
   (**(code **)(param_1 + 0x60))(0x15a,FUN_180444030);
@@ -538,7 +538,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x15d,&unknown_var_4240_ptr);
   (**(code **)(param_1 + 0x60))(0x15e,&unknown_var_4912_ptr);
   (**(code **)(param_1 + 0x60))(0x15f,&unknown_var_4864_ptr);
-  (**(code **)(param_1 + 0x60))(0x160,FUN_180444370);
+  (**(code **)(param_1 + 0x60))(0x160,RenderingSystemVideoInitializer);
   (**(code **)(param_1 + 0x60))(0x161,&unknown_var_4224_ptr);
   (**(code **)(param_1 + 0x60))(0x162,FUN_180444100);
   (**(code **)(param_1 + 0x60))(0x163,FUN_180444600);
@@ -678,7 +678,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x1e9,FUN_180446ba0);
   (**(code **)(param_1 + 0x60))(0x1ea,&unknown_var_5344_ptr);
   (**(code **)(param_1 + 0x60))(0x1eb,FUN_180446d20);
-  (**(code **)(param_1 + 0x60))(0x1ec,FUN_180446f00);
+  (**(code **)(param_1 + 0x60))(0x1ec,RenderingSystemResourceManager3);
   (**(code **)(param_1 + 0x60))(0x1ed,&unknown_var_5952_ptr);
   (**(code **)(param_1 + 0x60))(0x1ee,FUN_180446e70);
   (**(code **)(param_1 + 0x60))(0x1ef,_guard_check_icall);
@@ -697,7 +697,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x1fc,&unknown_var_6336_ptr);
   (**(code **)(param_1 + 0x60))(0x1fd,&unknown_var_9264_ptr);
   (**(code **)(param_1 + 0x60))(0x1fe,FUN_180447c00);
-  (**(code **)(param_1 + 0x60))(0x1ff,FUN_180448110);
+  (**(code **)(param_1 + 0x60))(0x1ff,RenderingSystemShaderCompilerDebugger);
   (**(code **)(param_1 + 0x60))(0x200,FUN_1804485c0);
   (**(code **)(param_1 + 0x60))(0x201,FUN_1804489a0);
   (**(code **)(param_1 + 0x60))(0x202,&unknown_var_9280_ptr);
@@ -718,9 +718,9 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x211,FUN_180449000);
   (**(code **)(param_1 + 0x60))(0x212,FUN_1804491c0);
   (**(code **)(param_1 + 0x60))(0x213,FUN_180447e10);
-  (**(code **)(param_1 + 0x60))(0x214,FUN_180447de0);
+  (**(code **)(param_1 + 0x60))(0x214,RenderingSystemShaderCompilerController);
   (**(code **)(param_1 + 0x60))(0x215,&unknown_var_848_ptr);
-  (**(code **)(param_1 + 0x60))(0x216,FUN_180447120);
+  (**(code **)(param_1 + 0x60))(0x216,RenderingSystemResourceOptimizer);
   (**(code **)(param_1 + 0x60))(0x217,FUN_180447430);
   (**(code **)(param_1 + 0x60))(0x218,&unknown_var_5344_ptr);
   (**(code **)(param_1 + 0x60))(0x219,FUN_180447b80);
@@ -807,7 +807,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x26a,FUN_18044a080);
   (**(code **)(param_1 + 0x60))(0x26b,FUN_180449d70);
   (**(code **)(param_1 + 0x60))(0x26c,&unknown_var_3040_ptr);
-  (**(code **)(param_1 + 0x60))(0x26d,FUN_18044c0d0);
+  (**(code **)(param_1 + 0x60))(0x26d,RenderingSystemUtilityDebugger);
   (**(code **)(param_1 + 0x60))(0x26e,&unknown_var_6736_ptr);
   (**(code **)(param_1 + 0x60))(0x26f,&unknown_var_1248_ptr);
   (**(code **)(param_1 + 0x60))(0x270,&unknown_var_6656_ptr);
@@ -830,7 +830,7 @@ void FUN_180310b50(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x281,&unknown_var_8352_ptr);
   (**(code **)(param_1 + 0x60))(0x282,&unknown_var_8976_ptr);
   (**(code **)(param_1 + 0x60))(0x283,FUN_18044c9c0);
-  (**(code **)(param_1 + 0x60))(0x284,FUN_18044c840);
+  (**(code **)(param_1 + 0x60))(0x284,RenderingSystemHelperController);
   (**(code **)(param_1 + 0x60))(0x285,&unknown_var_8912_ptr);
   (**(code **)(param_1 + 0x60))(0x286,&unknown_var_9008_ptr);
   (**(code **)(param_1 + 0x60))(0x287,&unknown_var_9168_ptr);
@@ -1139,4 +1139,497 @@ void FUN_180310b50(int64_t param_1)
 
 
 
+
+
+// 渲染系统高级组件和处理器别名定义
+#define RenderingSystemAdvancedInitializer RenderingSystemAdvancedInitializer    // 渲染系统高级初始化器
+#define RenderingSystemAdvancedConfigurator RenderingSystemAdvancedConfigurator    // 渲染系统高级配置器
+#define RenderingSystemAdvancedValidator RenderingSystemAdvancedValidator       // 渲染系统高级验证器
+#define RenderingSystemAdvancedProcessor RenderingSystemAdvancedProcessor      // 渲染系统高级处理器
+#define RenderingSystemAdvancedManager RenderingSystemAdvancedManager        // 渲染系统高级管理器
+#define RenderingSystemAdvancedController RenderingSystemAdvancedController     // 渲染系统高级控制器
+#define RenderingSystemAdvancedOptimizer RenderingSystemAdvancedOptimizer      // 渲染系统高级优化器
+#define RenderingSystemAdvancedAnalyzer RenderingSystemAdvancedAnalyzer      // 渲染系统高级分析器
+#define RenderingSystemAdvancedMonitor RenderingSystemAdvancedMonitor       // 渲染系统高级监控器
+#define RenderingSystemAdvancedDebugger RenderingSystemAdvancedDebugger       // 渲染系统高级调试器
+
+// 渲染系统数据流处理别名定义
+#define RenderingSystemDataFlowProcessor RenderingSystemDataFlowProcessor     // 渲染系统数据流处理器
+#define RenderingSystemDataFlowController RenderingSystemDataFlowController    // 渲染系统数据流控制器
+#define RenderingSystemDataFlowManager RenderingSystemDataFlowManager       // 渲染系统数据流管理器
+#define RenderingSystemDataFlowOptimizer RenderingSystemDataFlowOptimizer     // 渲染系统数据流优化器
+#define RenderingSystemDataFlowAnalyzer RenderingSystemDataFlowAnalyzer      // 渲染系统数据流分析器
+#define RenderingSystemDataFlowValidator RenderingSystemDataFlowValidator      // 渲染系统数据流验证器
+#define RenderingSystemDataFlowTransformer RenderingSystemDataFlowTransformer   // 渲染系统数据流转换器
+#define RenderingSystemDataFlowSerializer RenderingSystemDataFlowSerializer    // 渲染系统数据流序列化器
+#define RenderingSystemDataFlowDeserializer RenderingSystemDataFlowDeserializer  // 渲染系统数据流反序列化器
+#define RenderingSystemDataFlowCompressor RenderingSystemDataFlowCompressor     // 渲染系统数据流压缩器
+
+// 渲染系统内存管理别名定义
+#define RenderingSystemMemoryManager2 RenderingSystemMemoryManager2        // 渲染系统内存管理器2
+#define RenderingSystemMemoryAllocator2 RenderingSystemMemoryAllocator2      // 渲染系统内存分配器2
+#define RenderingSystemMemoryDeallocator RenderingSystemMemoryDeallocator     // 渲染系统内存释放器
+#define RenderingSystemMemoryOptimizer RenderingSystemMemoryOptimizer       // 渲染系统内存优化器
+#define RenderingSystemMemoryAnalyzer RenderingSystemMemoryAnalyzer        // 渲染系统内存分析器
+#define RenderingSystemMemoryValidator RenderingSystemMemoryValidator       // 渲染系统内存验证器
+#define RenderingSystemMemoryCleaner RenderingSystemMemoryCleaner          // 渲染系统内存清理器
+#define RenderingSystemMemoryCompactor RenderingSystemMemoryCompactor       // 渲染系统内存压缩器
+#define RenderingSystemMemoryExpander RenderingSystemMemoryExpander        // 渲染系统内存扩展器
+#define RenderingSystemMemoryReallocator RenderingSystemMemoryReallocator     // 渲染系统内存重分配器
+
+// 渲染系统线程管理别名定义
+#define RenderingSystemThreadManager2 RenderingSystemThreadManager2         // 渲染系统线程管理器2
+#define RenderingSystemThreadScheduler RenderingSystemThreadScheduler       // 渲染系统线程调度器
+#define RenderingSystemThreadSynchronizer RenderingSystemThreadSynchronizer    // 渲染系统线程同步器
+#define RenderingSystemThreadOptimizer RenderingSystemThreadOptimizer       // 渲染系统线程优化器
+#define RenderingSystemThreadBalancer RenderingSystemThreadBalancer        // 渲染系统线程平衡器
+#define RenderingSystemThreadMonitor RenderingSystemThreadMonitor         // 渲染系统线程监控器
+#define RenderingSystemThreadDebugger RenderingSystemThreadDebugger        // 渲染系统线程调试器
+#define RenderingSystemThreadCleaner RenderingSystemThreadCleaner         // 渲染系统线程清理器
+#define RenderingSystemThreadInitializer RenderingSystemThreadInitializer     // 渲染系统线程初始化器
+#define RenderingSystemThreadFinalizer RenderingSystemThreadFinalizer       // 渲染系统线程终结器
+
+// 渲染系统渲染管线别名定义
+#define RenderingSystemPipelineManager2 RenderingSystemPipelineManager2       // 渲染系统管线管理器2
+#define RenderingSystemPipelineProcessor RenderingSystemPipelineProcessor      // 渲染系统管线处理器
+#define RenderingSystemPipelineOptimizer RenderingSystemPipelineOptimizer     // 渲染系统管线优化器
+#define RenderingSystemPipelineValidator RenderingSystemPipelineValidator      // 渲染系统管线验证器
+#define RenderingSystemPipelineController RenderingSystemPipelineController    // 渲染系统管线控制器
+#define RenderingSystemPipelineAnalyzer RenderingSystemPipelineAnalyzer      // 渲染系统管线分析器
+#define RenderingSystemPipelineMonitor RenderingSystemPipelineMonitor       // 渲染系统管线监控器
+#define RenderingSystemPipelineDebugger RenderingSystemPipelineDebugger      // 渲染系统管线调试器
+#define RenderingSystemPipelineCleaner RenderingSystemPipelineCleaner       // 渲染系统管线清理器
+#define RenderingSystemPipelineInitializer RenderingSystemPipelineInitializer    // 渲染系统管线初始化器
+
+// 渲染系统纹理管理别名定义
+#define RenderingSystemTextureManager2 RenderingSystemTextureManager2       // 渲染系统纹理管理器2
+#define RenderingSystemTextureProcessor RenderingSystemTextureProcessor     // 渲染系统纹理处理器
+#define RenderingSystemTextureOptimizer RenderingSystemTextureOptimizer      // 渲染系统纹理优化器
+#define RenderingSystemTextureValidator RenderingSystemTextureValidator      // 渲染系统纹理验证器
+#define RenderingSystemTextureLoader2 RenderingSystemTextureLoader2         // 渲染系统纹理加载器2
+#define RenderingSystemTextureUnloader RenderingSystemTextureUnloader        // 渲染系统纹理卸载器
+#define RenderingSystemTextureConverter RenderingSystemTextureConverter      // 渲染系统纹理转换器
+#define RenderingSystemTextureCompressor2 RenderingSystemTextureCompressor2    // 渲染系统纹理压缩器2
+#define RenderingSystemTextureDecompressor RenderingSystemTextureDecompressor   // 渲染系统纹理解压器
+#define RenderingSystemTextureCacheManager RenderingSystemTextureCacheManager    // 渲染系统纹理缓存管理器
+
+// 渲染系统着色器管理别名定义
+#define RenderingSystemShaderManager RenderingSystemShaderManager         // 渲染系统着色器管理器
+#define RenderingSystemShaderProcessor RenderingSystemShaderProcessor        // 渲染系统着色器处理器
+#define RenderingSystemShaderOptimizer RenderingSystemShaderOptimizer        // 渲染系统着色器优化器
+#define RenderingSystemShaderValidator RenderingSystemShaderValidator        // 渲染系统着色器验证器
+#define RenderingSystemShaderLoader2 RenderingSystemShaderLoader2         // 渲染系统着色器加载器2
+#define RenderingSystemShaderUnloader RenderingSystemShaderUnloader        // 渲染系统着色器卸载器
+#define RenderingSystemShaderCompiler2 RenderingSystemShaderCompiler2       // 渲染系统着色器编译器2
+#define RenderingSystemShaderLinker RenderingSystemShaderLinker           // 渲染系统着色器链接器
+#define RenderingSystemShaderAnalyzer RenderingSystemShaderAnalyzer        // 渲染系统着色器分析器
+#define RenderingSystemShaderDebugger RenderingSystemShaderDebugger        // 渲染系统着色器调试器
+
+// 渲染系统缓冲区管理别名定义
+#define RenderingSystemBufferManager2 RenderingSystemBufferManager2        // 渲染系统缓冲区管理器2
+#define RenderingSystemBufferProcessor RenderingSystemBufferProcessor       // 渲染系统缓冲区处理器
+#define RenderingSystemBufferOptimizer RenderingSystemBufferOptimizer        // 渲染系统缓冲区优化器
+#define RenderingSystemBufferValidator RenderingSystemBufferValidator        // 渲染系统缓冲区验证器
+#define RenderingSystemBufferAllocator RenderingSystemBufferAllocator       // 渲染系统缓冲区分配器
+#define RenderingSystemBufferDeallocator RenderingSystemBufferDeallocator      // 渲染系统缓冲区释放器
+#define RenderingSystemBufferCleaner RenderingSystemBufferCleaner          // 渲染系统缓冲区清理器
+#define RenderingSystemBufferCompressor RenderingSystemBufferCompressor       // 渲染系统缓冲区压缩器
+#define RenderingSystemBufferExpander RenderingSystemBufferExpander        // 渲染系统缓冲区扩展器
+#define RenderingSystemBufferReallocator RenderingSystemBufferReallocator     // 渲染系统缓冲区重分配器
+
+// 渲染系统渲染状态管理别名定义
+#define RenderingSystemStateManager2 RenderingSystemStateManager2         // 渲染系统状态管理器2
+#define RenderingSystemStateProcessor RenderingSystemStateProcessor       // 渲染系统状态处理器
+#define RenderingSystemStateOptimizer RenderingSystemStateOptimizer        // 渲染系统状态优化器
+#define RenderingSystemStateValidator RenderingSystemStateValidator        // 渲染系统状态验证器
+#define RenderingSystemStateController RenderingSystemStateController       // 渲染系统状态控制器
+#define RenderingSystemStateMonitor RenderingSystemStateMonitor          // 渲染系统状态监控器
+#define RenderingSystemStateDebugger RenderingSystemStateDebugger         // 渲染系统状态调试器
+#define RenderingSystemStateCleaner RenderingSystemStateCleaner          // 渲染系统状态清理器
+#define RenderingSystemStateInitializer RenderingSystemStateInitializer      // 渲染系统状态初始化器
+#define RenderingSystemStateFinalizer RenderingSystemStateFinalizer        // 渲染系统状态终结器
+
+// 渲染系统绘制调用管理别名定义
+#define RenderingSystemDrawManager RenderingSystemDrawManager           // 渲染系统绘制管理器
+#define RenderingSystemDrawProcessor RenderingSystemDrawProcessor         // 渲染系统绘制处理器
+#define RenderingSystemDrawOptimizer RenderingSystemDrawOptimizer         // 渲染系统绘制优化器
+#define RenderingSystemDrawValidator RenderingSystemDrawValidator         // 渲染系统绘制验证器
+#define RenderingSystemDrawController RenderingSystemDrawController         // 渲染系统绘制控制器
+#define RenderingSystemDrawAnalyzer RenderingSystemDrawAnalyzer          // 渲染系统绘制分析器
+#define RenderingSystemDrawMonitor RenderingSystemDrawMonitor           // 渲染系统绘制监控器
+#define RenderingSystemDrawDebugger RenderingSystemDrawDebugger          // 渲染系统绘制调试器
+#define RenderingSystemDrawCleaner RenderingSystemDrawCleaner           // 渲染系统绘制清理器
+#define RenderingSystemDrawInitializer RenderingSystemDrawInitializer       // 渲染系统绘制初始化器
+
+// 渲染系统帧渲染管理别名定义
+#define RenderingSystemFrameManager2 RenderingSystemFrameManager2         // 渲染系统帧管理器2
+#define RenderingSystemFrameProcessor RenderingSystemFrameProcessor       // 渲染系统帧处理器
+#define RenderingSystemFrameOptimizer RenderingSystemFrameOptimizer        // 渲染系统帧优化器
+#define RenderingSystemFrameValidator RenderingSystemFrameValidator        // 渲染系统帧验证器
+#define RenderingSystemFrameController RenderingSystemFrameController       // 渲染系统帧控制器
+#define RenderingSystemFrameAnalyzer RenderingSystemFrameAnalyzer         // 渲染系统帧分析器
+#define RenderingSystemFrameMonitor RenderingSystemFrameMonitor          // 渲染系统帧监控器
+#define RenderingSystemFrameDebugger RenderingSystemFrameDebugger          // 渲染系统帧调试器
+#define RenderingSystemFrameCleaner RenderingSystemFrameCleaner           // 渲染系统帧清理器
+#define RenderingSystemFrameInitializer RenderingSystemFrameInitializer       // 渲染系统帧初始化器
+
+// 渲染系统后期处理别名定义
+#define RenderingSystemPostProcessor2 RenderingSystemPostProcessor2        // 渲染系统后期处理器2
+#define RenderingSystemPostProcessorManager RenderingSystemPostProcessorManager  // 渲染系统后期处理管理器
+#define RenderingSystemPostProcessorOptimizer RenderingSystemPostProcessorOptimizer // 渲染系统后期处理优化器
+#define RenderingSystemPostProcessorValidator RenderingSystemPostProcessorValidator // 渲染系统后期处理验证器
+#define RenderingSystemPostProcessorController RenderingSystemPostProcessorController // 渲染系统后期处理控制器
+#define RenderingSystemPostProcessorAnalyzer RenderingSystemPostProcessorAnalyzer  // 渲染系统后期处理分析器
+#define RenderingSystemPostProcessorMonitor RenderingSystemPostProcessorMonitor   // 渲染系统后期处理监控器
+#define RenderingSystemPostProcessorDebugger RenderingSystemPostProcessorDebugger   // 渲染系统后期处理调试器
+#define RenderingSystemPostProcessorCleaner RenderingSystemPostProcessorCleaner   // 渲染系统后期处理清理器
+#define RenderingSystemPostProcessorInitializer RenderingSystemPostProcessorInitializer // 渲染系统后期处理初始化器
+
+// 渲染系统光照引擎别名定义
+#define RenderingSystemLightingEngine2 RenderingSystemLightingEngine2       // 渲染系统光照引擎2
+#define RenderingSystemLightingProcessor RenderingSystemLightingProcessor     // 渲染系统光照处理器
+#define RenderingSystemLightingOptimizer RenderingSystemLightingOptimizer     // 渲染系统光照优化器
+#define RenderingSystemLightingValidator RenderingSystemLightingValidator      // 渲染系统光照验证器
+#define RenderingSystemLightingController RenderingSystemLightingController     // 渲染系统光照控制器
+#define RenderingSystemLightingAnalyzer RenderingSystemLightingAnalyzer       // 渲染系统光照分析器
+#define RenderingSystemLightingMonitor RenderingSystemLightingMonitor        // 渲染系统光照监控器
+#define RenderingSystemLightingDebugger RenderingSystemLightingDebugger       // 渲染系统光照调试器
+#define RenderingSystemLightingCleaner RenderingSystemLightingCleaner        // 渲染系统光照清理器
+#define RenderingSystemLightingInitializer RenderingSystemLightingInitializer    // 渲染系统光照初始化器
+
+// 渲染系统阴影渲染别名定义
+#define RenderingSystemShadowManager RenderingSystemShadowManager         // 渲染系统阴影管理器
+#define RenderingSystemShadowProcessor RenderingSystemShadowProcessor       // 渲染系统阴影处理器
+#define RenderingSystemShadowOptimizer RenderingSystemShadowOptimizer       // 渲染系统阴影优化器
+#define RenderingSystemShadowValidator RenderingSystemShadowValidator       // 渲染系统阴影验证器
+#define RenderingSystemShadowController RenderingSystemShadowController       // 渲染系统阴影控制器
+#define RenderingSystemShadowAnalyzer RenderingSystemShadowAnalyzer        // 渲染系统阴影分析器
+#define RenderingSystemShadowMonitor RenderingSystemShadowMonitor         // 渲染系统阴影监控器
+#define RenderingSystemShadowDebugger RenderingSystemShadowDebugger         // 渲染系统阴影调试器
+#define RenderingSystemShadowCleaner RenderingSystemShadowCleaner          // 渲染系统阴影清理器
+#define RenderingSystemShadowInitializer RenderingSystemShadowInitializer       // 渲染系统阴影初始化器
+
+// 渲染系统效果处理别名定义
+#define RenderingSystemEffectManager RenderingSystemEffectManager          // 渲染系统效果管理器
+#define RenderingSystemEffectProcessor2 RenderingSystemEffectProcessor2       // 渲染系统效果处理器2
+#define RenderingSystemEffectOptimizer RenderingSystemEffectOptimizer        // 渲染系统效果优化器
+#define RenderingSystemEffectValidator RenderingSystemEffectValidator        // 渲染系统效果验证器
+#define RenderingSystemEffectController RenderingSystemEffectController       // 渲染系统效果控制器
+#define RenderingSystemEffectAnalyzer RenderingSystemEffectAnalyzer         // 渲染系统效果分析器
+#define RenderingSystemEffectMonitor RenderingSystemEffectMonitor          // 渲染系统效果监控器
+#define RenderingSystemEffectDebugger RenderingSystemEffectDebugger         // 渲染系统效果调试器
+#define RenderingSystemEffectCleaner RenderingSystemEffectCleaner          // 渲染系统效果清理器
+#define RenderingSystemEffectInitializer RenderingSystemEffectInitializer      // 渲染系统效果初始化器
+
+// 渲染系统材质处理别名定义
+#define RenderingSystemMaterialManager2 RenderingSystemMaterialManager2       // 渲染系统材质管理器2
+#define RenderingSystemMaterialProcessor2 RenderingSystemMaterialProcessor2     // 渲染系统材质处理器2
+#define RenderingSystemMaterialOptimizer RenderingSystemMaterialOptimizer      // 渲染系统材质优化器
+#define RenderingSystemMaterialValidator RenderingSystemMaterialValidator      // 渲染系统材质验证器
+#define RenderingSystemMaterialController RenderingSystemMaterialController     // 渲染系统材质控制器
+#define RenderingSystemMaterialAnalyzer RenderingSystemMaterialAnalyzer       // 渲染系统材质分析器
+#define RenderingSystemMaterialMonitor RenderingSystemMaterialMonitor        // 渲染系统材质监控器
+#define RenderingSystemMaterialDebugger RenderingSystemMaterialDebugger        // 渲染系统材质调试器
+#define RenderingSystemMaterialCleaner RenderingSystemMaterialCleaner        // 渲染系统材质清理器
+#define RenderingSystemMaterialInitializer RenderingSystemMaterialInitializer    // 渲染系统材质初始化器
+
+// 渲染系统几何体处理别名定义
+#define RenderingSystemGeometryManager RenderingSystemGeometryManager         // 渲染系统几何体管理器
+#define RenderingSystemGeometryProcessor2 RenderingSystemGeometryProcessor2      // 渲染系统几何体处理器2
+#define RenderingSystemGeometryOptimizer RenderingSystemGeometryOptimizer      // 渲染系统几何体优化器
+#define RenderingSystemGeometryValidator RenderingSystemGeometryValidator      // 渲染系统几何体验证器
+#define RenderingSystemGeometryController RenderingSystemGeometryController     // 渲染系统几何体控制器
+#define RenderingSystemGeometryAnalyzer RenderingSystemGeometryAnalyzer       // 渲染系统几何体分析器
+#define RenderingSystemGeometryMonitor RenderingSystemGeometryMonitor        // 渲染系统几何体监控器
+#define RenderingSystemGeometryDebugger RenderingSystemGeometryDebugger       // 渲染系统几何体调试器
+#define RenderingSystemGeometryCleaner RenderingSystemGeometryCleaner        // 渲染系统几何体清理器
+#define RenderingSystemGeometryInitializer RenderingSystemGeometryInitializer     // 渲染系统几何体初始化器
+
+// 渲染系统动画系统别名定义
+#define RenderingSystemAnimationManager RenderingSystemAnimationManager       // 渲染系统动画管理器
+#define RenderingSystemAnimationProcessor RenderingSystemAnimationProcessor     // 渲染系统动画处理器
+#define RenderingSystemAnimationOptimizer RenderingSystemAnimationOptimizer     // 渲染系统动画优化器
+#define RenderingSystemAnimationValidator RenderingSystemAnimationValidator     // 渲染系统动画验证器
+#define RenderingSystemAnimationController RenderingSystemAnimationController    // 渲染系统动画控制器
+#define RenderingSystemAnimationAnalyzer RenderingSystemAnimationAnalyzer      // 渲染系统动画分析器
+#define RenderingSystemAnimationMonitor RenderingSystemAnimationMonitor       // 渲染系统动画监控器
+#define RenderingSystemAnimationDebugger RenderingSystemAnimationDebugger      // 渲染系统动画调试器
+#define RenderingSystemAnimationCleaner RenderingSystemAnimationCleaner       // 渲染系统动画清理器
+#define RenderingSystemAnimationInitializer RenderingSystemAnimationInitializer   // 渲染系统动画初始化器
+
+// 渲染系统变换处理别名定义
+#define RenderingSystemTransformManager RenderingSystemTransformManager       // 渲染系统变换管理器
+#define RenderingSystemTransformProcessor RenderingSystemTransformProcessor     // 渲染系统变换处理器
+#define RenderingSystemTransformOptimizer RenderingSystemTransformOptimizer     // 渲染系统变换优化器
+#define RenderingSystemTransformValidator RenderingSystemTransformValidator      // 渲染系统变换验证器
+#define RenderingSystemTransformController RenderingSystemTransformController    // 渲染系统变换控制器
+#define RenderingSystemTransformAnalyzer RenderingSystemTransformAnalyzer      // 渲染系统变换分析器
+#define RenderingSystemTransformMonitor RenderingSystemTransformMonitor       // 渲染系统变换监控器
+#define RenderingSystemTransformDebugger RenderingSystemTransformDebugger       // 渲染系统变换调试器
+#define RenderingSystemTransformCleaner RenderingSystemTransformCleaner       // 渲染系统变换清理器
+#define RenderingSystemTransformInitializer RenderingSystemTransformInitializer   // 渲染系统变换初始化器
+
+// 渲染系统视口管理别名定义
+#define RenderingSystemViewportManager2 RenderingSystemViewportManager2       // 渲染系统视口管理器2
+#define RenderingSystemViewportProcessor RenderingSystemViewportProcessor      // 渲染系统视口处理器
+#define RenderingSystemViewportOptimizer RenderingSystemViewportOptimizer      // 渲染系统视口优化器
+#define RenderingSystemViewportValidator RenderingSystemViewportValidator      // 渲染系统视口验证器
+#define RenderingSystemViewportController RenderingSystemViewportController     // 渲染系统视口控制器
+#define RenderingSystemViewportAnalyzer RenderingSystemViewportAnalyzer       // 渲染系统视口分析器
+#define RenderingSystemViewportMonitor RenderingSystemViewportMonitor        // 渲染系统视口监控器
+#define RenderingSystemViewportDebugger RenderingSystemViewportDebugger       // 渲染系统视口调试器
+#define RenderingSystemViewportCleaner RenderingSystemViewportCleaner         // 渲染系统视口清理器
+#define RenderingSystemViewportInitializer RenderingSystemViewportInitializer     // 渲染系统视口初始化器
+
+// 渲染系统UI渲染别名定义
+#define RenderingSystemUIManager2 RenderingSystemUIManager2              // 渲染系统UI管理器2
+#define RenderingSystemUIProcessor RenderingSystemUIProcessor             // 渲染系统UI处理器
+#define RenderingSystemUIOptimizer RenderingSystemUIOptimizer             // 渲染系统UI优化器
+#define RenderingSystemUIValidator RenderingSystemUIValidator            // 渲染系统UI验证器
+#define RenderingSystemUIController RenderingSystemUIController           // 渲染系统UI控制器
+#define RenderingSystemUIAnalyzer RenderingSystemUIAnalyzer              // 渲染系统UI分析器
+#define RenderingSystemUIMonitor RenderingSystemUIMonitor               // 渲染系统UI监控器
+#define RenderingSystemUIDebugger RenderingSystemUIDebugger              // 渲染系统UI调试器
+#define RenderingSystemUICleaner RenderingSystemUICleaner               // 渲染系统UI清理器
+#define RenderingSystemUIInitializer RenderingSystemUIInitializer          // 渲染系统UI初始化器
+
+// 渲染系统字体渲染别名定义
+#define RenderingSystemFontManager RenderingSystemFontManager            // 渲染系统字体管理器
+#define RenderingSystemFontProcessor RenderingSystemFontProcessor          // 渲染系统字体处理器
+#define RenderingSystemFontOptimizer RenderingSystemFontOptimizer          // 渲染系统字体优化器
+#define RenderingSystemFontValidator RenderingSystemFontValidator          // 渲染系统字体验证器
+#define RenderingSystemFontController RenderingSystemFontController          // 渲染系统字体控制器
+#define RenderingSystemFontAnalyzer RenderingSystemFontAnalyzer           // 渲染系统字体分析器
+#define RenderingSystemFontMonitor RenderingSystemFontMonitor            // 渲染系统字体监控器
+#define RenderingSystemFontDebugger RenderingSystemFontDebugger            // 渲染系统字体调试器
+#define RenderingSystemFontCleaner RenderingSystemFontCleaner             // 渲染系统字体清理器
+#define RenderingSystemFontInitializer RenderingSystemFontInitializer         // 渲染系统字体初始化器
+
+// 渲染系统文本处理别名定义
+#define RenderingSystemTextManager RenderingSystemTextManager            // 渲染系统文本管理器
+#define RenderingSystemTextProcessor2 RenderingSystemTextProcessor2          // 渲染系统文本处理器2
+#define RenderingSystemTextOptimizer RenderingSystemTextOptimizer           // 渲染系统文本优化器
+#define RenderingSystemTextValidator RenderingSystemTextValidator           // 渲染系统文本验证器
+#define RenderingSystemTextController RenderingSystemTextController          // 渲染系统文本控制器
+#define RenderingSystemTextAnalyzer RenderingSystemTextAnalyzer           // 渲染系统文本分析器
+#define RenderingSystemTextMonitor RenderingSystemTextMonitor            // 渲染系统文本监控器
+#define RenderingSystemTextDebugger RenderingSystemTextDebugger            // 渲染系统文本调试器
+#define RenderingSystemTextCleaner RenderingSystemTextCleaner             // 渲染系统文本清理器
+#define RenderingSystemTextInitializer RenderingSystemTextInitializer         // 渲染系统文本初始化器
+
+// 渲染系统输入处理别名定义
+#define RenderingSystemInputManager RenderingSystemInputManager           // 渲染系统输入管理器
+#define RenderingSystemInputProcessor2 RenderingSystemInputProcessor2       // 渲染系统输入处理器2
+#define RenderingSystemInputOptimizer RenderingSystemInputOptimizer         // 渲染系统输入优化器
+#define RenderingSystemInputValidator RenderingSystemInputValidator          // 渲染系统输入验证器
+#define RenderingSystemInputController RenderingSystemInputController         // 渲染系统输入控制器
+#define RenderingSystemInputAnalyzer RenderingSystemInputAnalyzer          // 渲染系统输入分析器
+#define RenderingSystemInputMonitor RenderingSystemInputMonitor           // 渲染系统输入监控器
+#define RenderingSystemInputDebugger RenderingSystemInputDebugger           // 渲染系统输入调试器
+#define RenderingSystemInputCleaner RenderingSystemInputCleaner            // 渲染系统输入清理器
+#define RenderingSystemInputInitializer RenderingSystemInputInitializer       // 渲染系统输入初始化器
+
+// 渲染系统事件分发别名定义
+#define RenderingSystemEventManager RenderingSystemEventManager          // 渲染系统事件管理器
+#define RenderingSystemEventProcessor RenderingSystemEventProcessor        // 渲染系统事件处理器
+#define RenderingSystemEventOptimizer RenderingSystemEventOptimizer         // 渲染系统事件优化器
+#define RenderingSystemEventValidator RenderingSystemEventValidator         // 渲染系统事件验证器
+#define RenderingSystemEventController RenderingSystemEventController        // 渲染系统事件控制器
+#define RenderingSystemEventAnalyzer RenderingSystemEventAnalyzer         // 渲染系统事件分析器
+#define RenderingSystemEventMonitor RenderingSystemEventMonitor           // 渲染系统事件监控器
+#define RenderingSystemEventDebugger RenderingSystemEventDebugger          // 渲染系统事件调试器
+#define RenderingSystemEventCleaner RenderingSystemEventCleaner           // 渲染系统事件清理器
+#define RenderingSystemEventInitializer RenderingSystemEventInitializer       // 渲染系统事件初始化器
+
+// 渲染系统音频处理别名定义
+#define RenderingSystemAudioManager RenderingSystemAudioManager           // 渲染系统音频管理器
+#define RenderingSystemAudioProcessor2 RenderingSystemAudioProcessor2       // 渲染系统音频处理器2
+#define RenderingSystemAudioOptimizer RenderingSystemAudioOptimizer         // 渲染系统音频优化器
+#define RenderingSystemAudioValidator RenderingSystemAudioValidator          // 渲染系统音频验证器
+#define RenderingSystemAudioController RenderingSystemAudioController         // 渲染系统音频控制器
+#define RenderingSystemAudioAnalyzer RenderingSystemAudioAnalyzer          // 渲染系统音频分析器
+#define RenderingSystemAudioMonitor RenderingSystemAudioMonitor           // 渲染系统音频监控器
+#define RenderingSystemAudioDebugger RenderingSystemAudioDebugger           // 渲染系统音频调试器
+#define RenderingSystemAudioCleaner RenderingSystemAudioCleaner            // 渲染系统音频清理器
+#define RenderingSystemAudioInitializer RenderingSystemAudioInitializer        // 渲染系统音频初始化器
+
+// 渲染系统视频播放别名定义
+#define RenderingSystemVideoManager RenderingSystemVideoManager            // 渲染系统视频管理器
+#define RenderingSystemVideoProcessor RenderingSystemVideoProcessor          // 渲染系统视频处理器
+#define RenderingSystemVideoOptimizer RenderingSystemVideoOptimizer         // 渲染系统视频优化器
+#define RenderingSystemVideoValidator RenderingSystemVideoValidator          // 渲染系统视频验证器
+#define RenderingSystemVideoController RenderingSystemVideoController         // 渲染系统视频控制器
+#define RenderingSystemVideoAnalyzer RenderingSystemVideoAnalyzer          // 渲染系统视频分析器
+#define RenderingSystemVideoMonitor RenderingSystemVideoMonitor           // 渲染系统视频监控器
+#define RenderingSystemVideoDebugger RenderingSystemVideoDebugger           // 渲染系统视频调试器
+#define RenderingSystemVideoCleaner RenderingSystemVideoCleaner            // 渲染系统视频清理器
+#define RenderingSystemVideoInitializer RenderingSystemVideoInitializer         // 渲染系统视频初始化器
+
+// 渲染系统粒子引擎别名定义
+#define RenderingSystemParticleManager RenderingSystemParticleManager         // 渲染系统粒子管理器
+#define RenderingSystemParticleProcessor RenderingSystemParticleProcessor      // 渲染系统粒子处理器
+#define RenderingSystemParticleOptimizer RenderingSystemParticleOptimizer       // 渲染系统粒子优化器
+#define RenderingSystemParticleValidator RenderingSystemParticleValidator       // 渲染系统粒子验证器
+#define RenderingSystemParticleController RenderingSystemParticleController      // 渲染系统粒子控制器
+#define RenderingSystemParticleAnalyzer RenderingSystemParticleAnalyzer        // 渲染系统粒子分析器
+#define RenderingSystemParticleMonitor RenderingSystemParticleMonitor         // 渲染系统粒子监控器
+#define RenderingSystemParticleDebugger RenderingSystemParticleDebugger        // 渲染系统粒子调试器
+#define RenderingSystemParticleCleaner RenderingSystemParticleCleaner         // 渲染系统粒子清理器
+#define RenderingSystemParticleInitializer RenderingSystemParticleInitializer      // 渲染系统粒子初始化器
+
+// 渲染系统物理模拟别名定义
+#define RenderingSystemPhysicsManager RenderingSystemPhysicsManager          // 渲染系统物理管理器
+#define RenderingSystemPhysicsProcessor RenderingSystemPhysicsProcessor        // 渲染系统物理处理器
+#define RenderingSystemPhysicsOptimizer RenderingSystemPhysicsOptimizer        // 渲染系统物理优化器
+#define RenderingSystemPhysicsValidator RenderingSystemPhysicsValidator         // 渲染系统物理验证器
+#define RenderingSystemPhysicsController RenderingSystemPhysicsController        // 渲染系统物理控制器
+#define RenderingSystemPhysicsAnalyzer RenderingSystemPhysicsAnalyzer         // 渲染系统物理分析器
+#define RenderingSystemPhysicsMonitor RenderingSystemPhysicsMonitor          // 渲染系统物理监控器
+#define RenderingSystemPhysicsDebugger RenderingSystemPhysicsDebugger          // 渲染系统物理调试器
+#define RenderingSystemPhysicsCleaner RenderingSystemPhysicsCleaner           // 渲染系统物理清理器
+#define RenderingSystemPhysicsInitializer RenderingSystemPhysicsInitializer       // 渲染系统物理初始化器
+
+// 渲染系统碰撞检测别名定义
+#define RenderingSystemCollisionManager RenderingSystemCollisionManager        // 渲染系统碰撞管理器
+#define RenderingSystemCollisionProcessor RenderingSystemCollisionProcessor      // 渲染系统碰撞处理器
+#define RenderingSystemCollisionOptimizer RenderingSystemCollisionOptimizer       // 渲染系统碰撞优化器
+#define RenderingSystemCollisionValidator RenderingSystemCollisionValidator       // 渲染系统碰撞验证器
+#define RenderingSystemCollisionController RenderingSystemCollisionController      // 渲染系统碰撞控制器
+#define RenderingSystemCollisionAnalyzer RenderingSystemCollisionAnalyzer       // 渲染系统碰撞分析器
+#define RenderingSystemCollisionMonitor RenderingSystemCollisionMonitor        // 渲染系统碰撞监控器
+#define RenderingSystemCollisionDebugger RenderingSystemCollisionDebugger        // 渲染系统碰撞调试器
+#define RenderingSystemCollisionCleaner RenderingSystemCollisionCleaner         // 渲染系统碰撞清理器
+#define RenderingSystemCollisionInitializer RenderingSystemCollisionInitializer      // 渲染系统碰撞初始化器
+
+// 渲染系统网络管理别名定义
+#define RenderingSystemNetworkManager2 RenderingSystemNetworkManager2         // 渲染系统网络管理器2
+#define RenderingSystemNetworkProcessor RenderingSystemNetworkProcessor        // 渲染系统网络处理器
+#define RenderingSystemNetworkOptimizer RenderingSystemNetworkOptimizer        // 渲染系统网络优化器
+#define RenderingSystemNetworkValidator RenderingSystemNetworkValidator         // 渲染系统网络验证器
+#define RenderingSystemNetworkController RenderingSystemNetworkController        // 渲染系统网络控制器
+#define RenderingSystemNetworkAnalyzer RenderingSystemNetworkAnalyzer         // 渲染系统网络分析器
+#define RenderingSystemNetworkMonitor RenderingSystemNetworkMonitor          // 渲染系统网络监控器
+#define RenderingSystemNetworkDebugger RenderingSystemNetworkDebugger          // 渲染系统网络调试器
+#define RenderingSystemNetworkCleaner RenderingSystemNetworkCleaner          // 渲染系统网络清理器
+#define RenderingSystemNetworkInitializer RenderingSystemNetworkInitializer       // 渲染系统网络初始化器
+
+// 渲染系统资源管理别名定义
+#define RenderingSystemResourceManager3 RenderingSystemResourceManager3         // 渲染系统资源管理器3
+#define RenderingSystemResourceProcessor RenderingSystemResourceProcessor        // 渲染系统资源处理器
+#define RenderingSystemResourceOptimizer RenderingSystemResourceOptimizer        // 渲染系统资源优化器
+#define RenderingSystemResourceValidator RenderingSystemResourceValidator         // 渲染系统资源验证器
+#define RenderingSystemResourceController RenderingSystemResourceController        // 渲染系统资源控制器
+#define RenderingSystemResourceAnalyzer RenderingSystemResourceAnalyzer         // 渲染系统资源分析器
+#define RenderingSystemResourceMonitor RenderingSystemResourceMonitor          // 渲染系统资源监控器
+#define RenderingSystemResourceDebugger RenderingSystemResourceDebugger          // 渲染系统资源调试器
+#define RenderingSystemResourceCleaner RenderingSystemResourceCleaner           // 渲染系统资源清理器
+#define RenderingSystemResourceInitializer RenderingSystemResourceInitializer       // 渲染系统资源初始化器
+
+// 渲染系统着色器编译别名定义
+#define RenderingSystemShaderCompiler3 RenderingSystemShaderCompiler3          // 渲染系统着色器编译器3
+#define RenderingSystemShaderCompilerManager RenderingSystemShaderCompilerManager    // 渲染系统着色器编译管理器
+#define RenderingSystemShaderCompilerOptimizer RenderingSystemShaderCompilerOptimizer   // 渲染系统着色器编译优化器
+#define RenderingSystemShaderCompilerValidator RenderingSystemShaderCompilerValidator   // 渲染系统着色器编译验证器
+#define RenderingSystemShaderCompilerController RenderingSystemShaderCompilerController  // 渲染系统着色器编译控制器
+#define RenderingSystemShaderCompilerAnalyzer RenderingSystemShaderCompilerAnalyzer   // 渲染系统着色器编译分析器
+#define RenderingSystemShaderCompilerMonitor RenderingSystemShaderCompilerMonitor     // 渲染系统着色器编译监控器
+#define RenderingSystemShaderCompilerDebugger RenderingSystemShaderCompilerDebugger     // 渲染系统着色器编译调试器
+#define RenderingSystemShaderCompilerCleaner RenderingSystemShaderCompilerCleaner     // 渲染系统着色器编译清理器
+#define RenderingSystemShaderCompilerInitializer RenderingSystemShaderCompilerInitializer  // 渲染系统着色器编译初始化器
+
+// 渲染系统纹理压缩别名定义
+#define RenderingSystemTextureCompressor3 RenderingSystemTextureCompressor3      // 渲染系统纹理压缩器3
+#define RenderingSystemTextureCompressorManager RenderingSystemTextureCompressorManager // 渲染系统纹理压缩管理器
+#define RenderingSystemTextureCompressorOptimizer RenderingSystemTextureCompressorOptimizer // 渲染系统纹理压缩优化器
+#define RenderingSystemTextureCompressorValidator RenderingSystemTextureCompressorValidator // 渲染系统纹理压缩验证器
+#define RenderingSystemTextureCompressorController RenderingSystemTextureCompressorController // 渲染系统纹理压缩控制器
+#define RenderingSystemTextureCompressorAnalyzer RenderingSystemTextureCompressorAnalyzer  // 渲染系统纹理压缩分析器
+#define RenderingSystemTextureCompressorMonitor RenderingSystemTextureCompressorMonitor   // 渲染系统纹理压缩监控器
+#define RenderingSystemTextureCompressorDebugger RenderingSystemTextureCompressorDebugger   // 渲染系统纹理压缩调试器
+#define RenderingSystemTextureCompressorCleaner RenderingSystemTextureCompressorCleaner   // 渲染系统纹理压缩清理器
+#define RenderingSystemTextureCompressorInitializer RenderingSystemTextureCompressorInitializer // 渲染系统纹理压缩初始化器
+
+// 渲染系统核心函数别名定义
+#define RenderingSystemCoreProcessor RenderingSystemCoreProcessor           // 渲染系统核心处理器
+#define RenderingSystemCoreManager RenderingSystemCoreManager             // 渲染系统核心管理器
+#define RenderingSystemCoreOptimizer RenderingSystemCoreOptimizer           // 渲染系统核心优化器
+#define RenderingSystemCoreValidator RenderingSystemCoreValidator            // 渲染系统核心验证器
+#define RenderingSystemCoreController RenderingSystemCoreController           // 渲染系统核心控制器
+#define RenderingSystemCoreAnalyzer RenderingSystemCoreAnalyzer            // 渲染系统核心分析器
+#define RenderingSystemCoreMonitor RenderingSystemCoreMonitor             // 渲染系统核心监控器
+#define RenderingSystemCoreDebugger RenderingSystemCoreDebugger             // 渲染系统核心调试器
+#define RenderingSystemCoreCleaner RenderingSystemCoreCleaner              // 渲染系统核心清理器
+#define RenderingSystemCoreInitializer RenderingSystemCoreInitializer          // 渲染系统核心初始化器
+
+// 渲染系统高级函数别名定义
+#define RenderingSystemAdvancedFunctionProcessor RenderingSystemAdvancedFunctionProcessor // 渲染系统高级函数处理器
+#define RenderingSystemAdvancedFunctionManager RenderingSystemAdvancedFunctionManager   // 渲染系统高级函数管理器
+#define RenderingSystemAdvancedFunctionOptimizer RenderingSystemAdvancedFunctionOptimizer  // 渲染系统高级函数优化器
+#define RenderingSystemAdvancedFunctionValidator RenderingSystemAdvancedFunctionValidator  // 渲染系统高级函数验证器
+#define RenderingSystemAdvancedFunctionController RenderingSystemAdvancedFunctionController // 渲染系统高级函数控制器
+#define RenderingSystemAdvancedFunctionAnalyzer RenderingSystemAdvancedFunctionAnalyzer   // 渲染系统高级函数分析器
+#define RenderingSystemAdvancedFunctionMonitor RenderingSystemAdvancedFunctionMonitor    // 渲染系统高级函数监控器
+#define RenderingSystemAdvancedFunctionDebugger RenderingSystemAdvancedFunctionDebugger   // 渲染系统高级函数调试器
+#define RenderingSystemAdvancedFunctionCleaner RenderingSystemAdvancedFunctionCleaner     // 渲染系统高级函数清理器
+#define RenderingSystemAdvancedFunctionInitializer RenderingSystemAdvancedFunctionInitializer // 渲染系统高级函数初始化器
+
+// 渲染系统特殊功能别名定义
+#define RenderingSystemSpecialProcessor RenderingSystemSpecialProcessor         // 渲染系统特殊处理器
+#define RenderingSystemSpecialManager RenderingSystemSpecialManager           // 渲染系统特殊管理器
+#define RenderingSystemSpecialOptimizer RenderingSystemSpecialOptimizer         // 渲染系统特殊优化器
+#define RenderingSystemSpecialValidator RenderingSystemSpecialValidator          // 渲染系统特殊验证器
+#define RenderingSystemSpecialController RenderingSystemSpecialController         // 渲染系统特殊控制器
+#define RenderingSystemSpecialAnalyzer RenderingSystemSpecialAnalyzer          // 渲染系统特殊分析器
+#define RenderingSystemSpecialMonitor RenderingSystemSpecialMonitor           // 渲染系统特殊监控器
+#define RenderingSystemSpecialDebugger RenderingSystemSpecialDebugger          // 渲染系统特殊调试器
+#define RenderingSystemSpecialCleaner RenderingSystemSpecialCleaner           // 渲染系统特殊清理器
+#define RenderingSystemSpecialInitializer RenderingSystemSpecialInitializer       // 渲染系统特殊初始化器
+
+// 渲染系统通用功能别名定义
+#define RenderingSystemGenericProcessor RenderingSystemGenericProcessor         // 渲染系统通用处理器
+#define RenderingSystemGenericManager RenderingSystemGenericManager           // 渲染系统通用管理器
+#define RenderingSystemGenericOptimizer RenderingSystemGenericOptimizer         // 渲染系统通用优化器
+#define RenderingSystemGenericValidator RenderingSystemGenericValidator          // 渲染系统通用验证器
+#define RenderingSystemGenericController RenderingSystemGenericController          // 渲染系统通用控制器
+#define RenderingSystemGenericAnalyzer RenderingSystemGenericAnalyzer           // 渲染系统通用分析器
+#define RenderingSystemGenericMonitor RenderingSystemGenericMonitor            // 渲染系统通用监控器
+#define RenderingSystemGenericDebugger RenderingSystemGenericDebugger           // 渲染系统通用调试器
+#define RenderingSystemGenericCleaner RenderingSystemGenericCleaner            // 渲染系统通用清理器
+#define RenderingSystemGenericInitializer RenderingSystemGenericInitializer        // 渲染系统通用初始化器
+
+// 渲染系统实用工具别名定义
+#define RenderingSystemUtilityProcessor RenderingSystemUtilityProcessor         // 渲染系统实用工具处理器
+#define RenderingSystemUtilityManager RenderingSystemUtilityManager           // 渲染系统实用工具管理器
+#define RenderingSystemUtilityOptimizer RenderingSystemUtilityOptimizer         // 渲染系统实用工具优化器
+#define RenderingSystemUtilityValidator RenderingSystemUtilityValidator          // 渲染系统实用工具验证器
+#define RenderingSystemUtilityController RenderingSystemUtilityController         // 渲染系统实用工具控制器
+#define RenderingSystemUtilityAnalyzer RenderingSystemUtilityAnalyzer          // 渲染系统实用工具分析器
+#define RenderingSystemUtilityMonitor RenderingSystemUtilityMonitor           // 渲染系统实用工具监控器
+#define RenderingSystemUtilityDebugger RenderingSystemUtilityDebugger          // 渲染系统实用工具调试器
+#define RenderingSystemUtilityCleaner RenderingSystemUtilityCleaner           // 渲染系统实用工具清理器
+#define RenderingSystemUtilityInitializer RenderingSystemUtilityInitializer        // 渲染系统实用工具初始化器
+
+// 渲染系统辅助功能别名定义
+#define RenderingSystemHelperProcessor RenderingSystemHelperProcessor           // 渲染系统辅助处理器
+#define RenderingSystemHelperManager RenderingSystemHelperManager             // 渲染系统辅助管理器
+#define RenderingSystemHelperOptimizer RenderingSystemHelperOptimizer           // 渲染系统辅助优化器
+#define RenderingSystemHelperValidator RenderingSystemHelperValidator            // 渲染系统辅助验证器
+#define RenderingSystemHelperController RenderingSystemHelperController           // 渲染系统辅助控制器
+#define RenderingSystemHelperAnalyzer RenderingSystemHelperAnalyzer            // 渲染系统辅助分析器
+#define RenderingSystemHelperMonitor RenderingSystemHelperMonitor             // 渲染系统辅助监控器
+#define RenderingSystemHelperDebugger RenderingSystemHelperDebugger            // 渲染系统辅助调试器
+#define RenderingSystemHelperCleaner RenderingSystemHelperCleaner             // 渲染系统辅助清理器
+#define RenderingSystemHelperInitializer RenderingSystemHelperInitializer          // 渲染系统辅助初始化器
+
+// 渲染系统系统级功能别名定义
+#define RenderingSystemSystemProcessor RenderingSystemSystemProcessor           // 渲染系统系统处理器
+#define RenderingSystemSystemManager RenderingSystemSystemManager             // 渲染系统系统管理器
+#define RenderingSystemSystemOptimizer RenderingSystemSystemOptimizer           // 渲染系统系统优化器
+#define RenderingSystemSystemValidator RenderingSystemSystemValidator           // 渲染系统系统验证器
+#define RenderingSystemSystemController RenderingSystemSystemController          // 渲染系统系统控制器
+#define RenderingSystemSystemAnalyzer RenderingSystemSystemAnalyzer           // 渲染系统系统分析器
+#define RenderingSystemSystemMonitor RenderingSystemSystemMonitor             // 渲染系统系统监控器
+#define RenderingSystemSystemDebugger RenderingSystemSystemDebugger            // 渲染系统系统调试器
+#define RenderingSystemSystemCleaner RenderingSystemSystemCleaner             // 渲染系统系统清理器
+#define RenderingSystemSystemInitializer RenderingSystemSystemInitializer          // 渲染系统系统初始化器
 
