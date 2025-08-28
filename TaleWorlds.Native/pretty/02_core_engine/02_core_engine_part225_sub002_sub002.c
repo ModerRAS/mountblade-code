@@ -1,10 +1,214 @@
+/**
+ * @file pretty/02_core_engine/02_core_engine_part225_sub002_sub002.c
+ * @brief 核心引擎高级实体管理和资源处理模块
+ * 
+ * 本文件是核心引擎系统的重要组成部分，主要负责：
+ * - 实体初始化和状态管理
+ * - 实体数据传输和同步
+ * - 资源清理和内存管理
+ * - 实体指针交换和安全管理
+ * - 组件系统集成和协调
+ * 
+ * 该模块提供了完整的实体生命周期管理功能，为上层应用提供
+ * 高效的实体处理和资源管理能力。
+ * 
+ * @version 1.0
+ * @date 2025-08-28
+ * @author Claude Code
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part225_sub002_sub002.c - 核心引擎模块第225部分第2子部分第2子部分
-// 本文件包含4个函数，主要处理游戏对象的初始化、状态管理和资源清理
+/* ============================================================================
+ * 核心引擎常量定义
+ * ============================================================================ */
 
-// 函数: void process_entity_initialization(longlong *entity_context, longlong *scene_context, char initialization_flags)
-// 处理实体初始化过程，包括状态同步、资源分配和组件管理
+#define CORE_ENGINE_SUCCESS 0                    // 操作成功
+#define CORE_ENGINE_ERROR 0x1c                   // 操作失败
+#define ENTITY_MAX_COMPONENTS 0x100              // 实体最大组件数
+#define ENTITY_MAX_ATTRIBUTES 0x200              // 实体最大属性数
+#define RESOURCE_CLEANUP_FLAG 0x1                // 资源清理标志
+#define ENTITY_STATE_UPDATED 0x1                 // 实体状态已更新
+#define ENTITY_POSITION_DIRTY 0x2                // 实体位置脏标记
+
+/* ============================================================================
+ * 核心引擎状态码定义
+ * ============================================================================ */
+
+#define CORE_ENGINE_STATE_UNINITIALIZED 0x00     // 未初始化状态
+#define CORE_ENGINE_STATE_INITIALIZING 0x01      // 正在初始化
+#define CORE_ENGINE_STATE_INITIALIZED 0x02       // 已初始化
+#define CORE_ENGINE_STATE_RUNNING 0x03            // 运行中
+#define CORE_ENGINE_STATE_PAUSED 0x04             // 暂停状态
+#define CORE_ENGINE_STATE_ERROR 0x05              // 错误状态
+#define CORE_ENGINE_STATE_SHUTDOWN 0x06           // 关闭状态
+
+/* ============================================================================
+ * 核心引擎错误码定义
+ * ============================================================================ */
+
+#define CORE_ENGINE_ERROR_NONE 0x00000000        // 无错误
+#define CORE_ENGINE_ERROR_INVALID_PARAM 0x00000001 // 无效参数
+#define CORE_ENGINE_ERROR_MEMORY_ALLOC 0x00000002  // 内存分配失败
+#define CORE_ENGINE_ERROR_NULL_POINTER 0x00000003  // 空指针错误
+#define CORE_ENGINE_ERROR_BUFFER_OVERFLOW 0x00000004 // 缓冲区溢出
+#define CORE_ENGINE_ERROR_INVALID_STATE 0x00000005 // 无效状态
+#define CORE_ENGINE_ERROR_TIMEOUT 0x00000006      // 超时错误
+#define CORE_ENGINE_ERROR_RESOURCE_BUSY 0x00000007 // 资源忙
+
+/* ============================================================================
+ * 实体管理常量定义
+ * ============================================================================ */
+
+#define ENTITY_CONTEXT_SIZE 0x2000               // 实体上下文大小
+#define SCENE_CONTEXT_SIZE 0x1000               // 场景上下文大小
+#define COMPONENT_DATA_SIZE 0x800               // 组件数据大小
+#define TRANSFORM_DATA_SIZE 0x100               // 变换数据大小
+#define MAX_ENTITY_COUNT 0x1000                 // 最大实体数量
+
+/* ============================================================================
+ * 类型定义和别名
+ * ============================================================================ */
+
+typedef longlong* EntityContextPtr;             // 实体上下文指针
+typedef longlong* SceneContextPtr;             // 场景上下文指针
+typedef uint64_t* ComponentDataPtr;             // 组件数据指针
+typedef longlong** EntityPtrArray;              // 实体指针数组
+typedef char EntityInitializationFlags;         // 实体初始化标志
+typedef uint32_t EntityTransferStatus;          // 实体传输状态
+typedef ulonglong ResourceCleanupFlags;         // 资源清理标志
+
+/* ============================================================================
+ * 实体初始化标志位定义
+ * ============================================================================ */
+
+#define ENTITY_INIT_NONE 0x00                    // 无初始化
+#define ENTITY_INIT_BASIC 0x01                   // 基础初始化
+#define ENTITY_INIT_COMPONENTS 0x02              // 组件初始化
+#define ENTITY_INIT_TRANSFORM 0x04               // 变换初始化
+#define ENTITY_INIT_RESOURCES 0x08               // 资源初始化
+#define ENTITY_INIT_ALL 0xFF                      // 全部初始化
+
+/* ============================================================================
+ * 实体属性偏移量定义
+ * ============================================================================ */
+
+#define ENTITY_OFFSET_CUSTOM_DATA 0xc170         // 自定义数据偏移
+#define ENTITY_OFFSET_COMPONENT_DATA 0x534        // 组件数据偏移
+#define ENTITY_OFFSET_POSITION_DATA 0x79          // 位置数据偏移
+#define ENTITY_OFFSET_STATE_FLAGS 0x562           // 状态标志偏移
+#define ENTITY_OFFSET_TRANSFORM_DATA 0x81        // 变换数据偏移
+#define ENTITY_OFFSET_RESOURCE_DATA 0x1330       // 资源数据偏移
+
+/* ============================================================================
+ * 函数别名定义
+ * ============================================================================ */
+
+/**
+ * @brief 实体初始化处理器
+ * 处理实体的完整初始化过程，包括组件、变换和资源管理
+ */
+#define EntityInitializationProcessor process_entity_initialization
+
+/**
+ * @brief 实体数据传输器
+ * 处理实体数据的传输和同步操作
+ */
+#define EntityDataTransfer process_entity_data_transfer
+
+/**
+ * @brief 实体资源清理器
+ * 清理实体占用的系统资源
+ */
+#define EntityResourceCleanup cleanup_entity_resources
+
+/**
+ * @brief 实体指针交换器
+ * 安全地交换实体指针并管理资源
+ */
+#define EntityPointerSwap swap_entity_pointers
+
+/* ============================================================================
+ * 结构体定义
+ * ============================================================================ */
+
+/**
+ * @brief 实体位置数据结构
+ * 存储实体的位置、旋转和缩放信息
+ */
+typedef struct {
+    float position_x;                           // X坐标
+    float position_y;                           // Y坐标
+    float position_z;                           // Z坐标
+    float rotation_x;                           // X旋转
+    float rotation_y;                           // Y旋转
+    float rotation_z;                           // Z旋转
+    float scale_x;                              // X缩放
+    float scale_y;                              // Y缩放
+    float scale_z;                              // Z缩放
+} EntityPositionData;
+
+/**
+ * @brief 实体变换数据结构
+ * 存储实体的变换矩阵和状态信息
+ */
+typedef struct {
+    float transform_matrix[16];                // 变换矩阵
+    uint64_t transform_flags;                   // 变换标志
+    int32_t transform_state;                    // 变换状态
+} EntityTransformData;
+
+/**
+ * @brief 实体组件数据结构
+ * 存储实体的组件信息和状态
+ */
+typedef struct {
+    uint64_t component_type;                   // 组件类型
+    void* component_data;                       // 组件数据
+    int32_t component_state;                    // 组件状态
+    char component_flags;                       // 组件标志
+} EntityComponentData;
+
+/**
+ * @brief 实体资源数据结构
+ * 存储实体的资源引用和管理信息
+ */
+typedef struct {
+    uint64_t resource_id;                       // 资源ID
+    void* resource_ptr;                         // 资源指针
+    int32_t ref_count;                          // 引用计数
+    char cleanup_flags;                        // 清理标志
+} EntityResourceData;
+
+/**
+ * @brief 实体上下文结构
+ * 完整的实体上下文信息，包含所有实体相关数据
+ */
+typedef struct {
+    EntityPositionData position;                // 位置数据
+    EntityTransformData transform;              // 变换数据
+    EntityComponentData* components;           // 组件数据
+    EntityResourceData* resources;             // 资源数据
+    longlong context_data[ENTITY_CONTEXT_SIZE]; // 上下文数据
+    char state_flags;                           // 状态标志
+    char initialization_flags;                  // 初始化标志
+} EntityContext;
+
+/* ============================================================================
+ * 辅助函数声明
+ * ============================================================================ */
+
+static void Entity_CopyPositionData(EntityContext* entity, SceneContextPtr scene);
+static void Entity_CopyTransformData(EntityContext* entity, SceneContextPtr scene);
+static void Entity_SyncComponentData(EntityContext* entity, SceneContextPtr scene);
+static void Entity_CleanupComponents(EntityContext* entity);
+static void Entity_UpdateStateFlags(EntityContext* entity);
+static void Entity_InitializeResources(EntityContext* entity);
+static void Entity_ProcessCustomData(EntityContext* entity);
+
+/* ============================================================================
+ * 核心函数实现
+ * ============================================================================ */
 void process_entity_initialization(longlong *entity_context, longlong *scene_context, char initialization_flags)
 
 {
