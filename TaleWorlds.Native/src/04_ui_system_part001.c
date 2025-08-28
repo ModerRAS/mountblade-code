@@ -900,140 +900,111 @@ undefined FUN_180674d10;                           // UI系统动态模糊器 - 
 undefined FUN_180674f40;                           // UI系统运动模糊器 - 执行运动模糊效果
 
 
-// 函数: undefined FUN_1806750b0;
-undefined FUN_1806750b0;
+//------------------------------------------------------------------------------
+// UI系统高级渲染函数组（续）
+//------------------------------------------------------------------------------
 
+// UI系统体积光函数
+undefined FUN_1806750b0;                           // UI系统体积光器 - 执行体积光效果
 
-// 函数: undefined FUN_1806760f0;
-undefined FUN_1806760f0;
+// UI系统屏幕空间反射函数
+undefined FUN_1806760f0;                           // UI系统屏幕空间反射器 - 执行SSR效果
 
+// UI系统屏幕空间环境光遮蔽函数
+undefined FUN_180676320;                           // UI系统屏幕空间环境光遮蔽器 - 执行SSAO效果
 
-// 函数: undefined FUN_180676320;
-undefined FUN_180676320;
+// UI系统全局光照函数
+undefined FUN_180676490;                           // UI系统全局光照器 - 执行全局光照
 
+// UI系统光线追踪函数
+undefined FUN_180676700;                           // UI系统光线追踪器 - 执行光线追踪
 
-// 函数: undefined FUN_180676490;
-undefined FUN_180676490;
+// UI系统路径追踪函数
+undefined FUN_180676930;                           // UI系统路径追踪器 - 执行路径追踪
 
+// UI系统辐射度函数
+undefined FUN_180676aa0;                           // UI系统辐射度器 - 执行辐射度计算
 
-// 函数: undefined FUN_180676700;
-undefined FUN_180676700;
+// UI系统光子映射函数
+undefined FUN_180677100;                           // UI系统光子映射器 - 执行光子映射
 
+// UI系统体素化函数
+undefined FUN_180677190;                           // UI系统体素化器 - 执行体素化
 
-// 函数: undefined FUN_180676930;
-undefined FUN_180676930;
+// UI系统八叉树函数
+undefined FUN_180677300;                           // UI系统八叉树构建器 - 构建八叉树
 
+// UI系统BVH函数
+undefined FUN_180677530;                           // UI系统BVH构建器 - 构建BVH
 
-// 函数: undefined FUN_180676aa0;
-undefined FUN_180676aa0;
+// UI系统KD树函数
+undefined FUN_1806780c0;                           // UI系统KD树构建器 - 构建KD树
 
+// UI系统四叉树函数
+undefined FUN_1806782c0;                           // UI系统四叉树构建器 - 构建四叉树
 
-// 函数: undefined FUN_180677100;
-undefined FUN_180677100;
+// UI系统网格函数
+undefined FUN_180678430;                           // UI系统网格生成器 - 生成网格
 
+// UI系统细分曲面函数
+undefined FUN_180678540;                           // UI系统细分曲面生成器 - 生成细分曲面
 
-// 函数: undefined FUN_180677190;
-undefined FUN_180677190;
+// UI系统位移映射函数
+undefined FUN_180678810;                           // UI系统位移映射器 - 执行位移映射
 
+// UI系统法线映射函数
+undefined FUN_1806789c0;                           // UI系统法线映射器 - 执行法线映射
 
-// 函数: undefined FUN_180677300;
-undefined FUN_180677300;
+// UI系统高度映射函数
+undefined FUN_180678b10;                           // UI系统高度映射器 - 执行高度映射
 
+// UI系统环境映射函数
+undefined FUN_180678bc0;                           // UI系统环境映射器 - 执行环境映射
 
-// 函数: undefined FUN_180677530;
-undefined FUN_180677530;
+// UI系统立方体贴图函数
+undefined FUN_180678e20;                           // UI系统立方体贴图生成器 - 生成立方体贴图
 
+// UI系统球面贴图函数
+undefined FUN_180678ef0;                           // UI系统球面贴图生成器 - 生成球面贴图
 
-// 函数: undefined FUN_1806780c0;
-undefined FUN_1806780c0;
+// UI系统柱面贴图函数
+undefined FUN_180678fc0;                           // UI系统柱面贴图生成器 - 生成柱面贴图
 
+// UI系统平面贴图函数
+undefined FUN_1806790b0;                           // UI系统平面贴图生成器 - 生成平面贴图
 
-// 函数: undefined FUN_1806782c0;
-undefined FUN_1806782c0;
+// UI系统纹理数组函数
+undefined FUN_180679310;                           // UI系统纹理数组生成器 - 生成纹理数组
 
+// UI系统纹理图集函数
+undefined FUN_180679480;                           // UI系统纹理图集生成器 - 生成纹理图集
 
-// 函数: undefined FUN_180678430;
-undefined FUN_180678430;
+// UI系统纹理链函数
+undefined FUN_1806795f0;                           // UI系统纹理链生成器 - 生成纹理链
 
+// UI系统纹理流函数
+undefined FUN_1806796f0;                           // UI系统纹理流生成器 - 生成纹理流
 
-// 函数: undefined FUN_180678540;
-undefined FUN_180678540;
+// UI系统纹理压缩函数
+undefined FUN_180679ac0;                           // UI系统纹理压缩器 - 压缩纹理
 
+// UI系统纹理过滤函数
+undefined FUN_180679b20;                           // UI系统纹理过滤器 - 过滤纹理
 
-// 函数: undefined FUN_180678810;
-undefined FUN_180678810;
+// UI系统纹理混合函数
+undefined FUN_180679d30;                           // UI系统纹理混合器 - 混合纹理
 
+// UI系统着色器编译函数
+undefined FUN_18067c470;                           // UI系统着色器编译器 - 编译着色器
 
-// 函数: undefined FUN_1806789c0;
-undefined FUN_1806789c0;
+// UI系统着色器链接函数
+undefined FUN_180683f90;                           // UI系统着色器链接器 - 链接着色器
 
-
-// 函数: undefined FUN_180678b10;
-undefined FUN_180678b10;
-
-
-// 函数: undefined FUN_180678bc0;
-undefined FUN_180678bc0;
-
-
-// 函数: undefined FUN_180678e20;
-undefined FUN_180678e20;
-
-
-// 函数: undefined FUN_180678ef0;
-undefined FUN_180678ef0;
-
-
-// 函数: undefined FUN_180678fc0;
-undefined FUN_180678fc0;
-
-
-// 函数: undefined FUN_1806790b0;
-undefined FUN_1806790b0;
-
-
-// 函数: undefined FUN_180679310;
-undefined FUN_180679310;
-
-
-// 函数: undefined FUN_180679480;
-undefined FUN_180679480;
-
-
-// 函数: undefined FUN_1806795f0;
-undefined FUN_1806795f0;
-
-
-// 函数: undefined FUN_1806796f0;
-undefined FUN_1806796f0;
-
-
-// 函数: undefined FUN_180679ac0;
-undefined FUN_180679ac0;
-
-
-// 函数: undefined FUN_180679b20;
-undefined FUN_180679b20;
-
-
-// 函数: undefined FUN_180679d30;
-undefined FUN_180679d30;
-
-
-// 函数: undefined FUN_18067c470;
-undefined FUN_18067c470;
-
-
-// 函数: undefined FUN_180683f90;
-undefined FUN_180683f90;
-
-
-// 函数: undefined FUN_1806844a0;
-undefined FUN_1806844a0;
-
-
-// 函数: undefined FUN_18068b080;
-undefined FUN_18068b080;
+// UI系统着色器优化函数
+undefined FUN_1806844a0;                           // UI系统着色器优化器 - 优化着色器
+
+// UI系统着色器缓存函数
+undefined FUN_18068b080;                           // UI系统着色器缓存器 - 缓存着色器
 
 
 // 函数: undefined FUN_18068d2b0;

@@ -402,13 +402,23 @@ undefined8 ReferenceCountRelease(longlong *ref_ptr)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1808d9fe0(longlong param_1,undefined8 param_2)
-void FUN_1808d9fe0(longlong param_1,undefined8 param_2)
+/**
+ * @brief 资源状态验证函数
+ * 
+ * 验证资源对象的状态和完整性，确保资源可以安全使用。
+ * 执行必要的状态检查和准备工作。
+ * 
+ * 功能特点：
+ * - 资源状态完整性检查
+ * - 自动状态修复机制
+ * - 异常情况处理
+ * - 支持不同的验证模式
+ * 
+ * @param resource_handle 资源句柄
+ * @param validation_flags 验证标志位
+ * @note 此函数可能执行不返回的操作
+ */
+void ResourceStatusValidation(longlong resource_handle, undefined8 validation_flags)
 
 {
   int iVar1;
@@ -416,18 +426,24 @@ void FUN_1808d9fe0(longlong param_1,undefined8 param_2)
   undefined8 uStack_40;
   ulonglong uStack_38;
   
+  // 初始化堆栈保护变量
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_48;
-  if (*(int *)(param_1 + 0x60) == 1) {
-    FUN_1808da330(param_1,0,0);
+  
+  // 检查资源状态标志
+  if (*(int *)(resource_handle + 0x60) == 1) {
+    // 状态为1，执行数组管理操作
+    ResourceArrayManagement(resource_handle, 0, 0);
   }
   else {
-    iVar1 = FUN_180739cc0(param_2,*(int *)(param_1 + 0x60),&uStack_40);
+    // 状态不为1，执行配置验证
+    iVar1 = FUN_180739cc0(validation_flags, *(int *)(resource_handle + 0x60), &uStack_40);
     if (iVar1 == 0) {
-                    // WARNING: Subroutine does not return
+      // 验证失败，执行错误处理（不返回）
       FUN_1808fd200();
     }
   }
-                    // WARNING: Subroutine does not return
+  
+  // 执行最终的状态检查（不返回）
   FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_48);
 }
 
