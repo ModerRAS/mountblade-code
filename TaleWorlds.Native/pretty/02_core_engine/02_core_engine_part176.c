@@ -1,57 +1,64 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part176.c - 内存管理和资源清理模块
-// 核心引擎模块第176部分：包含内存管理、资源清理、参数处理和比较功能
+// 02_core_engine_part176.c - 核心引擎第176部分代码美化
+// 
+// 本文件包含9个函数，主要功能：
+// 1. 容器结构清理和销毁
+// 2. 碰撞检测和匹配
+// 3. 游戏对象属性处理
+// 4. 内存管理相关操作
 
 /**
- * 清理数组内存资源
- * @param array_ptr 数组指针
- * 功能: 清理数组中的所有指针资源并释放内存
+ * @brief 清理容器结构中的元素
+ * 
+ * @param 容器指针 指向要清理的容器结构
+ * 
+ * 该函数遍历容器中的所有元素，调用销毁函数清理资源，
+ * 并重置容器状态。用于释放容器占用的内存和资源。
  */
-void cleanup_array_memory(longlong array_ptr)
-
+void 清理容器元素(longlong 容器指针)
 {
-  int *piVar1;
-  longlong lVar2;
-  undefined8 *puVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  ulonglong uVar6;
+  int *引用计数指针;
+  longlong 元素指针;
+  undefined8 *数组指针;
+  longlong 偏移量;
+  ulonglong 元素数量;
+  ulonglong 索引;
   
-  uVar6 = *(ulonglong *)(param_1 + 0x10);
-  lVar4 = *(longlong *)(param_1 + 8);
-  uVar5 = 0;
-  if (uVar6 != 0) {
+  元素数量 = *(ulonglong *)(容器指针 + 0x10);
+  元素指针 = *(longlong *)(容器指针 + 8);
+  索引 = 0;
+  if (元素数量 != 0) {
     do {
-      lVar2 = *(longlong *)(lVar4 + uVar5 * 8);
-      if (lVar2 != 0) {
+      元素指针 = *(longlong *)(元素指针 + 索引 * 8);
+      if (元素指针 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(lVar2);
+        FUN_18064e900(元素指针);
       }
-      *(undefined8 *)(lVar4 + uVar5 * 8) = 0;
-      uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar6);
-    uVar6 = *(ulonglong *)(param_1 + 0x10);
+      *(undefined8 *)(元素指针 + 索引 * 8) = 0;
+      索引 = 索引 + 1;
+    } while (索引 < 元素数量);
+    元素数量 = *(ulonglong *)(容器指针 + 0x10);
   }
-  *(undefined8 *)(param_1 + 0x18) = 0;
-  if ((1 < uVar6) && (puVar3 = *(undefined8 **)(param_1 + 8), puVar3 != (undefined8 *)0x0)) {
-    uVar6 = (ulonglong)puVar3 & 0xffffffffffc00000;
-    if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)puVar3 - uVar6 >> 0x10) * 0x50;
-      lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
-      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *puVar3 = *(undefined8 *)(lVar4 + 0x20);
-        *(undefined8 **)(lVar4 + 0x20) = puVar3;
-        piVar1 = (int *)(lVar4 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+  *(undefined8 *)(容器指针 + 0x18) = 0;
+  if ((1 < 元素数量) && (数组指针 = *(undefined8 **)(容器指针 + 8), 数组指针 != (undefined8 *)0x0)) {
+    元素数量 = (ulonglong)数组指针 & 0xffffffffffc00000;
+    if (元素数量 != 0) {
+      偏移量 = 元素数量 + 0x80 + ((longlong)数组指针 - 元素数量 >> 0x10) * 0x50;
+      偏移量 = 偏移量 - (ulonglong)*(uint *)(偏移量 + 4);
+      if ((*(void ***)(元素数量 + 0x70) == &ExceptionList) && (*(char *)(偏移量 + 0xe) == '\0')) {
+        *数组指针 = *(undefined8 *)(偏移量 + 0x20);
+        *(undefined8 **)(偏移量 + 0x20) = 数组指针;
+        引用计数指针 = (int *)(偏移量 + 0x18);
+        *引用计数指针 = *引用计数指针 + -1;
+        if (*引用计数指针 == 0) {
           FUN_18064d630();
           return;
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar3,uVar6,0xfffffffffffffffe);
+        func_0x00018064e870(元素数量,CONCAT71(0xff000000,*(void ***)(元素数量 + 0x70) == &ExceptionList),
+                            数组指针,元素数量,0xfffffffffffffffe);
       }
     }
     return;
@@ -59,57 +66,57 @@ void cleanup_array_memory(longlong array_ptr)
   return;
 }
 
-
-
 /**
- * 清理数组内存资源（副本）
- * @param array_ptr 数组指针
- * 功能: 清理数组中的所有指针资源并释放内存（与cleanup_array_memory功能相同）
+ * @brief 销毁容器结构
+ * 
+ * @param 容器指针 指向要销毁的容器结构
+ * 
+ * 该函数功能与清理容器元素函数相同，用于销毁容器结构
+ * 并释放相关资源。两个函数实现完全一致。
  */
-void cleanup_array_memory_duplicate(longlong array_ptr)
-
+void 销毁容器结构(longlong 容器指针)
 {
-  int *piVar1;
-  longlong lVar2;
-  undefined8 *puVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  ulonglong uVar6;
+  int *引用计数指针;
+  longlong 元素指针;
+  undefined8 *数组指针;
+  longlong 偏移量;
+  ulonglong 元素数量;
+  ulonglong 索引;
   
-  uVar6 = *(ulonglong *)(param_1 + 0x10);
-  lVar4 = *(longlong *)(param_1 + 8);
-  uVar5 = 0;
-  if (uVar6 != 0) {
+  元素数量 = *(ulonglong *)(容器指针 + 0x10);
+  元素指针 = *(longlong *)(容器指针 + 8);
+  索引 = 0;
+  if (元素数量 != 0) {
     do {
-      lVar2 = *(longlong *)(lVar4 + uVar5 * 8);
-      if (lVar2 != 0) {
+      元素指针 = *(longlong *)(元素指针 + 索引 * 8);
+      if (元素指针 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(lVar2);
+        FUN_18064e900(元素指针);
       }
-      *(undefined8 *)(lVar4 + uVar5 * 8) = 0;
-      uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar6);
-    uVar6 = *(ulonglong *)(param_1 + 0x10);
+      *(undefined8 *)(元素指针 + 索引 * 8) = 0;
+      索引 = 索引 + 1;
+    } while (索引 < 元素数量);
+    元素数量 = *(ulonglong *)(容器指针 + 0x10);
   }
-  *(undefined8 *)(param_1 + 0x18) = 0;
-  if ((1 < uVar6) && (puVar3 = *(undefined8 **)(param_1 + 8), puVar3 != (undefined8 *)0x0)) {
-    uVar6 = (ulonglong)puVar3 & 0xffffffffffc00000;
-    if (uVar6 != 0) {
-      lVar4 = uVar6 + 0x80 + ((longlong)puVar3 - uVar6 >> 0x10) * 0x50;
-      lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
-      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *puVar3 = *(undefined8 *)(lVar4 + 0x20);
-        *(undefined8 **)(lVar4 + 0x20) = puVar3;
-        piVar1 = (int *)(lVar4 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+  *(undefined8 *)(容器指针 + 0x18) = 0;
+  if ((1 < 元素数量) && (数组指针 = *(undefined8 **)(容器指针 + 8), 数组指针 != (undefined8 *)0x0)) {
+    元素数量 = (ulonglong)数组指针 & 0xffffffffffc00000;
+    if (元素数量 != 0) {
+      偏移量 = 元素数量 + 0x80 + ((longlong)数组指针 - 元素数量 >> 0x10) * 0x50;
+      偏移量 = 偏移量 - (ulonglong)*(uint *)(偏移量 + 4);
+      if ((*(void ***)(元素数量 + 0x70) == &ExceptionList) && (*(char *)(偏移量 + 0xe) == '\0')) {
+        *数组指针 = *(undefined8 *)(偏移量 + 0x20);
+        *(undefined8 **)(偏移量 + 0x20) = 数组指针;
+        引用计数指针 = (int *)(偏移量 + 0x18);
+        *引用计数指针 = *引用计数指针 + -1;
+        if (*引用计数指针 == 0) {
           FUN_18064d630();
           return;
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                            puVar3,uVar6,0xfffffffffffffffe);
+        func_0x00018064e870(元素数量,CONCAT71(0xff000000,*(void ***)(元素数量 + 0x70) == &ExceptionList),
+                            数组指针,元素数量,0xfffffffffffffffe);
       }
     }
     return;
@@ -117,809 +124,808 @@ void cleanup_array_memory_duplicate(longlong array_ptr)
   return;
 }
 
-
-
 /**
- * 处理引擎参数数组
- * @param engine_context 引擎上下文指针
- * @param param_type 参数类型
- * @param param_array 参数数组指针
- * 功能: 处理和验证引擎参数数组，添加必要的参数项
+ * @brief 处理游戏对象属性和参数
+ * 
+ * @param 对象指针 指向游戏对象
+ * @param 参数类型 参数类型标识
+ * @param 参数数组 参数数组指针
+ * 
+ * 该函数处理游戏对象的属性设置和参数匹配，包括：
+ * 1. 过滤和验证参数
+ * 2. 添加必需的参数类型
+ * 3. 在对象表中查找匹配项
+ * 4. 设置对象属性
  */
-void process_engine_parameter_array(longlong engine_context, int param_type, int *param_array)
-
+void 处理游戏对象属性(longlong 对象指针,int 参数类型,int *参数数组)
 {
-  undefined8 uVar1;
-  longlong *plVar2;
-  undefined8 uVar3;
-  undefined8 uVar4;
-  undefined8 uVar5;
-  undefined8 uVar6;
-  undefined8 uVar7;
-  undefined8 uVar8;
-  bool bVar9;
-  int iVar10;
-  uint uVar11;
-  int *piVar12;
-  int *piVar13;
-  int iVar14;
-  int iVar15;
-  longlong lVar16;
-  uint uVar17;
-  longlong *plVar18;
-  longlong lVar19;
-  int iVar20;
-  longlong lVar21;
-  uint uVar22;
-  int *piVar23;
-  ulonglong uVar24;
-  int iStackX_18;
-  undefined4 uStackX_1c;
-  longlong lStackX_20;
-  longlong alStack_60 [4];
+  undefined8 临时数据1;
+  longlong *对象表指针;
+  undefined8 临时数据2;
+  undefined8 临时数据3;
+  undefined8 临时数据4;
+  undefined8 临时数据5;
+  undefined8 临时数据6;
+  undefined8 临时数据7;
+  undefined8 临时数据8;
+  bool 是否找到;
+  int 临时索引;
+  uint 过滤后数量;
+  int *当前参数;
+  int *比较参数;
+  int 循环索引;
+  int 匹配索引;
+  longlong 当前对象;
+  uint 参数ID;
+  longlong *对象迭代器;
+  longlong 目标对象;
+  int 对象参数数量;
+  longlong 参数偏移;
+  uint 当前参数ID;
+  int *参数指针;
+  ulonglong 剩余数量;
+  int 栈变量18;
+  undefined4 栈变量1c;
+  longlong 栈变量20;
+  longlong 栈数组60 [4];
   
-  uVar22 = param_3[0xc];
-  piVar23 = (int *)(longlong)(int)uVar22;
-  uVar11 = uVar22;
-  if (1 < (int)uVar22) {
-    iVar15 = 0;
-    iVar20 = 0;
-    piVar13 = param_3;
-    if (0 < (int)uVar22) {
+  过滤后数量 = 参数数组[0xc];
+  参数指针 = (int *)(longlong)(int)过滤后数量;
+  参数ID = 过滤后数量;
+  if (1 < (int)过滤后数量) {
+    匹配索引 = 0;
+    对象参数数量 = 0;
+    比较参数 = 参数数组;
+    if (0 < (int)过滤后数量) {
       do {
-        piVar12 = (int *)&UNK_18098d770;
-        iVar14 = 0;
+        当前参数 = (int *)&UNK_18098d770;
+        循环索引 = 0;
         do {
-          if (*piVar13 == *piVar12) goto LAB_180160234;
-          iVar14 = iVar14 + 1;
-          piVar12 = piVar12 + 1;
-        } while ((longlong)piVar12 < 0x18098d77c);
-        iVar14 = -1;
+          if (*比较参数 == *当前参数) goto LAB_180160234;
+          循环索引 = 循环索引 + 1;
+          当前参数 = 当前参数 + 1;
+        } while ((longlong)当前参数 < 0x18098d77c);
+        循环索引 = -1;
 LAB_180160234:
-        iVar10 = iVar15 + 1;
-        if (iVar14 < 0) {
-          iVar10 = iVar15;
+        临时索引 = 匹配索引 + 1;
+        if (循环索引 < 0) {
+          临时索引 = 匹配索引;
         }
-        iVar15 = iVar10;
-        iVar20 = iVar20 + 1;
-        piVar13 = piVar13 + 1;
-      } while (iVar20 < (int)uVar22);
+        匹配索引 = 临时索引;
+        对象参数数量 = 对象参数数量 + 1;
+        比较参数 = 比较参数 + 1;
+      } while (对象参数数量 < (int)过滤后数量);
     }
-    uVar11 = uVar22 - iVar15;
+    参数ID = 过滤后数量 - 匹配索引;
   }
-  iVar15 = 0;
-  piVar13 = param_3;
-  if (0 < (int)uVar22) {
+  匹配索引 = 0;
+  比较参数 = 参数数组;
+  if (0 < (int)过滤后数量) {
     do {
-      if (*piVar13 == 0x38) goto LAB_18016028e;
-      iVar15 = iVar15 + 1;
-      piVar13 = piVar13 + 1;
-    } while (iVar15 < (int)uVar22);
+      if (*比较参数 == 0x38) goto LAB_18016028e;
+      匹配索引 = 匹配索引 + 1;
+      比较参数 = 比较参数 + 1;
+    } while (匹配索引 < (int)过滤后数量);
   }
-  param_3[(longlong)piVar23] = 0x38;
-  param_3[(longlong)piVar23 + 6] = 3;
-  uVar22 = uVar22 + 1;
-  piVar23 = (int *)((longlong)piVar23 + 1);
+  参数数组[(longlong)参数指针] = 0x38;
+  参数数组[(longlong)参数指针 + 6] = 3;
+  过滤后数量 = 过滤后数量 + 1;
+  参数指针 = (int *)((longlong)参数指针 + 1);
 LAB_18016028e:
-  iVar15 = param_3[0xc];
-  bVar9 = false;
-  iVar20 = 0;
-  piVar13 = param_3;
-  if (0 < iVar15) {
+  匹配索引 = 参数数组[0xc];
+  是否找到 = false;
+  对象参数数量 = 0;
+  比较参数 = 参数数组;
+  if (0 < 匹配索引) {
     do {
-      if (*piVar13 == 0x1d) {
-        bVar9 = true;
+      if (*比较参数 == 0x1d) {
+        是否找到 = true;
         break;
       }
-      iVar20 = iVar20 + 1;
-      piVar13 = piVar13 + 1;
-    } while (iVar20 < iVar15);
+      对象参数数量 = 对象参数数量 + 1;
+      比较参数 = 比较参数 + 1;
+    } while (对象参数数量 < 匹配索引);
   }
-  if (!bVar9) {
-    param_3[(longlong)piVar23] = 0x1d;
-    uVar22 = uVar22 + 1;
-    param_3[(longlong)piVar23 + 6] = 3;
-    piVar23 = (int *)((longlong)piVar23 + 1);
-    iVar15 = param_3[0xc];
+  if (!是否找到) {
+    参数数组[(longlong)参数指针] = 0x1d;
+    过滤后数量 = 过滤后数量 + 1;
+    参数数组[(longlong)参数指针 + 6] = 3;
+    参数指针 = (int *)((longlong)参数指针 + 1);
+    匹配索引 = 参数数组[0xc];
   }
-  iVar20 = 0;
-  piVar13 = param_3;
-  if (0 < iVar15) {
+  对象参数数量 = 0;
+  比较参数 = 参数数组;
+  if (0 < 匹配索引) {
     do {
-      if (*piVar13 == 0x2a) goto LAB_180160304;
-      iVar20 = iVar20 + 1;
-      piVar13 = piVar13 + 1;
-    } while (iVar20 < iVar15);
+      if (*比较参数 == 0x2a) goto LAB_180160304;
+      对象参数数量 = 对象参数数量 + 1;
+      比较参数 = 比较参数 + 1;
+    } while (对象参数数量 < 匹配索引);
   }
-  param_3[(longlong)piVar23] = 0x2a;
-  uVar22 = uVar22 + 1;
-  param_3[(longlong)piVar23 + 6] = 3;
+  参数数组[(longlong)参数指针] = 0x2a;
+  过滤后数量 = 过滤后数量 + 1;
+  参数数组[(longlong)参数指针 + 6] = 3;
 LAB_180160304:
-  param_3[0xc] = uVar22;
-  plVar2 = *(longlong **)(param_1 + 0x58);
-  lVar16 = *plVar2;
-  plVar18 = plVar2;
-  if (lVar16 == 0) {
-    lVar16 = plVar2[1];
-    while (plVar18 = plVar18 + 1, lVar16 == 0) {
-      lVar16 = plVar18[1];
+  参数数组[0xc] = 过滤后数量;
+  对象表指针 = *(longlong **)(对象指针 + 0x58);
+  当前对象 = *对象表指针;
+  对象迭代器 = 对象表指针;
+  if (当前对象 == 0) {
+    当前对象 = 对象表指针[1];
+    while (对象迭代器 = 对象迭代器 + 1, 当前对象 == 0) {
+      当前对象 = 对象迭代器[1];
     }
   }
-  lStackX_20 = plVar2[*(longlong *)(param_1 + 0x60)];
+  栈变量20 = 对象表指针[*(longlong *)(对象指针 + 0x60)];
   do {
-    if (lVar16 == lStackX_20) {
-      uVar3 = *(undefined8 *)param_3;
-      uVar4 = *(undefined8 *)(param_3 + 2);
-      _iStackX_18 = CONCAT44((int)((ulonglong)param_3 >> 0x20),param_2);
-      uVar5 = *(undefined8 *)(param_3 + 4);
-      uVar6 = *(undefined8 *)(param_3 + 6);
-      uVar7 = *(undefined8 *)(param_3 + 8);
-      uVar8 = *(undefined8 *)(param_3 + 10);
-      uVar1 = *(undefined8 *)(param_3 + 0xc);
-      FUN_180160af0(param_1 + 0x50,alStack_60,piVar23,&iStackX_18,(longlong)param_2);
-      *(undefined8 *)(alStack_60[0] + 4) = uVar3;
-      *(undefined8 *)(alStack_60[0] + 0xc) = uVar4;
-      *(undefined8 *)(alStack_60[0] + 0x14) = uVar5;
-      *(undefined8 *)(alStack_60[0] + 0x1c) = uVar6;
-      *(undefined8 *)(alStack_60[0] + 0x24) = uVar7;
-      *(undefined8 *)(alStack_60[0] + 0x2c) = uVar8;
-      *(undefined8 *)(alStack_60[0] + 0x34) = uVar1;
+    if (当前对象 == 栈变量20) {
+      临时数据1 = *(undefined8 *)参数数组;
+      临时数据2 = *(undefined8 *)(参数数组 + 2);
+      栈变量18 = CONCAT44((int)((ulonglong)参数数组 >> 0x20),参数类型);
+      临时数据3 = *(undefined8 *)(参数数组 + 4);
+      临时数据4 = *(undefined8 *)(参数数组 + 6);
+      临时数据5 = *(undefined8 *)(参数数组 + 8);
+      临时数据6 = *(undefined8 *)(参数数组 + 10);
+      临时数据7 = *(undefined8 *)(参数数组 + 0xc);
+      FUN_180160af0(对象指针 + 0x50,栈数组60,参数指针,&栈变量18,(longlong)参数类型);
+      *(undefined8 *)(栈数组60[0] + 4) = 临时数据1;
+      *(undefined8 *)(栈数组60[0] + 0xc) = 临时数据2;
+      *(undefined8 *)(栈数组60[0] + 0x14) = 临时数据3;
+      *(undefined8 *)(栈数组60[0] + 0x1c) = 临时数据4;
+      *(undefined8 *)(栈数组60[0] + 0x24) = 临时数据5;
+      *(undefined8 *)(栈数组60[0] + 0x2c) = 临时数据6;
+      *(undefined8 *)(栈数组60[0] + 0x34) = 临时数据7;
       return;
     }
-    piVar13 = param_3 + 6;
-    uVar17 = 0;
-    if (0 < (int)uVar22) {
-      lVar21 = (longlong)param_3 - (longlong)piVar13;
-      uVar24 = (ulonglong)uVar22;
+    比较参数 = 参数数组 + 6;
+    参数ID = 0;
+    if (0 < (int)过滤后数量) {
+      参数偏移 = (longlong)参数数组 - (longlong)比较参数;
+      剩余数量 = (ulonglong)过滤后数量;
       do {
-        lVar19 = 0;
-        if (0 < *(int *)(lVar16 + 0x34)) {
-          iVar15 = *(int *)(lVar21 + (longlong)piVar13);
-          piVar23 = (int *)(lVar16 + 0x1c);
+        目标对象 = 0;
+        if (0 < *(int *)(当前对象 + 0x34)) {
+          匹配索引 = *(int *)(参数偏移 + (longlong)比较参数);
+          参数指针 = (int *)(当前对象 + 0x1c);
           do {
-            if (iVar15 == piVar23[-6]) {
-              if (uVar11 == 1) {
+            if (匹配索引 == 参数指针[-6]) {
+              if (参数ID == 1) {
 LAB_1801604d9:
-                if (*piVar13 != *piVar23) goto LAB_1801604e5;
+                if (*比较参数 != *参数指针) goto LAB_1801604e5;
               }
               else {
-                iVar20 = 0;
-                piVar12 = (int *)&UNK_18098d770;
-                while (iVar15 != *piVar12) {
-                  iVar20 = iVar20 + 1;
-                  piVar12 = piVar12 + 1;
-                  if (0x18098d77b < (longlong)piVar12) goto LAB_1801603d8;
+                对象参数数量 = 0;
+                当前参数 = (int *)&UNK_18098d770;
+                while (匹配索引 != *当前参数) {
+                  对象参数数量 = 对象参数数量 + 1;
+                  当前参数 = 当前参数 + 1;
+                  if (0x18098d77b < (longlong)当前参数) goto LAB_1801603d8;
                 }
-                if (-1 < iVar20) goto LAB_1801604d9;
+                if (-1 < 对象参数数量) goto LAB_1801604d9;
               }
 LAB_1801603d8:
-              uVar17 = uVar17 + 1;
+              参数ID = 参数ID + 1;
               break;
             }
 LAB_1801604e5:
-            lVar19 = lVar19 + 1;
-            piVar23 = piVar23 + 1;
-          } while (lVar19 < *(int *)(lVar16 + 0x34));
+            目标对象 = 目标对象 + 1;
+            参数指针 = 参数指针 + 1;
+          } while (目标对象 < *(int *)(当前对象 + 0x34));
         }
-        piVar13 = piVar13 + 1;
-        uVar24 = uVar24 - 1;
-      } while (uVar24 != 0);
+        比较参数 = 比较参数 + 1;
+        剩余数量 = 剩余数量 - 1;
+      } while (剩余数量 != 0);
     }
-    if ((*(uint *)(lVar16 + 0x34) == uVar22) && (uVar17 == *(uint *)(lVar16 + 0x34))) {
+    if ((*(uint *)(当前对象 + 0x34) == 过滤后数量) && (参数ID == *(uint *)(当前对象 + 0x34))) {
       return;
     }
-    lVar16 = *(longlong *)(lVar16 + 0x40);
-    while (lVar16 == 0) {
-      plVar2 = plVar18 + 1;
-      plVar18 = plVar18 + 1;
-      lVar16 = *plVar2;
+    当前对象 = *(longlong *)(当前对象 + 0x40);
+    while (当前对象 == 0) {
+      对象表指针 = 对象迭代器 + 1;
+      对象迭代器 = 对象迭代器 + 1;
+      当前对象 = *对象表指针;
     }
   } while( true );
 }
 
-
-
 /**
- * 处理引擎参数数组（内部函数）
- * @param param_1 参数1
- * @param param_2 参数2
- * @param param_3 参数数组指针
- * 功能: 处理引擎参数数组的内部实现
+ * @brief 处理对象参数匹配和属性设置
+ * 
+ * @param 对象指针 指向游戏对象
+ * @param 未知参数1 未知参数
+ * @param 参数数组 参数数组指针
+ * 
+ * 该函数处理对象参数匹配，在对象链表中查找匹配项并设置属性。
+ * 这是一个简化实现，原始实现包含大量寄存器变量和复杂逻辑。
  */
-void process_engine_parameter_array_internal(longlong param_1, undefined8 param_2, int *param_3)
-
+void 处理对象参数匹配(longlong 对象指针,undefined8 未知参数1,int *参数数组)
 {
-  longlong *plVar1;
-  undefined8 uVar2;
-  int iVar3;
-  undefined8 in_RAX;
-  int *piVar4;
-  int *piVar5;
-  int iVar6;
-  longlong unaff_RBX;
-  char unaff_BPL;
-  int unaff_ESI;
-  uint uVar7;
-  longlong unaff_RDI;
-  longlong lVar8;
-  longlong in_R11;
-  longlong lVar9;
-  uint unaff_R13D;
-  undefined8 *unaff_R14;
-  ulonglong uVar10;
-  undefined8 uStack0000000000000038;
-  undefined8 uStack0000000000000040;
-  undefined8 uStack0000000000000048;
-  undefined8 uStack0000000000000050;
-  undefined8 uStack0000000000000058;
-  undefined8 uStack0000000000000060;
-  longlong in_stack_00000068;
-  longlong in_stack_000000d0;
-  int in_stack_000000d8;
-  int iStack00000000000000e0;
-  longlong lStack00000000000000e8;
+  longlong *对象表指针;
+  undefined8 临时数据1;
+  int 临时索引;
+  undefined8 寄存器RAX;
+  int *当前参数;
+  int *比较参数;
+  int 循环索引;
+  longlong 寄存器RBX;
+  char 寄存器BPL;
+  int 寄存器ESI;
+  uint 匹配计数;
+  longlong 寄存器RDI;
+  longlong 当前对象;
+  longlong 寄存器R11;
+  longlong 目标对象;
+  uint 寄存器R13D;
+  undefined8 *寄存器R14;
+  ulonglong 剩余数量;
+  undefined8 栈变量38;
+  undefined8 栈变量40;
+  undefined8 栈变量48;
+  undefined8 栈变量50;
+  undefined8 栈变量58;
+  undefined8 栈变量60;
+  longlong 栈变量68;
+  longlong 栈变量d0;
+  int 栈变量d8;
+  int 栈变量e0;
+  longlong 栈变量e8;
   
-  lStack00000000000000e8 = *(longlong *)(param_1 + *(longlong *)(in_R11 + 0x60) * 8);
-  if (unaff_RBX != lStack00000000000000e8) {
-    piVar4 = (int *)(unaff_R14 + 3);
+  栈变量e8 = *(longlong *)(对象指针 + *(longlong *)(寄存器R11 + 0x60) * 8);
+  if (寄存器RBX != 栈变量e8) {
+    当前参数 = (int *)(寄存器R14 + 3);
     do {
-      uVar7 = 0;
-      if (0 < (int)unaff_R13D) {
-        lVar9 = (longlong)unaff_R14 - (longlong)piVar4;
-        uVar10 = (ulonglong)unaff_R13D;
+      匹配计数 = 0;
+      if (0 < (int)寄存器R13D) {
+        目标对象 = (longlong)寄存器R14 - (longlong)当前参数;
+        剩余数量 = (ulonglong)寄存器R13D;
         do {
-          lVar8 = 0;
-          if (0 < *(int *)(unaff_RBX + 0x34)) {
-            iVar3 = *(int *)(lVar9 + (longlong)piVar4);
-            param_3 = (int *)(unaff_RBX + 0x1c);
+          当前对象 = 0;
+          if (0 < *(int *)(寄存器RBX + 0x34)) {
+            临时索引 = *(int *)(目标对象 + (longlong)当前参数);
+            参数数组 = (int *)(寄存器RBX + 0x1c);
             do {
-              if (iVar3 == param_3[-6]) {
-                if (unaff_BPL == '\0') {
-                  iVar6 = 0;
-                  piVar5 = (int *)&UNK_18098d770;
-                  while (iVar3 != *piVar5) {
-                    iVar6 = iVar6 + 1;
-                    piVar5 = piVar5 + 1;
-                    if (in_stack_000000d0 <= (longlong)piVar5) goto LAB_1801603d8;
+              if (临时索引 == 参数数组[-6]) {
+                if (寄存器BPL == '\0') {
+                  循环索引 = 0;
+                  比较参数 = (int *)&UNK_18098d770;
+                  while (临时索引 != *比较参数) {
+                    循环索引 = 循环索引 + 1;
+                    比较参数 = 比较参数 + 1;
+                    if (栈变量d0 <= (longlong)比较参数) goto LAB_1801603d8;
                   }
-                  if (-1 < iVar6) goto LAB_1801604d9;
+                  if (-1 < 循环索引) goto LAB_1801604d9;
                 }
                 else {
 LAB_1801604d9:
-                  if (*piVar4 != *param_3) goto LAB_1801604e5;
+                  if (*当前参数 != *参数数组) goto LAB_1801604e5;
                 }
 LAB_1801603d8:
-                uVar7 = uVar7 + 1;
+                匹配计数 = 匹配计数 + 1;
                 break;
               }
 LAB_1801604e5:
-              lVar8 = lVar8 + 1;
-              param_3 = param_3 + 1;
-            } while (lVar8 < *(int *)(unaff_RBX + 0x34));
+              当前对象 = 当前对象 + 1;
+              参数数组 = 参数数组 + 1;
+            } while (当前对象 < *(int *)(寄存器RBX + 0x34));
           }
-          piVar4 = piVar4 + 1;
-          uVar10 = uVar10 - 1;
-          unaff_R14 = _iStack00000000000000e0;
-        } while (uVar10 != 0);
+          当前参数 = 当前参数 + 1;
+          剩余数量 = 剩余数量 - 1;
+          寄存器R14 = 栈变量e0;
+        } while (剩余数量 != 0);
       }
-      if ((*(uint *)(unaff_RBX + 0x34) == unaff_R13D) && (uVar7 == *(uint *)(unaff_RBX + 0x34))) {
+      if ((*(uint *)(寄存器RBX + 0x34) == 寄存器R13D) && (匹配计数 == *(uint *)(寄存器RBX + 0x34))) {
         return;
       }
-      unaff_RBX = *(longlong *)(unaff_RBX + 0x40);
-      while (unaff_RBX == 0) {
-        plVar1 = (longlong *)(unaff_RDI + 8);
-        unaff_RDI = unaff_RDI + 8;
-        unaff_RBX = *plVar1;
+      寄存器RBX = *(longlong *)(寄存器RBX + 0x40);
+      while (寄存器RBX == 0) {
+        对象表指针 = (longlong *)(寄存器RDI + 8);
+        寄存器RDI = 寄存器RDI + 8;
+        寄存器RBX = *对象表指针;
       }
-      piVar4 = (int *)(unaff_R14 + 3);
-      unaff_ESI = in_stack_000000d8;
-    } while (unaff_RBX != lStack00000000000000e8);
+      当前参数 = (int *)(寄存器R14 + 3);
+      寄存器ESI = 栈变量d8;
+    } while (寄存器RBX != 栈变量e8);
   }
-  uStack0000000000000038 = *unaff_R14;
-  uStack0000000000000040 = unaff_R14[1];
-  uStack0000000000000048 = unaff_R14[2];
-  uStack0000000000000050 = unaff_R14[3];
-  uStack0000000000000058 = unaff_R14[4];
-  uStack0000000000000060 = unaff_R14[5];
-  uVar2 = unaff_R14[6];
-  iStack00000000000000e0 = unaff_ESI;
-  FUN_180160af0(in_RAX,&stack0x00000068,param_3,&stack0x000000e0,(longlong)unaff_ESI);
-  *(undefined8 *)(in_stack_00000068 + 4) = uStack0000000000000038;
-  *(undefined8 *)(in_stack_00000068 + 0xc) = uStack0000000000000040;
-  *(undefined8 *)(in_stack_00000068 + 0x14) = uStack0000000000000048;
-  *(undefined8 *)(in_stack_00000068 + 0x1c) = uStack0000000000000050;
-  *(undefined8 *)(in_stack_00000068 + 0x24) = uStack0000000000000058;
-  *(undefined8 *)(in_stack_00000068 + 0x2c) = uStack0000000000000060;
-  *(undefined8 *)(in_stack_00000068 + 0x34) = uVar2;
+  栈变量38 = *寄存器R14;
+  栈变量40 = 寄存器R14[1];
+  栈变量48 = 寄存器R14[2];
+  栈变量50 = 寄存器R14[3];
+  栈变量58 = 寄存器R14[4];
+  栈变量60 = 寄存器R14[5];
+  临时数据1 = 寄存器R14[6];
+  栈变量e0 = 寄存器ESI;
+  FUN_180160af0(寄存器RAX,&栈变量68,参数数组,&栈变量e0,(longlong)寄存器ESI);
+  *(undefined8 *)(栈变量68 + 4) = 栈变量38;
+  *(undefined8 *)(栈变量68 + 0xc) = 栈变量40;
+  *(undefined8 *)(栈变量68 + 0x14) = 栈变量48;
+  *(undefined8 *)(栈变量68 + 0x1c) = 栈变量50;
+  *(undefined8 *)(栈变量68 + 0x24) = 栈变量58;
+  *(undefined8 *)(栈变量68 + 0x2c) = 栈变量60;
+  *(undefined8 *)(栈变量68 + 0x34) = 临时数据1;
   return;
 }
 
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
- * 比较引擎参数配置
- * @param param_1 参数1
- * @param param_2 参数2
- * @return 返回比较结果
- * 功能: 比较两个引擎参数配置是否匹配
+ * @brief 检查碰撞属性匹配
+ * 
+ * @param 属性ID 属性标识符
+ * @param 对象ID 对象标识符
+ * @return char 匹配结果，0x01表示匹配，0x00表示不匹配
+ * 
+ * 该函数检查指定对象的碰撞属性是否匹配给定的属性ID。
+ * 包含复杂的碰撞检测逻辑和属性验证。
  */
-char compare_engine_parameter_config(undefined4 param_1, int param_2)
-
+char 检查碰撞属性匹配(undefined4 属性ID,int 对象ID)
 {
-  float *pfVar1;
-  uint uVar2;
-  char cVar3;
-  int *piVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  ulonglong uVar7;
-  int iVar8;
-  longlong lVar9;
-  bool bVar10;
-  undefined4 extraout_XMM0_Da;
+  float *浮点指针;
+  uint 属性索引;
+  char 匹配结果;
+  int *对象指针;
+  longlong 哈希表指针;
+  undefined8 *数组指针;
+  ulonglong 数组大小;
+  int 循环索引;
+  longlong 当前对象;
+  bool 条件标志;
+  undefined4 额外输出;
   
-  lVar9 = _DAT_180c86900[0xb];
-  for (piVar4 = *(int **)(lVar9 + ((ulonglong)(longlong)param_2 %
+  哈希表指针 = _DAT_180c86900[0xb];
+  for (对象指针 = *(int **)(哈希表指针 + ((ulonglong)(longlong)对象ID %
                                   (ulonglong)*(uint *)(_DAT_180c86900 + 0xc)) * 8);
-      piVar4 != (int *)0x0; piVar4 = *(int **)(piVar4 + 0x10)) {
-    if (param_2 == *piVar4) {
-      lVar5 = _DAT_180c86900[0xc];
+      对象指针 != (int *)0x0; 对象指针 = *(int **)(对象指针 + 0x10)) {
+    if (对象ID == *对象指针) {
+      哈希表指针 = _DAT_180c86900[0xc];
       goto LAB_180160546;
     }
   }
-  lVar5 = _DAT_180c86900[0xc];
-  piVar4 = *(int **)(lVar9 + lVar5 * 8);
+  哈希表指针 = _DAT_180c86900[0xc];
+  对象指针 = *(int **)(哈希表指针 + 哈希表指针 * 8);
 LAB_180160546:
-  if (piVar4 == *(int **)(lVar9 + lVar5 * 8)) {
+  if (对象指针 == *(int **)(哈希表指针 + 哈希表指针 * 8)) {
     return '\0';
   }
-  if ((char)piVar4[0xe] != '\0') {
-    puVar6 = (undefined8 *)*_DAT_180c86900;
-    uVar7 = _DAT_180c86900[1] - (longlong)puVar6 >> 3;
-    iVar8 = 0;
-    if (uVar7 != 0) {
+  if ((char)对象指针[0xe] != '\0') {
+    数组指针 = (undefined8 *)*_DAT_180c86900;
+    数组大小 = _DAT_180c86900[1] - (longlong)数组指针 >> 3;
+    循环索引 = 0;
+    if (数组大小 != 0) {
       do {
-        cVar3 = FUN_1801605f0(param_1,*puVar6,piVar4 + 1);
-        if (cVar3 != '\0') {
+        匹配结果 = FUN_1801605f0(属性ID,*数组指针,对象指针 + 1);
+        if (匹配结果 != '\0') {
           return '\x01';
         }
-        iVar8 = iVar8 + 1;
-        puVar6 = puVar6 + 1;
-        param_1 = extraout_XMM0_Da;
-      } while ((ulonglong)(longlong)iVar8 < uVar7);
+        循环索引 = 循环索引 + 1;
+        数组指针 = 数组指针 + 1;
+        属性ID = 额外输出;
+      } while ((ulonglong)(longlong)循环索引 < 数组大小);
     }
     return '\0';
   }
-  cVar3 = '\x01';
-  if (0 < (longlong)piVar4[0xd]) {
-    lVar9 = 0;
+  匹配结果 = '\x01';
+  if (0 < (longlong)对象指针[0xd]) {
+    哈希表指针 = 0;
     do {
-      uVar2 = (piVar4 + 1)[lVar9];
-      uVar7 = (ulonglong)uVar2;
-      lVar5 = 0;
-      iVar8 = piVar4[lVar9 + 7];
+      属性索引 = (对象指针 + 1)[哈希表指针];
+      数组大小 = (ulonglong)属性索引;
+      当前对象 = 0;
+      循环索引 = 对象指针[哈希表指针 + 7];
       do {
-        if (uVar2 == *(uint *)(&UNK_18098d770 + lVar5 * 4)) goto LAB_18016064a;
-        lVar5 = lVar5 + 1;
-      } while (lVar5 < 3);
-      lVar5 = -1;
+        if (属性索引 == *(uint *)(&UNK_18098d770 + 当前对象 * 4)) goto LAB_18016064a;
+        当前对象 = 当前对象 + 1;
+      } while (当前对象 < 3);
+      当前对象 = -1;
 LAB_18016064a:
-      if (iVar8 == 0) {
-        if (lVar5 < 0) {
-          if (cVar3 != '\0') {
+      if (循环索引 == 0) {
+        if (当前对象 < 0) {
+          if (匹配结果 != '\0') {
 LAB_180160689:
-            if ((*(char *)(_DAT_180c868d0 + 0x18 + uVar7 * 0x18) == '\0') &&
-               ((pfVar1 = (float *)(_DAT_180c868d0 + 4 + uVar7 * 0x18),
-                0.7 < *pfVar1 || *pfVar1 == 0.7 ||
-                ((*(byte *)(_DAT_180c868d0 + 0x14 + uVar7 * 0x18) & 1) != 0)))) goto LAB_180160797;
+            if ((*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) == '\0') &&
+               ((浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18),
+                0.7 < *浮点指针 || *浮点指针 == 0.7 ||
+                ((*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) != 0)))) goto LAB_180160797;
           }
           goto LAB_1801606a6;
         }
-        if (cVar3 == '\0') goto LAB_1801606a6;
-        if ((*(char *)(_DAT_180c868d0 + 0x18 + uVar7 * 0x18) != '\0') ||
-           ((pfVar1 = (float *)(_DAT_180c868d0 + 4 + uVar7 * 0x18), *pfVar1 <= 0.7 && *pfVar1 != 0.7
-            && ((*(byte *)(_DAT_180c868d0 + 0x14 + uVar7 * 0x18) & 1) == 0)))) {
-          uVar7 = (ulonglong)*(uint *)(&UNK_18098d780 + lVar5 * 4);
+        if (匹配结果 == '\0') goto LAB_1801606a6;
+        if ((*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) != '\0') ||
+           ((浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18), *浮点指针 <= 0.7 && *浮点指针 != 0.7
+            && ((*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) == 0)))) {
+          数组大小 = (ulonglong)*(uint *)(&UNK_18098d780 + 当前对象 * 4);
           goto LAB_180160689;
         }
 LAB_180160797:
-        cVar3 = '\x01';
+        匹配结果 = '\x01';
       }
       else {
-        if (iVar8 == 1) {
-          if ((cVar3 != '\0') && (*(char *)(_DAT_180c868d0 + 0x18 + uVar7 * 0x18) == '\0')) {
-            pfVar1 = (float *)(_DAT_180c868d0 + 4 + uVar7 * 0x18);
-            if ((0.7 < *pfVar1 || *pfVar1 == 0.7) &&
-               (pfVar1 = (float *)(_DAT_180c868d0 + 0xc + uVar7 * 0x18),
-               *pfVar1 <= 0.7 && *pfVar1 != 0.7)) goto LAB_180160797;
+        if (循环索引 == 1) {
+          if ((匹配结果 != '\0') && (*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) == '\0')) {
+            浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18);
+            if ((0.7 < *浮点指针 || *浮点指针 == 0.7) &&
+               (浮点指针 = (float *)(_DAT_180c868d0 + 0xc + 数组大小 * 0x18),
+               *浮点指针 <= 0.7 && *浮点指针 != 0.7)) goto LAB_180160797;
 LAB_1801606f2:
-            bVar10 = (*(byte *)(_DAT_180c868d0 + 0x14 + uVar7 * 0x18) & 3) == 3;
+            条件标志 = (*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 3) == 3;
 LAB_180160791:
-            if (bVar10) goto LAB_180160797;
+            if (条件标志) goto LAB_180160797;
           }
         }
-        else if (iVar8 == 2) {
-          if ((cVar3 != '\0') && (*(char *)(_DAT_180c868d0 + 0x18 + uVar7 * 0x18) == '\0')) {
-            pfVar1 = (float *)(_DAT_180c868d0 + 4 + uVar7 * 0x18);
-            if (0.7 < *pfVar1 || *pfVar1 == 0.7) goto LAB_1801606f2;
-            pfVar1 = (float *)(_DAT_180c868d0 + 0xc + uVar7 * 0x18);
-            if (0.7 < *pfVar1 || *pfVar1 == 0.7) goto LAB_180160797;
-            bVar10 = (*(byte *)(_DAT_180c868d0 + 0x14 + uVar7 * 0x18) & 3) == 3;
+        else if (循环索引 == 2) {
+          if ((匹配结果 != '\0') && (*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) == '\0')) {
+            浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18);
+            if (0.7 < *浮点指针 || *浮点指针 == 0.7) goto LAB_1801606f2;
+            浮点指针 = (float *)(_DAT_180c868d0 + 0xc + 数组大小 * 0x18);
+            if (0.7 < *浮点指针 || *浮点指针 == 0.7) goto LAB_180160797;
+            条件标志 = (*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 3) == 3;
             goto LAB_180160791;
           }
         }
         else {
-          if (iVar8 != 3) goto LAB_1801606a8;
-          if ((cVar3 != '\0') &&
-             ((*(char *)(_DAT_180c868d0 + 0x18 + uVar7 * 0x18) != '\0' ||
-              ((pfVar1 = (float *)(_DAT_180c868d0 + 4 + uVar7 * 0x18),
-               *pfVar1 <= 0.7 && *pfVar1 != 0.7 &&
-               ((*(byte *)(_DAT_180c868d0 + 0x14 + uVar7 * 0x18) & 1) == 0)))))) {
-            if ((lVar5 < 0) ||
-               (uVar7 = (ulonglong)*(uint *)(&UNK_18098d780 + lVar5 * 4),
-               *(char *)(_DAT_180c868d0 + 0x18 + uVar7 * 0x18) != '\0')) goto LAB_180160797;
-            pfVar1 = (float *)(_DAT_180c868d0 + 4 + uVar7 * 0x18);
-            if (*pfVar1 <= 0.7 && *pfVar1 != 0.7) {
-              bVar10 = (*(byte *)(_DAT_180c868d0 + 0x14 + uVar7 * 0x18) & 1) == 0;
+          if (循环索引 != 3) goto LAB_1801606a8;
+          if ((匹配结果 != '\0') &&
+             ((*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) != '\0' ||
+              ((浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18),
+               *浮点指针 <= 0.7 && *浮点指针 != 0.7 &&
+               ((*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) == 0)))))) {
+            if ((当前对象 < 0) ||
+               (数组大小 = (ulonglong)*(uint *)(&UNK_18098d780 + 当前对象 * 4),
+               *(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) != '\0')) goto LAB_180160797;
+            浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18);
+            if (*浮点指针 <= 0.7 && *浮点指针 != 0.7) {
+              条件标志 = (*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) == 0;
               goto LAB_180160791;
             }
           }
         }
 LAB_1801606a6:
-        cVar3 = '\0';
+        匹配结果 = '\0';
       }
 LAB_1801606a8:
-      lVar9 = lVar9 + 1;
-    } while (lVar9 < piVar4[0xd]);
+      哈希表指针 = 哈希表指针 + 1;
+    } while (哈希表指针 < 对象指针[0xd]);
   }
-  return cVar3;
+  return 匹配结果;
 }
 
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
- * 比较引擎参数配置（简化版）
- * @param param_1 参数1
- * @return 返回比较结果
- * 功能: 比较引擎参数配置的简化版本
+ * @brief 验证对象碰撞属性
+ * 
+ * @param 属性ID 属性标识符
+ * @return char 验证结果，0x01表示验证通过，0x00表示验证失败
+ * 
+ * 该函数验证对象的碰撞属性是否符合要求。
+ * 这是一个简化实现，原始实现包含复杂的寄存器变量和条件判断。
  */
-char compare_engine_parameter_config_simplified(undefined4 param_1)
-
+char 验证对象碰撞属性(undefined4 属性ID)
 {
-  float *pfVar1;
-  uint uVar2;
-  char cVar3;
-  longlong in_RAX;
-  longlong lVar4;
-  undefined8 *puVar5;
-  longlong *unaff_RSI;
-  ulonglong uVar6;
-  int iVar7;
-  longlong lVar8;
-  bool in_ZF;
-  bool bVar9;
-  undefined4 extraout_XMM0_Da;
+  float *浮点指针;
+  uint 属性索引;
+  char 验证结果;
+  longlong 寄存器RAX;
+  longlong 当前对象;
+  undefined8 *数组指针;
+  longlong *寄存器RSI;
+  ulonglong 数组大小;
+  int 循环索引;
+  longlong 哈希表指针;
+  bool 寄存器ZF;
+  bool 条件标志;
+  undefined4 额外输出;
   
-  if (!in_ZF) {
-    puVar5 = (undefined8 *)*unaff_RSI;
-    uVar6 = unaff_RSI[1] - (longlong)puVar5 >> 3;
-    iVar7 = 0;
-    if (uVar6 != 0) {
+  if (!寄存器ZF) {
+    数组指针 = (undefined8 *)*寄存器RSI;
+    数组大小 = 寄存器RSI[1] - (longlong)数组指针 >> 3;
+    循环索引 = 0;
+    if (数组大小 != 0) {
       do {
-        cVar3 = FUN_1801605f0(param_1,*puVar5,in_RAX + 4);
-        if (cVar3 != '\0') {
+        验证结果 = FUN_1801605f0(属性ID,*数组指针,寄存器RAX + 4);
+        if (验证结果 != '\0') {
           return '\x01';
         }
-        iVar7 = iVar7 + 1;
-        puVar5 = puVar5 + 1;
-        param_1 = extraout_XMM0_Da;
-      } while ((ulonglong)(longlong)iVar7 < uVar6);
+        循环索引 = 循环索引 + 1;
+        数组指针 = 数组指针 + 1;
+        属性ID = 额外输出;
+      } while ((ulonglong)(longlong)循环索引 < 数组大小);
     }
     return '\0';
   }
-  cVar3 = '\x01';
-  if (0 < (longlong)*(int *)(in_RAX + 0x34)) {
-    lVar8 = 0;
+  验证结果 = '\x01';
+  if (0 < (longlong)*(int *)(寄存器RAX + 0x34)) {
+    哈希表指针 = 0;
     do {
-      uVar2 = *(uint *)(in_RAX + 4 + lVar8 * 4);
-      uVar6 = (ulonglong)uVar2;
-      lVar4 = 0;
-      iVar7 = *(int *)(in_RAX + 0x1c + lVar8 * 4);
+      属性索引 = *(uint *)(寄存器RAX + 4 + 哈希表指针 * 4);
+      数组大小 = (ulonglong)属性索引;
+      当前对象 = 0;
+      循环索引 = *(int *)(寄存器RAX + 0x1c + 哈希表指针 * 4);
       do {
-        if (uVar2 == *(uint *)(&UNK_18098d770 + lVar4 * 4)) goto LAB_18016064a;
-        lVar4 = lVar4 + 1;
-      } while (lVar4 < 3);
-      lVar4 = -1;
+        if (属性索引 == *(uint *)(&UNK_18098d770 + 当前对象 * 4)) goto LAB_18016064a;
+        当前对象 = 当前对象 + 1;
+      } while (当前对象 < 3);
+      当前对象 = -1;
 LAB_18016064a:
-      if (iVar7 == 0) {
-        if (lVar4 < 0) {
-          if (cVar3 != '\0') {
+      if (循环索引 == 0) {
+        if (当前对象 < 0) {
+          if (验证结果 != '\0') {
 LAB_180160689:
-            if ((*(char *)(_DAT_180c868d0 + 0x18 + uVar6 * 0x18) == '\0') &&
-               ((pfVar1 = (float *)(_DAT_180c868d0 + 4 + uVar6 * 0x18),
-                0.7 < *pfVar1 || *pfVar1 == 0.7 ||
-                ((*(byte *)(_DAT_180c868d0 + 0x14 + uVar6 * 0x18) & 1) != 0)))) goto LAB_180160797;
+            if ((*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) == '\0') &&
+               ((浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18),
+                0.7 < *浮点指针 || *浮点指针 == 0.7 ||
+                ((*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) != 0)))) goto LAB_180160797;
           }
           goto LAB_1801606a6;
         }
-        if (cVar3 == '\0') goto LAB_1801606a6;
-        if ((*(char *)(_DAT_180c868d0 + 0x18 + uVar6 * 0x18) != '\0') ||
-           ((pfVar1 = (float *)(_DAT_180c868d0 + 4 + uVar6 * 0x18), *pfVar1 <= 0.7 && *pfVar1 != 0.7
-            && ((*(byte *)(_DAT_180c868d0 + 0x14 + uVar6 * 0x18) & 1) == 0)))) {
-          uVar6 = (ulonglong)*(uint *)(&UNK_18098d780 + lVar4 * 4);
+        if (验证结果 == '\0') goto LAB_1801606a6;
+        if ((*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) != '\0') ||
+           ((浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18), *浮点指针 <= 0.7 && *浮点指针 != 0.7
+            && ((*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) == 0)))) {
+          数组大小 = (ulonglong)*(uint *)(&UNK_18098d780 + 当前对象 * 4);
           goto LAB_180160689;
         }
 LAB_180160797:
-        cVar3 = '\x01';
+        验证结果 = '\x01';
       }
       else {
-        if (iVar7 == 1) {
-          if ((cVar3 != '\0') && (*(char *)(_DAT_180c868d0 + 0x18 + uVar6 * 0x18) == '\0')) {
-            pfVar1 = (float *)(_DAT_180c868d0 + 4 + uVar6 * 0x18);
-            if ((0.7 < *pfVar1 || *pfVar1 == 0.7) &&
-               (pfVar1 = (float *)(_DAT_180c868d0 + 0xc + uVar6 * 0x18),
-               *pfVar1 <= 0.7 && *pfVar1 != 0.7)) goto LAB_180160797;
+        if (循环索引 == 1) {
+          if ((验证结果 != '\0') && (*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) == '\0')) {
+            浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18);
+            if ((0.7 < *浮点指针 || *浮点指针 == 0.7) &&
+               (浮点指针 = (float *)(_DAT_180c868d0 + 0xc + 数组大小 * 0x18),
+               *浮点指针 <= 0.7 && *浮点指针 != 0.7)) goto LAB_180160797;
 LAB_1801606f2:
-            bVar9 = (*(byte *)(_DAT_180c868d0 + 0x14 + uVar6 * 0x18) & 3) == 3;
+            条件标志 = (*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 3) == 3;
 LAB_180160791:
-            if (bVar9) goto LAB_180160797;
+            if (条件标志) goto LAB_180160797;
           }
         }
-        else if (iVar7 == 2) {
-          if ((cVar3 != '\0') && (*(char *)(_DAT_180c868d0 + 0x18 + uVar6 * 0x18) == '\0')) {
-            pfVar1 = (float *)(_DAT_180c868d0 + 4 + uVar6 * 0x18);
-            if (0.7 < *pfVar1 || *pfVar1 == 0.7) goto LAB_1801606f2;
-            pfVar1 = (float *)(_DAT_180c868d0 + 0xc + uVar6 * 0x18);
-            if (0.7 < *pfVar1 || *pfVar1 == 0.7) goto LAB_180160797;
-            bVar9 = (*(byte *)(_DAT_180c868d0 + 0x14 + uVar6 * 0x18) & 3) == 3;
+        else if (循环索引 == 2) {
+          if ((验证结果 != '\0') && (*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) == '\0')) {
+            浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18);
+            if (0.7 < *浮点指针 || *浮点指针 == 0.7) goto LAB_1801606f2;
+            浮点指针 = (float *)(_DAT_180c868d0 + 0xc + 数组大小 * 0x18);
+            if (0.7 < *浮点指针 || *浮点指针 == 0.7) goto LAB_180160797;
+            条件标志 = (*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 3) == 3;
             goto LAB_180160791;
           }
         }
         else {
-          if (iVar7 != 3) goto LAB_1801606a8;
-          if ((cVar3 != '\0') &&
-             ((*(char *)(_DAT_180c868d0 + 0x18 + uVar6 * 0x18) != '\0' ||
-              ((pfVar1 = (float *)(_DAT_180c868d0 + 4 + uVar6 * 0x18),
-               *pfVar1 <= 0.7 && *pfVar1 != 0.7 &&
-               ((*(byte *)(_DAT_180c868d0 + 0x14 + uVar6 * 0x18) & 1) == 0)))))) {
-            if ((lVar4 < 0) ||
-               (uVar6 = (ulonglong)*(uint *)(&UNK_18098d780 + lVar4 * 4),
-               *(char *)(_DAT_180c868d0 + 0x18 + uVar6 * 0x18) != '\0')) goto LAB_180160797;
-            pfVar1 = (float *)(_DAT_180c868d0 + 4 + uVar6 * 0x18);
-            if (*pfVar1 <= 0.7 && *pfVar1 != 0.7) {
-              bVar9 = (*(byte *)(_DAT_180c868d0 + 0x14 + uVar6 * 0x18) & 1) == 0;
+          if (循环索引 != 3) goto LAB_1801606a8;
+          if ((验证结果 != '\0') &&
+             ((*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) != '\0' ||
+              ((浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18),
+               *浮点指针 <= 0.7 && *浮点指针 != 0.7 &&
+               ((*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) == 0)))))) {
+            if ((当前对象 < 0) ||
+               (数组大小 = (ulonglong)*(uint *)(&UNK_18098d780 + 当前对象 * 4),
+               *(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) != '\0')) goto LAB_180160797;
+            浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18);
+            if (*浮点指针 <= 0.7 && *浮点指针 != 0.7) {
+              条件标志 = (*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) == 0;
               goto LAB_180160791;
             }
           }
         }
 LAB_1801606a6:
-        cVar3 = '\0';
+        验证结果 = '\0';
       }
 LAB_1801606a8:
-      lVar8 = lVar8 + 1;
-    } while (lVar8 < *(int *)(in_RAX + 0x34));
+      哈希表指针 = 哈希表指针 + 1;
+    } while (哈希表指针 < *(int *)(寄存器RAX + 0x34));
   }
-  return cVar3;
+  return 验证结果;
 }
 
-
 /**
- * 返回常量值1
- * @return 返回1
- * 功能: 简单的常量返回函数
+ * @brief 获取常量值
+ * 
+ * @return undefined1 返回常量值1
+ * 
+ * 这是一个简单的常量返回函数，始终返回1。
  */
-undefined1 return_constant_one(void)
-
+undefined1 获取常量值(void)
 {
   return 1;
 }
 
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
 /**
- * 处理引擎参数比较
- * 功能: 处理引擎参数的比较逻辑
+ * @brief 处理对象属性验证
+ * 
+ * 该函数处理对象属性的验证逻辑，包括碰撞检测和属性匹配。
+ * 这是一个简化实现，原始实现包含大量寄存器变量和复杂逻辑。
  */
-void process_engine_parameter_comparison(void)
-
+void 处理对象属性验证(void)
 {
-  float *pfVar1;
-  uint uVar2;
-  int iVar3;
-  ulonglong uVar4;
-  longlong lVar5;
-  longlong unaff_RBP;
-  longlong lVar6;
-  bool bVar7;
+  float *浮点指针;
+  uint 属性索引;
+  int 循环索引;
+  ulonglong 数组大小;
+  longlong 当前对象;
+  longlong 寄存器RBP;
+  longlong 哈希表指针;
+  bool 验证结果;
   
-  bVar7 = true;
-  if (0 < (longlong)*(int *)(unaff_RBP + 0x30)) {
-    lVar6 = 0;
+  验证结果 = true;
+  if (0 < (longlong)*(int *)(寄存器RBP + 0x30)) {
+    哈希表指针 = 0;
     do {
-      uVar2 = *(uint *)(unaff_RBP + lVar6 * 4);
-      uVar4 = (ulonglong)uVar2;
-      lVar5 = 0;
-      iVar3 = *(int *)(unaff_RBP + 0x18 + lVar6 * 4);
+      属性索引 = *(uint *)(寄存器RBP + 哈希表指针 * 4);
+      数组大小 = (ulonglong)属性索引;
+      当前对象 = 0;
+      循环索引 = *(int *)(寄存器RBP + 0x18 + 哈希表指针 * 4);
       do {
-        if (uVar2 == *(uint *)(&UNK_18098d770 + lVar5 * 4)) goto LAB_18016064a;
-        lVar5 = lVar5 + 1;
-      } while (lVar5 < 3);
-      lVar5 = -1;
+        if (属性索引 == *(uint *)(&UNK_18098d770 + 当前对象 * 4)) goto LAB_18016064a;
+        当前对象 = 当前对象 + 1;
+      } while (当前对象 < 3);
+      当前对象 = -1;
 LAB_18016064a:
-      if (iVar3 == 0) {
-        if (lVar5 < 0) {
-          if (bVar7) {
+      if (循环索引 == 0) {
+        if (当前对象 < 0) {
+          if (验证结果) {
 LAB_180160689:
-            if ((*(char *)(_DAT_180c868d0 + 0x18 + uVar4 * 0x18) == '\0') &&
-               ((pfVar1 = (float *)(_DAT_180c868d0 + 4 + uVar4 * 0x18),
-                0.7 < *pfVar1 || *pfVar1 == 0.7 ||
-                ((*(byte *)(_DAT_180c868d0 + 0x14 + uVar4 * 0x18) & 1) != 0)))) goto LAB_180160797;
+            if ((*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) == '\0') &&
+               ((浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18),
+                0.7 < *浮点指针 || *浮点指针 == 0.7 ||
+                ((*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) != 0)))) goto LAB_180160797;
           }
           goto LAB_1801606a6;
         }
-        if (!bVar7) goto LAB_1801606a6;
-        if ((*(char *)(_DAT_180c868d0 + 0x18 + uVar4 * 0x18) != '\0') ||
-           ((pfVar1 = (float *)(_DAT_180c868d0 + 4 + uVar4 * 0x18), *pfVar1 <= 0.7 && *pfVar1 != 0.7
-            && ((*(byte *)(_DAT_180c868d0 + 0x14 + uVar4 * 0x18) & 1) == 0)))) {
-          uVar4 = (ulonglong)*(uint *)(&UNK_18098d780 + lVar5 * 4);
+        if (!验证结果) goto LAB_1801606a6;
+        if ((*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) != '\0') ||
+           ((浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18), *浮点指针 <= 0.7 && *浮点指针 != 0.7
+            && ((*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) == 0)))) {
+          数组大小 = (ulonglong)*(uint *)(&UNK_18098d780 + 当前对象 * 4);
           goto LAB_180160689;
         }
 LAB_180160797:
-        bVar7 = true;
+        验证结果 = true;
       }
       else {
-        if (iVar3 == 1) {
-          if ((bVar7) && (*(char *)(_DAT_180c868d0 + 0x18 + uVar4 * 0x18) == '\0')) {
-            pfVar1 = (float *)(_DAT_180c868d0 + 4 + uVar4 * 0x18);
-            if ((0.7 < *pfVar1 || *pfVar1 == 0.7) &&
-               (pfVar1 = (float *)(_DAT_180c868d0 + 0xc + uVar4 * 0x18),
-               *pfVar1 <= 0.7 && *pfVar1 != 0.7)) goto LAB_180160797;
+        if (循环索引 == 1) {
+          if ((验证结果) && (*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) == '\0')) {
+            浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18);
+            if ((0.7 < *浮点指针 || *浮点指针 == 0.7) &&
+               (浮点指针 = (float *)(_DAT_180c868d0 + 0xc + 数组大小 * 0x18),
+               *浮点指针 <= 0.7 && *浮点指针 != 0.7)) goto LAB_180160797;
 LAB_1801606f2:
-            bVar7 = (*(byte *)(_DAT_180c868d0 + 0x14 + uVar4 * 0x18) & 3) == 3;
+            验证结果 = (*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 3) == 3;
 LAB_180160791:
-            if (bVar7) goto LAB_180160797;
+            if (验证结果) goto LAB_180160797;
           }
         }
-        else if (iVar3 == 2) {
-          if ((bVar7) && (*(char *)(_DAT_180c868d0 + 0x18 + uVar4 * 0x18) == '\0')) {
-            pfVar1 = (float *)(_DAT_180c868d0 + 4 + uVar4 * 0x18);
-            if (0.7 < *pfVar1 || *pfVar1 == 0.7) goto LAB_1801606f2;
-            pfVar1 = (float *)(_DAT_180c868d0 + 0xc + uVar4 * 0x18);
-            if (0.7 < *pfVar1 || *pfVar1 == 0.7) goto LAB_180160797;
-            bVar7 = (*(byte *)(_DAT_180c868d0 + 0x14 + uVar4 * 0x18) & 3) == 3;
+        else if (循环索引 == 2) {
+          if ((验证结果) && (*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) == '\0')) {
+            浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18);
+            if (0.7 < *浮点指针 || *浮点指针 == 0.7) goto LAB_1801606f2;
+            浮点指针 = (float *)(_DAT_180c868d0 + 0xc + 数组大小 * 0x18);
+            if (0.7 < *浮点指针 || *浮点指针 == 0.7) goto LAB_180160797;
+            验证结果 = (*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 3) == 3;
             goto LAB_180160791;
           }
         }
         else {
-          if (iVar3 != 3) goto LAB_1801606a8;
-          if ((bVar7) &&
-             ((*(char *)(_DAT_180c868d0 + 0x18 + uVar4 * 0x18) != '\0' ||
-              ((pfVar1 = (float *)(_DAT_180c868d0 + 4 + uVar4 * 0x18),
-               *pfVar1 <= 0.7 && *pfVar1 != 0.7 &&
-               ((*(byte *)(_DAT_180c868d0 + 0x14 + uVar4 * 0x18) & 1) == 0)))))) {
-            if ((lVar5 < 0) ||
-               (uVar4 = (ulonglong)*(uint *)(&UNK_18098d780 + lVar5 * 4),
-               *(char *)(_DAT_180c868d0 + 0x18 + uVar4 * 0x18) != '\0')) goto LAB_180160797;
-            pfVar1 = (float *)(_DAT_180c868d0 + 4 + uVar4 * 0x18);
-            if (*pfVar1 <= 0.7 && *pfVar1 != 0.7) {
-              bVar7 = (*(byte *)(_DAT_180c868d0 + 0x14 + uVar4 * 0x18) & 1) == 0;
+          if (循环索引 != 3) goto LAB_1801606a8;
+          if ((验证结果) &&
+             ((*(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) != '\0' ||
+              ((浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18),
+               *浮点指针 <= 0.7 && *浮点指针 != 0.7 &&
+               ((*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) == 0)))))) {
+            if ((当前对象 < 0) ||
+               (数组大小 = (ulonglong)*(uint *)(&UNK_18098d780 + 当前对象 * 4),
+               *(char *)(_DAT_180c868d0 + 0x18 + 数组大小 * 0x18) != '\0')) goto LAB_180160797;
+            浮点指针 = (float *)(_DAT_180c868d0 + 4 + 数组大小 * 0x18);
+            if (*浮点指针 <= 0.7 && *浮点指针 != 0.7) {
+              验证结果 = (*(byte *)(_DAT_180c868d0 + 0x14 + 数组大小 * 0x18) & 1) == 0;
               goto LAB_180160791;
             }
           }
         }
 LAB_1801606a6:
-        bVar7 = false;
+        验证结果 = false;
       }
 LAB_1801606a8:
-      lVar6 = lVar6 + 1;
-    } while (lVar6 < *(int *)(unaff_RBP + 0x30));
+      哈希表指针 = 哈希表指针 + 1;
+    } while (哈希表指针 < *(int *)(寄存器RBP + 0x30));
   }
   return;
 }
 
-
-
 /**
- * 处理引擎参数比较（完整版）
- * @param param_1 参数1
- * @param param_2 参数2
- * @param param_3 参数3
- * 功能: 处理引擎参数比较的完整实现
+ * @brief 验证属性匹配条件
+ * 
+ * @param 未知参数1 未知参数
+ * @param 属性表指针 属性表指针
+ * @param 对象指针 对象指针
+ * 
+ * 该函数验证属性匹配条件，用于碰撞检测和属性验证。
+ * 这是一个简化实现，原始实现包含复杂的逻辑判断。
  */
-void process_engine_parameter_comparison_full(undefined8 param_1, longlong param_2, longlong param_3)
-
+void 验证属性匹配条件(undefined8 未知参数1,longlong 属性表指针,longlong 对象指针)
 {
-  float *pfVar1;
-  uint uVar2;
-  int iVar3;
-  ulonglong uVar4;
-  longlong lVar5;
-  longlong lVar6;
-  bool bVar7;
+  float *浮点指针;
+  uint 属性索引;
+  int 循环索引;
+  ulonglong 数组大小;
+  longlong 当前对象;
+  longlong 哈希表指针;
+  bool 验证结果;
   
-  bVar7 = true;
-  if (0 < (longlong)*(int *)(param_3 + 0x30)) {
-    lVar6 = 0;
+  验证结果 = true;
+  if (0 < (longlong)*(int *)(对象指针 + 0x30)) {
+    哈希表指针 = 0;
     do {
-      uVar2 = *(uint *)(param_3 + lVar6 * 4);
-      uVar4 = (ulonglong)uVar2;
-      lVar5 = 0;
-      iVar3 = *(int *)(param_3 + 0x18 + lVar6 * 4);
+      属性索引 = *(uint *)(对象指针 + 哈希表指针 * 4);
+      数组大小 = (ulonglong)属性索引;
+      当前对象 = 0;
+      循环索引 = *(int *)(对象指针 + 0x18 + 哈希表指针 * 4);
       do {
-        if (uVar2 == *(uint *)(&UNK_18098d770 + lVar5 * 4)) goto LAB_18016064a;
-        lVar5 = lVar5 + 1;
-      } while (lVar5 < 3);
-      lVar5 = -1;
+        if (属性索引 == *(uint *)(&UNK_18098d770 + 当前对象 * 4)) goto LAB_18016064a;
+        当前对象 = 当前对象 + 1;
+      } while (当前对象 < 3);
+      当前对象 = -1;
 LAB_18016064a:
-      if (iVar3 == 0) {
-        if (lVar5 < 0) {
-          if (bVar7) {
+      if (循环索引 == 0) {
+        if (当前对象 < 0) {
+          if (验证结果) {
 LAB_180160689:
-            if ((*(char *)(param_2 + 0x18 + uVar4 * 0x18) == '\0') &&
-               ((pfVar1 = (float *)(param_2 + 4 + uVar4 * 0x18), 0.7 < *pfVar1 || *pfVar1 == 0.7 ||
-                ((*(byte *)(param_2 + 0x14 + uVar4 * 0x18) & 1) != 0)))) goto LAB_180160797;
+            if ((*(char *)(属性表指针 + 0x18 + 数组大小 * 0x18) == '\0') &&
+               ((浮点指针 = (float *)(属性表指针 + 4 + 数组大小 * 0x18), 0.7 < *浮点指针 || *浮点指针 == 0.7 ||
+                ((*(byte *)(属性表指针 + 0x14 + 数组大小 * 0x18) & 1) != 0)))) goto LAB_180160797;
           }
           goto LAB_1801606a6;
         }
-        if (!bVar7) goto LAB_1801606a6;
-        if ((*(char *)(param_2 + 0x18 + uVar4 * 0x18) != '\0') ||
-           ((pfVar1 = (float *)(param_2 + 4 + uVar4 * 0x18), *pfVar1 <= 0.7 && *pfVar1 != 0.7 &&
-            ((*(byte *)(param_2 + 0x14 + uVar4 * 0x18) & 1) == 0)))) {
-          uVar4 = (ulonglong)*(uint *)(&UNK_18098d780 + lVar5 * 4);
+        if (!验证结果) goto LAB_1801606a6;
+        if ((*(char *)(属性表指针 + 0x18 + 数组大小 * 0x18) != '\0') ||
+           ((浮点指针 = (float *)(属性表指针 + 4 + 数组大小 * 0x18), *浮点指针 <= 0.7 && *浮点指针 != 0.7 &&
+            ((*(byte *)(属性表指针 + 0x14 + 数组大小 * 0x18) & 1) == 0)))) {
+          数组大小 = (ulonglong)*(uint *)(&UNK_18098d780 + 当前对象 * 4);
           goto LAB_180160689;
         }
 LAB_180160797:
-        bVar7 = true;
+        验证结果 = true;
       }
       else {
-        if (iVar3 == 1) {
-          if ((bVar7) && (*(char *)(param_2 + 0x18 + uVar4 * 0x18) == '\0')) {
-            pfVar1 = (float *)(param_2 + 4 + uVar4 * 0x18);
-            if ((0.7 < *pfVar1 || *pfVar1 == 0.7) &&
-               (pfVar1 = (float *)(param_2 + 0xc + uVar4 * 0x18), *pfVar1 <= 0.7 && *pfVar1 != 0.7))
+        if (循环索引 == 1) {
+          if ((验证结果) && (*(char *)(属性表指针 + 0x18 + 数组大小 * 0x18) == '\0')) {
+            浮点指针 = (float *)(属性表指针 + 4 + 数组大小 * 0x18);
+            if ((0.7 < *浮点指针 || *浮点指针 == 0.7) &&
+               (浮点指针 = (float *)(属性表指针 + 0xc + 数组大小 * 0x18), *浮点指针 <= 0.7 && *浮点指针 != 0.7))
             goto LAB_180160797;
 LAB_1801606f2:
-            bVar7 = (*(byte *)(param_2 + 0x14 + uVar4 * 0x18) & 3) == 3;
+            验证结果 = (*(byte *)(属性表指针 + 0x14 + 数组大小 * 0x18) & 3) == 3;
 LAB_180160791:
-            if (bVar7) goto LAB_180160797;
+            if (验证结果) goto LAB_180160797;
           }
         }
-        else if (iVar3 == 2) {
-          if ((bVar7) && (*(char *)(param_2 + 0x18 + uVar4 * 0x18) == '\0')) {
-            pfVar1 = (float *)(param_2 + 4 + uVar4 * 0x18);
-            if (0.7 < *pfVar1 || *pfVar1 == 0.7) goto LAB_1801606f2;
-            pfVar1 = (float *)(param_2 + 0xc + uVar4 * 0x18);
-            if (0.7 < *pfVar1 || *pfVar1 == 0.7) goto LAB_180160797;
-            bVar7 = (*(byte *)(param_2 + 0x14 + uVar4 * 0x18) & 3) == 3;
+        else if (循环索引 == 2) {
+          if ((验证结果) && (*(char *)(属性表指针 + 0x18 + 数组大小 * 0x18) == '\0')) {
+            浮点指针 = (float *)(属性表指针 + 4 + 数组大小 * 0x18);
+            if (0.7 < *浮点指针 || *浮点指针 == 0.7) goto LAB_1801606f2;
+            浮点指针 = (float *)(属性表指针 + 0xc + 数组大小 * 0x18);
+            if (0.7 < *浮点指针 || *浮点指针 == 0.7) goto LAB_180160797;
+            验证结果 = (*(byte *)(属性表指针 + 0x14 + 数组大小 * 0x18) & 3) == 3;
             goto LAB_180160791;
           }
         }
         else {
-          if (iVar3 != 3) goto LAB_1801606a8;
-          if ((bVar7) &&
-             ((*(char *)(param_2 + 0x18 + uVar4 * 0x18) != '\0' ||
-              ((pfVar1 = (float *)(param_2 + 4 + uVar4 * 0x18), *pfVar1 <= 0.7 && *pfVar1 != 0.7 &&
-               ((*(byte *)(param_2 + 0x14 + uVar4 * 0x18) & 1) == 0)))))) {
-            if ((lVar5 < 0) ||
-               (uVar4 = (ulonglong)*(uint *)(&UNK_18098d780 + lVar5 * 4),
-               *(char *)(param_2 + 0x18 + uVar4 * 0x18) != '\0')) goto LAB_180160797;
-            pfVar1 = (float *)(param_2 + 4 + uVar4 * 0x18);
-            if (*pfVar1 <= 0.7 && *pfVar1 != 0.7) {
-              bVar7 = (*(byte *)(param_2 + 0x14 + uVar4 * 0x18) & 1) == 0;
+          if (循环索引 != 3) goto LAB_1801606a8;
+          if ((验证结果) &&
+             ((*(char *)(属性表指针 + 0x18 + 数组大小 * 0x18) != '\0' ||
+              ((浮点指针 = (float *)(属性表指针 + 4 + 数组大小 * 0x18), *浮点指针 <= 0.7 && *浮点指针 != 0.7 &&
+               ((*(byte *)(属性表指针 + 0x14 + 数组大小 * 0x18) & 1) == 0)))))) {
+            if ((当前对象 < 0) ||
+               (数组大小 = (ulonglong)*(uint *)(&UNK_18098d780 + 当前对象 * 4),
+               *(char *)(属性表指针 + 0x18 + 数组大小 * 0x18) != '\0')) goto LAB_180160797;
+            浮点指针 = (float *)(属性表指针 + 4 + 数组大小 * 0x18);
+            if (*浮点指针 <= 0.7 && *浮点指针 != 0.7) {
+              验证结果 = (*(byte *)(属性表指针 + 0x14 + 数组大小 * 0x18) & 1) == 0;
               goto LAB_180160791;
             }
           }
         }
 LAB_1801606a6:
-        bVar7 = false;
+        验证结果 = false;
       }
 LAB_1801606a8:
-      lVar6 = lVar6 + 1;
-    } while (lVar6 < *(int *)(param_3 + 0x30));
+      哈希表指针 = 哈希表指针 + 1;
+    } while (哈希表指针 < *(int *)(对象指针 + 0x30));
   }
   return;
 }

@@ -859,27 +859,34 @@ LAB_18016a555:
 
 
 
+/**
+ * 初始化数据缓冲区
+ * 主要功能：初始化数据缓冲区结构，设置默认值和内存管理参数
+ * 
+ * 原始实现：FUN_18016a6c0
+ * 简化实现：数据缓冲区初始化函数
+ */
 undefined8 *
-FUN_18016a6c0(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+initialize_data_buffer(undefined8 *input_data, undefined8 *output_buffer, undefined8 buffer_type, undefined8 init_flags)
 
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
-  undefined4 uVar3;
-  undefined8 uVar4;
-  undefined1 auStack_28 [32];
+  undefined8 data_source;
+  undefined8 memory_context;
+  undefined4 buffer_priority;
+  undefined8 cleanup_flag;
+  undefined1 temp_buffer [32];
   
-  uVar4 = 0xfffffffffffffffe;
-  *param_2 = 0;
-  param_2[1] = 0;
-  param_2[2] = 0;
-  *(undefined4 *)(param_2 + 3) = 3;
-  uVar3 = 1;
-  uVar1 = *param_1;
-  uVar2 = FUN_180628ca0();
-  uVar2 = FUN_180627ae0(auStack_28,uVar2);
-  FUN_180162220(uVar1,param_2,uVar2,param_4,uVar3,uVar4);
-  return param_2;
+  cleanup_flag = CONTEXT_CLEANUP_FLAG;
+  *output_buffer = 0;
+  output_buffer[1] = 0;
+  output_buffer[2] = 0;
+  *(undefined4 *)(output_buffer + 3) = 3;
+  buffer_priority = 1;
+  data_source = *input_data;
+  memory_context = get_memory_context();
+  memory_context = allocate_temp_buffer(temp_buffer, memory_context);
+  process_data_initialization(data_source, output_buffer, memory_context, init_flags, buffer_priority, cleanup_flag);
+  return output_buffer;
 }
 
 
