@@ -78,6 +78,85 @@ typedef struct {
 } InitSystemContext;
 
 /*==============================================================================
+ * 函数别名定义
+ =============================================================================*/
+
+/** @brief 初始化系统核心注册器1函数别名 */
+#define InitializationSystemCoreRegistrar1 FUN_1800400b0
+
+/** @brief 初始化系统核心注册器2函数别名 */
+#define InitializationSystemCoreRegistrar2 FUN_1800401b0
+
+/** @brief 初始化系统核心注册器3函数别名 */
+#define InitializationSystemCoreRegistrar3 FUN_1800402b0
+
+/** @brief 初始化系统核心注册器4函数别名 */
+#define InitializationSystemCoreRegistrar4 FUN_1800403b0
+
+/** @brief 初始化系统核心注册器5函数别名 */
+#define InitializationSystemCoreRegistrar5 FUN_1800404b0
+
+/** @brief 初始化系统核心注册器6函数别名 */
+#define InitializationSystemCoreRegistrar6 FUN_1800405b0
+
+/** @brief 初始化系统核心注册器7函数别名 */
+#define InitializationSystemCoreRegistrar7 FUN_1800406b0
+
+/** @brief 初始化系统核心注册器8函数别名 */
+#define InitializationSystemCoreRegistrar8 FUN_1800408d0
+
+/** @brief 初始化系统核心注册器9函数别名 */
+#define InitializationSystemCoreRegistrar9 FUN_1800409d0
+
+/** @brief 初始化系统核心注册器10函数别名 */
+#define InitializationSystemCoreRegistrar10 FUN_180040ae0
+
+/** @brief 初始化系统核心注册器11函数别名 */
+#define InitializationSystemCoreRegistrar11 FUN_180040be0
+
+/** @brief 初始化系统核心注册器12函数别名 */
+#define InitializationSystemCoreRegistrar12 FUN_180040ce0
+
+/** @brief 初始化系统核心注册器13函数别名 */
+#define InitializationSystemCoreRegistrar13 FUN_180040de0
+
+/** @brief 初始化系统核心注册器14函数别名 */
+#define InitializationSystemCoreRegistrar14 FUN_180040ee0
+
+/** @brief 初始化系统核心注册器15函数别名 */
+#define InitializationSystemCoreRegistrar15 FUN_180040fe0
+
+/** @brief 初始化系统核心注册器16函数别名 */
+#define InitializationSystemCoreRegistrar16 FUN_1800410e0
+
+/** @brief 初始化系统核心注册器17函数别名 */
+#define InitializationSystemCoreRegistrar17 FUN_1800411e0
+
+/** @brief 初始化系统核心注册器18函数别名 */
+#define InitializationSystemCoreRegistrar18 FUN_1800412e0
+
+/** @brief 初始化系统核心注册器19函数别名 */
+#define InitializationSystemCoreRegistrar19 FUN_1800413e0
+
+/** @brief 初始化系统核心注册器20函数别名 */
+#define InitializationSystemCoreRegistrar20 FUN_1800414e0
+
+/** @brief 初始化系统核心注册器21函数别名 */
+#define InitializationSystemCoreRegistrar21 FUN_1800415e0
+
+/** @brief 初始化系统核心注册器22函数别名 */
+#define InitializationSystemCoreRegistrar22 FUN_1800416e0
+
+/** @brief 初始化系统核心注册器23函数别名 */
+#define InitializationSystemCoreRegistrar23 FUN_1800417e0
+
+/** @brief 初始化系统初始化器函数别名 */
+#define InitializationSystemInitializer FUN_1800418e0
+
+/** @brief 初始化系统配置管理器函数别名 */
+#define InitializationSystemConfigManager FUN_180041a10
+
+/*==============================================================================
  * 核心函数实现
  =============================================================================*/
 
@@ -301,57 +380,61 @@ void InitializationSystemCoreRegistrar4(void)
     target_node->reserved = config_buffer[0];
     
     return;
-}
-
-
-
-
-
-// 函数: void FUN_1800404b0(void)
-void FUN_1800404b0(void)
+}/**
+ * @brief 初始化系统核心注册器5
+ * 
+ * 该函数负责在系统注册表中查找第五个特定的配置项，并进行相应的初始化设置。
+ * 主要用于系统高级组件的注册和配置管理。
+ * 
+ * @return void 无返回值
+ */
+void InitializationSystemCoreRegistrar5(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c9e0,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    InitSystemContext* system_context;
+    InitRegistryNode* current_node;
+    InitRegistryNode* target_node;
+    InitRegistryNode* temp_node;
+    InitSystemConfig* config_data;
+    uint64_t config_buffer[2] = {0};
+    
+    /* 获取系统上下文 */
+    system_context = (InitSystemContext*)InitializationSystem_GetContext();
+    current_node = (InitRegistryNode*)system_context->registry_root;
+    
+    /* 遍历注册表查找目标配置 */
+    while (current_node->status != INIT_SYSTEM_STATUS_FLAG_ACTIVE) {
+        int compare_result = memcmp(current_node->data + 4, &INIT_CONFIG_DATA_CORE_5, INIT_MEMORY_ALIGNMENT_SIZE);
+        
+        if (compare_result < 0) {
+            temp_node = current_node->next;
+            current_node = target_node;
+        } else {
+            temp_node = current_node->prev;
+        }
+        
+        target_node = current_node;
+        current_node = temp_node;
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    /* 如果未找到或需要插入新节点 */
+    if ((target_node == (InitRegistryNode*)system_context->registry_root) || 
+        (memcmp(&INIT_CONFIG_DATA_CORE_5, target_node->data + 4, INIT_MEMORY_ALIGNMENT_SIZE) < 0)) {
+        
+        uint64_t memory_offset = InitializationSystem_AllocateMemory(system_context);
+        InitializationSystem_CreateNode(system_context, &config_data, target_node, 
+                                      memory_offset + INIT_CONFIG_DATA_BLOCK_SIZE, memory_offset);
+        target_node = (InitRegistryNode*)config_data;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9e0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x42d293584c8cf3e5;
-  puVar7[7] = 0x355ffeb2d29e668a;
-  puVar7[8] = &UNK_18098c870;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    /* 设置配置数据 - 高级组件类型 */
+    target_node->config_id = 0x42d293584c8cf3e5;
+    target_node->config_hash = 0x355ffeb2d29e668a;
+    target_node->config_data = &INIT_SYSTEM_DATA_CORE_5;
+    target_node->config_flags = INIT_COMPONENT_TYPE_CORE;
+    target_node->reserved = config_buffer[0];
+    
+    return;
 }
 
 
