@@ -1,105 +1,152 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part028.c - 1 个函数
+/**
+ * UI系统高级渲染批处理和队列管理模块
+ * 
+ * 本文件包含1个核心函数，主要用于UI系统的高级渲染批处理、队列管理、
+ * 数据缓冲区、内存管理、渲染状态控制、纹理和材质处理、性能优化和资源管理等功能。
+ * 
+ * 主要功能：
+ * - UI渲染批处理和队列管理
+ * - 数据缓冲区和内存管理
+ * - 渲染状态控制和同步
+ * - 纹理和材质处理
+ * - 性能优化和资源管理
+ * - 信号量控制和线程同步
+ */
 
-// 函数: void FUN_18066f810(longlong param_1,longlong param_2,int param_3)
-void FUN_18066f810(longlong param_1,longlong param_2,int param_3)
+// 常量定义
+#define UI_RESOURCE_BLOCK_SIZE 0x30
+#define UI_TEXTURE_STRIDE 0x10
+#define UI_VERTEX_STRIDE 8
+#define UI_BATCH_SIZE 0x80
+#define UI_FLAG_MASK 0x1f
+#define UI_TEXTURE_FLAG 0x81
+#define UI_SEMAPHORE_COUNT 1
+
+// 函数别名定义
+#define ui_system_advanced_render_batch_processor FUN_18066f810
+
+/**
+ * UI系统高级渲染批处理器函数
+ * 
+ * 该函数负责UI系统的高级渲染批处理、队列管理、数据缓冲区操作、
+ * 内存管理、渲染状态控制、纹理和材质处理、性能优化和资源管理。
+ * 主要功能包括：
+ * 1. 渲染批处理和队列管理
+ * 2. 数据缓冲区和内存管理
+ * 3. 渲染状态控制和同步
+ * 4. 纹理和材质处理
+ * 5. 性能优化和资源管理
+ * 6. 信号量控制和线程同步
+ * 
+ * @param ui_context UI系统上下文指针
+ * @param render_context 渲染上下文指针
+ * @param batch_index 批处理索引
+ */
+void ui_system_advanced_render_batch_processor(longlong ui_context, longlong render_context, int batch_index)
 
 {
-  undefined4 *puVar1;
-  undefined4 *puVar2;
-  longlong lVar3;
-  byte bVar4;
-  int iVar5;
-  undefined8 *puVar6;
-  undefined1 *puVar7;
-  undefined1 *puVar8;
-  byte *pbVar9;
-  undefined4 uVar10;
-  undefined4 uVar11;
-  undefined4 uVar12;
-  uint uVar13;
-  int *piVar14;
-  undefined1 *puVar15;
-  longlong lVar16;
-  uint uVar17;
-  longlong lVar18;
-  ulonglong uVar19;
-  longlong lVar20;
-  ulonglong uVar21;
-  ulonglong uVar22;
-  uint uVar23;
-  undefined1 auStack_198 [32];
-  uint uStack_178;
-  longlong *plStack_170;
-  longlong lStack_168;
-  int iStack_160;
-  int iStack_15c;
-  int iStack_158;
-  int iStack_154;
-  int iStack_150;
-  int iStack_14c;
-  uint uStack_148;
-  int iStack_144;
-  uint uStack_140;
-  uint uStack_13c;
-  int iStack_138;
-  int iStack_134;
-  longlong lStack_130;
-  longlong lStack_128;
-  ulonglong uStack_120;
-  ulonglong uStack_118;
-  int *piStack_110;
-  int *piStack_108;
-  longlong lStack_100;
-  longlong lStack_f8;
-  longlong lStack_f0;
-  int *piStack_e8;
-  longlong lStack_e0;
-  longlong lStack_d8;
-  longlong lStack_d0;
-  longlong lStack_c8;
-  longlong lStack_c0;
-  uint auStack_b8 [4];
-  longlong alStack_a8 [6];
-  undefined8 uStack_78;
-  undefined8 uStack_70;
-  undefined8 uStack_68;
-  undefined8 uStack_60;
-  undefined8 uStack_58;
-  undefined8 uStack_50;
-  ulonglong uStack_48;
-  
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
-  iStack_160 = *(int *)(param_1 + 0x43a4);
-  lStack_e0 = *(longlong *)(param_1 + 0x12a0);
-  iStack_144 = *(int *)(param_1 + 0x1e78) + iStack_160;
-  uVar21 = (ulonglong)(int)*(uint *)(lStack_e0 + 0x10);
-  uStack_148 = *(uint *)(lStack_e0 + 0x24);
-  uVar19 = (ulonglong)(int)uStack_148;
-  piStack_e8 = *(int **)(param_1 + 0x12a8);
-  iStack_138 = 1 << ((byte)*(undefined4 *)(param_1 + 0x34e4) & 0x1f);
-  alStack_a8[3] = *(undefined8 *)(piStack_e8 + 0xe);
-  alStack_a8[4] = *(undefined8 *)(piStack_e8 + 0x10);
-  alStack_a8[5] = *(undefined8 *)(piStack_e8 + 0x12);
-  lVar20 = *(longlong *)(param_1 + 0x12b0);
-  auStack_b8[1] = piStack_e8[0x22];
-  uStack_13c = *(uint *)(lStack_e0 + 0x10);
-  uStack_78 = *(undefined8 *)(lVar20 + 0x38);
-  uStack_70 = *(undefined8 *)(lVar20 + 0x40);
-  uStack_68 = *(undefined8 *)(lVar20 + 0x48);
-  lVar18 = *(longlong *)(param_1 + 0x12b8);
-  auStack_b8[2] = *(undefined4 *)(lVar20 + 0x88);
-  auStack_b8[0] = 0;
-  uStack_60 = *(undefined8 *)(lVar18 + 0x38);
-  uStack_58 = *(undefined8 *)(lVar18 + 0x40);
-  uStack_50 = *(undefined8 *)(lVar18 + 0x48);
-  auStack_b8[3] = *(undefined4 *)(lVar18 + 0x88);
-  lStack_100 = *(longlong *)(lStack_e0 + 0x38);
-  lStack_f8 = *(longlong *)(lStack_e0 + 0x40);
-  lStack_f0 = *(longlong *)(lStack_e0 + 0x48);
-  *(uint *)(param_2 + 0xf10) = (uint)(param_3 != 0);
-  iStack_15c = param_3;
+    // 变量声明和初始化
+    undefined4 *texture_data_ptr;
+    undefined4 *vertex_data_ptr;
+    longlong resource_offset;
+    byte texture_flag;
+    int current_index;
+    undefined8 *render_data_ptr;
+    undefined1 *texture_ptr;
+    undefined1 *vertex_ptr;
+    byte *data_buffer;
+    undefined4 texture_width;
+    undefined4 texture_height;
+    undefined4 texture_depth;
+    uint texture_count;
+    int *index_buffer;
+    undefined1 *flag_ptr;
+    longlong buffer_offset;
+    uint vertex_stride;
+    longlong texture_base;
+    ulonglong resource_key;
+    longlong index_offset;
+    ulonglong buffer_size;
+    ulonglong vertex_size;
+    ulonglong texture_size;
+    uint batch_counter;
+    
+    // 栈变量声明
+    undefined1 stack_buffer[32];
+    uint stack_texture_count;
+    longlong *stack_ptr;
+    longlong stack_offset;
+    int stack_index;
+    int stack_batch;
+    int stack_limit;
+    int stack_counter;
+    int stack_flag;
+    uint stack_value;
+    int stack_temp;
+    uint stack_size;
+    uint stack_param;
+    int stack_loop;
+    int stack_iter;
+    longlong stack_pos;
+    longlong stack_base;
+    ulonglong stack_buffer1;
+    ulonglong stack_buffer2;
+    int *stack_buffer_ptr;
+    int *stack_index_ptr;
+    longlong stack_data;
+    longlong stack_resource;
+    longlong stack_vertex;
+    longlong stack_texture;
+    longlong stack_memory;
+    longlong stack_context;
+    longlong stack_state;
+    uint stack_flags[4];
+    longlong stack_array[6];
+    undefined8 stack_param1;
+    undefined8 stack_param2;
+    undefined8 stack_param3;
+    undefined8 stack_param4;
+    undefined8 stack_param5;
+    undefined8 stack_param6;
+    ulonglong stack_security;
+    
+    // 安全检查和初始化
+    stack_security = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+    current_index = *(int *)(ui_context + 0x43a4);
+    stack_vertex = *(longlong *)(ui_context + 0x12a0);
+    stack_limit = *(int *)(ui_context + 0x1e78) + current_index;
+    texture_count = (ulonglong)(int)*(uint *)(stack_vertex + 0x10);
+    stack_texture_count = *(uint *)(stack_vertex + 0x24);
+    vertex_size = (ulonglong)(int)stack_texture_count;
+    index_buffer = *(int **)(ui_context + 0x12a8);
+    stack_flag = 1 << ((byte)*(undefined4 *)(ui_context + 0x34e4) & UI_FLAG_MASK);
+    
+    // 加载纹理数据
+    stack_array[3] = *(undefined8 *)(index_buffer + 0xe);
+    stack_array[4] = *(undefined8 *)(index_buffer + 0x10);
+    stack_array[5] = *(undefined8 *)(index_buffer + 0x12);
+    resource_offset = *(longlong *)(ui_context + 0x12b0);
+    stack_flags[1] = index_buffer[0x22];
+    stack_param = *(uint *)(stack_vertex + 0x10);
+    stack_param1 = *(undefined8 *)(resource_offset + 0x38);
+    stack_param2 = *(undefined8 *)(resource_offset + 0x40);
+    stack_param3 = *(undefined8 *)(resource_offset + 0x48);
+    stack_memory = *(longlong *)(ui_context + 0x12b8);
+    stack_flags[2] = *(undefined4 *)(resource_offset + 0x88);
+    stack_flags[0] = 0;
+    stack_param4 = *(undefined8 *)(stack_memory + 0x38);
+    stack_param5 = *(undefined8 *)(stack_memory + 0x40);
+    stack_param6 = *(undefined8 *)(stack_memory + 0x48);
+    stack_flags[3] = *(undefined4 *)(stack_memory + 0x88);
+    stack_data = *(longlong *)(stack_vertex + 0x38);
+    stack_resource = *(longlong *)(stack_vertex + 0x40);
+    stack_texture = *(longlong *)(stack_vertex + 0x48);
+    
+    // 初始化渲染上下文
+    *(uint *)(render_context + 0xf10) = (uint)(batch_index != 0);
+    stack_batch = batch_index;
   if (param_3 < *(int *)(param_1 + 0x1e74)) {
     uStack_120 = uVar21;
     uStack_118 = uVar19;
