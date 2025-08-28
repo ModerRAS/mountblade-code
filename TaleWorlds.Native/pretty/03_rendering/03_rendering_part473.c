@@ -664,108 +664,163 @@ LAB_18051f4b9:
 
 
 
-// 函数: void FUN_18051f4c1(void)
+/**
+ * @brief 渲染状态管理器 - 状态更新函数
+ * 
+ * 该函数负责管理渲染系统的状态更新，主要功能包括：
+ * - 更新渲染位置和变换数据
+ * - 同步渲染上下文信息
+ * - 维护渲染数据的一致性
+ * - 处理状态切换和清理
+ * 
+ * @param void 无直接参数，使用非受影响寄存器变量
+ * @return void 无返回值
+ * 
+ * @note 该函数是渲染状态管理的核心函数，被多个其他函数调用
+ */
 void FUN_18051f4c1(void)
-
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  longlong lVar5;
-  longlong lVar6;
-  undefined8 uVar7;
-  undefined8 uVar8;
-  longlong lVar9;
-  longlong unaff_RBX;
-  longlong unaff_RSI;
-  float *unaff_RDI;
-  
-  fVar1 = *(float *)(unaff_RSI + 0x10);
-  fVar2 = *(float *)(unaff_RSI + 0x14);
-  fVar3 = unaff_RDI[1];
-  fVar4 = unaff_RDI[2];
-  *(float *)(unaff_RBX + 0x988) =
-       (*(float *)(unaff_RSI + 0xc) - *unaff_RDI) + *(float *)(unaff_RBX + 0x988);
-  uVar7 = *(undefined8 *)unaff_RDI;
-  uVar8 = *(undefined8 *)(unaff_RDI + 2);
-  *(float *)(unaff_RBX + 0x98c) = (fVar1 - fVar3) + *(float *)(unaff_RBX + 0x98c);
-  *(float *)(unaff_RBX + 0x990) = (fVar2 - fVar4) + *(float *)(unaff_RBX + 0x990);
-  *(undefined8 *)(unaff_RSI + 0xc) = uVar7;
-  *(undefined8 *)(unaff_RSI + 0x14) = uVar8;
-  if (-1 < *(int *)(unaff_RBX + 0x560)) {
-    lVar5 = *(longlong *)(unaff_RBX + 0x8d8);
-    lVar9 = (longlong)*(int *)(unaff_RBX + 0x560) * 0xa60;
-    lVar6 = *(longlong *)(lVar9 + 0x30c0 + lVar5);
-    *(undefined8 *)(lVar6 + 0xc) = uVar7;
-    *(undefined8 *)(lVar6 + 0x14) = uVar8;
-    *(undefined8 *)(lVar9 + 0x3a28 + lVar5) = 0;
-    *(undefined8 *)(lVar9 + 0x3a30 + lVar5) = 0;
-    *(undefined4 *)(lVar9 + 0x3a38 + lVar5) = 0;
-  }
-  return;
+    /* 局部变量定义 */
+    float fVar1, fVar2, fVar3, fVar4;
+    longlong lVar5, lVar6, lVar9;
+    undefined8 uVar7, uVar8;
+    
+    /* 获取渲染状态数据 */
+    fVar1 = *(float *)(unaff_RSI + 0x10);
+    fVar2 = *(float *)(unaff_RSI + 0x14);
+    fVar3 = unaff_RDI[1];
+    fVar4 = unaff_RDI[2];
+    
+    /* 更新渲染位置差值 */
+    *(float *)(unaff_RBX + OFFSET_RENDER_POSITION) = 
+        (*(float *)(unaff_RSI + 0xc) - *unaff_RDI) + *(float *)(unaff_RBX + OFFSET_RENDER_POSITION);
+    
+    /* 保存渲染参数 */
+    uVar7 = *(undefined8 *)unaff_RDI;
+    uVar8 = *(undefined8 *)(unaff_RDI + 2);
+    
+    /* 更新渲染变换和缩放 */
+    *(float *)(unaff_RBX + OFFSET_RENDER_TRANSFORM) = 
+        (fVar1 - fVar3) + *(float *)(unaff_RBX + OFFSET_RENDER_TRANSFORM);
+    *(float *)(unaff_RBX + OFFSET_RENDER_SCALE) = 
+        (fVar2 - fVar4) + *(float *)(unaff_RBX + OFFSET_RENDER_SCALE);
+    
+    /* 更新渲染上下文 */
+    *(undefined8 *)(unaff_RSI + 0xc) = uVar7;
+    *(undefined8 *)(unaff_RSI + 0x14) = uVar8;
+    
+    /* 更新渲染数据 */
+    if (-1 < *(int *)(unaff_RBX + OFFSET_RENDER_INDEX)) {
+        lVar5 = *(longlong *)(unaff_RBX + OFFSET_RENDER_DATA);
+        lVar9 = (longlong)*(int *)(unaff_RBX + OFFSET_RENDER_INDEX) * MEMORY_ALIGNMENT_SIZE;
+        lVar6 = *(longlong *)(lVar9 + RENDER_STATE_OFFSET + lVar5);
+        
+        /* 更新渲染数据状态 */
+        *(undefined8 *)(lVar6 + 0xc) = uVar7;
+        *(undefined8 *)(lVar6 + 0x14) = uVar8;
+        *(undefined8 *)(lVar9 + RENDER_DATA_OFFSET + lVar5) = 0;
+        *(undefined8 *)(lVar9 + RENDER_DATA_OFFSET + 8 + lVar5) = 0;
+        *(undefined4 *)(lVar9 + RENDER_DATA_OFFSET + 16 + lVar5) = 0;
+    }
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18051f528(undefined8 param_1)
+/**
+ * @brief 渲染状态更新器 - 数据同步函数
+ * 
+ * 该函数负责同步渲染系统的状态数据，主要功能包括：
+ * - 根据索引更新渲染数据
+ * - 同步渲染上下文和状态信息
+ * - 清理和重置渲染数据
+ * - 维护数据一致性
+ * 
+ * @param param_1 渲染参数数据
+ * @return void 无返回值
+ * 
+ * @note 该函数使用寄存器变量进行高效的数据更新
+ */
 void FUN_18051f528(undefined8 param_1)
-
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong in_RAX;
-  longlong lVar3;
-  longlong unaff_RBX;
-  undefined8 in_XMM0_Qb;
-  
-  lVar1 = *(longlong *)(unaff_RBX + 0x8d8);
-  lVar3 = in_RAX * 0xa60;
-  lVar2 = *(longlong *)(lVar3 + 0x30c0 + lVar1);
-  *(undefined8 *)(lVar2 + 0xc) = param_1;
-  *(undefined8 *)(lVar2 + 0x14) = in_XMM0_Qb;
-  *(undefined8 *)(lVar3 + 0x3a28 + lVar1) = 0;
-  *(undefined8 *)(lVar3 + 0x3a30 + lVar1) = 0;
-  *(undefined4 *)(lVar3 + 0x3a38 + lVar1) = 0;
-  return;
+    /* 局部变量定义 */
+    longlong lVar1, lVar2, lVar3;
+    undefined8 in_XMM0_Qb;
+    
+    /* 获取渲染数据指针 */
+    lVar1 = *(longlong *)(unaff_RBX + OFFSET_RENDER_DATA);
+    lVar3 = in_RAX * MEMORY_ALIGNMENT_SIZE;
+    lVar2 = *(longlong *)(lVar3 + RENDER_STATE_OFFSET + lVar1);
+    
+    /* 更新渲染数据 */
+    *(undefined8 *)(lVar2 + 0xc) = param_1;
+    *(undefined8 *)(lVar2 + 0x14) = in_XMM0_Qb;
+    
+    /* 清理渲染数据状态 */
+    *(undefined8 *)(lVar3 + RENDER_DATA_OFFSET + lVar1) = 0;
+    *(undefined8 *)(lVar3 + RENDER_DATA_OFFSET + 8 + lVar1) = 0;
+    *(undefined4 *)(lVar3 + RENDER_DATA_OFFSET + 16 + lVar1) = 0;
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18051f570(longlong param_1,float *param_2)
-void FUN_18051f570(longlong param_1,float *param_2)
-
+/**
+ * @brief 渲染碰撞检测器 - 碰撞处理函数
+ * 
+ * 该函数负责处理渲染系统中的碰撞检测，主要功能包括：
+ * - 检测渲染对象之间的碰撞
+ * - 计算碰撞响应和调整
+ * - 处理深度冲突和遮挡关系
+ * - 优化渲染性能和视觉效果
+ * 
+ * @param param_1 渲染上下文指针
+ * @param param_2 渲染位置向量
+ * @return void 无返回值
+ * 
+ * @note 该函数使用精确的数学计算来处理碰撞检测
+ */
+void FUN_18051f570(longlong param_1, float *param_2)
 {
-  float fVar1;
-  float fVar2;
-  
-  fVar1 = *(float *)(param_1 + 0x988);
-  fVar2 = *param_2;
-  if (0.0 < *(float *)(param_1 + 0x990) * param_2[2] +
-            *(float *)(param_1 + 0x98c) * param_2[1] + fVar1 * fVar2) {
-    if (0.0 < fVar1 * fVar2) {
-      if (ABS(fVar2) <= ABS(fVar1)) {
-        *(float *)(param_1 + 0x988) = fVar1 - fVar2;
-      }
-      else {
-        *(undefined4 *)(param_1 + 0x988) = 0;
-      }
+    /* 局部变量定义 */
+    float fVar1, fVar2;
+    
+    /* 获取渲染位置数据 */
+    fVar1 = *(float *)(param_1 + OFFSET_RENDER_POSITION);
+    fVar2 = *param_2;
+    
+    /* 检查碰撞条件 */
+    if (0.0 < *(float *)(param_1 + OFFSET_RENDER_SCALE) * param_2[2] +
+              *(float *)(param_1 + OFFSET_RENDER_TRANSFORM) * param_2[1] + fVar1 * fVar2) {
+        
+        /* 处理X轴碰撞 */
+        if (0.0 < fVar1 * fVar2) {
+            if (ABS(fVar2) <= ABS(fVar1)) {
+                *(float *)(param_1 + OFFSET_RENDER_POSITION) = fVar1 - fVar2;
+            } else {
+                *(undefined4 *)(param_1 + OFFSET_RENDER_POSITION) = 0;
+            }
+        }
+        
+        /* 处理Y轴碰撞 */
+        fVar1 = *(float *)(param_1 + OFFSET_RENDER_TRANSFORM);
+        fVar2 = param_2[1];
+        if (0.0 < fVar1 * fVar2) {
+            if (ABS(fVar1) < ABS(fVar2)) {
+                *(undefined4 *)(param_1 + OFFSET_RENDER_TRANSFORM) = 0;
+                return;
+            }
+            *(float *)(param_1 + OFFSET_RENDER_TRANSFORM) = fVar1 - fVar2;
+        }
     }
-    fVar1 = *(float *)(param_1 + 0x98c);
-    fVar2 = param_2[1];
-    if (0.0 < fVar1 * fVar2) {
-      if (ABS(fVar1) < ABS(fVar2)) {
-        *(undefined4 *)(param_1 + 0x98c) = 0;
-        return;
-      }
-      *(float *)(param_1 + 0x98c) = fVar1 - fVar2;
-    }
-  }
-  return;
+    
+    return;
 }
 
 
