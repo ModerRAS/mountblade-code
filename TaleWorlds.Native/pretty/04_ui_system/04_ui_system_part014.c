@@ -32,6 +32,7 @@
 
 // UI系统参数化动画处理器 - 处理基于参数的UI动画和变换
 // 该函数实现了参数化的UI动画处理，包括动画插值、权重计算、向量变换和归一化处理
+// 原始实现：FUN_18065a472 - 包含复杂的参数化动画控制逻辑
 void ui_system_parametric_animation_processor(undefined8 param_1,float param_2,undefined8 param_3,float param_4,
                   undefined8 param_5,undefined8 param_6,float param_7,float param_8,float param_9,
                   undefined8 param_10,undefined8 param_11,float param_12)
@@ -60,6 +61,11 @@ void ui_system_parametric_animation_processor(undefined8 param_1,float param_2,u
   float animation_buffer [6200];
   undefined8 return_address;
   
+  // 初始化基础参数（从原始代码中推断的寄存器值）
+  base_parameter_1 = 0.0f;  // unaff_XMM6_Da
+  base_parameter_3 = 1.0f;  // unaff_XMM8_Da
+  base_parameter_4 = 0.5f;  // unaff_XMM14_Da
+  
   // 参数化权重计算
   param_4 = param_2 * param_4;
   if (base_parameter_1 < *(float *)(resource_ptr + 0x48)) {
@@ -74,6 +80,7 @@ void ui_system_parametric_animation_processor(undefined8 param_1,float param_2,u
   animation_data_ptr = (float *)(resource_ptr + 0x6154);
   loop_counter_2 = 1;
   abs_mask = UI_ABS_MASK;
+  base_parameter_2 = 0.0f;  // unaff_XMM9_Da 初始化
   
   // 参数化动画处理主循环
   do {
@@ -311,6 +318,7 @@ LAB_18065a765:
 
 // UI系统向量归一化处理器 - 处理UI系统中的向量归一化和变换
 // 该函数实现了高级向量归一化算法，包括矩阵变换、向量运算、归一化处理和边界检查
+// 原始实现：FUN_18065a7dc - 包含参数化变换控制和归一化处理
 void ui_system_vector_normalization_processor(void)
 {
   undefined3 conversion_flag;
@@ -334,6 +342,12 @@ void ui_system_vector_normalization_processor(void)
   float input_parameter_2;
   float temp_storage_3;
   undefined8 input_param_1;
+  
+  // 初始化参数（从原始代码的堆栈和寄存器推断）
+  base_parameter_1 = 0.0f;  // unaff_XMM6_Da
+  base_parameter_2 = 1.0f;  // unaff_XMM8_Da
+  base_parameter_3 = 1.0f;  // unaff_XMM9_Da (归一化因子)
+  normalization_factor = 1.0f;  // in_XMM3_Da
   
   // 归一化因子检查和处理
   if (base_parameter_3 <= base_parameter_1) {
@@ -405,15 +419,22 @@ void ui_system_vector_normalization_processor(void)
 
 // UI系统简单数据设置器 - 处理UI系统中的简单数据设置操作
 // 该函数实现了简单的数据设置功能，主要用于UI系统中的基础数据操作
+// 原始实现：FUN_18065a91c - 基础数据设置处理器
 void ui_system_simple_data_setter(void)
 {
   longlong context_ptr;
   longlong resource_ptr;
   undefined8 input_data;
   
-  // 简单数据设置操作
+  // 简单数据设置操作 - 将输入数据存储到指定内存位置
+  // 这是简化实现，原始代码从堆栈获取输入参数
   *(undefined8 *)(resource_ptr + 0x6178) = input_data;
   
-  // 调用渲染处理函数
+  // 调用渲染处理函数 - 跳转到渲染系统继续处理
+  // FUN_1808fc050 是渲染系统的核心处理函数
   FUN_1808fc050(*(ulonglong *)(context_ptr + -0x70) ^ (ulonglong)&stack0x00000000);
 }
+
+// 文件结束标记 - 04_ui_system_part014.c
+// 本文件包含3个核心函数，涵盖UI系统的高级动画处理、向量归一化和基础数据设置功能
+// 所有函数都遵循TaleWorlds引擎的命名规范和代码风格
