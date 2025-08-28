@@ -1232,88 +1232,106 @@ uint64_t ReferenceCount_Manager(longlong *param_1, undefined8 *param_2)
   uint16_t ref_threshold;
   int *hash_chain_ptr;
   
-  if (param_2 == (undefined8 *)0x0) {
-    return 0x1c;
+  /* 参数验证 */
+  if (param_2 == (void*)0x0) {
+    return SYSTEM_ERROR_INVALID_PARAM;
   }
-  uVar1 = *(ushort *)((longlong)param_2 + 0xe);
-  uVar16 = (uVar1 & 0x3fff) + (uVar1 >> 0xe & 1);
-  if (((uVar16 < 2) && ((uVar1 & 0x7fff) != 0)) || ((uVar1 & 0x3fff) == 1)) {
-    bVar8 = true;
+  
+  /* 引用计数状态分析 */
+  uint16_t ref_count = *(uint16_t *)((uint64_t)param_2 + 0xe);
+  uint16_t active_count = (ref_count & RESOURCE_MASK) + (ref_count >> 0xe & 1);
+  bool should_cleanup = ((active_count < 2) && ((ref_count & BITMASK_15_BITS) != 0)) || 
+                       ((ref_count & RESOURCE_MASK) == 1);
+  
+  /* 更新引用计数 */
+  uint16_t new_ref_count = ref_count - 1;
+  if ((ref_count & RESOURCE_MASK) == 0) {
+    new_ref_count = ref_count & BITMASK_HIGH_BIT;
   }
-  else {
-    bVar8 = false;
+  *(uint16_t *)((uint64_t)param_2 + 0xe) = new_ref_count;
+  
+  /* 执行回调函数 */
+  if ((should_cleanup) && (param_1[2] != 0) && ((void (*)())param_1[3] != (void (*)())0x0)) {
+    ((void (*)())param_1[3])(param_1[2], param_2);
   }
-  uVar15 = uVar1 - 1;
-  if ((uVar1 & 0x3fff) == 0) {
-    uVar15 = uVar1 & 0x8000;
-  }
-  *(ushort *)((longlong)param_2 + 0xe) = uVar15;
-  if (((bVar8) && (param_1[2] != 0)) && ((code *)param_1[3] != (code *)0x0)) {
-    (*(code *)param_1[3])(param_1[2],param_2);
-  }
-  if (uVar16 < 2) {
-    if ((uVar1 & 0x7fff) != 0) {
-      plVar2 = (longlong *)param_1[1];
-      uVar4 = *(uint *)(param_2 + 2);
-      uVar5 = *(uint *)((longlong)param_2 + 0x14);
-      lVar14 = param_2[2];
-      uVar6 = *(uint *)(param_2 + 3);
-      uVar7 = *(uint *)((longlong)param_2 + 0x1c);
-      lVar9 = param_2[3];
-      lVar3 = plVar2[5];
-      if (lVar3 != 0) {
-        FUN_180768360(lVar3);
+  
+  /* 处理资源释放 */
+  if (active_count < 2) {
+    if ((ref_count & BITMASK_15_BITS) != 0) {
+      void** resource_manager = (void**)param_1[1];
+      uint32_t hash_keys[4];
+      uint64_t key_data[2];
+      void* cleanup_context;
+      
+      /* 提取哈希键值 */
+      hash_keys[0] = *(uint32_t *)(param_2 + 2);
+      hash_keys[1] = *(uint32_t *)((uint64_t)param_2 + 0x14);
+      key_data[0] = param_2[2];
+      hash_keys[2] = *(uint32_t *)(param_2 + 3);
+      hash_keys[3] = *(uint32_t *)((uint64_t)param_2 + 0x1c);
+      key_data[1] = param_2[3];
+      cleanup_context = resource_manager[5];
+      
+      /* 执行清理前准备 */
+      if (cleanup_context != 0) {
+        FUN_180768360(cleanup_context);
       }
-      if (*(int *)((longlong)plVar2 + 0x24) == 0) {
-        uVar12 = 0;
-      }
-      else if ((int)plVar2[1] == 0) {
-        uVar12 = 0x1c;
-      }
-      else {
-        uVar12 = 0;
-        lVar13 = (longlong)(int)((uVar5 ^ uVar4 ^ uVar6 ^ uVar7) & (int)plVar2[1] - 1U);
-        piVar17 = (int *)(*plVar2 + lVar13 * 4);
-        iVar10 = *(int *)(*plVar2 + lVar13 * 4);
-        if (iVar10 != -1) {
-          lVar13 = plVar2[2];
+      
+      /* 哈希表操作 */
+      status_t status;
+      if (*(int *)((uint64_t)resource_manager + 0x24) == 0) {
+        status = SYSTEM_SUCCESS;
+      } else if ((int)resource_manager[1] == 0) {
+        status = SYSTEM_ERROR_INVALID_PARAM;
+      } else {
+        status = SYSTEM_SUCCESS;
+        uint32_t hash_value = (hash_keys[1] ^ hash_keys[0] ^ hash_keys[2] ^ hash_keys[3]) & 
+                             ((int)resource_manager[1] - 1U);
+        int* hash_table = (int *)(*resource_manager + hash_value * 4);
+        int element_index = *(int *)(*resource_manager + hash_value * 4);
+        
+        if (element_index != -1) {
+          void* element_base = (void*)resource_manager[2];
           do {
-            lVar11 = (longlong)iVar10 * 0x20;
-            if ((*(longlong *)(lVar11 + lVar13) == lVar14) &&
-               (*(longlong *)(lVar11 + 8 + lVar13) == lVar9)) {
-              iVar10 = *piVar17;
-              lVar14 = (longlong)iVar10 * 0x20;
-              *(undefined8 *)(lVar14 + 0x18 + lVar13) = 0;
-              *piVar17 = *(int *)(lVar14 + 0x10 + lVar13);
-              *(int *)(lVar14 + 0x10 + lVar13) = (int)plVar2[4];
-              *(int *)((longlong)plVar2 + 0x24) = *(int *)((longlong)plVar2 + 0x24) + -1;
-              *(int *)(plVar2 + 4) = iVar10;
+            uint64_t element_offset = (uint64_t)element_index * DATA_ELEMENT_SIZE;
+            if ((*(uint64_t *)(element_offset + element_base) == key_data[0]) &&
+                (*(uint64_t *)(element_offset + 8 + element_base) == key_data[1])) {
+              element_index = *hash_table;
+              element_offset = (uint64_t)element_index * DATA_ELEMENT_SIZE;
+              *(uint64_t *)(element_offset + 0x18 + element_base) = 0;
+              *hash_table = *(int *)(element_offset + 0x10 + element_base);
+              *(int *)(element_offset + 0x10 + element_base) = (int)resource_manager[4];
+              *(int *)((uint64_t)resource_manager + 0x24) = *(int *)((uint64_t)resource_manager + 0x24) - 1;
+              *(int *)(resource_manager + 4) = element_index;
               break;
             }
-            piVar17 = (int *)(lVar13 + 0x10 + lVar11);
-            iVar10 = *piVar17;
-          } while (iVar10 != -1);
+            hash_table = (int *)(element_base + 0x10 + element_offset);
+            element_index = *hash_table;
+          } while (element_index != -1);
         }
       }
-      if (lVar3 != 0) {
-                    // WARNING: Subroutine does not return
-        FUN_180768400(lVar3);
+      
+      /* 执行清理操作 */
+      if (cleanup_context != 0) {
+        FUN_180768400(cleanup_context);
       }
-      if ((int)uVar12 != 0) {
-        return uVar12;
+      
+      if (status != SYSTEM_SUCCESS) {
+        return status;
       }
     }
-    uVar12 = (**(code **)(*param_1 + 0x18))(param_1,param_2);
-    if ((int)uVar12 == 0) {
-      (**(code **)*param_2)(param_2,0);
-                    // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2,&UNK_180988a80,0xcc,1);
+    
+    /* 执行系统回调 */
+    status_t status = (*(status_t (**)(void**, void*))(*param_1 + 0x18))(param_1, param_2);
+    if (status == SYSTEM_SUCCESS) {
+      (*(void (**)(void*, int))(*param_2))(param_2, 0);
+      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), param_2, &UNK_180988a80, 0xcc, 1);
     }
+  } else {
+    status_t status = SYSTEM_SUCCESS;
   }
-  else {
-    uVar12 = 0;
-  }
-  return uVar12;
+  
+  return status;
 }
 
 
