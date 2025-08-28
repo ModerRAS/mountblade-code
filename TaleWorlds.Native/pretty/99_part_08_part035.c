@@ -371,7 +371,7 @@ LAB_1805a1543:
   if (lVar28 <= lVar24 + 1) {
 LAB_1805a1576:
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(unaff_RBP[0x32] ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(unaff_RBP[0x32] ^ (uint64_t)&stack0x00000000);
   }
   goto LAB_1805a0d60;
   while( true ) {
@@ -401,7 +401,7 @@ void FUN_1805a15a6(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 400) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 400) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -416,7 +416,7 @@ void FUN_1805a15ae(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 400) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 400) ^ (uint64_t)&stack0x00000000);
 }
 
 

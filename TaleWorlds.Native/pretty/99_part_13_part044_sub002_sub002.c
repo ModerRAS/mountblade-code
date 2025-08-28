@@ -718,7 +718,7 @@ int32 FUN_1808c2490(int64 param_1)
   // 获取并清理主要资源
   lVar1 = *(int64 *)(param_1 + 0x28);
   if (lVar1 != 0) {
-    FUN_180768360(lVar1);
+    SystemMemoryAllocator(lVar1);
   }
   
   // 执行第一级清理
@@ -730,7 +730,7 @@ int32 FUN_1808c2490(int64 param_1)
   // 清理后处理
   if (lVar1 != 0) {
     // WARNING: Subroutine does not return
-    FUN_180768400(lVar1);
+    SystemMemoryManager(lVar1);
   }
   
   return iVar2;
@@ -765,20 +765,20 @@ uint64 FUN_1808c24f0(int64 param_1)
   // 处理第一级资源
   lVar1 = *(int64 *)(param_1 + 0x60);
   if (lVar1 != 0) {
-    FUN_180768360(lVar1);
+    SystemMemoryAllocator(lVar1);
   }
   
   uVar2 = FUN_18088a1f0(param_1 + 0x68);
   if ((uVar2 == SUCCESS_CODE) && (uVar2 = FUN_18088a1f0(param_1 + 0x38), uVar2 == SUCCESS_CODE)) {
     if (lVar1 != 0) {
       // WARNING: Subroutine does not return
-      FUN_180768400(lVar1);
+      SystemMemoryManager(lVar1);
     }
   }
   else {
     if (lVar1 != 0) {
       // WARNING: Subroutine does not return
-      FUN_180768400(lVar1);
+      SystemMemoryManager(lVar1);
     }
     if (uVar2 != SUCCESS_CODE) {
       return (uint64)uVar2;
@@ -788,20 +788,20 @@ uint64 FUN_1808c24f0(int64 param_1)
   // 处理第二级资源
   lVar1 = *(int64 *)(param_1 + 200);
   if (lVar1 != 0) {
-    FUN_180768360(lVar1);
+    SystemMemoryAllocator(lVar1);
   }
   
   uVar2 = FUN_18088a1f0(param_1 + 0xd0);
   if ((uVar2 == SUCCESS_CODE) && (uVar2 = FUN_18088a1f0(param_1 + 0xa0), uVar2 == SUCCESS_CODE)) {
     if (lVar1 != 0) {
       // WARNING: Subroutine does not return
-      FUN_180768400(lVar1);
+      SystemMemoryManager(lVar1);
     }
   }
   else {
     if (lVar1 != 0) {
       // WARNING: Subroutine does not return
-      FUN_180768400(lVar1);
+      SystemMemoryManager(lVar1);
     }
     if (uVar2 != SUCCESS_CODE) {
       return (uint64)uVar2;
@@ -811,20 +811,20 @@ uint64 FUN_1808c24f0(int64 param_1)
   // 处理第三级资源
   lVar1 = *(int64 *)(param_1 + 0x130);
   if (lVar1 != 0) {
-    FUN_180768360(lVar1);
+    SystemMemoryAllocator(lVar1);
   }
   
   uVar2 = FUN_18088a1f0(param_1 + 0x138);
   if ((uVar2 == SUCCESS_CODE) && (uVar2 = FUN_18088a1f0(param_1 + 0x108), uVar2 == SUCCESS_CODE)) {
     if (lVar1 != 0) {
       // WARNING: Subroutine does not return
-      FUN_180768400(lVar1);
+      SystemMemoryManager(lVar1);
     }
   }
   else {
     if (lVar1 != 0) {
       // WARNING: Subroutine does not return
-      FUN_180768400(lVar1);
+      SystemMemoryManager(lVar1);
     }
     if (uVar2 != SUCCESS_CODE) {
       return (uint64)uVar2;
@@ -834,20 +834,20 @@ uint64 FUN_1808c24f0(int64 param_1)
   // 处理第四级资源
   lVar1 = *(int64 *)(param_1 + 0x200);
   if (lVar1 != 0) {
-    FUN_180768360(lVar1);
+    SystemMemoryAllocator(lVar1);
   }
   
   uVar2 = FUN_18088a1f0(param_1 + 0x208);
   if ((uVar2 == SUCCESS_CODE) && (uVar2 = FUN_18088a1f0(param_1 + 0x1d8), uVar2 == SUCCESS_CODE)) {
     if (lVar1 != 0) {
       // WARNING: Subroutine does not return
-      FUN_180768400(lVar1);
+      SystemMemoryManager(lVar1);
     }
   }
   else {
     if (lVar1 != 0) {
       // WARNING: Subroutine does not return
-      FUN_180768400(lVar1);
+      SystemMemoryManager(lVar1);
     }
     if (uVar2 != SUCCESS_CODE) {
       return (uint64)uVar2;
@@ -862,7 +862,7 @@ uint64 FUN_1808c24f0(int64 param_1)
   
   // 检查状态标志
   if (*(int32 *)(param_1 + 0x264) == 0) {
-    uVar3 = FUN_180744cc0(param_1 + 0x240);
+    uVar3 = SystemStatusChecker(param_1 + 0x240);
     if ((int32)uVar3 != SUCCESS_CODE) {
       return uVar3;
     }
@@ -1401,7 +1401,7 @@ uint64 FUN_1808c2ec0(int64 param_1, int64 param_2, int8 param_3)
     
     // 分配对象内存
     plVar2 = (IntPtr)
-             FUN_180741e10(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), ALLOCATION_SIZE_MEDIUM, &unknown_var_1696_ptr, 0xbf, 0, 0, 1);
+             SystemResourceManager(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), ALLOCATION_SIZE_MEDIUM, &unknown_var_1696_ptr, 0xbf, 0, 0, 1);
     
     if (plVar2 == (IntPtr)NULL_POINTER) {
       return ALLOCATION_ERROR_CODE;
@@ -1574,7 +1574,7 @@ LAB_1808c3135:
       plVar2[1] = (int64)plVar2;
       *plVar2 = (int64)plVar2;
       // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_1696_ptr, 0xe1, 1);
+      SystemDataValidator(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_1696_ptr, 0xe1, 1);
     }
   }
   else {
@@ -1611,7 +1611,7 @@ LAB_1808c3135:
   plVar2[1] = (int64)plVar2;
   *plVar2 = (int64)plVar2;
   // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_1696_ptr, 0xe1, 1);
+  SystemDataValidator(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_1696_ptr, 0xe1, 1);
 }
 
 // ============================================================================
@@ -1697,7 +1697,7 @@ int32 FUN_1808c3220(IntPtr param_1, uint64 param_2, uint64 param_3, UIntPtr para
     lVar10 = 0;
   }
   else {
-    FUN_180768360(lVar10);
+    SystemMemoryAllocator(lVar10);
   }
   
   // 执行对象查找
@@ -1708,7 +1708,7 @@ int32 FUN_1808c3220(IntPtr param_1, uint64 param_2, uint64 param_3, UIntPtr para
   
   if (!bVar14) {
     // WARNING: Subroutine does not return
-    FUN_180768400(lVar10);
+    SystemMemoryManager(lVar10);
   }
   
   // 初始化状态变量
@@ -1724,7 +1724,7 @@ int32 FUN_1808c3220(IntPtr param_1, uint64 param_2, uint64 param_3, UIntPtr para
   
   // 分配对象内存
   puVar7 = (UIntPtr)
-           FUN_180741e10(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), ALLOCATION_SIZE_LARGE, &unknown_var_3008_ptr, 0x12f, 0, 0, 1);
+           SystemResourceManager(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), ALLOCATION_SIZE_LARGE, &unknown_var_3008_ptr, 0x12f, 0, 0, 1);
   lVar8 = lStack_60;
   
   if (puVar7 == (UIntPtr)NULL_POINTER) {
@@ -1976,7 +1976,7 @@ int32 FUN_1808c3266(void)
     lVar9 = 0;
   }
   else {
-    FUN_180768360(lVar9);
+    SystemMemoryAllocator(lVar9);
   }
   
   // 执行对象查找（使用寄存器变量）
@@ -1987,7 +1987,7 @@ int32 FUN_1808c3266(void)
   
   if (!bVar13) {
     // WARNING: Subroutine does not return
-    FUN_180768400(lVar9);
+    SystemMemoryManager(lVar9);
   }
   
   // 初始化状态变量
@@ -2003,7 +2003,7 @@ int32 FUN_1808c3266(void)
   
   // 分配对象内存
   puVar6 = (UIntPtr)
-           FUN_180741e10(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), ALLOCATION_SIZE_LARGE, &unknown_var_3008_ptr, 0x12f, 0);
+           SystemResourceManager(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), ALLOCATION_SIZE_LARGE, &unknown_var_3008_ptr, 0x12f, 0);
   lVar7 = lStack0000000000000058;
   
   if (puVar6 == (UIntPtr)NULL_POINTER) {
@@ -2283,7 +2283,7 @@ uint64 FUN_1808c3700(UIntPtr param_1, IntPtr param_2)
       // 执行对象销毁
       ((*(code **)(*param_2 + 0x28))(param_2, 0));
       // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &unknown_var_3008_ptr, 0x161, 1);
+      SystemDataValidator(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &unknown_var_3008_ptr, 0x161, 1);
     }
   }
   
@@ -2333,7 +2333,7 @@ uint64 FUN_1808c37a0(IntPtr param_1, uint64 param_2)
     lVar6 = 0;
   }
   else {
-    FUN_180768360(lVar6);
+    SystemMemoryAllocator(lVar6);
   }
   
   // 执行数据查找
@@ -2344,7 +2344,7 @@ uint64 FUN_1808c37a0(IntPtr param_1, uint64 param_2)
   
   if (!bVar8) {
     // WARNING: Subroutine does not return
-    FUN_180768400(lVar6);
+    SystemMemoryManager(lVar6);
   }
   
   if (plVar2 == (IntPtr)NULL_POINTER) {
@@ -2400,7 +2400,7 @@ LAB_1808c38c7:
     lVar4 = *param_1;
     lVar6 = *(int64 )(lVar4 + 0x28);
     if (lVar6 != 0) {
-      FUN_180768360(lVar6);
+      SystemMemoryAllocator(lVar6);
     }
     
     uVar1 = func_0x0001808534b0(lVar4, plVar2 + 5);
@@ -2408,13 +2408,13 @@ LAB_1808c38c7:
     
     if (lVar6 != 0) {
       // WARNING: Subroutine does not return
-      FUN_180768400(lVar6);
+      SystemMemoryManager(lVar6);
     }
     
     if (uVar1 == SUCCESS_CODE) {
       FUN_1808bbe80(plVar2);
       // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_3008_ptr, 0x172, 1);
+      SystemDataValidator(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_3008_ptr, 0x172, 1);
     }
   }
   
@@ -2464,7 +2464,7 @@ uint64 FUN_1808c37b9(uint64 param_1, uint64 param_2)
     lVar5 = 0;
   }
   else {
-    FUN_180768360(lVar5);
+    SystemMemoryAllocator(lVar5);
   }
   
   // 执行数据查找（使用寄存器变量）
@@ -2475,7 +2475,7 @@ uint64 FUN_1808c37b9(uint64 param_1, uint64 param_2)
   
   if (!bVar8) {
     // WARNING: Subroutine does not return
-    FUN_180768400(lVar5);
+    SystemMemoryManager(lVar5);
   }
   
   if (plVar3 == (IntPtr)NULL_POINTER) {
@@ -2531,7 +2531,7 @@ LAB_1808c38c7:
     lVar5 = *unaff_R12;
     lVar1 = *(int64 )(lVar5 + 0x28);
     if (lVar1 != 0) {
-      FUN_180768360(lVar1);
+      SystemMemoryAllocator(lVar1);
     }
     
     uVar2 = func_0x0001808534b0(lVar5, plVar3 + 5);
@@ -2539,13 +2539,13 @@ LAB_1808c38c7:
     
     if (lVar1 != 0) {
       // WARNING: Subroutine does not return
-      FUN_180768400(lVar1);
+      SystemMemoryManager(lVar1);
     }
     
     if (uVar2 == SUCCESS_CODE) {
       FUN_1808bbe80(plVar3);
       // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar3, &unknown_var_3008_ptr, 0x172, 1);
+      SystemDataValidator(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar3, &unknown_var_3008_ptr, 0x172, 1);
     }
   }
   

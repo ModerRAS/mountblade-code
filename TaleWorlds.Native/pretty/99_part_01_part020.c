@@ -838,21 +838,21 @@ void FUN_1800b3fe0(int64_t *param_1)
   if (system_system_data_config != 0) {
     FUN_1800bc4a0(system_system_data_config);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(lVar8);
+    CoreEngineMemoryPoolCleaner(lVar8);
   }
   system_system_data_config = 0;
   lVar10 = 8;
-  uVar5 = FUN_18062b1e0(system_memory_pool_ptr,0x470,8,3);
+  uVar5 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x470,8,3);
   system_system_data_config = FUN_1800bc180(uVar5);
   lVar8 = *param_1;
   if (lVar8 != 0) {
     _Mtx_destroy_in_situ();
     _Mtx_destroy_in_situ(lVar8);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(lVar8);
+    CoreEngineMemoryPoolCleaner(lVar8);
   }
   *param_1 = 0;
-  lVar8 = FUN_18062b1e0(system_memory_pool_ptr,0xa0,8,3);
+  lVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xa0,8,3);
   _Mtx_init_in_situ(lVar8,2);
   _Mtx_init_in_situ(lVar8 + 0x50,2);
   *param_1 = lVar8;
@@ -977,7 +977,7 @@ void FUN_1800b4550(int64_t param_1)
   *(uint64_t *)(param_1 + 0x560) = &system_data_buffer_ptr;
   if (*(int64_t *)(param_1 + 0x568) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   *(uint64_t *)(param_1 + 0x568) = 0;
   *(int32_t *)(param_1 + 0x578) = 0;
@@ -1015,7 +1015,7 @@ void FUN_1800b4810(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     FUN_1800b9210(param_1,*puVar1,param_3,param_4,0xfffffffffffffffe);
     FUN_1800b94f0(puVar1);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    CoreEngineMemoryPoolCleaner(puVar1);
   }
   return;
 }
@@ -1075,7 +1075,7 @@ void FUN_1800b48c0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     FUN_1800b9210(param_1,*puVar1,param_3,param_4,0xfffffffffffffffe);
     FUN_1800b94f0(puVar1);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    CoreEngineMemoryPoolCleaner(puVar1);
   }
   return;
 }

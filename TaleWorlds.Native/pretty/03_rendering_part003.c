@@ -452,7 +452,7 @@ void render_system_cleanup_object(render_ptr_t param_1)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemDataCleaner();
         return;
       }
     }
@@ -641,7 +641,7 @@ render_ptr_t render_system_release_memory(render_ptr_t param_1, uint64_t param_2
   FUN_1802708b0(param_1 + 1);
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   if ((param_2 & 1) != 0) {
     free(param_1,0x30,param_3,param_4,uVar1);
@@ -687,7 +687,7 @@ render_ptr_t render_system_free_buffer(render_ptr_t param_1, uint64_t param_2, r
   FUN_1802708b0(param_1 + 1);
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   if ((param_2 & 1) != 0) {
     free(param_1,0x28,param_3,param_4,uVar1);
@@ -748,7 +748,7 @@ void render_system_resource_cleaner(render_ptr_t param_1)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemDataCleaner();
         return;
       }
     }
@@ -811,7 +811,7 @@ void render_system_advanced_object_processor(render_ptr_t param_1)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemDataCleaner();
         return;
       }
     }
@@ -875,7 +875,7 @@ void render_system_object_lifecycle_manager(render_ptr_t param_1)
       piVar1 = (int *)(lVar3 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemDataCleaner();
         return;
       }
     }

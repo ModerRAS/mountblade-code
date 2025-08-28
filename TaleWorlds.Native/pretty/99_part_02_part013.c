@@ -354,7 +354,7 @@ void FUN_1800f1850(int64_t param_1)
   piStack_220 = piVar10;
   ReleaseSRWLockExclusive(lStack_1d8);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_288);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_288);
 }
 
 
@@ -470,7 +470,7 @@ void FUN_1800f1ff0(int64_t param_1)
       uVar34 = strcpy_s(auStack_130,0x40,&system_data_fc60);
       FUN_1802037e0(uVar34,iVar25,&puStack_148);
       puStack_148 = &system_state_ptr;
-      lVar21 = FUN_18062b1e0(system_memory_pool_ptr,iVar25,0x10,3);
+      lVar21 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,iVar25,0x10,3);
       FUN_1800f7e80(uVar8,&plStack_180);
       plStack_1a0 = plStack_180;
       plStack_180[2] = lVar21;
@@ -627,7 +627,7 @@ void FUN_1800f1ff0(int64_t param_1)
 LAB_1800f2551:
   ReleaseSRWLockExclusive(lStack_168);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_88 ^ (uint64_t)auStack_1e8);
+  SystemSecurityChecker(uStack_88 ^ (uint64_t)auStack_1e8);
 }
 
 
@@ -794,7 +794,7 @@ void FUN_1800f25a0(int64_t param_1)
 LAB_1800f2907:
   ReleaseSRWLockExclusive(lVar1);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_148);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_148);
 }
 
 

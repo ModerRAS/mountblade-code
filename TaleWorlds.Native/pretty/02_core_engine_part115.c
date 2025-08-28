@@ -654,7 +654,7 @@ void FUN_1801283f0(int64_t param_1,int param_2,float *param_3,uint64_t param_4,u
     *(int32_t *)(lVar6 + 0x1b60) = 2;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_188);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_188);
 }
 
 
@@ -796,7 +796,7 @@ void FUN_1801285e0(void)
           }
                     // WARNING: Subroutine does not return
           puStack_40 = &unknown_var_4107_ptr;
-          FUN_180059ba0(lVar8,SYSTEM_DATA_MANAGER_B);
+          SystemResourceCleaner(lVar8,SYSTEM_DATA_MANAGER_B);
         }
       }
       lVar9 = SYSTEM_DATA_MANAGER_A;

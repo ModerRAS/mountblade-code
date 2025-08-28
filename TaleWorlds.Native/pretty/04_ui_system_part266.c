@@ -977,7 +977,7 @@ void FUN_18081b2d0(int64_t param_1,int param_2)
   uint64_t uVar1;
   
   uVar1 = *(uint64_t *)(param_1 + 0x20);
-  FUN_180768360(uVar1);
+  SystemMemoryAllocator(uVar1);
   if ((param_2 != 0) &&
      (*(int *)(param_1 + 0x10) = *(int *)(param_1 + 0x10) + param_2,
      *(int *)(param_1 + 0x10) == *(int *)(param_1 + 0xc))) {
@@ -985,7 +985,7 @@ void FUN_18081b2d0(int64_t param_1,int param_2)
   }
   FUN_18081b7c0(param_1);
                     // WARNING: Subroutine does not return
-  FUN_180768400(uVar1);
+  SystemMemoryManager(uVar1);
 }
 
 
@@ -1001,7 +1001,7 @@ void FUN_18081b330(int64_t param_1,int *param_2)
   
   iVar1 = *param_2;
   uVar2 = *(uint64_t *)(param_1 + 0x540);
-  FUN_180768360(uVar2);
+  SystemMemoryAllocator(uVar2);
   if ((iVar1 != 0) &&
      (*(int *)(param_1 + 0x530) = *(int *)(param_1 + 0x530) + iVar1,
      *(int *)(param_1 + 0x530) == *(int *)(param_1 + 0x52c))) {
@@ -1009,7 +1009,7 @@ void FUN_18081b330(int64_t param_1,int *param_2)
   }
   FUN_18081b7c0(param_1 + 0x520);
                     // WARNING: Subroutine does not return
-  FUN_180768400(uVar2);
+  SystemMemoryManager(uVar2);
 }
 
 
@@ -1083,7 +1083,7 @@ uint64_t FUN_18081b490(int64_t *param_1,uint64_t param_2,int32_t param_3)
   int64_t lVar1;
   uint64_t uVar2;
   
-  lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2,&unknown_var_1152_ptr,0x52,0,0,1);
+  lVar1 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2,&unknown_var_1152_ptr,0x52,0,0,1);
   *param_1 = lVar1;
   if (lVar1 == 0) {
     uVar2 = 0x26;
@@ -1147,9 +1147,9 @@ LAB_18081b5e5:
       }
       if ((bVar2) && ((*(int *)(pcVar4 + 3) == -1 || ((char)in_RAX != '\0')))) {
         uVar1 = *(uint64_t *)(param_1 + 0x4f8);
-        FUN_180768360(uVar1);
+        SystemMemoryAllocator(uVar1);
                     // WARNING: Subroutine does not return
-        FUN_180768400(uVar1);
+        SystemMemoryManager(uVar1);
       }
       uVar5 = uVar5 + 1;
       pcVar4 = pcVar4 + 0x10;
@@ -1175,7 +1175,7 @@ void FUN_18081b670(int64_t param_1)
   int8_t *puVar5;
   
   uVar1 = *(uint64_t *)(param_1 + 0x28);
-  FUN_180768360(uVar1);
+  SystemMemoryAllocator(uVar1);
   if (*(char *)(param_1 + 0x2d0) == '\0') {
     uVar4 = 0;
     puVar5 = (int8_t *)(param_1 + 0x2d5);
@@ -1191,12 +1191,12 @@ void FUN_18081b670(int64_t param_1)
     iVar3 = FUN_1807ff260(*(uint64_t *)(param_1 + 0x20));
     if (iVar3 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_180768400(uVar1);
+      SystemMemoryManager(uVar1);
     }
   }
 FUN_18081b7ac:
                     // WARNING: Subroutine does not return
-  FUN_180768400(uVar1);
+  SystemMemoryManager(uVar1);
 }
 
 

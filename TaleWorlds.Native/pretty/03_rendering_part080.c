@@ -463,7 +463,7 @@ void rendering_system_process_render_data(void)
     }
     *(int8_t *)(unaff_RSI + 0x7e) = 1;
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0xc0) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0xc0) ^ (uint64_t)&stack0x00000000);
   }
   bVar9 = *(byte *)(unaff_RSI + 0x318);
   *(char *)(unaff_RSI + 0x192) = cVar12;

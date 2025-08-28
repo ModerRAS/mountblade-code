@@ -105,7 +105,7 @@ typedef struct {
 #define RenderingSystem_MathProcessor FUN_18065c070
 #define RenderingSystem_InterpolationCalculator FUN_18065bf60
 #define RenderingSystem_MemoryAccessor FUN_18065fd40
-#define RenderingSystem_SecurityChecker FUN_1808fc050
+#define RenderingSystem_SecurityChecker SystemSecurityChecker
 
 // 核心函数声明
 void RenderingSystem_AdvancedAngleCalculator(uint64_t param_1, uint param_2, uint param_3, uint64_t param_4,

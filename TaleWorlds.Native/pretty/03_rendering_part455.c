@@ -487,7 +487,7 @@ void FUN_1805132db(void)
   *(float *)(lVar11 + 0x2c) = fVar26;
   *(float *)(lVar11 + 0x30) = fVar18;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x98) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x98) ^ (uint64_t)&stack0x00000000);
 }
 
 

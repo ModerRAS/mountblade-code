@@ -109,11 +109,11 @@ LAB_18086154d:
     plVar10[1] = (int64_t)plVar10;
     *plVar10 = (int64_t)plVar10;
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar10,&unknown_var_2624_ptr,0xadc,1);
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar10,&unknown_var_2624_ptr,0xadc,1);
   }
 LAB_180861693:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x30) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x30) ^ (uint64_t)&stack0x00000000);
 }
 
 

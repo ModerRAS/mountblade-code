@@ -543,7 +543,7 @@ LAB_1805788ef:
       }
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_e8 ^ (uint64_t)auStack_268);
+    SystemSecurityChecker(uStack_e8 ^ (uint64_t)auStack_268);
   }
   uStack_188 = *(float **)(param_1 + 0x2578);
   uStack_180 = *(uint64_t *)(param_1 + 0x2580);

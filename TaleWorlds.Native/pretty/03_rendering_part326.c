@@ -181,7 +181,7 @@ void RenderingSystem_ExecuteSimpleTransform(void)
   float parameter_value;
   
   /* 执行渲染变换操作 */
-  FUN_18010cdf0(SYSTEM_STATE_MANAGER, (int)parameter_value);
+  SystemTransformExecutor(SYSTEM_STATE_MANAGER, (int)parameter_value);
   return;
 }
 
@@ -1229,7 +1229,7 @@ void RenderingSystem_ExecuteRenderBatch(int param_1, int param_2, int param_3, i
     FUN_18043be90();
   }
   if (param_10 != 0) {
-    FUN_18010cdf0(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x21b0));
+    SystemTransformExecutor(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x21b0));
   }
   
   /* 执行渲染系统初始化 */

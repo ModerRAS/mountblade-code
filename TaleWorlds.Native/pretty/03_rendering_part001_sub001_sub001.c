@@ -272,7 +272,7 @@ uint8_t unknown_var_3752;                           // 设备固件管理器
 // 渲染系统初始化函数
 uint8_t FUN_180627850;                           // 渲染系统主初始化函数
 uint8_t FUN_180627b90;                           // 渲染系统配置初始化函数
-uint8_t FUN_180627ae0;                           // 渲染系统资源初始化函数
+uint8_t CoreEngineDataTransformer;                           // 渲染系统资源初始化函数
 uint8_t FUN_180651d20;                           // 渲染系统设备初始化函数
 
 // 纹理管理函数
@@ -591,7 +591,7 @@ uint8_t FUN_180627b90 {
  * 
  * @return 资源初始化成功返回0，失败返回错误代码
  */
-uint8_t FUN_180627ae0 {
+uint8_t CoreEngineDataTransformer {
     // 创建资源管理器
     // 初始化资源池
     // 设置资源分配策略

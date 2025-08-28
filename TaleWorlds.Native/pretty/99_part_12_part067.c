@@ -707,7 +707,7 @@ void FUN_1807f90a0(int64_t param_1)
   uVar1 = *(uint64_t *)
            (((int64_t)*(int *)(param_1 + 0x154) + (int64_t)*(int *)(param_1 + 0x150) * 2) * 8 +
            0x180c36c10);
-  FUN_180768360(uVar1);
+  SystemMemoryAllocator(uVar1);
   plVar3 = (int64_t *)
            (((int64_t)*(int *)(param_1 + 0x154) + (int64_t)*(int *)(param_1 + 0x150) * 2) * 0x18 +
            0x180be6170);
@@ -731,7 +731,7 @@ void FUN_1807f90a0(int64_t param_1)
                         (int64_t)*(int *)(param_1 + 0x150) * 2) * 0x18 + 0x180be6170));
   }
                     // WARNING: Subroutine does not return
-  FUN_180768400(uVar1);
+  SystemMemoryManager(uVar1);
 }
 
 
@@ -766,7 +766,7 @@ void FUN_1807f910e(void)
            (((int64_t)*(int *)(unaff_RDI + 0x154) + (int64_t)*(int *)(unaff_RDI + 0x150) * 2) *
             0x18 + 0xbe6170 + unaff_R14));
                     // WARNING: Subroutine does not return
-  FUN_180768400();
+  SystemMemoryManager();
 }
 
 
@@ -779,7 +779,7 @@ void FUN_1807f91a7(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180768400();
+  SystemMemoryManager();
 }
 
 
@@ -836,12 +836,12 @@ void FUN_1807f92b0(int64_t param_1)
   uint64_t uVar7;
   int64_t lVar8;
   
-  FUN_180768360(*(uint64_t *)
+  SystemMemoryAllocator(*(uint64_t *)
                  ((uint64_t)*(uint *)(*(int64_t *)(param_1 + 8) + 0x116b8) * 8 + 0x180c36c90));
   uVar3 = *(uint64_t *)
            (((int64_t)*(int *)(param_1 + 0xa8) +
             (uint64_t)*(uint *)(*(int64_t *)(param_1 + 8) + 0x116b8) * 2) * 8 + 0x180c36c10);
-  FUN_180768360(uVar3);
+  SystemMemoryAllocator(uVar3);
   plVar1 = (int64_t *)(param_1 + 0x90);
   **(int64_t **)(param_1 + 0x98) = *plVar1;
   *(uint64_t *)(*plVar1 + 8) = *(uint64_t *)(param_1 + 0x98);
@@ -877,7 +877,7 @@ void FUN_1807f92b0(int64_t param_1)
     *(uint64_t *)(param_1 + 0x78) = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_180768400(uVar3);
+  SystemMemoryManager(uVar3);
 }
 
 
@@ -903,12 +903,12 @@ void FUN_1807f92cd(void)
   int64_t lVar8;
   int64_t unaff_R12;
   
-  FUN_180768360(*(uint64_t *)(unaff_R12 + 0xc36c90 + (uint64_t)*(uint *)(in_RAX + 0x116b8) * 8));
+  SystemMemoryAllocator(*(uint64_t *)(unaff_R12 + 0xc36c90 + (uint64_t)*(uint *)(in_RAX + 0x116b8) * 8));
   uVar3 = *(uint64_t *)
            (unaff_R12 + 0xc36c10 +
            ((int64_t)*(int *)(unaff_RBX + 0xa8) +
            (uint64_t)*(uint *)(*(int64_t *)(unaff_RBX + 8) + 0x116b8) * 2) * 8);
-  FUN_180768360(uVar3);
+  SystemMemoryAllocator(uVar3);
   plVar1 = (int64_t *)(unaff_RBX + 0x90);
   **(int64_t **)(unaff_RBX + 0x98) = *plVar1;
   *(uint64_t *)(*plVar1 + 8) = *(uint64_t *)(unaff_RBX + 0x98);
@@ -944,7 +944,7 @@ void FUN_1807f92cd(void)
     *(uint64_t *)(unaff_RBX + 0x78) = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_180768400(uVar3);
+  SystemMemoryManager(uVar3);
 }
 
 

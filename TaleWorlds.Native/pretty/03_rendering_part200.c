@@ -41,7 +41,7 @@ void RenderingSystem_ParameterProcessor(uint64_t render_context, int64_t param_b
     // 资源分配和管理
     if (resource_index == 0) {
       // 分配新资源
-      int64_t new_resource = FUN_18062b420(system_memory_pool_ptr, 0x48000, 0x25);
+      int64_t new_resource = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x48000, 0x25);
       if (new_resource != 0) {
         // 资源初始化和设置
         FUN_1803e0670(new_resource, 0, data_buffer);
@@ -70,7 +70,7 @@ void RenderingSystem_ParameterProcessor(uint64_t render_context, int64_t param_b
   } while (resource_index < 0x58);
   
   // 同步和清理
-  FUN_1808fc050(frame_sync);
+  SystemSecurityChecker(frame_sync);
 }
 
 // ===================================================================
@@ -130,7 +130,7 @@ void RenderingSystem_AdvancedMaterialProcessor(uint64_t render_context, int64_t 
   }
   
   // 材质数据同步
-  FUN_1808fc050(GET_SECURITY_COOKIE());
+  SystemSecurityChecker(GET_SECURITY_COOKIE());
 }
 
 // ===================================================================
@@ -197,7 +197,7 @@ void RenderingSystem_MaterialOptimizer(uint64_t material_context, uint64_t textu
   }
   
   // 优化数据同步
-  FUN_1808fc050(GET_SECURITY_COOKIE());
+  SystemSecurityChecker(GET_SECURITY_COOKIE());
 }
 
 // ===================================================================
