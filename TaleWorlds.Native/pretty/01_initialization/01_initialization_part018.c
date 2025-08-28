@@ -90,7 +90,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
     resource_ptr[0x14] = &system_data_buffer_ptr;
     if (resource_ptr[0x15] != 0) {
       // 警告：子程序不返回
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     resource_ptr[0x15] = 0;
     *(int32_t *)(resource_ptr + 0x17) = 0;
@@ -100,7 +100,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
     resource_ptr[0x10] = &system_data_buffer_ptr;
     if (resource_ptr[0x11] != 0) {
       // 警告：子程序不返回
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     resource_ptr[0x11] = 0;
     *(int32_t *)(resource_ptr + 0x13) = 0;
@@ -109,7 +109,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
     // 清理第三个资源块
     if (resource_ptr[0xc] != 0) {
       // 警告：子程序不返回
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     FUN_180057170();
     FUN_180057170();
@@ -118,13 +118,13 @@ void cleanup_resource_manager(int64_t *config_ptr)
     *resource_ptr = &system_data_buffer_ptr;
     if (resource_ptr[1] != 0) {
       // 警告：子程序不返回
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     resource_ptr[1] = 0;
     *(int32_t *)(resource_ptr + 3) = 0;
     *resource_ptr = &system_state_ptr;
     // 警告：子程序不返回
-    FUN_18064e900(resource_ptr);
+    CoreEngineMemoryPoolCleaner(resource_ptr);
   }
   
   // 清理配置指针
@@ -140,7 +140,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
     resource_ptr[0x29] = &system_data_buffer_ptr;
     if (resource_ptr[0x2a] != 0) {
       // 警告：子程序不返回
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     resource_ptr[0x2a] = 0;
     *(int32_t *)(resource_ptr + 0x2c) = 0;
@@ -149,7 +149,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
     FUN_180174950();
     if (temp_var != 0) {
       // 警告：子程序不返回
-      FUN_18064e900(temp_var);
+      CoreEngineMemoryPoolCleaner(temp_var);
     }
   }
   
@@ -159,7 +159,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
   if (temp_var != 0) {
     FUN_180057d70(temp_var);
     // 警告：子程序不返回
-    FUN_18064e900(temp_var);
+    CoreEngineMemoryPoolCleaner(temp_var);
   }
   *config_ptr = 0;
   
@@ -168,7 +168,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
   if (init_system_data_pointer != 0) {
     FUN_180057550();
     // 警告：子程序不返回
-    FUN_18064e900(temp_var);
+    CoreEngineMemoryPoolCleaner(temp_var);
   }
   init_system_data_pointer = 0;
   
@@ -179,7 +179,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
   // 清理系统配置
   if (config_ptr[6] != 0) {
     // 警告：子程序不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   config_ptr[6] = 0;
   
@@ -187,7 +187,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
   config_ptr[0x6d] = (int64_t)&system_data_buffer_ptr;
   if (config_ptr[0x6e] != 0) {
     // 警告：子程序不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   config_ptr[0x6e] = 0;
   *(int32_t *)(config_ptr + 0x70) = 0;
@@ -197,7 +197,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
   config_ptr[0x69] = (int64_t)&system_data_buffer_ptr;
   if (config_ptr[0x6a] != 0) {
     // 警告：子程序不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   config_ptr[0x6a] = 0;
   *(int32_t *)(config_ptr + 0x6c) = 0;
@@ -211,7 +211,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
   config_ptr[0x58] = (int64_t)&system_data_buffer_ptr;
   if (config_ptr[0x59] != 0) {
     // 警告：子程序不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   config_ptr[0x59] = 0;
   *(int32_t *)(config_ptr + 0x5b) = 0;
@@ -221,7 +221,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
   config_ptr[0x52] = (int64_t)&system_data_buffer_ptr;
   if (config_ptr[0x53] != 0) {
     // 警告：子程序不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   config_ptr[0x53] = 0;
   *(int32_t *)(config_ptr + 0x55) = 0;
@@ -231,7 +231,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
   config_ptr[0x4e] = (int64_t)&system_data_buffer_ptr;
   if (config_ptr[0x4f] != 0) {
     // 警告：子程序不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   config_ptr[0x4f] = 0;
   *(int32_t *)(config_ptr + 0x51) = 0;
@@ -241,7 +241,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
   config_ptr[0x39] = (int64_t)&system_data_buffer_ptr;
   if (config_ptr[0x3a] != 0) {
     // 警告：子程序不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   config_ptr[0x3a] = 0;
   *(int32_t *)(config_ptr + 0x3c) = 0;
@@ -252,7 +252,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
   config_ptr[0x2e] = (int64_t)&system_data_buffer_ptr;
   if (config_ptr[0x2f] != 0) {
     // 警告：子程序不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   config_ptr[0x2f] = 0;
   *(int32_t *)(config_ptr + 0x31) = 0;
@@ -262,7 +262,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
   config_ptr[0x29] = (int64_t)&system_data_buffer_ptr;
   if (config_ptr[0x2a] != 0) {
     // 警告：子程序不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   config_ptr[0x2a] = 0;
   *(int32_t *)(config_ptr + 0x2c) = 0;
@@ -271,7 +271,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
   // 清理配置块9
   if (config_ptr[0x21] != 0) {
     // 警告：子程序不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   
   // 执行最终清理
@@ -281,7 +281,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
   config_ptr[0x17] = (int64_t)&system_data_buffer_ptr;
   if (config_ptr[0x18] != 0) {
     // 警告：子程序不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   config_ptr[0x18] = 0;
   *(int32_t *)(config_ptr + 0x1a) = 0;
@@ -290,7 +290,7 @@ void cleanup_resource_manager(int64_t *config_ptr)
   // 清理配置块11
   if (config_ptr[0xf] != 0) {
     // 警告：子程序不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   
   // 调用回调函数
@@ -484,8 +484,8 @@ void parse_config_string(uint64_t config_handle, int64_t string_param)
       uVar8 = (uint)puVar14;
       if ((bVar1 & 0xdf) == 0) {
         lVar20 = lVar24 + 0x2e0;
-        lVar9 = FUN_18062b420(system_memory_pool_ptr,0x40,*(int8_t *)(lVar24 + 0x308));
-        FUN_180627ae0(lVar9 + 0x20,&puStack_310);
+        lVar9 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x40,*(int8_t *)(lVar24 + 0x308));
+        CoreEngineDataTransformer(lVar9 + 0x20,&puStack_310);
         lVar10 = FUN_1800590b0(lVar20,&cStack_337,lVar9 + 0x20);
         if (cStack_337 != '\0') {
           if (lVar10 == lVar20) goto LAB_18004d1c1;
@@ -628,31 +628,31 @@ uint initialize_graphics_driver_config(void)
     // 写入配置数据
     FUN_180628380(&cleanup_ptr, config_data._0_4_);
     config_value = buffer_size + 1;
-    FUN_1806277c0(&cleanup_ptr, config_value);
+    CoreEngineDataBufferProcessor(&cleanup_ptr, config_value);
     *(int16_t *)((uint64_t)buffer_size + buffer_ptr) = 0x2c;
     buffer_size = config_value;
     
     FUN_180628380(&cleanup_ptr, config_data._0_8_ >> 0x20);
     config_value = buffer_size + 1;
-    FUN_1806277c0(&cleanup_ptr, config_value);
+    CoreEngineDataBufferProcessor(&cleanup_ptr, config_value);
     *(int16_t *)((uint64_t)buffer_size + buffer_ptr) = 0x2c;
     buffer_size = config_value;
     
     FUN_180628380(&cleanup_ptr, config_data._8_8_ & 0xffffffff);
     temp_int = buffer_size + 1;
-    FUN_1806277c0(&cleanup_ptr, temp_int);
+    CoreEngineDataBufferProcessor(&cleanup_ptr, temp_int);
     *(int16_t *)((uint64_t)buffer_size + buffer_ptr) = 0x2c;
     buffer_size = temp_int;
     
     FUN_180628380(&cleanup_ptr, config_data._8_8_ >> 0x20);
-    resource_ptr = (uint64_t *)FUN_180627ae0(temp_buffer1, &cleanup_ptr);
+    resource_ptr = (uint64_t *)CoreEngineDataTransformer(temp_buffer1, &cleanup_ptr);
     FUN_18005c8a0(init_system_data_pointer + 0xe30, resource_ptr);
     
     // 清理资源
     *resource_ptr = &system_data_buffer_ptr;
     if (resource_ptr[1] != 0) {
       // 警告：子程序不返回
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     resource_ptr[1] = 0;
     *(int32_t *)(resource_ptr + 3) = 0;
@@ -660,7 +660,7 @@ uint initialize_graphics_driver_config(void)
     cleanup_ptr = &system_data_buffer_ptr;
     if (buffer_ptr != 0) {
       // 警告：子程序不返回
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     buffer_ptr = 0;
     buffer_flags = buffer_flags & 0xffffffff00000000;
@@ -679,31 +679,31 @@ uint initialize_graphics_driver_config(void)
     // 写入字符串配置
     FUN_180628380(&string_ptr, config_data._0_4_);
     config_value = string_length + 1;
-    FUN_1806277c0(&string_ptr, config_value);
+    CoreEngineDataBufferProcessor(&string_ptr, config_value);
     *(int16_t *)((uint64_t)string_length + string_buffer) = 0x2c;
     string_length = config_value;
     
     FUN_180628380(&string_ptr, config_data._0_8_ >> 0x20);
     config_value = string_length + 1;
-    FUN_1806277c0(&string_ptr, config_value);
+    CoreEngineDataBufferProcessor(&string_ptr, config_value);
     *(int16_t *)((uint64_t)string_length + string_buffer) = 0x2c;
     string_length = config_value;
     
     FUN_180628380(&string_ptr, config_data._8_8_ & 0xffffffff);
     temp_int = string_length + 1;
-    FUN_1806277c0(&string_ptr, temp_int);
+    CoreEngineDataBufferProcessor(&string_ptr, temp_int);
     *(int16_t *)((uint64_t)string_length + string_buffer) = 0x2c;
     string_length = temp_int;
     
     FUN_180628380(&string_ptr, config_data._8_8_ >> 0x20);
-    resource_ptr = (uint64_t *)FUN_180627ae0(temp_buffer2, &string_ptr);
+    resource_ptr = (uint64_t *)CoreEngineDataTransformer(temp_buffer2, &string_ptr);
     FUN_18005c8a0(init_system_data_pointer + 0xef0, resource_ptr);
     
     // 清理资源
     *resource_ptr = &system_data_buffer_ptr;
     if (resource_ptr[1] != 0) {
       // 警告：子程序不返回
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     resource_ptr[1] = 0;
     *(int32_t *)(resource_ptr + 3) = 0;
@@ -711,7 +711,7 @@ uint initialize_graphics_driver_config(void)
     string_ptr = &system_data_buffer_ptr;
     if (string_buffer != 0) {
       // 警告：子程序不返回
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   
@@ -798,7 +798,7 @@ void manage_config_buffers(uint64_t param_1, uint64_t param_2, uint64_t param_3,
     buffer_size1 = *(uint *)(init_system_data_pointer + 0xe40);
     data_size = (uint64_t)buffer_size1;
     if (*(int64_t *)(init_system_data_pointer + 0xe38) != 0) {
-      FUN_1806277c0(&cleanup_ptr, data_size, param_3, param_4, 0xfffffffffffffffe);
+      CoreEngineDataBufferProcessor(&cleanup_ptr, data_size, param_3, param_4, 0xfffffffffffffffe);
     }
     if (buffer_size1 != 0) {
       // 警告：子程序不返回
@@ -816,7 +816,7 @@ void manage_config_buffers(uint64_t param_1, uint64_t param_2, uint64_t param_3,
   buffer_size1 = *(uint *)(init_system_data_pointer + 0xf00);
   data_size = (uint64_t)buffer_size1;
   if (*(int64_t *)(init_system_data_pointer + 0xef8) != 0) {
-    FUN_1806277c0(&cleanup_ptr, data_size);
+    CoreEngineDataBufferProcessor(&cleanup_ptr, data_size);
   }
   if (buffer_size1 != 0) {
     // 警告：子程序不返回
@@ -833,7 +833,7 @@ void manage_config_buffers(uint64_t param_1, uint64_t param_2, uint64_t param_3,
   data_size = (uint64_t)buffer_size2;
   buffer_size_total = buffer_size1;
   if (*(int64_t *)(init_system_data_pointer + 0xfb8) != 0) {
-    FUN_1806277c0(&cleanup_ptr, data_size);
+    CoreEngineDataBufferProcessor(&cleanup_ptr, data_size);
   }
   if (buffer_size2 != 0) {
     // 警告：子程序不返回
@@ -849,7 +849,7 @@ void manage_config_buffers(uint64_t param_1, uint64_t param_2, uint64_t param_3,
   if (buffer_ptr != 0) {
     buffer_size_total = buffer_size2;
     // 警告：子程序不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   return;
 }
@@ -990,14 +990,14 @@ void initialize_system_parameters(void)
   temp_buffer3[0] = 0;
   data_size = 0xd;
   strcpy_s(temp_buffer3, 0x10, &unknown_var_3392_ptr);
-  puVar6 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x208,8,3);
+  puVar6 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x208,8,3);
   lStack_1e8 = lVar2 + 0x70;
   apuStack_1c8[0] = puVar6;
   FUN_18020e0e0(puVar6,&puStack_168,3,lVar2 + 0x2e0);
   *puVar6 = &unknown_var_9056_ptr;
   apuStack_1c8[0] = puVar6;
   FUN_18020e840(puVar6);
-  FUN_18005ea90(lVar2 + 0x48,apuStack_1c8);
+  SystemInitializer(lVar2 + 0x48,apuStack_1c8);
   *(uint64_t **)(lVar4 + 0x18) = puVar6;
   puStack_168 = &system_state_ptr;
   puVar8 = &system_buffer_ptr;
@@ -1007,7 +1007,7 @@ void initialize_system_parameters(void)
   (**(code **)(*(int64_t *)(system_resource_state + 0x560) + 0x10))
             ((int64_t *)(system_resource_state + 0x560),puVar8);
   lVar3 = init_system_data_pointer;
-  lStack_1d8 = FUN_18062b1e0(system_memory_pool_ptr,0x30,8,3);
+  lStack_1d8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x30,8,3);
   *(uint64_t *)(lStack_1d8 + 0x28) = 3;
   *(int32_t *)(lStack_1d8 + 0x19) = 0;
   *(int16_t *)(lStack_1d8 + 0x1d) = 0;
@@ -1034,7 +1034,7 @@ void initialize_system_parameters(void)
   *puVar7 = 1;
   puVar7 = (int32_t *)FUN_18008d660(lVar3 + 0xe0,&system_buffer_12f0);
   *puVar7 = 1;
-  lStack_1d0 = FUN_18062b1e0(system_memory_pool_ptr,0x3878,8,3);
+  lStack_1d0 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3878,8,3);
                     // WARNING: Subroutine does not return
   memset(lStack_1d0,0,0x3878);
 }
@@ -1069,7 +1069,7 @@ void free_resource_array(int64_t resource_array)
       element_ptr = *(int64_t *)(mem_ptr + index * 8);
       if (element_ptr != 0) {
         // 警告：子程序不返回
-        FUN_18064e900(element_ptr);
+        CoreEngineMemoryPoolCleaner(element_ptr);
       }
       *(uint64_t *)(mem_ptr + index * 8) = 0;
       index = index + 1;
@@ -1095,7 +1095,7 @@ void free_resource_array(int64_t resource_array)
         ref_count = (int *)(mem_ptr + 0x18);
         *ref_count = *ref_count + -1;
         if (*ref_count == 0) {
-          FUN_18064d630();
+          SystemDataCleaner();
           return;
         }
       }

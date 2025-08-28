@@ -40,7 +40,7 @@ void CleanupExceptionListNode(int64_t context)
       *refCount = *refCount - 1;
       if (*refCount == 0) {
         // 引用计数为0，触发清理
-        FUN_18064d630();
+        SystemDataCleaner();
         return;
       }
     }
@@ -155,7 +155,7 @@ uint64_t ProcessObjectRendering(int64_t rendererContext, uint *materialParams, f
   
   // 初始化渲染器上下文（如果需要）
   if (*(char *)(rendererContext + 0xf9) == '\0') {
-    tempPointer = FUN_18062b1e0(system_memory_pool_ptr, 0xc0, 8, 9);
+    tempPointer = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0xc0, 8, 9);
     tempPointer = FUN_180084ea0(tempPointer);
     *(uint64_t *)(rendererContext + 0x1d8) = tempPointer;
     LOCK();
@@ -231,7 +231,7 @@ prepare_rendering:
         renderBuffer = *(uint64_t **)(rendererContext + 600);
         if (renderBuffer == (uint64_t *)0x0) {
           // 初始化渲染缓冲区
-          renderBuffer = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x58, 8, 3);
+          renderBuffer = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x58, 8, 3);
           *(uint64_t *)((int64_t)renderBuffer + 0x2c) = 0xffffffffffffffff;
           *(int32_t *)(renderBuffer + 9) = 0xffffffff;
           *renderBuffer = 0;
@@ -274,7 +274,7 @@ prepare_rendering:
             do {
               frameIndex = (int)bufferOffset;
               if (*(int64_t *)bufferPtr == 0) {
-                objectContext = FUN_18062b420(system_memory_pool_ptr, 0xc000, 0x25);
+                objectContext = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0xc000, 0x25);
                 LOCK();
                 isAllocated = *(int64_t *)(counterPtr + (int64_t)frameIndex * 2 + 2) == 0;
                 if (isAllocated) {
@@ -291,7 +291,7 @@ prepare_rendering:
                 else {
                   if (objectContext != 0) {
                     // 警告：子程序不返回
-                    FUN_18064e900();
+                    CoreEngineMemoryPoolCleaner();
                   }
                   do {
                     result = bufferSize;
@@ -689,7 +689,7 @@ void ProcessSceneBatchRendering(void)
   do {
     frameIndex = (int)bufferOffset;
     if (*(int64_t *)bufferPtr == 0) {
-      objectContext = FUN_18062b420(system_memory_pool_ptr, 0xc000, 0x25);
+      objectContext = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0xc000, 0x25);
       LOCK();
       isAllocated = *(int64_t *)(counterPtr + (int64_t)frameIndex * 2 + 2) == 0;
       if (isAllocated) {
@@ -706,7 +706,7 @@ void ProcessSceneBatchRendering(void)
       else {
         if (objectContext != 0) {
           // 警告：子程序不返回
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         do {
           bufferSize = stackSize;
