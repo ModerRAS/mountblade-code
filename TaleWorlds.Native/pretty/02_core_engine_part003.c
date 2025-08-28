@@ -1900,7 +1900,7 @@ void core_engine_memory_allocator_allocate(int64_t *registry_manager, uint64_t *
  * 
  * @note 这是简化实现，原始实现包含复杂的回调处理
  */
-code *core_engine_callback_handler_type1(void)
+func_ptr *core_engine_callback_handler_type1(void)
 {
     // 返回回调函数指针
     // 原始实现包含复杂的回调处理逻辑
@@ -1919,7 +1919,7 @@ code *core_engine_callback_handler_type1(void)
  * 
  * @note 这是简化实现，原始实现包含复杂的回调处理
  */
-code *core_engine_callback_handler_type2(void)
+func_ptr *core_engine_callback_handler_type2(void)
 {
     // 返回回调函数指针
     // 原始实现包含复杂的回调处理逻辑
@@ -1938,7 +1938,7 @@ code *core_engine_callback_handler_type2(void)
  * 
  * @note 这是简化实现，原始实现包含复杂的回调处理
  */
-code *core_engine_callback_handler_type3(void)
+func_ptr *core_engine_callback_handler_type3(void)
 {
     // 返回回调函数指针
     // 原始实现包含复杂的回调处理逻辑
@@ -1957,7 +1957,7 @@ code *core_engine_callback_handler_type3(void)
  * 
  * @note 这是简化实现，原始实现包含复杂的回调处理
  */
-code *core_engine_callback_handler_type4(void)
+func_ptr *core_engine_callback_handler_type4(void)
 {
     // 返回回调函数指针
     // 原始实现包含复杂的回调处理逻辑
@@ -1976,7 +1976,7 @@ code *core_engine_callback_handler_type4(void)
  * 
  * @note 这是简化实现，原始实现包含复杂的回调处理
  */
-code *core_engine_callback_handler_type5(void)
+func_ptr *core_engine_callback_handler_type5(void)
 {
     // 返回回调函数指针
     // 原始实现包含复杂的回调处理逻辑
@@ -1995,7 +1995,7 @@ code *core_engine_callback_handler_type5(void)
  * 
  * @note 这是简化实现，原始实现包含复杂的回调处理
  */
-code *core_engine_callback_handler_type6(void)
+func_ptr *core_engine_callback_handler_type6(void)
 {
     // 返回回调函数指针
     // 原始实现包含复杂的回调处理逻辑
@@ -2014,7 +2014,7 @@ code *core_engine_callback_handler_type6(void)
  * 
  * @note 这是简化实现，原始实现包含复杂的回调处理
  */
-code *core_engine_callback_handler_type7(void)
+func_ptr *core_engine_callback_handler_type7(void)
 {
     // 返回回调函数指针
     // 原始实现包含复杂的回调处理逻辑
@@ -2033,7 +2033,7 @@ code *core_engine_callback_handler_type7(void)
  * 
  * @note 这是简化实现，原始实现包含复杂的回调处理
  */
-code *core_engine_callback_handler_type8(void)
+func_ptr *core_engine_callback_handler_type8(void)
 {
     // 返回回调函数指针
     // 原始实现包含复杂的回调处理逻辑
