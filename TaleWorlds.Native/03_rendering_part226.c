@@ -76,7 +76,7 @@
 // 函数声明
 //============================================================================
 
-// 函数声明（无需别名，直接使用实际函数名）
+// 主要渲染系统函数声明
 void RenderingSystemAdvancedTextureMapper(longlong texture_data, longlong mapping_params, float *transform_matrix, uint flags);
 void RenderingSystemTextureCoordinateTransformer(longlong coord_data, longlong transform_params, longlong matrix_stack, float *output_coords);
 void RenderingSystemUVMappingProcessor(longlong uv_data, longlong mesh_data, longlong mapping_config, float *output_data);
