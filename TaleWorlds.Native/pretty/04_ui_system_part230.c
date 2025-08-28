@@ -403,7 +403,7 @@ uint64_t FUN_18079d1f0(void)
       FUN_1808fcb30(&system_ptr_1770);
     }
   }
-  ui_system_buffer_config = CONCAT44(DAT_180be3ad8_4,ui_system_config);
+  ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_OFFSET12,ui_system_config);
   ui_system_buffer_config = CONCAT44(ui_system_buffer_config,ui_system_buffer_config);
   ui_system_buffer_config = ui_system_buffer_config & 0xffffffff00000000;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
@@ -437,7 +437,7 @@ uint64_t FUN_18079d1f0(void)
       FUN_1808fcb30(&system_ptr_1778);
     }
   }
-  ui_system_buffer_config = CONCAT44(DAT_180be3b98_4,ui_system_buffer_config);
+  ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_OFFSET13,ui_system_buffer_config);
   ui_system_buffer_config = CONCAT44(ui_system_buffer_config,ui_system_buffer_config);
   ui_system_buffer_config = ui_system_buffer_config & 0xffffffff00000000;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
@@ -453,7 +453,7 @@ uint64_t FUN_18079d1f0(void)
       FUN_1808fcb30(&system_ptr_177c);
     }
   }
-  ui_system_buffer_config = CONCAT44(DAT_180be3bf8_4,ui_system_buffer_config);
+  ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_OFFSET14,ui_system_buffer_config);
   ui_system_buffer_config = CONCAT44(ui_system_buffer_config,ui_system_buffer_config);
   ui_system_buffer_config = ui_system_buffer_config & 0xffffffff00000000;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
@@ -480,7 +480,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = FUN_18079b5a0;
   ui_system_buffer_config = ui_system_buffer_config & 0xffffffff00000000;
   ui_system_buffer_config = CONCAT44(ui_system_buffer_config,ui_system_buffer_config);
-  ui_system_buffer_config = CONCAT44(DAT_180be3c58_4,ui_system_config);
+  ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_OFFSET15,ui_system_config);
   ui_system_buffer_config = 0x14;
   return 0x180be3d20;
 }
