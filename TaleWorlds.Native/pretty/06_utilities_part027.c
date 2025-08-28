@@ -2289,20 +2289,20 @@ void FUN_180942690(void)
   longlong lVar1;
   longlong lVar2;
   
-  if (0xf < _DAT_180bfc118) {
+  if (0xf < *system_buffer_size_ptr) {
     lVar1 = CONCAT71(uRam0000000180bfc101,DAT_180bfc100);
     lVar2 = lVar1;
-    if (0xfff < _DAT_180bfc118 + 1) {
+    if (0xfff < *system_buffer_size_ptr + 1) {
       lVar2 = *(longlong *)(lVar1 + -8);
       if (0x1f < (lVar1 - lVar2) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(lVar1 - lVar2,_DAT_180bfc118 + 0x28);
+        _invalid_parameter_noinfo_noreturn(lVar1 - lVar2,*system_buffer_size_ptr + 0x28);
       }
     }
     free(lVar2);
   }
-  _DAT_180bfc110 = 0;
-  _DAT_180bfc118 = 0xf;
+  *system_buffer_status_ptr = 0;
+  *system_buffer_size_ptr = 0xf;
   return;
 }
 
