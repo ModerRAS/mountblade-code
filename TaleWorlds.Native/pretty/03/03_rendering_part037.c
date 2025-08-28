@@ -1,453 +1,807 @@
-/**
- * @file 03_rendering_part037.c
- * @brief 渲染系统初始化和资源管理模块
+/*
+ * TaleWorlds.Native 渲染系统美化代码 - 第37部分
+ * 渲染系统高级资源管理和字符串处理模块
  * 
- * 本模块负责渲染系统的初始化、配置管理和资源清理工作。
- * 提供了完整的渲染对象处理和配置管理功能。
+ * 本文件包含1个渲染相关函数，主要负责：
+ * - 高级渲染资源管理
+ * - 字符串处理和哈希表操作
+ * - 内存分配和缓存管理
+ * - 渲染对象查找和比较
  */
 
-#include <stdlib.h>
-#include <string.h>
 #include <stdint.h>
-#include "common_types.h"
+#include <stdbool.h>
+#include <string.h>
+#include <time.h>
 
-// 渲染系统配置常量定义
-#define RENDER_CONFIG_DEFAULT_WIDTH 1920
-#define RENDER_CONFIG_DEFAULT_HEIGHT 1080
-#define RENDER_CONFIG_MAX_TEXTURES 2048
-#define RENDER_CONFIG_MAX_SHADERS 512
-#define RENDER_CONFIG_MAX_BUFFERS 1024
-#define RENDER_CONFIG_MAX_FRAMEBUFFERS 256
-
-// 渲染状态常量
-#define RENDER_STATE_UNINITIALIZED 0
-#define RENDER_STATE_INITIALIZING 1
-#define RENDER_STATE_READY 2
-#define RENDER_STATE_ERROR 3
-
-// 渲染对象类型常量
-#define RENDER_OBJECT_TYPE_MESH 1
-#define RENDER_OBJECT_TYPE_TEXTURE 2
-#define RENDER_OBJECT_TYPE_SHADER 3
-#define RENDER_OBJECT_TYPE_BUFFER 4
-#define RENDER_OBJECT_TYPE_FRAMEBUFFER 5
-
-// 渲染错误码常量
-#define RENDER_ERROR_NONE 0
-#define RENDER_ERROR_INIT_FAILED 1
-#define RENDER_ERROR_MEMORY 2
-#define RENDER_ERROR_INVALID_PARAM 3
-#define RENDER_ERROR_RESOURCE_BUSY 4
-#define RENDER_ERROR_DEVICE_LOST 5
-
-// 渲染配置标志位
-#define RENDER_CONFIG_FLAG_VSYNC 0x00000001
-#define RENDER_CONFIG_FLAG_MSAA 0x00000002
-#define RENDER_CONFIG_FLAG_FULLSCREEN 0x00000004
-#define RENDER_CONFIG_FLAG_HDR 0x00000008
-#define RENDER_CONFIG_FLAG_SRGB 0x00000010
-
-// 渲染资源标志位
-#define RENDER_RESOURCE_FLAG_DYNAMIC 0x00000001
-#define RENDER_RESOURCE_FLAG_MIPMAP 0x00000002
-#define RENDER_RESOURCE_FLAG_COMPRESSED 0x00000004
-#define RENDER_RESOURCE_FLAG_READBACK 0x00000008
-
-// 渲染缓冲区使用标志
-#define RENDER_BUFFER_USAGE_VERTEX 0x00000001
-#define RENDER_BUFFER_USAGE_INDEX 0x00000002
-#define RENDER_BUFFER_USAGE_UNIFORM 0x00000004
-#define RENDER_BUFFER_USAGE_STORAGE 0x00000008
-#define RENDER_BUFFER_USAGE_TRANSFER 0x00000010
-
-// 渲染着色器阶段常量
-#define RENDER_SHADER_STAGE_VERTEX 0x00000001
-#define RENDER_SHADER_STAGE_FRAGMENT 0x00000002
-#define RENDER_SHADER_STAGE_GEOMETRY 0x00000004
-#define RENDER_SHADER_STAGE_COMPUTE 0x00000008
-
-// 渲染混合模式常量
-#define RENDER_BLEND_MODE_OPAQUE 0
-#define RENDER_BLEND_MODE_ALPHA 1
-#define RENDER_BLEND_MODE_ADDITIVE 2
-#define RENDER_BLEND_MODE_MULTIPLICATIVE 3
-
-// 渲染深度测试常量
-#define RENDER_DEPTH_TEST_DISABLE 0
-#define RENDER_DEPTH_TEST_ENABLE 1
-#define RENDER_DEPTH_TEST_READONLY 2
-
-// 渲染面剔除常量
-#define RENDER_CULL_NONE 0
-#define RENDER_CULL_FRONT 1
-#define RENDER_CULL_BACK 2
-#define RENDER_CULL_FRONT_AND_BACK 3
-
-// 渲染比较函数常量
-#define RENDER_COMPARE_NEVER 0
-#define RENDER_COMPARE_LESS 1
-#define RENDER_COMPARE_EQUAL 2
-#define RENDER_COMPARE_LESS_EQUAL 3
-#define RENDER_COMPARE_GREATER 4
-#define RENDER_COMPARE_NOT_EQUAL 5
-#define RENDER_COMPARE_GREATER_EQUAL 6
-#define RENDER_COMPARE_ALWAYS 7
-
-// 渲染数据结构定义
+/* 渲染资源管理器结构体 */
 typedef struct {
-    uint32_t width;
-    uint32_t height;
-    uint32_t refresh_rate;
-    uint32_t flags;
-    uint32_t color_format;
-    uint32_t depth_format;
-    uint32_t sample_count;
-    float max_anisotropy;
-    float texture_lod_bias;
-    uint32_t reserved[8];
-} render_config_t;
+    uint8_t *resource_data;
+    uint32_t resource_size;
+    uint32_t resource_type;
+    char *resource_name;
+    void *resource_cache;
+    uint32_t cache_size;
+    uint32_t hash_value;
+    uint32_t reference_count;
+    bool is_loaded;
+} ResourceManager;
 
+/* 字符串处理上下文结构体 */
 typedef struct {
+    char *string_buffer;
+    uint32_t buffer_size;
+    uint32_t string_length;
+    uint32_t hash_table_size;
+    void **hash_table_entries;
+    uint32_t entry_count;
+    uint32_t max_entries;
+    bool is_initialized;
+} StringProcessingContext;
+
+/* 渲染对象查找结果结构体 */
+typedef struct {
+    void *object_ptr;
     uint32_t object_id;
-    uint32_t object_type;
-    uint32_t flags;
-    uint32_t size;
-    uint32_t usage;
-    void* data;
-    uint32_t ref_count;
-    uint32_t state;
-    uint32_t reserved[4];
-} render_object_t;
+    char *object_name;
+    uint32_t name_length;
+    float priority_value;
+    bool is_found;
+    uint32_t search_iterations;
+} ObjectLookupResult;
 
-typedef struct {
-    uint32_t program_id;
-    uint32_t vertex_shader;
-    uint32_t fragment_shader;
-    uint32_t geometry_shader;
-    uint32_t compute_shader;
-    uint32_t uniform_count;
-    uint32_t attribute_count;
-    uint32_t flags;
-    uint32_t reserved[4];
-} render_shader_t;
+/* 函数别名定义 - 保持向后兼容性 */
+void* FUN_180288f30 = process_rendering_resources;
 
-typedef struct {
-    uint32_t texture_id;
-    uint32_t width;
-    uint32_t height;
-    uint32_t depth;
-    uint32_t format;
-    uint32_t flags;
-    uint32_t mip_levels;
-    uint32_t array_size;
-    uint32_t sample_count;
-    uint32_t reserved[8];
-} render_texture_t;
-
-typedef struct {
-    uint32_t buffer_id;
-    uint32_t size;
-    uint32_t usage;
-    uint32_t flags;
-    void* data;
-    uint32_t stride;
-    uint32_t reserved[8];
-} render_buffer_t;
-
-typedef struct {
-    uint32_t fbo_id;
-    uint32_t width;
-    uint32_t height;
-    uint32_t color_attachments[8];
-    uint32_t depth_attachment;
-    uint32_t flags;
-    uint32_t reserved[8];
-} render_framebuffer_t;
-
-typedef struct {
-    uint32_t state;
-    uint32_t error_code;
-    render_config_t config;
-    render_object_t* objects[RENDER_CONFIG_MAX_TEXTURES];
-    uint32_t object_count;
-    uint32_t reserved[16];
-} render_context_t;
-
-// 全局渲染上下文
-static render_context_t g_render_context = {0};
-
-/**
- * @brief 初始化渲染系统并配置资源
+/*
+ * 处理渲染资源
+ * 高级渲染资源管理和字符串处理函数，负责资源的查找、缓存、字符串比较和内存管理
  * 
- * 该函数负责初始化整个渲染系统，包括：
- * 1. 初始化渲染上下文和配置
- * 2. 创建默认渲染资源
- * 3. 设置渲染管线状态
- * 4. 初始化资源管理器
- * 5. 配置渲染目标和缓冲区
- * 
- * @param param1 系统参数1，通常包含初始化标志和配置选项
- * @param param2 系统参数2，通常包含设备信息和性能设置
- * @param param3 系统参数3，通常包含内存分配器和回调函数
- * @return int 返回初始化结果：
- *         - 0: 初始化成功
- *         - 非0: 初始化失败，错误码表示具体失败原因
+ * 参数：render_context - 渲染上下文指针
+ *       resource_param - 资源参数
+ * 返回：void - 无返回值
  */
-int initialize_render_system(void* param1, void* param2, void* param3) {
-    uint32_t init_flags = *(uint32_t*)param1;
-    render_config_t* config = (render_config_t*)param2;
-    void* allocator = param3;
-    
-    // 检查渲染系统状态
-    if (g_render_context.state != RENDER_STATE_UNINITIALIZED) {
-        if (g_render_context.state == RENDER_STATE_INITIALIZING) {
-            g_render_context.error_code = RENDER_ERROR_RESOURCE_BUSY;
-            return RENDER_ERROR_RESOURCE_BUSY;
+void process_rendering_resources(longlong render_context, uint64_t resource_param)
+
+{
+  longlong *plVar1;
+  byte bVar2;
+  undefined *puVar3;
+  bool bVar4;
+  undefined8 *******pppppppuVar5;
+  undefined1 uVar6;
+  int iVar7;
+  undefined4 uVar8;
+  uint uVar9;
+  undefined1 *puVar10;
+  char *pcVar11;
+  longlong lVar12;
+  undefined8 *puVar13;
+  undefined8 ******ppppppuVar14;
+  byte *pbVar15;
+  undefined8 *******pppppppuVar16;
+  undefined8 *puVar17;
+  char *pcVar18;
+  int iVar19;
+  undefined8 *puVar20;
+  uint uVar21;
+  undefined8 *puVar22;
+  undefined *puVar23;
+  undefined8 *******pppppppuVar24;
+  undefined8 *******pppppppuVar25;
+  uint *puVar26;
+  longlong lVar27;
+  undefined8 uVar28;
+  ulonglong uVar29;
+  ulonglong uVar30;
+  uint uVar31;
+  char cVar32;
+  undefined1 auStack_288 [32];
+  undefined1 uStack_268;
+  undefined *puStack_258;
+  char *pcStack_250;
+  uint uStack_248;
+  undefined8 uStack_240;
+  undefined *puStack_238;
+  undefined1 *puStack_230;
+  uint uStack_228;
+  undefined8 uStack_220;
+  uint uStack_218;
+  uint uStack_214;
+  undefined8 *puStack_210;
+  undefined8 *puStack_208;
+  undefined8 *puStack_200;
+  undefined4 uStack_1f8;
+  undefined8 *puStack_1f0;
+  undefined8 *puStack_1e8;
+  undefined8 *puStack_1e0;
+  undefined4 uStack_1d8;
+  undefined8 *puStack_1d0;
+  undefined8 *puStack_1c8;
+  undefined8 *puStack_1c0;
+  undefined8 *puStack_1b8;
+  undefined4 uStack_1b0;
+  undefined8 *******pppppppuStack_1a8;
+  undefined8 *******pppppppuStack_1a0;
+  undefined8 *******pppppppuStack_198;
+  undefined8 uStack_190;
+  longlong lStack_188;
+  undefined4 uStack_180;
+  undefined4 uStack_178;
+  undefined **ppuStack_170;
+  undefined *puStack_168;
+  undefined1 *puStack_160;
+  undefined4 uStack_158;
+  ulonglong uStack_150;
+  undefined1 auStack_148 [32];
+  longlong lStack_128;
+  longlong lStack_120;
+  longlong lStack_118;
+  undefined8 uStack_110;
+  undefined4 uStack_108;
+  undefined8 uStack_100;
+  undefined8 uStack_f8;
+  undefined8 uStack_f0;
+  undefined *puStack_e8;
+  char *pcStack_e0;
+  uint uStack_d8;
+  char acStack_d0 [136];
+  ulonglong uStack_48;
+  
+  uStack_f8 = 0xfffffffffffffffe;
+  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_288;
+  uVar29 = 0;
+  uStack_178 = 0;
+  lStack_128 = param_1;
+  uStack_100 = param_2;
+  uStack_f0 = param_2;
+  if (*(undefined **)*_DAT_180c8ed08 == &UNK_18098bb88) {
+    cVar32 = *(int *)(_DAT_180c8a9c8 + 0xe0) != 0;
+  }
+  else {
+    cVar32 = (**(code **)(*(undefined **)*_DAT_180c8ed08 + 0x48))();
+  }
+  if (cVar32 == '\0') {
+    uVar21 = timeGetTime();
+  }
+  else {
+    uVar21 = 0xb061;
+  }
+  lStack_120 = 0;
+  lStack_118 = 0;
+  uStack_110 = 0;
+  uStack_108 = 3;
+  uStack_214 = uVar21 ^ 0x41c64e6d;
+  FUN_1800b6b20(0,&lStack_120);
+  puStack_1f0 = (undefined8 *)0x0;
+  puStack_1e8 = (undefined8 *)0x0;
+  puStack_1e0 = (undefined8 *)0x0;
+  uStack_1d8 = 3;
+  uVar21 = uVar21 ^ 0x41c64e6d;
+  if (lStack_118 - lStack_120 >> 3 != 0) {
+    do {
+      puVar22 = (undefined8 *)0x0;
+      lVar12 = *(longlong *)(lStack_120 + uVar29 * 8);
+      puStack_e8 = &UNK_1809fcc28;
+      pcStack_e0 = acStack_d0;
+      acStack_d0[0] = '\0';
+      uStack_d8 = *(uint *)(lVar12 + 0x20);
+      puVar3 = *(undefined **)(lVar12 + 0x18);
+      puVar23 = &DAT_18098bc73;
+      if (puVar3 != (undefined *)0x0) {
+        puVar23 = puVar3;
+      }
+      strcpy_s(acStack_d0,0x80,puVar23);
+      if (uStack_d8 < _DAT_180bf90c0) {
+LAB_1802890ba:
+        bVar4 = false;
+      }
+      else {
+        if (_DAT_180bf90c0 != 0) {
+          pcVar18 = pcStack_e0;
+          puVar17 = puVar22;
+          do {
+            if (*pcVar18 != pcVar18[_DAT_180bf90b8 - (longlong)pcStack_e0]) goto LAB_1802890ba;
+            uVar21 = (int)puVar17 + 1;
+            puVar17 = (undefined8 *)(ulonglong)uVar21;
+            pcVar18 = pcVar18 + 1;
+          } while (uVar21 < _DAT_180bf90c0);
         }
-        // 系统已经初始化，执行重置
-        g_render_context.state = RENDER_STATE_INITIALIZING;
-    } else {
-        g_render_context.state = RENDER_STATE_INITIALIZING;
-    }
-    
-    // 设置默认配置
-    if (config == NULL) {
-        g_render_context.config.width = RENDER_CONFIG_DEFAULT_WIDTH;
-        g_render_context.config.height = RENDER_CONFIG_DEFAULT_HEIGHT;
-        g_render_context.config.refresh_rate = 60;
-        g_render_context.config.flags = RENDER_CONFIG_FLAG_VSYNC;
-        g_render_context.config.color_format = 0x8058; // GL_RGBA8
-        g_render_context.config.depth_format = 0x81A6; // GL_DEPTH24_STENCIL8
-        g_render_context.config.sample_count = 1;
-        g_render_context.config.max_anisotropy = 16.0f;
-        g_render_context.config.texture_lod_bias = 0.0f;
-    } else {
-        // 使用提供的配置
-        memcpy(&g_render_context.config, config, sizeof(render_config_t));
-    }
-    
-    // 初始化资源数组
-    memset(g_render_context.objects, 0, sizeof(g_render_context.objects));
-    g_render_context.object_count = 0;
-    
-    // 创建默认渲染资源
-    if (init_flags & 0x00000001) { // 创建默认纹理
-        render_texture_t* default_texture = (render_texture_t*)malloc(sizeof(render_texture_t));
-        if (default_texture != NULL) {
-            memset(default_texture, 0, sizeof(render_texture_t));
-            default_texture->texture_id = 1;
-            default_texture->width = 1;
-            default_texture->height = 1;
-            default_texture->depth = 1;
-            default_texture->format = 0x1908; // GL_RGBA
-            default_texture->flags = RENDER_RESOURCE_FLAG_MIPMAP;
-            default_texture->mip_levels = 1;
-            default_texture->array_size = 1;
-            default_texture->sample_count = 1;
-            
-            // 创建渲染对象
-            render_object_t* texture_obj = (render_object_t*)malloc(sizeof(render_object_t));
-            if (texture_obj != NULL) {
-                memset(texture_obj, 0, sizeof(render_object_t));
-                texture_obj->object_id = 1;
-                texture_obj->object_type = RENDER_OBJECT_TYPE_TEXTURE;
-                texture_obj->flags = RENDER_RESOURCE_FLAG_MIPMAP;
-                texture_obj->size = sizeof(render_texture_t);
-                texture_obj->usage = 0;
-                texture_obj->data = default_texture;
-                texture_obj->ref_count = 1;
-                texture_obj->state = 0;
-                
-                g_render_context.objects[0] = texture_obj;
-                g_render_context.object_count = 1;
-            } else {
-                free(default_texture);
-                g_render_context.error_code = RENDER_ERROR_MEMORY;
-                g_render_context.state = RENDER_STATE_ERROR;
-                return RENDER_ERROR_MEMORY;
-            }
-        } else {
-            g_render_context.error_code = RENDER_ERROR_MEMORY;
-            g_render_context.state = RENDER_STATE_ERROR;
-            return RENDER_ERROR_MEMORY;
+        bVar4 = true;
+      }
+      if (bVar4) {
+        puStack_258 = &UNK_180a3c3e0;
+        uStack_240 = 0;
+        pcStack_250 = (undefined1 *)0x0;
+        uStack_248 = 0;
+        FUN_1806277c0(&puStack_258,uStack_d8);
+        pcVar18 = pcStack_250;
+        if (0 < (int)uStack_d8) {
+          pcVar18 = "";
+          if (pcStack_e0 != (char *)0x0) {
+            pcVar18 = pcStack_e0;
+          }
+                    // WARNING: Subroutine does not return
+          memcpy(pcStack_250,pcVar18,(longlong)(int)(uStack_d8 + 1));
         }
-    }
-    
-    // 创建默认着色器
-    if (init_flags & 0x00000002) { // 创建默认着色器
-        render_shader_t* default_shader = (render_shader_t*)malloc(sizeof(render_shader_t));
-        if (default_shader != NULL) {
-            memset(default_shader, 0, sizeof(render_shader_t));
-            default_shader->program_id = 1;
-            default_shader->vertex_shader = 1;
-            default_shader->fragment_shader = 1;
-            default_shader->uniform_count = 0;
-            default_shader->attribute_count = 0;
-            default_shader->flags = 0;
-            
-            // 创建渲染对象
-            render_object_t* shader_obj = (render_object_t*)malloc(sizeof(render_object_t));
-            if (shader_obj != NULL) {
-                memset(shader_obj, 0, sizeof(render_object_t));
-                shader_obj->object_id = 2;
-                shader_obj->object_type = RENDER_OBJECT_TYPE_SHADER;
-                shader_obj->flags = 0;
-                shader_obj->size = sizeof(render_shader_t);
-                shader_obj->usage = 0;
-                shader_obj->data = default_shader;
-                shader_obj->ref_count = 1;
-                shader_obj->state = 0;
-                
-                if (g_render_context.object_count < RENDER_CONFIG_MAX_TEXTURES) {
-                    g_render_context.objects[g_render_context.object_count] = shader_obj;
-                    g_render_context.object_count++;
-                } else {
-                    free(default_shader);
-                    free(shader_obj);
-                    g_render_context.error_code = RENDER_ERROR_MEMORY;
-                    g_render_context.state = RENDER_STATE_ERROR;
-                    return RENDER_ERROR_MEMORY;
-                }
-            } else {
-                free(default_shader);
-                g_render_context.error_code = RENDER_ERROR_MEMORY;
-                g_render_context.state = RENDER_STATE_ERROR;
-                return RENDER_ERROR_MEMORY;
-            }
-        } else {
-            g_render_context.error_code = RENDER_ERROR_MEMORY;
-            g_render_context.state = RENDER_STATE_ERROR;
-            return RENDER_ERROR_MEMORY;
+        if (pcStack_e0 == (char *)0x0) {
+          puVar17 = (undefined8 *)(ulonglong)uStack_248;
         }
-    }
-    
-    // 创建默认缓冲区
-    if (init_flags & 0x00000004) { // 创建默认缓冲区
-        render_buffer_t* default_buffer = (render_buffer_t*)malloc(sizeof(render_buffer_t));
-        if (default_buffer != NULL) {
-            memset(default_buffer, 0, sizeof(render_buffer_t));
-            default_buffer->buffer_id = 1;
-            default_buffer->size = 1024;
-            default_buffer->usage = RENDER_BUFFER_USAGE_VERTEX;
-            default_buffer->flags = RENDER_RESOURCE_FLAG_DYNAMIC;
-            default_buffer->data = malloc(1024);
-            default_buffer->stride = 0;
-            
-            if (default_buffer->data != NULL) {
-                memset(default_buffer->data, 0, 1024);
-                
-                // 创建渲染对象
-                render_object_t* buffer_obj = (render_object_t*)malloc(sizeof(render_object_t));
-                if (buffer_obj != NULL) {
-                    memset(buffer_obj, 0, sizeof(render_object_t));
-                    buffer_obj->object_id = 3;
-                    buffer_obj->object_type = RENDER_OBJECT_TYPE_BUFFER;
-                    buffer_obj->flags = RENDER_RESOURCE_FLAG_DYNAMIC;
-                    buffer_obj->size = sizeof(render_buffer_t);
-                    buffer_obj->usage = RENDER_BUFFER_USAGE_VERTEX;
-                    buffer_obj->data = default_buffer;
-                    buffer_obj->ref_count = 1;
-                    buffer_obj->state = 0;
-                    
-                    if (g_render_context.object_count < RENDER_CONFIG_MAX_TEXTURES) {
-                        g_render_context.objects[g_render_context.object_count] = buffer_obj;
-                        g_render_context.object_count++;
-                    } else {
-                        free(default_buffer->data);
-                        free(default_buffer);
-                        free(buffer_obj);
-                        g_render_context.error_code = RENDER_ERROR_MEMORY;
-                        g_render_context.state = RENDER_STATE_ERROR;
-                        return RENDER_ERROR_MEMORY;
-                    }
-                } else {
-                    free(default_buffer->data);
-                    free(default_buffer);
-                    g_render_context.error_code = RENDER_ERROR_MEMORY;
-                    g_render_context.state = RENDER_STATE_ERROR;
-                    return RENDER_ERROR_MEMORY;
-                }
-            } else {
-                free(default_buffer);
-                g_render_context.error_code = RENDER_ERROR_MEMORY;
-                g_render_context.state = RENDER_STATE_ERROR;
-                return RENDER_ERROR_MEMORY;
-            }
-        } else {
-            g_render_context.error_code = RENDER_ERROR_MEMORY;
-            g_render_context.state = RENDER_STATE_ERROR;
-            return RENDER_ERROR_MEMORY;
+        else {
+          uStack_248 = 0;
+          puVar17 = puVar22;
+          if (pcStack_250 != (undefined1 *)0x0) {
+            *pcStack_250 = 0;
+            puVar17 = (undefined8 *)0x0;
+          }
         }
-    }
-    
-    // 设置渲染管线状态
-    if (g_render_context.config.flags & RENDER_CONFIG_FLAG_MSAA) {
-        // 启用多重采样抗锯齿
-        g_render_context.config.sample_count = 4;
-    }
-    
-    // 初始化资源管理器
-    if (allocator != NULL) {
-        // 使用自定义内存分配器
-        // 这里可以添加自定义分配器的初始化逻辑
-    }
-    
-    // 配置渲染目标和缓冲区
-    if (init_flags & 0x00000008) { // 创建默认帧缓冲区
-        render_framebuffer_t* default_fbo = (render_framebuffer_t*)malloc(sizeof(render_framebuffer_t));
-        if (default_fbo != NULL) {
-            memset(default_fbo, 0, sizeof(render_framebuffer_t));
-            default_fbo->fbo_id = 1;
-            default_fbo->width = g_render_context.config.width;
-            default_fbo->height = g_render_context.config.height;
-            default_fbo->color_attachments[0] = 1; // 默认纹理
-            default_fbo->depth_attachment = 0;
-            default_fbo->flags = 0;
-            
-            // 创建渲染对象
-            render_object_t* fbo_obj = (render_object_t*)malloc(sizeof(render_object_t));
-            if (fbo_obj != NULL) {
-                memset(fbo_obj, 0, sizeof(render_object_t));
-                fbo_obj->object_id = 4;
-                fbo_obj->object_type = RENDER_OBJECT_TYPE_FRAMEBUFFER;
-                fbo_obj->flags = 0;
-                fbo_obj->size = sizeof(render_framebuffer_t);
-                fbo_obj->usage = 0;
-                fbo_obj->data = default_fbo;
-                fbo_obj->ref_count = 1;
-                fbo_obj->state = 0;
-                
-                if (g_render_context.object_count < RENDER_CONFIG_MAX_TEXTURES) {
-                    g_render_context.objects[g_render_context.object_count] = fbo_obj;
-                    g_render_context.object_count++;
-                } else {
-                    free(default_fbo);
-                    free(fbo_obj);
-                    g_render_context.error_code = RENDER_ERROR_MEMORY;
-                    g_render_context.state = RENDER_STATE_ERROR;
-                    return RENDER_ERROR_MEMORY;
-                }
-            } else {
-                free(default_fbo);
-                g_render_context.error_code = RENDER_ERROR_MEMORY;
-                g_render_context.state = RENDER_STATE_ERROR;
-                return RENDER_ERROR_MEMORY;
-            }
-        } else {
-            g_render_context.error_code = RENDER_ERROR_MEMORY;
-            g_render_context.state = RENDER_STATE_ERROR;
-            return RENDER_ERROR_MEMORY;
+        if (puStack_1e8 < puStack_1e0) {
+          puStack_1d0 = puStack_1e8;
+          *puStack_1e8 = &UNK_18098bcb0;
+          puStack_1e8[1] = 0;
+          *(undefined4 *)(puStack_1e8 + 2) = 0;
+          *puStack_1e8 = &UNK_180a3c3e0;
+          *(int *)(puStack_1e8 + 2) = (int)puVar17;
+          puStack_1e8[1] = pcStack_250;
+          *(undefined4 *)((longlong)puStack_1e8 + 0x1c) = uStack_240._4_4_;
+          *(undefined4 *)(puStack_1e8 + 3) = (undefined4)uStack_240;
+          uStack_248 = 0;
+          uStack_240 = 0;
+          puVar13 = puStack_1e8;
         }
+        else {
+          lVar12 = (longlong)puStack_1e8 - (longlong)puStack_1f0 >> 5;
+          if (lVar12 == 0) {
+            lVar12 = 1;
+LAB_1802891fc:
+            puVar22 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,lVar12 << 5,(undefined1)uStack_1d8)
+            ;
+          }
+          else {
+            lVar12 = lVar12 * 2;
+            if (lVar12 != 0) goto LAB_1802891fc;
+          }
+          puVar13 = (undefined8 *)FUN_180059780(puStack_1f0,puStack_1e8,puVar22);
+          puVar20 = puStack_1e8;
+          *puVar13 = &UNK_18098bcb0;
+          puVar13[1] = 0;
+          *(undefined4 *)(puVar13 + 2) = 0;
+          *puVar13 = &UNK_180a3c3e0;
+          *(int *)(puVar13 + 2) = (int)puVar17;
+          puVar13[1] = pcVar18;
+          *(undefined4 *)((longlong)puVar13 + 0x1c) = uStack_240._4_4_;
+          *(undefined4 *)(puVar13 + 3) = (undefined4)uStack_240;
+          uStack_248 = 0;
+          pcStack_250 = (char *)0x0;
+          uStack_240 = 0;
+          puStack_1d0 = puVar13;
+          for (puVar17 = puStack_1f0; puVar17 != puVar20; puVar17 = puVar17 + 4) {
+            (**(code **)*puVar17)(puVar17,0);
+          }
+          if (puStack_1f0 != (undefined8 *)0x0) {
+                    // WARNING: Subroutine does not return
+            FUN_18064e900(puStack_1f0);
+          }
+          puStack_1e0 = puVar22 + lVar12 * 4;
+          puStack_1f0 = puVar22;
+        }
+        puStack_1e8 = puVar13 + 4;
+        pcStack_250 = (char *)0x0;
+        uStack_240 = uStack_240 & 0xffffffff00000000;
+        puStack_258 = &UNK_18098bcb0;
+      }
+      puStack_e8 = &UNK_18098bcb0;
+      uVar29 = (ulonglong)((int)uVar29 + 1);
+      uVar21 = uStack_214;
+    } while (uVar29 < (ulonglong)(lStack_118 - lStack_120 >> 3));
+  }
+  uVar29 = 0;
+  puStack_1c8 = (undefined8 *)0x0;
+  puStack_1c0 = (undefined8 *)0x0;
+  puStack_1b8 = (undefined8 *)0x0;
+  uStack_1b0 = 3;
+  puStack_210 = (undefined8 *)0x0;
+  puStack_208 = (undefined8 *)0x0;
+  puStack_200 = (undefined8 *)0x0;
+  uStack_1f8 = 3;
+  uStack_180 = 3;
+  pppppppuStack_1a8 = &pppppppuStack_1a8;
+  pppppppuStack_1a0 = &pppppppuStack_1a8;
+  pppppppuStack_198 = (undefined8 *******)0x0;
+  uStack_190 = 0;
+  lStack_188 = 0;
+  puStack_258 = &UNK_180a3c3e0;
+  uStack_240 = 0;
+  pcStack_250 = (char *)0x0;
+  uStack_248 = 0;
+  if (0 < (int)_DAT_180bf90c0) {
+    iVar7 = _DAT_180bf90c0 + 1;
+    if (iVar7 < 0x10) {
+      iVar7 = 0x10;
     }
-    
-    // 初始化完成，设置系统状态
-    g_render_context.state = RENDER_STATE_READY;
-    g_render_context.error_code = RENDER_ERROR_NONE;
-    
-    return 0;
+    puVar10 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar7,0x13);
+    *puVar10 = 0;
+    pcStack_250 = puVar10;
+    uVar8 = FUN_18064e990(puVar10);
+    uStack_240 = CONCAT44(uStack_240._4_4_,uVar8);
+                    // WARNING: Subroutine does not return
+    memcpy(puVar10,_DAT_180bf90b8,(longlong)(int)(_DAT_180bf90c0 + 1));
+  }
+  uVar31 = 1;
+  puStack_1d0 = (undefined8 *)CONCAT44(puStack_1d0._4_4_,1);
+  pcVar11 = (char *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  *pcVar11 = '\0';
+  pcStack_250 = pcVar11;
+  uVar9 = FUN_18064e990(pcVar11);
+  pcVar18 = pcStack_250;
+  uStack_240 = CONCAT44(uStack_240._4_4_,uVar9);
+  pcVar11[0] = '_';
+  pcVar11[1] = '\0';
+  uStack_248 = 1;
+  if (0 < _DAT_180bf5b98) {
+    if (_DAT_180bf5b98 != -1) {
+      if (pcVar11 == (char *)0x0) {
+        iVar7 = _DAT_180bf5b98 + 2;
+        if (iVar7 < 0x10) {
+          iVar7 = 0x10;
+        }
+        pcVar11 = (char *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar7,0x13);
+        *pcVar11 = '\0';
+      }
+      else {
+        if (_DAT_180bf5b98 + 2U <= uVar9) goto LAB_180289516;
+        uStack_268 = 0x13;
+        pcVar11 = (char *)FUN_18062b8b0(_DAT_180c8ed18,pcVar11,_DAT_180bf5b98 + 2U,0x10);
+      }
+      pcStack_250 = pcVar11;
+      uVar8 = FUN_18064e990(pcVar11);
+      uStack_240 = CONCAT44(uStack_240._4_4_,uVar8);
+    }
+LAB_180289516:
+                    // WARNING: Subroutine does not return
+    memcpy(pcVar11 + 1,_DAT_180bf5b90,(longlong)(_DAT_180bf5b98 + 1));
+  }
+  uStack_218 = 0;
+  if ((longlong)puStack_1e8 - (longlong)puStack_1f0 >> 5 != 0) {
+    do {
+      puVar17 = puStack_208;
+      puVar13 = (undefined8 *)0x0;
+      puVar22 = puStack_1f0 + uVar29 * 4;
+      uVar21 = *(uint *)(puVar22 + 2);
+      if (uVar21 < uVar31) {
+LAB_180289571:
+        bVar4 = false;
+      }
+      else {
+        if (uVar31 != 0) {
+          pcVar11 = pcVar18;
+          puVar20 = puVar13;
+          do {
+            if (pcVar11[puVar22[1] - (longlong)pcVar18] != *pcVar11) goto LAB_180289571;
+            uVar9 = (int)puVar20 + 1;
+            puVar20 = (undefined8 *)(ulonglong)uVar9;
+            pcVar11 = pcVar11 + 1;
+          } while (uVar9 < uVar31);
+        }
+        bVar4 = true;
+      }
+      if (bVar4) {
+        if (uVar21 == 0) goto LAB_1802895c4;
+        puVar17 = puVar13;
+        puVar20 = puVar13;
+        goto LAB_1802895b3;
+      }
+      if (puStack_208 < puStack_200) {
+        puStack_208 = puStack_208 + 4;
+        FUN_180627ae0(puVar17,puVar22);
+      }
+      else {
+        lVar12 = (longlong)puStack_208 - (longlong)puStack_210 >> 5;
+        if (lVar12 == 0) {
+          lVar12 = 1;
+LAB_1802899a4:
+          puVar13 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,lVar12 << 5,(undefined1)uStack_1f8);
+        }
+        else {
+          lVar12 = lVar12 * 2;
+          if (lVar12 != 0) goto LAB_1802899a4;
+        }
+        lVar27 = FUN_180059780(puStack_210,puStack_208,puVar13);
+        FUN_180627ae0(lVar27,puVar22);
+        puVar17 = puStack_208;
+        for (puVar22 = puStack_210; puVar22 != puVar17; puVar22 = puVar22 + 4) {
+          (**(code **)*puVar22)(puVar22,0);
+        }
+        if (puStack_210 != (undefined8 *)0x0) {
+                    // WARNING: Subroutine does not return
+          FUN_18064e900(puStack_210);
+        }
+        puStack_200 = puVar13 + lVar12 * 4;
+        puStack_210 = puVar13;
+        puStack_208 = (undefined8 *)(lVar27 + 0x20);
+      }
+      uStack_218 = uStack_218 + 1;
+      uVar29 = (ulonglong)uStack_218;
+      pcVar11 = pcStack_250;
+      uVar21 = uStack_214;
+      uVar31 = (uint)puStack_1d0;
+    } while (uVar29 < (ulonglong)((longlong)puStack_1e8 - (longlong)puStack_1f0 >> 5));
+  }
+  puVar10 = (undefined1 *)0x0;
+  FUN_18028a660(&puStack_1c8);
+  lVar12 = lStack_128;
+  if ((((longlong)puStack_208 - (longlong)puStack_210 & 0xffffffffffffffe0U) == 0) ||
+     ((lStack_188 != 0 &&
+      (uVar21 = uVar21 ^ uVar21 << 0xd, uVar21 = uVar21 ^ uVar21 >> 0x11,
+      uVar21 = uVar21 ^ uVar21 << 5, 0.15 < (float)(uVar21 - 1) * 2.3283064e-10)))) {
+    bVar4 = true;
+  }
+  else {
+    bVar4 = false;
+  }
+  if ((bVar4) && (DAT_180c82860 == '\0')) {
+    uVar6 = 1;
+  }
+  else {
+    uVar6 = 0;
+  }
+  *(undefined1 *)(lStack_128 + 0x130) = uVar6;
+  puStack_238 = &UNK_180a3c3e0;
+  uStack_220 = 0;
+  puStack_230 = (undefined1 *)0x0;
+  uStack_228 = 0;
+  if (*(char *)(lStack_128 + 0x130) == '\0') {
+    uVar21 = uVar21 ^ uVar21 << 0xd;
+    uVar21 = uVar21 ^ uVar21 >> 0x11;
+    puVar22 = puStack_210 +
+              (longlong)
+              (int)((ulonglong)((uVar21 << 5 ^ uVar21) - 1) %
+                   ((longlong)puStack_208 - (longlong)puStack_210 >> 5 & 0xffffffffU)) * 4;
+    uVar21 = *(uint *)(puVar22 + 2);
+    uVar29 = (ulonglong)uVar21;
+    if (puVar22[1] != 0) {
+      FUN_1806277c0(&puStack_238,uVar29);
+    }
+    if (uVar21 != 0) {
+                    // WARNING: Subroutine does not return
+      memcpy(puStack_230,puVar22[1],uVar29);
+    }
+    puVar10 = puStack_230;
+    uStack_228 = 0;
+    if (puStack_230 != (undefined1 *)0x0) {
+      puStack_230[uVar29] = 0;
+    }
+    goto LAB_180289e47;
+  }
+  plVar1 = (longlong *)(lStack_128 + 0x138);
+  FUN_180057110(plVar1);
+  uVar21 = uVar21 ^ uVar21 << 0xd;
+  uVar21 = uVar21 ^ uVar21 >> 0x11;
+  uVar21 = uVar21 ^ uVar21 << 5;
+  iVar7 = (int)((ulonglong)(uVar21 - 1) %
+               ((longlong)puStack_1c0 - (longlong)puStack_1c8 >> 5 & 0xffffffffU));
+  pppppppuVar24 = &pppppppuStack_1a8;
+  pppppppuVar16 = pppppppuStack_198;
+  while (pppppppuVar5 = pppppppuVar24, pppppppuVar16 != (undefined8 *******)0x0) {
+    if (*(int *)(pppppppuVar16 + 6) == 0) {
+      bVar4 = false;
+      pppppppuVar25 = (undefined8 *******)*pppppppuVar16;
+    }
+    else {
+      if (*(int *)(puStack_1c8 + (longlong)iVar7 * 4 + 2) == 0) {
+        bVar4 = true;
+      }
+      else {
+        ppppppuVar14 = pppppppuVar16[5];
+        lVar27 = puStack_1c8[(longlong)iVar7 * 4 + 1] - (longlong)ppppppuVar14;
+        do {
+          uVar31 = (uint)*(byte *)((longlong)ppppppuVar14 + lVar27);
+          iVar19 = *(byte *)ppppppuVar14 - uVar31;
+          if (*(byte *)ppppppuVar14 != uVar31) break;
+          ppppppuVar14 = (undefined8 ******)((longlong)ppppppuVar14 + 1);
+        } while (uVar31 != 0);
+        bVar4 = 0 < iVar19;
+        if (iVar19 < 1) {
+          pppppppuVar25 = (undefined8 *******)*pppppppuVar16;
+          goto LAB_180289bc9;
+        }
+      }
+      pppppppuVar25 = (undefined8 *******)pppppppuVar16[1];
+    }
+LAB_180289bc9:
+    pppppppuVar24 = pppppppuVar16;
+    pppppppuVar16 = pppppppuVar25;
+    if (!bVar4) {
+      pppppppuVar24 = pppppppuVar5;
+    }
+  }
+  pppppppuVar16 = &pppppppuStack_1a8;
+  if (pppppppuStack_198 != (undefined8 *******)0x0) {
+    pppppppuVar24 = pppppppuStack_198;
+    do {
+      if (*(int *)(puStack_1c8 + (longlong)iVar7 * 4 + 2) == 0) {
+        bVar4 = false;
+        pppppppuVar25 = (undefined8 *******)pppppppuVar24[1];
+      }
+      else {
+        if (*(int *)(pppppppuVar24 + 6) == 0) {
+          bVar4 = true;
+        }
+        else {
+          pbVar15 = (byte *)puStack_1c8[(longlong)iVar7 * 4 + 1];
+          lVar27 = (longlong)pppppppuVar24[5] - (longlong)pbVar15;
+          do {
+            uVar31 = (uint)pbVar15[lVar27];
+            iVar19 = *pbVar15 - uVar31;
+            if (*pbVar15 != uVar31) break;
+            pbVar15 = pbVar15 + 1;
+          } while (uVar31 != 0);
+          bVar4 = 0 < iVar19;
+          if (iVar19 < 1) {
+            pppppppuVar25 = (undefined8 *******)pppppppuVar24[1];
+            goto LAB_180289c37;
+          }
+        }
+        pppppppuVar25 = (undefined8 *******)*pppppppuVar24;
+      }
+LAB_180289c37:
+      if (bVar4) {
+        pppppppuVar24 = pppppppuVar16;
+      }
+      pppppppuVar16 = pppppppuVar24;
+      pppppppuVar24 = pppppppuVar25;
+    } while (pppppppuVar25 != (undefined8 *******)0x0);
+  }
+  for (; pppppppuVar16 != pppppppuVar5;
+      pppppppuVar16 = (undefined8 *******)func_0x00018066bd70(pppppppuVar16)) {
+    if (*(ulonglong *)(lVar12 + 0x140) < *(ulonglong *)(lVar12 + 0x148)) {
+      *(ulonglong *)(lVar12 + 0x140) = *(ulonglong *)(lVar12 + 0x140) + 0x20;
+      FUN_180627ae0();
+    }
+    else {
+      FUN_180059820(plVar1);
+    }
+  }
+  uVar21 = uVar21 ^ uVar21 << 0xd;
+  uVar21 = uVar21 ^ uVar21 >> 0x11;
+  puVar22 = (undefined8 *)
+            ((longlong)
+             (int)((ulonglong)((uVar21 << 5 ^ uVar21) - 1) %
+                  (*(longlong *)(lVar12 + 0x140) - *plVar1 >> 5 & 0xffffffffU)) * 0x20 + *plVar1);
+  uVar21 = *(uint *)(puVar22 + 2);
+  if (puVar22[1] == 0) {
+LAB_180289daa:
+    if (uVar21 != 0) {
+                    // WARNING: Subroutine does not return
+      memcpy(puVar10,puVar22[1],(ulonglong)uVar21);
+    }
+  }
+  else if (uVar21 != 0) {
+    iVar7 = uVar21 + 1;
+    if (iVar7 < 0x10) {
+      iVar7 = 0x10;
+    }
+    puVar10 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar7,0x13);
+    *puVar10 = 0;
+    uVar29 = (ulonglong)puVar10 & 0xffffffffffc00000;
+    if (uVar29 == 0) {
+      uVar31 = 0;
+    }
+    else {
+      lVar12 = ((longlong)puVar10 - uVar29 >> 0x10) * 0x50;
+      puVar26 = (uint *)(uVar29 + ((lVar12 + 0x80) - (ulonglong)*(uint *)(uVar29 + lVar12 + 0x84)));
+      if ((*(byte *)((longlong)puVar26 + 0xe) & 2) == 0) {
+        uVar31 = puVar26[7];
+        if (0x3ffffff < uVar31) {
+          uVar31 = *puVar26 << 0x10;
+        }
+      }
+      else {
+        uVar31 = puVar26[7];
+        if (uVar31 < 0x4000000) {
+          uVar30 = (ulonglong)uVar31;
+        }
+        else {
+          uVar30 = (ulonglong)*puVar26 << 0x10;
+        }
+        if (0x3ffffff < uVar31) {
+          uVar31 = *puVar26 << 0x10;
+        }
+        uVar31 = uVar31 - (int)(((longlong)puVar10 -
+                                (uVar29 + ((longlong)((longlong)puVar26 + (-0x80 - uVar29)) / 0x50)
+                                          * 0x10000)) % uVar30);
+      }
+    }
+    uStack_220 = CONCAT44(uStack_220._4_4_,uVar31);
+    puStack_230 = puVar10;
+    goto LAB_180289daa;
+  }
+  uStack_228 = uVar21;
+  if (puVar10 != (undefined1 *)0x0) {
+    puVar10[uVar21] = 0;
+  }
+LAB_180289e47:
+  uVar21 = *(uint *)((longlong)puVar22 + 0x1c);
+  *(float *)(lStack_128 + 0x15c) = (float)_DAT_180c8ed30 * 1e-05;
+  uStack_220._4_4_ = uVar21;
+  FUN_1800b08e0(_DAT_180c86930,uStack_100,&puStack_238,1);
+  uStack_178 = 1;
+  puStack_238 = &UNK_180a3c3e0;
+  if (puVar10 != (undefined1 *)0x0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900(puVar10);
+  }
+  puStack_230 = (undefined1 *)0x0;
+  uStack_220 = (ulonglong)uStack_220._4_4_ << 0x20;
+  puStack_238 = &UNK_18098bcb0;
+  puStack_258 = &UNK_180a3c3e0;
+  if (pcVar11 != (char *)0x0) {
+                    // WARNING: Subroutine does not return
+    FUN_18064e900(pcVar11);
+  }
+  pcStack_250 = (char *)0x0;
+  uStack_240 = uStack_240 & 0xffffffff00000000;
+  puStack_258 = &UNK_18098bcb0;
+  FUN_180058020(&pppppppuStack_1a8);
+  FUN_18005d580(&puStack_210);
+  FUN_18005d580(&puStack_1c8);
+  FUN_18005d580(&puStack_1f0);
+  FUN_180057830(&lStack_120);
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_288);
+  while( true ) {
+    puVar20 = (undefined8 *)(ulonglong)(iVar7 + 1U);
+    puVar17 = (undefined8 *)((longlong)puVar17 + 1);
+    if (uVar21 <= iVar7 + 1U) break;
+LAB_1802895b3:
+    iVar7 = (int)puVar20;
+    if (*(char *)(puVar22[1] + (longlong)puVar17) == '_') goto LAB_1802895ce;
+  }
+LAB_1802895c4:
+  puVar17 = (undefined8 *)0xffffffffffffffff;
+  iVar7 = -1;
+LAB_1802895ce:
+  uVar31 = iVar7 + 1;
+  if (uVar31 < uVar21) {
+    pcVar18 = (char *)((longlong)puVar17 + puVar22[1] + 1);
+    do {
+      if (*pcVar18 == '_') goto LAB_1802895f6;
+      uVar31 = uVar31 + 1;
+      pcVar18 = pcVar18 + 1;
+    } while (uVar31 < uVar21);
+  }
+  uVar31 = 0xffffffff;
+LAB_1802895f6:
+  iVar7 = uVar21 - 1;
+  if (-1 < iVar7) {
+    lVar12 = (longlong)iVar7;
+    do {
+      if (*(char *)(puVar22[1] + lVar12) == '_') goto LAB_180289618;
+      iVar7 = iVar7 + -1;
+      lVar12 = lVar12 + -1;
+    } while (-1 < lVar12);
+  }
+  iVar7 = -1;
+LAB_180289618:
+  FUN_180629a40(puVar22,&puStack_238,uVar31 + 1,iVar7);
+  puVar17 = puStack_1c0;
+  if (puStack_1c0 < puStack_1b8) {
+    ppuStack_170 = (undefined **)puStack_1c0;
+    *puStack_1c0 = &UNK_18098bcb0;
+    puStack_1c0[1] = 0;
+    *(undefined4 *)(puStack_1c0 + 2) = 0;
+    *puStack_1c0 = &UNK_180a3c3e0;
+    puStack_1c0[3] = 0;
+    puStack_1c0[1] = 0;
+    *(undefined4 *)(puStack_1c0 + 2) = 0;
+    puStack_1c0 = puStack_1c0 + 4;
+    FUN_1806277c0(puVar17,uStack_228);
+    if (uStack_228 != 0) {
+                    // WARNING: Subroutine does not return
+      memcpy(puVar17[1],puStack_230,uStack_228 + 1);
+    }
+    if (puStack_230 != (undefined1 *)0x0) {
+      *(undefined4 *)(puVar17 + 2) = 0;
+      if ((undefined1 *)puVar17[1] != (undefined1 *)0x0) {
+        *(undefined1 *)puVar17[1] = 0;
+      }
+      *(undefined4 *)((longlong)puVar17 + 0x1c) = 0;
+    }
+  }
+  else {
+    lVar12 = (longlong)puStack_1c0 - (longlong)puStack_1c8 >> 5;
+    if (lVar12 == 0) {
+      lVar12 = 1;
+LAB_1802896e8:
+      puVar13 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,lVar12 << 5,(undefined1)uStack_1b0);
+    }
+    else {
+      lVar12 = lVar12 * 2;
+      if (lVar12 != 0) goto LAB_1802896e8;
+    }
+    lVar27 = FUN_180059780(puStack_1c8,puStack_1c0,puVar13);
+    FUN_180627ae0(lVar27,&puStack_238);
+    puVar20 = puStack_1c0;
+    for (puVar17 = puStack_1c8; puVar17 != puVar20; puVar17 = puVar17 + 4) {
+      (**(code **)*puVar17)(puVar17,0);
+    }
+    if (puStack_1c8 != (undefined8 *)0x0) {
+                    // WARNING: Subroutine does not return
+      FUN_18064e900(puStack_1c8);
+    }
+    puStack_1b8 = puVar13 + lVar12 * 4;
+    puStack_1c8 = puVar13;
+    puStack_1c0 = (undefined8 *)(lVar27 + 0x20);
+  }
+  uVar28 = 0;
+  ppuStack_170 = &puStack_168;
+  puStack_168 = &UNK_180a3c3e0;
+  uStack_150 = 0;
+  puStack_160 = (undefined1 *)0x0;
+  uStack_158 = 0;
+  FUN_1806277c0(&puStack_168,uStack_228);
+  if (uStack_228 != 0) {
+                    // WARNING: Subroutine does not return
+    memcpy(puStack_160,puStack_230,uStack_228 + 1);
+  }
+  if (puStack_230 != (undefined1 *)0x0) {
+    uStack_158 = 0;
+    if (puStack_160 != (undefined1 *)0x0) {
+      *puStack_160 = 0;
+    }
+    uStack_150 = uStack_150 & 0xffffffff;
+  }
+  FUN_180627ae0(auStack_148,puVar22);
+  lVar12 = FUN_18062b420(_DAT_180c8ed18,0x60,(undefined1)uStack_180);
+  FUN_18005caa0(lVar12 + 0x20,&puStack_168);
+  pppppppuVar16 = &pppppppuStack_1a8;
+  pppppppuVar24 = pppppppuStack_198;
+  if (pppppppuStack_198 != (undefined8 *******)0x0) {
+    do {
+      pppppppuVar16 = pppppppuVar24;
+      if (*(int *)(pppppppuVar16 + 6) == 0) {
+LAB_18028988d:
+        pppppppuVar24 = (undefined8 *******)*pppppppuVar16;
+      }
+      else {
+        if (*(int *)(lVar12 + 0x30) != 0) {
+          ppppppuVar14 = pppppppuVar16[5];
+          lVar27 = *(longlong *)(lVar12 + 0x28) - (longlong)ppppppuVar14;
+          do {
+            bVar2 = *(byte *)ppppppuVar14;
+            uVar21 = (uint)*(byte *)((longlong)ppppppuVar14 + lVar27);
+            if (bVar2 != uVar21) break;
+            ppppppuVar14 = (undefined8 ******)((longlong)ppppppuVar14 + 1);
+          } while (uVar21 != 0);
+          if ((int)(bVar2 - uVar21) < 1) goto LAB_18028988d;
+        }
+        pppppppuVar24 = (undefined8 *******)pppppppuVar16[1];
+      }
+    } while (pppppppuVar24 != (undefined8 *******)0x0);
+    if ((undefined8 ********)pppppppuVar16 != &pppppppuStack_1a8) {
+      if (*(int *)(pppppppuVar16 + 6) != 0) {
+        if (*(int *)(lVar12 + 0x30) == 0) goto LAB_1802898d6;
+        ppppppuVar14 = pppppppuVar16[5];
+        lVar27 = *(longlong *)(lVar12 + 0x28) - (longlong)ppppppuVar14;
+        do {
+          bVar2 = *(byte *)ppppppuVar14;
+          uVar21 = (uint)*(byte *)((longlong)ppppppuVar14 + lVar27);
+          if (bVar2 != uVar21) break;
+          ppppppuVar14 = (undefined8 ******)((longlong)ppppppuVar14 + 1);
+        } while (uVar21 != 0);
+        if (0 < (int)(bVar2 - uVar21)) goto LAB_1802898d6;
+      }
+      uVar28 = 1;
+    }
+  }
+LAB_1802898d6:
+                    // WARNING: Subroutine does not return
+  FUN_18066bdc0(lVar12,pppppppuVar16,&pppppppuStack_1a8,uVar28);
 }
 
-// 函数别名，保持向后兼容性
-int FUN_180288f30(void* param1, void* param2, void* param3) {
-    return initialize_render_system(param1, param2, param3);
-}
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
