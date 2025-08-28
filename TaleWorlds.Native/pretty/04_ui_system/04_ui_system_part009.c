@@ -133,115 +133,137 @@ void ui_system_placeholder_function(void)
 
 
 
-// 函数: void FUN_1806596a0(float *param_1,float param_2,longlong param_3,char param_4,char param_5,
-void FUN_1806596a0(float *param_1,float param_2,longlong param_3,char param_4,char param_5,
-                  char param_6,undefined8 param_7,undefined8 param_8,float param_9,
-                  undefined8 param_10)
+/**
+ * UI元素高级处理和动画控制函数
+ * 
+ * 这是UI系统中最复杂的函数，负责处理UI元素的各种高级操作，
+ * 包括位置计算、旋转、缩放、动画插值、权重计算等。
+ * 
+ * @param ui_element UI元素数据指针
+ * @param delta_time 时间增量，用于动画计算
+ * @param context 上下文参数
+ * @param flag1 标志位1，控制特定行为
+ * @param flag2 标志位2，控制特定行为
+ * @param flag3 标志位3，控制特定行为
+ * @param unused_param1 未使用的参数
+ * @param unused_param2 未使用的参数
+ * @param blend_factor 混合因子，用于动画插值
+ * @param unused_param3 未使用的参数
+ */
+void process_ui_element_advanced(float *ui_element, float delta_time, longlong context, char flag1, char flag2,
+                                 char flag3, undefined8 unused_param1, undefined8 unused_param2, float blend_factor,
+                                 undefined8 unused_param3)
 
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
-  bool bVar3;
-  char cVar4;
-  int iVar5;
-  longlong lVar6;
-  float *pfVar7;
-  longlong lVar8;
-  longlong lVar9;
-  float *pfVar10;
-  int iVar11;
-  ulonglong uVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  undefined1 auVar22 [16];
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  float afStack_6260 [6200];
-  undefined8 uStack_180;
-  undefined1 auStack_178 [32];
-  float fStack_158;
-  float *pfStack_150;
-  char cStack_148;
-  float fStack_144;
-  undefined8 uStack_140;
-  float fStack_138;
-  undefined8 uStack_130;
-  float fStack_128;
-  float fStack_124;
-  float fStack_120;
-  float fStack_11c;
-  undefined8 uStack_118;
-  float fStack_110;
-  float fStack_10c;
-  float fStack_108;
-  float fStack_104;
-  float fStack_100;
-  float fStack_fc;
-  float fStack_f8;
-  float fStack_f4;
-  float fStack_f0;
-  float fStack_ec;
-  ulonglong uStack_e8;
+  undefined8 temp_var1;
+  undefined8 temp_var2;
+  bool use_advanced_processing;
+  char temp_char;
+  int index;
+  longlong temp_long1;
+  longlong temp_long2;
+  longlong temp_long3;
+  float *float_ptr1;
+  longlong element_data;
+  longlong element_count;
+  float *float_ptr2;
+  int temp_int;
+  ulonglong temp_ulong;
+  float temp_float1;
+  float temp_float2;
+  float temp_float3;
+  float temp_float4;
+  float temp_float5;
+  float temp_float6;
+  float temp_float7;
+  float temp_float8;
+  float temp_float9;
+  float temp_float10;
+  float temp_float11;
+  undefined1 rsqrt_result [16];
+  float temp_float12;
+  float temp_float13;
+  float temp_float14;
+  float temp_float15;
+  float working_buffer [6200];
+  undefined8 stack_var1;
+  undefined1 stack_buffer1 [32];
+  float stack_float1;
+  float *float_ptr3;
+  char stack_char;
+  float stack_float2;
+  undefined8 stack_var2;
+  float stack_float3;
+  undefined8 stack_var3;
+  float stack_float4;
+  float stack_float5;
+  float stack_float6;
+  float stack_float7;
+  float stack_float8;
+  undefined8 stack_var4;
+  float stack_float9;
+  float stack_float10;
+  float stack_float11;
+  float stack_float12;
+  float stack_float13;
+  float stack_float14;
+  float stack_float15;
+  float stack_float16;
+  float stack_float17;
+  float stack_float18;
+  ulonglong stack_ulong;
   
-  uStack_e8 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  fVar25 = 0.0;
-  iVar5 = 0;
-  uStack_118 = param_10;
-  cStack_148 = param_4;
-  fStack_144 = param_2;
-  if (0 < (int)param_1[0x18]) {
-    pfVar7 = param_1 + 0x1b;
-    pfVar10 = pfVar7;
-    iVar11 = iVar5;
+  stack_ulong = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+  temp_float15 = 0.0;
+  index = 0;
+  stack_var4 = unused_param3;
+  stack_char = flag1;
+  stack_float2 = delta_time;
+  if (0 < (int)ui_element[0x18]) {
+    float_ptr1 = ui_element + 0x1b;
+    float_ptr2 = float_ptr1;
+    temp_int = index;
     do {
-      fVar19 = pfVar10[1];
-      fVar13 = *pfVar10;
-      fStack_158 = param_1[0x11];
-      if (fVar19 <= fVar13) {
-        fVar13 = fVar13 - param_2 * 4.0;
-        if (fVar13 <= fVar19) {
-          fVar13 = fVar19;
+      temp_float5 = float_ptr2[1];
+      temp_float1 = *float_ptr2;
+      stack_float1 = ui_element[0x11];
+      if (temp_float5 <= temp_float1) {
+        temp_float1 = temp_float1 - delta_time * 4.0;
+        if (temp_float1 <= temp_float5) {
+          temp_float1 = temp_float5;
         }
       }
       else {
-        fVar13 = param_2 * 4.0 + fVar13;
-        if (fVar19 <= fVar13) {
-          fVar13 = fVar19;
+        temp_float1 = delta_time * 4.0 + temp_float1;
+        if (temp_float5 <= temp_float1) {
+          temp_float1 = temp_float5;
         }
       }
-      pfStack_150 = pfVar10 + 0x4c9;
-      *pfVar10 = fVar13;
-      uStack_180 = 0x1806597d3;
-      FUN_18065ee60(*(undefined8 *)(pfVar10 + 0x495),param_1 + 0x1854);
-      if ((*(char *)(pfVar10 + 0x4af) == '\0') && (*(char *)(pfVar10 + 0x4ce) != '\0')) {
-        *(undefined1 *)(pfVar10 + 0x4af) = 1;
+      float_ptr3 = float_ptr2 + 0x4c9;
+      *float_ptr2 = temp_float1;
+      stack_var1 = 0x1806597d3;
+      FUN_18065ee60(*(undefined8 *)(float_ptr2 + 0x495), ui_element + 0x1854);
+      if ((*(char *)(float_ptr2 + 0x4af) == '\0') && (*(char *)(float_ptr2 + 0x4ce) != '\0')) {
+        *(undefined1 *)(float_ptr2 + 0x4af) = 1;
       }
-      if ((*(char *)(pfVar10 + 0x4c8) == '\0') && (*(char *)(pfVar10 + 0x4d4) != '\0')) {
-        *(undefined1 *)(pfVar10 + 0x4c8) = 1;
+      if ((*(char *)(float_ptr2 + 0x4c8) == '\0') && (*(char *)(float_ptr2 + 0x4d4) != '\0')) {
+        *(undefined1 *)(float_ptr2 + 0x4c8) = 1;
       }
-      fVar25 = fVar25 + *pfVar10;
-      pfVar10 = pfVar10 + 0x4d6;
-      iVar11 = iVar11 + 1;
-    } while (iVar11 < (int)param_1[0x18]);
-    if (((0.0 < fVar25) && (fVar25 != 1.0)) && (0 < (int)param_1[0x18])) {
+      temp_float15 = temp_float15 + *float_ptr2;
+      float_ptr2 = float_ptr2 + 0x4d6;
+      temp_int = temp_int + 1;
+    } while (temp_int < (int)ui_element[0x18]);
+    if (((0.0 < temp_float15) && (temp_float15 != 1.0)) && (0 < (int)ui_element[0x18])) {
       do {
-        iVar5 = iVar5 + 1;
-        *pfVar7 = (1.0 / fVar25) * *pfVar7;
-        pfVar7 = pfVar7 + 0x4d6;
-      } while (iVar5 < (int)param_1[0x18]);
+        index = index + 1;
+        *float_ptr1 = (1.0 / temp_float15) * *float_ptr1;
+        float_ptr1 = float_ptr1 + 0x4d6;
+      } while (index < (int)ui_element[0x18]);
     }
   }
-  cVar4 = cStack_148;
-  uStack_180 = 0x18065986c;
-  FUN_18065cb80(param_1);
+  temp_char = stack_char;
+  stack_var1 = 0x18065986c;
+  FUN_18065cb80(ui_element);
   if (((param_1[4] == 0.0) && (param_1[5] == 0.0)) &&
      (0.25 < param_1[2] * param_1[2] + param_1[3] * param_1[3])) {
     *(undefined8 *)(param_1 + 4) = *(undefined8 *)(param_1 + 2);
