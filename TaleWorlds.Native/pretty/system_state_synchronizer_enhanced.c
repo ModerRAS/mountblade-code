@@ -133,6 +133,7 @@ typedef struct {
     uint32_t version;                     // 同步器版本
     StateFlags flags;                     // 同步器标志
     uint32_t component_count;             // 组件数量
+    uint32_t max_components;              // 最大组件数量
     ComponentState* components;           // 组件数组
     StateTimestamp last_sync;             // 最后同步时间
     uint32_t sync_count;                 // 同步次数
@@ -162,6 +163,19 @@ typedef struct {
     uint32_t synced_components;           // 同步的组件数量
     char error_message[256];             // 错误消息
 } StateSyncResult;
+
+// 状态同步统计信息结构体
+typedef struct {
+    uint32_t version;                     // 统计信息版本
+    uint32_t component_count;             // 组件数量
+    uint32_t total_states;                // 总状态数
+    uint32_t dirty_states;                // 脏状态数
+    uint32_t locked_states;               // 锁定状态数
+    uint32_t sync_count;                  // 同步次数
+    uint32_t conflict_count;              // 冲突次数
+    uint32_t error_count;                 // 错误次数
+    StateTimestamp last_sync;              // 最后同步时间
+} StateSyncStatistics;
 
 // ============================================================================
 // 函数指针类型定义

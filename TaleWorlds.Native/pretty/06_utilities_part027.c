@@ -1285,8 +1285,14 @@ void utilities_system_additional_resetter_2(void)
 
 
 
-// 函数: void FUN_180941bf0(void)
-void FUN_180941bf0(void)
+// =============================================================================
+// 系统状态清理和终止器 (SystemStateCleanerAndTerminator)
+// =============================================================================
+// 功能：清理系统状态并在必要时终止程序
+// 参数：无
+// 返回值：无
+// =============================================================================
+void utilities_system_state_cleaner_and_terminator(void)
 
 {
   if (DAT_180c91d50 != '\0') {
@@ -2344,6 +2350,20 @@ void FUN_180942720(void)
 #define utilities_system_state_manager FUN_1809419e0
 #define utilities_system_data_state_manager FUN_180941a30
 #define utilities_system_resource_state_manager FUN_180941b20
+#define utilities_system_flag_resetter FUN_180941610
+#define utilities_system_parameter_resetter FUN_180941630
+#define utilities_system_state_pointer_resetter FUN_180941800
+#define utilities_system_flag_pointer_resetter FUN_180941880
+#define utilities_system_mode_pointer_resetter FUN_1809418a0
+#define utilities_system_state_mode_resetter FUN_1809418c0
+#define utilities_system_operation_mode_resetter FUN_1809418e0
+#define utilities_system_control_mode_resetter FUN_180941900
+#define utilities_system_data_mode_resetter FUN_180941980
+#define utilities_system_function_mode_resetter FUN_1809419a0
+#define utilities_system_config_mode_resetter_2 FUN_180941b90
+#define utilities_system_additional_resetter_1 FUN_180941bb0
+#define utilities_system_additional_resetter_2 FUN_180941bd0
+#define utilities_system_state_cleaner_and_terminator FUN_180941bf0
 
 // 系统资源管理相关函数别名
 #define utilities_system_resource_handler FUN_1809413ed

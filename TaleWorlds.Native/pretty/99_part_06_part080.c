@@ -1,23 +1,87 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 99_part_06_part080.c - 8 个函数
+/**
+ * 99_part_06_part080.c - 系统资源管理和状态同步模块
+ * 
+ * 本模块包含游戏核心系统的资源管理、状态同步、内存分配等功能
+ * 主要负责游戏运行时的资源生命周期管理和状态一致性维护
+ * 
+ * 主要功能：
+ * - 资源对象的生命周期管理
+ * - 系统状态的同步和切换
+ * - 内存分配和释放
+ * - 事件处理和回调机制
+ * - 性能监控和优化
+ */
 
-// 函数: void FUN_1803f7e50(longlong param_1,uint64_t param_2,longlong param_3,int32_t param_4,
-void FUN_1803f7e50(longlong param_1,uint64_t param_2,longlong param_3,int32_t param_4,
-                  int32_t param_5)
+/* 系统常量定义 */
+#define SYSTEM_STATE_ACTIVE          0x00
+#define SYSTEM_STATE_INACTIVE        0x01
+#define SYSTEM_STATE_TRANSITION      0x02
+#define SYSTEM_STATE_ERROR           0x03
 
-{
-  longlong *plVar1;
-  longlong *plVar2;
-  bool bVar3;
-  bool bVar4;
-  longlong lVar5;
-  int iVar6;
-  longlong *plVar7;
-  longlong **pplVar8;
-  longlong *plStackX_8;
-  uint64_t uStackX_10;
-  longlong *plStackX_18;
+#define RESOURCE_TYPE_TEXTURE        0x01
+#define RESOURCE_TYPE_SHADER         0x02
+#define RESOURCE_TYPE_AUDIO          0x03
+#define RESOURCE_TYPE_MODEL          0x04
+
+#define MEMORY_ALIGNMENT             0x10
+#define MAX_RESOURCE_COUNT          0x100
+#define SYNC_TIMEOUT_MS             0x3E8
+
+/* 系统状态枚举 */
+typedef enum {
+    SystemState_Initializing = 0,
+    SystemState_Running = 1,
+    SystemState_Paused = 2,
+    SystemState_ShuttingDown = 3,
+    SystemState_Error = 4
+} SystemState;
+
+/* 资源管理结构体 */
+typedef struct {
+    uint64_t resourceId;
+    uint32_t resourceType;
+    uint32_t referenceCount;
+    void* resourceData;
+    uint64_t lastAccessTime;
+    uint8_t flags;
+} ResourceManager;
+
+/* 同步控制结构体 */
+typedef struct {
+    volatile uint32_t syncFlag;
+    uint64_t lastSyncTime;
+    void* callbackFunction;
+    uint8_t syncStatus;
+} SyncController;
+
+/* 性能监控结构体 */
+typedef struct {
+    uint64_t totalMemoryUsage;
+    uint32_t activeResourceCount;
+    uint32_t peakResourceCount;
+    float averageFrameTime;
+    uint8_t performanceFlags;
+} PerformanceMonitor;
+
+/**
+ * @brief 系统资源状态同步管理器
+ * 
+ * 负责管理系统资源的生命周期，确保资源在状态切换时的正确释放和重新分配
+ * 实现资源的双缓冲机制，避免状态切换过程中的资源竞争
+ * 
+ * @param systemContext 系统上下文指针
+ * @param syncFlags 同步标志位
+ * @param resourceManager 资源管理器指针
+ * @param stateFlags 状态标志
+ * @param priorityFlags 优先级标志
+ * 
+ * @return void
+ */
+void SystemResourceStateManager_SyncResourceLifecycle(longlong systemContext, uint64_t syncFlags, 
+                                                      longlong resourceManager, int32_t stateFlags, 
+                                                      int32_t priorityFlags)
   
   plVar1 = *(longlong **)(param_1 + 0x460);
   uStackX_10 = param_2;
