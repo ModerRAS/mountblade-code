@@ -1111,7 +1111,7 @@ void AdvancedResourceManager(longlong param_1, longlong *param_2, uint64_t param
     if (*(void **)(param_1 + 8) != (void *)0x0) {
       puVar3 = *(void **)(param_1 + 8);
     }
-    strcpy_s(auStack_c0,0x80,puVar3);
+    strcpy_s(auStack_c0,SYSTEM_STACK_BUFFER_SIZE,puVar3);
     plVar2 = (longlong *)ResourceAllocator(system_resource_state, &plStack_f0, &puStack_d8, &uStack_138);
     lVar1 = *plVar2;
     *plVar2 = 0;
