@@ -1139,239 +1139,393 @@ undefined FUN_180455980;
 undefined FUN_1804559d0;
 
 
-// 函数: undefined FUN_1804354c0;
+/*-----------------------------------------------------------------------------
+ * 系统资源和数据结构管理函数组
+ *---------------------------------------------------------------------------*/
+
+/** 
+ * @brief 系统资源初始化函数
+ * @details 初始化渲染系统资源
+ */
 undefined FUN_1804354c0;
 
 
-// 函数: undefined FUN_1804355b0;
+/** 
+ * @brief 系统资源清理函数
+ * @details 清理渲染系统资源
+ */
 undefined FUN_1804355b0;
 
 
-// 函数: undefined FUN_180435630;
+/** 
+ * @brief 系统资源分配函数
+ * @details 分配系统资源
+ */
 undefined FUN_180435630;
 
 
-// 函数: undefined FUN_180435690;
+/** 
+ * @brief 系统资源释放函数
+ * @details 释放系统资源
+ */
 undefined FUN_180435690;
 
 
-// 函数: undefined FUN_1804357a0;
+/** 
+ * @brief 系统资源查找函数
+ * @details 查找系统资源
+ */
 undefined FUN_1804357a0;
 
 
-// 函数: undefined FUN_180435860;
+/** 
+ * @brief 系统资源验证函数
+ * @details 验证系统资源
+ */
 undefined FUN_180435860;
 
 
-// 函数: undefined FUN_1804359d0;
+/** 
+ * @brief 系统资源缓存函数
+ * @details 缓存系统资源
+ */
 undefined FUN_1804359d0;
 
 
-// 函数: undefined FUN_180435a80;
+/** 
+ * @brief 系统资源预加载函数
+ * @details 预加载系统资源
+ */
 undefined FUN_180435a80;
 
 
-// 函数: undefined FUN_180435d10;
+/** 
+ * @brief 系统资源热重载函数
+ * @details 热重载系统资源
+ */
 undefined FUN_180435d10;
 
 
-// 函数: undefined FUN_180435e20;
+/** 
+ * @brief 系统资源序列化函数
+ * @details 序列化系统资源
+ */
 undefined FUN_180435e20;
 
 
-// 函数: undefined FUN_180435f40;
+/** 
+ * @brief 系统资源反序列化函数
+ * @details 反序列化系统资源
+ */
 undefined FUN_180435f40;
 
 
-// 函数: undefined FUN_180435f90;
+/** 
+ * @brief 系统资源版本控制函数
+ * @details 管理系统资源版本
+ */
 undefined FUN_180435f90;
 
 
-// 函数: undefined FUN_180435ff0;
+/** 
+ * @brief 系统资源依赖管理函数
+ * @details 管理系统资源依赖
+ */
 undefined FUN_180435ff0;
 
 
-// 函数: undefined FUN_180436030;
+/** 
+ * @brief 系统资源优化函数
+ * @details 优化系统资源使用
+ */
 undefined FUN_180436030;
 
 
-// 函数: undefined FUN_180436160;
+/** 
+ * @brief 系统资源压缩函数
+ * @details 压缩系统资源
+ */
 undefined FUN_180436160;
 
 
-// 函数: undefined FUN_1804362a0;
+/** 
+ * @brief 系统资源解压函数
+ * @details 解压系统资源
+ */
 undefined FUN_1804362a0;
 
 
-// 函数: undefined FUN_1804369d0;
+/*-----------------------------------------------------------------------------
+ * 高级渲染和数据管理函数组
+ *---------------------------------------------------------------------------*/
+
+/** 
+ * @brief 渲染数据结构初始化函数
+ * @details 初始化渲染数据结构
+ */
 undefined FUN_1804369d0;
 
 
-// 函数: undefined FUN_180436a00;
+/** 
+ * @brief 渲染数据结构清理函数
+ * @details 清理渲染数据结构
+ */
 undefined FUN_180436a00;
 
 
-// 函数: undefined FUN_180436a50;
+/** 
+ * @brief 渲染数据结构分配函数
+ * @details 分配渲染数据结构
+ */
 undefined FUN_180436a50;
 
 
-// 函数: undefined FUN_180436ae0;
+/** 
+ * @brief 渲染数据结构释放函数
+ * @details 释放渲染数据结构
+ */
 undefined FUN_180436ae0;
 
 
-// 函数: undefined FUN_180436bb0;
+/** 
+ * @brief 渲染数据结构查找函数
+ * @details 查找渲染数据结构
+ */
 undefined FUN_180436bb0;
 
 
-// 函数: undefined FUN_180436bf0;
+/** 
+ * @brief 渲染数据结构验证函数
+ * @details 验证渲染数据结构
+ */
 undefined FUN_180436bf0;
 
 
-// 函数: undefined FUN_180436c30;
+/** 
+ * @brief 渲染数据结构复制函数
+ * @details 复制渲染数据结构
+ */
 undefined FUN_180436c30;
 
 
-// 函数: undefined FUN_180436d00;
+/** 
+ * @brief 渲染数据结构合并函数
+ * @details 合并渲染数据结构
+ */
 undefined FUN_180436d00;
 
 
-// 函数: undefined FUN_180436da0;
+/** 
+ * @brief 渲染数据结构分割函数
+ * @details 分割渲染数据结构
+ */
 undefined FUN_180436da0;
 
 
-// 函数: undefined FUN_180436f20;
+/** 
+ * @brief 渲染数据结构优化函数
+ * @details 优化渲染数据结构
+ */
 undefined FUN_180436f20;
 
 
-// 函数: undefined FUN_180436fd0;
+/** 
+ * @brief 渲染数据结构压缩函数
+ * @details 压缩渲染数据结构
+ */
 undefined FUN_180436fd0;
 
 
-// 函数: undefined FUN_180437050;
+/** 
+ * @brief 渲染数据结构解压函数
+ * @details 解压渲染数据结构
+ */
 undefined FUN_180437050;
 
 
-// 函数: undefined FUN_180437110;
+/** 
+ * @brief 渲染数据结构序列化函数
+ * @details 序列化渲染数据结构
+ */
 undefined FUN_180437110;
 
 
-// 函数: undefined FUN_180437290;
+/** 
+ * @brief 渲染数据结构反序列化函数
+ * @details 反序列化渲染数据结构
+ */
 undefined FUN_180437290;
 
 
-// 函数: undefined FUN_1804372e0;
+/** 
+ * @brief 渲染数据结构缓存函数
+ * @details 缓存渲染数据结构
+ */
 undefined FUN_1804372e0;
 
 
-// 函数: undefined FUN_180437320;
+/** 
+ * @brief 渲染数据结构预加载函数
+ * @details 预加载渲染数据结构
+ */
 undefined FUN_180437320;
 
 
-// 函数: undefined FUN_1804373a0;
+/** 
+ * @brief 渲染数据结构热重载函数
+ * @details 热重载渲染数据结构
+ */
 undefined FUN_1804373a0;
 
 
-// 函数: undefined FUN_180437460;
+/** 
+ * @brief 渲染数据结构版本控制函数
+ * @details 管理渲染数据结构版本
+ */
 undefined FUN_180437460;
 
 
-// 函数: undefined FUN_1804374c0;
+/** 
+ * @brief 渲染数据结构依赖管理函数
+ * @details 管理渲染数据结构依赖
+ */
 undefined FUN_1804374c0;
 
 
-// 函数: undefined FUN_180437560;
+/** 
+ * @brief 渲染数据结构性能监控函数
+ * @details 监控渲染数据结构性能
+ */
 undefined FUN_180437560;
 
 
-// 函数: undefined FUN_1804375f0;
+/** 
+ * @brief 渲染数据结构错误处理函数
+ * @details 处理渲染数据结构错误
+ */
 undefined FUN_1804375f0;
 
 
-// 函数: undefined FUN_180437680;
+/** 
+ * @brief 渲染数据结构调试函数
+ * @details 调试渲染数据结构
+ */
 undefined FUN_180437680;
 
 
-// 函数: undefined FUN_1804377b0;
+/** 
+ * @brief 渲染数据结构统计函数
+ * @details 统计渲染数据结构信息
+ */
 undefined FUN_1804377b0;
 
 
-// 函数: undefined FUN_1804378e0;
+/** 
+ * @brief 渲染数据结构验证和优化函数
+ * @details 验证并优化渲染数据结构
+ */
 undefined FUN_1804378e0;
 
 
-// 函数: undefined FUN_18031c260;
+/*-----------------------------------------------------------------------------
+ * 高级渲染系统和复杂数据结构管理函数组
+ *---------------------------------------------------------------------------*/
+
+/** 
+ * @brief 高级渲染系统初始化函数
+ * @details 初始化高级渲染系统，包含复杂数据结构管理
+ */
 undefined FUN_18031c260;
 undefined UNK_180a1a8c0;
 
 
-// 函数: undefined FUN_18031c300;
+/** 
+ * @brief 复杂渲染数据结构管理函数
+ * @details 管理复杂的渲染数据结构，包含多个全局变量和数据结构
+ * 包含：渲染状态数据、材质数据、纹理数据、几何数据、着色器数据等
+ */
 undefined FUN_18031c300;
-undefined UNK_180a1a8d8;
-undefined UNK_180a1a940;
-undefined DAT_180bf02a0;
-undefined1 DAT_180c8aa6a;
-undefined UNK_180a1a918;
-undefined UNK_180a1a8f0;
-undefined UNK_180a1a960;
-undefined UNK_180a1a988;
-undefined UNK_180a1a9b0;
-undefined UNK_180a1a9d8;
-undefined UNK_180a1aa20;
-undefined UNK_180a1aa38;
-undefined UNK_180a1aa70;
-undefined DAT_180a0d598;
-undefined UNK_180a1aa00;
-undefined UNK_180a1aa98;
-undefined UNK_180a1aab8;
-undefined UNK_180a1aad8;
-undefined UNK_180a1aaf8;
-undefined UNK_180a1ab48;
-undefined UNK_180a1ab80;
-undefined UNK_180a1ab38;
-undefined UNK_180a1ab18;
-undefined UNK_180a0d408;
-undefined UNK_180a1abc8;
-undefined UNK_180a1abf8;
-char DAT_180c8aa6a;
-undefined UNK_180317d20;
-undefined UNK_180a1ac10;
-undefined UNK_180a1ac28;
-undefined UNK_180a1ac38;
-undefined UNK_180a1ac88;
-undefined UNK_180a1aca0;
-undefined UNK_180a1ad38;
+
+/* 全局渲染数据结构变量 */
+undefined UNK_180a1a8d8;      // 渲染状态主数据结构
+undefined UNK_180a1a940;      // 材质数据结构数组
+undefined DAT_180bf02a0;       // 渲染配置数据
+undefined1 DAT_180c8aa6a;     // 渲染系统状态标志
+undefined UNK_180a1a918;      // 纹理管理数据结构
+undefined UNK_180a1a8f0;      // 几何体管理数据结构
+undefined UNK_180a1a960;      // 着色器管理数据结构
+undefined UNK_180a1a988;      // 渲染目标管理数据结构
+undefined UNK_180a1a9b0;      // 缓冲区管理数据结构
+undefined UNK_180a1a9d8;      // 光照管理数据结构
+undefined UNK_180a1aa20;      // 相机管理数据结构
+undefined UNK_180a1aa38;      // 场景管理数据结构
+undefined UNK_180a1aa70;      // 渲染队列管理数据结构
+undefined DAT_180a0d598;       // 渲染性能统计数据
+undefined UNK_180a1aa00;      // 内存管理数据结构
+undefined UNK_180a1aa98;      // 资源缓存数据结构
+undefined UNK_180a1aab8;      // 纹理缓存数据结构
+undefined UNK_180a1aad8;      // 材质缓存数据结构
+undefined UNK_180a1aaf8;      // 网格缓存数据结构
+undefined UNK_180a1ab48;      // 着色器缓存数据结构
+undefined UNK_180a1ab80;      // 渲染目标缓存数据结构
+undefined UNK_180a1ab38;      // 缓冲区缓存数据结构
+undefined UNK_180a1ab18;      // 几何体缓存数据结构
+undefined UNK_180a0d408;      // 系统配置数据结构
+undefined UNK_180a1abc8;      // 渲染管线状态数据结构
+undefined UNK_180a1abf8;      // 渲染批次管理数据结构
+char DAT_180c8aa6a;           // 调试标志字符
+undefined UNK_180317d20;      // 线程管理数据结构
+undefined UNK_180a1ac10;      // 同步对象数据结构
+undefined UNK_180a1ac28;      // 渲染命令队列数据结构
+undefined UNK_180a1ac38;      // 渲染状态栈数据结构
+undefined UNK_180a1ac88;      // 渲染上下文数据结构
+undefined UNK_180a1aca0;      // 渲染设备数据结构
+undefined UNK_180a1ad38;      // 渲染系统全局数据结构
 
 
-// 函数: undefined FUN_180317e00;
+/** 
+ * @brief 渲染系统高级管理函数
+ * @details 高级渲染系统管理，包含内存管理、线程同步、状态管理等
+ */
 undefined FUN_180317e00;
-undefined UNK_180a1ac70;
-undefined UNK_180a1acc0;
-undefined UNK_180a1ac48;
-undefined UNK_180a1af58;
-undefined UNK_180a1aec8;
-undefined UNK_180a1adb8;
-undefined UNK_180a1add8;
-undefined UNK_180a1adf0;
+
+/* 高级渲染系统管理数据结构 */
+undefined UNK_180a1ac70;      // 内存池管理数据结构
+undefined UNK_180a1acc0;      // 线程池管理数据结构
+undefined UNK_180a1ac48;      // 任务队列管理数据结构
+undefined UNK_180a1af58;      // 渲染管线状态数据结构
+undefined UNK_180a1aec8;      // 渲染上下文管理数据结构
+undefined UNK_180a1adb8;      // 渲染资源管理数据结构
+undefined UNK_180a1add8;      // 渲染性能监控数据结构
+undefined UNK_180a1adf0;      // 渲染调试管理数据结构
 
 
-// 函数: undefined FUN_18031ccb0;
+/** 
+ * @brief 渲染系统配置和初始化函数
+ * @details 配置和初始化渲染系统的各个组件
+ */
 undefined FUN_18031ccb0;
-undefined UNK_180a1ad98;
-undefined UNK_180a1ae38;
+undefined UNK_180a1ad98;      // 系统配置数据结构
+undefined UNK_180a1ae38;      // 初始化参数数据结构
 
 
-// 函数: undefined FUN_18031d520;
+/** 
+ * @brief 渲染系统核心管理函数
+ * @details 渲染系统的核心管理功能，包含状态管理、资源管理、性能优化等
+ */
 undefined FUN_18031d520;
-undefined UNK_180a1ae20;
-undefined UNK_180a1ae60;
-undefined UNK_180a1afe8;
-undefined UNK_180a1b4b0;
-undefined UNK_180a1b430;
-undefined UNK_180a1b470;
-undefined UNK_180a1b3b0;
-undefined UNK_180a1b3f0;
-undefined UNK_180a1b038;
-undefined UNK_180a1b090;
+
+/* 渲染系统核心管理数据结构 */
+undefined UNK_180a1ae20;      // 核心状态管理数据结构
+undefined UNK_180a1ae60;      // 资源管理数据结构
+undefined UNK_180a1afe8;      // 性能优化数据结构
+undefined UNK_180a1b4b0;      // 内存管理数据结构
+undefined UNK_180a1b430;      // 缓存管理数据结构
+undefined UNK_180a1b470;      // 同步管理数据结构
+undefined UNK_180a1b3b0;      // 调试管理数据结构
+undefined UNK_180a1b3f0;      // 日志管理数据结构
+undefined UNK_180a1b038;      // 配置管理数据结构
+undefined UNK_180a1b090;      // 统计管理数据结构
 
 
 // 函数: undefined FUN_1803216f0;

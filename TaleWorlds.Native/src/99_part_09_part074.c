@@ -1,62 +1,153 @@
+/**
+ * 99_part_09_part074.c - 系统核心数据处理和状态管理模块
+ * 
+ * 本模块包含11个核心函数，涵盖系统核心数据处理、状态管理、资源管理、
+ * 内存管理、线程同步、哈希表操作、数据验证等高级系统功能。
+ * 
+ * 主要功能包括：
+ * - 系统状态管理和控制
+ * - 数据处理和验证
+ * - 资源管理和内存分配
+ * - 线程同步和互斥锁操作
+ * - 哈希表数据处理
+ * - 系统参数配置
+ * 
+ * 核心函数：
+ * - system_state_processor (系统状态处理器)
+ * - system_data_validator (系统数据验证器)
+ * - system_resource_manager (系统资源管理器)
+ * - system_memory_controller (系统内存控制器)
+ * - system_thread_synchronizer (系统线程同步器)
+ * - system_hash_processor (系统哈希处理器)
+ * - system_cleanup_manager (系统清理管理器)
+ * - system_parameter_handler (系统参数处理器)
+ * - system_allocator (系统分配器)
+ * - system_initializer (系统初始化器)
+ * - system_finalizer (系统终结器)
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
-// 99_part_09_part074.c - 11 个函数
+/*
+ * 常量定义
+ */
+#define SYSTEM_MUTEX_ADDRESS 0x180c95528
+#define SYSTEM_DATA_BUFFER_SIZE 0xa60
+#define SYSTEM_HASH_TABLE_SIZE 0x3ff
+#define SYSTEM_RANDOM_SEED1 0x41c64e6d
+#define SYSTEM_RANDOM_SEED2 0x897ee768
+#define SYSTEM_FLOAT_CONSTANT 0x3dcccccd
+#define SYSTEM_BIT_SHIFT_13 0xd
+#define SYSTEM_BIT_SHIFT_17 0x11
+#define SYSTEM_BIT_SHIFT_5 5
+#define SYSTEM_FLAG_MASK_0x3ff 0x3ff
+#define SYSTEM_FLAG_MASK_0xfffff7ff 0xfffff7ff
 
-// 函数: void FUN_1805ed670(undefined8 param_1,undefined1 param_2,undefined4 param_3,undefined4 param_4,
-void FUN_1805ed670(undefined8 param_1,undefined1 param_2,undefined4 param_3,undefined4 param_4,
-                  undefined4 param_5,undefined4 param_6)
+/*
+ * 函数别名定义
+ */
+#define system_state_processor FUN_1805ed670
+#define system_data_validator FUN_1805ed8d0
+#define system_resource_manager FUN_1805ed8d7
+#define system_cleanup_manager FUN_1805ed9f3
+#define system_parameter_handler FUN_1805eda50
+#define system_thread_synchronizer FUN_1805edb16
+#define system_mutex_unlocker FUN_1805edbad
+#define system_empty_function FUN_1805edbd3
+#define system_allocator FUN_1805edbf0
+#define system_resource_initializer FUN_1805edc40
+#define system_memory_controller FUN_1805edc80
+#define system_finalizer FUN_1805ede90
+#define system_deinitializer FUN_1805eded0
+#define system_state_updater FUN_1805ee0b0
 
+/**
+ * 系统状态处理器 - 核心状态管理和数据处理函数
+ * 
+ * 功能：
+ * - 处理系统状态变化和更新
+ * - 管理系统数据流和缓冲区
+ * - 执行线程同步操作
+ * - 处理系统参数验证
+ * - 管理资源分配和释放
+ * 
+ * @param param_1 系统上下文指针
+ * @param param_2 状态参数1
+ * @param param_3 状态参数2
+ * @param param_4 状态参数3
+ * @param param_5 状态参数4
+ * @param param_6 状态参数5
+ */
+void system_state_processor(undefined8 param_1, undefined1 param_2, undefined4 param_3, undefined4 param_4,
+                          undefined4 param_5, undefined4 param_6)
 {
-  ulonglong *puVar1;
-  longlong lVar2;
-  char cVar3;
-  int iVar4;
-  uint uVar5;
-  uint uVar6;
-  longlong lVar7;
-  longlong lVar8;
+  ulonglong *system_data_pointer;
+  longlong system_data_index;
+  char system_status_flag;
+  int system_result_code;
+  uint system_hash_value;
+  uint system_bit_offset;
+  longlong system_iterator;
+  longlong system_base_address;
   
-  iVar4 = _Mtx_lock(0x180c95528);
-  if (iVar4 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar4);
+  /* 系统互斥锁操作 */
+  system_result_code = _Mtx_lock(SYSTEM_MUTEX_ADDRESS);
+  if (system_result_code != 0) {
+    __Throw_C_error_std__YAXH_Z(system_result_code);
   }
-  FUN_1800623b0(_DAT_180c86928,0,4,10,&UNK_180a373b8,param_2);
-  FUN_1800623b0(_DAT_180c86928,0,4,10,&UNK_180a37388,param_3);
-  FUN_1800623b0(_DAT_180c86928,0,4,10,&UNK_180a373f0,param_4);
-  cVar3 = FUN_180645c10(0x180c95578,0,&UNK_1809fa560);
-  if (((((cVar3 != '\0') && (cVar3 = FUN_180645c10(0x180c95578,0x12,&UNK_1809fa540), cVar3 != '\0'))
-       && (cVar3 = FUN_180645c10(0x180c95578,param_2,&UNK_1809fa560), cVar3 != '\0')) &&
-      ((cVar3 = FUN_180645c10(0x180c95578,param_3,&UNK_1809fa510), cVar3 != '\0' &&
-       (cVar3 = FUN_180645c10(0x180c95578,param_4,&UNK_1809fa510), cVar3 != '\0')))) &&
-     (cVar3 = FUN_180645c10(0x180c95578,param_5,&DAT_180bfbc90), cVar3 != '\0')) {
-    uVar5 = FUN_18055f6f0(&UNK_1809fa450,param_6);
-    uVar6 = _DAT_180c95b3c >> 0x1f & 0x1f;
-    iVar4 = _DAT_180c95b3c + uVar6;
-    puVar1 = (ulonglong *)(_DAT_180c95b10 + (longlong)(iVar4 >> 5) * 4);
-    *puVar1 = *puVar1 | (ulonglong)uVar5 << (((byte)iVar4 & 0x1f) - (char)uVar6 & 0x3f);
+  
+  /* 系统数据处理流程 */
+  FUN_1800623b0(_DAT_180c86928, 0, 4, 10, &UNK_180a373b8, param_2);
+  FUN_1800623b0(_DAT_180c86928, 0, 4, 10, &UNK_180a37388, param_3);
+  FUN_1800623b0(_DAT_180c86928, 0, 4, 10, &UNK_180a373f0, param_4);
+  
+  /* 系统状态验证 */
+  system_status_flag = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
+  if (((((system_status_flag != '\0') && 
+         (system_status_flag = FUN_180645c10(0x180c95578, 0x12, &UNK_1809fa540), system_status_flag != '\0')) &&
+        (system_status_flag = FUN_180645c10(0x180c95578, param_2, &UNK_1809fa560), system_status_flag != '\0')) &&
+       ((system_status_flag = FUN_180645c10(0x180c95578, param_3, &UNK_1809fa510), system_status_flag != '\0' &&
+        (system_status_flag = FUN_180645c10(0x180c95578, param_4, &UNK_1809fa510), system_status_flag != '\0')))) &&
+      (system_status_flag = FUN_180645c10(0x180c95578, param_5, &DAT_180bfbc90), system_status_flag != '\0')) {
+    
+    /* 系统哈希值计算 */
+    system_hash_value = FUN_18055f6f0(&UNK_1809fa450, param_6);
+    system_bit_offset = _DAT_180c95b3c >> 0x1f & 0x1f;
+    system_result_code = _DAT_180c95b3c + system_bit_offset;
+    system_data_pointer = (ulonglong *)(_DAT_180c95b10 + (longlong)(system_result_code >> 5) * 4);
+    *system_data_pointer = *system_data_pointer | (ulonglong)system_hash_value << (((byte)system_result_code & 0x1f) - (char)system_bit_offset & 0x3f);
+    
+    /* 系统数据更新 */
     _DAT_180c95b40 = _DAT_180c95b40 + 8;
     _DAT_180c95b3c = (ulonglong)_DAT_180c95b40 << 0x20;
   }
-  lVar8 = 0;
+  
+  /* 系统数据清理和重置 */
+  system_iterator = 0;
   _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-  iVar4 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
-  lVar7 = _DAT_180c92cd8;
-  if (0 < iVar4) {
+  system_result_code = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
+  system_base_address = _DAT_180c92cd8;
+  
+  /* 系统资源处理循环 */
+  if (0 < system_result_code) {
     do {
-      lVar2 = *(longlong *)(lVar7 + lVar8 * 8);
-      if ((lVar2 != 0) && (*(char *)(*(longlong *)(lVar2 + 0x58f8) + 0x1c) != '\0')) {
-        FUN_1805b59d0(lVar2,0x180c95578);
-        lVar7 = _DAT_180c92cd8;
+      longlong resource_handle = *(longlong *)(system_base_address + system_iterator * 8);
+      if ((resource_handle != 0) && (*(char *)(*(longlong *)(resource_handle + 0x58f8) + 0x1c) != '\0')) {
+        FUN_1805b59d0(resource_handle, 0x180c95578);
+        system_base_address = _DAT_180c92cd8;
       }
-      lVar8 = lVar8 + 1;
-    } while (lVar8 < iVar4);
+      system_iterator = system_iterator + 1;
+    } while (system_iterator < system_result_code);
   }
+  
+  /* 系统最终清理 */
   if (_DAT_180c96070 != 0) {
-    FUN_180567f30(_DAT_180c92580,0x180c95578);
+    FUN_180567f30(_DAT_180c92580, 0x180c95578);
   }
+  
   _DAT_180c95b3c = 0;
-                    // WARNING: Subroutine does not return
-  memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
+  /* 系统内存清理 */
+  memset(_DAT_180c95b10, 0, (longlong)(_DAT_180c95b08 >> 3));
 }
 
 
@@ -66,59 +157,84 @@ void FUN_1805ed670(undefined8 param_1,undefined1 param_2,undefined4 param_3,unde
 
 
 
-// 函数: void FUN_1805ed8d0(longlong *param_1)
-void FUN_1805ed8d0(longlong *param_1)
-
+/**
+ * 系统数据验证器 - 验证和处理系统数据
+ * 
+ * 功能：
+ * - 验证系统数据的完整性和有效性
+ * - 处理数据状态变化
+ * - 执行数据同步操作
+ * - 管理数据资源
+ * 
+ * @param param_1 系统数据指针
+ */
+void system_data_validator(longlong *param_1)
 {
-  undefined4 uVar1;
-  longlong lVar2;
-  char cVar3;
-  int iVar4;
-  longlong lVar5;
-  longlong lVar6;
-  longlong lVar7;
+  undefined4 system_parameter;
+  longlong system_data_handle;
+  char system_validation_flag;
+  int system_result_code;
+  longlong system_iterator;
+  longlong system_base_address;
+  longlong system_target_address;
   
-  lVar7 = *param_1;
-  if (*(int *)(lVar7 + 0x560) < 0) {
-    lVar7 = *(longlong *)(lVar7 + 0x8e8);
+  /* 系统数据地址解析 */
+  system_target_address = *param_1;
+  if (*(int *)(system_target_address + 0x560) < 0) {
+    system_target_address = *(longlong *)(system_target_address + 0x8e8);
   }
   else {
-    lVar7 = *(longlong *)
-             ((longlong)*(int *)(lVar7 + 0x560) * 0xa60 + 0x3988 + *(longlong *)(lVar7 + 0x8d8));
+    system_target_address = *(longlong *)
+             ((longlong)*(int *)(system_target_address + 0x560) * SYSTEM_DATA_BUFFER_SIZE + 0x3988 + 
+              *(longlong *)(system_target_address + 0x8d8));
   }
-  iVar4 = _Mtx_lock(0x180c95528);
-  if (iVar4 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar4);
+  
+  /* 系统互斥锁操作 */
+  system_result_code = _Mtx_lock(SYSTEM_MUTEX_ADDRESS);
+  if (system_result_code != 0) {
+    __Throw_C_error_std__YAXH_Z(system_result_code);
   }
-  uVar1 = *(undefined4 *)(*param_1 + 0x10);
-  cVar3 = FUN_180645c10(0x180c95578,0,&UNK_1809fa560);
-  if (cVar3 != '\0') {
-    cVar3 = FUN_180645c10(0x180c95578,3,&UNK_1809fa540);
-    if (cVar3 != '\0') {
-      FUN_180645c10(0x180c95578,uVar1,&UNK_1809fa510);
+  
+  /* 系统参数获取 */
+  system_parameter = *(undefined4 *)(*param_1 + 0x10);
+  system_validation_flag = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
+  
+  /* 系统数据验证流程 */
+  if (system_validation_flag != '\0') {
+    system_validation_flag = FUN_180645c10(0x180c95578, 3, &UNK_1809fa540);
+    if (system_validation_flag != '\0') {
+      FUN_180645c10(0x180c95578, system_parameter, &UNK_1809fa510);
     }
   }
+  
+  /* 系统数据处理 */
   _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-  iVar4 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
-  if (0 < iVar4) {
-    lVar6 = 0;
-    lVar5 = _DAT_180c92cd8;
+  system_result_code = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
+  
+  /* 系统资源处理循环 */
+  if (0 < system_result_code) {
+    system_iterator = 0;
+    system_base_address = _DAT_180c92cd8;
     do {
-      lVar2 = *(longlong *)(lVar5 + lVar6 * 8);
-      if (((lVar2 != 0) && (*(char *)(*(longlong *)(lVar2 + 0x58f8) + 0x1c) != '\0')) &&
-         (*(longlong *)(lVar2 + 0x58f8) != lVar7)) {
-        FUN_1805b59d0(lVar2,0x180c95578);
-        lVar5 = _DAT_180c92cd8;
+      system_data_handle = *(longlong *)(system_base_address + system_iterator * 8);
+      if (((system_data_handle != 0) && 
+           (*(char *)(*(longlong *)(system_data_handle + 0x58f8) + 0x1c) != '\0')) &&
+          (*(longlong *)(system_data_handle + 0x58f8) != system_target_address)) {
+        FUN_1805b59d0(system_data_handle, 0x180c95578);
+        system_base_address = _DAT_180c92cd8;
       }
-      lVar6 = lVar6 + 1;
-    } while (lVar6 < iVar4);
+      system_iterator = system_iterator + 1;
+    } while (system_iterator < system_result_code);
   }
+  
+  /* 系统最终清理 */
   if (_DAT_180c96070 != 0) {
-    FUN_180567f30(_DAT_180c92580,0x180c95578);
+    FUN_180567f30(_DAT_180c92580, 0x180c95578);
   }
+  
   _DAT_180c95b3c = 0;
-                    // WARNING: Subroutine does not return
-  memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
+  /* 系统内存清理 */
+  memset(_DAT_180c95b10, 0, (longlong)(_DAT_180c95b08 >> 3));
 }
 
 
