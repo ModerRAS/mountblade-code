@@ -116,13 +116,13 @@ typedef struct {
 #define SystemMemoryPoolReallocator FUN_18066bdc0
 
 // 数据处理函数
-#define SystemDataProcessor FUN_1800a02a0
+#define SystemDataProcessor SystemDataProcessor
 #define SystemConfigurationValidator SystemConfigurationValidator
 #define SystemDataTransformer SystemDataTransformer
 #define SystemDataOptimizer SystemDataOptimizer
 #define SystemDataEnhancer SystemDataEnhancer
 #define SystemDataInitializer SystemDataInitializer
-#define SystemDataManager FUN_180627910
+#define SystemDataManager SystemDataManager
 #define SystemDataOrganizer FUN_180627340
 #define SystemDataHandler FUN_18010cbc0
 #define SystemDataConfigurator FUN_180631330
@@ -971,7 +971,7 @@ LAB_1803a6b28:
     FUN_180631000(param_2, &unknown_var_8720_ptr, (int64_t)param_1 + 0x2c);
     puVar1 = (int8_t *)((int64_t)param_1 + 0x2d);
     uVar14 = 0xfffffffffffffffe;
-    lVar6 = FUN_1800a02a0(param_2);
+    lVar6 = SystemDataProcessor(param_2);
     uVar8 = 0;
     if (lVar6 == 0) {
         return 0;
@@ -980,7 +980,7 @@ LAB_1803a6b28:
     if (*(int64_t *)(lVar6 + 8) != 0) {
         lVar9 = *(int64_t *)(lVar6 + 8);
     }
-    FUN_180627910(&puStack_30, lVar9);
+    SystemDataManager(&puStack_30, lVar9);
     uVar5 = uVar8;
     uVar7 = uVar8;
     if (uStack_20 != 0) {
