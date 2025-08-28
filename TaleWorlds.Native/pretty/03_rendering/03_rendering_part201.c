@@ -140,29 +140,29 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
  */
 void rendering_parameter_calculator_type1(void)
 {
-    float temp_float;
-    int int_param1;
-    int int_param2;
-    int int_param3;
-    int int_param4;
-    int int_param5;
-    int int_param6;
-    uint64_t temp_var;
-    longlong *long_ptr;
-    uint64_t *render_data_ptr1;
-    uint64_t *render_data_ptr2;
-    uint64_t *render_data_ptr3;
-    uint64_t *base_ptr;
-    longlong base_long;
-    longlong loop_counter1;
-    longlong context_ptr;
-    ulonglong *ulong_ptr;
-    longlong temp_long1;
-    float *float_ptr;
-    longlong loop_counter2;
-    longlong temp_long2;
-    uint64_t xmm0_temp;
-    ulonglong stack_param;
+    float temp_float;                      // 临时浮点数变量
+    int int_param1;                         // 整数参数1
+    int int_param2;                         // 整数参数2
+    int int_param3;                         // 整数参数3
+    int int_param4;                         // 整数参数4
+    int int_param5;                         // 整数参数5
+    int int_param6;                         // 整数参数6
+    uint64_t temp_var;                      // 临时64位无符号整数变量
+    longlong *long_ptr;                     // 长整型指针
+    uint64_t *render_data_ptr1;             // 渲染数据指针1
+    uint64_t *render_data_ptr2;             // 渲染数据指针2
+    uint64_t *render_data_ptr3;             // 渲染数据指针3
+    uint64_t *base_ptr;                     // 基础指针
+    longlong base_long;                     // 基础长整型变量
+    longlong loop_counter1;                 // 循环计数器1
+    longlong context_ptr;                   // 上下文指针
+    ulonglong *ulong_ptr;                   // 无符号长整型指针
+    longlong temp_long1;                    // 临时长整型变量1
+    float *float_ptr;                       // 浮点数指针
+    longlong loop_counter2;                 // 循环计数器2
+    longlong temp_long2;                    // 临时长整型变量2
+    uint64_t xmm0_temp;                     // XMM0寄存器临时变量
+    ulonglong stack_param;                 // 栈参数
     
     // 获取渲染系统上下文
     ulong_ptr = (ulonglong *)(context_ptr + RENDERING_OFFSET_0X3580);
