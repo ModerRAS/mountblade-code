@@ -85,7 +85,7 @@ typedef ulonglong ResourceCleanupFlags;          // 资源清理标志
  * @brief 数据验证器
  * 验证数据的完整性和有效性
  */
-#define DataValidator FUN_1806c6500
+#define DataValidator DataValidator
 
 /**
  * @brief 资源分配器
@@ -223,7 +223,23 @@ void SystemMemoryInitializer(void)
 
 
 
-int FUN_1806c4e90(longlong param_1,longlong *param_2)
+/**
+ * @brief 组件配置管理器
+ * 
+ * 管理组件的配置和参数设置：
+ * - 解析组件配置参数
+ * - 设置组件属性和状态
+ * - 管理组件之间的依赖关系
+ * - 验证配置的有效性
+ * 
+ * @param system_handle 系统句柄
+ * @param config_params 配置参数指针
+ * @return int 配置结果状态码
+ * 
+ * @note 该函数提供完整的组件配置管理功能
+ * @see SystemMemoryInitializer, DataValidator
+ */
+int ComponentConfigManager(longlong system_handle, longlong *config_params)
 
 {
   int32_t *puVar1;
@@ -280,7 +296,7 @@ int FUN_1806c4e90(longlong param_1,longlong *param_2)
   lStack_68 = param_2[10];
   lStack_60 = param_2[0xb];
   lStack_58 = param_2[0xc];
-  iVar5 = FUN_1806c6500(uStack_a8,&lStack_b8);
+  iVar5 = DataValidator(uStack_a8,&lStack_b8);
   lStack_b8 = *param_2;
   lStack_78 = param_2[8];
   uStack_a8 = (int32_t)param_2[2];
@@ -3958,7 +3974,7 @@ int FUN_1806c62d0(longlong param_1,longlong *param_2,int param_3)
 
 
 
-int FUN_1806c6500(longlong param_1,longlong *param_2,int param_3)
+int DataValidator(longlong param_1,longlong *param_2,int param_3)
 
 {
   int iVar1;

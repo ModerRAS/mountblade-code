@@ -110,10 +110,10 @@
 #define system_validation_pattern system_file_validation_pattern     // 系统验证模式
 #define system_config_base system_global_config_base          // 系统配置基础地址
 #define system_string_base system_global_string_base          // 系统字符串基础地址
-#define system_path_separator UNK_180a3c07c        // 系统路径分隔符
+#define system_path_separator system_path_separator_char        // 系统路径分隔符
 
 // 系统消息常量
-#define system_message_title UNK_180a0cf60         // 系统消息标题
+#define system_message_title system_error_title_string         // 系统消息标题
 #define system_message_text UNK_180a0cea0           // 系统消息文本
 #define system_message_format UNK_180a04f08        // 系统消息格式
 #define system_init_params UNK_180a0cfa0          // 系统初始化参数
