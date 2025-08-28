@@ -752,13 +752,50 @@ STATE_HANDLER_COMPLETE:
   
   // 清理安全cookie并退出
   // WARNING: Subroutine does not return
-  SystemCleaner(security_cookie ^ (ulonglong)security_buffer);
+  SystemCleaner(security_cookie ^ (ulonglong)local_buffer);
 }
 
 
 
+/* ============================================================================
+ * 技术架构和系统说明
+ * ============================================================================ */
+
+/**
+ * @brief 系统数据处理和状态管理模块技术架构
+ * 
+ * 架构设计：
+ * - 分层架构：数据层、状态层、配置层、资源管理层
+ * - 模块化设计：每个功能模块独立且可组合使用
+ * - 事件驱动：基于系统事件和状态变化触发相应操作
+ * - 资源管理：统一的资源分配、释放和生命周期管理
+ * 
+ * 核心功能模块：
+ * 1. 数据处理模块：SystemDataProcessor, SystemTransformer, SystemValidator
+ * 2. 状态管理模块：SystemStateProcessor, SystemStateValidator, SystemController
+ * 3. 配置管理模块：SystemConfigManager, SystemConfigInitializer, SystemParameterSetter
+ * 4. 资源管理模块：SystemCopier, SystemCleaner, SystemLockManager
+ * 5. 消息处理模块：SystemMessageProcessor, SystemQueueManager, SystemBufferManager
+ * 
+ * 性能优化策略：
+ * - 内存池管理：使用预分配的内存池减少动态分配开销
+ * - 缓存优化：合理使用缓存提高数据访问效率
+ * - 并发控制：使用锁机制保证线程安全
+ * - 批量处理：对大量数据进行批量操作提高效率
+ * 
+ * 安全考虑：
+ * - 栈保护：使用security_cookie防止栈溢出攻击
+ * - 输入验证：对所有输入参数进行严格验证
+ * - 错误处理：完善的错误处理和恢复机制
+ * - 资源清理：确保所有资源都能正确释放
+ * 
+ * 使用说明：
+ * 1. 初始化：调用SystemConfigManager进行系统初始化
+ * 2. 数据处理：使用SystemDataProcessor处理系统数据
+ * 3. 状态管理：通过SystemStateProcessor管理系统状态
+ * 4. 资源操作：使用SystemCopier等函数进行资源操作
+ * 5. 清理：调用SystemCleaner清理资源
+ */
+
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 

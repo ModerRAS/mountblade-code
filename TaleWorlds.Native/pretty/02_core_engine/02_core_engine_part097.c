@@ -1,7 +1,22 @@
-#include "TaleWorlds.Native.Split.h"
+/**
+ * @file 02_core_engine_part097.c
+ * @brief 核心引擎渲染队列管理和资源处理模块
+ * 
+ * 本模块是TaleWorlds引擎的核心组件，主要负责：
+ * - 渲染队列的创建、管理和优化
+ * - 渲染条目的添加、移除和批量处理
+ * - 渲染资源的动态分配和释放
+ * - 渲染状态的监控和控制
+ * - 内存管理和性能优化
+ * 
+ * 该文件包含8个核心函数，提供了完整的渲染队列管理功能。
+ * 
+ * @version 1.0
+ * @date 2025-08-28
+ * @author Claude Code
+ */
 
-// 02_core_engine_part097.c - 核心引擎模块第097部分
-// 包含渲染队列管理和资源处理相关功能
+#include "TaleWorlds.Native.Split.h"
 
 /**
  * 初始化渲染队列管理器
