@@ -742,7 +742,7 @@ uint64_t FUN_18066c6c0(int64_t param_1)
   func_0x00018066e220();
   func_0x00018066e360();
   if (*(int64_t *)(param_1 + 0x30) == 0) {
-    lVar2 = FUN_18066e8f0(1);
+    lVar2 = CoreSystem_MemoryController0(1);
     *(int64_t *)(param_1 + 0x30) = lVar2;
     *(int32_t *)(lVar2 + 8) = *(int32_t *)(param_1 + 0x20);
     *(int32_t *)(lVar2 + 0xe4) = 0x10;
