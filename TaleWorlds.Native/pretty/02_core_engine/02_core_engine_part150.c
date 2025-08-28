@@ -631,7 +631,7 @@ void update_render_target(int64_t engine_ptr, uint32_t *target_params, int64_t s
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
                     // 警告: 子函数不返回
-    FUN_180059ba0(target_texture,SYSTEM_DATA_MANAGER_B);
+    SystemResourceCleaner(target_texture,SYSTEM_DATA_MANAGER_B);
   }
   FUN_180122160(*(uint64_t *)(engine_ptr + 0x2df8),*source_texture,0);
   FUN_180136ab0(source_texture);
@@ -639,7 +639,7 @@ void update_render_target(int64_t engine_ptr, uint32_t *target_params, int64_t s
     *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }
                     // 警告: 子函数不返回
-  FUN_180059ba0(source_texture,SYSTEM_DATA_MANAGER_B);
+  SystemResourceCleaner(source_texture,SYSTEM_DATA_MANAGER_B);
 }
 
 
