@@ -262,37 +262,35 @@ void rendering_system_process_render_batches(void)
 
 
 
-// 函数: void FUN_180308c30(longlong *param_1,longlong *param_2,longlong param_3,longlong *param_4)
-void FUN_180308c30(longlong *param_1,longlong *param_2,longlong param_3,longlong *param_4)
-
+// 渲染管线执行函数
+void rendering_system_execute_render_pipeline(longlong *param_1, longlong *param_2, longlong param_3, longlong *param_4)
 {
-  uint uVar1;
-  int iVar2;
-  longlong **pplVar3;
-  char cVar4;
-  uint uVar5;
-  uint uVar6;
-  longlong lVar7;
-  longlong lVar8;
-  longlong lVar9;
-  longlong *plStackX_8;
-  longlong *plStackX_10;
-  longlong lStackX_18;
-  longlong *plStackX_20;
-  longlong lStack_b8;
-  undefined8 uStack_b0;
-  undefined8 auStack_a8 [2];
-  longlong lStack_98;
-  longlong lStack_90;
-  longlong lStack_88;
-  longlong lStack_80;
-  longlong **pplStack_78;
-  int iStack_70;
-  undefined4 uStack_6c;
-  undefined8 uStack_68;
-  longlong **pplStack_60;
-  longlong lStack_58;
-  longlong lStack_50;
+    uint data_index_1;
+    int data_range;
+    longlong **data_table_ptr;
+    char comparison_result;
+    uint data_index_2;
+    uint data_index_3;
+    longlong loop_counter;
+    longlong data_range_size;
+    longlong base_data_ptr;
+    longlong *temp_data_ptr_1;
+    longlong *temp_data_ptr_2;
+    longlong stack_offset_1;
+    longlong *temp_data_ptr_3;
+    undefined8 temp_data_value;
+    undefined8 temp_array[2];
+    longlong temp_data_1;
+    longlong temp_data_2;
+    longlong temp_data_3;
+    longlong temp_data_4;
+    longlong **temp_table_ptr;
+    int stack_index;
+    undefined4 stack_flags;
+    undefined8 stack_guard;
+    longlong **temp_data_ptr_4;
+    longlong temp_data_5;
+    longlong temp_data_6;
   
   uStack_68 = 0xfffffffffffffffe;
   pplVar3 = (longlong **)*param_1;
