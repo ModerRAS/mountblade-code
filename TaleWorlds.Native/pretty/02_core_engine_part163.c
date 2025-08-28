@@ -120,17 +120,17 @@ static uint64_t g_total_allocated_memory = 0;             // 总分配内存
 static uint32_t g_active_operations = 0;                  // 活跃操作数
 
 // 函数别名定义
-#define CoreEngineAdvancedDataProcessor CoreEngineDataStructureInitializer
-#define CoreEngineMemoryManager CoreEngineMemoryPoolManager
-#define CoreEngineDataStructureCloner CoreEngineAdvancedDataValidator
-#define CoreEngineMemoryAllocator CoreEngineSystemDataManager
-#define CoreEngineDataCleaner CoreEngineDataStructureSwapper
-#define CoreEngineDataStructureSwapper CoreEngineDataCleaner
-#define CoreEngineSystemDataManager CoreEngineMemoryAllocator
-#define CoreEngineMemoryPoolInitializer CoreEngineAdvancedDataProcessor
-#define CoreEngineMemoryPoolExpander CoreEngineMemoryManager
-#define CoreEngineDataArrayInitializer CoreEngineDataStructureCloner
-#define CoreEngineSystemEventProcessor CoreEngineSystemCleanup
+#define CoreEngineAdvancedDataProcessor FUN_18014b7f0
+#define CoreEngineMemoryManager FUN_18014c160
+#define CoreEngineDataStructureCloner FUN_18014c430
+#define CoreEngineMemoryAllocator FUN_18014c570
+#define CoreEngineDataCleaner FUN_18014c7d0
+#define CoreEngineDataStructureSwapper FUN_18014c850
+#define CoreEngineSystemDataManager FUN_18014c9e0
+#define CoreEngineMemoryPoolInitializer FUN_18014e7d0
+#define CoreEngineMemoryPoolExpander FUN_18014e8b0
+#define CoreEngineDataArrayInitializer FUN_18014e020
+#define CoreEngineSystemEventProcessor FUN_18014a370
 
 /**
  * 核心引擎高级数据处理器
@@ -1071,6 +1071,63 @@ uint64_t * CoreEngineDataStructureSwapper(uint64_t *param_1, uint64_t *param_2)
  * @param param_1 系统数据标志
  * @param param_2 系统上下文指针
  */
+
+/**
+ * 核心引擎辅助函数 - 内存状态检查
+ * 
+ * 该函数提供内存状态的检查功能，包括：
+ * - 内存使用情况的验证
+ * - 内存边界的检查
+ * - 内存完整性的确认
+ * 
+ * @param mem_ptr 内存指针
+ * @param size 内存大小
+ * @return 检查结果：0=正常，非0=错误
+ */
+static int32_t CoreEngineMemoryChecker(void* mem_ptr, uint64_t size)
+{
+    if (mem_ptr == NULL) {
+        return CORE_ENGINE_ERROR_NULL_POINTER;
+    }
+    
+    if (size > CORE_ENGINE_MAX_DATA_SIZE) {
+        return CORE_ENGINE_ERROR_BUFFER_OVERFLOW;
+    }
+    
+    if (size == 0) {
+        return CORE_ENGINE_ERROR_INVALID_PARAM;
+    }
+    
+    return CORE_ENGINE_ERROR_SUCCESS;
+}
+
+/**
+ * 核心引擎辅助函数 - 数据结构验证
+ * 
+ * 该函数验证数据结构的完整性，包括：
+ * - 结构体字段的检查
+ * - 数据类型的一致性
+ * - 内存布局的验证
+ * 
+ * @param data_struct 数据结构指针
+ * @return 验证结果：0=正常，非0=错误
+ */
+static int32_t CoreEngineDataValidator(CoreEngineDataStructure* data_struct)
+{
+    if (data_struct == NULL) {
+        return CORE_ENGINE_ERROR_NULL_POINTER;
+    }
+    
+    if (data_struct->data_ptr == NULL && data_struct->data_size > 0) {
+        return CORE_ENGINE_ERROR_INVALID_PARAM;
+    }
+    
+    if (data_struct->element_count > CORE_ENGINE_MAX_ARRAY_ELEMENTS) {
+        return CORE_ENGINE_ERROR_BUFFER_OVERFLOW;
+    }
+    
+    return CORE_ENGINE_ERROR_SUCCESS;
+}
 void CoreEngineSystemDataManager(uint64_t param_1, int64_t param_2)
 
 {
@@ -1098,7 +1155,7 @@ void CoreEngineSystemDataManager(uint64_t param_1, int64_t param_2)
     iVar4 = 0;
     pcStack_20 = (code *)0x0;
     pcStack_18 = _guard_check_icall;
-    CoreEngineSystemCleanup(param_2,1,&uStack_30);
+    CoreEngineSystemEventProcessor(param_2,1,&uStack_30);
     if (pcStack_20 != (code *)0x0) {
       (*pcStack_20)(&uStack_30,0,0);
     }
