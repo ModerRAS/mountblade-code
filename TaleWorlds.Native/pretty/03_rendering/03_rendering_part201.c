@@ -56,7 +56,11 @@
 
 /** 渲染系统索引常量 */
 #define RENDERING_INDEX_2                2             /** 渲染基础索引 */
+#define RENDERING_INDEX_3                3             /** 渲染矩阵索引 */
 #define RENDERING_INDEX_4                4             /** 渲染数据索引 */
+#define RENDERING_INDEX_5                5             /** 渲染扩展索引 */
+#define RENDERING_INDEX_6                6             /** 渲染状态索引 */
+#define RENDERING_INDEX_7                7             /** 渲染控制索引 */
 #define RENDERING_INDEX_8                8             /** 渲染步进索引 */
 #define RENDERING_INDEX_0XC              0xc            /** 渲染偏移索引 */
 #define RENDERING_INDEX_0X10             0x10           /** 渲染扩展索引 */
