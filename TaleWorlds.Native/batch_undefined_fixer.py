@@ -22,8 +22,21 @@ TYPE_MAPPING = {
 def fix_undefined_types_in_file(file_path):
     """修复单个文件中的 undefined 类型"""
     try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            content = f.read()
+        # 尝试用不同编码读取文件
+        content = None
+        encodings = ['utf-8', 'gbk', 'gb2312', 'latin1']
+        
+        for encoding in encodings:
+            try:
+                with open(file_path, 'r', encoding=encoding) as f:
+                    content = f.read()
+                break
+            except UnicodeDecodeError:
+                continue
+        
+        if content is None:
+            print(f"无法解码文件: {file_path}")
+            return False
         
         original_content = content
         changes_made = False
@@ -43,7 +56,7 @@ def fix_undefined_types_in_file(file_path):
         
         # 如果有修改，保存文件
         if changes_made:
-            with open(file_path, 'w', encoding='utf-8') as f:
+            with open(file_path, 'w', encoding='utf-8', errors='replace') as f:
                 f.write(content)
             return True
         else:
