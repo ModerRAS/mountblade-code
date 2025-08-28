@@ -49,6 +49,10 @@
 // 系统对象管理地址
 #define SYSTEM_OBJECT_MANAGER_ADDR      0x180957f70   // 系统对象管理器地址
 
+// 系统缓冲区管理地址
+#define SYSTEM_BUFFER_EA98_ADDR        0x180c4ea98   // 系统缓冲区EA98地址
+#define SYSTEM_BUFFER_EA94_ADDR        0x180c4ea94   // 系统缓冲区EA94地址
+
 //------------------------------------------------------------------------------
 // 系统偏移量定义
 //------------------------------------------------------------------------------
@@ -91,6 +95,12 @@
 
 // 系统对象管理器访问宏
 #define GET_OBJECT_MANAGER()           (*(uint64_t*)SYSTEM_OBJECT_MANAGER_ADDR)
+
+// 系统缓冲区访问宏
+#define GET_BUFFER_EA98()              (*(int32_t*)SYSTEM_BUFFER_EA98_ADDR)
+#define SET_BUFFER_EA98(value)         (*(int32_t*)SYSTEM_BUFFER_EA98_ADDR = (value))
+#define GET_BUFFER_EA94()              (*(int32_t*)SYSTEM_BUFFER_EA94_ADDR)
+#define SET_BUFFER_EA94(value)         (*(int32_t*)SYSTEM_BUFFER_EA94_ADDR = (value))
 
 //------------------------------------------------------------------------------
 // 系统初始化状态检查宏

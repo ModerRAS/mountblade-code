@@ -51,6 +51,13 @@ static uint64_t* exception_handler_ptr = (uint64_t*)0x180d493f8;        // 异�
 static const uint64_t SYSTEM_DEFAULT_VALUE = 0x18098bcb0;               // 系统默认值
 static const uint64_t SYSTEM_INIT_VALUE = 0x180a3c3e0;                  // 系统初始化值
 
+// =============================================================================
+// 函数声明 (Function Declarations)
+// =============================================================================
+
+// 回调函数声明
+static void utilities_system_callback_handler(void* context, uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4);
+
 // 工具函数模块常量定义
 #define UTILITIES_FLAG_NEGATIVE_0x3FFFFFFB -0x3ffffffb  // 负数标志位
 #define UTILITIES_FLAG_MASK_0x3F 0x3f                    // 标志掩码
@@ -467,6 +474,7 @@ static uint64_t* system_memory_state_1d50 = (uint64_t*)0x180c91d50;         // �
 
 // 异常处理相关变量
 static void* ExceptionList = (void*)0x180d493f8;                          // 异常列表指针
+static uint64_t system_cache_config = 0x180bfc140;                       // 系统缓存配置
 
 // 工具系统附加指针
 static uint64_t* utilities_system_additional_ptr_1 = (uint64_t*)0x180bf72b0; // 工具系统附加指针1
@@ -1382,7 +1390,11 @@ void utilities_system_state_cleaner_and_terminator(void)
       utilities_system_error_handler();
     }
     if (*system_sync_handler_ptr != 0) {
-      (**(code **)(**system_sync_handler_ptr + 0x38))();
+      uint64_t handler_val = *system_sync_handler_ptr;
+      uint64_t* handler_ptr = (uint64_t*)handler_val;
+      uint64_t func_ptr_val = *handler_ptr + 0x38;
+      void (*func_ptr)(void) = (void (*)(void))func_ptr_val;
+      func_ptr();
     }
     if (*system_sync_flag_ptr != 0) {
                     // WARNING: Subroutine does not return
@@ -2139,7 +2151,7 @@ void utilities_system_callback_handler_1(uint64_t param_1,uint64_t param_2,uint6
   puVar2 = *system_callback_start_ptr;
   if (*system_callback_start_ptr != *system_callback_end_ptr) {
     do {
-      (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+      ((void (*)(void*, uint64_t, uint64_t, uint64_t, uint64_t))*puVar2)(puVar2,0,param_3,param_4,uVar3);
       puVar2 = puVar2 + 0xb;
     } while (puVar2 != puVar1);
   }
@@ -2168,7 +2180,7 @@ void utilities_system_callback_handler_2(uint64_t param_1,uint64_t param_2,uint6
   puVar2 = *system_callback_start_ptr_2;
   if (*system_callback_start_ptr_2 != *system_callback_end_ptr_2) {
     do {
-      (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+      ((void (*)(void*, uint64_t, uint64_t, uint64_t, uint64_t))*puVar2)(puVar2,0,param_3,param_4,uVar3);
       puVar2 = puVar2 + 0xb;
     } while (puVar2 != puVar1);
   }
@@ -2197,7 +2209,7 @@ void utilities_system_callback_handler_3(uint64_t param_1,uint64_t param_2,uint6
   puVar2 = *system_callback_start_ptr_3;
   if (*system_callback_start_ptr_3 != *system_callback_end_ptr_3) {
     do {
-      (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+      ((void (*)(void*, uint64_t, uint64_t, uint64_t, uint64_t))*puVar2)(puVar2,0,param_3,param_4,uVar3);
       puVar2 = puVar2 + 0xb;
     } while (puVar2 != puVar1);
   }
