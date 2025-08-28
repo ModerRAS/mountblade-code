@@ -381,69 +381,88 @@ void FUN_180369890(undefined8 param_1)
 
 
 
-// 函数: void FUN_180369d50(longlong param_1)
-void FUN_180369d50(longlong param_1)
-
-{
-  float fVar1;
-  longlong lVar2;
-  int iVar3;
-  float fVar4;
-  undefined4 uVar5;
-  float fVar6;
-  float fVar7;
-  
-  lVar2 = FUN_1802e8fb0(*(undefined8 *)(param_1 + 0x18));
-  if (lVar2 != 0) {
-    fVar1 = *(float *)(param_1 + 0x78);
-    fVar6 = *(float *)(param_1 + 0x74) + fVar1;
-    fVar7 = fVar6 + *(float *)(param_1 + 0x7c);
-    fVar4 = (float)fmodf((float)(*(longlong *)(&DAT_180c8ed30 + (longlong)_DAT_180c91f50 * 8) -
-                                _DAT_180c91f48) * 1e-05 + *(float *)(param_1 + 0x88));
-    if (fVar4 <= fVar7) {
-      if (fVar4 <= fVar6) {
-        if (fVar4 <= fVar1) {
-          iVar3 = 0;
+/**
+ * 渲染系统颜色插值计算器 - 基础版本
+ * 
+ * 根据时间和参数计算颜色插值值，支持多种插值模式。
+ * 用于实现颜色渐变、时间相关的颜色变化等效果。
+ * 
+ * @param render_context 渲染上下文指针
+ * 
+ * 计算流程：
+ * 1. 获取渲染对象和基础颜色参数
+ * 2. 计算时间相关的插值因子
+ * 3. 确定插值区间和模式
+ * 4. 应用相应的插值算法
+ * 5. 设置最终颜色值
+ */
+void RenderingSystem_ColorInterpolatorBase(longlong render_context) {
+    // 获取渲染对象句柄
+    longlong render_object = FUN_1802e8fb0(*(undefined8 *)(render_context + 0x18));
+    if (render_object == 0) {
+        return;
+    }
+    
+    // 获取颜色区间参数
+    float color_range_start = *(float *)(render_context + 0x78);
+    float color_range_mid = *(float *)(render_context + 0x74) + color_range_start;
+    float color_range_end = color_range_mid + *(float *)(render_context + 0x7c);
+    
+    // 计算时间相关的插值因子
+    float interpolation_factor = (float)fmodf(
+        (float)(*(longlong *)(&DAT_180c8ed30 + (longlong)_DAT_180c91f50 * 8) - _DAT_180c91f48) * 1e-05 + 
+        *(float *)(render_context + 0x88)
+    );
+    
+    // 确定插值区间和模式
+    int interpolation_mode;
+    float normalized_factor;
+    
+    if (interpolation_factor <= color_range_end) {
+        if (interpolation_factor <= color_range_mid) {
+            if (interpolation_factor <= color_range_start) {
+                interpolation_mode = 0; // 使用起始颜色
+            } else {
+                interpolation_mode = 3; // 起始到中间的插值
+                normalized_factor = interpolation_factor - color_range_start;
+            }
+        } else {
+            interpolation_mode = 1; // 中间到结束的插值
+            normalized_factor = interpolation_factor - color_range_mid;
         }
-        else {
-          iVar3 = 3;
-          fVar4 = fVar4 - fVar1;
-        }
-      }
-      else {
-        iVar3 = 1;
-        fVar4 = fVar4 - fVar6;
-      }
+    } else {
+        interpolation_mode = 2; // 结束颜色区域
+        normalized_factor = interpolation_factor - color_range_end;
     }
-    else {
-      iVar3 = 2;
-      fVar4 = fVar4 - fVar7;
-    }
-    uVar5 = 0;
-    if (iVar3 == 0) {
-      uVar5 = *(undefined4 *)(param_1 + 0x80);
-    }
-    else {
-      if (iVar3 == 1) {
-        *(undefined4 *)(lVar2 + 0xe4) = *(undefined4 *)(param_1 + 0x84);
+    
+    // 应用插值算法
+    undefined4 final_color = 0;
+    
+    if (interpolation_mode == 0) {
+        // 直接使用起始颜色
+        final_color = *(undefined4 *)(render_context + 0x80);
+    } else if (interpolation_mode == 1) {
+        // 使用中间颜色
+        *(undefined4 *)(render_object + 0xe4) = *(undefined4 *)(render_context + 0x84);
         return;
-      }
-      if (iVar3 == 2) {
-        fVar4 = fVar4 / *(float *)(param_1 + 0x70);
-        *(float *)(lVar2 + 0xe4) =
-             (1.0 - fVar4) * *(float *)(param_1 + 0x84) + fVar4 * *(float *)(param_1 + 0x80);
+    } else if (interpolation_mode == 2) {
+        // 中间到结束颜色的线性插值
+        normalized_factor = normalized_factor / *(float *)(render_context + 0x70);
+        *(float *)(render_object + 0xe4) = 
+            (1.0 - normalized_factor) * *(float *)(render_context + 0x84) + 
+            normalized_factor * *(float *)(render_context + 0x80);
         return;
-      }
-      if (iVar3 == 3) {
-        fVar4 = fVar4 / *(float *)(param_1 + 0x74);
-        *(float *)(lVar2 + 0xe4) =
-             (1.0 - fVar4) * *(float *)(param_1 + 0x80) + fVar4 * *(float *)(param_1 + 0x84);
+    } else if (interpolation_mode == 3) {
+        // 起始到中间颜色的线性插值
+        normalized_factor = normalized_factor / *(float *)(render_context + 0x74);
+        *(float *)(render_object + 0xe4) = 
+            (1.0 - normalized_factor) * *(float *)(render_context + 0x80) + 
+            normalized_factor * *(float *)(render_context + 0x84);
         return;
-      }
     }
-    *(undefined4 *)(lVar2 + 0xe4) = uVar5;
-  }
-  return;
+    
+    // 设置最终颜色
+    *(undefined4 *)(render_object + 0xe4) = final_color;
 }
 
 
@@ -452,68 +471,86 @@ void FUN_180369d50(longlong param_1)
 
 
 
-// 函数: void FUN_180369d8d(longlong param_1)
-void FUN_180369d8d(longlong param_1)
-
-{
-  float fVar1;
-  longlong in_RAX;
-  int iVar2;
-  longlong unaff_RBX;
-  longlong unaff_RDI;
-  float fVar3;
-  undefined4 uVar4;
-  float fVar5;
-  float fVar6;
-  
-  fVar1 = *(float *)(unaff_RBX + 0x78);
-  fVar5 = *(float *)(unaff_RBX + 0x74) + fVar1;
-  fVar6 = fVar5 + *(float *)(unaff_RBX + 0x7c);
-  fVar3 = (float)fmodf((float)(*(longlong *)(param_1 + in_RAX * 8) - _DAT_180c91f48) * 1e-05 +
-                       *(float *)(unaff_RBX + 0x88));
-  if (fVar3 <= fVar6) {
-    if (fVar3 <= fVar5) {
-      if (fVar3 <= fVar1) {
-        iVar2 = 0;
-      }
-      else {
-        iVar2 = 3;
-        fVar3 = fVar3 - fVar1;
-      }
+/**
+ * 渲染系统颜色插值计算器 - 高级版本
+ * 
+ * 基于索引和寄存器参数的高级颜色插值计算器。
+ * 支持更复杂的插值算法和寄存器优化。
+ * 
+ * @param color_index 颜色索引表指针
+ * @param register_base 基础寄存器值（通过寄存器传递）
+ * @param dest_register 目标寄存器（通过寄存器传递）
+ * @param array_index 数组索引（通过寄存器传递）
+ * 
+ * 计算流程：
+ * 1. 从寄存器获取颜色参数
+ * 2. 基于索引计算插值因子
+ * 3. 确定插值区间和模式
+ * 4. 应用高级插值算法
+ * 5. 将结果写入目标寄存器
+ */
+void RenderingSystem_ColorInterpolatorAdvanced(longlong color_index, longlong register_base, 
+                                              longlong dest_register, longlong array_index) {
+    // 从寄存器获取颜色区间参数
+    float color_range_start = *(float *)(register_base + 0x78);
+    float color_range_mid = *(float *)(register_base + 0x74) + color_range_start;
+    float color_range_end = color_range_mid + *(float *)(register_base + 0x7c);
+    
+    // 基于索引计算插值因子
+    float interpolation_factor = (float)fmodf(
+        (float)(*(longlong *)(color_index + array_index * 8) - _DAT_180c91f48) * 1e-05 +
+        *(float *)(register_base + 0x88)
+    );
+    
+    // 确定插值区间和模式
+    int interpolation_mode;
+    float normalized_factor;
+    
+    if (interpolation_factor <= color_range_end) {
+        if (interpolation_factor <= color_range_mid) {
+            if (interpolation_factor <= color_range_start) {
+                interpolation_mode = 0; // 使用起始颜色
+            } else {
+                interpolation_mode = 3; // 起始到中间的插值
+                normalized_factor = interpolation_factor - color_range_start;
+            }
+        } else {
+            interpolation_mode = 1; // 中间到结束的插值
+            normalized_factor = interpolation_factor - color_range_mid;
+        }
+    } else {
+        interpolation_mode = 2; // 结束颜色区域
+        normalized_factor = interpolation_factor - color_range_end;
     }
-    else {
-      iVar2 = 1;
-      fVar3 = fVar3 - fVar5;
+    
+    // 应用高级插值算法
+    undefined4 final_color = 0;
+    
+    if (interpolation_mode == 0) {
+        // 直接使用起始颜色
+        final_color = *(undefined4 *)(register_base + 0x80);
+    } else if (interpolation_mode == 1) {
+        // 使用中间颜色
+        *(undefined4 *)(dest_register + 0xe4) = *(undefined4 *)(register_base + 0x84);
+        return;
+    } else if (interpolation_mode == 2) {
+        // 中间到结束颜色的线性插值
+        normalized_factor = normalized_factor / *(float *)(register_base + 0x70);
+        *(float *)(dest_register + 0xe4) = 
+            (1.0 - normalized_factor) * *(float *)(register_base + 0x84) + 
+            normalized_factor * *(float *)(register_base + 0x80);
+        return;
+    } else if (interpolation_mode == 3) {
+        // 起始到中间颜色的线性插值
+        normalized_factor = normalized_factor / *(float *)(register_base + 0x74);
+        *(float *)(dest_register + 0xe4) = 
+            (1.0 - normalized_factor) * *(float *)(register_base + 0x80) + 
+            normalized_factor * *(float *)(register_base + 0x84);
+        return;
     }
-  }
-  else {
-    iVar2 = 2;
-    fVar3 = fVar3 - fVar6;
-  }
-  uVar4 = 0;
-  if (iVar2 == 0) {
-    uVar4 = *(undefined4 *)(unaff_RBX + 0x80);
-  }
-  else {
-    if (iVar2 == 1) {
-      *(undefined4 *)(unaff_RDI + 0xe4) = *(undefined4 *)(unaff_RBX + 0x84);
-      return;
-    }
-    if (iVar2 == 2) {
-      fVar3 = fVar3 / *(float *)(unaff_RBX + 0x70);
-      *(float *)(unaff_RDI + 0xe4) =
-           (1.0 - fVar3) * *(float *)(unaff_RBX + 0x84) + fVar3 * *(float *)(unaff_RBX + 0x80);
-      return;
-    }
-    if (iVar2 == 3) {
-      fVar3 = fVar3 / *(float *)(unaff_RBX + 0x74);
-      *(float *)(unaff_RDI + 0xe4) =
-           (1.0 - fVar3) * *(float *)(unaff_RBX + 0x80) + fVar3 * *(float *)(unaff_RBX + 0x84);
-      return;
-    }
-  }
-  *(undefined4 *)(unaff_RDI + 0xe4) = uVar4;
-  return;
+    
+    // 设置最终颜色到目标寄存器
+    *(undefined4 *)(dest_register + 0xe4) = final_color;
 }
 
 
