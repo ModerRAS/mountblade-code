@@ -186,51 +186,54 @@ void safe_exit_program(undefined8 param1, undefined4 exit_code)
 
 
 
-// 函数: void FUN_180055fa0(void)
-void FUN_180055fa0(void)
+/**
+ * 初始化系统配置
+ * 线程安全地初始化系统配置数据
+ */
+void initialize_system_configuration(void)
 
 {
-  undefined8 *puVar1;
-  undefined8 uVar2;
-  char *pcVar3;
-  int iVar4;
-  char *pcVar5;
+  undefined8 *config_ptr;
+  undefined8 old_config;
+  char *base_config;
+  int lock_result;
+  char *config_item;
   undefined8 in_R9;
-  undefined8 uVar6;
+  undefined8 config_flag;
   
-  pcVar3 = _DAT_180c8a9d8;
-  uVar6 = 0xfffffffffffffffe;
+  base_config = _DAT_180c8a9d8;
+  config_flag = 0xfffffffffffffffe;
   if (*_DAT_180c8a9d8 != '\0') {
-    puVar1 = (undefined8 *)*_DAT_180c86960;
-    iVar4 = _Mtx_lock(0x180c91970);
-    if (iVar4 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar4);
+    config_ptr = (undefined8 *)*_DAT_180c86960;
+    lock_result = _Mtx_lock(0x180c91970);
+    if (lock_result != 0) {
+      __Throw_C_error_std__YAXH_Z(lock_result);
     }
-    uVar2 = _DAT_180c8a9b0;
-    _DAT_180c8a9b0 = *puVar1;
-    FUN_1801299b0(&UNK_1809fd9a0,0,0,in_R9,uVar6);
-    FUN_18010f010(&UNK_1809fd9b0,*(undefined4 *)(pcVar3 + 4));
-    FUN_18010f010(&UNK_1809fd9d0,*(undefined4 *)(pcVar3 + 8));
-    FUN_18010f010(&UNK_1809fd9f0,*(undefined4 *)(pcVar3 + 0xc));
-    FUN_18010f010(&UNK_1809fda10,*(undefined4 *)(pcVar3 + 0x10));
-    FUN_18010f010(&UNK_1809fda30,*(undefined4 *)(pcVar3 + 0x14));
-    FUN_18010f010(&UNK_1809fda58,*(undefined4 *)(pcVar3 + 0x18));
-    for (pcVar5 = *(char **)(pcVar3 + 0x28); pcVar5 != pcVar3 + 0x20;
-        pcVar5 = (char *)func_0x00018066bd70(pcVar5)) {
-      FUN_18010f010(&UNK_1809fda80,*(undefined4 *)(pcVar5 + 0x20),*(undefined4 *)(pcVar5 + 0x24));
+    old_config = _DAT_180c8a9b0;
+    _DAT_180c8a9b0 = *config_ptr;
+    FUN_1801299b0(&UNK_1809fd9a0, 0, 0, in_R9, config_flag);
+    FUN_18010f010(&UNK_1809fd9b0, *(undefined4 *)(base_config + 4));
+    FUN_18010f010(&UNK_1809fd9d0, *(undefined4 *)(base_config + 8));
+    FUN_18010f010(&UNK_1809fd9f0, *(undefined4 *)(base_config + 0xc));
+    FUN_18010f010(&UNK_1809fda10, *(undefined4 *)(base_config + 0x10));
+    FUN_18010f010(&UNK_1809fda30, *(undefined4 *)(base_config + 0x14));
+    FUN_18010f010(&UNK_1809fda58, *(undefined4 *)(base_config + 0x18));
+    for (config_item = *(char **)(base_config + 0x28); config_item != base_config + 0x20;
+        config_item = (char *)func_0x00018066bd70(config_item)) {
+      FUN_18010f010(&UNK_1809fda80, *(undefined4 *)(config_item + 0x20), *(undefined4 *)(config_item + 0x24));
     }
-    for (pcVar5 = *(char **)(pcVar3 + 0x58); pcVar5 != pcVar3 + 0x50;
-        pcVar5 = (char *)func_0x00018066bd70(pcVar5)) {
-      FUN_18010f010(&UNK_1809fdaa8,*(undefined4 *)(pcVar5 + 0x20),*(undefined4 *)(pcVar5 + 0x24));
+    for (config_item = *(char **)(base_config + 0x58); config_item != base_config + 0x50;
+        config_item = (char *)func_0x00018066bd70(config_item)) {
+      FUN_18010f010(&UNK_1809fdaa8, *(undefined4 *)(config_item + 0x20), *(undefined4 *)(config_item + 0x24));
     }
-    FUN_18010f010(&UNK_1809fdad0,*(undefined4 *)(pcVar3 + 0x80));
-    FUN_18010f010(&UNK_1809fdaf8,*(undefined4 *)(pcVar3 + 0x84));
-    FUN_18010f010(&UNK_1809fdb20,*(undefined4 *)(pcVar3 + 0x88));
+    FUN_18010f010(&UNK_1809fdad0, *(undefined4 *)(base_config + 0x80));
+    FUN_18010f010(&UNK_1809fdaf8, *(undefined4 *)(base_config + 0x84));
+    FUN_18010f010(&UNK_1809fdb20, *(undefined4 *)(base_config + 0x88));
     FUN_18012cfe0();
-    _DAT_180c8a9b0 = uVar2;
-    iVar4 = _Mtx_unlock(0x180c91970);
-    if (iVar4 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar4);
+    _DAT_180c8a9b0 = old_config;
+    lock_result = _Mtx_unlock(0x180c91970);
+    if (lock_result != 0) {
+      __Throw_C_error_std__YAXH_Z(lock_result);
     }
   }
   return;
