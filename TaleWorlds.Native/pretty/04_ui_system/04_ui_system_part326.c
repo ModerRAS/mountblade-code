@@ -12,13 +12,28 @@
 // - 事件分发和处理
 // - 控件状态管理
 // - 数据结构操作
+// - 错误处理和资源清理
+// - 数据转换和类型检查
 //
 // 核心函数：
-// - UISystemControlValidator: UI系统控件验证器
-// - UISystemStringProcessor: UI系统字符串处理器
-// - UISystemMemoryManager: UI系统内存管理器
-// - UISystemEventHandler: UI系统事件处理器
-// - UISystemControlStateManager: UI系统控件状态管理器
+// - UISystemControlValidator: UI系统控件验证器 (FUN_180848dc0)
+// - UISystemStringProcessor: UI系统字符串处理器 (FUN_180848e50)
+// - UISystemStringFormatter: UI系统字符串格式化器 (FUN_180848e82)
+// - UISystemDataConverter: UI系统数据转换器 (FUN_180848f4e)
+// - UISystemErrorHandler: UI系统错误处理器 (FUN_180848ff1)
+// - UISystemResourceCleaner: UI系统资源清理器 (FUN_18084900b)
+// - UISystemMemoryAllocator: UI系统内存分配器 (FUN_180849030)
+// - UISystemMemoryReallocator: UI系统内存重新分配器 (FUN_180849054)
+// - UISystemMemoryErrorHandler: UI系统内存分配失败处理器 (FUN_180849104)
+// - UISystemStructAllocator: UI系统结构体分配器 (FUN_180849120)
+// - UISystemStructReallocator: UI系统结构体重新分配器 (FUN_180849144)
+// - UISystemStructErrorHandler: UI系统结构体分配失败处理器 (FUN_180849219)
+// - UISystemEventDispatcher: UI系统事件分发器 (FUN_180849230)
+// - UISystemEventProcessor: UI系统事件处理器 (FUN_180849360)
+// - UISystemMessageHandler: UI系统消息处理器 (FUN_180849490)
+// - UISystemDataValidator: UI系统数据验证器 (FUN_180849600)
+// - UISystemControlUpdater: UI系统控件更新器 (FUN_1808496c0)
+// - UISystemControlStateUpdater: UI系统控件状态更新器 (FUN_180849820)
 
 /*================================================================================
 // 常量定义
@@ -243,7 +258,12 @@ FUN_180848ff1:
 
 
 
-// 函数: void FUN_180848e82(void)
+/**
+ * UI系统字符串格式化器
+ * 格式化UI系统中的字符串数据，进行数据转换和验证
+ * 
+ * @return void 无返回值
+ */
 void FUN_180848e82(void)
 
 {
@@ -332,7 +352,12 @@ FUN_180848ff1:
 
 
 
-// 函数: void FUN_180848f4e(void)
+/**
+ * UI系统数据转换器
+ * 转换UI系统中的数据格式，进行类型转换和数据验证
+ * 
+ * @return void 无返回值
+ */
 void FUN_180848f4e(void)
 
 {
@@ -386,7 +411,12 @@ void FUN_180848f4e(void)
 
 
 
-// 函数: void FUN_180848ff1(void)
+/**
+ * UI系统错误处理器
+ * 处理UI系统中的错误情况，进行错误恢复和状态重置
+ * 
+ * @return void 无返回值
+ */
 void FUN_180848ff1(void)
 
 {
@@ -403,7 +433,12 @@ void FUN_180848ff1(void)
 
 
 
-// 函数: void FUN_18084900b(void)
+/**
+ * UI系统资源清理器
+ * 清理UI系统中的资源，释放内存和重置状态
+ * 
+ * @return void 无返回值
+ */
 void FUN_18084900b(void)
 
 {
@@ -417,6 +452,14 @@ void FUN_18084900b(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * UI系统内存分配器
+ * 为UI系统分配内存资源，进行内存管理和优化
+ * 
+ * @param param_1 内存管理器指针
+ * @param param_2 分配大小
+ * @return undefined8 分配结果状态码
+ */
 undefined8 FUN_180849030(longlong *param_1,undefined8 param_2)
 
 {
@@ -456,6 +499,14 @@ LAB_1808490b9:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * UI系统内存重新分配器
+ * 重新分配UI系统内存资源，进行内存优化和碎片整理
+ * 
+ * @param param_1 原内存指针
+ * @param param_2 新分配大小
+ * @return undefined8 重新分配结果状态码
+ */
 undefined8 FUN_180849054(undefined8 param_1,undefined8 param_2)
 
 {
@@ -489,6 +540,12 @@ LAB_1808490b9:
 
 
 
+/**
+ * UI系统内存分配失败处理器
+ * 处理UI系统内存分配失败的情况，返回错误状态
+ * 
+ * @return undefined8 错误状态码
+ */
 undefined8 FUN_180849104(void)
 
 {
@@ -499,6 +556,14 @@ undefined8 FUN_180849104(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * UI系统结构体分配器
+ * 为UI系统分配结构体内存，进行结构体初始化和管理
+ * 
+ * @param param_1 结构体管理器指针
+ * @param param_2 分配数量
+ * @return undefined8 分配结果状态码
+ */
 undefined8 FUN_180849120(longlong *param_1,int param_2)
 
 {
@@ -559,6 +624,14 @@ LAB_1808491ce:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * UI系统结构体重新分配器
+ * 重新分配UI系统结构体内存，进行结构体优化和重组
+ * 
+ * @param param_1 原结构体指针
+ * @param param_2 新分配数量
+ * @return undefined8 重新分配结果状态码
+ */
 undefined8 FUN_180849144(undefined8 param_1,int param_2)
 
 {
@@ -616,6 +689,12 @@ LAB_1808491ce:
 
 
 
+/**
+ * UI系统结构体分配失败处理器
+ * 处理UI系统结构体分配失败的情况，返回错误状态
+ * 
+ * @return undefined8 错误状态码
+ */
 undefined8 FUN_180849219(void)
 
 {
@@ -629,7 +708,13 @@ undefined8 FUN_180849219(void)
 
 
 
-// 函数: void FUN_180849230(undefined8 param_1)
+/**
+ * UI系统事件分发器
+ * 分发UI系统事件到相应的处理器，进行事件路由和管理
+ * 
+ * @param param_1 事件标识符
+ * @return void 无返回值
+ */
 void FUN_180849230(undefined8 param_1)
 
 {
@@ -672,7 +757,13 @@ LAB_1808492e6:
 
 
 
-// 函数: void FUN_180849360(ulonglong param_1)
+/**
+ * UI系统事件处理器
+ * 处理UI系统事件，执行相应的操作和状态更新
+ * 
+ * @param param_1 事件数据指针
+ * @return void 无返回值
+ */
 void FUN_180849360(ulonglong param_1)
 
 {
@@ -719,7 +810,14 @@ LAB_180849462:
 
 
 
-// 函数: void FUN_180849490(undefined8 param_1,undefined8 *param_2)
+/**
+ * UI系统消息处理器
+ * 处理UI系统消息，进行消息解析和响应
+ * 
+ * @param param_1 消息标识符
+ * @param param_2 消息数据指针
+ * @return void 无返回值
+ */
 void FUN_180849490(undefined8 param_1,undefined8 *param_2)
 
 {
@@ -796,7 +894,14 @@ LAB_1808494eb:
 
 
 
-// 函数: void FUN_180849600(undefined8 param_1,undefined8 param_2)
+/**
+ * UI系统数据验证器
+ * 验证UI系统数据的有效性和完整性
+ * 
+ * @param param_1 数据标识符
+ * @param param_2 验证参数
+ * @return void 无返回值
+ */
 void FUN_180849600(undefined8 param_1,undefined8 param_2)
 
 {
@@ -826,7 +931,15 @@ void FUN_180849600(undefined8 param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_1808496c0(undefined4 param_1,longlong param_2,undefined4 param_3)
+/**
+ * UI系统控件更新器
+ * 更新UI控件的属性和状态，进行控件刷新
+ * 
+ * @param param_1 控件标识符
+ * @param param_2 更新数据指针
+ * @param param_3 更新标志
+ * @return void 无返回值
+ */
 void FUN_1808496c0(undefined4 param_1,longlong param_2,undefined4 param_3)
 
 {
@@ -902,7 +1015,15 @@ void FUN_1808497fa(void)
 
 
 
-// 函数: void FUN_180849820(undefined4 param_1,longlong param_2,undefined4 param_3)
+/**
+ * UI系统控件状态更新器
+ * 更新UI控件的状态信息，进行状态同步
+ * 
+ * @param param_1 控件标识符
+ * @param param_2 状态数据指针
+ * @param param_3 状态标志
+ * @return void 无返回值
+ */
 void FUN_180849820(undefined4 param_1,longlong param_2,undefined4 param_3)
 
 {
@@ -981,7 +1102,16 @@ void FUN_18084995f(void)
 
 
 
-// 函数: void FUN_180849990(undefined8 param_1,undefined4 param_2,undefined8 *param_3,undefined8 *param_4)
+/**
+ * UI系统高级数据处理器
+ * 处理UI系统的高级数据操作，进行复杂的数据转换
+ * 
+ * @param param_1 数据标识符
+ * @param param_2 数据类型
+ * @param param_3 源数据指针
+ * @param param_4 目标数据指针
+ * @return void 无返回值
+ */
 void FUN_180849990(undefined8 param_1,undefined4 param_2,undefined8 *param_3,undefined8 *param_4)
 
 {
@@ -1073,7 +1203,16 @@ LAB_1808499fb:
 
 
 
-// 函数: void FUN_180849bb0(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined1 param_4)
+/**
+ * UI系统事件注册器
+ * 注册UI系统事件处理器，进行事件绑定和管理
+ * 
+ * @param param_1 事件标识符
+ * @param param_2 处理器指针
+ * @param param_3 注册标志
+ * @param param_4 注册选项
+ * @return void 无返回值
+ */
 void FUN_180849bb0(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined1 param_4)
 
 {
