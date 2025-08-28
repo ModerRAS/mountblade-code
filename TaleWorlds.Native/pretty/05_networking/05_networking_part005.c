@@ -167,30 +167,41 @@ void send_network_configuration_message(undefined8 connection_handle, undefined8
 
 
 // 函数: 发送简单网络消息
-void send_network_message_simple(void)
+// 功能：向网络连接发送简单的消息包，包含基本的网络通信功能
+// 参数：无显式参数，使用内部缓冲区
+// 返回：无返回值
+// 注意：函数包含消息编码、分隔符添加和消息发送机制
+void send_simple_network_message(void)
 
 {
-  int encode_result1;
-  int encode_result2;
-  undefined4 message_flags;
+  int encode_result1;         // 第一次编码结果
+  int encode_result2;         // 第二次编码结果
+  undefined4 message_flags;   // 消息标志位
   
+  // 编码消息数据到缓冲区
   encode_result1 = FUN_18074b880(&stack0x00000030, NETWORK_BUFFER_SIZE);
+  // 编码数据分隔符
   encode_result2 = FUN_18074b880(&stack0x00000030 + encode_result1, NETWORK_BUFFER_SIZE - encode_result1, NETWORK_DATA_SEPARATOR);
+  // 编码剩余数据
   func_0x00018074bda0(&stack0x00000030 + (encode_result1 + encode_result2), NETWORK_BUFFER_SIZE - (encode_result1 + encode_result2));
-                    // WARNING: Subroutine does not return
+  // 发送消息（函数不返回）
   FUN_180749ef0(message_flags, 0xb);
 }
 
 
 
 
-// 函数: 清理网络连接
-void cleanup_network_connection(void)
+// 函数: 清理网络资源
+// 功能：释放和清理网络连接相关的资源，包括内存、句柄等
+// 参数：无显式参数，使用内部缓冲区
+// 返回：无返回值
+// 注意：函数包含安全验证和资源清理机制
+void cleanup_network_resources(void)
 
 {
-  ulonglong security_key;
+  ulonglong security_key;    // 安全密钥
   
-                    // WARNING: Subroutine does not return
+  // 执行安全验证和资源清理（函数不返回）
   FUN_1808fc050(security_key ^ (ulonglong)&stack0x00000000);
 }
 
@@ -200,39 +211,54 @@ void cleanup_network_connection(void)
 
 
 
-// 函数: 获取网络扩展数据
-void get_network_extended_data(undefined8 connection_handle, undefined4 *data_params, ulonglong *result_buffer)
+// 函数: 查询网络扩展数据
+// 功能：查询并获取网络连接的扩展数据信息，包括配置参数等
+// 参数：connection_handle - 连接句柄，data_params - 数据参数，result_buffer - 结果缓冲区
+// 返回：无返回值，结果通过result_buffer返回
+// 注意：函数包含连接验证、安全检查和数据处理机制
+void query_network_extended_data(undefined8 connection_handle, undefined4 *data_params, ulonglong *result_buffer)
 
 {
-  undefined4 param1;
-  undefined4 param2;
-  undefined4 param3;
-  int connection_result;
-  int validation_result;
-  undefined1 security_buffer[32];
-  undefined1 *message_buffer;
-  longlong connection_data[2];
-  undefined8 *protocol_handlers[2];
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
-  ulonglong security_key;
+  undefined4 param1;           // 参数1
+  undefined4 param2;           // 参数2
+  undefined4 param3;           // 参数3
+  int connection_result;       // 连接结果
+  int validation_result;       // 验证结果
+  undefined1 security_buffer[32]; // 安全缓冲区
+  undefined1 *message_buffer;   // 消息缓冲区
+  longlong connection_data[2];   // 连接数据
+  undefined8 *protocol_handlers[2]; // 协议处理器
+  undefined1 packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
+  ulonglong security_key;     // 安全密钥
   
+  // 生成安全密钥
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  // 检查参数有效性
   if ((result_buffer == (ulonglong *)0x0) || (*result_buffer = 0, data_params == (undefined4 *)0x0)) {
+    // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
-                    // WARNING: Subroutine does not return
+      // 安全验证失败，执行异常处理（函数不返回）
       FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
     }
+    // 编码数据参数
     connection_result = FUN_18074bc50(packet_buffer, NETWORK_BUFFER_SIZE, data_params);
+    // 编码数据分隔符
     validation_result = FUN_18074b880(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+    // 编码结果缓冲区
     func_0x00018074bda0(packet_buffer + (connection_result + validation_result), NETWORK_BUFFER_SIZE - (connection_result + validation_result), result_buffer);
     message_buffer = packet_buffer;
-                    // WARNING: Subroutine does not return
+    // 发送扩展数据消息（函数不返回）
     FUN_180749ef0(0x1f, 0xb, connection_handle, NETWORK_EXTENDED_MESSAGE);
   }
+  
+  // 初始化连接数据
   connection_data[1] = 0;
+  // 获取连接数据
   connection_result = func_0x00018088c590(connection_handle, connection_data);
   if (connection_result == 0) {
+    // 检查连接状态标志位
     if ((*(uint *)(connection_data[0] + 0x24) >> 1 & 1) == 0) goto EXTENDED_DATA_FAILED;
+    // 验证连接数据有效性
     validation_result = FUN_18088c740(connection_data + 1);
     if (validation_result == 0) goto EXTENDED_VALIDATION_FAILED;
   }
@@ -240,12 +266,15 @@ void get_network_extended_data(undefined8 connection_handle, undefined4 *data_pa
 EXTENDED_VALIDATION_FAILED:
     validation_result = connection_result;
   }
+  
+  // 设置协议处理器并获取扩展数据
   if ((validation_result == 0) &&
      (connection_result = FUN_18088dec0(*(undefined8 *)(connection_data[0] + 0x98), protocol_handlers, 0x28), connection_result == 0))
   {
     *protocol_handlers[0] = NETWORK_EXTENDED_HANDLER;
     *(undefined4 *)(protocol_handlers[0] + 4) = 0;
     *(undefined4 *)(protocol_handlers[0] + 1) = 0x28;
+    // 提取参数数据
     param1 = data_params[1];
     param2 = data_params[2];
     param3 = data_params[3];
@@ -253,15 +282,16 @@ EXTENDED_VALIDATION_FAILED:
     *(undefined4 *)((longlong)protocol_handlers[0] + 0x14) = param1;
     *(undefined4 *)(protocol_handlers[0] + 3) = param2;
     *(undefined4 *)((longlong)protocol_handlers[0] + 0x1c) = param3;
+    // 获取扩展数据
     connection_result = func_0x00018088e0d0(*(undefined8 *)(connection_data[0] + 0x98), protocol_handlers[0]);
     if (connection_result == 0) {
       *result_buffer = (ulonglong)*(uint *)(protocol_handlers[0] + 4);
-                    // WARNING: Subroutine does not return
+      // 清理连接数据（函数不返回）
       FUN_18088c790(connection_data + 1);
     }
   }
 EXTENDED_DATA_FAILED:
-                    // WARNING: Subroutine does not return
+  // 清理连接数据（函数不返回）
   FUN_18088c790(connection_data + 1);
 }
 

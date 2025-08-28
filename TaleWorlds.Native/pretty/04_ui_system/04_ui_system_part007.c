@@ -176,8 +176,10 @@ void execute_ui_system_call(void)
 
 
 
-// 函数: void FUN_180657dd0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180657dd0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void process_ui_data_batch(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// 批量处理UI数据，处理复杂的数据结构和内存操作
+// 参数: param_1 - 输入数据缓冲区, param_2 - 输出数据缓冲区, param_3 - 处理标志, param_4 - 内存管理参数
+void process_ui_data_batch(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   int iVar1;
@@ -196,9 +198,10 @@ void FUN_180657dd0(longlong param_1,longlong param_2,undefined8 param_3,undefine
   uVar4 = 0;
   lVar3 = *(longlong *)(param_1 + 8);
   uVar6 = uVar4;
+  // 循环处理数据块
   if (*(longlong *)(param_1 + 0x10) - lVar3 >> 5 != 0) {
     do {
-      puStack_50 = &UNK_180a3c3e0;
+      puStack_50 = &SYSTEM_DATA_PTR;
       uStack_38 = 0;
       puStack_48 = (undefined1 *)0x0;
       iStack_40 = 0;
@@ -208,6 +211,7 @@ void FUN_180657dd0(longlong param_1,longlong param_2,undefined8 param_3,undefine
                     // WARNING: Subroutine does not return
         memcpy(puStack_48,*(undefined8 *)(uVar4 + 8 + lVar3),iVar1 + 1,param_4,uVar7);
       }
+      // 检查数据指针并处理
       if (*(longlong *)(uVar4 + 8 + lVar3) != 0) {
         iStack_40 = 0;
         if (puStack_48 != (undefined1 *)0x0) {
@@ -216,12 +220,13 @@ void FUN_180657dd0(longlong param_1,longlong param_2,undefined8 param_3,undefine
         uStack_38 = uStack_38 & 0xffffffff;
       }
       puVar2 = *(undefined8 **)(param_2 + 8);
+      // 检查输出缓冲区并写入数据
       if (puVar2 < *(undefined8 **)(param_2 + 0x10)) {
         *(undefined8 **)(param_2 + 8) = puVar2 + 4;
-        *puVar2 = &UNK_18098bcb0;
+        *puVar2 = &UI_HANDLER_PTR;
         puVar2[1] = 0;
         *(undefined4 *)(puVar2 + 2) = 0;
-        *puVar2 = &UNK_180a3c3e0;
+        *puVar2 = &SYSTEM_DATA_PTR;
         puVar2[3] = 0;
         puVar2[1] = 0;
         *(undefined4 *)(puVar2 + 2) = 0;
@@ -230,6 +235,7 @@ void FUN_180657dd0(longlong param_1,longlong param_2,undefined8 param_3,undefine
                     // WARNING: Subroutine does not return
           memcpy(puVar2[1],puStack_48,iStack_40 + 1,param_4,uVar7);
         }
+        // 清理和设置数据标记
         if (puStack_48 != (undefined1 *)0x0) {
           *(undefined4 *)(puVar2 + 2) = 0;
           if ((undefined1 *)puVar2[1] != (undefined1 *)0x0) {
@@ -241,7 +247,8 @@ void FUN_180657dd0(longlong param_1,longlong param_2,undefined8 param_3,undefine
       else {
         FUN_180059820(param_2,&puStack_50);
       }
-      puStack_50 = &UNK_180a3c3e0;
+      puStack_50 = &SYSTEM_DATA_PTR;
+      // 清理临时数据
       if (puStack_48 != (undefined1 *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
@@ -260,8 +267,9 @@ void FUN_180657dd0(longlong param_1,longlong param_2,undefined8 param_3,undefine
 
 
 
-// 函数: void FUN_180657fa0(void)
-void FUN_180657fa0(void)
+// 函数: void handle_ui_system_shutdown(void)
+// 处理UI系统关闭，调用系统关闭功能
+void handle_ui_system_shutdown(void)
 
 {
                     // WARNING: Subroutine does not return
