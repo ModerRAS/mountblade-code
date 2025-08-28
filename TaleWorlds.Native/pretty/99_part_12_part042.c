@@ -27,35 +27,91 @@
 
 #include "TaleWorlds.Native.Split.h"
 
-//==============================================================================
-// 网络协议常量和类型定义
-//==============================================================================
+/* 系统常量定义 */
+#define MAX_BATCH_SIZE          256      // 最大批处理大小
+#define BUFFER_SIZE             1024     // 缓冲区大小
+#define MEMORY_POOL_SIZE        0x400    // 内存池大小 (1024字节)
+#define MAX_DIMENSIONS          8        // 最大维度数
+#define FLOAT_PRECISION         1.0f     // 浮点精度
+#define MEMORY_ALIGNMENT        8        // 内存对齐要求
+#define SYSTEM_CALL_FLAG_1      0x47     // 系统调用标志1
+#define SYSTEM_CALL_FLAG_2      0x48     // 系统调用标志2
+#define MAX_ITERATION_COUNT     1000     // 最大迭代次数
+#define DATA_ALIGNMENT_MASK     0x80000007 // 数据对齐掩码
+#define STACK_PROTECTION_SIZE   32       // 栈保护大小
 
-// 网络状态常量
-#define NETWORK_STATE_DISCONNECTED  0x00000001    // 网络断开
-#define NETWORK_STATE_CONNECTING    0x00000002    // 连接中
-#define NETWORK_STATE_CONNECTED     0x00000004    // 已连接
-#define NETWORK_STATE_AUTHENTICATED 0x00000008    // 已认证
-#define NETWORK_STATE_ERROR         0x00000010    // 网络错误
+/* 内存地址常量 */
+#define BUFFER_BASE_ADDR        0x180c30f40  // 缓冲区基地址
+#define MEMORY_POOL_ADDR        0x180c31040  // 内存池地址
+#define SYSTEM_DATA_ADDR        0x180bf00a8  // 系统数据地址
 
-// 数据包类型
-#define PACKET_TYPE_HANDSHAKE       0x01          // 握手包
-#define PACKET_TYPE_AUTH            0x02          // 认证包
-#define PACKET_TYPE_DATA            0x03          // 数据包
-#define PACKET_TYPE_HEARTBEAT       0x04          // 心跳包
-#define PACKET_TYPE_ERROR           0x05          // 错误包
+/* 错误代码定义 */
+#define ERROR_SUCCESS           0         // 成功
+#define ERROR_INVALID_PARAM     -1        // 无效参数
+#define ERROR_MEMORY_FULL       -2        // 内存不足
+#define ERROR_OVERFLOW          -3        // 溢出错误
+#define ERROR_SYSTEM_CALL       -4        // 系统调用错误
 
-// 网络错误码
-#define NETWORK_SUCCESS             0              // 操作成功
-#define NETWORK_ERROR_CONNECTION    -1             // 连接错误
-#define NETWORK_ERROR_TIMEOUT       -2             // 超时错误
-#define NETWORK_ERROR_AUTH          -3             // 认证错误
-#define NETWORK_ERROR_PROTOCOL      -4             // 协议错误
+/* 数据类型定义 */
+typedef uint32_t DataDimension;           // 数据维度类型
+typedef float* DataBuffer;               // 数据缓冲区类型
+typedef void* SystemHandle;              // 系统句柄类型
+typedef uint64_t MemoryPointer;          // 内存指针类型
+typedef int32_t ProcessStatus;           // 处理状态类型
 
-// 类型别名定义
-typedef undefined8 NetworkHandle;                // 网络句柄
-typedef undefined8 ConnectionHandle;             // 连接句柄
-typedef undefined8 PacketHandle;                 // 数据包句柄
+/* 处理模式枚举 */
+typedef enum {
+    PROCESS_MODE_NORMAL = 0,             // 普通处理模式
+    PROCESS_MODE_AVERAGE = 1,            // 平均值处理模式
+    PROCESS_MODE_TRANSFORM = 2           // 变换处理模式
+} ProcessingMode;
+
+/* 数据格式枚举 */
+typedef enum {
+    DATA_FORMAT_FLOAT = 0,               // 浮点数据格式
+    DATA_FORMAT_INTEGER = 1,             // 整数数据格式
+    DATA_FORMAT_MIXED = 2                // 混合数据格式
+} DataFormat;
+
+/* 系统状态枚举 */
+typedef enum {
+    SYSTEM_STATUS_READY = 0,             // 系统就绪
+    SYSTEM_STATUS_BUSY = 1,              // 系统繁忙
+    SYSTEM_STATUS_ERROR = 2              // 系统错误
+} SystemStatus;
+
+/* 处理结果结构 */
+typedef struct {
+    ProcessStatus status;                 // 处理状态
+    uint32_t processed_count;            // 已处理计数
+    float average_value;                 // 平均值
+    SystemStatus system_status;          // 系统状态
+    DataFormat output_format;            // 输出格式
+} ProcessingResult;
+
+/* 数据流配置结构 */
+typedef struct {
+    DataDimension input_dimensions;      // 输入维度
+    DataDimension output_dimensions;     // 输出维度
+    ProcessingMode mode;                 // 处理模式
+    DataFormat format;                   // 数据格式
+    uint32_t batch_size;                 // 批处理大小
+} StreamConfig;
+
+/* 系统调用参数结构 */
+typedef struct {
+    SystemHandle handle;                 // 系统句柄
+    uint32_t call_flags;                 // 调用标志
+    MemoryPointer buffer_addr;           // 缓冲区地址
+    uint32_t buffer_size;                // 缓冲区大小
+} SystemCallParams;
+
+/* 函数别名定义 */
+#define StreamProcessor                    FUN_1807e7120
+#define TransformOperator                 FUN_1807e7209
+#define AdvancedDataProcessor             FUN_1807e7257
+#define SystemCallHandler                 FUN_1807e7882
+#define MemoryManagementProcessor        FUN_1807e7892
 
 //==============================================================================
 // 网络数据包结构
