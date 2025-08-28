@@ -42,89 +42,89 @@ uint8_t DAT_180bf5220;  // 字符串格式化器状态
 uint8_t UNK_18098bc80;  // 字符串池管理器
 
 
-// 函数: uint8_t FUN_1809415d0;
-uint8_t FUN_1809415d0;
-uint8_t DAT_180bf5bc0;
-uint8_t DAT_180bf5bc8;
-uint8_t DAT_180bf5bd0;
-uint8_t DAT_180bf5bd8;
-uint8_t UNK_1809fcc58;
+// 系统状态管理器
+uint8_t FUN_1809415d0;  // 系统状态管理主函数
+uint8_t DAT_180bf5bc0;  // 系统核心状态
+uint8_t DAT_180bf5bc8;  // 子系统状态表
+uint8_t DAT_180bf5bd0;  // 状态变化历史
+uint8_t DAT_180bf5bd8;  // 状态同步标志
+uint8_t UNK_1809fcc58;  // 状态事件管理器
 
 
-// 函数: uint8_t FUN_1809415f0;
-uint8_t FUN_1809415f0;
-uint8_t DAT_180bf5c30;
-uint8_t DAT_180bf5c38;
-uint8_t DAT_180bf5c40;
-uint8_t DAT_180bf5c48;
+// 线程本地存储(TLS)管理器
+uint8_t FUN_1809415f0;  // TLS管理主函数
+uint8_t DAT_180bf5c30;  // TLS分配器状态
+uint8_t DAT_180bf5c38;  // TLS索引表
+uint8_t DAT_180bf5c40;  // TLS数据块
+uint8_t DAT_180bf5c48;  // TLS清理器
 
 
-// 函数: uint8_t FUN_180941610;
-uint8_t FUN_180941610;
-uint8_t DAT_180bf6080;
-uint8_t DAT_180bf6088;
-uint8_t DAT_180bf6090;
-uint8_t DAT_180bf6098;
+// 错误处理系统
+uint8_t FUN_180941610;  // 错误处理主函数
+uint8_t DAT_180bf6080;  // 错误代码表
+uint8_t DAT_180bf6088;  // 错误消息表
+uint8_t DAT_180bf6090;  // 错误堆栈
+uint8_t DAT_180bf6098;  // 错误恢复处理器
 
 
-// 函数: uint8_t FUN_180941630;
-uint8_t FUN_180941630;
-int8_t DAT_180c910f8;
+// 性能监控器
+uint8_t FUN_180941630;  // 性能监控主函数
+int8_t DAT_180c910f8;  // 监控器状态
 
 
-// 函数: uint8_t FUN_180941650;
-uint8_t FUN_180941650;
-int8_t DAT_180c91198;
+// 日志系统
+uint8_t FUN_180941650;  // 日志系统主函数
+int8_t DAT_180c91198;  // 日志管理器状态
 
 
-// 函数: uint8_t FUN_180941690;
-uint8_t FUN_180941690;
-int8_t DAT_180c91238;
+// 配置管理器
+uint8_t FUN_180941690;  // 配置管理主函数
+int8_t DAT_180c91238;  // 配置加载器状态
 
 
-// 函数: uint8_t FUN_1809416d0;
-uint8_t FUN_1809416d0;
-int8_t DAT_180c912d8;
+// 资源管理器
+uint8_t FUN_1809416d0;  // 资源管理主函数
+int8_t DAT_180c912d8;  // 资源加载器状态
 
 
-// 函数: uint8_t FUN_180941710;
-uint8_t FUN_180941710;
-uint8_t DAT_1809fe0d0;
-uint8_t UNK_1809fd0d8;
+// 文件系统管理器
+uint8_t FUN_180941710;  // 文件系统主函数
+uint8_t DAT_1809fe0d0;  // 文件句柄表
+uint8_t UNK_1809fd0d8;  // 文件缓存管理器
 
 
-// 函数: uint8_t FUN_1809417a0;
-uint8_t FUN_1809417a0;
+// 网络通信管理器
+uint8_t FUN_1809417a0;  // 网络通信主函数
 
 
-// 函数: uint8_t FUN_1809417c0;
-uint8_t FUN_1809417c0;
-uint8_t DAT_180c9190c;
-uint8_t UNK_1809fcc28;
-uint8_t UNK_1809ffa30;
-uint8_t DAT_180a010a0;
-uint8_t UNK_180a00370;
+// 安全管理器
+uint8_t FUN_1809417c0;  // 安全管理主函数
+uint8_t DAT_180c9190c;  // 权限检查器状态
+uint8_t UNK_1809fcc28;  // 加密模块
+uint8_t UNK_1809ffa30;  // 解密模块
+uint8_t DAT_180a010a0;  // 认证管理器
+uint8_t UNK_180a00370;  // 安全日志记录器
 
 
-// 函数: uint8_t FUN_180941800;
-uint8_t FUN_180941800;
-uint8_t DAT_180bf64e0;
-uint8_t DAT_180bf64e8;
-uint8_t UNK_1809fdc18;
-uint8_t UNK_180a004dc;
-uint8_t DAT_180bf6530;
-uint8_t DAT_180bf6538;
-uint8_t DAT_180bf6540;
+// 时间管理器
+uint8_t FUN_180941800;  // 时间管理主函数
+uint8_t DAT_180bf64e0;  // 系统时钟状态
+uint8_t DAT_180bf64e8;  // 定时器管理器
+uint8_t UNK_1809fdc18;  // 时间戳生成器
+uint8_t UNK_180a004dc;  // 时间格式化器
+uint8_t DAT_180bf6530;  // 事件调度器
+uint8_t DAT_180bf6538;  // 延迟执行队列
+uint8_t DAT_180bf6540;  // 时间同步器
 
 
-// 函数: uint8_t FUN_180941820;
-uint8_t FUN_180941820;
-uint8_t DAT_180bf6548;
-uint8_t UNK_180a004e8;
-uint8_t DAT_180bf6590;
-uint8_t DAT_180bf6598;
-uint8_t DAT_180bf65a0;
-uint8_t DAT_180bf65a8;
+// 数学运算库
+uint8_t FUN_180941820;  // 数学运算主函数
+uint8_t DAT_180bf6548;  // 基础运算器状态
+uint8_t UNK_180a004e8;  // 向量计算器
+uint8_t DAT_180bf6590;  // 矩阵运算器
+uint8_t DAT_180bf6598;  // 三角函数表
+uint8_t DAT_180bf65a0;  // 随机数生成器
+uint8_t DAT_180bf65a8;  // 统计计算器
 
 
 // 函数: uint8_t FUN_180941840;
