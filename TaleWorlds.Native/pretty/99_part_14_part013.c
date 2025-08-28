@@ -624,7 +624,7 @@ LAB_1808f3fb9:
 LAB_1808f44e3:
   _endthread();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_188);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_188);
 LAB_1808f3dbc:
   *(uint64_t *)((int64_t)iVar8 * 8 + 0x180c69820) = 0;
   goto LAB_1808f44e3;
@@ -737,7 +737,7 @@ FUN_1808f4485:
   }
   _endthread();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -788,7 +788,7 @@ LAB_1808f447d:
     }
     _endthread();
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
   }
   iVar1 = FUN_1808f2520();
   if (iVar1 < 1) {
@@ -877,7 +877,7 @@ void FUN_1808f3f05(void)
       }
       _endthread();
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
     }
     if (in_stack_00000050._4_4_ == 0x40) {
       if (system_system_memory == (code *)0x0) {
@@ -946,7 +946,7 @@ void FUN_1808f4473(void)
   }
   _endthread();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -985,7 +985,7 @@ void FUN_1808f4485(void)
   }
   _endthread();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -1019,7 +1019,7 @@ void FUN_1808f449c(void)
   }
   _endthread();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
 }
 
 

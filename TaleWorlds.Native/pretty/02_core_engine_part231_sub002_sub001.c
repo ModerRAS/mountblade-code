@@ -68,7 +68,7 @@ typedef uint64_t ConfigHandle;                   // 配置句柄
 #define CoreEngineSubmoduleProcessor              FUN_1800599e0
 #define CoreEngineModuleInitializer               FUN_1800599e0
 #define CoreEngineResourceManager                 FUN_1800599e0
-#define CoreEngineSecurityChecker                 FUN_1808fc050
+#define CoreEngineSecurityChecker                 SystemSecurityChecker
 
 //------------------------------------------------------------------------------
 // 核心引擎子模块处理函数

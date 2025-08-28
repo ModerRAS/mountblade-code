@@ -380,7 +380,7 @@ LAB_1805d1bc2:
       if (lVar16 == unaff_RSI[0x2b8]) {
         if (unaff_RSI[0x2b7] != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900(unaff_RSI[0x2b7],lVar15);
+          CoreEngineMemoryPoolCleaner(unaff_RSI[0x2b7],lVar15);
         }
         lVar15 = unaff_RSI[0x2b9];
         unaff_RSI[0x2b9] = lVar15 + 8;
@@ -474,7 +474,7 @@ void FUN_1805d1ac0(uint64_t param_1,char param_2)
     if (lVar5 == unaff_RSI[0x2b8]) {
       if (unaff_RSI[0x2b7] != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(unaff_RSI[0x2b7],lVar4);
+        CoreEngineMemoryPoolCleaner(unaff_RSI[0x2b7],lVar4);
       }
       lVar4 = unaff_RSI[0x2b9];
       unaff_RSI[0x2b9] = lVar4 + 8;

@@ -465,8 +465,8 @@ uint64_t UI_System_Data_Batch_Copy(void)
  * 
  * - 系统控制块 (SYSTEM_MAIN_CONTROL_BLOCK)
  * - 全局常量定义 (global_constants.h)
- * - 事件处理函数 (FUN_180768360, FUN_180768400)
- * - 内存管理函数 (FUN_180769ed0)
+ * - 事件处理函数 (SystemMemoryAllocator, SystemMemoryManager)
+ * - 内存管理函数 (SystemDataAnalyzer)
  * - 回调执行函数 (func_0x00018076a7d0)
  * 
  * 版本历史：
@@ -509,9 +509,9 @@ extern int64_t g_ui_source_buffer;                    // UI源缓冲区
 #define FUN_180746135                     UI_System_Data_Batch_Copy
 
 // 外部函数调用别名
-#define FUN_180768360(param)              UI_Event_Process_Event(param)
-#define FUN_180768400(param)              UI_Event_Dispatch_Event(param)
-#define FUN_180769ed0(param1,param2,param3,param4,param5) UI_Event_Queue_Add(param1,param2,param3,param4,param5)
+#define SystemMemoryAllocator(param)              UI_Event_Process_Event(param)
+#define SystemMemoryManager(param)              UI_Event_Dispatch_Event(param)
+#define SystemDataAnalyzer(param1,param2,param3,param4,param5) UI_Event_Queue_Add(param1,param2,param3,param4,param5)
 #define FUN_180753170(param)              UI_State_Validate_Handle(param)
 #define func_0x00018076a7d0(param)        UI_Callback_Execute_Resource(param)
 #define memcpy(dest,src,size)             UI_Memory_Copy(dest,src,size)

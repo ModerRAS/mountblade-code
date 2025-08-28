@@ -537,7 +537,7 @@ LAB_18059b99c:
     *(int32_t *)(*(int64_t *)(lVar12 + 0x728) + 0x5a4) = 0xffffffff;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_88);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_88);
 }
 
 

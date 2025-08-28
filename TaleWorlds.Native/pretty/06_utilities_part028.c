@@ -214,7 +214,7 @@ void FUN_180942750(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
         *puVar2 = &system_data_buffer_ptr;
         if (puVar2[1] != 0) {
             // 错误处理：不返回的函数调用
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         puVar2[1] = 0;
         *(int32_t *)(puVar2 + 3) = 0;
@@ -224,7 +224,7 @@ void FUN_180942750(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     // 验证初始化结果
     if (system_control_config_data_aea0 != (uint64_t *)0x0) {
         // 初始化失败处理
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     return;
 }
@@ -788,7 +788,7 @@ void FUN_180942aa0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
         // 处理系统参数
         FUN_1804a9b80(param_1, *system_config_config_data_9e18, param_3, param_4, 0xfffffffffffffffe);
         // 错误处理（不返回）
-        FUN_18064e900(puVar1);
+        CoreEngineMemoryPoolCleaner(puVar1);
     }
     return;
 }
@@ -837,7 +837,7 @@ void FUN_180942bb0(void)
     if (system_memory_6028 != '\0') {
         if (system_config_data_6010 != 0) {
             // 同步验证失败
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         system_config_data_6010 = 0;
     }
@@ -941,7 +941,7 @@ void FUN_180942d30(void)
     if (system_memory_6140 != '\0') {
         if (system_config_data_6120 != 0) {
             // 清理验证失败
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         system_config_data_6120 = 0;
         
@@ -953,7 +953,7 @@ void FUN_180942d30(void)
             FUN_1804a9f00(lVar1 + 0x60);
             FUN_1804a9e30();
             // 清理完成
-            FUN_18064e900(lVar1);
+            CoreEngineMemoryPoolCleaner(lVar1);
         }
         system_config_data_6138 = 0;
     }
@@ -1001,7 +1001,7 @@ void FUN_180942e70(void)
         }
         if (system_config_data_5ef8 != 0) {
             // 线程清理失败
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
     }
 }
@@ -1019,7 +1019,7 @@ void FUN_180942f00(void)
     if (system_memory_5fe8 != '\0') {
         if (system_config_data_5fc8 != 0) {
             // 资源释放失败
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
     }
 }
@@ -1150,7 +1150,7 @@ void FUN_1809430e0(void)
     system_config_config_data_a068 = &system_data_buffer_ptr;
     if (system_config_config_data_a070 != 0) {
         // 状态管理失败
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     system_config_config_data_a070 = 0;
     system_config_config_data_a080 = 0;
@@ -1209,7 +1209,7 @@ void FUN_180943180(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
         FUN_180651560(&system_memory_6790, *system_config_data_67a0, param_3, param_4, 0xfffffffffffffffe);
         FUN_18063cfe0(puVar1 + 5);
         // 数据处理完成
-        FUN_18064e900(puVar1);
+        CoreEngineMemoryPoolCleaner(puVar1);
     }
     return;
 }
@@ -1232,7 +1232,7 @@ void FUN_1809431a0(void)
     *(uint64_t *)(lVar1 + 0x18) = &system_data_buffer_ptr;
     if (*(int64_t *)(lVar1 + 0x20) != 0) {
         // 线程本地存储初始化失败
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     *(uint64_t *)(lVar1 + 0x20) = 0;
     *(int32_t *)(lVar1 + 0x30) = 0;
@@ -1267,13 +1267,13 @@ void FUN_180943200(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     puVar1[4] = &system_data_buffer_ptr;
     if (puVar1[5] != 0) {
         // 线程本地存储清理失败
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     puVar1[5] = 0;
     *(int32_t *)(puVar1 + 7) = 0;
     puVar1[4] = &system_state_ptr;
     // 清理完成
-    FUN_18064e900(puVar1);
+    CoreEngineMemoryPoolCleaner(puVar1);
 }
 
 // ===========================================
