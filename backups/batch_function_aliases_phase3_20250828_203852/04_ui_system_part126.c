@@ -28,7 +28,7 @@ void SystemCore_406e0(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t
     iVar2 = BufferManager_Initialize(stack_array_158,0x100,param_2);
     iVar3 = SystemDataProcessor(stack_array_158 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
-    iVar3 = func_0x00018074bda0(stack_array_158 + iVar2,0x100 - iVar2,param_3);
+    iVar3 = BufferManager_MigrateMetadata(stack_array_158 + iVar2,0x100 - iVar2,param_3);
     iVar2 = iVar2 + iVar3;
     iVar3 = SystemDataProcessor(stack_array_158 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
@@ -59,7 +59,7 @@ void SystemCore_4076a(void)
   iVar1 = BufferManager_Initialize(&local_buffer_00000040,0x100,unaff_EBX);
   iVar2 = SystemDataProcessor(&local_buffer_00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
-  iVar2 = func_0x00018074bda0(&local_buffer_00000040 + iVar1,0x100 - iVar1);
+  iVar2 = BufferManager_MigrateMetadata(&local_buffer_00000040 + iVar1,0x100 - iVar1);
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemDataProcessor(&local_buffer_00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
@@ -99,7 +99,7 @@ void SystemCore_408b0(uint64_t param_1,int32_t param_2,uint64_t param_3)
      ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     iVar2 = BufferManager_Initialize(stack_array_138,0x100,param_2);
     iVar3 = SystemDataProcessor(stack_array_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
-    func_0x00018074bda0(stack_array_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
+    BufferManager_MigrateMetadata(stack_array_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     plocal_var_158 = stack_array_138;
 // WARNING: Subroutine does not return
     DataTransformer(iVar1,7,param_1,&processed_var_7888_ptr);
@@ -116,7 +116,7 @@ void SystemCore_40910(void)
   int32_t unaff_ESI;
   iVar1 = BufferManager_Initialize(&local_buffer_00000040,0x100,unaff_EBX);
   iVar2 = SystemDataProcessor(&local_buffer_00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
-  func_0x00018074bda0(&local_buffer_00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
+  BufferManager_MigrateMetadata(&local_buffer_00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
 // WARNING: Subroutine does not return
   DataTransformer(unaff_ESI,7);
 }
@@ -210,7 +210,7 @@ void SystemCore_40b40(uint64_t param_1,uint64_t param_2)
   iVar1 = UISystem_LayoutManager(param_1,stack_array_128,0);
   if (((iVar1 != 0) || (iVar1 = func_0x00018075f350(stack_array_128[0],param_2), iVar1 != 0)) &&
      ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
-    func_0x00018074bda0(stack_array_118,0x100,param_2);
+    BufferManager_MigrateMetadata(stack_array_118,0x100,param_2);
     plocal_var_138 = stack_array_118;
 // WARNING: Subroutine does not return
     DataTransformer(iVar1,7,param_1,&processed_var_7560_ptr);
@@ -237,7 +237,7 @@ void SystemCore_40c00(uint64_t param_1,uint64_t param_2)
     if (iVar1 == 0) goto LAB_180740c9a;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    func_0x00018074bda0(stack_array_118,0x100,param_2);
+    BufferManager_MigrateMetadata(stack_array_118,0x100,param_2);
     plocal_var_138 = stack_array_118;
 // WARNING: Subroutine does not return
     DataTransformer(iVar1,7,param_1,&processed_var_7912_ptr);
@@ -263,7 +263,7 @@ void SystemCore_40cd0(uint64_t param_1,uint64_t param_2)
   iVar1 = UISystem_LayoutManager(param_1,stack_array_128,0);
   if (((iVar1 != 0) || (iVar1 = func_0x00018075f460(stack_array_128[0],param_2), iVar1 != 0)) &&
      ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
-    func_0x00018074bda0(stack_array_118,0x100,param_2);
+    BufferManager_MigrateMetadata(stack_array_118,0x100,param_2);
     plocal_var_138 = stack_array_118;
 // WARNING: Subroutine does not return
     DataTransformer(iVar1,7,param_1,&processed_var_7944_ptr);
@@ -414,7 +414,7 @@ void SystemCore_410d0(uint64_t param_1,uint64_t param_2)
     if (iVar1 == 0) goto LAB_18074116a;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    func_0x00018074bda0(stack_array_118,0x100,param_2);
+    BufferManager_MigrateMetadata(stack_array_118,0x100,param_2);
     plocal_var_138 = stack_array_118;
 // WARNING: Subroutine does not return
     DataTransformer(iVar1,7,param_1,&processed_var_7696_ptr);
@@ -716,7 +716,7 @@ void SystemCore_41560(uint64_t param_1,int32_t param_2,uint64_t param_3,int32_t 
     iVar2 = BufferManager_Initialize(stack_array_148,0x100,param_2);
     iVar3 = SystemDataProcessor(stack_array_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
-    iVar3 = func_0x00018074bda0(stack_array_148 + iVar2,0x100 - iVar2,param_3);
+    iVar3 = BufferManager_MigrateMetadata(stack_array_148 + iVar2,0x100 - iVar2,param_3);
     iVar2 = iVar2 + iVar3;
     iVar3 = SystemDataProcessor(stack_array_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
     BufferManager_ProcessData(stack_array_148 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_4);
@@ -738,7 +738,7 @@ void SystemCore_415cc(void)
   iVar1 = BufferManager_Initialize(&local_buffer_00000040,0x100,unaff_EBX);
   iVar2 = SystemDataProcessor(&local_buffer_00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
-  iVar2 = func_0x00018074bda0(&local_buffer_00000040 + iVar1,0x100 - iVar1);
+  iVar2 = BufferManager_MigrateMetadata(&local_buffer_00000040 + iVar1,0x100 - iVar1);
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemDataProcessor(&local_buffer_00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   BufferManager_ProcessData(&local_buffer_00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),unaff_R14D);

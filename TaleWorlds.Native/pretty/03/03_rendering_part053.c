@@ -784,16 +784,16 @@ void optimized_text_rendering_pipeline(float *font_metrics,float max_width)
   float fStack130;
   int *iStack138;
   float fStack140;
-  float in_stack150;
-  uint in_stack158;
+  float local_vertex_alpha;
+  uint local_char_code;
   char cStack168;
-  float in_stack170;
-  char in_stack178;
-  vertex_y = in_stack170;
+  float local_vertex_y;
+  char local_char_terminator;
+  vertex_y = local_vertex_y;
   font_size = vertex_buffer[1];
   scale_factor = texture_metrics / *font_metrics;
   char_width_scaled = *font_metrics * scale_factor;
-  cStack168 = 0.0 < in_stack170;
+  cStack168 = 0.0 < local_vertex_y;
   char_height_scaled = max_width + char_width_scaled;
   current_line_start = (char *)0x0;
   fStack130 = char_width_scaled;
@@ -857,7 +857,7 @@ PROCESS_CHARACTERS:
           scale_factor = fStack140;
           texture_coord_x = char_height_scaled;
           vertex_x = stack_x;
-          vertex_y = in_stack170;
+          vertex_y = local_vertex_y;
           if (current_char == '\n') {
             current_line_start = current_line_start + 1;
             vertex_x = stack_x;
@@ -865,22 +865,22 @@ PROCESS_CHARACTERS:
           goto PROCESS_CHARACTERS;
         }
       }
-      in_stack158 = (uint)*current_line_start;
-      if (in_stack158 < 0x80) {
+      local_char_code = (uint)*current_line_start;
+      if (local_char_code < 0x80) {
         current_line_start = current_line_start + 1;
       }
       else {
-        total_chars = get_utf8_char_width(&in_stack158,current_line_start,line_end);
+        total_chars = get_utf8_char_width(&local_char_code,current_line_start,line_end);
         current_line_start = current_line_start + total_chars;
-        if (in_stack158 == 0) break;
+        if (local_char_code == 0) break;
       }
-      vertex_y = in_stack170;
+      vertex_y = local_vertex_y;
       scale_factor = fStack140;
-      if (0x1f < in_stack158) {
+      if (0x1f < local_char_code) {
 PROCESS_GLYPH:
-        if ((int)(in_stack158 & 0xffff) < *(int *)(font_cache + 0x30)) {
+        if ((int)(local_char_code & 0xffff) < *(int *)(font_cache + 0x30)) {
           char_index = *(ushort *)
-                   (*(int64_t *)(font_cache + 0x38) + (uint64_t)(in_stack158 & 0xffff) * 2);
+                   (*(int64_t *)(font_cache + 0x38) + (uint64_t)(local_char_code & 0xffff) * 2);
           if (char_index == 0xffff) {
             texture_offset = *(int64_t *)(font_cache + 0x40);
           }
@@ -891,8 +891,8 @@ PROCESS_GLYPH:
         else {
           texture_offset = *(int64_t *)(font_cache + 0x40);
         }
-        if (((texture_offset != 0) && (char_width_scaled = scale_factor * *(float *)(texture_offset + 4), in_stack158 != 0x20))
-           && (in_stack158 != 9)) {
+        if (((texture_offset != 0) && (char_width_scaled = scale_factor * *(float *)(texture_offset + 4), local_char_code != 0x20))
+           && (local_char_code != 9)) {
           vertex_x = vertex_buffer[2];
           char_height_scaled = scale_factor * *(float *)(texture_offset + 8) + texture_coord_x;
           char_width_scaled = scale_factor * *(float *)(texture_offset + 0x10) + texture_coord_x;
@@ -903,7 +903,7 @@ PROCESS_GLYPH:
             texture_v1 = *(float *)(texture_offset + 0x1c);
             texture_u2 = *(float *)(texture_offset + 0x20);
             texture_u1 = *(float *)(texture_offset + 0x24);
-            if (in_stack178 != '\0') {
+            if (local_char_terminator != '\0') {
               if (char_height_scaled < scale_factor) {
                 texture_v2 = texture_v2 + (1.0 - (char_width_scaled - scale_factor) / (char_width_scaled - char_height_scaled)) * (texture_u2 - texture_v2);
                 char_height_scaled = scale_factor;
@@ -932,10 +932,10 @@ PROCESS_GLYPH:
             index_buffer[5] = char_index + 3;
             index_buffer[3] = char_index;
             total_chars = total_chars + 4;
-            current_vertex[4] = in_stack150;
-            current_vertex[9] = in_stack150;
-            current_vertex[0xe] = in_stack150;
-            current_vertex[0x13] = in_stack150;
+            current_vertex[4] = local_vertex_alpha;
+            current_vertex[9] = local_vertex_alpha;
+            current_vertex[0xe] = local_vertex_alpha;
+            current_vertex[0x13] = local_vertex_alpha;
             *current_vertex = char_height_scaled;
             current_vertex[1] = vertex_y;
             current_vertex[2] = texture_v2;
@@ -962,9 +962,9 @@ ADD_GLYPH_VERTICES:
         vertex_x = stack_x;
         goto PROCESS_CHARACTERS;
       }
-      if (in_stack158 != 10) {
+      if (local_char_code != 10) {
         vertex_x = stack_x;
-        if (in_stack158 != 0xd) goto PROCESS_GLYPH;
+        if (local_char_code != 0xd) goto PROCESS_GLYPH;
         goto PROCESS_CHARACTERS;
       }
       max_width = max_width + char_width_scaled;

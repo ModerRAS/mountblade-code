@@ -46,7 +46,7 @@ int function_840f10(int64_t param_1,int64_t param_2,int param_3)
   iVar2 = BufferManager_ProcessData(param_2,param_3,*(int32_t *)(param_1 + 0x10));
   iVar3 = DataProcessor(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074bda0(iVar2 + param_2,param_3 - iVar2,uVar1);
+  iVar3 = BufferManager_MigrateMetadata(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
 }
 int function_840f80(int64_t param_1,int64_t param_2,int param_3)
@@ -379,7 +379,7 @@ int function_841a90(int64_t param_1,int64_t param_2,int param_3)
   uVar2 = *(int32_t *)(param_1 + 0x20);
   uVar3 = *(int32_t *)(param_1 + 0x1c);
   uVar4 = *(int32_t *)(param_1 + 0x18);
-  iVar5 = func_0x00018074bda0(param_2,param_3,*(uint64_t *)(param_1 + 0x10));
+  iVar5 = BufferManager_MigrateMetadata(param_2,param_3,*(uint64_t *)(param_1 + 0x10));
   iVar6 = DataProcessor(param_2 + iVar5,param_3 - iVar5,&system_temp_buffer);
   iVar5 = iVar5 + iVar6;
   iVar6 = BufferManager_Initialize(iVar5 + param_2,param_3 - iVar5,uVar4);
@@ -740,7 +740,7 @@ int function_842690(int64_t param_1,int64_t param_2,int param_3)
   iVar3 = iVar3 + iVar4;
   iVar4 = DataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074bda0(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar4 = BufferManager_MigrateMetadata(iVar3 + param_2,param_3 - iVar3,uVar2);
   return iVar4 + iVar3;
 }
 int function_842750(int64_t param_1,int64_t param_2,int param_3)

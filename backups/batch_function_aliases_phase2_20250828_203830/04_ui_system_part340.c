@@ -483,7 +483,7 @@ void FUN_180853230(int64_t param_1)
   uVar1 = *(uint64_t *)(param_1 + 0x78);
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_158;
   lStack_128 = 0;
-  iVar2 = func_0x00018074fb10(uVar1,&plStack_120,&lStack_128);
+  iVar2 = DataSerializer_ProcessFields(uVar1,&plStack_120,&lStack_128);
   if (iVar2 == 0) {
     iVar2 = (**(code **)(*plStack_120 + 0x10))(plStack_120,1);
     if (iVar2 == 0) goto LAB_18073d93d;

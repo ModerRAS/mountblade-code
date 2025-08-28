@@ -703,7 +703,7 @@ int UIComponent_UpdateLayout(int64_t param_1,int param_2,uint64_t param_3,uint64
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemDataProcessor(iVar1 + param_1,param_2 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
-  iVar2 = func_0x00018074bda0(iVar1 + param_1,param_2 - iVar1,param_8);
+  iVar2 = BufferManager_MigrateMetadata(iVar1 + param_1,param_2 - iVar1,param_8);
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemDataProcessor(iVar1 + param_1,param_2 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
@@ -722,11 +722,11 @@ int UIComponent_Render(int64_t param_1,int param_2,uint64_t param_3,int32_t para
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemDataProcessor(iVar1 + param_1,param_2 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
-  iVar2 = func_0x00018074bda0(iVar1 + param_1,param_2 - iVar1,param_5);
+  iVar2 = BufferManager_MigrateMetadata(iVar1 + param_1,param_2 - iVar1,param_5);
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemDataProcessor(iVar1 + param_1,param_2 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
-  iVar2 = func_0x00018074bda0(iVar1 + param_1,param_2 - iVar1,param_6);
+  iVar2 = BufferManager_MigrateMetadata(iVar1 + param_1,param_2 - iVar1,param_6);
   return iVar2 + iVar1;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -758,7 +758,7 @@ void UIComponent_HandleInput(uint64_t param_1,int32_t param_2,uint64_t param_3,u
     iVar3 = BufferManager_ParseMetadata(stack_array_148 + iVar2,0x100 - iVar2,param_3);
     iVar2 = iVar2 + iVar3;
     iVar3 = SystemDataProcessor(stack_array_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
-    func_0x00018074bda0(stack_array_148 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_4);
+    BufferManager_MigrateMetadata(stack_array_148 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_4);
     plocal_var_168 = stack_array_148;
 // WARNING: Subroutine does not return
     DataTransformer(iVar1,1,param_1,&processed_var_5776_ptr);
@@ -802,7 +802,7 @@ void UIComponent_HandleInputEx(uint64_t param_1,int32_t param_2,uint64_t param_3
     iVar3 = BufferManager_ParseMetadata(&local_buffer_00000040 + iVar2,0x100 - iVar2,param_3);
     iVar2 = iVar2 + iVar3;
     iVar3 = SystemDataProcessor(&local_buffer_00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
-    func_0x00018074bda0(&local_buffer_00000040 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_4);
+    BufferManager_MigrateMetadata(&local_buffer_00000040 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_4);
 // WARNING: Subroutine does not return
     DataTransformer(iVar1,1,param_1,&processed_var_5776_ptr,&local_buffer_00000040);
   }
@@ -826,7 +826,7 @@ void UIComponent_Cleanup(void)
   iVar2 = BufferManager_ParseMetadata(&local_buffer_00000040 + iVar1,0x100 - iVar1);
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemDataProcessor(&local_buffer_00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
-  func_0x00018074bda0(&local_buffer_00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
+  BufferManager_MigrateMetadata(&local_buffer_00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
 // WARNING: Subroutine does not return
   DataTransformer(unaff_ESI,1);
 }
@@ -872,7 +872,7 @@ void UIComponent_SetVisibility(uint64_t param_1,uint64_t param_2,uint64_t param_
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
     iVar2 = SystemDataProcessor(stack_array_138,0x100,param_2);
     iVar3 = SystemDataProcessor(stack_array_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
-    func_0x00018074bda0(stack_array_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
+    BufferManager_MigrateMetadata(stack_array_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     plocal_var_158 = stack_array_138;
 // WARNING: Subroutine does not return
     DataTransformer(iVar1,1,param_1,&processed_var_5640_ptr);
@@ -910,7 +910,7 @@ void UIComponent_SetEnabled(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
     iVar2 = SystemDataProcessor(&local_buffer_00000040,0x100,param_2);
     iVar3 = SystemDataProcessor(&local_buffer_00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
-    func_0x00018074bda0(&local_buffer_00000040 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
+    BufferManager_MigrateMetadata(&local_buffer_00000040 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
 // WARNING: Subroutine does not return
     DataTransformer(iVar1,1,param_1,&processed_var_5640_ptr,&local_buffer_00000040);
   }

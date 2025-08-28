@@ -493,7 +493,7 @@ int network_packet_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer
   temp_size = DataProcessor(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
   serialized_size = serialized_size + temp_size;
 // 序列化数据包头
-  temp_size = func_0x00018074bda0(serialized_size + buffer_ptr, buffer_size - serialized_size, field5_value);
+  temp_size = BufferManager_MigrateMetadata(serialized_size + buffer_ptr, buffer_size - serialized_size, field5_value);
   serialized_size = serialized_size + temp_size;
 // 序列化分隔符
   temp_size = DataProcessor(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -891,7 +891,7 @@ void network_connection_handler(uint64_t connection_id, uint64_t *output_data)
       SystemSecurityChecker(stack_buffer_28 ^ (uint64_t)stack_buffer_178);
     }
 // 初始化缓冲区
-    func_0x00018074bda0(stack_buffer_128, 0x100, 0);
+    BufferManager_MigrateMetadata(stack_buffer_128, 0x100, 0);
     stack_buffer_158 = stack_buffer_128;
 // 错误处理：无效参数
     DataTransformer(0x1f, 0xd, connection_id, &ui_system_data_1112_ptr);
@@ -962,7 +962,7 @@ void network_data_sender(uint64_t target_id, int64_t data_ptr)
 // 检查调试标志
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
 // 初始化错误处理缓冲区
-      func_0x00018074bda0(stack_buffer_128, 0x100, 0);
+      BufferManager_MigrateMetadata(stack_buffer_128, 0x100, 0);
       stack_buffer_148 = stack_buffer_128;
 // 错误处理：空数据指针
       DataTransformer(0x1f, 0xb, target_id, &processed_var_512_ptr);
@@ -1021,7 +1021,7 @@ void network_broadcast_sender(uint64_t target_id, uint64_t data_ptr, uint64_t me
 // 初始化广播缓冲区
     sub_status = DataProcessor(stack_buffer_138, 0x100, data_ptr);
     temp_status = DataProcessor(stack_buffer_138 + sub_status, 0x100 - sub_status, NETWORK_PROTOCOL_SEPARATOR);
-    func_0x00018074bda0(stack_buffer_138 + (sub_status + temp_status), 0x100 - (sub_status + temp_status), metadata);
+    BufferManager_MigrateMetadata(stack_buffer_138 + (sub_status + temp_status), 0x100 - (sub_status + temp_status), metadata);
     stack_buffer_148 = stack_buffer_138;
 // 错误处理：广播失败
     DataTransformer(status_code, 0xb, target_id, &processed_var_544_ptr);
@@ -1041,7 +1041,7 @@ void network_packet_sender(void)
 // 序列化数据包头部
   status_code = DataProcessor(&local_buffer_00000030, 0x100);
   temp_status = DataProcessor(&local_buffer_00000030 + status_code, 0x100 - status_code, NETWORK_PROTOCOL_SEPARATOR);
-  func_0x00018074bda0(&local_buffer_00000030 + (status_code + temp_status), 0x100 - (status_code + temp_status));
+  BufferManager_MigrateMetadata(&local_buffer_00000030 + (status_code + temp_status), 0x100 - (status_code + temp_status));
 // 发送数据包
   DataTransformer(unaff_ESI, 0xb);
 }
@@ -1093,9 +1093,9 @@ void network_resource_handler(uint64_t resource_id, int32_t *result_ptr, uint64_
 // 检查调试模式
   if ((status_code != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
 // 初始化错误处理缓冲区
-    sub_status = func_0x00018074bda0(stack_buffer_138, 0x100, result_ptr);
+    sub_status = BufferManager_MigrateMetadata(stack_buffer_138, 0x100, result_ptr);
     temp_status = DataProcessor(stack_buffer_138 + sub_status, 0x100 - sub_status, NETWORK_PROTOCOL_SEPARATOR);
-    func_0x00018074bda0(stack_buffer_138 + (sub_status + temp_status), 0x100 - (sub_status + temp_status), context);
+    BufferManager_MigrateMetadata(stack_buffer_138 + (sub_status + temp_status), 0x100 - (sub_status + temp_status), context);
     stack_buffer_158 = stack_buffer_138;
 // 错误处理：资源获取失败
     DataTransformer(status_code, 0xb, resource_id, &processed_var_5520_ptr);
@@ -1114,9 +1114,9 @@ void network_packet_receiver(void)
   int temp_status;
   int32_t unaff_ESI;
 // 初始化接收缓冲区
-  status_code = func_0x00018074bda0(&local_buffer_00000040, 0x100);
+  status_code = BufferManager_MigrateMetadata(&local_buffer_00000040, 0x100);
   temp_status = DataProcessor(&local_buffer_00000040 + status_code, 0x100 - status_code, NETWORK_PROTOCOL_SEPARATOR);
-  func_0x00018074bda0(&local_buffer_00000040 + (status_code + temp_status), 0x100 - (status_code + temp_status));
+  BufferManager_MigrateMetadata(&local_buffer_00000040 + (status_code + temp_status), 0x100 - (status_code + temp_status));
 // 处理接收到的数据包
   DataTransformer(unaff_ESI, 0xb);
 }
@@ -1157,7 +1157,7 @@ void network_data_extractor(uint64_t resource_id, uint64_t *output_data)
       SystemSecurityChecker(stack_buffer_28 ^ (uint64_t)stack_buffer_178);
     }
 // 初始化错误处理缓冲区
-    func_0x00018074bda0(stack_buffer_128, 0x100, 0);
+    BufferManager_MigrateMetadata(stack_buffer_128, 0x100, 0);
     stack_buffer_158 = stack_buffer_128;
 // 错误处理：无效输出指针
     DataTransformer(0x1f, 0xf, resource_id, &processed_var_9512_ptr);
@@ -1231,7 +1231,7 @@ void network_metadata_handler(uint64_t resource_id, uint64_t *output_data)
 // 处理元数据获取失败
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
 // 初始化错误处理缓冲区
-    func_0x00018074bda0(stack_buffer_118, 0x100, output_data);
+    BufferManager_MigrateMetadata(stack_buffer_118, 0x100, output_data);
     stack_buffer_138 = stack_buffer_118;
 // 错误处理：元数据获取失败
     DataTransformer(status_code, 0xb, resource_id, &processed_var_408_ptr);

@@ -682,7 +682,7 @@ LAB_1808403d0:
     }
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    iVar1 = func_0x00018074bda0(stack_array_128,0x100,param_1);
+    iVar1 = BufferManager_MigrateMetadata(stack_array_128,0x100,param_1);
     iVar2 = SystemDataProcessor(stack_array_128 + iVar1,0x100 - iVar1,&system_temp_buffer);
     BufferManager_ProcessData(stack_array_128 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_2);
     plocal_var_158 = stack_array_128;
@@ -712,7 +712,7 @@ void NetworkProtocol_40490(uint64_t param_1,uint64_t *param_2)
 // WARNING: Subroutine does not return
       SystemSecurityChecker(local_var_28 ^ (uint64_t)stack_array_178);
     }
-    func_0x00018074bda0(stack_array_128,0x100,0);
+    BufferManager_MigrateMetadata(stack_array_128,0x100,0);
     plocal_var_158 = stack_array_128;
 // WARNING: Subroutine does not return
     DataTransformer(0x1f,0xc,param_1,&processed_var_5504_ptr);

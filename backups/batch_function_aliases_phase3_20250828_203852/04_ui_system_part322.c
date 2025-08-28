@@ -208,7 +208,7 @@ int function_842f50(int64_t param_1,int64_t param_2,int param_3)
   iVar3 = iVar3 + iVar4;
   iVar4 = DataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074bda0(iVar3 + param_2,param_3 - iVar3,uVar2);
+  iVar4 = BufferManager_MigrateMetadata(iVar3 + param_2,param_3 - iVar3,uVar2);
   return iVar4 + iVar3;
 }
 int function_843010(int64_t param_1,int64_t param_2,int param_3)

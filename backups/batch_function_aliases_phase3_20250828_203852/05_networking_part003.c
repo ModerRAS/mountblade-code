@@ -165,7 +165,7 @@ typedef struct {
 #define NetworkProtocol_CompressionHandler function_74be90
 #define NetworkProtocol_CoreSender function_83f8f0
 #define NetworkProtocol_Uint32Writer BufferManager_ProcessData
-#define NetworkProtocol_Uint64Writer func_0x00018074bda0
+#define NetworkProtocol_Uint64Writer BufferManager_MigrateMetadata
 #define ProtocolSerializer_WriteHeader SystemDataProcessor
 #define ProtocolSerializer_WriteSeparator SystemDataProcessor
 #define ProtocolSerializer_WriteUint32 NetworkProtocol_Uint32Writer

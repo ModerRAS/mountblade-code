@@ -166,7 +166,7 @@ void NetworkProtocol_46410(uint64_t param_1,int32_t param_2,uint64_t param_3)
   if ((iVar1 != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     iVar2 = BufferManager_Initialize(stack_array_138,0x100,param_2);
     iVar3 = SystemDataProcessor(stack_array_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
-    func_0x00018074bda0(stack_array_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
+    BufferManager_MigrateMetadata(stack_array_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     plocal_var_148 = stack_array_138;
 // WARNING: Subroutine does not return
     DataTransformer(iVar1,0xc,param_1,&processed_var_640_ptr);
@@ -183,7 +183,7 @@ void NetworkProtocol_46453(void)
   int32_t unaff_ESI;
   iVar1 = BufferManager_Initialize(&local_buffer_00000030,0x100,unaff_EBX);
   iVar2 = SystemDataProcessor(&local_buffer_00000030 + iVar1,0x100 - iVar1,&system_temp_buffer);
-  func_0x00018074bda0(&local_buffer_00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
+  BufferManager_MigrateMetadata(&local_buffer_00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
 // WARNING: Subroutine does not return
   DataTransformer(unaff_ESI,0xc);
 }
@@ -420,7 +420,7 @@ void NetworkProtocol_46a90(uint64_t param_1,int32_t *param_2)
 // WARNING: Subroutine does not return
       SystemSecurityChecker(local_var_28 ^ (uint64_t)stack_array_178);
     }
-    func_0x00018074bda0(stack_array_128,0x100,0);
+    BufferManager_MigrateMetadata(stack_array_128,0x100,0);
     plocal_var_158 = stack_array_128;
 // WARNING: Subroutine does not return
     DataTransformer(0x1f,0xd,param_1,&ui_system_data_1248_ptr);
@@ -514,7 +514,7 @@ void NetworkProtocol_46d30(uint64_t param_1,int32_t *param_2)
 // WARNING: Subroutine does not return
       SystemSecurityChecker(local_var_28 ^ (uint64_t)stack_array_178);
     }
-    func_0x00018074bda0(stack_array_128,0x100,0);
+    BufferManager_MigrateMetadata(stack_array_128,0x100,0);
     plocal_var_158 = stack_array_128;
 // WARNING: Subroutine does not return
     DataTransformer(0x1f,0xc,param_1,&processed_var_6368_ptr);
@@ -619,7 +619,7 @@ void NetworkProtocol_46fe0(uint64_t param_1,uint64_t *param_2)
 // WARNING: Subroutine does not return
       SystemSecurityChecker(local_var_18 ^ (uint64_t)stack_array_168);
     }
-    func_0x00018074bda0(stack_array_118,0x100,0);
+    BufferManager_MigrateMetadata(stack_array_118,0x100,0);
     plocal_var_148 = stack_array_118;
 // WARNING: Subroutine does not return
     DataTransformer(0x1f,0xc,param_1,&processed_var_896_ptr);
@@ -660,7 +660,7 @@ void NetworkProtocol_47110(uint64_t param_1,uint64_t *param_2)
 // WARNING: Subroutine does not return
       SystemSecurityChecker(local_var_28 ^ (uint64_t)stack_array_178);
     }
-    func_0x00018074bda0(stack_array_128,0x100,0);
+    BufferManager_MigrateMetadata(stack_array_128,0x100,0);
     plocal_var_158 = stack_array_128;
 // WARNING: Subroutine does not return
     DataTransformer(0x1f,0xd,param_1,&ui_system_data_1312_ptr);
@@ -701,7 +701,7 @@ void NetworkProtocol_47230(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   if ((iVar1 != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     iVar2 = SystemDataProcessor(stack_array_138,0x100,param_2);
     iVar3 = SystemDataProcessor(stack_array_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
-    func_0x00018074bda0(stack_array_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
+    BufferManager_MigrateMetadata(stack_array_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     plocal_var_148 = stack_array_138;
 // WARNING: Subroutine does not return
     DataTransformer(iVar1,0xc,param_1,&processed_var_696_ptr);
@@ -717,7 +717,7 @@ void NetworkProtocol_47274(void)
   int32_t unaff_ESI;
   iVar1 = SystemDataProcessor(&local_buffer_00000030,0x100);
   iVar2 = SystemDataProcessor(&local_buffer_00000030 + iVar1,0x100 - iVar1,&system_temp_buffer);
-  func_0x00018074bda0(&local_buffer_00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
+  BufferManager_MigrateMetadata(&local_buffer_00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
 // WARNING: Subroutine does not return
   DataTransformer(unaff_ESI,0xc);
 }
@@ -744,7 +744,7 @@ void NetworkProtocol_47310(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   if ((iVar1 != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     iVar2 = SystemDataProcessor(stack_array_138,0x100,param_2);
     iVar3 = SystemDataProcessor(stack_array_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
-    func_0x00018074bda0(stack_array_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
+    BufferManager_MigrateMetadata(stack_array_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     plocal_var_148 = stack_array_138;
 // WARNING: Subroutine does not return
     DataTransformer(iVar1,0xb,param_1,&processed_var_664_ptr);
@@ -760,7 +760,7 @@ void NetworkProtocol_47354(void)
   int32_t unaff_ESI;
   iVar1 = SystemDataProcessor(&local_buffer_00000030,0x100);
   iVar2 = SystemDataProcessor(&local_buffer_00000030 + iVar1,0x100 - iVar1,&system_temp_buffer);
-  func_0x00018074bda0(&local_buffer_00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
+  BufferManager_MigrateMetadata(&local_buffer_00000030 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
 // WARNING: Subroutine does not return
   DataTransformer(unaff_ESI,0xb);
 }

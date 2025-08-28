@@ -177,10 +177,10 @@ void SystemCore_3df50(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
     }
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    iVar2 = func_0x00018074bda0(stack_array_148,0x100,param_2);
+    iVar2 = BufferManager_MigrateMetadata(stack_array_148,0x100,param_2);
     iVar3 = UISystem_ComponentManager(stack_array_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
-    iVar3 = func_0x00018074bda0(stack_array_148 + iVar2,0x100 - iVar2,param_3);
+    iVar3 = BufferManager_MigrateMetadata(stack_array_148 + iVar2,0x100 - iVar2,param_3);
     iVar2 = iVar2 + iVar3;
     iVar3 = UISystem_ComponentManager(stack_array_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
@@ -202,10 +202,10 @@ void SystemCore_3dfd7(void)
   int iVar1;
   int iVar2;
   int32_t unaff_ESI;
-  iVar1 = func_0x00018074bda0(&local_buffer_00000040,0x100);
+  iVar1 = BufferManager_MigrateMetadata(&local_buffer_00000040,0x100);
   iVar2 = UISystem_ComponentManager(&local_buffer_00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
-  iVar2 = func_0x00018074bda0(&local_buffer_00000040 + iVar1,0x100 - iVar1);
+  iVar2 = BufferManager_MigrateMetadata(&local_buffer_00000040 + iVar1,0x100 - iVar1);
   iVar1 = iVar1 + iVar2;
   iVar2 = UISystem_ComponentManager(&local_buffer_00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
@@ -544,7 +544,7 @@ void SystemCore_3e550(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
     if (iVar1 == 0) goto SystemCore_3e6ce;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    iVar2 = func_0x00018074bda0(stack_array_148,0x100,param_2);
+    iVar2 = BufferManager_MigrateMetadata(stack_array_148,0x100,param_2);
     iVar3 = UISystem_ComponentManager(stack_array_148 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
     iVar3 = SystemCore_CompressionHandler(stack_array_148 + iVar2,0x100 - iVar2,param_3);
@@ -595,7 +595,7 @@ void SystemCore_3e56d(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
     if (iVar1 == 0) goto SystemCore_3e6ce;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    iVar2 = func_0x00018074bda0(&local_buffer_00000040,0x100,param_2);
+    iVar2 = BufferManager_MigrateMetadata(&local_buffer_00000040,0x100,param_2);
     iVar3 = UISystem_ComponentManager(&local_buffer_00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
     iVar3 = SystemCore_CompressionHandler(&local_buffer_00000040 + iVar2,0x100 - iVar2,param_3);
@@ -623,7 +623,7 @@ void SystemCore_3e5ea(void)
   int iVar1;
   int iVar2;
   int32_t unaff_ESI;
-  iVar1 = func_0x00018074bda0(&local_buffer_00000040,0x100);
+  iVar1 = BufferManager_MigrateMetadata(&local_buffer_00000040,0x100);
   iVar2 = UISystem_ComponentManager(&local_buffer_00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   iVar2 = SystemCore_CompressionHandler(&local_buffer_00000040 + iVar1,0x100 - iVar1);
@@ -687,7 +687,7 @@ void SystemCore_3e810(uint64_t param_1,int32_t param_2,uint64_t param_3)
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
     iVar2 = BufferManager_Initialize(stack_array_138,0x100,param_2);
     iVar3 = UISystem_ComponentManager(stack_array_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
-    func_0x00018074bda0(stack_array_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
+    BufferManager_MigrateMetadata(stack_array_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     plocal_var_158 = stack_array_138;
 // WARNING: Subroutine does not return
     RenderingSystem_ShaderProcessor(iVar1,5,param_1,&processed_var_6936_ptr);
@@ -741,11 +741,11 @@ void SystemCore_3e940(uint64_t param_1,int32_t param_2,int32_t param_3,uint64_t 
     iVar2 = iVar2 + iVar3;
     iVar3 = UISystem_ComponentManager(stack_array_158 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
-    iVar3 = func_0x00018074bda0(stack_array_158 + iVar2,0x100 - iVar2,param_4);
+    iVar3 = BufferManager_MigrateMetadata(stack_array_158 + iVar2,0x100 - iVar2,param_4);
     iVar2 = iVar2 + iVar3;
     iVar3 = UISystem_ComponentManager(stack_array_158 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;
-    iVar3 = func_0x00018074bda0(stack_array_158 + iVar2,0x100 - iVar2,param_5);
+    iVar3 = BufferManager_MigrateMetadata(stack_array_158 + iVar2,0x100 - iVar2,param_5);
     iVar2 = iVar2 + iVar3;
     iVar3 = UISystem_ComponentManager(stack_array_158 + iVar2,0x100 - iVar2,&system_temp_buffer);
     iVar2 = iVar2 + iVar3;

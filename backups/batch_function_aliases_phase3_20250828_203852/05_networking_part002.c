@@ -212,7 +212,7 @@ int process_64bit_network_data(int64_t data_ptr, int64_t buffer, int length)
     processed_length = BufferManager_ProcessData(buffer, length, *(uint*)(data_ptr + 0x10));
     remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = func_0x00018074bda0(processed_length + buffer, length - processed_length, extended_field);
+    remaining_length = BufferManager_MigrateMetadata(processed_length + buffer, length - processed_length, extended_field);
     return remaining_length + processed_length;
 }
 /**
@@ -678,7 +678,7 @@ int process_multi_layer_network_data(int64_t data_ptr, int64_t buffer, int lengt
     field2 = *(uint*)(data_ptr + 0x20);
     field3 = *(uint*)(data_ptr + 0x1c);
     field4 = *(uint*)(data_ptr + 0x18);
-    processed_length = func_0x00018074bda0(buffer, length, *(uint64_t*)(data_ptr + 0x10));
+    processed_length = BufferManager_MigrateMetadata(buffer, length, *(uint64_t*)(data_ptr + 0x10));
     remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = BufferManager_Initialize(processed_length + buffer, length - processed_length, field4);

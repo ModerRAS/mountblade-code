@@ -136,7 +136,7 @@ void NetworkProtocol_498e7(void)
   int32_t unaff_ESI;
   int32_t unaff_R14D;
 // 格式化错误信息第一部分
-  iVar1 = func_0x00018074bda0(&local_buffer_00000050,0x100);
+  iVar1 = BufferManager_MigrateMetadata(&local_buffer_00000050,0x100);
 // 格式化错误信息第二部分
   iVar2 = SystemDataProcessor(&local_buffer_00000050 + iVar1,0x100 - iVar1,&system_temp_buffer);
 // 格式化错误信息第三部分
@@ -208,7 +208,7 @@ void NetworkProtocol_49990(uint64_t param_1,int32_t param_2,uint64_t *param_3,ui
     iVar5 = BufferManager_Initialize(stack_array_148,0x100,param_2);
     iVar6 = SystemDataProcessor(stack_array_148 + iVar5,0x100 - iVar5,&system_temp_buffer);
     iVar5 = iVar5 + iVar6;
-    iVar6 = func_0x00018074bda0(stack_array_148 + iVar5,0x100 - iVar5,0);
+    iVar6 = BufferManager_MigrateMetadata(stack_array_148 + iVar5,0x100 - iVar5,0);
     iVar5 = iVar5 + iVar6;
     iVar6 = SystemDataProcessor(stack_array_148 + iVar5,0x100 - iVar5,&system_temp_buffer);
     RenderingEngine_FrameBufferHandler(stack_array_148 + (iVar5 + iVar6),0x100 - (iVar5 + iVar6),param_4);

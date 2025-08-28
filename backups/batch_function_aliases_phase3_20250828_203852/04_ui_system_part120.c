@@ -54,7 +54,7 @@ void SystemCore_3b3e0(uint64_t param_1,uint64_t param_2,uint64_t param_3)
     if (iVar1 == 0) goto SystemCore_3b4cf;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    iVar2 = func_0x00018074bda0(stack_array_138,0x100,param_2);
+    iVar2 = BufferManager_MigrateMetadata(stack_array_138,0x100,param_2);
     iVar3 = DataProcessor(stack_array_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
     SystemCore_CompressionHandler(stack_array_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     plocal_var_158 = stack_array_138;
@@ -92,7 +92,7 @@ void SystemCore_3b3fd(uint64_t param_1,uint64_t param_2,uint64_t param_3)
     if (iVar1 == 0) goto SystemCore_3b4cf;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    iVar2 = func_0x00018074bda0(&local_buffer_00000040,0x100,param_2);
+    iVar2 = BufferManager_MigrateMetadata(&local_buffer_00000040,0x100,param_2);
     iVar3 = DataProcessor(&local_buffer_00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
     SystemCore_CompressionHandler(&local_buffer_00000040 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
 // WARNING: Subroutine does not return
@@ -111,7 +111,7 @@ void SystemCore_3b457(void)
   int iVar1;
   int iVar2;
   int32_t unaff_ESI;
-  iVar1 = func_0x00018074bda0(&local_buffer_00000040,0x100);
+  iVar1 = BufferManager_MigrateMetadata(&local_buffer_00000040,0x100);
   iVar2 = DataProcessor(&local_buffer_00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   SystemCore_CompressionHandler(&local_buffer_00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
 // WARNING: Subroutine does not return
@@ -376,7 +376,7 @@ void SystemCore_3b8e0(uint64_t param_1,uint64_t param_2)
     if (iVar1 == 0) goto LAB_18073b97a;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    func_0x00018074bda0(stack_array_118,0x100,param_2);
+    BufferManager_MigrateMetadata(stack_array_118,0x100,param_2);
     plocal_var_138 = stack_array_118;
 // WARNING: Subroutine does not return
     DataTransformer(iVar1,1,param_1,&processed_var_5000_ptr);
@@ -409,7 +409,7 @@ void SystemCore_3b9b0(uint64_t param_1,uint64_t param_2,int32_t param_3)
     if (iVar1 == 0) goto SystemCore_3ba9f;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    iVar2 = func_0x00018074bda0(stack_array_138,0x100,param_2);
+    iVar2 = BufferManager_MigrateMetadata(stack_array_138,0x100,param_2);
     iVar3 = DataProcessor(stack_array_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
     BufferManager_ProcessData(stack_array_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     plocal_var_158 = stack_array_138;
@@ -447,7 +447,7 @@ void SystemCore_3b9cd(uint64_t param_1,uint64_t param_2,int32_t param_3)
     if (iVar1 == 0) goto SystemCore_3ba9f;
   }
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
-    iVar2 = func_0x00018074bda0(&local_buffer_00000040,0x100,param_2);
+    iVar2 = BufferManager_MigrateMetadata(&local_buffer_00000040,0x100,param_2);
     iVar3 = DataProcessor(&local_buffer_00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
     BufferManager_ProcessData(&local_buffer_00000040 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
 // WARNING: Subroutine does not return
@@ -467,7 +467,7 @@ void SystemCore_3ba27(void)
   int iVar2;
   int32_t unaff_EBP;
   int32_t unaff_ESI;
-  iVar1 = func_0x00018074bda0(&local_buffer_00000040,0x100);
+  iVar1 = BufferManager_MigrateMetadata(&local_buffer_00000040,0x100);
   iVar2 = DataProcessor(&local_buffer_00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
   BufferManager_ProcessData(&local_buffer_00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),unaff_EBP);
 // WARNING: Subroutine does not return
@@ -775,7 +775,7 @@ void SystemCore_3c020(uint64_t param_1,int32_t param_2,uint64_t param_3)
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
     iVar2 = BufferManager_Initialize(stack_array_138,0x100,param_2);
     iVar3 = DataProcessor(stack_array_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
-    func_0x00018074bda0(stack_array_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
+    BufferManager_MigrateMetadata(stack_array_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     plocal_var_158 = stack_array_138;
 // WARNING: Subroutine does not return
     DataTransformer(iVar1,4,param_1,&processed_var_6680_ptr);
@@ -813,7 +813,7 @@ void SystemCore_3c03d(uint64_t param_1,int32_t param_2,uint64_t param_3)
   if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
     iVar2 = BufferManager_Initialize(&local_buffer_00000040,0x100,param_2);
     iVar3 = DataProcessor(&local_buffer_00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
-    func_0x00018074bda0(&local_buffer_00000040 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
+    BufferManager_MigrateMetadata(&local_buffer_00000040 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
 // WARNING: Subroutine does not return
     DataTransformer(iVar1,4,param_1,&processed_var_6680_ptr,&local_buffer_00000040);
   }
@@ -833,7 +833,7 @@ void SystemCore_3c099(void)
   int32_t unaff_ESI;
   iVar1 = BufferManager_Initialize(&local_buffer_00000040,0x100,unaff_EBX);
   iVar2 = DataProcessor(&local_buffer_00000040 + iVar1,0x100 - iVar1,&system_temp_buffer);
-  func_0x00018074bda0(&local_buffer_00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
+  BufferManager_MigrateMetadata(&local_buffer_00000040 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2));
 // WARNING: Subroutine does not return
   DataTransformer(unaff_ESI,4);
 }

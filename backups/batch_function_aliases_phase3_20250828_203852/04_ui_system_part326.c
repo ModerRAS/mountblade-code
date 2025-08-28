@@ -737,7 +737,7 @@ void NetworkProtocol_49490(uint64_t param_1, uint64_t *param_2)
 // WARNING: Subroutine does not return
             SystemSecurityChecker(local_var_28 ^ (uint64_t)stack_array_178);
         }
-        func_0x00018074bda0(stack_array_128, UI_SYSTEM_MEMORY_SIZE_256, 0);
+        BufferManager_MigrateMetadata(stack_array_128, UI_SYSTEM_MEMORY_SIZE_256, 0);
         plocal_var_158 = stack_array_128;
 // WARNING: Subroutine does not return
         DataTransformer(0x1f, 0xd, param_1, &processed_var_6920_ptr);
@@ -803,7 +803,7 @@ void NetworkProtocol_49600(uint64_t param_1, uint64_t param_2)
     iVar1 = StringDataProcessor_ConvertWide(param_1, stack_array_128);
     if ((((iVar1 != 0) || (iVar1 = NetworkProtocol_89f10(stack_array_128[0], param_2), iVar1 != 0)) && (iVar1 != 0)
         ) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
-        func_0x00018074bda0(stack_array_118, UI_SYSTEM_MEMORY_SIZE_256, param_2);
+        BufferManager_MigrateMetadata(stack_array_118, UI_SYSTEM_MEMORY_SIZE_256, param_2);
         plocal_var_138 = stack_array_118;
 // WARNING: Subroutine does not return
         DataTransformer(iVar1, 0xb, param_1, &processed_var_5000_ptr);
@@ -863,7 +863,7 @@ void NetworkProtocol_49782(void)
     int iVar2;
     int32_t unaff_ESI;
     int32_t unaff_R14D;
-    iVar1 = func_0x00018074bda0(&local_buffer_00000050, UI_SYSTEM_MEMORY_SIZE_256);
+    iVar1 = BufferManager_MigrateMetadata(&local_buffer_00000050, UI_SYSTEM_MEMORY_SIZE_256);
     iVar2 = SystemDataProcessor(&local_buffer_00000050 + iVar1, UI_SYSTEM_MEMORY_SIZE_256 - iVar1, &system_temp_buffer);
     BufferManager_ProcessData(&local_buffer_00000050 + (iVar1 + iVar2), UI_SYSTEM_MEMORY_SIZE_256 - (iVar1 + iVar2), unaff_R14D);
 // WARNING: Subroutine does not return
@@ -937,7 +937,7 @@ void NetworkProtocol_498e7(void)
     int iVar2;
     int32_t unaff_ESI;
     int32_t unaff_R14D;
-    iVar1 = func_0x00018074bda0(&local_buffer_00000050, UI_SYSTEM_MEMORY_SIZE_256);
+    iVar1 = BufferManager_MigrateMetadata(&local_buffer_00000050, UI_SYSTEM_MEMORY_SIZE_256);
     iVar2 = SystemDataProcessor(&local_buffer_00000050 + iVar1, UI_SYSTEM_MEMORY_SIZE_256 - iVar1, &system_temp_buffer);
     BufferManager_ProcessData(&local_buffer_00000050 + (iVar1 + iVar2), UI_SYSTEM_MEMORY_SIZE_256 - (iVar1 + iVar2), unaff_R14D);
 // WARNING: Subroutine does not return
@@ -987,7 +987,7 @@ void NetworkProtocol_49990(uint64_t param_1, int32_t param_2, uint64_t *param_3,
         iVar5 = BufferManager_Initialize(stack_array_148, UI_SYSTEM_MEMORY_SIZE_256, param_2);
         iVar6 = SystemDataProcessor(stack_array_148 + iVar5, UI_SYSTEM_MEMORY_SIZE_256 - iVar5, &system_temp_buffer);
         iVar5 = iVar5 + iVar6;
-        iVar6 = func_0x00018074bda0(stack_array_148 + iVar5, UI_SYSTEM_MEMORY_SIZE_256 - iVar5, 0);
+        iVar6 = BufferManager_MigrateMetadata(stack_array_148 + iVar5, UI_SYSTEM_MEMORY_SIZE_256 - iVar5, 0);
         iVar5 = iVar5 + iVar6;
         iVar6 = SystemDataProcessor(stack_array_148 + iVar5, UI_SYSTEM_MEMORY_SIZE_256 - iVar5, &system_temp_buffer);
         RenderingEngine_FrameBufferHandler(stack_array_148 + (iVar5 + iVar6), UI_SYSTEM_MEMORY_SIZE_256 - (iVar5 + iVar6), param_4);
