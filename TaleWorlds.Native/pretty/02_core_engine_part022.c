@@ -161,7 +161,7 @@ void FUN_180064c00(int64_t *param_1,int64_t param_2,int64_t param_3)
   }
   FUN_1800671b0(&uStack_68,puVar5,puVar4);
   uStack_e8 = 1;
-  FUN_180067070(&uStack_a8);
+  SystemResourceAllocator(&uStack_a8);
   uVar9 = uStack_58;
   uVar1 = uStack_68;
   uStack_a8 = uStack_68;

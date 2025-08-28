@@ -600,8 +600,8 @@ void FUN_180067050(void)
 
 
 
-// 函数: void FUN_180067070(int64_t *param_1)
-void FUN_180067070(int64_t *param_1)
+// 函数: void SystemResourceAllocator(int64_t *param_1)
+void SystemResourceAllocator(int64_t *param_1)
 
 {
   uint64_t uVar1;
@@ -635,7 +635,7 @@ void FUN_180067070(int64_t *param_1)
 void FUN_1800670d0(void)
 
 {
-  FUN_180067070();
+  SystemResourceAllocator();
   return;
 }
 

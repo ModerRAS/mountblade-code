@@ -310,7 +310,7 @@ LAB_18020d04f:
     uVar18 = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar10,lVar16,lVar8,uVar18);
+  SystemNetworkHandler(lVar10,lVar16,lVar8,uVar18);
 }
 
 
@@ -693,7 +693,7 @@ LAB_18020d80a:
   *(uint64_t *)(lVar5 + 0x38) = 0;
   *(int32_t *)(lVar5 + 0x40) = 3;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar5,plVar3,param_1,uVar6);
+  SystemNetworkHandler(lVar5,plVar3,param_1,uVar6);
 }
 
 
@@ -804,7 +804,7 @@ void FUN_18020da10(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t par
   *(uint64_t *)(lVar1 + 0x38) = 0;
   *(int32_t *)(lVar1 + 0x40) = 3;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar1,param_3,param_1,uVar2);
+  SystemNetworkHandler(lVar1,param_3,param_1,uVar2);
 }
 
 

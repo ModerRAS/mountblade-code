@@ -162,7 +162,7 @@ void process_and_add_path_to_container(int64_t *container_ptr, int64_t source_pa
     }
     FUN_1800671b0(&stack_uint7, temp_ptr3, temp_ptr2);
     stack_uint2 = 1;
-    FUN_180067070(&stack_uint3);
+    SystemResourceAllocator(&stack_uint3);
     temp_ulong2 = stack_ulong7;
     temp_uint1 = stack_uint7;
     stack_uint3 = stack_uint7;

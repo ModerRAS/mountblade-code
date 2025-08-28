@@ -111,12 +111,12 @@ LAB_18048265d:
             if (((uStack_e8 & 4) != 0) &&
                (uVar10 = uStack_e8 & 0xfffffffb, uStack_e8 = uVar10, cStack_90 != '\0')) {
               pcStack_d8 = acStack_88;
-              FUN_180067070(&uStack_80);
+              SystemResourceAllocator(&uStack_80);
             }
             if (((uVar10 & 2) != 0) &&
                (uVar10 = uVar10 & 0xfffffffd, uStack_e8 = uVar10, acStack_60[0] != '\0')) {
               pcStack_d8 = acStack_58;
-              FUN_180067070(auStack_50);
+              SystemResourceAllocator(auStack_50);
             }
             if (bVar1) {
               *(int64_t *)(*param_1 + 0x28) = lVar5;
@@ -312,16 +312,16 @@ void FUN_180482840(int64_t *param_1,char *param_2,uint64_t param_3,uint64_t para
         uStack_e8 = uVar8;
         if (acStack_c8[0] != '\0') {
           pcStack_e0 = (char *)auStack_c0;
-          FUN_180067070(auStack_b8);
+          SystemResourceAllocator(auStack_b8);
         }
       }
       if (((uVar8 & 2) != 0) && (uStack_e8 = uVar8 & 0xfffffffd, acStack_68[0] != '\0')) {
         pcStack_e0 = acStack_60;
-        FUN_180067070(auStack_58);
+        SystemResourceAllocator(auStack_58);
       }
       if (acStack_98[0] != '\0') {
         pcStack_e0 = (char *)auStack_90;
-        FUN_180067070(auStack_88);
+        SystemResourceAllocator(auStack_88);
       }
     }
     else {
@@ -350,9 +350,9 @@ void FUN_180482a50(int64_t *param_1)
       WSACleanup();
     }
     if (*(char *)(lVar1 + 0x30) != '\0') {
-      FUN_180067070(lVar1 + 0x40);
+      SystemResourceAllocator(lVar1 + 0x40);
     }
-    FUN_180067070(lVar1);
+    SystemResourceAllocator(lVar1);
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
     free(lVar1,0x60);

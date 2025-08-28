@@ -389,7 +389,7 @@ void FUN_180443b80(uint64_t param_1,int8_t param_2)
     ppuStack_68 = &puStack_a0;
     uStack_20 = param_2;
     (**(code **)(*plVar1 + 0x20))(plVar1,auStack_40,&puStack_a0,0);
-    FUN_180067070(auStack_40);
+    SystemResourceAllocator(auStack_40);
     *puVar3 = &system_data_buffer_ptr;
     if (puVar3[1] != 0) {
                     // WARNING: Subroutine does not return

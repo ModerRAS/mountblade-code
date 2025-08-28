@@ -736,7 +736,7 @@ LAB_180368d81:
   uVar10 = 0;
 LAB_180368ddf:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar7,puVar9,param_1,uVar10);
+  SystemNetworkHandler(lVar7,puVar9,param_1,uVar10);
 }
 
 

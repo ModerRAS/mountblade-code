@@ -33,7 +33,7 @@ void FUN_180186430(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   *(int64_t *)(*plVar1 + 0x10) = lVar2;
   *(uint64_t *)(param_1 + 0x30) = 0;
   free(*plVar1,0x28);
-  FUN_180067070(param_1 + 8);
+  SystemResourceAllocator(param_1 + 8);
   return;
 }
 
@@ -175,7 +175,7 @@ void FUN_1801865a0(uint64_t param_1,uint64_t *param_2)
     plStack_70[2] = (int64_t)plVar1;
     uStack_68 = 0;
     free(plStack_70,0x60);
-    FUN_180067070(auStack_90);
+    SystemResourceAllocator(auStack_90);
     *param_2 = &system_data_buffer_ptr;
     if (param_2[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -208,7 +208,7 @@ void FUN_180186800(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   *(int64_t *)(*plVar1 + 0x10) = lVar2;
   *(uint64_t *)(param_1 + 0x28) = 0;
   free(*plVar1,0x60);
-  FUN_180067070(param_1);
+  SystemResourceAllocator(param_1);
   return;
 }
 
@@ -296,8 +296,8 @@ void FUN_180186880(uint64_t param_1,uint64_t *param_2,uint64_t *param_3)
     lStack_a0 = lVar2;
     ppuStack_70 = &puStack_a8;
     (**(code **)(*plVar1 + 0x28))(plVar1,auStack_68,&puStack_a8,0);
-    FUN_180067070(auStack_48);
-    FUN_180067070(auStack_68);
+    SystemResourceAllocator(auStack_48);
+    SystemResourceAllocator(auStack_68);
     *param_2 = &system_data_buffer_ptr;
     if (param_2[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -327,8 +327,8 @@ void FUN_180186880(uint64_t param_1,uint64_t *param_2,uint64_t *param_3)
 void FUN_180186a90(int64_t param_1)
 
 {
-  FUN_180067070(param_1 + 0x20);
-  FUN_180067070(param_1);
+  SystemResourceAllocator(param_1 + 0x20);
+  SystemResourceAllocator(param_1);
   return;
 }
 
@@ -421,8 +421,8 @@ void FUN_180186ac0(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,int32_t 
     lStack_c0 = lVar2;
     ppuStack_90 = &puStack_c8;
     (**(code **)(*plVar1 + 0x30))(plVar1,auStack_88,&puStack_c8,0);
-    FUN_180067070(auStack_68);
-    FUN_180067070(auStack_88);
+    SystemResourceAllocator(auStack_68);
+    SystemResourceAllocator(auStack_88);
     *param_2 = &system_data_buffer_ptr;
     if (param_2[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -504,7 +504,7 @@ void FUN_180186ca0(uint64_t param_1,int64_t param_2,uint64_t param_3)
           *(int32_t *)((int64_t)ppuVar4 + 0x24) = uStack_50._4_4_;
           ppuStack_90 = ppuStack_90 + 5;
         }
-        FUN_180067070(&puStack_70);
+        SystemResourceAllocator(&puStack_70);
         uVar5 = uVar5 + 1;
       } while (uVar5 < param_3);
     }
@@ -518,7 +518,7 @@ void FUN_180186ca0(uint64_t param_1,int64_t param_2,uint64_t param_3)
     ppuVar4 = ppuStack_98;
     if (ppuStack_98 != (void **)0x0) {
       for (; ppuStack_80 = ppuVar4, ppuVar4 != ppuVar3; ppuVar4 = ppuVar4 + 5) {
-        FUN_180067070(ppuVar4);
+        SystemResourceAllocator(ppuVar4);
       }
       uVar5 = (((int64_t)ppuStack_88 - (int64_t)ppuStack_98) / 0x28) * 0x28;
       ppuVar4 = ppuStack_98;
@@ -876,14 +876,14 @@ LAB_18018764a:
       puStack_a8[2] = puVar9;
       ppuStack_a0 = (void **)0x0;
       free(puStack_a8,0x60);
-      FUN_180067070(&puStack_d8);
+      SystemResourceAllocator(&puStack_d8);
     }
     ppuStack_f8 = &puStack_d8;
     puStack_d8 = &unknown_var_536_ptr;
     ppuStack_a0 = &puStack_d8;
     ppuStack_d0 = param_1;
     (**(code **)(*(int64_t *)param_1[1] + 8))(param_1[1],&lStack_78,&puStack_d8,0);
-    FUN_180067070(auStack_60);
+    SystemResourceAllocator(auStack_60);
     lVar12 = lStack_70;
     lVar11 = lStack_78;
     if (lStack_78 != 0) {
@@ -921,7 +921,7 @@ void FUN_1801878a0(int64_t *param_1)
   int64_t lVar1;
   int64_t lVar2;
   
-  FUN_180067070(param_1 + 3);
+  SystemResourceAllocator(param_1 + 3);
   lVar1 = *param_1;
   if (lVar1 != 0) {
     lVar2 = param_1[1];
@@ -965,7 +965,7 @@ void FUN_180187950(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   *(int64_t *)(*plVar1 + 0x10) = lVar2;
   *(uint64_t *)(param_1 + 0x38) = 0;
   free(*plVar1,0x60);
-  FUN_180067070(param_1);
+  SystemResourceAllocator(param_1);
   return;
 }
 

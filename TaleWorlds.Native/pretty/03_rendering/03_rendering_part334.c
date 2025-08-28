@@ -565,7 +565,7 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
         parameter_flag_20 = param_2;
         
         (**(code **)(*parameter_manager + 0x20))(parameter_manager, parameter_buffer_40, &parameter_ptr_a0, 0);
-        FUN_180067070(parameter_buffer_40);
+        SystemResourceAllocator(parameter_buffer_40);
         *parameter_ptr = &system_data_buffer_ptr;
         
         if (parameter_ptr[1] != 0) {

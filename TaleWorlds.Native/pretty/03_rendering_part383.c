@@ -273,7 +273,7 @@ char * FUN_18047a690(char *param_1,char *param_2)
   uint64_t uVar2;
   
   if (*param_1 != '\0') {
-    FUN_180067070(param_1 + 0x10);
+    SystemResourceAllocator(param_1 + 0x10);
   }
   cVar1 = *param_2;
   *param_1 = cVar1;
@@ -382,9 +382,9 @@ void FUN_18047a710(int8_t *param_1,uint64_t *param_2)
   uStack_48 = uVar2;
   puStack_20 = param_1;
   puStack_18 = param_2;
-  FUN_180067070(&uStack_50);
+  SystemResourceAllocator(&uStack_50);
   uStack_58 = 1;
-  FUN_180067070(param_2);
+  SystemResourceAllocator(param_2);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_10 ^ (uint64_t)auStack_78);
 }

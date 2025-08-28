@@ -240,16 +240,16 @@ void FUN_180474260(char *param_1,int64_t param_2,uint64_t param_3,int param_4)
             if (pcVar8 != acStack_1b8) {
               if (acStack_1b8[0] != '\0') {
                 pcStack_278 = &cStack_1b0;
-                FUN_180067070(&uStack_190);
-                FUN_180067070(&cStack_1b0);
+                SystemResourceAllocator(&uStack_190);
+                SystemResourceAllocator(&cStack_1b0);
               }
               FUN_1804776c0(acStack_1b8,pcVar8);
             }
             bVar11 = acStack_1b8[0] != '\0';
             if (acStack_b8[0] != '\0') {
               pcStack_278 = acStack_b0;
-              FUN_180067070(auStack_90);
-              FUN_180067070(acStack_b0);
+              SystemResourceAllocator(auStack_90);
+              SystemResourceAllocator(acStack_b0);
             }
             plVar1 = plStack_268;
             if (bVar11) {
@@ -294,8 +294,8 @@ void FUN_180474260(char *param_1,int64_t param_2,uint64_t param_3,int param_4)
               }
               if (acStack_1b8[0] != '\0') {
                 pcStack_278 = &cStack_1b0;
-                FUN_180067070(&uStack_190);
-                FUN_180067070(&cStack_1b0);
+                SystemResourceAllocator(&uStack_190);
+                SystemResourceAllocator(&cStack_1b0);
               }
               if (lStack_290 == 0) goto LAB_180474d04;
               FUN_180477be0(lStack_290,pcStack_288);
@@ -388,8 +388,8 @@ void FUN_180474260(char *param_1,int64_t param_2,uint64_t param_3,int param_4)
               }
               if (acStack_1b8[0] != '\0') {
                 pcStack_278 = &cStack_1b0;
-                FUN_180067070(&uStack_190);
-                FUN_180067070(&cStack_1b0);
+                SystemResourceAllocator(&uStack_190);
+                SystemResourceAllocator(&cStack_1b0);
               }
               if (lStack_290 == 0) goto LAB_180474d04;
               FUN_180477be0(lStack_290,pcStack_288);
@@ -459,8 +459,8 @@ void FUN_180474260(char *param_1,int64_t param_2,uint64_t param_3,int param_4)
               }
               if (acStack_1b8[0] != '\0') {
                 pcStack_278 = &cStack_1b0;
-                FUN_180067070(&uStack_190);
-                FUN_180067070(&cStack_1b0);
+                SystemResourceAllocator(&uStack_190);
+                SystemResourceAllocator(&cStack_1b0);
               }
               if (lStack_290 == 0) goto LAB_180474d04;
               FUN_180477be0(lStack_290,pcStack_288);
@@ -500,8 +500,8 @@ void FUN_180474260(char *param_1,int64_t param_2,uint64_t param_3,int param_4)
             }
             if (acStack_1b8[0] != '\0') {
               pcStack_278 = &cStack_1b0;
-              FUN_180067070(&uStack_190);
-              FUN_180067070(&cStack_1b0);
+              SystemResourceAllocator(&uStack_190);
+              SystemResourceAllocator(&cStack_1b0);
             }
           }
           uStack_108 = 0;
@@ -548,8 +548,8 @@ void FUN_180474260(char *param_1,int64_t param_2,uint64_t param_3,int param_4)
           }
           if (acStack_1b8[0] != '\0') {
             pcStack_278 = &cStack_1b0;
-            FUN_180067070(&uStack_190);
-            FUN_180067070(&cStack_1b0);
+            SystemResourceAllocator(&uStack_190);
+            SystemResourceAllocator(&cStack_1b0);
           }
           if (lStack_290 == 0) goto LAB_180474d04;
           FUN_180477be0(lStack_290,pcStack_288);

@@ -128,7 +128,7 @@ void FUN_1803f2f80(char *param_1)
 
 {
   if (*param_1 != '\0') {
-    FUN_180067070(param_1 + 8);
+    SystemResourceAllocator(param_1 + 8);
   }
   return;
 }
@@ -143,7 +143,7 @@ void FUN_1803f2fb0(char *param_1)
 
 {
   if (*param_1 != '\0') {
-    FUN_180067070(param_1 + 0x10);
+    SystemResourceAllocator(param_1 + 0x10);
   }
   return;
 }
@@ -184,7 +184,7 @@ int64_t * FUN_1803f3000(int64_t *param_1,int64_t *param_2,uint64_t param_3,uint6
       lVar3 = lVar3 + 0x20;
     }
     for (; lVar5 != lVar3; lVar5 = lVar5 + 0x20) {
-      FUN_180067070(lVar5);
+      SystemResourceAllocator(lVar5);
     }
     param_1[1] = lVar3;
   }
@@ -383,7 +383,7 @@ void FUN_1803f32c0(int64_t *param_1)
     lVar2 = param_1[1];
     if (lVar1 != lVar2) {
       do {
-        FUN_180067070(lVar1);
+        SystemResourceAllocator(lVar1);
         lVar1 = lVar1 + 0x20;
       } while (lVar1 != lVar2);
       lVar1 = *param_1;
@@ -418,7 +418,7 @@ void FUN_1803f32d5(int64_t param_1)
   lVar1 = *(int64_t *)(param_1 + 8);
   if (unaff_RBX != lVar1) {
     do {
-      FUN_180067070(unaff_RBX);
+      SystemResourceAllocator(unaff_RBX);
       unaff_RBX = unaff_RBX + 0x20;
     } while (unaff_RBX != lVar1);
     unaff_RBX = *unaff_RDI;
@@ -535,7 +535,7 @@ void FUN_1803f33b0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
           }
         }
       }
-      FUN_180067070(plVar7 + 2);
+      SystemResourceAllocator(plVar7 + 2);
       free(plVar7,0x40,param_3,param_4,uVar8);
       plVar7 = plVar4;
     } while (plVar4 != (int64_t *)*param_1);
@@ -818,7 +818,7 @@ void FUN_1803f3690(uint64_t param_1,int64_t param_2)
       }
     }
   }
-  FUN_180067070(param_2 + 0x10);
+  SystemResourceAllocator(param_2 + 0x10);
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
   free(param_2,0x40);
@@ -1074,7 +1074,7 @@ void FUN_1803f3ac0(uint64_t param_1,int32_t *param_2,uint64_t *param_3)
   *(uint64_t *)(param_2 + 6) = 0xf;
   *(int8_t *)param_2 = 0;
   FUN_1804726c0(param_1,&uStack_50,&uStack_88);
-  FUN_180067070(param_2);
+  SystemResourceAllocator(param_2);
   plVar4 = (int64_t *)param_3[1];
   if (plVar4 != (int64_t *)0x0) {
     LOCK();
@@ -1203,7 +1203,7 @@ void FUN_1803f3bc0(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,uint64_t
   auStack_c8[0] = 0;
   FUN_1800671b0(auStack_c8,&unknown_var_560_ptr,0x19);
   FUN_1804726c0(param_1,auStack_c8,uVar10);
-  FUN_180067070(&uStack_f8);
+  SystemResourceAllocator(&uStack_f8);
   plVar4 = plStack_110;
   if (plStack_110 != (int64_t *)0x0) {
     LOCK();
@@ -1223,7 +1223,7 @@ void FUN_1803f3bc0(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,uint64_t
       }
     }
   }
-  FUN_180067070(param_2);
+  SystemResourceAllocator(param_2);
   plVar4 = (int64_t *)param_3[1];
   if (plVar4 != (int64_t *)0x0) {
     LOCK();

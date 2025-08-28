@@ -36,7 +36,7 @@ void FUN_180187c00(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     lVar3 = param_1[1];
     if (lVar2 != lVar3) {
       do {
-        FUN_180067070(lVar2);
+        SystemResourceAllocator(lVar2);
         lVar2 = lVar2 + 0x28;
       } while (lVar2 != lVar3);
       lVar2 = *param_1;
@@ -722,7 +722,7 @@ void FUN_180188310(uint64_t param_1,int64_t param_2,int64_t param_3)
 {
   if (param_2 != param_3) {
     do {
-      FUN_180067070(param_2);
+      SystemResourceAllocator(param_2);
       param_2 = param_2 + 0x28;
     } while (param_2 != param_3);
   }
@@ -856,8 +856,8 @@ void FUN_1801884d0(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t p
   while (cVar1 == '\0') {
     FUN_1801884d0(param_1,param_2[2],param_3,param_4,uVar3);
     plVar2 = (int64_t *)*param_2;
-    FUN_180067070(param_2 + 8);
-    FUN_180067070(param_2 + 4);
+    SystemResourceAllocator(param_2 + 8);
+    SystemResourceAllocator(param_2 + 4);
     free(param_2,0x60);
     param_2 = plVar2;
     cVar1 = *(char *)((int64_t)plVar2 + 0x19);
