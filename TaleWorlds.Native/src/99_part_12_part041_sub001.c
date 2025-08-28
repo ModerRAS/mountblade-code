@@ -49,13 +49,26 @@ typedef undefined8 PersistenceHandle;             // 持久化句柄
 #define FILE_CACHE_SIZE            0x100000        // 文件缓存大小
 
 //------------------------------------------------------------------------------
+// 函数声明
+//------------------------------------------------------------------------------
+
+// 文件系统操作函数
+undefined8 FileSystemOperation(longlong context, undefined8 operation, undefined8 *buffer);
+
+// 存储空间管理函数
+undefined8 StorageSpaceManager(longlong context, undefined8 *buffer);
+
+// 文件操作控制函数
+undefined8 FileOperationController(longlong context, undefined8 *buffer);
+
+//------------------------------------------------------------------------------
 // 函数别名定义
 //------------------------------------------------------------------------------
 
 // 高级文件系统管理器
 #define AdvancedFileSystemManager               FUN_180012349
-#define StorageSpaceController                 FUN_180012349
-#define FileOperationHandler                   FUN_180012349
+#define StorageSpaceController                 StorageSpaceManager
+#define FileOperationHandler                   FileOperationController
 
 //------------------------------------------------------------------------------
 // 高级文件系统管理函数
