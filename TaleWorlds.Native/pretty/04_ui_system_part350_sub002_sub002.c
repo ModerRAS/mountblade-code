@@ -735,7 +735,7 @@ int UISystem_ParameterProcessor(longlong system_context, int *param_array, uint 
       }
       lStack_a8 = param_1;
       uStack_9c = uVar14;
-      iVar5 = FUN_18085e8d0(*(uint64_t *)(param_1 + 0x160),param_2,&lStack_a8,1,uVar18 + lVar13,0,
+      iVar5 = UISystem_TimeSynchronizer(*(uint64_t *)(param_1 + 0x160),param_2,&lStack_a8,1,uVar18 + lVar13,0,
                             0);
     }
     else {
@@ -760,7 +760,7 @@ int UISystem_ParameterProcessor(longlong system_context, int *param_array, uint 
         uVar19 = 0;
         goto LAB_18085a4b5;
       }
-      plVar9 = (longlong *)FUN_1808caec0(lVar10 + 0x378,param_2,0);
+      plVar9 = (longlong *)UISystem_ResourceCreator(lVar10 + 0x378,param_2,0);
       if (plVar9 == (longlong *)0x0) goto LAB_18085a4fd;
       iVar5 = (**(code **)(*plVar9 + 0x70))(plVar9,lVar13,1);
     }
@@ -768,7 +768,7 @@ int UISystem_ParameterProcessor(longlong system_context, int *param_array, uint 
   else {
     if (cVar4 != '\0') {
       iVar5 = FUN_18085ab70(param_1);
-      iVar5 = FUN_18085f790(*(uint64_t *)(param_1 + 0x160),param_2,
+      iVar5 = UISystem_StateUpdater(*(uint64_t *)(param_1 + 0x160),param_2,
                             (longlong)iVar5 + *(longlong *)(param_1 + 0x10),1,
                             in_stack_ffffffffffffff08 & 0xffffffffffffff00,0);
       if (iVar5 != 0) goto LAB_18085a4c4;
@@ -829,7 +829,7 @@ LAB_18085a2e9:
         }
         lStack_a8 = param_1;
         uStack_a0 = uVar17;
-        iVar5 = FUN_18085e8d0(*(uint64_t *)(param_1 + 0x160),param_2,&lStack_a8,1,uVar12 + lVar13,
+        iVar5 = UISystem_TimeSynchronizer(*(uint64_t *)(param_1 + 0x160),param_2,&lStack_a8,1,uVar12 + lVar13,
                               0,0);
         if (iVar5 != 0) goto LAB_18085a4c4;
       }
@@ -862,7 +862,7 @@ LAB_18085a2e9:
     lVar10 = *(longlong *)(param_1 + 0x160);
     uVar19 = 1;
 LAB_18085a4b5:
-    iVar5 = FUN_18085f790(lVar10,param_2,lVar13,1,uVar19,0);
+    iVar5 = UISystem_StateUpdater(lVar10,param_2,lVar13,1,uVar19,0);
   }
   if (iVar5 != 0) {
 LAB_18085a4c4:
@@ -1015,11 +1015,11 @@ LAB_18085a6ac:
     if (!bVar4) {
       iVar5 = FUN_18085ab70(param_1);
       in_stack_ffffffffffffff08 = in_stack_ffffffffffffff08 & 0xffffffffffffff00;
-      iVar5 = FUN_18085f790(*(uint64_t *)(param_1 + 0x160),param_2,
+      iVar5 = UISystem_StateUpdater(*(uint64_t *)(param_1 + 0x160),param_2,
                             (longlong)iVar5 + *(longlong *)(param_1 + 0x10),0,
                             in_stack_ffffffffffffff08,0);
       if (iVar5 != 0) goto LAB_18085a91b;
-      lVar10 = FUN_1808caec0(*(longlong *)(param_1 + 0x160) + 0x3f8,param_2,0);
+      lVar10 = UISystem_ResourceCreator(*(longlong *)(param_1 + 0x160) + 0x3f8,param_2,0);
       if (lVar10 != 0) {
         iVar5 = FUN_1808cab70(*(longlong *)(param_1 + 0x160) + 0x3f8,lVar10);
         goto joined_r0x00018085a8b5;
@@ -1071,7 +1071,7 @@ LAB_18085a7de:
     in_stack_ffffffffffffff08 = 0;
     lStack_88 = param_1;
     uStack_80 = uVar6;
-    iVar5 = FUN_18085e8d0(*(uint64_t *)(param_1 + 0x160),param_2,&lStack_88,0,0,1,0);
+    iVar5 = UISystem_TimeSynchronizer(*(uint64_t *)(param_1 + 0x160),param_2,&lStack_88,0,0,1,0);
 joined_r0x00018085a8b5:
     if (iVar5 != 0) goto LAB_18085a91b;
 LAB_18085a742:
@@ -1096,7 +1096,7 @@ LAB_18085a746:
       }
       uVar11 = (ulonglong)uVar12;
     }
-    iVar5 = FUN_18085f790(*(uint64_t *)(param_1 + 0x160),param_2,uVar11 + lStack_c8,0,
+    iVar5 = UISystem_StateUpdater(*(uint64_t *)(param_1 + 0x160),param_2,uVar11 + lStack_c8,0,
                           in_stack_ffffffffffffff08 & 0xffffffffffffff00,0);
     if (iVar5 != 0) goto LAB_18085a91b;
   }
@@ -1216,11 +1216,11 @@ LAB_18085a6ac:
     if (bVar5) goto LAB_18085a8c1;
     iVar6 = FUN_18085ab70(lVar17);
     in_stack_00000020 = in_stack_00000020 & 0xffffffffffffff00;
-    iVar6 = FUN_18085f790(*(uint64_t *)(lVar17 + 0x160),*(uint64_t *)(unaff_RBP + 0x5f),
+    iVar6 = UISystem_StateUpdater(*(uint64_t *)(lVar17 + 0x160),*(uint64_t *)(unaff_RBP + 0x5f),
                           (longlong)iVar6 + *(longlong *)(lVar17 + 0x10),0,in_stack_00000020);
     if (iVar6 != 0) goto LAB_18085a91b;
     uVar14 = *(uint64_t *)(unaff_RBP + 0x5f);
-    lVar10 = FUN_1808caec0(*(longlong *)(lVar17 + 0x160) + 0x3f8,uVar14,0);
+    lVar10 = UISystem_ResourceCreator(*(longlong *)(lVar17 + 0x160) + 0x3f8,uVar14,0);
     if (lVar10 != 0) {
       iVar6 = FUN_1808cab70(*(longlong *)(lVar17 + 0x160) + 0x3f8,lVar10);
       goto joined_r0x00018085a8b5;
@@ -1276,7 +1276,7 @@ LAB_18085a7de:
       *(uint64_t *)(unaff_RBP + 7) = 0;
       *(int8_t *)(unaff_RBP + 0xf) = 0;
       in_stack_00000020 = 0;
-      iVar6 = FUN_18085e8d0(uVar14,*(uint64_t *)(unaff_RBP + 0x5f),unaff_RBP + -0x39,0,0);
+      iVar6 = UISystem_TimeSynchronizer(uVar14,*(uint64_t *)(unaff_RBP + 0x5f),unaff_RBP + -0x39,0,0);
 joined_r0x00018085a8b5:
       if (iVar6 != 0) goto LAB_18085a91b;
       uVar14 = *(uint64_t *)(unaff_RBP + 0x5f);
@@ -1307,7 +1307,7 @@ LAB_18085a8c1:
       }
       lVar10 = (ulonglong)uVar16 + *(longlong *)(unaff_RBP + -0x79);
     }
-    iVar6 = FUN_18085f790(*(uint64_t *)(lVar17 + 0x160),uVar14,lVar10,0,
+    iVar6 = UISystem_StateUpdater(*(uint64_t *)(lVar17 + 0x160),uVar14,lVar10,0,
                           in_stack_00000020 & 0xffffffffffffff00);
     if (iVar6 != 0) goto LAB_18085a91b;
   }
@@ -2616,7 +2616,7 @@ LAB_18085add0:
       iStack_7c = iVar11;
       lStack_60 = lVar2 + 0x3f8;
       lStack_58 = lVar2 + 0x378;
-      uVar5 = FUN_18085e8d0(*(uint64_t *)(param_1 + 0x160),uVar13,&lStack_88,param_5,lVar12,1,
+      uVar5 = UISystem_TimeSynchronizer(*(uint64_t *)(param_1 + 0x160),uVar13,&lStack_88,param_5,lVar12,1,
                             param_7);
       if ((int)uVar5 != 0) {
         return uVar5;
@@ -2645,7 +2645,7 @@ LAB_18085add0:
         }
         lVar12 = (ulonglong)uVar8 + *param_2;
       }
-      uVar5 = FUN_18085f790(*(uint64_t *)(param_1 + 0x160),uVar13,lVar12,param_5,1,param_7);
+      uVar5 = UISystem_StateUpdater(*(uint64_t *)(param_1 + 0x160),uVar13,lVar12,param_5,1,param_7);
       if ((int)uVar5 != 0) {
         return uVar5;
       }
