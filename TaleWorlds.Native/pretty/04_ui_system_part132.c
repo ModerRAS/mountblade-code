@@ -330,8 +330,8 @@ uint64_t UI_System_Data_Batch_Copy(void)
 /**
  * @file 04_ui_system_part132.c
  * @brief UI系统事件处理模块实现
- * @version 1.0
- * @date 2024
+ * @version 2.0
+ * @date 2024-2025
  * 
  * 本模块实现了TaleWorlds引擎中UI系统的事件处理和回调管理功能。
  * 
