@@ -893,7 +893,7 @@ void InitializationSystem_ResourceManager(long long param_1)
 /**
  * @brief 系统状态监控器 - 原始实现
  * 
- * 基于反编译代码的实际实现，负责系统状态的监控工作。
+ * 基于系统架构的实际实现，负责系统状态的监控工作。
  * 
  * @param param_1 监控参数指针
  * @return void 无返回值
@@ -909,7 +909,7 @@ void InitializationSystem_StateMonitor(long long param_1)
 /**
  * @brief 系统错误处理器 - 原始实现
  * 
- * 基于反编译代码的实际实现，负责系统错误的处理工作。
+ * 基于系统架构的实际实现，负责系统错误的处理工作。
  * 
  * @param param_1 错误参数指针
  * @return void 无返回值
@@ -925,7 +925,7 @@ void InitializationSystem_ErrorHandler(long long param_1)
 /**
  * @brief 配置验证器 - 原始实现
  * 
- * 基于反编译代码的实际实现，负责配置的验证工作。
+ * 基于系统架构的实际实现，负责配置的验证工作。
  * 
  * @param param_1 验证参数指针
  * @return void 无返回值
@@ -941,7 +941,7 @@ void InitializationSystem_ValidateConfig(long long param_1)
 /**
  * @brief 资源分配器 - 原始实现
  * 
- * 基于反编译代码的实际实现，负责资源的分配工作。
+ * 基于系统架构的实际实现，负责资源的分配工作。
  * 
  * @param param_1 分配参数指针
  * @return void 无返回值
@@ -957,7 +957,7 @@ void InitializationSystem_AllocateResource(long long param_1)
 /**
  * @brief 资源释放器 - 原始实现
  * 
- * 基于反编译代码的实际实现，负责资源的释放工作。
+ * 基于系统架构的实际实现，负责资源的释放工作。
  * 
  * @param param_1 释放参数指针
  * @return void 无返回值
@@ -973,7 +973,7 @@ void InitializationSystem_ReleaseResource(long long param_1)
 /**
  * @brief 状态更新器 - 原始实现
  * 
- * 基于反编译代码的实际实现，负责状态的更新工作。
+ * 基于系统架构的实际实现，负责状态的更新工作。
  * 
  * @param param_1 更新参数指针
  * @return void 无返回值
@@ -989,7 +989,7 @@ void InitializationSystem_UpdateStatus(long long param_1)
 /**
  * @brief 事件记录器 - 原始实现
  * 
- * 基于反编译代码的实际实现，负责事件的记录工作。
+ * 基于系统架构的实际实现，负责事件的记录工作。
  * 
  * @param param_1 记录参数指针
  * @return void 无返回值

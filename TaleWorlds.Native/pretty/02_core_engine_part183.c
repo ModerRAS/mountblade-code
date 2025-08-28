@@ -952,7 +952,7 @@ longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resourc
     resource_handle = _DAT_180c868f8;
     ContextInitializer(&stack_data_1, config_data, config_data, resource_flags, 0, 0xfffffffffffffffe);
     resource_count = ResourceCounter(resource_handle, &stack_data_1);
-    stack_data_1 = &UNK_180a3c3e0;
+    stack_data_1 = &core_engine_vtable_default;
     
     // 检查资源分配状态
     if (stack_data_2 != (int8_t *)0x0) {
@@ -966,7 +966,7 @@ longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resourc
     *resource_ptr = (longlong)&core_engine_vtable_active;
     resource_ptr[1] = 0;
     *(int32_t *)(resource_ptr + 2) = 0;
-    *resource_ptr = (longlong)&UNK_180a3c3e0;
+    *resource_ptr = (longlong)&core_engine_vtable_default;
     resource_ptr[3] = 0;
     resource_ptr[1] = 0;
     *(int32_t *)(resource_ptr + 2) = 0;
@@ -977,13 +977,13 @@ longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resourc
         if (*(void **)(config_data + 8) != (void *)0x0) {
             resource_data = *(void **)(config_data + 8);
         }
-        ResourceRegistrar(&UNK_180a08868, resource_data);
-        (**(code **)(*resource_ptr + CORE_OFFSET_0x10))(resource_ptr, &UNK_180a08850);
+        ResourceRegistrar(&core_engine_resource_registry, resource_data);
+        (**(code **)(*resource_ptr + CORE_OFFSET_0x10))(resource_ptr, &core_engine_resource_handler);
     }
     else {
         resource_id = ResourceIdGenerator(resource_count, &stack_data_5, config_data, resource_flags, 1);
         ResourceBinder(resource_ptr, resource_id);
-        stack_data_5 = &UNK_180a3c3e0;
+        stack_data_5 = &core_engine_vtable_default;
         if (stack_data_6 != 0) {
             ErrorHandler();
         }
@@ -992,7 +992,7 @@ longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resourc
         stack_data_5 = &core_engine_vtable_active;
     }
     
-    stack_data_1 = &UNK_180a3c3e0;
+    stack_data_1 = &core_engine_vtable_default;
     stack_data_4 = 0;
     stack_data_2 = (int8_t *)0x0;
     stack_data_3 = 0;
@@ -1024,7 +1024,7 @@ longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resourc
         *resource_block_2 = &core_engine_vtable_active;
         resource_block_2[1] = 0;
         *(int32_t *)(resource_block_2 + 2) = 0;
-        *resource_block_2 = &UNK_180a3c3e0;
+        *resource_block_2 = &core_engine_vtable_default;
         resource_block_2[3] = 0;
         resource_block_2[1] = 0;
         *(int32_t *)(resource_block_2 + 2) = 0;
@@ -1038,7 +1038,7 @@ longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resourc
         *(longlong *)(resource_handle + CORE_OFFSET_0x10) = *(longlong *)(resource_handle + CORE_OFFSET_0x10) + 0x20;
     }
     
-    stack_data_1 = &UNK_180a3c3e0;
+    stack_data_1 = &core_engine_vtable_default;
     if (stack_data_2 != (int8_t *)0x0) {
         ErrorHandler();
     }
@@ -1100,7 +1100,7 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
                     *(int32_t *)(string_length + CORE_OFFSET_0x10) = 0;
                     *(uint64_t *)(string_length + 8) = 0;
                     *(uint64_t *)(string_length + 0x18) = 0;
-                    stack_ptr_4 = &UNK_180a3c3e0;
+                    stack_ptr_4 = &core_engine_vtable_default;
                     if (stack_ptr_5 != (int16_t *)0x0) {
                         ErrorHandler();
                     }
@@ -1115,7 +1115,7 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
         } while (char_count < *(uint *)(string_data + CORE_OFFSET_0x10));
     }
     
-    stack_ptr_3 = &UNK_180a3c3e0;
+    stack_ptr_3 = &core_engine_vtable_default;
     stack_data_4 = 0;
     stack_data_2 = 0;
     stack_data_3 = 0;
@@ -1123,7 +1123,7 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
     
     // 处理字符串内容
     if ((stack_data_7 != 0) && (0 < stack_int_1)) {
-        stack_ptr_4 = &UNK_180a3c3e0;
+        stack_ptr_4 = &core_engine_vtable_default;
         stack_data_6 = 0;
         stack_ptr_5 = (int16_t *)0x0;
         stack_data_5 = 0;
@@ -1139,14 +1139,14 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
             temp_ptr = stack_ptr_2;
         }
         strstr(temp_ptr, string_buffer);
-        stack_ptr_4 = &UNK_180a3c3e0;
+        stack_ptr_4 = &core_engine_vtable_default;
         ErrorHandler(string_buffer);
     }
     
     stack_data_2 = 0;
     stack_data_4 = 0;
     stack_ptr_3 = &core_engine_vtable_active;
-    stack_ptr_1 = &UNK_180a3c3e0;
+    stack_ptr_1 = &core_engine_vtable_default;
     if (stack_ptr_2 != (void *)0x0) {
         ErrorHandler();
     }
@@ -1204,7 +1204,7 @@ longlong *core_engine_config_parser(longlong *config_ptr, longlong input_data)
     if (*dest_ptr != '\0') {
         do {
             temp_ptr_1 = (int8_t *)0x0;
-            stack_ptr_1 = &UNK_180a3c3e0;
+            stack_ptr_1 = &core_engine_vtable_default;
             stack_data_2 = 0;
             stack_ptr_2 = (int8_t *)0x0;
             stack_data_3 = 0;
@@ -1288,7 +1288,7 @@ SKIP_REALLOCATION:
                 *config_block = &core_engine_vtable_active;
                 config_block[1] = 0;
                 *(int32_t *)(config_block + 2) = 0;
-                *config_block = &UNK_180a3c3e0;
+                *config_block = &core_engine_vtable_default;
                 config_block[3] = 0;
                 config_block[1] = 0;
                 *(int32_t *)(config_block + 2) = 0;
@@ -1309,7 +1309,7 @@ SKIP_REALLOCATION:
                 temp_ptr_1 = stack_ptr_2;
             }
             
-            stack_ptr_1 = &UNK_180a3c3e0;
+            stack_ptr_1 = &core_engine_vtable_default;
             if (temp_ptr_1 != (int8_t *)0x0) {
                 ErrorHandler(temp_ptr_1);
             }
@@ -1320,7 +1320,7 @@ SKIP_REALLOCATION:
         
         // 检查引号匹配
         if (quote_flag) {
-            SystemCleaner(&UNK_180a08898);
+            SystemCleaner(&core_engine_cleaner_registry);
             ConfigValidator(config_ptr);
         }
     }
@@ -1442,7 +1442,7 @@ longlong *core_engine_data_manager(uint64_t manager_type, longlong *data_ptr, ui
                     *(int32_t *)(data_handle + CORE_OFFSET_0x10) = 0;
                     *(uint64_t *)(data_handle + 8) = 0;
                     *(uint64_t *)(data_handle + 0x18) = 0;
-                    stack_ptr_7 = (longlong *)&UNK_180a3c3e0;
+                    stack_ptr_7 = (longlong *)&core_engine_vtable_default;
                     if (stack_ptr_8 != (longlong *)0x0) {
                         ErrorHandler();
                     }
@@ -1459,7 +1459,7 @@ longlong *core_engine_data_manager(uint64_t manager_type, longlong *data_ptr, ui
                     *(int32_t *)(data_handle + CORE_OFFSET_0x10) = 0;
                     *(uint64_t *)(data_handle + 8) = 0;
                     *(uint64_t *)(data_handle + 0x18) = 0;
-                    stack_ptr_7 = (longlong *)&UNK_180a3c3e0;
+                    stack_ptr_7 = (longlong *)&core_engine_vtable_default;
                     if (stack_ptr_8 != (longlong *)0x0) {
                         ErrorHandler();
                     }
@@ -1525,7 +1525,7 @@ PROCESS_DATA:
             do {
                 data_offset = 0;
                 data_handle = *stack_ptr_1;
-                stack_ptr_2 = &UNK_180a3c3e0;
+                stack_ptr_2 = &core_engine_vtable_default;
                 stack_data_3 = 0;
                 stack_ptr_3 = (int8_t *)0x0;
                 stack_data_2 = 0;
@@ -1547,7 +1547,7 @@ PROCESS_DATA:
                 
                 // 处理字符串缓冲区
                 if (0 < (int)stack_data_10) {
-                    stack_ptr_4 = &UNK_180a3c3e0;
+                    stack_ptr_4 = &core_engine_vtable_default;
                     stack_data_7 = 0;
                     stack_data_5 = 0;
                     stack_data_3 = stack_data_3 & 0xffffffff00000000;
@@ -1578,14 +1578,14 @@ PROCESS_DATA:
                     *(int32_t *)(data_handle + CORE_OFFSET_0x10) = 0;
                     *(uint64_t *)(data_handle + 8) = 0;
                     *(uint64_t *)(data_handle + 0x18) = 0;
-                    stack_ptr_11 = &UNK_180a3c3e0;
+                    stack_ptr_11 = &core_engine_vtable_default;
                     if (stack_data_15 != 0) {
                         ErrorHandler();
                     }
                     stack_data_15 = 0;
                     stack_data_16 = 0;
                     stack_ptr_11 = &core_engine_vtable_active;
-                    stack_ptr_4 = &UNK_180a3c3e0;
+                    stack_ptr_4 = &core_engine_vtable_default;
                     stack_data_8 = 1;
                     if (stack_data_5 != 0) {
                         ErrorHandler();
@@ -1638,7 +1638,7 @@ ALLOCATE_MEMORY:
                     data_ptr[2] = data_handle * 0x20 + data_offset;
                 }
                 
-                stack_ptr_2 = &UNK_180a3c3e0;
+                stack_ptr_2 = &core_engine_vtable_default;
                 if (stack_ptr_3 != (int8_t *)0x0) {
                     ErrorHandler();
                 }
@@ -1658,14 +1658,14 @@ ALLOCATE_MEMORY:
     
     // 清理资源
     DataReleaser(*data_ptr, data_ptr[1], 0);
-    stack_ptr_10 = &UNK_180a3c3e0;
+    stack_ptr_10 = &core_engine_vtable_default;
     if (stack_data_11 != 0) {
         ErrorHandler();
     }
     stack_data_11 = 0;
     stack_data_6 = stack_data_6 & 0xffffffff00000000;
     stack_ptr_10 = &core_engine_vtable_active;
-    stack_ptr_6 = &UNK_180a3c3e0;
+    stack_ptr_6 = &core_engine_vtable_default;
     if (stack_data_9 != 0) {
         ErrorHandler();
     }
@@ -1743,15 +1743,15 @@ core_engine_parameter_handler(longlong *param_array, uint64_t *config_ptr, uint6
             }
         }
         else {
-            stack_ptr_1 = &UNK_180a3c3e0;
+            stack_ptr_1 = &core_engine_vtable_default;
             stack_data_3 = 0;
             stack_data_1 = 0;
             stack_data_2 = 0;
-            FloatDataProcessor(&stack_ptr_1, &UNK_180a0888c, (double)*(float *)param_array[1], process_flags, 0, 0xfffffffffffffffe);
+            FloatDataProcessor(&stack_ptr_1, &core_engine_float_processor, (double)*(float *)param_array[1], process_flags, 0, 0xfffffffffffffffe);
             *config_ptr = &core_engine_vtable_active;
             config_ptr[1] = 0;
             *(int32_t *)(config_ptr + 2) = 0;
-            *config_ptr = &UNK_180a3c3e0;
+            *config_ptr = &core_engine_vtable_default;
             *(int32_t *)(config_ptr + 2) = stack_data_2;
             config_ptr[1] = stack_data_1;
             *(int32_t *)((longlong)config_ptr + 0x1c) = stack_data_3._4_4_;
