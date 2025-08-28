@@ -1427,9 +1427,9 @@ LAB_180857f18:
 LAB_1808580a0:
   do {
     while( true ) {
-      if ((*piStack_100 < _DAT_180c4ea98) && (FUN_1808fcb90(&system_buffer_ea98), _DAT_180c4ea98 == -1))
+      if ((*piStack_100 < GET_BUFFER_EA98()) && (FUN_1808fcb90(&system_buffer_ea98), GET_BUFFER_EA98() == -1))
       {
-        _DAT_180c4ea94 = 0;
+        SET_BUFFER_EA94(0);
         FUN_1808fcb30(&system_buffer_ea98);
       }
       if (uVar27 <= _DAT_180c4ea94) {
@@ -1586,7 +1586,7 @@ LAB_1808580a0:
       }
       if ((*(int *)(*plStack_c8 + 0x48) < _DAT_180c4ea98) &&
          (FUN_1808fcb90(&system_buffer_ea98), _DAT_180c4ea98 == -1)) {
-        _DAT_180c4ea94 = 0;
+        SET_BUFFER_EA94(0);
         FUN_1808fcb30(&system_buffer_ea98);
       }
       if (_DAT_180c4ea94 < uStack_158) {
@@ -1790,7 +1790,7 @@ LAB_180858c20:
       }
       if ((*(int *)(*plStack_c8 + 0x48) < _DAT_180c4ea98) &&
          (FUN_1808fcb90(&system_buffer_ea98), _DAT_180c4ea98 == -1)) {
-        _DAT_180c4ea94 = 0;
+        SET_BUFFER_EA94(0);
         FUN_1808fcb30(&system_buffer_ea98);
       }
       uVar27 = uStack_15c;
@@ -2030,7 +2030,7 @@ LAB_180858e04:
     *(int32_t *)(param_1 + 0xc) = 2;
     if ((*(int *)(lStack_c0 + 0x48) < _DAT_180c4ea98) &&
        (FUN_1808fcb90(&system_buffer_ea98), _DAT_180c4ea98 == -1)) {
-      _DAT_180c4ea94 = 0;
+      SET_BUFFER_EA94(0);
       FUN_1808fcb30(&system_buffer_ea98);
     }
     uVar27 = _DAT_180c4ea94;
@@ -2187,7 +2187,7 @@ UISystem_ConfigManager(longlong system_context, longlong *config_data, uint *tim
     bVar3 = false;
     if ((*(int *)(*plVar1 + 0x48) < _DAT_180c4ea98) &&
        (FUN_1808fcb90(&system_buffer_ea98), _DAT_180c4ea98 == -1)) {
-      _DAT_180c4ea94 = 0;
+      SET_BUFFER_EA94(0);
       FUN_1808fcb30(&system_buffer_ea98);
     }
     uVar8 = *(uint *)(uVar13 + 0x10);
