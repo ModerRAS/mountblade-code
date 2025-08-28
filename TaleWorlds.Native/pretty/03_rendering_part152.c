@@ -184,91 +184,91 @@ typedef struct {
 #define RenderingSystem_ConfigurationManager FUN_18035fff0
 
 /** 渲染系统数据采样器 */
-#define RenderingSystem_DataSampler FUN_1802a11e0
+#define RenderingSystem_DataSampler RenderingSystem_DataSampler
 
 /** 渲染系统内存池分配器 */
-#define RenderingSystem_MemoryPoolAllocator FUN_18062b420
+#define RenderingSystem_MemoryPoolAllocator RenderingSystem_MemoryPoolAllocator
 
 /** 渲染系统内存清理器 */
-#define RenderingSystem_MemoryCleaner FUN_18064e900
+#define RenderingSystem_MemoryCleaner RenderingSystem_MemoryCleaner
 
 /** 渲染系统纹理管理器 */
-#define RenderingSystem_TextureManager FUN_1802e9fa0
+#define RenderingSystem_TextureManager RenderingSystem_TextureManager
 
 /** 渲染系统渲染管线初始化器 */
-#define RenderingSystem_RenderPipelineInitializer FUN_18046a8c0
+#define RenderingSystem_RenderPipelineInitializer RenderingSystem_RenderPipelineInitializer
 
 /** 渲染系统内存分配器 */
-#define RenderingSystem_MemoryAllocator FUN_18062b1e0
+#define RenderingSystem_MemoryAllocator RenderingSystem_MemoryAllocator
 
 /** 渲染系统资源管理器 */
-#define RenderingSystem_ResourceManager FUN_180275090
+#define RenderingSystem_ResourceManager RenderingSystem_ResourceManager
 
 /** 渲染系统渲染队列管理器 */
-#define RenderingSystem_RenderQueueManager FUN_1802edcd0
+#define RenderingSystem_RenderQueueManager RenderingSystem_RenderQueueManager
 
 /** 渲染系统缓冲区管理器 */
-#define RenderingSystem_BufferManager FUN_180075030
+#define RenderingSystem_BufferManager RenderingSystem_BufferManager
 
 /** 渲染系统资源状态管理器 */
-#define RenderingSystem_ResourceStateManager FUN_1800b30d0
+#define RenderingSystem_ResourceStateManager RenderingSystem_ResourceStateManager
 
 /** 渲染系统数据处理器 */
-#define RenderingSystem_DataProcessor FUN_180076910
+#define RenderingSystem_DataProcessor RenderingSystem_DataProcessor
 
 /** 渲染系统数据管理器 */
-#define RenderingSystem_DataManager FUN_18022f2e0
+#define RenderingSystem_DataManager RenderingSystem_DataManager
 
 /** 渲染系统坐标转换器 */
-#define RenderingSystem_CoordinateTransformer FUN_1803a5130
+#define RenderingSystem_CoordinateTransformer RenderingSystem_CoordinateTransformer
 
 /** 渲染系统几何处理器 */
-#define RenderingSystem_GeometryProcessor FUN_180235000
+#define RenderingSystem_GeometryProcessor RenderingSystem_GeometryProcessor
 
 /** 渲染系统几何优化器 */
-#define RenderingSystem_GeometryOptimizer FUN_1802350e0
+#define RenderingSystem_GeometryOptimizer RenderingSystem_GeometryOptimizer
 
 /** 渲染系统几何渲染器 */
-#define RenderingSystem_GeometryRenderer FUN_180235410
+#define RenderingSystem_GeometryRenderer RenderingSystem_GeometryRenderer
 
 /** 渲染系统状态管理器 */
-#define RenderingSystem_StateManager FUN_180234880
+#define RenderingSystem_StateManager RenderingSystem_StateManager
 
 /** 渲染系统数据流处理器 */
-#define RenderingSystem_DataFlowProcessor FUN_18040fa30
+#define RenderingSystem_DataFlowProcessor RenderingSystem_DataFlowProcessor
 
 /** 渲染系统消息处理器 */
-#define RenderingSystem_MessageProcessor FUN_1800623b0
+#define RenderingSystem_MessageProcessor RenderingSystem_MessageProcessor
 
 /** 渲染系统错误处理器 */
-#define RenderingSystem_ErrorHandler FUN_180075b70
+#define RenderingSystem_ErrorHandler RenderingSystem_ErrorHandler
 
 /** 渲染系统资源清理器 */
-#define RenderingSystem_ResourceCleaner FUN_18007f6a0
+#define RenderingSystem_ResourceCleaner RenderingSystem_ResourceCleaner
 
 /** 渲染系统状态清理器 */
-#define RenderingSystem_StateCleaner FUN_180079520
+#define RenderingSystem_StateCleaner RenderingSystem_StateCleaner
 
 /** 渲染系统资源释放器 */
-#define RenderingSystem_ResourceReleaser FUN_180275cf0
+#define RenderingSystem_ResourceReleaser RenderingSystem_ResourceReleaser
 
 /** 渲染系统资源分配器 */
-#define RenderingSystem_ResourceAllocator FUN_180276f30
+#define RenderingSystem_ResourceAllocator RenderingSystem_ResourceAllocator
 
 /** 渲染系统资源初始化器 */
-#define RenderingSystem_ResourceInitializer FUN_18007c860
+#define RenderingSystem_ResourceInitializer RenderingSystem_ResourceInitializer
 
 /** 渲染系统数据管理器 */
-#define RenderingSystem_DataManager2 FUN_18022f390
+#define RenderingSystem_DataManager2 RenderingSystem_DataManager2
 
 /** 渲染系统字符串处理器 */
-#define RenderingSystem_StringProcessor FUN_1800b8300
+#define RenderingSystem_StringProcessor RenderingSystem_StringProcessor
 
 /** 渲染系统数组管理器 */
-#define RenderingSystem_ArrayManager FUN_180180730
+#define RenderingSystem_ArrayManager RenderingSystem_ArrayManager
 
 /** 渲染系统安全检查器 */
-#define RenderingSystem_SecurityChecker FUN_1808fc050
+#define RenderingSystem_SecurityChecker RenderingSystem_SecurityChecker
 
 // =============================================================================
 // 核心函数实现区域
@@ -277,7 +277,7 @@ typedef struct {
 /*
 核心函数实现说明：
 
-1. FUN_18035ec60 - 渲染系统高级数据处理器和优化器
+1. RenderingSystem_AdvancedDataProcessorAndOptimizer - 渲染系统高级数据处理器和优化器
    实现细节：
    - 使用多层嵌套循环进行精确的浮点计算
    - 实现高级纹理采样和插值算法
@@ -285,7 +285,7 @@ typedef struct {
    - 包含完整的内存管理和资源清理机制
    - 提供实时的数据处理和优化功能
 
-2. FUN_18035fff0 - 渲染系统配置管理器
+2. RenderingSystem_ConfigurationManager - 渲染系统配置管理器
    实现细节：
    - 管理系统配置参数和状态
    - 处理字符串和数组操作
@@ -333,7 +333,7 @@ typedef struct {
  * @note 该函数使用了复杂的算法进行渲染数据的处理和优化，
  *       包含多层嵌套循环和精确的浮点计算。
  */
-void FUN_18035ec60(int64_t param_1)
+void RenderingSystem_AdvancedDataProcessorAndOptimizer(int64_t param_1)
 {
   // 渲染数据处理核心变量
   float sample_weight_x;          // 采样权重X坐标
@@ -622,7 +622,7 @@ void FUN_18035ec60(int64_t param_1)
           do {
             fVar23 = (float)iVar18 + 0.5;
             pfStack_3a8 = (float *)CONCAT44(pfStack_3a8._4_4_,fVar23 * fVar26);
-            lVar7 = FUN_1802a11e0(alStack_1b8,&uStack_3e8,pfStack_3a8,1);
+            lVar7 = RenderingSystem_DataSampler(alStack_1b8,&uStack_3e8,pfStack_3a8,1);
             fVar27 = *(float *)(lVar7 + 8);
             iVar16 = -1;
             fVar22 = fVar27;
@@ -632,7 +632,7 @@ void FUN_18035ec60(int64_t param_1)
                 if ((iVar14 != 0) || (iVar16 != 0)) {
                   uStack_3f0 = CONCAT44((fVar24 - ((float)iVar16 + fVar25)) * fVar26,
                                         ((float)iVar14 + fVar23) * fVar26);
-                  lVar7 = FUN_1802a11e0(alStack_1b8,&fStack_2f0,uStack_3f0,1);
+                  lVar7 = RenderingSystem_DataSampler(alStack_1b8,&fStack_2f0,uStack_3f0,1);
                   fVar22 = fVar22 + *(float *)(lVar7 + 8);
                 }
                 iVar14 = iVar14 + 1;
@@ -653,7 +653,7 @@ void FUN_18035ec60(int64_t param_1)
                 if (lVar7 == 0) {
                   lVar7 = 1;
 LAB_18035f156:
-                  auVar8 = (int8_t  [8])FUN_18062b420(system_memory_pool_ptr,lVar7 * 8,3);
+                  auVar8 = (int8_t  [8])RenderingSystem_MemoryPoolAllocator(system_memory_pool_ptr,lVar7 * 8,3);
                 }
                 else {
                   lVar7 = lVar7 * 2;
@@ -668,7 +668,7 @@ LAB_18035f156:
                 puVar15 = (uint64_t *)((int64_t)auVar8 + 8);
                 if (puVar19 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-                  FUN_18064e900(puVar19);
+                  RenderingSystem_MemoryCleaner(puVar19);
                 }
                 puStack_3d0 = puVar15;
                 auStack_3d8 = auVar8;
@@ -687,16 +687,16 @@ LAB_18035f156:
         param_1 = uStack_398;
       } while ((int)afStack_418[0] < (int)fVar24);
     }
-    FUN_1802e9fa0(*(uint64_t *)(param_1 + 0x18),1,0);
+    RenderingSystem_TextureManager(*(uint64_t *)(param_1 + 0x18),1,0);
     if (((int64_t)puVar15 - (int64_t)auVar8 & 0xfffffffffffffff8U) != 0) {
       puStack_1f0 = (void *)0x0;
       ppuStack_1e8 = (void **)0x0;
       uStack_1e0 = (void *)0x0;
       ppplStack_430 = &pplStack_400;
       pfStack_438 = (float *)&uStack_410;
-      FUN_18046a8c0();
-      uVar10 = FUN_18062b1e0(system_memory_pool_ptr,0x3d0,8,0x16);
-      plVar11 = (int64_t *)FUN_180275090(uVar10);
+      RenderingSystem_RenderPipelineInitializer();
+      uVar10 = RenderingSystem_MemoryAllocator(system_memory_pool_ptr,0x3d0,8,0x16);
+      plVar11 = (int64_t *)RenderingSystem_ResourceManager(uVar10);
       plStack_288 = plVar11;
       if (plVar11 != (int64_t *)0x0) {
         (**(code **)(*plVar11 + 0x28))(plVar11);
@@ -707,13 +707,13 @@ LAB_18035f156:
       plStack_3b8 = plVar11;
       (**(code **)(*plVar11 + 0x28))(plVar11);
       uStack_410 = &plStack_3b8;
-      FUN_1802edcd0(uVar10,plStack_3b8,1);
+      RenderingSystem_RenderQueueManager(uVar10,plStack_3b8,1);
       if (plStack_3b8 != (int64_t *)0x0) {
         (**(code **)(*plStack_3b8 + 0x38))();
       }
       (**(code **)(*plVar11 + 0xd8))(plVar11);
-      uVar10 = FUN_18062b1e0(system_memory_pool_ptr,0x300,0x10,3);
-      plVar12 = (int64_t *)FUN_180075030(uVar10,1);
+      uVar10 = RenderingSystem_MemoryAllocator(system_memory_pool_ptr,0x300,0x10,3);
+      plVar12 = (int64_t *)RenderingSystem_BufferManager(uVar10,1);
       plStack_278 = plVar12;
       if (plVar12 != (int64_t *)0x0) {
         (**(code **)(*plVar12 + 0x28))(plVar12);
@@ -724,8 +724,8 @@ LAB_18035f156:
       puStack_1d8 = (void *)((uint64_t)puStack_1d8 & 0xffffffffffffff00);
       uStack_1e0 = (void *)CONCAT44((int)((uint64_t)uStack_1e0 >> 0x20),0x12);
       strcpy_s(&puStack_1d8,0x20,&unknown_var_5560_ptr);
-      uVar10 = FUN_1800b30d0(system_resource_state,&uStack_410,&puStack_1f0,1);
-      FUN_180076910(plVar12,uVar10);
+      uVar10 = RenderingSystem_ResourceStateManager(system_resource_state,&uStack_410,&puStack_1f0,1);
+      RenderingSystem_DataProcessor(plVar12,uVar10);
       if (uStack_410 != (int64_t **)0x0) {
         (*(code *)(*uStack_410)[7])();
       }
@@ -736,7 +736,7 @@ LAB_18035f156:
       plStack_368 = (int64_t *)0x0;
       uStack_378 = 0;
       plStack_380._0_1_ = 0;
-      FUN_18022f2e0(&plStack_390,plVar12,0);
+      RenderingSystem_DataManager(&plStack_390,plVar12,0);
       pplVar17 = *(int64_t ***)(*(int64_t *)(param_1 + 0x18) + 0x20);
       fStack_354 = *(float *)((int64_t)pplVar17 + 0x3ec4);
       uStack_410 = (int64_t **)pplVar17[0xc170][4];
@@ -755,7 +755,7 @@ LAB_18035f156:
               fVar25 = (pfVar21[-5] + fVar27 + pfVar21[-1]) * 0.33333334;
               fStack_304 = fVar28 * fVar26;
               fStack_308 = fVar25 * fVar26;
-              lVar7 = FUN_1802a11e0(alStack_1b8,auStack_250,CONCAT44(fStack_304,fStack_308),1);
+              lVar7 = RenderingSystem_DataSampler(alStack_1b8,auStack_250,CONCAT44(fStack_304,fStack_308),1);
               fVar24 = *(float *)(lVar7 + 8);
               afStack_418[0] = 1.0;
               fVar27 = 0.2;
@@ -766,15 +766,15 @@ LAB_18035f156:
                 fVar2 = pfVar21[-1];
                 fStack_2fc = ((pfVar21[-4] - fVar28) * fVar27 + fVar28 + 0.5) * fVar26;
                 fStack_300 = ((pfVar21[-5] - fVar25) * fVar27 + fVar25 + 0.5) * fVar26;
-                lVar7 = FUN_1802a11e0(alStack_1b8,auStack_240,CONCAT44(fStack_2fc,fStack_300),1);
+                lVar7 = RenderingSystem_DataSampler(alStack_1b8,auStack_240,CONCAT44(fStack_2fc,fStack_300),1);
                 fVar3 = *(float *)(lVar7 + 8);
                 fStack_2f4 = ((fVar22 - fVar28) * fVar27 + fVar28 + 0.5) * fVar26;
                 fStack_2f8 = ((fVar23 - fVar25) * fVar27 + fVar25 + 0.5) * fVar26;
-                lVar7 = FUN_1802a11e0(alStack_1b8,auStack_230,CONCAT44(fStack_2f4,fStack_2f8),1);
+                lVar7 = RenderingSystem_DataSampler(alStack_1b8,auStack_230,CONCAT44(fStack_2f4,fStack_2f8),1);
                 fVar22 = *(float *)(lVar7 + 8);
                 fStack_2e0 = ((fVar2 - fVar25) * fVar27 + fVar25 + 0.5) * fVar26;
                 fStack_2dc = ((fVar1 - fVar28) * fVar27 + fVar28 + 0.5) * fVar26;
-                lVar7 = FUN_1802a11e0(alStack_1b8,auStack_220,CONCAT44(fStack_2dc,fStack_2e0),1);
+                lVar7 = RenderingSystem_DataSampler(alStack_1b8,auStack_220,CONCAT44(fStack_2dc,fStack_2e0),1);
                 fVar23 = fStack_358;
                 fVar24 = fVar24 + fVar3 + fVar22 + *(float *)(lVar7 + 8);
                 afStack_418[0] = afStack_418[0] + 3.0;
@@ -787,7 +787,7 @@ LAB_18035f156:
                 fStack_2d8 = fStack_358 * pfVar21[-5];
                 if ((char)plVar11[0xd] == '\0') {
                   uStack_3a0 = 0;
-                  lVar7 = FUN_1803a5130(plVar11,&fStack_2d8,&iStack_2d0,&uStack_3a0);
+                  lVar7 = RenderingSystem_CoordinateTransformer(plVar11,&fStack_2d8,&iStack_2d0,&uStack_3a0);
                   fVar24 = (float)(**(code **)(**(int64_t **)(lVar7 + 0x60) + 8))
                                             (*(int64_t **)(lVar7 + 0x60),
                                              (float)iStack_2cc + uStack_3a0._4_4_,
@@ -807,7 +807,7 @@ LAB_18035f156:
                 fStack_34c = fVar23 * pfVar21[-3];
                 if ((char)plVar11[0xd] == '\0') {
                   uStack_3f0 = 0;
-                  lVar7 = FUN_1803a5130(plVar11,&fStack_34c,&iStack_340,&uStack_3f0);
+                  lVar7 = RenderingSystem_CoordinateTransformer(plVar11,&fStack_34c,&iStack_340,&uStack_3f0);
                   fVar27 = (float)(**(code **)(**(int64_t **)(lVar7 + 0x60) + 8))
                                             (*(int64_t **)(lVar7 + 0x60),
                                              (float)iStack_33c + uStack_3f0._4_4_,
@@ -827,7 +827,7 @@ LAB_18035f156:
                 fStack_338 = fVar23 * pfVar21[-1];
                 if ((char)plVar11[0xd] == '\0') {
                   uStack_408 = 0;
-                  lVar7 = FUN_1803a5130(plVar11,&fStack_338,&iStack_330,&uStack_408);
+                  lVar7 = RenderingSystem_CoordinateTransformer(plVar11,&fStack_338,&iStack_330,&uStack_408);
                   fVar25 = (float)(**(code **)(**(int64_t **)(lVar7 + 0x60) + 8))
                                             (*(int64_t **)(lVar7 + 0x60),
                                              (float)iStack_32c + uStack_408._4_4_,
@@ -844,14 +844,14 @@ LAB_18035f156:
                 }
                 fStack_328 = (pfVar21[-5] + 0.5) * fVar26;
                 fStack_324 = (pfVar21[-4] + 0.5) * fVar26;
-                pfVar13 = (float *)FUN_1802a11e0(&puStack_148,auStack_210,
+                pfVar13 = (float *)RenderingSystem_DataSampler(&puStack_148,auStack_210,
                                                  CONCAT44(fStack_324,fStack_328),1);
                 uStack_3e8 = (void **)
                              CONCAT44((pfVar13[1] + pfVar13[1]) - 1.0,(*pfVar13 + *pfVar13) - 1.0);
                 uStack_3e0 = (int64_t **)CONCAT44(0x7f7fffff,(pfVar13[2] + pfVar13[2]) - 1.0);
                 fStack_320 = (pfVar21[-3] + 0.5) * fVar26;
                 fStack_31c = (pfVar21[-2] + 0.5) * fVar26;
-                pfVar13 = (float *)FUN_1802a11e0(&puStack_148,auStack_200,
+                pfVar13 = (float *)RenderingSystem_DataSampler(&puStack_148,auStack_200,
                                                  CONCAT44(fStack_31c,fStack_320),1);
                 fStack_2e8 = (pfVar13[2] + pfVar13[2]) - 1.0;
                 fStack_2ec = (pfVar13[1] + pfVar13[1]) - 1.0;
@@ -859,7 +859,7 @@ LAB_18035f156:
                 uStack_2e4 = 0x7f7fffff;
                 fStack_318 = (pfVar21[-1] + 0.5) * fVar26;
                 fStack_314 = (*pfVar21 + 0.5) * fVar26;
-                pfVar13 = (float *)FUN_1802a11e0(&puStack_148,&puStack_1f0,
+                pfVar13 = (float *)RenderingSystem_DataSampler(&puStack_148,&puStack_1f0,
                                                  CONCAT44(fStack_314,fStack_318),1);
                 fStack_2a0 = (pfVar13[2] + pfVar13[2]) - 1.0;
                 fStack_2a4 = (pfVar13[1] + pfVar13[1]) - 1.0;
@@ -894,16 +894,16 @@ LAB_18035f156:
                 fStack_2c0 = fVar27;
                 fStack_2b0 = fVar24;
                 fStack_290 = fVar25;
-                uVar4 = FUN_180235000(&plStack_390,&fStack_298);
-                uVar5 = FUN_180235000(&plStack_390,&fStack_2c8);
-                uVar6 = FUN_180235000(&plStack_390,&fStack_2b8);
+                uVar4 = RenderingSystem_GeometryProcessor(&plStack_390,&fStack_298);
+                uVar5 = RenderingSystem_GeometryProcessor(&plStack_390,&fStack_2c8);
+                uVar6 = RenderingSystem_GeometryProcessor(&plStack_390,&fStack_2b8);
                 pfStack_438 = &fStack_2a8;
-                uVar4 = FUN_1802350e0(&plStack_390,uVar4,&fStack_310,afStack_418);
+                uVar4 = RenderingSystem_GeometryOptimizer(&plStack_390,uVar4,&fStack_310,afStack_418);
                 pfStack_438 = &fStack_2f0;
-                uVar5 = FUN_1802350e0(&plStack_390,uVar5,&uStack_398,&uStack_350);
+                uVar5 = RenderingSystem_GeometryOptimizer(&plStack_390,uVar5,&uStack_398,&uStack_350);
                 pfStack_438 = (float *)&uStack_3e8;
-                uVar6 = FUN_1802350e0(&plStack_390,uVar6,&uStack_410,&plStack_3b8);
-                FUN_180235410(&plStack_390,uVar4,uVar5,uVar6);
+                uVar6 = RenderingSystem_GeometryOptimizer(&plStack_390,uVar6,&uStack_410,&plStack_3b8);
+                RenderingSystem_GeometryRenderer(&plStack_390,uVar4,uVar5,uVar6);
                 pfStack_268 = pfStack_3a8;
                 pplVar17 = pplStack_400;
               }
@@ -919,11 +919,11 @@ LAB_18035f156:
       uStack_1e0 = &unknown_var_3040_ptr;
       puStack_1d8 = &unknown_var_3120_ptr;
       puStack_1d0 = &unknown_var_3184_ptr;
-      pcStack_1c8 = FUN_180234880;
+      pcStack_1c8 = RenderingSystem_StateManager;
       uStack_1c0 = 0;
       uStack_3e8 = &puStack_1f0;
       uStack_3e0 = pplStack_388;
-      FUN_18040fa30(&uStack_3e8);
+      RenderingSystem_DataFlowProcessor(&uStack_3e8);
       if ((int)(*(int *)(pplStack_388 + 0x11) + (*(int *)(pplStack_388 + 0x11) >> 0x1f & 3U)) >> 2 <
           0) {
         uStack_420 = *(int32_t *)(pplStack_388 + 0xc);
@@ -933,19 +933,19 @@ LAB_18035f156:
         }
         ppplStack_430 = (int64_t ***)((uint64_t)ppplStack_430 & 0xffffffff00000000);
         pfStack_438 = (float *)&unknown_var_5472_ptr;
-        FUN_1800623b0(system_message_context,0,0x80000000000,3);
+        RenderingSystem_MessageProcessor(system_message_context,0,0x80000000000,3);
       }
       cStack_360 = '\x01';
       if (pplStack_388 != (int64_t **)0x0) {
         if (cStack_35e != '\0') {
-          FUN_180075b70(plStack_390);
+          RenderingSystem_ErrorHandler(plStack_390);
         }
-        FUN_18007f6a0(&plStack_380);
+        RenderingSystem_ResourceCleaner(&plStack_380);
         if (cStack_360 != '\0') {
-          FUN_180079520(plStack_390);
+          RenderingSystem_StateCleaner(plStack_390);
         }
         if (cStack_35f != '\0') {
-          FUN_180079520(plStack_390);
+          RenderingSystem_StateCleaner(plStack_390);
         }
         pplVar17 = pplStack_388;
         pplStack_400 = pplStack_388;
@@ -957,19 +957,19 @@ LAB_18035f156:
       pplStack_400 = (int64_t **)&uStack_410;
       uStack_410 = (int64_t **)plVar12;
       (**(code **)(*plVar12 + 0x28))(plVar12);
-      FUN_180275cf0(plVar11,0,&uStack_410,1);
+      RenderingSystem_ResourceReleaser(plVar11,0,&uStack_410,1);
       if (*(code **)(*plVar11 + 0x160) == (code *)&unknown_var_6368_ptr) {
-        FUN_180276f30(plVar11,(int64_t)plVar11 + 0x214,0);
+        RenderingSystem_ResourceAllocator(plVar11,(int64_t)plVar11 + 0x214,0);
       }
       else {
         (**(code **)(*plVar11 + 0x160))(plVar11);
       }
-      FUN_18007c860(plVar12,1);
+      RenderingSystem_ResourceInitializer(plVar12,1);
       if (plStack_390 != (int64_t *)0x0) {
-        FUN_18022f390(&plStack_390);
+        RenderingSystem_DataManager2(&plStack_390);
       }
       pplStack_400 = &plStack_380;
-      FUN_18007f6a0(&plStack_380);
+      RenderingSystem_ResourceCleaner(&plStack_380);
       if (plStack_368 != (int64_t *)0x0) {
         (**(code **)(*plStack_368 + 0x38))();
       }
@@ -983,13 +983,13 @@ LAB_18035f156:
       (**(code **)(*plVar11 + 0x38))(plVar11);
       if (pfStack_270 != (float *)0x0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        RenderingSystem_MemoryCleaner();
       }
       auVar8 = auStack_3d8;
     }
     if (auVar8 != (int8_t  [8])0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(auVar8);
+      RenderingSystem_MemoryCleaner(auVar8);
     }
   }
   if (plStack_3f8 != (int64_t *)0x0) {
@@ -1001,7 +1001,7 @@ LAB_18035f156:
   if (uStack_138._1_1_ == '\0') {
     if (((char)uStack_138 == '\0') && (puStack_148 != (void *)0x0)) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      RenderingSystem_MemoryCleaner();
     }
     puStack_148 = (void *)0x0;
     uStack_140 = 0;
@@ -1010,14 +1010,14 @@ LAB_18035f156:
   if (uStack_1a8._1_1_ == '\0') {
     if (((char)uStack_1a8 == '\0') && (alStack_1b8[0] != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      RenderingSystem_MemoryCleaner();
     }
     alStack_1b8[0] = 0;
     alStack_1b8[1] = 0;
     uStack_1a8 = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_d8 ^ (uint64_t)auStack_458);
+  RenderingSystem_SecurityChecker(uStack_d8 ^ (uint64_t)auStack_458);
 }
 
 
@@ -1064,7 +1064,7 @@ LAB_18035f156:
  *   简化实现：保持原有功能逻辑，添加详细的参数说明和技术注释
  *   优化点：明确配置管理流程，添加字符串处理说明
  */
-void FUN_18035fff0(uint64_t param_1)
+void RenderingSystem_ConfigurationManager(uint64_t param_1)
 
 {
   int8_t auStack_1e8 [32];
@@ -1095,10 +1095,10 @@ void FUN_18035fff0(uint64_t param_1)
   auStack_130[0] = 0;
   uStack_138 = 7;
   strcpy_s(auStack_130,0x40,&system_memory_f750);
-  FUN_1800b8300(apuStack_1a8,&puStack_148);
+  RenderingSystem_StringProcessor(apuStack_1a8,&puStack_148);
   uStack_150 = 0xb;
   uStack_1c8 = 1;
-  FUN_180180730(param_1,appuStack_1c0,apuStack_1a8);
+  RenderingSystem_ArrayManager(param_1,appuStack_1c0,apuStack_1a8);
   uStack_1c8 = 0;
   appuStack_1c0[0] = apuStack_1a8;
   apuStack_1a8[0] = &system_state_ptr;
@@ -1108,10 +1108,10 @@ void FUN_18035fff0(uint64_t param_1)
   auStack_d0[0] = 0;
   uStack_d8 = 9;
   strcpy_s(auStack_d0,0x40,&system_memory_ff18);
-  FUN_1800b8300(apuStack_1a8,&puStack_e8);
+  RenderingSystem_StringProcessor(apuStack_1a8,&puStack_e8);
   uStack_150 = 7;
   uStack_1c8 = 2;
-  FUN_180180730(param_1,appuStack_1c0,apuStack_1a8);
+  RenderingSystem_ArrayManager(param_1,appuStack_1c0,apuStack_1a8);
   uStack_1c8 = 0;
   appuStack_1c0[0] = apuStack_1a8;
   apuStack_1a8[0] = &system_state_ptr;
@@ -1121,16 +1121,16 @@ void FUN_18035fff0(uint64_t param_1)
   auStack_70[0] = 0;
   uStack_78 = 10;
   strcpy_s(auStack_70,0x40,&system_memory_f740);
-  FUN_1800b8300(apuStack_1a8,&puStack_88);
+  RenderingSystem_StringProcessor(apuStack_1a8,&puStack_88);
   uStack_150 = 7;
   uStack_1c8 = 4;
-  FUN_180180730(param_1,appuStack_1c0,apuStack_1a8);
+  RenderingSystem_ArrayManager(param_1,appuStack_1c0,apuStack_1a8);
   uStack_1c8 = 0;
   appuStack_1c0[0] = apuStack_1a8;
   apuStack_1a8[0] = &system_state_ptr;
   puStack_88 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_1e8);
+  RenderingSystem_SecurityChecker(uStack_28 ^ (uint64_t)auStack_1e8);
 }
 
 //==============================================================================
@@ -1143,14 +1143,14 @@ void FUN_18035fff0(uint64_t param_1)
    支持复杂的渲染计算、纹理采样、几何变换和优化算法。
 
 1. 核心功能架构：
-   - 高级数据处理器和优化器 (FUN_18035ec60)
+   - 高级数据处理器和优化器 (RenderingSystem_AdvancedDataProcessorAndOptimizer)
      * 实现复杂的数据采样和插值处理
      * 支持高级纹理坐标映射和转换
      * 提供几何数据处理和优化功能
      * 包含完整的内存管理和资源清理机制
      * 实现实时的数据处理和优化算法
    
-   - 配置管理器 (FUN_18035fff0)
+   - 配置管理器 (RenderingSystem_ConfigurationManager)
      * 管理系统配置参数和状态
      * 处理字符串和数组操作
      * 提供参数验证和错误处理

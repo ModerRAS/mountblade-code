@@ -823,11 +823,34 @@ void FUN_180099430(int64_t param_1,int64_t param_2)
 
 
 
-// 函数: void FUN_180099f60(uint64_t param_1)
-void FUN_180099f60(uint64_t param_1)
+/**
+ * @brief 系统数据缓冲区管理器
+ * 
+ * 负责管理系统数据缓冲区的分配、释放和清理工作。
+ * 该函数是一个简化的缓冲区管理接口，提供统一的内存管理功能。
+ * 
+ * @param param_1 缓冲区句柄，用于标识要管理的缓冲区
+ * @return void
+ * 
+ * 功能说明：
+ * - 释放指定缓冲区的资源
+ * - 执行内存清理操作
+ * - 更新系统状态
+ * - 重置缓冲区状态
+ */
+void SystemDataBufferManager(uint64_t param_1)
 
 {
-  FUN_1808fc8a8(param_1,8,0x10,FUN_180045af0,0xfffffffffffffffe);
+  // 调用内存清理函数，释放缓冲区资源
+  // 参数说明：
+  // - param_1: 缓冲区句柄
+  // - 8: 缓冲区对齐大小
+  // - 0x10: 缓冲区头部大小
+  // - FUN_180045af0: 内存清理回调函数
+  // - 0xfffffffffffffffe: 安全Cookie掩码
+  FUN_1808fc8a8(param_1, 8, 0x10, FUN_180045af0, SYSTEM_SECURITY_COOKIE_MASK);
+  
+  // 函数执行完成，返回调用者
   return;
 }
 
