@@ -94,7 +94,7 @@ void FUN_1807afd30(int64_t param_1,uint param_2,int64_t param_3)
           *(int *)(puVar9 + 4) = *(int *)(puVar9 + 4) + 1;
           if ((bVar18) && (lVar11 != 0)) {
                     // WARNING: Subroutine does not return
-            FUN_180743d60(lVar11,0x12);
+            SystemCoreHandler(lVar11,0x12);
           }
           goto LAB_1807aff2e;
         }
@@ -102,7 +102,7 @@ void FUN_1807afd30(int64_t param_1,uint param_2,int64_t param_3)
       puVar9 = puVar15;
       if ((bVar18) && (lVar11 != 0)) {
                     // WARNING: Subroutine does not return
-        FUN_180743d60(lVar11,0x12);
+        SystemCoreHandler(lVar11,0x12);
       }
     }
 LAB_1807aff2e:
@@ -216,7 +216,7 @@ LAB_1807b009b:
       *(int64_t **)plVar14[1] = plVar14;
       if ((lVar11 != 0) && (lVar11 != 0)) {
                     // WARNING: Subroutine does not return
-        FUN_180743d60(lVar11,0x12);
+        SystemCoreHandler(lVar11,0x12);
       }
     }
   }

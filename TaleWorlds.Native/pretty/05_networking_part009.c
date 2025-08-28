@@ -39,7 +39,7 @@ void SystemController(int32_t *param_1,uint64_t param_2)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_18076b390(param_2,0x27,&unknown_var_8960_ptr,*param_1,*(int16_t *)(param_1 + 1),
+  SystemDataValidator(param_2,0x27,&unknown_var_8960_ptr,*param_1,*(int16_t *)(param_1 + 1),
                 *(int16_t *)((int64_t)param_1 + 6),*(int8_t *)(param_1 + 2),
                 *(int8_t *)((int64_t)param_1 + 9),*(int8_t *)((int64_t)param_1 + 10),
                 *(int8_t *)((int64_t)param_1 + 0xb),*(int8_t *)(param_1 + 3),
@@ -188,7 +188,7 @@ void FUN_18084b5a0(uint64_t param_1,uint64_t *param_2,int64_t *param_3)
       uStack_90 = (uint)*(ushort *)((int64_t)puVar3 + 6);
       uStack_98 = (uint)*(ushort *)(puVar3 + 1);
                     // WARNING: Subroutine does not return
-      FUN_18076b390(auStack_48,0x27,&unknown_var_8960_ptr,*puVar3);
+      SystemDataValidator(auStack_48,0x27,&unknown_var_8960_ptr,*puVar3);
     }
     iVar1 = (**(code **)(*plVar2 + 0x28))(plVar2,param_1);
     if (iVar1 != 0) break;
@@ -316,7 +316,7 @@ void FUN_18084b830(int64_t param_1,int64_t param_2)
       uStack_80 = (uint)*(ushort *)((int64_t)puVar3 + 6);
       uStack_88 = (uint)*(ushort *)(puVar3 + 1);
                     // WARNING: Subroutine does not return
-      FUN_18076b390(auStack_38,0x27,&unknown_var_8960_ptr,*puVar3);
+      SystemDataValidator(auStack_38,0x27,&unknown_var_8960_ptr,*puVar3);
     }
     (**(code **)(*plVar2 + 0x28))(plVar2,param_1);
     puVar3 = puVar3 + 5;
@@ -334,7 +334,7 @@ void FUN_18084b92d(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_18076b390();
+  SystemDataValidator();
 }
 
 
@@ -426,7 +426,7 @@ LAB_18084bb6f:
         uStack_a0 = (uint)uVar9;
         uStack_98 = (uint)bVar8;
                     // WARNING: Subroutine does not return
-        FUN_18076b390(auStack_58,0x27,&unknown_var_8960_ptr,uVar11);
+        SystemDataValidator(auStack_58,0x27,&unknown_var_8960_ptr,uVar11);
       }
       lVar15 = (**(code **)(*param_3 + 0x278))(param_3,lVar14 + 0x38,1);
       if (lVar15 == 0) {
@@ -511,7 +511,7 @@ void FUN_18084bbd0(int64_t param_1,int64_t param_2)
         uStack_90 = (uint)*(ushort *)((int64_t)puVar3 + 6);
         uStack_98 = (uint)*(ushort *)(puVar3 + 1);
                     // WARNING: Subroutine does not return
-        FUN_18076b390(auStack_48,0x27,&unknown_var_8960_ptr,*puVar3);
+        SystemDataValidator(auStack_48,0x27,&unknown_var_8960_ptr,*puVar3);
       }
       iVar1 = (**(code **)(*plVar2 + 0x28))(plVar2,param_1);
       if (iVar1 != 0) break;
@@ -548,7 +548,7 @@ void FUN_18084bc0e(uint64_t param_1,int64_t param_2)
                        (*(int64_t **)(unaff_RDI + 0x10),puVar3,1);
     if (plVar2 == (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18076b390(&stack0x00000070,0x27,&unknown_var_8960_ptr,*puVar3,*(int16_t *)(puVar3 + 1));
+      SystemDataValidator(&stack0x00000070,0x27,&unknown_var_8960_ptr,*puVar3,*(int16_t *)(puVar3 + 1));
     }
     iVar1 = (**(code **)(*plVar2 + 0x28))(plVar2);
     if (iVar1 != 0) break;
@@ -570,7 +570,7 @@ void FUN_18084bcd6(void)
   
   uStack0000000000000028 = (uint)*(ushort *)(unaff_R14 + 6);
                     // WARNING: Subroutine does not return
-  FUN_18076b390();
+  SystemDataValidator();
 }
 
 
@@ -672,7 +672,7 @@ void FUN_18084be00(int64_t *param_1,int64_t param_2,int64_t *param_3)
           uStack_a0 = (uint)*(ushort *)((int64_t)puVar6 + 6);
           uStack_a8 = (uint)*(ushort *)(puVar6 + 1);
                     // WARNING: Subroutine does not return
-          FUN_18076b390(auStack_58,0x27,&unknown_var_8960_ptr,*puVar6);
+          SystemDataValidator(auStack_58,0x27,&unknown_var_8960_ptr,*puVar6);
         }
         iVar2 = (**(code **)(*plVar4 + 0x28))(plVar4,param_1);
         if ((iVar2 != 0) || (cVar1 = (**(code **)(*param_1 + 0x50))(param_1), cVar1 == '\0')) break;
@@ -693,7 +693,7 @@ void FUN_18084bfc9(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_18076b390();
+  SystemDataValidator();
 }
 
 

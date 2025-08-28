@@ -632,7 +632,7 @@ LAB_1808b659b:
           uStack_150 = (uint)uStack_102;
           uStack_158 = (uint)uStack_104;
                     // WARNING: Subroutine does not return
-          FUN_18076b390(auStack_78,0x27,&unknown_var_8960_ptr,uStack_108);
+          SystemDataValidator(auStack_78,0x27,&unknown_var_8960_ptr,uStack_108);
         }
         if ((int)plVar5[5] != 0) {
           (**(code **)(*param_2 + 0x20))(param_2,&uStack_108);
@@ -681,7 +681,7 @@ void FUN_1808b65b2(void)
   
   (**(code **)(in_RAX + 0x20))();
                     // WARNING: Subroutine does not return
-  FUN_18076b390();
+  SystemDataValidator();
 }
 
 

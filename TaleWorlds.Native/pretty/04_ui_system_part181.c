@@ -262,7 +262,7 @@ LAB_180772526:
       plVar11[0xe] = (int64_t)plVar11;
       if ((bVar10) && (lVar5 != 0)) {
                     // WARNING: Subroutine does not return
-        FUN_180743d60(lVar5,3);
+        SystemCoreHandler(lVar5,3);
       }
     }
     plVar11[0xf] = param_5;
@@ -556,7 +556,7 @@ uint64_t FUN_180772950(int64_t param_1,int param_2,char param_3)
         *plVar4 = (int64_t)plVar4;
         if ((bVar3) && (lVar2 != 0)) {
                     // WARNING: Subroutine does not return
-          FUN_180743d60(lVar2,3);
+          SystemCoreHandler(lVar2,3);
         }
       }
       iVar1 = (int)plVar7[3];
@@ -615,7 +615,7 @@ void FUN_180772ae2(void)
   *plVar1 = (int64_t)plVar1;
   if ((bVar4) && (lVar3 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(lVar3,3);
+    SystemCoreHandler(lVar3,3);
   }
   iVar2 = *(int *)(unaff_RBX + 3);
   if ((iVar2 != 0) && (iVar2 < 0x25)) {

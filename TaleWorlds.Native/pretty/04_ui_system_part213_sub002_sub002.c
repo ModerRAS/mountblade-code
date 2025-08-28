@@ -683,7 +683,7 @@ LAB_18078ec15:
                       *(int64_t **)(lStack0000000000000070 + 0x12210) = plVar29;
                       *(int64_t **)plVar32[0x2d] = plVar29;
                     // WARNING: Subroutine does not return
-                      FUN_180743d60(lStack0000000000000070,10);
+                      SystemCoreHandler(lStack0000000000000070,10);
                     }
                     goto LAB_18078f725;
                   }

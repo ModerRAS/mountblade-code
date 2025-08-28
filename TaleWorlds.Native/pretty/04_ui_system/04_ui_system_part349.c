@@ -70,7 +70,7 @@
 #define ui_system_data_validator FUN_1808c6cd0
 
 /** UI系统控件初始化器 */
-#define ui_system_control_initializer FUN_18076b390
+#define ui_system_control_initializer SystemDataValidator
 
 /** UI系统资源清理器 */
 #define ui_system_resource_cleaner SystemSecurityChecker

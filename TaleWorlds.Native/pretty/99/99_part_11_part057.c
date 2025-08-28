@@ -71,7 +71,7 @@
 #define BufferCopyManager                         FUN_1807bb8a0
 
 /** 内部函数调用别名 */
-#define InternalSystemCall                        FUN_18076b390
+#define InternalSystemCall                        SystemDataValidator
 #define InternalMemoryOperation                   FUN_1807ba570
 #define InternalDataTransfer                      FUN_1807b8f20
 #define InternalStateUpdate                       FUN_1807bb8a0

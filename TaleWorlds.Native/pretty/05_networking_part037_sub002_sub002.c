@@ -562,7 +562,7 @@ LAB_180860f7b:
                     uStack_180 = (uint)uStack_130._6_2_;
                     uStack_188 = (uint)uStack_130._4_2_;
                     // WARNING: Subroutine does not return
-                    FUN_18076b390(auStack_a0,0x27,&unknown_var_8960_ptr,(uint64_t)uStack_130 & 0xffffffff)
+                    SystemDataValidator(auStack_a0,0x27,&unknown_var_8960_ptr,(uint64_t)uStack_130 & 0xffffffff)
                     ;
                   }
                   plVar9[2] = lVar13;

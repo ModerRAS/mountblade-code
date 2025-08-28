@@ -577,7 +577,7 @@ void FUN_180862080(int64_t param_1,int64_t *param_2,uint64_t param_3)
     uStack_140 = (uint)uStack_f2;
     uStack_148 = (uint)uStack_f4;
                     // WARNING: Subroutine does not return
-    FUN_18076b390(auStack_70,0x27,&unknown_var_8960_ptr,uStack_f8);
+    SystemDataValidator(auStack_70,0x27,&unknown_var_8960_ptr,uStack_f8);
   }
   iVar12 = 0;
   uStack_138 = CONCAT31(uStack_138._1_3_,1);

@@ -10,19 +10,19 @@ void FUN_18005b560(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   *param_1 = &unknown_var_8016_ptr;
   FUN_18005d580();
   FUN_18005d580();
-  FUN_18005b7c0(param_1 + 0x262);
-  FUN_18005b7c0(param_1 + 0x254);
-  FUN_18005b7c0(param_1 + 0x246);
-  FUN_18005b7c0(param_1 + 0x238);
-  FUN_18005b7c0(param_1 + 0x22a);
-  FUN_18005b7c0(param_1 + 0x21c);
-  FUN_18005b7c0(param_1 + 0x20e);
+  DataCompressionEngine(param_1 + 0x262);
+  DataCompressionEngine(param_1 + 0x254);
+  DataCompressionEngine(param_1 + 0x246);
+  DataCompressionEngine(param_1 + 0x238);
+  DataCompressionEngine(param_1 + 0x22a);
+  DataCompressionEngine(param_1 + 0x21c);
+  DataCompressionEngine(param_1 + 0x20e);
   FUN_18005b960(param_1 + 0x1f6);
   FUN_18005b960(param_1 + 0x1de);
   FUN_18005b960(param_1 + 0x1c6);
-  FUN_18005b7c0(param_1 + 0x1b8);
-  FUN_18005b7c0(param_1 + 0x1aa);
-  FUN_18005b7c0(param_1 + 0x19c);
+  DataCompressionEngine(param_1 + 0x1b8);
+  DataCompressionEngine(param_1 + 0x1aa);
+  DataCompressionEngine(param_1 + 0x19c);
   FUN_18005b960(param_1 + 0x184);
   FUN_18005b960(param_1 + 0x16c);
   FUN_18005b960(param_1 + 0x154);
@@ -96,8 +96,8 @@ int64_t FUN_18005b730(int64_t param_1)
 
 
 
-// 函数: void FUN_18005b7c0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_18005b7c0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void DataCompressionEngine(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void DataCompressionEngine(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   if (*(code **)(param_1 + 0x60) != (code *)0x0) {

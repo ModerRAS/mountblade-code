@@ -542,7 +542,7 @@ event_processing_complete:
       }
     }
     if (control_context != 0) {
-      FUN_180743d60(control_context, 7);
+      SystemCoreHandler(control_context, 7);
     }
   }
   handler_result = FUN_180743660(control_context);
@@ -560,7 +560,7 @@ event_processing_complete:
       }
     }
     if (control_context != 0) {
-      FUN_180743d60(control_context, 6);
+      SystemCoreHandler(control_context, 6);
     }
     event_handler = puRam0000000000012780;
     if ((lRam0000000000012770 == 0) ||
@@ -616,7 +616,7 @@ int ui_validate_control_state(int64_t control_context)
   validation_result = 0;
 validation_failed:
   if (control_context != 0) {
-    FUN_180743d60(control_context, 0x10);
+    SystemCoreHandler(control_context, 0x10);
   }
   return validation_result;
 }
@@ -655,7 +655,7 @@ int ui_check_control_visibility(int64_t control_context)
   visibility_result = 0;
 visibility_check_failed:
   if (control_context != 0) {
-    FUN_180743d60(control_context, 0x10);
+    SystemCoreHandler(control_context, 0x10);
   }
   return visibility_result;
 }
@@ -669,7 +669,7 @@ visibility_check_failed:
 void ui_cleanup_control_resources(void)
 
 {
-  FUN_180743d60();
+  SystemCoreHandler();
 }
 
 /**

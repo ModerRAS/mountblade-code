@@ -127,7 +127,7 @@ int FUN_18078a340(int64_t *param_1,uint64_t param_2,char param_3)
 LAB_18078a3ed:
   if ((bVar4) && (lVar2 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(lVar2,iVar9);
+    SystemCoreHandler(lVar2,iVar9);
   }
   return iVar5;
 }
@@ -198,7 +198,7 @@ int FUN_18078a353(int64_t param_1,uint64_t param_2,char param_3)
 LAB_18078a3ed:
   if ((bVar3) && (unaff_R15 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60();
+    SystemCoreHandler();
   }
   return iVar4;
 }
@@ -213,7 +213,7 @@ int32_t FUN_18078a40b(void)
   
   if (unaff_R15 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60();
+    SystemCoreHandler();
   }
   return unaff_EBP;
 }
@@ -265,7 +265,7 @@ uint64_t FUN_18078a427(uint64_t param_1,int64_t param_2,uint param_3)
 LAB_18078a3ed:
   if ((unaff_R13B != '\0') && (unaff_R15 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60();
+    SystemCoreHandler();
   }
   return unaff_RBP & 0xffffffff;
 }

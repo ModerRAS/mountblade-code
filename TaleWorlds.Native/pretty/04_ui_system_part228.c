@@ -107,7 +107,7 @@ uint64_t FUN_18079b4c0(int64_t param_1,int param_2,float *param_3,int64_t param_
 LAB_18079b568:
   if (param_4 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18076b390(param_4,0x20,&unknown_var_2048_ptr,(double)*param_3);
+    SystemDataValidator(param_4,0x20,&unknown_var_2048_ptr,(double)*param_3);
   }
   return 0;
 }
@@ -141,7 +141,7 @@ uint64_t FUN_18079b5a0(int64_t param_1,int param_2,int32_t *param_3,int64_t para
 LAB_18079b5dc:
   if (param_4 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18076b390(param_4,0x20,&unknown_var_4576_ptr,*param_3);
+    SystemDataValidator(param_4,0x20,&unknown_var_4576_ptr,*param_3);
   }
   return 0;
 }

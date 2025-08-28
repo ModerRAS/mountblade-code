@@ -368,7 +368,7 @@ LAB_1807cbd3d:
                                (iVar4 = FUN_180769ed0(*(uint64_t *)(unaff_RDI + 0x170),
                                                       unaff_RBP + 0x1c0,1,0x16,0), iVar4 == 0)) {
                     // WARNING: Subroutine does not return
-                              FUN_18076b390(unaff_RBP + 0x2e0,0x100,&unknown_var_5872_ptr,
+                              SystemDataValidator(unaff_RBP + 0x2e0,0x100,&unknown_var_5872_ptr,
                                             iStack0000000000000060);
                             }
                           }

@@ -239,7 +239,7 @@ int FUN_1807f7cb0(uint64_t *param_1)
       UNLOCK();
       if ((lVar5 != 0) && (bVar13)) {
                     // WARNING: Subroutine does not return
-        FUN_180743d60(lVar5,10);
+        SystemCoreHandler(lVar5,10);
       }
       if ((param_1[0xc] != 0) && (*(int64_t *)(param_1[0xc] + 0x170) != 0)) {
         func_0x000180768d40();
@@ -309,7 +309,7 @@ int FUN_1807f7cb0(uint64_t *param_1)
           *plVar9 = (int64_t)plVar9;
           param_1[0x2e] = 0;
                     // WARNING: Subroutine does not return
-          FUN_180743d60(param_1[0x1b],10);
+          SystemCoreHandler(param_1[0x1b],10);
         }
         iVar4 = *(int *)(param_1 + 0x16);
         if ((iVar4 != 0) && (lVar6 = param_1[0x14], lVar6 != 0)) {
@@ -430,7 +430,7 @@ int FUN_1807f7cb0(uint64_t *param_1)
   }
   if ((bVar13) && (lVar5 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(lVar5,10);
+    SystemCoreHandler(lVar5,10);
   }
   return iVar4;
 }

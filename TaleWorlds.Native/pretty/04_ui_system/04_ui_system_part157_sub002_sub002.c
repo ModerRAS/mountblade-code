@@ -1022,7 +1022,7 @@ uint64_t UI_SystemWidgetManager(int64_t param_1, int64_t param_2, char param_3)
   
   // 执行系统清理操作
   if (param_3 != '\0') {
-    FUN_180743d60(*(uint64_t *)(param_1 + 0xa8), 1);
+    SystemCoreHandler(*(uint64_t *)(param_1 + 0xa8), 1);
   }
   
   // 获取目标控件数量
@@ -1344,7 +1344,7 @@ LAB_18075feb6:
       }
       
       if (!bVar14) {
-        FUN_180743d60(lVar1, 1);
+        SystemCoreHandler(lVar1, 1);
       }
       
 LAB_180760204:
@@ -1418,7 +1418,7 @@ LAB_180760204:
           bVar14 = !bVar14;
 LAB_180760306:
           if (!bVar14) {
-            FUN_180743d60(lVar1, 1);
+            SystemCoreHandler(lVar1, 1);
           }
         }
         
@@ -1510,7 +1510,7 @@ LAB_180760306:
   }
   
   if (!bVar14) {
-    FUN_180743d60(lVar1, 1);
+    SystemCoreHandler(lVar1, 1);
   }
   
 LAB_18075ffc4:
@@ -1578,7 +1578,7 @@ LAB_18075ffc4:
         bVar14 = !bVar14;
 LAB_1807600cf:
         if (!bVar14) {
-          FUN_180743d60(lVar1, 1);
+          SystemCoreHandler(lVar1, 1);
         }
       }
       
@@ -1700,7 +1700,7 @@ LAB_18075feb6:
     }
     
     if (!bVar14) {
-      FUN_180743d60(lVar1, 1);
+      SystemCoreHandler(lVar1, 1);
     }
     
 LAB_180760204:
@@ -1774,7 +1774,7 @@ LAB_180760204:
         bVar14 = !bVar14;
 LAB_180760306:
         if (!bVar14) {
-          FUN_180743d60(lVar1, 1);
+          SystemCoreHandler(lVar1, 1);
         }
       }
       
@@ -1868,7 +1868,7 @@ LAB_180760306:
   }
   
   if (!bVar14) {
-    FUN_180743d60(lVar1, 1);
+    SystemCoreHandler(lVar1, 1);
   }
   
 LAB_18075ffc4:
@@ -1936,7 +1936,7 @@ LAB_18075ffc4:
         bVar14 = !bVar14;
 LAB_1807600cf:
         if (!bVar14) {
-          FUN_180743d60(lVar1, 1);
+          SystemCoreHandler(lVar1, 1);
         }
       }
       
@@ -2043,7 +2043,7 @@ uint64_t UI_SystemMemoryManager(int64_t param_1)
   
   // 执行系统最终清理
   if ((lVar1 != 0) && (lVar1 != 0)) {
-    FUN_180743d60(lVar1, 7);
+    SystemCoreHandler(lVar1, 7);
   }
   
   // 执行系统回调
@@ -2109,7 +2109,7 @@ uint64_t UI_SystemMemoryCleaner(void)
   
   // 执行系统最终清理
   if ((unaff_RSI != 0) && (unaff_RSI != 0)) {
-    FUN_180743d60();
+    SystemCoreHandler();
   }
   
   // 执行系统回调
@@ -2141,7 +2141,7 @@ uint64_t UI_SystemStateValidator(void)
   
   // 执行系统清理操作
   if (unaff_RSI != 0) {
-    FUN_180743d60();
+    SystemCoreHandler();
   }
   
   // 执行系统回调
