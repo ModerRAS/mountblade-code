@@ -373,7 +373,7 @@ LAB_1805b3980:
     if (0 < *piVar5) break;
     piVar5 = piVar5 + 1;
   } while ((int64_t)piVar5 < 0x1809fb110);
-  FUN_180645c10(param_3,0,&stack0xffffffffffffffe8);
+  SystemCore_ThreadManager0(param_3,0,&stack0xffffffffffffffe8);
   return;
 }
 
@@ -460,7 +460,7 @@ LAB_1805b3980:
   bVar8 = 0x19;
 LAB_1806193ee:
   iStack0000000000000054 = (1 << (bVar8 & 0x1f)) + -1;
-  FUN_180645c10();
+  SystemCore_ThreadManager0();
   return;
 }
 
@@ -495,7 +495,7 @@ LAB_1806193ee:
   uStack0000000000000050 = 0;
   iStack0000000000000054 = (1 << ((byte)uStack0000000000000058 & 0x1f)) + -1;
   uStack0000000000000028 = 0x18061943e;
-  FUN_180645c10();
+  SystemCore_ThreadManager0();
   return;
 }
 

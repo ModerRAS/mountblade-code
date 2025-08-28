@@ -376,7 +376,7 @@ void rendering_system_advanced_texture_mapper(
     iVar8 = (int)((float)(param_8 + -1) * fVar22);
     iStack_138 = iVar8;
     FUN_18012e810();
-    FUN_18010f010(&unknown_var_728_ptr, iVar8);
+    SystemCore_CacheManager0(&unknown_var_728_ptr, iVar8);
     
     // 处理渲染数据
     if (0 < lVar17) {
@@ -787,7 +787,7 @@ void rendering_system_advanced_coordinate_transformer(void) {
     iVar11 = (int)((float)iVar11 * fVar19);
     iStack0000000000000050 = iVar11;
     FUN_18012e810();
-    FUN_18010f010(&unknown_var_728_ptr, iVar11);
+    SystemCore_CacheManager0(&unknown_var_728_ptr, iVar11);
     
     // 处理变换数据
     if (0 < (int64_t)unaff_R14) {

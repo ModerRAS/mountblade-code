@@ -73,7 +73,7 @@ void FUN_18005ea90(int64_t param_1,void *param_2);
 void FUN_1806193b0(int64_t param_1,int param_2);
 void FUN_1805f7890(uint64_t param_1);
 void FUN_180646200(int64_t param_1);
-void SystemCore_ThreadManager0(int64_t param_1,void *param_2,void *param_3);
+void FUN_180645c10(int64_t param_1,void *param_2,void *param_3);
 void FUN_1808fd200(void);
 void CoreMemoryPoolAllocator(uint64_t param_1,int64_t param_2,char param_3);
 void CoreMemoryPoolReallocator(uint64_t param_1,int64_t param_2,int64_t param_3,char param_4);
@@ -481,7 +481,7 @@ LAB_1805b3980:
     if (0 < *data_pointer) break;
     data_pointer = data_pointer + 1;
   } while ((int64_t)data_pointer < 0x1809fb110);
-  SystemCore_ThreadManager0(data_source, 0, &stack0xffffffffffffffe8);
+  FUN_180645c10(data_source, 0, &stack0xffffffffffffffe8);
   return;
 }
 
@@ -564,7 +564,7 @@ LAB_1805b3980:
   status_flag = 0x19;
 LAB_1806193ee:
   current_item = (1 << (status_flag & 0x1f)) + -1;
-  SystemCore_ThreadManager0();
+  FUN_180645c10();
   return;
 }
 
@@ -600,7 +600,7 @@ LAB_1806193ee:
   status_value = 0;
   cleanup_mask = (1 << ((byte)config_param & 0x1f)) + -1;
   config_data = 0x18061943e;
-  SystemCore_ThreadManager0();
+  FUN_180645c10();
   return;
 }
 

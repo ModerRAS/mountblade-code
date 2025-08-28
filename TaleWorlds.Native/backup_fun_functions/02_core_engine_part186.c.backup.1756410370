@@ -72,7 +72,7 @@ void FUN_18016c97a(int64_t param_1,uint64_t *param_2,uint64_t *param_3,uint64_t 
     FUN_18013e100(SYSTEM_DATA_MANAGER_A + 0x1b80,auStackX_20);
     *(uint64_t *)(lVar17 + 0x1718) = 0x3f8000003f800000;
     *(uint64_t *)(lVar17 + 0x1720) = 0x3f8000003f800000;
-    SystemCore_CacheManager0(&unknown_var_1776_ptr);
+    FUN_18010f010(&unknown_var_1776_ptr);
     lVar17 = SYSTEM_DATA_MANAGER_A;
     puVar3 = (uint64_t *)
              (*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b88) + -0x10 +

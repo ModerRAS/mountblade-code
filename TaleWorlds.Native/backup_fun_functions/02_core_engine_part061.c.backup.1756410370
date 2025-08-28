@@ -991,7 +991,7 @@ int8_t SystemMessageProcessor(uint64_t param_1, int64_t param_2, uint64_t param_
   uVar4 = (uint)*(ushort *)(param_2 + 0x32e);
   
   // 调用消息处理函数
-  SystemCore_CacheManager0(&unknown_var_2320_ptr, puVar3, uVar2, *(int16_t *)(param_2 + 0x32c), uVar4);
+  FUN_18010f010(&unknown_var_2320_ptr, puVar3, uVar2, *(int16_t *)(param_2 + 0x32c), uVar4);
   
   // 初始化数据处理栈变量
   uStack_40 = 0x3f8000003f800000;  // 双精度浮点1.0

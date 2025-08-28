@@ -252,29 +252,29 @@ void initialize_system_configuration(void)
     FUN_1801299b0(&unknown_var_6880_ptr, 0, 0, unused_r9, flag_value);
     
     // 设置基础配置参数
-    FUN_18010f010(&unknown_var_6896_ptr, *(int32_t *)(config_data + 4));     // 参数1
-    FUN_18010f010(&unknown_var_6928_ptr, *(int32_t *)(config_data + 8));     // 参数2
-    FUN_18010f010(&unknown_var_6960_ptr, *(int32_t *)(config_data + 0xc));   // 参数3
-    FUN_18010f010(&unknown_var_6992_ptr, *(int32_t *)(config_data + 0x10));  // 参数4
-    FUN_18010f010(&unknown_var_7024_ptr, *(int32_t *)(config_data + 0x14));  // 参数5
-    FUN_18010f010(&unknown_var_7064_ptr, *(int32_t *)(config_data + 0x18));  // 参数6
+    SystemCore_CacheManager0(&unknown_var_6896_ptr, *(int32_t *)(config_data + 4));     // 参数1
+    SystemCore_CacheManager0(&unknown_var_6928_ptr, *(int32_t *)(config_data + 8));     // 参数2
+    SystemCore_CacheManager0(&unknown_var_6960_ptr, *(int32_t *)(config_data + 0xc));   // 参数3
+    SystemCore_CacheManager0(&unknown_var_6992_ptr, *(int32_t *)(config_data + 0x10));  // 参数4
+    SystemCore_CacheManager0(&unknown_var_7024_ptr, *(int32_t *)(config_data + 0x14));  // 参数5
+    SystemCore_CacheManager0(&unknown_var_7064_ptr, *(int32_t *)(config_data + 0x18));  // 参数6
     
     // 处理第一组配置数据（偏移0x28处的链表）
     for (iterator_ptr = *(char **)(config_data + 0x28); iterator_ptr != config_data + 0x20;
         iterator_ptr = (char *)func_0x00018066bd70(iterator_ptr)) {
-      FUN_18010f010(&unknown_var_7104_ptr, *(int32_t *)(iterator_ptr + 0x20), *(int32_t *)(iterator_ptr + 0x24));
+      SystemCore_CacheManager0(&unknown_var_7104_ptr, *(int32_t *)(iterator_ptr + 0x20), *(int32_t *)(iterator_ptr + 0x24));
     }
     
     // 处理第二组配置数据（偏移0x58处的链表）
     for (iterator_ptr = *(char **)(config_data + 0x58); iterator_ptr != config_data + 0x50;
         iterator_ptr = (char *)func_0x00018066bd70(iterator_ptr)) {
-      FUN_18010f010(&unknown_var_7144_ptr, *(int32_t *)(iterator_ptr + 0x20), *(int32_t *)(iterator_ptr + 0x24));
+      SystemCore_CacheManager0(&unknown_var_7144_ptr, *(int32_t *)(iterator_ptr + 0x20), *(int32_t *)(iterator_ptr + 0x24));
     }
     
     // 设置高级配置参数
-    FUN_18010f010(&unknown_var_7184_ptr, *(int32_t *)(config_data + 0x80));  // 高级参数1
-    FUN_18010f010(&unknown_var_7224_ptr, *(int32_t *)(config_data + 0x84));  // 高级参数2
-    FUN_18010f010(&unknown_var_7264_ptr, *(int32_t *)(config_data + 0x88));  // 高级参数3
+    SystemCore_CacheManager0(&unknown_var_7184_ptr, *(int32_t *)(config_data + 0x80));  // 高级参数1
+    SystemCore_CacheManager0(&unknown_var_7224_ptr, *(int32_t *)(config_data + 0x84));  // 高级参数2
+    SystemCore_CacheManager0(&unknown_var_7264_ptr, *(int32_t *)(config_data + 0x88));  // 高级参数3
     
     // 完成配置初始化
     FUN_18012cfe0();

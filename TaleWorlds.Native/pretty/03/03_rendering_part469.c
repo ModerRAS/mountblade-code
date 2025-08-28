@@ -551,8 +551,8 @@ void rendering_system_process_render_pipeline(
                     } else {
                         material_data = 0;
                     }
-                    texture_format = FUN_180645c10(material_data, 0, &system_param1_ptr);
-                    if (((texture_format != '\0') && (texture_format = FUN_180645c10(material_data, 5, &unknown_var_3472_ptr), texture_format != '\0')) &&
+                    texture_format = SystemCore_ThreadManager0(material_data, 0, &system_param1_ptr);
+                    if (((texture_format != '\0') && (texture_format = SystemCore_ThreadManager0(material_data, 5, &unknown_var_3472_ptr), texture_format != '\0')) &&
                        ((texture_format = FUN_180645fa0(material_data), texture_format != '\0' &&
                         (texture_format = FUN_180645fa0(material_data), texture_format != '\0')))) {
                         FUN_180645fa0(material_data);

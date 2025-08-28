@@ -419,8 +419,8 @@ void FUN_18010effd(void)
 
 
 
-// 函数: void SystemCore_CacheManager0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void SystemCore_CacheManager0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void FUN_18010f010(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void FUN_18010f010(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t uStackX_10;

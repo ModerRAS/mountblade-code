@@ -243,7 +243,7 @@ joined_r0x0001802999aa:
   iVar8 = (int)((float)(param_8 + -1) * fVar22);
   iStack_138 = iVar8;
   FUN_18012e810();
-  SystemCore_CacheManager0(&unknown_var_728_ptr,iVar8);
+  FUN_18010f010(&unknown_var_728_ptr,iVar8);
   if (0 < lVar17) {
     lVar9 = lStackX_20 - (int64_t)param_7;
     puVar10 = param_7;
@@ -617,7 +617,7 @@ joined_r0x0001802999aa:
   iVar11 = (int)((float)iVar11 * fVar19);
   iStack0000000000000050 = iVar11;
   FUN_18012e810();
-  SystemCore_CacheManager0(&unknown_var_728_ptr,iVar11);
+  FUN_18010f010(&unknown_var_728_ptr,iVar11);
   if (0 < (int64_t)unaff_R14) {
     puVar12 = *(uint64_t **)(unaff_RBP + 0xc0);
     *(int64_t *)(unaff_RBP + 0xa8) = *(int64_t *)(unaff_RBP + 0xa8) - (int64_t)puVar12;

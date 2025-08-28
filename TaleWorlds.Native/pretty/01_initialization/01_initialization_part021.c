@@ -978,29 +978,29 @@ void perform_system_cleanup(void)
     FUN_1801299b0(&unknown_var_6880_ptr,0,0,register_value,security_cookie);
     
     // 清理配置数据的基本字段
-    FUN_18010f010(&unknown_var_6896_ptr,*(int32_t *)(config_data + 4));
-    FUN_18010f010(&unknown_var_6928_ptr,*(int32_t *)(config_data + 8));
-    FUN_18010f010(&unknown_var_6960_ptr,*(int32_t *)(config_data + 0xc));
-    FUN_18010f010(&unknown_var_6992_ptr,*(int32_t *)(config_data + 0x10));
-    FUN_18010f010(&unknown_var_7024_ptr,*(int32_t *)(config_data + 0x14));
-    FUN_18010f010(&unknown_var_7064_ptr,*(int32_t *)(config_data + 0x18));
+    SystemCore_CacheManager0(&unknown_var_6896_ptr,*(int32_t *)(config_data + 4));
+    SystemCore_CacheManager0(&unknown_var_6928_ptr,*(int32_t *)(config_data + 8));
+    SystemCore_CacheManager0(&unknown_var_6960_ptr,*(int32_t *)(config_data + 0xc));
+    SystemCore_CacheManager0(&unknown_var_6992_ptr,*(int32_t *)(config_data + 0x10));
+    SystemCore_CacheManager0(&unknown_var_7024_ptr,*(int32_t *)(config_data + 0x14));
+    SystemCore_CacheManager0(&unknown_var_7064_ptr,*(int32_t *)(config_data + 0x18));
     
     // 清理第一个数据块列表
     for (iterator_ptr = *(char **)(config_data + 0x28); iterator_ptr != config_data + 0x20;
         iterator_ptr = (char *)func_0x00018066bd70(iterator_ptr)) {
-      FUN_18010f010(&unknown_var_7104_ptr,*(int32_t *)(iterator_ptr + 0x20),*(int32_t *)(iterator_ptr + 0x24));
+      SystemCore_CacheManager0(&unknown_var_7104_ptr,*(int32_t *)(iterator_ptr + 0x20),*(int32_t *)(iterator_ptr + 0x24));
     }
     
     // 清理第二个数据块列表
     for (iterator_ptr = *(char **)(config_data + 0x58); iterator_ptr != config_data + 0x50;
         iterator_ptr = (char *)func_0x00018066bd70(iterator_ptr)) {
-      FUN_18010f010(&unknown_var_7144_ptr,*(int32_t *)(iterator_ptr + 0x20),*(int32_t *)(iterator_ptr + 0x24));
+      SystemCore_CacheManager0(&unknown_var_7144_ptr,*(int32_t *)(iterator_ptr + 0x20),*(int32_t *)(iterator_ptr + 0x24));
     }
     
     // 清理剩余的配置字段
-    FUN_18010f010(&unknown_var_7184_ptr,*(int32_t *)(config_data + 0x80));
-    FUN_18010f010(&unknown_var_7224_ptr,*(int32_t *)(config_data + 0x84));
-    FUN_18010f010(&unknown_var_7264_ptr,*(int32_t *)(config_data + 0x88));
+    SystemCore_CacheManager0(&unknown_var_7184_ptr,*(int32_t *)(config_data + 0x80));
+    SystemCore_CacheManager0(&unknown_var_7224_ptr,*(int32_t *)(config_data + 0x84));
+    SystemCore_CacheManager0(&unknown_var_7264_ptr,*(int32_t *)(config_data + 0x88));
     
     FUN_18012cfe0();  // 执行最终清理
     SYSTEM_DATA_MANAGER_A = list_state;

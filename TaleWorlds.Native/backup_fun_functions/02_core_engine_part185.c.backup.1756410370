@@ -217,8 +217,8 @@
 /* FUN_18011d940 - 数据流控制函数 */
 #define DataFlowController FUN_18011d940
 
-/* SystemCore_CacheManager0 - 资源监控函数 */
-#define ResourceMonitor SystemCore_CacheManager0
+/* FUN_18010f010 - 资源监控函数 */
+#define ResourceMonitor FUN_18010f010
 
 /* FUN_18012e2d0 - 数据同步函数 */
 #define DataSynchronizer FUN_18012e2d0

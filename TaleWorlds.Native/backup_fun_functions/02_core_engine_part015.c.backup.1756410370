@@ -213,23 +213,23 @@ void initialize_system_configuration(void)
     old_config = SYSTEM_DATA_MANAGER_A;
     SYSTEM_DATA_MANAGER_A = *config_ptr;
     FUN_1801299b0(&unknown_var_6880_ptr, 0, 0, in_R9, config_flag);
-    SystemCore_CacheManager0(&unknown_var_6896_ptr, *(int32_t *)(base_config + 4));
-    SystemCore_CacheManager0(&unknown_var_6928_ptr, *(int32_t *)(base_config + 8));
-    SystemCore_CacheManager0(&unknown_var_6960_ptr, *(int32_t *)(base_config + 0xc));
-    SystemCore_CacheManager0(&unknown_var_6992_ptr, *(int32_t *)(base_config + 0x10));
-    SystemCore_CacheManager0(&unknown_var_7024_ptr, *(int32_t *)(base_config + 0x14));
-    SystemCore_CacheManager0(&unknown_var_7064_ptr, *(int32_t *)(base_config + 0x18));
+    FUN_18010f010(&unknown_var_6896_ptr, *(int32_t *)(base_config + 4));
+    FUN_18010f010(&unknown_var_6928_ptr, *(int32_t *)(base_config + 8));
+    FUN_18010f010(&unknown_var_6960_ptr, *(int32_t *)(base_config + 0xc));
+    FUN_18010f010(&unknown_var_6992_ptr, *(int32_t *)(base_config + 0x10));
+    FUN_18010f010(&unknown_var_7024_ptr, *(int32_t *)(base_config + 0x14));
+    FUN_18010f010(&unknown_var_7064_ptr, *(int32_t *)(base_config + 0x18));
     for (config_item = *(char **)(base_config + 0x28); config_item != base_config + 0x20;
         config_item = (char *)func_0x00018066bd70(config_item)) {
-      SystemCore_CacheManager0(&unknown_var_7104_ptr, *(int32_t *)(config_item + 0x20), *(int32_t *)(config_item + 0x24));
+      FUN_18010f010(&unknown_var_7104_ptr, *(int32_t *)(config_item + 0x20), *(int32_t *)(config_item + 0x24));
     }
     for (config_item = *(char **)(base_config + 0x58); config_item != base_config + 0x50;
         config_item = (char *)func_0x00018066bd70(config_item)) {
-      SystemCore_CacheManager0(&unknown_var_7144_ptr, *(int32_t *)(config_item + 0x20), *(int32_t *)(config_item + 0x24));
+      FUN_18010f010(&unknown_var_7144_ptr, *(int32_t *)(config_item + 0x20), *(int32_t *)(config_item + 0x24));
     }
-    SystemCore_CacheManager0(&unknown_var_7184_ptr, *(int32_t *)(base_config + 0x80));
-    SystemCore_CacheManager0(&unknown_var_7224_ptr, *(int32_t *)(base_config + 0x84));
-    SystemCore_CacheManager0(&unknown_var_7264_ptr, *(int32_t *)(base_config + 0x88));
+    FUN_18010f010(&unknown_var_7184_ptr, *(int32_t *)(base_config + 0x80));
+    FUN_18010f010(&unknown_var_7224_ptr, *(int32_t *)(base_config + 0x84));
+    FUN_18010f010(&unknown_var_7264_ptr, *(int32_t *)(base_config + 0x88));
     FUN_18012cfe0();
     SYSTEM_DATA_MANAGER_A = old_config;
     lock_result = _Mtx_unlock(0x180c91970);

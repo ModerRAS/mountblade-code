@@ -102,13 +102,13 @@ void system_state_processor(uint64_t param_1, int8_t param_2, int32_t param_3, i
   FUN_1800623b0(system_message_context, 0, 4, 10, &unknown_var_2992_ptr, param_4);
   
   /* 系统状态验证 */
-  system_status_flag = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
+  system_status_flag = SystemCore_ThreadManager0(0x180c95578, 0, &system_param1_ptr);
   if (((((system_status_flag != '\0') && 
-         (system_status_flag = FUN_180645c10(0x180c95578, 0x12, &unknown_var_3472_ptr), system_status_flag != '\0')) &&
-        (system_status_flag = FUN_180645c10(0x180c95578, param_2, &system_param1_ptr), system_status_flag != '\0')) &&
-       ((system_status_flag = FUN_180645c10(0x180c95578, param_3, &unknown_var_3424_ptr), system_status_flag != '\0' &&
-        (system_status_flag = FUN_180645c10(0x180c95578, param_4, &unknown_var_3424_ptr), system_status_flag != '\0')))) &&
-      (system_status_flag = FUN_180645c10(0x180c95578, param_5, &system_memory_bc90), system_status_flag != '\0')) {
+         (system_status_flag = SystemCore_ThreadManager0(0x180c95578, 0x12, &unknown_var_3472_ptr), system_status_flag != '\0')) &&
+        (system_status_flag = SystemCore_ThreadManager0(0x180c95578, param_2, &system_param1_ptr), system_status_flag != '\0')) &&
+       ((system_status_flag = SystemCore_ThreadManager0(0x180c95578, param_3, &unknown_var_3424_ptr), system_status_flag != '\0' &&
+        (system_status_flag = SystemCore_ThreadManager0(0x180c95578, param_4, &unknown_var_3424_ptr), system_status_flag != '\0')))) &&
+      (system_status_flag = SystemCore_ThreadManager0(0x180c95578, param_5, &system_memory_bc90), system_status_flag != '\0')) {
     
     /* 系统哈希值计算 */
     system_hash_value = FUN_18055f6f0(&unknown_var_3232_ptr, param_6);
@@ -197,13 +197,13 @@ void system_data_validator(int64_t *param_1)
   
   /* 系统参数获取 */
   system_parameter = *(int32_t *)(*param_1 + 0x10);
-  system_validation_flag = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
+  system_validation_flag = SystemCore_ThreadManager0(0x180c95578, 0, &system_param1_ptr);
   
   /* 系统数据验证流程 */
   if (system_validation_flag != '\0') {
-    system_validation_flag = FUN_180645c10(0x180c95578, 3, &unknown_var_3472_ptr);
+    system_validation_flag = SystemCore_ThreadManager0(0x180c95578, 3, &unknown_var_3472_ptr);
     if (system_validation_flag != '\0') {
-      FUN_180645c10(0x180c95578, system_parameter, &unknown_var_3424_ptr);
+      SystemCore_ThreadManager0(0x180c95578, system_parameter, &unknown_var_3424_ptr);
     }
   }
   
@@ -285,13 +285,13 @@ void system_resource_manager(int64_t *param_1, uint64_t param_2, int64_t param_3
   
   /* 系统参数获取 */
   system_parameter = *(int32_t *)(*param_1 + 0x10);
-  system_validation_flag = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
+  system_validation_flag = SystemCore_ThreadManager0(0x180c95578, 0, &system_param1_ptr);
   
   /* 系统资源验证流程 */
   if (system_validation_flag != '\0') {
-    system_validation_flag = FUN_180645c10(0x180c95578, 3, &unknown_var_3472_ptr);
+    system_validation_flag = SystemCore_ThreadManager0(0x180c95578, 3, &unknown_var_3472_ptr);
     if (system_validation_flag != '\0') {
-      FUN_180645c10(0x180c95578, system_parameter, &unknown_var_3424_ptr);
+      SystemCore_ThreadManager0(0x180c95578, system_parameter, &unknown_var_3424_ptr);
     }
   }
   
@@ -422,11 +422,11 @@ void system_parameter_handler(int64_t *param_1, int64_t param_2, int32_t param_3
     }
     
     /* 系统参数验证 */
-    system_validation_flag = FUN_180645c10(system_context, 0, &system_param1_ptr);
+    system_validation_flag = SystemCore_ThreadManager0(system_context, 0, &system_param1_ptr);
     if ((system_validation_flag != '\0') && 
-        (system_validation_flag = FUN_180645c10(system_context, 0x16, &unknown_var_3472_ptr), 
+        (system_validation_flag = SystemCore_ThreadManager0(system_context, 0x16, &unknown_var_3472_ptr), 
          system_validation_flag != '\0')) {
-      FUN_180645c10(system_context, system_hash_value, &unknown_var_3488_ptr);
+      SystemCore_ThreadManager0(system_context, system_hash_value, &unknown_var_3488_ptr);
     }
     
     /* 系统互斥锁释放 */
@@ -483,11 +483,11 @@ void system_thread_synchronizer(void)
   }
   
   /* 系统数据验证 */
-  system_validation_flag = FUN_180645c10(system_handle, 0, &system_param1_ptr);
+  system_validation_flag = SystemCore_ThreadManager0(system_handle, 0, &system_param1_ptr);
   if ((system_validation_flag != '\0') && 
-      (system_validation_flag = FUN_180645c10(system_handle, 0x16, &unknown_var_3472_ptr), 
+      (system_validation_flag = SystemCore_ThreadManager0(system_handle, 0x16, &unknown_var_3472_ptr), 
        system_validation_flag != '\0')) {
-    FUN_180645c10(system_handle, system_parameter, &unknown_var_3488_ptr);
+    SystemCore_ThreadManager0(system_handle, system_parameter, &unknown_var_3488_ptr);
   }
   
   /* 系统互斥锁释放 */

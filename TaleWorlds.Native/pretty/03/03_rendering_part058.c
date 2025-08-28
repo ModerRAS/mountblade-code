@@ -168,7 +168,7 @@ joined_r0x0001802999aa:
   iVar9 = (int)((float)iVar9 * fVar24);
   iStack0000000000000050 = iVar9;
   FUN_18012e810();
-  FUN_18010f010(&unknown_var_728_ptr,iVar9);
+  SystemCore_CacheManager0(&unknown_var_728_ptr,iVar9);
   if (0 < (int64_t)unaff_R14) {
     puVar10 = *(uint64_t **)(unaff_RBP + 0xc0);
     *(int64_t *)(unaff_RBP + 0xa8) = *(int64_t *)(unaff_RBP + 0xa8) - (int64_t)puVar10;

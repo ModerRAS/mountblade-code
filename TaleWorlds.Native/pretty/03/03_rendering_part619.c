@@ -76,15 +76,15 @@
 #define RenderingSystem_ResourceCleanup FUN_18060ef16
 #define RenderingSystem_EmptyFunction_2 FUN_18060ef6e
 #define RenderingSystem_EmptyFunction_3 FUN_18060ef9a
-#define RenderingSystem_ResourceFinalizer FUN_18060efa0
-#define RenderingSystem_DataValidator FUN_18060efd0
-#define RenderingSystem_DataChecker FUN_18060f040
-#define RenderingSystem_ParameterProcessor FUN_18060f0d0
-#define RenderingSystem_DataTransformer FUN_18060f140
-#define RenderingSystem_DataRetriever FUN_18060f1b0
-#define RenderingSystem_ParameterHandler FUN_18060f240
-#define RenderingSystem_ParameterGetter FUN_18060f2b0
-#define RenderingSystem_SystemCallHandler FUN_18060f370
+#define RenderingSystem_ResourceFinalizer RenderingSystemValidator
+#define RenderingSystem_DataValidator RenderingSystemInitializer
+#define RenderingSystem_DataChecker RenderingSystemProcessor
+#define RenderingSystem_ParameterProcessor RenderingSystemManager
+#define RenderingSystem_DataTransformer RenderingSystemController
+#define RenderingSystem_DataRetriever RenderingSystemOptimizer
+#define RenderingSystem_ParameterHandler RenderingSystemCleaner
+#define RenderingSystem_ParameterGetter RenderingSystemUpdater
+#define RenderingSystem_SystemCallHandler RenderingSystemRenderer
 
 // ============================================================================
 // 核心函数实现
@@ -1047,7 +1047,7 @@ void RenderingSystem_EmptyFunction_3(void)
 
 /**
  * 渲染系统资源终结器
- * 原始函数名: FUN_18060efa0
+ * 原始函数名: RenderingSystemValidator
  * 功能: 终结渲染系统的资源，进行最终的清理操作
  * 参数: param_1 - 资源指针
  * 返回值: 无
@@ -1064,7 +1064,7 @@ void RenderingSystem_ResourceFinalizer(int64_t param_1)
 
 /**
  * 渲染系统数据验证器
- * 原始函数名: FUN_18060efd0
+ * 原始函数名: RenderingSystemInitializer
  * 功能: 验证渲染系统的数据完整性
  * 参数: param_1 - 验证参数1，param_2 - 验证参数2，param_3 - 验证参数3，param_4 - 验证参数4
  * 返回值: 无符号整数，表示验证结果
@@ -1087,7 +1087,7 @@ int32_t RenderingSystem_DataValidator(uint64_t param_1, uint64_t param_2, uint64
 
 /**
  * 渲染系统数据检查器
- * 原始函数名: FUN_18060f040
+ * 原始函数名: RenderingSystemProcessor
  * 功能: 检查渲染系统的数据状态
  * 参数: param_1 - 检查参数1，param_2 - 检查参数2，param_3 - 检查参数3，param_4 - 检查参数4
  * 返回值: 字节，表示检查结果
@@ -1110,7 +1110,7 @@ byte RenderingSystem_DataChecker(uint64_t param_1, uint64_t param_2, uint64_t pa
 
 /**
  * 渲染系统参数处理器
- * 原始函数名: FUN_18060f0d0
+ * 原始函数名: RenderingSystemManager
  * 功能: 处理渲染系统的参数
  * 参数: param_1 - 处理参数1，param_2 - 处理参数2，param_3 - 处理参数3，param_4 - 处理参数4
  * 返回值: 无符号整数，表示处理结果
@@ -1133,7 +1133,7 @@ int32_t RenderingSystem_ParameterProcessor(uint64_t param_1, uint64_t param_2, u
 
 /**
  * 渲染系统数据变换器
- * 原始函数名: FUN_18060f140
+ * 原始函数名: RenderingSystemController
  * 功能: 对渲染系统的数据进行变换处理
  * 参数: param_1 - 变换参数，param_2 - 结果指针数组
  * 返回值: 无
@@ -1166,7 +1166,7 @@ void RenderingSystem_DataTransformer(int param_1, uint64_t *param_2)
 
 /**
  * 渲染系统数据检索器
- * 原始函数名: FUN_18060f1b0
+ * 原始函数名: RenderingSystemOptimizer
  * 功能: 从渲染系统中检索数据
  * 参数: param_1 - 检索参数1，param_2 - 检索参数2，param_3 - 检索参数3，param_4 - 检索参数4
  * 返回值: 无符号长整型，表示检索结果
@@ -1194,7 +1194,7 @@ uint64_t RenderingSystem_DataRetriever(uint64_t param_1, uint64_t param_2, uint6
 
 /**
  * 渲染系统参数处理器
- * 原始函数名: FUN_18060f240
+ * 原始函数名: RenderingSystemCleaner
  * 功能: 处理渲染系统的参数
  * 参数: param_1 - 处理参数1，param_2 - 处理参数2，param_3 - 处理标志，param_4 - 处理参数4，param_5 - 处理标志2
  * 返回值: 无符号整数，表示处理结果
@@ -1216,7 +1216,7 @@ int32_t RenderingSystem_ParameterHandler(uint64_t param_1, int32_t param_2, int8
 
 /**
  * 渲染系统参数获取器
- * 原始函数名: FUN_18060f2b0
+ * 原始函数名: RenderingSystemUpdater
  * 功能: 获取渲染系统的参数
  * 参数: param_1 - 获取参数1，param_2 - 获取参数2，param_3 - 获取标志，param_4 - 获取参数4，param_5 - 获取标志2
  * 返回值: 整数，表示获取结果
@@ -1238,7 +1238,7 @@ int RenderingSystem_ParameterGetter(uint64_t param_1, int32_t param_2, int8_t pa
 
 /**
  * 渲染系统系统调用处理器
- * 原始函数名: FUN_18060f370
+ * 原始函数名: RenderingSystemRenderer
  * 功能: 处理渲染系统的系统调用
  * 参数: param_1 - 调用参数1，param_2 - 调用参数2，param_3 - 调用参数3，param_4 - 调用参数4
  * 返回值: 无

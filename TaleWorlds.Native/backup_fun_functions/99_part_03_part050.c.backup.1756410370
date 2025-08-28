@@ -112,35 +112,35 @@ void FUN_1801ff450(int64_t param_1)
   if (*(void **)(param_1 + 8) != (void *)0x0) {
     puVar12 = *(void **)(param_1 + 8);
   }
-  SystemCore_CacheManager0(&unknown_var_9940_ptr,puVar12);
+  FUN_18010f010(&unknown_var_9940_ptr,puVar12);
   puVar12 = &system_buffer_ptr;
   if (*(void **)(param_1 + 0x48) != (void *)0x0) {
     puVar12 = *(void **)(param_1 + 0x48);
   }
-  SystemCore_CacheManager0(&unknown_var_9940_ptr,puVar12);
+  FUN_18010f010(&unknown_var_9940_ptr,puVar12);
   puVar12 = &system_buffer_ptr;
   if (*(void **)(param_1 + 0x28) != (void *)0x0) {
     puVar12 = *(void **)(param_1 + 0x28);
   }
-  SystemCore_CacheManager0(&unknown_var_9940_ptr,puVar12);
+  FUN_18010f010(&unknown_var_9940_ptr,puVar12);
   puStack_158 = (void *)0x437f0000;
   puStack_150 = (void *)0x437f000000000000;
   FUN_18010f0d0(&puStack_158,&system_data_63b4);
   func_0x00018012e760();
-  SystemCore_CacheManager0(&unknown_var_9984_ptr,(int)dVar19);
+  FUN_18010f010(&unknown_var_9984_ptr,(int)dVar19);
   func_0x00018012e760();
-  SystemCore_CacheManager0(&unknown_var_0_ptr,(double)(1000.0 / fVar20));
+  FUN_18010f010(&unknown_var_0_ptr,(double)(1000.0 / fVar20));
   func_0x00018012e760();
-  SystemCore_CacheManager0(&unknown_var_9952_ptr,*(uint64_t *)(param_1 + 0xb8));
+  FUN_18010f010(&unknown_var_9952_ptr,*(uint64_t *)(param_1 + 0xb8));
   puStack_158 = (void *)0x437f000000000000;
   puStack_150 = (void *)0x437f000000000000;
   FUN_18010f0d0(&puStack_158,&system_data_63b4);
   func_0x00018012e760();
-  SystemCore_CacheManager0(&unknown_var_9968_ptr,(int)dVar2);
+  FUN_18010f010(&unknown_var_9968_ptr,(int)dVar2);
   func_0x00018012e760();
-  SystemCore_CacheManager0(&unknown_var_0_ptr,(double)(1000.0 / fVar21));
+  FUN_18010f010(&unknown_var_0_ptr,(double)(1000.0 / fVar21));
   func_0x00018012e760();
-  SystemCore_CacheManager0(&unknown_var_9952_ptr,*(uint64_t *)(param_1 + 0xc0));
+  FUN_18010f010(&unknown_var_9952_ptr,*(uint64_t *)(param_1 + 0xc0));
   if (0x14 < iVar7) {
     puStack_158 = &unknown_var_6196_ptr;
     puStack_150 = &unknown_var_6204_ptr;
@@ -517,40 +517,40 @@ void FUN_1801fffd0(int64_t param_1)
   if (*(void **)(param_1 + 8) != (void *)0x0) {
     puVar19 = *(void **)(param_1 + 8);
   }
-  SystemCore_CacheManager0(&unknown_var_9940_ptr,puVar19);
+  FUN_18010f010(&unknown_var_9940_ptr,puVar19);
   puVar19 = &system_buffer_ptr;
   if (*(void **)(param_1 + 0x48) != (void *)0x0) {
     puVar19 = *(void **)(param_1 + 0x48);
   }
-  SystemCore_CacheManager0(&unknown_var_9940_ptr,puVar19);
+  FUN_18010f010(&unknown_var_9940_ptr,puVar19);
   puVar19 = &system_buffer_ptr;
   if (*(void **)(param_1 + 0x28) != (void *)0x0) {
     puVar19 = *(void **)(param_1 + 0x28);
   }
-  SystemCore_CacheManager0(&unknown_var_9940_ptr,puVar19);
+  FUN_18010f010(&unknown_var_9940_ptr,puVar19);
   uStack_f0 = 0x437f0000;
   uStack_e8 = 0x437f000000000000;
   FUN_18010f0d0(&uStack_f0,&system_data_63b4);
   func_0x00018012e760();
-  SystemCore_CacheManager0(&unknown_var_72_ptr,*(uint64_t *)(param_1 + 0xb8));
+  FUN_18010f010(&unknown_var_72_ptr,*(uint64_t *)(param_1 + 0xb8));
   func_0x00018012e760();
-  SystemCore_CacheManager0(&unknown_var_8_ptr,(int)*(float *)(param_1 + 0xcc));
+  FUN_18010f010(&unknown_var_8_ptr,(int)*(float *)(param_1 + 0xcc));
   func_0x00018012e760();
   func_0x00018012e760();
-  SystemCore_CacheManager0(&unknown_var_24_ptr,(int)*(float *)(param_1 + 200));
+  FUN_18010f010(&unknown_var_24_ptr,(int)*(float *)(param_1 + 200));
   func_0x00018012e760();
-  SystemCore_CacheManager0(&unknown_var_120_ptr,*(uint64_t *)(param_1 + 0xa8));
+  FUN_18010f010(&unknown_var_120_ptr,*(uint64_t *)(param_1 + 0xa8));
   uStack_f0 = 0x437f000000000000;
   uStack_e8 = 0x437f000000000000;
   FUN_18010f0d0(&uStack_f0,&system_data_63b4);
   func_0x00018012e760();
-  SystemCore_CacheManager0(&unknown_var_168_ptr,*(uint64_t *)(param_1 + 0xc0));
+  FUN_18010f010(&unknown_var_168_ptr,*(uint64_t *)(param_1 + 0xc0));
   func_0x00018012e760();
-  SystemCore_CacheManager0(&unknown_var_8_ptr,(int)*(float *)(param_1 + 0xd4));
+  FUN_18010f010(&unknown_var_8_ptr,(int)*(float *)(param_1 + 0xd4));
   func_0x00018012e760();
-  SystemCore_CacheManager0(&unknown_var_24_ptr,(int)*(float *)(param_1 + 0xd0));
+  FUN_18010f010(&unknown_var_24_ptr,(int)*(float *)(param_1 + 0xd0));
   func_0x00018012e760();
-  SystemCore_CacheManager0(&unknown_var_120_ptr,*(uint64_t *)(param_1 + 0xb0));
+  FUN_18010f010(&unknown_var_120_ptr,*(uint64_t *)(param_1 + 0xb0));
   func_0x00018012e760();
   FUN_180111070(&unknown_var_96_ptr,param_1 + 0xda);
   func_0x00018012e760();

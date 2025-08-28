@@ -203,7 +203,7 @@ LAB_18013802c:
                   piVar23[6] = iStack_138;
                 }
                 func_0x00018012e760(0,0xbf800000);
-                SystemCore_CacheManager0(&unknown_var_2720_ptr);
+                FUN_18010f010(&unknown_var_2720_ptr);
                 uVar12 = (int32_t)((uint64_t)in_stack_fffffffffffffeb8 >> 0x20);
                 uVar14 = (int)piVar21 + 1;
                 piVar21 = (int *)(uint64_t)uVar14;

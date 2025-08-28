@@ -834,19 +834,19 @@ void update_event_rendering_params(int64_t event_context)
   
   // 获取当前渲染参数
   FUN_1808452a0(*(uint64_t *)(event_context + 0x368), &render_params[3], &render_params[2]);
-  FUN_18010f010(&unknown_var_3776_ptr);
-  FUN_18010f010(&unknown_var_3800_ptr, (double)render_params[2]);
-  FUN_18010f010(&unknown_var_3744_ptr, (double)render_params[1]);
-  FUN_18010f010(&unknown_var_3760_ptr, (double)render_params[0]);
-  FUN_18010f010(&unknown_var_3856_ptr, (double)render_params[4]);
-  FUN_18010f010(&unknown_var_3880_ptr, (double)render_params[3]);
+  SystemCore_CacheManager0(&unknown_var_3776_ptr);
+  SystemCore_CacheManager0(&unknown_var_3800_ptr, (double)render_params[2]);
+  SystemCore_CacheManager0(&unknown_var_3744_ptr, (double)render_params[1]);
+  SystemCore_CacheManager0(&unknown_var_3760_ptr, (double)render_params[0]);
+  SystemCore_CacheManager0(&unknown_var_3856_ptr, (double)render_params[4]);
+  SystemCore_CacheManager0(&unknown_var_3880_ptr, (double)render_params[3]);
   
   // 获取纹理参数
   FUN_180845090(*(uint64_t *)(event_context + 0x368), texture_params);
-  FUN_18010f010(&unknown_var_3816_ptr, u_stack_2c);
-  FUN_18010f010(&unknown_var_3840_ptr, u_stack_24);
-  FUN_18010f010(&unknown_var_3928_ptr, texture_params[0]);
-  FUN_18010f010(&unknown_var_3968_ptr, u_stack_38);
+  SystemCore_CacheManager0(&unknown_var_3816_ptr, u_stack_2c);
+  SystemCore_CacheManager0(&unknown_var_3840_ptr, u_stack_24);
+  SystemCore_CacheManager0(&unknown_var_3928_ptr, texture_params[0]);
+  SystemCore_CacheManager0(&unknown_var_3968_ptr, u_stack_38);
   
   // 初始化并更新渲染参数
   render_params[0] = 0.0;
@@ -873,21 +873,21 @@ void update_event_rendering_params(int64_t event_context)
   FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_4096_ptr, &render_params[10], 0);
   
   // 应用渲染参数更新
-  FUN_18010f010(&unknown_var_4184_ptr);
-  FUN_18010f010(&unknown_var_4208_ptr);
-  FUN_18010f010(&unknown_var_4184_ptr);
-  FUN_18010f010(&unknown_var_4152_ptr, (double)render_params[0]);
-  FUN_18010f010(&unknown_var_4168_ptr, (double)render_params[1]);
-  FUN_18010f010(&unknown_var_4280_ptr, (double)render_params[2]);
-  FUN_18010f010(&unknown_var_4304_ptr, (double)render_params[3]);
-  FUN_18010f010(&unknown_var_4232_ptr, (double)render_params[4]);
-  FUN_18010f010(&unknown_var_4248_ptr, (double)render_params[5]);
-  FUN_18010f010(&unknown_var_4368_ptr, (double)render_params[6]);
-  FUN_18010f010(&unknown_var_4384_ptr, (double)render_params[7]);
-  FUN_18010f010(&unknown_var_4320_ptr, (double)render_params[8]);
-  FUN_18010f010(&unknown_var_4344_ptr, (double)render_params[9]);
-  FUN_18010f010(&unknown_var_4440_ptr, (double)render_params[10]);
-  FUN_18010f010(&unknown_var_4184_ptr);
+  SystemCore_CacheManager0(&unknown_var_4184_ptr);
+  SystemCore_CacheManager0(&unknown_var_4208_ptr);
+  SystemCore_CacheManager0(&unknown_var_4184_ptr);
+  SystemCore_CacheManager0(&unknown_var_4152_ptr, (double)render_params[0]);
+  SystemCore_CacheManager0(&unknown_var_4168_ptr, (double)render_params[1]);
+  SystemCore_CacheManager0(&unknown_var_4280_ptr, (double)render_params[2]);
+  SystemCore_CacheManager0(&unknown_var_4304_ptr, (double)render_params[3]);
+  SystemCore_CacheManager0(&unknown_var_4232_ptr, (double)render_params[4]);
+  SystemCore_CacheManager0(&unknown_var_4248_ptr, (double)render_params[5]);
+  SystemCore_CacheManager0(&unknown_var_4368_ptr, (double)render_params[6]);
+  SystemCore_CacheManager0(&unknown_var_4384_ptr, (double)render_params[7]);
+  SystemCore_CacheManager0(&unknown_var_4320_ptr, (double)render_params[8]);
+  SystemCore_CacheManager0(&unknown_var_4344_ptr, (double)render_params[9]);
+  SystemCore_CacheManager0(&unknown_var_4440_ptr, (double)render_params[10]);
+  SystemCore_CacheManager0(&unknown_var_4184_ptr);
   
   // 安全检查
   SystemSecurityChecker(security_check ^ (uint64_t)security_buffer);

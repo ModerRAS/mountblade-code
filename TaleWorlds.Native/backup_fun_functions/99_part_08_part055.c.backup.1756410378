@@ -72,7 +72,7 @@ void FUN_1805aed50(int64_t param_1,float *param_2)
     afStack_48[2] = -afStack_48[2];
     afStack_48[3] = -afStack_48[3];
   }
-  cVar2 = SystemCore_ThreadManager0(param_1,iVar3,&unknown_var_3056_ptr);
+  cVar2 = FUN_180645c10(param_1,iVar3,&unknown_var_3056_ptr);
   do {
     if (uVar9 != (int64_t)iVar3) {
       if (cVar2 == '\0') {

@@ -174,23 +174,23 @@ void FUN_180055fa0(void)
     uVar2 = SYSTEM_DATA_MANAGER_A;
     SYSTEM_DATA_MANAGER_A = *puVar1;
     FUN_1801299b0(&unknown_var_6880_ptr,0,0,in_R9,uVar6);
-    FUN_18010f010(&unknown_var_6896_ptr,*(int32_t *)(pcVar3 + 4));
-    FUN_18010f010(&unknown_var_6928_ptr,*(int32_t *)(pcVar3 + 8));
-    FUN_18010f010(&unknown_var_6960_ptr,*(int32_t *)(pcVar3 + 0xc));
-    FUN_18010f010(&unknown_var_6992_ptr,*(int32_t *)(pcVar3 + 0x10));
-    FUN_18010f010(&unknown_var_7024_ptr,*(int32_t *)(pcVar3 + 0x14));
-    FUN_18010f010(&unknown_var_7064_ptr,*(int32_t *)(pcVar3 + 0x18));
+    SystemCore_CacheManager0(&unknown_var_6896_ptr,*(int32_t *)(pcVar3 + 4));
+    SystemCore_CacheManager0(&unknown_var_6928_ptr,*(int32_t *)(pcVar3 + 8));
+    SystemCore_CacheManager0(&unknown_var_6960_ptr,*(int32_t *)(pcVar3 + 0xc));
+    SystemCore_CacheManager0(&unknown_var_6992_ptr,*(int32_t *)(pcVar3 + 0x10));
+    SystemCore_CacheManager0(&unknown_var_7024_ptr,*(int32_t *)(pcVar3 + 0x14));
+    SystemCore_CacheManager0(&unknown_var_7064_ptr,*(int32_t *)(pcVar3 + 0x18));
     for (pcVar5 = *(char **)(pcVar3 + 0x28); pcVar5 != pcVar3 + 0x20;
         pcVar5 = (char *)func_0x00018066bd70(pcVar5)) {
-      FUN_18010f010(&unknown_var_7104_ptr,*(int32_t *)(pcVar5 + 0x20),*(int32_t *)(pcVar5 + 0x24));
+      SystemCore_CacheManager0(&unknown_var_7104_ptr,*(int32_t *)(pcVar5 + 0x20),*(int32_t *)(pcVar5 + 0x24));
     }
     for (pcVar5 = *(char **)(pcVar3 + 0x58); pcVar5 != pcVar3 + 0x50;
         pcVar5 = (char *)func_0x00018066bd70(pcVar5)) {
-      FUN_18010f010(&unknown_var_7144_ptr,*(int32_t *)(pcVar5 + 0x20),*(int32_t *)(pcVar5 + 0x24));
+      SystemCore_CacheManager0(&unknown_var_7144_ptr,*(int32_t *)(pcVar5 + 0x20),*(int32_t *)(pcVar5 + 0x24));
     }
-    FUN_18010f010(&unknown_var_7184_ptr,*(int32_t *)(pcVar3 + 0x80));
-    FUN_18010f010(&unknown_var_7224_ptr,*(int32_t *)(pcVar3 + 0x84));
-    FUN_18010f010(&unknown_var_7264_ptr,*(int32_t *)(pcVar3 + 0x88));
+    SystemCore_CacheManager0(&unknown_var_7184_ptr,*(int32_t *)(pcVar3 + 0x80));
+    SystemCore_CacheManager0(&unknown_var_7224_ptr,*(int32_t *)(pcVar3 + 0x84));
+    SystemCore_CacheManager0(&unknown_var_7264_ptr,*(int32_t *)(pcVar3 + 0x88));
     FUN_18012cfe0();
     SYSTEM_DATA_MANAGER_A = uVar2;
     iVar4 = _Mtx_unlock(0x180c91970);

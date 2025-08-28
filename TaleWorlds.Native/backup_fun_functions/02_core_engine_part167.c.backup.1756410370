@@ -529,10 +529,10 @@ void FUN_180150ae0(int64_t param_1)
             if (*(int64_t *)(lVar6 + 0x148) < 0) {
               fVar22 = fVar22 + 1.8446744e+19;
             }
-            SystemCore_CacheManager0(&unknown_var_7568_ptr,(int)(fVar17 * 1e-06));
-            SystemCore_CacheManager0(&unknown_var_7600_ptr,(double)(fVar21 * 1e-06));
-            SystemCore_CacheManager0(&unknown_var_7656_ptr,(double)(fVar22 * 1e-06));
-            SystemCore_CacheManager0(&unknown_var_7688_ptr,(double)(fVar20 * 1e-06));
+            FUN_18010f010(&unknown_var_7568_ptr,(int)(fVar17 * 1e-06));
+            FUN_18010f010(&unknown_var_7600_ptr,(double)(fVar21 * 1e-06));
+            FUN_18010f010(&unknown_var_7656_ptr,(double)(fVar22 * 1e-06));
+            FUN_18010f010(&unknown_var_7688_ptr,(double)(fVar20 * 1e-06));
             func_0x000180119790();
           }
         }

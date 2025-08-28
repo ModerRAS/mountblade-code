@@ -551,7 +551,7 @@ int8_t render_scene_objects(uint64_t param_1, int64_t render_context, uint64_t p
     puVar3 = (void *)param_4[1];
   }
   uVar4 = (uint)*(ushort *)(param_2 + 0x32e);
-  FUN_18010f010(&unknown_var_2320_ptr,puVar3,uVar2,*(int16_t *)(param_2 + 0x32c),uVar4);
+  SystemCore_CacheManager0(&unknown_var_2320_ptr,puVar3,uVar2,*(int16_t *)(param_2 + 0x32c),uVar4);
   uStack_40 = 0x3f8000003f800000;
   uStack_38 = 0x3f8000003f800000;
   uStack_30 = 0;

@@ -283,7 +283,7 @@ void FUN_1802177f0(int64_t param_1)
         else {
           fVar8 = (float)(**(code **)((void *)*plVar1 + 0x108))(plVar1);
         }
-        SystemCore_CacheManager0(&unknown_var_5296_ptr,auStack_138,(double)fVar8);
+        FUN_18010f010(&unknown_var_5296_ptr,auStack_138,(double)fVar8);
         puStack_180 = &system_data_buffer_ptr;
         uStack_168 = 0;
         puStack_178 = (int32_t *)0x0;

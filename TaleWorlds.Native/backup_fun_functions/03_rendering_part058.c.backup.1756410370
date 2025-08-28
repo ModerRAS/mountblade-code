@@ -198,7 +198,7 @@ joined_r0x0001802999aa:
   render_index = (int)((float)render_index * render_clamped_value);
   render_state_index = render_index;
   FUN_18012e810();
-  SystemCore_CacheManager0(&unknown_var_728_ptr,render_index);
+  FUN_18010f010(&unknown_var_728_ptr,render_index);
   if (0 < (int64_t)unaff_R14) {
     puVar10 = *(uint64_t **)(unaff_RBP + 0xc0);
     *(int64_t *)(unaff_RBP + 0xa8) = *(int64_t *)(unaff_RBP + 0xa8) - (int64_t)puVar10;
