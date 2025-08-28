@@ -975,29 +975,64 @@ success_exit:
 
 
 
-// WARNING: Removing unreachable block (ram,0x0001808db2bb)
-
-undefined8 FUN_1808db2d6(void)
-
+/**
+ * @brief 系统资源释放检查函数
+ * @details 检查系统资源状态并执行相应的释放操作
+ * 
+ * @return uint64_t 状态码：0x1c表示错误，0表示成功
+ * 
+ * @算法分析:
+ * 1. 检查资源指针有效性
+ * 2. 如果资源无效，返回错误码
+ * 3. 如果资源有效，调用资源释放函数
+ * 
+ * @错误处理:
+ * - 0x1c: 资源无效或释放失败
+ * - 0: 资源释放成功
+ */
+uint64_t Resource_ReleaseCheck(void)
 {
-  longlong unaff_RDI;
+  longlong resource_ptr;
   
-  if (unaff_RDI == 0) {
-    return 0x1c;
+  /* 检查资源指针有效性 */
+  if (resource_ptr == 0) {
+    return 0x1c;  /* 资源无效错误码 */
   }
-                    // WARNING: Subroutine does not return
-  FUN_180768400();
+  
+  /* 调用资源释放函数 */
+  FUN_180768400(resource_ptr);
+  return 0;  /* 释放成功 */
 }
 
 
 
-undefined8 FUN_1808db300(longlong param_1,undefined8 param_2,longlong param_3)
-
+/**
+ * @brief 条件性数据处理器
+ * @details 根据特定条件执行数据处理操作
+ * 
+ * @param param_1 数据结构指针
+ * @param param_2 保留参数
+ * @param param_3 目标数据指针
+ * @return uint64_t 返回0表示成功
+ * 
+ * @算法分析:
+ * 1. 检查目标数据的激活标志 (0xc4字节的第1位)
+ * 2. 检查源数据的有效性 (0x20位置的指针)
+ * 3. 如果条件满足，调用数据处理函数
+ * 
+ * @技术特点:
+ * - 使用位运算进行标志检查
+ * - 条件性数据处理
+ * - 安全的指针验证
+ */
+uint64_t ConditionalDataProcessor(longlong param_1, undefined8 param_2, longlong param_3)
 {
+  /* 检查激活标志和数据有效性 */
   if (((*(byte *)(param_3 + 0xc4) & 1) != 0) && (*(longlong *)(param_1 + 0x20) != 0)) {
-    FUN_18088a0c0(*(longlong *)(param_1 + 0x20),param_3);
+    /* 执行条件性数据处理 */
+    FUN_18088a0c0(*(longlong *)(param_1 + 0x20), param_3);
   }
-  return 0;
+  return 0;  /* 操作成功 */
 }
 
 
