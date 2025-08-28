@@ -852,69 +852,83 @@ void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, longlong render_
 void RenderingSystem_AlignCoordinates(float coord_x, longlong render_context)
 
 {
-  float fVar1;
-  int iVar2;
-  longlong in_RAX;
-  int in_ECX;
-  int iVar3;
-  int *unaff_RBX;
-  undefined4 unaff_EBP;
-  longlong unaff_RSI;
-  int iVar4;
-  float *unaff_R14;
-  float fVar5;
-  undefined4 unaff_XMM6_Da;
-  undefined4 unaff_XMM6_Db;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM6_Dd;
-  undefined8 in_stack_00000030;
-  undefined4 in_stack_00000080;
+  float coord_y;
+  int current_count;
+  longlong data_ptr_reg;
+  int buffer_capacity;
+  int new_capacity;
+  int *buffer_count_ptr;
+  undefined4 render_flags;
+  longlong context_reg;
+  int default_capacity;
+  float *coord_array_reg;
+  float aligned_coord;
+  undefined4 color_r;
+  undefined4 color_g;
+  undefined4 color_b;
+  undefined4 color_a;
+  undefined8 texture_data;
+  undefined4 stack_param;
   
-  *(undefined4 *)(in_RAX + -0x18) = unaff_XMM6_Da;
-  *(undefined4 *)(in_RAX + -0x14) = unaff_XMM6_Db;
-  *(undefined4 *)(in_RAX + -0x10) = unaff_XMM6_Dc;
-  *(undefined4 *)(in_RAX + -0xc) = unaff_XMM6_Dd;
-  iVar4 = 8;
-  *(float *)(in_RAX + -0x28) = param_1 + 0.5;
-  fVar5 = *(float *)(param_2 + 4) + 0.5;
-  *(float *)(in_RAX + -0x24) = fVar5;
-  iVar2 = *unaff_RBX;
-  if (iVar2 == in_ECX) {
-    if (in_ECX == 0) {
-      in_ECX = 8;
+  // 设置颜色值
+  *(undefined4 *)(data_ptr_reg + -0x18) = color_r;
+  *(undefined4 *)(data_ptr_reg + -0x14) = color_g;
+  *(undefined4 *)(data_ptr_reg + -0x10) = color_b;
+  *(undefined4 *)(data_ptr_reg + -0xc) = color_a;
+  default_capacity = 8;
+  
+  // 对齐坐标
+  *(float *)(data_ptr_reg + -0x28) = coord_x + 0.5;
+  aligned_coord = *(float *)(render_context + 4) + 0.5;
+  *(float *)(data_ptr_reg + -0x24) = aligned_coord;
+  current_count = *buffer_count_ptr;
+  
+  // 检查缓冲区是否需要扩展
+  if (current_count == buffer_capacity) {
+    if (buffer_capacity == 0) {
+      buffer_capacity = 8;
     }
     else {
-      in_ECX = in_ECX / 2 + in_ECX;
+      buffer_capacity = buffer_capacity / 2 + buffer_capacity;
     }
-    iVar3 = iVar2 + 1;
-    if (iVar2 + 1 < in_ECX) {
-      iVar3 = in_ECX;
+    new_capacity = current_count + 1;
+    if (current_count + 1 < buffer_capacity) {
+      new_capacity = buffer_capacity;
     }
-    FUN_18011dc70(fVar5,iVar3);
-    iVar2 = *unaff_RBX;
+    FUN_18011dc70(aligned_coord, new_capacity);
+    current_count = *buffer_count_ptr;
   }
-  *(undefined8 *)(*(longlong *)(unaff_RBX + 2) + (longlong)iVar2 * 8) = in_stack_00000030;
-  *unaff_RBX = *unaff_RBX + 1;
-  fVar5 = *unaff_R14;
-  fVar1 = unaff_R14[1];
-  iVar2 = *unaff_RBX;
-  iVar3 = unaff_RBX[1];
-  if (iVar2 == iVar3) {
-    if (iVar3 != 0) {
-      iVar4 = iVar3 + iVar3 / 2;
+  
+  // 存储纹理数据
+  *(undefined8 *)(*(longlong *)(buffer_count_ptr + 2) + (longlong)current_count * 8) = texture_data;
+  *buffer_count_ptr = *buffer_count_ptr + 1;
+  
+  aligned_coord = *coord_array_reg;
+  coord_y = coord_array_reg[1];
+  current_count = *buffer_count_ptr;
+  buffer_capacity = buffer_count_ptr[1];
+  
+  // 检查缓冲区是否需要扩展
+  if (current_count == buffer_capacity) {
+    if (buffer_capacity != 0) {
+      default_capacity = buffer_capacity + buffer_capacity / 2;
     }
-    iVar3 = iVar2 + 1;
-    if (iVar2 + 1 < iVar4) {
-      iVar3 = iVar4;
+    buffer_capacity = current_count + 1;
+    if (current_count + 1 < default_capacity) {
+      buffer_capacity = default_capacity;
     }
-    FUN_18011dc70(fVar5 + 0.5,iVar3);
-    iVar2 = *unaff_RBX;
+    FUN_18011dc70(aligned_coord + 0.5, buffer_capacity);
+    current_count = *buffer_count_ptr;
   }
-  *(ulonglong *)(*(longlong *)(unaff_RBX + 2) + (longlong)iVar2 * 8) =
-       CONCAT44(fVar1 + 0.5,fVar5 + 0.5);
-  *unaff_RBX = *unaff_RBX + 1;
-  FUN_1802923e0(in_stack_00000080,*(undefined8 *)(unaff_RSI + 0x88),*unaff_RBX,unaff_EBP,0);
-  *unaff_RBX = 0;
+  
+  // 存储对齐后的坐标
+  *(ulonglong *)(*(longlong *)(buffer_count_ptr + 2) + (longlong)current_count * 8) =
+       CONCAT44(coord_y + 0.5, aligned_coord + 0.5);
+  *buffer_count_ptr = *buffer_count_ptr + 1;
+  
+  // 执行坐标渲染
+  FUN_1802923e0(stack_param, *(undefined8 *)(context_reg + 0x88), *buffer_count_ptr, render_flags, 0);
+  *buffer_count_ptr = 0;
   return;
 }
 
@@ -923,30 +937,38 @@ void RenderingSystem_AlignCoordinates(float coord_x, longlong render_context)
 
 
 // 函数: void FUN_180293df5(undefined4 param_1,undefined8 param_2,int param_3,undefined8 param_4,
-void FUN_180293df5(undefined4 param_1,undefined8 param_2,int param_3,undefined8 param_4,
-                  undefined8 param_5,undefined8 param_6)
+// 功能: 渲染系统缓冲区扩展和数据处理函数（寄存器变量版本）
+// 参数: param_1 - 缓冲区指针, param_2 - 数据指针1, param_3 - 缓冲区大小, param_4 - 数据指针2, param_5 - 数据指针3, param_6 - 数据指针4
+void RenderingSystem_ExpandBufferAndProcessData(undefined4 buffer_ptr, undefined8 data_ptr1, int buffer_size, undefined8 data_ptr2, undefined8 data_ptr3, undefined8 data_ptr4)
 
 {
-  int in_EAX;
-  int iVar1;
-  int *unaff_RBX;
-  undefined4 unaff_EBP;
-  longlong unaff_RSI;
-  int unaff_EDI;
-  undefined4 in_stack_00000080;
+  int current_size;
+  int new_size;
+  int *buffer_count_ptr;
+  undefined4 render_flags;
+  longlong context_reg;
+  int expanded_size;
+  undefined4 stack_param;
   
-  if (param_3 != 0) {
-    unaff_EDI = param_3 + param_3 / 2;
+  // 计算扩展后的缓冲区大小
+  if (buffer_size != 0) {
+    expanded_size = buffer_size + buffer_size / 2;
   }
-  iVar1 = in_EAX + 1;
-  if (in_EAX + 1 < unaff_EDI) {
-    iVar1 = unaff_EDI;
+  new_size = current_size + 1;
+  if (current_size + 1 < expanded_size) {
+    new_size = expanded_size;
   }
-  FUN_18011dc70(param_1,iVar1);
-  *(undefined8 *)(*(longlong *)(unaff_RBX + 2) + (longlong)*unaff_RBX * 8) = param_6;
-  *unaff_RBX = *unaff_RBX + 1;
-  FUN_1802923e0(in_stack_00000080,*(undefined8 *)(unaff_RSI + 0x88),*unaff_RBX,unaff_EBP,0);
-  *unaff_RBX = 0;
+  
+  // 扩展缓冲区
+  FUN_18011dc70(buffer_ptr, new_size);
+  
+  // 存储数据
+  *(undefined8 *)(*(longlong *)(buffer_count_ptr + 2) + (longlong)*buffer_count_ptr * 8) = data_ptr4;
+  *buffer_count_ptr = *buffer_count_ptr + 1;
+  
+  // 执行数据处理
+  FUN_1802923e0(stack_param, *(undefined8 *)(context_reg + 0x88), *buffer_count_ptr, render_flags, 0);
+  *buffer_count_ptr = 0;
   return;
 }
 
@@ -955,9 +977,11 @@ void FUN_180293df5(undefined4 param_1,undefined8 param_2,int param_3,undefined8 
 
 
 // 函数: void FUN_180293e75(void)
-void FUN_180293e75(void)
+// 功能: 渲染系统空操作函数4
+void RenderingSystem_NoOperation4(void)
 
 {
+  // 空操作函数
   return;
 }
 
@@ -966,29 +990,40 @@ void FUN_180293e75(void)
 
 
 // 函数: void FUN_180293e80(longlong param_1,float *param_2,float *param_3,undefined4 param_4,
-void FUN_180293e80(longlong param_1,float *param_2,float *param_3,undefined4 param_4,
-                  undefined4 param_5,undefined4 param_6,undefined4 param_7)
+// 功能: 渲染系统纹理坐标精确对齐处理函数
+// 参数: param_1 - 渲染上下文指针, param_2 - 起始坐标, param_3 - 结束坐标, param_4 - 渲染标志, param_5 - 参数1, param_6 - 参数2, param_7 - 参数3
+void RenderingSystem_PreciseTextureCoordAlignment(longlong render_context, float *start_coord, float *end_coord, undefined4 render_flags, undefined4 param1, undefined4 param2, undefined4 param3)
 
 {
-  float fStackX_8;
-  float fStackX_c;
-  float fStack_18;
-  float fStack_14;
+  float end_coord_x;
+  float end_coord_y;
+  float start_coord_x;
+  float start_coord_y;
   
-  fStack_18 = *param_2 + 0.5;
-  fStack_14 = param_2[1] + 0.5;
-  if ((*(byte *)(param_1 + 0x30) & 1) == 0) {
-    fStackX_8 = *param_3 - 0.49;
-    fStackX_c = param_3[1] - 0.49;
+  // 对齐起始坐标
+  start_coord_x = *start_coord + 0.5;
+  start_coord_y = start_coord[1] + 0.5;
+  
+  // 根据渲染模式选择不同的对齐精度
+  if ((*(byte *)(render_context + 0x30) & 1) == 0) {
+    // 高精度模式
+    end_coord_x = *end_coord - 0.49;
+    end_coord_y = end_coord[1] - 0.49;
   }
   else {
-    fStackX_8 = *param_3 - 0.5;
-    fStackX_c = param_3[1] - 0.5;
+    // 标准模式
+    end_coord_x = *end_coord - 0.5;
+    end_coord_y = end_coord[1] - 0.5;
   }
-  FUN_1802939e0(0x3f000000,&fStack_18,&fStackX_8,param_5,param_6);
-  FUN_1802923e0(param_1,*(undefined8 *)(param_1 + 0x88),*(undefined4 *)(param_1 + 0x80),param_4,1,
-                param_7);
-  *(undefined4 *)(param_1 + 0x80) = 0;
+  
+  // 处理矩形区域
+  FUN_1802939e0(0x3f000000, &start_coord_x, &end_coord_x, param1, param2);
+  
+  // 执行纹理渲染
+  FUN_1802923e0(render_context, *(undefined8 *)(render_context + 0x88), *(undefined4 *)(render_context + 0x80), render_flags, 1, param3);
+  
+  // 重置缓冲区计数器
+  *(undefined4 *)(render_context + 0x80) = 0;
   return;
 }
 
@@ -997,68 +1032,84 @@ void FUN_180293e80(longlong param_1,float *param_2,float *param_3,undefined4 par
 
 
 // 函数: void FUN_180293f50(longlong param_1,undefined8 *param_2,undefined8 *param_3,uint param_4,
-void FUN_180293f50(longlong param_1,undefined8 *param_2,undefined8 *param_3,uint param_4,
-                  float param_5,undefined4 param_6)
+// 功能: 渲染系统四边形顶点处理函数
+// 参数: param_1 - 渲染上下文指针, param_2 - 顶点数据数组1, param_3 - 顶点数据数组2, param_4 - 渲染标志, param_5 - 缩放因子, param_6 - 渲染参数
+void RenderingSystem_ProcessQuadVertices(longlong render_context, undefined8 *vertex_data1, undefined8 *vertex_data2, uint render_flags, float scale_factor, undefined4 render_param)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
-  short sVar7;
-  longlong lVar8;
+  undefined4 vertex_x1;
+  undefined4 vertex_y1;
+  undefined4 vertex_x2;
+  undefined4 vertex_y2;
+  undefined4 render_flag1;
+  undefined4 render_flag2;
+  undefined4 render_flag3;
+  short base_index;
+  longlong vertex_buffer_ptr;
   
-  if ((param_4 & 0xff000000) != 0) {
-    if (param_5 <= 0.0) {
-      FUN_1802921e0(0,6,4);
-      sVar7 = *(short *)(param_1 + 0x48);
-      uVar1 = *(undefined4 *)param_3;
-      uVar2 = *(undefined4 *)((longlong)param_2 + 4);
-      uVar3 = *(undefined4 *)param_2;
-      uVar4 = (*(undefined4 **)(param_1 + 0x38))[1];
-      uVar5 = **(undefined4 **)(param_1 + 0x38);
-      uVar6 = *(undefined4 *)((longlong)param_3 + 4);
-      **(short **)(param_1 + 0x58) = sVar7;
-      *(short *)(*(longlong *)(param_1 + 0x58) + 2) = sVar7 + 1;
-      *(short *)(*(longlong *)(param_1 + 0x58) + 4) = sVar7 + 2;
-      *(short *)(*(longlong *)(param_1 + 0x58) + 6) = sVar7;
-      *(short *)(*(longlong *)(param_1 + 0x58) + 8) = sVar7 + 2;
-      *(short *)(*(longlong *)(param_1 + 0x58) + 10) = sVar7 + 3;
-      **(undefined8 **)(param_1 + 0x50) = *param_2;
-      lVar8 = *(longlong *)(param_1 + 0x50);
-      *(undefined4 *)(lVar8 + 8) = uVar5;
-      *(undefined4 *)(lVar8 + 0xc) = uVar4;
-      *(uint *)(*(longlong *)(param_1 + 0x50) + 0x10) = param_4;
-      lVar8 = *(longlong *)(param_1 + 0x50);
-      *(undefined4 *)(lVar8 + 0x14) = uVar1;
-      *(undefined4 *)(lVar8 + 0x18) = uVar2;
-      lVar8 = *(longlong *)(param_1 + 0x50);
-      *(undefined4 *)(lVar8 + 0x1c) = uVar5;
-      *(undefined4 *)(lVar8 + 0x20) = uVar4;
-      *(uint *)(*(longlong *)(param_1 + 0x50) + 0x24) = param_4;
-      *(undefined8 *)(*(longlong *)(param_1 + 0x50) + 0x28) = *param_3;
-      lVar8 = *(longlong *)(param_1 + 0x50);
-      *(undefined4 *)(lVar8 + 0x30) = uVar5;
-      *(undefined4 *)(lVar8 + 0x34) = uVar4;
-      *(uint *)(*(longlong *)(param_1 + 0x50) + 0x38) = param_4;
-      lVar8 = *(longlong *)(param_1 + 0x50);
-      *(undefined4 *)(lVar8 + 0x3c) = uVar3;
-      *(undefined4 *)(lVar8 + 0x40) = uVar6;
-      lVar8 = *(longlong *)(param_1 + 0x50);
-      *(undefined4 *)(lVar8 + 0x44) = uVar5;
-      *(undefined4 *)(lVar8 + 0x48) = uVar4;
-      *(uint *)(*(longlong *)(param_1 + 0x50) + 0x4c) = param_4;
-      *(longlong *)(param_1 + 0x50) = *(longlong *)(param_1 + 0x50) + 0x50;
-      *(int *)(param_1 + 0x48) = *(int *)(param_1 + 0x48) + 4;
-      *(longlong *)(param_1 + 0x58) = *(longlong *)(param_1 + 0x58) + 0xc;
+  // 检查渲染标志是否有效
+  if ((render_flags & 0xff000000) != 0) {
+    if (scale_factor <= 0.0) {
+      // 直接渲染模式：处理四边形顶点索引
+      allocate_index_buffer(0, 6, 4);
+      base_index = *(short *)(render_context + 0x48);
+      vertex_x1 = *(undefined4 *)vertex_data2;
+      vertex_y1 = *(undefined4 *)((longlong)vertex_data1 + 4);
+      vertex_x2 = *(undefined4 *)vertex_data1;
+      render_flag2 = (*(undefined4 **)(render_context + 0x38))[1];
+      render_flag1 = **(undefined4 **)(render_context + 0x38);
+      render_flag3 = *(undefined4 *)((longlong)vertex_data2 + 4);
+      
+      // 设置三角形索引（两个三角形组成四边形）
+      **(short **)(render_context + 0x58) = base_index;
+      *(short *)(*(longlong *)(render_context + 0x58) + 2) = base_index + 1;
+      *(short *)(*(longlong *)(render_context + 0x58) + 4) = base_index + 2;
+      *(short *)(*(longlong *)(render_context + 0x58) + 6) = base_index;
+      *(short *)(*(longlong *)(render_context + 0x58) + 8) = base_index + 2;
+      *(short *)(*(longlong *)(render_context + 0x58) + 10) = base_index + 3;
+      
+      // 处理第一个顶点
+      **(undefined8 **)(render_context + 0x50) = *vertex_data1;
+      vertex_buffer_ptr = *(longlong *)(render_context + 0x50);
+      *(undefined4 *)(vertex_buffer_ptr + 8) = render_flag1;
+      *(undefined4 *)(vertex_buffer_ptr + 0xc) = render_flag2;
+      *(uint *)(*(longlong *)(render_context + 0x50) + 0x10) = render_flags;
+      
+      // 处理第二个顶点
+      vertex_buffer_ptr = *(longlong *)(render_context + 0x50);
+      *(undefined4 *)(vertex_buffer_ptr + 0x14) = vertex_x1;
+      *(undefined4 *)(vertex_buffer_ptr + 0x18) = vertex_y1;
+      vertex_buffer_ptr = *(longlong *)(render_context + 0x50);
+      *(undefined4 *)(vertex_buffer_ptr + 0x1c) = render_flag1;
+      *(undefined4 *)(vertex_buffer_ptr + 0x20) = render_flag2;
+      *(uint *)(*(longlong *)(render_context + 0x50) + 0x24) = render_flags;
+      
+      // 处理第三个顶点
+      *(undefined8 *)(*(longlong *)(render_context + 0x50) + 0x28) = *vertex_data2;
+      vertex_buffer_ptr = *(longlong *)(render_context + 0x50);
+      *(undefined4 *)(vertex_buffer_ptr + 0x30) = render_flag1;
+      *(undefined4 *)(vertex_buffer_ptr + 0x34) = render_flag2;
+      *(uint *)(*(longlong *)(render_context + 0x50) + 0x38) = render_flags;
+      
+      // 处理第四个顶点
+      vertex_buffer_ptr = *(longlong *)(render_context + 0x50);
+      *(undefined4 *)(vertex_buffer_ptr + 0x3c) = vertex_x2;
+      *(undefined4 *)(vertex_buffer_ptr + 0x40) = render_flag3;
+      vertex_buffer_ptr = *(longlong *)(render_context + 0x50);
+      *(undefined4 *)(vertex_buffer_ptr + 0x44) = render_flag1;
+      *(undefined4 *)(vertex_buffer_ptr + 0x48) = render_flag2;
+      *(uint *)(*(longlong *)(render_context + 0x50) + 0x4c) = render_flags;
+      
+      // 更新缓冲区指针
+      *(longlong *)(render_context + 0x50) = *(longlong *)(render_context + 0x50) + 0x50;
+      *(int *)(render_context + 0x48) = *(int *)(render_context + 0x48) + 4;
+      *(longlong *)(render_context + 0x58) = *(longlong *)(render_context + 0x58) + 0xc;
     }
     else {
-      FUN_1802939e0(0,param_2,param_3,param_5,param_6);
-      FUN_180293190(param_1,*(undefined8 *)(param_1 + 0x88),*(undefined4 *)(param_1 + 0x80),param_4)
-      ;
-      *(undefined4 *)(param_1 + 0x80) = 0;
+      // 缩放处理模式：先处理矩形区域，再处理顶点索引
+      FUN_1802939e0(0, vertex_data1, vertex_data2, scale_factor, render_param);
+      FUN_180293190(render_context, *(undefined8 *)(render_context + 0x88), *(undefined4 *)(render_context + 0x80), render_flags);
+      *(undefined4 *)(render_context + 0x80) = 0;
     }
   }
   return;

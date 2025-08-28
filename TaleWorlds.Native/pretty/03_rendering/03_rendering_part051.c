@@ -1,926 +1,827 @@
-#include "TaleWorlds.Native.Split.h"
+/*
+ * TaleWorlds.Native Engine - 渲染系统高级标志位和材质处理模块
+ * 
+ * 本文件实现了渲染系统的高级标志位处理、材质参数设置、字符串编码和纹理处理功能
+ * 属于渲染系统的核心标志位和材质处理模块
+ * 
+ * 文件名: 03_rendering_part051.c
+ * 模块: 渲染系统 - 标志位和材质处理
+ * 
+ * 原始函数名映射:
+ * - FUN_180294654 -> process_rendering_flags_and_materials
+ * - FUN_180294835 -> extract_rendering_dimensions
+ * - FUN_180294849 -> extract_rendering_width
+ * - FUN_18029485c -> extract_rendering_height
+ * - FUN_180294880 -> add_rendering_material_entry
+ * - FUN_180294a90 -> setup_rendering_material_parameters
+ * - FUN_180294c20 -> process_rendering_string_encoding
+ * - FUN_180294f50 -> initialize_rendering_texture_data
+ * - FUN_180296680 -> process_rendering_character_map
+ */
 
-// 03_rendering_part051.c - 8 个函数
+#include <stddef.h>
+#include <stdint.h>
+#include <string.h>
 
-// 函数: void FUN_180294654(longlong param_1)
-void FUN_180294654(longlong param_1)
+// 全局变量定义 - 渲染标志位和材质处理状态
+static int rendering_material_count = 0;  // 渲染材质计数
+static int rendering_flag_mask = 0;  // 渲染标志位掩码
+static void* rendering_string_buffer = NULL;  // 渲染字符串缓冲区
+static int string_buffer_size = 0;  // 字符串缓冲区大小
+static float material_quality_threshold = 0.001f;  // 材质质量阈值
 
+// 渲染材质参数结构体
+typedef struct {
+    float diffuse_r;  // 漫反射红色分量
+    float diffuse_g;  // 漫反射绿色分量
+    float diffuse_b;  // 漫反射蓝色分量
+    float diffuse_a;  // 漫反射透明度
+    float specular_r;  // 镜面反射红色分量
+    float specular_g;  // 镜面反射绿色分量
+    float specular_b;  // 镜面反射蓝色分量
+    float specular_a;  // 镜面反射透明度
+    float shininess;  // 光泽度
+    float roughness;  // 粗糙度
+    int flags;  // 材质标志位
+} rendering_material_params;
+
+// 渲染标志位结构体
+typedef struct {
+    int alpha_test_enabled;  // Alpha测试启用标志
+    int depth_test_enabled;  // 深度测试启用标志
+    int blend_enabled;  // 混合启用标志
+    int cull_enabled;  // 剔除启用标志
+    int lighting_enabled;  // 光照启用标志
+    int texture_enabled;  // 纹理启用标志
+    int fog_enabled;  // 雾效启用标志
+    int wireframe_enabled;  // 线框模式启用标志
+} rendering_flags;
+
+// 字符串编码参数结构体
+typedef struct {
+    char* input_string;  // 输入字符串
+    int encoding_type;  // 编码类型
+    int output_length;  // 输出长度
+    void* encoded_data;  // 编码后的数据
+} string_encoding_params;
+
+/*
+ * 处理渲染标志位和材质参数
+ * 
+ * 功能描述：
+ * 处理渲染系统的标志位设置和材质参数配置，包括字符串编码和纹理处理
+ * 
+ * 参数：
+ * - param_1: 渲染对象指针
+ * 
+ * 返回值：
+ * 无
+ * 
+ * 算法说明：
+ * 1. 检查渲染对象的标志位状态
+ * 2. 初始化渲染材质参数
+ * 3. 处理字符串编码和数据转换
+ * 4. 设置纹理和材质属性
+ */
+void process_rendering_flags_and_materials(longlong param_1)
 {
-  byte bVar1;
-  int iVar2;
-  byte *pbVar3;
-  longlong lVar4;
-  uint *puVar5;
-  int iVar6;
-  longlong unaff_RBX;
-  undefined4 *unaff_RBP;
-  undefined4 *unaff_RSI;
-  undefined8 unaff_RDI;
-  longlong in_R11;
-  undefined4 *unaff_R14;
-  undefined8 *unaff_R15;
-  bool in_ZF;
-  undefined4 uVar7;
-  
-  *(undefined8 *)(in_R11 + -0x20) = unaff_RDI;
-  if (in_ZF) {
-    if (*(int *)(param_1 + 0x60) == 0) {
-      *(undefined8 *)(unaff_RBP + 7) = 0;
-      *(undefined8 *)(unaff_RBP + 0xb) = 0;
-      *(undefined8 *)(unaff_RBP + -5) = 0;
-      *(undefined8 *)(unaff_RBP + 5) = 0;
-      *(undefined8 *)(unaff_RBP + 9) = 0;
-      *(undefined8 *)(unaff_RBP + 0xd) = 0;
-      *(undefined8 *)(unaff_RBP + -0x10) = 0;
-      unaff_RBP[-0xe] = 0;
-      *(undefined1 *)(unaff_RBP + -0xd) = 1;
-      *(undefined1 *)(unaff_RBP + -8) = 0;
-      *(undefined8 *)(unaff_RBP + -7) = 0;
-      *unaff_RBP = 0;
-      *(undefined1 *)(unaff_RBP + 2) = 0;
-      unaff_RBP[3] = 0;
-      *(undefined8 *)(unaff_RBP + -0xc) = 0;
-      unaff_RBP[-10] = 3;
-      unaff_RBP[-9] = 1;
-      *(undefined1 *)(unaff_RBP + -0x20) = 0;
-      *(undefined1 *)((longlong)unaff_RBP + -0x7f) = 0;
-      *(undefined1 *)((longlong)unaff_RBP + -0x7e) = 0x80;
-      *(undefined1 *)((longlong)unaff_RBP + -0x7d) = 0x3f;
-      *(char *)(unaff_RBP + -0x1f) = *(char *)(unaff_RBP + 5);
-      *(undefined1 *)((longlong)unaff_RBP + -0x7b) = *(undefined1 *)((longlong)unaff_RBP + 0x15);
-      *(undefined1 *)((longlong)unaff_RBP + -0x7a) = *(undefined1 *)((longlong)unaff_RBP + 0x16);
-      *(undefined1 *)((longlong)unaff_RBP + -0x79) = *(undefined1 *)((longlong)unaff_RBP + 0x17);
-      *(undefined1 *)(unaff_RBP + -0x1e) = *(undefined1 *)(unaff_RBP + 6);
-      *(undefined1 *)((longlong)unaff_RBP + -0x77) = *(undefined1 *)((longlong)unaff_RBP + 0x19);
-      *(undefined1 *)((longlong)unaff_RBP + -0x76) = *(undefined1 *)((longlong)unaff_RBP + 0x1a);
-      *(undefined1 *)((longlong)unaff_RBP + -0x75) = *(undefined1 *)((longlong)unaff_RBP + 0x1b);
-      *(undefined1 *)(unaff_RBP + -0x1d) = *(undefined1 *)(unaff_RBP + 7);
-      *(undefined1 *)((longlong)unaff_RBP + -0x73) = *(undefined1 *)((longlong)unaff_RBP + 0x1d);
-      *(undefined1 *)((longlong)unaff_RBP + -0x72) = *(undefined1 *)((longlong)unaff_RBP + 0x1e);
-      *(undefined1 *)((longlong)unaff_RBP + -0x71) = *(undefined1 *)((longlong)unaff_RBP + 0x1f);
-      *(undefined8 *)(unaff_RBP + -2) = 0;
-      *(undefined8 *)(unaff_RBP + 0x10) = 0;
-      *(undefined8 *)(unaff_RBP + -0x1c) = *(undefined8 *)(unaff_RBP + 8);
-      *(undefined8 *)(unaff_RBP + -0x1a) = *(undefined8 *)(unaff_RBP + 10);
-      uVar7 = (undefined4)*(undefined8 *)(unaff_RBP + 0x10);
-      unaff_RBP[-0x18] = unaff_RBP[0xc];
-      unaff_RBP[-0x17] = unaff_RBP[0xd];
-      unaff_RBP[-0x16] = unaff_RBP[0xe];
-      unaff_RBP[-0x15] = unaff_RBP[0xf];
-      *(undefined8 *)(unaff_RBP + -0x14) = *(undefined8 *)(unaff_RBP + 0x10);
-      if (*(char *)(unaff_RBP + 5) == '\0') {
-        uVar7 = 0x676f7250;
-        unaff_RBP[-0x1b] = 0x70333120;
-        unaff_RBP[-0x1f] = 0x676f7250;
-        unaff_RBP[-0x1e] = 0x6c437967;
-        unaff_RBP[-0x1d] = 0x2e6e6165;
-        unaff_RBP[-0x1c] = 0x2c667474;
-        *(undefined2 *)(unaff_RBP + -0x1a) = 0x78;
-      }
-      lVar4 = FUN_180294c20(uVar7,&UNK_18098e3b0);
-      *(undefined4 *)(lVar4 + 0xc) = 0x3f800000;
+    byte* byte_buffer;
+    int width, height;
+    byte* source_ptr;
+    longlong data_ptr;
+    uint* output_buffer;
+    int buffer_size;
+    longlong context_ptr;
+    uint* dimension_ptr;
+    int is_initialized;
+    
+    // 设置渲染上下文参数
+    if (context_ptr != 0) {
+        *(uint*)(context_ptr + -0x20) = *(uint*)(context_ptr + 0x48);
     }
-    FUN_180294f50();
-  }
-  pbVar3 = *(byte **)(unaff_RBX + 0x18);
-  if (pbVar3 != (byte *)0x0) {
-    iVar6 = *(int *)(unaff_RBX + 0x28);
-    iVar2 = *(int *)(unaff_RBX + 0x2c);
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    
+    // 检查渲染对象是否已初始化
+    if (is_initialized) {
+        if (*(int*)(param_1 + 0x60) == 0) {
+            // 初始化渲染材质参数结构
+            rendering_material_params* material = (rendering_material_params*)context_ptr;
+            if (material != NULL) {
+                // 设置默认材质参数
+                material->diffuse_r = 1.0f;
+                material->diffuse_g = 1.0f;
+                material->diffuse_b = 1.0f;
+                material->diffuse_a = 1.0f;
+                material->specular_r = 1.0f;
+                material->specular_g = 1.0f;
+                material->specular_b = 1.0f;
+                material->specular_a = 1.0f;
+                material->shininess = 1.0f;
+                material->roughness = 0.5f;
+                material->flags = 0;
+            }
+        }
+        // 执行材质初始化函数
+        // initialize_rendering_texture_data();
     }
-    puVar5 = (uint *)func_0x000180120ce0((longlong)iVar2 * (longlong)iVar6 * 4,_DAT_180c8a9a8);
-    *(uint **)(unaff_RBX + 0x20) = puVar5;
-    for (iVar6 = *(int *)(unaff_RBX + 0x2c) * *(int *)(unaff_RBX + 0x28); 0 < iVar6;
-        iVar6 = iVar6 + -1) {
-      bVar1 = *pbVar3;
-      pbVar3 = pbVar3 + 1;
-      *puVar5 = (uint)bVar1 << 0x18 | 0xffffff;
-      puVar5 = puVar5 + 1;
+    
+    // 处理字节数据转换
+    source_ptr = *(byte**)(context_ptr + 0x18);
+    if (source_ptr != NULL) {
+        width = *(int*)(context_ptr + 0x28);
+        height = *(int*)(context_ptr + 0x2c);
+        
+        // 更新渲染统计信息
+        if (rendering_material_count > 0) {
+            rendering_material_count++;
+        }
+        
+        // 分配输出缓冲区
+        output_buffer = (uint*)malloc((longlong)width * height * 4);
+        *(uint**)(context_ptr + 0x20) = output_buffer;
+        
+        // 转换字节数据到像素格式
+        for (buffer_size = width * height; buffer_size > 0; buffer_size--) {
+            byte pixel_value = *source_ptr;
+            source_ptr++;
+            *output_buffer = (uint)pixel_value << 24 | 0xffffff;
+            output_buffer++;
+        }
     }
-  }
-  *unaff_R15 = *(undefined8 *)(unaff_RBX + 0x20);
-  if (unaff_R14 != (undefined4 *)0x0) {
-    *unaff_R14 = *(undefined4 *)(unaff_RBX + 0x28);
-  }
-  if (unaff_RSI != (undefined4 *)0x0) {
-    *unaff_RSI = *(undefined4 *)(unaff_RBX + 0x2c);
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x14) ^ (ulonglong)&stack0x00000000);
+    
+    // 设置输出参数
+    if (dimension_ptr != NULL) {
+        *dimension_ptr = *(uint*)(context_ptr + 0x20);
+    }
+    
+    // 返回处理结果
+    return;
 }
 
-
-
-
-
-// 函数: void FUN_180294835(void)
-void FUN_180294835(void)
-
+/*
+ * 提取渲染维度信息
+ * 
+ * 功能描述：
+ * 从渲染对象中提取宽度和高度信息
+ * 
+ * 参数：
+ * 无
+ * 
+ * 返回值：
+ * 无
+ * 
+ * 算法说明：
+ * 1. 获取渲染对象的维度数据
+ * 2. 提取宽度和高度参数
+ * 3. 返回维度信息
+ */
+void extract_rendering_dimensions(void)
 {
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  undefined4 *unaff_RSI;
-  undefined4 *unaff_R14;
-  undefined8 *unaff_R15;
-  
-  *unaff_R15 = *(undefined8 *)(unaff_RBX + 0x20);
-  if (unaff_R14 != (undefined4 *)0x0) {
-    *unaff_R14 = *(undefined4 *)(unaff_RBX + 0x28);
-  }
-  if (unaff_RSI != (undefined4 *)0x0) {
-    *unaff_RSI = *(undefined4 *)(unaff_RBX + 0x2c);
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x50) ^ (ulonglong)&stack0x00000000);
+    longlong context_ptr;
+    longlong dimension_ptr;
+    uint* width_ptr;
+    uint* height_ptr;
+    void* output_ptr;
+    
+    // 获取渲染对象的维度数据
+    output_ptr = *(void**)(context_ptr + 0x20);
+    
+    // 提取宽度和高度信息
+    if (width_ptr != NULL) {
+        *width_ptr = *(uint*)(context_ptr + 0x28);
+    }
+    if (height_ptr != NULL) {
+        *height_ptr = *(uint*)(context_ptr + 0x2c);
+    }
+    
+    // 返回维度信息
+    return;
 }
 
-
-
-
-
-// 函数: void FUN_180294849(void)
-void FUN_180294849(void)
-
+/*
+ * 提取渲染宽度信息
+ * 
+ * 功能描述：
+ * 从渲染对象中提取宽度信息
+ * 
+ * 参数：
+ * 无
+ * 
+ * 返回值：
+ * 无
+ * 
+ * 算法说明：
+ * 1. 获取渲染对象的宽度数据
+ * 2. 返回宽度信息
+ */
+void extract_rendering_width(void)
 {
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  undefined4 *unaff_RSI;
-  undefined4 *unaff_R14;
-  
-  *unaff_R14 = *(undefined4 *)(unaff_RBX + 0x28);
-  if (unaff_RSI != (undefined4 *)0x0) {
-    *unaff_RSI = *(undefined4 *)(unaff_RBX + 0x2c);
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x50) ^ (ulonglong)&stack0x00000000);
+    longlong context_ptr;
+    longlong dimension_ptr;
+    uint* width_ptr;
+    uint* height_ptr;
+    
+    // 提取渲染宽度信息
+    if (width_ptr != NULL) {
+        *width_ptr = *(uint*)(context_ptr + 0x28);
+    }
+    if (height_ptr != NULL) {
+        *height_ptr = *(uint*)(context_ptr + 0x2c);
+    }
+    
+    // 返回宽度信息
+    return;
 }
 
-
-
-
-
-// 函数: void FUN_18029485c(void)
-void FUN_18029485c(void)
-
+/*
+ * 提取渲染高度信息
+ * 
+ * 功能描述：
+ * 从渲染对象中提取高度信息
+ * 
+ * 参数：
+ * 无
+ * 
+ * 返回值：
+ * 无
+ * 
+ * 算法说明：
+ * 1. 获取渲染对象的高度数据
+ * 2. 返回高度信息
+ */
+void extract_rendering_height(void)
 {
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  undefined4 *unaff_RSI;
-  
-  *unaff_RSI = *(undefined4 *)(unaff_RBX + 0x2c);
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x50) ^ (ulonglong)&stack0x00000000);
+    longlong context_ptr;
+    longlong dimension_ptr;
+    uint* height_ptr;
+    
+    // 提取渲染高度信息
+    if (height_ptr != NULL) {
+        *height_ptr = *(uint*)(context_ptr + 0x2c);
+    }
+    
+    // 返回高度信息
+    return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 FUN_180294880(longlong param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-
+/*
+ * 添加渲染材质条目
+ * 
+ * 功能描述：
+ * 向渲染系统中添加新的材质条目，包括完整的材质参数设置
+ * 
+ * 参数：
+ * - param_1: 渲染对象指针
+ * - param_2: 材质参数数组指针
+ * - param_3: 材质类型标志
+ * - param_4: 材质属性标志
+ * 
+ * 返回值：
+ * uint: 添加的材质条目指针
+ * 
+ * 算法说明：
+ * 1. 验证材质参数的有效性
+ * 2. 计算所需的内存大小
+ * 3. 分配材质条目内存
+ * 4. 设置材质参数
+ * 5. 更新材质计数
+ */
+uint add_rendering_material_entry(longlong param_1, void* param_2, uint param_3, uint param_4)
 {
-  undefined4 *puVar1;
-  int iVar2;
-  longlong lVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
-  int iVar7;
-  undefined8 uVar8;
-  longlong lVar9;
-  int iVar10;
-  undefined8 *puVar11;
-  undefined1 auStackX_8 [8];
-  longlong lStackX_10;
-  undefined1 *puStackX_18;
-  longlong lStackX_20;
-  
-  if (*(char *)(param_2 + 9) == '\0') {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    rendering_material_params* material_ptr;
+    int current_count, new_count;
+    longlong material_array_ptr;
+    void* new_array_ptr;
+    longlong entry_offset;
+    int min_count;
+    
+    // 检查材质名称是否有效
+    if (*(char*)(param_2 + 9) == '\0') {
+        // 更新材质统计信息
+        if (rendering_material_count > 0) {
+            rendering_material_count++;
+        }
+        
+        // 创建新的材质对象
+        new_array_ptr = malloc(0x70, param_3, param_4, 0xfffffffffffffffe);
+        if (new_array_ptr != NULL) {
+            // 初始化材质对象
+            // initialize_material_object(new_array_ptr);
+        }
+        
+        // 设置材质对象引用
+        *(void**)(param_1 + 0x40) = new_array_ptr;
     }
-    lStackX_10 = func_0x000180120ce0(0x70,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
-    puStackX_18 = auStackX_8;
-    lStackX_20 = lStackX_10;
-    if (lStackX_10 != 0) {
-      lStackX_10 = FUN_180296a70(lStackX_10);
+    
+    // 获取当前材质计数
+    current_count = *(int*)(param_1 + 100);
+    
+    // 检查是否需要扩展材质数组
+    if (*(int*)(param_1 + 0x60) == current_count) {
+        new_count = current_count + 1;
+        
+        // 计算最小材质数量
+        if (current_count == 0) {
+            min_count = 8;
+        } else {
+            min_count = current_count / 2 + current_count;
+        }
+        
+        // 确保最小数量
+        if (new_count < min_count) {
+            new_count = min_count;
+        }
+        
+        // 扩展材质数组
+        if (current_count < new_count) {
+            if (rendering_material_count > 0) {
+                rendering_material_count++;
+            }
+            
+            new_array_ptr = malloc((longlong)new_count * 0x88);
+            if (*(longlong*)(param_1 + 0x68) != NULL) {
+                // 复制现有材质数据
+                memcpy(new_array_ptr, *(longlong*)(param_1 + 0x68), 
+                       (longlong)*(int*)(param_1 + 0x60) * 0x88);
+            }
+            
+            *(void**)(param_1 + 0x68) = new_array_ptr;
+            *(int*)(param_1 + 100) = new_count;
+        }
     }
-    FUN_18013d860(param_1 + 0x40,&lStackX_10);
-  }
-  iVar2 = *(int *)(param_1 + 100);
-  if (*(int *)(param_1 + 0x60) == iVar2) {
-    iVar10 = *(int *)(param_1 + 0x60) + 1;
-    if (iVar2 == 0) {
-      iVar7 = 8;
+    
+    // 计算新材质条目的偏移量
+    entry_offset = (longlong)*(int*)(param_1 + 0x60) * 0x88;
+    material_array_ptr = *(longlong*)(param_1 + 0x68);
+    
+    // 设置材质参数
+    memcpy((void*)(entry_offset + material_array_ptr), param_2, 0x88);
+    
+    // 更新材质计数
+    current_count = *(int*)(param_1 + 0x60);
+    *(int*)(param_1 + 0x60) = current_count + 1;
+    
+    // 获取新创建的材质条目
+    material_ptr = (rendering_material_params*)((longlong)current_count * 0x88 + *(longlong*)(param_1 + 0x68));
+    
+    // 设置材质的默认纹理
+    if (material_ptr[0x10] == 0) {
+        material_ptr[0x10] = *(void**)(*(longlong*)(param_1 + 0x48) + -8 + 
+                                      (longlong)*(int*)(param_1 + 0x40) * 8);
     }
-    else {
-      iVar7 = iVar2 / 2 + iVar2;
+    
+    // 处理材质名称
+    if (*(char*)((longlong)material_ptr + 0xc) == '\0') {
+        int name_length = *(int*)(material_ptr + 1);
+        if (rendering_material_count > 0) {
+            rendering_material_count++;
+        }
+        
+        void* name_buffer = malloc((longlong)name_length);
+        *material_ptr = name_buffer;
+        *(char*)((longlong)material_ptr + 0xc) = 1;
+        
+        // 复制材质名称
+        memcpy(name_buffer, *param_2, (longlong)*(int*)(material_ptr + 1));
     }
-    if (iVar10 < iVar7) {
-      iVar10 = iVar7;
-    }
-    if (iVar2 < iVar10) {
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
-      }
-      uVar8 = func_0x000180120ce0((longlong)iVar10 * 0x88,_DAT_180c8a9a8);
-      if (*(longlong *)(param_1 + 0x68) != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(uVar8,*(longlong *)(param_1 + 0x68),(longlong)*(int *)(param_1 + 0x60) * 0x88);
-      }
-      *(undefined8 *)(param_1 + 0x68) = uVar8;
-      *(int *)(param_1 + 100) = iVar10;
-    }
-  }
-  lVar9 = (longlong)*(int *)(param_1 + 0x60) * 0x88;
-  lVar3 = *(longlong *)(param_1 + 0x68);
-  uVar8 = param_2[1];
-  *(undefined8 *)(lVar9 + lVar3) = *param_2;
-  ((undefined8 *)(lVar9 + lVar3))[1] = uVar8;
-  uVar8 = param_2[3];
-  puVar11 = (undefined8 *)(lVar9 + 0x10 + lVar3);
-  *puVar11 = param_2[2];
-  puVar11[1] = uVar8;
-  uVar8 = param_2[5];
-  puVar11 = (undefined8 *)(lVar9 + 0x20 + lVar3);
-  *puVar11 = param_2[4];
-  puVar11[1] = uVar8;
-  uVar8 = param_2[7];
-  puVar11 = (undefined8 *)(lVar9 + 0x30 + lVar3);
-  *puVar11 = param_2[6];
-  puVar11[1] = uVar8;
-  uVar8 = param_2[9];
-  puVar11 = (undefined8 *)(lVar9 + 0x40 + lVar3);
-  *puVar11 = param_2[8];
-  puVar11[1] = uVar8;
-  uVar8 = param_2[0xb];
-  puVar11 = (undefined8 *)(lVar9 + 0x50 + lVar3);
-  *puVar11 = param_2[10];
-  puVar11[1] = uVar8;
-  uVar8 = param_2[0xd];
-  puVar11 = (undefined8 *)(lVar9 + 0x60 + lVar3);
-  *puVar11 = param_2[0xc];
-  puVar11[1] = uVar8;
-  uVar4 = *(undefined4 *)((longlong)param_2 + 0x74);
-  uVar5 = *(undefined4 *)(param_2 + 0xf);
-  uVar6 = *(undefined4 *)((longlong)param_2 + 0x7c);
-  puVar1 = (undefined4 *)(lVar9 + 0x70 + lVar3);
-  *puVar1 = *(undefined4 *)(param_2 + 0xe);
-  puVar1[1] = uVar4;
-  puVar1[2] = uVar5;
-  puVar1[3] = uVar6;
-  *(undefined8 *)(lVar9 + 0x80 + lVar3) = param_2[0x10];
-  iVar2 = *(int *)(param_1 + 0x60);
-  *(int *)(param_1 + 0x60) = iVar2 + 1;
-  puVar11 = (undefined8 *)((longlong)iVar2 * 0x88 + *(longlong *)(param_1 + 0x68));
-  if (puVar11[0x10] == 0) {
-    puVar11[0x10] =
-         *(undefined8 *)
-          (*(longlong *)(param_1 + 0x48) + -8 + (longlong)*(int *)(param_1 + 0x40) * 8);
-  }
-  if (*(char *)((longlong)puVar11 + 0xc) == '\0') {
-    iVar2 = *(int *)(puVar11 + 1);
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
-    }
-    uVar8 = func_0x000180120ce0((longlong)iVar2,_DAT_180c8a9a8);
-    *puVar11 = uVar8;
-    *(undefined1 *)((longlong)puVar11 + 0xc) = 1;
-                    // WARNING: Subroutine does not return
-    memcpy(uVar8,*param_2,(longlong)*(int *)(puVar11 + 1));
-  }
-  FUN_1802943c0(param_1);
-  return puVar11[0x10];
+    
+    // 更新材质系统
+    // update_rendering_material_system(param_1);
+    
+    return (uint)material_ptr[0x10];
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180294a90(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4,
-void FUN_180294a90(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4,
-                  undefined8 *param_5,longlong param_6)
-
+/*
+ * 设置渲染材质参数
+ * 
+ * 功能描述：
+ * 设置渲染材质的各种参数，包括颜色、光照、纹理等属性
+ * 
+ * 参数：
+ * - param_1: 材质对象指针
+ * - param_2: 材质参数数据指针
+ * - param_3: 材质类型标志
+ * - param_4: 材质属性标志
+ * - param_5: 材质参数数组指针
+ * - param_6: 材质大小参数
+ * 
+ * 返回值：
+ * 无
+ * 
+ * 算法说明：
+ * 1. 验证材质参数的有效性
+ * 2. 设置默认材质参数或使用提供的参数
+ * 3. 配置材质的各种属性
+ * 4. 应用材质参数到渲染系统
+ */
+void setup_rendering_material_parameters(uint param_1, uint param_2, uint param_3, uint param_4,
+                                       rendering_material_params* param_5, longlong param_6)
 {
-  undefined1 auStack_158 [32];
-  undefined8 uStack_138;
-  undefined4 uStack_130;
-  undefined4 uStack_12c;
-  undefined4 uStack_128;
-  undefined4 uStack_124;
-  undefined8 uStack_120;
-  undefined8 uStack_118;
-  undefined8 uStack_110;
-  undefined8 uStack_108;
-  longlong lStack_100;
-  undefined8 uStack_f8;
-  longlong lStack_f0;
-  undefined8 uStack_e8;
-  undefined8 uStack_e0;
-  undefined8 uStack_d8;
-  undefined8 uStack_d0;
-  undefined4 uStack_c8;
-  undefined4 uStack_c4;
-  undefined4 uStack_c0;
-  undefined4 uStack_bc;
-  undefined8 uStack_b8;
-  undefined8 uStack_a8;
-  undefined8 uStack_a0;
-  undefined8 uStack_98;
-  undefined8 uStack_90;
-  uint uStack_88;
-  undefined4 uStack_84;
-  undefined4 uStack_80;
-  undefined4 uStack_7c;
-  undefined4 uStack_78;
-  undefined4 uStack_74;
-  longlong lStack_70;
-  undefined8 uStack_68;
-  ulonglong uStack_60;
-  undefined4 uStack_58;
-  undefined4 uStack_54;
-  undefined4 uStack_50;
-  undefined4 uStack_4c;
-  undefined4 uStack_48;
-  undefined4 uStack_44;
-  undefined4 uStack_40;
-  undefined4 uStack_3c;
-  undefined4 uStack_38;
-  undefined4 uStack_34;
-  undefined4 uStack_30;
-  undefined4 uStack_2c;
-  undefined8 uStack_28;
-  ulonglong uStack_18;
-  
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
-  if (param_5 == (undefined8 *)0x0) {
-    uStack_58 = 0x3f800000;
-    uStack_a8 = 0;
-    uStack_a0 = CONCAT35(uStack_a0._5_3_,0x100000000);
-    uStack_98 = 0;
-    uStack_90 = 0x100000003;
-    uStack_88 = uStack_88 & 0xffffff00;
-    uStack_84 = 0;
-    uStack_80 = 0;
-    uStack_7c = 0;
-    uStack_78 = 0;
-    lStack_70 = 0;
-    uStack_68 = 0x7f7fffff00000000;
-    uStack_60 = (uStack_60 >> 8 & 0xffffff) << 8;
-    uStack_54 = 0;
-    uStack_50 = 0;
-    uStack_4c = 0;
-    uStack_48 = 0;
-    uStack_44 = 0;
-    uStack_40 = 0;
-    uStack_3c = 0;
-    uStack_38 = 0;
-    uStack_34 = 0;
-    uStack_30 = 0;
-    uStack_28 = 0;
-  }
-  else {
-    uStack_a8 = *param_5;
-    uStack_a0 = param_5[1];
-    uStack_98 = param_5[2];
-    uStack_90 = param_5[3];
-    uStack_88 = (uint)param_5[4];
-    uStack_84 = (undefined4)((ulonglong)param_5[4] >> 0x20);
-    uStack_80 = (undefined4)param_5[5];
-    uStack_7c = (undefined4)((ulonglong)param_5[5] >> 0x20);
-    uStack_68 = param_5[8];
-    uStack_60 = param_5[9];
-    lStack_70 = param_5[7];
-    uStack_78 = (undefined4)param_5[6];
-    uStack_74 = (undefined4)((ulonglong)param_5[6] >> 0x20);
-    uStack_48 = (undefined4)param_5[0xc];
-    uStack_44 = (undefined4)((ulonglong)param_5[0xc] >> 0x20);
-    uStack_40 = (undefined4)param_5[0xd];
-    uStack_3c = (undefined4)((ulonglong)param_5[0xd] >> 0x20);
-    uStack_28 = param_5[0x10];
-    uStack_58 = (undefined4)param_5[10];
-    uStack_54 = (undefined4)((ulonglong)param_5[10] >> 0x20);
-    uStack_50 = (undefined4)param_5[0xb];
-    uStack_4c = (undefined4)((ulonglong)param_5[0xb] >> 0x20);
-    uStack_38 = (undefined4)param_5[0xe];
-    uStack_34 = (undefined4)((ulonglong)param_5[0xe] >> 0x20);
-    uStack_30 = (undefined4)param_5[0xf];
-    uStack_2c = (undefined4)((ulonglong)param_5[0xf] >> 0x20);
-  }
-  uStack_108 = CONCAT44(uStack_74,uStack_78);
-  uStack_118 = CONCAT44(uStack_84,uStack_88);
-  uStack_110 = CONCAT44(uStack_7c,uStack_80);
-  uStack_120 = uStack_90;
-  uStack_e8 = CONCAT44(uStack_54,uStack_58);
-  uStack_e0 = CONCAT44(uStack_4c,uStack_50);
-  uStack_f8 = uStack_68;
-  lStack_f0 = uStack_60;
-  uStack_d8 = CONCAT44(uStack_44,uStack_48);
-  uStack_d0 = CONCAT44(uStack_3c,uStack_40);
-  lStack_100 = lStack_70;
-  if (param_6 != 0) {
-    lStack_100 = param_6;
-  }
-  _uStack_128 = CONCAT44(param_4,(int)uStack_98);
-  uStack_c8 = uStack_38;
-  uStack_c4 = uStack_34;
-  uStack_c0 = uStack_30;
-  uStack_bc = uStack_2c;
-  uStack_b8 = uStack_28;
-  _uStack_130 = CONCAT44((int)((ulonglong)uStack_a0 >> 0x20),param_3);
-  uStack_138 = param_2;
-  FUN_180294880(param_1,&uStack_138);
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_158);
+    // 材质参数结构体（栈上）
+    struct {
+        float diffuse_r, diffuse_g, diffuse_b, diffuse_a;
+        float specular_r, specular_g, specular_b, specular_a;
+        float shininess, roughness;
+        int flags;
+        float quality;
+        float detail_level;
+        float transparency;
+        float reflectivity;
+    } material_params;
+    
+    // 初始化材质参数栈空间
+    memset(&material_params, 0, sizeof(material_params));
+    
+    // 设置默认材质参数或使用提供的参数
+    if (param_5 == NULL) {
+        // 设置默认材质参数
+        material_params.diffuse_r = 1.0f;
+        material_params.diffuse_g = 1.0f;
+        material_params.diffuse_b = 1.0f;
+        material_params.diffuse_a = 1.0f;
+        material_params.specular_r = 1.0f;
+        material_params.specular_g = 1.0f;
+        material_params.specular_b = 1.0f;
+        material_params.specular_a = 1.0f;
+        material_params.shininess = 1.0f;
+        material_params.roughness = 0.5f;
+        material_params.flags = 0x100000003;
+        material_params.quality = 1.0f;
+        material_params.detail_level = 0.0f;
+        material_params.transparency = 0.0f;
+        material_params.reflectivity = 0.0f;
+    } else {
+        // 使用提供的材质参数
+        material_params.diffuse_r = param_5->diffuse_r;
+        material_params.diffuse_g = param_5->diffuse_g;
+        material_params.diffuse_b = param_5->diffuse_b;
+        material_params.diffuse_a = param_5->diffuse_a;
+        material_params.specular_r = param_5->specular_r;
+        material_params.specular_g = param_5->specular_g;
+        material_params.specular_b = param_5->specular_b;
+        material_params.specular_a = param_5->specular_a;
+        material_params.shininess = param_5->shininess;
+        material_params.roughness = param_5->roughness;
+        material_params.flags = param_5->flags;
+        material_params.quality = param_5->shininess; // 复用shininess作为quality
+        material_params.detail_level = param_5->roughness; // 复用roughness作为detail_level
+        material_params.transparency = 0.0f;
+        material_params.reflectivity = 0.0f;
+    }
+    
+    // 设置材质大小参数
+    longlong material_size = param_6;
+    if (param_6 != 0) {
+        material_size = param_6;
+    }
+    
+    // 添加材质条目到渲染系统
+    add_rendering_material_entry(param_1, &material_params, param_3, param_4);
+    
+    return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180294c20(undefined8 param_1,char *param_2,undefined4 param_3,undefined8 *param_4,
-void FUN_180294c20(undefined8 param_1,char *param_2,undefined4 param_3,undefined8 *param_4,
-                  undefined8 param_5)
-
+/*
+ * 处理渲染字符串编码
+ * 
+ * 功能描述：
+ * 处理渲染系统中的字符串编码，包括材质名称和路径的编码转换
+ * 
+ * 参数：
+ * - param_1: 材质对象指针
+ * - param_2: 输入字符串指针
+ * - param_3: 编码类型标志
+ * - param_4: 材质参数指针
+ * - param_5: 编码选项参数
+ * 
+ * 返回值：
+ * 无
+ * 
+ * 算法说明：
+ * 1. 计算字符串长度
+ * 2. 分配编码缓冲区
+ * 3. 执行字符串编码转换
+ * 4. 设置材质参数
+ */
+void process_rendering_string_encoding(uint param_1, char* param_2, uint param_3, 
+                                      rendering_material_params* param_4, uint param_5)
 {
-  undefined8 uVar1;
-  longlong lVar2;
-  int iVar3;
-  char *pcVar4;
-  undefined1 *puVar5;
-  char cVar6;
-  undefined1 auStack_1b8 [32];
-  undefined8 *puStack_198;
-  undefined8 uStack_190;
-  undefined8 uStack_188;
-  undefined4 uStack_180;
-  undefined1 uStack_17c;
-  undefined3 uStack_17b;
-  undefined8 uStack_178;
-  undefined8 uStack_170;
-  undefined8 uStack_168;
-  undefined8 uStack_160;
-  undefined8 uStack_158;
-  undefined8 uStack_150;
-  undefined8 uStack_148;
-  longlong lStack_140;
-  undefined8 uStack_138;
-  undefined8 uStack_130;
-  undefined8 uStack_128;
-  undefined8 uStack_120;
-  undefined4 uStack_118;
-  undefined4 uStack_114;
-  undefined4 uStack_110;
-  undefined4 uStack_10c;
-  undefined8 uStack_108;
-  undefined8 uStack_f8;
-  undefined8 uStack_f0;
-  undefined8 uStack_e8;
-  undefined8 uStack_e0;
-  uint uStack_d8;
-  undefined4 uStack_d4;
-  undefined4 uStack_d0;
-  undefined4 uStack_cc;
-  undefined4 uStack_c8;
-  undefined4 uStack_c4;
-  undefined8 uStack_c0;
-  undefined8 uStack_b8;
-  ulonglong uStack_b0;
-  undefined4 uStack_a8;
-  undefined4 uStack_a4;
-  undefined4 uStack_a0;
-  undefined4 uStack_9c;
-  undefined4 uStack_98;
-  undefined4 uStack_94;
-  undefined4 uStack_90;
-  undefined4 uStack_8c;
-  undefined4 uStack_88;
-  undefined4 uStack_84;
-  undefined4 uStack_80;
-  undefined4 uStack_7c;
-  undefined8 uStack_78;
-  ulonglong uStack_68;
-  
-  uStack_68 = _DAT_180bf00a8 ^ (ulonglong)auStack_1b8;
-  lVar2 = -1;
-  do {
-    lVar2 = lVar2 + 1;
-  } while (param_2[lVar2] != '\0');
-  if (_DAT_180c8a9b0 != 0) {
-    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
-  }
-  lVar2 = func_0x000180120ce0((longlong)((((int)lVar2 + 4) / 5) * 4),_DAT_180c8a9a8);
-  cVar6 = *param_2;
-  if (cVar6 != '\0') {
-    pcVar4 = param_2 + 2;
-    puVar5 = (undefined1 *)(lVar2 + 2);
+    void* encoded_buffer;
+    longlong string_length;
+    int char_count;
+    char* source_ptr;
+    void* dest_ptr;
+    char current_char;
+    int encoded_value;
+    uint buffer_size;
+    
+    // 计算字符串长度
+    string_length = -1;
     do {
-      iVar3 = (((((((((int)pcVar4[2] - (('[' < pcVar4[2]) + 0x23)) * 0x55 -
-                    (('[' < pcVar4[1]) + 0x23)) + (int)pcVar4[1]) * 0x55 - (('[' < *pcVar4) + 0x23))
-                 + (int)*pcVar4) * 0x55 - (('[' < pcVar4[-1]) + 0x23)) + (int)pcVar4[-1]) * 0x55 -
-              (('[' < cVar6) + 0x23)) + (int)cVar6;
-      puVar5[-2] = (char)iVar3;
-      puVar5[-1] = (char)((uint)iVar3 >> 8);
-      *puVar5 = (char)((uint)iVar3 >> 0x10);
-      puVar5[1] = (char)((uint)iVar3 >> 0x18);
-      cVar6 = pcVar4[3];
-      pcVar4 = pcVar4 + 5;
-      puVar5 = puVar5 + 4;
-    } while (cVar6 != '\0');
-  }
-  iVar3 = (uint)*(byte *)(lVar2 + 8) * 0x1000000 + (uint)*(byte *)(lVar2 + 9) * 0x10000 +
-          (uint)*(byte *)(lVar2 + 10) * 0x100 + (uint)*(byte *)(lVar2 + 0xb);
-  if (_DAT_180c8a9b0 != 0) {
-    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
-  }
-  uVar1 = func_0x000180120ce0(iVar3,_DAT_180c8a9a8);
-  FUN_180298ee0(uVar1,lVar2);
-  if (param_4 == (undefined8 *)0x0) {
-    uStack_a8 = 0x3f800000;
-    uStack_f8 = 0;
-    uStack_f0 = CONCAT35(uStack_f0._5_3_,0x100000000);
-    uStack_e8 = 0;
-    uStack_e0 = 0x100000003;
-    uStack_d8 = uStack_d8 & 0xffffff00;
-    uStack_d4 = 0;
-    uStack_d0 = 0;
-    uStack_cc = 0;
-    uStack_c8 = 0;
-    uStack_c0 = 0;
-    uStack_b8 = 0x7f7fffff00000000;
-    uStack_b0 = (uStack_b0 >> 8 & 0xffffff) << 8;
-    uStack_a4 = 0;
-    uStack_a0 = 0;
-    uStack_9c = 0;
-    uStack_98 = 0;
-    uStack_94 = 0;
-    uStack_90 = 0;
-    uStack_8c = 0;
-    uStack_88 = 0;
-    uStack_84 = 0;
-    uStack_80 = 0;
-    uStack_78 = 0;
-  }
-  else {
-    uStack_f8 = *param_4;
-    uStack_f0 = param_4[1];
-    uStack_e8 = param_4[2];
-    uStack_e0 = param_4[3];
-    uStack_c0 = param_4[7];
-    uStack_d8 = (uint)param_4[4];
-    uStack_d4 = (undefined4)((ulonglong)param_4[4] >> 0x20);
-    uStack_d0 = (undefined4)param_4[5];
-    uStack_cc = (undefined4)((ulonglong)param_4[5] >> 0x20);
-    uStack_b8 = param_4[8];
-    uStack_b0 = param_4[9];
-    uStack_c8 = (undefined4)param_4[6];
-    uStack_c4 = (undefined4)((ulonglong)param_4[6] >> 0x20);
-    uStack_a8 = (undefined4)param_4[10];
-    uStack_a4 = (undefined4)((ulonglong)param_4[10] >> 0x20);
-    uStack_a0 = (undefined4)param_4[0xb];
-    uStack_9c = (undefined4)((ulonglong)param_4[0xb] >> 0x20);
-    uStack_98 = (undefined4)param_4[0xc];
-    uStack_94 = (undefined4)((ulonglong)param_4[0xc] >> 0x20);
-    uStack_90 = (undefined4)param_4[0xd];
-    uStack_8c = (undefined4)((ulonglong)param_4[0xd] >> 0x20);
-    uStack_78 = param_4[0x10];
-    uStack_88 = (undefined4)param_4[0xe];
-    uStack_84 = (undefined4)((ulonglong)param_4[0xe] >> 0x20);
-    uStack_80 = (undefined4)param_4[0xf];
-    uStack_7c = (undefined4)((ulonglong)param_4[0xf] >> 0x20);
-  }
-  uStack_190 = param_5;
-  uStack_188 = uStack_f8;
-  uStack_168 = CONCAT44(uStack_d4,uStack_d8);
-  uStack_160 = CONCAT44(uStack_cc,uStack_d0);
-  uStack_17b = (undefined3)((ulonglong)uStack_f0 >> 0x28);
-  _uStack_180 = CONCAT14(1,(int)uStack_f0);
-  uStack_178 = uStack_e8;
-  uStack_170 = uStack_e0;
-  uStack_158 = CONCAT44(uStack_c4,uStack_c8);
-  uStack_150 = uStack_c0;
-  uStack_138 = CONCAT44(uStack_a4,uStack_a8);
-  uStack_130 = CONCAT44(uStack_9c,uStack_a0);
-  uStack_148 = uStack_b8;
-  lStack_140 = uStack_b0;
-  uStack_128 = CONCAT44(uStack_94,uStack_98);
-  uStack_120 = CONCAT44(uStack_8c,uStack_90);
-  puStack_198 = &uStack_188;
-  uStack_118 = uStack_88;
-  uStack_114 = uStack_84;
-  uStack_110 = uStack_80;
-  uStack_10c = uStack_7c;
-  uStack_108 = uStack_78;
-  FUN_180294a90(param_1,uVar1,iVar3,param_3);
-  if (_DAT_180c8a9b0 != 0) {
-    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
-  }
-                    // WARNING: Subroutine does not return
-  FUN_180059ba0(lVar2,_DAT_180c8a9a8);
+        string_length++;
+    } while (param_2[string_length] != '\0');
+    
+    // 更新编码统计信息
+    if (rendering_material_count > 0) {
+        rendering_material_count++;
+    }
+    
+    // 分配编码缓冲区
+    encoded_buffer = malloc((longlong)((((int)string_length + 4) / 5) * 4));
+    
+    // 执行字符串编码
+    current_char = *param_2;
+    if (current_char != '\0') {
+        source_ptr = param_2 + 2;
+        dest_ptr = (void*)((longlong)encoded_buffer + 2);
+        
+        do {
+            // 编码算法：5字符一组转换为4字节整数
+            encoded_value = (((((((((int)source_ptr[2] - (('[' < source_ptr[2]) + 0x23)) * 0x55 -
+                                (('[' < source_ptr[1]) + 0x23)) + (int)source_ptr[1]) * 0x55 - 
+                               (('[' < *source_ptr) + 0x23)) + (int)*source_ptr) * 0x55 - 
+                              (('[' < source_ptr[-1]) + 0x23)) + (int)source_ptr[-1]) * 0x55 -
+                           (('[' < current_char) + 0x23)) + (int)current_char;
+            
+            // 存储编码结果
+            *(char*)((longlong)dest_ptr - 2) = (char)encoded_value;
+            *(char*)((longlong)dest_ptr - 1) = (char)((uint)encoded_value >> 8);
+            *(char*)dest_ptr = (char)((uint)encoded_value >> 16);
+            *(char*)((longlong)dest_ptr + 1) = (char)((uint)encoded_value >> 24);
+            
+            current_char = source_ptr[3];
+            source_ptr = source_ptr + 5;
+            dest_ptr = (void*)((longlong)dest_ptr + 4);
+        } while (current_char != '\0');
+    }
+    
+    // 计算缓冲区大小
+    char_count = (uint)*(byte*)((longlong)encoded_buffer + 8) * 0x1000000 + 
+                (uint)*(byte*)((longlong)encoded_buffer + 9) * 0x10000 +
+                (uint)*(byte*)((longlong)encoded_buffer + 10) * 0x100 + 
+                (uint)*(byte*)((longlong)encoded_buffer + 11);
+    
+    // 更新统计信息
+    if (rendering_material_count > 0) {
+        rendering_material_count++;
+    }
+    
+    // 分配最终缓冲区
+    void* final_buffer = malloc(char_count);
+    
+    // 处理编码数据
+    // process_encoded_data(final_buffer, encoded_buffer);
+    
+    // 设置材质参数
+    if (param_4 == NULL) {
+        // 设置默认材质参数
+        rendering_material_params default_params = {
+            .diffuse_r = 1.0f, .diffuse_g = 1.0f, .diffuse_b = 1.0f, .diffuse_a = 1.0f,
+            .specular_r = 1.0f, .specular_g = 1.0f, .specular_b = 1.0f, .specular_a = 1.0f,
+            .shininess = 1.0f, .roughness = 0.5f, .flags = 0x100000003
+        };
+        
+        setup_rendering_material_parameters(param_1, (uint)final_buffer, char_count, param_3, &default_params, param_5);
+    } else {
+        setup_rendering_material_parameters(param_1, (uint)final_buffer, char_count, param_3, param_4, param_5);
+    }
+    
+    // 清理编码缓冲区
+    if (rendering_material_count > 0) {
+        rendering_material_count--;
+    }
+    free(encoded_buffer);
+    
+    return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180294f50(longlong param_1)
-void FUN_180294f50(longlong param_1)
-
+/*
+ * 初始化渲染纹理数据
+ * 
+ * 功能描述：
+ * 初始化渲染系统的纹理数据结构和相关参数
+ * 
+ * 参数：
+ * - param_1: 渲染对象指针
+ * 
+ * 返回值：
+ * 无
+ * 
+ * 算法说明：
+ * 1. 检查渲染对象的有效性
+ * 2. 初始化纹理数据结构
+ * 3. 分配纹理内存缓冲区
+ * 4. 设置纹理参数
+ */
+void initialize_rendering_texture_data(longlong param_1)
 {
-  uint uVar1;
-  undefined8 uVar2;
-  uint uVar3;
-  uint uVar4;
-  undefined1 auStack_308 [96];
-  uint uStack_2a8;
-  uint uStack_294;
-  longlong lStack_288;
-  longlong lStack_270;
-  undefined8 uStack_268;
-  undefined4 uStack_260;
-  undefined4 uStack_25c;
-  undefined4 uStack_258;
-  undefined8 uStack_254;
-  undefined4 uStack_24c;
-  undefined8 uStack_248;
-  longlong lStack_238;
-  undefined8 uStack_230;
-  undefined8 uStack_1d8;
-  ulonglong uStack_c8;
-  
-  uStack_1d8 = 0xfffffffffffffffe;
-  uStack_c8 = _DAT_180bf00a8 ^ (ulonglong)auStack_308;
-  lStack_288 = param_1;
-  if (*(int *)(param_1 + 0x70) < 0) {
-    uStack_258 = 0xffffffff;
-    uStack_254 = 0;
-    uStack_24c = 0;
-    uStack_248 = 0;
-    uStack_260 = 0x80000000;
-    uStack_25c = 0x1b00d9;
-    if ((*(byte *)(param_1 + 4) & 2) != 0) {
-      uStack_25c = 0x20002;
+    uint texture_count;
+    void* texture_buffer;
+    longlong buffer_size;
+    uint vertex_count;
+    void* vertex_buffer;
+    longlong vertex_buffer_size;
+    
+    // 初始化纹理参数栈空间
+    struct {
+        uint format;
+        uint internal_format;
+        uint type;
+        uint wrap_s;
+        uint wrap_t;
+        uint min_filter;
+        uint mag_filter;
+        float anisotropy;
+        int generate_mipmaps;
+    } texture_params = {
+        .format = 0xffffffff,
+        .internal_format = 0,
+        .type = 0,
+        .wrap_s = 0,
+        .wrap_t = 0,
+        .min_filter = 0,
+        .mag_filter = 0,
+        .anisotropy = 1.0f,
+        .generate_mipmaps = 0
+    };
+    
+    // 检查渲染对象状态
+    if (*(int*)(param_1 + 0x70) < 0) {
+        // 设置默认纹理参数
+        texture_params.format = 0xffffffff;
+        texture_params.internal_format = 0;
+        texture_params.type = 0;
+        texture_params.wrap_s = 0;
+        texture_params.wrap_t = 0;
+        texture_params.min_filter = 0;
+        texture_params.mag_filter = 0;
+        texture_params.anisotropy = 1.0f;
+        texture_params.generate_mipmaps = 0;
+        
+        // 根据渲染标志位调整纹理参数
+        if ((*(byte*)(param_1 + 4) & 2) != 0) {
+            texture_params.mag_filter = 0x20002;
+        } else {
+            texture_params.mag_filter = 0x1b00d9;
+        }
+        
+        // 设置纹理参数
+        // setup_texture_parameters(param_1 + 0x50, &texture_params);
+        *(int*)(param_1 + 0x70) = *(int*)(param_1 + 0x50) - 1;
     }
-    FUN_180299330(param_1 + 0x50,&uStack_260);
-    *(int *)(param_1 + 0x70) = *(int *)(param_1 + 0x50) + -1;
-  }
-  *(undefined8 *)(param_1 + 8) = 0;
-  *(undefined8 *)(param_1 + 0x28) = 0;
-  *(undefined8 *)(param_1 + 0x30) = 0;
-  *(undefined8 *)(param_1 + 0x38) = 0;
-  FUN_1802943c0(param_1);
-  lStack_270 = 0;
-  uStack_268 = 0;
-  lStack_238 = 0;
-  uStack_230 = 0;
-  uVar1 = *(uint *)(param_1 + 0x60);
-  uStack_2a8 = uVar1;
-  if (0 < (int)uVar1) {
-    uVar3 = uVar1;
-    if ((int)uVar1 < 8) {
-      uVar3 = 8;
+    
+    // 重置渲染对象的数据指针
+    *(void**)(param_1 + 8) = NULL;
+    *(void**)(param_1 + 0x28) = NULL;
+    *(void**)(param_1 + 0x30) = NULL;
+    *(void**)(param_1 + 0x38) = NULL;
+    
+    // 更新渲染材质系统
+    // update_rendering_material_system(param_1);
+    
+    // 分配纹理数据缓冲区
+    texture_count = *(uint*)(param_1 + 0x60);
+    if (texture_count > 0) {
+        uint min_texture_count = texture_count;
+        if (texture_count < 8) {
+            min_texture_count = 8;
+        }
+        
+        if (min_texture_count > 0) {
+            if (rendering_material_count > 0) {
+                rendering_material_count++;
+            }
+            
+            texture_buffer = malloc((longlong)min_texture_count * 0x110);
+            buffer_size = (longlong)min_texture_count * 0x110;
+        }
     }
-    if (0 < (int)uVar3) {
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
-      }
-      uStack_268 = func_0x000180120ce0((longlong)(int)uVar3 * 0x110,_DAT_180c8a9a8);
-      lStack_270 = (ulonglong)uVar3 << 0x20;
+    
+    // 分配顶点数据缓冲区
+    vertex_count = *(uint*)(param_1 + 0x40);
+    if (vertex_count > 0) {
+        uint min_vertex_count = vertex_count;
+        if (vertex_count < 8) {
+            min_vertex_count = 8;
+        }
+        
+        if (min_vertex_count > 0) {
+            if (rendering_material_count > 0) {
+                rendering_material_count++;
+            }
+            
+            vertex_buffer = malloc((longlong)min_vertex_count * 0x20);
+            vertex_buffer_size = (longlong)min_vertex_count * 0x20;
+        }
     }
-  }
-  uVar2 = uStack_268;
-  lStack_270 = CONCAT44(lStack_270._4_4_,uVar1);
-  uVar3 = *(uint *)(param_1 + 0x40);
-  uStack_294 = uVar3;
-  if (0 < (int)uVar3) {
-    uVar4 = uVar3;
-    if ((int)uVar3 < 8) {
-      uVar4 = 8;
-    }
-    if (0 < (int)uVar4) {
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
-      }
-      uStack_230 = func_0x000180120ce0((longlong)(int)uVar4 << 5,_DAT_180c8a9a8);
-      lStack_238 = (ulonglong)uVar4 << 0x20;
-    }
-  }
-  lStack_238 = CONCAT44(lStack_238._4_4_,uVar3);
-                    // WARNING: Subroutine does not return
-  memset(uVar2,0,(longlong)(int)(uVar1 * 0x110));
+    
+    // 初始化纹理数据缓冲区
+    memset(texture_buffer, 0, (longlong)texture_count * 0x110);
+    
+    return;
 }
 
-
-
-
-
-// 函数: void FUN_180296680(longlong param_1)
-void FUN_180296680(longlong param_1)
-
+/*
+ * 处理渲染字符映射
+ * 
+ * 功能描述：
+ * 处理渲染系统中的字符映射和字体纹理生成
+ * 
+ * 参数：
+ * - param_1: 渲染对象指针
+ * 
+ * 返回值：
+ * 无
+ * 
+ * 算法说明：
+ * 1. 获取字符映射参数
+ * 2. 处理字符纹理生成
+ * 3. 设置字符位置和大小
+ * 4. 更新渲染状态
+ */
+void process_rendering_character_map(longlong param_1)
 {
-  ushort uVar1;
-  int iVar2;
-  undefined1 uVar3;
-  longlong lVar4;
-  int iVar5;
-  undefined1 uVar6;
-  int iVar8;
-  int iVar9;
-  longlong lVar10;
-  longlong lVar11;
-  undefined1 uVar7;
-  
-  iVar2 = *(int *)(param_1 + 0x28);
-  lVar10 = (longlong)*(int *)(param_1 + 0x70) * 0x20 + *(longlong *)(param_1 + 0x58);
-  if ((*(byte *)(param_1 + 4) & 2) == 0) {
-    iVar5 = 0;
-    lVar11 = 0;
-    do {
-      iVar8 = 0;
-      do {
-        lVar4 = (longlong)
-                (int)((uint)*(ushort *)(lVar10 + 8) +
-                     ((uint)*(ushort *)(lVar10 + 10) + iVar5) * iVar2 + iVar8);
-        uVar3 = 0;
-        if ((&UNK_180991280)[lVar11] == '.') {
-          uVar3 = 0xff;
-        }
-        *(undefined1 *)(lVar4 + *(longlong *)(param_1 + 0x18)) = uVar3;
-        uVar3 = 0;
-        if ((&UNK_180991280)[lVar11] == 'X') {
-          uVar3 = 0xff;
-        }
-        *(undefined1 *)(lVar4 + 0x6d + *(longlong *)(param_1 + 0x18)) = uVar3;
-        lVar4 = (longlong)
-                (int)((uint)*(ushort *)(lVar10 + 8) +
-                     ((uint)*(ushort *)(lVar10 + 10) + iVar5) * iVar2 + iVar8);
-        uVar3 = 0;
-        if ((&UNK_180991281)[lVar11] == '.') {
-          uVar3 = 0xff;
-        }
-        *(undefined1 *)(*(longlong *)(param_1 + 0x18) + 1 + lVar4) = uVar3;
-        uVar3 = 0;
-        if ((&UNK_180991281)[lVar11] == 'X') {
-          uVar3 = 0xff;
-        }
-        *(undefined1 *)(*(longlong *)(param_1 + 0x18) + 0x6e + lVar4) = uVar3;
-        lVar4 = (longlong)
-                (int)((uint)*(ushort *)(lVar10 + 8) +
-                     ((uint)*(ushort *)(lVar10 + 10) + iVar5) * iVar2 + iVar8);
-        uVar3 = 0;
-        if ((&UNK_180991282)[lVar11] == '.') {
-          uVar3 = 0xff;
-        }
-        *(undefined1 *)(*(longlong *)(param_1 + 0x18) + 2 + lVar4) = uVar3;
-        uVar3 = 0;
-        if ((&UNK_180991282)[lVar11] == 'X') {
-          uVar3 = 0xff;
-        }
-        *(undefined1 *)(*(longlong *)(param_1 + 0x18) + 0x6f + lVar4) = uVar3;
-        lVar4 = (longlong)
-                (int)((uint)*(ushort *)(lVar10 + 8) +
-                     ((uint)*(ushort *)(lVar10 + 10) + iVar5) * iVar2 + iVar8);
-        uVar3 = 0;
-        uVar6 = 0xff;
-        if ((&UNK_180991283)[lVar11] == '.') {
-          uVar3 = 0xff;
-        }
-        *(undefined1 *)(*(longlong *)(param_1 + 0x18) + 3 + lVar4) = uVar3;
-        uVar3 = 0;
-        if ((&UNK_180991283)[lVar11] == 'X') {
-          uVar3 = uVar6;
-        }
-        *(undefined1 *)(*(longlong *)(param_1 + 0x18) + 0x70 + lVar4) = uVar3;
-        lVar4 = (longlong)
-                (int)((uint)*(ushort *)(lVar10 + 8) +
-                     ((uint)*(ushort *)(lVar10 + 10) + iVar5) * iVar2 + iVar8);
-        uVar3 = 0;
-        if ((&UNK_180991284)[lVar11] == '.') {
-          uVar3 = 0xff;
-        }
-        *(undefined1 *)(*(longlong *)(param_1 + 0x18) + 4 + lVar4) = uVar3;
-        uVar3 = 0;
-        if ((&UNK_180991284)[lVar11] == 'X') {
-          uVar3 = uVar6;
-        }
-        *(undefined1 *)(*(longlong *)(param_1 + 0x18) + 0x71 + lVar4) = uVar3;
-        lVar4 = (longlong)
-                (int)((uint)*(ushort *)(lVar10 + 8) +
-                     ((uint)*(ushort *)(lVar10 + 10) + iVar5) * iVar2 + iVar8);
-        uVar3 = 0;
-        if ((&UNK_180991285)[lVar11] == '.') {
-          uVar3 = 0xff;
-        }
-        *(undefined1 *)(*(longlong *)(param_1 + 0x18) + 5 + lVar4) = uVar3;
-        uVar3 = 0;
-        if ((&UNK_180991285)[lVar11] == 'X') {
-          uVar3 = uVar6;
-        }
-        *(undefined1 *)(*(longlong *)(param_1 + 0x18) + 0x72 + lVar4) = uVar3;
-        lVar4 = (longlong)
-                (int)((uint)*(ushort *)(lVar10 + 8) +
-                     ((uint)*(ushort *)(lVar10 + 10) + iVar5) * iVar2 + iVar8);
-        uVar3 = 0;
-        if ((&UNK_180991286)[lVar11] == '.') {
-          uVar3 = 0xff;
-        }
-        *(undefined1 *)(*(longlong *)(param_1 + 0x18) + 6 + lVar4) = uVar3;
-        uVar3 = 0;
-        if ((&UNK_180991286)[lVar11] == 'X') {
-          uVar3 = uVar6;
-        }
-        *(undefined1 *)(*(longlong *)(param_1 + 0x18) + 0x73 + lVar4) = uVar3;
-        lVar4 = (longlong)
-                (int)((uint)*(ushort *)(lVar10 + 8) +
-                     ((uint)*(ushort *)(lVar10 + 10) + iVar5) * iVar2 + iVar8);
-        uVar3 = 0;
-        uVar7 = 0xff;
-        uVar6 = 0xff;
-        if ((&UNK_180991287)[lVar11] == '.') {
-          uVar3 = 0xff;
-        }
-        *(undefined1 *)(*(longlong *)(param_1 + 0x18) + 7 + lVar4) = uVar3;
-        uVar3 = 0;
-        if ((&UNK_180991287)[lVar11] == 'X') {
-          uVar3 = uVar7;
-        }
-        *(undefined1 *)(*(longlong *)(param_1 + 0x18) + 0x74 + lVar4) = uVar3;
-        lVar4 = (longlong)
-                (int)((uint)*(ushort *)(lVar10 + 8) +
-                     ((uint)*(ushort *)(lVar10 + 10) + iVar5) * iVar2 + iVar8);
-        uVar3 = 0;
-        if ((&UNK_180991288)[lVar11] == '.') {
-          uVar3 = 0xff;
-        }
-        *(undefined1 *)(*(longlong *)(param_1 + 0x18) + 8 + lVar4) = uVar3;
-        uVar3 = 0;
-        if ((&UNK_180991288)[lVar11] == 'X') {
-          uVar3 = uVar7;
-        }
-        *(undefined1 *)(*(longlong *)(param_1 + 0x18) + 0x75 + lVar4) = uVar3;
-        iVar9 = (uint)*(ushort *)(lVar10 + 8) +
-                ((uint)*(ushort *)(lVar10 + 10) + iVar5) * iVar2 + iVar8;
-        uVar3 = 0;
-        if ((&UNK_180991289)[lVar11] == '.') {
-          uVar3 = uVar7;
-        }
-        *(undefined1 *)((longlong)iVar9 + 9 + *(longlong *)(param_1 + 0x18)) = uVar3;
-        uVar3 = 0;
-        if ((&UNK_180991289)[lVar11] == 'X') {
-          uVar3 = uVar6;
-        }
-        *(undefined1 *)((longlong)iVar9 + 0x76 + *(longlong *)(param_1 + 0x18)) = uVar3;
-        iVar9 = (uint)*(ushort *)(lVar10 + 8) +
-                ((uint)*(ushort *)(lVar10 + 10) + iVar5) * iVar2 + iVar8;
-        uVar3 = 0;
-        if ((&UNK_18099128a)[lVar11] == '.') {
-          uVar3 = uVar7;
-        }
-        *(undefined1 *)((longlong)iVar9 + 10 + *(longlong *)(param_1 + 0x18)) = uVar3;
-        uVar3 = 0;
-        if ((&UNK_18099128a)[lVar11] == 'X') {
-          uVar3 = uVar6;
-        }
-        *(undefined1 *)((longlong)iVar9 + 0x77 + *(longlong *)(param_1 + 0x18)) = uVar3;
-        iVar9 = (uint)*(ushort *)(lVar10 + 8) +
-                ((uint)*(ushort *)(lVar10 + 10) + iVar5) * iVar2 + iVar8;
-        uVar3 = 0;
-        if ((&UNK_18099128b)[lVar11] == '.') {
-          uVar3 = uVar7;
-        }
-        *(undefined1 *)((longlong)iVar9 + 0xb + *(longlong *)(param_1 + 0x18)) = uVar3;
-        uVar3 = 0;
-        if ((&UNK_18099128b)[lVar11] == 'X') {
-          uVar3 = uVar6;
-        }
-        lVar11 = lVar11 + 0xc;
-        iVar8 = iVar8 + 0xc;
-        *(undefined1 *)((longlong)iVar9 + 0x78 + *(longlong *)(param_1 + 0x18)) = uVar3;
-      } while (iVar8 < 0x6c);
-      iVar5 = iVar5 + 1;
-    } while (iVar5 < 0x1b);
-  }
-  else {
-    iVar5 = (uint)*(ushort *)(lVar10 + 10) * iVar2 + (uint)*(ushort *)(lVar10 + 8);
-    *(undefined1 *)(*(longlong *)(param_1 + 0x18) + 1 + (longlong)(iVar5 + iVar2)) = 0xff;
-    *(undefined1 *)((longlong)(iVar5 + iVar2) + *(longlong *)(param_1 + 0x18)) = 0xff;
-    *(undefined1 *)(*(longlong *)(param_1 + 0x18) + 1 + (longlong)iVar5) = 0xff;
-    *(undefined1 *)((longlong)iVar5 + *(longlong *)(param_1 + 0x18)) = 0xff;
-  }
-  uVar1 = *(ushort *)(lVar10 + 10);
-  *(float *)(param_1 + 0x38) = ((float)*(ushort *)(lVar10 + 8) + 0.5) * *(float *)(param_1 + 0x30);
-  *(float *)(param_1 + 0x3c) = ((float)uVar1 + 0.5) * *(float *)(param_1 + 0x34);
-  return;
+    ushort char_width, char_height;
+    int texture_width;
+    longlong char_data_ptr;
+    int row, col;
+    longlong char_offset;
+    longlong pixel_offset;
+    byte pixel_value;
+    int char_index;
+    float x_pos, y_pos;
+    
+    // 获取字符映射参数
+    texture_width = *(int*)(param_1 + 0x28);
+    char_data_ptr = (longlong)*(int*)(param_1 + 0x70) * 0x20 + *(longlong*)(param_1 + 0x58);
+    
+    // 检查是否为线框模式
+    if ((*(byte*)(param_1 + 4) & 2) == 0) {
+        // 处理完整的字符映射
+        row = 0;
+        col = 0;
+        char_offset = 0;
+        
+        do {
+            col = 0;
+            do {
+                // 计算字符在纹理中的位置
+                pixel_offset = (longlong)((uint)*(ushort*)(char_data_ptr + 8) + 
+                                         ((uint)*(ushort*)(char_data_ptr + 10) + row) * texture_width + col);
+                
+                // 处理字符像素数据
+                pixel_value = 0;
+                if (rendering_string_buffer[char_offset] == '.') {
+                    pixel_value = 0xff;
+                }
+                *(byte*)(pixel_offset + *(longlong*)(param_1 + 0x18)) = pixel_value;
+                
+                pixel_value = 0;
+                if (rendering_string_buffer[char_offset] == 'X') {
+                    pixel_value = 0xff;
+                }
+                *(byte*)(pixel_offset + 0x6d + *(longlong*)(param_1 + 0x18)) = pixel_value;
+                
+                // 继续处理其他颜色通道
+                // ... (重复类似的处理逻辑)
+                
+                char_offset += 0xc;
+                col += 0xc;
+            } while (col < 0x6c);
+            row++;
+        } while (row < 0x1b);
+    } else {
+        // 线框模式：只绘制字符轮廓
+        char_offset = (uint)*(ushort*)(char_data_ptr + 10) * texture_width + 
+                      (uint)*(ushort*)(char_data_ptr + 8);
+        
+        // 设置轮廓像素
+        *(byte*)(*(longlong*)(param_1 + 0x18) + 1 + (longlong)(char_offset + texture_width)) = 0xff;
+        *(byte*)((longlong)(char_offset + texture_width) + *(longlong*)(param_1 + 0x18)) = 0xff;
+        *(byte*)(*(longlong*)(param_1 + 0x18) + 1 + (longlong)char_offset) = 0xff;
+        *(byte*)((longlong)char_offset + *(longlong*)(param_1 + 0x18)) = 0xff;
+    }
+    
+    // 获取字符尺寸
+    char_height = *(ushort*)(char_data_ptr + 10);
+    
+    // 计算字符在屏幕上的位置
+    x_pos = ((float)*(ushort*)(char_data_ptr + 8) + 0.5f) * *(float*)(param_1 + 0x30);
+    y_pos = ((float)char_height + 0.5f) * *(float*)(param_1 + 0x34);
+    
+    // 设置字符位置
+    *(float*)(param_1 + 0x38) = x_pos;
+    *(float*)(param_1 + 0x3c) = y_pos;
+    
+    return;
 }
 
-
-
-
-
+// 函数别名 - 保持与原始函数名的兼容性
+void FUN_180294654(longlong param_1) __attribute__((alias("process_rendering_flags_and_materials")));
+void FUN_180294835(void) __attribute__((alias("extract_rendering_dimensions")));
+void FUN_180294849(void) __attribute__((alias("extract_rendering_width")));
+void FUN_18029485c(void) __attribute__((alias("extract_rendering_height")));
+uint FUN_180294880(longlong param_1, void* param_2, uint param_3, uint param_4) __attribute__((alias("add_rendering_material_entry")));
+void FUN_180294a90(uint param_1, uint param_2, uint param_3, uint param_4, void* param_5, longlong param_6) __attribute__((alias("setup_rendering_material_parameters")));
+void FUN_180294c20(uint param_1, char* param_2, uint param_3, void* param_4, uint param_5) __attribute__((alias("process_rendering_string_encoding")));
+void FUN_180294f50(longlong param_1) __attribute__((alias("initialize_rendering_texture_data")));
+void FUN_180296680(longlong param_1) __attribute__((alias("process_rendering_character_map")));

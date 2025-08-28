@@ -1,9 +1,31 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part019_sub002_sub002.c - 1 个函数
+// 03_rendering_part019_sub002_sub002.c - 渲染系统标志位和材质处理模块
+// 本文件包含1个函数，用于处理渲染系统中的标志位和材质数据
 
-// 函数: void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
-void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
+/**
+ * @brief 处理渲染系统标志位和材质数据
+ * 
+ * 该函数根据不同的操作类型处理渲染系统中的标志位和材质数据。
+ * 支持多种渲染操作，包括参数设置、资源管理、材质处理等。
+ * 
+ * @param render_object 渲染对象指针，包含渲染相关的状态和数据
+ * @param param_data 参数数据指针，包含操作所需的参数信息
+ * @param operation_mode 操作模式标志，决定如何处理参数
+ * 
+ * 操作类型说明：
+ * - 0: 设置渲染参数
+ * - 1: 处理渲染对象
+ * - 2: 管理渲染资源
+ * - 3: 处理材质数据
+ * - 4: 批量设置渲染属性
+ * - 5: 查找并处理着色器
+ * - 6: 设置颜色值
+ * - 7: 设置辅助颜色值
+ * - 8: 设置材质属性
+ * - 9: 设置渲染批次属性
+ */
+void process_rendering_flags_and_materials(longlong *render_object, longlong *param_data, char operation_mode)
 
 {
   byte *pbVar1;
@@ -76,25 +98,30 @@ void FUN_180279640(longlong *param_1,longlong *param_2,char param_3)
   byte abStack_a0 [72];
   ulonglong uStack_58;
   
+  // 初始化堆栈保护和变量
   uStack_428 = 0xfffffffffffffffe;
   uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_488;
-  plVar14 = (longlong *)param_2[1];
-  plStack_468 = param_2;
-  plStack_460 = param_1;
-  cStack_458 = param_3;
-  if (plVar14 != param_2 + 1) {
+  plVar14 = (longlong *)param_data[1];
+  plStack_468 = param_data;
+  plStack_460 = render_object;
+  cStack_458 = operation_mode;
+  // 遍历参数数据链表
+  if (plVar14 != param_data + 1) {
     do {
       uVar17 = 0;
       puVar12 = (undefined4 *)plVar14[2];
       switch(*puVar12) {
       case 0:
-        if (cStack_458 == '\0') {
-          *(undefined4 *)((longlong)param_1 + 0x324) = puVar12[2];
-          *(undefined1 *)((longlong)param_1 + 0x32c) = 0;
+        // 操作类型0：设置渲染参数
+        if (operation_mode == '\0') {
+          // 直接设置参数值
+          *(undefined4 *)((longlong)render_object + 0x324) = puVar12[2];
+          *(undefined1 *)((longlong)render_object + 0x32c) = 0;
         }
         else {
-          *(undefined4 *)((longlong)param_1 + 0x324) = *(undefined4 *)(*param_2 + 0x324);
-          *(undefined1 *)((longlong)param_1 + 0x32c) = *(undefined1 *)(*param_2 + 0x32c);
+          // 从源对象复制参数值
+          *(undefined4 *)((longlong)render_object + 0x324) = *(undefined4 *)(*param_data + 0x324);
+          *(undefined1 *)((longlong)render_object + 0x32c) = *(undefined1 *)(*param_data + 0x32c);
         }
         break;
       case 1:
