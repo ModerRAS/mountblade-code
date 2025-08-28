@@ -27,7 +27,7 @@
  * - AudioPerformanceOptimizer: 音频性能优化器
  * - AudioVolumeController: 音频音量控制器
  * - AudioChannelMixer: 音频通道混音器
- * - AudioFormatConverter: 音频格式转换器
+ * - AudioFormatConverter: 音频格式代码分析器
  * - AudioSpatialProcessor: 音频空间处理器
  * - AudioCompressor: 音频压缩器
  * - AudioFilterProcessor: 音频滤波处理器
@@ -1328,7 +1328,7 @@ AudioError AudioChannelMixer(int operation, void* mixer_data) {
 }
 
 /**
- * @brief 音频格式转换器
+ * @brief 音频格式代码分析器
  * 
  * 本函数负责音频格式转换，包括：
  * - 音频格式转换

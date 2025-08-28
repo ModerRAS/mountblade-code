@@ -311,7 +311,7 @@ uint8_t UNK_1809fe848;   // 配置文件读取器
 uint8_t UNK_1809fea68;   // 配置文件写入器
 uint8_t UNK_1809feaa0;   // 配置文件解析器
 uint8_t UNK_1809feb24;   // 配置文件验证器
-uint8_t UNK_1809feb28;   // 配置文件转换器
+uint8_t UNK_1809feb28;   // 配置文件代码分析器
 uint8_t DAT_1809feb50;   // 配置文件缓存
 uint8_t UNK_1809feb58;   // 配置文件锁
 uint8_t UNK_1809feb70;   // 配置文件队列

@@ -359,7 +359,7 @@ void ObjectInitializationSystem_CreateRelation(ObjectHandle source, ObjectHandle
 /**
  * @brief 原始函数映射 - FUN_1806a7860
  * 
- * 这是原始的反编译函数，映射到新的对象初始化系统
+ * 这是原始的转换函数，映射到新的对象初始化系统
  * 
  * @param param_1 主对象句柄
  * @param param_2 系统上下文句柄

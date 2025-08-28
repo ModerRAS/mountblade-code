@@ -861,7 +861,7 @@ void RenderingSystem_ImageDataValidator(int param_1, int param_2, unsigned long 
 
 //------------------------------------------------------------------------------
 // 函数: RenderingSystem_ImageConverter
-// 用途: 图像转换器，转换图像格式
+// 用途: 图像代码分析器，转换图像格式
 // 参数: 无
 // 返回: 无
 //------------------------------------------------------------------------------
@@ -1044,7 +1044,7 @@ void RenderingSystem_MultiTargetProcessor(longlong param_1, unsigned long long p
 
 //------------------------------------------------------------------------------
 // 函数: RenderingSystem_ImageFormatConverter
-// 用途: 图像格式转换器，转换图像格式
+// 用途: 图像格式代码分析器，转换图像格式
 // 参数: param_1 - 源图像
 //        param_2 - 目标基址1
 //        param_3 - 目标基址2
@@ -1248,7 +1248,7 @@ void RenderingSystem_PostProcessor(unsigned long long param_1, longlong param_2,
  *    - 缓冲区验证器（FUN_18069bbd0）
  *    - 图像块处理器（FUN_18069c3b0）
  *    - 图像数据验证器（FUN_18069c3f3）
- *    - 图像转换器（FUN_18069c4ff）
+ *    - 图像代码分析器（FUN_18069c4ff）
  *    
  * 2. 内存管理功能：
  *    - 内存管理器（FUN_18069bc50）
@@ -1271,7 +1271,7 @@ void RenderingSystem_PostProcessor(unsigned long long param_1, longlong param_2,
  *    - 多目标处理器（FUN_18069c820）
  *    
  * 5. 图像处理功能：
- *    - 图像格式转换器（FUN_18069c900）
+ *    - 图像格式代码分析器（FUN_18069c900）
  *    - 图像增强器（FUN_18069c990）
  *    - 后处理器（FUN_18069ca00）
  * 

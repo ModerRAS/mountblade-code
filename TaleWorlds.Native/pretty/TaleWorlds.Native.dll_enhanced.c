@@ -7,7 +7,7 @@
  * @author Claude Code
  * 
  * @description
- * 本文件是TaleWorlds.Native.dll的反编译C代码的美化版本。
+ * 本文件是TaleWorlds.Native.dll的转换C代码的美化版本。
  * 由于原始文件过大（71.1MB，2,322,575行），本版本提供整理后的核心接口定义。
  * 
  * @statistics
@@ -30,7 +30,7 @@
  * - AI系统 (Artificial Intelligence)
  * 
  * @note
- * 这是一个反编译文件，许多原始符号名称已丢失。
+ * 这是一个转换文件，许多原始符号名称已丢失。
  * 本版本通过系统化的分类和详细的中文注释提高可读性。
  */
 

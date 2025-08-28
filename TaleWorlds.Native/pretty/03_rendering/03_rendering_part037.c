@@ -100,7 +100,7 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
     uint64_t *******stack_hash_ptr1;
     uint64_t *******stack_hash_ptr2;
     uint64_t *******stack_hash_ptr3;
-    uint64_t stack_undefined3;
+    uint64_t stack_hash_id3;
     longlong stack_long1;
     int32_t stack_uint8;
     int32_t stack_uint9;
@@ -115,9 +115,9 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
     longlong stack_long4;
     uint64_t stack_int32_t;
     int32_t stack_uint11;
-    uint64_t stack_undefined5;
-    uint64_t stack_undefined6;
-    uint64_t stack_undefined7;
+    uint64_t stack_resource_id5;
+    uint64_t stack_resource_id6;
+    uint64_t stack_resource_id7;
     void *stack_ptr4;
     char *stack_char_ptr2;
     uint stack_uint12;
@@ -125,12 +125,12 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
     ulonglong stack_guard;
     
     // 初始化栈保护和变量
-    stack_undefined6 = INFINITE_UINT;
+    stack_resource_id6 = INFINITE_UINT;
     stack_guard = _DAT ^ (ulonglong)stack_buffer1;
     hash_val1 = 0;
     stack_uint9 = 0;
     stack_long2 = render_context;
-    stack_undefined5 = resource_param;
+    stack_resource_id5 = resource_param;
     stack_uint64_t = resource_param;
     
     // 检查系统状态并确定时间值
@@ -671,7 +671,7 @@ LAB_resource_processing_complete:
     stack_int16_t._4_4_ = uint_result;
     
     // 生成随机哈希值
-    generate_random_hash(_DAT, stack_undefined5, &stack_ptr2, 1);
+    generate_random_hash(_DAT, stack_resource_id5, &stack_ptr2, 1);
     stack_uint9 = 1;
     stack_ptr2 = &UNK_180a3c3e0;
     

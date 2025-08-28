@@ -76,7 +76,7 @@ typedef uint64_t UIAlgorithmHandle;               // UI算法句柄
 #define UISystemMemoryManager                     FUN_1807294f0
 #define UISystemBufferHandler                      FUN_1807294f0
 
-// UI系统数据转换器
+// UI系统数据代码分析器
 #define UISystemDataTransformer                   FUN_180729ba0
 #define UISystemShortIntProcessor                 FUN_180729ba0
 #define UISystemValueConverter                     FUN_180729ba0

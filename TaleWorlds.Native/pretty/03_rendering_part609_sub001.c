@@ -254,7 +254,7 @@ typedef struct {
 // 渲染系统效果处理器
 #define RenderingSystem_EffectProcessor FUN_180673970
 
-// 渲染系统数据转换器
+// 渲染系统数据代码分析器
 #define RenderingSystem_DataTransformer FUN_180673e10
 
 // 渲染系统资源管理器
@@ -348,7 +348,7 @@ int32_t RenderingSystem_AdvancedProcessor(longlong param_1, longlong *param_2);
 int32_t RenderingSystem_EffectProcessor(longlong param_1, longlong *param_2);
 
 /**
- * @brief 渲染系统数据转换器
+ * @brief 渲染系统数据代码分析器
  * 
  * 该函数负责渲染数据的转换，包括：
  * - 顶点数据的格式转换
@@ -668,7 +668,7 @@ int32_t RenderingSystem_EffectProcessor(longlong param_1, longlong *param_2)
 }
 
 /**
- * @brief 渲染系统数据转换器实现
+ * @brief 渲染系统数据代码分析器实现
  * 
  * 该函数负责渲染数据的转换，包括：
  * - 顶点数据的格式转换

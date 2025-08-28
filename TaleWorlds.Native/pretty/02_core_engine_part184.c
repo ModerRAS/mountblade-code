@@ -1534,7 +1534,7 @@ ALLOCATE_MEMORY:
  * 原始函数声明 - 保持兼容性
  * ============================================================================ */
 
-// 原始函数声明，保持与反编译代码的兼容性
+// 原始函数声明，保持与转换代码的兼容性
 void FUN_18016a890(longlong *param_1);
 void FUN_18016a8b0(uint64_t param_1, longlong param_2);
 void FUN_18016ae30(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_t param_4);

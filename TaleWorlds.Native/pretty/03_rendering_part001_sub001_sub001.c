@@ -125,14 +125,14 @@ uint8_t UNK_180a013e0;                           // 渲染同步对象
 uint8_t DAT_180c8a988;                          // 纹理缓存表
 uint8_t UNK_180a04f28;                           // 纹理加载器
 uint8_t UNK_180a04f58;                           // 纹理压缩器
-uint8_t DAT_180a02bf0;                          // 纹理格式转换器
+uint8_t DAT_180a02bf0;                          // 纹理格式代码分析器
 uint8_t DAT_180a03fc0;                          // 纹理过滤器
 uint8_t UNK_180a04f68;                           // 纹理MIP映射生成器
 uint8_t UNK_180a04f70;                           // 纹理绑定管理器
 uint8_t UNK_180a04f78;                           // 纹理采样器状态
 uint8_t UNK_180a04f80;                           // 纹理包装器
 uint8_t UNK_180a04f88;                           // 纹理坐标变换器
-uint8_t UNK_180a04f90;                           // 纹理颜色空间转换器
+uint8_t UNK_180a04f90;                           // 纹理颜色空间代码分析器
 uint8_t UNK_180a04fd4;                           // 纹理内存分配器
 uint8_t UNK_180a04f98;                           // 纹理缓存管理器
 uint8_t UNK_1803cfb60;                           // 纹理异步加载器
@@ -153,7 +153,7 @@ uint8_t UNK_180a05158;                           // 纹理序列化器
 uint8_t UNK_180a05168;                           // 纹理反序列化器
 uint8_t UNK_180a05128;                           // 纹理导出器
 uint8_t UNK_180a05148;                           // 纹理导入器
-uint8_t UNK_180a05138;                           // 纹理转换器
+uint8_t UNK_180a05138;                           // 纹理代码分析器
 
 // 渲染管线变量
 uint8_t UNK_180180860;                           // 顶点着色器管理器
@@ -189,7 +189,7 @@ uint8_t UNK_180a0b438;                           // 缓冲区解密器
 uint8_t UNK_180a0b450;                           // 缓冲区校验器
 uint8_t UNK_180a0b480;                           // 缓冲区序列化器
 uint8_t UNK_180a0b498;                           // 缓冲区反序列化器
-uint8_t UNK_180a0b4b0;                           // 缓冲区转换器
+uint8_t UNK_180a0b4b0;                           // 缓冲区代码分析器
 uint8_t UNK_180a0b4e0;                           // 缓冲区格式化器
 uint8_t UNK_180a0b500;                           // 缓冲区分析器
 uint8_t UNK_180a0b518;                           // 缓冲区调试器

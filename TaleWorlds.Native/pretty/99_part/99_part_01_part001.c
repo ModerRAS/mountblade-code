@@ -284,7 +284,7 @@ int system_logger(int log_level, const char* message);
 int data_validator(const void* data, size_t size);
 
 /**
- * @brief 数据转换器
+ * @brief 数据代码分析器
  * 
  * 在不同数据格式之间进行转换，支持游戏数据的序列化和反序列化。
  * 

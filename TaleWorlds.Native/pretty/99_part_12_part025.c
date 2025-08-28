@@ -50,7 +50,7 @@
 // 高级数据处理器
 #define AdvancedDataProcessor FUN_1807da380
 
-// 矩阵数据转换器
+// 矩阵数据代码分析器
 #define MatrixDataConverter FUN_1807da39a
 
 // 系统清理器
@@ -143,7 +143,7 @@ void SystemInitializer(void);
 void AdvancedDataProcessor(longlong param_1, longlong *param_2, uint param_3);
 
 /**
- * @brief 矩阵数据转换器
+ * @brief 矩阵数据代码分析器
  * 
  * 该函数负责矩阵数据转换，包括：
  * - 矩阵数据重排
@@ -738,7 +738,7 @@ void AdvancedDataProcessor(longlong param_1, longlong *param_2, uint param_3)
 }
 
 /**
- * @brief 矩阵数据转换器实现
+ * @brief 矩阵数据代码分析器实现
  * 
  * 该函数负责矩阵数据转换，包括：
  * - 矩阵数据重排

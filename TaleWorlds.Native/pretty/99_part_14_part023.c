@@ -665,7 +665,7 @@ void MemoryCleanerAndSecurityChecker(void)
  * 内存清理和资源回收。
  * 
  * @note 这是一个简化的实现版本
- * @warning 反编译时无法恢复跳转表，可能存在多个分支
+ * @warning 转换时无法恢复跳转表，可能存在多个分支
  * @see MemoryManagerFunc
  */
 void MemoryManagerAndFreeHandler(void)

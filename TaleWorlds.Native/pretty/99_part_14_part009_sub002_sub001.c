@@ -315,7 +315,7 @@ static uint32_t ExecuteDataFlowOperations(uint8_t* data_stream) {
 }
 
 /**
- * @brief 数据流转换器
+ * @brief 数据流代码分析器
  * 
  * 执行数据流的转换操作，包括格式转换、数据提取等。
  * 

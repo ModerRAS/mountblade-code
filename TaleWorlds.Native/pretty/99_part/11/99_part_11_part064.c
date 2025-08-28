@@ -235,7 +235,7 @@ ulonglong protocol_status_checker(void);
 void buffer_initializer_and_cleaner(void);
 
 /**
- * @brief 字符处理和转换器
+ * @brief 字符处理和代码分析器
  * 
  * 处理字符数据的转换和验证。
  * 支持多种字符编码和格式。

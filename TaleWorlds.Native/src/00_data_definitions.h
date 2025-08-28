@@ -24,6 +24,9 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
 
 /*=============================================================================
  * 系统常量定义

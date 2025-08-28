@@ -20,7 +20,7 @@
  * - memory_manager (内存管理器)
  * - parameter_validator (参数验证器)
  * - text_processor (文本处理器)
- * - data_converter (数据转换器)
+ * - data_converter (数据代码分析器)
  * - configuration_handler (配置处理器)
  * - cleanup_manager (清理管理器)
  */

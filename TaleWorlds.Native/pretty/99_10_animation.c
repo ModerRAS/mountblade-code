@@ -652,7 +652,7 @@ static void Animation_ComputeTransformMatrix(float* position, float* rotation, f
 }
 
 /**
- * @brief 四元数转矩阵转换器
+ * @brief 四元数转矩阵代码分析器
  * 
  * 将四元数转换为旋转矩阵。
  * 

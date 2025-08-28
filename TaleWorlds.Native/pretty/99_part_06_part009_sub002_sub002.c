@@ -148,7 +148,7 @@ typedef void (*SystemStringProcessor)(char* str, size_t length);
 /** 系统验证器类型 */
 typedef bool (*SystemValidator)(void* data, size_t size);
 
-/** 系统转换器类型 */
+/** 系统代码分析器类型 */
 typedef void (*SystemConverter)(void* input, void* output, size_t size);
 
 /** 系统清理器类型 */
@@ -183,7 +183,7 @@ typedef struct {
     SystemMemoryDeallocator deallocator;/** 系统内存释放器 */
     SystemStringProcessor stringProcessor;/** 系统字符串处理器 */
     SystemValidator validator;    /** 系统验证器 */
-    SystemConverter converter;    /** 系统转换器 */
+    SystemConverter converter;    /** 系统代码分析器 */
     SystemCleaner cleaner;        /** 系统清理器 */
     SystemInitializer initializer; /** 系统初始化器 */
     SystemTerminator terminator; /** 系统终结器 */
@@ -246,7 +246,7 @@ typedef struct {
     SystemEventHandler stateHandler;/** 状态处理器 */
     SystemCallback stateCallback;  /** 状态回调函数 */
     SystemValidator stateValidator;/** 状态验证器 */
-    SystemConverter stateConverter;/** 状态转换器 */
+    SystemConverter stateConverter;/** 状态代码分析器 */
     uint32_t stateFlags;          /** 状态标志 */
     uint32_t stateCounter;        /** 状态计数器 */
     void* stateContext;           /** 状态上下文 */
