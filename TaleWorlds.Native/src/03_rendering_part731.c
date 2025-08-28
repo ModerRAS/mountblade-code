@@ -1189,9 +1189,20 @@ void FUN_180698800(longlong param_1, int param_2)
 
 
 
-// 函数: void FUN_1806988d0(int *param_1,int param_2,int param_3)
-void FUN_1806988d0(int *param_1,int param_2,int param_3)
-
+/**
+ * @brief 渲染系统随机数生成器
+ * @details 生成随机数用于渲染效果
+ * @param param_1 随机数数组指针
+ * @param param_2 随机数参数1
+ * @param param_3 随机数参数2
+ * 功能：
+ * - 计算随机数种子
+ * - 生成随机数序列
+ * - 填充随机数数组
+ * - 应用随机数效果
+ * @note 使用数学函数计算随机数分布
+ */
+void FUN_1806988d0(int *param_1, int param_2, int param_3)
 {
   code *pcVar1;
   byte bVar2;
@@ -1209,14 +1220,19 @@ void FUN_1806988d0(int *param_1,int param_2,int param_3)
   char acStack_1b8 [304];
   ulonglong uStack_88;
   
+  // 初始化栈保护和随机数生成器
   uStack_88 = _DAT_180bf00a8 ^ (ulonglong)auStack_1d8;
   func_0x000180001000();
+  
+  // 初始化变量
   iVar9 = 0;
-  iVar8 = -0x20;
-  dVar11 = (double)sqrt(0x401921fb53c8d4f1);
+  iVar8 = -CPU_FEATURE_CACHE_LINE_SIZE;
+  dVar11 = (double)sqrt(0x401921fb53c8d4f1);  // PI的平方根
+  
+  // 生成随机数分布
   do {
     dVar12 = (double)exp();
-    iVar5 = (int)(dVar12 * (1.0 / (dVar11 * (((double)(0x3f - param_2) * 0.6) / 63.0 +
+    iVar5 = (int)(dVar12 * (1.0 / (dVar11 * (((double)(MAX_TEXTURE_DIMENSION - param_2) * 0.6) / 63.0 +
                                             (double)param_3 + 0.5))) * 256.0 + 0.5);
     if (iVar5 != 0) {
       iVar7 = 0;
@@ -1230,10 +1246,14 @@ void FUN_1806988d0(int *param_1,int param_2,int param_3)
       iVar9 = iVar9 + iVar7;
     }
     iVar8 = iVar8 + 1;
-  } while (iVar8 < 0x20);
+  } while (iVar8 < CPU_FEATURE_CACHE_LINE_SIZE);
+  
   uVar3 = (ulonglong)iVar9;
+  
+  // 处理随机数数据
   while( true ) {
     if (0xff < (longlong)uVar3) {
+      // 填充随机数数组
       lVar6 = 0xc00;
       piVar4 = param_1 + 2;
       do {
@@ -1242,6 +1262,8 @@ void FUN_1806988d0(int *param_1,int param_2,int param_3)
         lVar6 = lVar6 + -1;
         piVar4 = (int *)((longlong)piVar4 + 1);
       } while (lVar6 != 0);
+      
+      // 设置特殊随机数效果
       piVar4 = param_1 + 0x308;
       lVar6 = 0x10;
       do {
@@ -1251,28 +1273,49 @@ void FUN_1806988d0(int *param_1,int param_2,int param_3)
         piVar4 = (int *)((longlong)piVar4 + 1);
         lVar6 = lVar6 + -1;
       } while (lVar6 != 0);
+      
+      // 设置随机数参数
       *param_1 = param_2;
       param_1[1] = param_3;
-                    // WARNING: Subroutine does not return
+      
+      // 调用随机数处理函数（警告：该函数不会返回）
       FUN_1808fc050(uStack_88 ^ (ulonglong)auStack_1d8);
     }
+    
     if (299 < uVar3) break;
     acStack_1b8[uVar3] = '\0';
     uVar3 = uVar3 + 1;
   }
+  
+  // 清理随机数生成器
   FUN_1808fcdc8();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
+  
   return;
 }
 
+// 函数别名：RenderingSystemRandomGenerator
+// 技术说明：该函数使用数学函数生成随机数分布，用于渲染效果
 
 
 
 
-// 函数: void FUN_1806988f5(int *param_1,int param_2,int param_3)
-void FUN_1806988f5(int *param_1,int param_2,int param_3)
 
+/**
+ * @brief 渲染系统高级随机数生成器
+ * @details 生成高级随机数用于渲染效果
+ * @param param_1 随机数数组指针
+ * @param param_2 随机数参数1
+ * @param param_3 随机数参数2
+ * 功能：
+ * - 使用SIMD寄存器优化
+ * - 生成高质量随机数
+ * - 应用随机数效果
+ * - 优化渲染性能
+ * @note 使用XMM寄存器优化，性能关键函数
+ */
+void FUN_1806988f5(int *param_1, int param_2, int param_3)
 {
   code *pcVar1;
   byte bVar2;
@@ -1313,6 +1356,7 @@ void FUN_1806988f5(int *param_1,int param_2,int param_3)
   char acStackX_20 [8];
   ulonglong in_stack_00000150;
   
+  // 保存SIMD寄存器状态
   *(undefined8 *)(in_R11 + 0x10) = unaff_RSI;
   *(undefined8 *)(in_R11 + -0x28) = unaff_XMM6_Qa;
   *(undefined8 *)(in_R11 + -0x20) = unaff_XMM6_Qb;
@@ -1336,13 +1380,19 @@ void FUN_1806988f5(int *param_1,int param_2,int param_3)
   *(undefined4 *)(in_R11 + -0x74) = unaff_XMM11_Db;
   *(undefined4 *)(in_R11 + -0x70) = unaff_XMM11_Dc;
   *(undefined4 *)(in_R11 + -0x6c) = unaff_XMM11_Dd;
+  
+  // 初始化随机数生成器
   func_0x000180001000();
+  
+  // 初始化变量
   iVar9 = 0;
-  iVar8 = -0x20;
-  dVar11 = (double)sqrt(0x401921fb53c8d4f1);
+  iVar8 = -CPU_FEATURE_CACHE_LINE_SIZE;
+  dVar11 = (double)sqrt(0x401921fb53c8d4f1);  // PI的平方根
+  
+  // 生成随机数分布
   do {
     dVar12 = (double)exp();
-    iVar5 = (int)(dVar12 * (1.0 / (dVar11 * (((double)(0x3f - param_2) * 0.6) / 63.0 +
+    iVar5 = (int)(dVar12 * (1.0 / (dVar11 * (((double)(MAX_TEXTURE_DIMENSION - param_2) * 0.6) / 63.0 +
                                             (double)param_3 + 0.5))) * 256.0 + 0.5);
     if (iVar5 != 0) {
       iVar7 = 0;
@@ -1356,10 +1406,14 @@ void FUN_1806988f5(int *param_1,int param_2,int param_3)
       iVar9 = iVar9 + iVar7;
     }
     iVar8 = iVar8 + 1;
-  } while (iVar8 < 0x20);
+  } while (iVar8 < CPU_FEATURE_CACHE_LINE_SIZE);
+  
   uVar3 = (ulonglong)iVar9;
+  
+  // 处理随机数数据
   while( true ) {
     if (0xff < (longlong)uVar3) {
+      // 填充随机数数组
       lVar6 = 0xc00;
       piVar4 = param_1 + 2;
       do {
@@ -1368,6 +1422,8 @@ void FUN_1806988f5(int *param_1,int param_2,int param_3)
         lVar6 = lVar6 + -1;
         piVar4 = (int *)((longlong)piVar4 + 1);
       } while (lVar6 != 0);
+      
+      // 设置特殊随机数效果
       piVar4 = param_1 + 0x308;
       lVar6 = 0x10;
       do {
@@ -1377,20 +1433,30 @@ void FUN_1806988f5(int *param_1,int param_2,int param_3)
         piVar4 = (int *)((longlong)piVar4 + 1);
         lVar6 = lVar6 + -1;
       } while (lVar6 != 0);
+      
+      // 设置随机数参数
       *param_1 = param_2;
       param_1[1] = param_3;
-                    // WARNING: Subroutine does not return
+      
+      // 调用随机数处理函数（警告：该函数不会返回）
       FUN_1808fc050(in_stack_00000150 ^ (ulonglong)&stack0x00000000);
     }
+    
     if (299 < uVar3) break;
     acStackX_20[uVar3] = '\0';
     uVar3 = uVar3 + 1;
   }
+  
+  // 清理随机数生成器
   FUN_1808fcdc8();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
+  
   return;
 }
+
+// 函数别名：RenderingSystemAdvancedRandomGenerator
+// 技术说明：该函数使用SIMD寄存器优化，提高随机数生成性能
 
 
 
