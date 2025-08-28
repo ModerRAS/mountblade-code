@@ -306,7 +306,7 @@ void SystemDataProcessor(uint64_t param_1, int64_t param_2, int64_t param_3, cha
     
     // 数据数组初始化
     data_array[0] = 0;
-    processing_flag = FUN_18010f6f0(&unknown_var_2612_ptr, data_array, 0);
+    processing_flag = FUN_18010f6f0(system_data_flag_ptr, data_array, 0);
     completion_flag = (uint)processing_flag;
     array_size = (uint)processing_flag;
     

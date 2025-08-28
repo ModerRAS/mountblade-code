@@ -1885,9 +1885,9 @@ int FUN_1808310a0(uint64_t param_1,int64_t *param_2)
   byte bVar3;
   int iVar4;
   
-  iVar4 = FUN_1808313c0();
+  iVar4 = UISystem_InternalValidator();
   if (iVar4 != 0) {
-    FUN_180830440(param_1,param_2);
+    UISystem_SystemInitializer(param_1,param_2);
     return iVar4;
   }
   if (((param_2[0xe] != 0) && (*param_2 != 0)) &&
