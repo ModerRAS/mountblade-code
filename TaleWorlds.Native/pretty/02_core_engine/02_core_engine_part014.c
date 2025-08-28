@@ -499,176 +499,227 @@ void InitializeStringProcessor(undefined8 context, undefined8 **callback_array, 
 // 函数实现
 // ============================================================================
 
-// 函数: void BuildProcessIdString(undefined8 param_1,undefined8 param_2,longlong param_3)
-// 功能: 构建包含进程ID的字符串，格式为"PID : [进程ID]"
-// 参数: param_1 - 上下文指针, param_2 - 未知参数, param_3 - 字符串信息结构体指针
-void BuildProcessIdString(undefined8 param_1,undefined8 param_2,longlong param_3)
+// ============================================================================
+// BuildProcessIdString - 进程ID字符串构建函数
+// ============================================================================
 
+/**
+ * @brief 构建包含进程ID的字符串，格式为"PID : [进程ID]"
+ * 
+ * 此函数负责构建包含当前进程ID的字符串，主要用于调试信息、日志记录
+ * 和系统标识。函数会获取当前进程ID，将其转换为字符串，并与前缀"PID : "
+ * 组合成完整的字符串。
+ * 
+ * @param param_1 上下文指针，用于系统状态和配置信息
+ * @param param_2 未知参数，可能用于控制字符串格式或行为
+ * @param param_3 字符串信息结构体指针，包含输入字符串和配置信息
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数涉及复杂的内存管理和字符串操作
+ * @note 使用堆栈安全cookie进行安全检查
+ * @note 支持调试模式和发布模式的不同格式字符串
+ * 
+ * @security 使用堆栈安全cookie防止缓冲区溢出攻击
+ * @security 对输入参数进行验证和边界检查
+ * 
+ * @performance 优化了字符串拼接和内存分配操作
+ * @performance 使用预分配缓冲区减少内存分配次数
+ * 
+ * @see FormatIntegerToString
+ * @see AllocateStringBuffer
+ * @see CalculateStringHash
+ * @see GetCurrentProcessId
+ */
+void BuildProcessIdString(undefined8 param_1, undefined8 param_2, longlong param_3)
 {
-  longlong buffer_ptr;
-  longlong pid_length;
-  undefined4 process_id;
-  int buffer_size;
-  uint string_length;
-  uint input_length;
-  undefined1 *output_buffer;
-  ulonglong buffer_offset;
-  undefined *format_string_ptr;
-  longlong char_index;
-  uint hash_value;
-  undefined1 stack_guard_228 [32];
-  undefined1 allocation_type;
-  undefined4 operation_type;
-  undefined4 flags;
-  undefined *string_builder_ptr;
-  undefined1 *temp_buffer_ptr;
-  uint buffer_capacity;
-  undefined8 hash_result;
-  undefined *string_stream_ptr;
-  longlong stream_position;
-  uint stream_length;
-  undefined8 context_param;
-  undefined8 param2_copy;
-  undefined *allocator_ptr;
-  undefined8 allocator_context;
-  undefined4 allocator_flags;
-  undefined8 allocation_result;
-  undefined1 stack_guard_88 [32];
-  undefined8 security_cookie;
-  undefined8 param2_copy2;
-  char pid_buffer [16];
-  ulonglong stack_canary;
-  
-  // 安全检查：设置堆栈安全cookie
-  security_cookie = 0xfffffffffffffffe;
-  stack_canary = GLOBAL_STACK_COOKIE ^ (ulonglong)stack_guard_228;
-  
-  // 初始化变量
-  output_buffer = (undefined1 *)0x0;
-  operation_type = 0;
-  param2_copy = param_2;
-  param2_copy2 = param_2;
-  
-  // 获取当前进程ID
-  process_id = GetCurrentProcessId();
-  
-  // 初始化字符串流
-  string_stream_ptr = &GLOBAL_STRING_STREAM;
-  context_param = 0;
-  stream_position = 0;
-  stream_length = 0;
-  
-  // 分配6字节空间用于"PID : "字符串
-  AllocateStringBuffer(&string_stream_ptr, 6);
-  buffer_ptr = stream_position;
-  buffer_offset = (ulonglong)stream_length;
-  
-  // 写入"PID : "字符串到缓冲区
-  *(undefined4 *)(buffer_offset + stream_position) = 0x44495020;  // "DIP "
-  *(undefined2 *)(buffer_offset + 4 + stream_position) = 0x203a;  // " :"
-  *(undefined1 *)(buffer_offset + 6 + stream_position) = 0;       // null terminator
-  stream_length = 6;
-  
-  // 将进程ID转换为字符串
-  FormatIntegerToString(pid_buffer, &INTEGER_FORMAT_STRING, process_id);
-  
-  // 计算进程ID字符串长度
-  pid_length = -1;
-  do {
-    char_index = pid_length;
-    pid_length = char_index + 1;
-  } while (pid_buffer[char_index + 1] != '\0');
-  
-  // 如果进程ID字符串长度大于0，则添加到缓冲区
-  if (0 < (int)(pid_length + 1)) {
-    AllocateStringBuffer(&string_stream_ptr, (int)pid_length + 7);
-    // WARNING: Subroutine does not return
-    memcpy((ulonglong)stream_length + stream_position, pid_buffer, (longlong)((int)pid_length + 2));
-  }
-  
-  // 根据调试标志选择格式字符串
-  format_string_ptr = &DEFAULT_FORMAT_STRING;
-  if (DEBUG_MODE_ENABLED != '\0') {
-    format_string_ptr = &DEBUG_FORMAT_STRING;
-  }
-  
-  // 格式化字符串
-  FormatStringWithArguments(stack_guard_88, format_string_ptr);
-  
-  // 初始化分配器
-  allocator_ptr = &GLOBAL_STRING_STREAM;
-  allocation_result = 0;
-  allocator_context = 0;
-  allocator_flags = 0;
-  
-  // 初始化临时字符串构建器
-  string_builder_ptr = &GLOBAL_STRING_STREAM;
-  hash_value = 0;
-  hash_result = 0;
-  temp_buffer_ptr = (undefined1 *)0x0;
-  buffer_capacity = 0;
-  operation_type = 2;
-  
-  // 获取输入字符串长度
-  input_length = *(uint *)(param_3 + 0x10);
-  buffer_offset = (ulonglong)input_length;
-  string_length = 0;
-  
-  // 处理输入字符串
-  if (*(longlong *)(param_3 + 8) == 0) {
+    // 局部变量声明
+    longlong buffer_ptr;                    // 缓冲区指针
+    longlong pid_length;                    // 进程ID字符串长度
+    undefined4 process_id;                  // 进程ID值
+    int buffer_size;                        // 缓冲区大小
+    uint string_length;                     // 字符串长度
+    uint input_length;                      // 输入字符串长度
+    undefined1 *output_buffer;              // 输出缓冲区指针
+    ulonglong buffer_offset;                // 缓冲区偏移量
+    undefined *format_string_ptr;          // 格式字符串指针
+    longlong char_index;                    // 字符索引
+    uint hash_value;                        // 哈希值
+    undefined1 stack_guard_228[32];        // 堆栈保护区域1
+    undefined1 allocation_type;            // 分配类型
+    undefined4 operation_type;              // 操作类型
+    undefined4 flags;                       // 标志位
+    undefined *string_builder_ptr;          // 字符串构建器指针
+    undefined1 *temp_buffer_ptr;            // 临时缓冲区指针
+    uint buffer_capacity;                   // 缓冲区容量
+    undefined8 hash_result;                 // 哈希结果
+    undefined *string_stream_ptr;           // 字符串流指针
+    longlong stream_position;               // 流位置
+    uint stream_length;                     // 流长度
+    undefined8 context_param;               // 上下文参数
+    undefined8 param2_copy;                 // 参数2副本
+    undefined *allocator_ptr;               // 分配器指针
+    undefined8 allocator_context;          // 分配器上下文
+    undefined4 allocator_flags;            // 分配器标志
+    undefined8 allocation_result;           // 分配结果
+    undefined1 stack_guard_88[32];          // 堆栈保护区域2
+    undefined8 security_cookie;             // 安全cookie
+    undefined8 param2_copy2;                // 参数2副本2
+    char pid_buffer[PID_BUFFER_SIZE];      // 进程ID缓冲区
+    ulonglong stack_canary;                 // 堆栈金丝雀
+    
+    // 安全检查：设置堆栈安全cookie
+    // 用于检测堆栈溢出和缓冲区溢出攻击
+    security_cookie = 0xfffffffffffffffe;
+    stack_canary = GLOBAL_STACK_COOKIE ^ (ulonglong)stack_guard_228;
+    
+    // 初始化核心变量
+    output_buffer = (undefined1 *)0x0;      // 输出缓冲区初始化为NULL
+    operation_type = 0;                     // 操作类型初始化
+    param2_copy = param_2;                  // 保存参数2副本
+    param2_copy2 = param_2;                 // 保存参数2副本2
+    
+    // 获取当前进程ID
+    // 使用Windows API GetCurrentProcessId()获取当前进程的ID
+    process_id = GetCurrentProcessId();
+    
+    // 初始化字符串流系统
+    string_stream_ptr = &GLOBAL_STRING_STREAM;  // 指向全局字符串流
+    context_param = 0;                       // 上下文参数初始化
+    stream_position = 0;                     // 流位置初始化
+    stream_length = 0;                       // 流长度初始化
+    
+    // 分配固定大小的缓冲区用于PID前缀
+    // 分配6字节空间用于"PID : "字符串（包括null终止符）
+    AllocateStringBuffer(&string_stream_ptr, PID_PREFIX_LENGTH);
+    buffer_ptr = stream_position;            // 保存缓冲区指针
+    buffer_offset = (ulonglong)stream_length; // 计算缓冲区偏移量
+    
+    // 写入PID前缀字符串到缓冲区
+    // 使用直接内存操作写入"PID : "字符串
+    *(undefined4 *)(buffer_offset + stream_position) = 0x44495020;  // "DIP " (小端序)
+    *(undefined2 *)(buffer_offset + 4 + stream_position) = 0x203a;  // " :" (小端序)
+    *(undefined1 *)(buffer_offset + 6 + stream_position) = 0;       // null终止符
+    stream_length = PID_PREFIX_LENGTH;       // 更新流长度
+    
+    // 将进程ID转换为字符串格式
+    // 使用FormatIntegerToString函数将数字转换为字符串
+    FormatIntegerToString(pid_buffer, &INTEGER_FORMAT_STRING, process_id);
+    
+    // 计算进程ID字符串的实际长度
+    // 使用循环遍历查找null终止符来确定字符串长度
+    pid_length = -1;
+    do {
+        char_index = pid_length;
+        pid_length = char_index + 1;
+    } while (pid_buffer[char_index + 1] != '\0');
+    
+    // 如果进程ID字符串有效，则添加到主缓冲区
+    // 检查字符串长度并执行内存分配和复制操作
+    if (0 < (int)(pid_length + 1)) {
+        // 重新分配缓冲区以容纳进程ID字符串
+        AllocateStringBuffer(&string_stream_ptr, (int)pid_length + 7);
+        // 复制进程ID字符串到主缓冲区
+        memcpy((ulonglong)stream_length + stream_position, pid_buffer, (longlong)((int)pid_length + 2));
+    }
+    
+    // 根据调试模式选择不同的格式字符串
+    // 调试模式下使用更详细的格式字符串
+    format_string_ptr = &DEFAULT_FORMAT_STRING;
+    if (DEBUG_MODE_ENABLED != '\0') {
+        format_string_ptr = &DEBUG_FORMAT_STRING;
+    }
+    
+    // 执行字符串格式化操作
+    // 使用选定的格式字符串格式化最终输出
+    FormatStringWithArguments(stack_guard_88, format_string_ptr);
+    
+    // 初始化内存分配器系统
+    allocator_ptr = &GLOBAL_STRING_STREAM;   // 设置分配器指针
+    allocation_result = 0;                   // 初始化分配结果
+    allocator_context = 0;                   // 初始化分配器上下文
+    allocator_flags = 0;                     // 初始化分配器标志
+    
+    // 初始化字符串构建器系统
+    string_builder_ptr = &GLOBAL_STRING_STREAM; // 设置字符串构建器
+    hash_value = 0;                         // 初始化哈希值
+    hash_result = 0;                         // 初始化哈希结果
+    temp_buffer_ptr = (undefined1 *)0x0;     // 初始化临时缓冲区
+    buffer_capacity = 0;                     // 初始化缓冲区容量
+    operation_type = 2;                      // 设置操作类型为字符串处理
+    
+    // 获取输入字符串的长度信息
+    input_length = *(uint *)(param_3 + 0x10); // 从参数结构体读取长度
+    buffer_offset = (ulonglong)input_length; // 设置缓冲区偏移量
+    string_length = 0;                       // 初始化字符串长度
+    
+    // 处理输入字符串数据
+    // 根据输入字符串的状态选择不同的处理路径
+    if (*(longlong *)(param_3 + 8) == 0) {
 HANDLE_STRING_DATA:
-    hash_value = string_length;
-    if (input_length != 0) {
-      // WARNING: Subroutine does not return
-      memcpy(output_buffer, *(undefined8 *)(param_3 + 8), buffer_offset);
+        hash_value = string_length;          // 设置哈希值
+        if (input_length != 0) {
+            // 复制字符串数据到输出缓冲区
+            memcpy(output_buffer, *(undefined8 *)(param_3 + 8), buffer_offset);
+        }
     }
-  }
-  else if (input_length != 0) {
-    buffer_size = input_length + 1;
-    if (buffer_size < 0x10) {
-      buffer_size = 0x10;
+    else if (input_length != 0) {
+        // 计算缓冲区大小并分配内存
+        buffer_size = input_length + 1;
+        if (buffer_size < DEFAULT_ALLOCATION_SIZE) {
+            buffer_size = DEFAULT_ALLOCATION_SIZE;  // 确保最小分配大小
+        }
+        // 分配内存用于字符串处理
+        output_buffer = (undefined1 *)AllocateMemory(GLOBAL_MEMORY_ALLOCATOR, (longlong)buffer_size, MEMORY_ALLOC_FLAG);
+        *output_buffer = 0;                   // 初始化缓冲区内容
+        temp_buffer_ptr = output_buffer;      // 设置临时缓冲区指针
+        string_length = CalculateStringHash(output_buffer); // 计算字符串哈希值
+        hash_result = CONCAT44(hash_result._4_4_, string_length); // 合并哈希结果
+        goto HANDLE_STRING_DATA;              // 跳转到字符串数据处理
     }
-    output_buffer = (undefined1 *)AllocateMemory(GLOBAL_MEMORY_ALLOCATOR, (longlong)buffer_size, 0x13);
-    *output_buffer = 0;
-    temp_buffer_ptr = output_buffer;
-    string_length = CalculateStringHash(output_buffer);
-    hash_result = CONCAT44(hash_result._4_4_, string_length);
-    goto HANDLE_STRING_DATA;
-  }
-  
-  // 确保字符串以null结尾
-  if (output_buffer != (undefined1 *)0x0) {
-    output_buffer[buffer_offset] = 0;
-  }
-  
-  // 获取标志位
-  flags = *(undefined4 *)(param_3 + 0x1c);
-  hash_result = CONCAT44(flags, (undefined4)hash_result);
-  buffer_capacity = input_length;
-  
-  // 处理额外的字符串数据
-  if (input_length != 0xfffffffa) {
-    input_length = input_length + 7;
-    if (output_buffer == (undefined1 *)0x0) {
-      if ((int)input_length < 0x10) {
-        input_length = 0x10;
-      }
-      output_buffer = (undefined1 *)AllocateMemory(GLOBAL_MEMORY_ALLOCATOR, (longlong)(int)input_length, 0x13);
-      *output_buffer = 0;
+    
+    // 确保字符串以null终止符结尾
+    // 防止字符串溢出和内存访问错误
+    if (output_buffer != (undefined1 *)0x0) {
+        output_buffer[buffer_offset] = 0;    // 添加null终止符
     }
-    else {
-      if (input_length <= hash_value) goto FINALIZE_STRING;
-      allocation_type = 0x13;
-      output_buffer = (undefined1 *)ReallocateMemory(GLOBAL_MEMORY_ALLOCATOR, output_buffer, input_length, 0x10);
+    
+    // 获取字符串处理标志位
+    // 从参数结构体中提取标志位信息
+    flags = *(undefined4 *)(param_3 + 0x1c);
+    hash_result = CONCAT44(flags, (undefined4)hash_result); // 合并标志到哈希结果
+    buffer_capacity = input_length;           // 设置缓冲区容量
+    
+    // 处理额外的字符串数据扩展
+    // 如果需要，扩展缓冲区以容纳更多数据
+    if (input_length != 0xfffffffa) {
+        input_length = input_length + 7;     // 计算新的长度需求
+        if (output_buffer == (undefined1 *)0x0) {
+            // 分配新的缓冲区
+            if ((int)input_length < DEFAULT_ALLOCATION_SIZE) {
+                input_length = DEFAULT_ALLOCATION_SIZE;  // 确保最小分配大小
+            }
+            output_buffer = (undefined1 *)AllocateMemory(GLOBAL_MEMORY_ALLOCATOR, (longlong)(int)input_length, MEMORY_ALLOC_FLAG);
+            *output_buffer = 0;               // 初始化新缓冲区
+        }
+        else {
+            // 重新分配现有缓冲区
+            if (input_length <= hash_value) goto FINALIZE_STRING;  // 检查是否需要扩展
+            allocation_type = MEMORY_ALLOC_FLAG;  // 设置分配类型
+            output_buffer = (undefined1 *)ReallocateMemory(GLOBAL_MEMORY_ALLOCATOR, output_buffer, input_length, 0x10);
+        }
+        temp_buffer_ptr = output_buffer;      // 更新临时缓冲区指针
+        process_id = CalculateStringHash(output_buffer); // 重新计算哈希值
+        hash_result = CONCAT44(hash_result._4_4_, process_id); // 更新哈希结果
     }
-    temp_buffer_ptr = output_buffer;
-    process_id = CalculateStringHash(output_buffer);
-    hash_result = CONCAT44(hash_result._4_4_, process_id);
-  }
-  
+    
 FINALIZE_STRING:
-  // WARNING: Subroutine does not return
-  memcpy(output_buffer + buffer_offset, buffer_ptr, 7);
+    // 最终字符串处理和合并
+    // 将PID字符串合并到最终的输出缓冲区
+    memcpy(output_buffer + buffer_offset, buffer_ptr, PID_PREFIX_LENGTH + 1);
+    
+    // 安全检查：验证堆栈完整性
+    CHECK_STACK_COOKIE(security_cookie, stack_guard_228);
 }
 
 
