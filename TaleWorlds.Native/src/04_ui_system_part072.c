@@ -338,184 +338,244 @@ void UISystem_MemoryAllocator(undefined8 context_ptr, undefined8 param2, undefin
 
 
 
-// 函数: void FUN_180707950(longlong param_1,undefined8 param_2,longlong param_3,uint param_4,int param_5,
-void FUN_180707950(longlong param_1,undefined8 param_2,longlong param_3,uint param_4,int param_5,
-                  undefined4 param_6,undefined4 param_7,undefined4 param_8,int param_9,
-                  undefined4 param_10,undefined8 param_11,undefined8 *param_12)
-
+/**
+ * @brief UI系统状态管理器 - 主要版本
+ * 
+ * 管理UI系统的状态更新、数据缓存和性能统计。
+ * 支持批量处理、循环缓冲区和动态调整。
+ * 
+ * @param ui_context UI系统上下文指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param process_flags 处理标志
+ * @param process_count 处理数量
+ * @param param6 参数6
+ * @param param7 参数7
+ * @param param8 参数8
+ * @param param9 参数9
+ * @param param10 参数10
+ * @param param11 参数11
+ * @param result_data 输出结果数据
+ * 
+ * 技术说明：
+ * - 实现循环缓冲区管理
+ * - 支持批量数据处理
+ * - 动态性能调整
+ * - 内存优化和缓存管理
+ */
+void UISystem_StateManager_Main(longlong ui_context, undefined8 param2, longlong param3, uint process_flags, int process_count,
+                                undefined4 param6, undefined4 param7, undefined4 param8, int param9,
+                                undefined4 param10, undefined8 param11, undefined8 *result_data)
 {
-  ulonglong uVar1;
-  undefined8 *puVar2;
-  undefined8 uVar3;
-  int iVar4;
-  longlong lVar5;
-  longlong lVar6;
-  float *pfVar7;
-  ulonglong uVar8;
-  int iVar9;
-  int iVar10;
-  int iVar11;
-  int iVar12;
-  ulonglong uVar13;
-  uint uVar14;
-  int iVar16;
-  bool bVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  ulonglong uVar15;
+  ulonglong loop_counter;
+  undefined8 *data_ptr;
+  undefined8 data_value;
+  int temp_var;
+  longlong buffer_offset;
+  longlong remaining_count;
+  float *float_ptr;
+  ulonglong processed_count;
+  int batch_size;
+  int remaining_items;
+  int current_batch;
+  int cache_index;
+  ulonglong iteration_index;
+  uint max_process_count;
+  int buffer_head;
+  bool has_more_data;
+  float current_value;
+  float min_value;
+  float sum_value;
+  ulonglong sample_count;
   
-  if (param_3 != 0) {
-    iVar16 = *(int *)(param_1 + 0x1d1c);
-    uVar14 = (param_9 * 0x5f) / 0x32;
-    if ((int)(param_4 & 0xfffffffe) <= (int)uVar14) {
-      uVar14 = param_4 & 0xfffffffe;
+  // 主要处理循环
+  if (param3 != 0) {
+    buffer_head = *(int *)(ui_context + 0x1d1c);
+    max_process_count = (param9 * 0x5f) / 0x32;
+    if ((int)(process_flags & 0xfffffffe) <= (int)max_process_count) {
+      max_process_count = process_flags & 0xfffffffe;
     }
-    iVar9 = uVar14 - iVar16;
-    if (0 < iVar9) {
-      param_9 = param_9 / 0x32;
+    batch_size = max_process_count - buffer_head;
+    if (0 < batch_size) {
+      param9 = param9 / 0x32;
       do {
-        iVar11 = param_9;
-        if (iVar9 <= param_9) {
-          iVar11 = iVar9;
+        current_batch = param9;
+        if (batch_size <= param9) {
+          current_batch = batch_size;
         }
-        FUN_180707df0(param_1,param_2,param_3,iVar11,iVar16,param_6,param_7,param_8,param_10,
-                      param_11);
-        iVar16 = iVar16 + param_9;
-        iVar9 = iVar9 - param_9;
-      } while (0 < iVar9);
+        FUN_180707df0(ui_context, param2, param3, current_batch, buffer_head, param6, param7, param8, param10, param11);
+        buffer_head = buffer_head + param9;
+        batch_size = batch_size - param9;
+      } while (0 < batch_size);
     }
-    *(uint *)(param_1 + 0x1d1c) = uVar14 - param_5;
+    *(uint *)(ui_context + 0x1d1c) = max_process_count - process_count;
   }
-  *(undefined4 *)param_12 = 0;
-  iVar16 = *(int *)(param_1 + 0x2054);
-  iVar9 = *(int *)(param_1 + 0x2050);
-  iVar4 = iVar9 - iVar16;
-  iVar11 = iVar4 + 100;
-  if (-1 < iVar4) {
-    iVar11 = iVar4;
+  
+  // 初始化结果数据
+  *(undefined4 *)result_data = 0;
+  buffer_head = *(int *)(ui_context + 0x2054);
+  batch_size = *(int *)(ui_context + 0x2050);
+  temp_var = batch_size - buffer_head;
+  current_batch = temp_var + 100;
+  if (-1 < temp_var) {
+    current_batch = temp_var;
   }
-  uVar13 = 0;
-  iVar4 = 0;
-  if (((*(int *)(param_1 + 8) / 0x32 < param_5) && (iVar16 != iVar9)) &&
-     (iVar16 = iVar16 + 1, iVar16 == 100)) {
-    iVar16 = 0;
+  
+  iteration_index = 0;
+  temp_var = 0;
+  
+  // 缓冲区管理
+  if (((*(int *)(ui_context + 8) / 0x32 < process_count) && (buffer_head != batch_size)) &&
+     (buffer_head = buffer_head + 1, buffer_head == 100)) {
+    buffer_head = 0;
   }
-  iVar10 = 1;
-  iVar12 = iVar16 + -1;
-  if (iVar16 != iVar9) {
-    iVar12 = iVar16;
+  
+  // 数据采样和统计
+  remaining_items = 1;
+  cache_index = buffer_head + -1;
+  if (buffer_head != batch_size) {
+    cache_index = buffer_head;
   }
-  if (iVar12 < 0) {
-    iVar12 = 99;
+  if (cache_index < 0) {
+    cache_index = 99;
   }
-  uVar8 = (ulonglong)iVar12;
-  lVar5 = uVar8 * 0x38;
-  puVar2 = (undefined8 *)(lVar5 + 0x206c + param_1);
-  uVar3 = puVar2[1];
-  *param_12 = *puVar2;
-  param_12[1] = uVar3;
-  puVar2 = (undefined8 *)(lVar5 + 0x207c + param_1);
-  uVar3 = puVar2[1];
-  param_12[2] = *puVar2;
-  param_12[3] = uVar3;
-  puVar2 = (undefined8 *)(lVar5 + 0x208c + param_1);
-  uVar3 = puVar2[1];
-  param_12[4] = *puVar2;
-  param_12[5] = uVar3;
-  param_12[6] = *(undefined8 *)(lVar5 + 0x209c + param_1);
-  fVar20 = *(float *)((longlong)param_12 + 4);
-  uVar15 = uVar13;
-  fVar18 = fVar20;
+  
+  processed_count = (ulonglong)cache_index;
+  buffer_offset = processed_count * 0x38;
+  
+  // 从缓存中读取数据
+  data_ptr = (undefined8 *)(buffer_offset + 0x206c + ui_context);
+  data_value = data_ptr[1];
+  *result_data = *data_ptr;
+  result_data[1] = data_value;
+  
+  data_ptr = (undefined8 *)(buffer_offset + 0x207c + ui_context);
+  data_value = data_ptr[1];
+  result_data[2] = *data_ptr;
+  result_data[3] = data_value;
+  
+  data_ptr = (undefined8 *)(buffer_offset + 0x208c + ui_context);
+  data_value = data_ptr[1];
+  result_data[4] = *data_ptr;
+  result_data[5] = data_value;
+  result_data[6] = *(undefined8 *)(buffer_offset + 0x209c + ui_context);
+  
+  // 性能统计计算
+  sum_value = *(float *)((longlong)result_data + 4);
+  sample_count = iteration_index;
+  min_value = sum_value;
+  
   do {
-    bVar17 = uVar8 != 99;
-    uVar1 = uVar8 + 1;
-    uVar8 = uVar13;
-    if (bVar17) {
-      uVar8 = uVar1;
+    has_more_data = processed_count != 99;
+    loop_counter = processed_count + 1;
+    processed_count = iteration_index;
+    if (has_more_data) {
+      processed_count = loop_counter;
     }
-    fVar19 = fVar18;
-    if (uVar8 == (longlong)*(int *)(param_1 + 0x2050)) break;
-    iVar10 = iVar10 + 1;
-    uVar14 = (int)uVar15 + 1;
-    uVar15 = (ulonglong)uVar14;
-    fVar19 = *(float *)(uVar8 * 0x38 + 0x2070 + param_1);
-    fVar20 = fVar20 + fVar19;
-    if (fVar19 <= fVar18) {
-      fVar19 = fVar18;
+    current_value = min_value;
+    if (processed_count == (longlong)*(int *)(ui_context + 0x2050)) break;
+    
+    remaining_items = remaining_items + 1;
+    max_process_count = (int)sample_count + 1;
+    sample_count = (ulonglong)max_process_count;
+    
+    current_value = *(float *)(processed_count * 0x38 + 0x2070 + ui_context);
+    sum_value = sum_value + current_value;
+    if (current_value <= min_value) {
+      current_value = min_value;
     }
-    fVar18 = fVar19;
-  } while ((int)uVar14 < 3);
-  fVar18 = fVar20 / (float)iVar10;
-  if (fVar20 / (float)iVar10 <= fVar19 - 0.2) {
-    fVar18 = fVar19 - 0.2;
+    min_value = current_value;
+  } while ((int)max_process_count < 3);
+  
+  // 计算平均值和调整值
+  min_value = sum_value / (float)remaining_items;
+  if (sum_value / (float)remaining_items <= current_value - 0.2) {
+    min_value = current_value - 0.2;
   }
-  *(float *)((longlong)param_12 + 4) = fVar18;
-  *(int *)(param_1 + 0x2058) = *(int *)(param_1 + 0x2058) + param_5 / (*(int *)(param_1 + 8) / 400);
-  iVar16 = *(int *)(param_1 + 0x2058);
-  iVar9 = *(int *)(param_1 + 0x2054);
-  if (7 < iVar16) {
+  *(float *)((longlong)result_data + 4) = min_value;
+  
+  // 更新统计计数器
+  *(int *)(ui_context + 0x2058) = *(int *)(ui_context + 0x2058) + process_count / (*(int *)(ui_context + 8) / 400);
+  buffer_head = *(int *)(ui_context + 0x2058);
+  batch_size = *(int *)(ui_context + 0x2054);
+  
+  // 批量处理优化
+  if (7 < buffer_head) {
     do {
-      iVar16 = iVar16 + -8;
-      iVar9 = iVar9 + 1;
-    } while (7 < iVar16);
-    *(int *)(param_1 + 0x2054) = iVar9;
-    *(int *)(param_1 + 0x2058) = iVar16;
+      buffer_head = buffer_head + -8;
+      batch_size = batch_size + 1;
+    } while (7 < buffer_head);
+    *(int *)(ui_context + 0x2054) = batch_size;
+    *(int *)(ui_context + 0x2058) = buffer_head;
   }
-  if (99 < iVar9) {
-    *(int *)(param_1 + 0x2054) = iVar9 + -100;
+  
+  // 缓冲区溢出处理
+  if (99 < batch_size) {
+    *(int *)(ui_context + 0x2054) = batch_size + -100;
   }
-  fVar20 = 0.0;
-  iVar16 = iVar11 + -1;
-  if (iVar11 + -1 < 1) {
-    iVar16 = iVar4;
+  
+  // 数据聚合计算
+  sum_value = 0.0;
+  buffer_head = current_batch + -1;
+  if (current_batch + -1 < 1) {
+    buffer_head = temp_var;
   }
-  lVar5 = (longlong)(100 - iVar16);
-  if (3 < lVar5) {
-    pfVar7 = (float *)(param_1 + 0x1eb4);
-    lVar6 = (lVar5 - 4U >> 2) + 1;
-    iVar4 = (int)lVar6 * 4;
-    uVar13 = lVar6 * 4;
+  buffer_offset = (longlong)(100 - buffer_head);
+  
+  // 批量数据计算（4个元素一组）
+  if (3 < buffer_offset) {
+    float_ptr = (float *)(ui_context + 0x1eb4);
+    remaining_count = (buffer_offset - 4U >> 2) + 1;
+    temp_var = (int)remaining_count * 4;
+    iteration_index = remaining_count * 4;
     do {
-      fVar20 = fVar20 + pfVar7[-1] + *pfVar7 + pfVar7[1] + pfVar7[2];
-      pfVar7 = pfVar7 + 4;
-      lVar6 = lVar6 + -1;
-    } while (lVar6 != 0);
+      sum_value = sum_value + float_ptr[-1] + *float_ptr + float_ptr[1] + float_ptr[2];
+      float_ptr = float_ptr + 4;
+      remaining_count = remaining_count + -1;
+    } while (remaining_count != 0);
   }
-  if ((longlong)uVar13 < lVar5) {
-    lVar5 = lVar5 - uVar13;
-    pfVar7 = (float *)(param_1 + 0x1eb0 + uVar13 * 4);
-    iVar4 = iVar4 + (int)lVar5;
+  
+  // 处理剩余数据
+  if ((longlong)iteration_index < buffer_offset) {
+    buffer_offset = buffer_offset - iteration_index;
+    float_ptr = (float *)(ui_context + 0x1eb0 + iteration_index * 4);
+    temp_var = temp_var + (int)buffer_offset;
     do {
-      fVar20 = fVar20 + *pfVar7;
-      pfVar7 = pfVar7 + 1;
-      lVar5 = lVar5 + -1;
-    } while (lVar5 != 0);
+      sum_value = sum_value + *float_ptr;
+      float_ptr = float_ptr + 1;
+      buffer_offset = buffer_offset + -1;
+    } while (buffer_offset != 0);
   }
-  lVar5 = (longlong)iVar4;
-  if (lVar5 < 100) {
-    if (3 < 100 - lVar5) {
-      pfVar7 = (float *)(param_1 + 0x1d24 + lVar5 * 4);
-      lVar6 = (0x60U - lVar5 >> 2) + 1;
-      lVar5 = lVar5 + lVar6 * 4;
+  
+  buffer_offset = (longlong)temp_var;
+  
+  // 补充数据计算
+  if (buffer_offset < 100) {
+    if (3 < 100 - buffer_offset) {
+      float_ptr = (float *)(ui_context + 0x1d24 + buffer_offset * 4);
+      remaining_count = (0x60U - buffer_offset >> 2) + 1;
+      buffer_offset = buffer_offset + remaining_count * 4;
       do {
-        fVar20 = fVar20 + pfVar7[-1] + *pfVar7 + pfVar7[1] + pfVar7[2];
-        pfVar7 = pfVar7 + 4;
-        lVar6 = lVar6 + -1;
-      } while (lVar6 != 0);
+        sum_value = sum_value + float_ptr[-1] + *float_ptr + float_ptr[1] + float_ptr[2];
+        float_ptr = float_ptr + 4;
+        remaining_count = remaining_count + -1;
+      } while (remaining_count != 0);
     }
-    if (lVar5 < 100) {
-      lVar6 = 100 - lVar5;
-      pfVar7 = (float *)(param_1 + 0x1d20 + lVar5 * 4);
+    
+    if (buffer_offset < 100) {
+      remaining_count = 100 - buffer_offset;
+      float_ptr = (float *)(ui_context + 0x1d20 + buffer_offset * 4);
       do {
-        fVar20 = fVar20 + *pfVar7;
-        pfVar7 = pfVar7 + 1;
-        lVar6 = lVar6 + -1;
-      } while (lVar6 != 0);
+        sum_value = sum_value + *float_ptr;
+        float_ptr = float_ptr + 1;
+        remaining_count = remaining_count + -1;
+      } while (remaining_count != 0);
     }
   }
-  *(float *)((longlong)param_12 + 0x14) =
-       (1.0 - fVar20) * *(float *)(param_1 + 0x2040) + fVar20 * *(float *)(param_1 + 0x2044);
+  
+  // 最终结果计算
+  *(float *)((longlong)result_data + 0x14) =
+       (1.0 - sum_value) * *(float *)(ui_context + 0x2040) + sum_value * *(float *)(ui_context + 0x2044);
   return;
 }
 
