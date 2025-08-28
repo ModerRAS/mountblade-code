@@ -260,8 +260,8 @@ uint8_t SystemInitialize(void)
     }
     
     // 资源表配置
-    *(void **)(unaff_RSI + OFFSET_RESOURCE_TABLE) = &unknown_var_7024_ptr;
-    *(void **)(unaff_RSI + OFFSET_RESOURCE_TABLE + 8) = &unknown_var_7008_ptr;
+    *(void **)(unaff_RSI + OFFSET_RESOURCE_TABLE) = &processed_var_7024_ptr;
+    *(void **)(unaff_RSI + OFFSET_RESOURCE_TABLE + 8) = &processed_var_7008_ptr;
     *(code **)(unaff_RSI + OFFSET_SYSTEM_STATE) = FUN_1802436f0;
     
     // 系统参数配置
@@ -329,7 +329,7 @@ uint64_t * SystemResourceAllocate(uint64_t *param_1, uint64_t param_2)
     int64_t *plVar1;
     
     // 资源ID设置
-    *param_1 = &unknown_var_9624_ptr;
+    *param_1 = &processed_var_9624_ptr;
     plVar1 = (int64_t *)param_1[0x1c];
     
     if (plVar1 == (int64_t *)0x0) {
@@ -433,13 +433,13 @@ uint8_t SystemStateProcessor(int64_t param_1)
         // 状态参数提取
         iVar1 = *(int *)(param_1 + 0x3590);
         iVar2 = *(int *)(param_1 + 0x3594);
-        puStack_d8 = &unknown_var_3432_ptr;
+        puStack_d8 = &memory_allocator_3432_ptr;
         puStack_d0 = auStack_c0;
         
         // 配置缓冲区初始化
         auStack_c0[0] = 0;
         uStack_c8 = 10;
-        strcpy_s(auStack_c0, 0x80, &unknown_var_336_ptr);
+        strcpy_s(auStack_c0, 0x80, &memory_allocator_336_ptr);
         
         // 系统参数配置
         puVar9 = &system_buffer_ptr;
@@ -571,14 +571,14 @@ uint8_t SystemConfigProcessor(int64_t param_1)
         uStack_ec = 0x2f;
         uStack_e8 = 0x3f800000;
         uStack_e0 = *(int32_t *)(param_1 + 0x1bd4);
-        puStack_b8 = &unknown_var_3432_ptr;
+        puStack_b8 = &memory_allocator_3432_ptr;
         puStack_b0 = auStack_a0;
         
         // 配置缓冲区设置
         auStack_a0[0] = 0;
         uStack_a8 = 7;
         uStack_f0 = uVar4;
-        uVar5 = strcpy_s(auStack_a0, 0x80, &unknown_var_400_ptr);
+        uVar5 = strcpy_s(auStack_a0, 0x80, &processed_var_400_ptr);
         
         // 配置资源分配
         puVar3 = (uint64_t *)FUN_1800b1d80(uVar5, &plStack_d0, &puStack_b8, &uStack_f8);

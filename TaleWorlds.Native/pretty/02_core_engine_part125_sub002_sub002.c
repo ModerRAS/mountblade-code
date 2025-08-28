@@ -183,7 +183,7 @@ void FUN_18012b523(void)
           (*(int *)(unaff_RSI + 0x1a90) - *(int *)(unaff_RSI + 0x1e44) < 2)) &&
          ((*(char *)(unaff_RSI + 0xc3) != '\0' &&
           (((*(int *)(unaff_RSI + 0x1df4) != -1 &&
-            (iVar7 = strcmp(&unknown_var_2304_ptr,unaff_RSI + 0x1df8), iVar7 == 0)) &&
+            (iVar7 = strcmp(&rendering_buffer_2304_ptr,unaff_RSI + 0x1df8), iVar7 == 0)) &&
            (bVar21 = false, **(int64_t **)(unaff_RSI + 0x1de0) == in_stack_00000040)))))) {
         bVar21 = true;
       }
@@ -317,7 +317,7 @@ void FUN_18012b523(void)
       fVar27 = (float)(int)(fVar27 * 0.55);
       unaff_RBP[-0x1e] = fStack0000000000000050 + fVar27;
       unaff_RBP[-0x1d] = fStack0000000000000054 + fVar27;
-      uVar4 = FUN_180123c00(in_stack_00000040,&unknown_var_2496_ptr,0);
+      uVar4 = FUN_180123c00(in_stack_00000040,&rendering_buffer_2496_ptr,0);
       uVar13 = CONCAT44(uVar9,0x20);
       cVar3 = FUN_18010f170(unaff_RBP + -0x20,uVar4,(int64_t)&stack0x00000058 + 1,&stack0x00000058,
                             uVar13);
@@ -638,7 +638,7 @@ void FUN_18012b523(void)
     *(int32_t *)(in_stack_00000040 + 0x16c) = 1;
     *(int32_t *)(in_stack_00000040 + 0x170) = 2;
     if ((unaff_R15D & 0x20) == 0) {
-      uVar9 = FUN_180123c00(in_stack_00000040,&unknown_var_2480_ptr,0);
+      uVar9 = FUN_180123c00(in_stack_00000040,&rendering_buffer_2480_ptr,0);
       cVar3 = FUN_180110000(uVar9,in_stack_00000040 + 0x40,0);
       if (cVar3 != '\0') {
         *(int8_t *)(in_stack_00000040 + 0xb3) = 1;
@@ -652,7 +652,7 @@ void FUN_18012b523(void)
                                    *(float *)(unaff_RSI + 0x165c)) - fVar26,
                                    *(float *)(in_stack_00000040 + 0x44) +
                                    *(float *)(unaff_RSI + 0x1660) + fVar26);
-      uVar9 = FUN_180123c00(in_stack_00000040,&unknown_var_2512_ptr,0);
+      uVar9 = FUN_180123c00(in_stack_00000040,&rendering_buffer_2512_ptr,0);
       cVar3 = FUN_18010fd40(uVar9,uVar13);
       if (cVar3 != '\0') {
         **(int8_t **)(unaff_RBP + 10) = 0;

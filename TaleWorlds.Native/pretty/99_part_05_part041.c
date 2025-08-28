@@ -265,7 +265,7 @@ BADSPACEBASE *SystemResourceValidator(int64_t param_1, int64_t param_2, uint64_t
                 if (lVar10 != plVar1[*(int64_t *)(lVar4 + 0x10)]) {
                     do {
                         plVar1 = (int64_t *)**(int64_t **)(lVar10 + 8);
-                        if (*(code **)(*plVar1 + 0x1d8) == (code *)&unknown_var_3280_ptr) {
+                        if (*(code **)(*plVar1 + 0x1d8) == (code *)&memory_allocator_3280_ptr) {
                             iVar6 = 0;
                             plVar5 = (int64_t *)plVar1[7];
                             uVar8 = plVar1[8] - (int64_t)plVar5 >> 4;
@@ -700,7 +700,7 @@ LAB_1802f2c88:
                         pcVar1 = pcVar1 + (int64_t)pcVar3;
                         pcVar2 = pcVar6;
                         if (pcVar1 <= pcVar3) break;
-                        lVar4 = (int64_t)&unknown_var_384_ptr - (int64_t)pcVar3;
+                        lVar4 = (int64_t)&memory_allocator_384_ptr - (int64_t)pcVar3;
                         while (*pcVar3 == pcVar3[lVar4]) {
                             pcVar3 = pcVar3 + 1;
                             if (pcVar1 <= pcVar3) goto LAB_1802f2d05;

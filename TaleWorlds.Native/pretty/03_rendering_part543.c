@@ -539,12 +539,12 @@ void FUN_180565cc0(int param_1,int param_2)
     *plVar9 = (int64_t)&system_handler1_ptr;
     *plVar9 = (int64_t)&system_handler2_ptr;
     *(int32_t *)(plVar9 + 1) = 0;
-    *plVar9 = (int64_t)&unknown_var_1000_ptr;
+    *plVar9 = (int64_t)&ui_system_data_1000_ptr;
     LOCK();
     *(int8_t *)(plVar9 + 2) = 0;
     UNLOCK();
     plVar9[3] = -1;
-    *plVar9 = (int64_t)&unknown_var_2640_ptr;
+    *plVar9 = (int64_t)&rendering_buffer_2640_ptr;
     *(int32_t *)(plVar9 + 5) = 5;
     plVar9[4] = lVar2;
     plStack_20 = plVar9;
@@ -637,7 +637,7 @@ void FUN_180565d50(int64_t param_1,int64_t *param_2,int64_t param_3)
   uStack_94 = 0;
   uStack_8c = 0;
   plStack_128 = (int64_t *)0x0;
-  puStack_68 = &unknown_var_672_ptr;
+  puStack_68 = &processed_var_672_ptr;
   puStack_60 = auStack_50;
   uStack_58 = 0;
   auStack_50[0] = 0;
@@ -669,7 +669,7 @@ void FUN_180565d50(int64_t param_1,int64_t *param_2,int64_t param_3)
   puStack_68 = &system_state_ptr;
   plStack_120 = alStack_d8;
   pplStack_118 = &plStack_128;
-  pcStack_f8 = (code *)&unknown_var_7792_ptr;
+  pcStack_f8 = (code *)&processed_var_7792_ptr;
   pcStack_f0 = FUN_180567730;
   ppuStack_138 = &plStack_108;
   plStack_108 = plStack_120;
@@ -781,11 +781,11 @@ void FUN_180566010(int64_t param_1,uint *param_2,uint *param_3)
   uStack_b4 = 0;
   uStack_ac = 0;
   plStack_110 = (int64_t *)0x0;
-  puStack_80 = &unknown_var_672_ptr;
+  puStack_80 = &processed_var_672_ptr;
   puStack_78 = auStack_68;
   auStack_68[0] = 0;
   uStack_70 = 0x1a;
-  strcpy_s(auStack_68,0x20,&unknown_var_8592_ptr);
+  strcpy_s(auStack_68,0x20,&processed_var_8592_ptr);
   plVar1 = (int64_t *)FUN_1800b08e0(system_resource_state,aplStack_108,&puStack_80,1);
   plVar1 = (int64_t *)*plVar1;
   if (plVar1 != (int64_t *)0x0) {
@@ -879,11 +879,11 @@ void FUN_1805661a0(int64_t param_1,int64_t *param_2)
   uStack_94 = 0;
   uStack_8c = 0;
   plStack_f0 = (int64_t *)0x0;
-  puStack_68 = &unknown_var_672_ptr;
+  puStack_68 = &processed_var_672_ptr;
   puStack_60 = auStack_50;
   auStack_50[0] = 0;
   uStack_58 = 0x1a;
-  strcpy_s(auStack_50,0x20,&unknown_var_8592_ptr);
+  strcpy_s(auStack_50,0x20,&processed_var_8592_ptr);
   plVar2 = (int64_t *)FUN_1800b08e0(system_resource_state,&plStack_e8,&puStack_68,1);
   plVar2 = (int64_t *)*plVar2;
   if (plVar2 != (int64_t *)0x0) {

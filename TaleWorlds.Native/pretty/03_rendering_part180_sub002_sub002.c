@@ -520,7 +520,7 @@ LAB_1803763e0:
                     fVar34 = *(float *)(lVar29 + 8 + lVar17);
                     fVar33 = unaff_XMM13_Da;
                     if ((uVar16 >> 0x16 & 1) != 0) {
-                      if (*(code **)(*plVar9 + 0x198) == (code *)&unknown_var_2544_ptr) {
+                      if (*(code **)(*plVar9 + 0x198) == (code *)&rendering_buffer_2544_ptr) {
                         fVar33 = *(float *)((int64_t)plVar9 + 0x244);
                       }
                       else {

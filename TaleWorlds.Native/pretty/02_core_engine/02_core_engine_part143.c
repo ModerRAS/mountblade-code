@@ -568,7 +568,7 @@ int64_t set_render_context(uint64_t context_handle, uint64_t *parameter_array)
   int iVar3;
   
   lVar2 = SYSTEM_DATA_MANAGER_A;
-  strncpy(SYSTEM_DATA_MANAGER_A + 0x1df8,&unknown_var_2304_ptr,0x21);
+  strncpy(SYSTEM_DATA_MANAGER_A + 0x1df8,&rendering_buffer_2304_ptr,0x21);
   *(int8_t *)(lVar2 + 0x1e18) = 0;
   FUN_18013de90(lVar2 + 0x1e48,0);
   puVar1 = (uint64_t *)(lVar2 + 0x1e58);
@@ -601,7 +601,7 @@ int64_t get_render_context(void)
   
   lVar1 = SYSTEM_DATA_MANAGER_A;
   if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1df4) != -1) {
-    iVar2 = strcmp(&unknown_var_2304_ptr,SYSTEM_DATA_MANAGER_A + 0x1df8);
+    iVar2 = strcmp(&rendering_buffer_2304_ptr,SYSTEM_DATA_MANAGER_A + 0x1df8);
     if (iVar2 == 0) {
       iVar2 = *(int *)(lVar1 + 0x1e30);
       fVar3 = (*(float *)(lVar1 + 0x1e28) - *(float *)(lVar1 + 0x1e20)) *

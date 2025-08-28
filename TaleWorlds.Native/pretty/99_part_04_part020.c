@@ -12,7 +12,7 @@ void FUN_180269f00(int64_t param_1)
   int64_t lVar3;
   uint64_t uVar4;
   
-  *(void **)(param_1 + 8) = &unknown_var_7440_ptr;
+  *(void **)(param_1 + 8) = &processed_var_7440_ptr;
   FUN_1802708b0((uint64_t *)(param_1 + 0x10));
   puVar2 = *(uint64_t **)(param_1 + 0x10);
   if (puVar2 == (uint64_t *)0x0) {
@@ -49,13 +49,13 @@ void FUN_180269f00(int64_t param_1)
 void FUN_180269f50(int64_t param_1)
 
 {
-  *(void **)(param_1 + 0x38) = &unknown_var_7440_ptr;
+  *(void **)(param_1 + 0x38) = &processed_var_7440_ptr;
   FUN_1802708b0((int64_t *)(param_1 + 0x40));
   if (*(int64_t *)(param_1 + 0x40) != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
-  *(void **)(param_1 + 8) = &unknown_var_7440_ptr;
+  *(void **)(param_1 + 8) = &processed_var_7440_ptr;
   FUN_1802708b0((int64_t *)(param_1 + 0x10));
   if (*(int64_t *)(param_1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
@@ -557,7 +557,7 @@ void FUN_18026a400(int64_t param_1)
   
   lVar1 = *(int64_t *)(param_1 + 0xb0);
   plVar2 = *(int64_t **)(*(int64_t *)(lVar1 + 0x10) + 0x88);
-  pcStack_20 = (code *)&unknown_var_9616_ptr;
+  pcStack_20 = (code *)&processed_var_9616_ptr;
   puStack_18 = &system_pattern2_ptr;
   alStack_30[0] = lVar1;
   cVar3 = (**(code **)(*plVar2 + 0x60))

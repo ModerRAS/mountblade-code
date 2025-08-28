@@ -311,7 +311,7 @@ FUN_18048d650(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3432_ptr;
+  *param_2 = &memory_allocator_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0x14;
@@ -328,7 +328,7 @@ FUN_18048d6d0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_8280_ptr;
+  *param_1 = &processed_var_8280_ptr;
   FUN_18048dac0();
   if ((int64_t *)param_1[0x20] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x20] + 0x38))();
@@ -389,11 +389,11 @@ void FUN_18048d750(int64_t param_1,int64_t param_2)
     *(int *)(lVar12 + 0x3590) = (int)*(float *)(param_1 + 0x48);
     *(int *)(lVar12 + 0x3594) = (int)*(float *)(param_1 + 0x4c);
     bVar17 = 0;
-    puStack_60 = &unknown_var_672_ptr;
+    puStack_60 = &processed_var_672_ptr;
     puStack_58 = auStack_48;
     auStack_48[0] = 0;
     uStack_50 = 0x11;
-    strcpy_s(auStack_48,0x20,&unknown_var_8248_ptr);
+    strcpy_s(auStack_48,0x20,&processed_var_8248_ptr);
     puVar15 = &system_buffer_ptr;
     if (puStack_58 != (void *)0x0) {
       puVar15 = puStack_58;
@@ -742,8 +742,8 @@ FUN_18048dd80(uint64_t *param_1,uint64_t param_2,uint64_t param_3,int8_t param_4
 {
   uint64_t uVar1;
   
-  *param_1 = &unknown_var_9360_ptr;
-  *param_1 = &unknown_var_8632_ptr;
+  *param_1 = &processed_var_9360_ptr;
+  *param_1 = &processed_var_8632_ptr;
   _Mtx_init_in_situ(param_1 + 1,2,param_3,param_4,0xfffffffffffffffe);
   param_1[0xb] = 0;
   param_1[0xc] = 0;
@@ -824,7 +824,7 @@ void FUN_18048dff0(uint64_t *param_1)
   int iVar3;
   int64_t lVar4;
   
-  *param_1 = &unknown_var_8632_ptr;
+  *param_1 = &processed_var_8632_ptr;
   if (param_1[0x11] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
@@ -946,7 +946,7 @@ void FUN_18048dff0(uint64_t *param_1)
         (**(code **)(*(int64_t *)param_1[0xb] + 0x38))();
       }
       _Mtx_destroy_in_situ();
-      *param_1 = &unknown_var_9360_ptr;
+      *param_1 = &processed_var_9360_ptr;
       return;
     }
                     // WARNING: Subroutine does not return

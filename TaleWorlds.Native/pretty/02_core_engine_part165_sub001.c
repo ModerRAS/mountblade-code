@@ -504,7 +504,7 @@ uint64_t * FUN_18014e700(uint64_t *param_1,int64_t param_2)
   uVar2 = 0xfffffffffffffffe;
   lVar1 = FUN_18014aa50(auStack_40);
   param_1[2] = FUN_18014f520;
-  param_1[3] = &unknown_var_4400_ptr;
+  param_1[3] = &processed_var_4400_ptr;
   uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x28,8,system_allocation_flags,uVar2);
   FUN_18014aa50(uVar2,lVar1);
   *param_1 = uVar2;

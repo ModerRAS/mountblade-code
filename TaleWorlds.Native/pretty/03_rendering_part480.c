@@ -705,11 +705,11 @@ LAB_1805256ec:
     }
     if ((*(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +
                  0x48) < render_system_config_memory) && (SystemInitializer(&system_ptr_9ef8), render_system_config_memory == -1)) {
-      puStack_170 = &unknown_var_672_ptr;
+      puStack_170 = &processed_var_672_ptr;
       puStack_168 = auStack_158;
       auStack_158[0] = 0;
       uStack_160 = 0xc;
-      strcpy_s(auStack_158,0x20,&unknown_var_5088_ptr);
+      strcpy_s(auStack_158,0x20,&processed_var_5088_ptr);
       render_system_config_memory = FUN_180191c00(render_system_data_memory,&puStack_170);
       puStack_170 = &system_state_ptr;
       FUN_1808fcb30(&system_ptr_9ef8);
@@ -733,7 +733,7 @@ LAB_1805257df:
       puStack_168 = auStack_158;
       auStack_158[0] = 0;
       uStack_160 = 0xe;
-      strcpy_s(auStack_158,0x10,&unknown_var_6896_ptr);
+      strcpy_s(auStack_158,0x10,&processed_var_6896_ptr);
       lVar8 = (int64_t)iStack_78;
       puVar10 = &system_buffer_ptr;
       if (puStack_168 != (void *)0x0) {
@@ -839,9 +839,9 @@ void FUN_180525ac0(int64_t param_1,char param_2)
       __Throw_C_error_std__YAXH_Z(iVar4);
     }
     cVar3 = SystemBufferProcessor(0x180c95578,0,&system_param1_ptr);
-    if (((cVar3 != '\0') && (cVar3 = SystemBufferProcessor(0x180c95578,9,&unknown_var_3472_ptr), cVar3 != '\0')) &&
-       (cVar3 = SystemBufferProcessor(0x180c95578,uVar1,&unknown_var_3424_ptr), cVar3 != '\0')) {
-      SystemBufferProcessor(0x180c95578,(int)param_2,&unknown_var_3040_ptr);
+    if (((cVar3 != '\0') && (cVar3 = SystemBufferProcessor(0x180c95578,9,&memory_allocator_3472_ptr), cVar3 != '\0')) &&
+       (cVar3 = SystemBufferProcessor(0x180c95578,uVar1,&memory_allocator_3424_ptr), cVar3 != '\0')) {
+      SystemBufferProcessor(0x180c95578,(int)param_2,&memory_allocator_3040_ptr);
     }
     render_system_memory = render_system_memory & 0xffffffff00000000;
     iVar4 = (int)(render_system_memory - render_system_memory >> 3);
@@ -894,7 +894,7 @@ void FUN_180525cb0(int64_t param_1,float param_2)
       plVar8 = (int64_t *)((int64_t)cVar6 * 0x10 + *(int64_t *)(param_1 + 0x9a0));
       if (*(float *)(plVar8 + 1) <= 5.0) {
         if (*plVar8 == 0) {
-          FUN_1802ac200(uVar7,&plStackX_18,&unknown_var_6872_ptr);
+          FUN_1802ac200(uVar7,&plStackX_18,&processed_var_6872_ptr);
           if (plStackX_18 != (int64_t *)0x0) {
             uVar3 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x168,8,3);
             plVar4 = (int64_t *)FUN_1802ac390(uVar3);

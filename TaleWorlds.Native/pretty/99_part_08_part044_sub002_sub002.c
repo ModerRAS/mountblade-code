@@ -307,7 +307,7 @@ void FUN_1805a4a20(int64_t param_1,int param_2,int64_t param_3,int8_t param_4)
     if (uVar18 == 0) {
       fStack_528 = *(float *)(lVar13 + 0x10);
       lStack_530 = CONCAT44(lStack_530._4_4_,*(int32_t *)(param_3 + 0x4c));
-      puStack_538 = &unknown_var_2512_ptr;
+      puStack_538 = &rendering_buffer_2512_ptr;
       FUN_1800623b0(system_message_context,0,0x80000000000,3);
     }
     piVar10 = (int *)FUN_1805a0610(param_1,*(int32_t *)(param_3 + 0x50));
@@ -340,7 +340,7 @@ void FUN_1805a4a20(int64_t param_1,int param_2,int64_t param_3,int8_t param_4)
     if ((*(uint *)(lVar13 + 0x56c) & 0x4000) == 0) {
       fStack_528 = *(float *)(lVar13 + 0x10);
       lStack_530 = CONCAT44(lStack_530._4_4_,*(int32_t *)(param_3 + 0x4c));
-      puStack_538 = &unknown_var_2512_ptr;
+      puStack_538 = &rendering_buffer_2512_ptr;
       FUN_1800623b0(system_message_context,0,0x80000000000,3);
     }
     puVar9 = (void *)FUN_1805a0610(param_1,*(int32_t *)(param_3 + 0x50));
@@ -377,7 +377,7 @@ void FUN_1805a4a20(int64_t param_1,int param_2,int64_t param_3,int8_t param_4)
     if (uVar18 == 0) {
       fStack_528 = *(float *)(lVar13 + 0x10);
       lStack_530 = CONCAT44(lStack_530._4_4_,5);
-      puStack_538 = &unknown_var_2512_ptr;
+      puStack_538 = &rendering_buffer_2512_ptr;
       FUN_1800623b0(system_message_context,0,0x80000000000,3);
     }
     lVar13 = FUN_1805a0900(param_1,*(int32_t *)(param_3 + 0x50));

@@ -182,10 +182,10 @@ typedef struct {
 #define RenderingPerformanceAnalyzer FUN_180447430_analyze          /* 性能分析器 */
 
 /* 数据别名定义 */
-#define RenderingResourcePool unknown_var_9664                         /* 渲染资源池 */
-#define RenderingBufferCache unknown_var_9680                          /* 渲染缓冲区缓存 */
-#define RenderingMemoryHeap unknown_var_9696                           /* 渲染内存堆 */
-#define RenderingPerformanceMetrics unknown_var_160                   /* 渲染性能指标 */
+#define RenderingResourcePool processed_var_9664                         /* 渲染资源池 */
+#define RenderingBufferCache processed_var_9680                          /* 渲染缓冲区缓存 */
+#define RenderingMemoryHeap processed_var_9696                           /* 渲染内存堆 */
+#define RenderingPerformanceMetrics ui_system_data_160                   /* 渲染性能指标 */
 
 /*******************************************************************************
  * 函数声明
@@ -229,7 +229,7 @@ typedef struct {
  * - 支持资源分配验证和错误恢复机制
  */
 int FUN_180447320;
-void* unknown_var_9664;
+void* processed_var_9664;
 
 /**
  * 渲染缓冲区优化器函数
@@ -269,7 +269,7 @@ void* unknown_var_9664;
  * - 支持优化操作日志记录和分析
  */
 int FUN_180447360;
-void* unknown_var_9680;
+void* processed_var_9680;
 
 /**
  * 渲染内存管理器函数
@@ -309,7 +309,7 @@ void* unknown_var_9680;
  * - 支持内存管理操作日志记录
  */
 int FUN_1804473b0;
-void* unknown_var_9696;
+void* processed_var_9696;
 
 /**
  * 渲染性能监控器函数
@@ -349,7 +349,7 @@ void* unknown_var_9696;
  * - 支持监控操作日志记录和分析
  */
 int FUN_180447430;
-void* unknown_var_160;
+void* ui_system_data_160;
 
 /*******************************************************************************
  * 模块技术说明文档

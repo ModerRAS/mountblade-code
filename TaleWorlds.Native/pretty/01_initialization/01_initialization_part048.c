@@ -453,11 +453,11 @@ void ProcessDeviceOperations(int64_t *device_params)
   stack_var3 = 0xfffffffffffffffe;
   security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
   device_config = *(uint64_t *)(device_params[0x37] + 0x1e0);
-  stack_ptr2 = &unknown_var_672_ptr;
+  stack_ptr2 = &processed_var_672_ptr;
   stack_ptr3 = stack_buffer2;
   stack_buffer2[0] = stack_buffer2[0] & 0xffffffffffffff00;
   stack_var2._0_4_ = 0x12;
-  strcpy_s(stack_buffer2, 0x20, &unknown_var_5320_ptr);
+  strcpy_s(stack_buffer2, 0x20, &processed_var_5320_ptr);
   config_mask = SystemCore_LoggingSystem0(device_config, &stack_ptr2, 0);
   stack_ptr2 = &system_state_ptr;
   
@@ -621,7 +621,7 @@ uint64_t ProcessDeviceStatusUpdate(int64_t device_ptr, int64_t context_ptr)
       // 检查是否需要处理特殊标志
       if ((*(byte *)(device_ptr + 0xfd) & 8) != 0) {
         component_ptr = 0xb8;
-        device_callback = (code *)&unknown_var_128_ptr;
+        device_callback = (code *)&ui_system_data_128_ptr;
         do {
           list_ptr = *(int64_t *)(component_ptr + *(int64_t *)(device_ptr + 0x1b8));
           if (((list_ptr != 0) && (component_ptr = *(int64_t *)(list_ptr + 0x370), component_ptr != 0)) &&
@@ -676,7 +676,7 @@ uint64_t ProcessDeviceStatusUpdate(int64_t device_ptr, int64_t context_ptr)
             *(int64_t *)
              (*(int64_t *)(component_ptr + 0x3f70 + hash_value * 8) + (uint64_t)(counter_value + hash_index * -0x400) * 8)
                  = list_ptr;
-            device_callback = (code *)&unknown_var_128_ptr;
+            device_callback = (code *)&ui_system_data_128_ptr;
           }
           component_ptr = component_ptr + 8;
         } while (component_ptr < 0x138);

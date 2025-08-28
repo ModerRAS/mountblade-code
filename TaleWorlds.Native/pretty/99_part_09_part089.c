@@ -77,13 +77,13 @@ void FUN_1805f9a90(int64_t *param_1,uint64_t param_2)
       uVar3 = (uint64_t)uVar12;
     } while ((uint64_t)(int64_t)(int)uVar12 < uVar11);
   }
-  SystemBufferProcessor(param_2,uVar5,&unknown_var_5960_ptr);
+  SystemBufferProcessor(param_2,uVar5,&processed_var_5960_ptr);
   if (0 < (int)uVar5) {
     do {
       lVar7 = (int64_t)aiStack_448[uVar8];
       lVar2 = *(int64_t *)(*param_1 + lVar7 * 8);
-      SystemBufferProcessor(param_2,*(uint *)(lVar2 + 0x5a0) % 0xffa,&unknown_var_5976_ptr);
-      SystemBufferProcessor(param_2,*(int32_t *)(lVar2 + 0x5c8),&unknown_var_5912_ptr);
+      SystemBufferProcessor(param_2,*(uint *)(lVar2 + 0x5a0) % 0xffa,&processed_var_5976_ptr);
+      SystemBufferProcessor(param_2,*(int32_t *)(lVar2 + 0x5c8),&processed_var_5912_ptr);
       FUN_180646200(param_2,lVar2,*(int32_t *)(lVar2 + 0x5c8));
       *(double *)(*(int64_t *)(*param_1 + lVar7 * 8) + 0x5b8) = dVar1;
       lVar2 = *param_1;
@@ -122,15 +122,15 @@ uint64_t FUN_1805f9d00(int64_t param_1,int64_t param_2)
   int iVar11;
   int iVar12;
   
-  SystemBufferProcessor(param_2,*(uint *)(param_1 + 0x4b38) % 0xffa,&unknown_var_5976_ptr);
+  SystemBufferProcessor(param_2,*(uint *)(param_1 + 0x4b38) % 0xffa,&processed_var_5976_ptr);
   if (*(int *)(param_1 + 0x4b40) < *(int *)(param_1 + 0x4b3c)) {
-    SystemBufferProcessor(param_2,1,&unknown_var_5928_ptr);
-    SystemBufferProcessor(param_2,(*(int *)(param_1 + 0x4b3c) - 1U) % 0xffa,&unknown_var_5976_ptr);
+    SystemBufferProcessor(param_2,1,&processed_var_5928_ptr);
+    SystemBufferProcessor(param_2,(*(int *)(param_1 + 0x4b3c) - 1U) % 0xffa,&processed_var_5976_ptr);
     iVar6 = *(int *)(param_1 + 0x4b3c);
     *(int *)(param_1 + 0x4b40) = iVar6;
   }
   else {
-    SystemBufferProcessor(param_2,0,&unknown_var_5928_ptr);
+    SystemBufferProcessor(param_2,0,&processed_var_5928_ptr);
     iVar6 = *(int *)(param_1 + 0x4b3c);
   }
   iVar10 = *(int *)(param_1 + 0x4b38);
@@ -147,9 +147,9 @@ uint64_t FUN_1805f9d00(int64_t param_1,int64_t param_2)
           iVar12 = iVar11;
         }
 LAB_1805f9e5e:
-        SystemBufferProcessor(param_2,1,&unknown_var_5928_ptr);
-        SystemBufferProcessor(param_2,iVar12 - iVar10,&unknown_var_5944_ptr);
-        SystemBufferProcessor(param_2,iVar9 - iVar12,&unknown_var_5944_ptr);
+        SystemBufferProcessor(param_2,1,&processed_var_5928_ptr);
+        SystemBufferProcessor(param_2,iVar12 - iVar10,&processed_var_5944_ptr);
+        SystemBufferProcessor(param_2,iVar9 - iVar12,&processed_var_5944_ptr);
         iVar6 = *(int *)(param_1 + 0x4b3c);
         bVar3 = true;
         iVar10 = iVar9;
@@ -216,7 +216,7 @@ void FUN_1805f9ee0(uint64_t param_1,uint64_t param_2)
   cVar1 = FUN_1805fa350();
   iVar3 = 0;
   if ((cVar1 == '\0') ||
-     (cVar1 = SystemSynchronizationProcessor(param_2,aiStackX_18,&unknown_var_5960_ptr), iVar3 = aiStackX_18[0],
+     (cVar1 = SystemSynchronizationProcessor(param_2,aiStackX_18,&processed_var_5960_ptr), iVar3 = aiStackX_18[0],
      cVar1 == '\0')) {
     bVar4 = false;
   }
@@ -259,7 +259,7 @@ int64_t FUN_1805f9f60(int64_t param_1,int64_t param_2)
   iVar7 = 0;
   iVar4 = 0;
   auStackX_8[0] = 0;
-  cVar3 = SystemSynchronizationProcessor(param_2,auStackX_8,&unknown_var_5976_ptr);
+  cVar3 = SystemSynchronizationProcessor(param_2,auStackX_8,&processed_var_5976_ptr);
   uVar10 = *(uint *)(param_1 + 0x4b38) % 0xffa;
   uVar8 = auStackX_8[0] - uVar10;
   if (auStackX_8[0] <= uVar10) {
@@ -275,7 +275,7 @@ int64_t FUN_1805f9f60(int64_t param_1,int64_t param_2)
   }
   lVar6 = FUN_1805fab40();
   auStackX_8[0] = 0;
-  if ((cVar3 == '\0') || (cVar3 = SystemSynchronizationProcessor(param_2,auStackX_8,&unknown_var_5912_ptr), cVar3 == '\0'))
+  if ((cVar3 == '\0') || (cVar3 = SystemSynchronizationProcessor(param_2,auStackX_8,&processed_var_5912_ptr), cVar3 == '\0'))
   {
     lVar12 = 0;
   }
@@ -561,7 +561,7 @@ char FUN_1805fa350(int64_t *param_1,uint64_t param_2)
   uVar11 = 0;
   iVar9 = 0;
   auStackX_8[0] = 0;
-  cVar3 = SystemSynchronizationProcessor(param_2,auStackX_8,&unknown_var_5976_ptr);
+  cVar3 = SystemSynchronizationProcessor(param_2,auStackX_8,&processed_var_5976_ptr);
   uVar13 = *(uint *)((int64_t)param_1 + 0x4b34);
   uVar12 = uVar13 % 0xffa;
   uVar5 = auStackX_8[0] - uVar12;
@@ -583,13 +583,13 @@ LAB_1805fa42b:
   }
   else {
     auStackX_8[0] = 0;
-    cVar3 = SystemSynchronizationProcessor(param_2,auStackX_8,&unknown_var_5928_ptr);
+    cVar3 = SystemSynchronizationProcessor(param_2,auStackX_8,&processed_var_5928_ptr);
     bVar15 = auStackX_8[0] != 0;
     if (cVar3 == '\0') goto LAB_1805fa42b;
     bVar2 = true;
   }
   if (bVar15) {
-    if ((bVar2) && (cVar3 = SystemSynchronizationProcessor(param_2,auStackX_8,&unknown_var_5976_ptr), cVar3 != '\0')) {
+    if ((bVar2) && (cVar3 = SystemSynchronizationProcessor(param_2,auStackX_8,&processed_var_5976_ptr), cVar3 != '\0')) {
       bVar2 = true;
     }
     else {
@@ -632,7 +632,7 @@ LAB_1805fa42b:
   bVar15 = false;
   if (bVar2) {
     auStackX_8[0] = 0;
-    cVar3 = SystemSynchronizationProcessor(param_2,auStackX_8,&unknown_var_5928_ptr);
+    cVar3 = SystemSynchronizationProcessor(param_2,auStackX_8,&processed_var_5928_ptr);
     bVar15 = auStackX_8[0] != 0;
     if (cVar3 != '\0') {
       cVar3 = '\x01';
@@ -647,9 +647,9 @@ LAB_1805fa531:
       iVar9 = iVar8 - *(int *)(*(int64_t *)*param_1 + 0x5a0);
     }
     do {
-      cVar3 = SystemSynchronizationProcessor(param_2,aiStackX_18,&unknown_var_5944_ptr);
+      cVar3 = SystemSynchronizationProcessor(param_2,aiStackX_18,&processed_var_5944_ptr);
       if ((cVar3 == '\0') ||
-         (cVar3 = SystemSynchronizationProcessor(param_2,auStackX_20,&unknown_var_5944_ptr), cVar3 == '\0')) {
+         (cVar3 = SystemSynchronizationProcessor(param_2,auStackX_20,&processed_var_5944_ptr), cVar3 == '\0')) {
         return '\0';
       }
       iVar9 = iVar9 + aiStackX_18[0];
@@ -666,7 +666,7 @@ LAB_1805fa531:
         } while (uVar11 != 0);
       }
       auStackX_8[0] = 1;
-      cVar3 = SystemSynchronizationProcessor(param_2,auStackX_8,&unknown_var_5928_ptr);
+      cVar3 = SystemSynchronizationProcessor(param_2,auStackX_8,&processed_var_5928_ptr);
       if (cVar3 == '\0') {
         return '\0';
       }

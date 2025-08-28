@@ -67,7 +67,7 @@ void process_engine_data_stream(uint64_t param_1, int64_t param_2, int64_t *para
   if (param_4 != (int64_t *)0x0) {
     cVar1 = *(char *)((int64_t)param_3 + 0x44);
     if (cVar1 != '\0') {
-      puStack_268 = &unknown_var_8576_ptr;
+      puStack_268 = &processed_var_8576_ptr;
       initialize_memory_manager(system_message_context, 0, 0x80000000000, 9);
       cVar1 = *(char *)((int64_t)param_3 + 0x44);
     }
@@ -98,7 +98,7 @@ void process_engine_data_stream(uint64_t param_1, int64_t param_2, int64_t *para
   }
   
   // 初始化数据结构
-  puStack_1f8 = &unknown_var_2008_ptr;
+  puStack_1f8 = &rendering_buffer_2008_ptr;
   puStack_1f0 = auStack_1e0;
   uStack_1e8 = 0;
   auStack_1e0[0] = 0;
@@ -261,7 +261,7 @@ void process_file_data_read(uint64_t param_1, int64_t param_2, int64_t *param_3,
   uVar8 = (uint)param_3[2];
   if (param_4 != (int64_t *)0x0) {
     if (*(char *)((int64_t)param_3 + 0x44) != '\0') {
-      puStack_308 = &unknown_var_8576_ptr;
+      puStack_308 = &processed_var_8576_ptr;
       initialize_memory_manager(system_message_context, 0, 0x80000000000, 9);
       if (*(char *)((int64_t)param_3 + 0x44) != '\0') goto LAB_18008c01e;
     }
@@ -329,7 +329,7 @@ LAB_18008c01e:
   }
   
   // 处理数据转换
-  puStack_2c8 = &unknown_var_3856_ptr;
+  puStack_2c8 = &memory_allocator_3856_ptr;
   uStack_2c0 = 1;
   lStack_300 = lStack_300 + 1;
   puStack_308 = (void *)*plVar4;
@@ -382,7 +382,7 @@ void insert_data_structure_item(int64_t param_1, int64_t *param_2)
   uStack_8b8 = 0;
   plStack_8a0 = param_2;
   uVar4 = (**(code **)(*param_2 + 8))(param_2);
-  puStack_888 = &unknown_var_336_ptr;
+  puStack_888 = &memory_allocator_336_ptr;
   puStack_880 = auStack_870;
   auStack_870[0] = 0;
   uStack_878 = *(uint *)(param_2 + 0xf);
@@ -1007,7 +1007,7 @@ uint64_t * initialize_data_structure_params(uint64_t *param_1, int64_t param_2, 
   *param_1 = &system_state_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = &unknown_var_9208_ptr;
+  *param_1 = &processed_var_9208_ptr;
   param_1[1] = param_1 + 3;
   *(int32_t *)(param_1 + 2) = 0;
   *(int8_t *)(param_1 + 3) = 0;

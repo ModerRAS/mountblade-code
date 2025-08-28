@@ -108,7 +108,7 @@ FUN_18034dd90(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   param_1[2] = &system_state_ptr;
   param_1[3] = 0;
   *(int32_t *)(param_1 + 4) = 0;
-  param_1[2] = &unknown_var_3480_ptr;
+  param_1[2] = &memory_allocator_3480_ptr;
   param_1[3] = param_1 + 5;
   *(int32_t *)(param_1 + 4) = 0;
   *(int8_t *)(param_1 + 5) = 0;
@@ -157,7 +157,7 @@ FUN_18034dec0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_8888_ptr;
+  *param_1 = &processed_var_8888_ptr;
   FUN_1803457d0();
   if ((param_2 & 1) != 0) {
     free(param_1,0x88,param_3,param_4,uVar1);
@@ -740,7 +740,7 @@ void FUN_18034e5f0(uint64_t param_1)
   uStack_f0 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_118;
   uStack_f8 = 0;
-  puStack_d8 = &unknown_var_3480_ptr;
+  puStack_d8 = &memory_allocator_3480_ptr;
   puStack_d0 = auStack_c0;
   auStack_c0[0] = 0;
   uStack_c8 = 0xf;

@@ -298,7 +298,7 @@ int64_t FUN_1802de020(int64_t param_1,int64_t param_2)
   iStack_78 = 0;
   lVar7 = *(int64_t *)(param_1 + 0x280);
   if ((*(uint *)(lVar7 + 0x388) >> 0x19 & 1) != 0) {
-    System_DataHandler(&puStack_88,&unknown_var_9892_ptr);
+    System_DataHandler(&puStack_88,&processed_var_9892_ptr);
     lVar7 = *(int64_t *)(param_1 + 0x280);
   }
   bVar6 = false;
@@ -307,11 +307,11 @@ int64_t FUN_1802de020(int64_t param_1,int64_t param_2)
     bVar6 = 0.0 < *(float *)(lVar7 + 600);
   }
   if (bVar6) {
-    System_DataHandler(&puStack_88,&unknown_var_9932_ptr);
+    System_DataHandler(&puStack_88,&processed_var_9932_ptr);
     lVar7 = *(int64_t *)(param_1 + 0x280);
   }
   if ((*(char *)(lVar7 + 0x13c) != '\x06') && (*(char *)(lVar7 + 0x13c) != '\0')) {
-    System_DataHandler(&puStack_88,&unknown_var_9928_ptr);
+    System_DataHandler(&puStack_88,&processed_var_9928_ptr);
   }
   if (1 < iStack_78) {
     lVar7 = FUN_180629a40(&puStack_88,&puStack_68,0,iStack_78 + -1);
@@ -337,11 +337,11 @@ int64_t FUN_1802de020(int64_t param_1,int64_t param_2)
     if (puStack_80 != (void *)0x0) {
       puVar15 = puStack_80;
     }
-    System_DataHandler(plVar2,&unknown_var_9920_ptr,puVar15);
+    System_DataHandler(plVar2,&processed_var_9920_ptr,puVar15);
   }
   uVar8 = FUN_180628ca0();
   SystemCore_ConfigurationHandler0(puVar3,uVar8);
-  System_DataHandler(puVar3,&unknown_var_9904_ptr,uStackX_18,uVar11);
+  System_DataHandler(puVar3,&processed_var_9904_ptr,uStackX_18,uVar11);
   *(int *)(param_2 + 0x88) = iVar10;
   *(int *)(param_2 + 0x8c) = iVar14;
   *(int *)(param_2 + 0x90) = iVar14 * iVar10;

@@ -17,7 +17,7 @@ void FUN_18064e400(int64_t *param_1)
   int64_t *plVar9;
   bool bVar10;
   
-  if ((param_1 != (int64_t *)0x0) && (param_1 != (int64_t *)&unknown_var_7056_ptr)) {
+  if ((param_1 != (int64_t *)0x0) && (param_1 != (int64_t *)&processed_var_7056_ptr)) {
     plVar3 = *(int64_t **)(*param_1 + 0x10);
     if (plVar3 == param_1) {
       FUN_18064e0d0(param_1,2);
@@ -69,7 +69,7 @@ void FUN_18064e400(int64_t *param_1)
       } while (lVar8 != 0);
       FUN_18064d420(param_1);
       FUN_18064e2d0(param_1);
-      if (((param_1 == (int64_t *)0x0) || (param_1 == (int64_t *)&unknown_var_7056_ptr)) ||
+      if (((param_1 == (int64_t *)0x0) || (param_1 == (int64_t *)&processed_var_7056_ptr)) ||
          (lVar8 = *param_1, *(int64_t **)(lVar8 + 0x10) == param_1)) {
         return;
       }
@@ -211,7 +211,7 @@ void FUN_18064e428(int64_t param_1)
     } while (lVar9 != 0);
     FUN_18064d420();
     FUN_18064e2d0();
-    if (((unaff_R15 == (int64_t *)0x0) || (unaff_R15 == (int64_t *)&unknown_var_7056_ptr)) ||
+    if (((unaff_R15 == (int64_t *)0x0) || (unaff_R15 == (int64_t *)&processed_var_7056_ptr)) ||
        (lVar5 = *unaff_R15, *(int64_t **)(lVar5 + 0x10) == unaff_R15)) {
       return;
     }

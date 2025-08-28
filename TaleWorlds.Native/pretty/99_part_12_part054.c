@@ -732,7 +732,7 @@ int32_t FUN_1807eef60(int64_t *param_1)
 {
   int64_t lVar1;
   
-  lVar1 = (**(code **)param_1[5])(0x38,0,&unknown_var_3264_ptr);
+  lVar1 = (**(code **)param_1[5])(0x38,0,&memory_allocator_3264_ptr);
   param_1[1] = lVar1;
   if (lVar1 == 0) {
     return 0x26;
@@ -752,7 +752,7 @@ uint64_t FUN_1807eefb0(int64_t param_1)
   uVar1 = *(uint64_t *)(param_1 + 8);
   uVar2 = FUN_180788f70(uVar1);
   if ((int)uVar2 == 0) {
-    (**(code **)(*(int64_t *)(param_1 + 0x28) + 0x10))(uVar1,0,&unknown_var_3264_ptr);
+    (**(code **)(*(int64_t *)(param_1 + 0x28) + 0x10))(uVar1,0,&memory_allocator_3264_ptr);
     uVar2 = 0;
   }
   return uVar2;

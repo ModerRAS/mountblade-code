@@ -760,7 +760,7 @@ INIT_FINALIZE:
 }
 
 // 渲染相关常量
-uint *g_render_constant = &unknown_var_2680_ptr;        // 渲染常量
-int *g_render_base = &unknown_var_6048_ptr;             // 渲染基础地址
-int *g_render_offset = &unknown_var_6056_ptr;           // 渲染偏移量
-char *g_window_title = &unknown_var_2304_ptr;           // 窗口标题
+uint *g_render_constant = &rendering_buffer_2680_ptr;        // 渲染常量
+int *g_render_base = &processed_var_6048_ptr;             // 渲染基础地址
+int *g_render_offset = &processed_var_6056_ptr;           // 渲染偏移量
+char *g_window_title = &rendering_buffer_2304_ptr;           // 窗口标题

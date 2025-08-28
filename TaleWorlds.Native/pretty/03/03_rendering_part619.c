@@ -541,7 +541,7 @@ void RenderingSystem_TimeManager(void)
     char cVar2;
     
     render_system_memory = 0;
-    if (*(void **)*render_system_data_memory == &unknown_var_424_ptr) {
+    if (*(void **)*render_system_data_memory == &processed_var_424_ptr) {
         cVar2 = *(int *)(render_system_data_memory + 0xe0) != 0;
     }
     else {
@@ -912,7 +912,7 @@ void RenderingSystem_ResourceDestroyer(int64_t param_1, char param_2, uint64_t p
                      ((uint64_t)(uVar4 & 0xf) * RENDERING_MEMORY_POOL_SIZE +
                      *(int64_t *)(*(int64_t *)(lVar3 + RENDERING_STRING_HASH_OFFSET) + (uint64_t)(uVar4 >> 4) * 8));
             pcVar1 = *(code **)((void *)*puVar7 + 0x10);
-            if ((void *)*puVar7 == &unknown_var_5520_ptr) {
+            if ((void *)*puVar7 == &processed_var_5520_ptr) {
                 puVar7[2] = 0;
                 plVar2 = (int64_t *)puVar7[3];
                 puVar7[3] = 0;
@@ -988,7 +988,7 @@ void RenderingSystem_ResourceCleanup(uint64_t param_1)
              ((uint64_t)(uVar3 & 0xf) * RENDERING_MEMORY_POOL_SIZE +
              *(int64_t *)(*(int64_t *)(lVar2 + RENDERING_STRING_HASH_OFFSET) + (uint64_t)(uVar3 >> 4) * 8));
     in_stack_00000038 = uVar3;
-    if ((void *)*puVar6 == &unknown_var_5520_ptr) {
+    if ((void *)*puVar6 == &processed_var_5520_ptr) {
         puVar6[2] = 0;
         plVar1 = (int64_t *)puVar6[3];
         puVar6[3] = 0;
@@ -1257,7 +1257,7 @@ void RenderingSystem_SystemCallHandler(uint64_t param_1, uint64_t param_2, uint6
     CoreMemoryPoolValidator(&puStack_30, param_1, param_3, param_4, 0xfffffffffffffffe);
     auStackX_10[0] = 0xffffffff;
     puVar1 = *(void **)*render_system_data_memory;
-    if (puVar1 == &unknown_var_424_ptr) {
+    if (puVar1 == &processed_var_424_ptr) {
         cVar2 = *(int *)(render_system_data_memory + 0xc40) != 0;
     }
     else {

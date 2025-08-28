@@ -142,11 +142,11 @@ FUN_18053f600(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3432_ptr;
+  *param_2 = &memory_allocator_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0xd;
-  strcpy_s(param_2[1],0x80,&unknown_var_9616_ptr,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&processed_var_9616_ptr,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
@@ -186,7 +186,7 @@ uint64_t * FUN_18053f6c0(uint64_t *param_1,uint64_t param_2)
   *param_1 = &system_handler1_ptr;
   *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &unknown_var_9784_ptr;
+  *param_1 = &processed_var_9784_ptr;
   param_1[2] = 0;
   DataStructureManager(param_1 + 3,8,0xe,&SUB_18005d5f0,DataCacheManager);
   puVar3 = param_1 + 0x12;
@@ -274,7 +274,7 @@ void FUN_18053f930(uint64_t *param_1)
   uint64_t uVar5;
   uint64_t uVar4;
   
-  *param_1 = &unknown_var_9784_ptr;
+  *param_1 = &processed_var_9784_ptr;
   uVar4 = 0;
   if (((param_1[0x115] != 0) && (lVar2 = *(int64_t *)(param_1[0x115] + 0x260), lVar2 != 0)) &&
      (lVar2 = *(int64_t *)(lVar2 + 0x210), lVar2 != 0)) {

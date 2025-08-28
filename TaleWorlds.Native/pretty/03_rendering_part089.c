@@ -38,7 +38,7 @@ uint64_t *
 FUN_18031bcc0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_6464_ptr;
+  *param_1 = &processed_var_6464_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
@@ -207,7 +207,7 @@ void FUN_18031bde0(uint64_t param_1,int64_t *param_2,int param_3)
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_c8;
   uStack_a8 = 0;
   param_3 = param_3 * 0x60;
-  puStack_88 = &unknown_var_3480_ptr;
+  puStack_88 = &memory_allocator_3480_ptr;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 0x1c;
@@ -251,11 +251,11 @@ uint64_t * FUN_18031bf10(int64_t param_1,uint64_t *param_2)
     *plVar3 = (int64_t)&system_handler1_ptr;
     *plVar3 = (int64_t)&system_handler2_ptr;
     *(int32_t *)(plVar3 + 1) = 0;
-    *plVar3 = (int64_t)&unknown_var_6544_ptr;
+    *plVar3 = (int64_t)&processed_var_6544_ptr;
     plVar3[2] = 0;
     plVar3[3] = 0;
     *(int8_t *)(plVar3 + 4) = 0;
-    *plVar3 = (int64_t)&unknown_var_6464_ptr;
+    *plVar3 = (int64_t)&processed_var_6464_ptr;
     (**(code **)(*plVar3 + 0x28))(plVar3);
     *param_2 = plVar3;
   }
@@ -269,11 +269,11 @@ uint64_t * FUN_18031bf10(int64_t param_1,uint64_t *param_2)
     *plVar3 = (int64_t)&system_handler1_ptr;
     *plVar3 = (int64_t)&system_handler2_ptr;
     *(int32_t *)(plVar3 + 1) = 0;
-    *plVar3 = (int64_t)&unknown_var_6544_ptr;
+    *plVar3 = (int64_t)&processed_var_6544_ptr;
     plVar3[2] = 0;
     plVar3[3] = 0;
     *(int8_t *)(plVar3 + 4) = 0;
-    *plVar3 = (int64_t)&unknown_var_6464_ptr;
+    *plVar3 = (int64_t)&processed_var_6464_ptr;
     (**(code **)(*plVar3 + 0x28))(plVar3);
     *param_2 = plVar3;
   }
@@ -325,7 +325,7 @@ void FUN_18031c090(int64_t *param_1)
         *(int16_t *)((int64_t)puStack_38 + 0xc) = 0x6572;
         *(int8_t *)((int64_t)puStack_38 + 0xe) = 0;
         uStack_30 = 0xe;
-        System_DataHandler(&puStack_40,&unknown_var_6344_ptr,uVar6);
+        System_DataHandler(&puStack_40,&processed_var_6344_ptr,uVar6);
         uVar2 = FUN_18023a940(*(uint64_t *)
                                (*(int64_t *)(uVar4 + *(int64_t *)(*param_1 + 0x10)) + 0x100));
         FUN_180225ee0(extraout_XMM0_Qa,&puStack_40,4,uVar2);
@@ -525,7 +525,7 @@ FUN_18031c5c0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   *param_1 = &system_handler1_ptr;
   *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &unknown_var_7128_ptr;
+  *param_1 = &processed_var_7128_ptr;
   puVar1 = param_1 + 2;
   param_1[5] = 0;
   *(int32_t *)(param_1 + 7) = 3;
@@ -637,7 +637,7 @@ void FUN_18031c820(uint64_t *param_1)
   int64_t *plVar1;
   int64_t lVar2;
   
-  *param_1 = &unknown_var_7128_ptr;
+  *param_1 = &processed_var_7128_ptr;
   FUN_18031dfa0();
   plVar1 = (int64_t *)param_1[0x39];
   param_1[0x39] = 0;
@@ -734,7 +734,7 @@ void FUN_18031c950(void *param_1,uint64_t param_2,void *param_3)
   uStack_118 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_158;
   ppuStack_138 = &puStack_108;
-  puStack_108 = &unknown_var_3432_ptr;
+  puStack_108 = &memory_allocator_3432_ptr;
   puStack_100 = &uStack_f0;
   uStack_f8 = 0;
   uStack_f0 = 0;
@@ -744,12 +744,12 @@ void FUN_18031c950(void *param_1,uint64_t param_2,void *param_3)
   ppuVar2 = (void **)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x1a0,8,3);
   ppuStack_138 = ppuVar2;
   FUN_180049830(ppuVar2);
-  *ppuVar2 = &unknown_var_6984_ptr;
+  *ppuVar2 = &processed_var_6984_ptr;
   ppuStack_130 = ppuVar2 + 0x18;
   *ppuStack_130 = &system_state_ptr;
   ppuVar2[0x19] = (void *)0x0;
   *(int32_t *)(ppuVar2 + 0x1a) = 0;
-  *ppuStack_130 = &unknown_var_3432_ptr;
+  *ppuStack_130 = &memory_allocator_3432_ptr;
   ppuVar2[0x19] = (void *)(ppuVar2 + 0x1b);
   *(int32_t *)(ppuVar2 + 0x1a) = 0;
   *(int8_t *)(ppuVar2 + 0x1b) = 0;
@@ -835,7 +835,7 @@ void FUN_18031ccb0(int64_t *param_1)
   plVar3 = *(int64_t **)(lVar2 + 0x8400);
   iVar9 = (**(code **)(*plVar3 + 0x70))(plVar3,*(uint64_t *)(lVar1 + 0x10),0,1,0,apuStack_18);
   if (iVar9 < 0) {
-    FUN_180220810(iVar9,&unknown_var_1768_ptr);
+    FUN_180220810(iVar9,&ui_system_data_1768_ptr);
   }
   lVar1 = param_1[2];
   uVar8 = apuStack_18[0][1];

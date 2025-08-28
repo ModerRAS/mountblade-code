@@ -838,7 +838,7 @@ LAB_180174517:
       *ppuVar9 = &system_state_ptr;
       *(uint64_t *)((int64_t)ppuVar12 + lVar11) = 0;
       *(int32_t *)((int64_t)ppuVar12 + lVar11 + 8) = 0;
-      *ppuVar9 = &unknown_var_3480_ptr;
+      *ppuVar9 = &memory_allocator_3480_ptr;
       puVar6 = (int8_t *)(lVar11 + 0x10 + (int64_t)ppuVar12);
       *(int8_t **)((int64_t)ppuVar12 + lVar11) = puVar6;
       *(int32_t *)((int64_t)ppuVar12 + lVar11 + 8) = 0;
@@ -875,7 +875,7 @@ LAB_180174517:
       *ppuVar9 = &system_state_ptr;
       *(uint64_t *)(lVar11 + (int64_t)ppuVar16) = 0;
       *(int32_t *)(lVar11 + 8 + (int64_t)ppuVar16) = 0;
-      *ppuVar9 = &unknown_var_3480_ptr;
+      *ppuVar9 = &memory_allocator_3480_ptr;
       puVar6 = (int8_t *)((int64_t)ppuVar16 + lVar11 + 0x10);
       *(int8_t **)(lVar11 + (int64_t)ppuVar16) = puVar6;
       *(int32_t *)(lVar11 + 8 + (int64_t)ppuVar16) = 0;
@@ -934,7 +934,7 @@ uint64_t *
 FUN_180174720(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_1000_ptr;
+  *param_1 = &ui_system_data_1000_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {

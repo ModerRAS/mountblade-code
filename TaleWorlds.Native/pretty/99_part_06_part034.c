@@ -20,8 +20,8 @@ uint64_t *
 FUN_1803c6260(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_3632_ptr;
-  *param_1 = &unknown_var_8336_ptr;
+  *param_1 = &memory_allocator_3632_ptr;
+  *param_1 = &processed_var_8336_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
@@ -39,12 +39,12 @@ FUN_1803c62c0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_3576_ptr;
+  *param_1 = &memory_allocator_3576_ptr;
   if ((uint64_t *)param_1[1] != (uint64_t *)0x0) {
     (*(code *)**(uint64_t **)param_1[1])();
     param_1[1] = 0;
   }
-  *param_1 = &unknown_var_7888_ptr;
+  *param_1 = &processed_var_7888_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x10,param_3,param_4,uVar1);
   }

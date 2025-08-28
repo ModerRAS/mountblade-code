@@ -83,7 +83,7 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   stack_resource_format[5] = 0x1010101;
   stack_resource_format[6] = 1;
   stack_resource_status = 1;
-  stack_resource_string_ptr = &unknown_var_3432_ptr;
+  stack_resource_string_ptr = &memory_allocator_3432_ptr;
   stack_resource_data_ptr = resource_name_buffer;
   resource_name_buffer[0] = 0;
   stack_resource_config = *(int32_t *)(resource_params + 0x10);
@@ -342,7 +342,7 @@ LAB_path_processing_error:
         if (file_handle != (int8_t *)0x0) {
           file_path = file_handle;
         }
-        System_DataHandler(&file_buffer,&unknown_var_6404_ptr,file_path);
+        System_DataHandler(&file_buffer,&processed_var_6404_ptr,file_path);
         path_separator = FUN_180624a00(&file_buffer);
         if (path_separator == '\0') {
           FUN_180624910(&file_buffer);
@@ -383,31 +383,31 @@ LAB_path_processing_error:
               file_path = shader_input;
             }
             shader_length = shader_index;
-            total_files = strstr(file_path,&unknown_var_6424_ptr);
+            total_files = strstr(file_path,&processed_var_6424_ptr);
             if (total_files == 0) {
               file_path = &system_buffer_ptr;
               if (shader_input != (int8_t *)0x0) {
                 file_path = shader_input;
               }
-              total_files = strstr(file_path,&unknown_var_6456_ptr);
+              total_files = strstr(file_path,&processed_var_6456_ptr);
               if (total_files != 0) goto LAB_shader_found;
               file_path = &system_buffer_ptr;
               if (shader_input != (int8_t *)0x0) {
                 file_path = shader_input;
               }
-              total_files = strstr(file_path,&unknown_var_6480_ptr);
+              total_files = strstr(file_path,&processed_var_6480_ptr);
               if (total_files != 0) goto LAB_shader_found;
               file_path = &system_buffer_ptr;
               if (shader_input != (int8_t *)0x0) {
                 file_path = shader_input;
               }
-              total_files = strstr(file_path,&unknown_var_6504_ptr);
+              total_files = strstr(file_path,&processed_var_6504_ptr);
               if (total_files != 0) goto LAB_shader_found;
               file_path = &system_buffer_ptr;
               if (shader_input != (int8_t *)0x0) {
                 file_path = shader_input;
               }
-              total_files = strstr(file_path,&unknown_var_6536_ptr);
+              total_files = strstr(file_path,&processed_var_6536_ptr);
               if (total_files != 0) goto LAB_shader_found;
               path_separator = FUN_180624af0(&shader_output);
               if (path_separator == '\0') {
@@ -484,7 +484,7 @@ LAB_shader_path_found:
                   if (file_buffer != (void *)0x0) {
                     file_handle = file_buffer;
                   }
-                  System_DataHandler(&shader_reader,&unknown_var_6576_ptr,file_handle);
+                  System_DataHandler(&shader_reader,&processed_var_6576_ptr,file_handle);
                   FUN_18062db60(&shader_reader,&resource_handle);
                   init_system_data_file = 0;
                   shader_reader = &system_data_buffer_ptr;
@@ -599,18 +599,18 @@ void initialize_render_pipeline(void)
   render_state = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x198,8,3);
   render_target = render_state + 4;
   FUN_180637560(render_target);
-  *render_target = &unknown_var_6384_ptr;
+  *render_target = &processed_var_6384_ptr;
   *(int16_t *)(render_state + 0x1a) = 1;
   *(int32_t *)(render_state + 9) = 0;
   *(int8_t *)((int64_t)render_state + 0x54) = 0;
-  *render_target = &unknown_var_264_ptr;
+  *render_target = &rendering_buffer_264_ptr;
   render_target = render_state + 0x1b;
   FUN_180637560(render_target);
-  *render_target = &unknown_var_6384_ptr;
+  *render_target = &processed_var_6384_ptr;
   *(int16_t *)(render_state + 0x31) = 1;
   *(int32_t *)(render_state + 0x20) = 0;
   *(int8_t *)((int64_t)render_state + 0x10c) = 0;
-  *render_target = &unknown_var_264_ptr;
+  *render_target = &rendering_buffer_264_ptr;
   *render_state = 0;
   *(int8_t *)(render_state + 3) = 0;
   render_state[2] = 0xffffffff00000000;
@@ -865,24 +865,24 @@ void finalize_initialization(void)
     }
     temp_value = SYSTEM_DATA_MANAGER_A;
     SYSTEM_DATA_MANAGER_A = *global_ptr;
-    FUN_1801299b0(&unknown_var_6880_ptr,0,0,unused_param,stack_guard);
-    SystemCore_CacheManager0(&unknown_var_6896_ptr,*(int32_t *)(config_data + 4));
-    SystemCore_CacheManager0(&unknown_var_6928_ptr,*(int32_t *)(config_data + 8));
-    SystemCore_CacheManager0(&unknown_var_6960_ptr,*(int32_t *)(config_data + 0xc));
-    SystemCore_CacheManager0(&unknown_var_6992_ptr,*(int32_t *)(config_data + 0x10));
-    SystemCore_CacheManager0(&unknown_var_7024_ptr,*(int32_t *)(config_data + 0x14));
-    SystemCore_CacheManager0(&unknown_var_7064_ptr,*(int32_t *)(config_data + 0x18));
+    FUN_1801299b0(&processed_var_6880_ptr,0,0,unused_param,stack_guard);
+    SystemCore_CacheManager0(&processed_var_6896_ptr,*(int32_t *)(config_data + 4));
+    SystemCore_CacheManager0(&processed_var_6928_ptr,*(int32_t *)(config_data + 8));
+    SystemCore_CacheManager0(&processed_var_6960_ptr,*(int32_t *)(config_data + 0xc));
+    SystemCore_CacheManager0(&processed_var_6992_ptr,*(int32_t *)(config_data + 0x10));
+    SystemCore_CacheManager0(&processed_var_7024_ptr,*(int32_t *)(config_data + 0x14));
+    SystemCore_CacheManager0(&processed_var_7064_ptr,*(int32_t *)(config_data + 0x18));
     for (config_ptr = *(char **)(config_data + 0x28); config_ptr != config_data + 0x20;
         config_ptr = (char *)func_0x00018066bd70(config_ptr)) {
-      SystemCore_CacheManager0(&unknown_var_7104_ptr,*(int32_t *)(config_ptr + 0x20),*(int32_t *)(config_ptr + 0x24));
+      SystemCore_CacheManager0(&processed_var_7104_ptr,*(int32_t *)(config_ptr + 0x20),*(int32_t *)(config_ptr + 0x24));
     }
     for (config_ptr = *(char **)(config_data + 0x58); config_ptr != config_data + 0x50;
         config_ptr = (char *)func_0x00018066bd70(config_ptr)) {
-      SystemCore_CacheManager0(&unknown_var_7144_ptr,*(int32_t *)(config_ptr + 0x20),*(int32_t *)(config_ptr + 0x24));
+      SystemCore_CacheManager0(&processed_var_7144_ptr,*(int32_t *)(config_ptr + 0x20),*(int32_t *)(config_ptr + 0x24));
     }
-    SystemCore_CacheManager0(&unknown_var_7184_ptr,*(int32_t *)(config_data + 0x80));
-    SystemCore_CacheManager0(&unknown_var_7224_ptr,*(int32_t *)(config_data + 0x84));
-    SystemCore_CacheManager0(&unknown_var_7264_ptr,*(int32_t *)(config_data + 0x88));
+    SystemCore_CacheManager0(&processed_var_7184_ptr,*(int32_t *)(config_data + 0x80));
+    SystemCore_CacheManager0(&processed_var_7224_ptr,*(int32_t *)(config_data + 0x84));
+    SystemCore_CacheManager0(&processed_var_7264_ptr,*(int32_t *)(config_data + 0x88));
     FUN_18012cfe0();
     SYSTEM_DATA_MANAGER_A = temp_value;
     lock_status = _Mtx_unlock(0x180c91970);

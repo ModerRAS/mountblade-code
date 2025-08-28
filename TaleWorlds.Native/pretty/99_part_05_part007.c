@@ -121,11 +121,11 @@ uint64_t * FUN_1802d9200(int64_t param_1,uint64_t *param_2)
     *plVar3 = (int64_t)&system_handler1_ptr;
     *plVar3 = (int64_t)&system_handler2_ptr;
     *(int32_t *)(plVar3 + 1) = 0;
-    *plVar3 = (int64_t)&unknown_var_6544_ptr;
+    *plVar3 = (int64_t)&processed_var_6544_ptr;
     plVar3[2] = 0;
     plVar3[3] = 0;
     *(int8_t *)(plVar3 + 4) = 0;
-    *plVar3 = (int64_t)&unknown_var_9696_ptr;
+    *plVar3 = (int64_t)&processed_var_9696_ptr;
     (**(code **)(*plVar3 + 0x28))(plVar3);
     *param_2 = plVar3;
   }
@@ -139,11 +139,11 @@ uint64_t * FUN_1802d9200(int64_t param_1,uint64_t *param_2)
     *plVar3 = (int64_t)&system_handler1_ptr;
     *plVar3 = (int64_t)&system_handler2_ptr;
     *(int32_t *)(plVar3 + 1) = 0;
-    *plVar3 = (int64_t)&unknown_var_6544_ptr;
+    *plVar3 = (int64_t)&processed_var_6544_ptr;
     plVar3[2] = 0;
     plVar3[3] = 0;
     *(int8_t *)(plVar3 + 4) = 0;
-    *plVar3 = (int64_t)&unknown_var_9696_ptr;
+    *plVar3 = (int64_t)&processed_var_9696_ptr;
     (**(code **)(*plVar3 + 0x28))(plVar3);
     *param_2 = plVar3;
   }
@@ -179,11 +179,11 @@ uint64_t * FUN_1802d9380(int64_t param_1,uint64_t *param_2)
     *plVar3 = (int64_t)&system_handler1_ptr;
     *plVar3 = (int64_t)&system_handler2_ptr;
     *(int32_t *)(plVar3 + 1) = 0;
-    *plVar3 = (int64_t)&unknown_var_6544_ptr;
+    *plVar3 = (int64_t)&processed_var_6544_ptr;
     plVar3[2] = 0;
     plVar3[3] = 0;
     *(int8_t *)(plVar3 + 4) = 0;
-    *plVar3 = (int64_t)&unknown_var_9592_ptr;
+    *plVar3 = (int64_t)&processed_var_9592_ptr;
     (**(code **)(*plVar3 + 0x28))(plVar3);
     *param_2 = plVar3;
   }
@@ -197,11 +197,11 @@ uint64_t * FUN_1802d9380(int64_t param_1,uint64_t *param_2)
     *plVar3 = (int64_t)&system_handler1_ptr;
     *plVar3 = (int64_t)&system_handler2_ptr;
     *(int32_t *)(plVar3 + 1) = 0;
-    *plVar3 = (int64_t)&unknown_var_6544_ptr;
+    *plVar3 = (int64_t)&processed_var_6544_ptr;
     plVar3[2] = 0;
     plVar3[3] = 0;
     *(int8_t *)(plVar3 + 4) = 0;
-    *plVar3 = (int64_t)&unknown_var_9592_ptr;
+    *plVar3 = (int64_t)&processed_var_9592_ptr;
     (**(code **)(*plVar3 + 0x28))(plVar3);
     *param_2 = plVar3;
   }
@@ -266,7 +266,7 @@ void FUN_1802d95a0(int64_t *param_1)
       uVar1 = *(int32_t *)(lVar2 + 0x5e8);
       ppuStackX_18 = apuStack_58;
       pcStack_48 = FUN_1802d9750;
-      puStack_40 = &unknown_var_8784_ptr;
+      puStack_40 = &processed_var_8784_ptr;
       apuStack_58[0] = (int32_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,system_allocation_flags);
       uStack_70 = (int32_t)lVar2;
       uStack_6c = (int32_t)((uint64_t)lVar2 >> 0x20);

@@ -372,7 +372,7 @@ LAB_18037321d:
       }
     }
     fVar30 = unaff_RSI[6];
-    if (*(code **)(*unaff_RDI + 0x198) == (code *)&unknown_var_2544_ptr) {
+    if (*(code **)(*unaff_RDI + 0x198) == (code *)&rendering_buffer_2544_ptr) {
       lVar15 = (int64_t)unaff_RDI + 0x214;
     }
     else {
@@ -488,7 +488,7 @@ LAB_18037309e:
     unaff_XMM9_Da = unaff_RSI[1];
     unaff_XMM10_Da = unaff_RSI[2];
     param_2 = *(code **)(*unaff_RDI + 0x198);
-    if (param_2 != (code *)&unknown_var_2544_ptr) goto code_r0x0001803739af;
+    if (param_2 != (code *)&rendering_buffer_2544_ptr) goto code_r0x0001803739af;
     pfVar19 = (float *)((int64_t)unaff_RDI + 0x214);
   } while( true );
 LAB_180373510:

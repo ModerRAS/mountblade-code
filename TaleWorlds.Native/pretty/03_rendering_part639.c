@@ -1097,7 +1097,7 @@ void RenderingSystem_DebugStringGenerator5(void)
     puStack_a8 = auStack_98;
     auStack_98[0] = 0;
     uStack_a0 = 6;
-    strcpy_s(auStack_98, 0x10, &unknown_var_2588_ptr);
+    strcpy_s(auStack_98, 0x10, &rendering_buffer_2588_ptr);
     
     /* 初始化主字符串缓冲区 */
     SystemCore_EncryptionEngine0(&puStack_160, &puStack_b0);
@@ -1132,7 +1132,7 @@ void RenderingSystem_DebugStringGenerator5(void)
         puVar4 = puStack_158;
     }
     uStack_150 = uVar1 + 0x1b;
-    FUN_18062dee0(&uStack_100, puVar4, &unknown_var_4348_ptr);
+    FUN_18062dee0(&uStack_100, puVar4, &processed_var_4348_ptr);
     bVar6 = lStack_f8 == 0;
     
     /* 清理文件资源 */
@@ -1158,7 +1158,7 @@ void RenderingSystem_DebugStringGenerator5(void)
             puStack_80 = auStack_70;
             auStack_70[0] = 0;
             uStack_78 = 6;
-            strcpy_s(auStack_70, 0x10, &unknown_var_2588_ptr);
+            strcpy_s(auStack_70, 0x10, &rendering_buffer_2588_ptr);
             
             /* 初始化备用字符串缓冲区 */
             SystemCore_EncryptionEngine0(&puStack_140, &puStack_88);
@@ -1191,7 +1191,7 @@ void RenderingSystem_DebugStringGenerator5(void)
                 puVar4 = puStack_138;
             }
             uStack_130 = uVar1 + 0x1a;
-            FUN_18062dee0(&uStack_e8, puVar4, &unknown_var_4348_ptr);
+            FUN_18062dee0(&uStack_e8, puVar4, &processed_var_4348_ptr);
             bVar6 = lStack_e0 == 0;
             
             /* 清理备用文件资源 */
@@ -1220,7 +1220,7 @@ void RenderingSystem_DebugStringGenerator5(void)
                 puStack_58 = auStack_48;
                 auStack_48[0] = 0;
                 uStack_50 = 6;
-                strcpy_s(auStack_48, 0x10, &unknown_var_2588_ptr);
+                strcpy_s(auStack_48, 0x10, &rendering_buffer_2588_ptr);
                 
                 /* 初始化第三备用字符串缓冲区 */
                 SystemCore_EncryptionEngine0(&puStack_120, &puStack_60);
@@ -1254,7 +1254,7 @@ void RenderingSystem_DebugStringGenerator5(void)
                     puVar4 = puStack_118;
                 }
                 uStack_110 = uVar1 + 0x19;
-                FUN_18062dee0(&uStack_d0, puVar4, &unknown_var_4348_ptr);
+                FUN_18062dee0(&uStack_d0, puVar4, &processed_var_4348_ptr);
                 
                 /* 清理第三备用文件资源 */
                 if (lStack_c8 != 0) {
@@ -2024,7 +2024,7 @@ int64_t *RenderingSystem_PathExtractor3(int64_t *param_1, int64_t param_2, uint6
     *(int32_t *)(param_1 + 2) = 0;
     
     /* 设置字符串构建器 */
-    *param_1 = (int64_t)&unknown_var_2008_ptr;
+    *param_1 = (int64_t)&rendering_buffer_2008_ptr;
     param_1[1] = (int64_t)(param_1 + 3);
     *(int32_t *)(param_1 + 2) = 0;
     *(int8_t *)(param_1 + 3) = 0;

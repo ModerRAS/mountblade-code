@@ -337,7 +337,7 @@ int SystemFindDataEntry(uint64_t param_1, int64_t param_2)
     if (*(void **)(param_2 + 8) != (void *)0x0) {
         puVar5 = *(void **)(param_2 + 8);
     }
-    SystemDataValidator(&unknown_var_1712_ptr, puVar5);
+    SystemDataValidator(&ui_system_data_1712_ptr, puVar5);
     
     return -1;
 }
@@ -375,8 +375,8 @@ int64_t * SystemInitializeStream(int64_t *param_1, uint64_t param_2, uint64_t pa
     uVar1 = 0xfffffffffffffffe;
     
     // 初始化流对象成员
-    *param_1 = (int64_t)&unknown_var_1752_ptr;
-    param_1[2] = (int64_t)&unknown_var_2368_ptr;
+    *param_1 = (int64_t)&ui_system_data_1752_ptr;
+    param_1[2] = (int64_t)&rendering_buffer_2368_ptr;
     
     // 初始化基本IO流
     __0__basic_ios_DU__char_traits_D_std___std__IEAA_XZ(param_1 + 0x17);
@@ -386,7 +386,7 @@ int64_t * SystemInitializeStream(int64_t *param_1, uint64_t param_2, uint64_t pa
             (param_1, param_1 + 3, 0, param_4, 1, uVar1);
     
     // 设置流缓冲区和状态
-    *(void **)((int64_t)*(int *)(*param_1 + 4) + (int64_t)param_1) = &unknown_var_1768_ptr;
+    *(void **)((int64_t)*(int *)(*param_1 + 4) + (int64_t)param_1) = &ui_system_data_1768_ptr;
     *(int *)((int64_t)*(int *)(*param_1 + 4) + -4 + (int64_t)param_1) =
          *(int *)(*param_1 + 4) + -0xb8;
     

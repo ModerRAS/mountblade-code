@@ -59,7 +59,7 @@ void FUN_1808782c0(int64_t param_1,uint64_t param_2,int64_t *param_3)
       lVar7 = (**(code **)(*param_3 + 0x318))(param_3,puVar1,1);
       if (lVar7 == 0) {
                     // WARNING: Subroutine does not return
-        SystemValidationProcessor(unaff_RBP + -9,0x27,&unknown_var_8960_ptr,*(int32_t *)puVar1,
+        SystemValidationProcessor(unaff_RBP + -9,0x27,&processed_var_8960_ptr,*(int32_t *)puVar1,
                       *(int16_t *)(lVar2 + 100));
       }
       if (*(int *)(lVar7 + 0x60) != 0x1f) goto LAB_180878734;
@@ -151,7 +151,7 @@ LAB_1808784e0:
                   if (iVar11 != 0) {
                     if ((0x3ffffffe < iVar11 * 0x10 - 1U) ||
                        (lVar10 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar11 * 0x10
-                                               ,&unknown_var_8432_ptr,0xf4,0), lVar10 == 0))
+                                               ,&processed_var_8432_ptr,0xf4,0), lVar10 == 0))
                     goto LAB_180878734;
                     if (*(int *)(lVar7 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
@@ -162,7 +162,7 @@ LAB_1808784e0:
                   if ((0 < *(int *)(lVar7 + 100)) && (*(int64_t *)(lVar7 + 0x58) != 0)) {
                     // WARNING: Subroutine does not return
                     SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
-                                  *(int64_t *)(lVar7 + 0x58),&unknown_var_8432_ptr,0x100,1);
+                                  *(int64_t *)(lVar7 + 0x58),&processed_var_8432_ptr,0x100,1);
                   }
                   *(int64_t *)(lVar7 + 0x58) = lVar10;
                   *(int *)(lVar7 + 100) = iVar11;
@@ -343,7 +343,7 @@ LAB_1808784e0:
               if (iVar10 != 0) {
                 if ((0x3ffffffe < iVar10 * 0x10 - 1U) ||
                    (lVar7 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar10 * 0x10,
-                                          &unknown_var_8432_ptr,0xf4,0), lVar7 == 0)) goto LAB_180878734;
+                                          &processed_var_8432_ptr,0xf4,0), lVar7 == 0)) goto LAB_180878734;
                 if (*(int *)(lVar9 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
                   memcpy(lVar7,*(uint64_t *)(lVar9 + 0x58),(int64_t)*(int *)(lVar9 + 0x60) << 4);
@@ -352,7 +352,7 @@ LAB_1808784e0:
               if ((0 < *(int *)(lVar9 + 100)) && (*(int64_t *)(lVar9 + 0x58) != 0)) {
                     // WARNING: Subroutine does not return
                 SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(lVar9 + 0x58),
-                              &unknown_var_8432_ptr,0x100,1);
+                              &processed_var_8432_ptr,0x100,1);
               }
               *(int64_t *)(lVar9 + 0x58) = lVar7;
               *(int *)(lVar9 + 100) = iVar10;

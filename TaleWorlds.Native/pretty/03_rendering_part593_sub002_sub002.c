@@ -898,7 +898,7 @@ FUN_180593b40(int64_t param_1,uint64_t param_2,uint64_t *param_3,float *param_4,
       if (*(char *)((int64_t)param_3 + 0x34) != '\0') {
         return 1;
       }
-      FUN_1806272a0(&unknown_var_2472_ptr);
+      FUN_1806272a0(&rendering_buffer_2472_ptr);
       uVar8 = *(uint64_t *)(param_1 + 0xa8);
       *param_3 = *(uint64_t *)(param_1 + 0xa0);
       param_3[1] = uVar8;

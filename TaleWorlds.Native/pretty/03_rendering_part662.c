@@ -322,7 +322,7 @@ void FUN_180647600(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
   uint64_t uStack_18;
   
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_78;
-  puVar7 = &unknown_var_4520_ptr;
+  puVar7 = &processed_var_4520_ptr;
   if (param_2 < 1) {
     puVar7 = &system_ptr_c8e4;
   }
@@ -336,20 +336,20 @@ void FUN_180647600(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
   lVar10 = (param_1 ^ (int64_t)param_1 >> 0x3f) - ((int64_t)param_1 >> 0x3f);
   if (lVar10 < (int64_t)uVar9) {
     puStack_58 = puVar7;
-    FUN_1800635c0(auStack_38,0x20,&unknown_var_7568_ptr);
+    FUN_1800635c0(auStack_38,0x20,&processed_var_7568_ptr);
   }
   else {
     uVar4 = uVar9 * uVar9;
-    puVar2 = &unknown_var_4420_ptr;
+    puVar2 = &processed_var_4420_ptr;
     uVar6 = uVar4;
     if (lVar10 < (int64_t)uVar4) {
       uVar6 = uVar9;
     }
     if (lVar10 < (int64_t)uVar4) {
-      puVar2 = &unknown_var_7576_ptr;
+      puVar2 = &processed_var_7576_ptr;
     }
     uVar4 = uVar6 * uVar9;
-    puStack_50 = &unknown_var_7548_ptr;
+    puStack_50 = &processed_var_7548_ptr;
     if (lVar10 < (int64_t)(uVar6 * uVar9)) {
       uVar4 = uVar6;
       puStack_50 = puVar2;
@@ -363,10 +363,10 @@ void FUN_180647600(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     uVar5 = (int)uVar8 >> 0x1f;
     puStack_58 = (void *)CONCAT44(puStack_58._4_4_,(uVar8 ^ uVar5) - uVar5);
     puStack_48 = puVar7;
-    FUN_1800635c0(auStack_38,0x20,&unknown_var_7552_ptr);
+    FUN_1800635c0(auStack_38,0x20,&processed_var_7552_ptr);
   }
   if (param_5 == (void *)0x0) {
-    param_5 = &unknown_var_7532_ptr;
+    param_5 = &processed_var_7532_ptr;
   }
   FUN_1806502b0(FUN_180647850,param_4,param_5,auStack_38);
                     // WARNING: Subroutine does not return

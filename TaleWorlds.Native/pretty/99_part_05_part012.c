@@ -80,7 +80,7 @@ void FUN_1802dbc70(char *param_1,int64_t param_2,uint64_t *param_3)
     iVar13 = (int)((*(int64_t *)(param_1 + 0x10) - *(int64_t *)(param_1 + 8)) / 0x28);
     iVar20 = 0;
     if (0 < iVar13) {
-      FUN_1802c22a0(&uStack_688,&unknown_var_9884_ptr);
+      FUN_1802c22a0(&uStack_688,&processed_var_9884_ptr);
       uStack_660 = 0;
       uStack_65c = 0;
       uStack_668 = 0x100000001;
@@ -191,7 +191,7 @@ void FUN_1802dbc70(char *param_1,int64_t param_2,uint64_t *param_3)
     }
     iVar13 = (int)((*(int64_t *)(param_1 + 0x30) - *(int64_t *)(param_1 + 0x28)) / 0x34);
     if (0 < iVar13) {
-      FUN_1802c22a0(&uStack_687,&unknown_var_9872_ptr);
+      FUN_1802c22a0(&uStack_687,&processed_var_9872_ptr);
       *(int8_t *)((int64_t)param_3 + 0x17) = 4;
       uStack_650 = 0;
       uStack_64c = 0;
@@ -326,7 +326,7 @@ void FUN_1802dbc70(char *param_1,int64_t param_2,uint64_t *param_3)
              (*(int64_t *)(param_1 + 0x50) - *(int64_t *)(param_1 + 0x48) >> 0x3f);
     iVar13 = (int)(lVar11 >> 3) - (int)(lVar11 >> 0x3f);
     if (0 < iVar13) {
-      FUN_1802c22a0(auStack_686,&unknown_var_9860_ptr);
+      FUN_1802c22a0(auStack_686,&processed_var_9860_ptr);
       *(int16_t *)(param_3 + 1) = 0x101;
       *(int8_t *)((int64_t)param_3 + 0xb) = 1;
       pcStack_6a8 = DataCacheManager;

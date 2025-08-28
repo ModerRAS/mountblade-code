@@ -127,7 +127,7 @@ void RenderingSystem_ProcessResourceFile(int64_t render_context, int64_t output_
         FUN_1806277c0(&puStack_100,uVar7);
         *(int16_t *)(puStack_f8 + uStack_f0) = 0x5c;
         uStack_f0 = uVar7;
-        FUN_180060680(acStack_50,&unknown_var_4576_ptr,*puVar11);
+        FUN_180060680(acStack_50,&processed_var_4576_ptr,*puVar11);
         lVar1 = -1;
         do {
           lVar9 = lVar1;
@@ -150,7 +150,7 @@ void RenderingSystem_ProcessResourceFile(int64_t render_context, int64_t output_
         uStack_b0 = 0;
         uStack_a0 = 0;
         uStack_f0 = iVar8;
-        FUN_18062dee0(&uStack_b0,puVar6,&unknown_var_4880_ptr);
+        FUN_18062dee0(&uStack_b0,puVar6,&processed_var_4880_ptr);
         lVar1 = lStack_a8;
         lStack_e0 = 0;
         fread(&lStack_e0,8,1,lStack_a8);
@@ -163,7 +163,7 @@ void RenderingSystem_ProcessResourceFile(int64_t render_context, int64_t output_
           System_BufferManager(alStack_d8);
         }
         fread(alStack_d8[0],lStack_e0,1,lVar1);
-        puVar2 = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr,0x10,8,3);
+        puVar2 = (int32_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr,0x10,8,3);
         *(uint64_t *)(puVar2 + 2) = 0;
         *puVar2 = 0xffffffff;
         plStack_98 = *(int64_t **)(puVar2 + 2);
@@ -172,7 +172,7 @@ void RenderingSystem_ProcessResourceFile(int64_t render_context, int64_t output_
         if (plStack_98 != (int64_t *)0x0) {
           (**(code **)(*plStack_98 + 0x38))();
         }
-        uVar3 = FUN_18062b1e0(system_memory_pool_ptr,0xf0,8,3);
+        uVar3 = CoreSystem_LoggingManager0(system_memory_pool_ptr,0xf0,8,3);
         plVar4 = (int64_t *)FUN_18007f2f0(uVar3);
         if (plVar4 != (int64_t *)0x0) {
           plStack_90 = plVar4;
@@ -315,7 +315,7 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, int64_t output_
       FUN_1806277c0(&puStack_e0,uVar7);
       *(int16_t *)(puStack_d8 + uStack_d0) = 0x5c;
       uStack_d0 = uVar7;
-      FUN_180060680(acStack_50,&unknown_var_4576_ptr,*puVar1);
+      FUN_180060680(acStack_50,&processed_var_4576_ptr,*puVar1);
       lVar2 = -1;
       do {
         lVar9 = lVar2;
@@ -338,7 +338,7 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, int64_t output_
       uStack_98 = 0;
       uStack_88 = 0;
       uStack_d0 = iVar8;
-      FUN_18062dee0(&uStack_98,puVar6,&unknown_var_4880_ptr);
+      FUN_18062dee0(&uStack_98,puVar6,&processed_var_4880_ptr);
       alStack_b8[0] = 0;
       fread(alStack_b8,8,1,uStack_90);
       uStack_100 = 0;
@@ -350,7 +350,7 @@ void RenderingSystem_ExportResourceData(uint64_t render_context, int64_t output_
         System_BufferManager(&uStack_100);
       }
       fread(uStack_100,alStack_b8[0],1,uStack_90);
-      puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x78,8,3);
+      puVar3 = (uint64_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr,0x78,8,3);
       puStack_58 = puVar3 + 10;
       *puStack_58 = &system_state_ptr;
       uVar4 = 0;
@@ -512,7 +512,7 @@ void RenderingSystem_OptimizeResourceData(int64_t render_context, int64_t output
     uStack_88 = 0;
     uStack_78 = 0;
     uStack_d8 = iVar10;
-    FUN_18062dee0(&uStack_88,puVar7,&unknown_var_4880_ptr);
+    FUN_18062dee0(&uStack_88,puVar7,&processed_var_4880_ptr);
     iStackX_20 = 0;
     plVar16 = plVar15;
     puVar6 = puVar13;
@@ -535,7 +535,7 @@ void RenderingSystem_OptimizeResourceData(int64_t render_context, int64_t output
           lVar5 = *plVar15;
         }
         fread(lStack_b8,lVar5,1,lStack_80);
-        puVar6 = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr,0x908,8,3);
+        puVar6 = (int32_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr,0x908,8,3);
         LOCK();
         *puVar6 = 0;
         UNLOCK();
@@ -772,7 +772,7 @@ void RenderingSystem_CompressRenderData(int64_t render_context, int64_t output_h
     uStack_b8 = 0;
     uStack_a8 = 0;
     uStack_138 = uVar11;
-    FUN_18062dee0(&uStack_b8,puVar6,&unknown_var_4880_ptr);
+    FUN_18062dee0(&uStack_b8,puVar6,&processed_var_4880_ptr);
     lVar2 = lStack_b0;
     iStackX_20 = 0;
     piVar16 = piVar13;

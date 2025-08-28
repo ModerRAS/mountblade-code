@@ -331,8 +331,8 @@ uint64_t FUN_180591740(int32_t *param_1,float *param_2,int64_t param_3,float par
           uVar24 = *param_1;
           cVar16 = SystemBufferProcessor(0x180c95578,0,&system_param1_ptr);
           if (((cVar16 != '\0') &&
-              (cVar16 = SystemBufferProcessor(0x180c95578,8,&unknown_var_3472_ptr), cVar16 != '\0')) &&
-             (cVar16 = SystemBufferProcessor(0x180c95578,uVar24,&unknown_var_3424_ptr), cVar16 != '\0')) {
+              (cVar16 = SystemBufferProcessor(0x180c95578,8,&memory_allocator_3472_ptr), cVar16 != '\0')) &&
+             (cVar16 = SystemBufferProcessor(0x180c95578,uVar24,&memory_allocator_3424_ptr), cVar16 != '\0')) {
             SystemBufferProcessor(0x180c95578,uVar22,&system_param1_ptr);
           }
           render_system_config = render_system_config & 0xffffffff00000000;
@@ -580,8 +580,8 @@ uint64_t FUN_180591777(int64_t param_1,uint64_t param_2,int64_t param_3,float pa
           uVar24 = *unaff_R15;
           cVar17 = SystemBufferProcessor(0x180c95578,0,&system_param1_ptr);
           if (((cVar17 != '\0') &&
-              (cVar17 = SystemBufferProcessor(0x180c95578,8,&unknown_var_3472_ptr), cVar17 != '\0')) &&
-             (cVar17 = SystemBufferProcessor(0x180c95578,uVar24,&unknown_var_3424_ptr), cVar17 != '\0')) {
+              (cVar17 = SystemBufferProcessor(0x180c95578,8,&memory_allocator_3472_ptr), cVar17 != '\0')) &&
+             (cVar17 = SystemBufferProcessor(0x180c95578,uVar24,&memory_allocator_3424_ptr), cVar17 != '\0')) {
             SystemBufferProcessor(0x180c95578,unaff_RSI,&system_param1_ptr);
           }
           render_system_config = render_system_config & 0xffffffff00000000;
@@ -704,9 +704,9 @@ void FUN_180591906(void)
   uVar1 = *unaff_R15;
   cVar3 = SystemBufferProcessor(0x180c95578,0,&system_param1_ptr);
   if (cVar3 != '\0') {
-    cVar3 = SystemBufferProcessor(0x180c95578,8,&unknown_var_3472_ptr);
+    cVar3 = SystemBufferProcessor(0x180c95578,8,&memory_allocator_3472_ptr);
     if (cVar3 != '\0') {
-      cVar3 = SystemBufferProcessor(0x180c95578,uVar1,&unknown_var_3424_ptr);
+      cVar3 = SystemBufferProcessor(0x180c95578,uVar1,&memory_allocator_3424_ptr);
       if (cVar3 != '\0') {
         SystemBufferProcessor(0x180c95578,unaff_SIL,&system_param1_ptr);
       }

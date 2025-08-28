@@ -500,11 +500,11 @@ FUN_180255800(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3432_ptr;
+  *param_2 = &memory_allocator_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0x20;
-  strcpy_s(param_2[1],0x80,&unknown_var_1352_ptr,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&ui_system_data_1352_ptr,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 

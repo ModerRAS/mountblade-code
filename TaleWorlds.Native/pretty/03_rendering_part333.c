@@ -90,7 +90,7 @@ void FUN_180442b30(int64_t param_1,int64_t param_2,float *param_3)
     if (puVar11 == puVar1) goto LAB_180442cde;
     lVar7 = (**(code **)(*(int64_t *)*puVar11 + 0x10))((int64_t *)*puVar11,apuStack_d8);
     if (*(int *)(lVar7 + 0x10) == 0xf) {
-      iVar6 = strcmp(*(uint64_t *)(lVar7 + 8),&unknown_var_5704_ptr);
+      iVar6 = strcmp(*(uint64_t *)(lVar7 + 8),&processed_var_5704_ptr);
       bVar12 = iVar6 == 0;
     }
     else {
@@ -209,7 +209,7 @@ void FUN_180442d10(int64_t param_1,uint64_t *param_2,uint64_t *param_3)
       lVar2 = *(int64_t *)(lVar9 + lVar1);
       lVar3 = *(int64_t *)(lVar2 + 0x10);
       if (*(int *)(lVar3 + 0x18) == 0xb) {
-        iVar5 = strcmp(*(uint64_t *)(lVar3 + 0x10),&unknown_var_6192_ptr);
+        iVar5 = strcmp(*(uint64_t *)(lVar3 + 0x10),&processed_var_6192_ptr);
         if (iVar5 == 0) {
           puVar6 = (uint64_t *)FUN_180347100(lVar2,auStack_58,param_2);
           uVar4 = puVar6[1];
@@ -832,7 +832,7 @@ void FUN_180443320(int64_t param_1,uint64_t param_2,uint64_t *param_3)
       if (puVar3 != (void *)0x0) {
         puVar7 = puVar3;
       }
-      SystemCore_ResourceManager0(&unknown_var_9728_ptr,puVar7,puVar9);
+      SystemCore_ResourceManager0(&processed_var_9728_ptr,puVar7,puVar9);
       *param_3 = 0x3f800000;
       param_3[1] = 0;
       param_3[2] = 0x3f80000000000000;

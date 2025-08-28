@@ -1,3 +1,7 @@
+/* 函数别名定义: DataProcessingEngine */
+#define DataProcessingEngine DataProcessingEngine
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -71,7 +75,7 @@ void FUN_18012cfe0(void)
     lVar9 = 0;
     if (((uVar6 >> 0x18 & 1) == 0) && (pcVar1 = (char *)(SYSTEM_DATA_MANAGER_A + 0x2e38), *pcVar1 != '\0'))
     {
-      FUN_18013c760(&unknown_var_3196_ptr);
+      FUN_18013c760(&memory_allocator_3196_ptr);
       if (*(int64_t *)(lVar8 + 0x2e40) != 0) {
         lVar7 = __acrt_iob_func(1);
         if (*(int64_t *)(lVar8 + 0x2e40) == lVar7) {
@@ -179,7 +183,7 @@ void FUN_18012d004(void)
   }
   lVar8 = 0;
   if (((uVar6 >> 0x18 & 1) == 0) && (pcVar1 = (char *)(unaff_RBX + 0x2e38), *pcVar1 != '\0')) {
-    FUN_18013c760(&unknown_var_3196_ptr);
+    FUN_18013c760(&memory_allocator_3196_ptr);
     if (*(int64_t *)(unaff_RBX + 0x2e40) != 0) {
       lVar7 = __acrt_iob_func(1);
       if (*(int64_t *)(unaff_RBX + 0x2e40) == lVar7) {
@@ -274,7 +278,7 @@ void FUN_18012d04f(void)
   
   pcVar1 = (char *)(unaff_RBX + 0x2e38);
   if (*pcVar1 != (char)unaff_RSI) {
-    FUN_18013c760(&unknown_var_3196_ptr);
+    FUN_18013c760(&memory_allocator_3196_ptr);
     if (*(int64_t *)(unaff_RBX + 0x2e40) != unaff_RSI) {
       lVar5 = __acrt_iob_func((int)unaff_RSI + 1);
       if (*(int64_t *)(unaff_RBX + 0x2e40) == lVar5) {
@@ -904,7 +908,7 @@ void FUN_18012d7c0(int64_t param_1)
   piVar3 = *(int **)(*(int64_t *)(lVar8 + 0x1af8) + 0x2e8);
   iVar10 = piVar3[0x1c];
   if (iVar10 == piVar3[0x1d]) {
-    FUN_18011dc70(piVar3 + 0x1c);
+    DataProcessingEngine0(piVar3 + 0x1c);
     iVar10 = piVar3[0x1c];
   }
   *(uint64_t *)(*(int64_t *)(piVar3 + 0x1e) + (int64_t)iVar10 * 8) = uVar2;

@@ -22,7 +22,7 @@ void FUN_18017dd60(uint64_t param_1,uint64_t param_2)
   uVar6 = 0xfffffffffffffffe;
   puVar5 = puVar3;
   FUN_1803456e0(puVar3,param_2,param_1);
-  *puVar5 = &unknown_var_2008_ptr;
+  *puVar5 = &rendering_buffer_2008_ptr;
   plVar1 = puVar5 + 0xf;
   *plVar1 = (int64_t)&system_state_ptr;
   puVar5[0x10] = 0;
@@ -77,7 +77,7 @@ void FUN_18017ee80(int64_t *param_1)
   plVar3 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,200,8,3,0xfffffffffffffffe);
   plStackX_8 = plVar3;
   FUN_180049830(plVar3);
-  *plVar3 = (int64_t)&unknown_var_7960_ptr;
+  *plVar3 = (int64_t)&processed_var_7960_ptr;
   plVar3[0x18] = lVar2 + 0x38;
   plVar3[3] = -3;
   (**(code **)(*plVar3 + 0x28))(plVar3);

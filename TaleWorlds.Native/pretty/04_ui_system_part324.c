@@ -28,7 +28,7 @@ void FUN_180845ef0(uint64_t param_1,uint *param_2)
     FUN_18074b930(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
-    DataTransformer(0x1f,0xc,param_1,&unknown_var_736_ptr);
+    DataTransformer(0x1f,0xc,param_1,&processed_var_736_ptr);
   }
   *param_2 = 0;
   uStack_138 = 0;
@@ -139,7 +139,7 @@ void FUN_180846210(uint64_t param_1,int64_t param_2,int32_t *param_3,int32_t *pa
       FUN_18074bac0(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
       puStack_178 = auStack_148;
                     // WARNING: Subroutine does not return
-      DataTransformer(0x1f,0xb,param_1,&unknown_var_480_ptr);
+      DataTransformer(0x1f,0xb,param_1,&processed_var_480_ptr);
     }
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_198);
@@ -197,7 +197,7 @@ void FUN_180846410(uint64_t param_1,int32_t param_2,uint64_t param_3)
     func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
-    DataTransformer(iVar1,0xc,param_1,&unknown_var_640_ptr);
+    DataTransformer(iVar1,0xc,param_1,&processed_var_640_ptr);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_168);
@@ -266,7 +266,7 @@ void FUN_1808464f0(uint64_t param_1,int32_t *param_2)
     FUN_18074b930(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
-    DataTransformer(0x1f,0xc,param_1,&unknown_var_592_ptr);
+    DataTransformer(0x1f,0xc,param_1,&processed_var_592_ptr);
   }
   *param_2 = 0;
   uStack_138 = 0;
@@ -353,7 +353,7 @@ void FUN_180846610(uint64_t param_1,int8_t *param_2,int param_3,int32_t *param_4
   FUN_18074b930(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
   puStack_188 = (int32_t *)auStack_148;
                     // WARNING: Subroutine does not return
-  DataTransformer(0x1f,0xc,param_1,&unknown_var_560_ptr);
+  DataTransformer(0x1f,0xc,param_1,&processed_var_560_ptr);
 }
 
 
@@ -423,7 +423,7 @@ void FUN_180846810(uint64_t param_1,int8_t *param_2)
     FUN_18074be30(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    DataTransformer(0x1f,0xd,param_1,&unknown_var_1176_ptr);
+    DataTransformer(0x1f,0xd,param_1,&ui_system_data_1176_ptr);
   }
   *param_2 = 0;
   uStack_148 = 0;
@@ -519,7 +519,7 @@ void FUN_180846a90(uint64_t param_1,int32_t *param_2)
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    DataTransformer(0x1f,0xd,param_1,&unknown_var_1248_ptr);
+    DataTransformer(0x1f,0xd,param_1,&ui_system_data_1248_ptr);
   }
   *param_2 = 2;
   uStack_148 = 0;
@@ -597,7 +597,7 @@ void FUN_180846bc0(uint64_t param_1,uint param_2,int32_t *param_3)
   FUN_18074bac0(auStack_138 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_3);
   puStack_168 = auStack_138;
                     // WARNING: Subroutine does not return
-  DataTransformer(0x1f,0xd,param_1,&unknown_var_1144_ptr);
+  DataTransformer(0x1f,0xd,param_1,&ui_system_data_1144_ptr);
 }
 
 
@@ -629,7 +629,7 @@ void FUN_180846d30(uint64_t param_1,int32_t *param_2)
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    DataTransformer(0x1f,0xc,param_1,&unknown_var_6368_ptr);
+    DataTransformer(0x1f,0xc,param_1,&processed_var_6368_ptr);
   }
   *param_2 = 1;
   alStack_148[1] = 0;
@@ -646,7 +646,7 @@ LAB_180846df9:
   if ((iVar2 == 0) &&
      (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
   {
-    *apuStack_138[0] = &unknown_var_6264_ptr;
+    *apuStack_138[0] = &processed_var_6264_ptr;
     *(int32_t *)(apuStack_138[0] + 1) = 0x20;
     *(int *)(apuStack_138[0] + 2) = (int)param_1;
     iVar1 = func_0x00018088e0d0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138[0]);
@@ -691,7 +691,7 @@ void FUN_180846e90(uint64_t param_1,uint *param_2)
     FUN_18074b930(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    DataTransformer(0x1f,0xd,param_1,&unknown_var_1208_ptr);
+    DataTransformer(0x1f,0xd,param_1,&ui_system_data_1208_ptr);
   }
   uVar2 = 0;
   *param_2 = 0;
@@ -750,7 +750,7 @@ void FUN_180846fe0(uint64_t param_1,uint64_t *param_2)
     func_0x00018074bda0(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
-    DataTransformer(0x1f,0xc,param_1,&unknown_var_896_ptr);
+    DataTransformer(0x1f,0xc,param_1,&processed_var_896_ptr);
   }
   *param_2 = 0;
   uStack_138 = 0;
@@ -799,7 +799,7 @@ void FUN_180847110(uint64_t param_1,uint64_t *param_2)
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    DataTransformer(0x1f,0xd,param_1,&unknown_var_1312_ptr);
+    DataTransformer(0x1f,0xd,param_1,&ui_system_data_1312_ptr);
   }
   *param_2 = 0;
   uStack_148 = 0;
@@ -848,7 +848,7 @@ void FUN_180847230(uint64_t param_1,uint64_t param_2,uint64_t param_3)
     func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
-    DataTransformer(iVar1,0xc,param_1,&unknown_var_696_ptr);
+    DataTransformer(iVar1,0xc,param_1,&processed_var_696_ptr);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_168);
@@ -913,7 +913,7 @@ void FUN_180847310(uint64_t param_1,uint64_t param_2,uint64_t param_3)
     func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
-    DataTransformer(iVar1,0xb,param_1,&unknown_var_664_ptr);
+    DataTransformer(iVar1,0xb,param_1,&processed_var_664_ptr);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_168);

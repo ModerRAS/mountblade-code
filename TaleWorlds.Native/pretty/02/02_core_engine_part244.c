@@ -1083,7 +1083,7 @@ void format_resource_info_output(uint64_t output_handle, int64_t resource_info)
     output_flag_7e8 = 0xfffffffffffffffe;
     security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)output_buffer;
     output_length_808 = 0;
-    output_ptr_6b8 = &unknown_var_2008_ptr;
+    output_ptr_6b8 = &rendering_buffer_2008_ptr;
     output_ptr_6b0 = output_buffer_6a0;
     output_length_6a8 = 0;
     output_buffer_6a0[0] = 0;
@@ -1099,7 +1099,7 @@ void format_resource_info_output(uint64_t output_handle, int64_t resource_info)
     }
     
     string_length = format_output_data(output_array, &output_ptr_6b8);
-    output_ptr_598 = &unknown_var_2008_ptr;
+    output_ptr_598 = &rendering_buffer_2008_ptr;
     output_ptr_590 = output_buffer_580;
     output_buffer_580[0] = 0;
     output_length_588 = *(int32_t *)(string_length + 0x10);
@@ -1117,13 +1117,13 @@ void format_resource_info_output(uint64_t output_handle, int64_t resource_info)
     
     // 转换为宽字符
     MultiByteToWideChar(0xfde9, 0, output_ptr_590, 0xffffffff);
-    output_ptr_7d8 = &unknown_var_2368_ptr;
+    output_ptr_7d8 = &rendering_buffer_2368_ptr;
     initialize_output_stream(output_buffer_730);
     output_length_808 = 1;
     
     // 设置输出流
     setup_output_stream(&output_ptr_7d8, temp_buffer_7d0, 0, 0);
-    *(void **)(temp_buffer_7d0 + (int64_t)*(int *)(output_ptr_7d8 + 4) + -8) = &unknown_var_2384_ptr;
+    *(void **)(temp_buffer_7d0 + (int64_t)*(int *)(output_ptr_7d8 + 4) + -8) = &rendering_buffer_2384_ptr;
     *(int *)((int64_t)&output_var_7dc + (int64_t)*(int *)(output_ptr_7d8 + 4)) =
          *(int *)(output_ptr_7d8 + 4) + -0xa8;
     format_output_string(temp_buffer_7d0);
@@ -1144,7 +1144,7 @@ void format_resource_info_output(uint64_t output_handle, int64_t resource_info)
     }
     
     output_buffer_7f8 = output_buffer_730;
-    *(void **)(temp_buffer_7d0 + (int64_t)*(int *)(output_ptr_7d8 + 4) + -8) = &unknown_var_2384_ptr;
+    *(void **)(temp_buffer_7d0 + (int64_t)*(int *)(output_ptr_7d8 + 4) + -8) = &rendering_buffer_2384_ptr;
     *(int *)((int64_t)&output_var_7dc + (int64_t)*(int *)(output_ptr_7d8 + 4)) =
          *(int *)(output_ptr_7d8 + 4) + -0xa8;
     finalize_output_stream(temp_buffer_7d0);
@@ -1160,9 +1160,9 @@ void format_resource_info_output(uint64_t output_handle, int64_t resource_info)
  * 全局变量和常量定义
  * 
  * 简化实现说明：
- * - unknown_var_3456 -> EMPTY_RESOURCE_POOL (空资源池)
+ * - memory_allocator_3456 -> EMPTY_RESOURCE_POOL (空资源池)
  * - system_state_ptr -> RESOURCE_CLEANUP_POOL (资源清理池)
- * - unknown_var_3480 -> RESOURCE_HANDLER_TABLE (资源处理表)
+ * - memory_allocator_3480 -> RESOURCE_HANDLER_TABLE (资源处理表)
  * - system_buffer_ptr -> EMPTY_STRING_BUFFER (空字符串缓冲区)
  * - core_system_data_resource -> GLOBAL_RESOURCE_TABLE (全局资源表)
  * - system_main_module_state -> GLOBAL_RESOURCE_FLAG (全局资源标志)

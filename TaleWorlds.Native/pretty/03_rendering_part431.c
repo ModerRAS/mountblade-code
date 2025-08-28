@@ -534,7 +534,7 @@ int64_t FUN_180502470(int64_t *param_1,int64_t *param_2,int param_3)
   }
   else {
     if (param_3 == 1) {
-      puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x20,8,system_allocation_flags,0xfffffffffffffffe);
+      puVar3 = (uint64_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr,0x20,8,system_allocation_flags,0xfffffffffffffffe);
       puVar1 = (uint64_t *)*param_2;
       uVar2 = puVar1[1];
       *puVar3 = *puVar1;
@@ -579,7 +579,7 @@ int64_t FUN_180502560(int64_t *param_1,int64_t *param_2,int param_3)
   }
   else {
     if (param_3 == 1) {
-      puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x48,8,system_allocation_flags,0xfffffffffffffffe);
+      puVar3 = (uint64_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr,0x48,8,system_allocation_flags,0xfffffffffffffffe);
       puVar1 = (uint64_t *)*param_2;
       uVar2 = puVar1[1];
       *puVar3 = *puVar1;
@@ -725,7 +725,7 @@ int64_t FUN_180502740(int64_t *param_1,int64_t *param_2,uint64_t param_3,uint64_
   }
   else {
     if (iVar4 == 1) {
-      puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x20,8,system_allocation_flags);
+      puVar3 = (uint64_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr,0x20,8,system_allocation_flags);
       puVar1 = (uint64_t *)*param_2;
       uVar2 = puVar1[1];
       *puVar3 = *puVar1;

@@ -31,7 +31,7 @@ void FUN_1806c2790(int64_t *param_1,uint64_t param_2,uint64_t *param_3,int64_t *
     if ((char)param_1[9] != '\0') {
       iVar1 = *(int *)(*param_1 + 0x10);
       if (iVar1 == 0) {
-        puVar6 = &unknown_var_1920_ptr;
+        puVar6 = &ui_system_data_1920_ptr;
       }
       else {
         puVar6 = *(void **)(*(int64_t *)(*param_1 + 8) + (uint64_t)(iVar1 - 1) * 0x18);
@@ -125,7 +125,7 @@ void FUN_1806c279e(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *pa
     if ((char)unaff_RBX[9] != '\0') {
       iVar1 = *(int *)(*unaff_RBX + 0x10);
       if (iVar1 == 0) {
-        puVar6 = &unknown_var_1920_ptr;
+        puVar6 = &ui_system_data_1920_ptr;
       }
       else {
         puVar6 = *(void **)(*(int64_t *)(*unaff_RBX + 8) + (uint64_t)(iVar1 - 1) * 0x18);
@@ -215,7 +215,7 @@ void FUN_1806c27df(void)
     if ((char)unaff_RBX[9] != cVar7) {
       iVar1 = *(int *)(*unaff_RBX + 0x10);
       if (iVar1 == 0) {
-        puVar5 = &unknown_var_1920_ptr;
+        puVar5 = &ui_system_data_1920_ptr;
       }
       else {
         puVar5 = *(void **)(*(int64_t *)(*unaff_RBX + 8) + (uint64_t)(iVar1 - 1) * 0x18);
@@ -434,7 +434,7 @@ void FUN_1806c2950(int64_t *param_1,uint64_t *param_2,int64_t *param_3)
   }
   FUN_1806d56e0(param_1);
   lVar7 = *param_1;
-  puStack_208 = &unknown_var_1560_ptr;
+  puStack_208 = &ui_system_data_1560_ptr;
   lStack_1f8 = CONCAT71(lStack_1f8._1_7_,(char)param_1[9]);
   uVar2 = *(uint *)(lVar7 + 0x10);
   uStack_200 = uStack_200 & 0xffffff00;
@@ -468,7 +468,7 @@ void FUN_1806c2950(int64_t *param_1,uint64_t *param_2,int64_t *param_3)
           uVar8 = _getInstance_Foundation_shdfnd_physx__SAAEAV123_XZ();
           in_stack_fffffffffffffdd8 = &rendering_main_control_ptr;
           _error_Foundation_shdfnd_physx__QEAAXW4Enum_PxErrorCode_3_PEBDH1ZZ
-                    (uVar8,4,&unknown_var_1776_ptr,0x6c,&rendering_main_control_ptr,pcVar6);
+                    (uVar8,4,&ui_system_data_1776_ptr,0x6c,&rendering_main_control_ptr,pcVar6);
           *(int8_t *)param_1[10] = 1;
           lStackX_20 = lVar7;
         }
@@ -503,7 +503,7 @@ void FUN_1806c2950(int64_t *param_1,uint64_t *param_2,int64_t *param_3)
   }
   FUN_1806d56e0(param_1);
   lVar7 = *param_1;
-  puStack_208 = &unknown_var_1520_ptr;
+  puStack_208 = &ui_system_data_1520_ptr;
   lStack_1f8 = CONCAT71(lStack_1f8._1_7_,(char)param_1[9]);
   uVar2 = *(uint *)(lVar7 + 0x10);
   uStack_200 = uStack_200 & 0xffffff00;
@@ -528,12 +528,12 @@ void FUN_1806c2950(int64_t *param_1,uint64_t *param_2,int64_t *param_3)
     else {
       puVar9 = (void *)(**(code **)(*(int64_t *)param_1[5] + 0x38))();
     }
-    iVar5 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar9,&unknown_var_9496_ptr);
+    iVar5 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar9,&processed_var_9496_ptr);
     if (iVar5 == 0) {
       plVar10 = (int64_t *)(**(code **)(*(int64_t *)param_1[7] + 0x18))();
       puVar11 = (uint64_t *)
                 (**(code **)(*plVar10 + 8))
-                          (plVar10,8,&unknown_var_1872_ptr,&unknown_var_1776_ptr,CONCAT44(uVar15,0xad));
+                          (plVar10,8,&ui_system_data_1872_ptr,&ui_system_data_1776_ptr,CONCAT44(uVar15,0xad));
       *puVar11 = 0;
       __0PxSphereGeometryGeneratedInfo_physx__QEAA_XZ(auStack_d8);
       __0PxSphereGeometryGeneratedInfo_physx__QEAA_XZ(&puStack_208);
@@ -560,16 +560,16 @@ joined_r0x0001806c2e65:
       }
     }
     else {
-      iVar5 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar9,&unknown_var_9520_ptr);
+      iVar5 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar9,&processed_var_9520_ptr);
       if (iVar5 != 0) {
-        iVar5 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar9,&unknown_var_9448_ptr);
+        iVar5 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar9,&processed_var_9448_ptr);
         if (iVar5 != 0) {
-          iVar5 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar9,&unknown_var_9432_ptr);
+          iVar5 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar9,&processed_var_9432_ptr);
           if (iVar5 == 0) {
             plVar10 = (int64_t *)(**(code **)(*(int64_t *)param_1[7] + 0x18))();
             puVar11 = (uint64_t *)
                       (**(code **)(*plVar10 + 8))
-                                (plVar10,0x10,&unknown_var_1872_ptr,&unknown_var_1776_ptr,CONCAT44(uVar15,0xad));
+                                (plVar10,0x10,&ui_system_data_1872_ptr,&ui_system_data_1776_ptr,CONCAT44(uVar15,0xad));
             *puVar11 = 3;
             puVar11[1] = 0;
             __0PxBoxGeometryGeneratedInfo_physx__QEAA_XZ(auStack_d8);
@@ -591,12 +591,12 @@ joined_r0x0001806c2e65:
             FUN_1806c0b60(&lStack_178,&puStack_208,0);
           }
           else {
-            iVar5 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar9,&unknown_var_9472_ptr);
+            iVar5 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar9,&processed_var_9472_ptr);
             if (iVar5 == 0) {
               plVar10 = (int64_t *)(**(code **)(*(int64_t *)param_1[7] + 0x18))();
               puVar11 = (uint64_t *)
                         (**(code **)(*plVar10 + 8))
-                                  (plVar10,0x30,&unknown_var_1872_ptr,&unknown_var_1776_ptr,CONCAT44(uVar15,0xad))
+                                  (plVar10,0x30,&ui_system_data_1872_ptr,&ui_system_data_1776_ptr,CONCAT44(uVar15,0xad))
               ;
               *(int32_t *)puVar11 = 4;
               *(int32_t *)((int64_t)puVar11 + 4) = 0x3f800000;
@@ -627,12 +627,12 @@ joined_r0x0001806c2e65:
               FUN_1806c6f10(&lStack_178,&lStack_1e8,0);
             }
             else {
-              iVar5 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar9,&unknown_var_9536_ptr);
+              iVar5 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar9,&processed_var_9536_ptr);
               if (iVar5 == 0) {
                 plVar10 = (int64_t *)(**(code **)(*(int64_t *)param_1[7] + 0x18))();
                 puVar11 = (uint64_t *)
                           (**(code **)(*plVar10 + 8))
-                                    (plVar10,0x30,&unknown_var_1872_ptr,&unknown_var_1776_ptr,
+                                    (plVar10,0x30,&ui_system_data_1872_ptr,&ui_system_data_1776_ptr,
                                      CONCAT44(uVar15,0xad));
                 *(int32_t *)puVar11 = 5;
                 *(int32_t *)((int64_t)puVar11 + 4) = 0x3f800000;
@@ -663,12 +663,12 @@ joined_r0x0001806c2e65:
                 FUN_1806cbbd0(&lStack_178,&lStack_1e8,0);
               }
               else {
-                iVar5 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar9,&unknown_var_9560_ptr);
+                iVar5 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar9,&processed_var_9560_ptr);
                 if (iVar5 != 0) goto LAB_1806c326c;
                 plVar10 = (int64_t *)(**(code **)(*(int64_t *)param_1[7] + 0x18))();
                 puVar11 = (uint64_t *)
                           (**(code **)(*plVar10 + 8))
-                                    (plVar10,0x20,&unknown_var_1872_ptr,&unknown_var_1776_ptr,
+                                    (plVar10,0x20,&ui_system_data_1872_ptr,&ui_system_data_1776_ptr,
                                      CONCAT44(uVar15,0xad));
                 puVar11[1] = 0;
                 *(int32_t *)puVar11 = 6;
@@ -703,7 +703,7 @@ joined_r0x0001806c2e65:
         plVar10 = (int64_t *)(**(code **)(*(int64_t *)param_1[7] + 0x18))();
         puVar11 = (uint64_t *)
                   (**(code **)(*plVar10 + 8))
-                            (plVar10,0xc,&unknown_var_1872_ptr,&unknown_var_1776_ptr,CONCAT44(uVar15,0xad));
+                            (plVar10,0xc,&ui_system_data_1872_ptr,&ui_system_data_1776_ptr,CONCAT44(uVar15,0xad));
         *(int32_t *)(puVar11 + 1) = 0;
         *puVar11 = 2;
         __0PxCapsuleGeometryGeneratedInfo_physx__QEAA_XZ(&lStack_178);
@@ -719,7 +719,7 @@ joined_r0x0001806c2e65:
       plVar10 = (int64_t *)(**(code **)(*(int64_t *)param_1[7] + 0x18))();
       puVar11 = (uint64_t *)
                 (**(code **)(*plVar10 + 8))
-                          (plVar10,4,&unknown_var_1872_ptr,&unknown_var_1776_ptr,CONCAT44(uVar15,0xad));
+                          (plVar10,4,&ui_system_data_1872_ptr,&ui_system_data_1776_ptr,CONCAT44(uVar15,0xad));
       *(int32_t *)puVar11 = 1;
       __0PxPlaneGeometryGeneratedInfo_physx__QEAA_XZ(&pcStackX_8);
       __0PxPlaneGeometryGeneratedInfo_physx__QEAA_XZ(&lStackX_20);

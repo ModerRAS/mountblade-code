@@ -564,7 +564,7 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
     stack_val_f8 = stack_array10;
     stack_val_f0 = stack_array18;
     code_ptr98 = FUN_18033d170;
-    stack_ptr90 = &unknown_var_6880_ptr;
+    stack_ptr90 = &processed_var_6880_ptr;
     stack_val100 = context;
     
     // 分配批处理缓冲区
@@ -598,7 +598,7 @@ uint64_t FUN_180323d00(RenderContext* context, uint32_t param2, uint32_t param3)
     stack_val130 = stack_array10;
     stack_val128 = stack_array18;
     code_ptr78 = FUN_18033d080;
-    stack_ptr70 = &unknown_var_6640_ptr;
+    stack_ptr70 = &processed_var_6640_ptr;
     stack_val138 = context;
     
     // 分配第二轮批处理缓冲区

@@ -46,7 +46,7 @@
 /**
  * @brief 数据处理常量
  */
-#define DATA_CHUNK_SIZE          0x2000   /**< 数据块大小 */
+#define DATA_CHSYSTEM_SIZE          0x2000   /**< 数据块大小 */
 #define MAX_DATA_ENTRIES         0x1000   /**< 最大数据条目数 */
 #define BUFFER_SIZE              0x8000   /**< 缓冲区大小 */
 

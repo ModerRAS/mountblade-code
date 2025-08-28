@@ -15,7 +15,7 @@ void FUN_18020e0e0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,int64_t p
   uint64_t uStackX_18;
   uint64_t *puStackX_20;
   
-  *param_1 = &unknown_var_2392_ptr;
+  *param_1 = &rendering_buffer_2392_ptr;
   puStackX_10 = param_1 + 2;
   *puStackX_10 = &system_state_ptr;
   lVar4 = 0;
@@ -224,7 +224,7 @@ void FUN_18020e410(uint64_t *param_1,uint64_t param_2,uint64_t param_3,int32_t p
   int64_t lVar5;
   
   lVar3 = param_5;
-  *param_1 = &unknown_var_2392_ptr;
+  *param_1 = &rendering_buffer_2392_ptr;
   param_1[2] = &system_state_ptr;
   lVar5 = 0;
   param_1[3] = 0;
@@ -271,7 +271,7 @@ void FUN_18020e6c0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   uint64_t uVar2;
   
   uVar2 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_2392_ptr;
+  *param_1 = &rendering_buffer_2392_ptr;
   cVar1 = FUN_18020eba0(param_1,1,param_3,param_4,0xfffffffffffffffe);
   while (cVar1 != '\0') {
     cVar1 = FUN_18020eba0(param_1,1,param_3,param_4,uVar2);
@@ -356,7 +356,7 @@ void FUN_18020e840(int64_t param_1)
   uVar1 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x10,8,3,0xfffffffffffffffe);
   plVar3 = (int64_t *)FUN_1808fc418(0x10);
   *plVar3 = param_1;
-  plVar3[1] = (int64_t)&unknown_var_1688_ptr;
+  plVar3[1] = (int64_t)&ui_system_data_1688_ptr;
   FUN_18020f620(uVar1);
   if (plVar3 != (int64_t *)0x0) {
     free();
@@ -877,7 +877,7 @@ void FUN_18020f150(uint64_t *param_1)
   plVar2 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,200,8,3);
   plStack_d8 = plVar2;
   FUN_180049830(plVar2);
-  *plVar2 = (int64_t)&unknown_var_2248_ptr;
+  *plVar2 = (int64_t)&rendering_buffer_2248_ptr;
   plVar2[0x18] = (int64_t)alStack_b8;
   plStack_c0 = plVar2;
   (**(code **)(*plVar2 + 0x28))(plVar2);
@@ -1084,7 +1084,7 @@ void FUN_18020f620(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t p
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
   }
-  puStack_30 = &unknown_var_2232_ptr;
+  puStack_30 = &rendering_buffer_2232_ptr;
   lStack_10 = *param_2;
   *param_2 = 0;
   iVar2 = _Thrd_start(param_1,FUN_18020f940,&puStack_30,param_4,uVar3,0,uVar4,0,uVar5);

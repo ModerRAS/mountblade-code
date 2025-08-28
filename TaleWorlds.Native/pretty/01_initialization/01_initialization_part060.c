@@ -502,12 +502,12 @@ code *get_or_create_context_handler(int64_t context_ptr, char handler_type)
                 return return_value;
             }
             
-            FUN_1806272a0(&unknown_var_5648_ptr);
-            return_value = (code *)SystemDataInitializer(&unknown_var_5344_ptr);
+            FUN_1806272a0(&processed_var_5648_ptr);
+            return_value = (code *)SystemDataInitializer(&processed_var_5344_ptr);
         }
         else {
             temp_ptr = *(int64_t **)(*(int64_t *)(context_ptr + 0xa8) + 0x88);
-            temp_stack_20 = (code *)&unknown_var_7632_ptr;
+            temp_stack_20 = (code *)&processed_var_7632_ptr;
             temp_stack_18 = FUN_180082fd0;
             temp_stack_30 = context_ptr;
             (**(code **)(*temp_ptr + 0x60))(temp_ptr, &system_memory_c740, context_ptr + 0xb8, 0, &temp_stack_30);

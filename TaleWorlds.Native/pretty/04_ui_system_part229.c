@@ -411,13 +411,13 @@ uint64_t FUN_18079cd20(int64_t param_1)
     lVar2 = 5;
     do {
       if (*plVar1 != 0) {
-        (**(code **)(*(int64_t *)(param_1 + 0x28) + 0x10))(*plVar1,0,&unknown_var_4528_ptr);
+        (**(code **)(*(int64_t *)(param_1 + 0x28) + 0x10))(*plVar1,0,&processed_var_4528_ptr);
       }
       plVar1 = plVar1 + 0xb;
       lVar2 = lVar2 + -1;
     } while (lVar2 != 0);
     (**(code **)(*(int64_t *)(param_1 + 0x28) + 0x10))
-              (*(uint64_t *)(param_1 + 8),0,&unknown_var_4528_ptr);
+              (*(uint64_t *)(param_1 + 8),0,&processed_var_4528_ptr);
     *(uint64_t *)(param_1 + 8) = 0;
   }
   return 0;
@@ -437,13 +437,13 @@ uint64_t FUN_18079cd36(void)
   lVar2 = 5;
   do {
     if (*plVar1 != 0) {
-      (**(code **)(*(int64_t *)(unaff_RSI + 0x28) + 0x10))(*plVar1,0,&unknown_var_4528_ptr);
+      (**(code **)(*(int64_t *)(unaff_RSI + 0x28) + 0x10))(*plVar1,0,&processed_var_4528_ptr);
     }
     plVar1 = plVar1 + 0xb;
     lVar2 = lVar2 + -1;
   } while (lVar2 != 0);
   (**(code **)(*(int64_t *)(unaff_RSI + 0x28) + 0x10))
-            (*(uint64_t *)(unaff_RSI + 8),0,&unknown_var_4528_ptr);
+            (*(uint64_t *)(unaff_RSI + 8),0,&processed_var_4528_ptr);
   *(uint64_t *)(unaff_RSI + 8) = 0;
   return 0;
 }

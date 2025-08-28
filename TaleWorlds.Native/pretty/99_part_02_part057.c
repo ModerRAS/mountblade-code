@@ -104,11 +104,11 @@ void FUN_1801c2d00(uint64_t param_1,uint64_t param_2)
   else {
     bVar2 = true;
   }
-  puStack_98 = &unknown_var_3480_ptr;
+  puStack_98 = &memory_allocator_3480_ptr;
   puStack_90 = auStack_80;
   auStack_80[0] = 0;
   uStack_88 = 0x11;
-  strcpy_s(auStack_80,0x40,&unknown_var_9480_ptr);
+  strcpy_s(auStack_80,0x40,&processed_var_9480_ptr);
   cVar5 = FUN_180051f00(system_main_module_state,&puStack_98);
   puStack_98 = &system_state_ptr;
   cVar6 = FUN_1801c4eb0(param_2);

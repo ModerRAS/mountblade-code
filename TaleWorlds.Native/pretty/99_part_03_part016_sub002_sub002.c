@@ -315,11 +315,11 @@ LAB_1801da300:
           plStack_260 = plVar22;
           if (plVar22 == (int64_t *)0x0) {
             if (*(int64_t *)(system_system_data_memory + 0x278) == 0) {
-              puStack_f8 = &unknown_var_3480_ptr;
+              puStack_f8 = &memory_allocator_3480_ptr;
               puStack_f0 = auStack_e0;
               auStack_e0[0] = 0;
               uStack_e8 = 0x10;
-              strcpy_s(auStack_e0,0x40,&unknown_var_9184_ptr);
+              strcpy_s(auStack_e0,0x40,&processed_var_9184_ptr);
               FUN_1800b30d0(uVar13,&plStack_320,&puStack_f8,1);
               plVar22 = plStack_320;
               uVar20 = uStack_378;
@@ -434,7 +434,7 @@ LAB_1801da300:
             }
             uVar17 = FUN_180241250(plStack_2d0);
             pplStack_2c0 = (int64_t **)(uVar25 & ~uVar17);
-            puStack_98 = &unknown_var_3480_ptr;
+            puStack_98 = &memory_allocator_3480_ptr;
             puStack_90 = auStack_80;
             auStack_80[0] = 0;
             uStack_88 = 0x15;
@@ -781,7 +781,7 @@ LAB_1801dae19:
             uStack_158 = &ppppuStack_298;
             uStack_150 = &plStack_2d0;
             uStack_1d8 = FUN_1801eb0f0;
-            puStack_1d0 = &unknown_var_2304_ptr;
+            puStack_1d0 = &rendering_buffer_2304_ptr;
             plStack_1e8 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x30,8,system_allocation_flags);
             *plStack_1e8 = (int64_t)plStack_178;
             plStack_1e8[1] = (int64_t)plStack_170;

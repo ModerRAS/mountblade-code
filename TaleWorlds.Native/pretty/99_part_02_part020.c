@@ -708,7 +708,7 @@ uint64_t FUN_1800f93e0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uin
     
     /* 使用系统消息处理 */
     if (*(char *)(system_message_context + 0x18) != '\0') {
-        FUN_1800623b0(system_message_context, 3, 0xffffffff00000000, 0xd, &unknown_var_6936_ptr, param_3, param_2);
+        FUN_1800623b0(system_message_context, 3, 0xffffffff00000000, 0xd, &processed_var_6936_ptr, param_3, param_2);
     }
     
     /* 根据标志返回结果 */

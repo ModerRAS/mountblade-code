@@ -299,7 +299,7 @@ LAB_18038dd91:
     } while ((uint64_t)(int64_t)(int)uVar19 < uVar18);
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&unknown_var_5352_ptr);
+  FUN_180062300(system_message_context,&processed_var_5352_ptr);
 }
 
 
@@ -589,7 +589,7 @@ LAB_18038dd91:
     } while ((uint64_t)(int64_t)(int)uVar12 < uVar11);
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&unknown_var_5352_ptr);
+  FUN_180062300(system_message_context,&processed_var_5352_ptr);
 }
 
 
@@ -676,7 +676,7 @@ LAB_18038dd91:
     } while ((uint64_t)(int64_t)unaff_EDI < uVar6);
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&unknown_var_5352_ptr);
+  FUN_180062300(system_message_context,&processed_var_5352_ptr);
 }
 
 
@@ -742,7 +742,7 @@ LAB_18038dd91:
     } while ((uint64_t)(int64_t)unaff_EDI < uVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&unknown_var_5352_ptr);
+  FUN_180062300(system_message_context,&processed_var_5352_ptr);
 }
 
 

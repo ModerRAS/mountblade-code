@@ -211,7 +211,7 @@ void FUN_180037780(void) {
     // 配置模块参数
     current_node->config.module_id[0] = 0x4770584fbb1df897;
     current_node->config.module_id[1] = 0x47f249e43f66f2ab;
-    current_node->config.initialization_func = &unknown_var_3520_ptr;
+    current_node->config.initialization_func = &memory_allocator_3520_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_HIGH;
     current_node->config.flags = config_data[0];
@@ -277,7 +277,7 @@ void FUN_180037880(void) {
     // 音频模块特定配置
     current_node->config.module_id[0] = 0x4666df49b97e0f10;
     current_node->config.module_id[1] = 0x4e4b0d63a6ad1d8f;
-    current_node->config.initialization_func = &unknown_var_3544_ptr;
+    current_node->config.initialization_func = &memory_allocator_3544_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.type = MODULE_TYPE_AUDIO;
     current_node->config.priority = PRIORITY_NORMAL;
@@ -344,7 +344,7 @@ void FUN_180037980(void) {
     // 网络模块特定配置
     current_node->config.module_id[0] = 0x46ecbd4daf41613e;
     current_node->config.module_id[1] = 0xdc42c056bbde8482;
-    current_node->config.initialization_func = &unknown_var_3560_ptr;
+    current_node->config.initialization_func = &memory_allocator_3560_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.type = MODULE_TYPE_NETWORK;
     current_node->config.priority = PRIORITY_HIGH;
@@ -411,7 +411,7 @@ void FUN_180037a80(void) {
     // 输入模块特定配置
     current_node->config.module_id[0] = 0x4c868a42644030f6;
     current_node->config.module_id[1] = 0xc29193aa9d9b35b9;
-    current_node->config.initialization_func = &unknown_var_3576_ptr;
+    current_node->config.initialization_func = &memory_allocator_3576_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.type = MODULE_TYPE_INPUT;
     current_node->config.priority = PRIORITY_NORMAL;
@@ -478,7 +478,7 @@ void FUN_180037b80(void) {
     // 物理引擎特定配置
     current_node->config.module_id[0] = 0x40ea3a798283cbbb;
     current_node->config.module_id[1] = 0x7f74eb2c5a7fadae;
-    current_node->config.initialization_func = &unknown_var_3600_ptr;
+    current_node->config.initialization_func = &memory_allocator_3600_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_HIGH;
     current_node->config.flags = config_data[0];
@@ -545,7 +545,7 @@ void FUN_180037c80(void) {
     // AI系统特定配置
     current_node->config.module_id[0] = 0x45b8d074df27d12f;
     current_node->config.module_id[1] = 0x8d98f4c06880eda4;
-    current_node->config.initialization_func = &unknown_var_3632_ptr;
+    current_node->config.initialization_func = &memory_allocator_3632_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_NORMAL;
     current_node->config.flags = config_data[0];
@@ -612,7 +612,7 @@ void FUN_180037d80(void) {
     // 资源管理特定配置
     current_node->config.module_id[0] = 0x42d293584c8cf3e5;
     current_node->config.module_id[1] = 0x355ffeb2d29e668a;
-    current_node->config.initialization_func = &unknown_var_3728_ptr;
+    current_node->config.initialization_func = &memory_allocator_3728_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_HIGH;
     current_node->config.initialization_func = init_func;
@@ -678,7 +678,7 @@ void FUN_180037e80(void) {
     // 脚本系统特定配置
     current_node->config.module_id[0] = 0x421c3cedd07d816d;
     current_node->config.module_id[1] = 0xbec25de793b7afa6;
-    current_node->config.initialization_func = &unknown_var_3744_ptr;
+    current_node->config.initialization_func = &memory_allocator_3744_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_NORMAL;
     current_node->config.initialization_func = script_compiler;
@@ -744,7 +744,7 @@ void FUN_180037f80(void) {
     // UI系统特定配置
     current_node->config.module_id[0] = 0x4c22bb0c326587ce;
     current_node->config.module_id[1] = 0x5e3cf00ce2978287;
-    current_node->config.initialization_func = &unknown_var_3768_ptr;
+    current_node->config.initialization_func = &memory_allocator_3768_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_NORMAL;
     current_node->config.flags = config_data[0];
@@ -811,7 +811,7 @@ void FUN_180038080(void) {
     // 动画系统特定配置
     current_node->config.module_id[0] = 0x45425dc186a5d575;
     current_node->config.module_id[1] = 0xfab48faa65382fa5;
-    current_node->config.initialization_func = &unknown_var_7824_ptr;
+    current_node->config.initialization_func = &processed_var_7824_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_NORMAL;
     current_node->config.initialization_func = animation_engine;
@@ -840,7 +840,7 @@ void FUN_180038180(void) {
     uint32_t string_flags;
     
     // 配置字符串处理参数
-    string_config = &unknown_var_3432_ptr;
+    string_config = &memory_allocator_3432_ptr;
     string_flags = 9; // 游戏标题字符串标志
     
     // 初始化字符串缓冲区
@@ -848,7 +848,7 @@ void FUN_180038180(void) {
     
     // 复制游戏标题字符串
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
-             &unknown_var_368_ptr, 0xfffffffffffffffe);
+             &memory_allocator_368_ptr, 0xfffffffffffffffe);
     
     // 注册字符串处理函数
     init_system_string = FUN_180623800(&string_config);
@@ -867,13 +867,13 @@ void FUN_180038210(void) {
     char string_buffer[136];
     uint32_t string_flags;
     
-    string_config = &unknown_var_3432_ptr;
+    string_config = &memory_allocator_3432_ptr;
     string_flags = 8; // 版本信息字符串标志
     
     memset(string_buffer, 0, sizeof(string_buffer));
     
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
-             &unknown_var_520_ptr, 0xfffffffffffffffe);
+             &processed_var_520_ptr, 0xfffffffffffffffe);
     
     init_system_string = FUN_180623800(&string_config);
     
@@ -891,13 +891,13 @@ void FUN_1800382a0(void) {
     char string_buffer[136];
     uint32_t string_flags;
     
-    string_config = &unknown_var_3432_ptr;
+    string_config = &memory_allocator_3432_ptr;
     string_flags = 0xb; // 错误消息字符串标志
     
     memset(string_buffer, 0, sizeof(string_buffer));
     
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
-             &unknown_var_2160_ptr, 0xfffffffffffffffe);
+             &rendering_buffer_2160_ptr, 0xfffffffffffffffe);
     
     init_system_string = FUN_180623800(&string_config);
     
@@ -915,13 +915,13 @@ void FUN_180038330(void) {
     char string_buffer[136];
     uint32_t string_flags;
     
-    string_config = &unknown_var_3432_ptr;
+    string_config = &memory_allocator_3432_ptr;
     string_flags = 0xd; // 警告消息字符串标志
     
     memset(string_buffer, 0, sizeof(string_buffer));
     
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
-             &unknown_var_2672_ptr, 0xfffffffffffffffe);
+             &rendering_buffer_2672_ptr, 0xfffffffffffffffe);
     
     init_system_string = FUN_180623800(&string_config);
     
@@ -939,13 +939,13 @@ void FUN_1800383c0(void) {
     char string_buffer[136];
     uint32_t string_flags;
     
-    string_config = &unknown_var_3432_ptr;
+    string_config = &memory_allocator_3432_ptr;
     string_flags = 0x1c; // 调试信息字符串标志
     
     memset(string_buffer, 0, sizeof(string_buffer));
     
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
-             &unknown_var_4304_ptr, 0xfffffffffffffffe);
+             &processed_var_4304_ptr, 0xfffffffffffffffe);
     
     init_system_string = FUN_180623800(&string_config);
     
@@ -963,13 +963,13 @@ void FUN_180038450(void) {
     char string_buffer[136];
     uint32_t string_flags;
     
-    string_config = &unknown_var_3432_ptr;
+    string_config = &memory_allocator_3432_ptr;
     string_flags = 0x15; // 日志信息字符串标志
     
     memset(string_buffer, 0, sizeof(string_buffer));
     
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
-             &unknown_var_4936_ptr, 0xfffffffffffffffe);
+             &processed_var_4936_ptr, 0xfffffffffffffffe);
     
     init_system_string = FUN_180623800(&string_config);
     
@@ -987,13 +987,13 @@ void FUN_1800384e0(void) {
     char string_buffer[136];
     uint32_t string_flags;
     
-    string_config = &unknown_var_3432_ptr;
+    string_config = &memory_allocator_3432_ptr;
     string_flags = 0xe; // 配置信息字符串标志
     
     memset(string_buffer, 0, sizeof(string_buffer));
     
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
-             &unknown_var_7256_ptr, 0xfffffffffffffffe);
+             &processed_var_7256_ptr, 0xfffffffffffffffe);
     
     init_system_string = FUN_180623800(&string_config);
     
@@ -1011,13 +1011,13 @@ void FUN_180038570(void) {
     char string_buffer[136];
     uint32_t string_flags;
     
-    string_config = &unknown_var_3432_ptr;
+    string_config = &memory_allocator_3432_ptr;
     string_flags = 0x1a; // 性能信息字符串标志
     
     memset(string_buffer, 0, sizeof(string_buffer));
     
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
-             &unknown_var_4504_ptr, 0xfffffffffffffffe);
+             &processed_var_4504_ptr, 0xfffffffffffffffe);
     
     init_system_string = FUN_180623800(&string_config);
     
@@ -1035,13 +1035,13 @@ void FUN_180038610(void) {
     char string_buffer[136];
     uint32_t string_flags;
     
-    string_config = &unknown_var_3432_ptr;
+    string_config = &memory_allocator_3432_ptr;
     string_flags = 0x13; // 状态信息字符串标志
     
     memset(string_buffer, 0, sizeof(string_buffer));
     
     strcpy_s(string_buffer, STRING_BUFFER_SIZE, 
-             &unknown_var_2448_ptr, 0xfffffffffffffffe);
+             &rendering_buffer_2448_ptr, 0xfffffffffffffffe);
     
     init_system_string = FUN_180623800(&string_config);
     
@@ -1110,7 +1110,7 @@ void FUN_1800386a0(void) {
     // 核心服务特定配置
     current_node->config.module_id[0] = 0x43330a43fcdb3653;
     current_node->config.module_id[1] = 0xdcfdc333a769ec93;
-    current_node->config.initialization_func = &unknown_var_7584_ptr;
+    current_node->config.initialization_func = &processed_var_7584_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_CRITICAL;
     current_node->config.initialization_func = service_scheduler;
@@ -1177,7 +1177,7 @@ void FUN_1800387a0(void) {
     // 内存管理服务特定配置
     current_node->config.module_id[0] = 0x431d7c8d7c475be2;
     current_node->config.module_id[1] = 0xb97f048d2153e1b0;
-    current_node->config.initialization_func = &unknown_var_7608_ptr;
+    current_node->config.initialization_func = &processed_var_7608_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_CRITICAL;
     current_node->config.initialization_func = memory_manager;
@@ -1244,7 +1244,7 @@ void FUN_1800388a0(void) {
     // 线程管理服务特定配置
     current_node->config.module_id[0] = 0x4b2d79e470ee4e2c;
     current_node->config.module_id[1] = 0x9c552acd3ed5548d;
-    current_node->config.initialization_func = &unknown_var_7632_ptr;
+    current_node->config.initialization_func = &processed_var_7632_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_HIGH;
     current_node->config.flags = config_data[0];
@@ -1310,7 +1310,7 @@ void FUN_1800389a0(void) {
     // 事件系统服务特定配置
     current_node->config.module_id[0] = 0x49086ba08ab981a7;
     current_node->config.module_id[1] = 0xa9191d34ad910696;
-    current_node->config.initialization_func = &unknown_var_7656_ptr;
+    current_node->config.initialization_func = &processed_var_7656_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_HIGH;
     current_node->config.initialization_func = event_dispatcher;
@@ -1376,7 +1376,7 @@ void FUN_180038aa0(void) {
     // 定时器服务特定配置
     current_node->config.module_id[0] = 0x402feffe4481676e;
     current_node->config.module_id[1] = 0xd4c2151109de93a0;
-    current_node->config.initialization_func = &unknown_var_7680_ptr;
+    current_node->config.initialization_func = &processed_var_7680_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_NORMAL;
     current_node->config.flags = config_data[0];
@@ -1407,7 +1407,7 @@ void FUN_180038ba0(void) {
     root_node = (module_node_t*)RenderGraphicsManager();
     current_node = (module_node_t*)root_node->next;
     module_status = (char*)current_node + MODULE_STATUS_OFFSET;
-    file_system_handler = &unknown_var_2048_ptr; // 文件系统处理器
+    file_system_handler = &rendering_buffer_2048_ptr; // 文件系统处理器
     
     while (*module_status == MODULE_STATE_INACTIVE) {
         comparison_result = compare_module_ids(
@@ -1442,7 +1442,7 @@ void FUN_180038ba0(void) {
     // 文件系统服务特定配置
     current_node->config.module_id[0] = 0x4384dcc4b6d3f417;
     current_node->config.module_id[1] = 0x92a15d52fe2679bd;
-    current_node->config.initialization_func = &unknown_var_7704_ptr;
+    current_node->config.initialization_func = &processed_var_7704_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_HIGH;
     current_node->config.module_data = file_system_handler;
@@ -1508,7 +1508,7 @@ void FUN_180038ca0(void) {
     // 网络服务特定配置
     current_node->config.module_id[0] = 0x4140994454d56503;
     current_node->config.module_id[1] = 0x399eced9bb5517ad;
-    current_node->config.initialization_func = &unknown_var_7728_ptr;
+    current_node->config.initialization_func = &processed_var_7728_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_NORMAL;
     current_node->config.flags = config_data[0];
@@ -1572,7 +1572,7 @@ void FUN_180038da0(void) {
     
     current_node->config.module_id[0] = 0x43330a43fcdb3653;
     current_node->config.module_id[1] = 0xdcfdc333a769ec93;
-    current_node->config.initialization_func = &unknown_var_7584_ptr;
+    current_node->config.initialization_func = &processed_var_7584_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_CRITICAL;
     current_node->config.initialization_func = service_scheduler;
@@ -1633,7 +1633,7 @@ void FUN_180038ea0(void) {
     
     current_node->config.module_id[0] = 0x431d7c8d7c475be2;
     current_node->config.module_id[1] = 0xb97f048d2153e1b0;
-    current_node->config.initialization_func = &unknown_var_7608_ptr;
+    current_node->config.initialization_func = &processed_var_7608_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_CRITICAL;
     current_node->config.initialization_func = memory_manager;
@@ -1694,7 +1694,7 @@ void FUN_180038fa0(void) {
     
     current_node->config.module_id[0] = 0x4b2d79e470ee4e2c;
     current_node->config.module_id[1] = 0x9c552acd3ed5548d;
-    current_node->config.initialization_func = &unknown_var_7632_ptr;
+    current_node->config.initialization_func = &processed_var_7632_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_HIGH;
     current_node->config.flags = config_data[0];
@@ -1754,7 +1754,7 @@ void FUN_1800390a0(void) {
     
     current_node->config.module_id[0] = 0x49086ba08ab981a7;
     current_node->config.module_id[1] = 0xa9191d34ad910696;
-    current_node->config.initialization_func = &unknown_var_7656_ptr;
+    current_node->config.initialization_func = &processed_var_7656_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_HIGH;
     current_node->config.initialization_func = event_dispatcher;
@@ -1814,7 +1814,7 @@ void FUN_1800391a0(void) {
     
     current_node->config.module_id[0] = 0x402feffe4481676e;
     current_node->config.module_id[1] = 0xd4c2151109de93a0;
-    current_node->config.initialization_func = &unknown_var_7680_ptr;
+    current_node->config.initialization_func = &processed_var_7680_ptr;
     current_node->config.state = MODULE_STATE_ACTIVE;
     current_node->config.priority = PRIORITY_NORMAL;
     current_node->config.flags = config_data[0];

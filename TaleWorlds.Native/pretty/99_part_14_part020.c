@@ -62,7 +62,7 @@ bool FUN_1808fb170(uint64_t param_1,int8_t *param_2)
     goto LAB_1808fb690;
   }
   if (system_system_memory == 0) {
-    lVar8 = FUN_1808f9200(&unknown_var_6272_ptr);
+    lVar8 = FUN_1808f9200(&processed_var_6272_ptr);
     uVar9 = uVar11;
     if (lVar8 != 0) {
       uVar9 = LoadLibraryExW(lVar8,0,0);
@@ -70,15 +70,15 @@ bool FUN_1808fb170(uint64_t param_1,int8_t *param_2)
     LocalFree(lVar8);
     system_system_memory = uVar9;
     if (uVar9 != 0) {
-      system_system_memory = (code *)GetProcAddress(uVar9,&unknown_var_6296_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6312_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6328_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6360_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6392_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6416_ptr);
-      system_system_memory = GetProcAddress(system_system_memory,&unknown_var_6440_ptr);
-      system_system_memory = GetProcAddress(system_system_memory,&unknown_var_6464_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6488_ptr);
+      system_system_memory = (code *)GetProcAddress(uVar9,&processed_var_6296_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6312_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6328_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6360_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6392_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6416_ptr);
+      system_system_memory = GetProcAddress(system_system_memory,&processed_var_6440_ptr);
+      system_system_memory = GetProcAddress(system_system_memory,&processed_var_6464_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6488_ptr);
     }
   }
   pcVar1 = system_system_memory;
@@ -165,8 +165,8 @@ bool FUN_1808fb170(uint64_t param_1,int8_t *param_2)
       goto LAB_1808fb690;
     }
     if ((system_system_memory == 0) &&
-       (system_system_memory = FUN_1808f9de0(&unknown_var_6528_ptr,0), system_system_memory != 0)) {
-      system_system_memory = GetProcAddress(system_system_memory,&unknown_var_6560_ptr);
+       (system_system_memory = FUN_1808f9de0(&processed_var_6528_ptr,0), system_system_memory != 0)) {
+      system_system_memory = GetProcAddress(system_system_memory,&processed_var_6560_ptr);
     }
     bVar14 = false;
     uVar2 = uVar12;
@@ -277,7 +277,7 @@ bool FUN_1808fb18b(uint64_t param_1)
     goto LAB_1808fb690;
   }
   if (system_system_memory == unaff_RBX) {
-    lVar11 = FUN_1808f9200(&unknown_var_6272_ptr);
+    lVar11 = FUN_1808f9200(&processed_var_6272_ptr);
     uVar12 = unaff_RBX;
     if (lVar11 != 0) {
       uVar12 = LoadLibraryExW(lVar11,0,0);
@@ -285,15 +285,15 @@ bool FUN_1808fb18b(uint64_t param_1)
     LocalFree(lVar11);
     system_system_memory = uVar12;
     if (uVar12 != 0) {
-      system_system_memory = (code *)GetProcAddress(uVar12,&unknown_var_6296_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6312_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6328_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6360_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6392_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6416_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6440_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6464_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6488_ptr);
+      system_system_memory = (code *)GetProcAddress(uVar12,&processed_var_6296_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6312_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6328_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6360_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6392_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6416_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6440_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6464_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6488_ptr);
     }
   }
   pcVar6 = system_system_memory;
@@ -378,8 +378,8 @@ bool FUN_1808fb18b(uint64_t param_1)
       goto LAB_1808fb690;
     }
     if ((system_system_memory == 0) &&
-       (system_system_memory = FUN_1808f9de0(&unknown_var_6528_ptr,0), system_system_memory != 0)) {
-      system_system_memory = GetProcAddress(system_system_memory,&unknown_var_6560_ptr);
+       (system_system_memory = FUN_1808f9de0(&processed_var_6528_ptr,0), system_system_memory != 0)) {
+      system_system_memory = GetProcAddress(system_system_memory,&processed_var_6560_ptr);
     }
     bVar17 = false;
     if (system_system_memory != 0) {
@@ -480,7 +480,7 @@ bool FUN_1808fb18f(uint64_t param_1)
     goto LAB_1808fb690;
   }
   if (system_system_memory == unaff_RBX) {
-    lVar11 = FUN_1808f9200(&unknown_var_6272_ptr);
+    lVar11 = FUN_1808f9200(&processed_var_6272_ptr);
     uVar12 = unaff_RBX;
     if (lVar11 != 0) {
       uVar12 = LoadLibraryExW(lVar11,0,0);
@@ -488,15 +488,15 @@ bool FUN_1808fb18f(uint64_t param_1)
     LocalFree(lVar11);
     system_system_memory = uVar12;
     if (uVar12 != 0) {
-      system_system_memory = (code *)GetProcAddress(uVar12,&unknown_var_6296_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6312_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6328_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6360_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6392_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6416_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6440_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6464_ptr);
-      system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_6488_ptr);
+      system_system_memory = (code *)GetProcAddress(uVar12,&processed_var_6296_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6312_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6328_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6360_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6392_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6416_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6440_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6464_ptr);
+      system_system_memory = (code *)GetProcAddress(system_system_memory,&processed_var_6488_ptr);
     }
   }
   pcVar6 = system_system_memory;
@@ -581,8 +581,8 @@ bool FUN_1808fb18f(uint64_t param_1)
       goto LAB_1808fb690;
     }
     if ((system_system_memory == 0) &&
-       (system_system_memory = FUN_1808f9de0(&unknown_var_6528_ptr,0), system_system_memory != 0)) {
-      system_system_memory = GetProcAddress(system_system_memory,&unknown_var_6560_ptr);
+       (system_system_memory = FUN_1808f9de0(&processed_var_6528_ptr,0), system_system_memory != 0)) {
+      system_system_memory = GetProcAddress(system_system_memory,&processed_var_6560_ptr);
     }
     bVar17 = false;
     if (system_system_memory != 0) {
@@ -769,19 +769,19 @@ void FUN_1808fb7b0(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t pa
       puVar6 = (int8_t *)0x0;
     }
     if (puVar6 == (int8_t *)0x0) {
-      puStack_88 = &unknown_var_9168_ptr;
-      FUN_1808fb790(&unknown_var_8640_ptr,0x12d,&unknown_var_9248_ptr,&unknown_var_9216_ptr);
+      puStack_88 = &processed_var_9168_ptr;
+      FUN_1808fb790(&processed_var_8640_ptr,0x12d,&processed_var_9248_ptr,&processed_var_9216_ptr);
       if (system_data_21c0 != '\0') {
         pcVar2 = (code *)swi(3);
         (*pcVar2)();
         return;
       }
     }
-    strftime(0x180c7a160,0x8000,&unknown_var_9272_ptr,auStack_58);
+    strftime(0x180c7a160,0x8000,&processed_var_9272_ptr,auStack_58);
     uStack_78 = 0x180c72160;
     uStack_80 = CONCAT44(uStack_80._4_4_,param_2);
     puStack_88 = (void *)param_3;
-    FUN_1808fba80(0x180c7a160,0x8000,&unknown_var_9296_ptr,0x180c7a160);
+    FUN_1808fba80(0x180c7a160,0x8000,&processed_var_9296_ptr,0x180c7a160);
     if (system_system_memory != 0) {
       fputs(0x180c7a160);
       fflush(system_system_memory);
@@ -804,7 +804,7 @@ void FUN_1808fb7b0(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t pa
     }
     if (system_data_a14d != '\0') {
       uVar5 = __acrt_iob_func(1);
-      FUN_1808fb9d0(uVar5,&unknown_var_9312_ptr,0x180c7a160);
+      FUN_1808fb9d0(uVar5,&processed_var_9312_ptr,0x180c7a160);
     }
   }
                     // WARNING: Subroutine does not return
@@ -844,16 +844,16 @@ void FUN_1808fb7fc(void)
     puVar6 = (int8_t *)0x0;
   }
   if (puVar6 == (int8_t *)0x0) {
-    puVar9 = &unknown_var_9168_ptr;
-    FUN_1808fb790(&unknown_var_8640_ptr,0x12d,&unknown_var_9248_ptr,&unknown_var_9216_ptr,&unknown_var_9168_ptr);
+    puVar9 = &processed_var_9168_ptr;
+    FUN_1808fb790(&processed_var_8640_ptr,0x12d,&processed_var_9248_ptr,&processed_var_9216_ptr,&processed_var_9168_ptr);
     if (system_data_21c0 != '\0') {
       pcVar2 = (code *)swi(3);
       (*pcVar2)();
       return;
     }
   }
-  strftime(0x180c7a160,0x8000,&unknown_var_9272_ptr,&stack0x00000050,puVar9);
-  FUN_1808fba80(0x180c7a160,0x8000,&unknown_var_9296_ptr,0x180c7a160);
+  strftime(0x180c7a160,0x8000,&processed_var_9272_ptr,&stack0x00000050,puVar9);
+  FUN_1808fba80(0x180c7a160,0x8000,&processed_var_9296_ptr,0x180c7a160);
   if (system_system_memory != 0) {
     fputs(0x180c7a160);
     fflush(system_system_memory);
@@ -875,7 +875,7 @@ void FUN_1808fb7fc(void)
   }
   if (system_data_a14d != '\0') {
     uVar5 = __acrt_iob_func(1);
-    FUN_1808fb9d0(uVar5,&unknown_var_9312_ptr,0x180c7a160);
+    FUN_1808fb9d0(uVar5,&processed_var_9312_ptr,0x180c7a160);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(in_stack_00000078 ^ (uint64_t)&stack0x00000000);
@@ -916,7 +916,7 @@ void FUN_1808fb8ed(void)
   }
   if (system_data_a14d != unaff_BPL) {
     uVar2 = __acrt_iob_func(1);
-    FUN_1808fb9d0(uVar2,&unknown_var_9312_ptr);
+    FUN_1808fb9d0(uVar2,&processed_var_9312_ptr);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(in_stack_00000078 ^ (uint64_t)&stack0x00000000);
@@ -1021,15 +1021,15 @@ bool FUN_1808fbae0(int64_t param_1,char param_2)
     system_system_memory = 0;
   }
   auStackX_18[0] = 0;
-  iVar3 = RegOpenKeyExW(0xffffffff80000002,&unknown_var_8272_ptr,0,0x20019,auStack_48);
+  iVar3 = RegOpenKeyExW(0xffffffff80000002,&processed_var_8272_ptr,0,0x20019,auStack_48);
   if (iVar3 == 0) {
     aiStackX_20[0] = 4;
-    iVar3 = RegQueryValueExW(auStack_48[0],&unknown_var_8520_ptr,0,0,&system_data_a148,aiStackX_20);
+    iVar3 = RegQueryValueExW(auStack_48[0],&processed_var_8520_ptr,0,0,&system_data_a148,aiStackX_20);
     aiStackX_20[0] = 4;
     if (iVar3 != 0) {
       system_system_memory = 0;
     }
-    iVar3 = RegQueryValueExW(auStack_48[0],&unknown_var_8544_ptr,0,0,auStackX_18,aiStackX_20);
+    iVar3 = RegQueryValueExW(auStack_48[0],&processed_var_8544_ptr,0,0,auStackX_18,aiStackX_20);
     if (iVar3 != 0) {
       auStackX_18[0] = 0;
     }
@@ -1045,9 +1045,9 @@ bool FUN_1808fbae0(int64_t param_1,char param_2)
       lVar4 = lVar4 + 1;
     } while (*(short *)(param_1 + lVar4 * 2) != 0);
     if (lVar4 != 0) {
-      puVar8 = &unknown_var_8596_ptr;
+      puVar8 = &processed_var_8596_ptr;
       if (param_2 != '\0') {
-        puVar8 = &unknown_var_8588_ptr;
+        puVar8 = &processed_var_8588_ptr;
       }
       system_system_memory = _wfsopen(param_1,puVar8,0x20);
       if ((1 < system_system_memory) && (auStackX_18[0] != 0)) {

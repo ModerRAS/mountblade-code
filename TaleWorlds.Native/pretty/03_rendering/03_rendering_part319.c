@@ -650,7 +650,7 @@ uint32_t *rendering_system_resource_manager(uint32_t *resource_params) {
     uint32_t stack_params[4];
     
     // 分配资源
-    resource_handle = FUN_18062b1e0(0x180c8ed18, 0xf0, 8, 3, 0xfffffffffffffffe);
+    resource_handle = CoreSystem_LoggingManager0(0x180c8ed18, 0xf0, 8, 3, 0xfffffffffffffffe);
     resource_pointer = (int64_t *)FUN_18039dda0(resource_handle);
     
     if (resource_pointer == (int64_t *)0x0) {

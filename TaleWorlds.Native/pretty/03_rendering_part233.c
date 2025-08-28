@@ -168,7 +168,7 @@ LAB_18039b5d6:
             pcVar3 = pcVar3 + (int64_t)pcVar11;
             pcVar10 = pcVar15;
             if (pcVar3 <= pcVar11) break;
-            lVar13 = (int64_t)&unknown_var_4456_ptr - (int64_t)pcVar11;
+            lVar13 = (int64_t)&processed_var_4456_ptr - (int64_t)pcVar11;
             while (*pcVar11 == pcVar11[lVar13]) {
               pcVar11 = pcVar11 + 1;
               if (pcVar3 <= pcVar11) goto LAB_18039b640;
@@ -264,7 +264,7 @@ LAB_18039b85d:
                   if (pcVar11 == pcVar12 + -0x180a1cbf7) {
                     pcVar11 = pcVar11 + (int64_t)pcVar15;
                     if (pcVar11 <= pcVar15) goto LAB_18039be46;
-                    lVar13 = (int64_t)&unknown_var_4456_ptr - (int64_t)pcVar15;
+                    lVar13 = (int64_t)&processed_var_4456_ptr - (int64_t)pcVar15;
                     while (*pcVar15 == pcVar15[lVar13]) {
                       pcVar15 = pcVar15 + 1;
                       if (pcVar11 <= pcVar15) goto LAB_18039be46;
@@ -350,7 +350,7 @@ LAB_18039b85d:
               if (pcVar11 == pcVar12 + -0x180a1cbf7) {
                 pcVar11 = pcVar11 + (int64_t)pcVar15;
                 if (pcVar11 <= pcVar15) goto LAB_18039be46;
-                lVar13 = (int64_t)&unknown_var_4456_ptr - (int64_t)pcVar15;
+                lVar13 = (int64_t)&processed_var_4456_ptr - (int64_t)pcVar15;
                 while (*pcVar15 == pcVar15[lVar13]) {
                   pcVar15 = pcVar15 + 1;
                   if (pcVar11 <= pcVar15) goto LAB_18039be46;
@@ -426,7 +426,7 @@ LAB_18039bd25:
               if (pcVar12 == pcVar15 + -0x180a1cbf7) {
                 pcVar12 = pcVar12 + (int64_t)pcVar16;
                 if (pcVar12 <= pcVar16) goto LAB_18039be46;
-                lVar13 = (int64_t)&unknown_var_4456_ptr - (int64_t)pcVar16;
+                lVar13 = (int64_t)&processed_var_4456_ptr - (int64_t)pcVar16;
                 while (*pcVar16 == pcVar16[lVar13]) {
                   pcVar16 = pcVar16 + 1;
                   if (pcVar12 <= pcVar16) goto LAB_18039be46;
@@ -440,7 +440,7 @@ LAB_18039be46:
           (**(code **)(*plVar5 + 0x38))(plVar5);
         } while( true );
       }
-      lVar13 = (int64_t)&unknown_var_4036_ptr - (int64_t)pcVar10;
+      lVar13 = (int64_t)&processed_var_4036_ptr - (int64_t)pcVar10;
       while (*pcVar10 == pcVar10[lVar13]) {
         pcVar10 = pcVar10 + 1;
         if (pcVar12 <= pcVar10) goto LAB_18039b5d6;

@@ -217,8 +217,8 @@ LAB_18037d26b:
         uStack_150 = 0;
         uStack_148 = 0;
         lStack_140 = 0;
-        pcStack_168 = (code *)&unknown_var_960_ptr;
-        puStack_160 = &unknown_var_944_ptr;
+        pcStack_168 = (code *)&processed_var_960_ptr;
+        puStack_160 = &processed_var_944_ptr;
         apuStack_178[0] = &uStack_158;
         (*(code *)(*pppppuVar3[0x11])[0xc])
                   (pppppuVar3[0x11],&system_data_1028,(int64_t)pppppuVar3 + 0xc,0,apuStack_178);
@@ -243,13 +243,13 @@ LAB_18037d26b:
           iVar20 = iVar20 + 1;
           uVar8 = uVar8 >> 1;
         } while (uVar8 != 0);
-        cVar1 = (&unknown_var_8592_ptr)[iVar16 / iVar20];
+        cVar1 = (&processed_var_8592_ptr)[iVar16 / iVar20];
         fVar25 = (float)powf(0x44800000);
         fVar26 = (float)lStack_140;
         if (lStack_140 < 0) {
           fVar26 = fVar26 + 1.8446744e+19;
         }
-        System_DataHandler(&puStack_228,&unknown_var_8600_ptr,(double)(fVar25 * fVar26),(int)cVar1);
+        System_DataHandler(&puStack_228,&processed_var_8600_ptr,(double)(fVar25 * fVar26),(int)cVar1);
         pppuVar4 = pppppuVar3[0x11][1];
         ppuVar15 = pppuVar4[0x10];
         for (plVar14 = ppuVar15[(*(uint64_t *)((int64_t)pppppuVar3 + 0x14) ^
@@ -345,7 +345,7 @@ LAB_18037d51b:
       pppppppuVar10 = (uint64_t *******)func_0x00018066bd70(pppppppuVar10);
     } while ((uint64_t ********)pppppppuVar10 != &pppppppuStack_280);
   }
-  FUN_18037f790(lStack_1e8,puStack_1e0,&unknown_var_880_ptr);
+  FUN_18037f790(lStack_1e8,puStack_1e0,&processed_var_880_ptr);
   puStack_208 = &system_data_buffer_ptr;
   uStack_1f0 = 0;
   lStack_200 = 0;
@@ -358,7 +358,7 @@ LAB_18037d51b:
       if (puVar5 != (void *)0x0) {
         puVar21 = puVar5;
       }
-      System_DataHandler(&puStack_208,&unknown_var_2788_ptr,puVar21,
+      System_DataHandler(&puStack_208,&rendering_buffer_2788_ptr,puVar21,
                     (double)*(float *)(lStack_1e8 + 0x20 + uVar18));
       uVar8 = (int)uVar19 + 1;
       uVar18 = uVar18 + 0x28;
@@ -879,14 +879,14 @@ uint64_t FUN_180456140(int64_t *param_1,uint64_t *param_2,uint64_t *param_3,char
   uint64_t uStack_20;
   
   if (param_1 != (int64_t *)0x0) {
-    if (*(code **)(*param_1 + 0xb8) == (code *)&unknown_var_128_ptr) {
+    if (*(code **)(*param_1 + 0xb8) == (code *)&ui_system_data_128_ptr) {
       in_RAX = param_1[0xda];
     }
     else {
       in_RAX = (**(code **)(*param_1 + 0xb8))();
     }
     if (in_RAX != 0) {
-      if (*(code **)(*param_1 + 0xb8) == (code *)&unknown_var_128_ptr) {
+      if (*(code **)(*param_1 + 0xb8) == (code *)&ui_system_data_128_ptr) {
         in_RAX = param_1[0xda];
       }
       else {
@@ -955,7 +955,7 @@ void FUN_1804563a0(int64_t *param_1,int8_t param_2)
     plVar2 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xd0,8,3,0xfffffffffffffffe);
     plStackX_18 = plVar2;
     FUN_180049830(plVar2);
-    *plVar2 = (int64_t)&unknown_var_3160_ptr;
+    *plVar2 = (int64_t)&memory_allocator_3160_ptr;
     plVar2[0x19] = 0;
     aplStackX_8[0] = param_1;
     (**(code **)(*param_1 + 0x28))(param_1);
@@ -986,7 +986,7 @@ uint64_t * FUN_1804564b0(uint64_t *param_1,int64_t *param_2)
   int32_t uStack_10;
   int32_t uStack_c;
   
-  if (*(code **)(*param_2 + 0xb8) == (code *)&unknown_var_128_ptr) {
+  if (*(code **)(*param_2 + 0xb8) == (code *)&ui_system_data_128_ptr) {
     plStack_18 = (int64_t *)param_2[0xda];
   }
   else {

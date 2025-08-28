@@ -222,14 +222,14 @@ void FUN_1801a0860(uint64_t param_1,uint64_t *param_2,int64_t *param_3)
   plStack_280 = param_3;
   puStack_270 = param_2;
   puStack_178 = param_2;
-  uVar9 = FUN_18062b1e0(system_memory_pool_ptr,0x300,0x10,3);
+  uVar9 = CoreSystem_LoggingManager0(system_memory_pool_ptr,0x300,0x10,3);
   plVar10 = (int64_t *)FUN_180075030(uVar9,1);
   plStack_3b0 = plVar10;
   if (plVar10 != (int64_t *)0x0) {
     (**(code **)(*plVar10 + 0x28))(plVar10);
   }
   *(int8_t *)((int64_t)plVar10 + 0xff) = 0;
-  (**(code **)(plVar10[2] + 0x10))(plVar10 + 2,&unknown_var_2416_ptr);
+  (**(code **)(plVar10[2] + 0x10))(plVar10 + 2,&rendering_buffer_2416_ptr);
   lVar19 = *param_3;
   lVar11 = param_3[1] - lVar19 >> 3;
   if (lVar11 == 0) {

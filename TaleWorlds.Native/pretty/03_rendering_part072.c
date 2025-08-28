@@ -557,7 +557,7 @@ FUN_18030a110(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   int64_t lVar5;
   
   uVar4 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_4072_ptr;
+  *param_1 = &processed_var_4072_ptr;
   lVar2 = render_system_data_config;
   aiStackX_10[0] = *(int *)(param_1 + 2);
   lVar3 = (int64_t)aiStackX_10[0];
@@ -800,11 +800,11 @@ FUN_18030a6a0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3432_ptr;
+  *param_2 = &memory_allocator_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0x1c;
-  strcpy_s(param_2[1],0x80,&unknown_var_4304_ptr,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&processed_var_4304_ptr,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 

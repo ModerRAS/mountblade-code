@@ -909,7 +909,7 @@ uint64_t FUN_1807675e0(int64_t *param_1,char param_2)
   }
   if (param_2 != '\0') {
                     // WARNING: Subroutine does not return
-    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_1216_ptr,0x13a,1);
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&ui_system_data_1216_ptr,0x13a,1);
   }
   return 0;
 }

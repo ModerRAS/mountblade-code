@@ -796,13 +796,13 @@ void SystemConfigurationProcessor(int64_t *param_1)
     param_1[1] = 0;
     *(int32_t *)(param_1 + 2) = 0;
     param_1[6] = 0;
-    puStack_50 = &unknown_var_672_ptr;
+    puStack_50 = &processed_var_672_ptr;
     puStack_48 = auStack_38;
     auStack_38[0] = 0;
     uStack_40 = 9;
     plStack_68 = param_1;
     plStack_58 = param_1;
-    strcpy_s(auStack_38, 0x20, &unknown_var_8704_ptr);
+    strcpy_s(auStack_38, 0x20, &processed_var_8704_ptr);
     puVar1 = &system_buffer_ptr;
     if (puStack_48 != (void *)0x0) {
         puVar1 = puStack_48;
@@ -912,7 +912,7 @@ LAB_1803a6a70:
                 }
                 goto LAB_1803a6a8b;
             }
-            lVar6 = (int64_t)&unknown_var_8680_ptr - (int64_t)pcVar10;
+            lVar6 = (int64_t)&processed_var_8680_ptr - (int64_t)pcVar10;
             while (*pcVar10 == pcVar10[lVar6]) {
                 pcVar10 = pcVar10 + 1;
                 if (pcVar4 <= pcVar10) goto LAB_1803a6a70;
@@ -950,7 +950,7 @@ LAB_1803a6b10:
                 }
                 goto LAB_1803a6b28;
             }
-            lVar6 = (int64_t)&unknown_var_8800_ptr - (int64_t)pcVar10;
+            lVar6 = (int64_t)&processed_var_8800_ptr - (int64_t)pcVar10;
             while (*pcVar10 == pcVar10[lVar6]) {
                 pcVar10 = pcVar10 + 1;
                 if (pcVar4 <= pcVar10) goto LAB_1803a6b10;
@@ -964,11 +964,11 @@ LAB_1803a6b28:
         SystemDataHandler(lVar6, &system_memory_6430, (int64_t)param_1 + 0x24);
     }
     puStack_30 = (void *)0x1803a6b63;
-    SystemDataConfigurator(param_2, &unknown_var_8768_ptr, param_1 + 5);
+    SystemDataConfigurator(param_2, &processed_var_8768_ptr, param_1 + 5);
     puStack_30 = (void *)0x1803a6b76;
-    SystemDataModifier(param_2, &unknown_var_8744_ptr, param_1 + 6);
+    SystemDataModifier(param_2, &processed_var_8744_ptr, param_1 + 6);
     puStack_30 = (void *)0x1803a6b89;
-    SystemDataAllocator(param_2, &unknown_var_8720_ptr, (int64_t)param_1 + 0x2c);
+    SystemDataAllocator(param_2, &processed_var_8720_ptr, (int64_t)param_1 + 0x2c);
     puVar1 = (int8_t *)((int64_t)param_1 + 0x2d);
     uVar14 = 0xfffffffffffffffe;
     lVar6 = SystemDataProcessor(param_2);
@@ -1015,7 +1015,7 @@ LAB_1803a6b28:
     if (uStack_20 == 4) {
         do {
             uVar5 = uVar8 + 1;
-            if (pcStack_28[uVar8] != (&unknown_var_2328_ptr)[uVar8]) goto LAB_1806311d1;
+            if (pcStack_28[uVar8] != (&rendering_buffer_2328_ptr)[uVar8]) goto LAB_1806311d1;
             uVar8 = uVar5;
         } while (uVar5 != 5);
         *puVar1 = 1;
@@ -1024,7 +1024,7 @@ LAB_1803a6b28:
     if (uStack_20 == 3) {
         do {
             uVar5 = uVar8 + 1;
-            if (pcStack_28[uVar8] != (&unknown_var_2664_ptr)[uVar8]) goto LAB_1806311d1;
+            if (pcStack_28[uVar8] != (&rendering_buffer_2664_ptr)[uVar8]) goto LAB_1806311d1;
             uVar8 = uVar5;
         } while (uVar5 != 4);
         *puVar1 = 1;
@@ -1041,7 +1041,7 @@ LAB_180631224:
 joined_r0x0001806311cf:
         if (cVar2 != '\0') {
 LAB_1806311d1:
-            SystemDataOrganizer(&unknown_var_5416_ptr, &unknown_var_8824_ptr, lVar9, &unknown_var_5512_ptr, uVar14);
+            SystemDataOrganizer(&processed_var_5416_ptr, &processed_var_8824_ptr, lVar9, &processed_var_5512_ptr, uVar14);
             puStack_30 = &system_data_buffer_ptr;
             if (pcStack_28 != (char *)0x0) {
                 SystemMemoryPoolInitializer();
@@ -1061,7 +1061,7 @@ LAB_1806311d1:
         }
         do {
             uVar5 = uVar8 + 1;
-            if (pcStack_28[uVar8] != (&unknown_var_2336_ptr)[uVar8]) goto LAB_1806311d1;
+            if (pcStack_28[uVar8] != (&rendering_buffer_2336_ptr)[uVar8]) goto LAB_1806311d1;
             uVar8 = uVar5;
         } while (uVar5 != 6);
     }

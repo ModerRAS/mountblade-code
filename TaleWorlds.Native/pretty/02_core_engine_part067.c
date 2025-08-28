@@ -669,7 +669,7 @@ void FUN_18009e9e0(uint64_t param_1,uint64_t param_2,int64_t param_3)
   uStack_90 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_b8;
   uStack_98 = 0;
-  puStack_78 = &unknown_var_3480_ptr;
+  puStack_78 = &memory_allocator_3480_ptr;
   puStack_70 = auStack_60;
   uStack_68 = 0;
   auStack_60[0] = 0;
@@ -764,7 +764,7 @@ uint64_t * FUN_18009ec20(uint64_t *param_1)
 
 {
   __0__basic_streambuf_DU__char_traits_D_std___std__IEAA_XZ();
-  *param_1 = &unknown_var_2440_ptr;
+  *param_1 = &rendering_buffer_2440_ptr;
   *(int8_t *)((int64_t)param_1 + 0x7c) = 0;
   *(int8_t *)((int64_t)param_1 + 0x71) = 0;
   __Init___basic_streambuf_DU__char_traits_D_std___std__IEAAXXZ();

@@ -96,11 +96,11 @@ FUN_18039dd20(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3432_ptr;
+  *param_2 = &memory_allocator_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0x16;
-  strcpy_s(param_2[1],0x80,&unknown_var_7304_ptr,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&processed_var_7304_ptr,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
@@ -112,13 +112,13 @@ uint64_t * FUN_18039dda0(uint64_t *param_1)
   *param_1 = &system_handler1_ptr;
   *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &unknown_var_768_ptr;
+  *param_1 = &processed_var_768_ptr;
   *(int32_t *)(param_1 + 2) = 4;
   param_1[3] = 0;
   param_1[4] = 0;
   *(int32_t *)(param_1 + 1) = 0;
   param_1[5] = 0;
-  *param_1 = &unknown_var_7336_ptr;
+  *param_1 = &processed_var_7336_ptr;
   param_1[6] = 0;
   param_1[7] = 0;
   param_1[8] = 0;
@@ -162,7 +162,7 @@ uint64_t * FUN_18039dea0(uint64_t *param_1,uint param_2,uint64_t param_3,uint64_
   uint64_t uVar5;
   
   uVar7 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_7336_ptr;
+  *param_1 = &processed_var_7336_ptr;
   uVar5 = 0;
   plVar1 = param_1 + 6;
   lVar3 = *plVar1;
@@ -182,7 +182,7 @@ uint64_t * FUN_18039dea0(uint64_t *param_1,uint param_2,uint64_t param_3,uint64_
   }
   FUN_180057830();
   FUN_180057830(plVar1);
-  *param_1 = &unknown_var_768_ptr;
+  *param_1 = &processed_var_768_ptr;
   param_1[5] = 0;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
@@ -480,7 +480,7 @@ uint64_t FUN_18039e290(int64_t param_1,uint *param_2,uint64_t param_3,uint64_t *
       do {
         fVar1 = (float)param_2[0x5d];
         puVar2 = (void *)**(uint64_t **)(lVar7 + lVar5);
-        if (puVar2 == &unknown_var_9656_ptr) {
+        if (puVar2 == &processed_var_9656_ptr) {
           puVar4 = *(uint64_t **)(lVar7 + lVar5) + 10;
         }
         else {
@@ -550,7 +550,7 @@ FUN_18039e2c2(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t *param_
     do {
       fVar1 = *(float *)(unaff_RBP + 0x174);
       puVar2 = (void *)**(uint64_t **)(lVar7 + lVar5);
-      if (puVar2 == &unknown_var_9656_ptr) {
+      if (puVar2 == &processed_var_9656_ptr) {
         puVar4 = *(uint64_t **)(lVar7 + lVar5) + 10;
       }
       else {
@@ -589,7 +589,7 @@ uint64_t FUN_18039e323(uint64_t param_1,int64_t param_2)
   do {
     fVar1 = *(float *)(unaff_RBP + 0x174);
     puVar2 = (void *)**(uint64_t **)(uVar4 + param_2);
-    if (puVar2 == &unknown_var_9656_ptr) {
+    if (puVar2 == &processed_var_9656_ptr) {
       puVar3 = *(uint64_t **)(uVar4 + param_2) + 10;
     }
     else {
@@ -777,8 +777,8 @@ uint64_t FUN_18039e530(int64_t param_1)
     if (uVar2 != 0) {
       lVar6 = 0;
       do {
-        if ((void *)**(uint64_t **)(lVar6 + lVar4) == &unknown_var_9656_ptr) {
-          plVar1 = (int64_t *)&unknown_var_9656_ptr;
+        if ((void *)**(uint64_t **)(lVar6 + lVar4) == &processed_var_9656_ptr) {
+          plVar1 = (int64_t *)&processed_var_9656_ptr;
           goto LAB_18039e5cb;
         }
         plVar1 = (int64_t *)(**(code **)((void *)**(uint64_t **)(lVar6 + lVar4) + 0x98))();
@@ -889,9 +889,9 @@ void FUN_18039e700(int64_t param_1,uint64_t param_2)
   uVar6 = uVar4;
   if (*(int64_t *)(param_1 + 0x38) - lVar3 >> 3 != 0) {
     do {
-      if ((void *)**(uint64_t **)(uVar4 + lVar3) == &unknown_var_9656_ptr) {
+      if ((void *)**(uint64_t **)(uVar4 + lVar3) == &processed_var_9656_ptr) {
 LAB_18039e74d:
-        if ((void *)**(uint64_t **)(uVar4 + lVar3) != &unknown_var_9656_ptr) {
+        if ((void *)**(uint64_t **)(uVar4 + lVar3) != &processed_var_9656_ptr) {
           iVar1 = (**(code **)((void *)**(uint64_t **)(uVar4 + lVar3) + 0x98))();
           if (iVar1 == 7) {
             plVar2 = *(int64_t **)(uVar4 + *(int64_t *)(param_1 + 0x30));
@@ -933,9 +933,9 @@ void FUN_18039e72b(uint64_t param_1,uint64_t param_2,int64_t param_3)
   
   uVar3 = (uint64_t)unaff_ESI;
   do {
-    if ((void *)**(uint64_t **)(uVar3 + param_3) == &unknown_var_9656_ptr) {
+    if ((void *)**(uint64_t **)(uVar3 + param_3) == &processed_var_9656_ptr) {
 LAB_18039e74d:
-      if ((void *)**(uint64_t **)(uVar3 + param_3) != &unknown_var_9656_ptr) {
+      if ((void *)**(uint64_t **)(uVar3 + param_3) != &processed_var_9656_ptr) {
         iVar1 = (**(code **)((void *)**(uint64_t **)(uVar3 + param_3) + 0x98))();
         if (iVar1 == 7) {
           plVar2 = *(int64_t **)(uVar3 + *(int64_t *)(unaff_RDI + 0x30));

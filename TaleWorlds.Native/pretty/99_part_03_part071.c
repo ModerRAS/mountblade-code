@@ -97,7 +97,7 @@ uint64_t FUN_18023cf80(int64_t param_1)
 uint64_t * FUN_18023cff0(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_8576_ptr;
+  *param_1 = &processed_var_8576_ptr;
   if (param_1[0x1a] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();

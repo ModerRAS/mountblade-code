@@ -9,9 +9,9 @@ uint64_t g_string_buffer_size = GET_SECURITY_COOKIE();  // 字符串缓冲区大
 int64_t g_memory_allocator = core_system_data_memory;     // 内存分配器
 int64_t g_string_constants = system_memory_pool_ptr;     // 字符串常量池
 char g_empty_string[] = "";                       // 空字符串常量
-uint64_t g_string_suffix = unknown_var_3456;        // 字符串后缀标记
-uint64_t g_string_prefix = unknown_var_2176;        // 字符串前缀标记
-uint64_t g_null_terminator = unknown_var_720;      // 空终止符标记
+uint64_t g_string_suffix = memory_allocator_3456;        // 字符串后缀标记
+uint64_t g_string_prefix = rendering_buffer_2176;        // 字符串前缀标记
+uint64_t g_null_terminator = processed_var_720;      // 空终止符标记
 
 // 函数: void process_string_batch(uint64_t param_1, int64_t *param_2)
 // 功能: 批量处理字符串数据，进行字符串格式化、编码转换和内存管理

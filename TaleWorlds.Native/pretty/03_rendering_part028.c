@@ -14,9 +14,9 @@
 
 // 全局常量定义
 // 渲染系统数据区域
-#define RENDER_HASH_TABLE_BASE   unknown_var_1640
+#define RENDER_HASH_TABLE_BASE   ui_system_data_1640
 #define RENDER_MATRIX_BUFFER     system_buffer_67d8
-#define RENDER_RESOURCE_POOL    unknown_var_1664
+#define RENDER_RESOURCE_POOL    ui_system_data_1664
 #define RENDER_SYSTEM_CONFIG    system_buffer_67e0
 #define RENDER_PARAM_DATA       system_buffer_67e8
 #define RENDER_BUFFER_SIZE      system_buffer_67f0
@@ -277,7 +277,7 @@ LAB_180280958:
     param_2 = *(code **)(*param_4 + 0x158);
     param_6._4_4_ = unaff_EDI;
     param_11 = unaff_RBP;
-    if (param_2 != (code *)&unknown_var_2528_ptr) goto code_r0x000180280ab8;
+    if (param_2 != (code *)&rendering_buffer_2528_ptr) goto code_r0x000180280ab8;
     param_8 = param_4 + 0x66;
   } while( true );
 }
@@ -286,9 +286,9 @@ LAB_180280958:
 
 // 全局变量和数据定义
 uint8_t RENDER_CONTROL_DATA;
-uint8_t unknown_var_1640;
+uint8_t ui_system_data_1640;
 uint8_t system_buffer_67d8;
-uint8_t unknown_var_1664;
+uint8_t ui_system_data_1664;
 uint8_t RENDER_SYSTEM_CONFIG;
 uint8_t system_buffer_67e8;
 uint8_t system_buffer_67f0;
@@ -378,7 +378,7 @@ void transform_3d_matrices(int64_t *param_1,int64_t *param_2)
   float fStack_a8;
   float fStack_a4;
   
-  if (*(code **)(*param_2 + 0x158) == (code *)&unknown_var_2528_ptr) {
+  if (*(code **)(*param_2 + 0x158) == (code *)&rendering_buffer_2528_ptr) {
     pfVar30 = (float *)(param_2 + 0x66);
   }
   else {
@@ -427,7 +427,7 @@ void transform_3d_matrices(int64_t *param_1,int64_t *param_2)
       fVar37 = fVar15 * fVar3 + fVar16 * fVar6 + fVar17 * fVar9;
       fVar40 = fVar15 * fVar4 + fVar16 * fVar7 + fVar17 * fVar10;
       fVar43 = fVar15 * fVar5 + fVar16 * fVar8 + fVar17 * fVar11;
-      if (*(code **)(*param_1 + 0x158) == (code *)&unknown_var_2528_ptr) {
+      if (*(code **)(*param_1 + 0x158) == (code *)&rendering_buffer_2528_ptr) {
         pfVar30 = (float *)(param_1 + 0x66);
       }
       else {
@@ -528,7 +528,7 @@ LAB_180280e02:
   if ((int)param_1[0xb] < (int)param_2[0xb]) {
     *(int *)(param_1 + 0xb) = (int)param_2[0xb];
   }
-  if (*(code **)(*param_1 + 0x160) == (code *)&unknown_var_6368_ptr) {
+  if (*(code **)(*param_1 + 0x160) == (code *)&processed_var_6368_ptr) {
     FUN_180276f30(param_1,(int64_t)param_1 + 0x214,0);
   }
   else {
@@ -775,7 +775,7 @@ LAB_18028135c:
       if ((*(uint *)(lVar11 + 0x5c) >> 8 & 1) != 0) {
         FUN_18022cb40(*(uint64_t *)(lVar3 + 0x1b8),&plStack_f0);
         plVar8 = plStack_f0;
-        puStack_a8 = &unknown_var_3480_ptr;
+        puStack_a8 = &memory_allocator_3480_ptr;
         puStack_a0 = auStack_90;
         auStack_90[0] = 0;
         uStack_98 = 0x10;

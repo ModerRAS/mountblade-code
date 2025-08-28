@@ -770,7 +770,7 @@ void FUN_1800ba6f0(uint64_t param_1)
   uStack_388 = param_1;
   iVar2 = GetModuleFileNameW(0,asStack_378,0x118);
   if (iVar2 == 0) {
-    FUN_180627160(&unknown_var_8696_ptr);
+    FUN_180627160(&processed_var_8696_ptr);
     uVar3 = FUN_180628ca0();
     SystemCore_NetworkHandler0(param_1,uVar3);
     uStack_398 = 1;
@@ -827,7 +827,7 @@ uint64_t
 FUN_1800ba940(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_1800ba4b0(param_1,&unknown_var_8752_ptr,param_3,param_4,0,0xfffffffffffffffe);
+  FUN_1800ba4b0(param_1,&processed_var_8752_ptr,param_3,param_4,0,0xfffffffffffffffe);
   return param_1;
 }
 
@@ -837,7 +837,7 @@ uint64_t
 FUN_1800ba980(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_1800ba4b0(param_1,&unknown_var_8824_ptr,param_3,param_4,0,0xfffffffffffffffe);
+  FUN_1800ba4b0(param_1,&processed_var_8824_ptr,param_3,param_4,0,0xfffffffffffffffe);
   return param_1;
 }
 
@@ -847,7 +847,7 @@ uint64_t
 FUN_1800ba9c0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_1800ba4b0(param_1,&unknown_var_8792_ptr,param_3,param_4,0,0xfffffffffffffffe);
+  FUN_1800ba4b0(param_1,&processed_var_8792_ptr,param_3,param_4,0,0xfffffffffffffffe);
   return param_1;
 }
 
@@ -857,7 +857,7 @@ uint64_t
 FUN_1800baa00(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_1800ba4b0(param_1,&unknown_var_8872_ptr,param_3,param_4,0,0xfffffffffffffffe);
+  FUN_1800ba4b0(param_1,&processed_var_8872_ptr,param_3,param_4,0,0xfffffffffffffffe);
   return param_1;
 }
 
@@ -867,7 +867,7 @@ uint64_t
 FUN_1800baa40(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_1800ba4b0(param_1,&unknown_var_8848_ptr,param_3,param_4,0,0xfffffffffffffffe);
+  FUN_1800ba4b0(param_1,&processed_var_8848_ptr,param_3,param_4,0,0xfffffffffffffffe);
   return param_1;
 }
 

@@ -1036,7 +1036,7 @@ void FUN_180587380(int64_t param_1,int64_t param_2)
     strcpy_s(*(uint64_t *)(param_1 + 8),0xb);
     return;
   }
-  SystemDataInitializer(&unknown_var_616_ptr,0xb,param_2);
+  SystemDataInitializer(&processed_var_616_ptr,0xb,param_2);
   *(int32_t *)(param_1 + 0x10) = 0;
   **(int8_t **)(param_1 + 8) = 0;
   return;

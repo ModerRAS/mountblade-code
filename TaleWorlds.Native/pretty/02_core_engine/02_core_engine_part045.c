@@ -11,11 +11,11 @@ uint64_t system_data_buffer_ptr;   // 全局数据指针
 uint64_t system_state_ptr;   // 函数表指针
 uint64_t system_handler2_ptr;   // 虚函数表指针
 uint64_t system_handler1_ptr;   // 虚函数表指针
-uint64_t unknown_var_7520;   // 比较数据指针
-uint64_t unknown_var_659;   // 默认配置指针
+uint64_t processed_var_7520;   // 比较数据指针
+uint64_t processed_var_659;   // 默认配置指针
 uint64_t core_system_control_pointer;  // 配置覆盖指针
-uint64_t unknown_var_8064_ptr;   // 初始化函数指针
-uint64_t unknown_var_3432_ptr;   // 字符串函数表指针
+uint64_t processed_var_8064_ptr;   // 初始化函数指针
+uint64_t memory_allocator_3432_ptr;   // 字符串函数表指针
 
 /**
  * 处理数据结构初始化和复制操作
@@ -964,7 +964,7 @@ uint64_t *initialize_string_object(uint64_t *string_obj, int64_t string_data, ui
     *string_obj = &system_state_ptr;
     string_obj[1] = 0;
     *(int32_t *)(string_obj + 2) = 0;
-    *string_obj = &unknown_var_3432_ptr;
+    *string_obj = &memory_allocator_3432_ptr;
     string_obj[1] = string_obj + 3;
     *(int32_t *)(string_obj + 2) = 0;
     *(int8_t *)(string_obj + 3) = 0;
@@ -993,7 +993,7 @@ uint64_t *create_object_typeA(uint64_t param1, int32_t param2)
     
     new_object = (uint64_t *)allocate_object_memory(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
-    *new_object = &unknown_var_2712_ptr;
+    *new_object = &rendering_buffer_2712_ptr;
     new_object[0x16] = 0;
     return new_object;
 }
@@ -1011,7 +1011,7 @@ uint64_t *create_object_typeB(uint64_t param1, int32_t param2)
     
     new_object = (uint64_t *)allocate_object_memory(system_memory_pool_ptr, 0xb0, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
-    *new_object = &unknown_var_1376_ptr;
+    *new_object = &ui_system_data_1376_ptr;
     return new_object;
 }
 
@@ -1047,7 +1047,7 @@ uint64_t *create_object_typeC(uint64_t param1, int32_t param2)
     
     new_object = (uint64_t *)allocate_object_memory(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
-    *new_object = &unknown_var_1192_ptr;
+    *new_object = &ui_system_data_1192_ptr;
     new_object[0x16] = 0;
     return new_object;
 }
@@ -1087,7 +1087,7 @@ uint64_t *create_object_typeD(uint64_t param1, int32_t param2)
     
     new_object = (uint64_t *)allocate_object_memory(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
-    *new_object = &unknown_var_1008_ptr;
+    *new_object = &ui_system_data_1008_ptr;
     new_object[0x16] = 0;
     return new_object;
 }
@@ -1105,7 +1105,7 @@ uint64_t *create_object_typeE(uint64_t param1, int32_t param2)
     
     new_object = (uint64_t *)allocate_object_memory(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
-    *new_object = &unknown_var_560_ptr;
+    *new_object = &processed_var_560_ptr;
     new_object[0x16] = 0;
     return new_object;
 }
@@ -1123,7 +1123,7 @@ uint64_t *create_object_typeF(uint64_t param1, int32_t param2)
     
     new_object = (uint64_t *)allocate_object_memory(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
-    *new_object = &unknown_var_376_ptr;
+    *new_object = &memory_allocator_376_ptr;
     new_object[0x16] = 0;
     return new_object;
 }
@@ -1141,7 +1141,7 @@ uint64_t *create_object_typeG(uint64_t param1, int32_t param2)
     
     new_object = (uint64_t *)allocate_object_memory(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
-    *new_object = &unknown_var_152_ptr;
+    *new_object = &ui_system_data_152_ptr;
     new_object[0x16] = 0;
     return new_object;
 }
@@ -1159,7 +1159,7 @@ uint64_t *create_object_typeH(uint64_t param1, int32_t param2)
     
     new_object = (uint64_t *)allocate_object_memory(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
-    *new_object = &unknown_var_9944_ptr;
+    *new_object = &processed_var_9944_ptr;
     new_object[0x16] = 0;
     return new_object;
 }
@@ -1177,7 +1177,7 @@ uint64_t *create_object_typeI(uint64_t param1, int32_t param2)
     
     new_object = (uint64_t *)allocate_object_memory(system_memory_pool_ptr, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
-    *new_object = &unknown_var_9744_ptr;
+    *new_object = &processed_var_9744_ptr;
     new_object[0x16] = 0;
     return new_object;
 }
@@ -1218,7 +1218,7 @@ void initialize_render_configuration(int64_t config_ptr, uint64_t param2, int64_
         config_param2 = stack_param2;
     }
     
-    setup_render_parameters(config_ptr, &unknown_var_8064_ptr, config_param2, config_param3, config_param1);
+    setup_render_parameters(config_ptr, &processed_var_8064_ptr, config_param2, config_param3, config_param1);
     stack_param1 = &system_data_buffer_ptr;
     if (stack_param2 != (void *)0x0) {
         release_memory_buffer();

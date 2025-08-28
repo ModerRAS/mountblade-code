@@ -309,7 +309,7 @@ void FUN_180279640(int64_t *param_1,int64_t *param_2,char param_3)
                     uVar18 = uVar17;
                     if (lVar7 != 0) {
                         do {
-                            puVar16 = &unknown_var_3480_ptr;
+                            puVar16 = &memory_allocator_3480_ptr;
                             lVar13 = *(int64_t *)(uVar17 + lVar13);
                             if (*(int64_t *)(lVar13 + 0x1b0) == 0) {
                                 lVar7 = lVar13 + 0x10;
@@ -376,7 +376,7 @@ void FUN_180279640(int64_t *param_1,int64_t *param_2,char param_3)
                     uVar20 = uVar17;
                     if (lVar7 != 0) {
                         do {
-                            puVar16 = &unknown_var_3480_ptr;
+                            puVar16 = &memory_allocator_3480_ptr;
                             lVar13 = *(int64_t *)(uVar18 + lVar13);
                             if (*(int64_t *)(lVar13 + 0x1b0) == 0) {
                                 lVar7 = lVar13 + 0x10;

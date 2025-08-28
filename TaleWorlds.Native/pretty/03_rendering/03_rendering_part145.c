@@ -276,7 +276,7 @@ void rendering_system_string_comparator_and_config_processor(
     checksum_value = GET_SECURITY_COOKIE() ^ (uint64_t)string_buffer_1;
     
     // 初始化字符串缓冲区
-    pointer_33 = &unknown_var_672_ptr;
+    pointer_33 = &processed_var_672_ptr;
     pointer_34 = config_buffer_19;
     config_buffer_19[0] = 0;
     buffer_size = STRING_LENGTH_8;
@@ -355,7 +355,7 @@ STRING_COMPARE_FAILED:
             );
             
             // 特殊配置设置
-            pointer_39 = &unknown_var_3480_ptr;
+            pointer_39 = &memory_allocator_3480_ptr;
             pointer_40 = config_buffer_8;
             config_buffer_8[0] = 0;
             config_value_8 = STRING_LENGTH_26;
@@ -383,7 +383,7 @@ STRING_COMPARE_FAILED:
         );
     } else {
         // 不匹配情况的处理
-        pointer_33 = &unknown_var_672_ptr;
+        pointer_33 = &processed_var_672_ptr;
         pointer_34 = config_buffer_19;
         config_buffer_19[0] = 0;
         buffer_size = STRING_LENGTH_9;
@@ -444,7 +444,7 @@ SECONDARY_COMPARE_FAILED:
         }
         
         // 最终配置设置
-        pointer_1 = &unknown_var_3480_ptr;
+        pointer_1 = &memory_allocator_3480_ptr;
         pointer_2 = config_buffer_1;
         config_buffer_1[0] = 0;
         config_value_1 = STRING_LENGTH_33;
@@ -508,7 +508,7 @@ void rendering_system_advanced_initializer_and_state_manager(
     render_data = *(uint64_t *)(*(int64_t *)(render_context + 0x18) + 0x20);
     
     // 内存分配操作
-    temp_value = FUN_18062b1e0(system_memory_pool_ptr, MEMORY_ALLOC_SIZE_0x2f0, MEMORY_ALLOC_SIZE_0x10, MEMORY_ALLOC_SIZE_0xd);
+    temp_value = CoreSystem_LoggingManager0(system_memory_pool_ptr, MEMORY_ALLOC_SIZE_0x2f0, MEMORY_ALLOC_SIZE_0x10, MEMORY_ALLOC_SIZE_0xd);
     memory_pointer = (int64_t *)FUN_1802e6b00(temp_value, 4);
     stack_pointer_2 = memory_pointer;
     
@@ -519,7 +519,7 @@ void rendering_system_advanced_initializer_and_state_manager(
     
     // 渲染状态检查和配置
     if (memory_pointer[0x4d] == 0) {
-        FUN_180170ac0(memory_pointer, &unknown_var_4472_ptr);
+        FUN_180170ac0(memory_pointer, &processed_var_4472_ptr);
     }
     
     // 应用默认配置
@@ -546,7 +546,7 @@ void rendering_system_advanced_initializer_and_state_manager(
     }
     
     // 应用新的渲染配置
-    FUN_180170ac0(*(uint64_t *)(render_context + STACK_OFFSET_0x118), &unknown_var_2984_ptr);
+    FUN_180170ac0(*(uint64_t *)(render_context + STACK_OFFSET_0x118), &rendering_buffer_2984_ptr);
     
     // 获取新的上下文数据
     context_data = *(int64_t *)(render_context + STACK_OFFSET_0x118);
@@ -611,49 +611,49 @@ static inline void set_render_configuration_group_1(
     void **p13, int8_t **p14, int32_t v7, int8_t *b7
 ) {
     // 第一组配置设置
-    *p1 = &unknown_var_3480_ptr;
+    *p1 = &memory_allocator_3480_ptr;
     *p2 = b1;
     b1[0] = 0;
     v1 = STRING_LENGTH_19;
-    strcpy_s(b1, STRING_BUFFER_SIZE_MEDIUM, &unknown_var_3024_ptr);
+    strcpy_s(b1, STRING_BUFFER_SIZE_MEDIUM, &memory_allocator_3024_ptr);
     *p1 = &system_state_ptr;
     
-    *p3 = &unknown_var_3480_ptr;
+    *p3 = &memory_allocator_3480_ptr;
     *p4 = b2;
     b2[0] = 0;
     v2 = STRING_LENGTH_23;
-    strcpy_s(b2, STRING_BUFFER_SIZE_MEDIUM, &unknown_var_3000_ptr);
+    strcpy_s(b2, STRING_BUFFER_SIZE_MEDIUM, &memory_allocator_3000_ptr);
     *p3 = &system_state_ptr;
     
-    *p5 = &unknown_var_3480_ptr;
+    *p5 = &memory_allocator_3480_ptr;
     *p6 = b3;
     b3[0] = 0;
     v3 = STRING_LENGTH_35;
     strcpy_s(b3, STRING_BUFFER_SIZE_MEDIUM, &system_memory_eba8);
     *p5 = &system_state_ptr;
     
-    *p7 = &unknown_var_3480_ptr;
+    *p7 = &memory_allocator_3480_ptr;
     *p8 = b4;
     b4[0] = 0;
     v4 = STRING_LENGTH_19;
     strcpy_s(b4, STRING_BUFFER_SIZE_MEDIUM, &system_memory_eb48);
     *p7 = &system_state_ptr;
     
-    *p9 = &unknown_var_3480_ptr;
+    *p9 = &memory_allocator_3480_ptr;
     *p10 = b5;
     b5[0] = 0;
     v5 = STRING_LENGTH_17;
-    strcpy_s(b5, STRING_BUFFER_SIZE_MEDIUM, &unknown_var_3048_ptr);
+    strcpy_s(b5, STRING_BUFFER_SIZE_MEDIUM, &memory_allocator_3048_ptr);
     *p9 = &system_state_ptr;
     
-    *p11 = &unknown_var_3480_ptr;
+    *p11 = &memory_allocator_3480_ptr;
     *p12 = b6;
     b6[0] = 0;
     v6 = STRING_LENGTH_34;
     strcpy_s(b6, STRING_BUFFER_SIZE_MEDIUM, &system_memory_ec30);
     *p11 = &system_state_ptr;
     
-    *p13 = &unknown_var_3480_ptr;
+    *p13 = &memory_allocator_3480_ptr;
     *p14 = b7;
     b7[0] = 0;
     v7 = STRING_LENGTH_21;

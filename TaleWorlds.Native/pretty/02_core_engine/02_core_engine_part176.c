@@ -179,7 +179,7 @@ void 处理游戏对象属性(int64_t 对象指针,int 参数类型,int *参数�
     比较参数 = 参数数组;
     if (0 < (int)过滤后数量) {
       do {
-        当前参数 = (int *)&unknown_var_7568_ptr;
+        当前参数 = (int *)&processed_var_7568_ptr;
         循环索引 = 0;
         do {
           if (*比较参数 == *当前参数) goto LAB_180160234;
@@ -296,7 +296,7 @@ LAB_1801604d9:
               }
               else {
                 对象参数数量 = 0;
-                当前参数 = (int *)&unknown_var_7568_ptr;
+                当前参数 = (int *)&processed_var_7568_ptr;
                 while (匹配索引 != *当前参数) {
                   对象参数数量 = 对象参数数量 + 1;
                   当前参数 = 当前参数 + 1;
@@ -388,7 +388,7 @@ void 处理对象参数匹配(int64_t 对象指针,uint64_t 未知参数1,int *�
               if (临时索引 == 参数数组[-6]) {
                 if (寄存器BPL == '\0') {
                   循环索引 = 0;
-                  比较参数 = (int *)&unknown_var_7568_ptr;
+                  比较参数 = (int *)&processed_var_7568_ptr;
                   while (临时索引 != *比较参数) {
                     循环索引 = 循环索引 + 1;
                     比较参数 = 比较参数 + 1;
@@ -511,7 +511,7 @@ LAB_180160546:
       当前对象 = 0;
       循环索引 = 对象指针[哈希表指针 + 7];
       do {
-        if (属性索引 == *(uint *)(&unknown_var_7568_ptr + 当前对象 * 4)) goto LAB_18016064a;
+        if (属性索引 == *(uint *)(&processed_var_7568_ptr + 当前对象 * 4)) goto LAB_18016064a;
         当前对象 = 当前对象 + 1;
       } while (当前对象 < 3);
       当前对象 = -1;
@@ -531,7 +531,7 @@ LAB_180160689:
         if ((*(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) != '\0') ||
            ((浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18), *浮点指针 <= 0.7 && *浮点指针 != 0.7
             && ((*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 1) == 0)))) {
-          数组大小 = (uint64_t)*(uint *)(&unknown_var_7584_ptr + 当前对象 * 4);
+          数组大小 = (uint64_t)*(uint *)(&processed_var_7584_ptr + 当前对象 * 4);
           goto LAB_180160689;
         }
 LAB_180160797:
@@ -568,7 +568,7 @@ LAB_180160791:
                *浮点指针 <= 0.7 && *浮点指针 != 0.7 &&
                ((*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 1) == 0)))))) {
             if ((当前对象 < 0) ||
-               (数组大小 = (uint64_t)*(uint *)(&unknown_var_7584_ptr + 当前对象 * 4),
+               (数组大小 = (uint64_t)*(uint *)(&processed_var_7584_ptr + 当前对象 * 4),
                *(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) != '\0')) goto LAB_180160797;
             浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18);
             if (*浮点指针 <= 0.7 && *浮点指针 != 0.7) {
@@ -638,7 +638,7 @@ char 验证对象碰撞属性(int32_t 属性ID)
       当前对象 = 0;
       循环索引 = *(int *)(寄存器RAX + 0x1c + 哈希表指针 * 4);
       do {
-        if (属性索引 == *(uint *)(&unknown_var_7568_ptr + 当前对象 * 4)) goto LAB_18016064a;
+        if (属性索引 == *(uint *)(&processed_var_7568_ptr + 当前对象 * 4)) goto LAB_18016064a;
         当前对象 = 当前对象 + 1;
       } while (当前对象 < 3);
       当前对象 = -1;
@@ -658,7 +658,7 @@ LAB_180160689:
         if ((*(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) != '\0') ||
            ((浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18), *浮点指针 <= 0.7 && *浮点指针 != 0.7
             && ((*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 1) == 0)))) {
-          数组大小 = (uint64_t)*(uint *)(&unknown_var_7584_ptr + 当前对象 * 4);
+          数组大小 = (uint64_t)*(uint *)(&processed_var_7584_ptr + 当前对象 * 4);
           goto LAB_180160689;
         }
 LAB_180160797:
@@ -695,7 +695,7 @@ LAB_180160791:
                *浮点指针 <= 0.7 && *浮点指针 != 0.7 &&
                ((*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 1) == 0)))))) {
             if ((当前对象 < 0) ||
-               (数组大小 = (uint64_t)*(uint *)(&unknown_var_7584_ptr + 当前对象 * 4),
+               (数组大小 = (uint64_t)*(uint *)(&processed_var_7584_ptr + 当前对象 * 4),
                *(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) != '\0')) goto LAB_180160797;
             浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18);
             if (*浮点指针 <= 0.7 && *浮点指针 != 0.7) {
@@ -752,7 +752,7 @@ void 处理对象属性验证(void)
       当前对象 = 0;
       循环索引 = *(int *)(寄存器RBP + 0x18 + 哈希表指针 * 4);
       do {
-        if (属性索引 == *(uint *)(&unknown_var_7568_ptr + 当前对象 * 4)) goto LAB_18016064a;
+        if (属性索引 == *(uint *)(&processed_var_7568_ptr + 当前对象 * 4)) goto LAB_18016064a;
         当前对象 = 当前对象 + 1;
       } while (当前对象 < 3);
       当前对象 = -1;
@@ -772,7 +772,7 @@ LAB_180160689:
         if ((*(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) != '\0') ||
            ((浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18), *浮点指针 <= 0.7 && *浮点指针 != 0.7
             && ((*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 1) == 0)))) {
-          数组大小 = (uint64_t)*(uint *)(&unknown_var_7584_ptr + 当前对象 * 4);
+          数组大小 = (uint64_t)*(uint *)(&processed_var_7584_ptr + 当前对象 * 4);
           goto LAB_180160689;
         }
 LAB_180160797:
@@ -809,7 +809,7 @@ LAB_180160791:
                *浮点指针 <= 0.7 && *浮点指针 != 0.7 &&
                ((*(byte *)(core_system_data_ui + 0x14 + 数组大小 * 0x18) & 1) == 0)))))) {
             if ((当前对象 < 0) ||
-               (数组大小 = (uint64_t)*(uint *)(&unknown_var_7584_ptr + 当前对象 * 4),
+               (数组大小 = (uint64_t)*(uint *)(&processed_var_7584_ptr + 当前对象 * 4),
                *(char *)(core_system_data_ui + 0x18 + 数组大小 * 0x18) != '\0')) goto LAB_180160797;
             浮点指针 = (float *)(core_system_data_ui + 4 + 数组大小 * 0x18);
             if (*浮点指针 <= 0.7 && *浮点指针 != 0.7) {
@@ -857,7 +857,7 @@ void 验证属性匹配条件(uint64_t 未知参数1,int64_t 属性表指针,int
       当前对象 = 0;
       循环索引 = *(int *)(对象指针 + 0x18 + 哈希表指针 * 4);
       do {
-        if (属性索引 == *(uint *)(&unknown_var_7568_ptr + 当前对象 * 4)) goto LAB_18016064a;
+        if (属性索引 == *(uint *)(&processed_var_7568_ptr + 当前对象 * 4)) goto LAB_18016064a;
         当前对象 = 当前对象 + 1;
       } while (当前对象 < 3);
       当前对象 = -1;
@@ -876,7 +876,7 @@ LAB_180160689:
         if ((*(char *)(属性表指针 + 0x18 + 数组大小 * 0x18) != '\0') ||
            ((浮点指针 = (float *)(属性表指针 + 4 + 数组大小 * 0x18), *浮点指针 <= 0.7 && *浮点指针 != 0.7 &&
             ((*(byte *)(属性表指针 + 0x14 + 数组大小 * 0x18) & 1) == 0)))) {
-          数组大小 = (uint64_t)*(uint *)(&unknown_var_7584_ptr + 当前对象 * 4);
+          数组大小 = (uint64_t)*(uint *)(&processed_var_7584_ptr + 当前对象 * 4);
           goto LAB_180160689;
         }
 LAB_180160797:
@@ -912,7 +912,7 @@ LAB_180160791:
               ((浮点指针 = (float *)(属性表指针 + 4 + 数组大小 * 0x18), *浮点指针 <= 0.7 && *浮点指针 != 0.7 &&
                ((*(byte *)(属性表指针 + 0x14 + 数组大小 * 0x18) & 1) == 0)))))) {
             if ((当前对象 < 0) ||
-               (数组大小 = (uint64_t)*(uint *)(&unknown_var_7584_ptr + 当前对象 * 4),
+               (数组大小 = (uint64_t)*(uint *)(&processed_var_7584_ptr + 当前对象 * 4),
                *(char *)(属性表指针 + 0x18 + 数组大小 * 0x18) != '\0')) goto LAB_180160797;
             浮点指针 = (float *)(属性表指针 + 4 + 数组大小 * 0x18);
             if (*浮点指针 <= 0.7 && *浮点指针 != 0.7) {

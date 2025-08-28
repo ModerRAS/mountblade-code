@@ -445,25 +445,25 @@ void rendering_system_advanced_render_control(int64_t render_context, int64_t re
   // 根据渲染模式选择着色器
   switch(render_mode) {
   case 0:
-    FUN_180094b30(shader_params, &unknown_var_5488_ptr);
+    FUN_180094b30(shader_params, &processed_var_5488_ptr);
     break;
   case 1:
-    FUN_180094b30(shader_params, &unknown_var_5720_ptr);
+    FUN_180094b30(shader_params, &processed_var_5720_ptr);
     break;
   case 2:
-    FUN_180094b30(shader_params, &unknown_var_5680_ptr);
+    FUN_180094b30(shader_params, &processed_var_5680_ptr);
     break;
   case 3:
-    FUN_180094b30(shader_params, &unknown_var_5640_ptr);
+    FUN_180094b30(shader_params, &processed_var_5640_ptr);
     break;
   case 4:
-    FUN_180094b30(shader_params, &unknown_var_5600_ptr);
+    FUN_180094b30(shader_params, &processed_var_5600_ptr);
     break;
   case 5:
-    FUN_180094b30(shader_params, &unknown_var_5872_ptr);
+    FUN_180094b30(shader_params, &processed_var_5872_ptr);
     break;
   default:
-    FUN_180626ee0(&unknown_var_5816_ptr);
+    FUN_180626ee0(&processed_var_5816_ptr);
   }
   
   // 初始化渲染对象
@@ -510,11 +510,11 @@ void rendering_system_advanced_render_control(int64_t render_context, int64_t re
     buffer_size_1 = 0x80;
     buffer_size_2 = 0x80;
     buffer_size_6 = *(int32_t *)(render_params + 0x1bd4);
-    render_ptr = &unknown_var_3432_ptr;
+    render_ptr = &memory_allocator_3432_ptr;
     render_data_ptr = render_stack;
     render_stack[0] = 0;
     render_data_param = 0x11;
-    global_data = strcpy_s(render_stack, 0x80, &unknown_var_5792_ptr);
+    global_data = strcpy_s(render_stack, 0x80, &processed_var_5792_ptr);
     FUN_1800b1d80(global_data, &resource_chain_1, &render_ptr, &buffer_size_1);
     
     // 配置渲染链

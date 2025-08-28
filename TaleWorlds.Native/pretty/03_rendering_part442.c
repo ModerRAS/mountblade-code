@@ -220,7 +220,7 @@ void FUN_18050cca0(int64_t param_1)
 LAB_18050cd1a:
   *(int8_t *)(*(int64_t *)(param_1 + 0x8f8) + 0xa24) = 0xff;
   if ((*(char *)(*(int64_t *)(param_1 + 0x8f8) + 0xa27) == '\0') || (!bVar3)) {
-    FUN_1800623b0(system_message_context,0,0x40,0xd,&unknown_var_6616_ptr);
+    FUN_1800623b0(system_message_context,0,0x40,0xd,&processed_var_6616_ptr);
     lVar7 = *(int64_t *)(param_1 + 0x8f8);
     iVar8 = *(int *)(lVar7 + 0x9f8 + (int64_t)*(char *)(lVar7 + 0xa25) * 4);
     if (-1 < iVar8) {
@@ -433,7 +433,7 @@ void FUN_18050ccd5(int64_t param_1,uint64_t param_2)
 LAB_18050cd1a:
   *(int8_t *)(*(int64_t *)(unaff_RDI + 0x8f8) + 0xa24) = 0xff;
   if ((*(char *)(*(int64_t *)(unaff_RDI + 0x8f8) + 0xa27) == '\0') || (!bVar3)) {
-    FUN_1800623b0(system_message_context,0,0x40,0xd,&unknown_var_6616_ptr);
+    FUN_1800623b0(system_message_context,0,0x40,0xd,&processed_var_6616_ptr);
     lVar7 = *(int64_t *)(unaff_RDI + 0x8f8);
     iVar8 = *(int *)(lVar7 + 0x9f8 + (int64_t)*(char *)(lVar7 + 0xa25) * 4);
     if (-1 < iVar8) {

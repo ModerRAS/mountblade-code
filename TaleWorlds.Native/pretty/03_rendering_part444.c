@@ -356,7 +356,7 @@ LAB_18050e0d9:
   if (puVar4 != (void *)0x0) {
     puVar6 = puVar4;
   }
-  lVar5 = strstr(puVar6,&unknown_var_6704_ptr);
+  lVar5 = strstr(puVar6,&processed_var_6704_ptr);
   uVar9 = render_system_memory;
   if (lVar5 != 0) {
     uVar9 = render_system_memory;
@@ -382,11 +382,11 @@ LAB_18050e0d9:
   fStack_c4 = fStack_174;
   fStack_c0 = fStack_170;
   uStack_bc = uStack_16c;
-  puStack_b8 = &unknown_var_3480_ptr;
+  puStack_b8 = &memory_allocator_3480_ptr;
   puStack_b0 = auStack_a0;
   auStack_a0[0] = 0;
   uStack_a8 = 0x16;
-  uVar9 = strcpy_s(auStack_a0,0x40,&unknown_var_6680_ptr);
+  uVar9 = strcpy_s(auStack_a0,0x40,&processed_var_6680_ptr);
   uVar9 = FUN_1800c17c0(uVar9,&puStack_b8);
   puStack_b8 = &system_state_ptr;
   FUN_1804ebb80(*(uint64_t *)(param_1 + 0x8d8),uVar9,&uStack_f8,1);

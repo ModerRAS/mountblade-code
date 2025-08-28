@@ -10,7 +10,7 @@ void FUN_180437ba0(uint64_t *param_1,uint64_t *param_2)
   uint64_t uVar1;
   
   if (param_1 != (uint64_t *)0x0) {
-    if ((void *)*param_1 == &unknown_var_7336_ptr) {
+    if ((void *)*param_1 == &processed_var_7336_ptr) {
       param_1 = (uint64_t *)((int64_t)param_1 + 0xac);
     }
     else {
@@ -96,7 +96,7 @@ void FUN_180437cf0(uint64_t *param_1,uint64_t *param_2)
 {
   uint64_t uVar1;
   
-  if ((void *)*param_1 == &unknown_var_7336_ptr) {
+  if ((void *)*param_1 == &processed_var_7336_ptr) {
     param_1 = param_1 + 0xe;
   }
   else {
@@ -153,7 +153,7 @@ void FUN_180437d60(int64_t param_1,int64_t param_2)
   uStack_88 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_b8;
   if (param_1 != 0) {
-    puStack_78 = &unknown_var_3480_ptr;
+    puStack_78 = &memory_allocator_3480_ptr;
     puStack_70 = auStack_60;
     uStack_68 = 0;
     auStack_60[0] = 0;
@@ -168,7 +168,7 @@ void FUN_180437d60(int64_t param_1,int64_t param_2)
     FUN_1800c48e0();
     puStack_78 = &system_state_ptr;
     if (plStack_98 == (int64_t *)0x0) {
-      SystemDataInitializer(&unknown_var_6376_ptr,param_2);
+      SystemDataInitializer(&processed_var_6376_ptr,param_2);
     }
     else {
       FUN_18039f160(param_1);
@@ -200,14 +200,14 @@ uint64_t * FUN_180437e80(uint64_t *param_1,uint64_t *param_2)
     param_1[1] = CONCAT44(uStack_1c,0xffffffff);
     return param_1;
   }
-  if ((void *)*param_2 == &unknown_var_7336_ptr) {
+  if ((void *)*param_2 == &processed_var_7336_ptr) {
     lVar4 = param_2[6];
     plVar3 = (int64_t *)0x0;
     plVar6 = plVar3;
     plVar7 = plVar3;
     if (param_2[7] - lVar4 >> 3 != 0) {
       do {
-        if (((void *)**(uint64_t **)((int64_t)plVar7 + lVar4) != &unknown_var_9656_ptr) &&
+        if (((void *)**(uint64_t **)((int64_t)plVar7 + lVar4) != &processed_var_9656_ptr) &&
            (iVar2 = (**(code **)((void *)**(uint64_t **)((int64_t)plVar7 + lVar4) + 0x98))()
            , iVar2 == 0)) {
           plVar3 = *(int64_t **)(param_2[6] + (int64_t)(int)plVar6 * 8);
@@ -262,7 +262,7 @@ void FUN_180437ea2(int64_t param_1)
     plVar7 = plVar3;
     if (*(int64_t *)(unaff_RDI + 0x38) - lVar4 >> 3 != 0) {
       do {
-        if (((void *)**(uint64_t **)((int64_t)plVar7 + lVar4) != &unknown_var_9656_ptr) &&
+        if (((void *)**(uint64_t **)((int64_t)plVar7 + lVar4) != &processed_var_9656_ptr) &&
            (iVar2 = (**(code **)((void *)**(uint64_t **)((int64_t)plVar7 + lVar4) + 0x98))()
            , iVar2 == 0)) {
           plVar3 = *(int64_t **)(*(int64_t *)(unaff_RDI + 0x30) + (int64_t)(int)plVar6 * 8);
@@ -377,7 +377,7 @@ void FUN_180438210(void)
               (system_cache_buffer,lVar2 * 0x20 + *(int64_t *)(render_system_data_config + 0x1380) + -0x20);
     return;
   }
-  SystemDataInitializer(&unknown_var_6416_ptr);
+  SystemDataInitializer(&processed_var_6416_ptr);
   UNRECOVERED_JUMPTABLE = *(code **)(*system_cache_buffer + 0x70);
   uVar1 = FUN_180628ca0();
                     // WARNING: Could not recover jumptable at 0x00018043828c. Too many branches
@@ -589,7 +589,7 @@ void FUN_180438680(int32_t param_1,int32_t param_2,uint64_t param_3,uint64_t par
       if (*(void **)(lVar1 + 0x1dd0) != (void *)0x0) {
         puVar3 = *(void **)(lVar1 + 0x1dd0);
       }
-      SystemDataInitializer(&unknown_var_544_ptr,puVar3,param_3,param_4,unaff_RBX);
+      SystemDataInitializer(&processed_var_544_ptr,puVar3,param_3,param_4,unaff_RBX);
     }
     *(int32_t *)(lVar1 + 0x1dc0) = *(int32_t *)(lVar1 + 0x1e08);
     return;

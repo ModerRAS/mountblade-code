@@ -242,7 +242,7 @@ LAB_180432635:
       else {
         fVar13 = (fVar13 - fVar14) / (fVar18 - fVar14);
         if (*(char *)(param_1 + -0x10 + lVar12 * 0x48) == '\0') {
-          fVar13 = *(float *)(&unknown_var_1728_ptr + (int64_t)(int)(fVar13 * 100000.0) * 4);
+          fVar13 = *(float *)(&ui_system_data_1728_ptr + (int64_t)(int)(fVar13 * 100000.0) * 4);
         }
         fVar13 = fVar13 * fVar17;
         *(float *)(param_1 + 0x11a0) = fVar13;

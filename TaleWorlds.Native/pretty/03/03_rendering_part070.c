@@ -201,11 +201,11 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
         temp_param_5 = 0;
         temp_param_6 = 0;
         temp_param_7 = 0x3f800000;
-        temp_var_5 = &unknown_var_3480_ptr;
+        temp_var_5 = &memory_allocator_3480_ptr;
         temp_var_6 = temp_buffer_4;
         temp_buffer_4[0] = 0;
         temp_param_12 = 0x1e;
-        temp_var = strcpy_s(temp_buffer_4,RENDERING_SYSTEM_STRING_LENGTH_0X40,&unknown_var_3752_ptr);
+        temp_var = strcpy_s(temp_buffer_4,RENDERING_SYSTEM_STRING_LENGTH_0X40,&memory_allocator_3752_ptr);
         temp_param_1 = 0x100;
         temp_flag = 1;
         temp_var_2 = 0;
@@ -227,11 +227,11 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
           (**(code **)(*temp_long_pointer_4 + 0x38))();
         }
         temp_var_5 = &system_state_ptr;
-        temp_var_7 = &unknown_var_3480_ptr;
+        temp_var_7 = &memory_allocator_3480_ptr;
         temp_var_8 = temp_buffer_5;
         temp_buffer_5[0] = 0;
         temp_param_13 = 0x21;
-        temp_var = strcpy_s(temp_buffer_5,RENDERING_SYSTEM_STRING_LENGTH_0X40,&unknown_var_3712_ptr);
+        temp_var = strcpy_s(temp_buffer_5,RENDERING_SYSTEM_STRING_LENGTH_0X40,&memory_allocator_3712_ptr);
         temp_param_1 = 0x100;
         temp_flag = 1;
         temp_var_2 = 0;
@@ -362,7 +362,7 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
           } while ((int)temp_uint_2 < temp_int_2);
         }
         temp_pointer_array = (int64_t **)&temp_var_1;
-        temp_var_1 = &unknown_var_3432_ptr;
+        temp_var_1 = &memory_allocator_3432_ptr;
         temp_var_2 = temp_buffer_2;
         temp_param_8 = 0;
         temp_buffer_2[0] = 0;
@@ -389,7 +389,7 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
         }
         temp_var_1 = &system_state_ptr;
         temp_pointer_3 = (int64_t **)&temp_var_3;
-        temp_var_3 = &unknown_var_3432_ptr;
+        temp_var_3 = &memory_allocator_3432_ptr;
         temp_var_4 = temp_buffer_3;
         temp_param_10 = 0;
         temp_buffer_3[0] = 0;

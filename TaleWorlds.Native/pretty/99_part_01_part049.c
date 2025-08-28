@@ -70,8 +70,8 @@ void FUN_1800d5be0(uint64_t param_1,uint64_t param_2,int32_t param_3)
       }
       plVar7 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
       uStack_68 = CONCAT31(uStack_68._1_3_,uVar16);
-      pcStack_88 = (code *)&unknown_var_1728_ptr;
-      puStack_80 = &unknown_var_1696_ptr;
+      pcStack_88 = (code *)&ui_system_data_1728_ptr;
+      puStack_80 = &ui_system_data_1696_ptr;
       uStack_70._0_4_ = (int32_t)lVar12;
       uStack_70._4_4_ = (int32_t)((uint64_t)lVar12 >> 0x20);
       uStack_98._0_4_ = (int32_t)uStack_70;
@@ -82,7 +82,7 @@ void FUN_1800d5be0(uint64_t param_1,uint64_t param_2,int32_t param_3)
       uStack_70 = lVar12;
       uStack_64 = param_3;
       FUN_180049830(plVar7);
-      *plVar7 = (int64_t)&unknown_var_2528_ptr;
+      *plVar7 = (int64_t)&rendering_buffer_2528_ptr;
       plVar7[0x1a] = 0;
       plVar7[0x1b] = (int64_t)_guard_check_icall;
       if (plVar7 + 0x18 != &uStack_98) {
@@ -178,7 +178,7 @@ LAB_1800d5e4d:
     do {
       plVar7 = *(int64_t **)(uVar15 * 8 + lVar12);
       pcVar3 = *(code **)(*plVar7 + 0x68);
-      if (pcVar3 == (code *)&unknown_var_9696_ptr) {
+      if (pcVar3 == (code *)&processed_var_9696_ptr) {
         cVar19 = (char)plVar7[2] != '\0';
       }
       else {
@@ -191,7 +191,7 @@ LAB_1800d5e4d:
         if (cVar19 == '\0') {
           plVar7 = *(int64_t **)(uVar15 * 8 + *plVar1);
           pcVar3 = *(code **)(*plVar7 + 0x80);
-          if (pcVar3 == (code *)&unknown_var_1840_ptr) {
+          if (pcVar3 == (code *)&ui_system_data_1840_ptr) {
             FUN_1800496b0(plVar7 + 4);
           }
           else {

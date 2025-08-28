@@ -344,16 +344,16 @@ void FUN_18024c0f0(int64_t param_1,uint64_t param_2)
   uStack_108 = 0;
   uStack_f8 = param_2;
   if (*(int *)(param_1 + 0x3530) < 1) {
-    puStack_e8 = &unknown_var_3480_ptr;
+    puStack_e8 = &memory_allocator_3480_ptr;
     puStack_e0 = auStack_d0;
     auStack_d0[0] = 0;
     uStack_d8 = 7;
-    strcpy_s(auStack_d0,0x40,&unknown_var_600_ptr);
+    strcpy_s(auStack_d0,0x40,&processed_var_600_ptr);
     ppuVar1 = &puStack_e8;
     uVar2 = 2;
   }
   else {
-    puStack_88 = &unknown_var_3480_ptr;
+    puStack_88 = &memory_allocator_3480_ptr;
     puStack_80 = auStack_70;
     auStack_70[0] = 0;
     uStack_78 = *(int32_t *)(param_1 + 0x3530);

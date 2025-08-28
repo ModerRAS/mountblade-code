@@ -151,14 +151,14 @@ int * FUN_18011bd30(int *param_1)
   fVar6 = (float)param_1[0xc];
   *(int *)(lVar15 + 0x104) = param_1[0xb];
   *(float *)(lVar15 + 0x100) = fVar6 - fVar30;
-  cVar24 = FUN_18010fad0(&unknown_var_2296_ptr,0,uVar21);
+  cVar24 = FUN_18010fad0(&rendering_buffer_2296_ptr,0,uVar21);
   fVar6 = (float)param_1[0xc];
   *(int *)(lVar15 + 0x104) = param_1[0xb];
   if (cVar24 != '\0') {
     iVar26 = -1;
   }
   *(float *)(lVar15 + 0x100) = (fVar6 - fVar30) + fVar31;
-  cVar24 = FUN_18010fad0(&unknown_var_2316_ptr,1,uVar21);
+  cVar24 = FUN_18010fad0(&rendering_buffer_2316_ptr,1,uVar21);
   lVar16 = SYSTEM_DATA_MANAGER_A;
   if (cVar24 != '\0') {
     iVar26 = 1;

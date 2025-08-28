@@ -348,7 +348,7 @@ void SystemGuardManager(void) {
     int64_t *guard_table;
     
     // 遍历保护表并分发调用
-    for (guard_table = (int64_t *)&unknown_var_8824_ptr; guard_table < &unknown_var_8824_ptr; guard_table = guard_table + 1) {
+    for (guard_table = (int64_t *)&processed_var_8824_ptr; guard_table < &processed_var_8824_ptr; guard_table = guard_table + 1) {
         if (*guard_table != 0) {
             _guard_dispatch_icall();
         }
@@ -365,7 +365,7 @@ void ExceptionHandler(void) {
     int64_t *exception_table;
     
     // 遍历异常表并分发调用
-    for (exception_table = (int64_t *)&unknown_var_8840_ptr; exception_table < &unknown_var_8840_ptr; exception_table = exception_table + 1) {
+    for (exception_table = (int64_t *)&processed_var_8840_ptr; exception_table < &processed_var_8840_ptr; exception_table = exception_table + 1) {
         if (*exception_table != 0) {
             _guard_dispatch_icall();
         }
@@ -393,11 +393,11 @@ void free(void) {
  * @details 分配内存并处理异常上下文
  */
 uint64_t * MemoryAllocator(uint64_t *param_1, int64_t param_2) {
-    *param_1 = &unknown_var_9816_ptr;
+    *param_1 = &processed_var_9816_ptr;
     param_1[1] = 0;
     param_1[2] = 0;
     __std_exception_copy(param_2 + 8);
-    *param_1 = &unknown_var_9864_ptr;
+    *param_1 = &processed_var_9864_ptr;
     return param_1;
 }
 
@@ -409,7 +409,7 @@ uint64_t * MemoryAllocator(uint64_t *param_1, int64_t param_2) {
  * @details 释放内存并处理异常清理
  */
 uint64_t * MemoryDeallocator(uint64_t *param_1, uint64_t param_2) {
-    *param_1 = &unknown_var_9816_ptr;
+    *param_1 = &processed_var_9816_ptr;
     __std_exception_destroy(param_1 + 1);
     
     if ((param_2 & 1) != 0) {
@@ -428,7 +428,7 @@ void SystemExceptionThrower(void) {
     
     FUN_180287f70(exception_context);
     // WARNING: Subroutine does not return
-    _CxxThrowException(exception_context, &unknown_var_2600_ptr);
+    _CxxThrowException(exception_context, &rendering_buffer_2600_ptr);
 }
 
 /**
@@ -440,7 +440,7 @@ void SystemErrorThrower(void) {
     
     func_0x0001808fd81c(error_context);
     // WARNING: Subroutine does not return
-    _CxxThrowException(error_context, &unknown_var_2296_ptr);
+    _CxxThrowException(error_context, &rendering_buffer_2296_ptr);
 }
 
 /**
@@ -693,9 +693,9 @@ uint64_t AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
                 } else {
                     // 高精度数学计算
                     result_value = (uint64_t)(((uint)ABS(vector_component) >> 0x17) - 0x8e & 0xfff8);
-                    double final_val = (double)(*(uint64_t *)(&unknown_var_4736_ptr + result_value * 2) & 0xffffffffff000000) *
+                    double final_val = (double)(*(uint64_t *)(&processed_var_4736_ptr + result_value * 2) & 0xffffffffff000000) *
                                      temp_val;
-                    double result_val = (double)(*(uint64_t *)(&unknown_var_4736_ptr + result_value * 2) << 0x28) * temp_val;
+                    double result_val = (double)(*(uint64_t *)(&processed_var_4736_ptr + result_value * 2) << 0x28) * temp_val;
                     
                     final_val = final_val + result_val;
                     integer_value = SUB84(final_val + 6755399441055744.0, 0);
@@ -703,14 +703,14 @@ uint64_t AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
                     range_flags = integer_value * 2;
                     stack_flags[1] = (integer_value << 0x19) >> 0x1f;
                     
-                    temp_val = temp_val * *(double *)(&unknown_var_4744_ptr + result_value * 2) + result_val + 
+                    temp_val = temp_val * *(double *)(&processed_var_4744_ptr + result_value * 2) + result_val + 
                              (final_val - final_val) + (final_val - ((final_val + 6755399441055744.0) - 6755399441055744.0));
                     
                     result_value = (uint64_t)((range_flags + stack_flags[1] ^ stack_flags[1]) & 0xfe);
                     
                     vector_component = (float)((double)((uint64_t)
                                                       ((3320.092545592124 - temp_val * temp_val) *
-                                                       *(double *)(&unknown_var_3704_ptr + result_value * 8)) ^
+                                                       *(double *)(&memory_allocator_3704_ptr + result_value * 8)) ^
                                                       (uint64_t)((range_flags & 0x100) << 0x17) << 0x20) +
                                      *(double *)(&system_memory_f000 + result_value * 8) * temp_val *
                                      (double)((uint64_t)(9960.277636776373 - temp_val * temp_val) ^
@@ -985,9 +985,9 @@ uint64_t FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
                 } else {
                     // 高精度数学计算
                     result_value = (uint64_t)(((uint)ABS(final_x) >> 0x17) - 0x8e & 0xfff8);
-                    double final_val = (double)(*(uint64_t *)(&unknown_var_6528_ptr + result_value * 2) & 0xffffffffff000000) *
+                    double final_val = (double)(*(uint64_t *)(&processed_var_6528_ptr + result_value * 2) & 0xffffffffff000000) *
                                      temp_val;
-                    double result_val = (double)(*(uint64_t *)(&unknown_var_6528_ptr + result_value * 2) << 0x28) * temp_val;
+                    double result_val = (double)(*(uint64_t *)(&processed_var_6528_ptr + result_value * 2) << 0x28) * temp_val;
                     
                     final_val = final_val + result_val;
                     temp_index = SUB84(final_val + 6755399441055744.0, 0);
@@ -995,16 +995,16 @@ uint64_t FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
                     optimization_flags = temp_index * 2;
                     stack_flags[1] = (temp_index << 0x19) >> 0x1f;
                     
-                    temp_val = temp_val * *(double *)(&unknown_var_6536_ptr + result_value * 2) + result_val + 
+                    temp_val = temp_val * *(double *)(&processed_var_6536_ptr + result_value * 2) + result_val + 
                              (final_val - final_val) + (final_val - ((final_val + 6755399441055744.0) - 6755399441055744.0));
                     
                     result_value = (uint64_t)((optimization_flags + stack_flags[1] ^ stack_flags[1]) & 0xfe);
                     
                     final_x = (float)((double)((uint64_t)
                                              ((3320.092545592124 - temp_val * temp_val) *
-                                              *(double *)(&unknown_var_5496_ptr + result_value * 8)) ^
+                                              *(double *)(&processed_var_5496_ptr + result_value * 8)) ^
                                              (uint64_t)(((optimization_flags & 0x180) + 0x80 & 0x100) << 0x17) << 0x20) +
-                                    *(double *)(&unknown_var_5488_ptr + result_value * 8) * temp_val *
+                                    *(double *)(&processed_var_5488_ptr + result_value * 8) * temp_val *
                                     (double)((uint64_t)(9960.277636776373 - temp_val * temp_val) ^
                                             (uint64_t)((optimization_flags & 0x100) << 0x17) << 0x20));
                 }

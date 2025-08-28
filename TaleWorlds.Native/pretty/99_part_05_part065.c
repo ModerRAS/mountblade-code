@@ -620,7 +620,7 @@ void FUN_1803a25c0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   uint64_t uStack_40;
   int64_t lVar11;
   
-  FUN_1800634b0(param_2,0x40,&unknown_var_8072_ptr,param_4,param_5);
+  FUN_1800634b0(param_2,0x40,&processed_var_8072_ptr,param_4,param_5);
   CoreEngineDataTransformer(&puStack_58,param_6);
   uVar9 = uStack_48 + 1;
   CoreEngineDataBufferProcessor(&puStack_58,uVar9);
@@ -682,7 +682,7 @@ void FUN_1803a25c0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
         ((*(uint *)(param_1 + 0x86c) >> (bVar8 & 0x1f) & 1) != 0)) &&
        ((iVar12 < *(int *)(*(int64_t *)(param_1 + 0x10) + 0x78) &&
         (*(char *)(*(int64_t *)(lVar13 + *(int64_t *)(param_1 + 0x10)) + 0x150) == '\0')))) {
-      FUN_1800634b0(param_2,0x40,&unknown_var_8048_ptr,param_4 & 0xffffffff,param_5,iVar12);
+      FUN_1800634b0(param_2,0x40,&processed_var_8048_ptr,param_4 & 0xffffffff,param_5,iVar12);
       CoreEngineDataTransformer(&puStack_78,param_6);
       uVar9 = uStack_68 + 1;
       if (uVar9 != 0) {
@@ -736,7 +736,7 @@ LAB_1803a290a:
         if ((0 < *(int *)(param_6 + 0x10)) &&
            (*(char *)(*(int64_t *)(param_1 + 0x10) + 0x30) != '\0')) {
           *(int8_t *)(*(int64_t *)(param_1 + 0x10) + 0x30) = 0;
-          FUN_180627020(&unknown_var_8008_ptr,param_2);
+          FUN_180627020(&processed_var_8008_ptr,param_2);
         }
       }
       else {

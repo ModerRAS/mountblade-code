@@ -105,7 +105,7 @@ void FUN_1801f0ed0(int64_t param_1,int32_t param_2)
       uStack_40 = 0x1801f0f43;
       func_0x0001800938f0(uVar8,0xbf800000);
       pcVar2 = *(code **)(**(int64_t **)(param_1 + 0x20) + 0xb8);
-      if (pcVar2 == (code *)&unknown_var_128_ptr) {
+      if (pcVar2 == (code *)&ui_system_data_128_ptr) {
         lVar23 = (*(int64_t **)(param_1 + 0x20))[0xda];
       }
       else {
@@ -583,7 +583,7 @@ void FUN_1801f0f90(uint64_t param_1,int64_t param_2)
   puStack_40 = auStack_30;
   auStack_30[0] = 0;
   uStack_38 = 6;
-  strcpy_s(auStack_30,0x10,&unknown_var_2588_ptr);
+  strcpy_s(auStack_30,0x10,&rendering_buffer_2588_ptr);
   uStack_78 = 1;
   SystemCore_EncryptionEngine0(&puStack_70,&puStack_48);
   uVar2 = uStack_60;

@@ -141,7 +141,7 @@ void ui_initialize_component_handlers(int64_t param_1, int64_t param_2, int64_t 
   pcVar1 = ui_system_data_config;
   *(int8_t *)(param_1 + 0x189) = 1;
   if (pcVar1 == (code *)0x0) {
-    FUN_180626ee0(&unknown_var_9680_ptr);
+    FUN_180626ee0(&processed_var_9680_ptr);
   }
   else {
     puVar2 = &DEFAULT_UI_STRING_PTR;
@@ -155,9 +155,9 @@ void ui_initialize_component_handlers(int64_t param_1, int64_t param_2, int64_t 
     (*pcVar1)(puVar2, puVar3, ui_system_data_config, ui_system_control_config);
   }
   if (ui_system_data_config == (code *)0x0) {
-    SystemDataInitializer(&unknown_var_9720_ptr);
+    SystemDataInitializer(&processed_var_9720_ptr);
     if (ui_system_data_config == (code *)0x0) {
-      FUN_180626ee0(&unknown_var_9680_ptr);
+      FUN_180626ee0(&processed_var_9680_ptr);
       goto LAB_180651b0f;
     }
   }
@@ -167,35 +167,35 @@ LAB_180651b0f:
   // 注册UI组件事件处理器
   (**(code **)(param_1 + 0x78))(0, FUN_1806555f0);
   (**(code **)(param_1 + 0x78))(1, FUN_1806552e0);
-  (**(code **)(param_1 + 0x78))(2, &unknown_var_4448_ptr);
+  (**(code **)(param_1 + 0x78))(2, &processed_var_4448_ptr);
   (**(code **)(param_1 + 0x78))(3, FUN_180655e60);
-  (**(code **)(param_1 + 0x78))(4, &unknown_var_4224_ptr);
-  (**(code **)(param_1 + 0x78))(5, &unknown_var_3232_ptr);
-  (**(code **)(param_1 + 0x78))(6, &unknown_var_4448_ptr);
-  (**(code **)(param_1 + 0x78))(7, &unknown_var_5088_ptr);
+  (**(code **)(param_1 + 0x78))(4, &processed_var_4224_ptr);
+  (**(code **)(param_1 + 0x78))(5, &memory_allocator_3232_ptr);
+  (**(code **)(param_1 + 0x78))(6, &processed_var_4448_ptr);
+  (**(code **)(param_1 + 0x78))(7, &processed_var_5088_ptr);
   (**(code **)(param_1 + 0x78))(8, FUN_180656160);
   (**(code **)(param_1 + 0x78))(9, FUN_180656110);
-  (**(code **)(param_1 + 0x78))(10, &unknown_var_5104_ptr);
+  (**(code **)(param_1 + 0x78))(10, &processed_var_5104_ptr);
   (**(code **)(param_1 + 0x78))(0xb, FUN_180656020);
-  (**(code **)(param_1 + 0x78))(0xc, &unknown_var_8096_ptr);
+  (**(code **)(param_1 + 0x78))(0xc, &processed_var_8096_ptr);
   (**(code **)(param_1 + 0x78))(0xd, FUN_180655f50);
-  (**(code **)(param_1 + 0x78))(0xe, &unknown_var_4912_ptr);
-  (**(code **)(param_1 + 0x78))(0xf, &unknown_var_5472_ptr);
+  (**(code **)(param_1 + 0x78))(0xe, &processed_var_4912_ptr);
+  (**(code **)(param_1 + 0x78))(0xf, &processed_var_5472_ptr);
   (**(code **)(param_1 + 0x78))(0x10, FUN_1806563a0);
   (**(code **)(param_1 + 0x78))(0x11, FUN_1806561d0);
-  (**(code **)(param_1 + 0x78))(0x12, &unknown_var_5456_ptr);
+  (**(code **)(param_1 + 0x78))(0x12, &processed_var_5456_ptr);
   (**(code **)(param_1 + 0x78))(0x13, FUN_180656340);
   (**(code **)(param_1 + 0x78))(0x14, FUN_180656410);
   (**(code **)(param_1 + 0x78))(0x15, FUN_1806565a0);
   (**(code **)(param_1 + 0x78))(0x16, FUN_180656610);
   (**(code **)(param_1 + 0x78))(0x17, FUN_1806566c0);
   (**(code **)(param_1 + 0x78))(0x18, FUN_18006f4c0);
-  (**(code **)(param_1 + 0x78))(0x19, &unknown_var_6448_ptr);
-  (**(code **)(param_1 + 0x78))(0x1a, &unknown_var_9328_ptr);
+  (**(code **)(param_1 + 0x78))(0x19, &processed_var_6448_ptr);
+  (**(code **)(param_1 + 0x78))(0x1a, &processed_var_9328_ptr);
   (**(code **)(param_1 + 0x78))(0x1b, _guard_check_icall);
   (**(code **)(param_1 + 0x78))(0x1c, _guard_check_icall);
   (**(code **)(param_1 + 0x78))(0x1d, 0x180069ee0);
-  (**(code **)(param_1 + 0x78))(0x1e, &unknown_var_8224_ptr);
+  (**(code **)(param_1 + 0x78))(0x1e, &processed_var_8224_ptr);
   (**(code **)(param_1 + 0x78))(0x1f, _guard_check_icall);
   (**(code **)(param_1 + 0x78))(0x20, _guard_check_icall);
   (**(code **)(param_1 + 0x80))();
@@ -326,7 +326,7 @@ uint64_t ui_process_event_data(int64_t param_1, int64_t param_2, int64_t param_3
     lVar1 = 0;
     do {
       lVar2 = lVar1 + 1;
-      if (*(char *)(lStack_28 + lVar1) != (&unknown_var_768_ptr)[lVar1]) goto LAB_180652228;
+      if (*(char *)(lStack_28 + lVar1) != (&processed_var_768_ptr)[lVar1]) goto LAB_180652228;
       lVar1 = lVar2;
     } while (lVar2 != 8);
     uVar4 = 0;
@@ -717,7 +717,7 @@ ui_format_component_string(int64_t *param_1, uint64_t *param_2, uint64_t param_3
   if (lVar3 == 0) {
     uVar5 = param_1[1] - *param_1 >> 5;
     if ((int)uVar5 == 0) {
-      CoreMemoryPoolValidator(param_2, &unknown_var_9944_ptr);
+      CoreMemoryPoolValidator(param_2, &processed_var_9944_ptr);
       puStack_38 = &system_data_buffer_ptr;
       if (lStack_30 == 0) {
         return param_2;
@@ -732,7 +732,7 @@ ui_format_component_string(int64_t *param_1, uint64_t *param_2, uint64_t param_3
       if (puVar2 != (void *)0x0) {
         puVar7 = puVar2;
       }
-      System_DataHandler(&puStack_38, &unknown_var_92_ptr, puVar7);
+      System_DataHandler(&puStack_38, &processed_var_92_ptr, puVar7);
       lVar6 = lVar6 + 0x20;
       uVar5 = uVar5 - 1;
     } while (uVar5 != 0);
@@ -840,7 +840,7 @@ void ui_output_debug_string(uint64_t param_1)
 {
   FUN_1806533a0();
   OutputDebugStringA(param_1);
-  FUN_180626ee0(&unknown_var_16_ptr);
+  FUN_180626ee0(&ui_system_data_16_ptr);
 }
 
 // 函数: ui_allocate_zeroed_memory - 分配并清零UI内存
@@ -960,13 +960,13 @@ void ui_load_mono_assembly(void)
   puStack_b8 = &system_state_ptr;
   *plVar1 = lVar4;
   if (lVar4 == 0) {
-    FUN_180626ee0(&unknown_var_80_ptr, &system_memory_dda8);
+    FUN_180626ee0(&processed_var_80_ptr, &system_memory_dda8);
     lVar4 = *plVar1;
   }
   lVar4 = mono_assembly_get_image(lVar4);
   plVar1[1] = lVar4;
   if (lVar4 == 0) {
-    FUN_180626ee0(&unknown_var_328_ptr);
+    FUN_180626ee0(&memory_allocator_328_ptr);
   }
   puStack_90 = &system_data_buffer_ptr;
   uStack_78 = 0;
@@ -1013,11 +1013,11 @@ ui_create_error_message(uint64_t param_1, uint64_t *param_2, uint64_t param_3, u
   *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3432_ptr;
+  *param_2 = &memory_allocator_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0x10;
-  strcpy_s(param_2[1], 0x80, &unknown_var_384_ptr, param_4, 0, 0xfffffffffffffffe);
+  strcpy_s(param_2[1], 0x80, &memory_allocator_384_ptr, param_4, 0, 0xfffffffffffffffe);
   return param_2;
 }
 

@@ -48,7 +48,7 @@ bool FUN_18044e000(int64_t param_1)
   int iVar1;
   
   if (*(int *)(param_1 + 0x4e8) == 0x1b) {
-    iVar1 = strcmp(*(uint64_t *)(param_1 + 0x4e0),&unknown_var_3784_ptr);
+    iVar1 = strcmp(*(uint64_t *)(param_1 + 0x4e0),&memory_allocator_3784_ptr);
     return iVar1 == 0;
   }
   return false;

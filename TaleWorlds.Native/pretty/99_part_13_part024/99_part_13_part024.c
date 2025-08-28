@@ -26,7 +26,7 @@
 /* 内存管理常量 */
 #define MEMORY_ALIGNMENT_SIZE         0x08
 #define MEMORY_POOL_SIZE             0x1000
-#define MEMORY_CHUNK_SIZE            0x100
+#define MEMORY_CHSYSTEM_SIZE            0x100
 
 /* 操作类型常量 */
 #define OPERATION_TYPE_NONE           0x00

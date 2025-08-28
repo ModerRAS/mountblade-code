@@ -149,7 +149,7 @@ void FUN_180275cf0(int64_t *param_1,int param_2,int64_t *param_3,char param_4)
     *(int *)(param_1 + 0xb) = param_2 + 1;
   }
   if (param_4 != '\0') {
-    if (*(code **)(*param_1 + 0x160) == (code *)&unknown_var_6368_ptr) {
+    if (*(code **)(*param_1 + 0x160) == (code *)&processed_var_6368_ptr) {
       FUN_180276f30(param_1,(int64_t)param_1 + 0x214,0);
     }
     else {
@@ -206,7 +206,7 @@ void FUN_180275e10(int64_t *param_1,uint param_2,int64_t *param_3,char param_4)
     *(int *)(param_1 + 0xb) = iVar3 + 1;
   }
   if (param_4 != '\0') {
-    if (*(code **)(*param_1 + 0x160) == (code *)&unknown_var_6368_ptr) {
+    if (*(code **)(*param_1 + 0x160) == (code *)&processed_var_6368_ptr) {
       FUN_180276f30(param_1,(int64_t)param_1 + 0x214,0);
     }
     else {
@@ -390,7 +390,7 @@ LAB_180276376:
       fStack_40 = fVar25 * fVar13 + fVar1 * fVar5 + fVar26 * fVar9 + param_4[0xe];
       fStack_3c = fVar25 * fVar14 + fVar1 * fVar6 + fVar26 * fVar10 + param_4[0xf];
       if ((uVar17 != 0) && (fVar26 = *(float *)(param_1 + 0xd), fVar26 != 3.4028235e+38)) {
-        if ((void *)*param_1 == &unknown_var_9304_ptr) {
+        if ((void *)*param_1 == &processed_var_9304_ptr) {
           lVar22 = (int64_t)param_1 + 0x214;
         }
         else {
@@ -426,7 +426,7 @@ LAB_180276376:
     else {
       uVar17 = *(uint64_t *)(param_2 + 10);
       if ((uVar17 != 0) && (fVar26 = *(float *)(param_1 + 0xd), fVar26 != 3.4028235e+38)) {
-        if ((void *)*param_1 == &unknown_var_9304_ptr) {
+        if ((void *)*param_1 == &processed_var_9304_ptr) {
           lVar22 = (int64_t)param_1 + 0x214;
         }
         else {
@@ -555,7 +555,7 @@ uint64_t FUN_18027606a(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64
   *(float *)(unaff_RBP + 0x17) = fVar19 * fVar10 + fVar16 * in_XMM5_Dc + fVar2 * fVar6 + fVar18;
   *(float *)(unaff_RBP + 0x1b) = fVar19 * fVar11 + fVar16 * in_XMM5_Dd + fVar2 * fVar7 + fVar1;
   if ((in_RAX != 0) && (fVar19 = *(float *)(unaff_RBX + 0xd), fVar19 != 3.4028235e+38)) {
-    if ((void *)*unaff_RBX == &unknown_var_9304_ptr) {
+    if ((void *)*unaff_RBX == &processed_var_9304_ptr) {
       lVar15 = (int64_t)unaff_RBX + 0x214;
     }
     else {
@@ -622,7 +622,7 @@ uint64_t FUN_18027613a(void)
   
   fVar9 = *(float *)(unaff_RBX + 0xd);
   if (fVar9 != 3.4028235e+38) {
-    if ((void *)*unaff_RBX == &unknown_var_9304_ptr) {
+    if ((void *)*unaff_RBX == &processed_var_9304_ptr) {
       lVar5 = (int64_t)unaff_RBX + 0x214;
     }
     else {

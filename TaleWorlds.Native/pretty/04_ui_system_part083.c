@@ -102,7 +102,7 @@ void FUN_180715830(int *param_1,uint *param_2,uint64_t param_3,int64_t param_4,u
   uVar16 = 1;
   if (3 < (int)uVar7) {
     uVar16 = (uint64_t)
-             (((int)*(short *)(&unknown_var_8936_ptr + (uint64_t)(uVar7 & 7) * 2) >>
+             (((int)*(short *)(&processed_var_8936_ptr + (uint64_t)(uVar7 & 7) * 2) >>
               (0xeU - (char)((int)uVar7 >> 3) & 0x1f)) + 1U & 0xfffffffe);
   }
   if ((param_10 != 0) && (param_1[5] <= iVar15)) {
@@ -463,7 +463,7 @@ void FUN_1807163d0(int64_t param_1,int64_t param_2,float *param_3,int64_t param_
   for (; lVar12 < iVar4; lVar12 = lVar12 + 1) {
     sVar1 = *(short *)(lVar2 + 2 + lVar12 * 2);
     iVar9 = *(short *)(lVar2 + lVar12 * 2) * param_7;
-    fVar13 = *(float *)(param_4 + lVar12 * 4) + *(float *)(&unknown_var_9024_ptr + lVar12 * 4);
+    fVar13 = *(float *)(param_4 + lVar12 * 4) + *(float *)(&processed_var_9024_ptr + lVar12 * 4);
     if (32.0 <= fVar13) {
       fVar13 = 32.0;
     }
@@ -519,7 +519,7 @@ void FUN_1807164b6(void *param_1)
       unaff_RBX = unaff_RBX + 1;
     } while (iVar2 < sVar1 * unaff_R13D);
     unaff_R14 = unaff_R14 + 1;
-    param_1 = &unknown_var_9024_ptr;
+    param_1 = &processed_var_9024_ptr;
   } while (unaff_R14 < unaff_R15);
                     // WARNING: Subroutine does not return
   memset(in_stack_00000090 + (int64_t)in_stack_000000a8 * 4,0,

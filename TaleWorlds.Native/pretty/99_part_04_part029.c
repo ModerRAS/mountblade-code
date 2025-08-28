@@ -100,7 +100,7 @@ void FUN_1802a01a0(uint64_t *param_1)
       }
       else {
         ppuStack_218 = &puStack_1f8;
-        puStack_1f8 = &unknown_var_3432_ptr;
+        puStack_1f8 = &memory_allocator_3432_ptr;
         puStack_1f0 = auStack_1e0;
         uStack_1e8 = 0;
         auStack_1e0[0] = 0;
@@ -137,7 +137,7 @@ void FUN_1802a01a0(uint64_t *param_1)
            (plVar2 = *(int64_t **)(param_1[3] + uVar7), plVar2 != (int64_t *)0x0)) {
           if (bVar10) {
             pppuStack_210 = (void ***)&puStack_1f8;
-            puStack_1f8 = &unknown_var_3432_ptr;
+            puStack_1f8 = &memory_allocator_3432_ptr;
             puStack_1f0 = auStack_1e0;
             uStack_1e8 = 0;
             auStack_1e0[0] = 0;
@@ -181,7 +181,7 @@ void FUN_1802a01a0(uint64_t *param_1)
     if ((int64_t *)param_1[1] != (int64_t *)0x0) {
       if (bVar10) {
         pppuStack_210 = (void ***)&puStack_118;
-        puStack_118 = &unknown_var_3432_ptr;
+        puStack_118 = &memory_allocator_3432_ptr;
         puStack_110 = auStack_100;
         uStack_108 = 0;
         auStack_100[0] = 0;
@@ -253,7 +253,7 @@ void FUN_1802a05d0(int64_t param_1,uint64_t *param_2)
   *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3432_ptr;
+  *param_2 = &memory_allocator_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0;
@@ -346,7 +346,7 @@ void FUN_1802a07c0(int64_t *param_1)
       }
       else {
         pppplStack_228 = &ppplStack_118;
-        ppplStack_118 = (int64_t ***)&unknown_var_3432_ptr;
+        ppplStack_118 = (int64_t ***)&memory_allocator_3432_ptr;
         puStack_110 = auStack_100;
         uStack_108 = 0;
         auStack_100[0] = 0;
@@ -384,7 +384,7 @@ void FUN_1802a07c0(int64_t *param_1)
       }
       else {
         pppplStack_220 = (int64_t ****)&puStack_1f8;
-        puStack_1f8 = &unknown_var_3432_ptr;
+        puStack_1f8 = &memory_allocator_3432_ptr;
         puStack_1f0 = auStack_1e0;
         uStack_1e8 = 0;
         auStack_1e0[0] = 0;
@@ -421,7 +421,7 @@ void FUN_1802a07c0(int64_t *param_1)
       }
       else {
         pppplStack_218 = (int64_t ****)&puStack_1f8;
-        puStack_1f8 = &unknown_var_3432_ptr;
+        puStack_1f8 = &memory_allocator_3432_ptr;
         puStack_1f0 = auStack_1e0;
         uStack_1e8 = 0;
         auStack_1e0[0] = 0;
@@ -525,7 +525,7 @@ void FUN_1802a0bb0(int64_t param_1)
     }
     else {
       pplStack_228 = &plStack_1f8;
-      plStack_1f8 = (int64_t *)&unknown_var_3432_ptr;
+      plStack_1f8 = (int64_t *)&memory_allocator_3432_ptr;
       puStack_1f0 = auStack_1e0;
       uStack_1e8 = 0;
       auStack_1e0[0] = 0;
@@ -563,7 +563,7 @@ void FUN_1802a0bb0(int64_t param_1)
           }
           else {
             ppplStack_220 = (int64_t ***)&puStack_118;
-            puStack_118 = &unknown_var_3432_ptr;
+            puStack_118 = &memory_allocator_3432_ptr;
             puStack_110 = auStack_100;
             uStack_108 = 0;
             auStack_100[0] = 0;
@@ -698,8 +698,8 @@ code_r0x0001802a107b:
       if ((uint)uVar8 < 9) {
                     // WARNING: Could not recover jumptable at 0x0001802a10ee. Too many branches
                     // WARNING: Treating indirect jump as call
-        (*(code *)((uint64_t)*(uint *)(&unknown_var_7992_ptr + uVar8 * 4) + 0x180000000))
-                  ((code *)((uint64_t)*(uint *)(&unknown_var_7992_ptr + uVar8 * 4) + 0x180000000));
+        (*(code *)((uint64_t)*(uint *)(&processed_var_7992_ptr + uVar8 * 4) + 0x180000000))
+                  ((code *)((uint64_t)*(uint *)(&processed_var_7992_ptr + uVar8 * 4) + 0x180000000));
         return;
       }
       iVar2 = func_0x0001802a0ec0(param_1);
@@ -772,7 +772,7 @@ void FUN_1802a11e0(int64_t *param_1,float *param_2,uint64_t param_3,int param_4)
   uVar6 = *(int *)((int64_t)param_1 + 0x54) - 1;
   uStackX_18 = param_3;
   if (0x2b < uVar6) goto FUN_1802a1af3;
-  lVar10 = (uint64_t)*(uint *)(&unknown_var_384_ptr + (uint64_t)uVar6 * 4) + 0x180000000;
+  lVar10 = (uint64_t)*(uint *)(&memory_allocator_384_ptr + (uint64_t)uVar6 * 4) + 0x180000000;
   switch(*(int *)((int64_t)param_1 + 0x54)) {
   case 1:
     iStack_2c8 = param_4;
@@ -854,7 +854,7 @@ void FUN_1802a11e0(int64_t *param_1,float *param_2,uint64_t param_3,int param_4)
       if (cRam0000000180d48da9 == '\0') {
         cRam0000000180d48da9 = '\x01';
         iStack_2c8 = 0x78a;
-        FUN_180060680(auStack_258,&unknown_var_2944_ptr,&unknown_var_2904_ptr,&unknown_var_2856_ptr);
+        FUN_180060680(auStack_258,&rendering_buffer_2944_ptr,&rendering_buffer_2904_ptr,&rendering_buffer_2856_ptr);
         OutputDebugStringA(auStack_258);
       }
       fVar14 = 0.0;
@@ -890,8 +890,8 @@ void FUN_1802a1227(void)
   *(uint64_t *)(in_R11 + -0x40) = unaff_XMM7_Qb;
                     // WARNING: Could not recover jumptable at 0x0001802a1242. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((uint64_t)*(uint *)(&unknown_var_384_ptr + in_RAX * 4) + 0x180000000))
-            ((code *)((uint64_t)*(uint *)(&unknown_var_384_ptr + in_RAX * 4) + 0x180000000));
+  (*(code *)((uint64_t)*(uint *)(&memory_allocator_384_ptr + in_RAX * 4) + 0x180000000))
+            ((code *)((uint64_t)*(uint *)(&memory_allocator_384_ptr + in_RAX * 4) + 0x180000000));
   return;
 }
 

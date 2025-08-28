@@ -792,12 +792,12 @@ void close_handle(uint64_t *handle)
  */
 void reset_queue_manager(uint64_t *manager)
 {
-  *manager = &unknown_var_6384_ptr;
+  *manager = &processed_var_6384_ptr;
   if (*(char *)((int64_t)manager + 0xb1) != '\0') {
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
-  *manager = &unknown_var_5224_ptr;
+  *manager = &processed_var_5224_ptr;
   manager[7] = &system_data_buffer_ptr;
   if (manager[8] != 0) {
     CoreEngineMemoryPoolCleaner();
@@ -830,7 +830,7 @@ uint64_t *release_manager_resources(uint64_t *manager, uint64_t flags, uint64_t 
   uint64_t release_flags;
   
   release_flags = TIMEOUT_INFINITE;
-  *manager = &unknown_var_6384_ptr;
+  *manager = &processed_var_6384_ptr;
   if (*(char *)((int64_t)manager + 0xb1) != '\0') {
     FUN_180639250();
   }
@@ -879,13 +879,13 @@ void initialize_engine_core(uint64_t engine_param, int64_t config_data)
   config_pointer = local_buffer;
   local_buffer[0] = 0;
   config_type = 6;
-  strcpy_s(local_buffer, 0x10, &unknown_var_9216_ptr);
+  strcpy_s(local_buffer, 0x10, &processed_var_9216_ptr);
   
   component_handle = (uint64_t *)allocate_engine_component(system_memory_pool_ptr, 0x208, 8, 3);
   config_size = engine_base + 0x70;
   config_ptr = component_handle;
   initialize_engine_component(component_handle, &stack_pointer, 3, engine_base + 0x2e0);
-  *component_handle = &unknown_var_9056_ptr;
+  *component_handle = &processed_var_9056_ptr;
   config_ptr = component_handle;
   configure_engine_component(component_handle);
   register_engine_component(engine_base + 0x48, &config_ptr);

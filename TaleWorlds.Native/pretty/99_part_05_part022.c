@@ -623,7 +623,7 @@ void MatrixTransformer_Advanced(int64_t param_1, uint64_t param_2, int32_t param
                 
                 // 获取向量数据
                 element_pointer = *matrix_pointer;
-                if (*(code **)(element_pointer + 0x158) == (code *)&unknown_var_2528_ptr) {
+                if (*(code **)(element_pointer + 0x158) == (code *)&rendering_buffer_2528_ptr) {
                     vector_pointer = (float *)(matrix_pointer + 0x66);
                 }
                 else {

@@ -599,7 +599,7 @@ LAB_1803c4a70:
   uStack_1b0 = auStack_218;
   pfStack_1a8 = &fStack_1e4;
   pcStack_190 = FUN_1803c5480;
-  puStack_188 = &unknown_var_4720_ptr;
+  puStack_188 = &processed_var_4720_ptr;
   aplStack_1a0[0] = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x38,8,system_allocation_flags);
   *aplStack_1a0[0] = lStack_1d8;
   aplStack_1a0[0][1] = (int64_t)pplStack_1d0;
@@ -789,7 +789,7 @@ uint64_t *
 FUN_1803c4fa0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_2968_ptr;
+  *param_1 = &rendering_buffer_2968_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {

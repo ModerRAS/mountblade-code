@@ -85,12 +85,12 @@ void FUN_180288040(uint64_t *param_1)
   *(int8_t *)(param_1 + 0x1e) = 0;
   *(int32_t *)(param_1 + 0x23) = 0;
   uVar6 = system_resource_state;
-  puStack_f8 = &unknown_var_3480_ptr;
+  puStack_f8 = &memory_allocator_3480_ptr;
   puStack_f0 = auStack_e0;
   auStack_e0[0] = 0;
   uStack_e8 = 0x23;
   plStack_1a8 = plVar9;
-  strcpy_s(auStack_e0,0x40,&unknown_var_9992_ptr);
+  strcpy_s(auStack_e0,0x40,&processed_var_9992_ptr);
   FUN_1800b30d0(uVar6,&plStack_1b0,&puStack_f8,1);
   uStack_1c8 = 1;
   puStack_f8 = &system_state_ptr;
@@ -240,11 +240,11 @@ LAB_18028843a:
     }
   }
   uVar6 = system_resource_state;
-  puStack_98 = &unknown_var_3480_ptr;
+  puStack_98 = &memory_allocator_3480_ptr;
   puStack_90 = auStack_80;
   auStack_80[0] = 0;
   uStack_88 = 0xb;
-  strcpy_s(auStack_80,0x40,&unknown_var_9928_ptr);
+  strcpy_s(auStack_80,0x40,&processed_var_9928_ptr);
   FUN_1800b30d0(uVar6,&plStack_1c0,&puStack_98,1);
   uStack_1c8 = uVar10 & 0xffffffef | 8;
   puStack_98 = &system_state_ptr;

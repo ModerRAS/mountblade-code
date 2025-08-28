@@ -8,13 +8,13 @@
 uint64_t system_memory_pool_ptr;  // 内存分配器引用
 uint64_t GET_SECURITY_COOKIE();  // 加密密钥相关
 uint64_t system_resource_state;  // 初始化地址
-uint64_t unknown_var_5192_ptr;  // 对象模板
-uint64_t unknown_var_5080;  // 对象模板
+uint64_t processed_var_5192_ptr;  // 对象模板
+uint64_t processed_var_5080;  // 对象模板
 uint64_t system_handler1_ptr;  // 上下文模板
-uint64_t unknown_var_3696;  // 上下文模板
-uint64_t unknown_var_8584;  // 上下文模板
-uint64_t unknown_var_7128;  // 上下文模板
-uint64_t unknown_var_3432;  // 未知数据结构
+uint64_t memory_allocator_3696;  // 上下文模板
+uint64_t processed_var_8584;  // 上下文模板
+uint64_t processed_var_7128;  // 上下文模板
+uint64_t memory_allocator_3432;  // 未知数据结构
 uint64_t system_state_ptr;  // 未知数据结构
 uint64_t system_buffer_ptr;  // 默认名称指针
 
@@ -207,7 +207,7 @@ uint64_t *create_data_object(uint64_t template, int64_t config)
     object_ptr = (uint64_t *)allocate_memory(system_memory_pool_ptr, 0x38, 8, 3, 0xfffffffffffffffe);
     
     // 初始化对象（简化实现）
-    *object_ptr = &unknown_var_5192_ptr;
+    *object_ptr = &processed_var_5192_ptr;
     object_ptr[1] = 0;
     object_ptr[2] = 0;
     

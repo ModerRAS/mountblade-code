@@ -19,7 +19,7 @@ void FUN_180533230(uint64_t *param_1)
   uint64_t uVar10;
   bool bVar11;
   
-  *param_1 = &unknown_var_7112_ptr;
+  *param_1 = &processed_var_7112_ptr;
   uVar3 = param_1[4];
   lVar9 = 0;
   uVar4 = param_1[5];
@@ -103,7 +103,7 @@ LAB_1805332d2:
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
-  *param_1 = &unknown_var_7096_ptr;
+  *param_1 = &processed_var_7096_ptr;
   return;
 }
 
@@ -242,7 +242,7 @@ uint64_t * FUN_1805333b0(int64_t *param_1)
     puVar8[1] = 0;
     *(int8_t *)(puVar8 + 2) = 0;
     puVar8[3] = 0;
-    *puVar8 = &unknown_var_7096_ptr;
+    *puVar8 = &processed_var_7096_ptr;
     puVar8[4] = 0;
     puVar8[5] = 0;
     puVar8[6] = 0;
@@ -250,7 +250,7 @@ uint64_t * FUN_1805333b0(int64_t *param_1)
     puVar8[8] = 0;
     *(int8_t *)(puVar8 + 9) = 0;
     puVar8[10] = param_1;
-    *puVar8 = &unknown_var_7112_ptr;
+    *puVar8 = &processed_var_7112_ptr;
     puVar8[0xb] = 0x20;
     puVar8[0xc] = 0;
     FUN_18005f430(puVar8);
@@ -312,7 +312,7 @@ LAB_1805336bb:
 uint64_t * FUN_180533750(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_7128_ptr;
+  *param_1 = &processed_var_7128_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x58);
   }
@@ -336,7 +336,7 @@ uint64_t FUN_180533780(uint64_t param_1,uint64_t param_2)
 uint64_t * FUN_1805337c0(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_7096_ptr;
+  *param_1 = &processed_var_7096_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x58);
   }

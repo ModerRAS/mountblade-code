@@ -311,7 +311,7 @@ void FUN_180493400(int64_t *param_1)
   plVar2 = *(int64_t **)(lVar1 + 0x8400);
   iVar3 = (**(code **)(*plVar2 + 0x70))(plVar2,*(uint64_t *)(lVar4 + 8),0,4,0,&puStack_48);
   if (iVar3 < 0) {
-    FUN_180220810(iVar3,&unknown_var_1856_ptr);
+    FUN_180220810(iVar3,&ui_system_data_1856_ptr);
   }
   uVar9 = 0;
   puVar10 = puStack_48;

@@ -54,8 +54,8 @@ uint * FUN_1806e94b0(int64_t *param_1,int64_t param_2)
   }
   else {
     *(int16_t *)((int64_t)puVar6 + 10) = 2;
-    *(void **)puVar6 = &unknown_var_6984_ptr;
-    *(void **)(puVar6 + 6) = &unknown_var_7328_ptr;
+    *(void **)puVar6 = &processed_var_6984_ptr;
+    *(void **)(puVar6 + 6) = &processed_var_7328_ptr;
     lVar2 = *param_1;
   }
   *param_1 = lVar2 + 0x70;

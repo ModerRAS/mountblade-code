@@ -271,59 +271,59 @@ void InputSystem_SetDeadZone(float dead_zone);
 
 // 输入系统核心函数别名
 #define InputSystemInitializer FUN_18023e120
-#define InputSystemShutdown unknown_var_2320
-#define InputSystemUpdate unknown_var_7792
-#define InputSystemProcessEvents unknown_var_8232
+#define InputSystemShutdown rendering_buffer_2320
+#define InputSystemUpdate processed_var_7792
+#define InputSystemProcessEvents processed_var_8232
 
 // 输入设备管理函数别名
-#define InputDeviceRegistrar unknown_var_8264
-#define InputDeviceUnregistrar unknown_var_8368
-#define InputDeviceFinder unknown_var_8064
-#define InputDeviceInitializer unknown_var_8088
-#define InputDeviceShutdowner unknown_var_8120
+#define InputDeviceRegistrar processed_var_8264
+#define InputDeviceUnregistrar processed_var_8368
+#define InputDeviceFinder processed_var_8064
+#define InputDeviceInitializer processed_var_8088
+#define InputDeviceShutdowner processed_var_8120
 
 // 输入事件处理函数别名
-#define InputEventPusher unknown_var_8160
-#define InputEventPopper unknown_var_8192
-#define InputEventPeeker unknown_var_8024
-#define InputEventCleaner unknown_var_8032
+#define InputEventPusher processed_var_8160
+#define InputEventPopper processed_var_8192
+#define InputEventPeeker processed_var_8024
+#define InputEventCleaner processed_var_8032
 
 // 输入状态查询函数别名
-#define InputSystemStateGetter unknown_var_8336
-#define InputSystemDeviceCounter unknown_var_8408
-#define InputSystemEventCounter unknown_var_8696
-#define InputSystemLatencyGetter unknown_var_8752
+#define InputSystemStateGetter processed_var_8336
+#define InputSystemDeviceCounter processed_var_8408
+#define InputSystemEventCounter processed_var_8696
+#define InputSystemLatencyGetter processed_var_8752
 
 // 输入配置函数别名
-#define InputSystemConfigurator unknown_var_8824
-#define InputSystemConfigGetter unknown_var_8792
-#define InputSystemSensitivitySetter unknown_var_8872
-#define InputSystemDeadZoneSetter unknown_var_8848
+#define InputSystemConfigurator processed_var_8824
+#define InputSystemConfigGetter processed_var_8792
+#define InputSystemSensitivitySetter processed_var_8872
+#define InputSystemDeadZoneSetter processed_var_8848
 
 // 全局变量别名
 #define InputSystemGlobalState system_memory_8d40
 #define InputSystemGlobalConfig system_memory_2fe8
-#define InputDeviceRegistry unknown_var_8996
-#define InputEventQueue unknown_var_9032
-#define InputSystemStatus unknown_var_9016
-#define InputSystemStatistics unknown_var_9064
-#define InputSystemRuntime unknown_var_9104
-#define InputSystemErrorLog unknown_var_9176
-#define InputSystemDebugInfo unknown_var_9184
-#define InputSystemPerformance unknown_var_9224
-#define InputSystemMemory unknown_var_9208
-#define InputSystemThread unknown_var_9240
-#define InputSystemMutex unknown_var_9280
-#define InputSystemSemaphore unknown_var_9312
-#define InputSystemEventQueue unknown_var_9328
-#define InputSystemCallback unknown_var_9392
-#define InputSystemTimer unknown_var_9440
-#define InputSystemProfiler unknown_var_9464
-#define InputSystemLogger unknown_var_9480
-#define InputSystemMonitor unknown_var_9512
-#define InputSystemAllocator unknown_var_9536
-#define InputSystemDeallocator unknown_var_9568
-#define InputSystemValidator unknown_var_9600
+#define InputDeviceRegistry processed_var_8996
+#define InputEventQueue processed_var_9032
+#define InputSystemStatus processed_var_9016
+#define InputSystemStatistics processed_var_9064
+#define InputSystemRuntime processed_var_9104
+#define InputSystemErrorLog processed_var_9176
+#define InputSystemDebugInfo processed_var_9184
+#define InputSystemPerformance processed_var_9224
+#define InputSystemMemory processed_var_9208
+#define InputSystemThread processed_var_9240
+#define InputSystemMutex processed_var_9280
+#define InputSystemSemaphore processed_var_9312
+#define InputSystemEventQueue processed_var_9328
+#define InputSystemCallback processed_var_9392
+#define InputSystemTimer processed_var_9440
+#define InputSystemProfiler processed_var_9464
+#define InputSystemLogger processed_var_9480
+#define InputSystemMonitor processed_var_9512
+#define InputSystemAllocator processed_var_9536
+#define InputSystemDeallocator processed_var_9568
+#define InputSystemValidator processed_var_9600
 
 //============================================================================
 // 核心函数实现

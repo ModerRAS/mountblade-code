@@ -274,7 +274,7 @@ void RenderingSystemAdvancedParameterProcessor(RenderingParameterFloat param_1, 
     
     // 执行内存分配和状态管理
     if (memory_ptr != (RenderingSystemPointer *)0x0) {
-        if (*(code **)(*memory_ptr + 0xb8) == (code *)&unknown_var_128_ptr) {
+        if (*(code **)(*memory_ptr + 0xb8) == (code *)&ui_system_data_128_ptr) {
             temp_long = memory_ptr[0xda];
         } else {
             temp_long = (**(code **)(*memory_ptr + 0xb8))(memory_ptr, stack_temp[0x16/4], stack_temp[0x18/4], 
@@ -288,7 +288,7 @@ void RenderingSystemAdvancedParameterProcessor(RenderingParameterFloat param_1, 
         // 执行状态检查和更新
         if (temp_long != 0) {
             code_ptr = *(code **)(**(int64_t **)(global_calculation_context.data_pointer + 0x3580) + 0xb8);
-            if (code_ptr != (code *)&unknown_var_128_ptr) {
+            if (code_ptr != (code *)&ui_system_data_128_ptr) {
                 temp_var = (*code_ptr)();
                 global_calculation_context.base_pointer = _DAT;
                 global_calculation_context.data_pointer = _DAT;
@@ -298,7 +298,7 @@ void RenderingSystemAdvancedParameterProcessor(RenderingParameterFloat param_1, 
             *(int32_t *)(*(int64_t *)(global_calculation_context.base_pointer + 0x1cd8) + 0x1d5c) = 0x41f00000;
             code_ptr = *(code **)(**(int64_t **)(global_calculation_context.data_pointer + 0x3580) + 0xb8);
             
-            if (code_ptr == (code *)&unknown_var_128_ptr) {
+            if (code_ptr == (code *)&ui_system_data_128_ptr) {
                 temp_long = (*(int64_t **)(global_calculation_context.data_pointer + 0x3580))[0xda];
             } else {
                 temp_long = (*code_ptr)(temp_var);
@@ -314,7 +314,7 @@ void RenderingSystemAdvancedParameterProcessor(RenderingParameterFloat param_1, 
             
             // 继续状态更新
             code_ptr = *(code **)(**(int64_t **)(global_calculation_context.data_pointer + 0x3580) + 0xb8);
-            if (code_ptr == (code *)&unknown_var_128_ptr) {
+            if (code_ptr == (code *)&ui_system_data_128_ptr) {
                 temp_long = (*(int64_t **)(global_calculation_context.data_pointer + 0x3580))[0xda];
             } else {
                 temp_long = (*code_ptr)();

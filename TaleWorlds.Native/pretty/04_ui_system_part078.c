@@ -792,7 +792,7 @@ uint64_t FUN_180712260(int param_1,int param_2,int32_t *param_3)
   int iVar3;
   uint64_t *puVar4;
   
-  puVar4 = (uint64_t *)&unknown_var_8320_ptr;
+  puVar4 = (uint64_t *)&processed_var_8320_ptr;
   iVar3 = 0;
   do {
     piVar1 = (int *)*puVar4;
@@ -802,7 +802,7 @@ uint64_t FUN_180712260(int param_1,int param_2,int32_t *param_3)
         if (param_3 != (int32_t *)0x0) {
           *param_3 = 0;
         }
-        return *(uint64_t *)(&unknown_var_8320_ptr + (int64_t)iVar3 * 8);
+        return *(uint64_t *)(&processed_var_8320_ptr + (int64_t)iVar3 * 8);
       }
       iVar2 = iVar2 + 1;
     } while (iVar2 < 4);

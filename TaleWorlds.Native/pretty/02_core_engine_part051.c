@@ -660,7 +660,7 @@ LAB_18008dde0:
       *puVar2 = &system_state_ptr;
       *(uint64_t *)(lVar9 + 0x20 + (int64_t)puVar4) = 0;
       *(int32_t *)(lVar9 + 0x28 + (int64_t)puVar4) = 0;
-      *puVar2 = &unknown_var_672_ptr;
+      *puVar2 = &processed_var_672_ptr;
       puVar3 = (int8_t *)((int64_t)puVar4 + lVar9 + 0x30);
       *(int8_t **)(lVar9 + 0x20 + (int64_t)puVar4) = puVar3;
       *(int32_t *)(lVar9 + 0x28 + (int64_t)puVar4) = 0;

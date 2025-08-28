@@ -336,7 +336,7 @@ int64_t * FUN_1802117b0(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64
       *puVar4 = &system_state_ptr;
       puVar4[1] = 0;
       *(int32_t *)(puVar4 + 2) = 0;
-      *puVar4 = &unknown_var_3432_ptr;
+      *puVar4 = &memory_allocator_3432_ptr;
       puVar4[1] = puVar4 + 3;
       *(int32_t *)(puVar4 + 2) = 0;
       *(int8_t *)(puVar4 + 3) = 0;
@@ -362,9 +362,9 @@ uint64_t * FUN_180211930(uint64_t *param_1)
   *param_1 = &system_handler1_ptr;
   *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &unknown_var_7872_ptr;
+  *param_1 = &processed_var_7872_ptr;
   FUN_18015c2b0(param_1 + 2);
-  *param_1 = &unknown_var_2656_ptr;
+  *param_1 = &rendering_buffer_2656_ptr;
   param_1[0x11] = 0;
   *(int32_t *)(param_1 + 0x12) = 0xffffffff;
   param_1[0x15] = 0;
@@ -628,7 +628,7 @@ uint64_t * FUN_180211fa0(uint64_t *param_1)
   int64_t *plVar2;
   
   FUN_1801566b0();
-  *param_1 = &unknown_var_5528_ptr;
+  *param_1 = &processed_var_5528_ptr;
   _Mtx_init_in_situ(param_1 + 0x4c,0x102);
   param_1[0x56] = 0;
   param_1[0x57] = 0;
@@ -751,7 +751,7 @@ void FUN_1802121b0(uint64_t *param_1)
   FUN_1802185b0();
   plStackX_10 = param_1 + 0x4c;
   _Mtx_destroy_in_situ();
-  *param_1 = &unknown_var_8656_ptr;
+  *param_1 = &processed_var_8656_ptr;
   *(int8_t *)((int64_t)param_1 + 0x162) = 1;
   plVar2 = param_1 + 0x1a;
   plStackX_20 = plVar2;
@@ -907,7 +907,7 @@ void FUN_1802122e0(int64_t *param_1,uint64_t param_2,int param_3)
   *(bool *)(param_1 + 0x42) = *(int *)(SYSTEM_STATE_MANAGER + 0x1ce0) != 0;
   uStack_d30 = 0xffffffff;
   pcStack_d38 = SystemResourceCleaner;
-  FUN_180738730(0,0,&unknown_var_1648_ptr,FUN_180211f70);
+  FUN_180738730(0,0,&ui_system_data_1648_ptr,FUN_180211f70);
   FUN_180840330(param_1 + 0x6d,0x20214);
   uStack_d00 = 0;
   uStack_cf4 = 0;

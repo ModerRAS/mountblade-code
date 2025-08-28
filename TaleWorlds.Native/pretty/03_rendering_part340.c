@@ -28,7 +28,7 @@ void FUN_18044baf0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
         if (*(void **)(param_1 + 0x1f8) != (void *)0x0) {
           puVar3 = *(void **)(param_1 + 0x1f8);
         }
-        FUN_1806272a0(&unknown_var_32_ptr,puVar3,puVar4,param_4,0,0xfffffffffffffffe);
+        FUN_1806272a0(&memory_allocator_32_ptr,puVar3,puVar4,param_4,0,0xfffffffffffffffe);
       }
       else {
         (**(code **)(*plVar1 + 0x28))(plVar1);
@@ -520,12 +520,12 @@ void FUN_18044c840(int32_t param_1,int64_t param_2)
   *plVar4 = (int64_t)&system_handler1_ptr;
   *plVar4 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar4 + 1) = 0;
-  *plVar4 = (int64_t)&unknown_var_1000_ptr;
+  *plVar4 = (int64_t)&ui_system_data_1000_ptr;
   LOCK();
   *(int8_t *)(plVar4 + 2) = 0;
   UNLOCK();
   plVar4[3] = -1;
-  *plVar4 = (int64_t)&unknown_var_2640_ptr;
+  *plVar4 = (int64_t)&rendering_buffer_2640_ptr;
   *(int32_t *)(plVar4 + 5) = 0xb;
   plVar4[4] = lVar1;
   pplStackX_18 = (int64_t **)plVar4;
@@ -573,7 +573,7 @@ void FUN_18044c9c0(float param_1,float param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&unknown_var_9840_ptr,*(int *)(pcVar1 + 4),*(int32_t *)(pcVar1 + 8),iVar3
+  FUN_180062300(system_message_context,&processed_var_9840_ptr,*(int *)(pcVar1 + 4),*(int32_t *)(pcVar1 + 8),iVar3
                 ,iVar2);
 }
 
@@ -598,7 +598,7 @@ void FUN_18044cb80(int64_t param_1)
   
   uStack_88 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_a8;
-  puStack_78 = &unknown_var_3480_ptr;
+  puStack_78 = &memory_allocator_3480_ptr;
   puStack_70 = auStack_60;
   uStack_68 = 0;
   auStack_60[0] = 0;
@@ -631,7 +631,7 @@ FUN_18044cc30(uint64_t *param_1,int32_t param_2,uint64_t param_3,int8_t param_4)
   
   FUN_1800c1750(param_1,&plStackX_18,param_2,param_4,0);
   if (plStackX_18 == (int64_t *)0x0) {
-    FUN_180627020(&unknown_var_336_ptr,param_2);
+    FUN_180627020(&memory_allocator_336_ptr,param_2);
     *param_1 = 0;
   }
   else {
@@ -811,7 +811,7 @@ void FUN_18044cf20(uint64_t param_1,int64_t param_2)
   
   uStack_88 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_b8;
-  puStack_78 = &unknown_var_3480_ptr;
+  puStack_78 = &memory_allocator_3480_ptr;
   puStack_70 = auStack_60;
   uStack_68 = 0;
   auStack_60[0] = 0;

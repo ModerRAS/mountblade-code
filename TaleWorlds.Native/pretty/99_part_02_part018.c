@@ -119,7 +119,7 @@ uint64_t *
 FUN_1800f6a80(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_6480_ptr;
+  *param_1 = &processed_var_6480_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
@@ -381,7 +381,7 @@ void FUN_1800f6ce0(uint64_t param_1,int64_t *param_2,int param_3)
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_c8;
   uStack_a8 = 0;
   param_3 = param_3 * 4;
-  puStack_88 = &unknown_var_3480_ptr;
+  puStack_88 = &memory_allocator_3480_ptr;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 0x1c;
@@ -788,7 +788,7 @@ uint64_t * FUN_1800f73a0(int64_t param_1,int64_t *param_2,uint64_t param_3,uint6
     *puVar1 = &system_state_ptr;
     puVar6[5] = 0;
     *(int32_t *)(puVar6 + 6) = 0;
-    *puVar1 = &unknown_var_3432_ptr;
+    *puVar1 = &memory_allocator_3432_ptr;
     puVar6[5] = puVar6 + 7;
     *(int32_t *)(puVar6 + 6) = 0;
     *(int8_t *)(puVar6 + 7) = 0;

@@ -103,13 +103,13 @@ void FUN_180568ac0(uint64_t *param_1,void **param_2)
     if (param_2[1] != (void *)0x0) {
       puStack_bd0 = param_2[1];
     }
-    piStack_bd8 = (int *)&unknown_var_8736_ptr;
+    piStack_bd8 = (int *)&processed_var_8736_ptr;
     FUN_1800623b0(system_message_context,0,0x10000000000,8);
     puVar7 = &system_buffer_ptr;
     if (param_2[1] != (void *)0x0) {
       puVar7 = param_2[1];
     }
-    FUN_180627160(&unknown_var_8776_ptr,puVar7);
+    FUN_180627160(&processed_var_8776_ptr,puVar7);
     goto LAB_1805693bf;
   }
   do {
@@ -318,7 +318,7 @@ LAB_1805691fd:
                           CloseHandle(alStack_b30[0]);
                           lVar12 = -1;
                           alStack_b30[0] = -1;
-                          puStack_ae8 = &unknown_var_3856_ptr;
+                          puStack_ae8 = &memory_allocator_3856_ptr;
                           uStack_ae0 = 1;
                           puStack_bd0 = puStack_b60;
                           piStack_bd8 = piStack_b68;
@@ -386,14 +386,14 @@ LAB_180569148:
                           iVar4 = FormatMessageA(0x1000,0,uVar6,0x400);
                           if (iVar4 == 0) {
                             uVar6 = GetLastError();
-                            SystemCore_ResourceManager0(&unknown_var_3400_ptr,uVar6);
+                            SystemCore_ResourceManager0(&memory_allocator_3400_ptr,uVar6);
                           }
                           puStack_bd0 = &system_buffer_ptr;
                           if (param_2[1] != (void *)0x0) {
                             puStack_bd0 = param_2[1];
                           }
                           puStack_bc8 = auStack_a48;
-                          piStack_bd8 = (int *)&unknown_var_8672_ptr;
+                          piStack_bd8 = (int *)&processed_var_8672_ptr;
                           FUN_1800623b0(system_message_context,0,0x10000000000,3);
                         }
                         if (((char)uStack_b58 == '\0') && (piStack_b70 != (int *)0x0)) {
@@ -424,14 +424,14 @@ LAB_18056945f:
   iVar4 = FormatMessageA(0x1000,0,uVar6,0x400);
   if (iVar4 == 0) {
     uVar6 = GetLastError();
-    SystemCore_ResourceManager0(&unknown_var_3400_ptr,uVar6);
+    SystemCore_ResourceManager0(&memory_allocator_3400_ptr,uVar6);
   }
   puStack_bd0 = &system_buffer_ptr;
   if (param_2[1] != (void *)0x0) {
     puStack_bd0 = param_2[1];
   }
   puStack_bc8 = auStack_a48;
-  piStack_bd8 = (int *)&unknown_var_8672_ptr;
+  piStack_bd8 = (int *)&processed_var_8672_ptr;
   FUN_1800623b0(system_message_context,0,0x10000000000,3);
 LAB_1805693bf:
   puStack_b20[0xcd] = *puStack_b20;

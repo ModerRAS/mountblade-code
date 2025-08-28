@@ -640,16 +640,16 @@ void FUN_1803e6170(int64_t param_1,int64_t param_2)
   int64_t lVar9;
   
   if (*(char *)(param_1 + 0x1e8) == '\0') {
-    System_DataHandler(param_2,&unknown_var_9232_ptr,0x5d);
-    System_DataHandler(param_2,&unknown_var_9320_ptr,0x5e);
+    System_DataHandler(param_2,&processed_var_9232_ptr,0x5d);
+    System_DataHandler(param_2,&processed_var_9320_ptr,0x5e);
     uVar10 = 0x5f;
-    puVar5 = &unknown_var_9368_ptr;
+    puVar5 = &processed_var_9368_ptr;
   }
   else {
-    System_DataHandler(param_2,&unknown_var_9040_ptr,0);
-    System_DataHandler(param_2,&unknown_var_9104_ptr,1);
+    System_DataHandler(param_2,&processed_var_9040_ptr,0);
+    System_DataHandler(param_2,&processed_var_9104_ptr,1);
     uVar10 = 2;
-    puVar5 = &unknown_var_9168_ptr;
+    puVar5 = &processed_var_9168_ptr;
   }
   System_DataHandler(param_2,puVar5,uVar10);
   iVar13 = 0;
@@ -694,7 +694,7 @@ void FUN_1803e6170(int64_t param_1,int64_t param_2)
       puStack_88 = (void *)0x0;
       iStack_80 = 0;
       puVar5 = &system_buffer_ptr;
-      System_DataHandler(&puStack_90,&unknown_var_9416_ptr,iVar13,*(int32_t *)(lStackX_8 + 4 + lVar3),uVar2,
+      System_DataHandler(&puStack_90,&processed_var_9416_ptr,iVar13,*(int32_t *)(lStackX_8 + 4 + lVar3),uVar2,
                     &system_buffer_ptr,uVar14);
       puStack_70 = &system_data_buffer_ptr;
       uStack_58 = 0;
@@ -702,11 +702,11 @@ void FUN_1803e6170(int64_t param_1,int64_t param_2)
       iStack_60 = 0;
       if (*(char *)(param_1 + 0x1e8) == '\0') {
         iVar12 = iVar13 + 0x60;
-        puVar6 = &unknown_var_9280_ptr;
+        puVar6 = &processed_var_9280_ptr;
       }
       else {
         iVar12 = iVar13 + 3;
-        puVar6 = &unknown_var_9448_ptr;
+        puVar6 = &processed_var_9448_ptr;
       }
       puVar11 = &system_buffer_ptr;
       if (puStack_88 != (void *)0x0) {

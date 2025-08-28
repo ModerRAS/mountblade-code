@@ -55,8 +55,8 @@ void FUN_1804836c0(uint64_t param_1,uint64_t param_2,int64_t *param_3,int32_t pa
   uStack_56 = 0;
   uStack_4e = 0;
   plVar1 = *(int64_t **)(*(int64_t *)(*param_3 + 0xa8) + 0x88);
-  pcStack_d8 = (code *)&unknown_var_5216_ptr;
-  puStack_d0 = &unknown_var_5280_ptr;
+  pcStack_d8 = (code *)&processed_var_5216_ptr;
+  puStack_d0 = &processed_var_5280_ptr;
   ppuStack_e8 = &puStack_a8;
   pppuVar6 = &ppuStack_e8;
   (**(code **)(*plVar1 + 0x60))
@@ -91,7 +91,7 @@ LAB_180483845:
     if (puStack_a0 != (void *)0x0) {
       puVar4 = puStack_a0;
     }
-    SystemDataInitializer(&unknown_var_6216_ptr,puVar4,puVar5);
+    SystemDataInitializer(&processed_var_6216_ptr,puVar4,puVar5);
   }
   else {
     ppuStack_e8 = (void **)&system_data_buffer_ptr;

@@ -51,7 +51,7 @@ code_r0x0001806c48ac:
         uVar6 = (**(code **)(lVar9 + 0x88))(0,lVar5,unaff_RBP + -0x40);
         plVar2 = (int64_t *)unaff_RBX[5];
         *(int64_t *)(unaff_RBP + 0x3a8) = unaff_R12;
-        (**(code **)(*plVar2 + 8))(plVar2,&unknown_var_3672_ptr,unaff_RBP + 0x3a8);
+        (**(code **)(*plVar2 + 8))(plVar2,&memory_allocator_3672_ptr,unaff_RBP + 0x3a8);
         uVar3 = *(uint64_t *)(unaff_RBP + 0x3a8);
         *(uint64_t *)(unaff_RBP + -0x48) = uVar3;
         puVar7 = (uint64_t *)FUN_1806d3700(&stack0x00000070,unaff_RBP + -0x48,unaff_RBP + 0x390);
@@ -109,7 +109,7 @@ code_r0x0001806c48ac:
         }
         in_stack_00000040 = unaff_R12;
         cVar4 = (**(code **)(*(int64_t *)unaff_RBX[5] + 8))
-                          ((int64_t *)unaff_RBX[5],&unknown_var_9600_ptr,&stack0x00000040);
+                          ((int64_t *)unaff_RBX[5],&processed_var_9600_ptr,&stack0x00000040);
         lVar5 = unaff_R12;
       } while (cVar4 == '\0');
     } while ((*(int *)(unaff_RBP + -0x54) == (int)unaff_R12) ||
@@ -143,7 +143,7 @@ uint64_t FUN_1806c48c0(int64_t *param_1,uint64_t param_2)
   if ((char)param_1[9] != '\0') {
     iVar2 = *(int *)(*param_1 + 0x10);
     if (iVar2 == 0) {
-      puVar3 = &unknown_var_1920_ptr;
+      puVar3 = &ui_system_data_1920_ptr;
     }
     else {
       puVar3 = *(void **)(*(int64_t *)(*param_1 + 8) + (uint64_t)(iVar2 - 1) * 0x18);
@@ -151,7 +151,7 @@ uint64_t FUN_1806c48c0(int64_t *param_1,uint64_t param_2)
     cVar1 = (**(code **)(*(int64_t *)param_1[5] + 0x10))((int64_t *)param_1[5],puVar3,apcStackX_8)
     ;
     if (((cVar1 != '\0') && (apcStackX_8[0] != (char *)0x0)) && (*apcStackX_8[0] != '\0')) {
-      iVar2 = _stricmp_shdfnd_physx__YAHPEBD0_Z(apcStackX_8[0],&unknown_var_2328_ptr);
+      iVar2 = _stricmp_shdfnd_physx__YAHPEBD0_Z(apcStackX_8[0],&rendering_buffer_2328_ptr);
       *(bool *)param_2 = iVar2 == 0;
       return 1;
     }
@@ -183,7 +183,7 @@ uint64_t FUN_1806c4940(int64_t *param_1,int64_t *param_2,uint64_t param_3,int64_
         if (lVar3 == 0) {
           uVar4 = _getInstance_Foundation_shdfnd_physx__SAAEAV123_XZ();
           _error_Foundation_shdfnd_physx__QEAAXW4Enum_PxErrorCode_3_PEBDH1ZZ
-                    (uVar4,4,&unknown_var_1776_ptr,0x6c,&unknown_var_1584_ptr,lVar2);
+                    (uVar4,4,&ui_system_data_1776_ptr,0x6c,&ui_system_data_1584_ptr,lVar2);
         }
         *param_4 = lVar3;
       }
@@ -262,7 +262,7 @@ void FUN_1806c4a10(int64_t *param_1,int64_t *param_2)
       else {
         puVar6 = (void *)(**(code **)(*(int64_t *)param_1[5] + 0x38))();
       }
-      iVar5 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar6,&unknown_var_1536_ptr);
+      iVar5 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar6,&ui_system_data_1536_ptr);
       if (iVar5 == 0) {
         pcStack_278 = (char *)(**(code **)(*plVar11 + 0x40))(plVar11);
         if ((pcStack_278 != (char *)0x0) && (*pcStack_278 != '\0')) {
@@ -273,7 +273,7 @@ void FUN_1806c4a10(int64_t *param_1,int64_t *param_2)
           if (lVar8 == 0) {
             uVar9 = _getInstance_Foundation_shdfnd_physx__SAAEAV123_XZ();
             _error_Foundation_shdfnd_physx__QEAAXW4Enum_PxErrorCode_3_PEBDH1ZZ
-                      (uVar9,4,&unknown_var_1776_ptr,0x6c,&unknown_var_1584_ptr,uVar7);
+                      (uVar9,4,&ui_system_data_1776_ptr,0x6c,&ui_system_data_1584_ptr,uVar7);
             *(int8_t *)param_1[10] = 1;
             plVar11 = plStack_290;
           }
@@ -415,7 +415,7 @@ void FUN_1806c4a99(void)
     else {
       puVar6 = (void *)(**(code **)(*(int64_t *)unaff_RBX[5] + 0x38))();
     }
-    iVar5 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar6,&unknown_var_1536_ptr);
+    iVar5 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar6,&ui_system_data_1536_ptr);
     if (iVar5 == 0) {
       in_stack_00000050 = (char *)(**(code **)(*unaff_RDI + 0x40))(unaff_RDI);
       uVar14 = extraout_XMM0_Da_00;
@@ -428,7 +428,7 @@ void FUN_1806c4a99(void)
         if (lVar8 == 0) {
           uVar9 = _getInstance_Foundation_shdfnd_physx__SAAEAV123_XZ();
           _error_Foundation_shdfnd_physx__QEAAXW4Enum_PxErrorCode_3_PEBDH1ZZ
-                    (uVar9,4,&unknown_var_1776_ptr,0x6c,&unknown_var_1584_ptr);
+                    (uVar9,4,&ui_system_data_1776_ptr,0x6c,&ui_system_data_1584_ptr);
           *(int8_t *)unaff_RBX[10] = 1;
           unaff_RDI = in_stack_00000038;
         }

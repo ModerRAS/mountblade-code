@@ -403,7 +403,7 @@ uint64_t *
 FUN_180637560(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_5224_ptr;
+  *param_1 = &processed_var_5224_ptr;
   param_1[1] = &system_state_ptr;
   param_1[2] = 0;
   *(int32_t *)(param_1 + 3) = 0;
@@ -422,7 +422,7 @@ FUN_180637560(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   *(int8_t *)((int64_t)param_1 + 0x2c) = 0;
   *(int32_t *)(param_1 + 6) = 0;
   *(int8_t *)((int64_t)param_1 + 0x34) = 0;
-  *param_1 = &unknown_var_6088_ptr;
+  *param_1 = &processed_var_6088_ptr;
   _Mtx_init_in_situ(param_1 + 0xb,0x102,param_3,param_4,0xfffffffffffffffe);
   *(int32_t *)(param_1 + 5) = 0;
   *(int8_t *)((int64_t)param_1 + 0x34) = 0;
@@ -544,7 +544,7 @@ void FUN_180637890(int64_t *param_1,int8_t param_2)
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
   }
-  FUN_180060680(acStack_a8,&unknown_var_4576_ptr,param_2);
+  FUN_180060680(acStack_a8,&processed_var_4576_ptr,param_2);
   lVar2 = -1;
   do {
     lVar4 = lVar2;
@@ -595,7 +595,7 @@ void FUN_1806379a0(int64_t *param_1,int16_t param_2)
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
   }
-  FUN_180060680(acStack_a8,&unknown_var_4576_ptr,param_2);
+  FUN_180060680(acStack_a8,&processed_var_4576_ptr,param_2);
   lVar2 = -1;
   do {
     lVar4 = lVar2;
@@ -646,7 +646,7 @@ void FUN_180637ab0(int64_t *param_1,short param_2)
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
   }
-  FUN_180060680(acStack_a8,&unknown_var_4576_ptr,(int)param_2);
+  FUN_180060680(acStack_a8,&processed_var_4576_ptr,(int)param_2);
   lVar2 = -1;
   do {
     lVar4 = lVar2;
@@ -697,7 +697,7 @@ void FUN_180637bc0(int64_t *param_1,int32_t param_2)
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
   }
-  FUN_180060680(acStack_a8,&unknown_var_4576_ptr,param_2);
+  FUN_180060680(acStack_a8,&processed_var_4576_ptr,param_2);
   lVar2 = -1;
   do {
     lVar4 = lVar2;
@@ -971,7 +971,7 @@ void FUN_1806381a0(int64_t *param_1,float param_2)
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
   }
-  FUN_180626eb0(acStack_b8,0x80,&unknown_var_6040_ptr,(double)param_2);
+  FUN_180626eb0(acStack_b8,0x80,&processed_var_6040_ptr,(double)param_2);
   lVar2 = -1;
   do {
     lVar4 = lVar2;

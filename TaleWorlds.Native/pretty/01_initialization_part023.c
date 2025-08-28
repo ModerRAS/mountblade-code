@@ -842,7 +842,7 @@ void FUN_180057bf0(uint64_t *param_1)
 uint64_t * FUN_180057cb0(uint64_t *param_1,uint param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_2976_ptr;
+  *param_1 = &rendering_buffer_2976_ptr;
   FUN_18005e570(system_context_ptr,param_1[0x28],param_3,param_4,0xfffffffffffffffe);
   param_1[0x28] = 0;
   param_1[0x29] = &system_data_buffer_ptr;

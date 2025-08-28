@@ -96,7 +96,7 @@ extern char func_0x000180285f10(int64_t param_1, uint *param_2, int param_3);
 extern void FUN_1803280a0(uint64_t param_1, int64_t param_2, uint *param_3);
 extern void FUN_180328540(uint64_t param_1, int64_t param_2, uint *param_3);
 extern void FUN_180327e70(uint64_t param_1, int64_t param_2, uint *param_3, int param_4);
-extern uint64_t FUN_18062b1e0(uint64_t param_1, int param_2, int param_3, uint64_t param_4, uint64_t param_5);
+extern uint64_t CoreSystem_LoggingManager0(uint64_t param_1, int param_2, int param_3, uint64_t param_4, uint64_t param_5);
 extern uint64_t FUN_180059780(uint64_t param_1, uint64_t param_2, uint64_t param_3);
 extern uint64_t FUN_180059300(uint64_t param_1, uint64_t param_2, uint64_t param_3);
 extern void FUN_18016fec0(uint64_t param_1, uint64_t param_2);

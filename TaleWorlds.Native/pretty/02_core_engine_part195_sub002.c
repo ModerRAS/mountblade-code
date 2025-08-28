@@ -15,7 +15,7 @@ void FUN_180179e40(uint64_t *param_1,uint64_t param_2,int64_t *param_3)
 uint64_t * FUN_180179ec0(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_4968_ptr;
+  *param_1 = &processed_var_4968_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }

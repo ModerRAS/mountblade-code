@@ -865,7 +865,7 @@ uint FUN_180121250(byte *param_1,int64_t param_2,uint param_3)
       if (((*param_1 == 0x23) && (param_1[1] == 0x23)) && (param_1[2] == 0x23)) {
         uVar3 = param_3;
       }
-      uVar3 = *(uint *)(&unknown_var_6320_ptr + ((uint64_t)(uVar3 & 0xff) ^ (uint64_t)*param_1) * 4) ^
+      uVar3 = *(uint *)(&processed_var_6320_ptr + ((uint64_t)(uVar3 & 0xff) ^ (uint64_t)*param_1) * 4) ^
               uVar3 >> 8;
       param_1 = param_1 + 1;
     } while (param_2 != 0);
@@ -877,7 +877,7 @@ uint FUN_180121250(byte *param_1,int64_t param_2,uint param_3)
     if (((bVar1 == 0x23) && (*pbVar2 == 0x23)) && (pbVar2[1] == 0x23)) {
       uVar3 = param_3;
     }
-    uVar3 = *(uint *)(&unknown_var_6320_ptr + ((uint64_t)(uVar3 & 0xff) ^ (uint64_t)bVar1) * 4) ^
+    uVar3 = *(uint *)(&processed_var_6320_ptr + ((uint64_t)(uVar3 & 0xff) ^ (uint64_t)bVar1) * 4) ^
             uVar3 >> 8;
     bVar1 = *pbVar2;
     pbVar2 = pbVar2 + 1;

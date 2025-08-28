@@ -1041,20 +1041,20 @@ void perform_emergency_exit(uint64_t param1, uint64_t error_message)
 #define detailed_logging_enabled system_memory_0100
 #define report_generation_enabled system_memory_2851
 
-#define debug_output_channel_1 unknown_var_720
-#define debug_output_channel_2 unknown_var_3456
+#define debug_output_channel_1 processed_var_720
+#define debug_output_channel_2 memory_allocator_3456
 #define default_error_buffer system_buffer_ptr
 
-#define error_format_string unknown_var_3944
-#define error_header_string unknown_var_3968
-#define error_detail_string unknown_var_4064
-#define critical_error_title unknown_var_4072
-#define app_error_format_string unknown_var_4080
-#define module_error_format_string unknown_var_4136
-#define module_error_title unknown_var_4192
-#define silent_error_format unknown_var_4160
-#define emergency_exit_format_string unknown_var_3944
-#define error_dialog_format unknown_var_6936
+#define error_format_string memory_allocator_3944
+#define error_header_string memory_allocator_3968
+#define error_detail_string processed_var_4064
+#define critical_error_title processed_var_4072
+#define app_error_format_string processed_var_4080
+#define module_error_format_string processed_var_4136
+#define module_error_title processed_var_4192
+#define silent_error_format processed_var_4160
+#define emergency_exit_format_string memory_allocator_3944
+#define error_dialog_format processed_var_6936
 
 // 重命名的函数调用
 #define trigger_critical_error CoreEngineMemoryPoolCleaner

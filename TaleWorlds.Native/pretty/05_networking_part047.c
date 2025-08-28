@@ -117,7 +117,7 @@ uint64_t * NetworkingSystem_DataStructureInitializer(uint64_t *param_1)
     param_1[5] = 0;
     param_1[6] = param_1 + 8;
     param_1[7] = param_1 + 0xe;
-    *param_1 = &unknown_var_9632_ptr;
+    *param_1 = &processed_var_9632_ptr;
     param_1[8] = &system_string1_ptr;
     *(int8_t *)(param_1 + 9) = 0;
     param_1[10] = 0;
@@ -135,7 +135,7 @@ uint64_t * NetworkingSystem_DataStructureInitializer(uint64_t *param_1)
     *(int8_t *)(param_1 + 0xf) = 0;
     param_1[0x10] = 0;
     param_1[0x11] = 0;
-    param_1[0xe] = &unknown_var_9592_ptr;
+    param_1[0xe] = &processed_var_9592_ptr;
     param_1[0x12] = 0;
     param_1[0x13] = 0;
     
@@ -178,7 +178,7 @@ uint64_t * NetworkingSystem_DataStructureAllocator(uint64_t *param_1)
     param_1[2] = puVar6;
     param_1[3] = 0;
     *puVar6 = puVar6;
-    *param_1 = &unknown_var_2912_ptr;
+    *param_1 = &rendering_buffer_2912_ptr;
     
     // 设置处理器参数
     puVar6 = param_1 + 10;
@@ -235,7 +235,7 @@ uint64_t * NetworkingSystem_DataStructureFinalizer(uint64_t *param_1, uint64_t p
     FUN_180840270(param_1 + 0x11);
     func_0x00018085deb0(param_1 + 10);
     FUN_180865ec0(param_1 + 5);
-    *param_1 = &unknown_var_9984_ptr;
+    *param_1 = &processed_var_9984_ptr;
     
     // 根据标志释放内存
     if ((param_2 & 1) != 0) {
@@ -297,7 +297,7 @@ uint64_t FUN_180865c20(int64_t param_1, int64_t param_2, uint64_t param_3)
     
     // 分配处理缓冲区
     puVar6 = (int32_t *)
-             SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x39, &unknown_var_3024_ptr, 0x322, 0);
+             SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x39, &memory_allocator_3024_ptr, 0x322, 0);
     if (puVar6 == (int32_t *)0x0) {
         uVar7 = 0x26;
     }
@@ -445,7 +445,7 @@ uint64_t FUN_180865ec0(int64_t *param_1)
             return 0x1c;
         }
         if ((0 < (int)uVar5) && (*param_1 != 0)) {
-            SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+            SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &processed_var_8432_ptr, 0x100, 1);
         }
         *param_1 = 0;
         *(int32_t *)((int64_t)param_1 + 0xc) = 0;
@@ -558,7 +558,7 @@ uint64_t FUN_180865fc0(int64_t param_1, int16_t param_2, uint64_t param_3, char 
     
     // 分配处理缓冲区
     puVar6 = (int32_t *)
-             SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x39, &unknown_var_3024_ptr, 0x249,
+             SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x39, &memory_allocator_3024_ptr, 0x249,
                            uVar11 & 0xffffffff00000000);
     if (puVar6 == (int32_t *)0x0) {
         return 0x26;
@@ -674,7 +674,7 @@ uint64_t FUN_1808661e0(int64_t *param_1, int64_t param_2, int param_3)
                 return 0x1c;
             }
             if ((0 < (int)uVar5) && (*param_1 != 0)) {
-                SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+                SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &processed_var_8432_ptr, 0x100, 1);
             }
             *param_1 = 0;
             *(int32_t *)((int64_t)param_1 + 0xc) = 0;
@@ -731,7 +731,7 @@ uint64_t FUN_180866340(int64_t param_1, uint64_t *param_2)
         uVar2 = (*(code *)**(uint64_t **)*param_2)((uint64_t *)*param_2, uVar1, uVar2);
         if ((int)uVar2 == 0) {
             SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), **(uint64_t **)(param_1 + 0x28),
-                          &unknown_var_3024_ptr, 0x1bf, 1);
+                          &memory_allocator_3024_ptr, 0x1bf, 1);
         }
     }
     return uVar2;
@@ -996,7 +996,7 @@ uint64_t FUN_180866ba0(int64_t param_1, uint64_t param_2)
     
     // 分配处理缓冲区
     puVar2 = (int32_t *)
-             SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x39, &unknown_var_3024_ptr, 0x303, 0);
+             SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x39, &memory_allocator_3024_ptr, 0x303, 0);
     if (puVar2 == (int32_t *)0x0) {
         return 0x26;
     }

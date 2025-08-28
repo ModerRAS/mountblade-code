@@ -227,7 +227,7 @@ typedef struct {
 // 系统全局变量 - 用于系统状态管理和数据操作
 extern void* system_system_data_ui;          // 系统数据UI全局指针
 extern void* system_main_module_state;       // 系统主模块状态指针
-extern void* unknown_var_2560_ptr;           // 未知变量2560指针
+extern void* rendering_buffer_2560_ptr;           // 未知变量2560指针
 extern void* system_message_buffer;           // 系统消息缓冲区指针
 
 /* ============================================================================
@@ -271,7 +271,7 @@ void SystemDataProcessor(SystemHandle system_interface, int64_t config_data, Sys
   system_context = system_interface;
   
   // 调用系统状态验证器处理数据
-  operation_result = SystemStateValidator(&temp_handle, &unknown_var_2560_ptr, param_3, param_4, 0xfffffffffffffffe);
+  operation_result = SystemStateValidator(&temp_handle, &rendering_buffer_2560_ptr, param_3, param_4, 0xfffffffffffffffe);
   
   // 检查配置有效性
   if (*(char *)(config_data + SYSTEM_CONFIG_OFFSET) != '\0') {

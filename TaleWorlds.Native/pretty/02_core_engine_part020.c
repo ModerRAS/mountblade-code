@@ -663,12 +663,12 @@ void FUN_180061290(uint64_t *param_1)
 void FUN_1800612b0(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_6384_ptr;
+  *param_1 = &processed_var_6384_ptr;
   if (*(char *)((int64_t)param_1 + 0xb1) != '\0') {
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
-  *param_1 = &unknown_var_5224_ptr;
+  *param_1 = &processed_var_5224_ptr;
   param_1[7] = &system_data_buffer_ptr;
   if (param_1[8] != 0) {
                     // WARNING: Subroutine does not return
@@ -697,7 +697,7 @@ FUN_180061300(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_6384_ptr;
+  *param_1 = &processed_var_6384_ptr;
   if (*(char *)((int64_t)param_1 + 0xb1) != '\0') {
     FUN_180639250();
   }
@@ -747,12 +747,12 @@ void FUN_180061380(uint64_t param_1,int64_t param_2)
   puStack_1a0 = auStack_190;
   auStack_190[0] = 0;
   uStack_198 = 6;
-  strcpy_s(auStack_190,0x10,&unknown_var_9216_ptr);
+  strcpy_s(auStack_190,0x10,&processed_var_9216_ptr);
   puVar3 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x208,8,3);
   lStack_248 = lVar1 + 0x70;
   puStack_238 = puVar3;
   FUN_18020e0e0(puVar3,&puStack_1a8,3,lVar1 + 0x2e0);
-  *puVar3 = &unknown_var_9056_ptr;
+  *puVar3 = &processed_var_9056_ptr;
   puStack_238 = puVar3;
   FUN_18020e840(puVar3);
   SystemInitializer(lVar1 + 0x48,&puStack_238);

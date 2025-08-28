@@ -154,7 +154,7 @@ LAB_180784edc:
         fStack_348 = (float)CONCAT31(fStack_348._1_3_,1);
         uStack_350 = (float *)((uint64_t)uStack_350 & 0xffffffffffffff00);
         fStack_358 = 0.0;
-        lVar8 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xc0,&unknown_var_9488_ptr,0x5d7);
+        lVar8 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xc0,&processed_var_9488_ptr,0x5d7);
         *(int64_t *)(param_1 + 0x270) = lVar8;
         if (lVar8 == 0) goto LAB_180785945;
       }
@@ -204,7 +204,7 @@ LAB_180784edc:
         fStack_348 = (float)CONCAT31(fStack_348._1_3_,1);
         uStack_350 = (float *)((uint64_t)uStack_350 & 0xffffffffffffff00);
         fStack_358 = 0.0;
-        lVar8 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xc0,&unknown_var_9488_ptr);
+        lVar8 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xc0,&processed_var_9488_ptr);
         *(int64_t *)(param_1 + 0x260) = lVar8;
         if (lVar8 == 0) goto LAB_180785945;
       }
@@ -226,7 +226,7 @@ LAB_180784edc:
         fStack_348 = (float)CONCAT31(fStack_348._1_3_,1);
         uStack_350 = (float *)((uint64_t)uStack_350 & 0xffffffffffffff00);
         fStack_358 = 0.0;
-        lVar9 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xc0,&unknown_var_9488_ptr,0x60c);
+        lVar9 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xc0,&processed_var_9488_ptr,0x60c);
         *(int64_t *)(param_1 + 0x268) = lVar9;
         if (lVar9 == 0) goto LAB_180785945;
         lVar8 = *(int64_t *)(param_1 + 600);

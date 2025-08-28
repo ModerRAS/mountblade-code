@@ -845,7 +845,7 @@ int32_t *FUN_18043c820(int32_t *param_1, int64_t param_2)
     int32_t uStack_14;
     
     // 分配资源内存
-    uVar2 = FUN_18062b1e0(system_memory_pool_ptr, 0x298, MEMORY_ALIGNMENT_8, 3, INVALID_HANDLE);
+    uVar2 = CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x298, MEMORY_ALIGNMENT_8, 3, INVALID_HANDLE);
     plVar3 = (int64_t *)FUN_1802f5f70(uVar2);
     if (plVar3 != (int64_t *)0x0) {
         (**(code **)(*plVar3 + VTABLE_OFFSET_PROCESS_DATA))(plVar3);

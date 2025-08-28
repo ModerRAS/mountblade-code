@@ -258,11 +258,11 @@ uint64_t * FUN_1800f7e80(int64_t param_1,uint64_t *param_2)
     *plVar3 = (int64_t)&system_handler1_ptr;
     *plVar3 = (int64_t)&system_handler2_ptr;
     *(int32_t *)(plVar3 + 1) = 0;
-    *plVar3 = (int64_t)&unknown_var_6544_ptr;
+    *plVar3 = (int64_t)&processed_var_6544_ptr;
     plVar3[2] = 0;
     plVar3[3] = 0;
     *(int8_t *)(plVar3 + 4) = 0;
-    *plVar3 = (int64_t)&unknown_var_6480_ptr;
+    *plVar3 = (int64_t)&processed_var_6480_ptr;
     (**(code **)(*plVar3 + 0x28))(plVar3);
     *param_2 = plVar3;
   }
@@ -276,11 +276,11 @@ uint64_t * FUN_1800f7e80(int64_t param_1,uint64_t *param_2)
     *plVar3 = (int64_t)&system_handler1_ptr;
     *plVar3 = (int64_t)&system_handler2_ptr;
     *(int32_t *)(plVar3 + 1) = 0;
-    *plVar3 = (int64_t)&unknown_var_6544_ptr;
+    *plVar3 = (int64_t)&processed_var_6544_ptr;
     plVar3[2] = 0;
     plVar3[3] = 0;
     *(int8_t *)(plVar3 + 4) = 0;
-    *plVar3 = (int64_t)&unknown_var_6480_ptr;
+    *plVar3 = (int64_t)&processed_var_6480_ptr;
     (**(code **)(*plVar3 + 0x28))(plVar3);
     *param_2 = plVar3;
   }

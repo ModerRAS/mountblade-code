@@ -59,7 +59,7 @@ LAB_1805b52d7:
     if (param_3 == '\0') goto LAB_1805b50ac;
 LAB_1805b52e7:
     aiStackX_20[0] = 0;
-    cVar5 = SystemSynchronizationProcessor(unaff_R12,aiStackX_20,&unknown_var_5344_ptr);
+    cVar5 = SystemSynchronizationProcessor(unaff_R12,aiStackX_20,&processed_var_5344_ptr);
     bVar11 = aiStackX_20[0] != 0;
     param_1 = extraout_XMM0_Da_16;
     if (cVar5 == '\0') goto LAB_1805b50ac;
@@ -137,16 +137,16 @@ LAB_1805b52e7:
       goto LAB_1805b52d7;
     }
     if ((((cVar5 != '\0') &&
-         (cVar5 = FUN_180646700(extraout_XMM0_Da,&param_6,&unknown_var_5376_ptr),
+         (cVar5 = FUN_180646700(extraout_XMM0_Da,&param_6,&processed_var_5376_ptr),
          param_1 = extraout_XMM0_Da_00, cVar5 != '\0')) &&
-        (cVar5 = FUN_180646700(extraout_XMM0_Da_00,(int64_t)&param_6 + 4,&unknown_var_5376_ptr),
+        (cVar5 = FUN_180646700(extraout_XMM0_Da_00,(int64_t)&param_6 + 4,&processed_var_5376_ptr),
         param_1 = extraout_XMM0_Da_01, cVar5 != '\0')) &&
-       (((cVar5 = FUN_180646700(extraout_XMM0_Da_01,&param_7,&unknown_var_5392_ptr),
+       (((cVar5 = FUN_180646700(extraout_XMM0_Da_01,&param_7,&processed_var_5392_ptr),
          param_1 = extraout_XMM0_Da_02, cVar5 != '\0' &&
          (_fStack0000000000000048 = unaff_RDI,
-         cVar5 = FUN_180646700(extraout_XMM0_Da_02,&stack0x00000048,&unknown_var_5408_ptr),
+         cVar5 = FUN_180646700(extraout_XMM0_Da_02,&stack0x00000048,&processed_var_5408_ptr),
          param_1 = extraout_XMM0_Da_03, cVar5 != '\0')) &&
-        (cVar5 = FUN_180646700(extraout_XMM0_Da_03,(int64_t)&stack0x00000048 + 4,&unknown_var_5408_ptr),
+        (cVar5 = FUN_180646700(extraout_XMM0_Da_03,(int64_t)&stack0x00000048 + 4,&processed_var_5408_ptr),
         param_1 = extraout_XMM0_Da_04, cVar5 != '\0')))) {
       bVar9 = true;
       piVar7 = (int *)&param_14;
@@ -155,13 +155,13 @@ LAB_1805b52e7:
         if (9 < iVar8) {
           if (bVar9) {
             aiStackX_20[0] = 0;
-            cVar5 = SystemSynchronizationProcessor(param_1,aiStackX_20,&unknown_var_5344_ptr);
+            cVar5 = SystemSynchronizationProcessor(param_1,aiStackX_20,&processed_var_5344_ptr);
             unaff_R12 = param_8;
             bVar9 = aiStackX_20[0] != 0;
             param_1 = extraout_XMM0_Da_07;
             if (cVar5 != '\0') {
               aiStackX_20[0] = 0;
-              cVar5 = SystemSynchronizationProcessor(param_8,aiStackX_20,&unknown_var_5344_ptr);
+              cVar5 = SystemSynchronizationProcessor(param_8,aiStackX_20,&processed_var_5344_ptr);
               bVar10 = aiStackX_20[0] != 0;
               param_1 = extraout_XMM0_Da_08;
               if (cVar5 != '\0') {
@@ -441,7 +441,7 @@ LAB_1805b52e7:
           break;
         }
         if ((bVar9) &&
-           (cVar5 = FUN_180646500(param_1,unaff_RBP + -0x68 + (int64_t)iVar8 * 4,&unknown_var_5424_ptr),
+           (cVar5 = FUN_180646500(param_1,unaff_RBP + -0x68 + (int64_t)iVar8 * 4,&processed_var_5424_ptr),
            param_1 = extraout_XMM0_Da_05, cVar5 != '\0')) {
           aiStackX_20[0] = 0;
           cVar5 = FUN_180646a60(extraout_XMM0_Da_05,*(int32_t *)(unaff_R14 + 0x3c),aiStackX_20);
@@ -670,7 +670,7 @@ LAB_1805b51f7:
   bVar3 = false;
   if (bVar1) {
     aiStackX_20[0] = 0;
-    cVar2 = SystemSynchronizationProcessor(param_1,aiStackX_20,&unknown_var_5344_ptr);
+    cVar2 = SystemSynchronizationProcessor(param_1,aiStackX_20,&processed_var_5344_ptr);
     bVar3 = aiStackX_20[0] != 0;
     if (cVar2 == '\0') goto LAB_1805b50ac;
     bVar1 = true;

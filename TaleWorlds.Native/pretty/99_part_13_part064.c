@@ -829,7 +829,7 @@ void FUN_1808d4e50(int64_t *param_1)
 {
   (**(code **)(*param_1 + 0x28))(param_1,0);
                     // WARNING: Subroutine does not return
-  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1 + -6,&unknown_var_6272_ptr,0x9a,1);
+  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1 + -6,&processed_var_6272_ptr,0x9a,1);
 }
 
 

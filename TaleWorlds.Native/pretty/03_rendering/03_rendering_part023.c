@@ -29,7 +29,7 @@ void update_rendering_component_state(uint64_t *component_ptr, uint64_t *state_d
   if (is_active != '\0') {
     flag_value = func_0x00018023a100(data_ptr);
     *(int8_t *)(component_ptr + 100) = flag_value;
-    if ((void *)*component_ptr == &unknown_var_9304_ptr) {
+    if ((void *)*component_ptr == &processed_var_9304_ptr) {
       FUN_180276f30(component_ptr, (int64_t)component_ptr + 0x214, 0);
     }
     else {
@@ -151,7 +151,7 @@ uint64_t *create_rendering_manager(uint64_t manager_type, uint64_t *output_ptr)
   uint64_t manager_handle;
   int64_t *manager_ptr;
   
-  manager_handle = FUN_18062b1e0(system_memory_pool_ptr, 0x3d0, 8, 0x16, 0, 0xfffffffffffffffe);
+  manager_handle = CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x3d0, 8, 0x16, 0, 0xfffffffffffffffe);
   manager_ptr = (int64_t *)FUN_180275090(manager_handle);
   if (manager_ptr != (int64_t *)0x0) {
     (**(code **)(*manager_ptr + 0x28))(manager_ptr);

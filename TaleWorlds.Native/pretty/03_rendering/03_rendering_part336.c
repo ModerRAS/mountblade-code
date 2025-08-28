@@ -470,7 +470,7 @@ LAB_18044751c:
             (**(code **)(*plStackX_20 + 0x38))();
         }
         if (plVar3 == (int64_t *)0x0) {
-            FUN_180627020(&unknown_var_9992_ptr, param_2);
+            FUN_180627020(&processed_var_9992_ptr, param_2);
             puVar2 = (uint64_t *)FUN_1800befa0(render_system_data_config, &plStackX_20);
             plVar3 = (int64_t *)*puVar2;
             *puVar2 = 0;
@@ -574,7 +574,7 @@ int32_t * RenderingSystem_ObjectCreator1(int32_t *param_1, int8_t param_2)
     int32_t uStack_14;
     
     // 创建对象
-    uVar2 = FUN_18062b1e0(system_memory_pool_ptr, 0x300, 0x10, 3, 0xfffffffffffffffe);
+    uVar2 = CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x300, 0x10, 3, 0xfffffffffffffffe);
     plVar3 = (int64_t *)FUN_180075030(uVar2, param_2, 1);
     
     if (plVar3 != (int64_t *)0x0) {
@@ -582,7 +582,7 @@ int32_t * RenderingSystem_ObjectCreator1(int32_t *param_1, int8_t param_2)
     }
     
     // 初始化对象
-    (**(code **)(plVar3[2] + 0x10))(plVar3 + 2, &unknown_var_16_ptr);
+    (**(code **)(plVar3[2] + 0x10))(plVar3 + 2, &ui_system_data_16_ptr);
     uVar1 = (**(code **)(*plVar3 + 8))(plVar3);
     (**(code **)(*plVar3 + 0x28))(plVar3);
     
@@ -622,7 +622,7 @@ int32_t * RenderingSystem_ObjectCreator2(int32_t *param_1, int64_t *param_2)
     int32_t uStack_14;
     
     // 创建对象
-    uVar2 = FUN_18062b1e0(system_memory_pool_ptr, 0x300, 0x10, 3, 0xfffffffffffffffe);
+    uVar2 = CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x300, 0x10, 3, 0xfffffffffffffffe);
     plVar3 = (int64_t *)FUN_180075030(uVar2, 1);
     plStackX_10 = plVar3;
     
@@ -631,7 +631,7 @@ int32_t * RenderingSystem_ObjectCreator2(int32_t *param_1, int64_t *param_2)
     }
     
     // 初始化对象
-    (**(code **)(plVar3[2] + 0x10))(plVar3 + 2, &unknown_var_16_ptr);
+    (**(code **)(plVar3[2] + 0x10))(plVar3 + 2, &ui_system_data_16_ptr);
     plStackX_8 = param_2;
     
     if (param_2 != (int64_t *)0x0) {
@@ -1190,7 +1190,7 @@ void RenderingSystem_ObjectProcessor(int64_t *param_1)
         if ((void *)plStack_40[3] != (void *)0x0) {
             puVar3 = (void *)plStack_40[3];
         }
-        FUN_1800623b0(system_message_context, 0, 0x80000000000, 3, &unknown_var_5472_ptr, iVar2, puVar3, (int)plStack_38[0xc],
+        FUN_1800623b0(system_message_context, 0, 0x80000000000, 3, &processed_var_5472_ptr, iVar2, puVar3, (int)plStack_38[0xc],
                       uVar4);
     }
     
@@ -1254,7 +1254,7 @@ void RenderingSystem_RenderProcessor(int64_t *param_1, int64_t param_2, uint64_t
     char cStack_26;
     
     if (param_2 == 0) {
-        SystemCore_ResourceManager0(&unknown_var_9928_ptr);
+        SystemCore_ResourceManager0(&processed_var_9928_ptr);
     }
     else {
         if (param_1 != (int64_t *)0x0) {

@@ -831,15 +831,15 @@ LAB_18059f47b:
               uVar12 = FUN_1805fa9a0(lVar22 + 290000,0x28);
               lVar22 = *(int64_t *)(*(int64_t *)(param_1 + 0x108) + 0x728);
               uVar8 = *(int32_t *)(*(int64_t *)(param_1 + 0x100) + 0x87b758);
-              cVar5 = SystemBufferProcessor(uVar12,0,&unknown_var_6432_ptr);
+              cVar5 = SystemBufferProcessor(uVar12,0,&processed_var_6432_ptr);
               if ((((cVar5 != '\0') &&
-                   (cVar5 = SystemBufferProcessor(uVar12,0,&unknown_var_6464_ptr), cVar5 != '\0')) &&
-                  (cVar5 = SystemBufferProcessor(uVar12,uVar8,&unknown_var_6384_ptr), cVar5 != '\0')) &&
-                 ((cVar5 = FUN_180645fa0(uVar12,*(int32_t *)(lVar22 + 0x5d0),&unknown_var_6400_ptr),
+                   (cVar5 = SystemBufferProcessor(uVar12,0,&processed_var_6464_ptr), cVar5 != '\0')) &&
+                  (cVar5 = SystemBufferProcessor(uVar12,uVar8,&processed_var_6384_ptr), cVar5 != '\0')) &&
+                 ((cVar5 = FUN_180645fa0(uVar12,*(int32_t *)(lVar22 + 0x5d0),&processed_var_6400_ptr),
                   cVar5 != '\0' &&
-                  (cVar5 = FUN_180645fa0(uVar12,*(int32_t *)(lVar22 + 0x5d4),&unknown_var_6400_ptr),
+                  (cVar5 = FUN_180645fa0(uVar12,*(int32_t *)(lVar22 + 0x5d4),&processed_var_6400_ptr),
                   cVar5 != '\0')))) {
-                FUN_180645fa0(uVar12,*(int32_t *)(lVar22 + 0x5d8),&unknown_var_6416_ptr);
+                FUN_180645fa0(uVar12,*(int32_t *)(lVar22 + 0x5d8),&processed_var_6416_ptr);
               }
               lVar22 = render_system_memory;
               FUN_1805faa20(render_system_memory + 290000);
@@ -917,14 +917,14 @@ LAB_18059f875:
                 }
                 uVar12 = FUN_1805fa9a0(lVar22 + 290000,0x28);
                 lVar22 = *(int64_t *)(*(int64_t *)(param_1 + 0x108) + 0x728);
-                cVar5 = SystemBufferProcessor(uVar12,0,&unknown_var_6432_ptr);
+                cVar5 = SystemBufferProcessor(uVar12,0,&processed_var_6432_ptr);
                 if ((((cVar5 != '\0') &&
-                     (cVar5 = SystemBufferProcessor(uVar12,1,&unknown_var_6464_ptr), cVar5 != '\0')) &&
-                    (cVar5 = FUN_180645fa0(uVar12,*(int32_t *)(lVar22 + 0x5d0),&unknown_var_6400_ptr),
+                     (cVar5 = SystemBufferProcessor(uVar12,1,&processed_var_6464_ptr), cVar5 != '\0')) &&
+                    (cVar5 = FUN_180645fa0(uVar12,*(int32_t *)(lVar22 + 0x5d0),&processed_var_6400_ptr),
                     cVar5 != '\0')) &&
-                   (cVar5 = FUN_180645fa0(uVar12,*(int32_t *)(lVar22 + 0x5d4),&unknown_var_6400_ptr),
+                   (cVar5 = FUN_180645fa0(uVar12,*(int32_t *)(lVar22 + 0x5d4),&processed_var_6400_ptr),
                    cVar5 != '\0')) {
-                  FUN_180645fa0(uVar12,*(int32_t *)(lVar22 + 0x5d8),&unknown_var_6416_ptr);
+                  FUN_180645fa0(uVar12,*(int32_t *)(lVar22 + 0x5d8),&processed_var_6416_ptr);
                 }
                 lVar22 = render_system_memory;
                 FUN_1805faa20(render_system_memory + 290000);

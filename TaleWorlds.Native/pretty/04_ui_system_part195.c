@@ -461,7 +461,7 @@ uint64_t FUN_18077fef0(int64_t *param_1,int param_2,int32_t *param_3,int64_t par
     *param_3 = *(int32_t *)(lVar1 + 0x23d0);
     if (param_4 != 0) {
                     // WARNING: Subroutine does not return
-      SystemValidationProcessor(param_4,0x20,&unknown_var_4576_ptr,*(int32_t *)(lVar1 + 0x23d0));
+      SystemValidationProcessor(param_4,0x20,&processed_var_4576_ptr,*(int32_t *)(lVar1 + 0x23d0));
     }
   }
   else {
@@ -472,28 +472,28 @@ uint64_t FUN_18077fef0(int64_t *param_1,int param_2,int32_t *param_3,int64_t par
     if (param_4 != 0) {
       switch(*(int32_t *)(lVar1 + 0x2450)) {
       case 0:
-        puVar2 = &unknown_var_3344_ptr;
+        puVar2 = &memory_allocator_3344_ptr;
         break;
       case 1:
-        puVar2 = &unknown_var_8328_ptr;
+        puVar2 = &processed_var_8328_ptr;
         break;
       case 2:
-        puVar2 = &unknown_var_8344_ptr;
+        puVar2 = &processed_var_8344_ptr;
         break;
       case 3:
-        puVar2 = &unknown_var_8360_ptr;
+        puVar2 = &processed_var_8360_ptr;
         break;
       case 4:
-        puVar2 = &unknown_var_8376_ptr;
+        puVar2 = &processed_var_8376_ptr;
         break;
       case 5:
-        puVar2 = &unknown_var_8384_ptr;
+        puVar2 = &processed_var_8384_ptr;
         break;
       case 6:
-        puVar2 = &unknown_var_8408_ptr;
+        puVar2 = &processed_var_8408_ptr;
         break;
       case 7:
-        puVar2 = &unknown_var_8392_ptr;
+        puVar2 = &processed_var_8392_ptr;
         break;
       default:
         goto LAB_18077ffcd;
@@ -519,7 +519,7 @@ uint64_t FUN_180780020(int64_t *param_1,int param_2,int32_t *param_3,int64_t par
   *param_3 = *(int32_t *)(lVar1 + 0x23cc + (int64_t)param_2 * 4);
   if (param_4 != 0) {
                     // WARNING: Subroutine does not return
-    SystemValidationProcessor(param_4,0x20,&unknown_var_2048_ptr,
+    SystemValidationProcessor(param_4,0x20,&rendering_buffer_2048_ptr,
                   (double)*(float *)(lVar1 + 0x23cc + (int64_t)param_2 * 4));
   }
   return 0;

@@ -440,7 +440,7 @@ uint64_t *Rendering_HashTableInsert_18033af10(int64_t param_1,uint64_t *param_2,
     *(int8_t *)(param_2 + 2) = 1;
     return param_2;
   }
-  uVar6 = FUN_18062b1e0(MemoryAllocator_180c8ed18,(uint64_t)param_5._4_4_ * 8 + 8,8,
+  uVar6 = CoreSystem_LoggingManager0(MemoryAllocator_180c8ed18,(uint64_t)param_5._4_4_ * 8 + 8,8,
                         *(int8_t *)(param_1 + 0x2c));
                     // WARNING: Subroutine does not return
   memset(uVar6,0,(uint64_t)param_5._4_4_ * 8);

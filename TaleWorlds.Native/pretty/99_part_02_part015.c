@@ -621,7 +621,7 @@ void FUN_1800f4ad0(uint64_t param_1,int64_t *param_2,int64_t param_3)
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_118;
   uStack_f8 = 0;
   puVar9 = (uint64_t *)(system_system_data_config + 0x4110);
-  puStack_d8 = &unknown_var_3432_ptr;
+  puStack_d8 = &memory_allocator_3432_ptr;
   pbStack_d0 = abStack_c0;
   abStack_c0[0] = 0;
   iStack_c8 = *(int *)(param_3 + 0x10);

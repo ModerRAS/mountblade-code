@@ -30,7 +30,7 @@ void FUN_18084cae7(uint64_t param_1,uint64_t param_2,int64_t *param_3)
   FUN_18084c5a0(unaff_R15 + 7);
   FUN_18084c220(unaff_R15 + 5);
   *(int32_t *)(unaff_R15 + 1) = 0xdeadf00d;
-  *unaff_R15 = &unknown_var_1544_ptr;
+  *unaff_R15 = &ui_system_data_1544_ptr;
   return;
 }
 
@@ -40,7 +40,7 @@ uint64_t * FUN_18084cb70(uint64_t *param_1,uint64_t param_2)
 
 {
   *(int32_t *)(param_1 + 1) = 0xdeadf00d;
-  *param_1 = &unknown_var_1544_ptr;
+  *param_1 = &ui_system_data_1544_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x20);
   }

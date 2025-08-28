@@ -126,7 +126,7 @@ void FUN_18006e140(void)
 uint64_t * FUN_18006e460(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_3768_ptr;
+  *param_1 = &memory_allocator_3768_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x58);
   }
@@ -486,7 +486,7 @@ uint64_t * FUN_18006e660(uint64_t *param_1,uint64_t param_2,uint64_t param_3)
   int64_t lVar7;
   
   FUN_180049830();
-  *param_1 = &unknown_var_3624_ptr;
+  *param_1 = &memory_allocator_3624_ptr;
   param_1[0x19] = 0;
   *(int32_t *)(param_1 + 0x1a) = 0;
   param_1[0x1b] = 0;

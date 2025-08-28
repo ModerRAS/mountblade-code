@@ -1083,15 +1083,15 @@ void UIEncodedDataProcessor(int64_t param_1, int64_t param_2, int param_3, uint6
   // 根据编码模式选择参数
   if (param_5 == 4) {
     mapping_size = 0x22;  // 模式4的映射大小
-    element_count = (int)(char)(&unknown_var_4108_ptr)[param_6];
-    encoding_table = &unknown_var_4248_ptr + (int64_t)param_6 * 8;
-    mapping_table = &unknown_var_4112_ptr;
+    element_count = (int)(char)(&processed_var_4108_ptr)[param_6];
+    encoding_table = &processed_var_4248_ptr + (int64_t)param_6 * 8;
+    mapping_table = &processed_var_4112_ptr;
   }
   else {
     element_count = 0xc;  // 默认映射大小
-    encoding_table = &unknown_var_4304_ptr;
+    encoding_table = &processed_var_4304_ptr;
     mapping_size = 0xc;
-    mapping_table = &unknown_var_4280_ptr;
+    mapping_table = &processed_var_4280_ptr;
   }
   
   element_stride = (int64_t)element_count;

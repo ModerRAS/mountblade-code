@@ -874,13 +874,13 @@ LAB_1808d856d:
 
 // 常量定义：系统内存管理基础地址
 #define SYSTEM_MEMORY_BASE SYSTEM_MAIN_CONTROL_BLOCK
-#define MEMORY_CLEANUP_TARGET unknown_var_8432
-#define MEMORY_DEALLOC_TARGET unknown_var_7344
-#define MEMORY_ALLOC_TARGET unknown_var_7344
-#define SYSTEM_OBJECT_BASE unknown_var_7280
-#define OBJECT_CLEANUP_TARGET unknown_var_2144
-#define RESOURCE_CLEANUP_TARGET unknown_var_1696
-#define GLOBAL_RESOURCE_CLEANUP_TARGET unknown_var_1696
+#define MEMORY_CLEANUP_TARGET processed_var_8432
+#define MEMORY_DEALLOC_TARGET processed_var_7344
+#define MEMORY_ALLOC_TARGET processed_var_7344
+#define SYSTEM_OBJECT_BASE processed_var_7280
+#define OBJECT_CLEANUP_TARGET rendering_buffer_2144
+#define RESOURCE_CLEANUP_TARGET ui_system_data_1696
+#define GLOBAL_RESOURCE_CLEANUP_TARGET ui_system_data_1696
 
 // 函数别名定义：
 // system_resource_cleanup_and_state_reset_manager - 系统资源清理和状态重置管理器

@@ -13,16 +13,16 @@ uint64_t system_operation_state;  // 渲染配置
 uint64_t core_system_data_resource;  // 线程状态
 
 // 函数指针和常量
-uint64_t unknown_var_7512;   // 虚函数表
-uint64_t unknown_var_2016;   // 字符串常量
-uint64_t unknown_var_9056_ptr;   // 回调函数
-uint64_t unknown_var_2920_ptr;   // 事件处理器
+uint64_t processed_var_7512;   // 虚函数表
+uint64_t rendering_buffer_2016;   // 字符串常量
+uint64_t processed_var_9056_ptr;   // 回调函数
+uint64_t rendering_buffer_2920_ptr;   // 事件处理器
 uint64_t system_state_ptr;   // 空指针常量
-uint64_t unknown_var_2776;   // 初始化函数
-uint64_t unknown_var_3552;   // 对象虚函数表
-uint64_t unknown_var_3696;   // 方法指针
-uint64_t unknown_var_1000;   // 析构函数
-uint64_t unknown_var_2640;   // 消息处理器
+uint64_t rendering_buffer_2776;   // 初始化函数
+uint64_t memory_allocator_3552;   // 对象虚函数表
+uint64_t memory_allocator_3696;   // 方法指针
+uint64_t ui_system_data_1000;   // 析构函数
+uint64_t rendering_buffer_2640;   // 消息处理器
 
 /**
  * 初始化系统光标
@@ -178,8 +178,8 @@ void initialize_render_system(int64_t render_context, uint64_t *init_params)
   message_handler = (int64_t *)allocate_message_handler(system_memory_pool_ptr, 0x218, 8, 3);
   
   // 设置虚函数表
-  setup_virtual_table(message_handler, &unknown_var_9056_ptr);
-  set_method_pointer(message_handler, &unknown_var_2920_ptr);
+  setup_virtual_table(message_handler, &processed_var_9056_ptr);
+  set_method_pointer(message_handler, &rendering_buffer_2920_ptr);
   
   // 初始化消息处理器
   initialize_message_handler(message_handler);

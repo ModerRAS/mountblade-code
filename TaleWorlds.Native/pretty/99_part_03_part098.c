@@ -286,7 +286,7 @@ void FUN_180254b30(int *param_1,float *param_2)
     if (iVar2 == 2) {
       puVar3 = *(uint64_t **)(param_1 + 2);
       lVar22 = puVar3[5];
-      if ((void *)*puVar3 == &unknown_var_7336_ptr) {
+      if ((void *)*puVar3 == &processed_var_7336_ptr) {
         pfVar21 = (float *)((int64_t)puVar3 + 0xac);
       }
       else {

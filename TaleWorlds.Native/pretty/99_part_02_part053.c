@@ -897,7 +897,7 @@ LAB_1801bf606:
           plVar10 = plVar13 + uVar9;
           plVar8 = (int64_t *)*plVar10;
           pcVar3 = *(code **)(*plVar8 + 0x68);
-          if (pcVar3 == (code *)&unknown_var_9696_ptr) {
+          if (pcVar3 == (code *)&processed_var_9696_ptr) {
             cVar14 = (char)plVar8[2] != '\0';
             plVar13 = plStack_68;
           }
@@ -911,7 +911,7 @@ LAB_1801bf606:
             if (cVar14 == '\0') {
               plVar10 = (int64_t *)*plVar10;
               pcVar3 = *(code **)(*plVar10 + 0x80);
-              if (pcVar3 == (code *)&unknown_var_1840_ptr) {
+              if (pcVar3 == (code *)&ui_system_data_1840_ptr) {
                 FUN_1800496b0(plVar10 + 4);
               }
               else {

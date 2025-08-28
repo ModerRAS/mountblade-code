@@ -71,7 +71,7 @@ void FUN_180072000(uint64_t param_1,int64_t param_2,int32_t param_3,int64_t para
   if ((system_debug_flag != '\0') || (system_event_handler != '\0')) goto LAB_180072d7b;
   uStack_58 = 0;
   uStack_50 = 0;
-  FUN_1800634b0(&uStack_58,0x10,&unknown_var_4576_ptr,param_3);
+  FUN_1800634b0(&uStack_58,0x10,&processed_var_4576_ptr,param_3);
   lVar9 = CoreMemoryPoolValidator(&puStack_f0,param_4);
   puStack_110 = &system_data_buffer_ptr;
   uVar16 = 0;
@@ -462,7 +462,7 @@ LAB_1800729bd:
         puStack_148 = puStack_130;
       }
       uStack_128 = uVar6 + 0x6d;
-      FUN_180062380(system_message_context,4,0xffffffff00000000,&unknown_var_4064_ptr);
+      FUN_180062380(system_message_context,4,0xffffffff00000000,&processed_var_4064_ptr);
       puStack_148 = &system_buffer_ptr;
       if (puVar10 != (void *)0x0) {
         puStack_148 = puVar10;
@@ -666,7 +666,7 @@ bool FUN_180072f00(uint64_t param_1,uint64_t *param_2)
   uStack_c0 = 0;
   FUN_1800a32b0(system_message_buffer,&puStack_68);
   if (puStack_68 != puStack_60) {
-    System_DataHandler(&puStack_f0,&unknown_var_92_ptr,&unknown_var_4592_ptr);
+    System_DataHandler(&puStack_f0,&processed_var_92_ptr,&processed_var_4592_ptr);
     puVar6 = puVar5;
     puVar12 = puVar5;
     if ((int64_t)puStack_60 - (int64_t)puStack_68 >> 5 != 0) {
@@ -675,23 +675,23 @@ bool FUN_180072f00(uint64_t param_1,uint64_t *param_2)
         if (*(void **)((int64_t)(puVar6 + 1) + (int64_t)puStack_68) != (void *)0x0) {
           puVar13 = *(void **)((int64_t)(puVar6 + 1) + (int64_t)puStack_68);
         }
-        System_DataHandler(&puStack_f0,&unknown_var_92_ptr,puVar13);
+        System_DataHandler(&puStack_f0,&processed_var_92_ptr,puVar13);
         uVar11 = (int)puVar12 + 1;
         puVar6 = puVar6 + 4;
         puVar12 = (uint64_t *)(uint64_t)uVar11;
       } while ((uint64_t)(int64_t)(int)uVar11 <
                (uint64_t)((int64_t)puStack_60 - (int64_t)puStack_68 >> 5));
     }
-    System_DataHandler(&puStack_f0,&unknown_var_4720_ptr,&unknown_var_4656_ptr);
+    System_DataHandler(&puStack_f0,&processed_var_4720_ptr,&processed_var_4656_ptr);
     FUN_18006f590(&puStack_110);
     if (iStack_100 != 0) {
-      System_DataHandler(&puStack_f0,&unknown_var_92_ptr,&unknown_var_4728_ptr);
+      System_DataHandler(&puStack_f0,&processed_var_92_ptr,&processed_var_4728_ptr);
       puVar6 = (uint64_t *)&system_buffer_ptr;
       if (puStack_108 != (uint64_t *)0x0) {
         puVar6 = puStack_108;
       }
-      System_DataHandler(&puStack_f0,&unknown_var_4792_ptr,puVar6);
-      System_DataHandler(&puStack_f0,&unknown_var_4720_ptr,&unknown_var_4656_ptr);
+      System_DataHandler(&puStack_f0,&processed_var_4792_ptr,puVar6);
+      System_DataHandler(&puStack_f0,&processed_var_4720_ptr,&processed_var_4656_ptr);
     }
     puStack_110 = &system_data_buffer_ptr;
     if (puStack_108 != (uint64_t *)0x0) {
@@ -719,19 +719,19 @@ bool FUN_180072f00(uint64_t param_1,uint64_t *param_2)
   puStack_108 = (uint64_t *)0x0;
   uStack_f8 = uStack_f8 & 0xffffffff00000000;
   puStack_110 = &system_state_ptr;
-  System_DataHandler(&puStack_f0,&unknown_var_4824_ptr,*(int32_t *)*param_2,
+  System_DataHandler(&puStack_f0,&processed_var_4824_ptr,*(int32_t *)*param_2,
                 *(uint64_t *)((int32_t *)*param_2 + 4));
-  System_DataHandler(&puStack_f0,&unknown_var_92_ptr,&unknown_var_4872_ptr);
+  System_DataHandler(&puStack_f0,&processed_var_92_ptr,&processed_var_4872_ptr);
   puVar14 = &system_buffer_ptr;
   if (puVar13 != (void *)0x0) {
     puVar14 = puVar13;
   }
-  System_DataHandler(&puStack_f0,&unknown_var_92_ptr,puVar14);
+  System_DataHandler(&puStack_f0,&processed_var_92_ptr,puVar14);
   puVar10 = (int16_t *)&system_buffer_ptr;
   if (puStack_e8 != (int16_t *)0x0) {
     puVar10 = puStack_e8;
   }
-  FUN_1800623b0(system_message_context,5,0xffffffff00000000,3,&unknown_var_92_ptr,puVar10);
+  FUN_1800623b0(system_message_context,5,0xffffffff00000000,3,&processed_var_92_ptr,puVar10);
   FUN_1800623e0();
   lVar4 = system_main_module_state;
   if (system_main_module_state == 0) {
@@ -899,12 +899,12 @@ void FUN_180073630(uint64_t param_1,uint64_t param_2)
   void *puStack_30;
   int64_t lStack_28;
   
-  FUN_1800623b0(system_message_context,0,0x100000000,0,&unknown_var_4936_ptr,param_2,0xfffffffffffffffe);
+  FUN_1800623b0(system_message_context,0,0x100000000,0,&processed_var_4936_ptr,param_2,0xfffffffffffffffe);
   if (system_debug_flag == '\0') {
     auStackX_18[0] = 0xffff0000;
     CoreMemoryPoolValidator(&puStack_30,param_2);
     puVar1 = *(void **)*core_system_data_memory;
-    if (puVar1 == &unknown_var_424_ptr) {
+    if (puVar1 == &processed_var_424_ptr) {
       cVar2 = *(int *)(core_system_data_memory + 0xc40) != 0;
     }
     else {

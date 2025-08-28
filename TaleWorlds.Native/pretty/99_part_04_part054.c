@@ -393,10 +393,10 @@ void FUN_1802b7d60(int64_t *param_1,float param_2)
   }
   iStack_1d8 = 0;
   lVar21 = (int64_t)iVar19;
-  fStack_1bc = ((*(float *)(&unknown_var_5296_ptr + (int64_t)(int)uVar12 * 4) -
-                *(float *)(&unknown_var_5296_ptr + (int64_t)(int)uVar11 * 4)) *
+  fStack_1bc = ((*(float *)(&processed_var_5296_ptr + (int64_t)(int)uVar12 * 4) -
+                *(float *)(&processed_var_5296_ptr + (int64_t)(int)uVar11 * 4)) *
                 (fVar25 - (float)(int)uVar10) +
-               *(float *)(&unknown_var_5296_ptr + (int64_t)(int)uVar11 * 4)) * *pfVar9 + 1.0;
+               *(float *)(&processed_var_5296_ptr + (int64_t)(int)uVar11 * 4)) * *pfVar9 + 1.0;
   fStack_1b8 = pfVar9[3] * pfVar9[1] * fStack_1bc;
   fStack_1bc = pfVar9[3] * pfVar9[2] * fStack_1bc;
   fStack_1b0 = fVar35;

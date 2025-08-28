@@ -208,7 +208,7 @@ uint64_t * FUN_180440750(uint64_t *param_1,int64_t param_2,int64_t param_3,uint6
   int iStack_30;
   
   if (param_3 == 0) {
-    SystemDataInitializer(&unknown_var_9528_ptr);
+    SystemDataInitializer(&processed_var_9528_ptr);
     plStack_60 = (int64_t *)0x0;
     uStack_58 = 0xffffffff;
   }
@@ -310,7 +310,7 @@ void FUN_180440910(int64_t param_1,uint64_t param_2)
     uStack_50 = 0;
     puStack_68 = &system_state_ptr;
     if (plStackX_18 == (int64_t *)0x0) {
-      SystemDataInitializer(&unknown_var_9624_ptr,param_2);
+      SystemDataInitializer(&processed_var_9624_ptr,param_2);
     }
     else {
       uVar1 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x168,8,3,uVar3);
@@ -919,7 +919,7 @@ void FUN_1804415d0(int64_t param_1,char param_2)
   if ((param_1 != 0) && (*(int64_t *)(param_1 + 0x260) != 0)) {
     puVar1 = *(uint64_t **)(*(int64_t *)(param_1 + 0x260) + 0x210);
     if (param_2 == '\0') {
-      if ((void *)*puVar1 == &unknown_var_1912_ptr) {
+      if ((void *)*puVar1 == &ui_system_data_1912_ptr) {
         puVar1[0xc] = 0;
         puVar1[0xd] = 0;
         return;
@@ -928,7 +928,7 @@ void FUN_1804415d0(int64_t param_1,char param_2)
     }
     else if ((puVar1[0xc] == 0) && (puVar1[0xd] == 0)) {
       puVar1[0xc] = param_1;
-      puVar1[0xd] = &unknown_var_6496_ptr;
+      puVar1[0xd] = &processed_var_6496_ptr;
       return;
     }
   }

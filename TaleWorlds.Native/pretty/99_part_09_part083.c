@@ -424,7 +424,7 @@ LAB_1805f44db:
                (cVar14 = (**(code **)(*(int64_t *)param_1[(int64_t)*piVar18 + 1] + 0x88))(),
                cVar14 != '\0')) {
               lStack_1a0 = (int64_t)*piVar18 << 4;
-              lVar26 = *(int64_t *)(&unknown_var_5568_ptr + (int64_t)param_2 * 8);
+              lVar26 = *(int64_t *)(&processed_var_5568_ptr + (int64_t)param_2 * 8);
               puStack_200 = &system_data_buffer_ptr;
               uStack_1e8 = 0;
               puStack_1f8 = (int8_t *)0x0;

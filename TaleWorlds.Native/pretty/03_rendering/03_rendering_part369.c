@@ -569,7 +569,7 @@ void BoundingBoxFinalizer(int64_t param_1)
         puStack_e8 = puVar3;
         
         // 处理边界框数据
-        if ((void *)*puVar3 == &unknown_var_9304_ptr) {
+        if ((void *)*puVar3 == &processed_var_9304_ptr) {
             FUN_180276f30(puVar3, (int64_t)puVar3 + 0x214, 0);
         } else {
             (**(code **)((void *)*puVar3 + 0x160))(puVar3);
@@ -625,7 +625,7 @@ void BoundingBoxFinalizer(int64_t param_1)
         uStack_5c = *(int32_t *)((int64_t)puVar4 + 0x3c);
         
         // 处理边界框数据
-        if ((void *)*puVar3 == &unknown_var_9304_ptr) {
+        if ((void *)*puVar3 == &processed_var_9304_ptr) {
             lVar5 = (int64_t)puVar3 + 0x214;
         } else {
             lVar5 = (**(code **)((void *)*puVar3 + 0x198))(puVar3);
@@ -761,7 +761,7 @@ void BoundingBoxInitializer(int64_t param_1, uint64_t param_2)
         *(int32_t *)((int64_t)unaff_RBP + -0x14) = uVar11;
         
         // 处理边界框数据
-        if (puVar3 == &unknown_var_9304_ptr) {
+        if (puVar3 == &processed_var_9304_ptr) {
             FUN_180276f30(puVar12, (int64_t)puVar12 + 0x214, 0);
         } else {
             (**(code **)(puVar3 + 0x160))(puVar12);
@@ -814,7 +814,7 @@ void BoundingBoxInitializer(int64_t param_1, uint64_t param_2)
         *(int32_t *)((int64_t)unaff_RBP + 0x2c) = uVar11;
         
         // 处理边界框数据
-        if (puVar3 == &unknown_var_9304_ptr) {
+        if (puVar3 == &processed_var_9304_ptr) {
             lVar18 = (int64_t)puVar12 + 0x214;
         } else {
             lVar18 = (**(code **)(puVar3 + 0x198))(puVar12);
@@ -937,7 +937,7 @@ void BoundingBoxManager(void)
         *(int32_t *)((int64_t)unaff_RBP + -0x14) = uVar10;
         
         // 处理边界框数据
-        if (puVar2 == &unknown_var_9304_ptr) {
+        if (puVar2 == &processed_var_9304_ptr) {
             FUN_180276f30(puVar11, (int64_t)puVar11 + 0x214, 0);
         } else {
             (**(code **)(puVar2 + 0x160))(puVar11);
@@ -990,7 +990,7 @@ void BoundingBoxManager(void)
         *(int32_t *)((int64_t)unaff_RBP + 0x2c) = uVar10;
         
         // 处理边界框数据
-        if (puVar2 == &unknown_var_9304_ptr) {
+        if (puVar2 == &processed_var_9304_ptr) {
             lVar17 = (int64_t)puVar11 + 0x214;
         } else {
             lVar17 = (**(code **)(puVar2 + 0x198))(puVar11);

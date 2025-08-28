@@ -346,7 +346,7 @@ LAB_180496bee:
 LAB_180496c00:
   if (lVar10 != *(int64_t *)(puStack_5a0 + uStack_598 * 8)) {
     pplStack_5e0 = (int64_t **)&puStack_520;
-    puStack_520 = &unknown_var_3480_ptr;
+    puStack_520 = &memory_allocator_3480_ptr;
     puStack_518 = auStack_508;
     auStack_508[0] = 0;
     pdStack_608 = &dStack_4c8;

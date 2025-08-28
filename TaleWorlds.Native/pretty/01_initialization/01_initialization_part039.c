@@ -4,8 +4,8 @@
 // 01_initialization_part039.c - 内存池管理和线程安全操作模块
 
 // 常量定义
-#define MEMORY_POOL_INITIALIZED_STATE (&unknown_var_3608_ptr)
-#define MEMORY_POOL_COMPLETED_STATE (&unknown_var_3768_ptr)
+#define MEMORY_POOL_INITIALIZED_STATE (&memory_allocator_3608_ptr)
+#define MEMORY_POOL_COMPLETED_STATE (&memory_allocator_3768_ptr)
 #define MEMORY_POOL_ENTRY_SIZE 0x1a8
 #define MEMORY_POOL_BATCH_SIZE 32
 #define MEMORY_POOL_REF_COUNT_OFFSET 0x3530
@@ -317,7 +317,7 @@ uint64_t * GetThreadLocalStorageData(int64_t *thread_context)
     puVar8[1] = 0;
     *(int8_t *)(puVar8 + 2) = 0;
     puVar8[3] = 0;
-    *puVar8 = &unknown_var_3768_ptr;
+    *puVar8 = &memory_allocator_3768_ptr;
     puVar8[4] = 0;
     puVar8[5] = 0;
     puVar8[6] = 0;
@@ -325,7 +325,7 @@ uint64_t * GetThreadLocalStorageData(int64_t *thread_context)
     puVar8[8] = 0;
     *(int8_t *)(puVar8 + 9) = 0;
     puVar8[10] = param_1;
-    *puVar8 = &unknown_var_3608_ptr;
+    *puVar8 = &memory_allocator_3608_ptr;
     puVar8[0xb] = 0x20;
     puVar8[0xc] = 0;
     
@@ -423,7 +423,7 @@ int64_t * ProcessMemoryBlockDataConversion(int64_t *result_ptr, uint64_t *src_st
       *dest_start = &system_state_ptr;
       dest_start[1] = 0;
       *(int32_t *)(dest_start + 2) = 0;
-      *dest_start = &unknown_var_2008_ptr;
+      *dest_start = &rendering_buffer_2008_ptr;
       dest_start[1] = dest_start + 3;
       *(int32_t *)(dest_start + 2) = 0;
       *(int8_t *)(dest_start + 3) = 0;

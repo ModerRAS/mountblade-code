@@ -20,10 +20,10 @@
 #define rendering_system_transform_data FUN_1803076d0
 
 // 全局变量别名定义
-#define g_rendering_system_context_table unknown_var_3832
-#define g_rendering_system_context_vtable unknown_var_3952
-#define g_rendering_system_string_constants unknown_var_3784
-#define g_rendering_system_string_table unknown_var_3800
+#define g_rendering_system_context_table memory_allocator_3832
+#define g_rendering_system_context_vtable memory_allocator_3952
+#define g_rendering_system_string_constants memory_allocator_3784
+#define g_rendering_system_string_table memory_allocator_3800
 #define g_rendering_system_memory_allocator system_main_module_state
 #define g_rendering_system_texture_manager system_buffer_ptr
 #define g_rendering_system_resource_manager system_memory_bc80
@@ -34,7 +34,7 @@
 #define g_rendering_system_resource_count render_system_control_buffer
 #define g_rendering_system_module_registry system_memory_pool_ptr
 #define g_rendering_system_global_state SYSTEM_STATE_MANAGER
-#define g_rendering_system_name_registry unknown_var_6504
+#define g_rendering_system_name_registry processed_var_6504
 
 // 函数声明
 void rendering_system_initialize_context(uint64_t *context, int context_id);
@@ -347,7 +347,7 @@ void rendering_system_process_data(int64_t context, uint64_t param2, uint64_t pa
         stack_var1 = 0;
         do {
             // 分配缓冲区内存
-            temp_var1 = FUN_18062b1e0(g_rendering_system_module_registry, RENDERING_SYSTEM_MAX_BUFFER_SIZE, 8, 3, temp_var2);
+            temp_var1 = CoreSystem_LoggingManager0(g_rendering_system_module_registry, RENDERING_SYSTEM_MAX_BUFFER_SIZE, 8, 3, temp_var2);
             temp_long1 = stack_var1 + stack_long2;
             
             // 复制数据到缓冲区
@@ -476,7 +476,7 @@ void rendering_system_transform_data(int64_t context, int64_t *transform_data, u
     *(float *)((int64_t)output2 + 0xc) = vector_length * 1.5;
     
     // 处理变换数据
-    if ((void *)*transform_data == &unknown_var_1008_ptr) {
+    if ((void *)*transform_data == &ui_system_data_1008_ptr) {
         temp_ptr1 = (uint64_t *)((int64_t)transform_data + 0x244);
     }
     else {

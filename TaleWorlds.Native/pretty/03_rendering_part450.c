@@ -199,16 +199,16 @@ void FUN_180511990(int64_t param_1,int param_2,int param_3,char param_4,char par
   int64_t lVar18;
   int64_t lVar19;
   
-  puVar15 = &unknown_var_6416_ptr;
-  puVar6 = &unknown_var_6416_ptr;
+  puVar15 = &processed_var_6416_ptr;
+  puVar6 = &processed_var_6416_ptr;
   if (param_5 != '\0') {
-    puVar6 = &unknown_var_6344_ptr;
+    puVar6 = &processed_var_6344_ptr;
   }
   lVar13 = (int64_t)param_2;
   if (param_4 != '\0') {
-    puVar15 = &unknown_var_6344_ptr;
+    puVar15 = &processed_var_6344_ptr;
   }
-  func_0x000180508000(*(uint64_t *)(param_1 + 0x6e0),&unknown_var_6536_ptr,&unknown_var_6560_ptr,lVar13,param_3,
+  func_0x000180508000(*(uint64_t *)(param_1 + 0x6e0),&processed_var_6536_ptr,&processed_var_6560_ptr,lVar13,param_3,
                       puVar15,puVar6,(double)param_6);
   lVar10 = *(int64_t *)(param_1 + 0x8d8);
   lVar18 = 0;

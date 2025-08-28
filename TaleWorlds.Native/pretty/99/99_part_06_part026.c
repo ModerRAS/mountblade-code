@@ -316,7 +316,7 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
                             current_attr_value = attr_value;
                         }
                         
-                        FUN_180627020(&unknown_var_2528_ptr, current_attr_value, error_handler);
+                        FUN_180627020(&rendering_buffer_2528_ptr, current_attr_value, error_handler);
                         ((char*)prefab_data)[0x39] = 1;
                         
                         // 清理属性数据
@@ -535,7 +535,7 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
                     
                     // 处理验证后的GUID
                     void* guid_base = *(void**)((char*)prefab_data + SCENE_DATA_OFFSET);
-                    void* guid_processor_data = &unknown_var_3432_ptr;
+                    void* guid_processor_data = &memory_allocator_3432_ptr;
                     char guid_buffer[128];
                     guid_buffer[0] = 0;
                     
@@ -600,9 +600,9 @@ config_complete:
                 void* mobility_processor;
                 if ((mobility_length < 3) || (*mobility_value_data != '0') ||
                     ((mobility_value_data[1] + 0xa8U & 0xdf) != 0)) {
-                    mobility_processor = &unknown_var_2208_ptr;
+                    mobility_processor = &rendering_buffer_2208_ptr;
                 } else {
-                    mobility_processor = &unknown_var_5412_ptr;
+                    mobility_processor = &processed_var_5412_ptr;
                 }
                 
                 AdvancedSystemOptimizer(mobility_value_data, mobility_processor, &mobility_value);
@@ -724,9 +724,9 @@ config_complete:
                 void* upgrade_processor;
                 if ((upgrade_length < 3) || (*scene_upgrade_value_data != '0') ||
                     ((scene_upgrade_value_data[1] + 0xa8U & 0xdf) != 0)) {
-                    upgrade_processor = &unknown_var_2208_ptr;
+                    upgrade_processor = &rendering_buffer_2208_ptr;
                 } else {
-                    upgrade_processor = &unknown_var_5412_ptr;
+                    upgrade_processor = &processed_var_5412_ptr;
                 }
                 
                 AdvancedSystemOptimizer(scene_upgrade_value_data, upgrade_processor, &scene_upgrade_mask);
@@ -748,7 +748,7 @@ config_complete:
                             *(uint16_t*)((char*)mask_data + 1) = 0x5f6c;
                             *(char*)((long long)mask_data + 6) = 0;
                             
-                            System_DataHandler(&mask_processor, &unknown_var_4576_ptr, guid_index);
+                            System_DataHandler(&mask_processor, &processed_var_4576_ptr, guid_index);
                             FUN_1803c2430(*(long long*)((char*)prefab_data + SCENE_DATA_OFFSET) + LEVEL_DATA_BLOCK_SIZE, 
                                          &config_stack[0], &mask_processor);
                             
@@ -804,7 +804,7 @@ config_complete:
                     season_mask_value_data = (void*)season_mask_attr_array[1];
                 }
                 
-                AdvancedSystemOptimizer(season_mask_value_data, &unknown_var_2208_ptr, &season_mask);
+                AdvancedSystemOptimizer(season_mask_value_data, &rendering_buffer_2208_ptr, &season_mask);
                 *(char*)((char*)(*(long long*)((char*)prefab_data + SCENE_DATA_OFFSET)) + SCENE_SEASON_MASK_OFFSET) = (char)season_mask;
                 
                 // 验证场景状态
@@ -850,14 +850,14 @@ config_complete:
             final_value = guid_attr_value;
         }
         
-        FUN_180627020(&unknown_var_2696_ptr, final_value, final_processor);
+        FUN_180627020(&rendering_buffer_2696_ptr, final_value, final_processor);
         config_data = (void*)config_offset;
     }
     
     // 处理最终配置数据
     uint32_t final_config[1];
     final_config[0] = 1;
-    long long final_result = FUN_180631000(config_data, &unknown_var_2688_ptr, final_config);
+    long long final_result = FUN_180631000(config_data, &rendering_buffer_2688_ptr, final_config);
     
     if (final_result != 0) {
         FUN_1802ee720(*(void**)((char*)prefab_data + SCENE_DATA_OFFSET), final_config[0]);

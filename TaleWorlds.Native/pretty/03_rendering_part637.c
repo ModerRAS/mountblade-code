@@ -523,7 +523,7 @@ void FUN_180623637(void)
 uint64_t * FUN_180623660(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_2256_ptr;
+  *param_1 = &rendering_buffer_2256_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }
@@ -535,7 +535,7 @@ uint64_t * FUN_180623660(uint64_t *param_1,uint64_t param_2)
 uint64_t * FUN_1806236a0(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_2456_ptr;
+  *param_1 = &rendering_buffer_2456_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }
@@ -551,11 +551,11 @@ FUN_1806236f0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3432_ptr;
+  *param_2 = &memory_allocator_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0x1b;
-  strcpy_s(param_2[1],0x80,&unknown_var_2504_ptr,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&rendering_buffer_2504_ptr,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
@@ -771,7 +771,7 @@ void FUN_180623a30(void)
 {
   code *pcVar1;
   
-  __Xout_of_range_std__YAXPEBD_Z(&unknown_var_2536_ptr);
+  __Xout_of_range_std__YAXPEBD_Z(&rendering_buffer_2536_ptr);
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
@@ -1005,7 +1005,7 @@ void FUN_180623de0(int64_t *param_1)
   *param_1 = (int64_t)&system_state_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = (int64_t)&unknown_var_3432_ptr;
+  *param_1 = (int64_t)&memory_allocator_3432_ptr;
   param_1[1] = (int64_t)(param_1 + 3);
   *(int32_t *)(param_1 + 2) = 0;
   *(int8_t *)(param_1 + 3) = 0;
@@ -1115,7 +1115,7 @@ FUN_180624030(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   param_1[1] = param_1 + 3;
   *(int8_t *)(param_1 + 3) = 0;
   *(int32_t *)(param_1 + 2) = 6;
-  strcpy_s(param_1[1],0x10,&unknown_var_2588_ptr,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_1[1],0x10,&rendering_buffer_2588_ptr,param_4,0,0xfffffffffffffffe);
   return param_1;
 }
 

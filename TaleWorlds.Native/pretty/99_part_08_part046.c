@@ -141,7 +141,7 @@ void FUN_1805a8580(int64_t param_1,float *param_2,uint64_t param_3,int64_t param
     uVar12 = uVar12 >> 0xb;
     param_2[0x13] = fVar14;
     if (((iVar3 < 0) || (uVar8 = *(uint *)(param_6 + 0x1dc), (int)uVar8 < 0)) ||
-       (((&unknown_var_6480_ptr)[uVar8 & 7] &
+       (((&processed_var_6480_ptr)[uVar8 & 7] &
         *(byte *)((int64_t)((*(int *)(param_4 + 0x87b770) >> 3) * iVar3 + ((int)uVar8 >> 3)) +
                  *(int64_t *)(param_4 + 0x87b768))) == 0)) {
       bVar5 = false;
@@ -330,7 +330,7 @@ void FUN_1805a85bd(uint64_t param_1,int64_t param_2,uint64_t param_3,int64_t par
     uVar12 = uVar12 >> 0xb;
     in_R10[0x13] = fVar15;
     if (((iVar3 < 0) || (uVar8 = *(uint *)(lVar11 + 0x1dc), (int)uVar8 < 0)) ||
-       (((&unknown_var_6480_ptr)[uVar8 & 7] &
+       (((&processed_var_6480_ptr)[uVar8 & 7] &
         *(byte *)((int64_t)((*(int *)(unaff_R15 + 0x87b770) >> 3) * iVar3 + ((int)uVar8 >> 3)) +
                  *(int64_t *)(unaff_R15 + 0x87b768))) == 0)) {
       bVar4 = false;
@@ -469,7 +469,7 @@ void FUN_1805a86be(uint64_t param_1,float param_2,int64_t param_3,int64_t param_
   iVar3 = *(int *)(in_R11 + 0x1dc);
   in_R10[0x13] = fVar14;
   if (((iVar3 < 0) || (uVar7 = *(uint *)(lVar9 + 0x1dc), (int)uVar7 < 0)) ||
-     (((&unknown_var_6480_ptr)[uVar7 & 7] &
+     (((&processed_var_6480_ptr)[uVar7 & 7] &
       *(byte *)((int64_t)((*(int *)(unaff_R15 + 0x87b770) >> 3) * iVar3 + ((int)uVar7 >> 3)) +
                *(int64_t *)(unaff_R15 + 0x87b768))) == 0)) {
     bVar4 = false;

@@ -53,7 +53,7 @@ void FUN_18018b590(int64_t param_1)
   *(uint64_t *)(lVar3 + 0xb0) = uVar7;
   plVar6 = *(int64_t **)(*(int64_t *)(lVar3 + 0xa8) + 0x88);
   piStack_28 = aiStackX_8;
-  pcStack_20 = (code *)&unknown_var_3120_ptr;
+  pcStack_20 = (code *)&memory_allocator_3120_ptr;
   pcStack_18 = FUN_18018c050;
   lStack_30 = lVar3;
   (**(code **)(*plVar6 + 0x60))
@@ -83,12 +83,12 @@ void FUN_18018b740(int64_t param_1)
   *plVar2 = (int64_t)&system_handler1_ptr;
   *plVar2 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar2 + 1) = 0;
-  *plVar2 = (int64_t)&unknown_var_1136_ptr;
+  *plVar2 = (int64_t)&ui_system_data_1136_ptr;
   plVar1 = plVar2 + 2;
   *plVar1 = (int64_t)&system_state_ptr;
   plVar2[3] = 0;
   *(int32_t *)(plVar2 + 4) = 0;
-  *plVar1 = (int64_t)&unknown_var_3432_ptr;
+  *plVar1 = (int64_t)&memory_allocator_3432_ptr;
   plVar2[3] = (int64_t)(plVar2 + 5);
   *(int32_t *)(plVar2 + 4) = 0;
   *(int8_t *)(plVar2 + 5) = 0;
@@ -221,7 +221,7 @@ void FUN_18018b9e0(int64_t param_1,int64_t param_2)
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_488;
   *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + 4;
   iVar8 = 0;
-  puStack_458 = &unknown_var_336_ptr;
+  puStack_458 = &memory_allocator_336_ptr;
   pbStack_450 = abStack_440;
   iStack_448 = 0;
   abStack_440[0] = 0;

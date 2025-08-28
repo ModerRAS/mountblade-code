@@ -72,7 +72,7 @@ void FUN_1808cff60(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t par
           uStack_c8 = uStack_80 & 0xff;
           uStack_d8 = uStack_84 & 0xffff;
                     // WARNING: Subroutine does not return
-          SystemDataValidator(auStack_68,0x27,&unknown_var_8960_ptr,uStack_88);
+          SystemDataValidator(auStack_68,0x27,&processed_var_8960_ptr,uStack_88);
         }
         uStack_d0 = 0;
         uStack_d8 = iStack_78;
@@ -134,7 +134,7 @@ void FUN_1808d001f(void)
                        CONCAT71((int7)(int3)((uint)iStack0000000000000084 >> 8),1));
     if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-      SystemDataValidator(&stack0x00000090,0x27,&unknown_var_8960_ptr,uStack0000000000000070,
+      SystemDataValidator(&stack0x00000090,0x27,&processed_var_8960_ptr,uStack0000000000000070,
                     uStack0000000000000074 & 0xffff);
     }
     iVar2 = FUN_1808ce5b0(extraout_XMM0_Da,lVar3);
@@ -197,7 +197,7 @@ void FUN_1808d0087(uint64_t param_1,int64_t param_2,int32_t param_3)
     SystemSecurityChecker(in_stack_000000b8 ^ (uint64_t)&stack0x00000000);
   }
                     // WARNING: Subroutine does not return
-  SystemDataValidator(&stack0x00000090,0x27,&unknown_var_8960_ptr,uStack0000000000000070,
+  SystemDataValidator(&stack0x00000090,0x27,&processed_var_8960_ptr,uStack0000000000000070,
                 uStack0000000000000074 & 0xffff);
 }
 

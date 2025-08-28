@@ -10,7 +10,7 @@
 #define UI_BITRATE_THRESHOLD 0x1680
 #define UI_FLOAT_CLAMP_VALUE 2.0f
 #define UI_FLOAT_MIN_VALUE -2.0f
-#define UI_PROCESSING_CHUNK_SIZE 16
+#define UI_PROCESSING_CHSYSTEM_SIZE 16
 
 // 全局变量定义
 #define UI_FLOAT_ARRAY_MAX ui_system_counter

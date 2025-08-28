@@ -98,7 +98,7 @@ void RenderingSystem_RemoveResourceData(int64_t resource_context, uint resource_
   uVar21 = (uint64_t)param_2;
   puVar7 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
   FUN_180049830(puVar7);
-  *puVar7 = (uint64_t)&unknown_var_7880_ptr;
+  *puVar7 = (uint64_t)&processed_var_7880_ptr;
   puVar1 = puVar7 + 0x18;
   *puVar1 = 0;
   puVar7[0x19] = 0;
@@ -519,13 +519,13 @@ void RenderingSystem_InitializeResourceHandler(int64_t resource_manager, char in
   }
   puVar1 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,3,uVar5);
   if (param_2 == '\0') {
-    puVar4 = &unknown_var_7864_ptr;
+    puVar4 = &processed_var_7864_ptr;
     if (param_3 != '\0') {
-      puVar4 = &unknown_var_9772_ptr;
+      puVar4 = &processed_var_9772_ptr;
     }
   }
   else {
-    puVar4 = &unknown_var_4880_ptr;
+    puVar4 = &processed_var_4880_ptr;
   }
   lVar2 = FUN_180334430(param_1,&puStack_40);
   puVar3 = &system_buffer_ptr;

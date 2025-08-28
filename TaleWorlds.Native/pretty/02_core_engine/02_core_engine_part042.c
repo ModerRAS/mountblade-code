@@ -671,7 +671,7 @@ void expand_dynamic_array_4byte_typeA(int64_t source_array, int64_t *target_ptr)
   if (array_size != 0) {
     array_size = array_size * 4;  // 4字节元素
     // 设置栈参数
-    stack_ptr1 = &unknown_var_3480_ptr;
+    stack_ptr1 = &memory_allocator_3480_ptr;
     stack_ptr2 = stack_data;
     stack_data[0] = 0;
     stack_size = 0x1c;
@@ -749,7 +749,7 @@ void expand_dynamic_array_4byte_typeB(int64_t source_array, int64_t *target_ptr)
   system_data = core_system_data_buffer;
   if (array_size != 0) {
     // 设置栈参数
-    stack_ptr1 = &unknown_var_3480_ptr;
+    stack_ptr1 = &memory_allocator_3480_ptr;
     stack_ptr2 = stack_data;
     stack_data[0] = 0;
     stack_size = 0x1c;
@@ -828,7 +828,7 @@ void expand_dynamic_array_2byte(int64_t source_array, int64_t *target_ptr)
   if (array_size != 0) {
     array_size = array_size * 2;  // 2字节元素
     // 设置栈参数
-    stack_ptr1 = &unknown_var_3480_ptr;
+    stack_ptr1 = &memory_allocator_3480_ptr;
     stack_ptr2 = stack_data;
     stack_data[0] = 0;
     stack_size = 0x1c;

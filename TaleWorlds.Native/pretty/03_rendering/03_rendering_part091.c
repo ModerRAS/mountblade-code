@@ -88,13 +88,13 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
     security_key = 0xfffffffffffffffe;
     memory_checksum = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
     temp_context = (code **)0x0;
-    resource_base = (code *)&unknown_var_3480_ptr;
+    resource_base = (code *)&memory_allocator_3480_ptr;
     texture_resource = (code *)vertex_indices;
     vertex_indices[0] = vertex_indices[0] & 0xffffff00;
     format_flag = 0x1e;
     
     // 复制安全字符串到缓冲区
-    format_flag = strcpy_s(vertex_indices, 0x40, &unknown_var_6680_ptr);
+    format_flag = strcpy_s(vertex_indices, 0x40, &processed_var_6680_ptr);
     resource_flag = 1;
     guard_flag = 1;
     memory_guard = 0;
@@ -125,7 +125,7 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
             vertex_flag = 0;
             alignment_offset_2 = 0;
             if (*(int64_t *)(render_system_data_texture + 0x410) == 0) {
-                resource_array = (uint64_t *)FUN_18009e9e0((int64_t)iteration_count, &managed_context, &unknown_var_848_ptr);
+                resource_array = (uint64_t *)FUN_18009e9e0((int64_t)iteration_count, &managed_context, &processed_var_848_ptr);
                 handle_value = *resource_array;
                 *resource_array = 0;
                 context_cache = *(code ***)(memory_address + 0x410);
@@ -202,11 +202,11 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
             (**(code **)(*memory_pool + 0x220))(memory_pool, 1, 1, &managed_context);
             memory_pool = *(int64_t **)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x8400);
             (**(code **)(*memory_pool + 0x148))(memory_pool, 1, 1, 1);
-            resource_base = (code *)&unknown_var_3480_ptr;
+            resource_base = (code *)&memory_allocator_3480_ptr;
             texture_resource = (code *)vertex_indices;
             vertex_indices[0] = vertex_indices[0] & 0xffffff00;
             format_flag = 0x1f;
-            format_flag = strcpy_s(vertex_indices, 0x40, &unknown_var_6840_ptr);
+            format_flag = strcpy_s(vertex_indices, 0x40, &processed_var_6840_ptr);
             resource_flag = 1;
             guard_flag = 1;
             memory_guard = 0;
@@ -217,7 +217,7 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
             security_key = CONCAT44(security_key._4_4_, 0x10);
             FUN_1800b0a10(format_flag, &vertex_resource, *(int32_t *)(render_context[0x11] + 0xa0), &resource_base);
             resource_base = (code *)&system_state_ptr;
-            temp_context = (code **)FUN_18062b1e0(system_memory_pool_ptr, 0x48, 8, 3);
+            temp_context = (code **)CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x48, 8, 3);
             resource_pointer = vertex_resource;
             temp_context[1] = (code *)0x0;
             temp_context[2] = (code *)0x0;
@@ -278,11 +278,11 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
             *(float *)((int64_t)temp_context + 0x3c) = scale_factor;
             *(int32_t *)(temp_context + 8) = RENDERING_FLOAT_MAX;
             managed_context = &shader_resource;
-            fragment_resource = (code *)&unknown_var_4992_ptr;
-            texture_data = &unknown_var_7008_ptr;
+            fragment_resource = (code *)&processed_var_4992_ptr;
+            texture_data = &processed_var_7008_ptr;
             shader_resource = FUN_18031d520;
             context_cache = &shader_resource;
-            (*(code *)&unknown_var_7008_ptr)(temp_context, &shader_resource);
+            (*(code *)&processed_var_7008_ptr)(temp_context, &shader_resource);
             if (fragment_resource != (code *)0x0) {
                 (*fragment_resource)(&shader_resource, 0, 0);
             }
@@ -407,11 +407,11 @@ void rendering_system_resource_manager(int64_t render_context)
         if (resource_manager != (int64_t *)0x0) {
             (**(code **)(*resource_manager + 0x28))(resource_manager);
             state_flag = *(int *)(render_context + 0x60);
-            resource_data_ptr = &unknown_var_3480_ptr;
+            resource_data_ptr = &memory_allocator_3480_ptr;
             resource_name = resource_info;
             resource_info[0] = 0;
             name_length = 0x10;
-            strcpy_s(resource_info, 0x40, &unknown_var_6816_ptr);
+            strcpy_s(resource_info, 0x40, &processed_var_6816_ptr);
             resource_type = 1;
             guard_flag = 1;
             format_flag_3 = 0x10;
@@ -778,7 +778,7 @@ void rendering_system_data_transformer(int64_t source_context, int64_t target_co
     texture_flags_3 = (int32_t)(int64_t)((double)*(float *)(target_context + 0x11c20) / scale_factor_1);
     texture_flags_4 = (int32_t)(int64_t)((double)*(float *)(target_context + 0x11c24) / scale_factor_2);
     texture_flags_1 = 0x1e;
-    resource_data = &unknown_var_3432_ptr;
+    resource_data = &memory_allocator_3432_ptr;
     resource_name = transform_info;
     transform_info[0] = 0;
     name_length = 0x1b;
@@ -958,7 +958,7 @@ invalid_block_detected:
 uint64_t *
 rendering_system_memory_allocator(uint64_t *memory_block, uint64_t allocation_size, uint64_t alloc_flags, uint64_t memory_params)
 {
-    *memory_block = &unknown_var_6880_ptr;
+    *memory_block = &processed_var_6880_ptr;
     *memory_block = &system_handler2_ptr;
     *memory_block = &system_handler1_ptr;
     if ((allocation_size & 1) != 0) {

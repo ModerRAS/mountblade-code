@@ -198,7 +198,7 @@ int64_t * create_engine_event_handler(uint64_t engine_instance, int64_t *event_p
     FUN_180275cf0(temp_value, 0, &stack_handler_ptr, 1);
     (**(code **)(*(int64_t *)*event_params + 0x100))((int64_t *)*event_params, 0);
     (**(code **)(*(int64_t *)(*event_params + 0x1f0) + 0x10))
-              ((int64_t *)(*event_params + 0x1f0), &unknown_var_2416_ptr);
+              ((int64_t *)(*event_params + 0x1f0), &rendering_buffer_2416_ptr);
     FUN_180276f30(*event_params, *event_params + 0x214, 1);
     (**(code **)(*(int64_t *)*event_params + 0x148))((int64_t *)*event_params, &system_memory_0300);
   }

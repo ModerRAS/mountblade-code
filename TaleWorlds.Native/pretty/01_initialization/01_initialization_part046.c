@@ -431,11 +431,11 @@ uint64_t * InitializeComplexTransformObject(uint64_t *object, char param2, char 
   *param_1 = &system_handler1_ptr;
   *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &unknown_var_8584_ptr;
+  *param_1 = &processed_var_8584_ptr;
   param_1[2] = &system_state_ptr;
   param_1[3] = 0;
   *(int32_t *)(param_1 + 4) = 0;
-  param_1[2] = &unknown_var_3432_ptr;
+  param_1[2] = &memory_allocator_3432_ptr;
   param_1[3] = param_1 + 5;
   *(int32_t *)(param_1 + 4) = 0;
   *(int8_t *)(param_1 + 5) = 0;
@@ -443,7 +443,7 @@ uint64_t * InitializeComplexTransformObject(uint64_t *object, char param2, char 
   *(int32_t *)(param_1 + 1) = 0;
   *(int16_t *)(param_1 + 0x16) = 0;
   param_1[0x15] = 0;
-  *param_1 = &unknown_var_7328_ptr;
+  *param_1 = &processed_var_7328_ptr;
   func_0x000180086550(param_1 + 0x19);
   *(int32_t *)(param_1 + 0x1e) = 0;
   LOCK();
@@ -581,7 +581,7 @@ uint64_t * InitializeComplexTransformObject(uint64_t *object, char param2, char 
   *plVar3 = (int64_t)&system_handler1_ptr;
   *plVar3 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar3 + 1) = 0;
-  *plVar3 = (int64_t)&unknown_var_7224_ptr;
+  *plVar3 = (int64_t)&processed_var_7224_ptr;
   plVar3[4] = (int64_t)&system_state_ptr;
   plVar3[5] = 0;
   *(int32_t *)(plVar3 + 6) = 0;
@@ -718,7 +718,7 @@ void ProcessTransformData(int64_t transform_data, uint64_t *data_source)
   *(int32_t *)(param_1 + 0x158) = uVar5;
   *(int32_t *)(param_1 + 0x15c) = uVar6;
   if (plVar2 != (int64_t *)0x0) {
-    if (*(code **)(*plVar2 + 0x160) == (code *)&unknown_var_6368_ptr) {
+    if (*(code **)(*plVar2 + 0x160) == (code *)&processed_var_6368_ptr) {
       puVar1 = (uint64_t *)((int64_t)plVar2 + 0x214);
       *(int32_t *)((int64_t)plVar2 + 0x244) = 0;
       if (plVar2[8] - plVar2[7] >> 4 == 0) {
@@ -851,7 +851,7 @@ void DestroyTransformObject(uint64_t *object)
   uint64_t error_code;
   
   uVar4 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_7328_ptr;
+  *param_1 = &processed_var_7328_ptr;
   param_1[0x39] = 0;
   if (param_1[0x59] != 0) {
                     // WARNING: Subroutine does not return

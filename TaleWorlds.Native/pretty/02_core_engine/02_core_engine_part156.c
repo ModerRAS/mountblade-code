@@ -310,7 +310,7 @@ int64_t read_clipboard_unicode_text(void)
                0x48) < core_system_config_resource) && (SystemInitializer(&system_memory_9270), core_system_config_resource == -1)) {
     core_system_config_resource = 0;
     core_system_config_resource = 0;
-    FUN_1808fc820(&unknown_var_7056_ptr);
+    FUN_1808fc820(&processed_var_7056_ptr);
     FUN_1808fcb30(&system_memory_9270);
   }
   clipboard_data = core_system_config_resource;

@@ -217,7 +217,7 @@ LAB_1800dece7:
   fVar18 = (*(float *)(unaff_RBP + -0x18) * fVar18 + fVar10) * 0.5;
   fStack0000000000000084 = param_14;
   if (plVar3 != (int64_t *)0x0) {
-    if (*(code **)(*plVar3 + 0xb8) == (code *)&unknown_var_128_ptr) {
+    if (*(code **)(*plVar3 + 0xb8) == (code *)&ui_system_data_128_ptr) {
       lVar8 = plVar3[0xda];
     }
     else {
@@ -228,14 +228,14 @@ LAB_1800dece7:
     }
     if (lVar8 != 0) {
       pcVar4 = *(code **)(**(int64_t **)(unaff_RSI + 0x3580) + 0xb8);
-      if (pcVar4 != (code *)&unknown_var_128_ptr) {
+      if (pcVar4 != (code *)&ui_system_data_128_ptr) {
         uVar11 = (*pcVar4)();
         unaff_RBX = system_message_buffer;
         unaff_R14 = SYSTEM_STATE_MANAGER;
       }
       *(int32_t *)(*(int64_t *)(unaff_RBX + 0x1cd8) + 0x1d5c) = 0x41f00000;
       pcVar4 = *(code **)(**(int64_t **)(unaff_RSI + 0x3580) + 0xb8);
-      if (pcVar4 == (code *)&unknown_var_128_ptr) {
+      if (pcVar4 == (code *)&ui_system_data_128_ptr) {
         lVar8 = (*(int64_t **)(unaff_RSI + 0x3580))[0xda];
       }
       else {
@@ -248,7 +248,7 @@ LAB_1800dece7:
       *(uint64_t *)(lVar5 + 0x1d70) = *(uint64_t *)(lVar8 + 0x3f3c);
       *(uint64_t *)(lVar5 + 0x1d78) = uVar6;
       pcVar4 = *(code **)(**(int64_t **)(unaff_RSI + 0x3580) + 0xb8);
-      if (pcVar4 == (code *)&unknown_var_128_ptr) {
+      if (pcVar4 == (code *)&ui_system_data_128_ptr) {
         lVar8 = (*(int64_t **)(unaff_RSI + 0x3580))[0xda];
       }
       else {

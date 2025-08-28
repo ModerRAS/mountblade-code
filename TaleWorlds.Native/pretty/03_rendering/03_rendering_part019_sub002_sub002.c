@@ -422,7 +422,7 @@ void rendering_system_parameter_processor(
                         if (temp_value2 != 0) {
                             do {
                                 // 字符串比较处理逻辑
-                                stack_data = &unknown_var_3480_ptr;
+                                stack_data = &memory_allocator_3480_ptr;
                                 temp_value1 = *(int64_t *)(loop_counter + temp_value1);
                                 if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -506,7 +506,7 @@ void rendering_system_parameter_processor(
                         array_index = loop_counter;
                         if (temp_value2 != 0) {
                             do {
-                                stack_data = &unknown_var_3480_ptr;
+                                stack_data = &memory_allocator_3480_ptr;
                                 temp_value1 = *(int64_t *)(checksum_value + temp_value1);
                                 if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -583,7 +583,7 @@ void rendering_system_parameter_processor(
                         checksum_value = loop_counter;
                         if (temp_value2 != 0) {
                             do {
-                                stack_data = &unknown_var_3480_ptr;
+                                stack_data = &memory_allocator_3480_ptr;
                                 temp_value1 = *(int64_t *)(loop_counter + temp_value1);
                                 if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -656,7 +656,7 @@ void rendering_system_parameter_processor(
                         array_index = loop_counter;
                         if (temp_value2 != 0) {
                             do {
-                                stack_data = &unknown_var_3480_ptr;
+                                stack_data = &memory_allocator_3480_ptr;
                                 temp_value1 = *(int64_t *)(checksum_value + temp_value1);
                                 if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -739,7 +739,7 @@ void rendering_system_parameter_processor(
                         checksum_value = loop_counter;
                         if (temp_value2 != 0) {
                             do {
-                                stack_data = &unknown_var_3480_ptr;
+                                stack_data = &memory_allocator_3480_ptr;
                                 temp_value1 = *(int64_t *)(loop_counter + temp_value1);
                                 if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -812,7 +812,7 @@ void rendering_system_parameter_processor(
                         array_index = loop_counter;
                         if (temp_value2 != 0) {
                             do {
-                                stack_data = &unknown_var_3480_ptr;
+                                stack_data = &memory_allocator_3480_ptr;
                                 temp_value1 = *(int64_t *)(checksum_value + temp_value1);
                                 if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -895,7 +895,7 @@ void rendering_system_parameter_processor(
                         checksum_value = loop_counter;
                         if (temp_value2 != 0) {
                             do {
-                                stack_data = &unknown_var_3480_ptr;
+                                stack_data = &memory_allocator_3480_ptr;
                                 temp_value1 = *(int64_t *)(loop_counter + temp_value1);
                                 if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -971,7 +971,7 @@ void rendering_system_parameter_processor(
                         array_index = loop_counter;
                         if (temp_value2 != 0) {
                             do {
-                                stack_data = &unknown_var_3480_ptr;
+                                stack_data = &memory_allocator_3480_ptr;
                                 temp_value1 = *(int64_t *)(checksum_value + temp_value1);
                                 if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -1054,7 +1054,7 @@ void rendering_system_parameter_processor(
                         checksum_value = loop_counter;
                         if (temp_value2 != 0) {
                             do {
-                                stack_data = &unknown_var_3480_ptr;
+                                stack_data = &memory_allocator_3480_ptr;
                                 temp_value1 = *(int64_t *)(loop_counter + temp_value1);
                                 if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;
@@ -1130,7 +1130,7 @@ void rendering_system_parameter_processor(
                         array_index = loop_counter;
                         if (temp_value2 != 0) {
                             do {
-                                stack_data = &unknown_var_3480_ptr;
+                                stack_data = &memory_allocator_3480_ptr;
                                 temp_value1 = *(int64_t *)(checksum_value + temp_value1);
                                 if (*(int64_t *)(temp_value1 + 0x1b0) == 0) {
                                     temp_value2 = temp_value1 + 0x10;

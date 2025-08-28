@@ -369,14 +369,14 @@ void FUN_1800b8090(int64_t *param_1)
   uStack_138 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_168;
   iVar8 = 0;
-  puStack_e8 = &unknown_var_3432_ptr;
+  puStack_e8 = &memory_allocator_3432_ptr;
   puStack_e0 = auStack_d0;
   uStack_d8 = 0;
   auStack_d0[0] = 0;
   FUN_1800c0570(system_system_data_config,&plStack_148);
   do {
-    (**(code **)(puStack_e8 + 0x10))(&puStack_e8,&unknown_var_8408_ptr);
-    FUN_180060680(acStack_48,&unknown_var_4576_ptr,iVar8);
+    (**(code **)(puStack_e8 + 0x10))(&puStack_e8,&processed_var_8408_ptr);
+    FUN_180060680(acStack_48,&processed_var_4576_ptr,iVar8);
     lVar4 = -1;
     do {
       lVar3 = lVar4 + 1;
@@ -467,7 +467,7 @@ FUN_1800b8300(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_
   *param_1 = &system_state_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = &unknown_var_3480_ptr;
+  *param_1 = &memory_allocator_3480_ptr;
   param_1[1] = param_1 + 3;
   *(int32_t *)(param_1 + 2) = 0;
   *(int8_t *)(param_1 + 3) = 0;
@@ -531,7 +531,7 @@ LAB_1800b8417:
       *puVar4 = &system_state_ptr;
       puVar4[1] = 0;
       *(int32_t *)(puVar4 + 2) = 0;
-      *puVar4 = &unknown_var_3480_ptr;
+      *puVar4 = &memory_allocator_3480_ptr;
       puVar4[1] = puVar4 + 3;
       *(int32_t *)(puVar4 + 2) = 0;
       *(int8_t *)(puVar4 + 3) = 0;

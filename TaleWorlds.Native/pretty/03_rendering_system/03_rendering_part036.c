@@ -6,8 +6,8 @@
 
 // 全局变量和常量定义
 uint64_t g_RenderContextManager = 0xfffffffffffffffe;  // 渲染上下文管理器
-uint64_t *g_RenderInterfaceTable = &unknown_var_336_ptr;     // 渲染接口表
-uint64_t *g_DeviceContext = &unknown_var_3480_ptr;           // 设备上下文
+uint64_t *g_RenderInterfaceTable = &memory_allocator_336_ptr;     // 渲染接口表
+uint64_t *g_DeviceContext = &memory_allocator_3480_ptr;           // 设备上下文
 uint64_t *g_MemoryAllocator = &system_state_ptr;          // 内存分配器
 uint64_t *g_RenderDevice = &system_data_buffer_ptr;             // 渲染设备
 char *g_RenderDeviceName = "Llg_Global_services_view_wi"; // 渲染设备名称字符串
@@ -115,12 +115,12 @@ void InitializeRenderingSystem(uint64_t *renderContext)
   deviceHandle = system_resource_state;
   
   // 创建设备接口
-  vertexData = &unknown_var_3480_ptr;
+  vertexData = &memory_allocator_3480_ptr;
   pixelShader = constantBuffer;
   constantBuffer[0] = 0;
   rasterState = 0x23;
   textureCache = textureManager;
-  strcpy_s(constantBuffer,0x40,&unknown_var_9992_ptr);
+  strcpy_s(constantBuffer,0x40,&processed_var_9992_ptr);
   FUN_1800b30d0(deviceHandle,&shaderCache,&vertexData,1);
   tempCounter = 1;
   
@@ -304,11 +304,11 @@ LAB_18028843a:
   
   // 第二阶段渲染初始化
   deviceHandle = system_resource_state;
-  depthStencil = &unknown_var_3480_ptr;
+  depthStencil = &memory_allocator_3480_ptr;
   renderTargetView = renderTargetArray;
   renderTargetArray[0] = 0;
   depthStencilState = 0xb;
-  strcpy_s(renderTargetArray,0x40,&unknown_var_9928_ptr);
+  strcpy_s(renderTargetArray,0x40,&processed_var_9928_ptr);
   FUN_1800b30d0(deviceHandle,&renderTarget,&depthStencil,1);
   tempCounter = textureCount & 0xffffffef | 8;
   depthStencil = &system_state_ptr;

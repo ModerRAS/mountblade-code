@@ -70,11 +70,11 @@ void FUN_1800e2c60(uint64_t param_1,int64_t param_2)
   uStack_198 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_238;
   pplStack_130 = &plStack_98;
-  plStack_98 = (int64_t *)&unknown_var_3480_ptr;
+  plStack_98 = (int64_t *)&memory_allocator_3480_ptr;
   puStack_90 = auStack_80;
   uStack_88 = 0;
   auStack_80[0] = 0;
-  FUN_180049bf0(&plStack_98,&unknown_var_4624_ptr);
+  FUN_180049bf0(&plStack_98,&processed_var_4624_ptr);
   FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&plStack_98);
   lVar3 = system_message_buffer;
   plVar1 = *(int64_t **)(system_message_buffer + 0x1cd8);
@@ -111,11 +111,11 @@ void FUN_1800e2c60(uint64_t param_1,int64_t param_2)
   iStack_128 = iVar6;
   iStack_124 = iVar4;
   (**(code **)(*plVar1 + 0x168))(plVar1,1,&pplStack_130);
-  puStack_118 = &unknown_var_3480_ptr;
+  puStack_118 = &memory_allocator_3480_ptr;
   puStack_110 = auStack_104 + 4;
   auStack_104[4] = 0;
   uStack_108 = 0x12;
-  strcpy_s(auStack_104 + 4,0x40,&unknown_var_4688_ptr);
+  strcpy_s(auStack_104 + 4,0x40,&processed_var_4688_ptr);
   FUN_1800b4910(system_resource_state,&plStack_200,&puStack_118);
   puStack_118 = &system_state_ptr;
   uStack_b8 = 0;
@@ -171,8 +171,8 @@ void FUN_1800e2c60(uint64_t param_1,int64_t param_2)
   FUN_18029d000(*(uint64_t *)(system_message_buffer + 0x1cd8),4);
   FUN_18029cdd0(*(uint64_t *)(system_message_buffer + 0x1cd8),&puStack_118);
   lVar2 = system_message_buffer;
-  lVar3 = strnlen(&unknown_var_4624_ptr,0x3f);
-  strncpy(lVar2 + 0x1ce0,&unknown_var_4624_ptr,lVar3);
+  lVar3 = strnlen(&processed_var_4624_ptr,0x3f);
+  strncpy(lVar2 + 0x1ce0,&processed_var_4624_ptr,lVar3);
   *(int8_t *)(lVar3 + 0x1ce0 + lVar2) = 0;
   FUN_18029e110(*(uint64_t *)(system_message_buffer + 0x1cd8));
   if (plStack_1a0 != (int64_t *)0x0) {
@@ -415,7 +415,7 @@ void FUN_1800e3580(uint64_t param_1,int64_t *param_2,int64_t param_3)
   puStack_40 = auStack_30;
   auStack_30[0] = 0;
   uStack_38 = 0xc;
-  strcpy_s(auStack_30,0x10,&unknown_var_4672_ptr);
+  strcpy_s(auStack_30,0x10,&processed_var_4672_ptr);
   pplStack_50 = &plStack_68;
   plStack_68 = (int64_t *)*param_2;
   if (plStack_68 != (int64_t *)0x0) {

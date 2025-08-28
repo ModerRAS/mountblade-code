@@ -376,7 +376,7 @@ void FUN_18061d2b5(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
     lVar23 = 0;
     do {
       plVar3 = *(int64_t **)(lVar14 + *(int64_t *)(unaff_RDI + 0x48));
-      cVar10 = (**(code **)(*plVar3 + 0x20))(plVar3,&unknown_var_2112_ptr);
+      cVar10 = (**(code **)(*plVar3 + 0x20))(plVar3,&rendering_buffer_2112_ptr);
       plVar16 = (int64_t *)0x0;
       if (cVar10 != '\0') {
         plVar16 = plVar3;

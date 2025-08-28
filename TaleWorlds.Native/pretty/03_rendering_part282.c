@@ -98,7 +98,7 @@ uint64_t FUN_180420020(int64_t param_1,int64_t param_2,int64_t param_3,int64_t p
           bVar6 = (byte)iVar8;
           iVar17 = iVar17 - iVar8;
           uVar10 = (uint64_t)
-                   (int)((uVar13 >> (0x20 - bVar6 & 0x1f) & *(uint *)(&unknown_var_1648_ptr + lVar18 * 4))
+                   (int)((uVar13 >> (0x20 - bVar6 & 0x1f) & *(uint *)(&ui_system_data_1648_ptr + lVar18 * 4))
                         + *(int *)(param_3 + 0x64c + lVar18 * 4));
         }
         else {
@@ -128,7 +128,7 @@ uint64_t FUN_180420020(int64_t param_1,int64_t param_2,int64_t param_3,int64_t p
                 uVar13 = *(uint *)(param_1 + 0x4820);
               }
               uVar7 = uVar13 << bVar3 | uVar13 >> 0x20 - bVar3;
-              uVar13 = *(uint *)(&unknown_var_1648_ptr + uVar10 * 4);
+              uVar13 = *(uint *)(&ui_system_data_1648_ptr + uVar10 * 4);
               *(uint *)(param_1 + 0x4824) = iVar17 - (uint)bVar3;
               *(uint *)(param_1 + 0x4820) = ~uVar13 & uVar7;
               *(uint *)(param_1 + 0x4844) = (uVar13 & uVar7) + iVar8;
@@ -158,7 +158,7 @@ uint64_t FUN_180420020(int64_t param_1,int64_t param_2,int64_t param_3,int64_t p
         do {
           uVar13 = (int)uVar14 + 1;
           uVar14 = (uint64_t)uVar13;
-          puVar2 = (ushort *)(param_2 + (uint64_t)(byte)(&unknown_var_1504_ptr)[uVar19] * 2);
+          puVar2 = (ushort *)(param_2 + (uint64_t)(byte)(&ui_system_data_1504_ptr)[uVar19] * 2);
           uVar19 = uVar19 + 1;
           if (*puVar2 == 0) {
             if ((int)uVar10 == 0) {
@@ -193,7 +193,7 @@ uint64_t FUN_180420020(int64_t param_1,int64_t param_2,int64_t param_3,int64_t p
     else {
       *(int *)(param_1 + 0x4844) = iVar17 + -1;
       if (iVar8 <= *(int *)(param_1 + 0x4838)) {
-        pbVar9 = &unknown_var_1504_ptr + uVar14;
+        pbVar9 = &ui_system_data_1504_ptr + uVar14;
         do {
           puVar2 = (ushort *)(param_2 + (uint64_t)*pbVar9 * 2);
           if (*(short *)(param_2 + (uint64_t)*pbVar9 * 2) != 0) {
@@ -264,7 +264,7 @@ LAB_18042065a:
         bVar3 = (byte)iVar8;
         iVar17 = iVar17 - iVar8;
         uVar14 = (uint64_t)
-                 (int)((uVar13 >> (0x20 - bVar3 & 0x1f) & *(uint *)(&unknown_var_1648_ptr + lVar18 * 4)) +
+                 (int)((uVar13 >> (0x20 - bVar3 & 0x1f) & *(uint *)(&ui_system_data_1648_ptr + lVar18 * 4)) +
                       *(int *)(param_3 + 0x64c + lVar18 * 4));
       }
       else {
@@ -284,7 +284,7 @@ LAB_18042065a:
       uVar11 = (uint)bVar5;
       if ((bVar3 & 0xf) != 0) {
         iVar12 = iVar12 + uVar11;
-        bVar3 = (&unknown_var_1504_ptr)[iVar12];
+        bVar3 = (&ui_system_data_1504_ptr)[iVar12];
         if (iVar17 < (int)uVar7) {
           FUN_18041f7a0(param_1);
           iVar17 = *(int *)(param_1 + 0x4824);
@@ -292,8 +292,8 @@ LAB_18042065a:
         }
         uVar15 = uVar13 << (sbyte)uVar7 | uVar13 >> 0x20 - (sbyte)uVar7;
         *(uint *)(param_1 + 0x4824) = iVar17 - uVar7;
-        uVar11 = *(uint *)(&unknown_var_1648_ptr + (uint64_t)uVar7 * 4);
-        uVar20 = *(ushort *)(&unknown_var_1584_ptr + (uint64_t)uVar7 * 4);
+        uVar11 = *(uint *)(&ui_system_data_1648_ptr + (uint64_t)uVar7 * 4);
+        uVar20 = *(ushort *)(&ui_system_data_1584_ptr + (uint64_t)uVar7 * 4);
         *(uint *)(param_1 + 0x4820) = ~uVar11 & uVar15;
         sVar16 = (~(ushort)((int)uVar13 >> 0x1f) & uVar20) + ((ushort)uVar11 & (ushort)uVar15);
         goto LAB_180420279;
@@ -308,7 +308,7 @@ LAB_18042065a:
             iVar8 = *(int *)(param_1 + 0x4844);
             uVar13 = *(uint *)(param_1 + 0x4820);
           }
-          uVar7 = *(uint *)(&unknown_var_1648_ptr + (uint64_t)bVar5 * 4);
+          uVar7 = *(uint *)(&ui_system_data_1648_ptr + (uint64_t)bVar5 * 4);
           *(uint *)(param_1 + 0x4824) = iVar17 - uVar11;
           uVar13 = uVar13 << bVar5 | uVar13 >> 0x20 - bVar5;
           *(uint *)(param_1 + 0x4820) = ~uVar7 & uVar13;
@@ -325,7 +325,7 @@ LAB_18042065a:
       *(uint *)(param_1 + 0x4820) = uVar13 << (sbyte)uVar7;
       *(uint *)(param_1 + 0x4824) = iVar8 - uVar7;
       sVar16 = (short)(char)((ushort)sVar16 >> 8);
-      bVar3 = (&unknown_var_1504_ptr)[iVar12];
+      bVar3 = (&ui_system_data_1504_ptr)[iVar12];
 LAB_180420279:
       uVar13 = iVar12 + 1;
       *(short *)(param_2 + (uint64_t)bVar3 * 2) = sVar16 << (bVar6 & 0x1f);

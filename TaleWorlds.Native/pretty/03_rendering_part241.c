@@ -432,7 +432,7 @@ void FUN_1804043b0(int64_t param_1)
         (*pcVar2)();
         return;
       }
-      if ((void *)*puVar1 == &unknown_var_9568_ptr) {
+      if ((void *)*puVar1 == &processed_var_9568_ptr) {
                     // WARNING: Could not recover jumptable at 0x000180404403. Too many branches
                     // WARNING: Treating indirect jump as call
         (*(code *)puVar1[1])(puVar1[2]);

@@ -407,7 +407,7 @@ void FUN_1803e2360(int64_t param_1,int64_t param_2)
   FUN_1803e28f0(param_1);
   iVar12 = 0;
   puVar1 = (uint64_t *)(param_1 + 0x150);
-  puVar10 = (uint *)&unknown_var_6672_ptr;
+  puVar10 = (uint *)&processed_var_6672_ptr;
   iVar11 = iVar12;
   do {
     for (puVar6 = *(uint64_t **)(param_1 + 0x158); puVar6 != puVar1;
@@ -438,7 +438,7 @@ void FUN_1803e2360(int64_t param_1,int64_t param_2)
           } while (puVar6 != (uint64_t *)0x0);
           if ((puVar8 != puVar1) && (*(int *)(puVar8 + 4) <= iVar12)) {
             iVar11 = 0;
-            puVar10 = (uint *)&unknown_var_6672_ptr;
+            puVar10 = (uint *)&processed_var_6672_ptr;
             do {
               if (((*puVar10 & 0xfffffffc) != 0) || (*puVar10 == 1)) {
                 FUN_1803e57c0(param_1,iVar12,iVar11);
@@ -557,7 +557,7 @@ LAB_1803e24c4:
   }
   FUN_1803e3020(param_1);
   if (0x40 < (uint64_t)(*(int64_t *)(param_1 + 0xf8) - *(int64_t *)(param_1 + 0xf0) >> 4)) {
-    SystemDataInitializer(&unknown_var_7360_ptr);
+    SystemDataInitializer(&processed_var_7360_ptr);
   }
   puStack_58 = &system_data_buffer_ptr;
   uStack_40 = 0;

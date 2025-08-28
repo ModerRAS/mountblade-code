@@ -135,7 +135,7 @@ void FUN_1801ca670(int64_t *param_1,uint64_t param_2)
           pppplVar7 = ppppplVar13[5];
         }
         plStack_1d0 = plVar11;
-        System_DataHandler(&puStack_200,&unknown_var_832_ptr,pppplVar7);
+        System_DataHandler(&puStack_200,&processed_var_832_ptr,pppplVar7);
         System_DataHandler(&puStack_200);
         _auStack_198 = ZEXT816(0);
         auVar1 = _auStack_198;
@@ -256,7 +256,7 @@ LAB_1801cad0b:
                   if (puVar25 != (void *)0x0) {
                     puVar23 = puVar25;
                   }
-                  System_DataHandler(&puStack_228,&unknown_var_792_ptr,puVar23);
+                  System_DataHandler(&puStack_228,&processed_var_792_ptr,puVar23);
                   lVar22 = *plVar11;
                 }
                 iVar15 = iVar15 + 1;
@@ -344,14 +344,14 @@ LAB_1801cad0b:
               }
             }
             else {
-              System_DataHandler(&puStack_200,&unknown_var_800_ptr,pppplVar7);
-              System_DataHandler(&puStack_200,&unknown_var_888_ptr);
+              System_DataHandler(&puStack_200,&processed_var_800_ptr,pppplVar7);
+              System_DataHandler(&puStack_200,&processed_var_888_ptr);
               do {
                 uVar14 = *(uint *)(ppppplVar8 + 5);
-                System_DataHandler(&puStack_200,&unknown_var_896_ptr,
+                System_DataHandler(&puStack_200,&processed_var_896_ptr,
                               *(int32_t *)((int64_t)ppppplVar8 + 0x2c));
-                System_DataHandler(&puStack_200,&unknown_var_856_ptr,uVar14);
-                System_DataHandler(&puStack_200,&unknown_var_880_ptr);
+                System_DataHandler(&puStack_200,&processed_var_856_ptr,uVar14);
+                System_DataHandler(&puStack_200,&processed_var_880_ptr);
                 uVar18 = 1;
                 puVar10 = (uint64_t *)&system_state_6758;
                 lVar22 = 0x20;
@@ -361,13 +361,13 @@ LAB_1801cad0b:
                     if ((void *)*puVar10 != (void *)0x0) {
                       puVar25 = (void *)*puVar10;
                     }
-                    System_DataHandler(&puStack_200,&unknown_var_704_ptr,puVar25);
+                    System_DataHandler(&puStack_200,&processed_var_704_ptr,puVar25);
                   }
                   uVar18 = uVar18 << 1 | (uint)((int)uVar18 < 0);
                   puVar10 = puVar10 + 0xb;
                   lVar22 = lVar22 + -1;
                 } while (lVar22 != 0);
-                System_DataHandler(&puStack_200,&unknown_var_940_ptr);
+                System_DataHandler(&puStack_200,&processed_var_940_ptr);
                 ppppplVar8 = (int64_t *****)func_0x00018066bd70(ppppplVar8);
               } while (ppppplVar8 != ppppplVar13);
               System_DataHandler(&puStack_200);
@@ -388,7 +388,7 @@ LAB_1801cad0b:
           auVar17 = auStack_198;
           ppppplVar13 = (int64_t *****)pppplStackX_20;
         }
-        System_DataHandler(&puStack_200,&unknown_var_916_ptr);
+        System_DataHandler(&puStack_200,&processed_var_916_ptr);
         System_DataHandler(&puStack_200,&system_state_cc18);
         if (auVar17 != (int8_t  [8])0x0) {
                     // WARNING: Subroutine does not return

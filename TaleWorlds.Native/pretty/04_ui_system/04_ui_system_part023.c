@@ -111,7 +111,7 @@
 uint64_t *ui_system_security_initializer(uint64_t *security_context, uint64_t init_flags, uint64_t param_3, uint64_t param_4)
 {
   // 安全上下文初始化
-  *security_context = &unknown_var_1864_ptr;
+  *security_context = &ui_system_data_1864_ptr;
   
   // 根据标志位进行条件初始化
   if ((init_flags & UI_ONE_FLOAT) != UI_ZERO_FLOAT) {
@@ -127,7 +127,7 @@ uint64_t *ui_system_security_initializer(uint64_t *security_context, uint64_t in
 uint64_t *ui_system_memory_allocator(uint64_t *memory_context, uint64_t allocation_flags, uint64_t param_3, uint64_t param_4)
 {
   // 内存上下文初始化
-  *memory_context = &unknown_var_1864_ptr;
+  *memory_context = &ui_system_data_1864_ptr;
   
   // 根据标志位进行大块内存分配
   if ((allocation_flags & UI_ONE_FLOAT) != UI_ZERO_FLOAT) {
@@ -332,7 +332,7 @@ void ui_system_security_checker(uint64_t security_context, uint64_t security_fla
 uint64_t *ui_system_memory_deallocator(uint64_t *memory_context, uint64_t free_flags, uint64_t param_3, uint64_t param_4)
 {
   // 内存上下文初始化
-  *memory_context = &unknown_var_1864_ptr;
+  *memory_context = &ui_system_data_1864_ptr;
   
   // 根据标志位进行小块内存释放
   if ((free_flags & UI_ONE_FLOAT) != UI_ZERO_FLOAT) {

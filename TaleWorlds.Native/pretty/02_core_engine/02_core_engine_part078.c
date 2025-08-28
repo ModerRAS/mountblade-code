@@ -61,11 +61,11 @@ void process_config_request(uint64_t *context_ptr, int64_t request_id, int64_t c
   context_data = context_ptr;
   
   // 处理版本信息请求 (request_type == 0x11)
-  if ((request_type == 0x11) && (compare_result = strcmp(*(uint64_t *)(request_id + 8),&unknown_var_1320_ptr), compare_result == 0))
+  if ((request_type == 0x11) && (compare_result = strcmp(*(uint64_t *)(request_id + 8),&ui_system_data_1320_ptr), compare_result == 0))
   {
     // 提取字符串数据并检查是否包含特定标记
     extract_string_data(&result_ptr,config_ptr);
-    if ((0 < (int)data_length) && (string_pos = strstr(string_data,&unknown_var_7168_ptr), string_pos != 0)) {
+    if ((0 < (int)data_length) && (string_pos = strstr(string_data,&processed_var_7168_ptr), string_pos != 0)) {
       request_type = 5;
       buffer_size = (int)string_pos - (int)string_data;
       string_length = (uint64_t)buffer_size;
@@ -125,17 +125,17 @@ void process_config_request(uint64_t *context_ptr, int64_t request_id, int64_t c
   }
   // 处理名称信息请求 (request_type == 0x12)
   else if ((request_type == 0x12) &&
-          (compare_result = strcmp(*(uint64_t *)(config_ptr + 8),&unknown_var_1864_ptr), compare_result == 0)) {
+          (compare_result = strcmp(*(uint64_t *)(config_ptr + 8),&ui_system_data_1864_ptr), compare_result == 0)) {
     puStack_170 = context_ptr + 0x270;
     FUN_180057110(puStack_170);
     config_data = &system_buffer_ptr;
     if (*(void **)(config_ptr + 8) != (void *)0x0) {
       config_data = *(void **)(config_ptr + 8);
     }
-    request_type = AdvancedSystemOptimizer(config_data,&unknown_var_1928_ptr,stack_buffer);
+    request_type = AdvancedSystemOptimizer(config_data,&ui_system_data_1928_ptr,stack_buffer);
     buffer_size = 0;
     while (request_type != -1) {
-      AdvancedSystemOptimizer(config_data,&unknown_var_1920_ptr,temp_array);
+      AdvancedSystemOptimizer(config_data,&ui_system_data_1920_ptr,temp_array);
       string_pos = -1;
       do {
         loop_counter = string_pos + 1;
@@ -198,13 +198,13 @@ void process_config_request(uint64_t *context_ptr, int64_t request_id, int64_t c
       puStack_1b0 = (int8_t *)0x0;
       uStack_1a0 = (uint64_t)uStack_1a0._4_4_ << 0x20;
       puStack_1b8 = &system_state_ptr;
-      request_type = AdvancedSystemOptimizer(config_data + (int)uStack_194,&unknown_var_1928_ptr,stack_buffer);
+      request_type = AdvancedSystemOptimizer(config_data + (int)uStack_194,&ui_system_data_1928_ptr,stack_buffer);
       buffer_size = uStack_194;
     }
   }
   // 处理路径信息请求 (request_type == 0x0d)
   else if ((request_type == 0xd) &&
-          (request_type = strcmp(*(uint64_t *)(config_ptr + 8),&unknown_var_1968_ptr), request_type == 0)) {
+          (request_type = strcmp(*(uint64_t *)(config_ptr + 8),&ui_system_data_1968_ptr), request_type == 0)) {
     array_ptr = context_ptr + 0x274;
     FUN_180057110(array_ptr);
     config_data = (uint64_t *)&system_buffer_ptr;
@@ -212,10 +212,10 @@ void process_config_request(uint64_t *context_ptr, int64_t request_id, int64_t c
       config_data = *(uint64_t **)(config_ptr + 8);
     }
     puStack_168 = config_data;
-    request_type = AdvancedSystemOptimizer(config_data,&unknown_var_1928_ptr,stack_buffer);
+    request_type = AdvancedSystemOptimizer(config_data,&ui_system_data_1928_ptr,stack_buffer);
     memory_ptr = (uint64_t *)0x0;
     while (request_type != -1) {
-      AdvancedSystemOptimizer(config_data,&unknown_var_1920_ptr,temp_array);
+      AdvancedSystemOptimizer(config_data,&ui_system_data_1920_ptr,temp_array);
       string_pos = -1;
       do {
         loop_counter = string_pos + 1;
@@ -321,7 +321,7 @@ LAB_18010b692:
       } while (*(char *)((int64_t)config_data + string_length) != '\0');
       if (string_length <= (uint64_t)(int64_t)(int)uStack_194) break;
       request_type = AdvancedSystemOptimizer((void *)((int64_t)(int)uStack_194 + (int64_t)config_data),
-                             &unknown_var_1928_ptr,stack_buffer);
+                             &ui_system_data_1928_ptr,stack_buffer);
     }
   }
   // 清理堆栈并返回
@@ -391,7 +391,7 @@ void process_string_cleanup(int64_t context_ptr, int64_t file_ptr)
     
     // 处理主字符串区域
     if (*(int64_t *)(context_ptr + 5000) - *(int64_t *)(context_ptr + 0x1380) >> 5 != 0) {
-      System_DataHandler(&puStack_d8,&unknown_var_1944_ptr);
+      System_DataHandler(&puStack_d8,&ui_system_data_1944_ptr);
       int64_t end_pos = *(int64_t *)(context_ptr + 5000);
       int64_t start_pos = *(int64_t *)(context_ptr + 0x1380);
       uint64_t current_offset = string_length;
@@ -420,7 +420,7 @@ void process_string_cleanup(int64_t context_ptr, int64_t file_ptr)
             }
             uStack_a8 = uStack_a8 - remove_count;
             puStack_b0[uStack_a8] = 0;
-            uint64_t marker = CoreMemoryPoolValidator(&puStack_78,&unknown_var_7168_ptr);
+            uint64_t marker = CoreMemoryPoolValidator(&puStack_78,&processed_var_7168_ptr);
             process_string_operation(&puStack_b8,(int)end_pos - (int)puStack_b0,marker);
             puStack_78 = &system_data_buffer_ptr;
             if (lStack_70 != 0) {
@@ -436,7 +436,7 @@ void process_string_cleanup(int64_t context_ptr, int64_t file_ptr)
           if (puStack_b0 != (void *)0x0) {
             record_ptr = puStack_b0;
           }
-          System_DataHandler(&puStack_d8,&unknown_var_2004_ptr,record_ptr);
+          System_DataHandler(&puStack_d8,&rendering_buffer_2004_ptr,record_ptr);
           puStack_b8 = &system_data_buffer_ptr;
           if (puStack_b0 != (void *)0x0) {
                     // WARNING: Subroutine does not return
@@ -471,7 +471,7 @@ void process_string_cleanup(int64_t context_ptr, int64_t file_ptr)
         }
         uStack_88 = uStack_88 - remove_count;
         puStack_90[uStack_88] = 0;
-        uint64_t marker = CoreMemoryPoolValidator(&puStack_58,&unknown_var_7168_ptr);
+        uint64_t marker = CoreMemoryPoolValidator(&puStack_58,&processed_var_7168_ptr);
         process_string_operation(&puStack_98,(int)end_pos - (int)puStack_90,marker);
         puStack_58 = &system_data_buffer_ptr;
         if (lStack_50 != 0) {
@@ -487,7 +487,7 @@ void process_string_cleanup(int64_t context_ptr, int64_t file_ptr)
       if (puStack_90 != (void *)0x0) {
         final_record = puStack_90;
       }
-      System_DataHandler(&puStack_d8,&unknown_var_92_ptr,final_record);
+      System_DataHandler(&puStack_d8,&processed_var_92_ptr,final_record);
       puStack_98 = &system_data_buffer_ptr;
       if (puStack_90 != (void *)0x0) {
                     // WARNING: Subroutine does not return
@@ -500,7 +500,7 @@ void process_string_cleanup(int64_t context_ptr, int64_t file_ptr)
     
     // 处理附加数据区域
     if (*(int64_t *)(context_ptr + 0x13a8) - *(int64_t *)(context_ptr + 0x13a0) >> 5 != 0) {
-      System_DataHandler(&puStack_d8,&unknown_var_1984_ptr);
+      System_DataHandler(&puStack_d8,&ui_system_data_1984_ptr);
       int64_t end_pos = *(int64_t *)(context_ptr + 0x13a8);
       int64_t start_pos = *(int64_t *)(context_ptr + 0x13a0);
       current_offset = string_length;
@@ -513,7 +513,7 @@ void process_string_cleanup(int64_t context_ptr, int64_t file_ptr)
           if (item_data != (void *)0x0) {
             default_data = item_data;
           }
-          System_DataHandler(&puStack_d8,&unknown_var_2004_ptr,default_data);
+          System_DataHandler(&puStack_d8,&rendering_buffer_2004_ptr,default_data);
           uint item_count = (int)current_offset + 1;
           string_length = string_length + 0x20;
           end_pos = *(int64_t *)(context_ptr + 0x13a8);
@@ -527,7 +527,7 @@ void process_string_cleanup(int64_t context_ptr, int64_t file_ptr)
       if (last_item != (void *)0x0) {
         default_last = last_item;
       }
-      System_DataHandler(&puStack_d8,&unknown_var_92_ptr,default_last);
+      System_DataHandler(&puStack_d8,&processed_var_92_ptr,default_last);
     }
     
     // 写入输出文件并清理
@@ -719,8 +719,8 @@ void empty_operation_variant2(void)
 int64_t init_config_operation_type1(int64_t config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &unknown_var_592_ptr;
-  *(void **)(config_ptr + 0x18) = &unknown_var_544_ptr;
+  *(void **)(config_ptr + 0x10) = &processed_var_592_ptr;
+  *(void **)(config_ptr + 0x18) = &processed_var_544_ptr;
   return config_ptr;
 }
 
@@ -735,8 +735,8 @@ int64_t init_config_operation_type1(int64_t config_ptr)
 int64_t init_config_operation_type2(int64_t config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &unknown_var_560_ptr;
-  *(void **)(config_ptr + 0x18) = &unknown_var_544_ptr;
+  *(void **)(config_ptr + 0x10) = &processed_var_560_ptr;
+  *(void **)(config_ptr + 0x18) = &processed_var_544_ptr;
   return config_ptr;
 }
 
@@ -751,8 +751,8 @@ int64_t init_config_operation_type2(int64_t config_ptr)
 int64_t init_config_operation_type3(int64_t config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &unknown_var_512_ptr;
-  *(void **)(config_ptr + 0x18) = &unknown_var_9440_ptr;
+  *(void **)(config_ptr + 0x10) = &processed_var_512_ptr;
+  *(void **)(config_ptr + 0x18) = &processed_var_9440_ptr;
   return config_ptr;
 }
 
@@ -767,8 +767,8 @@ int64_t init_config_operation_type3(int64_t config_ptr)
 int64_t init_config_operation_type4(int64_t config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &unknown_var_480_ptr;
-  *(void **)(config_ptr + 0x18) = &unknown_var_464_ptr;
+  *(void **)(config_ptr + 0x10) = &processed_var_480_ptr;
+  *(void **)(config_ptr + 0x18) = &processed_var_464_ptr;
   return config_ptr;
 }
 
@@ -783,8 +783,8 @@ int64_t init_config_operation_type4(int64_t config_ptr)
 int64_t init_config_operation_type5(int64_t config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &unknown_var_432_ptr;
-  *(void **)(config_ptr + 0x18) = &unknown_var_416_ptr;
+  *(void **)(config_ptr + 0x10) = &processed_var_432_ptr;
+  *(void **)(config_ptr + 0x18) = &processed_var_416_ptr;
   return config_ptr;
 }
 
@@ -799,8 +799,8 @@ int64_t init_config_operation_type5(int64_t config_ptr)
 int64_t init_config_operation_type6(int64_t config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &unknown_var_384_ptr;
-  *(void **)(config_ptr + 0x18) = &unknown_var_9440_ptr;
+  *(void **)(config_ptr + 0x10) = &memory_allocator_384_ptr;
+  *(void **)(config_ptr + 0x18) = &processed_var_9440_ptr;
   return config_ptr;
 }
 
@@ -815,8 +815,8 @@ int64_t init_config_operation_type6(int64_t config_ptr)
 int64_t init_config_operation_type7(int64_t config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &unknown_var_352_ptr;
-  *(void **)(config_ptr + 0x18) = &unknown_var_9440_ptr;
+  *(void **)(config_ptr + 0x10) = &memory_allocator_352_ptr;
+  *(void **)(config_ptr + 0x18) = &processed_var_9440_ptr;
   return config_ptr;
 }
 
@@ -831,8 +831,8 @@ int64_t init_config_operation_type7(int64_t config_ptr)
 int64_t init_config_operation_type8(int64_t config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &unknown_var_320_ptr;
-  *(void **)(config_ptr + 0x18) = &unknown_var_9440_ptr;
+  *(void **)(config_ptr + 0x10) = &memory_allocator_320_ptr;
+  *(void **)(config_ptr + 0x18) = &processed_var_9440_ptr;
   return config_ptr;
 }
 
@@ -847,8 +847,8 @@ int64_t init_config_operation_type8(int64_t config_ptr)
 int64_t init_config_operation_type9(int64_t config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &unknown_var_288_ptr;
-  *(void **)(config_ptr + 0x18) = &unknown_var_9440_ptr;
+  *(void **)(config_ptr + 0x10) = &rendering_buffer_288_ptr;
+  *(void **)(config_ptr + 0x18) = &processed_var_9440_ptr;
   return config_ptr;
 }
 
@@ -863,8 +863,8 @@ int64_t init_config_operation_type9(int64_t config_ptr)
 int64_t init_config_operation_type10(int64_t config_ptr)
 
 {
-  *(void **)(config_ptr + 0x10) = &unknown_var_256_ptr;
-  *(void **)(config_ptr + 0x18) = &unknown_var_9440_ptr;
+  *(void **)(config_ptr + 0x10) = &rendering_buffer_256_ptr;
+  *(void **)(config_ptr + 0x18) = &processed_var_9440_ptr;
   return config_ptr;
 }
 
@@ -923,7 +923,7 @@ void set_config_value_type1(int64_t config_context, int32_t value)
       if (*(void **)(config_context + 0x1ba0) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x1ba0);
       }
-      SystemDataInitializer(&unknown_var_544_ptr,default_string);
+      SystemDataInitializer(&processed_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x1b90) = *(int32_t *)(config_context + 0x1bd8);
     return;
@@ -960,7 +960,7 @@ void set_config_value_type2(int64_t config_context, int32_t value)
       if (*(void **)(config_context + 0x1f90) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x1f90);
       }
-      SystemDataInitializer(&unknown_var_544_ptr,default_string);
+      SystemDataInitializer(&processed_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x1f80) = *(int32_t *)(config_context + 0x1fc8);
     return;
@@ -997,7 +997,7 @@ void set_config_value_type3(int64_t config_context, int32_t value)
       if (*(void **)(config_context + 0x2070) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x2070);
       }
-      SystemDataInitializer(&unknown_var_544_ptr,default_string);
+      SystemDataInitializer(&processed_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x2060) = *(int32_t *)(config_context + 0x20a8);
     return;
@@ -1034,7 +1034,7 @@ void set_config_value_type4(int64_t config_context, int32_t value)
       if (*(void **)(config_context + 0x21c0) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x21c0);
       }
-      SystemDataInitializer(&unknown_var_544_ptr,default_string);
+      SystemDataInitializer(&processed_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x21b0) = *(int32_t *)(config_context + 0x21f8);
     return;
@@ -1071,7 +1071,7 @@ void set_config_value_type5(int64_t config_context, int32_t value)
       if (*(void **)(config_context + 0x2230) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x2230);
       }
-      SystemDataInitializer(&unknown_var_544_ptr,default_string);
+      SystemDataInitializer(&processed_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x2220) = *(int32_t *)(config_context + 0x2268);
     return;
@@ -1108,7 +1108,7 @@ void set_config_value_type6(int64_t config_context, int32_t value)
       if (*(void **)(config_context + 0x2150) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x2150);
       }
-      SystemDataInitializer(&unknown_var_544_ptr,default_string);
+      SystemDataInitializer(&processed_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x2140) = *(int32_t *)(config_context + 0x2188);
     return;
@@ -1145,7 +1145,7 @@ void set_config_value_type7(int64_t config_context, int32_t value)
       if (*(void **)(config_context + 0x20e0) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x20e0);
       }
-      SystemDataInitializer(&unknown_var_544_ptr,default_string);
+      SystemDataInitializer(&processed_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x20d0) = *(int32_t *)(config_context + 0x2118);
     return;
@@ -1182,7 +1182,7 @@ void set_config_value_type8(int64_t config_context, int32_t value)
       if (*(void **)(config_context + 0x12e0) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x12e0);
       }
-      SystemDataInitializer(&unknown_var_544_ptr,default_string);
+      SystemDataInitializer(&processed_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x12d0) = *(int32_t *)(config_context + 0x1318);
     return;
@@ -1219,7 +1219,7 @@ void set_config_value_type9(int64_t config_context, int32_t value)
       if (*(void **)(config_context + 0x10b0) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x10b0);
       }
-      SystemDataInitializer(&unknown_var_544_ptr,default_string);
+      SystemDataInitializer(&processed_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x10a0) = *(int32_t *)(config_context + 0x10e8);
     return;
@@ -1256,7 +1256,7 @@ void set_config_value_type10(int64_t config_context, int32_t value)
       if (*(void **)(config_context + 0x1040) != (void *)0x0) {
         default_string = *(void **)(config_context + 0x1040);
       }
-      SystemDataInitializer(&unknown_var_544_ptr,default_string);
+      SystemDataInitializer(&processed_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0x1030) = *(int32_t *)(config_context + 0x1078);
     return;
@@ -1293,7 +1293,7 @@ void set_config_value_type11(int64_t config_context, int32_t value)
       if (*(void **)(config_context + 0xfd0) != (void *)0x0) {
         default_string = *(void **)(config_context + 0xfd0);
       }
-      SystemDataInitializer(&unknown_var_544_ptr,default_string);
+      SystemDataInitializer(&processed_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0xfc0) = *(int32_t *)(config_context + 0x1008);
     return;
@@ -1330,7 +1330,7 @@ void set_config_value_type12(int64_t config_context, int32_t value)
       if (*(void **)(config_context + 0xf60) != (void *)0x0) {
         default_string = *(void **)(config_context + 0xf60);
       }
-      SystemDataInitializer(&unknown_var_544_ptr,default_string);
+      SystemDataInitializer(&processed_var_544_ptr,default_string);
     }
     *(int32_t *)(config_context + 0xf50) = *(int32_t *)(config_context + 0xf98);
     return;

@@ -417,7 +417,7 @@ LAB_180377195:
               puVar18 = (void *)*puVar29;
               unaff_RBP[-4] = (float)(int)uVar24;
               unaff_RBP[-3] = (float)(int)fVar31;
-              if (puVar18 == &unknown_var_8576_ptr) {
+              if (puVar18 == &processed_var_8576_ptr) {
                 fVar34 = *(float *)(puVar29[2] + 0x1c) /
                          (float)(1 << ((byte)*(int32_t *)(puVar29 + 5) & 0x1f));
               }
@@ -489,7 +489,7 @@ LAB_180377195:
                     unaff_RBP[0x21] = unaff_RBP[0x21];
                     fVar31 = unaff_RBP[-3];
                     fVar42 = unaff_RBP[-4];
-                    if (puVar18 == &unknown_var_8576_ptr) {
+                    if (puVar18 == &processed_var_8576_ptr) {
                       fVar36 = *(float *)(puVar29[2] + 0x1c) /
                                (float)(1 << ((byte)*(int32_t *)(puVar29 + 5) & 0x1f));
                     }
@@ -741,14 +741,14 @@ LAB_18037777e:
       puVar27 = puVar18;
     }
     lVar15 = (*(int64_t **)(unaff_RBP + 0x1a))[1] - **(int64_t **)(unaff_RBP + 0x1a);
-    puVar18 = &unknown_var_3792_ptr;
+    puVar18 = &memory_allocator_3792_ptr;
   }
   else {
     if (puVar18 != (void *)0x0) {
       puVar27 = puVar18;
     }
     lVar15 = (*(int64_t **)(unaff_RBP + 0x18))[1] - **(int64_t **)(unaff_RBP + 0x18);
-    puVar18 = &unknown_var_3824_ptr;
+    puVar18 = &memory_allocator_3824_ptr;
   }
                     // WARNING: Subroutine does not return
   FUN_180062300(system_message_context,puVar18,lVar15 / 0x28,puVar27);

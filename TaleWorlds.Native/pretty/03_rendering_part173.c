@@ -200,7 +200,7 @@ LAB_180374a51:
                      (piVar19 = piVar2, iVar21 != *piVar2)); piVar2 = *(int **)(piVar2 + 4)) {
               }
               if (piVar19 == piVar3) {
-                uVar15 = FUN_18062b1e0(system_memory_pool_ptr,0x178,8,
+                uVar15 = CoreSystem_LoggingManager0(system_memory_pool_ptr,0x178,8,
                                        CONCAT71((int7)((uint64_t)lVar20 >> 8),3));
                 uVar16 = *(uint64_t *)(unaff_RDI + 0x68);
                 *(int *)(unaff_RBP + -0xd) = iVar21;
@@ -548,7 +548,7 @@ void FUN_180374f40(int64_t param_1,int64_t param_2)
     }
     else {
       puVar1 = *(uint64_t **)(param_1 + 0x2308);
-      if ((void *)*puVar1 == &unknown_var_2232_ptr) {
+      if ((void *)*puVar1 == &rendering_buffer_2232_ptr) {
         uStack_78 = puVar1[0x18];
         plVar9 = (int64_t *)
                  (((int64_t)*(int *)(*(int64_t *)(uStack_78 + 0x2148) + 0x3054) + 0x10b) * 0x20 +
@@ -574,7 +574,7 @@ void FUN_180374f40(int64_t param_1,int64_t param_2)
         pcStack_50 = FUN_1803805e0;
         pcStack_48 = FUN_180380510;
         uStack_80 = plVar9;
-        apuStack_60[0] = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr,0x20,8,system_allocation_flags);
+        apuStack_60[0] = (int32_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr,0x20,8,system_allocation_flags);
         *apuStack_60[0] = (int32_t)uStack_80;
         apuStack_60[0][1] = uStack_80._4_4_;
         apuStack_60[0][2] = (int32_t)uStack_78;
@@ -596,7 +596,7 @@ void FUN_180374f40(int64_t param_1,int64_t param_2)
         (**(code **)((void *)*puVar1 + 0x60))(puVar1);
       }
       puVar1 = *(uint64_t **)(param_1 + 0x2308);
-      if ((void *)*puVar1 == &unknown_var_2232_ptr) {
+      if ((void *)*puVar1 == &rendering_buffer_2232_ptr) {
         LOCK();
         *(int8_t *)(puVar1 + 2) = 1;
         UNLOCK();

@@ -429,7 +429,7 @@ uint64_t * FUN_18047ce10(int64_t param_1,int32_t param_2)
   int64_t lVar2;
   
   puVar1 = (uint64_t *)FUN_1808fc418(0x20);
-  *puVar1 = &unknown_var_6184_ptr;
+  *puVar1 = &processed_var_6184_ptr;
   *(int32_t *)(puVar1 + 1) = param_2;
   *(int32_t *)((int64_t)puVar1 + 0xc) = 0;
   puVar1[2] = 0;

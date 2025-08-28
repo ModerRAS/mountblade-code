@@ -863,7 +863,7 @@ uint64_t SystemResourceManager(uint64_t *param_1, int64_t param_2)
                 
                 // 分配内存资源
                 plVar2 = (int64_t *)
-                         SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x28, &unknown_var_816_ptr, 0x269, 0,
+                         SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x28, &processed_var_816_ptr, 0x269, 0,
                                        (char)uVar1, 1);
                 if (plVar2 == (int64_t *)0x0) {
                     return 0x26;
@@ -901,7 +901,7 @@ LAB_1808a674a:
                         plVar2[1] = (int64_t)plVar2;
                         *plVar2 = (int64_t)plVar2;
                         // 释放资源
-                        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
+                        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &rendering_buffer_2144_ptr, 0xc6, 1);
                     }
                 }
                 
@@ -924,7 +924,7 @@ LAB_1808a674a:
                         plVar2[1] = (int64_t)plVar2;
                         *plVar2 = (int64_t)plVar2;
                         // 释放资源
-                        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
+                        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &rendering_buffer_2144_ptr, 0xc6, 1);
                     }
                 }
                 
@@ -980,7 +980,7 @@ LAB_1808a68ad:
         while (uVar1 = FUN_1808dde10(), (int)uVar1 == 0) {
             // 分配动态内存
             plVar2 = (int64_t *)
-                     SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x28, &unknown_var_816_ptr, 0x269,
+                     SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x28, &processed_var_816_ptr, 0x269,
                                    (int)unaff_RDI);
             if (plVar2 == (int64_t *)0x0) {
                 return 0x26;
@@ -1018,7 +1018,7 @@ LAB_1808a674a:
                     plVar2[1] = (int64_t)plVar2;
                     *plVar2 = (int64_t)plVar2;
                     // 释放内存
-                    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
+                    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &rendering_buffer_2144_ptr, 0xc6, 1);
                 }
             }
             
@@ -1041,7 +1041,7 @@ LAB_1808a674a:
                     plVar2[1] = (int64_t)plVar2;
                     *plVar2 = (int64_t)plVar2;
                     // 释放内存
-                    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
+                    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &rendering_buffer_2144_ptr, 0xc6, 1);
                 }
             }
             

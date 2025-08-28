@@ -420,12 +420,12 @@ LAB_1806f9066:
 LAB_1806f9135:
     iVar9 = 0x451;
     if ((param_1[0x1c] == 2) && (param_1[0x1e] != 1)) {
-      piVar16 = (int *)&unknown_var_864_ptr;
-      piVar17 = (int *)&unknown_var_896_ptr;
+      piVar16 = (int *)&processed_var_864_ptr;
+      piVar17 = (int *)&processed_var_896_ptr;
     }
     else {
-      piVar16 = (int *)&unknown_var_800_ptr;
-      piVar17 = (int *)&unknown_var_832_ptr;
+      piVar16 = (int *)&processed_var_800_ptr;
+      piVar17 = (int *)&processed_var_832_ptr;
     }
     iStack_118 = ((int)((*piVar16 - *piVar17) * uVar2 * uVar2) >> 0xe) + *piVar17;
     iStack_114 = ((int)((piVar16[1] - piVar17[1]) * uVar2 * uVar2) >> 0xe) + piVar17[1];
@@ -543,12 +543,12 @@ LAB_1806f9135:
     }
     iVar4 = iVar3;
     while( true ) {
-      iVar18 = *(int *)(&unknown_var_928_ptr + (int64_t)(iVar4 * 2 + -0x89a) * 4) -
-               *(int *)(&unknown_var_2124_ptr + (int64_t)(iVar4 * 2) * 4);
+      iVar18 = *(int *)(&processed_var_928_ptr + (int64_t)(iVar4 * 2 + -0x89a) * 4) -
+               *(int *)(&rendering_buffer_2124_ptr + (int64_t)(iVar4 * 2) * 4);
       if (param_1[0xd] != 1) {
-        iVar18 = *(int *)(&unknown_var_928_ptr + (int64_t)(iVar4 * 2 + -0x89a) * 4);
+        iVar18 = *(int *)(&processed_var_928_ptr + (int64_t)(iVar4 * 2 + -0x89a) * 4);
       }
-      iVar15 = *(int *)(&unknown_var_2124_ptr + (int64_t)(iVar4 * 2) * 4) + iVar18;
+      iVar15 = *(int *)(&rendering_buffer_2124_ptr + (int64_t)(iVar4 * 2) * 4) + iVar18;
       if (param_1[0xd] != 0) {
         iVar15 = iVar18;
       }

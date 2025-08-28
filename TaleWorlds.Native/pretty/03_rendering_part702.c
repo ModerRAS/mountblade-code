@@ -266,17 +266,17 @@ void FUN_1806708b0(int64_t param_1)
     lVar1 = CoreSystem_MemoryController0(8,iVar2 + -1);
     *(int64_t *)(param_1 + 0x43f0) = lVar1;
     if (lVar1 == 0) {
-      SystemInitializationProcessor(param_1 + 0x12c0,2,&unknown_var_7776_ptr);
+      SystemInitializationProcessor(param_1 + 0x12c0,2,&processed_var_7776_ptr);
     }
     lVar1 = CoreSystem_MemoryController0(8,*(int32_t *)(param_1 + 0x438c));
     *(int64_t *)(param_1 + 0x43f8) = lVar1;
     if (lVar1 == 0) {
-      SystemInitializationProcessor(param_1 + 0x12c0,2,&unknown_var_7824_ptr);
+      SystemInitializationProcessor(param_1 + 0x12c0,2,&processed_var_7824_ptr);
     }
     lVar1 = FUN_18066e960(0x20,(uint64_t)*(uint *)(param_1 + 0x438c) * 0x12a0);
     *(int64_t *)(param_1 + 0x43e0) = lVar1;
     if (lVar1 == 0) {
-      SystemInitializationProcessor(param_1 + 0x12c0,2,&unknown_var_7880_ptr);
+      SystemInitializationProcessor(param_1 + 0x12c0,2,&processed_var_7880_ptr);
     }
                     // WARNING: Subroutine does not return
     memset(*(uint64_t *)(param_1 + 0x43e0),0,(uint64_t)*(uint *)(param_1 + 0x438c) * 0x12a0);
@@ -302,17 +302,17 @@ void FUN_1806708fb(void)
   lVar1 = CoreSystem_MemoryController0(unaff_EDI,in_EAX);
   *(int64_t *)(unaff_RBX + 0x43f0) = lVar1;
   if (lVar1 == 0) {
-    SystemInitializationProcessor(unaff_RBX + 0x12c0,unaff_EDI + -6,&unknown_var_7776_ptr);
+    SystemInitializationProcessor(unaff_RBX + 0x12c0,unaff_EDI + -6,&processed_var_7776_ptr);
   }
   lVar1 = CoreSystem_MemoryController0();
   *(int64_t *)(unaff_RBX + 0x43f8) = lVar1;
   if (lVar1 == 0) {
-    SystemInitializationProcessor(unaff_RBX + 0x12c0,2,&unknown_var_7824_ptr);
+    SystemInitializationProcessor(unaff_RBX + 0x12c0,2,&processed_var_7824_ptr);
   }
   lVar1 = FUN_18066e960(0x20,(uint64_t)*(uint *)(unaff_RBX + 0x438c) * 0x12a0);
   *(int64_t *)(unaff_RBX + 0x43e0) = lVar1;
   if (lVar1 == 0) {
-    SystemInitializationProcessor(unaff_RBX + 0x12c0,2,&unknown_var_7880_ptr);
+    SystemInitializationProcessor(unaff_RBX + 0x12c0,2,&processed_var_7880_ptr);
   }
                     // WARNING: Subroutine does not return
   memset(*(uint64_t *)(unaff_RBX + 0x43e0),0,(uint64_t)*(uint *)(unaff_RBX + 0x438c) * 0x12a0);
@@ -627,12 +627,12 @@ void FUN_180670c40(int64_t param_1,uint param_2,int32_t param_3)
     lVar3 = CoreSystem_MemoryController0(4,(int64_t)*(int *)(param_1 + 0x1e74));
     *(int64_t *)(param_1 + 0x43a8) = lVar3;
     if (lVar3 == 0) {
-      SystemInitializationProcessor(lVar1,2,&unknown_var_7968_ptr);
+      SystemInitializationProcessor(lVar1,2,&processed_var_7968_ptr);
     }
     lVar3 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(param_1 + 0x1e74));
     *(int64_t *)(param_1 + 0x43b0) = lVar3;
     if (lVar3 == 0) {
-      SystemInitializationProcessor(lVar1,2,&unknown_var_8016_ptr);
+      SystemInitializationProcessor(lVar1,2,&processed_var_8016_ptr);
     }
     uVar5 = 0;
     if (0 < *(int *)(param_1 + 0x1e74)) {
@@ -642,7 +642,7 @@ void FUN_180670c40(int64_t param_1,uint param_2,int32_t param_3)
         uVar4 = FUN_18066e960(0x10,(int64_t)(int)(param_2 + 0x40));
         *(uint64_t *)(uVar6 + *(int64_t *)(param_1 + 0x43b0)) = uVar4;
         if (*(int64_t *)(uVar6 + *(int64_t *)(param_1 + 0x43b0)) == 0) {
-          SystemInitializationProcessor(lVar1,2,&unknown_var_8056_ptr);
+          SystemInitializationProcessor(lVar1,2,&processed_var_8056_ptr);
         }
         uVar7 = (int)uVar8 + 1;
         uVar8 = (uint64_t)uVar7;
@@ -652,7 +652,7 @@ void FUN_180670c40(int64_t param_1,uint param_2,int32_t param_3)
     lVar3 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(param_1 + 0x1e74));
     *(int64_t *)(param_1 + 0x43b8) = lVar3;
     if (lVar3 == 0) {
-      SystemInitializationProcessor(lVar1,2,&unknown_var_8104_ptr);
+      SystemInitializationProcessor(lVar1,2,&processed_var_8104_ptr);
     }
     if (0 < *(int *)(param_1 + 0x1e74)) {
       uVar6 = uVar5;
@@ -661,7 +661,7 @@ void FUN_180670c40(int64_t param_1,uint param_2,int32_t param_3)
         uVar4 = FUN_18066e960(0x10,(int64_t)(((int)param_2 >> 1) + 0x20));
         *(uint64_t *)(uVar8 + *(int64_t *)(param_1 + 0x43b8)) = uVar4;
         if (*(int64_t *)(uVar8 + *(int64_t *)(param_1 + 0x43b8)) == 0) {
-          SystemInitializationProcessor(lVar1,2,&unknown_var_8144_ptr);
+          SystemInitializationProcessor(lVar1,2,&processed_var_8144_ptr);
         }
         uVar7 = (int)uVar6 + 1;
         uVar6 = (uint64_t)uVar7;
@@ -671,7 +671,7 @@ void FUN_180670c40(int64_t param_1,uint param_2,int32_t param_3)
     lVar3 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(param_1 + 0x1e74));
     *(int64_t *)(param_1 + 0x43c0) = lVar3;
     if (lVar3 == 0) {
-      SystemInitializationProcessor(lVar1,2,&unknown_var_8192_ptr);
+      SystemInitializationProcessor(lVar1,2,&processed_var_8192_ptr);
     }
     if (0 < *(int *)(param_1 + 0x1e74)) {
       uVar6 = uVar5;
@@ -680,7 +680,7 @@ void FUN_180670c40(int64_t param_1,uint param_2,int32_t param_3)
         uVar4 = FUN_18066e960(0x10,(int64_t)(((int)param_2 >> 1) + 0x20));
         *(uint64_t *)(uVar6 + *(int64_t *)(param_1 + 0x43c0)) = uVar4;
         if (*(int64_t *)(uVar6 + *(int64_t *)(param_1 + 0x43c0)) == 0) {
-          SystemInitializationProcessor(lVar1,2,&unknown_var_8232_ptr);
+          SystemInitializationProcessor(lVar1,2,&processed_var_8232_ptr);
         }
         uVar7 = (int)uVar8 + 1;
         uVar8 = (uint64_t)uVar7;
@@ -690,7 +690,7 @@ void FUN_180670c40(int64_t param_1,uint param_2,int32_t param_3)
     lVar3 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(param_1 + 0x1e74));
     *(int64_t *)(param_1 + 0x43c8) = lVar3;
     if (lVar3 == 0) {
-      SystemInitializationProcessor(lVar1,2,&unknown_var_8280_ptr);
+      SystemInitializationProcessor(lVar1,2,&processed_var_8280_ptr);
     }
     uVar6 = uVar5;
     uVar8 = uVar5;
@@ -699,7 +699,7 @@ void FUN_180670c40(int64_t param_1,uint param_2,int32_t param_3)
         uVar4 = CoreSystem_MemoryController0(0x10,1);
         *(uint64_t *)(uVar6 + *(int64_t *)(param_1 + 0x43c8)) = uVar4;
         if (*(int64_t *)(uVar6 + *(int64_t *)(param_1 + 0x43c8)) == 0) {
-          SystemInitializationProcessor(lVar1,2,&unknown_var_8320_ptr);
+          SystemInitializationProcessor(lVar1,2,&processed_var_8320_ptr);
         }
         uVar7 = (int)uVar8 + 1;
         uVar6 = uVar6 + 8;
@@ -709,7 +709,7 @@ void FUN_180670c40(int64_t param_1,uint param_2,int32_t param_3)
     lVar3 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(param_1 + 0x1e74));
     *(int64_t *)(param_1 + 0x43d0) = lVar3;
     if (lVar3 == 0) {
-      SystemInitializationProcessor(lVar1,2,&unknown_var_8360_ptr);
+      SystemInitializationProcessor(lVar1,2,&processed_var_8360_ptr);
     }
     uVar6 = uVar5;
     uVar8 = uVar5;
@@ -718,7 +718,7 @@ void FUN_180670c40(int64_t param_1,uint param_2,int32_t param_3)
         uVar4 = CoreSystem_MemoryController0(8);
         *(uint64_t *)(uVar6 + *(int64_t *)(param_1 + 0x43d0)) = uVar4;
         if (*(int64_t *)(uVar6 + *(int64_t *)(param_1 + 0x43d0)) == 0) {
-          SystemInitializationProcessor(lVar1,2,&unknown_var_8400_ptr);
+          SystemInitializationProcessor(lVar1,2,&processed_var_8400_ptr);
         }
         uVar7 = (int)uVar8 + 1;
         uVar6 = uVar6 + 8;
@@ -728,7 +728,7 @@ void FUN_180670c40(int64_t param_1,uint param_2,int32_t param_3)
     lVar3 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(param_1 + 0x1e74));
     *(int64_t *)(param_1 + 0x43d8) = lVar3;
     if (lVar3 == 0) {
-      SystemInitializationProcessor(lVar1,2,&unknown_var_8440_ptr);
+      SystemInitializationProcessor(lVar1,2,&processed_var_8440_ptr);
     }
     uVar6 = uVar5;
     if (0 < *(int *)(param_1 + 0x1e74)) {
@@ -736,7 +736,7 @@ void FUN_180670c40(int64_t param_1,uint param_2,int32_t param_3)
         uVar4 = CoreSystem_MemoryController0(8);
         *(uint64_t *)(uVar6 + *(int64_t *)(param_1 + 0x43d8)) = uVar4;
         if (*(int64_t *)(uVar6 + *(int64_t *)(param_1 + 0x43d8)) == 0) {
-          SystemInitializationProcessor(lVar1,2,&unknown_var_8480_ptr);
+          SystemInitializationProcessor(lVar1,2,&processed_var_8480_ptr);
         }
         uVar7 = (int)uVar5 + 1;
         uVar5 = (uint64_t)uVar7;

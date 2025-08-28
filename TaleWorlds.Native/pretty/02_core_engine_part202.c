@@ -34,8 +34,8 @@ void FUN_180183a20(uint64_t *param_1)
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_258;
   uStack_228 = 0;
   plVar3 = (int64_t *)FUN_1808fc418(0x18);
-  *plVar3 = (int64_t)&unknown_var_1080_ptr;
-  *plVar3 = (int64_t)&unknown_var_1032_ptr;
+  *plVar3 = (int64_t)&ui_system_data_1080_ptr;
+  *plVar3 = (int64_t)&ui_system_data_1032_ptr;
   plVar3[2] = 0;
   lStack_1f0 = 0;
   lStack_1e8 = 0;
@@ -242,7 +242,7 @@ void FUN_180183fa0(int64_t param_1,int64_t *param_2,uint64_t param_3)
   }
 LAB_180184089:
   *(uint64_t *)(lVar3 + 0x40) = uStack_48;
-  NVGSDK_GetUILanguageAsync(*(uint64_t *)(param_1 + 8),&unknown_var_800_ptr,lVar3);
+  NVGSDK_GetUILanguageAsync(*(uint64_t *)(param_1 + 8),&processed_var_800_ptr,lVar3);
   uStack_b8 = 1;
   plStack_b0 = alStack_88;
   if (plStack_50 != (int64_t *)0x0) {
@@ -587,7 +587,7 @@ void FUN_180184660(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
 uint64_t * FUN_1801846d0(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_872_ptr;
+  *param_1 = &processed_var_872_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }
@@ -600,7 +600,7 @@ uint64_t *
 FUN_180184700(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_872_ptr;
+  *param_1 = &processed_var_872_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x10,param_3,param_4,0xfffffffffffffffe);
   }
@@ -927,7 +927,7 @@ void FUN_180184c20(int64_t param_1,int64_t *param_2,uint64_t param_3)
   }
 LAB_180184d09:
   *(uint64_t *)(lVar3 + 0x40) = uStack_48;
-  NVGSDK_Highlights_GetUserSettingsAsync(*(uint64_t *)(param_1 + 8),&unknown_var_4336_ptr,lVar3);
+  NVGSDK_Highlights_GetUserSettingsAsync(*(uint64_t *)(param_1 + 8),&processed_var_4336_ptr,lVar3);
   uStack_b8 = 1;
   plStack_b0 = alStack_88;
   if (plStack_50 != (int64_t *)0x0) {

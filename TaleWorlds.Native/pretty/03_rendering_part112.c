@@ -695,7 +695,7 @@ void RenderingSystem_ProcessResourceOperation(int64_t resource_context, uint res
   uStack_68 = 0xfffffffffffffffe;
   plVar6 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
   FUN_180049830(plVar6);
-  *plVar6 = (int64_t)&unknown_var_7880_ptr;
+  *plVar6 = (int64_t)&processed_var_7880_ptr;
   puVar1 = (uint64_t *)(plVar6 + 0x18);
   *puVar1 = 0;
   plVar6[0x19] = 0;

@@ -253,15 +253,15 @@ uint64_t FUN_18089ace4(void)
           if (puVar3 != (uint64_t *)0x0) {
             (**(code **)*puVar3)(puVar3,0);
                     // WARNING: Subroutine does not return
-            SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar3,&unknown_var_9456_ptr,0x130,1);
+            SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar3,&processed_var_9456_ptr,0x130,1);
           }
           puVar3 = (uint64_t *)
-                   SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_9456_ptr,0x119);
+                   SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&processed_var_9456_ptr,0x119);
           if (puVar3 == (uint64_t *)0x0) {
             return 0x26;
           }
           puVar3[1] = unaff_RBP;
-          *puVar3 = &unknown_var_9360_ptr;
+          *puVar3 = &processed_var_9360_ptr;
           *(int32_t *)(puVar3 + 2) = 1;
           *(int *)(puVar3 + 3) = (int)unaff_RBP;
           **(uint64_t **)(unaff_RDI + 0x48) = puVar3;

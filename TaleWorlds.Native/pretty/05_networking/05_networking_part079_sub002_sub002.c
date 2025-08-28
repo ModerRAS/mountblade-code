@@ -344,7 +344,7 @@ void FUN_180883a30(uint64_t param_1)
         // 警告：子函数不会返回
         
         // 发送网络数据，初始化连接
-        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_1, &unknown_var_5856_ptr, 0x43b, 1);
+        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_1, &processed_var_5856_ptr, 0x43b, 1);
     }
     
     return;

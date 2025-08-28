@@ -125,7 +125,7 @@ void process_render_system_state_update(void)
         queue_ptr = 0;
         if (((status_flag >> 0x18 & 1) == 0) && (offset_x = (char *)(SYSTEM_DATA_MANAGER_A + 0x2e38), *offset_x != '\0')) {
             
-            process_render_cleanup(&unknown_var_3196_ptr);
+            process_render_cleanup(&memory_allocator_3196_ptr);
             
             if (*(int64_t *)(temp_ptr + 0x2e40) != 0) {
                 file_handle = __acrt_iob_func(1);
@@ -1024,7 +1024,7 @@ void process_render_position_direct_setting(void)
 // 全局变量和函数声明
 uint64_t SYSTEM_DATA_MANAGER_A = 0;          // 引擎全局上下文
 uint64_t GET_SECURITY_COOKIE() = 0;          // 安全cookie基址
-uint64_t unknown_var_3196_ptr = 0;           // 未知数据引用
+uint64_t memory_allocator_3196_ptr = 0;           // 未知数据引用
 
 // 函数声明
 void cleanup_render_resources(void);

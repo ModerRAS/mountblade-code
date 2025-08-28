@@ -508,7 +508,7 @@ uint64_t *render_system_deallocate_object(uint64_t *object_ptr, uint64_t flags, 
     uint64_t dealloc_flag;
     
     dealloc_flag = 0xfffffffffffffffe;
-    *object_ptr = &unknown_var_3160_ptr; // 设置对象指针
+    *object_ptr = &memory_allocator_3160_ptr; // 设置对象指针
     
     // 清理第一个资源
     resource_ptr = (int64_t *)object_ptr[0x19];
@@ -551,13 +551,13 @@ uint64_t *render_system_initialize_string_object(uint64_t param1, uint64_t *stri
     *(int32_t *)(string_obj + 2) = 0;
     
     // 设置字符串数据
-    *string_obj = &unknown_var_3432_ptr;
+    *string_obj = &memory_allocator_3432_ptr;
     string_obj[1] = string_obj + 3;
     *(int8_t *)(string_obj + 3) = 0;
     *(int32_t *)(string_obj + 2) = 0xd;
     
     // 复制字符串数据
-    strcpy_s(string_obj[1], RENDER_STRING_BUFFER_SIZE, &unknown_var_2672_ptr, param4, 0, 0xfffffffffffffffe);
+    strcpy_s(string_obj[1], RENDER_STRING_BUFFER_SIZE, &rendering_buffer_2672_ptr, param4, 0, 0xfffffffffffffffe);
     
     return string_obj;
 }
@@ -586,7 +586,7 @@ int64_t *render_system_initialize_render_object(int64_t *render_obj)
     FUN_180244190();
     
     // 设置对象类型和基础属性
-    *render_obj = (int64_t)&unknown_var_2864_ptr;
+    *render_obj = (int64_t)&rendering_buffer_2864_ptr;
     render_obj[0xa4] = 0;  // 变换矩阵X
     render_obj[0xa5] = 0;  // 变换矩阵Y
     render_obj[0xa6] = 0;  // 变换矩阵Z

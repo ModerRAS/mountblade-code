@@ -486,7 +486,7 @@ FUN_18053e240(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
       puVar3[-0x16] = (uint64_t)&system_state_ptr;
       puVar3[-0x15] = 0;
       *(int32_t *)(puVar3 + -0x14) = 0;
-      puVar3[-0x16] = (uint64_t)&unknown_var_3480_ptr;
+      puVar3[-0x16] = (uint64_t)&memory_allocator_3480_ptr;
       puVar3[-0x15] = (uint64_t)(puVar3 + -0x13);
       *(int32_t *)(puVar3 + -0x14) = 0;
       *(int8_t *)(puVar3 + -0x13) = 0;

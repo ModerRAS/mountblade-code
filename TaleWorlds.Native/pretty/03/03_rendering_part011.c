@@ -219,7 +219,7 @@ void parse_rendering_material_data(material_info_t *material_info, data_stream_t
     context_backup2 = material_context;
     
     // 处理材质名称
-    process_material_name(&unknown_var_304_ptr, data_stream, material_context);
+    process_material_name(&memory_allocator_304_ptr, data_stream, material_context);
     *(int64_t *)(data_stream + 8) = *(int64_t *)(data_stream + 8) + 4;
     
     // 初始化材质标志位
@@ -234,7 +234,7 @@ void parse_rendering_material_data(material_info_t *material_info, data_stream_t
         buffer_size = (uint64_t)texture_count;
         do {
             // 初始化纹理信息缓冲区
-            texture_info_ptr = &unknown_var_336_ptr;
+            texture_info_ptr = &memory_allocator_336_ptr;
             texture_data_buffer = texture_buffer;
             texture_info_count = 0;
             texture_buffer[0] = 0;
@@ -251,7 +251,7 @@ void parse_rendering_material_data(material_info_t *material_info, data_stream_t
             }
             
             // 在材质纹理表中查找匹配的纹理
-            string_table_ptr = (int64_t *)&unknown_var_208_ptr;
+            string_table_ptr = (int64_t *)&rendering_buffer_208_ptr;
             texture_index = loop_counter;
             do {
                 // 计算字符串长度
@@ -276,7 +276,7 @@ void parse_rendering_material_data(material_info_t *material_info, data_stream_t
                     // 如果找到匹配的纹理，设置标志位
                     if (array_index == 0) {
                         *(uint *)(material_context + 4) = 
-                            *(uint *)(material_context + 4) | *(uint *)(&unknown_var_216_ptr + texture_index * 0x10);
+                            *(uint *)(material_context + 4) | *(uint *)(&rendering_buffer_216_ptr + texture_index * 0x10);
                         break;
                     }
                 }
@@ -284,7 +284,7 @@ void parse_rendering_material_data(material_info_t *material_info, data_stream_t
                     // 空字符串匹配
                     if (array_index == 0) {
                         *(uint *)(material_context + 4) = 
-                            *(uint *)(material_context + 4) | *(uint *)(&unknown_var_216_ptr + texture_index * 0x10);
+                            *(uint *)(material_context + 4) | *(uint *)(&rendering_buffer_216_ptr + texture_index * 0x10);
                         break;
                     }
                 }
@@ -301,7 +301,7 @@ void parse_rendering_material_data(material_info_t *material_info, data_stream_t
     }
     
     // 处理着色器信息
-    shader_info_ptr = &unknown_var_336_ptr;
+    shader_info_ptr = &memory_allocator_336_ptr;
     shader_data_buffer = shader_buffer;
     shader_info_count = 0;
     shader_buffer[0] = 0;
@@ -492,7 +492,7 @@ void serialize_rendering_material(material_info_t *material_info, serialization_
     serialization_context[1] = serialization_context[1] + 4;
     
     // 序列化材质名称
-    serialize_material_name(&unknown_var_304_ptr, *material_header, serialization_context);
+    serialize_material_name(&memory_allocator_304_ptr, *material_header, serialization_context);
     texture_info_ptr = (int32_t *)serialization_context[1];
     property_mask = material_header[1];
     
@@ -522,7 +522,7 @@ void serialize_rendering_material(material_info_t *material_info, serialization_
     serialization_context[1] = buffer_offset + 4;
     
     // 序列化材质标志位
-    shader_table_ptr = (uint64_t *)&unknown_var_208_ptr;
+    shader_table_ptr = (uint64_t *)&rendering_buffer_208_ptr;
     property_index = texture_count;
     do {
         if ((*(uint *)(shader_table_ptr + 1) & property_mask) != 0) {

@@ -156,7 +156,7 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   uVar11 = 0;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_5856_ptr,0x27c,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&processed_var_5856_ptr,0x27c,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -165,14 +165,14 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   uVar7 = *(uint64_t *)(param_1 + 0x90);
   puVar5[1] = param_1 + 0x358;
   puVar5[2] = uVar7;
-  puVar5[3] = &unknown_var_1688_ptr;
+  puVar5[3] = &ui_system_data_1688_ptr;
   puVar5[4] = param_1;
-  *puVar5 = &unknown_var_4296_ptr;
+  *puVar5 = &processed_var_4296_ptr;
   *(uint64_t **)(param_1 + 0x8d0) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_5856_ptr,0x27d,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&processed_var_5856_ptr,0x27d,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -181,14 +181,14 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   uVar7 = *(uint64_t *)(param_1 + 0x90);
   puVar5[1] = param_1 + 0x388;
   puVar5[2] = uVar7;
-  puVar5[3] = &unknown_var_4268_ptr;
+  puVar5[3] = &processed_var_4268_ptr;
   puVar5[4] = param_1;
-  *puVar5 = &unknown_var_4296_ptr;
+  *puVar5 = &processed_var_4296_ptr;
   *(uint64_t **)(param_1 + 0x8d8) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_5856_ptr,0x27e,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&processed_var_5856_ptr,0x27e,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -197,14 +197,14 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   uVar7 = *(uint64_t *)(param_1 + 0x90);
   puVar5[1] = param_1 + 0x3b8;
   puVar5[2] = uVar7;
-  puVar5[3] = &unknown_var_4260_ptr;
+  puVar5[3] = &processed_var_4260_ptr;
   puVar5[4] = param_1;
-  *puVar5 = &unknown_var_4336_ptr;
+  *puVar5 = &processed_var_4336_ptr;
   *(uint64_t **)(param_1 + 0x8e0) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_5856_ptr,0x27f,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&processed_var_5856_ptr,0x27f,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -213,14 +213,14 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   uVar7 = *(uint64_t *)(param_1 + 0x90);
   puVar5[1] = param_1 + 1000;
   puVar5[2] = uVar7;
-  puVar5[3] = &unknown_var_4276_ptr;
+  puVar5[3] = &processed_var_4276_ptr;
   puVar5[4] = param_1;
-  *puVar5 = &unknown_var_4296_ptr;
+  *puVar5 = &processed_var_4296_ptr;
   *(uint64_t **)(param_1 + 0x8e8) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_5856_ptr,0x280,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&processed_var_5856_ptr,0x280,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -229,15 +229,15 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   uVar7 = *(uint64_t *)(param_1 + 0x78);
   uVar1 = *(uint64_t *)(param_1 + 0x90);
   puVar5[1] = param_1 + 0x418;
-  puVar5[3] = &unknown_var_4284_ptr;
+  puVar5[3] = &processed_var_4284_ptr;
   puVar5[4] = uVar7;
-  *puVar5 = &unknown_var_4384_ptr;
+  *puVar5 = &processed_var_4384_ptr;
   puVar5[2] = uVar1;
   *(uint64_t **)(param_1 + 0x8f0) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_5856_ptr,0x281,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&processed_var_5856_ptr,0x281,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -246,15 +246,15 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   uVar7 = *(uint64_t *)(param_1 + 0x78);
   uVar1 = *(uint64_t *)(param_1 + 0x90);
   puVar5[1] = param_1 + 0x448;
-  puVar5[3] = &unknown_var_292_ptr;
+  puVar5[3] = &rendering_buffer_292_ptr;
   puVar5[4] = uVar7;
-  *puVar5 = &unknown_var_4424_ptr;
+  *puVar5 = &processed_var_4424_ptr;
   puVar5[2] = uVar1;
   *(uint64_t **)(param_1 + 0x8f8) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_5856_ptr,0x282,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&processed_var_5856_ptr,0x282,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -263,13 +263,13 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   uVar7 = *(uint64_t *)(param_1 + 0x90);
   puVar5[1] = param_1 + 0x478;
   puVar5[2] = uVar7;
-  puVar5[3] = &unknown_var_4292_ptr;
-  *puVar5 = &unknown_var_4424_ptr;
+  puVar5[3] = &processed_var_4292_ptr;
+  *puVar5 = &processed_var_4424_ptr;
   *(uint64_t **)(param_1 + 0x900) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_5856_ptr,0x283,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&processed_var_5856_ptr,0x283,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -278,13 +278,13 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   uVar7 = *(uint64_t *)(param_1 + 0x90);
   puVar5[1] = param_1 + 0x4a8;
   puVar5[2] = uVar7;
-  puVar5[3] = &unknown_var_4300_ptr;
-  *puVar5 = &unknown_var_4424_ptr;
+  puVar5[3] = &processed_var_4300_ptr;
+  *puVar5 = &processed_var_4424_ptr;
   *(uint64_t **)(param_1 + 0x908) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_5856_ptr,0x284,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&processed_var_5856_ptr,0x284,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -293,14 +293,14 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   uVar7 = *(uint64_t *)(param_1 + 0x90);
   puVar5[1] = param_1 + 0x4d8;
   puVar5[2] = uVar7;
-  puVar5[3] = &unknown_var_4308_ptr;
+  puVar5[3] = &processed_var_4308_ptr;
   puVar5[4] = param_1;
-  *puVar5 = &unknown_var_4464_ptr;
+  *puVar5 = &processed_var_4464_ptr;
   *(uint64_t **)(param_1 + 0x910) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_5856_ptr,0x285,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&processed_var_5856_ptr,0x285,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -309,13 +309,13 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   uVar7 = *(uint64_t *)(param_1 + 0x90);
   puVar5[1] = param_1 + 0x328;
   puVar5[2] = uVar7;
-  puVar5[3] = &unknown_var_4252_ptr;
-  *puVar5 = &unknown_var_4248_ptr;
+  puVar5[3] = &processed_var_4252_ptr;
+  *puVar5 = &processed_var_4248_ptr;
   *(uint64_t **)(param_1 + 0x8c8) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_5856_ptr,0x286,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&processed_var_5856_ptr,0x286,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -324,12 +324,12 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   puVar5[2] = 0;
   puVar5[1] = param_1 + 0x838;
   puVar5[3] = 0;
-  *puVar5 = &unknown_var_4504_ptr;
+  *puVar5 = &processed_var_4504_ptr;
   *(uint64_t **)(param_1 + 0xa88) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_5856_ptr,0x287,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&processed_var_5856_ptr,0x287,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -338,14 +338,14 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   uVar7 = *(uint64_t *)(param_1 + 0xa88);
   puVar5[1] = param_1 + 0x508;
   puVar5[2] = 0;
-  *puVar5 = &unknown_var_4504_ptr;
+  *puVar5 = &processed_var_4504_ptr;
   puVar5[3] = 0;
   puVar5[4] = uVar7;
   *(uint64_t **)(param_1 + 0x918) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_5856_ptr,0x288,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&processed_var_5856_ptr,0x288,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -354,12 +354,12 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   puVar5[2] = 0;
   puVar5[1] = param_1 + 0x868;
   puVar5[3] = 0;
-  *puVar5 = &unknown_var_4424_ptr;
+  *puVar5 = &processed_var_4424_ptr;
   *(uint64_t **)(param_1 + 0xa90) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_5856_ptr,0x289,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&processed_var_5856_ptr,0x289,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -368,25 +368,25 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   puVar5[2] = 0;
   puVar5[1] = param_1 + 0x748;
   puVar5[3] = 0;
-  *puVar5 = &unknown_var_4424_ptr;
+  *puVar5 = &processed_var_4424_ptr;
   *(uint64_t **)(param_1 + 0xa98) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x18,&unknown_var_5856_ptr,0x28a,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x18,&processed_var_5856_ptr,0x28a,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
   puVar5[2] = param_1;
-  *puVar5 = &unknown_var_4672_ptr;
+  *puVar5 = &processed_var_4672_ptr;
   puVar5[1] = param_1 + 0x898;
   *(uint64_t **)(param_1 + 0xaa0) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&unknown_var_5856_ptr,0x28b,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x28,&processed_var_5856_ptr,0x28b,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -395,14 +395,14 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   uVar7 = *(uint64_t *)(param_1 + 0xa88);
   puVar5[1] = param_1 + 0x718;
   puVar5[2] = 0;
-  *puVar5 = &unknown_var_4424_ptr;
+  *puVar5 = &processed_var_4424_ptr;
   puVar5[3] = 0;
   puVar5[4] = uVar7;
   *(uint64_t **)(param_1 + 0xa70) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&unknown_var_5856_ptr,0x28d,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&processed_var_5856_ptr,0x28d,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -413,18 +413,18 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   uVar2 = *(uint64_t *)(param_1 + 0x918);
   uVar3 = *(uint64_t *)(param_1 + 0x90);
   puVar5[1] = param_1 + 0x778;
-  puVar5[3] = &unknown_var_4332_ptr;
+  puVar5[3] = &processed_var_4332_ptr;
   puVar5[4] = uVar1;
   puVar5[5] = uVar2;
   puVar5[6] = uVar7;
-  *puVar5 = &unknown_var_4632_ptr;
+  *puVar5 = &processed_var_4632_ptr;
   puVar5[2] = uVar3;
   puVar5[7] = param_1;
   *(uint64_t **)(param_1 + 0xa60) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_5856_ptr,0x28e,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&processed_var_5856_ptr,0x28e,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -433,13 +433,13 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   uVar7 = *(uint64_t *)(param_1 + 0x90);
   puVar5[1] = param_1 + 0x7a8;
   puVar5[2] = uVar7;
-  puVar5[3] = &unknown_var_4340_ptr;
-  *puVar5 = &unknown_var_4424_ptr;
+  puVar5[3] = &processed_var_4340_ptr;
+  *puVar5 = &processed_var_4424_ptr;
   *(uint64_t **)(param_1 + 0xa68) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_5856_ptr,0x28f,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&processed_var_5856_ptr,0x28f,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -448,13 +448,13 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   uVar7 = *(uint64_t *)(param_1 + 0x90);
   puVar5[1] = param_1 + 0x7d8;
   puVar5[2] = uVar7;
-  puVar5[3] = &unknown_var_4348_ptr;
-  *puVar5 = &unknown_var_4424_ptr;
+  puVar5[3] = &processed_var_4348_ptr;
+  *puVar5 = &processed_var_4424_ptr;
   *(uint64_t **)(param_1 + 0xa78) = puVar5;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
   puVar5 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_5856_ptr,0x290,
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&processed_var_5856_ptr,0x290,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
   if (puVar5 == (uint64_t *)0x0) {
     iVar4 = 0x26;
@@ -462,8 +462,8 @@ int FUN_18087cbd0(int64_t param_1,int32_t param_2,uint64_t param_3,uint param_4,
   }
   uVar7 = *(uint64_t *)(param_1 + 0x90);
   puVar5[1] = param_1 + 0x808;
-  puVar5[3] = &unknown_var_4356_ptr;
-  *puVar5 = &unknown_var_4424_ptr;
+  puVar5[3] = &processed_var_4356_ptr;
+  *puVar5 = &processed_var_4424_ptr;
   puVar5[2] = uVar7;
   *(uint64_t **)(param_1 + 0xa80) = puVar5;
   *(int64_t *)(*(int64_t *)(param_1 + 800) + 8) = param_1;
@@ -500,7 +500,7 @@ LAB_18087d6e3:
     }
   }
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  lVar6 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x538,&unknown_var_5856_ptr,0x2b3,
+  lVar6 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x538,&processed_var_5856_ptr,0x2b3,
                         in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0 & 0xffffffffffffff00,1);
   uVar17 = (int32_t)(in_stack_ffffffffffffff98 >> 0x20);
   if (lVar6 == 0) {
@@ -526,7 +526,7 @@ LAB_18087d6e3:
                                 *(uint64_t *)(param_1 + 800),uVar10,uVar16,param_1 + 0x60,uVar11,
                                 *(int32_t *)(param_1 + 0x2d0),*(int32_t *)(param_1 + 0x2d4));
           if (iVar4 == 0) {
-            lVar6 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x70,&unknown_var_5856_ptr,0x2c6,
+            lVar6 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x70,&processed_var_5856_ptr,0x2c6,
                                   uVar16 & 0xffffffff00000000,0,1);
             if (lVar6 == 0) {
               iVar4 = 0x26;
@@ -612,7 +612,7 @@ LAB_18087d6e3:
                   *(uint64_t *)(param_1 + 600) = *(uint64_t *)(param_1 + 0x108);
                   *(uint64_t *)(param_1 + 0x2b4) = *(uint64_t *)(param_1 + 0x260);
                   *(int32_t *)(param_1 + 700) = *(int32_t *)(param_1 + 0x268);
-                  lVar6 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x1a8,&unknown_var_5856_ptr
+                  lVar6 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x1a8,&processed_var_5856_ptr
                                         ,0x2e5,uVar16 & 0xffffffff00000000,
                                         uVar10 & 0xffffffffffffff00,1);
                   if (lVar6 == 0) {

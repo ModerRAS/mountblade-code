@@ -180,8 +180,8 @@ void UI_RenderController(void)
   // 执行渲染指令分发
   // WARNING: Could not recover jumptable at 0x000180839a3d. Too many branches
   // WARNING: Treating indirect jump as call
-  (*(code *)((uint64_t)*(uint *)(&unknown_var_6400_ptr + in_RAX * 4) + 0x180000000))
-          ((code *)((uint64_t)*(uint *)(&unknown_var_6400_ptr + in_RAX * 4) + 0x180000000));
+  (*(code *)((uint64_t)*(uint *)(&processed_var_6400_ptr + in_RAX * 4) + 0x180000000))
+          ((code *)((uint64_t)*(uint *)(&processed_var_6400_ptr + in_RAX * 4) + 0x180000000));
   return;
 }
 
@@ -485,10 +485,10 @@ uint64_t UI_TextureProcessor(int64_t *param_1,int64_t param_2,int *param_3,int64
             iRam0000000180c4ea74 = iVar7 >> 0x14;
             iRam0000000180c4ea78 = iVar8 >> 0x14;
             iRam0000000180c4ea7c = iVar17 >> 0x14;
-            fVar2 = *(float *)(&unknown_var_5936_ptr + (int64_t)iRam0000000180c4ea74 * 4);
-            fVar3 = *(float *)(&unknown_var_5936_ptr + (int64_t)ui_system_memory * 4);
-            fVar4 = *(float *)(&unknown_var_5936_ptr + (int64_t)iRam0000000180c4ea78 * 4);
-            *pfVar11 = *(float *)(&unknown_var_5936_ptr + (int64_t)iRam0000000180c4ea7c * 4) * *pfVar11;
+            fVar2 = *(float *)(&processed_var_5936_ptr + (int64_t)iRam0000000180c4ea74 * 4);
+            fVar3 = *(float *)(&processed_var_5936_ptr + (int64_t)ui_system_memory * 4);
+            fVar4 = *(float *)(&processed_var_5936_ptr + (int64_t)iRam0000000180c4ea78 * 4);
+            *pfVar11 = *(float *)(&processed_var_5936_ptr + (int64_t)iRam0000000180c4ea7c * 4) * *pfVar11;
             pfVar11[1] = fVar4 * pfVar11[1];
             pfVar11[2] = fVar2 * pfVar11[2];
             pfVar11[3] = fVar3 * pfVar11[3];
@@ -503,7 +503,7 @@ uint64_t UI_TextureProcessor(int64_t *param_1,int64_t param_2,int *param_3,int64
           for (uVar10 = uVar21 - uVar10 & 3; uVar10 != 0; uVar10 = uVar10 - 1) {
             lVar13 = (int64_t)iVar17;
             iVar17 = iVar17 + iVar5;
-            *pfVar11 = *(float *)(&unknown_var_5936_ptr + (lVar13 >> 0x14) * 4) * *pfVar11;
+            *pfVar11 = *(float *)(&processed_var_5936_ptr + (lVar13 >> 0x14) * 4) * *pfVar11;
             pfVar11 = pfVar11 + 1;
           }
           uVar20 = (uint64_t)uVar9;
@@ -527,10 +527,10 @@ uint64_t UI_TextureProcessor(int64_t *param_1,int64_t param_2,int *param_3,int64
         lVar23 = lVar23 + lVar14 * 4;
         pfVar11 = (float *)(param_4 + 8 + lVar1);
         do {
-          pfVar11[-2] = pfVar11[-2] * *(float *)(&unknown_var_5936_ptr + lVar19 * 4);
-          pfVar11[-1] = pfVar11[-1] * *(float *)(&unknown_var_5936_ptr + lVar19 * 4);
-          *pfVar11 = *pfVar11 * *(float *)(&unknown_var_5936_ptr + lVar19 * 4);
-          pfVar11[1] = pfVar11[1] * *(float *)(&unknown_var_5936_ptr + lVar19 * 4);
+          pfVar11[-2] = pfVar11[-2] * *(float *)(&processed_var_5936_ptr + lVar19 * 4);
+          pfVar11[-1] = pfVar11[-1] * *(float *)(&processed_var_5936_ptr + lVar19 * 4);
+          *pfVar11 = *pfVar11 * *(float *)(&processed_var_5936_ptr + lVar19 * 4);
+          pfVar11[1] = pfVar11[1] * *(float *)(&processed_var_5936_ptr + lVar19 * 4);
           lVar14 = lVar14 + -1;
           pfVar11 = pfVar11 + 4;
         } while (lVar14 != 0);
@@ -538,7 +538,7 @@ uint64_t UI_TextureProcessor(int64_t *param_1,int64_t param_2,int *param_3,int64
       if (lVar23 < lVar13) {
         do {
           *(float *)(param_4 + lVar23 * 4) =
-               *(float *)(param_4 + lVar23 * 4) * *(float *)(&unknown_var_5936_ptr + (int64_t)iVar17 * 4);
+               *(float *)(param_4 + lVar23 * 4) * *(float *)(&processed_var_5936_ptr + (int64_t)iVar17 * 4);
           lVar23 = lVar23 + 1;
         } while (lVar23 < lVar13);
       }
@@ -631,10 +631,10 @@ uint64_t UI_PixelTransformer(uint64_t param_1,uint64_t param_2,int *param_3)
           iRam0000000180c4ea74 = iVar8 >> 0x14;
           iRam0000000180c4ea78 = iVar9 >> 0x14;
           iRam0000000180c4ea7c = iVar17 >> 0x14;
-          fVar2 = *(float *)(&unknown_var_5936_ptr + (int64_t)iRam0000000180c4ea74 * 4);
-          fVar3 = *(float *)(&unknown_var_5936_ptr + (int64_t)ui_system_memory * 4);
-          fVar4 = *(float *)(&unknown_var_5936_ptr + (int64_t)iRam0000000180c4ea78 * 4);
-          *pfVar10 = *(float *)(&unknown_var_5936_ptr + (int64_t)iRam0000000180c4ea7c * 4) * *pfVar10;
+          fVar2 = *(float *)(&processed_var_5936_ptr + (int64_t)iRam0000000180c4ea74 * 4);
+          fVar3 = *(float *)(&processed_var_5936_ptr + (int64_t)ui_system_memory * 4);
+          fVar4 = *(float *)(&processed_var_5936_ptr + (int64_t)iRam0000000180c4ea78 * 4);
+          *pfVar10 = *(float *)(&processed_var_5936_ptr + (int64_t)iRam0000000180c4ea7c * 4) * *pfVar10;
           pfVar10[1] = fVar4 * pfVar10[1];
           pfVar10[2] = fVar2 * pfVar10[2];
           pfVar10[3] = fVar3 * pfVar10[3];
@@ -651,7 +651,7 @@ uint64_t UI_PixelTransformer(uint64_t param_1,uint64_t param_2,int *param_3)
             uVar19 = uVar21, in_R10D = in_stack_00000070, uVar20 != 0; uVar20 = uVar20 - 1) {
           lVar12 = (int64_t)iVar17;
           iVar17 = iVar17 + iVar6;
-          *pfVar10 = *(float *)(&unknown_var_5936_ptr + (lVar12 >> 0x14) * 4) * *pfVar10;
+          *pfVar10 = *(float *)(&processed_var_5936_ptr + (lVar12 >> 0x14) * 4) * *pfVar10;
           pfVar10 = pfVar10 + 1;
         }
       }
@@ -671,10 +671,10 @@ uint64_t UI_PixelTransformer(uint64_t param_1,uint64_t param_2,int *param_3)
       lVar22 = lVar22 + lVar13 * 4;
       pfVar10 = (float *)(unaff_R14 + 8 + lVar1);
       do {
-        pfVar10[-2] = pfVar10[-2] * *(float *)(&unknown_var_5936_ptr + lVar18 * 4);
-        pfVar10[-1] = pfVar10[-1] * *(float *)(&unknown_var_5936_ptr + lVar18 * 4);
-        *pfVar10 = *pfVar10 * *(float *)(&unknown_var_5936_ptr + lVar18 * 4);
-        pfVar10[1] = pfVar10[1] * *(float *)(&unknown_var_5936_ptr + lVar18 * 4);
+        pfVar10[-2] = pfVar10[-2] * *(float *)(&processed_var_5936_ptr + lVar18 * 4);
+        pfVar10[-1] = pfVar10[-1] * *(float *)(&processed_var_5936_ptr + lVar18 * 4);
+        *pfVar10 = *pfVar10 * *(float *)(&processed_var_5936_ptr + lVar18 * 4);
+        pfVar10[1] = pfVar10[1] * *(float *)(&processed_var_5936_ptr + lVar18 * 4);
         lVar13 = lVar13 + -1;
         pfVar10 = pfVar10 + 4;
       } while (lVar13 != 0);
@@ -682,7 +682,7 @@ uint64_t UI_PixelTransformer(uint64_t param_1,uint64_t param_2,int *param_3)
     if (lVar22 < lVar12) {
       do {
         *(float *)(unaff_R14 + lVar22 * 4) =
-             *(float *)(unaff_R14 + lVar22 * 4) * *(float *)(&unknown_var_5936_ptr + (int64_t)iVar16 * 4);
+             *(float *)(unaff_R14 + lVar22 * 4) * *(float *)(&processed_var_5936_ptr + (int64_t)iVar16 * 4);
         lVar22 = lVar22 + 1;
       } while (lVar22 < lVar12);
     }
@@ -771,10 +771,10 @@ uint64_t UI_ColorProcessor(uint64_t param_1,uint64_t param_2,int64_t param_3,uin
         iRam0000000180c4ea74 = iVar8 >> 0x14;
         iRam0000000180c4ea78 = iVar9 >> 0x14;
         iRam0000000180c4ea7c = iVar17 >> 0x14;
-        fVar2 = *(float *)(&unknown_var_5936_ptr + (int64_t)iRam0000000180c4ea74 * 4);
-        fVar3 = *(float *)(&unknown_var_5936_ptr + (int64_t)ui_system_memory * 4);
-        fVar4 = *(float *)(&unknown_var_5936_ptr + (int64_t)iRam0000000180c4ea78 * 4);
-        *pfVar10 = *(float *)(&unknown_var_5936_ptr + (int64_t)iRam0000000180c4ea7c * 4) * *pfVar10;
+        fVar2 = *(float *)(&processed_var_5936_ptr + (int64_t)iRam0000000180c4ea74 * 4);
+        fVar3 = *(float *)(&processed_var_5936_ptr + (int64_t)ui_system_memory * 4);
+        fVar4 = *(float *)(&processed_var_5936_ptr + (int64_t)iRam0000000180c4ea78 * 4);
+        *pfVar10 = *(float *)(&processed_var_5936_ptr + (int64_t)iRam0000000180c4ea7c * 4) * *pfVar10;
         pfVar10[1] = fVar4 * pfVar10[1];
         pfVar10[2] = fVar2 * pfVar10[2];
         pfVar10[3] = fVar3 * pfVar10[3];
@@ -791,7 +791,7 @@ uint64_t UI_ColorProcessor(uint64_t param_1,uint64_t param_2,int64_t param_3,uin
           param_4 = unaff_R12D, in_R10D = in_stack_00000070, uVar14 != 0; uVar14 = uVar14 - 1) {
         lVar12 = (int64_t)iVar17;
         iVar17 = iVar17 + iVar6;
-        *pfVar10 = *(float *)(&unknown_var_5936_ptr + (lVar12 >> 0x14) * 4) * *pfVar10;
+        *pfVar10 = *(float *)(&processed_var_5936_ptr + (lVar12 >> 0x14) * 4) * *pfVar10;
         pfVar10 = pfVar10 + 1;
       }
     }
@@ -810,10 +810,10 @@ uint64_t UI_ColorProcessor(uint64_t param_1,uint64_t param_2,int64_t param_3,uin
       lVar12 = lVar12 + lVar13 * 4;
       pfVar10 = (float *)(unaff_R14 + 8 + lVar1);
       do {
-        pfVar10[-2] = pfVar10[-2] * *(float *)(&unknown_var_5936_ptr + lVar18 * 4);
-        pfVar10[-1] = pfVar10[-1] * *(float *)(&unknown_var_5936_ptr + lVar18 * 4);
-        *pfVar10 = *pfVar10 * *(float *)(&unknown_var_5936_ptr + lVar18 * 4);
-        pfVar10[1] = pfVar10[1] * *(float *)(&unknown_var_5936_ptr + lVar18 * 4);
+        pfVar10[-2] = pfVar10[-2] * *(float *)(&processed_var_5936_ptr + lVar18 * 4);
+        pfVar10[-1] = pfVar10[-1] * *(float *)(&processed_var_5936_ptr + lVar18 * 4);
+        *pfVar10 = *pfVar10 * *(float *)(&processed_var_5936_ptr + lVar18 * 4);
+        pfVar10[1] = pfVar10[1] * *(float *)(&processed_var_5936_ptr + lVar18 * 4);
         lVar13 = lVar13 + -1;
         pfVar10 = pfVar10 + 4;
       } while (lVar13 != 0);
@@ -822,7 +822,7 @@ uint64_t UI_ColorProcessor(uint64_t param_1,uint64_t param_2,int64_t param_3,uin
       do {
         *(float *)(unaff_R14 + lVar12 * 4) =
              *(float *)(unaff_R14 + lVar12 * 4) *
-             *(float *)(&unknown_var_5936_ptr + (int64_t)unaff_ESI * 4);
+             *(float *)(&processed_var_5936_ptr + (int64_t)unaff_ESI * 4);
         lVar12 = lVar12 + 1;
       } while (lVar12 < lVar19);
     }

@@ -27,124 +27,124 @@ int64_t * FUN_180632160(int64_t *param_1,int32_t param_2,uint64_t param_3,uint64
   *(int32_t *)(param_1 + 2) = 0;
   switch(param_2) {
   case 0:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_3436_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&memory_allocator_3436_ptr);
     return param_1;
   case 1:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_5756_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&processed_var_5756_ptr);
     return param_1;
   case 2:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_5648_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&processed_var_5648_ptr);
     return param_1;
   case 3:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_5624_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&processed_var_5624_ptr);
     return param_1;
   case 4:
     (**(code **)(*param_1 + 0x10))(param_1,&system_param2_ptr);
     return param_1;
   case 5:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_5680_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&processed_var_5680_ptr);
     return param_1;
   case 6:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_128_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&ui_system_data_128_ptr);
     return param_1;
   case 7:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_2520_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&rendering_buffer_2520_ptr);
     return param_1;
   case 8:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_5664_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&processed_var_5664_ptr);
     return param_1;
   case 9:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_7008_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&processed_var_7008_ptr);
     return param_1;
   case 10:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_5872_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&processed_var_5872_ptr);
     return param_1;
   case 0xb:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_5856_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&processed_var_5856_ptr);
     return param_1;
   case 0xc:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_3680_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&memory_allocator_3680_ptr);
     return param_1;
   case 0xd:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_3712_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&memory_allocator_3712_ptr);
     return param_1;
   case 0xe:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_9336_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&processed_var_9336_ptr);
     return param_1;
   case 0xf:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_3616_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&memory_allocator_3616_ptr);
     return param_1;
   case 0x10:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_3648_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&memory_allocator_3648_ptr);
     return param_1;
   case 0x11:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_3792_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&memory_allocator_3792_ptr);
     return param_1;
   case 0x12:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_5884_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&processed_var_5884_ptr);
     return param_1;
   case 0x13:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_5800_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&processed_var_5800_ptr);
     return param_1;
   case 0x14:
     (**(code **)(*param_1 + 0x10))(param_1,&system_data_aea0);
     return param_1;
   case 0x15:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_2928_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&rendering_buffer_2928_ptr);
     return param_1;
   case 0x16:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_1088_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&ui_system_data_1088_ptr);
     return param_1;
   case 0x17:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_1696_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&ui_system_data_1696_ptr);
     return param_1;
   case 0x18:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_3896_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&memory_allocator_3896_ptr);
     return param_1;
   case 0x19:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_4032_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&processed_var_4032_ptr);
     return param_1;
   case 0x1a:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_1296_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&ui_system_data_1296_ptr);
     return param_1;
   case 0x1b:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_5864_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&processed_var_5864_ptr);
     return param_1;
   case 0x1c:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_5896_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&processed_var_5896_ptr);
     return param_1;
   case 0x1d:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_1760_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&ui_system_data_1760_ptr);
     return param_1;
   case 0x1e:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_5784_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&processed_var_5784_ptr);
     return param_1;
   case 0x1f:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_1456_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&ui_system_data_1456_ptr);
     return param_1;
   case 0x20:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_5840_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&processed_var_5840_ptr);
     return param_1;
   case 0x21:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_5816_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&processed_var_5816_ptr);
     return param_1;
   case 0x22:
     (**(code **)(*param_1 + 0x10))(param_1,&system_data_c5e8);
     return param_1;
   case 0x23:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_3584_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&memory_allocator_3584_ptr);
     return param_1;
   case 0x24:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_1160_ptr);
+    (**(code **)(*param_1 + 0x10))(param_1,&ui_system_data_1160_ptr);
     return param_1;
   case 0x25:
     (**(code **)(*param_1 + 0x10))(param_1,&system_data_fce0);
     return param_1;
   case 0x26:
-    (**(code **)(*param_1 + 0x10))(param_1,&unknown_var_3488_ptr,0x180000000,param_4,1,0xfffffffffffffffe);
+    (**(code **)(*param_1 + 0x10))(param_1,&memory_allocator_3488_ptr,0x180000000,param_4,1,0xfffffffffffffffe);
     return param_1;
   default:
-    FUN_180626ee0(&unknown_var_5920_ptr);
+    FUN_180626ee0(&processed_var_5920_ptr);
     return param_1;
   }
 }
@@ -191,7 +191,7 @@ uint64_t * FUN_180632650(int64_t param_1,int64_t param_2)
     if (pcVar2 == pcVar8 + -0x180a0696b) {
       pcVar2 = pcVar2 + (int64_t)pcVar7;
       if (pcVar2 <= pcVar7) break;
-      lVar5 = (int64_t)&unknown_var_3692_ptr - (int64_t)pcVar7;
+      lVar5 = (int64_t)&memory_allocator_3692_ptr - (int64_t)pcVar7;
       while (*pcVar7 == pcVar7[lVar5]) {
         pcVar7 = pcVar7 + 1;
         if (pcVar2 <= pcVar7) goto LAB_180632700;
@@ -448,7 +448,7 @@ void FUN_180632aa0(char *param_1)
     }
   }
   if (*param_1 == '\0') {
-    FUN_180626ee0(&unknown_var_5944_ptr);
+    FUN_180626ee0(&processed_var_5944_ptr);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_1d8);

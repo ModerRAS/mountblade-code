@@ -56,7 +56,7 @@ void FUN_18078ea55(void)
   if (in_ZF) {
     if ((in_R11D >> 0x10 & 1) == 0) {
       uVar22 = CONCAT44(uVar5,(int)unaff_R14);
-      lVar6 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x160,&unknown_var_1936_ptr,0x445,
+      lVar6 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x160,&ui_system_data_1936_ptr,0x445,
                             uVar22);
       uVar5 = (uint)((uint64_t)uVar22 >> 0x20);
       if ((lVar6 == 0) || (lVar6 = FUN_1807f7c50(lVar6), lVar6 == 0)) {
@@ -108,7 +108,7 @@ void FUN_18078ea55(void)
       unaff_RBP[-5] = unaff_R14;
       if ((in_R11D >> 0x10 & 1) == 0) {
         uVar22 = CONCAT44(uVar5,(int)unaff_R14);
-        lVar6 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x198,&unknown_var_1936_ptr,0x47a,
+        lVar6 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x198,&ui_system_data_1936_ptr,0x47a,
                               uVar22);
         uVar5 = (uint)((uint64_t)uVar22 >> 0x20);
         if (lVar6 != 0) {
@@ -275,7 +275,7 @@ LAB_18078ec15:
             if (iVar4 != 0) goto LAB_18078f72d;
             plVar23 = (int64_t *)unaff_RBP[-0xb];
           }
-          lVar6 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),200,&unknown_var_1936_ptr,0x516,
+          lVar6 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),200,&ui_system_data_1936_ptr,0x516,
                                 uVar15 & 0xffffffff00000000);
           if (lVar6 != 0) {
             lVar6 = FUN_1807f3070(lVar6);
@@ -307,7 +307,7 @@ LAB_18078f72d:
     if (0 < iStack0000000000000064) {
       if ((in_R11D >> 0x10 & 1) == 0) {
         in_stack_00000020 = (uint64_t)uVar5 << 0x20;
-        lVar6 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x160,&unknown_var_1936_ptr,0x63b,
+        lVar6 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x160,&ui_system_data_1936_ptr,0x63b,
                               in_stack_00000020);
         if (lVar6 != 0) {
           plVar10 = (int64_t *)FUN_1807f7c50(lVar6);
@@ -591,7 +591,7 @@ LAB_18078fd4b:
         FUN_180769080(*(uint64_t *)(in_stack_00000068 + 0x170));
                     // WARNING: Subroutine does not return
         SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
-                      *(uint64_t *)(in_stack_00000068 + 0x170),&unknown_var_1936_ptr,0x752,1);
+                      *(uint64_t *)(in_stack_00000068 + 0x170),&ui_system_data_1936_ptr,0x752,1);
       }
       if (*(int64_t *)(in_stack_00000068 + 0x120) != 0) {
         *(uint64_t *)(*(int64_t *)(in_stack_00000068 + 0x120) + 0x170) = 0;
@@ -633,11 +633,11 @@ LAB_18078fd4b:
      (((char *)plVar10[6] == (char *)0x0 || (*(char *)plVar10[6] == cVar21)))) {
     cStack0000000000000054 = '\x01';
     if ((*(int64_t *)(in_stack_00000068 + 0x168) != 0) &&
-       (((iVar4 = FUN_1807d86d0(*(int64_t *)(in_stack_00000068 + 0x168),&unknown_var_2124_ptr,0,
+       (((iVar4 = FUN_1807d86d0(*(int64_t *)(in_stack_00000068 + 0x168),&rendering_buffer_2124_ptr,0,
                                 unaff_RBP + 6), iVar4 == 0 ||
-         (iVar4 = FUN_1807d86d0(*(uint64_t *)(in_stack_00000068 + 0x168),&unknown_var_2132_ptr,0,
+         (iVar4 = FUN_1807d86d0(*(uint64_t *)(in_stack_00000068 + 0x168),&rendering_buffer_2132_ptr,0,
                                 unaff_RBP + 6), iVar4 == 0)) ||
-        (iVar4 = FUN_1807d86d0(*(uint64_t *)(in_stack_00000068 + 0x168),&unknown_var_2136_ptr,0,
+        (iVar4 = FUN_1807d86d0(*(uint64_t *)(in_stack_00000068 + 0x168),&rendering_buffer_2136_ptr,0,
                                unaff_RBP + 6), iVar4 == 0)))) {
       iVar4 = *(int *)((int64_t)unaff_RBP + 0x34);
       if (iVar4 == 4) {
@@ -718,7 +718,7 @@ LAB_1807901f2:
     SystemSecurityChecker(unaff_RBP[0x854] ^ (uint64_t)&stack0x00000000);
   }
                     // WARNING: Subroutine does not return
-  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar7,&unknown_var_2144_ptr,0xb8,1);
+  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar7,&rendering_buffer_2144_ptr,0xb8,1);
 }
 
 

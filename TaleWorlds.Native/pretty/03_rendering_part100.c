@@ -230,7 +230,7 @@ uint64_t FUN_1803277f0(int64_t param_1)
   FUN_18032bd90(param_1,&puStack_90,&puStack_70,*(int32_t *)(param_1 + 0x150),2,
                 uVar9 & 0xffffffffffffff00);
   ppuStack_48 = &puStack_90;
-  puStack_40 = &unknown_var_6576_ptr;
+  puStack_40 = &processed_var_6576_ptr;
   pcStack_38 = FUN_18033ced0;
   lStack_50 = param_1;
   FUN_18015b810(&lStack_50,0,(int64_t)puStack_88 - (int64_t)puStack_90 >> 2 & 0xffffffff,0x10,
@@ -460,7 +460,7 @@ uint64_t FUN_180327e70(int64_t param_1,uint64_t param_2,int64_t *param_3,char pa
     }
   }
   else {
-    puStack_50 = &unknown_var_6576_ptr;
+    puStack_50 = &processed_var_6576_ptr;
     pcStack_48 = FUN_18033ced0;
     uStack_70 = (int32_t)param_1;
     uStack_6c = (int32_t)((uint64_t)param_1 >> 0x20);
@@ -566,7 +566,7 @@ LAB_1803281b2:
     do {
       if ((*(int *)(lVar10 + 0x48) < render_system_config_memory) &&
          (SystemInitializer(&system_ptr_8e24), render_system_config_memory == -1)) {
-        render_system_config_memory = &unknown_var_3480_ptr;
+        render_system_config_memory = &memory_allocator_3480_ptr;
         render_system_config_memory = &system_ptr_8e78;
         render_system_config_memory = 0;
 

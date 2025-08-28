@@ -205,7 +205,7 @@ void rendering_system_advanced_initializer(int64_t param_1, int64_t param_2, int
             resource_allocator = stack_resources;
             resource_size2 = &context_size;
             cleanup_callback = FUN_1803089a0;
-            global_data = &unknown_var_1888_ptr;
+            global_data = &ui_system_data_1888_ptr;
             context_offset = param_1;
             resource_array[0] = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x38, 8, system_allocation_flags);
             
@@ -617,7 +617,7 @@ bool rendering_system_visibility_checker(uint64_t param_1, int64_t *param_2, int
   (**(code **)(*param_2 + 0x218))(param_2);
   
   // 获取可见性掩码
-  if ((void *)*param_2 == &unknown_var_1008_ptr) {
+  if ((void *)*param_2 == &ui_system_data_1008_ptr) {
     visibility_mask = *(uint *)((int64_t)param_2 + 0x174);
   }
   else {

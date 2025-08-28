@@ -162,7 +162,7 @@ void RegisterComponent(void)
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
-  puVar7[8] = &unknown_var_7680_ptr;
+  puVar7[8] = &processed_var_7680_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -190,7 +190,7 @@ void FUN_180035d40(void)
   plVar4 = (int64_t *)RenderGraphicsManager();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  puStackX_18 = &unknown_var_2048_ptr;
+  puStackX_18 = &rendering_buffer_2048_ptr;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -213,7 +213,7 @@ void FUN_180035d40(void)
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
-  puVar7[8] = &unknown_var_7704_ptr;
+  puVar7[8] = &processed_var_7704_ptr;
   puVar7[9] = 0;
   puVar7[10] = puStackX_18;
   return;
@@ -264,7 +264,7 @@ void FUN_180035e40(void)
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
-  puVar7[8] = &unknown_var_7728_ptr;
+  puVar7[8] = &processed_var_7728_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -315,7 +315,7 @@ void FUN_180035f50(void)
   }
   puVar7[6] = 0x449bafe9b77ddd3c;
   puVar7[7] = 0xc160408bde99e59f;
-  puVar7[8] = &unknown_var_7776_ptr;
+  puVar7[8] = &processed_var_7776_ptr;
   puVar7[9] = 0;
   puVar7[10] = pcStackX_18;
   return;
@@ -366,7 +366,7 @@ void FUN_180036050(void)
   }
   puVar7[6] = 0x45425dc186a5d575;
   puVar7[7] = 0xfab48faa65382fa5;
-  puVar7[8] = &unknown_var_7824_ptr;
+  puVar7[8] = &processed_var_7824_ptr;
   puVar7[9] = 0;
   puVar7[10] = pcStackX_18;
   return;
@@ -417,7 +417,7 @@ void FUN_180036150(void)
   }
   puVar7[6] = 0x40db4257e97d3df8;
   puVar7[7] = 0x81d539e33614429f;
-  puVar7[8] = &unknown_var_7896_ptr;
+  puVar7[8] = &processed_var_7896_ptr;
   puVar7[9] = 4;
   puVar7[10] = pcStackX_18;
   return;
@@ -468,7 +468,7 @@ void FUN_180036250(void)
   }
   puVar7[6] = 0x4e33c4803e67a08f;
   puVar7[7] = 0x703a29a844ce399;
-  puVar7[8] = &unknown_var_7920_ptr;
+  puVar7[8] = &processed_var_7920_ptr;
   puVar7[9] = 3;
   puVar7[10] = pcStackX_18;
   return;
@@ -519,7 +519,7 @@ void FUN_180036350(void)
   }
   puVar7[6] = 0x42bea5b911d9c4bf;
   puVar7[7] = 0x1aa83fc0020dc1b6;
-  puVar7[8] = &unknown_var_4632_ptr;
+  puVar7[8] = &processed_var_4632_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -570,7 +570,7 @@ void FUN_180036450(void)
   }
   puVar7[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &unknown_var_7584_ptr;
+  puVar7[8] = &processed_var_7584_ptr;
   puVar7[9] = 1;
   puVar7[10] = pcStackX_18;
   return;
@@ -621,7 +621,7 @@ void FUN_180036550(void)
   }
   puVar7[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &unknown_var_7608_ptr;
+  puVar7[8] = &processed_var_7608_ptr;
   puVar7[9] = 4;
   puVar7[10] = pcStackX_18;
   return;
@@ -672,7 +672,7 @@ void FUN_180036650(void)
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
-  puVar7[8] = &unknown_var_7632_ptr;
+  puVar7[8] = &processed_var_7632_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -723,7 +723,7 @@ void FUN_180036750(void)
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
-  puVar7[8] = &unknown_var_7656_ptr;
+  puVar7[8] = &processed_var_7656_ptr;
   puVar7[9] = 0;
   puVar7[10] = pcStackX_18;
   return;
@@ -774,7 +774,7 @@ void FUN_180036850(void)
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
-  puVar7[8] = &unknown_var_7680_ptr;
+  puVar7[8] = &processed_var_7680_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -802,7 +802,7 @@ void FUN_180036950(void)
   plVar4 = (int64_t *)RenderGraphicsManager();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  puStackX_18 = &unknown_var_2048_ptr;
+  puStackX_18 = &rendering_buffer_2048_ptr;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -825,7 +825,7 @@ void FUN_180036950(void)
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
-  puVar7[8] = &unknown_var_7704_ptr;
+  puVar7[8] = &processed_var_7704_ptr;
   puVar7[9] = 0;
   puVar7[10] = puStackX_18;
   return;
@@ -876,7 +876,7 @@ void FUN_180036a50(void)
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
-  puVar7[8] = &unknown_var_7728_ptr;
+  puVar7[8] = &processed_var_7728_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -898,11 +898,11 @@ void FUN_180036b50(void)
   int32_t uStack_90;
   int8_t auStack_88 [136];
   
-  puStack_a0 = &unknown_var_3432_ptr;
+  puStack_a0 = &memory_allocator_3432_ptr;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xc;
-  strcpy_s(auStack_88,0x80,&unknown_var_8816_ptr,in_R9,0xfffffffffffffffe);
+  strcpy_s(auStack_88,0x80,&processed_var_8816_ptr,in_R9,0xfffffffffffffffe);
   init_system_memory = FUN_180623800(&puStack_a0);
   return;
 }
@@ -917,7 +917,7 @@ int FUN_180036be0(void)
   int64_t lVar1;
   uint64_t in_R9;
   
-  init_system_control_memory = &unknown_var_672_ptr;
+  init_system_control_memory = &processed_var_672_ptr;
   init_system_control_memory = &system_memory_90c8;
 
 
@@ -931,7 +931,7 @@ void FUN_180036cc0(void)
   int32_t uStack_90;
   int8_t auStack_88 [136];
   
-  puStack_a0 = &unknown_var_3432_ptr;
+  puStack_a0 = &memory_allocator_3432_ptr;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x16;
@@ -956,7 +956,7 @@ void FUN_180036d50(void)
   int32_t uStack_90;
   int8_t auStack_88 [136];
   
-  puStack_a0 = &unknown_var_3432_ptr;
+  puStack_a0 = &memory_allocator_3432_ptr;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x16;
@@ -1010,7 +1010,7 @@ void FUN_180036df0(void)
   }
   puVar7[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &unknown_var_7584_ptr;
+  puVar7[8] = &processed_var_7584_ptr;
   puVar7[9] = 1;
   puVar7[10] = pcStackX_18;
   return;
@@ -1061,7 +1061,7 @@ void FUN_180036ef0(void)
   }
   puVar7[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &unknown_var_7608_ptr;
+  puVar7[8] = &processed_var_7608_ptr;
   puVar7[9] = 4;
   puVar7[10] = pcStackX_18;
   return;
@@ -1112,7 +1112,7 @@ void FUN_180036ff0(void)
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
-  puVar7[8] = &unknown_var_7632_ptr;
+  puVar7[8] = &processed_var_7632_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -1163,7 +1163,7 @@ void FUN_1800370f0(void)
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
-  puVar7[8] = &unknown_var_7656_ptr;
+  puVar7[8] = &processed_var_7656_ptr;
   puVar7[9] = 0;
   puVar7[10] = pcStackX_18;
   return;
@@ -1214,7 +1214,7 @@ void FUN_1800371f0(void)
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
-  puVar7[8] = &unknown_var_7680_ptr;
+  puVar7[8] = &processed_var_7680_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -1242,7 +1242,7 @@ void FUN_1800372f0(void)
   plVar4 = (int64_t *)RenderGraphicsManager();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  puStackX_18 = &unknown_var_2048_ptr;
+  puStackX_18 = &rendering_buffer_2048_ptr;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -1265,7 +1265,7 @@ void FUN_1800372f0(void)
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
-  puVar7[8] = &unknown_var_7704_ptr;
+  puVar7[8] = &processed_var_7704_ptr;
   puVar7[9] = 0;
   puVar7[10] = puStackX_18;
   return;
@@ -1316,7 +1316,7 @@ void FUN_1800373f0(void)
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
-  puVar7[8] = &unknown_var_7728_ptr;
+  puVar7[8] = &processed_var_7728_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -1367,7 +1367,7 @@ void FUN_1800374f0(void)
   }
   puVar7[6] = 0x42bea5b911d9c4bf;
   puVar7[7] = 0x1aa83fc0020dc1b6;
-  puVar7[8] = &unknown_var_4632_ptr;
+  puVar7[8] = &processed_var_4632_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -1389,11 +1389,11 @@ void FUN_1800375f0(void)
   int32_t uStack_90;
   int8_t auStack_88 [136];
   
-  puStack_a0 = &unknown_var_3432_ptr;
+  puStack_a0 = &memory_allocator_3432_ptr;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x1c;
-  strcpy_s(auStack_88,0x80,&unknown_var_4568_ptr,in_R9,0xfffffffffffffffe);
+  strcpy_s(auStack_88,0x80,&processed_var_4568_ptr,in_R9,0xfffffffffffffffe);
   init_system_memory = FUN_180623800(&puStack_a0);
   return;
 }

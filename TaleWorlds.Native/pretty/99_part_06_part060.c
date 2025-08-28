@@ -218,13 +218,13 @@ void FUN_1803e2a40(int64_t param_1,int64_t param_2)
             iVar10 = *(int *)(param_2 + 0x10);
           }
           else {
-            System_DataHandler(param_2,&unknown_var_7976_ptr,uVar8);
+            System_DataHandler(param_2,&processed_var_7976_ptr,uVar8);
             puVar1 = *(void **)(uVar11 + 8 + *(int64_t *)(param_1 + 0x110));
             puVar6 = &system_buffer_ptr;
             if (puVar1 != (void *)0x0) {
               puVar6 = puVar1;
             }
-            System_DataHandler(param_2,&unknown_var_8000_ptr,puVar6);
+            System_DataHandler(param_2,&processed_var_8000_ptr,puVar6);
             iVar10 = *(int *)(param_2 + 0x10) + 0xb;
             CoreEngineDataBufferProcessor(param_2,iVar10);
             puVar7 = (uint64_t *)
@@ -346,13 +346,13 @@ void FUN_1803e2dca(uint64_t param_1,int64_t param_2)
           uVar10 = extraout_XMM0_Da_00;
         }
         else {
-          uVar10 = System_DataHandler(extraout_XMM0_Da_00,&unknown_var_7976_ptr,unaff_RBP & 0xffffffff);
+          uVar10 = System_DataHandler(extraout_XMM0_Da_00,&processed_var_7976_ptr,unaff_RBP & 0xffffffff);
           puVar1 = *(void **)(uVar9 + 8 + *(int64_t *)(unaff_RSI + 0x110));
           puVar4 = &system_buffer_ptr;
           if (puVar1 != (void *)0x0) {
             puVar4 = puVar1;
           }
-          uVar10 = System_DataHandler(uVar10,&unknown_var_8000_ptr,puVar4);
+          uVar10 = System_DataHandler(uVar10,&processed_var_8000_ptr,puVar4);
           iVar8 = *(int *)(unaff_RBX + 0x10) + 0xb;
           CoreEngineDataBufferProcessor(uVar10,iVar8);
           uVar10 = 0x62090909;
@@ -452,13 +452,13 @@ void FUN_1803e2e3d(int32_t param_1)
         uVar10 = extraout_XMM0_Da;
       }
       else {
-        uVar10 = System_DataHandler(extraout_XMM0_Da,&unknown_var_7976_ptr,unaff_RBP & 0xffffffff);
+        uVar10 = System_DataHandler(extraout_XMM0_Da,&processed_var_7976_ptr,unaff_RBP & 0xffffffff);
         puVar1 = *(void **)(uVar9 + 8 + *(int64_t *)(unaff_RSI + 0x110));
         puVar4 = &system_buffer_ptr;
         if (puVar1 != (void *)0x0) {
           puVar4 = puVar1;
         }
-        uVar10 = System_DataHandler(uVar10,&unknown_var_8000_ptr,puVar4);
+        uVar10 = System_DataHandler(uVar10,&processed_var_8000_ptr,puVar4);
         iVar8 = *(int *)(unaff_RBX + 0x10) + 0xb;
         CoreEngineDataBufferProcessor(uVar10,iVar8);
         uVar10 = 0x62090909;

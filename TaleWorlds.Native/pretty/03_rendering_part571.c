@@ -271,7 +271,7 @@ FUN_18057d980(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_1336_ptr;
+  *param_1 = &ui_system_data_1336_ptr;
   FUN_180049470();
   if ((param_2 & 1) != 0) {
     free(param_1,0x620,param_3,param_4,uVar1);

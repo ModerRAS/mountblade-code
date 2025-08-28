@@ -302,7 +302,7 @@ LAB_1808c01ad:
           *(int64_t *)(unaff_RBP + -0x70) = lVar13;
           if (lVar13 == 0) {
                     // WARNING: Subroutine does not return
-            SystemDataValidator(unaff_RBP + -0x20,0x27,&unknown_var_8960_ptr,*(int32_t *)(lVar9 + 0x10),
+            SystemDataValidator(unaff_RBP + -0x20,0x27,&processed_var_8960_ptr,*(int32_t *)(lVar9 + 0x10),
                           *(int16_t *)(lVar9 + 0x14));
           }
           *(int64_t *)(lVar18 + 0x50) = lVar13;

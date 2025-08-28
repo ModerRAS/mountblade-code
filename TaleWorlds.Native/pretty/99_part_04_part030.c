@@ -47,8 +47,8 @@ bool FUN_1802a1bc0(int64_t *param_1)
         if ((uint)uVar10 < 9) {
                     // WARNING: Could not recover jumptable at 0x0001802a1c43. Too many branches
                     // WARNING: Treating indirect jump as call
-          uVar3 = (*(code *)((uint64_t)*(uint *)(&unknown_var_956_ptr + uVar10 * 4) + 0x180000000))
-                            ((code *)((uint64_t)*(uint *)(&unknown_var_956_ptr + uVar10 * 4) +
+          uVar3 = (*(code *)((uint64_t)*(uint *)(&processed_var_956_ptr + uVar10 * 4) + 0x180000000))
+                            ((code *)((uint64_t)*(uint *)(&processed_var_956_ptr + uVar10 * 4) +
                                      0x180000000));
           return (bool)uVar3;
         }
@@ -115,8 +115,8 @@ bool FUN_1802a1bfa(ushort param_1,uint64_t param_2)
       if ((uint)uVar8 < 9) {
                     // WARNING: Could not recover jumptable at 0x0001802a1c43. Too many branches
                     // WARNING: Treating indirect jump as call
-        uVar2 = (*(code *)((uint64_t)*(uint *)(&unknown_var_956_ptr + uVar8 * 4) + 0x180000000))
-                          ((code *)((uint64_t)*(uint *)(&unknown_var_956_ptr + uVar8 * 4) + 0x180000000))
+        uVar2 = (*(code *)((uint64_t)*(uint *)(&processed_var_956_ptr + uVar8 * 4) + 0x180000000))
+                          ((code *)((uint64_t)*(uint *)(&processed_var_956_ptr + uVar8 * 4) + 0x180000000))
         ;
         return (bool)uVar2;
       }
@@ -177,8 +177,8 @@ bool FUN_1802a1c11(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param
     if ((uint)uVar7 < 9) {
                     // WARNING: Could not recover jumptable at 0x0001802a1c43. Too many branches
                     // WARNING: Treating indirect jump as call
-      uVar2 = (*(code *)((uint64_t)*(uint *)(&unknown_var_956_ptr + uVar7 * 4) + 0x180000000))
-                        ((code *)((uint64_t)*(uint *)(&unknown_var_956_ptr + uVar7 * 4) + 0x180000000));
+      uVar2 = (*(code *)((uint64_t)*(uint *)(&processed_var_956_ptr + uVar7 * 4) + 0x180000000))
+                        ((code *)((uint64_t)*(uint *)(&processed_var_956_ptr + uVar7 * 4) + 0x180000000));
       return (bool)uVar2;
     }
     iVar3 = func_0x0001802a0ec0(iVar1);
@@ -296,7 +296,7 @@ void FUN_1802a1dd0(int64_t param_1,int32_t *param_2)
     if (*(void **)(param_1 + 8) != (void *)0x0) {
       puVar5 = *(void **)(param_1 + 8);
     }
-    FUN_18062dee0(&uStack_a8,puVar5,&unknown_var_4880_ptr);
+    FUN_18062dee0(&uStack_a8,puVar5,&processed_var_4880_ptr);
     lVar6 = lStack_a0;
     if (lStack_a0 != 0) {
       fread(&iStack_b8,4,1,lStack_a0);

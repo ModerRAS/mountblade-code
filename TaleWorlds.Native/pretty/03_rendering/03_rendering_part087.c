@@ -98,7 +98,7 @@ void rendering_system_advanced_parameter_setup(uint64_t param_1, int64_t param_2
   security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)stack_canary_check;
   
   // 初始化纹理参数
-  FUN_1802c22a0(alignment_pad, &unknown_var_6264_ptr);
+  FUN_1802c22a0(alignment_pad, &processed_var_6264_ptr);
   context_base = system_message_buffer;
   
   // 计算分辨率值
@@ -245,11 +245,11 @@ apply_final_colors:
                 *(int64_t *)(system_message_buffer + 0x1cd8) + 0x1be0, 0x230);
   
   // 设置渲染管线
-  render_target_ptr = &unknown_var_3480_ptr;
+  render_target_ptr = &memory_allocator_3480_ptr;
   shader_code_ptr = shader_buffer + 4;
   shader_buffer[4] = 0;
   shader_type = 0xd;
-  strcpy_s(shader_buffer + 4, RENDERING_SYSTEM_STRING_LENGTH, &unknown_var_984_ptr);
+  strcpy_s(shader_buffer + 4, RENDERING_SYSTEM_STRING_LENGTH, &processed_var_984_ptr);
   FUN_1800b4910(system_resource_state, &texture_ptr, &render_target_ptr);
   render_target_ptr = &system_state_ptr;
   
@@ -310,8 +310,8 @@ apply_final_colors:
   FUN_18029cdd0(*(uint64_t *)(system_message_buffer + 0x1cd8), &render_target_ptr);
   
   context_base = system_message_buffer;
-  stream_position = strnlen(&unknown_var_6216_ptr, 0x3f);
-  strncpy(context_base + 0x1ce0, &unknown_var_6216_ptr, stream_position);
+  stream_position = strnlen(&processed_var_6216_ptr, 0x3f);
+  strncpy(context_base + 0x1ce0, &processed_var_6216_ptr, stream_position);
   *(int8_t *)(stream_position + 0x1ce0 + context_base) = 0;
   FUN_18029e110(*(uint64_t *)(system_message_buffer + 0x1cd8));
   
@@ -433,7 +433,7 @@ void rendering_system_batch_process_and_apply(uint64_t *param_1, int64_t param_2
   *(int8_t *)(texture_data + 4) = 0;
   
   // 设置渲染目标
-  shader_code = &unknown_var_3432_ptr;
+  shader_code = &memory_allocator_3432_ptr;
   vertex_data = vertex_buffer;
   vertex_buffer[0] = 0;
   render_target = &system_buffer_ptr;
@@ -578,7 +578,7 @@ void rendering_system_texture_generation_and_coord_calculation(uint64_t *param_1
   } while (v_coord < 32.0);
   
   // 创建纹理对象
-  texture_handle = FUN_18062b1e0(system_memory_pool_ptr, RENDERING_SYSTEM_BUFFER_SIZE, 0x10, 
+  texture_handle = CoreSystem_LoggingManager0(system_memory_pool_ptr, RENDERING_SYSTEM_BUFFER_SIZE, 0x10, 
                                 CONCAT71((uint7)(uint3)((uint)x_coord >> 8), 3));
   texture_manager = (int64_t *)FUN_18023a2e0(texture_handle, 0);
   *param_1 = texture_manager;

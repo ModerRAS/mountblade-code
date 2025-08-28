@@ -11,21 +11,21 @@ uint8_t rendering_pipeline_manager;
 
 // 函数: uint8_t FUN_1804471a0;
 uint8_t FUN_1804471a0;
-uint8_t unknown_var_9072;
+uint8_t processed_var_9072;
 
 
 
 
 // 函数: uint8_t FUN_180447220;
 uint8_t FUN_180447220;
-uint8_t unknown_var_9104;
+uint8_t processed_var_9104;
 
 
 
 
 // 函数: uint8_t FUN_1804472c0;
 uint8_t FUN_1804472c0;
-uint8_t unknown_var_9136;
+uint8_t processed_var_9136;
 
 
 

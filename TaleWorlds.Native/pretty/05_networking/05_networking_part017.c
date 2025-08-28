@@ -203,7 +203,7 @@ void network_connection_handler(uint64_t *param_1, uint64_t param_2, int64_t par
     // 根据连接类型处理不同的网络协议
     if (sVar4 == 0) {
         if ((*(byte *)(lVar8 + 0xc4) & 1) != 0) {
-            puVar12 = &unknown_var_2016_ptr;
+            puVar12 = &rendering_buffer_2016_ptr;
             goto LAB_180850d88;
         }
 LAB_1808513ac:
@@ -212,7 +212,7 @@ LAB_1808513ac:
         }
     } else {
         if (sVar4 == 1) {
-            puVar12 = &unknown_var_2032_ptr;
+            puVar12 = &rendering_buffer_2032_ptr;
 LAB_180850d88:
             iVar5 = FUN_180738d90(uVar1, puVar12, &lStack_108);
 LAB_180850d95:
@@ -220,14 +220,14 @@ LAB_180850d95:
         } else {
             if (sVar4 != 2) {
                 if (sVar4 == 3) {
-                    puVar12 = &unknown_var_2048_ptr;
+                    puVar12 = &rendering_buffer_2048_ptr;
                 } else {
                     if (sVar4 != 4) goto LAB_1808513ac;
-                    puVar12 = &unknown_var_2064_ptr;
+                    puVar12 = &rendering_buffer_2064_ptr;
                 }
                 goto LAB_180850d88;
             }
-            iVar5 = FUN_180738d90(uVar1, &unknown_var_664_ptr, &lStack_108);
+            iVar5 = FUN_180738d90(uVar1, &processed_var_664_ptr, &lStack_108);
             if (iVar5 == 0) {
                 iVar5 = FUN_180739140(uVar1, 0x19, &lStack_d0);
                 if ((iVar5 != 0) || (iVar5 = FUN_180740f10(lStack_d0, 1), iVar5 != 0)) goto LAB_180850d9b;
@@ -621,7 +621,7 @@ void network_resource_cleaner(int64_t param_1)
     sVar6 = func_0x00018084c3d0();
     if (sVar6 == 0) {
         if ((*(byte *)(unaff_RSI + 0xc4) & 1) != 0) {
-            puVar13 = &unknown_var_2016_ptr;
+            puVar13 = &rendering_buffer_2016_ptr;
             goto LAB_180850d88;
         }
 LAB_180851223:
@@ -632,7 +632,7 @@ LAB_180851223:
         lVar17 = in_stack_00000068;
     } else {
         if (sVar6 == 1) {
-            puVar13 = &unknown_var_2032_ptr;
+            puVar13 = &rendering_buffer_2032_ptr;
 LAB_180850d88:
             iVar7 = FUN_180738d90(uVar1, puVar13, &stack0x00000040);
 LAB_180850d95:
@@ -640,14 +640,14 @@ LAB_180850d95:
         } else {
             if (sVar6 != 2) {
                 if (sVar6 == 3) {
-                    puVar13 = &unknown_var_2048_ptr;
+                    puVar13 = &rendering_buffer_2048_ptr;
                 } else {
                     if (sVar6 != 4) goto LAB_180851223;
-                    puVar13 = &unknown_var_2064_ptr;
+                    puVar13 = &rendering_buffer_2064_ptr;
                 }
                 goto LAB_180850d88;
             }
-            iVar7 = FUN_180738d90(uVar1, &unknown_var_664_ptr, &stack0x00000078);
+            iVar7 = FUN_180738d90(uVar1, &processed_var_664_ptr, &stack0x00000078);
             if (iVar7 == 0) {
                 iVar7 = FUN_180739140(uVar1, 0x19, &stack0x00000078);
                 if ((iVar7 != 0) || (iVar7 = FUN_180740f10(lStack0000000000000078, 1), iVar7 != 0))

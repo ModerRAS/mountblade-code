@@ -61,7 +61,7 @@ void FUN_1805554f0(int64_t param_1,int64_t param_2)
       if (pcVar5 == pcVar17 + -0x180a34ecf) {
         pcVar5 = pcVar5 + (int64_t)pcVar13;
         if (pcVar5 <= pcVar13) goto LAB_1805555e0;
-        lVar4 = (int64_t)&unknown_var_3488_ptr - (int64_t)pcVar13;
+        lVar4 = (int64_t)&memory_allocator_3488_ptr - (int64_t)pcVar13;
         while (*pcVar13 == pcVar13[lVar4]) {
           pcVar13 = pcVar13 + 1;
           if (pcVar5 <= pcVar13) goto LAB_1805555e0;
@@ -102,7 +102,7 @@ LAB_180555693:
           FUN_180627c50(&puStack_60,lVar4);
           break;
         }
-        lVar4 = (int64_t)&unknown_var_1288_ptr - (int64_t)pcVar13;
+        lVar4 = (int64_t)&ui_system_data_1288_ptr - (int64_t)pcVar13;
         while (*pcVar13 == pcVar13[lVar4]) {
           pcVar13 = pcVar13 + 1;
           if (pcVar5 <= pcVar13) goto LAB_180555693;
@@ -200,7 +200,7 @@ LAB_18055576c:
     } while (pcVar5 != pcVar17 + -0x180a34ecf);
     pcVar5 = pcVar5 + (int64_t)pcVar13;
     if (pcVar5 <= pcVar13) break;
-    lVar4 = (int64_t)&unknown_var_3488_ptr - (int64_t)pcVar13;
+    lVar4 = (int64_t)&memory_allocator_3488_ptr - (int64_t)pcVar13;
     while (*pcVar13 == pcVar13[lVar4]) {
       pcVar13 = pcVar13 + 1;
       if (pcVar5 <= pcVar13) goto LAB_1805555e0;
@@ -272,7 +272,7 @@ void FUN_180555820(int64_t *param_1,int64_t param_2)
       pcVar8 = pcVar8 + (int64_t)pcVar7;
       pcVar6 = pcVar16;
       if (pcVar8 <= pcVar7) goto LAB_1805558f1;
-      lVar11 = (int64_t)&unknown_var_3488_ptr - (int64_t)pcVar7;
+      lVar11 = (int64_t)&memory_allocator_3488_ptr - (int64_t)pcVar7;
       while (*pcVar7 == pcVar7[lVar11]) {
         pcVar7 = pcVar7 + 1;
         if (pcVar8 <= pcVar7) goto LAB_1805558f1;
@@ -301,7 +301,7 @@ LAB_180555b20:
     if (pcVar6 == pcVar7 + -0x180a34ecf) {
       pcVar6 = pcVar6 + (int64_t)pcVar8;
       if (pcVar6 <= pcVar8) goto LAB_180555b71;
-      lVar11 = (int64_t)&unknown_var_3488_ptr - (int64_t)pcVar8;
+      lVar11 = (int64_t)&memory_allocator_3488_ptr - (int64_t)pcVar8;
       while (*pcVar8 == pcVar8[lVar11]) {
         pcVar8 = pcVar8 + 1;
         if (pcVar6 <= pcVar8) goto LAB_180555b71;
@@ -341,7 +341,7 @@ LAB_180555981:
           FUN_180627c50(&puStack_60,lVar11);
           break;
         }
-        lVar11 = (int64_t)&unknown_var_1288_ptr - (int64_t)pcVar19;
+        lVar11 = (int64_t)&ui_system_data_1288_ptr - (int64_t)pcVar19;
         while (*pcVar19 == pcVar19[lVar11]) {
           pcVar19 = pcVar19 + 1;
           if (pcVar8 <= pcVar19) goto LAB_180555981;
@@ -377,7 +377,7 @@ LAB_180555a34:
           (**(code **)(*plVar21 + 0x10))(plVar21,lVar11);
           break;
         }
-        lVar11 = (int64_t)&unknown_var_1288_ptr - (int64_t)pcVar19;
+        lVar11 = (int64_t)&ui_system_data_1288_ptr - (int64_t)pcVar19;
         while (*pcVar19 == pcVar19[lVar11]) {
           pcVar19 = pcVar19 + 1;
           if (pcVar8 <= pcVar19) goto LAB_180555a34;
@@ -409,7 +409,7 @@ LAB_180555a34:
         if (pcVar8 == pcVar7 + -0x180a34ecf) {
           pcVar8 = pcVar19 + (int64_t)pcVar8;
           if (pcVar8 <= pcVar19) goto LAB_1805558f1;
-          lVar11 = (int64_t)&unknown_var_3488_ptr - (int64_t)pcVar19;
+          lVar11 = (int64_t)&memory_allocator_3488_ptr - (int64_t)pcVar19;
           while (*pcVar19 == pcVar19[lVar11]) {
             pcVar19 = pcVar19 + 1;
             if (pcVar8 <= pcVar19) goto LAB_1805558f1;
@@ -452,7 +452,7 @@ LAB_180555bf4:
         FUN_180627c50(&puStack_60,lVar11);
         break;
       }
-      lVar11 = (int64_t)&unknown_var_1288_ptr - (int64_t)pcVar7;
+      lVar11 = (int64_t)&ui_system_data_1288_ptr - (int64_t)pcVar7;
       while (*pcVar7 == pcVar7[lVar11]) {
         pcVar7 = pcVar7 + 1;
         if (pcVar6 <= pcVar7) goto LAB_180555bf4;
@@ -596,7 +596,7 @@ LAB_180555dc7:
       pcVar9 = pcVar9 + (int64_t)pcVar6;
       pcVar19 = pcVar7;
       if (pcVar9 <= pcVar6) break;
-      lVar11 = (int64_t)&unknown_var_3488_ptr - (int64_t)pcVar6;
+      lVar11 = (int64_t)&memory_allocator_3488_ptr - (int64_t)pcVar6;
       while (*pcVar6 == pcVar6[lVar11]) {
         pcVar6 = pcVar6 + 1;
         if (pcVar9 <= pcVar6) goto LAB_180555e7a;
@@ -657,7 +657,7 @@ LAB_180555f0e:
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar6 = *(void **)(param_2 + 8);
   }
-  SystemDataInitializer(&unknown_var_3448_ptr,puVar6);
+  SystemDataInitializer(&memory_allocator_3448_ptr,puVar6);
   return -1;
 }
 

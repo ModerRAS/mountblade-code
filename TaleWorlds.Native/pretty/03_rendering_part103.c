@@ -677,7 +677,7 @@ int64_t FUN_18032b880(int64_t param_1,uint param_2,uint param_3)
   if ((*(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +
                0x48) < render_system_config_config) && (SystemInitializer(&system_buffer_96d0), render_system_config_config == -1)) {
     // 初始化全局变量
-    render_system_config_config = &unknown_var_3480_ptr;
+    render_system_config_config = &memory_allocator_3480_ptr;
     render_system_config_config = &system_buffer_9748;
     render_system_config_config = 0;
   }
@@ -728,7 +728,7 @@ void FUN_18032c0b0(int64_t param_1,uint64_t param_2)
   // 初始化文件结构
   *puVar1 = 0;
   *(int8_t *)(puVar1 + 2) = 0;
-  FUN_18062dee0(puVar1,puVar4,&unknown_var_9772_ptr);
+  FUN_18062dee0(puVar1,puVar4,&processed_var_9772_ptr);
   
   // 设置文件操作参数
   puStack_68 = &system_data_buffer_ptr;
@@ -894,11 +894,11 @@ void FUN_18032c450(int64_t param_1,int64_t param_2)
   // 初始化文件结构
   *puVar3 = 0;
   *(int8_t *)(puVar3 + 2) = 0;
-  FUN_18062dee0(puVar3,puVar8,&unknown_var_4880_ptr);
+  FUN_18062dee0(puVar3,puVar8,&processed_var_4880_ptr);
   
   // 检查文件是否打开
   if (puVar3[1] == 0) {
-    SystemDataInitializer(&unknown_var_7632_ptr);
+    SystemDataInitializer(&processed_var_7632_ptr);
     if (puVar3[1] != 0) {
       fclose();
       puVar3[1] = 0;
@@ -1234,7 +1234,7 @@ void FUN_18032c9f0(int64_t param_1,int64_t param_2,int64_t param_3,int32_t param
   
   // 记录导出信息
   lVar7 = _ftelli64(*(uint64_t *)(param_2 + 8));
-  FUN_180062300(system_message_context,&unknown_var_7576_ptr,param_4,lVar7 - param_3,
+  FUN_180062300(system_message_context,&processed_var_7576_ptr,param_4,lVar7 - param_3,
                 *(uint64_t *)(param_1 + 0x2d0));
 }
 

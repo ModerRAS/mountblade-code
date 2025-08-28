@@ -39,7 +39,7 @@
 
 // 数据处理常量
 #define DATA_BUFFER_SIZE 0x100
-#define DATA_CHUNK_SIZE 0x10000
+#define DATA_CHSYSTEM_SIZE 0x10000
 #define DATA_BLOCK_SIZE 0x100000000
 
 // 系统标志常量

@@ -252,7 +252,7 @@ uint64_t * FUN_18041bf60(uint64_t *param_1,uint64_t param_2,int64_t param_3)
 
 {
   FUN_180049830();
-  *param_1 = &unknown_var_9560_ptr;
+  *param_1 = &processed_var_9560_ptr;
   FUN_1801eb9b0(param_1 + 0x19);
   LOCK();
   *(int *)(system_global_data_ptr + 0x30c) = *(int *)(system_global_data_ptr + 0x30c) + 1;
@@ -402,7 +402,7 @@ void FUN_18041c120(int64_t param_1,int64_t param_2,uint *param_3,int *param_4)
     uVar13 = (uint64_t)uVar9;
     uVar15 = uVar10 & 0xffffffff;
     do {
-      dVar18 = *(double *)(&unknown_var_9104_ptr + (uVar15 * 0x80 - param_2) + (int64_t)pdVar11);
+      dVar18 = *(double *)(&processed_var_9104_ptr + (uVar15 * 0x80 - param_2) + (int64_t)pdVar11);
       dVar4 = 1.0 - dVar18;
       dVar5 = dVar4 * adStack_118[0] + dVar18 * adStack_f8[0] + 0.5;
       lVar17 = (int64_t)dVar5;
@@ -478,10 +478,10 @@ void FUN_18041c120(int64_t param_1,int64_t param_2,uint *param_3,int *param_4)
     pdVar11 = (double *)(param_2 + 0x180);
     do {
       dVar18 = (1.0 - *(double *)
-                       (&unknown_var_9232_ptr + ((uVar15 - 3) * 0x80 - param_2) + (int64_t)pdVar11)) *
+                       (&processed_var_9232_ptr + ((uVar15 - 3) * 0x80 - param_2) + (int64_t)pdVar11)) *
                (double)CONCAT44(uVar22,uVar21) +
                (double)CONCAT44(uVar20,uVar19) *
-               *(double *)(&unknown_var_9232_ptr + ((uVar15 - 3) * 0x80 - param_2) + (int64_t)pdVar11) +
+               *(double *)(&processed_var_9232_ptr + ((uVar15 - 3) * 0x80 - param_2) + (int64_t)pdVar11) +
                0.5;
       lVar17 = (int64_t)dVar18;
       if ((lVar17 != -0x8000000000000000) && ((double)lVar17 != dVar18)) {
@@ -603,7 +603,7 @@ void FUN_18041c161(int64_t param_1,int64_t param_2,uint *param_3,int *param_4,do
     uVar13 = (uint64_t)uVar9;
     uVar15 = uVar10 & 0xffffffff;
     do {
-      dVar18 = *(double *)(&unknown_var_9104_ptr + (uVar15 * 0x80 - param_2) + (int64_t)pdVar11);
+      dVar18 = *(double *)(&processed_var_9104_ptr + (uVar15 * 0x80 - param_2) + (int64_t)pdVar11);
       dVar4 = 1.0 - dVar18;
       dVar5 = dVar4 * dStackX_20 + dVar18 * param_8 + 0.5;
       lVar17 = (int64_t)dVar5;
@@ -679,10 +679,10 @@ void FUN_18041c161(int64_t param_1,int64_t param_2,uint *param_3,int *param_4,do
     pdVar11 = (double *)(param_2 + 0x180);
     do {
       dVar18 = (1.0 - *(double *)
-                       (&unknown_var_9232_ptr + ((uVar15 - 3) * 0x80 - param_2) + (int64_t)pdVar11)) *
+                       (&processed_var_9232_ptr + ((uVar15 - 3) * 0x80 - param_2) + (int64_t)pdVar11)) *
                (double)CONCAT44(uVar22,uVar21) +
                (double)CONCAT44(uVar20,uVar19) *
-               *(double *)(&unknown_var_9232_ptr + ((uVar15 - 3) * 0x80 - param_2) + (int64_t)pdVar11) +
+               *(double *)(&processed_var_9232_ptr + ((uVar15 - 3) * 0x80 - param_2) + (int64_t)pdVar11) +
                0.5;
       lVar17 = (int64_t)dVar18;
       if ((lVar17 != -0x8000000000000000) && ((double)lVar17 != dVar18)) {

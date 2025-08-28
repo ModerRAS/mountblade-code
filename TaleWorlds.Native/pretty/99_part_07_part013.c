@@ -178,12 +178,12 @@ uint64_t FUN_1804a6370(uint64_t param_1,uint64_t param_2,int64_t *param_3)
   double dVar2;
   
   if (param_3[1] - *param_3 >> 5 == 0) {
-    puVar1 = &unknown_var_880_ptr;
+    puVar1 = &processed_var_880_ptr;
   }
   else {
     dVar2 = (double)atof(*(uint64_t *)(*param_3 + 8));
     system_system_control_config = (float)dVar2;
-    puVar1 = &unknown_var_864_ptr;
+    puVar1 = &processed_var_864_ptr;
   }
   CoreMemoryPoolValidator(param_1,puVar1);
   return param_1;
@@ -212,11 +212,11 @@ uint64_t FUN_1804a6410(uint64_t param_1,uint64_t param_2,int64_t *param_3)
         puVar3 = puVar4;
       }
       (**(code **)(*system_system_data_config + 0x10))(system_system_data_config,puVar3);
-      puVar4 = &unknown_var_384_ptr;
+      puVar4 = &memory_allocator_384_ptr;
       goto LAB_1804a64d2;
     }
   }
-  puVar4 = &unknown_var_488_ptr;
+  puVar4 = &processed_var_488_ptr;
 LAB_1804a64d2:
   CoreMemoryPoolValidator(param_1,puVar4);
   return param_1;
@@ -235,7 +235,7 @@ FUN_1804a6520(uint64_t param_1,uint64_t param_2,uint64_t *param_3,uint64_t param
   
   lVar1 = FUN_18018dff0(param_1,*param_3,param_3,param_4,0,0xfffffffffffffffe);
   if (lVar1 == 0) {
-    puVar2 = &unknown_var_456_ptr;
+    puVar2 = &processed_var_456_ptr;
   }
   else {
     puVar2 = &system_buffer_ptr;
@@ -243,7 +243,7 @@ FUN_1804a6520(uint64_t param_1,uint64_t param_2,uint64_t *param_3,uint64_t param
       puVar2 = *(void **)(lVar1 + 0x10);
     }
     (**(code **)(*system_system_data_config + 0x10))(system_system_data_config,puVar2);
-    puVar2 = &unknown_var_384_ptr;
+    puVar2 = &memory_allocator_384_ptr;
   }
   CoreMemoryPoolValidator(param_1,puVar2);
   return param_1;
@@ -275,7 +275,7 @@ void FUN_1804a65c0(uint64_t *param_1)
   uStack_90 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_b8;
   uStack_98 = 0;
-  puStack_78 = &unknown_var_3480_ptr;
+  puStack_78 = &memory_allocator_3480_ptr;
   puStack_70 = auStack_60;
   auStack_60[0] = 0;
   uStack_68 = 0;
@@ -463,7 +463,7 @@ void FUN_1804a6ca0(uint64_t *param_1)
 void FUN_1804a6d60(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_1920_ptr;
+  *param_1 = &ui_system_data_1920_ptr;
   FUN_1804ca960(param_1 + 0x5a6);
   FUN_1804a7f00(param_1 + 2);
   if ((int64_t *)param_1[1] != (int64_t *)0x0) {
@@ -481,7 +481,7 @@ FUN_1804a6db0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_1920_ptr;
+  *param_1 = &ui_system_data_1920_ptr;
   FUN_1804ca960(param_1 + 0x5a6);
   FUN_1804a7f00(param_1 + 2);
   if ((int64_t *)param_1[1] != (int64_t *)0x0) {

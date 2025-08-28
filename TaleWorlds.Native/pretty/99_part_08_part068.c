@@ -609,15 +609,15 @@ void FUN_1805b77f0(int64_t param_1,char param_2)
   int64_t lVar4;
   
   if (*(char *)(param_1 + 0x1c30) != param_2) {
-    puVar3 = &unknown_var_6416_ptr;
-    puVar1 = &unknown_var_6416_ptr;
+    puVar3 = &processed_var_6416_ptr;
+    puVar1 = &processed_var_6416_ptr;
     if (param_2 != '\0') {
-      puVar1 = &unknown_var_6344_ptr;
+      puVar1 = &processed_var_6344_ptr;
     }
     if (*(char *)(param_1 + 0x1c30) != '\0') {
-      puVar3 = &unknown_var_6344_ptr;
+      puVar3 = &processed_var_6344_ptr;
     }
-    func_0x000180508000(param_1,&unknown_var_3272_ptr,&unknown_var_3232_ptr,puVar3,puVar1);
+    func_0x000180508000(param_1,&memory_allocator_3272_ptr,&memory_allocator_3232_ptr,puVar3,puVar1);
     *(char *)(param_1 + 0x1c30) = param_2;
     if (param_2 == '\0') {
       *(int32_t *)(param_1 + 0x1c0c) = 0xffffffff;
@@ -646,12 +646,12 @@ void FUN_1805b77f0(int64_t param_1,char param_2)
       *(uint64_t *)(param_1 + 0x1c38) =
            *(uint64_t *)(&system_error_code + (int64_t)*(int *)(param_1 + 0x1c40) * 8);
       puVar3 = &system_error_code;
-      puVar1 = &unknown_var_6416_ptr;
+      puVar1 = &processed_var_6416_ptr;
       if (*(char *)(param_1 + 0x13bc) != '\0') {
-        puVar1 = &unknown_var_6344_ptr;
+        puVar1 = &processed_var_6344_ptr;
       }
       lVar4 = param_1;
-      func_0x000180508000(param_1,&unknown_var_6496_ptr,&unknown_var_6352_ptr,puVar1,
+      func_0x000180508000(param_1,&processed_var_6496_ptr,&processed_var_6352_ptr,puVar1,
                           (double)*(float *)(param_1 + 0x13b8),
                           (double)((float)(*(int64_t *)
                                             (&system_error_code +
@@ -690,15 +690,15 @@ void FUN_1805b7813(int32_t param_1,void *param_2)
   int64_t lVar3;
   void *puVar4;
   
-  puVar2 = &unknown_var_6416_ptr;
+  puVar2 = &processed_var_6416_ptr;
   if (in_R10B != '\0') {
     puVar2 = param_2;
   }
-  puVar4 = &unknown_var_6416_ptr;
+  puVar4 = &processed_var_6416_ptr;
   if (in_CL != '\0') {
     puVar4 = param_2;
   }
-  func_0x000180508000(param_1,&unknown_var_3272_ptr,&unknown_var_3232_ptr,puVar4,puVar2);
+  func_0x000180508000(param_1,&memory_allocator_3272_ptr,&memory_allocator_3232_ptr,puVar4,puVar2);
   *(char *)(unaff_RBX + 0x1c30) = in_R10B;
   if (in_R10B == '\0') {
     *(int32_t *)(unaff_RBX + 0x1c0c) = 0xffffffff;
@@ -727,15 +727,15 @@ void FUN_1805b7813(int32_t param_1,void *param_2)
     *(uint64_t *)(unaff_RBX + 0x1c38) =
          *(uint64_t *)(&system_error_code + (int64_t)*(int *)(unaff_RBX + 0x1c40) * 8);
     puVar4 = &system_error_code;
-    puVar2 = &unknown_var_6416_ptr;
+    puVar2 = &processed_var_6416_ptr;
     if (*(char *)(unaff_RBX + 0x13bc) != '\0') {
-      puVar2 = &unknown_var_6344_ptr;
+      puVar2 = &processed_var_6344_ptr;
     }
     lVar3 = unaff_RBX;
     func_0x000180508000((float)(*(int64_t *)
                                  (&system_error_code + (int64_t)*(int *)(unaff_RBX + 0x13b0) * 8) -
-                               *(int64_t *)(unaff_RBX + 0x13a8)) * 1e-05,&unknown_var_6496_ptr,
-                        &unknown_var_6352_ptr,puVar2,(double)*(float *)(unaff_RBX + 0x13b8));
+                               *(int64_t *)(unaff_RBX + 0x13a8)) * 1e-05,&processed_var_6496_ptr,
+                        &processed_var_6352_ptr,puVar2,(double)*(float *)(unaff_RBX + 0x13b8));
     if (*(char *)(unaff_RBX + 0x13bc) == '\0') {
       *(int8_t *)(unaff_RBX + 0x13bc) = 1;
       uVar1 = *(uint *)(unaff_RBX + 0x1390) << 0xd ^ *(uint *)(unaff_RBX + 0x1390);

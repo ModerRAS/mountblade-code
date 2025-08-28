@@ -67,7 +67,7 @@ void FUN_1802768b0(int64_t param_1,int64_t *param_2)
           }
         }
         else {
-          SystemDataInitializer(&unknown_var_5232_ptr);
+          SystemDataInitializer(&processed_var_5232_ptr);
         }
       }
       plVar8 = plVar8 + 2;
@@ -193,7 +193,7 @@ void FUN_180276a70(uint64_t *param_1,int64_t param_2,float *param_3,float *param
   
   uStack_88 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_208;
   if (*(int *)(param_1 + 0x42) != 0) {
-    if ((void *)*param_1 == &unknown_var_9304_ptr) {
+    if ((void *)*param_1 == &processed_var_9304_ptr) {
       pfVar19 = (float *)(param_1 + 0x66);
     }
     else {

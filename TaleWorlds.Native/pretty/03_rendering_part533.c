@@ -193,7 +193,7 @@ void FUN_18055b940(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       *(void **)(puVar8 + -4) = &system_state_ptr;
       *(uint64_t *)(puVar8 + -2) = 0;
       *puVar8 = 0;
-      *(void **)(puVar8 + -4) = &unknown_var_3480_ptr;
+      *(void **)(puVar8 + -4) = &memory_allocator_3480_ptr;
       *(int32_t **)(puVar8 + -2) = puVar8 + 2;
       *puVar8 = 0;
       *(int8_t *)(puVar8 + 2) = 0;
@@ -401,7 +401,7 @@ LAB_18055bcdc:
       *puVar5 = &system_state_ptr;
       *(uint64_t *)(lVar8 + (int64_t)puVar4) = 0;
       *(int32_t *)(lVar8 + 8 + (int64_t)puVar4) = 0;
-      *puVar5 = &unknown_var_3480_ptr;
+      *puVar5 = &memory_allocator_3480_ptr;
       puVar3 = (int8_t *)((int64_t)puVar4 + lVar8 + 0x10);
       *(int8_t **)(lVar8 + (int64_t)puVar4) = puVar3;
       *(int32_t *)(lVar8 + 8 + (int64_t)puVar4) = 0;

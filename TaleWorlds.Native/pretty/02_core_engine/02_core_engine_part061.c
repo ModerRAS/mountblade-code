@@ -551,7 +551,7 @@ int8_t render_scene_objects(uint64_t param_1, int64_t render_context, uint64_t p
     puVar3 = (void *)param_4[1];
   }
   uVar4 = (uint)*(ushort *)(param_2 + 0x32e);
-  SystemCore_CacheManager0(&unknown_var_2320_ptr,puVar3,uVar2,*(int16_t *)(param_2 + 0x32c),uVar4);
+  SystemCore_CacheManager0(&rendering_buffer_2320_ptr,puVar3,uVar2,*(int16_t *)(param_2 + 0x32c),uVar4);
   uStack_40 = 0x3f8000003f800000;
   uStack_38 = 0x3f8000003f800000;
   uStack_30 = 0;
@@ -712,14 +712,14 @@ void process_scene_rendering(uint64_t render_target, uint64_t camera_data, int64
     pcVar10 = pcVar9;
     pcVar9 = pcVar10 + 1;
   } while (*pcVar9 != '\0');
-  *puVar8 = &unknown_var_2340_ptr;
+  *puVar8 = &rendering_buffer_2340_ptr;
   puVar8[2] = pcVar10 + -0x180a01603;
   puVar19 = &system_buffer_ptr;
   if (*(void **)(param_5 + 8) != (void *)0x0) {
     puVar19 = *(void **)(param_5 + 8);
   }
-  SystemAllocationProcessor(param_3,puVar8,&unknown_var_2332_ptr,puVar19);
-  FUN_180630e10(param_3,puVar8,&unknown_var_2352_ptr,*(double *)(param_5 + 0x40) * 1000.0);
+  SystemAllocationProcessor(param_3,puVar8,&rendering_buffer_2332_ptr,puVar19);
+  FUN_180630e10(param_3,puVar8,&rendering_buffer_2352_ptr,*(double *)(param_5 + 0x40) * 1000.0);
   uVar17 = uVar15;
   if (*(int64_t *)(param_5 + 0x50) - *(int64_t *)(param_5 + 0x48) >> 3 != 0) {
     do {

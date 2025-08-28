@@ -419,8 +419,8 @@ void update_render_system(int64_t *param_1, uint64_t param_2, uint64_t param_3, 
         (*(int *)(SYSTEM_STATE_MANAGER + 0x314) != *(int *)(SYSTEM_STATE_MANAGER + 0x310))) ||
        (*(int *)(SYSTEM_STATE_MANAGER + 0x544) != *(int *)(SYSTEM_STATE_MANAGER + 0x540))) {
         plStackX_8 = alStack_70;
-        puStack_60 = &unknown_var_5376_ptr;
-        puStack_58 = &unknown_var_5360_ptr;
+        puStack_60 = &processed_var_5376_ptr;
+        puStack_58 = &processed_var_5360_ptr;
         FUN_18005c650(alStack_70);
     }
     if ((core_system_data_memory != 0) &&
@@ -428,8 +428,8 @@ void update_render_system(int64_t *param_1, uint64_t param_2, uint64_t param_3, 
         (*(int *)(SYSTEM_STATE_MANAGER + 0x3f4) != *(int *)(SYSTEM_STATE_MANAGER + 0x3f0))))) {
         uVar4 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x40, 8, 3);
         plStackX_8 = alStack_50;
-        puStack_40 = &unknown_var_5328_ptr;
-        puStack_38 = &unknown_var_5312_ptr;
+        puStack_40 = &processed_var_5328_ptr;
+        puStack_38 = &processed_var_5312_ptr;
         plVar5 = (int64_t *)FUN_18005c2a0(uVar4, alStack_50);
         plStackX_10 = plVar5;
         if (plVar5 != (int64_t *)0x0) {

@@ -336,13 +336,13 @@ uint FUN_180325ed0(int64_t param_1,uint64_t param_2,int64_t param_3,uint param_4
      ((uVar11 >> 1 & 1) != 0)) {
     FUN_1800c1750(param_1,aplStack_78,*(int32_t *)(param_3 + 0xf0));
     if (aplStack_78[0] == (int64_t *)0x0) {
-      FUN_180627020(&unknown_var_9528_ptr,*(int32_t *)(param_3 + 0xf0));
+      FUN_180627020(&processed_var_9528_ptr,*(int32_t *)(param_3 + 0xf0));
       if (aplStack_78[0] != (int64_t *)0x0) {
         (**(code **)(*aplStack_78[0] + 0x38))();
       }
     }
     else {
-      uVar8 = FUN_18062b1e0(system_memory_pool_ptr,0x168,8,3);
+      uVar8 = CoreSystem_LoggingManager0(system_memory_pool_ptr,0x168,8,3);
       plVar9 = (int64_t *)FUN_1802ac390(uVar8);
       FUN_1802ae9a0(plVar9,*(uint64_t *)(param_1 + 0x2d8));
       aplStackX_18[0] = (int64_t *)&param_6;
@@ -651,7 +651,7 @@ uint FUN_1803263e0(int64_t *param_1,int64_t param_2,int64_t param_3)
     if ((void *)puVar20[3] != (void *)0x0) {
       puVar15 = (void *)puVar20[3];
     }
-    lVar11 = strstr(puVar15,&unknown_var_7544_ptr);
+    lVar11 = strstr(puVar15,&processed_var_7544_ptr);
     if (lVar11 != 0) {
       uVar8 = FUN_18032b4a0(param_2);
       lVar11 = *(int64_t *)(param_2 + 0xaf0);
@@ -667,7 +667,7 @@ uint FUN_1803263e0(int64_t *param_1,int64_t param_2,int64_t param_3)
       puVar17 = *(uint **)(lVar11 + lVar12 * 8);
 LAB_1803265ac:
       if (puVar17 == *(uint **)(lVar11 + lVar12 * 8)) {
-        if ((void *)*puVar20 == &unknown_var_8720_ptr) {
+        if ((void *)*puVar20 == &processed_var_8720_ptr) {
           LOCK();
           *(int *)(puVar20 + 1) = *(int *)(puVar20 + 1) + 1;
           UNLOCK();

@@ -829,7 +829,7 @@ void FUN_1808d7840(int64_t *param_1,uint64_t param_2,int32_t param_3)
   plVar2[1] = (int64_t)plVar2;
   *plVar2 = (int64_t)plVar2;
                     // WARNING: Subroutine does not return
-  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar2,&unknown_var_7344_ptr,0xc0,1);
+  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar2,&processed_var_7344_ptr,0xc0,1);
 }
 
 

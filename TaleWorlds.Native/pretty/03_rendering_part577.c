@@ -595,12 +595,12 @@ LAB_180583e24:
                   uStack_654 = uStack_6e4;
                   uStack_64c = 0x7f7fffff;
                   lVar17 = param_1[2];
-                  puStack_228 = &unknown_var_3480_ptr;
+                  puStack_228 = &memory_allocator_3480_ptr;
                   puStack_220 = auStack_210;
                   auStack_210[0] = 0;
                   uStack_218 = 0x18;
                   fStack_650 = fVar29;
-                  uVar23 = strcpy_s(auStack_210,0x40,&unknown_var_1688_ptr);
+                  uVar23 = strcpy_s(auStack_210,0x40,&ui_system_data_1688_ptr);
                   uVar11 = FUN_1800c17c0(uVar23,&puStack_228);
                   FUN_1804eb8d0(lVar17,uVar11,&uStack_658,&system_data_01d0);
                   puStack_228 = &system_state_ptr;
@@ -658,11 +658,11 @@ LAB_180583e24:
                 pfStack_778 = (float *)FUN_18004a130;
                 DataStructureManager(alStack_1a8,0x30,4,FUN_1801c2890);
                 iStack_e8 = 0;
-                puStack_258 = &unknown_var_1808_ptr;
+                puStack_258 = &ui_system_data_1808_ptr;
                 puStack_250 = auStack_240;
                 auStack_240[0] = 0;
                 uStack_248 = 9;
-                strcpy_s(auStack_240,0xb,&unknown_var_1672_ptr);
+                strcpy_s(auStack_240,0xb,&ui_system_data_1672_ptr);
                 lVar17 = (int64_t)iStack_e8;
                 puVar16 = &system_buffer_ptr;
                 if (puStack_250 != (void *)0x0) {
@@ -687,11 +687,11 @@ LAB_180583e24:
                   if (1.0 <= fVar26) {
                     fVar26 = 1.0;
                   }
-                  puStack_278 = &unknown_var_1856_ptr;
+                  puStack_278 = &ui_system_data_1856_ptr;
                   puStack_270 = auStack_260;
                   auStack_260[0] = 0;
                   uStack_268 = 5;
-                  strcpy_s(auStack_260,7,&unknown_var_1664_ptr);
+                  strcpy_s(auStack_260,7,&ui_system_data_1664_ptr);
                   lVar17 = (int64_t)iStack_e8;
                   puVar16 = &system_buffer_ptr;
                   if (puStack_270 != (void *)0x0) {

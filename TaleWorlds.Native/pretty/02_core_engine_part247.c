@@ -136,8 +136,8 @@ LAB_180213627:
   if (param_3 == '\0') {
     if (6 < *(uint *)(param_2 + 0x10)) {
       do {
-        if ((&unknown_var_3520_ptr + lVar7)[*(int64_t *)(param_2 + 8) + -0x180a10500] !=
-            (&unknown_var_3520_ptr)[lVar7]) {
+        if ((&memory_allocator_3520_ptr + lVar7)[*(int64_t *)(param_2 + 8) + -0x180a10500] !=
+            (&memory_allocator_3520_ptr)[lVar7]) {
           return uStackX_10;
         }
         lVar7 = lVar7 + 1;
@@ -147,7 +147,7 @@ LAB_180213627:
     }
   }
   else {
-    uVar3 = FUN_1808496c0(uStackX_10,&unknown_var_1504_ptr,0xffffffff);
+    uVar3 = FUN_1808496c0(uStackX_10,&ui_system_data_1504_ptr,0xffffffff);
     puVar6 = &system_buffer_ptr;
     if (*(void **)(param_2 + 8) != (void *)0x0) {
       puVar6 = *(void **)(param_2 + 8);
@@ -227,7 +227,7 @@ LAB_180213890:
                         (int64_t)param_2 * 0x10 + *(int64_t *)(param_1 + 0x3b8),&lStackX_8);
   FUN_180211a30(uVar2,&system_buffer_ptr);
   if ((lStackX_8 != 0) && (param_3 != '\0')) {
-    uVar2 = FUN_1808496c0(lStackX_8,&unknown_var_1504_ptr,0xffffffff);
+    uVar2 = FUN_1808496c0(lStackX_8,&ui_system_data_1504_ptr,0xffffffff);
     FUN_180211a30(uVar2,&system_buffer_ptr);
   }
   return lStackX_8;
@@ -304,7 +304,7 @@ LAB_180213b20:
   }
   FUN_180211a30(iVar2,puVar6);
   if (iVar2 != 0) {
-    FUN_1800623b0(system_message_context,0,0,3,&unknown_var_3528_ptr,uStackX_8,uVar7);
+    FUN_1800623b0(system_message_context,0,0,3,&memory_allocator_3528_ptr,uStackX_8,uVar7);
     return 0;
   }
   return uStackX_8;
@@ -455,14 +455,14 @@ void FUN_180213e10(int64_t param_1,uint64_t param_2)
     if (puStack_288 != (void *)0x0) {
       puVar7 = puStack_288;
     }
-    SystemDataInitializer(&unknown_var_3704_ptr,puVar7);
+    SystemDataInitializer(&memory_allocator_3704_ptr,puVar7);
     goto LAB_180214064;
   }
   puVar7 = &system_buffer_ptr;
   if (puStack_288 != (void *)0x0) {
     puVar7 = puStack_288;
   }
-  lVar5 = strstr(puVar7,&unknown_var_3736_ptr);
+  lVar5 = strstr(puVar7,&memory_allocator_3736_ptr);
   if (lVar5 == 0) {
     puVar7 = &system_buffer_ptr;
     if (puStack_288 != (void *)0x0) {
@@ -474,7 +474,7 @@ void FUN_180213e10(int64_t param_1,uint64_t param_2)
     if (puStack_288 != (void *)0x0) {
       puVar7 = puStack_288;
     }
-    lVar5 = strstr(puVar7,&unknown_var_3624_ptr);
+    lVar5 = strstr(puVar7,&memory_allocator_3624_ptr);
     if (lVar5 != 0) goto LAB_180213f5f;
   }
   else {
@@ -604,7 +604,7 @@ void FUN_1802140e0(int64_t param_1,uint64_t *param_2,int32_t *param_3)
     *(int32_t *)(param_1 + 0x1d4) = uVar1;
     iVar3 = FUN_180849990(*(uint64_t *)(param_1 + 0x368),0,&uStack_48,&uStack_58);
     if (iVar3 != 0) {
-      SystemDataInitializer(&unknown_var_3632_ptr);
+      SystemDataInitializer(&memory_allocator_3632_ptr);
     }
   }
                     // WARNING: Subroutine does not return
@@ -741,54 +741,54 @@ void FUN_1802143e0(int64_t param_1)
   
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_a8;
   FUN_1808452a0(*(uint64_t *)(param_1 + 0x368),&fStack_5c,&fStack_58);
-  SystemCore_CacheManager0(&unknown_var_3776_ptr);
-  SystemCore_CacheManager0(&unknown_var_3800_ptr,(double)fStack_58);
-  SystemCore_CacheManager0(&unknown_var_3744_ptr,(double)fStack_54);
-  SystemCore_CacheManager0(&unknown_var_3760_ptr,(double)fStack_4c);
-  SystemCore_CacheManager0(&unknown_var_3856_ptr,(double)fStack_50);
-  SystemCore_CacheManager0(&unknown_var_3880_ptr,(double)fStack_5c);
+  SystemCore_CacheManager0(&memory_allocator_3776_ptr);
+  SystemCore_CacheManager0(&memory_allocator_3800_ptr,(double)fStack_58);
+  SystemCore_CacheManager0(&memory_allocator_3744_ptr,(double)fStack_54);
+  SystemCore_CacheManager0(&memory_allocator_3760_ptr,(double)fStack_4c);
+  SystemCore_CacheManager0(&memory_allocator_3856_ptr,(double)fStack_50);
+  SystemCore_CacheManager0(&memory_allocator_3880_ptr,(double)fStack_5c);
   FUN_180845090(*(uint64_t *)(param_1 + 0x368),auStack_40);
-  SystemCore_CacheManager0(&unknown_var_3816_ptr,uStack_2c);
-  SystemCore_CacheManager0(&unknown_var_3840_ptr,uStack_24);
-  SystemCore_CacheManager0(&unknown_var_3928_ptr,auStack_40[0]);
-  SystemCore_CacheManager0(&unknown_var_3968_ptr,uStack_38);
+  SystemCore_CacheManager0(&memory_allocator_3816_ptr,uStack_2c);
+  SystemCore_CacheManager0(&memory_allocator_3840_ptr,uStack_24);
+  SystemCore_CacheManager0(&memory_allocator_3928_ptr,auStack_40[0]);
+  SystemCore_CacheManager0(&memory_allocator_3968_ptr,uStack_38);
   fStack_88 = 0.0;
-  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&unknown_var_3896_ptr,&fStack_88,0);
+  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&memory_allocator_3896_ptr,&fStack_88,0);
   fStack_84 = 0.0;
-  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&unknown_var_3912_ptr,&fStack_84,0);
+  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&memory_allocator_3912_ptr,&fStack_84,0);
   fStack_80 = 0.0;
-  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&unknown_var_4048_ptr,&fStack_80,0);
+  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&processed_var_4048_ptr,&fStack_80,0);
   fStack_7c = 0.0;
-  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&unknown_var_4064_ptr,&fStack_7c,0);
+  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&processed_var_4064_ptr,&fStack_7c,0);
   fStack_78 = 0.0;
-  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&unknown_var_7676_ptr,&fStack_78,0);
+  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&processed_var_7676_ptr,&fStack_78,0);
   fStack_74 = 0.0;
-  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&unknown_var_4008_ptr,&fStack_74,0);
+  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&processed_var_4008_ptr,&fStack_74,0);
   fStack_70 = 0.0;
-  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&unknown_var_4032_ptr,&fStack_70,0);
+  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&processed_var_4032_ptr,&fStack_70,0);
   fStack_6c = 0.0;
-  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&unknown_var_4112_ptr,&fStack_6c,0);
+  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&processed_var_4112_ptr,&fStack_6c,0);
   fStack_68 = 0.0;
-  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&unknown_var_4128_ptr,&fStack_68,0);
+  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&processed_var_4128_ptr,&fStack_68,0);
   fStack_64 = 0.0;
-  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&unknown_var_4072_ptr,&fStack_64,0);
+  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&processed_var_4072_ptr,&fStack_64,0);
   fStack_60 = 0.0;
-  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&unknown_var_4096_ptr,&fStack_60,0);
-  SystemCore_CacheManager0(&unknown_var_4184_ptr);
-  SystemCore_CacheManager0(&unknown_var_4208_ptr);
-  SystemCore_CacheManager0(&unknown_var_4184_ptr);
-  SystemCore_CacheManager0(&unknown_var_4152_ptr,(double)fStack_88);
-  SystemCore_CacheManager0(&unknown_var_4168_ptr,(double)fStack_84);
-  SystemCore_CacheManager0(&unknown_var_4280_ptr,(double)fStack_80);
-  SystemCore_CacheManager0(&unknown_var_4304_ptr,(double)fStack_7c);
-  SystemCore_CacheManager0(&unknown_var_4232_ptr,(double)fStack_78);
-  SystemCore_CacheManager0(&unknown_var_4248_ptr,(double)fStack_74);
-  SystemCore_CacheManager0(&unknown_var_4368_ptr,(double)fStack_70);
-  SystemCore_CacheManager0(&unknown_var_4384_ptr,(double)fStack_6c);
-  SystemCore_CacheManager0(&unknown_var_4320_ptr,(double)fStack_68);
-  SystemCore_CacheManager0(&unknown_var_4344_ptr,(double)fStack_64);
-  SystemCore_CacheManager0(&unknown_var_4440_ptr,(double)fStack_60);
-  SystemCore_CacheManager0(&unknown_var_4184_ptr);
+  FUN_180846210(*(uint64_t *)(param_1 + 0x368),&processed_var_4096_ptr,&fStack_60,0);
+  SystemCore_CacheManager0(&processed_var_4184_ptr);
+  SystemCore_CacheManager0(&processed_var_4208_ptr);
+  SystemCore_CacheManager0(&processed_var_4184_ptr);
+  SystemCore_CacheManager0(&processed_var_4152_ptr,(double)fStack_88);
+  SystemCore_CacheManager0(&processed_var_4168_ptr,(double)fStack_84);
+  SystemCore_CacheManager0(&processed_var_4280_ptr,(double)fStack_80);
+  SystemCore_CacheManager0(&processed_var_4304_ptr,(double)fStack_7c);
+  SystemCore_CacheManager0(&processed_var_4232_ptr,(double)fStack_78);
+  SystemCore_CacheManager0(&processed_var_4248_ptr,(double)fStack_74);
+  SystemCore_CacheManager0(&processed_var_4368_ptr,(double)fStack_70);
+  SystemCore_CacheManager0(&processed_var_4384_ptr,(double)fStack_6c);
+  SystemCore_CacheManager0(&processed_var_4320_ptr,(double)fStack_68);
+  SystemCore_CacheManager0(&processed_var_4344_ptr,(double)fStack_64);
+  SystemCore_CacheManager0(&processed_var_4440_ptr,(double)fStack_60);
+  SystemCore_CacheManager0(&processed_var_4184_ptr);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_a8);
 }

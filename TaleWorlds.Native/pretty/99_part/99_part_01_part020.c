@@ -1614,7 +1614,7 @@ SystemInt64* SystemErrorProcessor(SystemInt64 param_1, SystemInt64 *param_2, Sys
             resource_data = *(SystemUInt8 **)(param_3 + 8);
         }
         
-        FUN_1806272a0(&unknown_var_7864_ptr, resource_data);
+        FUN_1806272a0(&processed_var_7864_ptr, resource_data);
         resource_ptr = *(SystemInt64 **)(param_1 + 0xc58);
         
         if (resource_ptr != (SystemInt64 *)0x0) {

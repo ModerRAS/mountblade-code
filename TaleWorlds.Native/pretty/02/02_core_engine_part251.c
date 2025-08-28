@@ -84,7 +84,7 @@ void process_engine_component_initialization(int64_t *component_context)
     temp_ptr_1 = temp_array_2;
     temp_array_2[0] = 0;
     // 处理错误情况
-    ComponentManager_HandleEngineError(index,3,engine_data,&unknown_var_7112_ptr);
+    ComponentManager_HandleEngineError(index,3,engine_data,&processed_var_7112_ptr);
   }
   
   if (stack_long_1 != 0) {
@@ -196,7 +196,7 @@ void process_engine_queue(int64_t queue_context,uint64_t param_2,uint64_t param_
   
   // 检查队列是否有数据需要处理
   if (*(int64_t *)(queue_context + 0x2b8) - *(int64_t *)(queue_context + 0x2b0) >> 4 != 0) {
-    QueueManager_ProcessSystemMessage(system_message_context,&unknown_var_5328_ptr,0,param_4,queue_param);
+    QueueManager_ProcessSystemMessage(system_message_context,&processed_var_5328_ptr,0,param_4,queue_param);
   }
   
   // 释放队列锁
@@ -323,7 +323,7 @@ void process_engine_components(int64_t component_context)
   stack_uint64_t_1 = GET_SECURITY_COOKIE() ^ (uint64_t)temp_array_1;
   
   // 初始化组件处理
-  ComponentProcessor_InitializeProcessing(&unknown_var_5280_ptr,0,0);
+  ComponentProcessor_InitializeProcessing(&processed_var_5280_ptr,0,0);
   component_list = *(int64_t **)(component_context + 0x38);
   current_component = *component_list;
   component_ptr = component_list;
@@ -345,7 +345,7 @@ void process_engine_components(int64_t component_context)
       ComponentProcessor_GetComponentInfo(component_list[0xf],temp_array_4,0x100,temp_array_3);
       
       // 检查组件类型
-      if ((void *)*component_list == &unknown_var_2656_ptr) {
+      if ((void *)*component_list == &rendering_buffer_2656_ptr) {
         temp_int = ComponentProcessor_EvaluateComponent(component_list[0x10],&temp_int_1);
         ComponentProcessor_RegisterComponent(temp_int,&system_buffer_ptr);
         if ((temp_int == 0) && ((temp_int_1 == 0 || (temp_int_1 == 3)))) {
@@ -360,7 +360,7 @@ void process_engine_components(int64_t component_context)
       }
       
       // 获取组件状态信息
-      if ((void *)*component_list == &unknown_var_2656_ptr) {
+      if ((void *)*component_list == &rendering_buffer_2656_ptr) {
         ComponentProcessor_GetComponentState(component_list[0x10],temp_array_2);
       }
       else {
@@ -369,7 +369,7 @@ void process_engine_components(int64_t component_context)
       
       // 处理组件
       if (should_process != '\0') {
-        if ((void *)*component_list == &unknown_var_2656_ptr) {
+        if ((void *)*component_list == &rendering_buffer_2656_ptr) {
           temp_int = ComponentProcessor_GetComponentValue(component_list[0x10],&temp_float,0);
           component_value = temp_float;
           if (temp_int != 0) {
@@ -381,7 +381,7 @@ void process_engine_components(int64_t component_context)
         }
         
         // 记录组件信息
-        ComponentLogger_LogComponentInfo(&unknown_var_5296_ptr,temp_array_4,(double)component_value);
+        ComponentLogger_LogComponentInfo(&processed_var_5296_ptr,temp_array_4,(double)component_value);
         temp_ptr_1 = &system_data_buffer_ptr;
         temp_uint64_t = 0;
         temp_ptr_2 = (int32_t *)0x0;
@@ -396,7 +396,7 @@ void process_engine_components(int64_t component_context)
         *(int16_t *)(temp_ptr_2 + 1) = 0x5f;
         temp_uint_1 = 5;
         
-        ComponentLogger_ProcessComponentString(&temp_ptr_1,&unknown_var_552_ptr,temp_array_4);
+        ComponentLogger_ProcessComponentString(&temp_ptr_1,&processed_var_552_ptr,temp_array_4);
         temp_8_1 = 0;
         temp_ptr = (int32_t *)&system_buffer_ptr;
         
@@ -564,7 +564,7 @@ void resize_object_array(int64_t *object_array_ptr,uint64_t param_2,uint64_t par
         *temp_ptr = &system_state_ptr;
         temp_ptr[1] = 0;
         *(int32_t *)(temp_ptr + 2) = 0;
-        *temp_ptr = &unknown_var_3432_ptr;
+        *temp_ptr = &memory_allocator_3432_ptr;
         temp_ptr[1] = temp_ptr + 3;
         *(int32_t *)(temp_ptr + 2) = 0;
         *(int8_t *)(temp_ptr + 3) = 0;
@@ -659,7 +659,7 @@ void expand_object_array(int64_t *object_array_ptr,uint64_t param_2,uint64_t par
       *(void **)(element_ptr + -4) = &system_state_ptr;
       *(uint64_t *)(element_ptr + -2) = 0;
       *element_ptr = 0;
-      *(void **)(element_ptr + -4) = &unknown_var_3432_ptr;
+      *(void **)(element_ptr + -4) = &memory_allocator_3432_ptr;
       *(int32_t **)(element_ptr + -2) = element_ptr + 2;
       *element_ptr = 0;
       *(int8_t *)(element_ptr + 2) = 0;
@@ -753,7 +753,7 @@ EXPANSION_DONE:
       *insert_ptr = &system_state_ptr;
       insert_ptr[1] = 0;
       *(int32_t *)(insert_ptr + 2) = 0;
-      *insert_ptr = &unknown_var_3432_ptr;
+      *insert_ptr = &memory_allocator_3432_ptr;
       insert_ptr[1] = insert_ptr + 3;
       *(int32_t *)(insert_ptr + 2) = 0;
       *(int8_t *)(insert_ptr + 3) = 0;

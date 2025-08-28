@@ -124,7 +124,7 @@ void FUN_1803c2600(int64_t param_1,uint64_t param_2,uint64_t param_3)
   uStack_260 = 0;
   uStack_250 = 0;
   uStack_238 = iVar13;
-  FUN_18062dee0(&uStack_260,puVar12,&unknown_var_4880_ptr);
+  FUN_18062dee0(&uStack_260,puVar12,&processed_var_4880_ptr);
   lVar7 = lStack_258;
   if (lStack_258 != 0) {
     iStack_320 = -1;
@@ -318,7 +318,7 @@ LAB_1803c2b4d:
         uStack_210 = acStack_378 + 1;
         uStack_2f0 = (uint *)acStack_378;
         uStack_2e8 = acStack_378 + 1;
-        puStack_1f8 = &unknown_var_2008_ptr;
+        puStack_1f8 = &rendering_buffer_2008_ptr;
         puStack_1f0 = auStack_1e0;
         uStack_1e8 = 0;
         auStack_1e0[0] = 0;
@@ -358,8 +358,8 @@ LAB_1803c2b4d:
         if (pcStack_80 != (code *)0x0) {
           (*pcStack_80)(&uStack_90,0,0);
         }
-        pcStack_80 = (code *)&unknown_var_5264_ptr;
-        pcStack_78 = (code *)&unknown_var_5232_ptr;
+        pcStack_80 = (code *)&processed_var_5264_ptr;
+        pcStack_78 = (code *)&processed_var_5232_ptr;
         uStack_90 = (int32_t)uStack_2f0;
         uStack_8c = uStack_2f0._4_4_;
         uStack_88 = (int32_t)uStack_2e8;
@@ -701,7 +701,7 @@ LAB_1803c3d6b:
   uStack_118 = auStack_178;
   piStack_110 = aiStack_14c + 2;
   pcStack_f8 = FUN_1803c5580;
-  puStack_f0 = &unknown_var_4976_ptr;
+  puStack_f0 = &processed_var_4976_ptr;
   lStack_138 = param_1;
   aplStack_108[0] = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x38,8,system_allocation_flags);
   *aplStack_108[0] = (int64_t)ppuStack_140;

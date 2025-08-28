@@ -54,14 +54,14 @@ void FUN_1800cfb40(uint64_t param_1,int64_t param_2,int64_t *param_3)
     lVar5 = *(int64_t *)(lVar9 + 0x1cd8);
     FUN_18029fc10(lVar5,*(uint64_t *)(lVar9 + 0x1c70),lVar5 + 0x1100,0x6d0);
     FUN_18024c0f0(param_2,apuStack_a8);
-    FUN_1802c22a0(auStack_128,&unknown_var_2992_ptr);
+    FUN_1802c22a0(auStack_128,&rendering_buffer_2992_ptr);
     ppuStack_120 = &puStack_108;
     plVar7 = (int64_t *)0x0;
-    puStack_108 = &unknown_var_3480_ptr;
+    puStack_108 = &memory_allocator_3480_ptr;
     puStack_100 = auStack_f0;
     uStack_f8 = 0;
     auStack_f0[0] = 0;
-    FUN_180049bf0(&puStack_108,&unknown_var_2960_ptr);
+    FUN_180049bf0(&puStack_108,&rendering_buffer_2960_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_108);
     lVar9 = *(int64_t *)(system_message_buffer + 0x1cd8);
     if ((*(int64_t *)(lVar9 + 0x84b8) != 0) ||

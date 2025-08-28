@@ -19,7 +19,7 @@ void RenderingSystemBuffer(uint64_t param_1,int param_2,uint64_t param_3,uint64_
     aiStackX_10[0] = param_2;
   }
   puVar1 = *(void **)*render_system_data_memory;
-  if (puVar1 == &unknown_var_424_ptr) {
+  if (puVar1 == &processed_var_424_ptr) {
     cVar2 = *(int *)(render_system_data_memory + 0xc40) != 0;
   }
   else {
@@ -54,7 +54,7 @@ void FUN_18060f4f0(int param_1)
   int *piStackX_18;
   int *piStackX_20;
   
-  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x10,8,3,0xfffffffffffffffe);
+  puVar1 = (uint64_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr,0x10,8,3,0xfffffffffffffffe);
   piStackX_18 = aiStackX_8;
   aiStackX_8[0] = param_1;
   puStackX_10 = puVar1;
@@ -63,7 +63,7 @@ void FUN_18060f4f0(int param_1)
   }
   lVar2 = system_cache_buffer;
   piStackX_20 = aiStackX_8;
-  *puVar1 = &unknown_var_2168_ptr;
+  *puVar1 = &rendering_buffer_2168_ptr;
   *(int32_t *)(puVar1 + 1) = 0;
   if ((*(int *)(puVar1 + 1) != 0) && (lVar2 != 0)) {
     (**(code **)(lVar2 + 0x18))();
@@ -175,7 +175,7 @@ void FUN_18060f7c0(int64_t param_1)
             uVar6 = uVar7;
             do {
               FUN_1805b31e0(plVar1,iVar4,iVar5,
-                            ((&unknown_var_8808_ptr)[uVar6 & 7] &
+                            ((&processed_var_8808_ptr)[uVar6 & 7] &
                             *(byte *)(((iVar5 >> 3) + (iVar2 >> 3) * iVar4) + lVar3)) != 0);
               iVar5 = iVar5 + 1;
               uVar6 = uVar6 + 1;
@@ -216,13 +216,13 @@ int FUN_18060f810(int64_t param_1)
       pbVar2 = (byte *)((int64_t)
                         (int)((*(int *)(param_1 + 0x87b770) >> 3) * uVar4 + (iVar3 + -1 >> 3)) +
                        *(int64_t *)(param_1 + 0x87b768));
-      *pbVar2 = *pbVar2 & (&unknown_var_5168_ptr)[iVar3 - 1U & 7];
+      *pbVar2 = *pbVar2 & (&processed_var_5168_ptr)[iVar3 - 1U & 7];
       uVar1 = uVar4 & 7;
       pbVar2 = (byte *)((int64_t)
                         ((*(int *)(param_1 + 0x87b770) >> 3) * (iVar3 + -1) + ((int)uVar4 >> 3)) +
                        *(int64_t *)(param_1 + 0x87b768));
       uVar4 = uVar4 + 1;
-      *pbVar2 = *pbVar2 & (&unknown_var_5168_ptr)[uVar1];
+      *pbVar2 = *pbVar2 & (&processed_var_5168_ptr)[uVar1];
       iVar3 = *(int *)(param_1 + 0x87b760);
     } while ((int)uVar4 < iVar3);
   }

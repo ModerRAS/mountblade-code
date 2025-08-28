@@ -46,7 +46,7 @@ LAB_1806579f0:
 uint64_t * FUN_180657a70(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_1792_ptr;
+  *param_1 = &ui_system_data_1792_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }
@@ -65,7 +65,7 @@ void FUN_180657aa0(uint64_t *param_1)
   int32_t uVar2;
   
   uVar2 = SteamAPI_GetHSteamUser();
-  uVar1 = SteamInternal_FindOrCreateUserInterface(uVar2,&unknown_var_1688_ptr);
+  uVar1 = SteamInternal_FindOrCreateUserInterface(uVar2,&ui_system_data_1688_ptr);
   *param_1 = uVar1;
   return;
 }
@@ -82,7 +82,7 @@ void FUN_180657ad0(uint64_t *param_1)
   int32_t uVar2;
   
   uVar2 = SteamAPI_GetHSteamUser();
-  uVar1 = SteamInternal_FindOrCreateUserInterface(uVar2,&unknown_var_1704_ptr);
+  uVar1 = SteamInternal_FindOrCreateUserInterface(uVar2,&ui_system_data_1704_ptr);
   *param_1 = uVar1;
   return;
 }
@@ -96,9 +96,9 @@ FUN_180657b00(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_1744_ptr;
+  *param_1 = &ui_system_data_1744_ptr;
   FUN_18005d580();
-  *param_1 = &unknown_var_1792_ptr;
+  *param_1 = &ui_system_data_1792_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x28,param_3,param_4,uVar1);
   }

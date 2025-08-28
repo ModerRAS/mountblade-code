@@ -359,7 +359,7 @@ void FUN_1804f3d00(int64_t param_1)
   puStack_50 = auStack_40;
   auStack_40[0] = 0;
   uStack_48 = 0xc;
-  strcpy_s(auStack_40,0x10,&unknown_var_3752_ptr);
+  strcpy_s(auStack_40,0x10,&memory_allocator_3752_ptr);
   (*pcVar1)(system_system_data_config,&puStack_58,0);
   puStack_58 = &system_state_ptr;
   FUN_180158f40();
@@ -483,7 +483,7 @@ LAB_1804f3df9:
   puStack_50 = auStack_40;
   auStack_40[0] = 0;
   uStack_48 = 8;
-  strcpy_s(auStack_40,0x10,&unknown_var_3912_ptr);
+  strcpy_s(auStack_40,0x10,&memory_allocator_3912_ptr);
   (*pcVar1)(system_system_data_config,&puStack_58,0);
   puStack_58 = &system_state_ptr;
                     // WARNING: Subroutine does not return
@@ -661,9 +661,9 @@ void FUN_1804f4250(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4
         __Throw_C_error_std__YAXH_Z(iVar5);
       }
       cVar4 = SystemBufferProcessor(0x180c95578,0,&system_param1_ptr);
-      if ((cVar4 != '\0') && (cVar4 = SystemBufferProcessor(0x180c95578,0xd,&unknown_var_3472_ptr), cVar4 != '\0'))
+      if ((cVar4 != '\0') && (cVar4 = SystemBufferProcessor(0x180c95578,0xd,&memory_allocator_3472_ptr), cVar4 != '\0'))
       {
-        SystemBufferProcessor(0x180c95578,param_2,&unknown_var_3424_ptr);
+        SystemBufferProcessor(0x180c95578,param_2,&memory_allocator_3424_ptr);
       }
       system_system_config = system_system_config & 0xffffffff00000000;
       iVar5 = (int)(system_system_config - system_system_config >> 3);

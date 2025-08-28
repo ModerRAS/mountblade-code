@@ -306,7 +306,7 @@ process_batch_loop:
     param_2 = *(code **)(*param_4 + RENDER_TRANSFORM_OFFSET);
     param_6._4_4_ = flag_mask;
     param_11 = transform_data;
-    if (param_2 != (code *)&unknown_var_2528_ptr) goto process_batch_loop;
+    if (param_2 != (code *)&rendering_buffer_2528_ptr) goto process_batch_loop;
     param_8 = param_4 + 0x66;
   } while( true );
 }
@@ -384,7 +384,7 @@ void calculate_render_transform(int64_t *param_1, int64_t *param_2)
   float stack_a4;                // 栈变量a4
   
   // 获取变换数据
-  if (*(code **)(*param_2 + RENDER_TRANSFORM_OFFSET) == (code *)&unknown_var_2528_ptr) {
+  if (*(code **)(*param_2 + RENDER_TRANSFORM_OFFSET) == (code *)&rendering_buffer_2528_ptr) {
     transform_data = (float *)(param_2 + 0x66);
   }
   else {
@@ -444,7 +444,7 @@ void calculate_render_transform(int64_t *param_1, int64_t *param_2)
       computed_value_1 = matrix_element_13 * matrix_element_3 + matrix_element_14 * matrix_element_6 + matrix_element_15 * matrix_element_9;
       
       // 获取目标矩阵数据
-      if (*(code **)(*param_1 + RENDER_TRANSFORM_OFFSET) == (code *)&unknown_var_2528_ptr) {
+      if (*(code **)(*param_1 + RENDER_TRANSFORM_OFFSET) == (code *)&rendering_buffer_2528_ptr) {
         transform_data = (float *)(param_1 + 0x66);
       }
       else {
@@ -571,7 +571,7 @@ void calculate_render_transform(int64_t *param_1, int64_t *param_2)
   }
   
   // 处理渲染状态
-  if (*(code **)(*param_1 + RENDER_STATE_OFFSET) == (code *)&unknown_var_6368_ptr) {
+  if (*(code **)(*param_1 + RENDER_STATE_OFFSET) == (code *)&processed_var_6368_ptr) {
     FUN_180276f30(param_1, (int64_t)param_1 + RENDER_STACK_OFFSET, 0);
   }
   else {
@@ -832,7 +832,7 @@ context_setup_complete:
       if ((*(uint *)(data_offset + 0x5c) >> 8 & 1) != 0) {
         FUN_18022cb40(*(uint64_t *)(config_data + 0x1b8), &temp_context);
         resource_manager = temp_context;
-        temp_ptr = &unknown_var_3480_ptr;
+        temp_ptr = &memory_allocator_3480_ptr;
         temp_buffer = temp_storage;
         temp_storage[0] = 0;
         context_id = 0x10;

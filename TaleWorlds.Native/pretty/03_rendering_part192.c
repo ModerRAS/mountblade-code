@@ -112,17 +112,17 @@ extern void* system_data_1858;          // 系统数据结构 1858
 extern void* system_data_1838;          // 系统数据结构 1838
 extern void* system_data_1028;          // 系统数据结构 1028
 extern void* system_memory_pool_ptr;            // 全局数据段
-extern void* unknown_var_9120_ptr;      // 未知变量 9120
-extern void* unknown_var_1040_ptr;      // 未知变量 1040
-extern void* unknown_var_1024_ptr;      // 未知变量 1024
-extern void* unknown_var_960_ptr;        // 未知变量 960
-extern void* unknown_var_944_ptr;        // 未知变量 944
+extern void* processed_var_9120_ptr;      // 未知变量 9120
+extern void* ui_system_data_1040_ptr;      // 未知变量 1040
+extern void* ui_system_data_1024_ptr;      // 未知变量 1024
+extern void* processed_var_960_ptr;        // 未知变量 960
+extern void* processed_var_944_ptr;        // 未知变量 944
 extern void* system_data_buffer_ptr;       // 未知变量 3456
-extern void* unknown_var_8600_ptr;       // 未知变量 8600
-extern void* unknown_var_8592_ptr;       // 未知变量 8592
+extern void* processed_var_8600_ptr;       // 未知变量 8600
+extern void* processed_var_8592_ptr;       // 未知变量 8592
 extern void* system_state_ptr;        // 未知变量 720
-extern void* unknown_var_880_ptr;        // 未知变量 880
-extern void* unknown_var_2788_ptr;       // 未知变量 2788
+extern void* processed_var_880_ptr;        // 未知变量 880
+extern void* rendering_buffer_2788_ptr;       // 未知变量 2788
 extern void* system_buffer_ptr;          // 系统缓冲区指针
 
 /*========================== 函数别名映射 ==========================*/
@@ -212,7 +212,7 @@ void FUN_18037c8d0(RenderContextHandle contextHandle, uint64_t bufferFlags)
             resourcePtr = *(int64_t **)(bufferArrayPtr + 0x20);
             
             // 检查缓冲区是否就绪
-            if (*(code **)(*resourcePtr + 0xc0) == (code *)&unknown_var_9120_ptr) {
+            if (*(code **)(*resourcePtr + 0xc0) == (code *)&processed_var_9120_ptr) {
                 isBufferReady = (resourcePtr[8] - resourcePtr[7] & 0xfffffffffffffff0U) == 0;
             }
             else {
@@ -261,8 +261,8 @@ void FUN_18037c8d0(RenderContextHandle contextHandle, uint64_t bufferFlags)
         
         // 设置栈参数并执行渲染命令
         stackPtr = stackBufferCount;
-        stackPtr1 = &unknown_var_1040_ptr;
-        stackPtr2 = &unknown_var_1024_ptr;
+        stackPtr1 = &ui_system_data_1040_ptr;
+        stackPtr2 = &ui_system_data_1024_ptr;
         contextLow = (int32_t)contextHandle;
         contextHigh = (int32_t)((uint64_t)contextHandle >> 0x20);
         stackLow = contextLow;
@@ -805,8 +805,8 @@ LAB_18037d26b:
                 tempValue20 = 0;
                 tempValue25 = 0;
                 tempValue26 = 0;
-                pcStack_168 = (code *)&unknown_var_960_ptr;
-                tempPtr11 = &unknown_var_944_ptr;
+                pcStack_168 = (code *)&processed_var_960_ptr;
+                tempPtr11 = &processed_var_944_ptr;
                 apuStack_178[0] = &tempValue23;
                 
                 // 调用性能统计回调
@@ -840,7 +840,7 @@ LAB_18037d26b:
                     tempFlags = tempFlags >> 1;
                 } while (tempFlags != 0);
                 
-                isStatValid = (&unknown_var_8592_ptr)[tempIndex / arraySize];
+                isStatValid = (&processed_var_8592_ptr)[tempIndex / arraySize];
                 frameTime = (float)powf(0x44800000);
                 fps = (float)tempValue26;
                 if (tempValue26 < 0) {
@@ -848,7 +848,7 @@ LAB_18037d26b:
                 }
                 
                 // 更新统计数据
-                RenderSystem_UpdateRenderStatistics(&tempPtr4, &unknown_var_8600_ptr, (double)(frameTime * fps), (int)isStatValid);
+                RenderSystem_UpdateRenderStatistics(&tempPtr4, &processed_var_8600_ptr, (double)(frameTime * fps), (int)isStatValid);
                 
                 // 处理性能数据哈希表
                 pppuVar4 = pppppuVar3[0x11][1];
@@ -963,7 +963,7 @@ LAB_18037d51b:
     }
     
     // 清理渲染数据
-    RenderSystem_CleanupRenderData(tempValue15, tempPtr7, &unknown_var_880_ptr);
+    RenderSystem_CleanupRenderData(tempValue15, tempPtr7, &processed_var_880_ptr);
     
     tempPtr6 = &system_data_buffer_ptr;
     tempValue14 = 0;
@@ -981,7 +981,7 @@ LAB_18037d51b:
             }
             
             // 更新渲染统计信息
-            RenderSystem_UpdateRenderStatistics(&tempPtr6, &unknown_var_2788_ptr, tempPtr3,
+            RenderSystem_UpdateRenderStatistics(&tempPtr6, &rendering_buffer_2788_ptr, tempPtr3,
                                               (double)*(float *)(tempValue15 + 0x20 + totalStats));
             tempFlags = (int)tempValue11 + 1;
             totalStats = totalStats + 0x28;

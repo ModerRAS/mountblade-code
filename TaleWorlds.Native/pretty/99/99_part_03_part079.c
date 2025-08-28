@@ -433,8 +433,8 @@ void FUN_180244e4d(void)
     }
     
     /* 设置系统回调函数 */
-    *(void **)(unaff_RSI + MEMORY_BLOCK_SIZE) = &unknown_var_7024_ptr;
-    *(void **)(unaff_RSI + MEMORY_CACHE_SIZE) = &unknown_var_7008_ptr;
+    *(void **)(unaff_RSI + MEMORY_BLOCK_SIZE) = &processed_var_7024_ptr;
+    *(void **)(unaff_RSI + MEMORY_CACHE_SIZE) = &processed_var_7008_ptr;
     *(code **)(unaff_RSI + MEMORY_POOL_SIZE) = FUN_1802436f0;
     
     /* 设置系统配置 */
@@ -493,7 +493,7 @@ uint64_t * FUN_180244f00(uint64_t *param_1, uint64_t param_2)
     int64_t *plVar1;                  /**< 资源列表指针 */
     
     /* 初始化资源管理器 */
-    *param_1 = &unknown_var_9624_ptr;
+    *param_1 = &processed_var_9624_ptr;
     plVar1 = (int64_t *)param_1[SYSTEM_CONFIG_MAX_SLOTS];
     
     /* 检查资源状态 */
@@ -596,13 +596,13 @@ void FUN_180244ff0(int64_t param_1)
         iVar2 = *(int *)(param_1 + 0x3594);
         
         /* 设置处理参数 */
-        puStack_d8 = &unknown_var_3432_ptr;
+        puStack_d8 = &memory_allocator_3432_ptr;
         puStack_d0 = auStack_c0;
         auStack_c0[0] = 0;
         uStack_c8 = 10;
         
         /* 复制系统字符串 */
-        strcpy_s(auStack_c0, RESOURCE_STRING_SIZE, &unknown_var_336_ptr);
+        strcpy_s(auStack_c0, RESOURCE_STRING_SIZE, &memory_allocator_336_ptr);
         
         /* 获取系统名称 */
         puVar9 = &system_buffer_ptr;
@@ -739,14 +739,14 @@ void FUN_180245280(int64_t param_1)
         uStack_e0 = *(int32_t *)(param_1 + 0x1bd4);
         
         /* 设置资源管理参数 */
-        puStack_b8 = &unknown_var_3432_ptr;
+        puStack_b8 = &memory_allocator_3432_ptr;
         puStack_b0 = auStack_a0;
         auStack_a0[0] = 0;
         uStack_a8 = 7;
         uStack_f0 = uVar4;
         
         /* 复制资源字符串 */
-        uVar5 = strcpy_s(auStack_a0, RESOURCE_STRING_SIZE, &unknown_var_400_ptr);
+        uVar5 = strcpy_s(auStack_a0, RESOURCE_STRING_SIZE, &processed_var_400_ptr);
         
         /* 分配资源 */
         puVar3 = (uint64_t *)FUN_1800b1d80(uVar5, &plStack_d0, &puStack_b8, &uStack_f8);

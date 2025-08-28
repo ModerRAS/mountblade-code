@@ -348,7 +348,7 @@ void FUN_18081bc90(int64_t param_1)
             iVar1 = FUN_18081bd20(param_1 + 0x520);
             if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
-              SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_1152_ptr,0x1c8,1);
+              SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&ui_system_data_1152_ptr,0x1c8,1);
             }
           }
         }
@@ -369,7 +369,7 @@ void FUN_18081bd20(uint64_t *param_1)
 
 {
                     // WARNING: Subroutine does not return
-  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_1152_ptr,0x172,1);
+  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&ui_system_data_1152_ptr,0x172,1);
 }
 
 

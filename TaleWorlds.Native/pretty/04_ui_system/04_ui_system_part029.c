@@ -28,8 +28,8 @@
 // UI系统相关常量
 #define UI_SYSTEM_BASE_OFFSET 0x15c
 #define UI_SYSTEM_BLOCK_SIZE 0x30
-#define UI_SYSTEM_CHUNK_SIZE 0x10
-#define UI_SYSTEM_LARGE_CHUNK_SIZE 0x80
+#define UI_SYSTEM_CHSYSTEM_SIZE 0x10
+#define UI_SYSTEM_LARGE_CHSYSTEM_SIZE 0x80
 #define UI_SYSTEM_PATTERN_0x81 0x81
 #define UI_SYSTEM_ALIGNMENT_MASK 0x1f
 #define UI_SYSTEM_DATA_FLAG 0x3fffffbf
@@ -181,16 +181,16 @@ void UIAdvancedDataProcessor(int64_t ui_context, int64_t data_buffer, int proces
       *(int64_t *)(context_rbp + -0x70) = memory_base1 + temp_long * 4;  // 计算偏移地址
       *(uint64_t *)(data_buffer + 0xf50) = *(uint64_t *)(context_rdi + 0x2c18);  // 设置数据指针
       buffer_ptr = *(uint64_t **)(data_buffer + 0xf58);  // 获取缓冲区指针
-      stack_param3 = stack_param2 * (int)loop_counter * UI_SYSTEM_CHUNK_SIZE;  // 计算块大小
+      stack_param3 = stack_param2 * (int)loop_counter * UI_SYSTEM_CHSYSTEM_SIZE;  // 计算块大小
       stack_param4 = stack_param2 * (int)size_param2 * 8;  // 计算另一个大小参数
       
       // 初始化缓冲区
       *buffer_ptr = 0;
       *(int8_t *)(buffer_ptr + 1) = 0;
       *(int32_t *)(data_buffer + 0xf14) = 0;
-      *(int *)(data_buffer + 0xf8c) = stack_param2 * -UI_SYSTEM_LARGE_CHUNK_SIZE;
+      *(int *)(data_buffer + 0xf8c) = stack_param2 * -UI_SYSTEM_LARGE_CHSYSTEM_SIZE;
       *(int *)(data_buffer + 0xf90) =
-           ((*(int *)(context_rdi + 0x1e74) - stack_param2) + -1) * UI_SYSTEM_LARGE_CHUNK_SIZE;
+           ((*(int *)(context_rdi + 0x1e74) - stack_param2) + -1) * UI_SYSTEM_LARGE_CHSYSTEM_SIZE;
       
       // 根据系统模式选择处理路径
       if (*(int *)(context_rdi + 0x2be0) == 0) {
@@ -291,7 +291,7 @@ void UIAdvancedDataProcessor(int64_t ui_context, int64_t data_buffer, int proces
                *(int64_t *)(context_rbp + -0x68) + (int64_t)stack_param3;
           *(int64_t *)(data_buffer + 0xeb0) = *(int64_t *)(context_rbp + -0x60) + memory_base2;
           memory_base3 = *(int64_t *)(context_rbp + -0x58);
-          *(uint *)(data_buffer + 0xf88) = ((counter - temp_uint) + -1) * UI_SYSTEM_LARGE_CHUNK_SIZE;
+          *(uint *)(data_buffer + 0xf88) = ((counter - temp_uint) + -1) * UI_SYSTEM_LARGE_CHSYSTEM_SIZE;
           *(int64_t *)(data_buffer + 0xeb8) = memory_base3 + memory_base2;
           *(int64_t *)(data_buffer + 0xe18) =
                *(int64_t *)(context_rbp + -0x10 + (uint64_t)*(byte *)(memory_base1 + 2) * 0x18) +
@@ -311,12 +311,12 @@ void UIAdvancedDataProcessor(int64_t ui_context, int64_t data_buffer, int proces
                (uint)(*(int *)(*(int64_t *)(data_buffer + 0xfb8) + 0x18) - 0x41U < UI_SYSTEM_DATA_FLAG);
           
           // 更新数据指针
-          *(int64_t *)(data_buffer + 0xf18) = *(int64_t *)(data_buffer + 0xf18) + UI_SYSTEM_CHUNK_SIZE;
+          *(int64_t *)(data_buffer + 0xf18) = *(int64_t *)(data_buffer + 0xf18) + UI_SYSTEM_CHSYSTEM_SIZE;
           *(int64_t *)(data_buffer + 0xf20) = *(int64_t *)(data_buffer + 0xf20) + 8;
           *(int64_t *)(data_buffer + 0xf28) = *(int64_t *)(data_buffer + 0xf28) + 8;
           
           if (*(int *)(context_rdi + 0x2be0) == 0) {
-            *(int64_t *)(data_buffer + 0xf30) = *(int64_t *)(data_buffer + 0xf30) + UI_SYSTEM_CHUNK_SIZE;
+            *(int64_t *)(data_buffer + 0xf30) = *(int64_t *)(data_buffer + 0xf30) + UI_SYSTEM_CHSYSTEM_SIZE;
             *(int64_t *)(data_buffer + 0xf38) = *(int64_t *)(data_buffer + 0xf38) + 8;
             *(int64_t *)(data_buffer + 0xf40) = *(int64_t *)(data_buffer + 0xf40) + 8;
             if (*(int *)(context_rdi + 0x2be0) != 0) goto LAB_mode_switch;
@@ -481,12 +481,12 @@ LAB_mode_switch:
           }
           
           temp_uint = temp_uint + 1;
-          stack_param5 = stack_param5 + -UI_SYSTEM_LARGE_CHUNK_SIZE;
-          stack_param3 = stack_param3 + UI_SYSTEM_CHUNK_SIZE;
+          stack_param5 = stack_param5 + -UI_SYSTEM_LARGE_CHSYSTEM_SIZE;
+          stack_param3 = stack_param3 + UI_SYSTEM_CHSYSTEM_SIZE;
           stack_param4 = stack_param4 + 8;
           *(int64_t *)(data_buffer + 0xf00) = *(int64_t *)(data_buffer + 0xf00) + 0x4c;
           *(int64_t *)(data_buffer + 0xf50) = *(int64_t *)(data_buffer + 0xf50) + 9;
-          stack_long1 = stack_long1 + UI_SYSTEM_CHUNK_SIZE;
+          stack_long1 = stack_long1 + UI_SYSTEM_CHSYSTEM_SIZE;
           stack_long2 = stack_long2 + 8;
           int_ptr = *(int **)(context_rbp + -0x78);
           size_param1 = (uint64_t)(int)loop_counter;

@@ -145,8 +145,8 @@ void FUN_180535c60(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   }
   
   // 步骤2：执行资源状态初始化和验证
-  resource_status_flag = SystemSynchronizationProcessor(param_3, &stack_resource_id, &unknown_var_3424_ptr);
-  FUN_1804fe350(&unknown_var_4280_ptr, resource_status_flag, &unknown_var_3816_ptr, &stack_resource_id);
+  resource_status_flag = SystemSynchronizationProcessor(param_3, &stack_resource_id, &memory_allocator_3424_ptr);
+  FUN_1804fe350(&processed_var_4280_ptr, resource_status_flag, &memory_allocator_3816_ptr, &stack_resource_id);
   
   // 步骤3：检查资源状态，无效则返回
   if (resource_status_flag == '\0') {
@@ -224,8 +224,8 @@ void FUN_180535c60(int64_t *param_1,uint64_t param_2,uint64_t param_3)
       }
       resource_status_flag = SystemBufferProcessor(0x180c95578, 0, &system_param1_ptr);
       if ((resource_status_flag != '\0') &&
-         (resource_status_flag = SystemBufferProcessor(0x180c95578, 0xd, &unknown_var_3472_ptr), resource_status_flag != '\0')) {
-        SystemBufferProcessor(0x180c95578, resource_handle, &unknown_var_3424_ptr);
+         (resource_status_flag = SystemBufferProcessor(0x180c95578, 0xd, &memory_allocator_3472_ptr), resource_status_flag != '\0')) {
+        SystemBufferProcessor(0x180c95578, resource_handle, &memory_allocator_3424_ptr);
       }
       render_system_resource = render_system_resource & 0xffffffff00000000;
       resource_id = (int)(render_system_resource - render_system_resource >> 3);
@@ -498,7 +498,7 @@ void FUN_180535c78(int32_t param_1)
   
   // 步骤1：执行资源状态初始化和验证
   resource_status_flag = SystemSynchronizationProcessor(param_1, &stack_resource_id);
-  FUN_1804fe350(&unknown_var_4280_ptr, resource_status_flag, &unknown_var_3816_ptr, &stack_resource_id);
+  FUN_1804fe350(&processed_var_4280_ptr, resource_status_flag, &memory_allocator_3816_ptr, &stack_resource_id);
   
   // 步骤2：检查资源状态，无效则返回
   if (resource_status_flag == '\0') {
@@ -574,8 +574,8 @@ void FUN_180535c78(int32_t param_1)
       }
       resource_status_flag = SystemBufferProcessor(0x180c95578, 0, &system_param1_ptr);
       if ((resource_status_flag != '\0') && 
-          (resource_status_flag = SystemBufferProcessor(0x180c95578, 0xd, &unknown_var_3472_ptr), resource_status_flag != '\0')) {
-        SystemBufferProcessor(0x180c95578, resource_handle, &unknown_var_3424_ptr);
+          (resource_status_flag = SystemBufferProcessor(0x180c95578, 0xd, &memory_allocator_3472_ptr), resource_status_flag != '\0')) {
+        SystemBufferProcessor(0x180c95578, resource_handle, &memory_allocator_3424_ptr);
       }
       render_system_resource = render_system_resource & 0xffffffff00000000;
       resource_id = (int)(render_system_resource - render_system_resource >> 3);

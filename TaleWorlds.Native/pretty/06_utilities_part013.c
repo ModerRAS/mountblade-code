@@ -100,7 +100,7 @@ uint64_t FUN_1808987e0(int64_t *param_1,char param_2)
       if (lVar1 != 0) {
         uStack_18 = uVar4;
       }
-      puStack_28 = &unknown_var_7904_ptr;
+      puStack_28 = &processed_var_7904_ptr;
       uVar2 = SystemNetworkProcessor(param_1,&puStack_28);
       if ((int)uVar2 != 0) {
         return uVar2;
@@ -711,7 +711,7 @@ uint64_t FUN_180898d60(int64_t *param_1,int param_2)
   if (param_2 != 0) {
     if (param_2 * 3 - 1U < 0x3fffffff) {
       puVar3 = (int16_t *)
-               SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 3,&unknown_var_8432_ptr,0xf4
+               SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 3,&processed_var_8432_ptr,0xf4
                              ,0,0,1);
       if (puVar3 != (int16_t *)0x0) {
         iVar1 = (int)param_1[1];
@@ -734,7 +734,7 @@ uint64_t FUN_180898d60(int64_t *param_1,int param_2)
 LAB_180898e0b:
   if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&processed_var_8432_ptr,0x100,1);
   }
   *param_1 = (int64_t)puVar3;
   *(int *)((int64_t)param_1 + 0xc) = param_2;
@@ -761,7 +761,7 @@ uint64_t FUN_180898d84(uint64_t param_1,int param_2)
 LAB_180898e0b:
     if ((0 < *(int *)((int64_t)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&processed_var_8432_ptr,0x100,1);
     }
     *unaff_RBX = (int64_t)puVar3;
     *(int *)((int64_t)unaff_RBX + 0xc) = unaff_EDI;
@@ -769,7 +769,7 @@ LAB_180898e0b:
   }
   if (param_2 * 3 - 1U < 0x3fffffff) {
     puVar3 = (int16_t *)
-             SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 3,&unknown_var_8432_ptr,0xf4,0
+             SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 3,&processed_var_8432_ptr,0xf4,0
                           );
     if (puVar3 != (int16_t *)0x0) {
       iVar1 = (int)unaff_RBX[1];

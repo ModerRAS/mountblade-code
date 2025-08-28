@@ -253,11 +253,11 @@ char FUN_180601760(int64_t param_1,uint64_t *param_2,float param_3,char param_4,
     else {
       FUN_180508010(lVar1);
     }
-    puVar6 = &unknown_var_6416_ptr;
+    puVar6 = &processed_var_6416_ptr;
     if (param_4 != '\0') {
-      puVar6 = &unknown_var_6344_ptr;
+      puVar6 = &processed_var_6344_ptr;
     }
-    func_0x000180508000(lVar1,&unknown_var_7760_ptr,&unknown_var_7792_ptr,(double)*(float *)(param_2 + 3),
+    func_0x000180508000(lVar1,&processed_var_7760_ptr,&processed_var_7792_ptr,(double)*(float *)(param_2 + 3),
                         (double)*(float *)((int64_t)param_2 + 0x1c),(double)param_3,puVar6,param_5)
     ;
   }
@@ -289,11 +289,11 @@ uint64_t FUN_1806018c0(int64_t param_1,uint64_t *param_2,char param_3,uint param
   if ((*(uint *)(lVar2 + 0x2098) != (param_4 | 1)) ||
      (fVar7 = *(float *)((int64_t)param_2 + 0x1c) - *(float *)(lVar2 + 0x20bc),
      fVar6 = fVar1 - *(float *)(lVar2 + 0x20b8), 0.1 < fVar6 * fVar6 + fVar7 * fVar7)) {
-    puVar4 = &unknown_var_6416_ptr;
+    puVar4 = &processed_var_6416_ptr;
     if (param_3 != '\0') {
-      puVar4 = &unknown_var_6344_ptr;
+      puVar4 = &processed_var_6344_ptr;
     }
-    func_0x000180508000(lVar2,&unknown_var_7848_ptr,&unknown_var_7872_ptr,(double)fVar1,
+    func_0x000180508000(lVar2,&processed_var_7848_ptr,&processed_var_7872_ptr,(double)fVar1,
                         (double)*(float *)((int64_t)param_2 + 0x1c),puVar4,param_4);
     if (param_3 == '\0') {
       *(int32_t *)(lVar2 + 0x13b8) = 0;
@@ -403,7 +403,7 @@ void FUN_180601af0(int64_t param_1,uint64_t param_2,uint64_t param_3)
     plVar4 = *(int64_t **)(lVar2 + 0x20f0);
   }
   uVar5 = *(uint *)(lVar2 + 0x209c) & 0x800;
-  uVar3 = func_0x000180508000(lVar2,&unknown_var_3320_ptr,&unknown_var_3288_ptr,plVar4,0,*(uint *)(lVar2 + 0x209c)
+  uVar3 = func_0x000180508000(lVar2,&memory_allocator_3320_ptr,&memory_allocator_3288_ptr,plVar4,0,*(uint *)(lVar2 + 0x209c)
                               ,uVar5);
   *(uint *)(lVar2 + 0x209c) = uVar5;
   plStackX_8 = *(int64_t **)(lVar2 + 0x20f0);
@@ -735,7 +735,7 @@ void FUN_180602490(int64_t param_1,int64_t *param_2,int8_t param_3)
   FUN_180275cf0(plVar3,0,&plStackX_8,1);
   if (*(int64_t *)(param_1 + 0x658) != 0) {
     lVar1 = *(int64_t *)(param_1 + 0x6d8);
-    if ((void *)*plVar3 == &unknown_var_9304_ptr) {
+    if ((void *)*plVar3 == &processed_var_9304_ptr) {
       plVar4 = plVar3 + 0x66;
     }
     else {

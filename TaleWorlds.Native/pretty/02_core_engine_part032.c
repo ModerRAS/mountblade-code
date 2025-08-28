@@ -369,11 +369,11 @@ void FUN_180077150(int64_t *param_1)
   uStack_60 = 0xfffffffffffffffe;
   uStack_20 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_88;
   uVar1 = *(uint64_t *)(param_1[0x37] + 0x1e0);
-  puStack_58 = &unknown_var_672_ptr;
+  puStack_58 = &processed_var_672_ptr;
   puStack_50 = auStack_40;
   auStack_40[0] = auStack_40[0] & 0xffffffffffffff00;
   uStack_48._0_4_ = 0x12;
-  strcpy_s(auStack_40,0x20,&unknown_var_5320_ptr);
+  strcpy_s(auStack_40,0x20,&processed_var_5320_ptr);
   uVar3 = SystemCore_LoggingSystem0(uVar1,&puStack_58,0);
   puStack_58 = &system_state_ptr;
   if (uVar3 != 0) {
@@ -521,7 +521,7 @@ uint64_t FUN_180077420(int64_t param_1,int64_t param_2)
       bVar5 = false;
       if ((*(byte *)(param_1 + 0xfd) & 8) != 0) {
         lVar13 = 0xb8;
-        pcVar15 = (code *)&unknown_var_128_ptr;
+        pcVar15 = (code *)&ui_system_data_128_ptr;
         do {
           lVar12 = *(int64_t *)(lVar13 + *(int64_t *)(param_1 + 0x1b8));
           if (((lVar12 != 0) && (lVar11 = *(int64_t *)(lVar12 + 0x370), lVar11 != 0)) &&
@@ -572,7 +572,7 @@ uint64_t FUN_180077420(int64_t param_1,int64_t param_2)
             *(int64_t *)
              (*(int64_t *)(lVar11 + 0x3f70 + uVar14 * 8) + (uint64_t)(uVar3 + uVar9 * -0x400) * 8)
                  = lVar12;
-            pcVar15 = (code *)&unknown_var_128_ptr;
+            pcVar15 = (code *)&ui_system_data_128_ptr;
           }
           lVar13 = lVar13 + 8;
         } while (lVar13 < 0x138);

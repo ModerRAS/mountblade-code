@@ -555,11 +555,11 @@ uint64_t *RenderingSystem_CreateResourceManager(uint64_t *resource_manager)
 {
   // 初始化资源管理器结构
   FUN_180320470();
-  *resource_manager = &unknown_var_8368_ptr;
+  *resource_manager = &processed_var_8368_ptr;
   resource_manager[0x16] = &system_state_ptr;
   resource_manager[0x17] = 0;
   *(int32_t *)(resource_manager + 0x18) = 0;
-  resource_manager[0x16] = &unknown_var_3480_ptr;
+  resource_manager[0x16] = &memory_allocator_3480_ptr;
   resource_manager[0x17] = resource_manager + 0x19;
   *(int32_t *)(resource_manager + 0x18) = 0;
   *(int8_t *)(resource_manager + 0x19) = 0;
@@ -568,7 +568,7 @@ uint64_t *RenderingSystem_CreateResourceManager(uint64_t *resource_manager)
   resource_manager[0x21] = &system_state_ptr;
   resource_manager[0x22] = 0;
   *(int32_t *)(resource_manager + 0x23) = 0;
-  resource_manager[0x21] = &unknown_var_3480_ptr;
+  resource_manager[0x21] = &memory_allocator_3480_ptr;
   resource_manager[0x22] = resource_manager + 0x24;
   *(int32_t *)(resource_manager + 0x23) = 0;
   *(int8_t *)(resource_manager + 0x24) = 0;
@@ -577,7 +577,7 @@ uint64_t *RenderingSystem_CreateResourceManager(uint64_t *resource_manager)
   resource_manager[0x2c] = &system_state_ptr;
   resource_manager[0x2d] = 0;
   *(int32_t *)(resource_manager + 0x2e) = 0;
-  resource_manager[0x2c] = &unknown_var_3480_ptr;
+  resource_manager[0x2c] = &memory_allocator_3480_ptr;
   resource_manager[0x2d] = resource_manager + 0x2f;
   *(int32_t *)(resource_manager + 0x2e) = 0;
   *(int8_t *)(resource_manager + 0x2f) = 0;

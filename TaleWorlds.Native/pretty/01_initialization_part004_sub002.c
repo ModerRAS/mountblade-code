@@ -20,7 +20,7 @@ void FUN_180034150(void)
   plVar4 = (int64_t *)RenderGraphicsManager();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  puStackX_18 = &unknown_var_2048_ptr;
+  puStackX_18 = &rendering_buffer_2048_ptr;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -43,7 +43,7 @@ void FUN_180034150(void)
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
-  puVar7[8] = &unknown_var_7704_ptr;
+  puVar7[8] = &processed_var_7704_ptr;
   puVar7[9] = 0;
   puVar7[10] = puStackX_18;
   return;

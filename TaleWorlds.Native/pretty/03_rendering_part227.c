@@ -323,7 +323,7 @@ uint64_t FUN_180396100(int64_t param_1,float *param_2,uint64_t param_3,char para
         puVar7 = puVar1;
       }
       uStack_80 = 0x83;
-      System_DataHandler(&puStack_90,&unknown_var_5608_ptr,(double)*param_2,(double)param_2[1],
+      System_DataHandler(&puStack_90,&processed_var_5608_ptr,(double)*param_2,(double)param_2[1],
                     (double)param_2[2],puVar7,uVar15);
       puVar7 = &system_buffer_ptr;
       if (puStack_88 != (void *)0x0) {

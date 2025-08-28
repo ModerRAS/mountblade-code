@@ -101,14 +101,14 @@ LAB_1803782ba:
               puVar20 = puVar16;
             }
             lVar12 = (*(int64_t **)(unaff_RBP + 0x68))[1] - **(int64_t **)(unaff_RBP + 0x68);
-            puVar16 = &unknown_var_3792_ptr;
+            puVar16 = &memory_allocator_3792_ptr;
           }
           else {
             if (puVar16 != (void *)0x0) {
               puVar20 = puVar16;
             }
             lVar12 = (*(int64_t **)(unaff_RBP + 0x60))[1] - **(int64_t **)(unaff_RBP + 0x60);
-            puVar16 = &unknown_var_3824_ptr;
+            puVar16 = &memory_allocator_3824_ptr;
           }
                     // WARNING: Subroutine does not return
           FUN_180062300(system_message_context,puVar16,lVar12 / 0x28,puVar20);
@@ -245,7 +245,7 @@ LAB_180377195:
       puVar16 = (void *)*puVar22;
       *(float *)(unaff_RBP + -0x10) = (float)(int)uVar18;
       *(float *)(unaff_RBP + -0xc) = (float)iVar2;
-      if (puVar16 == &unknown_var_8576_ptr) {
+      if (puVar16 == &processed_var_8576_ptr) {
         fVar26 = *(float *)(puVar22[2] + 0x1c) /
                  (float)(1 << ((byte)*(int32_t *)(puVar22 + 5) & 0x1f));
       }
@@ -296,7 +296,7 @@ LAB_180377195:
             *(int32_t *)(unaff_RBP + 0x84) = *(int32_t *)(unaff_RBP + 0x84);
             fVar26 = *(float *)(unaff_RBP + -0xc);
             fVar31 = *(float *)(unaff_RBP + -0x10);
-            if (puVar16 == &unknown_var_8576_ptr) {
+            if (puVar16 == &processed_var_8576_ptr) {
               fVar27 = *(float *)(puVar22[2] + 0x1c) /
                        (float)(1 << ((byte)*(int32_t *)(puVar22 + 5) & 0x1f));
             }
@@ -512,7 +512,7 @@ void FUN_180378494(void)
   int64_t unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&unknown_var_3792_ptr,
+  FUN_180062300(system_message_context,&memory_allocator_3792_ptr,
                 ((*(int64_t **)(unaff_RBP + 0x68))[1] - **(int64_t **)(unaff_RBP + 0x68)) / 0x28);
 }
 

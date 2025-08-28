@@ -839,7 +839,7 @@ void initialize_thread_manager(uint64_t *thread_manager_ptr)
 uint64_t * initialize_graphics_object(uint64_t *graphics_obj_ptr, uint64_t param_2)
 {
   // 设置主对象指针
-  *graphics_obj_ptr = &unknown_var_7864_ptr;
+  *graphics_obj_ptr = &processed_var_7864_ptr;
   
   // 初始化各种图形组件（按偏移量递减顺序）
   DataCompressionEngine(graphics_obj_ptr + 0xa4);  // 初始化组件10 (偏移0xa4)
@@ -934,7 +934,7 @@ uint64_t initialize_render_system(uint64_t param_1, uint64_t param_2)
 void initialize_render_pipeline(uint64_t *render_pipeline_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   // 设置主管线指针
-  *render_pipeline_ptr = &unknown_var_7944_ptr;
+  *render_pipeline_ptr = &processed_var_7944_ptr;
   
   // 初始化渲染管线组件（按偏移量递减顺序）
   FUN_18005ab50(render_pipeline_ptr + 0x143);  // 初始化阶段20 (偏移0x143)
@@ -961,7 +961,7 @@ void initialize_render_pipeline(uint64_t *render_pipeline_ptr, uint64_t param_2,
   DataCompressionEngine(render_pipeline_ptr + 0x1c);   // 初始化缓冲区1 (偏移0x1c)
   
   // 设置管线状态
-  *render_pipeline_ptr = &unknown_var_7304_ptr;  // 设置管线状态指针
+  *render_pipeline_ptr = &processed_var_7304_ptr;  // 设置管线状态指针
   render_pipeline_ptr[0x18] = &system_data_buffer_ptr;  // 设置默认缓冲区
   
   // 检查并清理阶段19

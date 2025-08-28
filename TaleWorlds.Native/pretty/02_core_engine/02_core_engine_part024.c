@@ -45,7 +45,7 @@ void create_file_with_completion_port(int64_t engine_context, int64_t file_param
       puVar4 = *(void **)(param_2 + 8);
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&unknown_var_1800_ptr,puVar4);
+    FUN_180062300(system_message_context,&ui_system_data_1800_ptr,puVar4);
   }
   lVar3 = CreateIoCompletionPort(lVar2,*(uint64_t *)(param_1 + 0x213430),0,0);
   if (lVar3 != *(int64_t *)(param_1 + 0x213430)) {
@@ -54,7 +54,7 @@ void create_file_with_completion_port(int64_t engine_context, int64_t file_param
       puVar4 = *(void **)(param_2 + 8);
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&unknown_var_1856_ptr,puVar4);
+    FUN_180062300(system_message_context,&ui_system_data_1856_ptr,puVar4);
   }
   lVar3 = param_1 + 0x2133e0;
   lStack_2a8 = lVar3;
@@ -164,12 +164,12 @@ uint64_t process_memory_block(int64_t memory_context, int64_t block_param, int64
                          0);
         if (lock_result != 0) {
                     // WARNING: Subroutine does not return
-          throw_file_error(system_message_context,&unknown_var_1960_ptr);
+          throw_file_error(system_message_context,&ui_system_data_1960_ptr);
         }
         lock_result = GetLastError();
         if (lock_result != 0x3e5) {
                     // WARNING: Subroutine does not return
-          throw_file_error(system_message_context,&unknown_var_1904_ptr,lock_result);
+          throw_file_error(system_message_context,&ui_system_data_1904_ptr,lock_result);
         }
         return_value = 1;
       }
@@ -736,7 +736,7 @@ uint64_t *initialize_resource_entry(uint64_t *resource_entry, int64_t config_par
   *param_1 = &system_state_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = &unknown_var_2008_ptr;
+  *param_1 = &rendering_buffer_2008_ptr;
   param_1[1] = param_1 + 3;
   *(int32_t *)(param_1 + 2) = 0;
   *(int8_t *)(param_1 + 3) = 0;
@@ -761,7 +761,7 @@ uint64_t * create_default_resource_entry(uint64_t *resource_entry)
   *param_1 = &system_state_ptr;
   param_1[1] = 0;
   *(int32_t *)(param_1 + 2) = 0;
-  *param_1 = &unknown_var_2008_ptr;
+  *param_1 = &rendering_buffer_2008_ptr;
   param_1[1] = param_1 + 3;
   *(int32_t *)(param_1 + 2) = 0;
   *(int8_t *)(param_1 + 3) = 0;
@@ -921,7 +921,7 @@ void perform_string_replace(int64_t string_manager, int64_t search_string, int64
   
   uStack_178 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_198;
-  puStack_168 = &unknown_var_2008_ptr;
+  puStack_168 = &rendering_buffer_2008_ptr;
   puStack_160 = auStack_150;
   uStack_158 = 0;
   auStack_150[0] = 0;
@@ -973,7 +973,7 @@ void set_string_buffer(int64_t buffer_struct, int64_t src_string)
     strcpy_s(*(uint64_t *)(param_1 + 8),0x100);
     return;
   }
-  SystemDataInitializer(&unknown_var_616_ptr,0x100,param_2);
+  SystemDataInitializer(&processed_var_616_ptr,0x100,param_2);
   *(int32_t *)(param_1 + 0x10) = 0;
   **(int8_t **)(param_1 + 8) = 0;
   return;
@@ -1045,7 +1045,7 @@ void reset_string_pointer(int64_t string_struct)
 uint64_t *initialize_sync_object(uint64_t *sync_object, uint64_t init_flag, uint64_t param_3, uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_1000_ptr;
+  *param_1 = &ui_system_data_1000_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
@@ -1064,7 +1064,7 @@ uint64_t *initialize_sync_object(uint64_t *sync_object, uint64_t init_flag, uint
 uint64_t * free_sync_object(uint64_t *sync_object, uint64_t free_flag)
 
 {
-  *param_1 = &unknown_var_2280_ptr;
+  *param_1 = &rendering_buffer_2280_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x58);
   }

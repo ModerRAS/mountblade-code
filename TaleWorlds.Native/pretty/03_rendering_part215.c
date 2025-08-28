@@ -486,7 +486,7 @@ void FUN_180390f40(int64_t param_1,int param_2,int param_3)
         } while ((int)uVar17 < (int)(uint)*(byte *)(uVar13 + 0xa8));
         if (((int)uVar22 != -1) && (iVar21 != -1)) {
                     // WARNING: Subroutine does not return
-          FUN_180062300(system_message_context,&unknown_var_5304_ptr);
+          FUN_180062300(system_message_context,&processed_var_5304_ptr);
         }
       }
     }
@@ -712,7 +712,7 @@ void FUN_180390fe4(uint64_t param_1)
     } while ((int)uVar19 < (int)(uint)*(byte *)(unaff_RSI + 0xa8));
     if (((int)uVar18 != -1) && (iVar17 != -1)) {
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,&unknown_var_5304_ptr);
+      FUN_180062300(system_message_context,&processed_var_5304_ptr);
     }
   }
   return;

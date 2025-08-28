@@ -499,14 +499,14 @@ void FUN_18054aab0(int64_t *param_1,int64_t *param_2,uint64_t param_3,uint64_t p
     (**(code **)(*plStackX_8 + 0x28))();
   }
   pplStackX_18 = &plStackX_8;
-  if (*(code **)(*plStackX_8 + 0x160) == (code *)&unknown_var_6368_ptr) {
+  if (*(code **)(*plStackX_8 + 0x160) == (code *)&processed_var_6368_ptr) {
     FUN_180276f30(plStackX_8,(int64_t)plStackX_8 + 0x214,0,param_4,uVar3);
   }
   else {
     (**(code **)(*plStackX_8 + 0x160))();
   }
   lVar1 = *param_2;
-  if (*(code **)(*plStackX_8 + 0x198) == (code *)&unknown_var_2544_ptr) {
+  if (*(code **)(*plStackX_8 + 0x198) == (code *)&rendering_buffer_2544_ptr) {
     pfVar2 = (float *)((int64_t)plStackX_8 + 0x214);
   }
   else {
@@ -871,7 +871,7 @@ void FUN_18054b3e0(int64_t *param_1,uint64_t *param_2)
     (**(code **)(*plStackX_8 + 0x28))();
   }
   pplStackX_18 = &plStackX_8;
-  if (*(code **)(*plStackX_8 + 0xc0) == (code *)&unknown_var_9120_ptr) {
+  if (*(code **)(*plStackX_8 + 0xc0) == (code *)&processed_var_9120_ptr) {
     cVar1 = (plStackX_8[8] - plStackX_8[7] & 0xfffffffffffffff0U) == 0;
   }
   else {
@@ -972,7 +972,7 @@ FUN_18054b610(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3432_ptr;
+  *param_2 = &memory_allocator_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 9;
@@ -988,7 +988,7 @@ uint64_t * FUN_18054b690(uint64_t *param_1,uint64_t param_2)
   uint64_t *puVar1;
   int64_t lVar2;
   
-  *param_1 = &unknown_var_784_ptr;
+  *param_1 = &processed_var_784_ptr;
   puVar1 = (uint64_t *)param_1[0xd5];
   if (puVar1 != (uint64_t *)0x0) {
     lVar2 = __RTCastToVoid(puVar1);
@@ -1029,7 +1029,7 @@ uint64_t * FUN_18054b690(uint64_t *param_1,uint64_t param_2)
     }
   }
   param_1[0xd8] = 0;
-  *param_1 = &unknown_var_8496_ptr;
+  *param_1 = &processed_var_8496_ptr;
   param_1[1] = 0;
   param_1[2] = 0;
   *(int32_t *)((int64_t)param_1 + 0x8c) = 8;
@@ -1047,7 +1047,7 @@ uint64_t * FUN_18054b820(uint64_t *param_1,int8_t param_2)
 
 {
   FUN_180320470();
-  *param_1 = &unknown_var_784_ptr;
+  *param_1 = &processed_var_784_ptr;
   *(int32_t *)((int64_t)param_1 + 0x124) = 0;
   *(uint64_t *)((int64_t)param_1 + 0xf4) = 0;
   *(uint64_t *)((int64_t)param_1 + 0xfc) = 0;

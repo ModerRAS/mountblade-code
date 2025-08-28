@@ -133,7 +133,7 @@ void FUN_1801cdb50(uint64_t *******param_1,int64_t param_2,int64_t *param_3,uint
   uVar22 = uVar22 & ~uVar24;
   uStack_190 = uVar22;
   if (((param_4 != 0) && (*(int *)(lVar18 + 0x20) == 0xd)) &&
-     (iVar9 = strcmp(*(uint64_t *)(lVar18 + 0x18),&unknown_var_1264_ptr), iVar9 == 0)) {
+     (iVar9 = strcmp(*(uint64_t *)(lVar18 + 0x18),&ui_system_data_1264_ptr), iVar9 == 0)) {
     uStack_190 = uVar22 & ~param_4;
   }
   alStack_d0[0] = 0;
@@ -322,7 +322,7 @@ LAB_1801ce0ec:
     if (*(void **)(param_2 + 0x2d8) != (void *)0x0) {
       puVar27 = *(void **)(param_2 + 0x2d8);
     }
-    lVar18 = strstr(puVar27,&unknown_var_5544_ptr);
+    lVar18 = strstr(puVar27,&processed_var_5544_ptr);
     if (lVar18 != 0) goto LAB_1801ce0ec;
   }
   bVar5 = true;

@@ -661,7 +661,7 @@ LAB_1800cc2f2:
   uVar18 = system_resource_state;
   lVar11 = system_system_data_memory;
   if (*(int64_t *)(system_system_data_memory + 0xc0) == 0) {
-    puStack_b8 = &unknown_var_3480_ptr;
+    puStack_b8 = &memory_allocator_3480_ptr;
     puStack_b0 = auStack_a0;
     auStack_a0[0] = 0;
     uStack_a8 = 0xd;

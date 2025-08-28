@@ -78,7 +78,7 @@ void initialize_rendering_manager(uint64_t *render_manager)
     FUN_180244190();
     
     // 设置渲染管理器基本参数
-    *render_manager = &unknown_var_336_ptr;
+    *render_manager = &memory_allocator_336_ptr;
     buffer_ptr = render_manager + 0x1f;
     *buffer_ptr = 0;
     render_manager[0x20] = 0;
@@ -97,12 +97,12 @@ void initialize_rendering_manager(uint64_t *render_manager)
     
     // 获取渲染资源句柄
     resource_handle = system_resource_state;
-    stack_render_ptr = &unknown_var_3480_ptr;
+    stack_render_ptr = &memory_allocator_3480_ptr;
     stack_texture_ptr2 = stack_buffer_array;
     stack_buffer_array[0] = 0;
     stack_render_id = 0x23;
     stack_material_ptr = shader_list;
-    strcpy_s(stack_buffer_array, 0x40, &unknown_var_9992_ptr);
+    strcpy_s(stack_buffer_array, 0x40, &processed_var_9992_ptr);
     
     // 创建材质资源
     FUN_1800b30d0(resource_handle, &stack_texture_ptr, &stack_render_ptr, 1);
@@ -279,11 +279,11 @@ void initialize_rendering_manager(uint64_t *render_manager)
     
     // 第二阶段渲染初始化
     resource_handle = system_resource_state;
-    stack_material_ptr2 = &unknown_var_3480_ptr;
+    stack_material_ptr2 = &memory_allocator_3480_ptr;
     stack_color_ptr = stack_array;
     stack_array[0] = 0;
     stack_color_id = 0xb;
-    strcpy_s(stack_array, 0x40, &unknown_var_9928_ptr);
+    strcpy_s(stack_array, 0x40, &processed_var_9928_ptr);
     FUN_1800b30d0(resource_handle, &stack_buffer_ptr, &stack_material_ptr2, 1);
     stack_counter = texture_count & 0xffffffef | 8;
     stack_material_ptr2 = &system_state_ptr;
@@ -373,7 +373,7 @@ uint64_t * cleanup_rendering_resources(uint64_t *render_manager, uint64_t free_f
     int64_t *resource_ptr;
     
     // 重置渲染管理器
-    *render_manager = &unknown_var_336_ptr;
+    *render_manager = &memory_allocator_336_ptr;
     resource_ptr = (int64_t *)render_manager[0x25];
     render_manager[0x25] = 0;
     if (resource_ptr != (int64_t *)0x0) {

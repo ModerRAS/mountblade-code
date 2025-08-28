@@ -49,13 +49,13 @@ LAB_1806a29fd:
       plVar5 = (int64_t *)PxGetFoundation();
       cVar2 = (**(code **)(*plVar5 + 0x28))(plVar5);
       if (cVar2 == '\0') {
-        puVar6 = &unknown_var_1728_ptr;
+        puVar6 = &ui_system_data_1728_ptr;
       }
       else {
         puVar6 = (void *)__std_type_info_name(0x180bfc208,0x180c827e0);
       }
       puVar7 = (uint64_t *)
-               (**(code **)(*plVar4 + 8))(plVar4,(uint64_t)uVar12 << 3,puVar6,&unknown_var_2784_ptr,0x229)
+               (**(code **)(*plVar4 + 8))(plVar4,(uint64_t)uVar12 << 3,puVar6,&rendering_buffer_2784_ptr,0x229)
       ;
       goto LAB_1806a2a73;
     }
@@ -128,13 +128,13 @@ LAB_1806a29fd:
       plVar5 = (int64_t *)PxGetFoundation();
       cVar2 = (**(code **)(*plVar5 + 0x28))(plVar5);
       if (cVar2 == '\0') {
-        puVar6 = &unknown_var_1728_ptr;
+        puVar6 = &ui_system_data_1728_ptr;
       }
       else {
         puVar6 = (void *)__std_type_info_name(0x180bfc208,0x180c827e0);
       }
       puVar7 = (uint64_t *)
-               (**(code **)(*plVar4 + 8))(plVar4,(uint64_t)uVar12 << 3,puVar6,&unknown_var_2784_ptr,0x229)
+               (**(code **)(*plVar4 + 8))(plVar4,(uint64_t)uVar12 << 3,puVar6,&rendering_buffer_2784_ptr,0x229)
       ;
       goto LAB_1806a2a73;
     }
@@ -375,7 +375,7 @@ void FUN_1806a2bd0(int64_t param_1,uint64_t param_2)
   iVar3 = iVar5 * 0x10 + iVar3 + (-iVar3 & 0xfU);
   if (iVar3 != 0) {
     plVar1 = (int64_t *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
-    uVar2 = (**(code **)(*plVar1 + 8))(plVar1,iVar3,&unknown_var_1832_ptr,&unknown_var_2848_ptr,0x174);
+    uVar2 = (**(code **)(*plVar1 + 8))(plVar1,iVar3,&ui_system_data_1832_ptr,&rendering_buffer_2848_ptr,0x174);
   }
                     // WARNING: Subroutine does not return
   memset(uVar2,0xffffffff,uVar4 * 4);
@@ -562,18 +562,18 @@ uint64_t * FUN_1806a3140(int64_t *param_1)
   if (param_1 == (int64_t *)0x0) {
     uVar1 = _getInstance_Foundation_shdfnd_physx__SAAEAV123_XZ();
     _error_Foundation_shdfnd_physx__QEAAXW4Enum_PxErrorCode_3_PEBDH1ZZ
-              (uVar1,4,&unknown_var_3824_ptr,0x35b,&unknown_var_4208_ptr);
+              (uVar1,4,&memory_allocator_3824_ptr,0x35b,&processed_var_4208_ptr);
     return (uint64_t *)0x0;
   }
   puVar2 = (uint64_t *)
            (**(code **)(*system_system_buffer_config + 8))
-                     (system_system_buffer_config,0x1f8,&unknown_var_4256_ptr,&unknown_var_3824_ptr,0x360);
+                     (system_system_buffer_config,0x1f8,&processed_var_4256_ptr,&memory_allocator_3824_ptr,0x360);
   if (puVar2 != (uint64_t *)0x0) {
     uVar1 = (**(code **)(*param_1 + 0x70))(param_1);
     uVar3 = (**(code **)(*param_1 + 0x68))(param_1);
     uVar4 = (**(code **)(*param_1 + 0x30))(param_1);
-    *puVar2 = &unknown_var_3888_ptr;
-    puVar2[1] = &unknown_var_4112_ptr;
+    *puVar2 = &memory_allocator_3888_ptr;
+    puVar2[1] = &processed_var_4112_ptr;
     puVar2[2] = 0;
     puVar2[3] = 0;
     puVar2[4] = 0;
@@ -587,7 +587,7 @@ uint64_t * FUN_1806a3140(int64_t *param_1)
     puVar2[10] = 0;
     puVar2[0xb] = 0;
     puVar2[0xe] = puVar2[9];
-    puVar2[0xc] = &unknown_var_3720_ptr;
+    puVar2[0xc] = &memory_allocator_3720_ptr;
     puVar2[0xd] = 0;
     puVar2[0xf] = 0;
     puVar2[0x10] = 0;
@@ -598,7 +598,7 @@ uint64_t * FUN_1806a3140(int64_t *param_1)
     puVar2[0x15] = 0;
     puVar2[0x16] = 0;
     *(int32_t *)(puVar2 + 0x17) = 0;
-    puVar2[0x18] = &unknown_var_2232_ptr;
+    puVar2[0x18] = &rendering_buffer_2232_ptr;
     puVar2[0x19] = &system_buffer_ptr;
     puVar2[0x1a] = &system_buffer_ptr;
     puVar2[0x1b] = 0xffffffffffffffff;
@@ -612,7 +612,7 @@ uint64_t * FUN_1806a3140(int64_t *param_1)
     puVar2[0x23] = 0;
     puVar2[0x24] = 0;
     *(int16_t *)(puVar2 + 0x25) = 0;
-    puVar2[0x26] = &unknown_var_3712_ptr;
+    puVar2[0x26] = &memory_allocator_3712_ptr;
     puVar2[0x27] = &system_buffer_ptr;
     puVar2[0x28] = &system_buffer_ptr;
     *(int32_t *)(puVar2 + 0x29) = 0xffffffff;
@@ -627,7 +627,7 @@ uint64_t * FUN_1806a3140(int64_t *param_1)
     puVar2[0x32] = 0;
     puVar2[0x33] = 0;
     puVar2[0x34] = 0;
-    puVar2[0x35] = &unknown_var_4160_ptr;
+    puVar2[0x35] = &processed_var_4160_ptr;
     puVar2[0x36] = 0;
     *(int8_t *)(puVar2 + 0x37) = 1;
     puVar2[0x38] = uVar1;
@@ -661,8 +661,8 @@ FUN_1806a3194(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
     uVar2 = (**(code **)(*unaff_RSI + 0x70))();
     uVar3 = (**(code **)(*unaff_RSI + 0x68))();
     uVar4 = (**(code **)(*unaff_RSI + 0x30))();
-    *puVar1 = &unknown_var_3888_ptr;
-    puVar1[1] = &unknown_var_4112_ptr;
+    *puVar1 = &memory_allocator_3888_ptr;
+    puVar1[1] = &processed_var_4112_ptr;
     puVar1[2] = 0;
     puVar1[3] = 0;
     puVar1[4] = 0;
@@ -676,7 +676,7 @@ FUN_1806a3194(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
     puVar1[10] = 0;
     puVar1[0xb] = 0;
     puVar1[0xe] = puVar1[9];
-    puVar1[0xc] = &unknown_var_3720_ptr;
+    puVar1[0xc] = &memory_allocator_3720_ptr;
     puVar1[0xd] = 0;
     puVar1[0xf] = 0;
     puVar1[0x10] = 0;
@@ -687,7 +687,7 @@ FUN_1806a3194(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
     puVar1[0x15] = 0;
     puVar1[0x16] = 0;
     *(int32_t *)(puVar1 + 0x17) = 0;
-    puVar1[0x18] = &unknown_var_2232_ptr;
+    puVar1[0x18] = &rendering_buffer_2232_ptr;
     puVar1[0x19] = &system_buffer_ptr;
     puVar1[0x1a] = &system_buffer_ptr;
     puVar1[0x1b] = 0xffffffffffffffff;
@@ -701,7 +701,7 @@ FUN_1806a3194(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
     puVar1[0x23] = 0;
     puVar1[0x24] = 0;
     *(int16_t *)(puVar1 + 0x25) = 0;
-    puVar1[0x26] = &unknown_var_3712_ptr;
+    puVar1[0x26] = &memory_allocator_3712_ptr;
     puVar1[0x27] = &system_buffer_ptr;
     puVar1[0x28] = &system_buffer_ptr;
     *(int32_t *)(puVar1 + 0x29) = 0xffffffff;
@@ -716,7 +716,7 @@ FUN_1806a3194(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
     puVar1[0x32] = 0;
     puVar1[0x33] = 0;
     puVar1[0x34] = 0;
-    puVar1[0x35] = &unknown_var_4160_ptr;
+    puVar1[0x35] = &processed_var_4160_ptr;
     puVar1[0x36] = 0;
     *(int8_t *)(puVar1 + 0x37) = 1;
     puVar1[0x38] = uVar2;
@@ -779,8 +779,8 @@ uint64_t *
 FUN_1806a3290(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_3888_ptr;
-  param_1[1] = &unknown_var_4112_ptr;
+  *param_1 = &memory_allocator_3888_ptr;
+  param_1[1] = &processed_var_4112_ptr;
   param_1[2] = 0;
   param_1[3] = 0;
   param_1[4] = 0;
@@ -794,7 +794,7 @@ FUN_1806a3290(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   param_1[10] = 0;
   param_1[0xb] = 0;
   param_1[0xe] = param_1[9];
-  param_1[0xc] = &unknown_var_3720_ptr;
+  param_1[0xc] = &memory_allocator_3720_ptr;
   param_1[0xd] = 0;
   param_1[0xf] = 0;
   param_1[0x10] = 0;
@@ -805,7 +805,7 @@ FUN_1806a3290(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   param_1[0x15] = 0;
   param_1[0x16] = 0;
   *(int32_t *)(param_1 + 0x17) = 0;
-  param_1[0x18] = &unknown_var_2232_ptr;
+  param_1[0x18] = &rendering_buffer_2232_ptr;
   param_1[0x19] = &system_buffer_ptr;
   param_1[0x1a] = &system_buffer_ptr;
   param_1[0x1b] = 0xffffffffffffffff;
@@ -819,7 +819,7 @@ FUN_1806a3290(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   param_1[0x23] = 0;
   param_1[0x24] = 0;
   *(int16_t *)(param_1 + 0x25) = 0;
-  param_1[0x26] = &unknown_var_3712_ptr;
+  param_1[0x26] = &memory_allocator_3712_ptr;
   param_1[0x27] = &system_buffer_ptr;
   param_1[0x28] = &system_buffer_ptr;
   *(int32_t *)(param_1 + 0x29) = 0xffffffff;
@@ -834,7 +834,7 @@ FUN_1806a3290(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   param_1[0x32] = 0;
   param_1[0x33] = 0;
   param_1[0x34] = 0;
-  param_1[0x35] = &unknown_var_4160_ptr;
+  param_1[0x35] = &processed_var_4160_ptr;
   param_1[0x36] = 0;
   *(int8_t *)(param_1 + 0x37) = 1;
   param_1[0x38] = param_4;
@@ -885,7 +885,7 @@ void FUN_1806a34c0(uint64_t *param_1)
     plVar2 = (int64_t *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
     (**(code **)(*plVar2 + 0x10))(plVar2,lVar1);
   }
-  *param_1 = &unknown_var_3536_ptr;
+  *param_1 = &memory_allocator_3536_ptr;
   return;
 }
 

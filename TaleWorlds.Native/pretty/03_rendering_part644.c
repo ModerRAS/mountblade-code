@@ -770,7 +770,7 @@ void FUN_18062d860(uint64_t param_1)
     if (puStack_4c0 != (void *)0x0) {
       puVar4 = puStack_4c0;
     }
-    SystemDataInitializer(&unknown_var_4872_ptr,puVar4,*puVar3,uVar2);
+    SystemDataInitializer(&processed_var_4872_ptr,puVar4,*puVar3,uVar2);
   }
   puStack_4c8 = &system_data_buffer_ptr;
   if (puStack_4c0 == (void *)0x0) {
@@ -804,7 +804,7 @@ uint64_t FUN_18062d9a0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
   }
   uStack_20 = 0;
   uStack_10 = 0;
-  FUN_18062dee0(&uStack_20,puVar3,&unknown_var_4880_ptr,param_4,0xfffffffffffffffe);
+  FUN_18062dee0(&uStack_20,puVar3,&processed_var_4880_ptr,param_4,0xfffffffffffffffe);
   if (lStack_18 == 0) {
     uVar2 = 0;
   }

@@ -39,7 +39,7 @@ void process_string_operation(int64_t param_1,int64_t param_2,int64_t param_3)
   
   stack_guard = 0xfffffffffffffffe;
   stack_hash = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_498;
-  debug_ptr = &unknown_var_336_ptr;
+  debug_ptr = &memory_allocator_336_ptr;
   buffer_ptr = auStack_450;
   buffer_size = 0;
   auStack_450[0] = 0;
@@ -155,7 +155,7 @@ int64_t process_data_structure(int32_t *data_ptr,int32_t *input_ptr)
         if (*(void **)(data_ptr + 4) != (void *)0x0) {
           error_msg = *(void **)(data_ptr + 4);
         }
-        SystemDataInitializer(&unknown_var_544_ptr,error_msg);
+        SystemDataInitializer(&processed_var_544_ptr,error_msg);
       }
       *data_ptr = data_ptr[0x12];
       return (uint64_t)(uint3)((uint)data_ptr[0x12] >> 8) << 8;
@@ -191,7 +191,7 @@ void set_system_parameter(uint64_t system_handle,int32_t parameter)
       if (*(void **)(system_base + 0x22a0) != (void *)0x0) {
         error_msg = *(void **)(system_base + 0x22a0);
       }
-      SystemDataInitializer(&unknown_var_544_ptr,error_msg);
+      SystemDataInitializer(&processed_var_544_ptr,error_msg);
     }
     *(int32_t *)(system_base + 0x2290) = *(int32_t *)(system_base + 0x22d8);
     return;
@@ -242,7 +242,7 @@ void initialize_string_data(int64_t str_ptr,int64_t input_str)
     strcpy_s(*(uint64_t *)(str_ptr + 8),0x20);
     return;
   }
-  SystemDataInitializer(&unknown_var_616_ptr,0x20,input_str);
+  SystemDataInitializer(&processed_var_616_ptr,0x20,input_str);
   *(int32_t *)(str_ptr + 0x10) = 0;
   **(int8_t **)(str_ptr + 8) = 0;
   return;
@@ -305,7 +305,7 @@ uint64_t * initialize_data_structure(uint64_t *data_ptr)
   *data_ptr = &system_state_ptr;
   data_ptr[1] = 0;
   *(int32_t *)(data_ptr + 2) = 0;
-  *data_ptr = &unknown_var_672_ptr;
+  *data_ptr = &processed_var_672_ptr;
   data_ptr[1] = data_ptr + 3;
   *(int32_t *)(data_ptr + 2) = 0;
   *(int8_t *)(data_ptr + 3) = 0;
@@ -336,7 +336,7 @@ void string_operation_with_guard(int64_t param_1,int64_t param_2,int64_t param_3
   
   stack_guard = 0xfffffffffffffffe;
   stack_hash = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_a8;
-  debug_ptr = &unknown_var_672_ptr;
+  debug_ptr = &processed_var_672_ptr;
   buffer_ptr = auStack_68;
   buffer_size = 0;
   auStack_68[0] = 0;
@@ -426,7 +426,7 @@ void broadcast_condition(int64_t cond_ptr)
 void reset_pointers(uint64_t *ptr_array)
 
 {
-  *ptr_array = &unknown_var_1000_ptr;
+  *ptr_array = &ui_system_data_1000_ptr;
   *ptr_array = &system_handler2_ptr;
   *ptr_array = &system_handler1_ptr;
   return;
@@ -440,7 +440,7 @@ uint64_t *
 reset_pointers_with_free(uint64_t *ptr_array,uint64_t flags,uint64_t param_3,uint64_t param_4)
 
 {
-  *ptr_array = &unknown_var_1000_ptr;
+  *ptr_array = &ui_system_data_1000_ptr;
   *ptr_array = &system_handler2_ptr;
   *ptr_array = &system_handler1_ptr;
   if ((flags & 1) != 0) {
@@ -813,8 +813,8 @@ void initialize_system_components(int64_t *system_ptr,uint64_t *config_ptr)
   new_system = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,200,8,3,flags,stack_guard);
   temp_ptr = new_system;
   FUN_180049830(new_system);
-  *new_system = (int64_t)&unknown_var_3136_ptr;
-  new_system[0x18] = (int64_t)&unknown_var_1200_ptr;
+  *new_system = (int64_t)&memory_allocator_3136_ptr;
+  new_system[0x18] = (int64_t)&ui_system_data_1200_ptr;
   vtable_ptr = new_system;
   (**(code **)(*new_system + 0x28))(new_system);
   stack_guard = system_context_ptr;
@@ -925,8 +925,8 @@ void initialize_game_engine(void)
   engine_obj = (int64_t ***)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,200,8,3);
   temp_engine = engine_obj;
   FUN_180049830(engine_obj);
-  *engine_obj = (int64_t **)&unknown_var_3136_ptr;
-  engine_obj[0x18] = (int64_t **)&unknown_var_5120_ptr;
+  *engine_obj = (int64_t **)&memory_allocator_3136_ptr;
+  engine_obj[0x18] = (int64_t **)&processed_var_5120_ptr;
   engine_instance = (int64_t **)engine_obj;
   (*(code *)(*engine_obj)[5])(engine_obj);
   system_handle = system_context_ptr;
@@ -939,7 +939,7 @@ void initialize_game_engine(void)
   (*(code *)(*engine_obj)[7])(engine_obj);
   CoreEngineDataTransformer(&context_ptr,&system_memory_52c0);
   if (data_size == 0) {
-    (**(code **)(context_ptr + 0x10))(&context_ptr,&unknown_var_2272_ptr);
+    (**(code **)(context_ptr + 0x10))(&context_ptr,&rendering_buffer_2272_ptr);
     success = FUN_180624a00(&context_ptr);
     if (success == '\0') {
       FUN_180624910(&context_ptr);
@@ -949,48 +949,48 @@ void initialize_game_engine(void)
   if (success == '\0') {
     FUN_180624910(&context_ptr);
   }
-  temp_ptr6 = &unknown_var_3480_ptr;
+  temp_ptr6 = &memory_allocator_3480_ptr;
   string_buffer = temp_string;
   temp_string[0] = 0;
   string_size = 0x18;
-  strcpy_s(temp_string,0x40,&unknown_var_2296_ptr);
+  strcpy_s(temp_string,0x40,&rendering_buffer_2296_ptr);
   FUN_180097d40(core_system_data_pointer,&temp_ptr6,&context_ptr);
   temp_ptr6 = &system_state_ptr;
-  temp_ptr7 = &unknown_var_3480_ptr;
+  temp_ptr7 = &memory_allocator_3480_ptr;
   temp_buffer2 = temp_string2;
   temp_string2[0] = 0;
   temp_size2 = 0xb;
-  strcpy_s(temp_string2,0x40,&unknown_var_2256_ptr);
+  strcpy_s(temp_string2,0x40,&rendering_buffer_2256_ptr);
   FUN_180097d40(core_system_data_pointer,&temp_ptr7,&context_ptr);
   temp_ptr7 = &system_state_ptr;
-  temp_ptr8 = &unknown_var_3480_ptr;
+  temp_ptr8 = &memory_allocator_3480_ptr;
   temp_buffer3 = temp_string3;
   temp_string3[0] = 0;
   temp_size3 = 0x18;
-  config_id = strcpy_s(temp_string3,0x40,&unknown_var_2296_ptr);
+  config_id = strcpy_s(temp_string3,0x40,&rendering_buffer_2296_ptr);
   core_system_control_pointer = (float)FUN_180095480(config_id,&temp_ptr8);
   core_system_control_pointer = 1.0 / core_system_control_pointer;
   temp_ptr8 = &system_state_ptr;
-  temp_ptr9 = &unknown_var_3480_ptr;
+  temp_ptr9 = &memory_allocator_3480_ptr;
   temp_buffer4 = temp_string4;
   temp_string4[0] = 0;
   temp_size4 = 0xb;
-  config_id = strcpy_s(temp_string4,0x40,&unknown_var_2256_ptr);
+  config_id = strcpy_s(temp_string4,0x40,&rendering_buffer_2256_ptr);
   core_system_control_pointer = (float)FUN_180095480(config_id,&temp_ptr9);
   core_system_control_pointer = 1.0 / core_system_control_pointer;
   temp_ptr9 = &system_state_ptr;
-  temp_ptr10 = &unknown_var_3480_ptr;
+  temp_ptr10 = &memory_allocator_3480_ptr;
   temp_buffer5 = temp_string5;
   temp_string5[0] = 0;
   temp_size5 = 0xb;
-  config_id = strcpy_s(temp_string5,0x40,&unknown_var_2256_ptr);
+  config_id = strcpy_s(temp_string5,0x40,&rendering_buffer_2256_ptr);
   scale_x = (float)FUN_180095720(config_id,&temp_ptr10);
   temp_ptr10 = &system_state_ptr;
-  temp_ptr11 = &unknown_var_3480_ptr;
+  temp_ptr11 = &memory_allocator_3480_ptr;
   temp_buffer6 = config_buffer;
   config_buffer[0] = 0;
   temp_size6 = 0x18;
-  config_id = strcpy_s(config_buffer,0x40,&unknown_var_2296_ptr);
+  config_id = strcpy_s(config_buffer,0x40,&rendering_buffer_2296_ptr);
   scale_y = (float)FUN_180095720(config_id,&temp_ptr11);
   temp_ptr11 = &system_state_ptr;
   timestamp = FUN_180623ce0();
@@ -1016,7 +1016,7 @@ void initialize_game_engine(void)
     file_offset = (int64_t)index * 0x100;
     temp_engine = (int64_t ***)(core_system_control_pointer + 0x30 + file_offset);
     engine_ptr_ptr = param_array;
-    temp_ptr5 = &unknown_var_2640_ptr;
+    temp_ptr5 = &rendering_buffer_2640_ptr;
     callback_func = FUN_1800adba0;
     param_array[0] = (int64_t ***)&temp_engine;
     FUN_18005c650(param_array);

@@ -449,7 +449,7 @@ void FUN_180395270(int64_t param_1,int param_2,byte param_3)
   int32_t uStack_48;
   
   if (param_2 == 0) {
-    SystemDataInitializer(&unknown_var_5784_ptr);
+    SystemDataInitializer(&processed_var_5784_ptr);
   }
   else {
     plStack_60 = (int64_t *)0x0;

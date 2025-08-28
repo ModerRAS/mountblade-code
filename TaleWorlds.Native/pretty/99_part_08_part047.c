@@ -24,7 +24,7 @@ void FUN_1805a891a(void)
   
   uVar1 = *(uint *)(unaff_RBX + 0x1dc);
   if (((int)uVar1 < 0) ||
-     (((&unknown_var_6480_ptr)[uVar1 & 7] &
+     (((&processed_var_6480_ptr)[uVar1 & 7] &
       *(byte *)((int64_t)((*(int *)(unaff_R15 + 0x87b770) >> 3) * in_EAX + ((int)uVar1 >> 3)) +
                *(int64_t *)(unaff_R15 + 0x87b768))) == 0)) {
     bVar2 = false;

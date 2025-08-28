@@ -33,7 +33,7 @@
 #define UI_SYSTEM_ERROR_CODE_2 2          // 错误代码2
 #define UI_SYSTEM_ERROR_CODE_5 5          // 错误代码5
 #define UI_SYSTEM_ERROR_CODE_7 7          // 错误代码7
-#define UI_SYSTEM_DATA_CHUNK_SIZE 0x80    // 数据块大小
+#define UI_SYSTEM_DATA_CHSYSTEM_SIZE 0x80    // 数据块大小
 #define UI_SYSTEM_SHIFT_MASK 0x38         // 移位掩码
 #define UI_SYSTEM_FLAG_MASK 0x1f          // 标志掩码
 #define UI_SYSTEM_BOOL_SHIFT 5           // 布尔移位
@@ -161,13 +161,13 @@ typedef struct {
 #define UISystem_Finalizer FUN_18069ec80
 
 // 外部变量引用
-extern void* unknown_var_6272_ptr;     // 未知变量6272指针
-extern void* unknown_var_6296_ptr;     // 未知变量6296指针
-extern void* unknown_var_6344_ptr;     // 未知变量6344指针
-extern void* unknown_var_6368_ptr;     // 未知变量6368指针
-extern void* unknown_var_8592_ptr;     // 未知变量8592指针
-extern byte* unknown_var_8608_ptr;     // 未知变量8608指针
-extern void* unknown_var_7408_ptr;     // 未知变量7408指针
+extern void* processed_var_6272_ptr;     // 未知变量6272指针
+extern void* processed_var_6296_ptr;     // 未知变量6296指针
+extern void* processed_var_6344_ptr;     // 未知变量6344指针
+extern void* processed_var_6368_ptr;     // 未知变量6368指针
+extern void* processed_var_8592_ptr;     // 未知变量8592指针
+extern byte* processed_var_8608_ptr;     // 未知变量8608指针
+extern void* processed_var_7408_ptr;     // 未知变量7408指针
 
 // 全局变量定义
 UIBufferPointer puRam0000000000011838 = NULL;  // UI缓冲区指针1838
@@ -227,7 +227,7 @@ void UISystem_DataProcessor(UIContextHandle context)
     if (end_ptr - data_ptr < UI_SYSTEM_HEADER_SIZE) {
         // 数据不足，进行错误处理
         if (*(UIInt*)(context + UI_SYSTEM_TERMINATE_FLAG) == 0) {
-            UISystem_ErrorHandler(context + UI_SYSTEM_DATA_OFFSET, UI_SYSTEM_COMPRESSION_LEVEL, &unknown_var_6272_ptr);
+            UISystem_ErrorHandler(context + UI_SYSTEM_DATA_OFFSET, UI_SYSTEM_COMPRESSION_LEVEL, &processed_var_6272_ptr);
         }
         
         // 设置默认状态
@@ -257,7 +257,7 @@ void UISystem_DataProcessor(UIContextHandle context)
         // 验证数据范围
         if ((*(UIInt*)(context + UI_SYSTEM_TERMINATE_FLAG) == 0) && 
             (data_ptr + header.data_size < data_ptr || data_ptr + header.data_size < data_ptr)) {
-            UISystem_ErrorHandler(context + UI_SYSTEM_DATA_OFFSET, UI_SYSTEM_COMPRESSION_LEVEL, &unknown_var_6296_ptr);
+            UISystem_ErrorHandler(context + UI_SYSTEM_DATA_OFFSET, UI_SYSTEM_COMPRESSION_LEVEL, &processed_var_6296_ptr);
         }
 
         current_ptr += UI_SYSTEM_HEADER_SIZE;
@@ -267,7 +267,7 @@ void UISystem_DataProcessor(UIContextHandle context)
             // 普通数据处理模式
             if ((*(UIInt*)(context + UI_SYSTEM_TERMINATE_FLAG) == 0 || data_ptr + UI_SYSTEM_EXTENDED_SIZE < end_ptr) &&
                 (current_ptr[3] != 0x9d || current_ptr[4] != 1 || current_ptr[5] != 0x2a)) {
-                UISystem_ErrorHandler(context + UI_SYSTEM_DATA_OFFSET, UI_SYSTEM_ERROR_CODE_5, &unknown_var_6344_ptr);
+                UISystem_ErrorHandler(context + UI_SYSTEM_DATA_OFFSET, UI_SYSTEM_ERROR_CODE_5, &processed_var_6344_ptr);
             }
 
             if (*(UIInt*)(context + UI_SYSTEM_TERMINATE_FLAG) == 0 || data_ptr + UI_SYSTEM_EXTENDED_SIZE < end_ptr) {
@@ -313,7 +313,7 @@ void UISystem_DataProcessor(UIContextHandle context)
     UIInt validate_result = UISystem_DataValidator(context + 0x42c0, current_ptr, (UIInt)(end_ptr - current_ptr), 
                                                   *(UIUInt64*)(context + UI_SYSTEM_CALLBACK_OFFSET));
     if (validate_result != 0) {
-        UISystem_ErrorHandler(context + UI_SYSTEM_DATA_OFFSET, UI_SYSTEM_ERROR_CODE_2, &unknown_var_6368_ptr);
+        UISystem_ErrorHandler(context + UI_SYSTEM_DATA_OFFSET, UI_SYSTEM_ERROR_CODE_2, &processed_var_6368_ptr);
     }
 
     // 处理数据模式

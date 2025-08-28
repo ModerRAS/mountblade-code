@@ -668,7 +668,7 @@ void FUN_18071fef0(int64_t param_1,int64_t param_2,float *param_3)
             dVar6 = (double)(int64_t)(lVar18 - (uint64_t)(uVar19 & 1));
           }
           pfVar17 = (float *)(int64_t)(int)dVar6;
-          fVar27 = *(float *)(&unknown_var_9936_ptr + (int64_t)pfVar17 * 4);
+          fVar27 = *(float *)(&processed_var_9936_ptr + (int64_t)pfVar17 * 4);
           fVar30 = ABS(fVar30) - (float)(int)dVar6 * 0.04;
           fVar26 = ((1.0 - fVar27 * fVar27) * fVar30 * (1.0 - fVar27 * fVar30) + fVar27) * fVar26;
         }
@@ -773,7 +773,7 @@ void FUN_18071fef0(int64_t param_1,int64_t param_2,float *param_3)
             dVar6 = (double)(int64_t)(lVar22 - (uint64_t)(uVar16 & 1));
           }
           pfVar17 = (float *)(int64_t)(int)dVar6;
-          fVar27 = *(float *)(&unknown_var_9936_ptr + (int64_t)pfVar17 * 4);
+          fVar27 = *(float *)(&processed_var_9936_ptr + (int64_t)pfVar17 * 4);
           fVar30 = ABS(fVar30) - (float)(int)dVar6 * 0.04;
           fVar26 = ((1.0 - fVar27 * fVar27) * fVar30 * (1.0 - fVar27 * fVar30) + fVar27) * fVar26;
         }

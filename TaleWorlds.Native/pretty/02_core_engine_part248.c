@@ -48,7 +48,7 @@ void FUN_1802147c0(uint64_t *param_1)
           uStack_188 = 0;
           cStack_180 = cVar3;
           cStack_178 = cVar3;
-          plVar7 = (int64_t *)FUN_1801580f0(param_1,&plStack_160,&unknown_var_3472_ptr,*plVar8 + 0x18);
+          plVar7 = (int64_t *)FUN_1801580f0(param_1,&plStack_160,&memory_allocator_3472_ptr,*plVar8 + 0x18);
           lVar1 = *plVar7;
           *plVar7 = 0;
           plStack_158 = (int64_t *)*plVar8;
@@ -68,7 +68,7 @@ void FUN_1802147c0(uint64_t *param_1)
     } while (lVar11 != 0);
   }
   if (-1 < *(int *)(*(int64_t *)(core_system_data_memory + 0x2018) + 0x330)) {
-    FUN_1808451c0(param_1[0x6d],&unknown_var_4464_ptr,&plStack_150);
+    FUN_1808451c0(param_1[0x6d],&processed_var_4464_ptr,&plStack_150);
     FUN_1808453c0(plStack_150,&plStack_158);
     if (plStack_158 == (int64_t *)0x0) {
       *(int8_t *)((int64_t)param_1 + 0x401) = 1;
@@ -79,7 +79,7 @@ void FUN_1802147c0(uint64_t *param_1)
       memset(auStack_118,0,0xd8);
     }
   }
-  if ((void *)*param_1 == &unknown_var_5528_ptr) {
+  if ((void *)*param_1 == &processed_var_5528_ptr) {
     FUN_180156300();
     puStack_148 = (uint64_t *)0x0;
     puStack_140 = (uint64_t *)0x0;
@@ -126,7 +126,7 @@ void FUN_1802147c0(uint64_t *param_1)
   }
   if (*(char *)(param_1 + 0x42) == '\0') {
     uVar6 = FUN_18084b410(param_1[0x6d]);
-    FUN_180211a30(uVar6,&unknown_var_4408_ptr);
+    FUN_180211a30(uVar6,&processed_var_4408_ptr);
   }
                     // WARNING: Subroutine does not return
   CoreSystemConfigManager(uStack_38 ^ (uint64_t)auStack_1a8);
@@ -569,7 +569,7 @@ LAB_180211be9:
   do {
     lVar4 = lVar6;
     lVar6 = lVar4 + 1;
-  } while ((&unknown_var_660_ptr)[lVar4] != '\0');
+  } while ((&processed_var_660_ptr)[lVar4] != '\0');
   iVar10 = (int)(lVar4 + 1);
   uStack_40 = uVar9;
   if (0 < iVar10) {

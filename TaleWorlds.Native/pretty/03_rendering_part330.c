@@ -330,7 +330,7 @@ void FUN_18043f8f0(int64_t param_1,uint64_t *param_2)
     param_2[7] = uVar1;
     return;
   }
-  SystemDataInitializer(&unknown_var_9576_ptr);
+  SystemDataInitializer(&processed_var_9576_ptr);
   *param_2 = 0x3f800000;
   param_2[1] = 0;
   param_2[2] = 0x3f80000000000000;
@@ -516,7 +516,7 @@ void FUN_18043f9b0(int64_t param_1,uint64_t *param_2)
     param_2[7] = uVar1;
     return;
   }
-  SystemDataInitializer(&unknown_var_9344_ptr);
+  SystemDataInitializer(&processed_var_9344_ptr);
   *param_2 = 0x3f800000;
   param_2[1] = 0;
   param_2[2] = 0x3f80000000000000;
@@ -555,7 +555,7 @@ void FUN_18043fa30(int64_t param_1,uint64_t *param_2)
     param_2[7] = uVar2;
     return;
   }
-  SystemDataInitializer(&unknown_var_9400_ptr);
+  SystemDataInitializer(&processed_var_9400_ptr);
   *param_2 = 0x3f800000;
   param_2[1] = 0;
   param_2[2] = 0x3f80000000000000;

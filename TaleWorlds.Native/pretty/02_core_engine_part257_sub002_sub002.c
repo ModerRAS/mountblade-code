@@ -84,11 +84,11 @@
 #define CoreEngine_MessageBuffer system_message_buffer
 
 // 未知变量指针 - 需要根据上下文确定具体用途
-#define CoreEngine_UnknownVar3480 unknown_var_3480_ptr
-#define CoreEngine_UnknownVar5240 unknown_var_5240_ptr
-#define CoreEngine_UnknownVar5328 unknown_var_5328_ptr
-#define CoreEngine_UnknownVar6472 unknown_var_6472_ptr
-#define CoreEngine_UnknownVar6024 unknown_var_6024_ptr
+#define CoreEngine_UnknownVar3480 memory_allocator_3480_ptr
+#define CoreEngine_UnknownVar5240 processed_var_5240_ptr
+#define CoreEngine_UnknownVar5328 processed_var_5328_ptr
+#define CoreEngine_UnknownVar6472 processed_var_6472_ptr
+#define CoreEngine_UnknownVar6024 processed_var_6024_ptr
 
 // 系统安全Cookie变量 - 用于栈保护和安全检查
 #define CoreEngine_SecurityCookie GET_SECURITY_COOKIE()

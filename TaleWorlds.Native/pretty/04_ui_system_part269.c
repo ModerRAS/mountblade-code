@@ -19,8 +19,8 @@ uint64_t FUN_18081d250(short param_1)
 {
   if (ui_system_config == 0) {
     ui_system_config_config = 0;
-    ui_system_config_config = &unknown_var_1816_ptr;
-    ui_system_config_config = &unknown_var_1840_ptr;
+    ui_system_config_config = &ui_system_data_1816_ptr;
+    ui_system_config_config = &ui_system_data_1840_ptr;
     ui_system_config_config = 0;
     ui_system_config_config = 0;
     ui_system_config_config = 0;
@@ -64,43 +64,43 @@ uint64_t FUN_18081d250(short param_1)
     ui_system_config = 1;
   }
   if (param_1 == 0) {
-    ui_system_config_config = &unknown_var_1800_ptr;
-    ui_system_config_config = &unknown_var_1784_ptr;
-    ui_system_config_config = &unknown_var_1768_ptr;
-    ui_system_config_config = &unknown_var_1752_ptr;
-    ui_system_config_config = &unknown_var_1736_ptr;
-    ui_system_config_config = &unknown_var_1720_ptr;
-    ui_system_config_config = &unknown_var_1704_ptr;
-    ui_system_config_config = &unknown_var_1688_ptr;
-    ui_system_config_config = &unknown_var_1672_ptr;
-    ui_system_config_config = &unknown_var_1656_ptr;
+    ui_system_config_config = &ui_system_data_1800_ptr;
+    ui_system_config_config = &ui_system_data_1784_ptr;
+    ui_system_config_config = &ui_system_data_1768_ptr;
+    ui_system_config_config = &ui_system_data_1752_ptr;
+    ui_system_config_config = &ui_system_data_1736_ptr;
+    ui_system_config_config = &ui_system_data_1720_ptr;
+    ui_system_config_config = &ui_system_data_1704_ptr;
+    ui_system_config_config = &ui_system_data_1688_ptr;
+    ui_system_config_config = &ui_system_data_1672_ptr;
+    ui_system_config_config = &ui_system_data_1656_ptr;
   }
   else if (param_1 == 1) {
-    ui_system_config_config = &unknown_var_1640_ptr;
-    ui_system_config_config = &unknown_var_1624_ptr;
-    ui_system_config_config = &unknown_var_1608_ptr;
-    ui_system_config_config = &unknown_var_1592_ptr;
-    ui_system_config_config = &unknown_var_1576_ptr;
-    ui_system_config_config = &unknown_var_1560_ptr;
-    ui_system_config_config = &unknown_var_1544_ptr;
-    ui_system_config_config = &unknown_var_1528_ptr;
-    ui_system_config_config = &unknown_var_1512_ptr;
-    ui_system_config_config = &unknown_var_1496_ptr;
+    ui_system_config_config = &ui_system_data_1640_ptr;
+    ui_system_config_config = &ui_system_data_1624_ptr;
+    ui_system_config_config = &ui_system_data_1608_ptr;
+    ui_system_config_config = &ui_system_data_1592_ptr;
+    ui_system_config_config = &ui_system_data_1576_ptr;
+    ui_system_config_config = &ui_system_data_1560_ptr;
+    ui_system_config_config = &ui_system_data_1544_ptr;
+    ui_system_config_config = &ui_system_data_1528_ptr;
+    ui_system_config_config = &ui_system_data_1512_ptr;
+    ui_system_config_config = &ui_system_data_1496_ptr;
   }
   else {
     if (param_1 != 2) {
       return 2;
     }
-    ui_system_config_config = &unknown_var_1480_ptr;
-    ui_system_config_config = &unknown_var_1464_ptr;
-    ui_system_config_config = &unknown_var_1448_ptr;
-    ui_system_config_config = &unknown_var_1432_ptr;
-    ui_system_config_config = &unknown_var_1416_ptr;
-    ui_system_config_config = &unknown_var_1400_ptr;
-    ui_system_config_config = &unknown_var_1384_ptr;
-    ui_system_config_config = &unknown_var_1368_ptr;
-    ui_system_config_config = &unknown_var_1352_ptr;
-    ui_system_config_config = &unknown_var_1336_ptr;
+    ui_system_config_config = &ui_system_data_1480_ptr;
+    ui_system_config_config = &ui_system_data_1464_ptr;
+    ui_system_config_config = &ui_system_data_1448_ptr;
+    ui_system_config_config = &ui_system_data_1432_ptr;
+    ui_system_config_config = &ui_system_data_1416_ptr;
+    ui_system_config_config = &ui_system_data_1400_ptr;
+    ui_system_config_config = &ui_system_data_1384_ptr;
+    ui_system_config_config = &ui_system_data_1368_ptr;
+    ui_system_config_config = &ui_system_data_1352_ptr;
+    ui_system_config_config = &ui_system_data_1336_ptr;
   }
   return 0;
 }
@@ -113,43 +113,43 @@ uint64_t FUN_18081d44a(short param_1)
 
 {
   if (param_1 == 0) {
-    ui_system_config_config = &unknown_var_1800_ptr;
-    ui_system_config_config = &unknown_var_1784_ptr;
-    ui_system_config_config = &unknown_var_1768_ptr;
-    ui_system_config_config = &unknown_var_1752_ptr;
-    ui_system_config_config = &unknown_var_1736_ptr;
-    ui_system_config_config = &unknown_var_1720_ptr;
-    ui_system_config_config = &unknown_var_1704_ptr;
-    ui_system_config_config = &unknown_var_1688_ptr;
-    ui_system_config_config = &unknown_var_1672_ptr;
-    ui_system_config_config = &unknown_var_1656_ptr;
+    ui_system_config_config = &ui_system_data_1800_ptr;
+    ui_system_config_config = &ui_system_data_1784_ptr;
+    ui_system_config_config = &ui_system_data_1768_ptr;
+    ui_system_config_config = &ui_system_data_1752_ptr;
+    ui_system_config_config = &ui_system_data_1736_ptr;
+    ui_system_config_config = &ui_system_data_1720_ptr;
+    ui_system_config_config = &ui_system_data_1704_ptr;
+    ui_system_config_config = &ui_system_data_1688_ptr;
+    ui_system_config_config = &ui_system_data_1672_ptr;
+    ui_system_config_config = &ui_system_data_1656_ptr;
   }
   else if (param_1 == 1) {
-    ui_system_config_config = &unknown_var_1640_ptr;
-    ui_system_config_config = &unknown_var_1624_ptr;
-    ui_system_config_config = &unknown_var_1608_ptr;
-    ui_system_config_config = &unknown_var_1592_ptr;
-    ui_system_config_config = &unknown_var_1576_ptr;
-    ui_system_config_config = &unknown_var_1560_ptr;
-    ui_system_config_config = &unknown_var_1544_ptr;
-    ui_system_config_config = &unknown_var_1528_ptr;
-    ui_system_config_config = &unknown_var_1512_ptr;
-    ui_system_config_config = &unknown_var_1496_ptr;
+    ui_system_config_config = &ui_system_data_1640_ptr;
+    ui_system_config_config = &ui_system_data_1624_ptr;
+    ui_system_config_config = &ui_system_data_1608_ptr;
+    ui_system_config_config = &ui_system_data_1592_ptr;
+    ui_system_config_config = &ui_system_data_1576_ptr;
+    ui_system_config_config = &ui_system_data_1560_ptr;
+    ui_system_config_config = &ui_system_data_1544_ptr;
+    ui_system_config_config = &ui_system_data_1528_ptr;
+    ui_system_config_config = &ui_system_data_1512_ptr;
+    ui_system_config_config = &ui_system_data_1496_ptr;
   }
   else {
     if (param_1 != 2) {
       return 2;
     }
-    ui_system_config_config = &unknown_var_1480_ptr;
-    ui_system_config_config = &unknown_var_1464_ptr;
-    ui_system_config_config = &unknown_var_1448_ptr;
-    ui_system_config_config = &unknown_var_1432_ptr;
-    ui_system_config_config = &unknown_var_1416_ptr;
-    ui_system_config_config = &unknown_var_1400_ptr;
-    ui_system_config_config = &unknown_var_1384_ptr;
-    ui_system_config_config = &unknown_var_1368_ptr;
-    ui_system_config_config = &unknown_var_1352_ptr;
-    ui_system_config_config = &unknown_var_1336_ptr;
+    ui_system_config_config = &ui_system_data_1480_ptr;
+    ui_system_config_config = &ui_system_data_1464_ptr;
+    ui_system_config_config = &ui_system_data_1448_ptr;
+    ui_system_config_config = &ui_system_data_1432_ptr;
+    ui_system_config_config = &ui_system_data_1416_ptr;
+    ui_system_config_config = &ui_system_data_1400_ptr;
+    ui_system_config_config = &ui_system_data_1384_ptr;
+    ui_system_config_config = &ui_system_data_1368_ptr;
+    ui_system_config_config = &ui_system_data_1352_ptr;
+    ui_system_config_config = &ui_system_data_1336_ptr;
   }
   return 0;
 }

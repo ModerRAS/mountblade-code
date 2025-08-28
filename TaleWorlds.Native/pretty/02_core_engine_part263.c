@@ -311,7 +311,7 @@ uint64_t *
 FUN_18022a810(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_8584_ptr;
+  *param_1 = &processed_var_8584_ptr;
   param_1[2] = &system_state_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;

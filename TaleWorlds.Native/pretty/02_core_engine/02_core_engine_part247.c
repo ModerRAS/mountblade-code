@@ -164,8 +164,8 @@ skip_debug_logging:
   if (is_enabled == '\0') {
     if (6 < *(uint *)(trigger_data + 0x10)) {
       do {
-        if ((&unknown_var_3520_ptr + compare_index)[*(int64_t *)(trigger_data + 8) + -0x180a10500] !=
-            (&unknown_var_3520_ptr)[compare_index]) {
+        if ((&memory_allocator_3520_ptr + compare_index)[*(int64_t *)(trigger_data + 8) + -0x180a10500] !=
+            (&memory_allocator_3520_ptr)[compare_index]) {
           return result_code;
         }
         compare_index = compare_index + 1;
@@ -175,7 +175,7 @@ skip_debug_logging:
     }
   }
   else {
-    format_result = FUN_1808496c0(result_code, &unknown_var_1504_ptr, 0xffffffff);
+    format_result = FUN_1808496c0(result_code, &ui_system_data_1504_ptr, 0xffffffff);
     string_ptr = &system_buffer_ptr;
     if (*(void **)(trigger_data + 8) != (void *)0x0) {
       string_ptr = *(void **)(trigger_data + 8);
@@ -269,7 +269,7 @@ skip_debug_logging:
   FUN_180211a30(format_result, &system_buffer_ptr);
   
   if ((context_backup != 0) && (is_enabled != '\0')) {
-    format_result = FUN_1808496c0(context_backup, &unknown_var_1504_ptr, 0xffffffff);
+    format_result = FUN_1808496c0(context_backup, &ui_system_data_1504_ptr, 0xffffffff);
     FUN_180211a30(format_result, &system_buffer_ptr);
   }
   return context_backup;
@@ -361,7 +361,7 @@ skip_debug_logging:
   FUN_180211a30(string_length, string_ptr);
   
   if (string_length != 0) {
-    FUN_1800623b0(system_message_context, 0, 0, 3, &unknown_var_3528_ptr, result_code, error_code);
+    FUN_1800623b0(system_message_context, 0, 0, 3, &memory_allocator_3528_ptr, result_code, error_code);
     return 0;
   }
   return result_code;
@@ -532,7 +532,7 @@ void add_event_to_queue(int64_t event_context, uint64_t event_data)
     if (temp_string != (void *)0x0) {
       string_ptr = temp_string;
     }
-    SystemDataInitializer(&unknown_var_3704_ptr, string_ptr);
+    SystemDataInitializer(&memory_allocator_3704_ptr, string_ptr);
     goto cleanup_and_exit;
   }
   
@@ -541,7 +541,7 @@ void add_event_to_queue(int64_t event_context, uint64_t event_data)
   if (temp_string != (void *)0x0) {
     string_ptr = temp_string;
   }
-  search_result = strstr(string_ptr, &unknown_var_3736_ptr);
+  search_result = strstr(string_ptr, &memory_allocator_3736_ptr);
   if (search_result == 0) {
     string_ptr = &system_buffer_ptr;
     if (temp_string != (void *)0x0) {
@@ -553,7 +553,7 @@ void add_event_to_queue(int64_t event_context, uint64_t event_data)
     if (temp_string != (void *)0x0) {
       string_ptr = temp_string;
     }
-    search_result = strstr(string_ptr, &unknown_var_3624_ptr);
+    search_result = strstr(string_ptr, &memory_allocator_3624_ptr);
     if (search_result != 0) goto process_special_event;
   }
   else {
@@ -703,7 +703,7 @@ void initialize_event_system_config(int64_t event_context, uint64_t *config_data
     // 验证配置参数
     check_result = FUN_180849990(*(uint64_t *)(event_context + 0x368), 0, &config_params_copy[0], &u_stack_54);
     if (check_result != 0) {
-      SystemDataInitializer(&unknown_var_3632_ptr);
+      SystemDataInitializer(&memory_allocator_3632_ptr);
     }
   }
   
@@ -834,60 +834,60 @@ void update_event_rendering_params(int64_t event_context)
   
   // 获取当前渲染参数
   FUN_1808452a0(*(uint64_t *)(event_context + 0x368), &render_params[3], &render_params[2]);
-  SystemCore_CacheManager0(&unknown_var_3776_ptr);
-  SystemCore_CacheManager0(&unknown_var_3800_ptr, (double)render_params[2]);
-  SystemCore_CacheManager0(&unknown_var_3744_ptr, (double)render_params[1]);
-  SystemCore_CacheManager0(&unknown_var_3760_ptr, (double)render_params[0]);
-  SystemCore_CacheManager0(&unknown_var_3856_ptr, (double)render_params[4]);
-  SystemCore_CacheManager0(&unknown_var_3880_ptr, (double)render_params[3]);
+  SystemCore_CacheManager0(&memory_allocator_3776_ptr);
+  SystemCore_CacheManager0(&memory_allocator_3800_ptr, (double)render_params[2]);
+  SystemCore_CacheManager0(&memory_allocator_3744_ptr, (double)render_params[1]);
+  SystemCore_CacheManager0(&memory_allocator_3760_ptr, (double)render_params[0]);
+  SystemCore_CacheManager0(&memory_allocator_3856_ptr, (double)render_params[4]);
+  SystemCore_CacheManager0(&memory_allocator_3880_ptr, (double)render_params[3]);
   
   // 获取纹理参数
   FUN_180845090(*(uint64_t *)(event_context + 0x368), texture_params);
-  SystemCore_CacheManager0(&unknown_var_3816_ptr, u_stack_2c);
-  SystemCore_CacheManager0(&unknown_var_3840_ptr, u_stack_24);
-  SystemCore_CacheManager0(&unknown_var_3928_ptr, texture_params[0]);
-  SystemCore_CacheManager0(&unknown_var_3968_ptr, u_stack_38);
+  SystemCore_CacheManager0(&memory_allocator_3816_ptr, u_stack_2c);
+  SystemCore_CacheManager0(&memory_allocator_3840_ptr, u_stack_24);
+  SystemCore_CacheManager0(&memory_allocator_3928_ptr, texture_params[0]);
+  SystemCore_CacheManager0(&memory_allocator_3968_ptr, u_stack_38);
   
   // 初始化并更新渲染参数
   render_params[0] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_3896_ptr, &render_params[0], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &memory_allocator_3896_ptr, &render_params[0], 0);
   render_params[1] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_3912_ptr, &render_params[1], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &memory_allocator_3912_ptr, &render_params[1], 0);
   render_params[2] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_4048_ptr, &render_params[2], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &processed_var_4048_ptr, &render_params[2], 0);
   render_params[3] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_4064_ptr, &render_params[3], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &processed_var_4064_ptr, &render_params[3], 0);
   render_params[4] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_7676_ptr, &render_params[4], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &processed_var_7676_ptr, &render_params[4], 0);
   render_params[5] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_4008_ptr, &render_params[5], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &processed_var_4008_ptr, &render_params[5], 0);
   render_params[6] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_4032_ptr, &render_params[6], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &processed_var_4032_ptr, &render_params[6], 0);
   render_params[7] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_4112_ptr, &render_params[7], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &processed_var_4112_ptr, &render_params[7], 0);
   render_params[8] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_4128_ptr, &render_params[8], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &processed_var_4128_ptr, &render_params[8], 0);
   render_params[9] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_4072_ptr, &render_params[9], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &processed_var_4072_ptr, &render_params[9], 0);
   render_params[10] = 0.0;
-  FUN_180846210(*(uint64_t *)(event_context + 0x368), &unknown_var_4096_ptr, &render_params[10], 0);
+  FUN_180846210(*(uint64_t *)(event_context + 0x368), &processed_var_4096_ptr, &render_params[10], 0);
   
   // 应用渲染参数更新
-  SystemCore_CacheManager0(&unknown_var_4184_ptr);
-  SystemCore_CacheManager0(&unknown_var_4208_ptr);
-  SystemCore_CacheManager0(&unknown_var_4184_ptr);
-  SystemCore_CacheManager0(&unknown_var_4152_ptr, (double)render_params[0]);
-  SystemCore_CacheManager0(&unknown_var_4168_ptr, (double)render_params[1]);
-  SystemCore_CacheManager0(&unknown_var_4280_ptr, (double)render_params[2]);
-  SystemCore_CacheManager0(&unknown_var_4304_ptr, (double)render_params[3]);
-  SystemCore_CacheManager0(&unknown_var_4232_ptr, (double)render_params[4]);
-  SystemCore_CacheManager0(&unknown_var_4248_ptr, (double)render_params[5]);
-  SystemCore_CacheManager0(&unknown_var_4368_ptr, (double)render_params[6]);
-  SystemCore_CacheManager0(&unknown_var_4384_ptr, (double)render_params[7]);
-  SystemCore_CacheManager0(&unknown_var_4320_ptr, (double)render_params[8]);
-  SystemCore_CacheManager0(&unknown_var_4344_ptr, (double)render_params[9]);
-  SystemCore_CacheManager0(&unknown_var_4440_ptr, (double)render_params[10]);
-  SystemCore_CacheManager0(&unknown_var_4184_ptr);
+  SystemCore_CacheManager0(&processed_var_4184_ptr);
+  SystemCore_CacheManager0(&processed_var_4208_ptr);
+  SystemCore_CacheManager0(&processed_var_4184_ptr);
+  SystemCore_CacheManager0(&processed_var_4152_ptr, (double)render_params[0]);
+  SystemCore_CacheManager0(&processed_var_4168_ptr, (double)render_params[1]);
+  SystemCore_CacheManager0(&processed_var_4280_ptr, (double)render_params[2]);
+  SystemCore_CacheManager0(&processed_var_4304_ptr, (double)render_params[3]);
+  SystemCore_CacheManager0(&processed_var_4232_ptr, (double)render_params[4]);
+  SystemCore_CacheManager0(&processed_var_4248_ptr, (double)render_params[5]);
+  SystemCore_CacheManager0(&processed_var_4368_ptr, (double)render_params[6]);
+  SystemCore_CacheManager0(&processed_var_4384_ptr, (double)render_params[7]);
+  SystemCore_CacheManager0(&processed_var_4320_ptr, (double)render_params[8]);
+  SystemCore_CacheManager0(&processed_var_4344_ptr, (double)render_params[9]);
+  SystemCore_CacheManager0(&processed_var_4440_ptr, (double)render_params[10]);
+  SystemCore_CacheManager0(&processed_var_4184_ptr);
   
   // 安全检查
   SystemSecurityChecker(security_check ^ (uint64_t)security_buffer);

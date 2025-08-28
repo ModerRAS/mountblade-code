@@ -222,8 +222,8 @@ void FUN_18029e6e0(uint64_t param_1,int64_t param_2,int32_t param_3,int32_t para
   puStack_108 = auStack_f8;
   auStack_f8[0] = 0;
   uStack_100 = 9;
-  strcpy_s(auStack_f8,0x10,&unknown_var_1832_ptr);
-  puStack_e8 = &unknown_var_3432_ptr;
+  strcpy_s(auStack_f8,0x10,&ui_system_data_1832_ptr);
+  puStack_e8 = &memory_allocator_3432_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = uStack_100;
@@ -446,12 +446,12 @@ void FUN_18029eb90(int64_t param_1,int64_t param_2,int param_3,int param_4,uint6
   _uStack_18c = CONCAT44(*(int32_t *)(param_2 + 0x324),1);
   uStack_17c = 2;
   uStack_178 = 0x100;
-  puStack_130 = &unknown_var_672_ptr;
+  puStack_130 = &processed_var_672_ptr;
   puStack_128 = auStack_118;
   auStack_118[0] = 0;
   uStack_120 = 0xf;
-  strcpy_s(auStack_118,0x20,&unknown_var_1920_ptr);
-  puStack_f8 = &unknown_var_3432_ptr;
+  strcpy_s(auStack_118,0x20,&ui_system_data_1920_ptr);
+  puStack_f8 = &memory_allocator_3432_ptr;
   puStack_f0 = auStack_e0;
   auStack_e0[0] = 0;
   uStack_e8 = uStack_120;
@@ -484,7 +484,7 @@ void FUN_18029eb90(int64_t param_1,int64_t param_2,int param_3,int param_4,uint6
   iVar5 = (**(code **)(**(int64_t **)(param_1 + 0x8400) + 0x70))
                     (*(int64_t **)(param_1 + 0x8400),uStack_1a8,0,1);
   if (iVar5 < 0) {
-    FUN_180220810(iVar5,&unknown_var_1936_ptr);
+    FUN_180220810(iVar5,&ui_system_data_1936_ptr);
   }
   else {
     iVar5 = func_0x000180225d90(*(int32_t *)(param_2 + 0x324));
@@ -659,7 +659,7 @@ void FUN_18029f070(int64_t param_1,int64_t param_2)
                         (*(int64_t **)(param_1 + 0x8400),*(uint64_t *)(param_2 + 0x88),
                          auStack_2f8,0x58);
     }
-    puStack_298 = &unknown_var_2008_ptr;
+    puStack_298 = &rendering_buffer_2008_ptr;
     puStack_290 = auStack_280;
     auStack_280[0] = 0;
     uStack_288 = *(int32_t *)(*(int64_t *)(param_2 + 0x58) + 0x30);
@@ -672,7 +672,7 @@ void FUN_18029f070(int64_t param_1,int64_t param_2)
     lVar3 = FUN_18029fcf0(param_1 + 0x8208,&puStack_298);
     *(int64_t *)(lVar3 + 8) = *(int64_t *)(lVar3 + 8) + lStack_2c0;
     puStack_298 = &system_state_ptr;
-    puStack_178 = &unknown_var_2008_ptr;
+    puStack_178 = &rendering_buffer_2008_ptr;
     puStack_170 = auStack_160;
     auStack_160[0] = 0;
     uStack_168 = *(int32_t *)(*(int64_t *)(param_2 + 0x58) + 0x30);
@@ -685,7 +685,7 @@ void FUN_18029f070(int64_t param_1,int64_t param_2)
     lVar3 = FUN_18029fcf0(param_1 + 0x8208,&puStack_178);
     *(int64_t *)(lVar3 + 0x18) = *(int64_t *)(lVar3 + 0x18) + lStack_2c8;
     puStack_178 = &system_state_ptr;
-    puStack_418 = &unknown_var_2008_ptr;
+    puStack_418 = &rendering_buffer_2008_ptr;
     puStack_410 = auStack_400;
     auStack_400[0] = 0;
     uStack_408 = *(int32_t *)(*(int64_t *)(param_2 + 0x58) + 0x30);
@@ -712,7 +712,7 @@ void FUN_18029f070(int64_t param_1,int64_t param_2)
                          &fStack_448,8);
     }
     lVar3 = CONCAT44(uStack_444,fStack_448);
-    puStack_418 = &unknown_var_2008_ptr;
+    puStack_418 = &rendering_buffer_2008_ptr;
     puStack_410 = auStack_400;
     auStack_400[0] = 0;
     uStack_408 = *(int32_t *)(param_2 + 0x10);
@@ -890,7 +890,7 @@ void FUN_18029f830(int64_t param_1,uint param_2,uint param_3)
                      (*(int64_t **)(param_1 + 0x8400),*(uint64_t *)(lVar14 + 0x10),0,4,0,
                       apuStack_18);
   if (iVar11 < 0) {
-    FUN_180220810(iVar11,&unknown_var_1768_ptr);
+    FUN_180220810(iVar11,&ui_system_data_1768_ptr);
   }
   uVar6 = param_2 >> 0xe;
   lVar14 = (int64_t)*(int *)(system_parameter_buffer + 0x1538) * 0x488 + system_parameter_buffer + 0x1a18;
@@ -960,7 +960,7 @@ void FUN_18029f9b0(int64_t param_1,uint64_t param_2,int param_3)
                     (*(int64_t **)(param_1 + 0x8400),*(uint64_t *)(lVar1 + 0x10),0,4,0,auStack_18
                     );
   if (iVar2 < 0) {
-    FUN_180220810(iVar2,&unknown_var_1768_ptr);
+    FUN_180220810(iVar2,&ui_system_data_1768_ptr);
   }
                     // WARNING: Subroutine does not return
   memcpy(auStack_18[0],param_2,(int64_t)param_3 << 5);

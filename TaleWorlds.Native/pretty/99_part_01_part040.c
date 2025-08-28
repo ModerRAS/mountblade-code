@@ -111,11 +111,11 @@ void FUN_1800c89a0(uint64_t param_1,int64_t param_2)
       }
     }
     if (plVar10 == (int64_t *)0x0) {
-      puStack_60 = &unknown_var_672_ptr;
+      puStack_60 = &processed_var_672_ptr;
       puStack_58 = auStack_48;
       auStack_48[0] = 0;
       uStack_50 = 6;
-      strcpy_s(auStack_48,0x20,&unknown_var_2156_ptr);
+      strcpy_s(auStack_48,0x20,&rendering_buffer_2156_ptr);
       puVar3 = (uint64_t *)FUN_1800b08e0(system_resource_state,&plStack_b0,&puStack_60,0);
       plVar2 = (int64_t *)*puVar3;
       if (plVar2 != (int64_t *)0x0) {

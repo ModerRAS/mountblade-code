@@ -226,27 +226,27 @@ FUN_1801d0890(int64_t param_1,int32_t *param_2,int64_t *param_3,uint64_t param_4
     if ((void *)puVar3[9] != (void *)0x0) {
       puVar5 = (void *)puVar3[9];
     }
-    AdvancedSystemOptimizer(puVar5,&unknown_var_7284_ptr,auStack_60);
+    AdvancedSystemOptimizer(puVar5,&processed_var_7284_ptr,auStack_60);
     puVar5 = &system_buffer_ptr;
     if ((void *)puVar3[0xd] != (void *)0x0) {
       puVar5 = (void *)puVar3[0xd];
     }
-    AdvancedSystemOptimizer(puVar5,&unknown_var_7284_ptr,param_4);
+    AdvancedSystemOptimizer(puVar5,&processed_var_7284_ptr,param_4);
     puVar5 = &system_buffer_ptr;
     if ((void *)puVar3[0x11] != (void *)0x0) {
       puVar5 = (void *)puVar3[0x11];
     }
-    AdvancedSystemOptimizer(puVar5,&unknown_var_7284_ptr,auStack_58);
+    AdvancedSystemOptimizer(puVar5,&processed_var_7284_ptr,auStack_58);
     puVar5 = &system_buffer_ptr;
     if ((void *)puVar3[0x15] != (void *)0x0) {
       puVar5 = (void *)puVar3[0x15];
     }
-    AdvancedSystemOptimizer(puVar5,&unknown_var_7284_ptr,auStack_50);
+    AdvancedSystemOptimizer(puVar5,&processed_var_7284_ptr,auStack_50);
     puVar5 = &system_buffer_ptr;
     if ((void *)puVar3[0x19] != (void *)0x0) {
       puVar5 = (void *)puVar3[0x19];
     }
-    AdvancedSystemOptimizer(puVar5,&unknown_var_7284_ptr,&uStack_48);
+    AdvancedSystemOptimizer(puVar5,&processed_var_7284_ptr,&uStack_48);
     *param_6 = auStack_60[0];
     *param_5 = auStack_58[0];
     *param_7 = auStack_50[0];
@@ -391,25 +391,25 @@ void FUN_1801d0bb0(void)
         (**(code **)(*plStack_1b0 + 0x38))();
       }
       if (lVar1 != 0) {
-        puStack_158 = &unknown_var_3480_ptr;
+        puStack_158 = &memory_allocator_3480_ptr;
         puStack_150 = auStack_140;
         auStack_140[0] = 0;
         uStack_148 = 10;
         strcpy_s(auStack_140,0x40,&system_data_d648);
         uVar7 = SystemCore_LoggingSystem0(lVar1,&puStack_158,0);
         puStack_158 = &system_state_ptr;
-        puStack_f8 = &unknown_var_3480_ptr;
+        puStack_f8 = &memory_allocator_3480_ptr;
         puStack_f0 = auStack_e0;
         auStack_e0[0] = 0;
         uStack_e8 = 0x13;
-        strcpy_s(auStack_e0,0x40,&unknown_var_1576_ptr);
+        strcpy_s(auStack_e0,0x40,&ui_system_data_1576_ptr);
         uVar8 = SystemCore_LoggingSystem0(lVar1,&puStack_f8,0);
         puStack_f8 = &system_state_ptr;
-        puStack_98 = &unknown_var_3480_ptr;
+        puStack_98 = &memory_allocator_3480_ptr;
         puStack_90 = auStack_80;
         auStack_80[0] = 0;
         uStack_88 = 0x1c;
-        strcpy_s(auStack_80,0x40,&unknown_var_1504_ptr);
+        strcpy_s(auStack_80,0x40,&ui_system_data_1504_ptr);
         uStack_238 = SystemCore_LoggingSystem0(lVar1,&puStack_98,0);
         puStack_98 = &system_state_ptr;
         puStack_230 = (uint64_t *)0x0;
@@ -554,15 +554,15 @@ void FUN_1801d1390(uint64_t param_1,uint64_t param_2)
     alStack_1a8[1] = 0;
     alStack_1a8[2] = 0;
     uStack_190 = 3;
-    puStack_178 = &unknown_var_3432_ptr;
+    puStack_178 = &memory_allocator_3432_ptr;
     puStack_170 = auStack_160;
     auStack_160[0] = 0;
     uStack_168 = 0x1c;
-    strcpy_s(auStack_160,0x80,&unknown_var_1504_ptr);
+    strcpy_s(auStack_160,0x80,&ui_system_data_1504_ptr);
     plStack_250 = (int64_t *)SystemCore_LoggingSystem0(lVar2,&puStack_178,0);
     FUN_18005ea90(alStack_1a8,&plStack_250);
     puStack_178 = &system_state_ptr;
-    puStack_d8 = &unknown_var_3432_ptr;
+    puStack_d8 = &memory_allocator_3432_ptr;
     puStack_d0 = auStack_c0;
     auStack_c0[0] = 0;
     uStack_c8 = 10;

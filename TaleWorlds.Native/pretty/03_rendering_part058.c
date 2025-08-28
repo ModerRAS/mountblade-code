@@ -168,7 +168,7 @@ joined_r0x0001802999aa:
   iVar9 = (int)((float)iVar9 * fVar24);
   iStack0000000000000050 = iVar9;
   FUN_18012e810();
-  SystemCore_CacheManager0(&unknown_var_728_ptr,iVar9);
+  SystemCore_CacheManager0(&processed_var_728_ptr,iVar9);
   if (0 < (int64_t)unaff_R14) {
     puVar10 = *(uint64_t **)(unaff_RBP + 0xc0);
     *(int64_t *)(unaff_RBP + 0xa8) = *(int64_t *)(unaff_RBP + 0xa8) - (int64_t)puVar10;
@@ -181,7 +181,7 @@ joined_r0x0001802999aa:
       in_stack_00000048 = *(int32_t *)(puVar14 + 1);
       fStack000000000000004c = *(float *)((int64_t)puVar14 + 0xc);
       uVar27 = *(uint64_t *)(lVar15 + (int64_t)puVar10);
-      FUN_18010f0d0(&stack0x00000040,&unknown_var_744_ptr,(double)fVar24,(double)fVar18,uVar27);
+      FUN_18010f0d0(&stack0x00000040,&processed_var_744_ptr,(double)fVar24,(double)fVar18,uVar27);
       puVar14 = puVar14 + 2;
       puVar10 = puVar10 + 1;
       unaff_R14 = unaff_R14 - 1;
@@ -466,7 +466,7 @@ LAB_180299f92:
           puVar12 = *(void **)(*param_3 + 0x18);
         }
                     // WARNING: Subroutine does not return
-        FUN_180062300(system_message_context,&unknown_var_776_ptr,puVar12);
+        FUN_180062300(system_message_context,&processed_var_776_ptr,puVar12);
       }
       if ((iVar2 == 2) || (*system_global_data_ptr != 0)) {
         pplVar1 = (int64_t **)(lVar10 + 0x30);
@@ -614,7 +614,7 @@ uint64_t *render_mutex_initialize(uint64_t *mutex_data)
   mutex_data[0x11] = &system_state_ptr; // 设置互斥锁类型
   mutex_data[0x12] = 0; // 清空锁状态
   *(int32_t *)(mutex_data + 0x13) = 0; // 清空锁计数
-  mutex_data[0x11] = &unknown_var_3432_ptr; // 设置递归锁类型
+  mutex_data[0x11] = &memory_allocator_3432_ptr; // 设置递归锁类型
   mutex_data[0x12] = mutex_data + 0x14; // 设置锁数据指针
   *(int32_t *)(mutex_data + 0x13) = 0; // 清空递归计数
   *(int8_t *)(mutex_data + 0x14) = 0; // 清空锁标志

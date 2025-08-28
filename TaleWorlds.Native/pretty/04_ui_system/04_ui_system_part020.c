@@ -134,7 +134,7 @@ void ui_system_matrix_transform_processor(uint64_t context_handle, int64_t resou
 uint64_t *ui_system_memory_manager(uint64_t *memory_block, uint64_t memory_flags, uint64_t param_3, uint64_t param_4)
 {
   // 设置内存块指针到全局数据
-  *memory_block = &unknown_var_1864_ptr;
+  *memory_block = &ui_system_data_1864_ptr;
   
   // 根据标志位条件释放内存
   if ((memory_flags & UI_ONE_FLOAT) != UI_ZERO_FLOAT) {
@@ -188,8 +188,8 @@ int64_t ui_system_state_initializer(int64_t state_data, int8_t init_flag_1, int8
 uint64_t *ui_system_resource_manager(uint64_t *resource_data)
 {
   // 设置资源数据指针到全局数据
-  *resource_data = &unknown_var_1864_ptr;
-  *resource_data = &unknown_var_2072_ptr;
+  *resource_data = &ui_system_data_1864_ptr;
+  *resource_data = &rendering_buffer_2072_ptr;
   
   // 初始化资源状态
   ui_system_state_initializer(resource_data + UI_TWO_FLOAT, 0xff, 0xff, UI_ZERO_FLOAT, UI_ZERO_FLOAT, UI_ZERO_FLOAT, UI_FULL_MASK_64BIT - UI_TWO_FLOAT);

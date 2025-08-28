@@ -195,7 +195,7 @@ void FUN_1803cfa00(uint64_t *param_1)
 uint64_t * FUN_1803cfa30(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_4032_ptr;
+  *param_1 = &processed_var_4032_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }
@@ -211,9 +211,9 @@ uint64_t * FUN_1803cfa30(uint64_t *param_1,uint64_t param_2)
 void FUN_1803cfa80(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_4680_ptr;
+  *param_1 = &processed_var_4680_ptr;
   param_1[2] = 0;
-  *param_1 = &unknown_var_4552_ptr;
+  *param_1 = &processed_var_4552_ptr;
   return;
 }
 
@@ -222,7 +222,7 @@ void FUN_1803cfa80(uint64_t *param_1)
 uint64_t * FUN_1803cfac0(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_4552_ptr;
+  *param_1 = &processed_var_4552_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x18);
   }
@@ -235,9 +235,9 @@ uint64_t *
 FUN_1803cfb00(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_4680_ptr;
+  *param_1 = &processed_var_4680_ptr;
   param_1[2] = 0;
-  *param_1 = &unknown_var_4552_ptr;
+  *param_1 = &processed_var_4552_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x28,param_3,param_4,0xfffffffffffffffe);
   }
@@ -257,7 +257,7 @@ void FUN_1803cfb80(int64_t param_1)
   
   plVar1 = *(int64_t **)(param_1 + 0x18);
   if (plVar1 != (int64_t *)0x0) {
-    if (*(code **)(*plVar1 + 0x20) == (code *)&unknown_var_7456_ptr) {
+    if (*(code **)(*plVar1 + 0x20) == (code *)&processed_var_7456_ptr) {
                     // WARNING: Could not recover jumptable at 0x0001803cfbab. Too many branches
                     // WARNING: Treating indirect jump as call
       (**(code **)(*(int64_t *)plVar1[2] + 0x80))();
@@ -273,7 +273,7 @@ void FUN_1803cfb80(int64_t param_1)
 uint64_t * FUN_1803cfbc0(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_4760_ptr;
+  *param_1 = &processed_var_4760_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }
@@ -285,7 +285,7 @@ uint64_t * FUN_1803cfbc0(uint64_t *param_1,uint64_t param_2)
 uint64_t * FUN_1803cfc00(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_4848_ptr;
+  *param_1 = &processed_var_4848_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }
@@ -297,7 +297,7 @@ uint64_t * FUN_1803cfc00(uint64_t *param_1,uint64_t param_2)
 uint64_t * FUN_1803cfc40(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_4872_ptr;
+  *param_1 = &processed_var_4872_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }
@@ -313,11 +313,11 @@ FUN_1803cfc90(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3432_ptr;
+  *param_2 = &memory_allocator_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0x12;
-  strcpy_s(param_2[1],0x80,&unknown_var_4992_ptr,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&processed_var_4992_ptr,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
@@ -466,7 +466,7 @@ void FUN_1803cfd10(int64_t param_1,int32_t param_2,int32_t param_3,uint64_t para
     memcpy((int8_t *)((int64_t)puVar5 + 0x11),*(uint64_t *)(param_5 + 8),
            (int64_t)(iVar3 + 1));
   }
-  puStack_188 = &unknown_var_3432_ptr;
+  puStack_188 = &memory_allocator_3432_ptr;
   puStack_180 = auStack_170;
   auStack_170[0] = 0;
   uStack_178 = 0x12;
@@ -487,7 +487,7 @@ void FUN_1803cfd10(int64_t param_1,int32_t param_2,int32_t param_3,uint64_t para
     (**(code **)(*plStack_1e0 + 0x38))();
   }
   puStack_188 = &system_state_ptr;
-  puStack_e8 = &unknown_var_3432_ptr;
+  puStack_e8 = &memory_allocator_3432_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 0x11;
@@ -553,7 +553,7 @@ void FUN_1803cfd10(int64_t param_1,int32_t param_2,int32_t param_3,uint64_t para
   uStack_1a8 = param_6;
   puVar6 = (uint64_t *)0x0;
   uVar2 = 0;
-  puStack_188 = &unknown_var_3432_ptr;
+  puStack_188 = &memory_allocator_3432_ptr;
   puStack_180 = auStack_170;
   auStack_170[0] = 0;
   uStack_178 = 0x14;

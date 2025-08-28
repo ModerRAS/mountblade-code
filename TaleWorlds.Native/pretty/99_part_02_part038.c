@@ -153,14 +153,14 @@ void FUN_1801acb30(int64_t param_1,int64_t *param_2,uint64_t param_3,char param_
     uStack_1ec = 0;
     uStack_1e4 = 0;
     uStack_200 = uVar3;
-    if (*(code **)(*param_2 + 0xb8) == (code *)&unknown_var_128_ptr) {
+    if (*(code **)(*param_2 + 0xb8) == (code *)&ui_system_data_128_ptr) {
       lVar8 = param_2[0xda];
     }
     else {
       lVar8 = (**(code **)(*param_2 + 0xb8))(param_2);
     }
     uStack_1d0 = *(int32_t *)(lVar8 + 0xa0);
-    puStack_e8 = &unknown_var_3432_ptr;
+    puStack_e8 = &memory_allocator_3432_ptr;
     puStack_e0 = auStack_d0;
     auStack_d0[0] = 0;
     uStack_d8 = 0xe;
@@ -573,8 +573,8 @@ void FUN_1801ad720(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
         puVar7 = (void *)FUN_180275820();
         uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,CONCAT71(uVar15,3));
         uStack_f8 = (int64_t **)&uStack_a8;
-        uStack_98 = &unknown_var_8768_ptr;
-        puStack_90 = &unknown_var_8752_ptr;
+        uStack_98 = &processed_var_8768_ptr;
+        puStack_90 = &processed_var_8752_ptr;
         uStack_a8 = puVar7;
         plVar9 = (int64_t *)FUN_18006b640(uVar8,&uStack_a8);
         plStack_e8 = plVar9;
@@ -659,11 +659,11 @@ LAB_1801adb86:
     bVar4 = false;
     if (lVar10 == 0) goto LAB_1801adb86;
     lVar2 = *(int64_t *)(lVar10 + 0x1b8);
-    uStack_a8 = &unknown_var_3480_ptr;
+    uStack_a8 = &memory_allocator_3480_ptr;
     ppuStack_a0 = &puStack_90;
     puStack_90 = (void *)((uint64_t)puStack_90 & 0xffffffffffffff00);
     uStack_98 = (void *)CONCAT44((int)((uint64_t)uStack_98 >> 0x20),0x16);
-    strcpy_s(&puStack_90,0x40,&unknown_var_4184_ptr);
+    strcpy_s(&puStack_90,0x40,&processed_var_4184_ptr);
     bVar4 = true;
     uStack_d0 = 1;
     uVar11 = SystemCore_LoggingSystem0(*(uint64_t *)(lVar2 + 0x1e0),&uStack_a8,0);
@@ -843,11 +843,11 @@ LAB_1801adb86:
     lVar10 = (**(code **)(*(int64_t *)*puVar3 + 0x178))();
     if (lVar10 != 0) {
       lVar2 = *(int64_t *)(lVar10 + 0x1b8);
-      uStack_a8 = &unknown_var_3480_ptr;
+      uStack_a8 = &memory_allocator_3480_ptr;
       ppuStack_a0 = &puStack_90;
       puStack_90 = (void *)((uint64_t)puStack_90 & 0xffffffffffffff00);
       uStack_98 = (void *)CONCAT44((int)((uint64_t)uStack_98 >> 0x20),0x16);
-      strcpy_s(&puStack_90,0x40,&unknown_var_4184_ptr);
+      strcpy_s(&puStack_90,0x40,&processed_var_4184_ptr);
       uVar11 = SystemCore_LoggingSystem0(*(uint64_t *)(lVar2 + 0x1e0),&uStack_a8,0);
       uStack_a8 = &system_state_ptr;
       if ((uVar11 & *(uint64_t *)(lVar2 + 0x140)) != 0) {

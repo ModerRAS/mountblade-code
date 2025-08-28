@@ -135,7 +135,7 @@ void FUN_180352bf0(uint64_t *param_1)
     FUN_1803456e0();
     
     // 设置渲染对象的基本配置
-    *puVar4 = &unknown_var_2008_ptr;   // 设置渲染对象类型
+    *puVar4 = &rendering_buffer_2008_ptr;   // 设置渲染对象类型
     
     // 配置渲染对象的虚函数表
     plVar1 = puVar4 + 0xf;       // 虚函数表指针位置
@@ -363,13 +363,13 @@ uint64_t * FUN_180352ff0(uint64_t param_1, uint64_t *param_2, uint64_t param_3, 
     *(int32_t *)(param_2 + 2) = 0;  // 清空数据长度
     
     // 设置数据对象的类型和配置
-    *param_2 = &unknown_var_3432_ptr;  // 设置数据对象类型
+    *param_2 = &memory_allocator_3432_ptr;  // 设置数据对象类型
     param_2[1] = param_2 + 3;   // 设置数据缓冲区指针
     *(int8_t *)(param_2 + 3) = 0;  // 初始化缓冲区
     *(int32_t *)(param_2 + 2) = 0x13;  // 设置缓冲区大小
     
     // 复制配置数据到缓冲区
-    strcpy_s(param_2[1], 0x80, &unknown_var_2448_ptr, param_4, 0, 0xfffffffffffffffe);
+    strcpy_s(param_2[1], 0x80, &rendering_buffer_2448_ptr, param_4, 0, 0xfffffffffffffffe);
     
     // 返回创建的数据对象指针
     return param_2;
@@ -391,7 +391,7 @@ uint64_t * FUN_180352ff0(uint64_t param_1, uint64_t *param_2, uint64_t param_3, 
 void FUN_180353070(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 设置渲染对象的属性类型
-    *param_1 = &unknown_var_4912_ptr;  // 属性类型标识
+    *param_1 = &processed_var_4912_ptr;  // 属性类型标识
     
     // 调用属性设置处理函数
     FUN_1802f5b10(param_1 + 4, param_1[6], param_3, param_4, 0xfffffffffffffffe);
@@ -826,7 +826,7 @@ void FUN_180354170(int64_t *param_1)
     
     // 检查渲染对象状态
     if (plVar2 != param_1 + 4) {
-    puStack_108 = &unknown_var_3432_ptr;
+    puStack_108 = &memory_allocator_3432_ptr;
     puStack_100 = auStack_f0;
     auStack_f0[0] = 0;
     uStack_f8 = (int32_t)plVar2[10];
@@ -927,7 +927,7 @@ int64_t * FUN_1803543b0(int64_t param_1,uint64_t *param_2,char param_3,char para
     }
     if (((param_3 != '\0') && (plVar6 != (int64_t *)0x0)) && (lVar2 != 0)) {
       (**(code **)(*plVar6 + 0x68))(plVar6);
-      if ((void *)*plVar6 == &unknown_var_1864_ptr) {
+      if ((void *)*plVar6 == &ui_system_data_1864_ptr) {
         (**(code **)(render_system_data_memory + 0x1e0))((int)plVar6[10]);
       }
       else {

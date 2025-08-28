@@ -64,7 +64,7 @@ void FUN_1800af9f0(int64_t param_1,uint64_t *param_2,int64_t param_3)
         }
 LAB_1800afade:
         if (iVar8 == 0) {
-          FUN_180060680(&uStack_60,&unknown_var_4576_ptr,
+          FUN_180060680(&uStack_60,&processed_var_4576_ptr,
                         **(int32_t **)(*(int64_t *)(param_1 + 8) + (int64_t)iVar15 * 8));
           lVar13 = -1;
           do {
@@ -267,7 +267,7 @@ LAB_1800afda6:
         }
 LAB_1800aff9c:
         if (iVar8 == 0) {
-          FUN_180626eb0(&uStack_60,0x20,&unknown_var_7284_ptr,
+          FUN_180626eb0(&uStack_60,0x20,&processed_var_7284_ptr,
                         **(uint64_t **)(*(int64_t *)(param_1 + 0x68) + (int64_t)iVar15 * 8));
           lVar13 = -1;
           do {

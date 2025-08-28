@@ -271,7 +271,7 @@ void FUN_18002f270(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_1;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_2;
-    current_node[8] = &unknown_var_7608_ptr;
+    current_node[8] = &processed_var_7608_ptr;
     current_node[9] = 4;
     current_node[10] = (uint64_t)callback_func;
 }
@@ -328,7 +328,7 @@ void FUN_18002f370(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_3;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_4;
-    current_node[8] = &unknown_var_7632_ptr;
+    current_node[8] = &processed_var_7632_ptr;
     current_node[9] = 0;
     current_node[10] = null_callback;
 }
@@ -385,7 +385,7 @@ void FUN_18002f470(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_5;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_6;
-    current_node[8] = &unknown_var_7656_ptr;
+    current_node[8] = &processed_var_7656_ptr;
     current_node[9] = 0;
     current_node[10] = (uint64_t)callback_func;
 }
@@ -442,7 +442,7 @@ void FUN_18002f570(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_7;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_8;
-    current_node[8] = &unknown_var_7680_ptr;
+    current_node[8] = &processed_var_7680_ptr;
     current_node[9] = 0;
     current_node[10] = null_callback;
 }
@@ -471,7 +471,7 @@ void FUN_18002f670(void)
     
     // 遍历组件链表
     char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
-    system_data_ptr = &unknown_var_2048_ptr;
+    system_data_ptr = &rendering_buffer_2048_ptr;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
     
@@ -499,7 +499,7 @@ void FUN_18002f670(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_9;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_10;
-    current_node[8] = &unknown_var_7704_ptr;
+    current_node[8] = &processed_var_7704_ptr;
     current_node[9] = 0;
     current_node[10] = (uint64_t)system_data_ptr;
 }
@@ -556,7 +556,7 @@ void FUN_18002f770(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_11;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_12;
-    current_node[8] = &unknown_var_7728_ptr;
+    current_node[8] = &processed_var_7728_ptr;
     current_node[9] = 0;
     current_node[10] = null_callback;
 }
@@ -613,7 +613,7 @@ void FUN_18002f870(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_13;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_14;
-    current_node[8] = &unknown_var_7584_ptr;
+    current_node[8] = &processed_var_7584_ptr;
     current_node[9] = 1;
     current_node[10] = (uint64_t)callback_func;
 }
@@ -670,7 +670,7 @@ void FUN_18002f970(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_1;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_2;
-    current_node[8] = &unknown_var_7608_ptr;
+    current_node[8] = &processed_var_7608_ptr;
     current_node[9] = 4;
     current_node[10] = (uint64_t)callback_func;
 }
@@ -727,7 +727,7 @@ void FUN_18002fa70(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_3;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_4;
-    current_node[8] = &unknown_var_7632_ptr;
+    current_node[8] = &processed_var_7632_ptr;
     current_node[9] = 0;
     current_node[10] = null_callback;
 }
@@ -784,7 +784,7 @@ void FUN_18002fb70(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_5;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_6;
-    current_node[8] = &unknown_var_7656_ptr;
+    current_node[8] = &processed_var_7656_ptr;
     current_node[9] = 0;
     current_node[10] = (uint64_t)callback_func;
 }
@@ -841,7 +841,7 @@ void FUN_18002fc70(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_7;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_8;
-    current_node[8] = &unknown_var_7680_ptr;
+    current_node[8] = &processed_var_7680_ptr;
     current_node[9] = 0;
     current_node[10] = null_callback;
 }
@@ -870,7 +870,7 @@ void FUN_18002fd70(void)
     
     // 遍历组件链表
     char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
-    system_data_ptr = &unknown_var_2048_ptr;
+    system_data_ptr = &rendering_buffer_2048_ptr;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
     
@@ -898,7 +898,7 @@ void FUN_18002fd70(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_9;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_10;
-    current_node[8] = &unknown_var_7704_ptr;
+    current_node[8] = &processed_var_7704_ptr;
     current_node[9] = 0;
     current_node[10] = (uint64_t)system_data_ptr;
 }
@@ -955,7 +955,7 @@ void FUN_18002fe70(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_11;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_12;
-    current_node[8] = &unknown_var_7728_ptr;
+    current_node[8] = &processed_var_7728_ptr;
     current_node[9] = 0;
     current_node[10] = null_callback;
 }
@@ -1012,7 +1012,7 @@ void FUN_18002ff70(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_15;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_16;
-    current_node[8] = &unknown_var_4632_ptr;
+    current_node[8] = &processed_var_4632_ptr;
     current_node[9] = 0;
     current_node[10] = null_callback;
 }
@@ -1069,7 +1069,7 @@ void FUN_180030070(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_17;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_18;
-    current_node[8] = &unknown_var_7824_ptr;
+    current_node[8] = &processed_var_7824_ptr;
     current_node[9] = 0;
     current_node[10] = (uint64_t)callback_func;
 }
@@ -1126,7 +1126,7 @@ void FUN_180030170(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_13;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_14;
-    current_node[8] = &unknown_var_7584_ptr;
+    current_node[8] = &processed_var_7584_ptr;
     current_node[9] = 1;
     current_node[10] = (uint64_t)callback_func;
 }
@@ -1183,7 +1183,7 @@ void FUN_180030270(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_1;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_2;
-    current_node[8] = &unknown_var_7608_ptr;
+    current_node[8] = &processed_var_7608_ptr;
     current_node[9] = 4;
     current_node[10] = (uint64_t)callback_func;
 }
@@ -1240,7 +1240,7 @@ void FUN_180030370(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_3;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_4;
-    current_node[8] = &unknown_var_7632_ptr;
+    current_node[8] = &processed_var_7632_ptr;
     current_node[9] = 0;
     current_node[10] = null_callback;
 }
@@ -1297,7 +1297,7 @@ void FUN_180030470(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_5;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_6;
-    current_node[8] = &unknown_var_7656_ptr;
+    current_node[8] = &processed_var_7656_ptr;
     current_node[9] = 0;
     current_node[10] = (uint64_t)callback_func;
 }
@@ -1354,7 +1354,7 @@ void FUN_180030570(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_7;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_8;
-    current_node[8] = &unknown_var_7680_ptr;
+    current_node[8] = &processed_var_7680_ptr;
     current_node[9] = 0;
     current_node[10] = null_callback;
 }
@@ -1383,7 +1383,7 @@ void FUN_180030670(void)
     
     // 遍历组件链表
     char status_flag = *(char *)((int64_t)component_ptr[1] + 0x19);
-    system_data_ptr = &unknown_var_2048_ptr;
+    system_data_ptr = &rendering_buffer_2048_ptr;
     current_node = component_ptr;
     next_node = (ComponentPointer)component_ptr[1];
     
@@ -1411,7 +1411,7 @@ void FUN_180030670(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_9;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_10;
-    current_node[8] = &unknown_var_7704_ptr;
+    current_node[8] = &processed_var_7704_ptr;
     current_node[9] = 0;
     current_node[10] = (uint64_t)system_data_ptr;
 }
@@ -1468,7 +1468,7 @@ void FUN_180030770(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_11;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_12;
-    current_node[8] = &unknown_var_7728_ptr;
+    current_node[8] = &processed_var_7728_ptr;
     current_node[9] = 0;
     current_node[10] = null_callback;
 }
@@ -1489,13 +1489,13 @@ void FUN_180030870(void)
     uint8_t stack_buffer[136];
     
     // 初始化配置参数
-    config_data_ptr = &unknown_var_3432_ptr;
+    config_data_ptr = &memory_allocator_3432_ptr;
     local_buffer = stack_buffer;
     stack_buffer[0] = 0;
     buffer_size = 8;
     
     // 复制配置数据
-    strcpy_s(stack_buffer, 0x80, &unknown_var_2216_ptr, register_value, 0xfffffffffffffffe);
+    strcpy_s(stack_buffer, 0x80, &rendering_buffer_2216_ptr, register_value, 0xfffffffffffffffe);
     
     // 设置全局配置变量
     init_system_pointer = FUN_180623800(&config_data_ptr);
@@ -1514,7 +1514,7 @@ int FUN_180030900(void)
     uint64_t register_value;
     
     // 设置系统状态指针
-    init_system_control_pointer = &unknown_var_3480_ptr;
+    init_system_control_pointer = &memory_allocator_3480_ptr;
     init_system_control_pointer = &system_memory_6768;
     
     return (int)status_result;
@@ -1572,7 +1572,7 @@ void FUN_180031a10(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_19;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_20;
-    current_node[8] = &unknown_var_5032_ptr;
+    current_node[8] = &processed_var_5032_ptr;
     current_node[9] = 0;
     current_node[10] = (uint64_t)callback_func;
 }
@@ -1629,7 +1629,7 @@ void FUN_180031b10(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_21;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_22;
-    current_node[8] = &unknown_var_5056_ptr;
+    current_node[8] = &processed_var_5056_ptr;
     current_node[9] = 3;
     current_node[10] = (uint64_t)callback_func;
 }
@@ -1686,7 +1686,7 @@ void FUN_180031c10(void)
     // 配置组件数据
     current_node[6] = INIT_SYSTEM_COMPONENT_ID_19;
     current_node[7] = INIT_SYSTEM_COMPONENT_ID_20;
-    current_node[8] = &unknown_var_5032_ptr;
+    current_node[8] = &processed_var_5032_ptr;
     current_node[9] = 0;
     current_node[10] = (uint64_t)callback_func;
 }

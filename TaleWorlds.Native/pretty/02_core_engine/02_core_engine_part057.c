@@ -345,12 +345,12 @@ void process_render_event(uint64_t event_context, int event_x, int event_y)
         *event_queue = (int64_t)&system_handler1_ptr;
         *event_queue = (int64_t)&system_handler2_ptr;
         *(int32_t *)(event_queue + 1) = 0;
-        *event_queue = (int64_t)&unknown_var_1000_ptr;
+        *event_queue = (int64_t)&ui_system_data_1000_ptr;
         LOCK();
         *(int8_t *)(event_queue + 2) = 0;
         UNLOCK();
         event_queue[3] = -1;
-        *event_queue = (int64_t)&unknown_var_2640_ptr;
+        *event_queue = (int64_t)&rendering_buffer_2640_ptr;
         *(int32_t *)(event_queue + 5) = 5;
         event_queue[4] = render_state2;
         (**(code **)(*event_queue + 0x28))(event_queue);

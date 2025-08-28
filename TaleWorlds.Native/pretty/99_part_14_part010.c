@@ -1122,9 +1122,9 @@ uint64_t FUN_1808f0c10(char param_1,int64_t param_2,byte param_3,char param_4)
     }
     if ((byte)uVar4 < 10) {
       if (param_1 != '!') {
-        return (uint64_t)(byte)(((byte)(&unknown_var_3216_ptr)[uVar4 & 0xff] <= param_3) + 6);
+        return (uint64_t)(byte)(((byte)(&memory_allocator_3216_ptr)[uVar4 & 0xff] <= param_3) + 6);
       }
-      return (uint64_t)(byte)(((byte)(&unknown_var_3168_ptr)[uVar4 & 0xff] <= param_3) + 1);
+      return (uint64_t)(byte)(((byte)(&memory_allocator_3168_ptr)[uVar4 & 0xff] <= param_3) + 1);
     }
   }
   else if (param_1 == '%') {
@@ -1149,13 +1149,13 @@ uint64_t FUN_1808f0c10(char param_1,int64_t param_2,byte param_3,char param_4)
     if ((((byte)uVar5 < 8) && (bVar3 < 9)) && ((byte)uVar5 < bVar3)) {
       if (param_4 == '\x05') {
         uVar2 = 3;
-        if ((byte)(&unknown_var_3184_ptr)[uVar5] <= param_3) {
+        if ((byte)(&memory_allocator_3184_ptr)[uVar5] <= param_3) {
           uVar2 = 5;
         }
         return uVar2;
       }
-      if ((byte)(&unknown_var_3184_ptr)[uVar5] <= param_3) {
-        return (uint64_t)(byte)(((byte)(&unknown_var_3200_ptr)[bVar3] <= param_3) + 4);
+      if ((byte)(&memory_allocator_3184_ptr)[uVar5] <= param_3) {
+        return (uint64_t)(byte)(((byte)(&memory_allocator_3200_ptr)[bVar3] <= param_3) + 4);
       }
       return 3;
     }

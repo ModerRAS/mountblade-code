@@ -337,7 +337,7 @@ expand_queue:
         object_list = *(code**)(*queue_data + 0x158);
         texture_data._4_4_ = unaff_render_state;
         object_count = unaff_frame_buffer;
-        if (object_list != (code*)&unknown_var_2528_ptr) goto process_transformations;
+        if (object_list != (code*)&rendering_buffer_2528_ptr) goto process_transformations;
         queue_data = queue_data + 0x66;
     } while (true);
 }
@@ -380,7 +380,7 @@ void apply_render_matrix_transformations(int64_t* target_context, int64_t* sourc
     float temp_matrix[16];
     
     // 检查渲染上下文类型
-    if (*(code**)(*source_context + 0x158) == (code*)&unknown_var_2528_ptr) {
+    if (*(code**)(*source_context + 0x158) == (code*)&rendering_buffer_2528_ptr) {
         transform_data = (float*)(source_context + 0x66);
     }
     else {
@@ -439,7 +439,7 @@ void apply_render_matrix_transformations(int64_t* target_context, int64_t* sourc
             scale_offset[2] = scale_offset[0] * source_matrix[2] + scale_offset[1] * source_matrix[5] + scale_offset[2] * source_matrix[8];
             
             // 获取目标变换矩阵
-            if (*(code**)(*target_context + 0x158) == (code*)&unknown_var_2528_ptr) {
+            if (*(code**)(*target_context + 0x158) == (code*)&rendering_buffer_2528_ptr) {
                 transform_data = (float*)(target_context + 0x66);
             }
             else {
@@ -563,7 +563,7 @@ expand_render_queue:
     }
     
     // 执行渲染上下文更新
-    if (*(code**)(*target_context + 0x160) == (code*)&unknown_var_6368_ptr) {
+    if (*(code**)(*target_context + 0x160) == (code*)&processed_var_6368_ptr) {
         FUN_180276f30(target_context, (int64_t)target_context + 0x214, 0);
     }
     else {
@@ -813,7 +813,7 @@ material_processing_complete:
             if ((*(uint*)(camera_distance + 0x5c) >> 8 & 1) != 0) {
                 FUN_18022cb40(*(uint64_t*)(texture_handle + 0x1b8), &shader_cache);
                 render_cache = shader_cache;
-                render_state = &unknown_var_3480_ptr;
+                render_state = &memory_allocator_3480_ptr;
                 material_state = render_buffer;
                 render_buffer[0] = 0;
                 batch_size = 0x10;
@@ -859,9 +859,9 @@ static uint64_t system_memory_pool_ptr = 0;        // 渲染队列系统指针
 static char system_buffer_d580[64] = "RenderSystem_v1.0";  // 渲染系统版本字符串
 
 // 渲染系统函数指针
-static code unknown_var_2528_ptr = {0};              // 默认渲染函数
-static code unknown_var_6368_ptr = {0};              // 渲染上下文更新函数
-static uint64_t unknown_var_3480_ptr = 0;           // 渲染状态指针
+static code rendering_buffer_2528_ptr = {0};              // 默认渲染函数
+static code processed_var_6368_ptr = {0};              // 渲染上下文更新函数
+static uint64_t memory_allocator_3480_ptr = 0;           // 渲染状态指针
 static uint64_t system_state_ptr = 0;           // 纹理状态指针
 
 //============================================================================

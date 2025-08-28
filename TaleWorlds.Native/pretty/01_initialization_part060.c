@@ -464,12 +464,12 @@ code * FUN_18007eb80(int64_t param_1,char param_2)
         }
         return pcVar3;
       }
-      FUN_1806272a0(&unknown_var_5648_ptr);
-      in_RAX = (code *)SystemDataInitializer(&unknown_var_5344_ptr);
+      FUN_1806272a0(&processed_var_5648_ptr);
+      in_RAX = (code *)SystemDataInitializer(&processed_var_5344_ptr);
     }
     else {
       plVar4 = *(int64_t **)(*(int64_t *)(param_1 + 0xa8) + 0x88);
-      pcStack_20 = (code *)&unknown_var_7632_ptr;
+      pcStack_20 = (code *)&processed_var_7632_ptr;
       pcStack_18 = FUN_180082fd0;
       lStack_30 = param_1;
       (**(code **)(*plVar4 + 0x60))(plVar4,&system_data_c740,param_1 + 0xb8,0,&lStack_30);

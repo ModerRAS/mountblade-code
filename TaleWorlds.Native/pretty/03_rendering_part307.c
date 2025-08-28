@@ -506,7 +506,7 @@ void RenderingSystemColorSpaceTransformer(void* param_1, int32_t param_2, int32_
         stack_byte_161 = 0;
         
         // 调用输出函数（简化实现）
-        // (*(code *)*param_1)(param_1[1],&unknown_var_4240_ptr,0x19);
+        // (*(code *)*param_1)(param_1[1],&processed_var_4240_ptr,0x19);
         // (*(code *)*param_1)(param_1[1],stack_buffer_158,0x40);
         
         // 处理图像数据（简化实现）

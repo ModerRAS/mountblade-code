@@ -12,7 +12,7 @@
 const int MEMORY_BLOCK_SIZE = 0x60;      // 内存块大小：96字节
 const int MEMORY_PAGE_SIZE = 0x200;      // 内存页大小：512字节
 const int MEMORY_SEGMENT_SIZE = 0x330;   // 内存段大小：816字节
-const int DATA_CHUNK_SIZE = 0x10;        // 数据块大小：16字节
+const int DATA_CHSYSTEM_SIZE = 0x10;        // 数据块大小：16字节
 const int SORT_THRESHOLD = 0x1d;          // 排序阈值：29个元素
 
 // 位操作常量
@@ -256,14 +256,14 @@ void process_data_chunks(int64_t data_base, uint chunk_count)
   
   chunk_offset = (uint64_t)chunk_count;
   // 批量处理数据块
-  if ((int)chunk_count < (int)(chunk_count + DATA_CHUNK_SIZE)) {
+  if ((int)chunk_count < (int)(chunk_count + DATA_CHSYSTEM_SIZE)) {
     do {
       // 计算数据块地址并调用处理函数
-      FUN_180245b90((int64_t)((int)chunk_offset + (int)(chunk_offset >> 4) * -DATA_CHUNK_SIZE) * 0x12c30 +
+      FUN_180245b90((int64_t)((int)chunk_offset + (int)(chunk_offset >> 4) * -DATA_CHSYSTEM_SIZE) * 0x12c30 +
                     *(int64_t *)(data_base + ARRAY_HEADER_SIZE + (chunk_offset >> 4) * POINTER_SIZE));
       current_chunk = (int)chunk_offset + 1;
       chunk_offset = (uint64_t)current_chunk;
-    } while ((int)current_chunk < (int)(chunk_count + DATA_CHUNK_SIZE));
+    } while ((int)current_chunk < (int)(chunk_count + DATA_CHSYSTEM_SIZE));
   }
   return;
 }

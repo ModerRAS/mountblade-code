@@ -953,7 +953,7 @@ LAB_1803f392d:
       *puVar4 = &system_state_ptr;
       puVar4[1] = 0;
       *(int32_t *)(puVar4 + 2) = 0;
-      *puVar4 = &unknown_var_2008_ptr;
+      *puVar4 = &rendering_buffer_2008_ptr;
       puVar4[1] = puVar4 + 3;
       *(int32_t *)(puVar4 + 2) = 0;
       *(int8_t *)(puVar4 + 3) = 0;
@@ -1201,7 +1201,7 @@ void FUN_1803f3bc0(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,uint64_t
   uStack_b8 = 0;
   uStack_b0 = 0xf;
   auStack_c8[0] = 0;
-  FUN_1800671b0(auStack_c8,&unknown_var_560_ptr,0x19);
+  FUN_1800671b0(auStack_c8,&processed_var_560_ptr,0x19);
   FUN_1804726c0(param_1,auStack_c8,uVar10);
   SystemResourceAllocator(&uStack_f8);
   plVar4 = plStack_110;

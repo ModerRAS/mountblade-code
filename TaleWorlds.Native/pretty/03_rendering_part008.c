@@ -24,7 +24,7 @@ void FUN_180271c54(void)
     System_QueueProcessor();
     unaff_RBP = unaff_RBP + -1;
   } while (unaff_RBP != 0);
-  FUN_18025a940(&unknown_var_9712_ptr,*(int32_t *)(unaff_RDI + 0x7c8));
+  FUN_18025a940(&processed_var_9712_ptr,*(int32_t *)(unaff_RDI + 0x7c8));
   puVar5 = (int8_t *)unaff_RBX[1];
   uVar1 = *(int8_t *)(unaff_RDI + 0x7cc);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar5) + unaff_RBX[2]) < 2) {
@@ -831,7 +831,7 @@ void FUN_180271cf0(int64_t param_1,int64_t param_2)
     do {
       iVar1 = **(int **)(param_2 + 8);
       *(int **)(param_2 + 8) = *(int **)(param_2 + 8) + 1;
-      puStack_e8 = &unknown_var_3432_ptr;
+      puStack_e8 = &memory_allocator_3432_ptr;
       puStack_e0 = auStack_d0;
       uStack_d8 = 0;
       auStack_d0[0] = 0;

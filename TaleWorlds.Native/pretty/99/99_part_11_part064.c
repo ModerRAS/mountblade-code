@@ -385,7 +385,7 @@ void resource_allocator_and_batch_operation_processor(int64_t param_1, int param
 {
   int64_t lVar1;
   
-  lVar1 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2 * param_3, &unknown_var_7376_ptr,
+  lVar1 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2 * param_3, &processed_var_7376_ptr,
                         0x22, 0);
   if ((lVar1 != 0) && (param_1 != 0)) {
     *(int *)(param_1 + 0x4f0) = *(int *)(param_1 + 0x4f0) + param_2 * param_3;
@@ -404,7 +404,7 @@ void resource_allocator_and_batch_operation_processor(int64_t param_1, int param
  */
 void resource_cleaner_and_release_processor(uint64_t param_1, uint64_t param_2)
 {
-  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &unknown_var_7376_ptr, 0x52, 1);
+  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &processed_var_7376_ptr, 0x52, 1);
 }
 
 /**
@@ -420,7 +420,7 @@ void memory_manager_and_single_operation_processor(int64_t param_1, int param_2)
 {
   int64_t lVar1;
   
-  lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &unknown_var_7376_ptr, 0x15, 0, 0, 1);
+  lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &processed_var_7376_ptr, 0x15, 0, 0, 1);
   if ((lVar1 != 0) && (param_1 != 0)) {
     *(int *)(param_1 + 0x4f0) = *(int *)(param_1 + 0x4f0) + param_2;
   }
@@ -441,7 +441,7 @@ void advanced_resource_manager_and_operation_processor(int64_t param_1, uint64_t
 {
   int64_t lVar1;
   
-  lVar1 = FUN_180742650(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, param_3, &unknown_var_7376_ptr, 0x3c,
+  lVar1 = FUN_180742650(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, param_3, &processed_var_7376_ptr, 0x3c,
                         0);
   if ((lVar1 != 0) && (param_1 != 0)) {
     *(int *)(param_1 + 0x4f0) = *(int *)(param_1 + 0x4f0) + param_3;
@@ -851,27 +851,27 @@ void system_configurator_and_initialization_manager(int64_t param_1)
     uStack_20 = 0;
     uVar2 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170), &lStack_28, 0xc, 1);
     if ((uVar2 & 0xffffffef) == 0) {
-      iVar1 = FUN_18076b6f0(&unknown_var_7568_ptr, &lStack_28, 7);
+      iVar1 = FUN_18076b6f0(&processed_var_7568_ptr, &lStack_28, 7);
       if (iVar1 == 0) {
         iVar1 = FUN_1807c5610();
       }
       else {
-        iVar1 = FUN_18076b6f0(&unknown_var_7576_ptr, &lStack_28, 10);
+        iVar1 = FUN_18076b6f0(&processed_var_7576_ptr, &lStack_28, 10);
         if (iVar1 == 0) {
           iVar1 = FUN_1807c59a0();
         }
         else {
-          iVar1 = FUN_18076b6f0(&unknown_var_7592_ptr, &lStack_28, 0xc);
+          iVar1 = FUN_18076b6f0(&processed_var_7592_ptr, &lStack_28, 0xc);
           if (iVar1 == 0) {
             iVar1 = FUN_1807c4b10();
           }
           else {
-            iVar1 = FUN_18076b6f0(&unknown_var_7608_ptr, &lStack_28, 0xc);
+            iVar1 = FUN_18076b6f0(&processed_var_7608_ptr, &lStack_28, 0xc);
             if (iVar1 == 0) {
               iVar1 = FUN_1807c5ed0();
             }
             else {
-              iVar1 = FUN_18076b6f0(&unknown_var_7624_ptr, &lStack_28, 0xc);
+              iVar1 = FUN_18076b6f0(&processed_var_7624_ptr, &lStack_28, 0xc);
               if (iVar1 == 0) {
                 iVar1 = FUN_1807c5030();
               }
@@ -880,11 +880,11 @@ void system_configurator_and_initialization_manager(int64_t param_1)
                 if (iVar1 != 0) goto FUN_1807c4ae8;
                 iVar1 = func_0x00018076b690(lStack_30);
                 lVar3 = (int64_t)(iVar1 + -4);
-                iVar1 = func_0x00018076b6b0(lStack_30 + lVar3, &unknown_var_7640_ptr, 4);
+                iVar1 = func_0x00018076b6b0(lStack_30 + lVar3, &processed_var_7640_ptr, 4);
                 if (((iVar1 != 0) &&
-                    (iVar1 = func_0x00018076b6b0(lStack_30 + lVar3, &unknown_var_7648_ptr, 4), iVar1 != 0))
-                   && ((iVar1 = func_0x00018076b6b0(lStack_30 + lVar3, &unknown_var_7656_ptr, 4), iVar1 != 0)
-                       && (iVar1 = func_0x00018076b6b0(lStack_30 + lVar3, &unknown_var_7664_ptr, 4),
+                    (iVar1 = func_0x00018076b6b0(lStack_30 + lVar3, &processed_var_7648_ptr, 4), iVar1 != 0))
+                   && ((iVar1 = func_0x00018076b6b0(lStack_30 + lVar3, &processed_var_7656_ptr, 4), iVar1 != 0)
+                       && (iVar1 = func_0x00018076b6b0(lStack_30 + lVar3, &processed_var_7664_ptr, 4),
                           iVar1 != 0))) goto FUN_1807c4ae8;
                 iVar1 = FUN_1807c5c50();
               }
@@ -906,7 +906,7 @@ void system_configurator_and_initialization_manager(int64_t param_1)
         if (iVar1 == 0) {
           uStack_48 = CONCAT71(uStack_48._1_7_,1);
           SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *(uint64_t *)(param_1 + 0x170),
-                        &unknown_var_7680_ptr, 0xb4);
+                        &processed_var_7680_ptr, 0xb4);
         }
       }
     }
@@ -932,27 +932,27 @@ void advanced_system_manager_and_configuration_processor(void)
   int64_t in_stack_00000038;
   uint64_t in_stack_00000050;
   
-  iVar1 = FUN_18076b6f0(&unknown_var_7568_ptr, &stack0x00000040);
+  iVar1 = FUN_18076b6f0(&processed_var_7568_ptr, &stack0x00000040);
   if (iVar1 == 0) {
     iVar1 = FUN_1807c5610();
   }
   else {
-    iVar1 = FUN_18076b6f0(&unknown_var_7576_ptr, &stack0x00000040, 10);
+    iVar1 = FUN_18076b6f0(&processed_var_7576_ptr, &stack0x00000040, 10);
     if (iVar1 == 0) {
       iVar1 = FUN_1807c59a0();
     }
     else {
-      iVar1 = FUN_18076b6f0(&unknown_var_7592_ptr, &stack0x00000040, 0xc);
+      iVar1 = FUN_18076b6f0(&processed_var_7592_ptr, &stack0x00000040, 0xc);
       if (iVar1 == 0) {
         iVar1 = FUN_1807c4b10();
       }
       else {
-        iVar1 = FUN_18076b6f0(&unknown_var_7608_ptr, &stack0x00000040, 0xc);
+        iVar1 = FUN_18076b6f0(&processed_var_7608_ptr, &stack0x00000040, 0xc);
         if (iVar1 == 0) {
           iVar1 = FUN_1807c5ed0();
         }
         else {
-          iVar1 = FUN_18076b6f0(&unknown_var_7624_ptr, &stack0x00000040, 0xc);
+          iVar1 = FUN_18076b6f0(&processed_var_7624_ptr, &stack0x00000040, 0xc);
           if (iVar1 == 0) {
             iVar1 = FUN_1807c5030();
           }
@@ -961,12 +961,12 @@ void advanced_system_manager_and_configuration_processor(void)
             if (iVar1 != 0) goto LAB_1807c4ae3;
             iVar1 = func_0x00018076b690(in_stack_00000038);
             lVar2 = (int64_t)(iVar1 + -4);
-            iVar1 = func_0x00018076b6b0(in_stack_00000038 + lVar2, &unknown_var_7640_ptr, 4);
+            iVar1 = func_0x00018076b6b0(in_stack_00000038 + lVar2, &processed_var_7640_ptr, 4);
             if ((((iVar1 != 0) &&
-                 (iVar1 = func_0x00018076b6b0(in_stack_00000038 + lVar2, &unknown_var_7648_ptr, 4),
+                 (iVar1 = func_0x00018076b6b0(in_stack_00000038 + lVar2, &processed_var_7648_ptr, 4),
                  iVar1 != 0)) &&
-                (iVar1 = func_0x00018076b6b0(in_stack_00000038 + lVar2, &unknown_var_7656_ptr, 4), iVar1 != 0
-                )) && (iVar1 = func_0x00018076b6b0(in_stack_00000038 + lVar2, &unknown_var_7664_ptr, 4),
+                (iVar1 = func_0x00018076b6b0(in_stack_00000038 + lVar2, &processed_var_7656_ptr, 4), iVar1 != 0
+                )) && (iVar1 = func_0x00018076b6b0(in_stack_00000038 + lVar2, &processed_var_7664_ptr, 4),
                       iVar1 != 0)) goto LAB_1807c4ae3;
             iVar1 = FUN_1807c5c50();
           }
@@ -987,7 +987,7 @@ void advanced_system_manager_and_configuration_processor(void)
     iVar1 = FUN_180769080(*(uint64_t *)(unaff_RBX + 0x170));
     if (iVar1 == 0) {
       SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *(uint64_t *)(unaff_RBX + 0x170),
-                    &unknown_var_7680_ptr, 0xb4, 1);
+                    &processed_var_7680_ptr, 0xb4, 1);
     }
   }
 LAB_1807c4ae3:

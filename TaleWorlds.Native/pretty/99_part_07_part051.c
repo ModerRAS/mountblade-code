@@ -657,7 +657,7 @@ FUN_1804cdee0(uint64_t *param_1,int64_t *param_2,int64_t *param_3,uint64_t *para
   }
   *(char *)(param_1 + 10) = (char)param_2[0x76];
   *(int *)((int64_t)param_1 + 0x54) = (int)param_2[0xd];
-  if (*(code **)(*param_2 + 0x198) == (code *)&unknown_var_2544_ptr) {
+  if (*(code **)(*param_2 + 0x198) == (code *)&rendering_buffer_2544_ptr) {
     lVar5 = (int64_t)param_2 + 0x214;
   }
   else {

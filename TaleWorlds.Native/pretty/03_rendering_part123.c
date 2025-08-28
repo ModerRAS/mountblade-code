@@ -100,7 +100,7 @@ void FUN_18033eb00(uint64_t param_1,int64_t param_2,int64_t param_3)
       uStack_70 = 0;
       puStack_80 = (void *)0x0;
       uStack_78 = 0;
-      FUN_180060680(acStack_50,&unknown_var_4576_ptr,uVar6);
+      FUN_180060680(acStack_50,&processed_var_4576_ptr,uVar6);
       lVar11 = lVar14;
       do {
         lVar7 = lVar11;
@@ -228,52 +228,52 @@ void FUN_18033eb00(uint64_t param_1,int64_t param_2,int64_t param_3)
   *(int *)(param_2 + 0x10) = iVar9;
   switch(*(int32_t *)(lVar7 + 0xdc)) {
   case 1:
-    puVar12 = &unknown_var_1384_ptr;
+    puVar12 = &ui_system_data_1384_ptr;
     lVar14 = lVar13;
     break;
   case 2:
-    puVar12 = &unknown_var_1360_ptr;
+    puVar12 = &ui_system_data_1360_ptr;
     lVar14 = lVar13;
     break;
   case 3:
-    puVar12 = &unknown_var_1336_ptr;
+    puVar12 = &ui_system_data_1336_ptr;
     lVar14 = lVar13;
     break;
   case 4:
-    puVar12 = &unknown_var_1312_ptr;
+    puVar12 = &ui_system_data_1312_ptr;
     lVar14 = lVar13;
     break;
   case 5:
-    puVar12 = &unknown_var_1512_ptr;
+    puVar12 = &ui_system_data_1512_ptr;
     lVar14 = lVar13;
     break;
   case 6:
-    puVar12 = &unknown_var_1488_ptr;
+    puVar12 = &ui_system_data_1488_ptr;
     lVar14 = lVar13;
     break;
   case 7:
-    puVar12 = &unknown_var_1456_ptr;
+    puVar12 = &ui_system_data_1456_ptr;
     lVar14 = lVar13;
     break;
   case 8:
-    puVar12 = &unknown_var_1616_ptr;
+    puVar12 = &ui_system_data_1616_ptr;
     lVar14 = lVar13;
     break;
   case 9:
-    puVar12 = &unknown_var_1408_ptr;
+    puVar12 = &ui_system_data_1408_ptr;
     lVar14 = lVar13;
     break;
   case 10:
-    puVar12 = &unknown_var_1568_ptr;
+    puVar12 = &ui_system_data_1568_ptr;
     break;
   case 0xb:
-    puVar12 = &unknown_var_1536_ptr;
+    puVar12 = &ui_system_data_1536_ptr;
     break;
   case 0xc:
-    puVar12 = &unknown_var_1592_ptr;
+    puVar12 = &ui_system_data_1592_ptr;
     break;
   default:
-    FUN_180627020(&unknown_var_1640_ptr);
+    FUN_180627020(&ui_system_data_1640_ptr);
     iVar9 = *(int *)(param_2 + 0x10);
     goto code_r0x00018033f10d;
   }
@@ -694,7 +694,7 @@ void FUN_18033fa60(uint64_t param_1,int64_t param_2,uint64_t param_3)
   puStack_58 = auStack_48;
   auStack_48[0] = 0;
   uStack_50 = 6;
-  strcpy_s(auStack_48,0x10,&unknown_var_2588_ptr);
+  strcpy_s(auStack_48,0x10,&rendering_buffer_2588_ptr);
   uStack_c8 = 2;
   SystemCore_EncryptionEngine0(&puStack_c0,&puStack_60);
   uStack_c8 = 0;

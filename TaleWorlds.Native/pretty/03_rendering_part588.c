@@ -161,7 +161,7 @@ void FUN_18058e430(int64_t *param_1,int64_t param_2,int64_t param_3,uint param_4
   param_1[0x15] = *(int64_t *)(param_2 + 0x188);
   param_1[0x16] = lVar10;
   uVar11 = 0;
-  puStack_1f8 = &unknown_var_3432_ptr;
+  puStack_1f8 = &memory_allocator_3432_ptr;
   puStack_1f0 = auStack_1e0;
   uStack_1e8 = (uint64_t)uStack_1e8._4_4_ << 0x20;
   auStack_1e0[0] = auStack_1e0[0] & 0xffffffffffffff00;
@@ -243,7 +243,7 @@ void FUN_18058e430(int64_t *param_1,int64_t param_2,int64_t param_3,uint param_4
     pplStack_280 = &plStack_228;
     uStack_288 = (int64_t **)((uint64_t)uStack_288._4_4_ << 0x20);
     ppuStack_290 = (void **)0x0;
-    ppuStack_298 = (void **)&unknown_var_5760_ptr;
+    ppuStack_298 = (void **)&processed_var_5760_ptr;
     uStack_254 = uVar12;
     FUN_18058e430(lVar5,lStack_220,plStack_238,param_7);
     if (((uVar12 & 2) != 0) &&

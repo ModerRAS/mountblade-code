@@ -254,7 +254,7 @@ float * FUN_180516fe0(int64_t param_1,float *param_2,int64_t param_3,int param_4
             iVar4 = iVar2;
             iVar15 = render_system_memory;
 LAB_18051724a:
-            FUN_1800622d0(system_message_context,0,0xc,&unknown_var_6592_ptr,uVar14,iVar4,iVar15);
+            FUN_1800622d0(system_message_context,0,0xc,&processed_var_6592_ptr,uVar14,iVar4,iVar15);
           }
           else {
             if ((iVar5 < 0) || ((int)((render_system_memory - render_system_memory) / 0x68) <= iVar5)) {
@@ -376,7 +376,7 @@ float * FUN_180517093(uint64_t param_1,int64_t param_2,int64_t param_3,int param
             uVar11 = 0x130c;
             iStack0000000000000028 = iVar2;
 LAB_18051724a:
-            FUN_1800622d0(system_message_context,0,0xc,&unknown_var_6592_ptr,uVar11);
+            FUN_1800622d0(system_message_context,0,0xc,&processed_var_6592_ptr,uVar11);
           }
           else {
             if ((iVar4 < 0) || ((int)((render_system_memory - render_system_memory) / 0x68) <= iVar4)) {

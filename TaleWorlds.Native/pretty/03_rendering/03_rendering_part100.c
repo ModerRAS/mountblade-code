@@ -303,7 +303,7 @@ uint64_t rendering_system_advanced_data_sorter(int64_t render_context)
   FUN_18032bd90(render_context, &sort_array1, &sort_array3, *(int32_t *)(render_context + RENDERING_PARAM_OFFSET_150), 2, result & 0xffffffffffffff00);
   
   callback_ptr = &sort_array1;
-  callback_func = &unknown_var_6576_ptr;
+  callback_func = &processed_var_6576_ptr;
   sort_function = FUN_18033ced0;
   stack_value = render_context;
   
@@ -586,7 +586,7 @@ uint64_t rendering_system_data_comparator(int64_t render_context, uint64_t compa
   }
   else {
     // 验证模式下的回调处理
-    callback_ptr = &unknown_var_6576_ptr;
+    callback_ptr = &processed_var_6576_ptr;
     callback_function = FUN_18033ced0;
     temp_params[0] = (int32_t)render_context;
     temp_params[1] = (int32_t)((uint64_t)render_context >> 0x20);
@@ -719,7 +719,7 @@ LAB_1803281b2:
       // 检查线程局部存储状态
       if ((*(int *)(offset_diff + 0x48) < render_system_config_pointer) &&
          (SystemInitializer(&system_flag_8e24), render_system_config_pointer == -1)) {
-        render_system_config_pointer = &unknown_var_3480_ptr;
+        render_system_config_pointer = &memory_allocator_3480_ptr;
         render_system_config_pointer = &system_flag_8e78;
         render_system_config_pointer = 0;
         

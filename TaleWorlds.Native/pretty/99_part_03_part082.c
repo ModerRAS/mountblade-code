@@ -31,14 +31,14 @@ void FUN_180247f60(int64_t param_1)
   
   uStack_b0 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_108;
-  FUN_1802c22a0(auStack_d8,&unknown_var_408_ptr);
+  FUN_1802c22a0(auStack_d8,&processed_var_408_ptr);
   ppuStack_a8 = &puStack_98;
   iVar5 = 0;
-  puStack_98 = &unknown_var_3480_ptr;
+  puStack_98 = &memory_allocator_3480_ptr;
   puStack_90 = auStack_80;
   uStack_88 = 0;
   auStack_80[0] = 0;
-  FUN_180049bf0(&puStack_98,&unknown_var_408_ptr);
+  FUN_180049bf0(&puStack_98,&processed_var_408_ptr);
   FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_98);
   uVar2 = *(ushort *)(*(int64_t *)(param_1 + 0x1b0) + 0x332);
   bVar1 = *(byte *)(*(int64_t *)(param_1 + 0x1b0) + 0x335);
@@ -313,11 +313,11 @@ void FUN_1802481a0(int64_t **param_1,int64_t param_2,int64_t param_3,int64_t par
   *(int32_t *)(*(int64_t *)(lVar4 + 0x1cd8) + 0x1c2c) = 0x3f800000;
   FUN_18029fc10(*(int64_t *)(lVar4 + 0x1cd8),*(uint64_t *)(lVar4 + 0x1c88),
                 *(int64_t *)(lVar4 + 0x1cd8) + 0x1be0,0x230);
-  puStack_d8 = &unknown_var_3480_ptr;
+  puStack_d8 = &memory_allocator_3480_ptr;
   puStack_d0 = auStack_c0;
   auStack_c0[0] = 0;
   uStack_c8 = 0xd;
-  strcpy_s(auStack_c0,0x40,&unknown_var_568_ptr);
+  strcpy_s(auStack_c0,0x40,&processed_var_568_ptr);
   FUN_1800b4910(system_resource_state,&plStack_210,&puStack_d8);
   puStack_d8 = &system_state_ptr;
   uStack_100 = 0;
@@ -379,8 +379,8 @@ void FUN_1802481a0(int64_t **param_1,int64_t param_2,int64_t param_3,int64_t par
   FUN_18029d000(*(uint64_t *)(system_message_buffer + 0x1cd8),4);
   FUN_18029cdd0(*(uint64_t *)(system_message_buffer + 0x1cd8),&uStack_208);
   lVar4 = system_message_buffer;
-  lVar3 = strnlen(&unknown_var_352_ptr,0x3f);
-  strncpy(lVar4 + 0x1ce0,&unknown_var_352_ptr,lVar3);
+  lVar3 = strnlen(&memory_allocator_352_ptr,0x3f);
+  strncpy(lVar4 + 0x1ce0,&memory_allocator_352_ptr,lVar3);
   *(int8_t *)(lVar3 + 0x1ce0 + lVar4) = 0;
   FUN_18029e110(*(uint64_t *)(system_message_buffer + 0x1cd8));
   if (plStack_170 != (int64_t *)0x0) {

@@ -287,7 +287,7 @@ void FUN_180721650(int64_t param_1,uint param_2,int param_3,uint param_4,int par
   iVar3 = 0;
   if ((param_5 * 2 < (int)param_2) && (param_6 != 0)) {
     fVar9 = (float)(int)param_2 /
-            (float)(int)(*(int *)(&unknown_var_2596_ptr + (int64_t)param_6 * 4) * param_5 + param_2);
+            (float)(int)(*(int *)(&rendering_buffer_2596_ptr + (int64_t)param_6 * 4) * param_5 + param_2);
     fVar9 = fVar9 * fVar9 * 0.5;
     uVar5 = cosf(fVar9 * 1.5707964);
     uVar6 = cosf((1.0 - fVar9) * 1.5707964);

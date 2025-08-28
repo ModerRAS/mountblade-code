@@ -157,7 +157,7 @@ void FUN_18045db70(uint64_t param_1)
         puStack_288 = auStack_278;
         auStack_278[0] = 0;
         uStack_280 = 4;
-        strcpy_s(auStack_278,0x10,&unknown_var_4276_ptr);
+        strcpy_s(auStack_278,0x10,&processed_var_4276_ptr);
         FUN_18062cb00(&puStack_2e8,&puStack_308,&puStack_290);
         puStack_290 = &system_state_ptr;
         iStack_374 = 0;
@@ -792,7 +792,7 @@ void FUN_18045e350(int64_t param_1)
   uVar3 = 0xfffffffffffffffe;
   if ((*(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +
                0x48) < render_system_config_memory) && (SystemInitializer(), render_system_config_memory == -1)) {
-    render_system_config_memory = &unknown_var_2008_ptr;
+    render_system_config_memory = &rendering_buffer_2008_ptr;
     render_system_config_memory = &system_ptr_9c08;
     render_system_config_memory = 0;
 

@@ -28,7 +28,7 @@ void FUN_180881fa0(int64_t param_1,uint64_t param_2,int32_t *param_3)
   if (lVar1 != 0) {
     SystemMemoryAllocator(lVar1);
   }
-  iVar6 = func_0x00018076b420(param_2,&unknown_var_6856_ptr);
+  iVar6 = func_0x00018076b420(param_2,&processed_var_6856_ptr);
   if ((iVar6 == 0) && (lVar8 = *(int64_t *)(param_1 + 0xad0), lVar8 != 0)) {
     uVar2 = *(int32_t *)(lVar8 + 0x14);
     uVar3 = *(int32_t *)(lVar8 + 0x18);
@@ -119,7 +119,7 @@ void FUN_180881fbc(int64_t param_1,uint64_t param_2,int32_t *param_3,uint64_t pa
   if (unaff_R15 != 0) {
     SystemMemoryAllocator();
   }
-  iVar5 = func_0x00018076b420(param_2,&unknown_var_6856_ptr);
+  iVar5 = func_0x00018076b420(param_2,&processed_var_6856_ptr);
   if ((iVar5 == 0) && (lVar7 = *(int64_t *)(param_1 + 0xad0), lVar7 != 0)) {
     uVar1 = *(int32_t *)(lVar7 + 0x14);
     uVar2 = *(int32_t *)(lVar7 + 0x18);
@@ -626,7 +626,7 @@ void FUN_180882400(int64_t param_1)
             if (*(int *)(*(int64_t *)(param_1 + 0x98) + 0x200) != 0) {
               lVar2 = *(int64_t *)(lVar1 + 0x18);
               uStack_58 = 0;
-              puStack_60 = &unknown_var_5584_ptr;
+              puStack_60 = &processed_var_5584_ptr;
               uStack_40 = 0;
               uStack_50 = ui_system_config;
               uStack_4c = uRam0000000180c4eafc;
@@ -718,7 +718,7 @@ void FUN_180882440(void)
         if (*(int *)(*(int64_t *)(unaff_R14 + 0x98) + 0x200) != 0) {
           lVar2 = *(int64_t *)(lVar1 + 0x18);
           *(int32_t *)(unaff_RBP + 7) = 0;
-          *(void **)(unaff_RBP + -1) = &unknown_var_5584_ptr;
+          *(void **)(unaff_RBP + -1) = &processed_var_5584_ptr;
           *(int32_t *)(unaff_RBP + 0x1f) = 0;
           uVar6 = ui_system_config;
           uVar7 = uRam0000000180c4eafc;

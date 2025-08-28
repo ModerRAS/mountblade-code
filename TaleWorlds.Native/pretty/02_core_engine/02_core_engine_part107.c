@@ -419,7 +419,7 @@ uint64_t *initialize_entity_data_structure(uint64_t *param_1, int64_t param_2, b
     if (((bVar1 == 0x23) && (*pbVar2 == 0x23)) && (pbVar2[1] == 0x23)) {
       uVar7 = 0xffffffff;
     }
-    uVar7 = *(uint *)(&unknown_var_6320_ptr + ((uint64_t)(uVar7 & 0xff) ^ (uint64_t)bVar1) * 4) ^
+    uVar7 = *(uint *)(&processed_var_6320_ptr + ((uint64_t)(uVar7 & 0xff) ^ (uint64_t)bVar1) * 4) ^
             uVar7 >> 8;
     bVar1 = *pbVar2;
     pbVar2 = pbVar2 + 1;
@@ -452,7 +452,7 @@ uint64_t *initialize_entity_data_structure(uint64_t *param_1, int64_t param_2, b
   *(int *)(param_1 + 0x10) = (int)lVar5 + 1;
   
   // 获取材质索引并更新全局状态
-  iVar3 = FUN_180121250(&unknown_var_2380_ptr, 0,
+  iVar3 = FUN_180121250(&rendering_buffer_2380_ptr, 0,
                         *(int32_t *)(param_1[0x44] + -4 + (int64_t)*(int *)(param_1 + 0x43) * 4));
   lVar5 = SYSTEM_DATA_MANAGER_A;
   if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b2c) == iVar3) {

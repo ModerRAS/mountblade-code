@@ -632,7 +632,7 @@ void FUN_180263040(int8_t *param_1,int64_t param_2,uint param_3)
       }
       if (1 < param_3) {
         lVar3 = *plVar11;
-        puStack_468 = &unknown_var_336_ptr;
+        puStack_468 = &memory_allocator_336_ptr;
         pbStack_460 = abStack_450;
         iStack_458 = 0;
         abStack_450[0] = 0;
@@ -876,7 +876,7 @@ void FUN_1802635f0(int64_t param_1,int64_t param_2,uint param_3)
     *(uint *)(param_1 + 0x48) = (uint)(cVar3 == '\0');
   }
   else {
-    puStack_468 = &unknown_var_336_ptr;
+    puStack_468 = &memory_allocator_336_ptr;
     pbStack_460 = abStack_450;
     iStack_458 = 0;
     abStack_450[0] = 0;
@@ -926,7 +926,7 @@ LAB_18026370e:
     *(int8_t *)(param_1 + 0x4d) = *puVar8;
     *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + 1;
   }
-  puStack_468 = &unknown_var_336_ptr;
+  puStack_468 = &memory_allocator_336_ptr;
   pbStack_460 = abStack_450;
   iStack_458 = 0;
   abStack_450[0] = 0;

@@ -418,20 +418,20 @@ uint64_t FUN_18028b960(int64_t param_1,int64_t param_2,int32_t param_3)
   *(uint64_t *)(param_1 + 0x40) = 0;
   *(uint64_t *)(param_1 + 0x48) = 0;
   uStackX_18 = param_3;
-  uVar5 = FUN_18028b630(param_2,param_3,&unknown_var_624_ptr);
-  iVar6 = FUN_18028b630(param_2,param_3,&unknown_var_648_ptr);
+  uVar5 = FUN_18028b630(param_2,param_3,&processed_var_624_ptr);
+  iVar6 = FUN_18028b630(param_2,param_3,&processed_var_648_ptr);
   *(int *)(param_1 + 0x18) = iVar6;
-  iVar7 = FUN_18028b630(param_2,param_3,&unknown_var_6872_ptr);
+  iVar7 = FUN_18028b630(param_2,param_3,&processed_var_6872_ptr);
   *(int *)(param_1 + 0x1c) = iVar7;
-  aiStackX_8[2] = FUN_18028b630(param_2,param_3,&unknown_var_656_ptr);
+  aiStackX_8[2] = FUN_18028b630(param_2,param_3,&processed_var_656_ptr);
   *(int *)(param_1 + 0x20) = aiStackX_8[2];
-  iVar8 = FUN_18028b630(param_2,param_3,&unknown_var_632_ptr);
+  iVar8 = FUN_18028b630(param_2,param_3,&processed_var_632_ptr);
   *(int *)(param_1 + 0x24) = iVar8;
-  aiStackX_8[0] = FUN_18028b630(param_2,uStackX_18,&unknown_var_640_ptr);
+  aiStackX_8[0] = FUN_18028b630(param_2,uStackX_18,&processed_var_640_ptr);
   *(int *)(param_1 + 0x28) = aiStackX_8[0];
-  uVar9 = FUN_18028b630(param_2,uStackX_18,&unknown_var_680_ptr);
+  uVar9 = FUN_18028b630(param_2,uStackX_18,&processed_var_680_ptr);
   *(int32_t *)(param_1 + 0x2c) = uVar9;
-  uVar9 = FUN_18028b630(param_2,uStackX_18,&unknown_var_688_ptr);
+  uVar9 = FUN_18028b630(param_2,uStackX_18,&processed_var_688_ptr);
   *(int32_t *)(param_1 + 0x30) = uVar9;
   if (uVar5 == 0) {
     return 0;
@@ -455,7 +455,7 @@ uint64_t FUN_18028b960(int64_t param_1,int64_t param_2,int32_t param_3)
   aiStackX_8[0] = 2;
   aiStackX_20[0] = 0;
   aiStack_98[0] = 0;
-  uVar10 = FUN_18028b630(param_2,uStackX_18,&unknown_var_664_ptr);
+  uVar10 = FUN_18028b630(param_2,uStackX_18,&processed_var_664_ptr);
   if (uVar10 == 0) {
     return 0;
   }
@@ -590,7 +590,7 @@ LAB_18028bd4c:
   *(uint64_t *)(param_1 + 0x50) = *puVar12;
   *(uint64_t *)(param_1 + 0x58) = uVar3;
 LAB_18028bd64:
-  uVar10 = FUN_18028b630(param_2,uStackX_18,&unknown_var_672_ptr);
+  uVar10 = FUN_18028b630(param_2,uStackX_18,&processed_var_672_ptr);
   if (uVar10 == 0) {
     iVar6 = 0xffff;
   }

@@ -272,7 +272,7 @@ void RenderingSystemResourceRecycler(void)
   uint64_t uStack_48;
   
   uStack_48 = 0xfffffffffffffffe;
-  uVar2 = FUN_18062b1e0(system_memory_pool_ptr,0x88,8,3);
+  uVar2 = CoreSystem_LoggingManager0(system_memory_pool_ptr,0x88,8,3);
   puStack_288 = &system_data_buffer_ptr;
   uStack_270 = 0;
   puStack_280 = (uint64_t *)0x0;

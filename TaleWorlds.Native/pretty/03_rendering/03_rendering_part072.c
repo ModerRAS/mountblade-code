@@ -58,7 +58,7 @@ void ReleaseSRWLockExclusive(int64_t lock_handle);
 void FUN_1800571e0(int64_t param1, int *param2, uint64_t param3, uint64_t param4, uint64_t param5, int64_t param6, int param7);
 void FUN_1800f89b0(void);
 void CoreEngine_MemoryPoolManager(void *ptr);
-void *FUN_18062b1e0(void *allocator, int size, int alignment, int flags, uint64_t memory_flags);
+void *CoreSystem_LoggingManager0(void *allocator, int size, int alignment, int flags, uint64_t memory_flags);
 void free(void *ptr, int size);
 void func_0x00018030a230(void);
 void func_0x00018030a230(float *param1, float param2, float param3, float param4, float param5);
@@ -865,7 +865,7 @@ int *rendering_system_memory_manager(
         
         if ((pool_tail == 0) || (*(int *)(pool_tail + 0x14) + *(int *)(pool_tail + 0x10) != lock_status)) {
             // 分配新的内存块
-            new_block = (uint64_t *)FUN_18062b1e0(
+            new_block = (uint64_t *)CoreSystem_LoggingManager0(
                 global_memory_allocator, 
                 RENDERING_BLOCK_SIZE, 
                 8, 
@@ -954,7 +954,7 @@ void rendering_system_data_handler(
             
             if (tail_block == 0) {
                 // 创建新的数据块
-                new_block = (uint64_t *)FUN_18062b1e0(
+                new_block = (uint64_t *)CoreSystem_LoggingManager0(
                     global_memory_allocator, 
                     RENDERING_BLOCK_SIZE, 
                     8, 
@@ -976,7 +976,7 @@ set_new_block:
             }
             else {
                 // 在链表中插入新块
-                new_block = (uint64_t *)FUN_18062b1e0(
+                new_block = (uint64_t *)CoreSystem_LoggingManager0(
                     global_memory_allocator, 
                     RENDERING_BLOCK_SIZE, 
                     8, 
@@ -1008,7 +1008,7 @@ unlock_and_return:
             if (next_block == (int64_t *)0x0) {
                 if (size_high + lock_status != block_start) {
                     // 在当前块前插入新块
-                    new_block = (uint64_t *)FUN_18062b1e0(
+                    new_block = (uint64_t *)CoreSystem_LoggingManager0(
                         global_memory_allocator, 
                         RENDERING_BLOCK_SIZE, 
                         8, 
@@ -1057,7 +1057,7 @@ unlock_and_return:
                 }
                 else {
                     // 在两个块之间插入新块
-                    new_block = (uint64_t *)FUN_18062b1e0(
+                    new_block = (uint64_t *)CoreSystem_LoggingManager0(
                         global_memory_allocator, 
                         RENDERING_BLOCK_SIZE, 
                         8, 

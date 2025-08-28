@@ -206,7 +206,7 @@ void FUN_1804ab140(void)
   plVar11 = (int64_t *)&system_data_6220;
   uVar15 = uVar13;
   do {
-    puStack_258 = &unknown_var_3432_ptr;
+    puStack_258 = &memory_allocator_3432_ptr;
     puStack_250 = auStack_240;
     auStack_240[0] = 0;
     puVar1 = *(void **)((int64_t)auStack_1a8 + (uVar13 - 8));
@@ -302,7 +302,7 @@ LAB_1804ab729:
     *(int8_t *)(plVar11[5] + 0x28b8) = 1;
     *(int8_t *)(plVar11[5] + 0x250) = 0;
     ppuVar7 = (void **)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3090,8,3);
-    *ppuVar7 = &unknown_var_1920_ptr;
+    *ppuVar7 = &ui_system_data_1920_ptr;
     ppuVar7[1] = (void *)0x0;
     ppuStack_338 = ppuVar7;
     FUN_1804d9b70(ppuVar7 + 2);

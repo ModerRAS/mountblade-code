@@ -106,7 +106,7 @@ LAB_1805e69f8:
   uStack_13c = 0xb081;
   uStack_140 = 2;
   uStack_138 = 0;
-  puStack_148 = &unknown_var_3488_ptr;
+  puStack_148 = &memory_allocator_3488_ptr;
   uStack_164 = 0x7f7fffff;
   uStack_11c = 0x7f7fffff;
   uStack_110 = 0;

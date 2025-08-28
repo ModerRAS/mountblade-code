@@ -242,11 +242,11 @@ void rendering_system_initialize_render_context(int64_t *param_1, int64_t *param
         uStack_2ec = 0x3f800000;
         
         // 创建渲染管线
-        puStack_128 = &unknown_var_3480_ptr;
+        puStack_128 = &memory_allocator_3480_ptr;
         puStack_120 = auStack_110;
         auStack_110[0] = 0;
         uStack_118 = 0x1e;
-        uVar20 = strcpy_s(auStack_110, 0x40, &unknown_var_3752_ptr);
+        uVar20 = strcpy_s(auStack_110, 0x40, &memory_allocator_3752_ptr);
         uStack_430 = 0x100;
         uStack_438 = 1;
         uStack_440 = 0;
@@ -274,11 +274,11 @@ void rendering_system_initialize_render_context(int64_t *param_1, int64_t *param
         
         // 创建第二个渲染管线
         puStack_128 = &system_state_ptr;
-        puStack_c8 = &unknown_var_3480_ptr;
+        puStack_c8 = &memory_allocator_3480_ptr;
         puStack_c0 = auStack_b0;
         auStack_b0[0] = 0;
         uStack_b8 = 0x21;
-        uVar20 = strcpy_s(auStack_b0, 0x40, &unknown_var_3712_ptr);
+        uVar20 = strcpy_s(auStack_b0, 0x40, &memory_allocator_3712_ptr);
         uStack_430 = 0x100;
         uStack_438 = 1;
         uStack_440 = 0;
@@ -424,7 +424,7 @@ void rendering_system_initialize_render_context(int64_t *param_1, int64_t *param
         
         // 清理渲染资源
         pplStack_428 = (int64_t **)&puStack_2e8;
-        puStack_2e8 = &unknown_var_3432_ptr;
+        puStack_2e8 = &memory_allocator_3432_ptr;
         puStack_2e0 = auStack_2d0;
         uStack_2d8 = 0;
         auStack_2d0[0] = 0;
@@ -454,7 +454,7 @@ void rendering_system_initialize_render_context(int64_t *param_1, int64_t *param
         
         puStack_2e8 = &system_state_ptr;
         pplStack_408 = (int64_t **)&puStack_208;
-        puStack_208 = &unknown_var_3432_ptr;
+        puStack_208 = &memory_allocator_3432_ptr;
         puStack_200 = auStack_1f0;
         uStack_1f8 = 0;
         auStack_1f0[0] = 0;

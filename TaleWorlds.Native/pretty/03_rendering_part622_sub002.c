@@ -59,7 +59,7 @@ LAB_1806134a0:
      (fVar15 = fVar5 - *(float *)(*(int64_t *)(lVar11 + 0x20) + 0xc),
      fVar16 = fVar1 - *(float *)(*(int64_t *)(lVar11 + 0x20) + 0x10),
      fVar15 * fVar15 + fVar16 * fVar16 <= param_4 * param_4)) {
-    if (((&unknown_var_6480_ptr)[param_2 & 7] &
+    if (((&processed_var_6480_ptr)[param_2 & 7] &
         *(byte *)((int64_t)
                   ((*(int *)(param_1 + 0x87b770) >> 3) * *(int *)(lVar11 + 0x980) +
                   ((int)param_2 >> 3)) + *(int64_t *)(param_1 + 0x87b768))) == 0) {

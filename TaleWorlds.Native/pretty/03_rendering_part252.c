@@ -225,7 +225,7 @@ int64_t FUN_18040ca50(int64_t param_1)
   *puVar1 = &system_state_ptr;
   puVar1[1] = 0;
   *(int32_t *)(puVar1 + 2) = 0;
-  *puVar1 = &unknown_var_3480_ptr;
+  *puVar1 = &memory_allocator_3480_ptr;
   puVar1[1] = puVar1 + 3;
   *(int32_t *)(puVar1 + 2) = 0;
   *(int8_t *)(puVar1 + 3) = 0;

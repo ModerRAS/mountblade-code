@@ -18,7 +18,7 @@ void FUN_180500bd0(int64_t *param_1,int64_t *param_2,uint64_t param_3,int32_t *p
                         0xfffffffffffffffe);
   FUN_180628a40(&puStack_38);
   plVar3 = (int64_t *)(*pcVar1)(param_1,uVar2);
-  plVar3 = (int64_t *)(**(code **)(*plVar3 + 0x70))(plVar3,&unknown_var_1532_ptr);
+  plVar3 = (int64_t *)(**(code **)(*plVar3 + 0x70))(plVar3,&ui_system_data_1532_ptr);
   (**(code **)(*plVar3 + 0x50))(plVar3,*param_4);
   puStack_38 = &system_data_buffer_ptr;
   if (lStack_30 != 0) {
@@ -58,7 +58,7 @@ void FUN_180500cf0(int64_t *param_1,int64_t *param_2,uint64_t param_3,int32_t *p
                         0xfffffffffffffffe);
   FUN_180628a40(&puStack_48);
   plVar4 = (int64_t *)(*pcVar2)(param_1,uVar3);
-  plVar4 = (int64_t *)(**(code **)(*plVar4 + 0x70))(plVar4,&unknown_var_1532_ptr);
+  plVar4 = (int64_t *)(**(code **)(*plVar4 + 0x70))(plVar4,&ui_system_data_1532_ptr);
   (**(code **)(*plVar4 + 0x50))(plVar4,*param_4);
   puStack_48 = &system_data_buffer_ptr;
   if (lStack_40 != 0) {
@@ -75,7 +75,7 @@ void FUN_180500cf0(int64_t *param_1,int64_t *param_2,uint64_t param_3,int32_t *p
     uVar3 = CoreEngineDataTransformer(&puStack_48,uVar1 * 0x20 + *param_2);
     FUN_180628a40(&puStack_48);
     plVar4 = (int64_t *)(*pcVar2)(param_1,uVar3);
-    plVar4 = (int64_t *)(**(code **)(*plVar4 + 0x70))(plVar4,&unknown_var_1532_ptr);
+    plVar4 = (int64_t *)(**(code **)(*plVar4 + 0x70))(plVar4,&ui_system_data_1532_ptr);
     (**(code **)(*plVar4 + 0x30))(plVar4,*param_5);
     puStack_48 = &system_data_buffer_ptr;
     if (lStack_40 != 0) {
@@ -112,7 +112,7 @@ void FUN_180500ee0(int64_t *param_1,int64_t *param_2,uint64_t param_3,int32_t *p
   uVar2 = CoreEngineDataTransformer(&puStack_48,*param_2,param_3,param_4,0,0xfffffffffffffffe);
   FUN_180628a40(&puStack_48);
   plVar3 = (int64_t *)(*pcVar1)(param_1,uVar2);
-  plVar3 = (int64_t *)(**(code **)(*plVar3 + 0x70))(plVar3,&unknown_var_1532_ptr);
+  plVar3 = (int64_t *)(**(code **)(*plVar3 + 0x70))(plVar3,&ui_system_data_1532_ptr);
   (**(code **)(*plVar3 + 0x50))(plVar3,*param_4);
   puStack_48 = &system_data_buffer_ptr;
   if (lStack_40 != 0) {
@@ -128,7 +128,7 @@ void FUN_180500ee0(int64_t *param_1,int64_t *param_2,uint64_t param_3,int32_t *p
     uVar2 = CoreEngineDataTransformer(&puStack_48,*param_2 + 0x20);
     FUN_180628a40(&puStack_48);
     plVar3 = (int64_t *)(*pcVar1)(param_1,uVar2);
-    plVar3 = (int64_t *)(**(code **)(*plVar3 + 0x70))(plVar3,&unknown_var_1532_ptr);
+    plVar3 = (int64_t *)(**(code **)(*plVar3 + 0x70))(plVar3,&ui_system_data_1532_ptr);
     (**(code **)(*plVar3 + 0x50))(plVar3,(int)*param_5);
     puStack_48 = &system_data_buffer_ptr;
     if (lStack_40 != 0) {
@@ -545,7 +545,7 @@ void FUN_1805018c0(int64_t *param_1,int64_t *param_2,uint64_t param_3,int32_t *p
   uVar2 = CoreEngineDataTransformer(&puStack_48,*param_2 + 0x20);
   FUN_180628a40(&puStack_48);
   plVar3 = (int64_t *)(*pcVar1)(param_1,uVar2);
-  plVar3 = (int64_t *)(**(code **)(*plVar3 + 0x70))(plVar3,&unknown_var_1532_ptr);
+  plVar3 = (int64_t *)(**(code **)(*plVar3 + 0x70))(plVar3,&ui_system_data_1532_ptr);
   (**(code **)(*plVar3 + 0x50))(plVar3,*param_4);
   puStack_48 = &system_data_buffer_ptr;
   if (lStack_40 != 0) {
@@ -561,7 +561,7 @@ void FUN_1805018c0(int64_t *param_1,int64_t *param_2,uint64_t param_3,int32_t *p
     uVar2 = CoreEngineDataTransformer(&puStack_48,*param_2 + 0x40);
     FUN_180628a40(&puStack_48);
     plVar3 = (int64_t *)(*pcVar1)(param_1,uVar2);
-    plVar3 = (int64_t *)(**(code **)(*plVar3 + 0x70))(plVar3,&unknown_var_1532_ptr);
+    plVar3 = (int64_t *)(**(code **)(*plVar3 + 0x70))(plVar3,&ui_system_data_1532_ptr);
     (**(code **)(*plVar3 + 0x50))(plVar3,*param_5);
     puStack_48 = &system_data_buffer_ptr;
     if (lStack_40 != 0) {

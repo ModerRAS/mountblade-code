@@ -197,7 +197,7 @@ void FUN_180347ca0(int64_t param_1,int64_t param_2,uint64_t *param_3,float *para
     fVar40 = fStack_360;
     uVar41 = uStack_35c;
   }
-  cVar16 = FUN_1802eee20(param_2,&unknown_var_5272_ptr);
+  cVar16 = FUN_1802eee20(param_2,&processed_var_5272_ptr);
   if (cVar16 != '\0') goto LAB_180348b85;
   *(uint64_t *)(param_1 + 0x90) = *(uint64_t *)(param_1 + 0x88);
   puStack_328 = (void *)0x3f800000;
@@ -768,14 +768,14 @@ LAB_18034826e:
       if (*(void **)(param_2 + 0x290) != (void *)0x0) {
         puVar22 = *(void **)(param_2 + 0x290);
       }
-      FUN_180627020(&unknown_var_5584_ptr,puVar22);
+      FUN_180627020(&processed_var_5584_ptr,puVar22);
     }
     if ((int64_t)appppplStackX_10[0][0x17][5] - (int64_t)appppplStackX_10[0][0x17][4] >> 5 != 0) {
       puVar22 = &system_buffer_ptr;
       if (*(void **)(param_2 + 0x290) != (void *)0x0) {
         puVar22 = *(void **)(param_2 + 0x290);
       }
-      FUN_180627020(&unknown_var_5504_ptr,puVar22);
+      FUN_180627020(&processed_var_5504_ptr,puVar22);
     }
     if ((int64_t ******)appppplStackX_10[0] != (int64_t ******)0x0) {
       (*(code *)(*appppplStackX_10[0])[7])();

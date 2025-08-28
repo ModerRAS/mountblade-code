@@ -87,7 +87,7 @@ void FUN_180451e30(int64_t param_1,uint64_t *param_2,uint64_t *param_3,uint *par
     uStack_20 = param_2[0xf];
     iStack_a8 = 0;
     uStack_118 = 0;
-    puStack_128 = &unknown_var_584_ptr;
+    puStack_128 = &processed_var_584_ptr;
     uStack_f8 = uStack_140 ^ 0x80000000;
     uStack_100 = uStack_148 ^ 0x80000000;
     uStack_fc = uStack_144 ^ 0x80000000;
@@ -185,7 +185,7 @@ void FUN_1804520a0(int64_t param_1,float *param_2,float *param_3,uint *param_4,i
     *param_8 = 0;
     iStack_58 = 0;
     uStack_100 = 0;
-    puStack_110 = &unknown_var_560_ptr;
+    puStack_110 = &processed_var_560_ptr;
     uStack_ec = 0x7f7fffff;
     uStack_e0 = uStack_b0 ^ 0x80000000;
     uStack_11c = 0x7f7fffff;
@@ -292,7 +292,7 @@ void FUN_1804522d0(int64_t param_1,float *param_2,float *param_3,float param_4,f
     fStack_134 = param_3[1] - param_2[1];
     fStack_138 = *param_3 - *param_2;
     iStack_48 = 0;
-    puStack_110 = &unknown_var_6432_ptr;
+    puStack_110 = &processed_var_6432_ptr;
     uStack_104 = param_8;
     uStack_108 = 2;
     uStack_100 = 0;

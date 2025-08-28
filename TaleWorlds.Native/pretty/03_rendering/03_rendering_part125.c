@@ -769,13 +769,13 @@ void FUN_1803415f0(uint64_t param_1, int64_t param_2, int64_t param_3, uint64_t 
 // =============================================================================
 
 // 全局变量声明
-#define g_DefaultShaderConfig      unknown_var_7512    // 默认着色器配置
-#define g_ShaderTemplatePath       unknown_var_2588    // 着色器模板路径
-#define g_BufferAllocator          unknown_var_720    // 缓冲区分配器
-#define g_MemoryManager            unknown_var_3456    // 内存管理器
+#define g_DefaultShaderConfig      processed_var_7512    // 默认着色器配置
+#define g_ShaderTemplatePath       rendering_buffer_2588    // 着色器模板路径
+#define g_BufferAllocator          processed_var_720    // 缓冲区分配器
+#define g_MemoryManager            memory_allocator_3456    // 内存管理器
 #define g_DefaultDataBuffer        system_buffer_ptr    // 默认数据缓冲区
 #define g_FileStreamConfig         system_memory_c7ec    // 文件流配置
-#define g_ShaderTextureData        unknown_var_640    // 着色器纹理数据
+#define g_ShaderTextureData        processed_var_640    // 着色器纹理数据
 #define g_GlobalMemoryPool         system_memory_pool_ptr   // 全局内存池
 #define g_SecurityChecksum        GET_SECURITY_COOKIE()   // 安全校验和
 #define g_FileHandleCounter       SYSTEM_FILE_COUNTER_ADDR   // 文件句柄计数器

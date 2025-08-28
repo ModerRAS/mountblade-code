@@ -28,7 +28,7 @@ void serialize_rendering_data(void)
   } while (unaff_RBP != 0);
   
   // 处理渲染数据缓冲区初始化
-  FUN_18025a940(&unknown_var_9712_ptr,*(int32_t *)(unaff_RDI + 0x7c8));
+  FUN_18025a940(&processed_var_9712_ptr,*(int32_t *)(unaff_RDI + 0x7c8));
   byte_writer = (int8_t *)unaff_RBX[1];
   byte_value = *(int8_t *)(unaff_RDI + 0x7cc);
   
@@ -981,7 +981,7 @@ void process_rendering_system(int64_t render_manager,int64_t data_buffer)
     do {
       temp_int = **(int **)(data_buffer + 8);
       *(int **)(data_buffer + 8) = *(int **)(data_buffer + 8) + 1;
-      puStack_e8 = &unknown_var_3432_ptr;
+      puStack_e8 = &memory_allocator_3432_ptr;
       puStack_e0 = auStack_d0;
       uStack_d8 = 0;
       auStack_d0[0] = 0;

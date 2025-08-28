@@ -261,7 +261,7 @@ LAB_180860af6:
                       plVar21[1] = (int64_t)plVar21;
                       *plVar21 = (int64_t)plVar21;
                     // WARNING: Subroutine does not return
-                      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar21,&unknown_var_2624_ptr,
+                      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar21,&rendering_buffer_2624_ptr,
                                     0xa2c);
                     }
                     goto FUN_1808616bc;
@@ -559,7 +559,7 @@ LAB_180860f7b:
                     uStack_180 = (uint)uStack_130._6_2_;
                     uStack_188 = (uint)uStack_130._4_2_;
                     // WARNING: Subroutine does not return
-                    SystemValidationProcessor(auStack_a0,0x27,&unknown_var_8960_ptr,(uint64_t)uStack_130 & 0xffffffff)
+                    SystemValidationProcessor(auStack_a0,0x27,&processed_var_8960_ptr,(uint64_t)uStack_130 & 0xffffffff)
                     ;
                   }
                   plVar9[2] = lVar13;
@@ -698,7 +698,7 @@ joined_r0x000180861496:
                         plVar21[1] = (int64_t)plVar21;
                         *plVar21 = (int64_t)plVar21;
                     // WARNING: Subroutine does not return
-                        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar21,&unknown_var_2624_ptr
+                        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar21,&rendering_buffer_2624_ptr
                                       ,0xadc);
                       }
                       goto FUN_1808616bc;

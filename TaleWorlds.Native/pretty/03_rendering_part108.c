@@ -21,7 +21,7 @@
 #define RENDERING_STACK_ALIGNMENT 8
 #define RENDERING_MAX_ITERATIONS 0x40
 #define RENDERING_MEMORY_BLOCK_SIZE 0x10
-#define RENDERING_FILE_CHUNK_SIZE 4
+#define RENDERING_FILE_CHSYSTEM_SIZE 4
 #define RENDERING_HASH_TABLE_SIZE 8
 #define RENDERING_MUTEX_TIMEOUT 0x30000
 #define RENDERING_THREAD_SAFE 3
@@ -254,7 +254,7 @@ LAB_18033173f:
     plStack_b8 = &lStackX_10;
     ppuStack_b0 = &puStack_118;
     pcStack_e8 = FUN_18033cd80;
-    puStack_e0 = &unknown_var_5872_ptr;
+    puStack_e0 = &processed_var_5872_ptr;
     lStack_c0 = param_1;
     plStack_f8 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x30,8,system_allocation_flags);
     *plStack_f8 = (int64_t)puStack_d8;
@@ -482,7 +482,7 @@ LAB_180331b54:
     uVar17 = uVar13 & 0xffffffff;
     System_BufferManager(&plStack_f8,uVar13 & 0xffffffff);
     plVar4 = plStack_f8;
-    pplStack_a8 = (int64_t **)&unknown_var_3856_ptr;
+    pplStack_a8 = (int64_t **)&memory_allocator_3856_ptr;
     uStack_a0 = 1;
     uStack_128 = uVar17;
     uStack_120 = uVar17;
@@ -666,7 +666,7 @@ LAB_180332267:
             buffer_size = data_size & 0xffffffff;
             System_BufferManager(buffer_array, buffer_size);
             buffer_start = buffer_array[0];
-            output_ptr = &unknown_var_3856_ptr;
+            output_ptr = &memory_allocator_3856_ptr;
             output_flag = 0;
             pool_size = buffer_size;
             total_size = buffer_size;

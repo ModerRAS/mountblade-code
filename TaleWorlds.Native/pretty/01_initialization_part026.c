@@ -25,7 +25,7 @@ void FUN_180059940(int64_t param_1,int64_t param_2)
     strcpy_s(*(uint64_t *)(param_1 + 8),0x10);
     return;
   }
-  SystemOptimizationProcessor(&unknown_var_616_ptr,0x10,param_2);
+  SystemOptimizationProcessor(&processed_var_616_ptr,0x10,param_2);
   *(int32_t *)(param_1 + 0x10) = 0;
   **(int8_t **)(param_1 + 8) = 0;
   return;
@@ -875,7 +875,7 @@ void FUN_18005a200(uint64_t *param_1)
 uint64_t * FUN_18005a420(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_7864_ptr;
+  *param_1 = &processed_var_7864_ptr;
   DataCompressionEngine(param_1 + 0xa4);
   FUN_18005b960(param_1 + 0x8c);
   DataCompressionEngine(param_1 + 0x7e);
@@ -949,7 +949,7 @@ uint64_t FUN_18005a960(uint64_t param_1,uint64_t param_2)
 void FUN_18005a9a0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_7944_ptr;
+  *param_1 = &processed_var_7944_ptr;
   FUN_18005ab50(param_1 + 0x143);
   FUN_18005ab50(param_1 + 0x134);
   DataCompressionEngine(param_1 + 0x126);
@@ -972,7 +972,7 @@ void FUN_18005a9a0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   DataCompressionEngine(param_1 + 0x38);
   DataCompressionEngine(param_1 + 0x2a);
   DataCompressionEngine(param_1 + 0x1c);
-  *param_1 = &unknown_var_7304_ptr;
+  *param_1 = &processed_var_7304_ptr;
   param_1[0x18] = &system_data_buffer_ptr;
   if (param_1[0x19] != 0) {
                     // WARNING: Subroutine does not return

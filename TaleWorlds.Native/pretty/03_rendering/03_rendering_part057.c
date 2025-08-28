@@ -376,7 +376,7 @@ void rendering_system_advanced_texture_mapper(
     iVar8 = (int)((float)(param_8 + -1) * fVar22);
     iStack_138 = iVar8;
     FUN_18012e810();
-    SystemCore_CacheManager0(&unknown_var_728_ptr, iVar8);
+    SystemCore_CacheManager0(&processed_var_728_ptr, iVar8);
     
     // 处理渲染数据
     if (0 < lVar17) {
@@ -391,7 +391,7 @@ void rendering_system_advanced_texture_mapper(
             fStack_140 = *(float *)(puVar14 + 1);
             fStack_13c = *(float *)((int64_t)puVar14 + 0xc);
             uVar28 = *(uint64_t *)(lVar9 + (int64_t)puVar10);
-            FUN_18010f0d0(&uStack_148, &unknown_var_744_ptr, (double)fVar22, (double)fVar20, uVar28);
+            FUN_18010f0d0(&uStack_148, &processed_var_744_ptr, (double)fVar22, (double)fVar20, uVar28);
             puVar14 = puVar14 + 2;
             puVar10 = puVar10 + 1;
             lVar17 = lVar17 + -1;
@@ -787,7 +787,7 @@ void rendering_system_advanced_coordinate_transformer(void) {
     iVar11 = (int)((float)iVar11 * fVar19);
     iStack0000000000000050 = iVar11;
     FUN_18012e810();
-    SystemCore_CacheManager0(&unknown_var_728_ptr, iVar11);
+    SystemCore_CacheManager0(&processed_var_728_ptr, iVar11);
     
     // 处理变换数据
     if (0 < (int64_t)unaff_R14) {
@@ -802,7 +802,7 @@ void rendering_system_advanced_coordinate_transformer(void) {
             in_stack_00000048 = *(float *)(puVar16 + 1);
             fStack000000000000004c = *(float *)((int64_t)puVar16 + 0xc);
             uVar28 = *(uint64_t *)(lVar17 + (int64_t)puVar12);
-            FUN_18010f0d0(&stack0x00000040, &unknown_var_744_ptr, (double)fVar19, (double)fVar21, uVar28);
+            FUN_18010f0d0(&stack0x00000040, &processed_var_744_ptr, (double)fVar19, (double)fVar21, uVar28);
             puVar16 = puVar16 + 2;
             puVar12 = puVar12 + 1;
             unaff_R14 = unaff_R14 - 1;

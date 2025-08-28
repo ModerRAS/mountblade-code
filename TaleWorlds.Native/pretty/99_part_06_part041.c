@@ -80,7 +80,7 @@ void FUN_1803cdc10(int64_t param_1,uint64_t *param_2,int64_t param_3)
   uStack_120 = 0;
   uStack_118 = 0;
   uStack_110 = 0;
-  puStack_168 = &unknown_var_3312_ptr;
+  puStack_168 = &memory_allocator_3312_ptr;
   uStackX_10 = 0;
   uStack_a8 = 0;
   uStack_a4 = 0;
@@ -90,7 +90,7 @@ void FUN_1803cdc10(int64_t param_1,uint64_t *param_2,int64_t param_3)
   uStack_198 = 0;
   uStack_188 = 3;
   lStack_100 = param_2[5];
-  puStack_108 = &unknown_var_3600_ptr;
+  puStack_108 = &memory_allocator_3600_ptr;
   uVar6 = 2;
   uStack_f8 = uVar6;
   if (lStack_100 != 0) {
@@ -257,7 +257,7 @@ void FUN_1803cdf80(int64_t param_1,float *param_2,int64_t param_3)
   uStack_140 = 0;
   uStack_138 = 0;
   uStack_130 = 0;
-  puStack_188 = &unknown_var_3312_ptr;
+  puStack_188 = &memory_allocator_3312_ptr;
   uStack_1a0 = 3;
   fStack_19c = (param_2[4] - *param_2) * 0.5;
   uStack_c8 = 0;
@@ -266,7 +266,7 @@ void FUN_1803cdf80(int64_t param_1,float *param_2,int64_t param_3)
   uStack_1c8 = 0;
   uStack_1b8 = 3;
   lStack_120 = *(int64_t *)(param_2 + 0xe);
-  puStack_128 = &unknown_var_3600_ptr;
+  puStack_128 = &memory_allocator_3600_ptr;
   uVar6 = 2;
   uStack_118 = uVar6;
   if (lStack_120 != 0) {
@@ -494,7 +494,7 @@ void FUN_1803ce380(int64_t param_1,int64_t *param_2,int64_t param_3,char param_4
   uStack_130 = 0;
   uStack_128 = 0;
   uStack_120 = 0;
-  puStack_178 = &unknown_var_3312_ptr;
+  puStack_178 = &memory_allocator_3312_ptr;
   fStack_208 = 4.2039e-45;
   fStack_204 = ABS(fVar14 * (float)uStack_1d8 + fVar12 * uStack_1d8._4_4_ +
                    fVar13 * (float)uStack_1d0);
@@ -510,7 +510,7 @@ void FUN_1803ce380(int64_t param_1,int64_t *param_2,int64_t param_3,char param_4
   uStack_198 = 0;
   uStack_188 = 3;
   lStack_110 = plVar10[4];
-  puStack_118 = &unknown_var_3600_ptr;
+  puStack_118 = &memory_allocator_3600_ptr;
   uVar9 = 2;
   uStack_108 = uVar9;
   if (lStack_110 != 0) {
@@ -678,7 +678,7 @@ void FUN_1803ceaf0(uint64_t *param_1)
   LOCK();
   *(int8_t *)(param_1[5] + 0xd4) = 1;
   UNLOCK();
-  if ((void *)*param_1 == &unknown_var_4488_ptr) {
+  if ((void *)*param_1 == &processed_var_4488_ptr) {
                     // WARNING: Could not recover jumptable at 0x0001803ceb23. Too many branches
                     // WARNING: Treating indirect jump as call
     (**(code **)(*(int64_t *)param_1[2] + 0x70))((int64_t *)param_1[2],param_1);
@@ -694,8 +694,8 @@ uint64_t *
 FUN_1803ceb40(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_3440_ptr;
-  *param_1 = &unknown_var_3472_ptr;
+  *param_1 = &memory_allocator_3440_ptr;
+  *param_1 = &memory_allocator_3472_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x1040,param_3,param_4,0xfffffffffffffffe);
   }
@@ -708,8 +708,8 @@ uint64_t *
 FUN_1803cebb0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_3440_ptr;
-  *param_1 = &unknown_var_3472_ptr;
+  *param_1 = &memory_allocator_3440_ptr;
+  *param_1 = &memory_allocator_3472_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x240,param_3,param_4,0xfffffffffffffffe);
   }
@@ -972,7 +972,7 @@ LAB_1803cefa0:
 uint64_t * FUN_1803cf110(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_4096_ptr;
+  *param_1 = &processed_var_4096_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }
@@ -985,8 +985,8 @@ uint64_t *
 FUN_1803cf140(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_3312_ptr;
-  *param_1 = &unknown_var_3344_ptr;
+  *param_1 = &memory_allocator_3312_ptr;
+  *param_1 = &memory_allocator_3344_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x60,param_3,param_4,0xfffffffffffffffe);
   }
@@ -998,7 +998,7 @@ FUN_1803cf140(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
 uint64_t * FUN_1803cf190(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_3344_ptr;
+  *param_1 = &memory_allocator_3344_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x60);
   }
@@ -1014,8 +1014,8 @@ uint64_t * FUN_1803cf190(uint64_t *param_1,uint64_t param_2)
 void FUN_1803cf1d0(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_3312_ptr;
-  *param_1 = &unknown_var_3344_ptr;
+  *param_1 = &memory_allocator_3312_ptr;
+  *param_1 = &memory_allocator_3344_ptr;
   return;
 }
 
@@ -1025,8 +1025,8 @@ uint64_t *
 FUN_1803cf200(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_3376_ptr;
-  *param_1 = &unknown_var_3408_ptr;
+  *param_1 = &memory_allocator_3376_ptr;
+  *param_1 = &memory_allocator_3408_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x60,param_3,param_4,0xfffffffffffffffe);
   }
@@ -1038,7 +1038,7 @@ FUN_1803cf200(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
 uint64_t * FUN_1803cf250(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_3408_ptr;
+  *param_1 = &memory_allocator_3408_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x60);
   }
@@ -1054,8 +1054,8 @@ uint64_t * FUN_1803cf250(uint64_t *param_1,uint64_t param_2)
 void FUN_1803cf290(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_3376_ptr;
-  *param_1 = &unknown_var_3408_ptr;
+  *param_1 = &memory_allocator_3376_ptr;
+  *param_1 = &memory_allocator_3408_ptr;
   return;
 }
 
@@ -1065,8 +1065,8 @@ uint64_t *
 FUN_1803cf2c0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_3440_ptr;
-  *param_1 = &unknown_var_3472_ptr;
+  *param_1 = &memory_allocator_3440_ptr;
+  *param_1 = &memory_allocator_3472_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x40,param_3,param_4,0xfffffffffffffffe);
   }
@@ -1078,7 +1078,7 @@ FUN_1803cf2c0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
 uint64_t * FUN_1803cf310(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_3472_ptr;
+  *param_1 = &memory_allocator_3472_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x40);
   }
@@ -1094,8 +1094,8 @@ uint64_t * FUN_1803cf310(uint64_t *param_1,uint64_t param_2)
 void FUN_1803cf350(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_3440_ptr;
-  *param_1 = &unknown_var_3472_ptr;
+  *param_1 = &memory_allocator_3440_ptr;
+  *param_1 = &memory_allocator_3472_ptr;
   return;
 }
 

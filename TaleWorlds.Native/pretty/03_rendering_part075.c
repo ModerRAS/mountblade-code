@@ -35,7 +35,7 @@ void FUN_18030b270(int64_t param_1,int64_t *param_2)
     return;
   }
   (**(code **)(*param_2 + 0x1e0))(param_2,*(uint64_t *)(param_1 + 0x28));
-  if (*(code **)(*param_2 + 0x198) == (code *)&unknown_var_2544_ptr) {
+  if (*(code **)(*param_2 + 0x198) == (code *)&rendering_buffer_2544_ptr) {
     puVar4 = (uint64_t *)((int64_t)param_2 + 0x214);
   }
   else {
@@ -102,13 +102,13 @@ uint64_t * FUN_18030b420(uint64_t *param_1,uint64_t param_2,int8_t param_3)
   *param_1 = &system_handler1_ptr;
   *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &unknown_var_768_ptr;
+  *param_1 = &processed_var_768_ptr;
   *(int32_t *)(param_1 + 2) = 4;
   param_1[3] = 0;
   param_1[4] = 0;
   *(int32_t *)(param_1 + 1) = 0;
   param_1[5] = 0;
-  *param_1 = &unknown_var_4384_ptr;
+  *param_1 = &processed_var_4384_ptr;
   param_1[7] = 0;
   param_1[9] = 0;
   param_1[10] = 0;
@@ -148,7 +148,7 @@ FUN_18030b510(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_4384_ptr;
+  *param_1 = &processed_var_4384_ptr;
   if (param_1[10] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager();
@@ -159,7 +159,7 @@ FUN_18030b510(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   if ((int64_t *)param_1[7] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[7] + 0x38))();
   }
-  *param_1 = &unknown_var_768_ptr;
+  *param_1 = &processed_var_768_ptr;
   param_1[5] = 0;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
@@ -178,7 +178,7 @@ uint64_t FUN_18030b610(int64_t param_1)
   uint64_t uVar2;
   
   puVar1 = (void *)**(uint64_t **)(param_1 + 0x48);
-  if (puVar1 == &unknown_var_9304_ptr) {
+  if (puVar1 == &processed_var_9304_ptr) {
     return (uint64_t)*(uint *)(*(uint64_t **)(param_1 + 0x48) + 0x42);
   }
   uVar2 = (**(code **)(puVar1 + 0x130))();
@@ -194,7 +194,7 @@ uint64_t * FUN_18030b650(int64_t param_1)
   uint64_t *puVar2;
   
   puVar1 = (void *)**(uint64_t **)(param_1 + 0x48);
-  if (puVar1 == &unknown_var_9304_ptr) {
+  if (puVar1 == &processed_var_9304_ptr) {
     return *(uint64_t **)(param_1 + 0x48) + 0x66;
   }
   puVar2 = (uint64_t *)(**(code **)(puVar1 + 0x158))();

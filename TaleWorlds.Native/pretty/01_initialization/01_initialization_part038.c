@@ -87,7 +87,7 @@ void Initialization_MainLoop(int64_t context)
     }
     
     // 初始化任务管理器指针
-    cleanup_ptr = &unknown_var_2008_ptr;
+    cleanup_ptr = &rendering_buffer_2008_ptr;
     name_buffer = name_storage;
     name_length = 0;
     name_storage[0] = 0;
@@ -206,7 +206,7 @@ void Initialization_MainLoop(int64_t context)
     }
     // 处理内存管理器任务
     manager_ptr = *(uint64_t **)(context + 0xc0);
-    if ((void *)*manager_ptr == &unknown_var_2208_ptr) {
+    if ((void *)*manager_ptr == &rendering_buffer_2208_ptr) {
       status_flag = FUN_180068a90(manager_ptr + 2,&lock_ptr);
       while (status_flag != '\0') {
         data_ptr = (int64_t *)manager_ptr[99];
@@ -333,7 +333,7 @@ LAB_18006c852:
             string_buffer = name_buffer;
           }
                     // WARNING: Subroutine does not return
-          FUN_180062300(system_message_context,&unknown_var_3520_ptr,total_processed,string_buffer);
+          FUN_180062300(system_message_context,&memory_allocator_3520_ptr,total_processed,string_buffer);
         }
         
         // 执行资源分配

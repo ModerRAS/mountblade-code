@@ -408,7 +408,7 @@ void InitializeResourcePool(int64_t param_1, int64_t param_2)
   uint64_t uVar1;
   
   // 分配资源池内存（8字节对齐）
-  uVar1 = FUN_18062b1e0(system_memory_pool_ptr, param_2 * 8 + 8, 8, *(int8_t *)(param_1 + 0x2c));
+  uVar1 = CoreSystem_LoggingManager0(system_memory_pool_ptr, param_2 * 8 + 8, 8, *(int8_t *)(param_1 + 0x2c));
   // 零初始化分配的内存（不返回的函数调用）
   memset(uVar1, 0, param_2 * 8);
 }
@@ -431,7 +431,7 @@ void AllocateResourceMemory(uint64_t param_1, int64_t param_2)
   uint64_t uVar1;
   
   // 分配内存（8字节对齐）
-  uVar1 = FUN_18062b1e0(system_memory_pool_ptr, param_2 * 8 + 8, 8);
+  uVar1 = CoreSystem_LoggingManager0(system_memory_pool_ptr, param_2 * 8 + 8, 8);
   // 零初始化分配的内存（不返回的函数调用）
   memset(uVar1, 0, param_2 * 8);
 }

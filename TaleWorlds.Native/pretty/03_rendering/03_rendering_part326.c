@@ -87,7 +87,7 @@ extern void FUN_180171f10(uint64_t param_1, uint64_t param_2);
 extern void FUN_180060680(char *param_1, uint64_t param_2, int param_3);
 extern void FUN_18004b1f0(int param_1);
 extern void CoreSystemConfigManager(uint64_t param_1);
-extern uint64_t FUN_18062b1e0(uint64_t param_1, int param_2, int param_3, int param_4);
+extern uint64_t CoreSystem_LoggingManager0(uint64_t param_1, int param_2, int param_3, int param_4);
 extern uint64_t FUN_18005ce30(uint64_t param_1, uint64_t *param_2);
 extern void FUN_18005e370(uint64_t param_1, uint64_t *param_2);
 extern void FUN_18043be90(void);
@@ -1427,7 +1427,7 @@ void rendering_system_batch_executor(int param_1, int param_2, int param_3, int 
     buffer_value = 0x1b;
     
     // 执行批处理操作
-    temp_data = FUN_18062b1e0(system_memory_pool_ptr, 0x100, 8, 3);
+    temp_data = CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x100, 8, 3);
     pointer_ptr = (void **)FUN_18005ce30(temp_data, &buffer_pointer);
     temp_pointer = pointer_ptr;
     

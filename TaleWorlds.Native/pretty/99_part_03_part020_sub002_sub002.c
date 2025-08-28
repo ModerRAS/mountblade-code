@@ -878,7 +878,7 @@ LAB_1801e0603:
                   }
                   pcStack_638 = (code *)CONCAT44(pcStack_638._4_4_,
                                                  *(int32_t *)(ppppppplVar17 + 4));
-                  System_DataHandler(&puStack_4a0,&unknown_var_3528_ptr,puVar23,puVar24);
+                  System_DataHandler(&puStack_4a0,&memory_allocator_3528_ptr,puVar23,puVar24);
                   CoreEngineDataTransformer(&puStack_400,&puStack_4a0);
                   uVar34 = uStack_3f0 + 0x18;
                   CoreEngineDataBufferProcessor(&puStack_400,uVar34);
@@ -895,7 +895,7 @@ LAB_1801e0603:
                   uStack_118 = 1;
                   uStack_1a0 = 0;
                   uStack_194 = 0;
-                  apuStack_1c8[0] = &unknown_var_264_ptr;
+                  apuStack_1c8[0] = &rendering_buffer_264_ptr;
                   puVar24 = &system_buffer_ptr;
                   if (puStack_3f8 != (void *)0x0) {
                     puVar24 = puStack_3f8;
@@ -923,9 +923,9 @@ LAB_1801e0603:
                     puStack_3a0 = &system_state_ptr;
                   }
                   else {
-                    SystemDataInitializer(&unknown_var_3448_ptr);
+                    SystemDataInitializer(&memory_allocator_3448_ptr);
                   }
-                  apuStack_1c8[0] = &unknown_var_6384_ptr;
+                  apuStack_1c8[0] = &processed_var_6384_ptr;
                   if (uStack_118._1_1_ != '\0') {
                     FUN_180639250(apuStack_1c8);
                   }
@@ -960,7 +960,7 @@ LAB_1801e0603:
               if (puStack_570 != (void *)0x0) {
                 puVar24 = puStack_570;
               }
-              System_DataHandler(&puStack_4c0,&unknown_var_2288_ptr,puVar24);
+              System_DataHandler(&puStack_4c0,&rendering_buffer_2288_ptr,puVar24);
               lStack_620 = 0;
               puStack_618 = (uint64_t *)0x0;
               lStack_610 = 0;
@@ -1024,7 +1024,7 @@ LAB_1801e0603:
                 if (puStack_4b8 != (void *)0x0) {
                   puVar24 = puStack_4b8;
                 }
-                SystemDataInitializer(&unknown_var_3560_ptr,puVar24);
+                SystemDataInitializer(&memory_allocator_3560_ptr,puVar24);
               }
               else {
                 uVar12 = (int64_t)puVar19 - lVar35;

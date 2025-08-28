@@ -1001,10 +1001,10 @@ StateUpdateComplete:
                         // 检查位标志
                         if (((*(byte*)((int64_t)(bitIndex * currentState + ((int)indexValue >> 3)) +
                                        *(RenderHandlePtr)(handle1 + 0x87b768)) & 
-                                       (&unknown_var_6480_ptr)[indexValue & 7]) != 0) &&
+                                       (&processed_var_6480_ptr)[indexValue & 7]) != 0) &&
                             ((*(byte*)((int64_t)(bitIndex * newState + ((int)indexValue >> 3)) +
                                        *(RenderHandlePtr)(handle1 + 0x87b768)) & 
-                                       (&unknown_var_6480_ptr)[indexValue & 7]) == 0)) {
+                                       (&processed_var_6480_ptr)[indexValue & 7]) == 0)) {
                             
                             // 重置渲染资源
                             *(RenderFlagPtr)(handle2 + 0x1b6c) = 0;
@@ -1094,10 +1094,10 @@ void RenderProcessStateChange(void) {
                         // 检查位标志
                         if (((*(byte*)((int64_t)(bitIndex * unaff_EBP + ((int)indexValue >> 3)) +
                                        *(RenderHandlePtr)(handle1 + 0x87b768)) & 
-                                       (&unknown_var_6480_ptr)[indexValue & 7]) != 0) &&
+                                       (&processed_var_6480_ptr)[indexValue & 7]) != 0) &&
                             ((*(byte*)((int64_t)(bitIndex * currentState + ((int)indexValue >> 3)) +
                                        *(RenderHandlePtr)(handle1 + 0x87b768)) & 
-                                       (&unknown_var_6480_ptr)[indexValue & 7]) == 0)) {
+                                       (&processed_var_6480_ptr)[indexValue & 7]) == 0)) {
                             
                             // 重置渲染资源
                             *(RenderFlagPtr)(handle2 + 0x1b6c) = 0;
@@ -1168,10 +1168,10 @@ void RenderProcessBatch(uint param1) {
             // 检查位标志
             if (((*(byte*)((int64_t)(bitIndex * unaff_EBP + ((int)indexValue >> 3)) +
                            *(RenderHandlePtr)(handle1 + 0x87b768)) & 
-                           (&unknown_var_6480_ptr)[indexValue & 7]) != 0) &&
+                           (&processed_var_6480_ptr)[indexValue & 7]) != 0) &&
                 ((*(byte*)((int64_t)(bitIndex * unaff_ESI + ((int)indexValue >> 3)) +
                            *(RenderHandlePtr)(handle1 + 0x87b768)) & 
-                           (&unknown_var_6480_ptr)[indexValue & 7]) == 0)) {
+                           (&processed_var_6480_ptr)[indexValue & 7]) == 0)) {
                 
                 // 重置渲染资源
                 *(RenderFlagPtr)(handle2 + 0x1b6c) = 0;

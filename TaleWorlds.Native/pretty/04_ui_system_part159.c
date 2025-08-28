@@ -506,7 +506,7 @@ LAB_180760f3a:
                 puStack_548 = (int32_t *)auStack_168;
                 auStack_168[0] = 0;
                     // WARNING: Subroutine does not return
-                DataTransformer(iVar5,7,param_1,&unknown_var_1152_ptr);
+                DataTransformer(iVar5,7,param_1,&ui_system_data_1152_ptr);
               }
               if ((((*(int64_t *)(param_1 + 0xe8) != 0) &&
                    (*(int64_t *)(*(int64_t *)(param_1 + 0xe8) + 0x48) != 0)) &&

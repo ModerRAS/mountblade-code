@@ -86,7 +86,7 @@ LAB_base_found:
       current_name = current_name + (int64_t)record_name;
       record_offset = search_name;
       if (current_name <= record_name) break;
-      name_offset = (int64_t)&unknown_var_1264_ptr - (int64_t)record_name;
+      name_offset = (int64_t)&ui_system_data_1264_ptr - (int64_t)record_name;
       while (*record_name == record_name[name_offset]) {
         record_name = record_name + 1;
         if (current_name <= record_name) goto LAB_records_found;
@@ -114,7 +114,7 @@ LAB_records_found:
       current_name = record_name + (int64_t)current_name;
       record_offset = search_name;
       if (current_name <= record_name) break;
-      name_offset = (int64_t)&unknown_var_1296_ptr - (int64_t)record_name;
+      name_offset = (int64_t)&ui_system_data_1296_ptr - (int64_t)record_name;
       while (*record_name == record_name[name_offset]) {
         record_name = record_name + 1;
         if (current_name <= record_name) goto LAB_record_found;
@@ -157,7 +157,7 @@ LAB_id_found:
             FUN_180627c50(&stack_pointer,name_offset);
             break;
           }
-          name_offset = (int64_t)&unknown_var_1288_ptr - (int64_t)search_name;
+          name_offset = (int64_t)&ui_system_data_1288_ptr - (int64_t)search_name;
           while (*search_name == search_name[name_offset]) {
             search_name = search_name + 1;
             if (current_name <= search_name) goto LAB_id_found;
@@ -405,7 +405,7 @@ LAB_skip_record:
         if (search_name == name_end + -0x180a0ae2f) {
           search_name = search_name + (int64_t)current_name;
           if (search_name <= current_name) goto LAB_next_record;
-          name_offset = (int64_t)&unknown_var_1296_ptr - (int64_t)current_name;
+          name_offset = (int64_t)&ui_system_data_1296_ptr - (int64_t)current_name;
           while (*current_name == current_name[name_offset]) {
             current_name = current_name + 1;
             if (search_name <= current_name) goto LAB_next_record;

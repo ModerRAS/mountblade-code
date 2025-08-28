@@ -286,7 +286,7 @@ LAB_1805fac53:
         iVar4 = func_0x0001805fd450(&system_data_5ef8,param_1,2);
       }
       fVar15 = *(float *)((int64_t)puVar12 + 0x9c);
-      if ((void *)*puVar12 == &unknown_var_952_ptr) {
+      if ((void *)*puVar12 == &processed_var_952_ptr) {
         fVar13 = *(float *)(lVar7 + 0x40);
         puVar12 = param_4;
       }
@@ -299,7 +299,7 @@ LAB_1805fac53:
       if (param_2 != 0) goto LAB_1805faebf;
       plVar2 = *(int64_t **)(param_3 + 0x210);
       fVar15 = *(float *)((int64_t)plVar2 + 0x9c);
-      if ((void *)*plVar2 == &unknown_var_568_ptr) {
+      if ((void *)*plVar2 == &processed_var_568_ptr) {
         fVar13 = *(float *)(plVar2 + 0x693);
       }
       else {

@@ -247,7 +247,7 @@ LAB_18045275c:
   }
   uVar8 = CoreEngineDataTransformer(&puStack_118,param_1 + 0x27c8);
   uStack_258 = 1;
-  puStack_e8 = &unknown_var_3432_ptr;
+  puStack_e8 = &memory_allocator_3432_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   iStack_d8 = iStack_188;
@@ -340,14 +340,14 @@ LAB_1804529b8:
   if (puStack_168 != (void *)0x0) {
     puVar15 = puStack_168;
   }
-  FUN_18062dee0(&uStack_130,puVar15,&unknown_var_4880_ptr);
+  FUN_18062dee0(&uStack_130,puVar15,&processed_var_4880_ptr);
   lVar16 = lStack_128;
   if (lStack_128 == 0) {
     puVar15 = &system_buffer_ptr;
     if (puStack_168 != (void *)0x0) {
       puVar15 = puStack_168;
     }
-    FUN_180627020(&unknown_var_408_ptr,puVar15);
+    FUN_180627020(&processed_var_408_ptr,puVar15);
   }
   else {
     uVar8 = _ftelli64(lStack_128);

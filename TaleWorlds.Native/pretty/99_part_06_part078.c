@@ -514,7 +514,7 @@ uint64_t * FUN_1803f5640(uint64_t *param_1)
     if (puVar4 == (uint64_t *)0x0) {
       FUN_180287f70(auStack_78);
                     // WARNING: Subroutine does not return
-      _CxxThrowException(auStack_78,&unknown_var_2600_ptr);
+      _CxxThrowException(auStack_78,&rendering_buffer_2600_ptr);
     }
     puVar4[0x10] = puVar4;
   }
@@ -541,7 +541,7 @@ uint64_t * FUN_1803f5640(uint64_t *param_1)
       if (puVar3 == (uint64_t *)0x0) {
         FUN_180287f70(auStack_90);
                     // WARNING: Subroutine does not return
-        _CxxThrowException(auStack_90,&unknown_var_2600_ptr);
+        _CxxThrowException(auStack_90,&rendering_buffer_2600_ptr);
       }
       puVar4 = puVar3;
       if (puVar8 != (uint64_t *)0x0) {
@@ -569,7 +569,7 @@ uint64_t * FUN_1803f5640(uint64_t *param_1)
     if (puVar4 == (uint64_t *)0x0) {
       FUN_180287f70(auStack_48);
                     // WARNING: Subroutine does not return
-      _CxxThrowException(auStack_48,&unknown_var_2600_ptr);
+      _CxxThrowException(auStack_48,&rendering_buffer_2600_ptr);
     }
     puVar4[0x10] = puVar4;
   }
@@ -596,7 +596,7 @@ uint64_t * FUN_1803f5640(uint64_t *param_1)
       if (puVar3 == (uint64_t *)0x0) {
         FUN_180287f70(auStack_60);
                     // WARNING: Subroutine does not return
-        _CxxThrowException(auStack_60,&unknown_var_2600_ptr);
+        _CxxThrowException(auStack_60,&rendering_buffer_2600_ptr);
       }
       puVar4 = puVar3;
       if (puVar9 != (uint64_t *)0x0) {
@@ -721,7 +721,7 @@ uint64_t * FUN_1803f5b70(uint64_t param_1,uint64_t param_2)
   
   puVar1 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x70,8,3,0xfffffffffffffffe);
   FUN_1803456e0(puVar1,param_2,param_1);
-  *puVar1 = &unknown_var_2376_ptr;
+  *puVar1 = &rendering_buffer_2376_ptr;
   return puVar1;
 }
 
@@ -734,7 +734,7 @@ FUN_1803f5bd0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_2896_ptr;
+  *param_1 = &rendering_buffer_2896_ptr;
   FUN_1801f9920();
   if ((param_2 & 1) != 0) {
     free(param_1,0x470,param_3,param_4,uVar1);
@@ -850,11 +850,11 @@ void FUN_1803f5c20(int64_t param_1,int64_t param_2)
     }
     *(int8_t *)(param_1 + 0x469) = 0;
     *(int *)(param_1 + 0x46c) = iVar13;
-    puStack_f8 = &unknown_var_3432_ptr;
+    puStack_f8 = &memory_allocator_3432_ptr;
     puStack_f0 = auStack_e0;
     auStack_e0[0] = 0;
     uStack_e8 = 4;
-    strcpy_s(auStack_e0,0x80,&unknown_var_2736_ptr);
+    strcpy_s(auStack_e0,0x80,&rendering_buffer_2736_ptr);
     lVar11 = *(int64_t *)(param_1 + 0x428);
     if (((lVar11 == 0) || (cVar9 = func_0x0001800ba3b0(lVar11 + 0x108,&iStack_188), cVar9 == '\0'))
        || (*(int *)(lVar11 + 0x380) == 0)) {
@@ -889,7 +889,7 @@ void FUN_1803f5c20(int64_t param_1,int64_t param_2)
       if (cVar9 != '\0') {
         aiStack_1a8[0] = 0;
         uVar10 = (**(code **)(**(int64_t **)(lVar5 + 0xe0) + 0x58))
-                           (*(int64_t **)(lVar5 + 0xe0),&unknown_var_3760_ptr,aiStack_1a8);
+                           (*(int64_t **)(lVar5 + 0xe0),&memory_allocator_3760_ptr,aiStack_1a8);
         if (((uVar10 & 0xfff00000) != 0xbad00000) && (aiStack_1a8[0] != 0)) {
           *(int8_t *)(lVar5 + 0xd9) = 1;
           if ((*(char *)(lVar5 + 0xd8) != '\0') && (-1 < *(int *)(SYSTEM_STATE_MANAGER + 0x540) + -1)) {
@@ -901,11 +901,11 @@ void FUN_1803f5c20(int64_t param_1,int64_t param_2)
           uVar7 = *(uint64_t *)(lVar5 + 0xe0);
           NVSDK_NGX_Parameter_SetUI(uVar7,&system_data_9e30,uStack_198 & 0xffffffff);
           NVSDK_NGX_Parameter_SetUI(uVar7,&system_data_9e38,uStack_198._4_4_);
-          NVSDK_NGX_Parameter_SetUI(uVar7,&unknown_var_4184_ptr,iStack_1a0);
-          NVSDK_NGX_Parameter_SetUI(uVar7,&unknown_var_4112_ptr,iStack_19c);
-          NVSDK_NGX_Parameter_SetF(uVar7,&unknown_var_4032_ptr,1.0 / (fVar2 - fVar3));
-          NVSDK_NGX_Parameter_SetI(uVar7,&unknown_var_4056_ptr,iVar13);
-          NVSDK_NGX_Parameter_SetI(uVar7,&unknown_var_4000_ptr,0x3b);
+          NVSDK_NGX_Parameter_SetUI(uVar7,&processed_var_4184_ptr,iStack_1a0);
+          NVSDK_NGX_Parameter_SetUI(uVar7,&processed_var_4112_ptr,iStack_19c);
+          NVSDK_NGX_Parameter_SetF(uVar7,&processed_var_4032_ptr,1.0 / (fVar2 - fVar3));
+          NVSDK_NGX_Parameter_SetI(uVar7,&processed_var_4056_ptr,iVar13);
+          NVSDK_NGX_Parameter_SetI(uVar7,&processed_var_4000_ptr,0x3b);
           NVSDK_NGX_D3D11_CreateFeature(uVar6,1,uVar7,lVar5 + 0xe8);
           goto LAB_1803f604a;
         }
@@ -966,7 +966,7 @@ void FUN_1803f60b0(int64_t *param_1,uint64_t param_2,int64_t param_3)
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_1d8;
   cVar2 = (**(code **)(**(int64_t **)(param_3 + 0x3580) + 0x78))();
   if (cVar2 != '\0') {
-    puStack_e8 = &unknown_var_3432_ptr;
+    puStack_e8 = &memory_allocator_3432_ptr;
     puStack_e0 = auStack_d0;
     auStack_d0[0] = 0;
     uStack_d8 = 0xc;
@@ -994,7 +994,7 @@ void FUN_1803f60b0(int64_t *param_1,uint64_t param_2,int64_t param_3)
       puVar7 = (void *)param_1[3];
     }
     ppuStack_170 = &puStack_148;
-    puStack_148 = &unknown_var_3480_ptr;
+    puStack_148 = &memory_allocator_3480_ptr;
     puStack_140 = auStack_130;
     uStack_138 = 0;
     auStack_130[0] = 0;
@@ -1022,7 +1022,7 @@ void FUN_1803f60b0(int64_t *param_1,uint64_t param_2,int64_t param_3)
       puVar1 = *(void **)(puVar7 + 0xc0);
       ppuStack_170 = ppuVar6;
       FUN_180049830(ppuVar6);
-      *ppuVar6 = &unknown_var_2752_ptr;
+      *ppuVar6 = &rendering_buffer_2752_ptr;
       ppuVar6[0x18] = puVar7;
       ppuVar6[0x19] = puVar1;
       pppuStack_158 = &ppuStack_170;
@@ -1074,7 +1074,7 @@ void FUN_1803f63f0(int64_t param_1)
   if (iVar5 < 0) {
     uVar6 = (**(code **)(**(int64_t **)(lVar1 + 0x1d78) + 0x138))();
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&unknown_var_3992_ptr,uVar6);
+    FUN_180062300(system_message_context,&memory_allocator_3992_ptr,uVar6);
   }
   if (apuStack_30[0] != (int16_t *)0x0) {
     uVar6 = func_0x0001800adf40(*apuStack_30[0]);
@@ -1103,7 +1103,7 @@ uint64_t * FUN_1803f6500(uint64_t *param_1,uint64_t param_2)
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_3952_ptr;
+  *param_1 = &memory_allocator_3952_ptr;
   if ((int64_t *)param_1[0x8c] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x8c] + 0x38))();
   }

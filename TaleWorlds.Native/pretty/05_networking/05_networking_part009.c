@@ -162,7 +162,7 @@ void network_connection_status_checker(uint64_t param_1, int8_t param_2)
         (connection_status = FUN_18088dec0(*(uint64_t *)(connection_context[0] + 0x98), connection_data, NETWORK_BUFFER_SIZE), connection_status == 0)) {
         
         // 设置连接数据
-        *connection_data[0] = &unknown_var_2544_ptr;
+        *connection_data[0] = &rendering_buffer_2544_ptr;
         *(int32_t *)(connection_data[0] + 1) = NETWORK_BUFFER_SIZE;
         *(int8_t *)(connection_data[0] + 2) = param_2;
         
@@ -191,7 +191,7 @@ void network_connection_status_checker(uint64_t param_1, int8_t param_2)
 void network_packet_sender(int32_t *param_1, uint64_t param_2)
 {
     // 发送数据包到目标地址
-    SystemDataValidator(param_2, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *param_1, 
+    SystemDataValidator(param_2, PACKET_TYPE_DATA, &processed_var_8960_ptr, *param_1, 
                  *(int16_t *)(param_1 + 1), *(int16_t *)((int64_t)param_1 + 6),
                  *(int8_t *)(param_1 + 2), *(int8_t *)((int64_t)param_1 + 9),
                  *(int8_t *)((int64_t)param_1 + 10), *(int8_t *)((int64_t)param_1 + 0xb),
@@ -232,7 +232,7 @@ void network_connection_initializer(uint64_t param_1)
         large_buffer[0] = 0;
         
         // 发送控制信息
-        DataTransformer(initialization_status, PACKET_TYPE_CONTROL, param_1, &unknown_var_4232_ptr);
+        DataTransformer(initialization_status, PACKET_TYPE_CONTROL, param_1, &processed_var_4232_ptr);
     }
     
     // 执行清理操作
@@ -272,7 +272,7 @@ void network_connection_processor(uint64_t param_1)
         large_buffer[0] = 0;
         
         // 发送错误信息
-        DataTransformer(processing_status, PACKET_TYPE_ERROR, param_1, &unknown_var_2648_ptr);
+        DataTransformer(processing_status, PACKET_TYPE_ERROR, param_1, &rendering_buffer_2648_ptr);
     }
     
     // 执行清理操作
@@ -326,7 +326,7 @@ void network_connection_validator(uint64_t param_1)
         large_buffer[0] = 0;
         
         // 发送错误信息
-        DataTransformer(validation_status, PACKET_TYPE_ERROR, param_1, &unknown_var_5264_ptr);
+        DataTransformer(validation_status, PACKET_TYPE_ERROR, param_1, &processed_var_5264_ptr);
     }
 
 validation_complete:
@@ -394,7 +394,7 @@ void network_packet_processor(uint64_t param_1, uint64_t *param_2, int64_t *para
             packet_field_98 = (uint)*(ushort *)(packet_data + 1);
             
             // 发送数据包
-            SystemDataValidator(packet_buffer, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *packet_data);
+            SystemDataValidator(packet_buffer, PACKET_TYPE_DATA, &processed_var_8960_ptr, *packet_data);
         }
         
         // 执行数据处理
@@ -571,7 +571,7 @@ void network_message_processor(int64_t param_1, int64_t param_2)
             message_field_88 = (uint)*(ushort *)(current_message + 1);
             
             // 发送消息数据
-            SystemDataValidator(message_buffer, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *current_message);
+            SystemDataValidator(message_buffer, PACKET_TYPE_DATA, &processed_var_8960_ptr, *current_message);
         }
         
         // 执行消息处理
@@ -713,7 +713,7 @@ void network_data_manager(int64_t *param_1, int64_t param_2, int64_t *param_3)
                 data_field_98 = (uint)data_field_8;
                 
                 // 发送数据
-                SystemDataValidator(data_buffer, PACKET_TYPE_DATA, &unknown_var_8960_ptr, data_field_11);
+                SystemDataValidator(data_buffer, PACKET_TYPE_DATA, &processed_var_8960_ptr, data_field_11);
             }
             
             // 获取二级数据处理器
@@ -837,7 +837,7 @@ void network_connection_manager(int64_t param_1, int64_t param_2)
                 connection_field_98 = (uint)*(ushort *)(connection_data + 1);
                 
                 // 发送连接数据
-                SystemDataValidator(connection_buffer, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *connection_data);
+                SystemDataValidator(connection_buffer, PACKET_TYPE_DATA, &processed_var_8960_ptr, *connection_data);
             }
             
             // 执行连接管理
@@ -889,7 +889,7 @@ void network_data_receiver(uint64_t param_1, int64_t param_2)
         
         if (handler_pointer == (int64_t *)0x0) {
             // 发送数据
-            SystemDataValidator(&stack0x00000070, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *data_pointer, *(int16_t *)(data_pointer + 1));
+            SystemDataValidator(&stack0x00000070, PACKET_TYPE_DATA, &processed_var_8960_ptr, *data_pointer, *(int16_t *)(data_pointer + 1));
         }
         
         // 执行数据处理
@@ -1065,7 +1065,7 @@ void network_buffer_manager(int64_t *param_1, int64_t param_2, int64_t *param_3)
                     buffer_field_a8 = (uint)*(ushort *)(buffer_data + 1);
                     
                     // 发送缓冲区数据
-                    SystemDataValidator(buffer_data_buffer, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *buffer_data);
+                    SystemDataValidator(buffer_data_buffer, PACKET_TYPE_DATA, &processed_var_8960_ptr, *buffer_data);
                 }
                 
                 // 执行二级缓冲区管理
@@ -1280,11 +1280,11 @@ uint64_t * network_config_initializer(uint64_t *param_1, uint64_t param_2, byte 
     
     // 初始化网络配置
     FUN_1808b0200();
-    *param_1 = &unknown_var_1408_ptr;
+    *param_1 = &ui_system_data_1408_ptr;
     param_1[6] = 0;
     param_1[7] = 0;
     param_1[8] = 0;
-    param_1[9] = &unknown_var_1456_ptr;
+    param_1[9] = &ui_system_data_1456_ptr;
     *(int32_t *)(param_1 + 10) = 0;
     *(int32_t *)((int64_t)param_1 + 0x54) = 0xffffffff;
     
@@ -1295,8 +1295,8 @@ uint64_t * network_config_initializer(uint64_t *param_1, uint64_t param_2, byte 
     param_1[0xc] = config_result;
     
     // 设置配置参数
-    *param_1 = &unknown_var_1472_ptr;
-    param_1[9] = &unknown_var_1520_ptr;
+    *param_1 = &ui_system_data_1472_ptr;
+    param_1[9] = &ui_system_data_1520_ptr;
     param_1[0xd] = 0;
     *(int16_t *)((int64_t)param_1 + 0x74) = 0;
     *(int32_t *)(param_1 + 0xe) = 0x3f800000;
@@ -1350,7 +1350,7 @@ uint network_resource_cleaner1(int64_t *param_1)
         
         if ((0 < (int)resource_count) && (*param_1 != 0)) {
             // 清理资源
-            SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+            SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &processed_var_8432_ptr, 0x100, 1);
         }
         
         *param_1 = 0;
@@ -1391,7 +1391,7 @@ uint network_resource_cleaner1(int64_t *param_1)
     
     if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
         // 清理资源
-        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &processed_var_8432_ptr, 0x100, 1);
     }
     
     *param_1 = 0;
@@ -1430,7 +1430,7 @@ uint network_resource_cleaner2(int64_t *param_1)
         
         if ((0 < (int)resource_count) && (*param_1 != 0)) {
             // 清理资源
-            SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+            SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &processed_var_8432_ptr, 0x100, 1);
         }
         
         *param_1 = 0;
@@ -1457,7 +1457,7 @@ uint network_resource_cleaner2(int64_t *param_1)
     
     if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
         // 清理资源
-        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &processed_var_8432_ptr, 0x100, 1);
     }
     
     *param_1 = 0;

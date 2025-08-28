@@ -13,7 +13,7 @@
  * 这些常量定义了内存管理系统的基本参数和限制
  */
 #define MEMORY_MANAGER_MAX_POOLS 32              // 内存管理器支持的最大内存池数量
-#define MEMORY_MANAGER_CHUNK_SIZE 4096           // 内存池块大小（4KB）
+#define MEMORY_MANAGER_CHSYSTEM_SIZE 4096           // 内存池块大小（4KB）
 #define MEMORY_MANAGER_ALIGNMENT 16              // 内存对齐要求（16字节）
 #define GARBAGE_COLLECTOR_THRESHOLD 1000         // 垃圾回收触发阈值
 #define RESOURCE_CACHE_MAX_SIZE 1024             // 资源缓存最大容量
@@ -910,7 +910,7 @@ void InitializeAdvancedMemoryManagement() {
     
     if (g_system_initialization_count == 1) {
         // 第一次初始化，创建所有管理器
-        InitializeMemoryManager(MEMORY_MANAGER_MAX_POOLS, MEMORY_MANAGER_CHUNK_SIZE);
+        InitializeMemoryManager(MEMORY_MANAGER_MAX_POOLS, MEMORY_MANAGER_CHSYSTEM_SIZE);
         InitializeResourceCache(RESOURCE_CACHE_MAX_SIZE);
         StartGarbageCollection(GARBAGE_COLLECTOR_THRESHOLD);
         

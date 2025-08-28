@@ -91,12 +91,12 @@ void process_engine_command_dispatcher(int64_t context_ptr)
   // 验证命令类型范围
   if (0x2d < command_type) {
     // 命令类型超出范围，触发错误处理
-    trigger_engine_error_handler(&unknown_var_6264_ptr);
+    trigger_engine_error_handler(&processed_var_6264_ptr);
     goto command_complete_handler;
   }
   
   // 获取命令处理函数地址
-  memory_address = (uint64_t)*(uint *)(&unknown_var_7364_ptr + (int64_t)(int)command_type * 4) + 0x180000000;
+  memory_address = (uint64_t)*(uint *)(&processed_var_7364_ptr + (int64_t)(int)command_type * 4) + 0x180000000;
   
   // 根据命令类型分发处理
   switch(command_type) {
@@ -105,7 +105,7 @@ void process_engine_command_dispatcher(int64_t context_ptr)
     validation_flag = check_system_initialization(system_global_data_ptr);
     if (validation_flag != '\0') {
       // 系统已初始化，触发初始化错误
-      trigger_initialization_error(system_message_context,&unknown_var_6208_ptr);
+      trigger_initialization_error(system_message_context,&processed_var_6208_ptr);
     }
     break;
   case 1:
@@ -221,7 +221,7 @@ void process_engine_command_dispatcher(int64_t context_ptr)
     stack_guard = (uint64_t)stack_guard._4_4_ << 0x20;
     error_code_ptr = (**(code **)(*physics_manager_ptr + 0x70))(physics_manager_ptr,*(uint64_t *)(memory_address + 0x10),0,4);
     if (error_code_ptr < 0) {
-      handle_render_error(error_code_ptr,&unknown_var_1768_ptr);
+      handle_render_error(error_code_ptr,&ui_system_data_1768_ptr);
     }
     error_code_ptr = *(int *)(context_ptr + 0xb8);
     if (0 < error_code_ptr) {
@@ -248,7 +248,7 @@ void process_engine_command_dispatcher(int64_t context_ptr)
     stack_guard = (uint64_t)stack_guard._4_4_ << 0x20;
     error_code_ptr = (**(code **)(*physics_manager_ptr + 0x70))(physics_manager_ptr,*(uint64_t *)(memory_address + 0x10),0,4);
     if (error_code_ptr < 0) {
-      handle_render_error(error_code_ptr,&unknown_var_1768_ptr);
+      handle_render_error(error_code_ptr,&ui_system_data_1768_ptr);
     }
     data_length = *(uint64_t *)(context_ptr + 0xb8) >> 6;
     error_code_ptr = (int)(*(uint64_t *)(context_ptr + 0xb0) >> 6);
@@ -471,7 +471,7 @@ memory_free_handler:
       if (*(int64_t *)(system_parameter_buffer + 0x60) != 0) {
         while( true ) {
           cleanup_callback = *(code **)(**(int64_t **)(system_parameter_buffer + 0x60) + 0x68);
-          if (cleanup_callback == (code *)&unknown_var_9696_ptr) {
+          if (cleanup_callback == (code *)&processed_var_9696_ptr) {
             validation_flag = (char)(*(int64_t **)(system_parameter_buffer + 0x60))[2] != '\0';
           }
           else {

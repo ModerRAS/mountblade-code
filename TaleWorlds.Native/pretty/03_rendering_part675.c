@@ -68,7 +68,7 @@ FUN_180653220(int64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   if (lVar3 == 0) {
     uVar5 = param_1[1] - *param_1 >> 5;
     if ((int)uVar5 == 0) {
-      CoreMemoryPoolValidator(param_2,&unknown_var_9944_ptr);
+      CoreMemoryPoolValidator(param_2,&processed_var_9944_ptr);
       puStack_38 = &system_data_buffer_ptr;
       if (lStack_30 == 0) {
         return param_2;
@@ -83,7 +83,7 @@ FUN_180653220(int64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
       if (puVar2 != (void *)0x0) {
         puVar7 = puVar2;
       }
-      System_DataHandler(&puStack_38,&unknown_var_92_ptr,puVar7);
+      System_DataHandler(&puStack_38,&processed_var_92_ptr,puVar7);
       lVar6 = lVar6 + 0x20;
       uVar5 = uVar5 - 1;
     } while (uVar5 != 0);
@@ -316,13 +316,13 @@ void FUN_180653940(void)
   puStack_b8 = &system_state_ptr;
   *plVar1 = lVar4;
   if (lVar4 == 0) {
-    FUN_180626ee0(&unknown_var_80_ptr,&system_data_dda8);
+    FUN_180626ee0(&processed_var_80_ptr,&system_data_dda8);
     lVar4 = *plVar1;
   }
   lVar4 = mono_assembly_get_image(lVar4);
   plVar1[1] = lVar4;
   if (lVar4 == 0) {
-    FUN_180626ee0(&unknown_var_328_ptr);
+    FUN_180626ee0(&memory_allocator_328_ptr);
   }
   puStack_90 = &system_data_buffer_ptr;
   uStack_78 = 0;
@@ -367,11 +367,11 @@ FUN_180653ce0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3432_ptr;
+  *param_2 = &memory_allocator_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0x10;
-  strcpy_s(param_2[1],0x80,&unknown_var_384_ptr,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&memory_allocator_384_ptr,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 

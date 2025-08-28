@@ -579,15 +579,15 @@ FUN_1806e8b10(uint64_t *param_1,int16_t param_2,int16_t *param_3,uint64_t param_
   uVar1 = *param_3;
   *(int16_t *)(param_1 + 1) = param_2;
   *(int16_t *)((int64_t)param_1 + 10) = uVar1;
-  *param_1 = &unknown_var_5752_ptr;
-  param_1[3] = &unknown_var_6032_ptr;
+  *param_1 = &processed_var_5752_ptr;
+  param_1[3] = &processed_var_6032_ptr;
   param_1[4] = 0;
   param_1[0xc] = 0;
   param_1[2] = 0;
   if (param_8 != 0) {
     plVar6 = (int64_t *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
     puVar7 = (int32_t *)
-             (**(code **)(*plVar6 + 8))(plVar6,param_8,&unknown_var_1832_ptr,&unknown_var_3536_ptr,0x1c6);
+             (**(code **)(*plVar6 + 8))(plVar6,param_8,&ui_system_data_1832_ptr,&memory_allocator_3536_ptr,0x1c6);
   }
   fVar11 = param_5[1];
   fVar13 = *param_5;
@@ -689,8 +689,8 @@ void FUN_1806e9040(uint64_t *param_1)
   int64_t lVar1;
   int64_t *plVar2;
   
-  *param_1 = &unknown_var_5752_ptr;
-  param_1[3] = &unknown_var_6032_ptr;
+  *param_1 = &processed_var_5752_ptr;
+  param_1[3] = &processed_var_6032_ptr;
   if ((*(byte *)((int64_t)param_1 + 10) & 1) != 0) {
     lVar1 = param_1[0xd];
     if (lVar1 != 0) {
@@ -699,8 +699,8 @@ void FUN_1806e9040(uint64_t *param_1)
     }
     param_1[0xd] = 0;
   }
-  param_1[3] = &unknown_var_1416_ptr;
-  *param_1 = &unknown_var_2408_ptr;
+  param_1[3] = &ui_system_data_1416_ptr;
+  *param_1 = &rendering_buffer_2408_ptr;
   return;
 }
 
@@ -723,8 +723,8 @@ void FUN_1806e9064(int64_t param_1)
     (**(code **)(*plVar2 + 0x10))(plVar2,lVar1);
   }
   unaff_RBX[0xd] = 0;
-  unaff_RBX[3] = &unknown_var_1416_ptr;
-  *unaff_RBX = &unknown_var_2408_ptr;
+  unaff_RBX[3] = &ui_system_data_1416_ptr;
+  *unaff_RBX = &rendering_buffer_2408_ptr;
   return;
 }
 
@@ -739,8 +739,8 @@ void FUN_1806e9092(void)
 {
   uint64_t *unaff_RBX;
   
-  unaff_RBX[3] = &unknown_var_1416_ptr;
-  *unaff_RBX = &unknown_var_2408_ptr;
+  unaff_RBX[3] = &ui_system_data_1416_ptr;
+  *unaff_RBX = &rendering_buffer_2408_ptr;
   return;
 }
 
@@ -782,12 +782,12 @@ uint64_t FUN_1806e9140(uint64_t param_1,int64_t param_2)
     lVar3 = 0;
     lVar4 = lVar3;
     do {
-      pcVar1 = &unknown_var_2448_ptr + lVar4;
+      pcVar1 = &rendering_buffer_2448_ptr + lVar4;
       lVar4 = lVar4 + 1;
       if (*pcVar1 != *(char *)(param_2 + -1 + lVar4)) {
         do {
           lVar4 = lVar3 + 1;
-          if (*(char *)(param_2 + lVar3) != (&unknown_var_2396_ptr)[lVar3]) {
+          if (*(char *)(param_2 + lVar3) != (&rendering_buffer_2396_ptr)[lVar3]) {
             return 0;
           }
           lVar3 = lVar4;
@@ -827,22 +827,22 @@ FUN_1806e91d0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   plVar4 = (int64_t *)PxGetFoundation();
   cVar2 = (**(code **)(*plVar4 + 0x28))(plVar4);
   if (cVar2 == '\0') {
-    puVar5 = &unknown_var_1728_ptr;
+    puVar5 = &ui_system_data_1728_ptr;
   }
   else {
     puVar5 = (void *)__std_type_info_name(0x180bfc6a0,0x180c827e0);
   }
   plVar3 = (int64_t *)
-           (**(code **)(*plVar3 + 8))(plVar3,0x70,puVar5,&unknown_var_7440_ptr,CONCAT44(uVar9,0x2d));
+           (**(code **)(*plVar3 + 8))(plVar3,0x70,puVar5,&processed_var_7440_ptr,CONCAT44(uVar9,0x2d));
   if (plVar3 != (int64_t *)0x0) {
     pfVar6 = (float *)(**(code **)(*param_1 + 0x20))(param_1);
     auStackX_8[0] = 3;
     uVar10 = param_4;
-    FUN_1806eaa80(plVar3,0x102,auStackX_8,param_2,param_3,param_4,param_5,0x80,&unknown_var_7408_ptr);
+    FUN_1806eaa80(plVar3,0x102,auStackX_8,param_2,param_3,param_4,param_5,0x80,&processed_var_7408_ptr);
     uVar11 = (int32_t)((uint64_t)uVar10 >> 0x20);
     lVar7 = plVar3[0xd];
-    *plVar3 = (int64_t)&unknown_var_6984_ptr;
-    plVar3[3] = (int64_t)&unknown_var_7328_ptr;
+    *plVar3 = (int64_t)&processed_var_6984_ptr;
+    plVar3[3] = (int64_t)&processed_var_7328_ptr;
     fVar1 = *pfVar6;
     fVar8 = fVar1 * 0.01;
     *(int32_t *)(lVar7 + 0x6c) = 0x501502f9;

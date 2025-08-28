@@ -1,3 +1,7 @@
+/* 函数别名定义: DataProcessingEngine */
+#define DataProcessingEngine DataProcessingEngine
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -333,7 +337,7 @@ void FUN_180127440(void)
     if (0 < (int)uVar11) {
       uVar15 = (uint64_t)uVar11;
     }
-    FUN_18011dc70(piVar1,uVar15);
+    DataProcessingEngine0(piVar1,uVar15);
   }
   *piVar1 = 0;
   uVar15 = uVar16;
@@ -360,7 +364,7 @@ void FUN_180127440(void)
           if (iVar13 + 1 < iVar12) {
             iVar8 = iVar12;
           }
-          FUN_18011dc70(piVar1,iVar8);
+          DataProcessingEngine0(piVar1,iVar8);
           iVar13 = *piVar1;
         }
         *(int64_t *)(*(int64_t *)(lVar4 + 0x1620) + (int64_t)iVar13 * 8) = lVar5;
@@ -382,10 +386,10 @@ void FUN_180127440(void)
     if (0 < (int)uVar11) {
       uVar15 = (uint64_t)uVar11;
     }
-    FUN_18011dc70(puVar2,uVar15);
+    DataProcessingEngine0(puVar2,uVar15);
   }
   *puVar2 = 0;
-  FUN_18011dc70(puVar2,*(int32_t *)(lVar10 + 0x1aa0));
+  DataProcessingEngine0(puVar2,*(int32_t *)(lVar10 + 0x1aa0));
   uVar11 = *(uint *)(lVar10 + 0x1aa0);
   uVar15 = uVar16;
   uVar18 = uVar16;
@@ -522,7 +526,7 @@ void FUN_180127466(void)
     if (0 < (int)uVar10) {
       uVar14 = (uint64_t)uVar10;
     }
-    FUN_18011dc70(piVar1,uVar14);
+    DataProcessingEngine0(piVar1,uVar14);
   }
   *piVar1 = 0;
   uVar14 = uVar15;
@@ -549,7 +553,7 @@ void FUN_180127466(void)
           if (iVar12 + 1 < iVar11) {
             iVar8 = iVar11;
           }
-          FUN_18011dc70(piVar1,iVar8);
+          DataProcessingEngine0(piVar1,iVar8);
           iVar12 = *piVar1;
         }
         *(int64_t *)(*(int64_t *)(lVar4 + 0x1620) + (int64_t)iVar12 * 8) = lVar5;
@@ -571,10 +575,10 @@ void FUN_180127466(void)
     if (0 < (int)uVar10) {
       uVar14 = (uint64_t)uVar10;
     }
-    FUN_18011dc70(puVar2,uVar14);
+    DataProcessingEngine0(puVar2,uVar14);
   }
   *puVar2 = 0;
-  FUN_18011dc70(puVar2,*(int32_t *)(unaff_RBX + 0x1aa0));
+  DataProcessingEngine0(puVar2,*(int32_t *)(unaff_RBX + 0x1aa0));
   uVar10 = *(uint *)(unaff_RBX + 0x1aa0);
   uVar14 = uVar15;
   uVar17 = uVar15;
@@ -714,7 +718,7 @@ void FUN_18012747d(void)
     if (0 < iVar8) {
       iVar13 = iVar8;
     }
-    FUN_18011dc70(piVar1,iVar13);
+    DataProcessingEngine0(piVar1,iVar13);
   }
   *piVar1 = CONCAT22(unaff_000000a2,CONCAT11(unaff_000000a1,unaff_R12B));
   iVar13 = CONCAT22(unaff_000000a2,CONCAT11(unaff_000000a1,unaff_R12B));
@@ -745,7 +749,7 @@ void FUN_18012747d(void)
           if (iVar8 + 1 < iVar9) {
             iVar6 = iVar9;
           }
-          FUN_18011dc70(piVar1,iVar6);
+          DataProcessingEngine0(piVar1,iVar6);
           iVar8 = *piVar1;
         }
         *(int64_t *)(*(int64_t *)(lVar12 + 0x1620) + (int64_t)iVar8 * 8) = lVar3;
@@ -766,10 +770,10 @@ void FUN_18012747d(void)
     if (0 < iVar8) {
       iVar13 = iVar8;
     }
-    FUN_18011dc70(piVar1,iVar13);
+    DataProcessingEngine0(piVar1,iVar13);
   }
   *piVar1 = CONCAT22(unaff_000000a2,CONCAT11(unaff_000000a1,unaff_R12B));
-  FUN_18011dc70(piVar1,*(int32_t *)(unaff_RBX + 0x1aa0));
+  DataProcessingEngine0(piVar1,*(int32_t *)(unaff_RBX + 0x1aa0));
   iVar8 = *(int *)(unaff_RBX + 0x1aa0);
   iVar13 = CONCAT22(unaff_000000a2,CONCAT11(unaff_000000a1,unaff_R12B));
   if (iVar8 != 0) {

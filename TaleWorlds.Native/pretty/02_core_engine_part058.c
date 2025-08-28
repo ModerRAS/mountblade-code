@@ -515,7 +515,7 @@ void FUN_180094b30(int64_t param_1,int64_t param_2)
   
   uStack_88 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_a8;
-  puStack_78 = &unknown_var_3480_ptr;
+  puStack_78 = &memory_allocator_3480_ptr;
   puStack_70 = auStack_60;
   uStack_68 = 0;
   auStack_60[0] = 0;
@@ -670,7 +670,7 @@ void FUN_180094e80(uint64_t param_1,uint64_t param_2,int64_t param_3)
   uStack_a0 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_d8;
   uStack_a8 = 0;
-  puStack_88 = &unknown_var_3480_ptr;
+  puStack_88 = &memory_allocator_3480_ptr;
   puStack_80 = auStack_70;
   uStack_78 = 0;
   auStack_70[0] = 0;
@@ -732,7 +732,7 @@ void FUN_180095000(uint64_t param_1,uint64_t param_2,int64_t param_3,int8_t para
   uStack_a0 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_c8;
   uStack_a8 = 0;
-  puStack_88 = &unknown_var_3480_ptr;
+  puStack_88 = &memory_allocator_3480_ptr;
   puStack_80 = auStack_70;
   uStack_78 = 0;
   auStack_70[0] = 0;

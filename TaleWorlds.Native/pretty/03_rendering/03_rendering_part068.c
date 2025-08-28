@@ -158,9 +158,9 @@ void rendering_system_initialize_render_context(int64_t render_context, int64_t 
             batch_processor = queue_parameters;
             resource_allocator = &queue_size;
             entry_point = FUN_1803089a0;
-            exit_handler = &unknown_var_1888_ptr;
+            exit_handler = &ui_system_data_1888_ptr;
             queue_capacity = render_context;
-            resource_table[0] = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x38, 8, system_allocation_flags);
+            resource_table[0] = (int64_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x38, 8, system_allocation_flags);
             *resource_table[0] = (int64_t)render_target;
             resource_table[0][1] = (int64_t)visibility_flag;
             resource_table[0][2] = (int64_t)quality_parameter;
@@ -481,7 +481,7 @@ bool rendering_system_check_render_visibility(int64_t render_context, int64_t *c
   
   (**(code **)(*camera_matrix + 0x218))(camera_matrix);
   (**(code **)(*camera_matrix + 0x218))(camera_matrix);
-  if ((void *)*camera_matrix == &unknown_var_1008_ptr) {
+  if ((void *)*camera_matrix == &ui_system_data_1008_ptr) {
     render_priority = *(uint *)((int64_t)camera_matrix + 0x174);
   }
   else {

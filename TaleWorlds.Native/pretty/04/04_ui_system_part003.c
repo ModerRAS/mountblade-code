@@ -1428,7 +1428,7 @@ void ui_cleanup_resource_pointers(int64_t resource_ptr)
 uint64_t * ui_free_managed_memory_block(uint64_t *memory_ptr, uint64_t flags)
 
 {
-  *memory_ptr = &unknown_var_9792_ptr;
+  *memory_ptr = &processed_var_9792_ptr;
   if ((flags & 1) != 0) {
     // 根据标志位执行实际的内存释放
     free(memory_ptr, 0x160);
@@ -1530,14 +1530,14 @@ void ui_cleanup_global_data_structure(uint64_t *global_ptr)
 
 {
   // 重置全局数据结构为默认值
-  *global_ptr = &unknown_var_9808_ptr;
+  *global_ptr = &processed_var_9808_ptr;
   // 重置托管库函数指针表
   system_cache_buffer = 0;                  // system_cache_buffer: 托管库函数指针表（重置）
   if (global_ptr[0x2d] != 0) {
     // 释放资源内存
     ui_cleanup_resource_memory();
   }
-  global_ptr[1] = &unknown_var_9792_ptr;
+  global_ptr[1] = &processed_var_9792_ptr;
   return;
 }
 

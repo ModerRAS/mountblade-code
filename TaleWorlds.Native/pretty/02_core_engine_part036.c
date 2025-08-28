@@ -64,7 +64,7 @@ void FUN_1800786e0(uint64_t *param_1,int64_t param_2)
       if (*(void **)(lVar1 + 0x18) != (void *)0x0) {
         puVar6 = *(void **)(lVar1 + 0x18);
       }
-      SystemDataInitializer(&unknown_var_5392_ptr,puVar6);
+      SystemDataInitializer(&processed_var_5392_ptr,puVar6);
     }
     iVar9 = iVar9 + 1;
     plVar8 = plVar8 + 1;
@@ -230,7 +230,7 @@ void FUN_1800786e0(uint64_t *param_1,int64_t param_2)
     uStack_50 = *(uint64_t *)(param_2 + 0x308);
   }
   FUN_180084c70(param_1 + 8,&uStack_58,&uStackX_20,auStackX_10,&plStackX_8);
-  if ((void *)*param_1 == &unknown_var_7192_ptr) {
+  if ((void *)*param_1 == &processed_var_7192_ptr) {
     pfVar5 = (float *)(param_1 + 0x10);
     *(uint64_t *)pfVar5 = param_1[8];
     param_1[0x11] = param_1[9];

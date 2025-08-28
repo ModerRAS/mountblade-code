@@ -301,7 +301,7 @@ uint64_t FUN_180549230(int64_t *param_1,uint64_t param_2,int64_t param_3)
     (**(code **)(*(int64_t *)param_1[0x23] + 0x1e8))
               ((int64_t *)param_1[0x23],param_2,*(uint64_t *)(param_3 + 0x6c0));
   }
-  if ((void *)*param_1 == &unknown_var_248_ptr) {
+  if ((void *)*param_1 == &rendering_buffer_248_ptr) {
     LOCK();
     *(int *)(param_1 + 1) = (int)param_1[1] + 1;
     UNLOCK();
@@ -501,7 +501,7 @@ void FUN_180549730(int64_t param_1,uint64_t param_2)
   *(int32_t *)(lVar6 + 0x120) = uVar3;
   *(int32_t *)(lVar6 + 0x124) = *(int32_t *)(param_1 + 0x150);
   puVar1 = (void *)**(uint64_t **)(param_1 + 0x100);
-  if (puVar1 == &unknown_var_9304_ptr) {
+  if (puVar1 == &processed_var_9304_ptr) {
     puVar7 = *(uint64_t **)(param_1 + 0x100) + 0x66;
   }
   else {

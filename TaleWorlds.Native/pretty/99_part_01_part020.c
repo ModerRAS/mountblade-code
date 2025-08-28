@@ -1122,7 +1122,7 @@ int64_t * FUN_1800b4910(int64_t param_1,int64_t *param_2,int64_t param_3)
     if (*(void **)(param_3 + 8) != (void *)0x0) {
       puVar3 = *(void **)(param_3 + 8);
     }
-    FUN_1806272a0(&unknown_var_7864_ptr,puVar3);
+    FUN_1806272a0(&processed_var_7864_ptr,puVar3);
     plVar2 = *(int64_t **)(param_1 + 0xc58);
     if (plVar2 != (int64_t *)0x0) {
       plStackX_20 = plVar2;

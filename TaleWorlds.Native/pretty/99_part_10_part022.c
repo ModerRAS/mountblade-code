@@ -300,7 +300,7 @@ void SystemResourceCleanupAndReleaseProcessor(uint64_t *param_1)
     uint uVar9;
     uint64_t uVar10;
     
-    *param_1 = &unknown_var_5848_ptr;
+    *param_1 = &processed_var_5848_ptr;
     iVar3 = *(int *)(param_1 + 4);
     if (iVar3 != 0) {
         puVar1 = param_1 + 8;
@@ -365,7 +365,7 @@ void SystemResourceCleanupAndReleaseProcessor(uint64_t *param_1)
         (-1 < (int)*(uint *)((int64_t)param_1 + 0x24))) && (param_1[3] != 0)) {
         (**(code **)(**(int64_t **)param_1[2] + 0x10))();
     }
-    *param_1 = &unknown_var_2008_ptr;
+    *param_1 = &rendering_buffer_2008_ptr;
     return;
 }
 
@@ -466,7 +466,7 @@ void SystemResourceAdvancedCleanupAndReleaseProcessor(uint64_t *param_1)
         (-1 < (int)*(uint *)((int64_t)param_1 + 0x24))) && (param_1[3] != 0)) {
         (**(code **)(**(int64_t **)param_1[2] + 0x10))();
     }
-    *param_1 = &unknown_var_2008_ptr;
+    *param_1 = &rendering_buffer_2008_ptr;
     return;
 }
 
@@ -560,7 +560,7 @@ void SystemResourceParameterizedCleanupAndReleaseProcessor(int64_t param_1)
                 (-1 < (int)*(uint *)((int64_t)unaff_RDI + 0x24))) && (unaff_RDI[3] != 0)) {
                 (**(code **)(**(int64_t **)unaff_RDI[2] + 0x10))();
             }
-            *unaff_RDI = &unknown_var_2008_ptr;
+            *unaff_RDI = &rendering_buffer_2008_ptr;
             return;
         }
     }
@@ -603,7 +603,7 @@ void SystemResourceFastCleanupProcessor(void)
         (-1 < (int)*(uint *)((int64_t)unaff_RDI + 0x24))) && (unaff_RDI[3] != 0)) {
         (**(code **)(**(int64_t **)unaff_RDI[2] + 0x10))();
     }
-    *unaff_RDI = &unknown_var_2008_ptr;
+    *unaff_RDI = &rendering_buffer_2008_ptr;
     return;
 }
 
@@ -637,7 +637,7 @@ void SystemResourceConditionalCleanupProcessor(uint64_t param_1,int64_t param_2)
         (-1 < (int)*(uint *)((int64_t)unaff_RDI + 0x24))) && (unaff_RDI[3] != 0)) {
         (**(code **)(**(int64_t **)unaff_RDI[2] + 0x10))();
     }
-    *unaff_RDI = &unknown_var_2008_ptr;
+    *unaff_RDI = &rendering_buffer_2008_ptr;
     return;
 }
 
@@ -777,7 +777,7 @@ uint64_t SystemLargeMemoryReleaseProcessor(uint64_t param_1,uint64_t param_2)
  */
 uint64_t * SystemSmallObjectMemoryReleaseProcessor(uint64_t *param_1,uint64_t param_2)
 {
-    *param_1 = &unknown_var_5768_ptr;
+    *param_1 = &processed_var_5768_ptr;
     if ((param_2 & 1) != 0) {
         free(param_1,8);
     }
@@ -811,9 +811,9 @@ uint64_t * SystemCompositeObjectMemoryReleaseProcessor(uint64_t *param_1,uint pa
         (**(code **)(**(int64_t **)param_1[0x13] + 0x10))();
     }
     FUN_1806b2c20(param_1 + 3);
-    param_1[2] = &unknown_var_2008_ptr;
-    param_1[1] = &unknown_var_5768_ptr;
-    *param_1 = &unknown_var_1848_ptr;
+    param_1[2] = &rendering_buffer_2008_ptr;
+    param_1[1] = &processed_var_5768_ptr;
+    *param_1 = &ui_system_data_1848_ptr;
     if ((param_2 & 1) != 0) {
         if ((param_2 & 4) == 0) {
             plVar1 = (int64_t *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
@@ -1345,7 +1345,7 @@ void SystemAdvancedEventHandler(int64_t param_1,int16_t param_2,uint64_t param_3
             *puVar3 = (char)uStackX_10;
             puVar3[1] = uStackX_10._1_1_;
             *(int64_t *)(lVar2 + 0x18) = *(int64_t *)(lVar2 + 0x18) + 2;
-            FUN_1806b6980(param_1 + -0x38,&unknown_var_6648_ptr,&uStack_78,uStack_88);
+            FUN_1806b6980(param_1 + -0x38,&processed_var_6648_ptr,&uStack_78,uStack_88);
             if (*(uint *)(param_1 + -0x60) <=
                 (uint)(*(int *)(param_1 + -0x88) - *(int *)(param_1 + -0x90))) {
                 FUN_1806b4470(lVar1);
@@ -1475,7 +1475,7 @@ void SystemAdvancedEventHandler(int64_t param_1,int16_t param_2,uint64_t param_3
             *puVar3 = (char)uStackX_10;
             puVar3[1] = uStackX_10._1_1_;
             *(int64_t *)(lVar4 + 0x18) = *(int64_t *)(lVar4 + 0x18) + 2;
-            FUN_1806b6980(param_1 + -0x38,&unknown_var_6648_ptr,&uStack_80,uVar11);
+            FUN_1806b6980(param_1 + -0x38,&processed_var_6648_ptr,&uStack_80,uVar11);
         }
         else {
             uStack_82 = uStackX_10;

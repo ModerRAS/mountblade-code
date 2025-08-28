@@ -302,7 +302,7 @@ RenderingSystemStatePtr RenderingSystemResourceStateSynchronizer(
     RenderingSystemState stack_state_3;
     
     // 分配资源参数
-    resource_param = FUN_18062b1e0(system_memory_pool_ptr, 
+    resource_param = CoreSystem_LoggingManager0(system_memory_pool_ptr, 
         RENDERING_SYSTEM_MEMORY_POOL_SIZE, 
         RENDERING_SYSTEM_RESOURCE_TYPE_SIZE, 
         3);
@@ -380,7 +380,7 @@ RenderingSystemParameterPtr RenderingSystemAdvancedPipelineManager(
     if (pipeline_handle != 0) {
         if (param_2 == 0) {
             // 创建标准管线
-            config_param = FUN_18062b1e0(system_memory_pool_ptr, 
+            config_param = CoreSystem_LoggingManager0(system_memory_pool_ptr, 
                 RENDERING_SYSTEM_MEMORY_POOL_SIZE, 
                 RENDERING_SYSTEM_RESOURCE_TYPE_SIZE, 
                 0xd);
@@ -684,7 +684,7 @@ void RenderingSystemBatchProcessor(
     }
     
     // 设置默认批处理参数
-    SystemCore_ResourceManager0(&unknown_var_9576_ptr);
+    SystemCore_ResourceManager0(&processed_var_9576_ptr);
     *param_2 = RENDERING_MATH_FLOAT_ONE;
     param_2[1] = RENDERING_MATH_FLOAT_ZERO;
     param_2[2] = RENDERING_MATH_DOUBLE_ONE;
@@ -834,7 +834,7 @@ void RenderingSystemVectorProcessor(
     }
     
     // 设置默认向量参数
-    SystemCore_ResourceManager0(&unknown_var_9344_ptr);
+    SystemCore_ResourceManager0(&processed_var_9344_ptr);
     *param_2 = RENDERING_MATH_FLOAT_ONE;
     param_2[1] = RENDERING_MATH_FLOAT_ZERO;
     param_2[2] = RENDERING_MATH_DOUBLE_ONE;
@@ -881,7 +881,7 @@ void RenderingSystemParameterHandler(
     }
     
     // 设置默认参数
-    SystemCore_ResourceManager0(&unknown_var_9400_ptr);
+    SystemCore_ResourceManager0(&processed_var_9400_ptr);
     *param_2 = RENDERING_MATH_FLOAT_ONE;
     param_2[1] = RENDERING_MATH_FLOAT_ZERO;
     param_2[2] = RENDERING_MATH_DOUBLE_ONE;

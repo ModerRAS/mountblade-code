@@ -445,7 +445,7 @@ void FUN_180760970(int64_t param_1,int64_t param_2,uint64_t param_3,int32_t para
       puStack_178 = (int32_t *)auStack_148;
       auStack_148[0] = 0;
                     // WARNING: Subroutine does not return
-      DataTransformer(iVar2,7,param_1,&unknown_var_1152_ptr);
+      DataTransformer(iVar2,7,param_1,&ui_system_data_1152_ptr);
     }
   }
   uVar1 = param_6;

@@ -819,7 +819,7 @@ uint64_t * FUN_1803d8b80(uint64_t *param_1,uint64_t param_2)
     (**(code **)(*(int64_t *)param_1[0x40e] + 0x38))();
   }
   SystemDataValidator(param_1 + 0xe,0x20,0x100,FUN_180046860,uVar1);
-  *param_1 = &unknown_var_3952_ptr;
+  *param_1 = &memory_allocator_3952_ptr;
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();

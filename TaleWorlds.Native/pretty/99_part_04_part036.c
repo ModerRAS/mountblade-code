@@ -680,7 +680,7 @@ void FUN_1802a7680(int64_t param_1,uint64_t *param_2)
     if (*(void **)(param_1 + 8) != (void *)0x0) {
       puVar12 = *(void **)(param_1 + 8);
     }
-    FUN_1806272a0(&unknown_var_2984_ptr,puVar12);
+    FUN_1806272a0(&rendering_buffer_2984_ptr,puVar12);
   }
   else {
     puVar12 = &system_buffer_ptr;
@@ -716,7 +716,7 @@ void FUN_1802a7680(int64_t param_1,uint64_t *param_2)
       do {
         pcVar1 = (char *)(lStack_3a8 + uVar11);
         uVar9 = uVar11 + 1;
-        pcVar2 = &unknown_var_7064_ptr + uVar11;
+        pcVar2 = &processed_var_7064_ptr + uVar11;
         uVar10 = uVar8;
         if (*pcVar1 != *pcVar2) break;
         uVar11 = uVar9;
@@ -725,14 +725,14 @@ void FUN_1802a7680(int64_t param_1,uint64_t *param_2)
         uVar11 = uVar10 + 1;
         if (*(char *)(lStack_3a8 + uVar10) != (&system_data_2bf0)[uVar10]) {
           if (*pcVar1 != *pcVar2) goto LAB_1802a796e;
-          puVar7 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,&unknown_var_7715_ptr);
+          puVar7 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,&processed_var_7715_ptr);
           *puVar7 = 0;
           puVar7[1] = 0;
           puVar12 = &system_buffer_ptr;
           if (puStack_3e0 != (void *)0x0) {
             puVar12 = puStack_3e0;
           }
-          iVar4 = FUN_18062dee0(puVar7,puVar12,&unknown_var_4880_ptr);
+          iVar4 = FUN_18062dee0(puVar7,puVar12,&processed_var_4880_ptr);
           if (iVar4 == 0) {
             uVar8 = FUN_18062e090(puVar7);
             *(int32_t *)(param_2 + 0xc) = 0x10001;
@@ -753,7 +753,7 @@ void FUN_1802a7680(int64_t param_1,uint64_t *param_2)
                     // WARNING: Subroutine does not return
               CoreEngineMemoryPoolCleaner(puVar7);
             }
-            FUN_180627020(&unknown_var_9696_ptr);
+            FUN_180627020(&processed_var_9696_ptr);
                     // WARNING: Subroutine does not return
             memset(*param_2,0,param_2[1]);
           }
@@ -785,7 +785,7 @@ LAB_1802a796e:
       if (puStack_3e0 != (void *)0x0) {
         puVar12 = puStack_3e0;
       }
-      iVar4 = fopen_s(&uStack_3b8,puVar12,&unknown_var_4880_ptr);
+      iVar4 = fopen_s(&uStack_3b8,puVar12,&processed_var_4880_ptr);
       uVar11 = uStack_3b8;
       if (iVar4 != 0) {
         uVar11 = uVar8;

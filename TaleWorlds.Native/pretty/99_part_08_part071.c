@@ -170,11 +170,11 @@ LAB_1805b9a51:
     cVar11 = 0 < (int)uVar18;
     auStackX_18[0] = CONCAT31(auStackX_18[0]._1_3_,cVar11);
   }
-  puVar31 = &unknown_var_2336_ptr;
+  puVar31 = &rendering_buffer_2336_ptr;
   if (param_2 != '\0') {
-    puVar31 = &unknown_var_2328_ptr;
+    puVar31 = &rendering_buffer_2328_ptr;
   }
-  uVar39 = func_0x000180508000(param_1,&unknown_var_3152_ptr,puVar31,cVar11);
+  uVar39 = func_0x000180508000(param_1,&memory_allocator_3152_ptr,puVar31,cVar11);
   if (cVar11 == '\0') {
     uStack_148 = (int32_t)param_1[5];
     fStack_144 = *(float *)((int64_t)param_1 + 0x2c);

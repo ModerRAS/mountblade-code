@@ -608,7 +608,7 @@ LAB_18032b6ff:
     // 检查是否需要创建新资源
     if (current_entry == *(uint **)(hash_table_base + table_size * 8)) {
         // 分配资源内存
-        resource_data = FUN_18062b1e0(system_memory_pool_ptr, 0x80, 8, 3);
+        resource_data = CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x80, 8, 3);
         resource_data = FUN_18033ac00(resource_data);
         
         // 计算哈希索引
@@ -687,7 +687,7 @@ int64_t RenderingSystemResourceSetter(int64_t resource_manager, uint resource_id
     if ((*(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +
                  0x48) < render_system_config_buffer) && (SystemInitializer(&system_memory_96d0), render_system_config_buffer == -1)) {
         // 初始化线程局部数据
-        render_system_config_buffer = &unknown_var_3480_ptr;
+        render_system_config_buffer = &memory_allocator_3480_ptr;
         render_system_config_buffer = &system_memory_9748;
         render_system_config_buffer = 0;
     }
@@ -722,7 +722,7 @@ void RenderingSystemFileWriter(int64_t render_context, uint64_t file_handle)
     file_info = file_handle;
     
     // 创建文件头
-    file_header = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, 3);
+    file_header = (uint64_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x18, 8, 3);
     file_info = FUN_180334500(render_context, &file_stack);
     
     // 确定文件格式
@@ -734,7 +734,7 @@ void RenderingSystemFileWriter(int64_t render_context, uint64_t file_handle)
     // 初始化文件头
     *file_header = 0;
     *(int8_t *)(file_header + 2) = 0;
-    FUN_18062dee0(file_header, file_format, &unknown_var_9772_ptr);
+    FUN_18062dee0(file_header, file_format, &processed_var_9772_ptr);
     
     // 设置文件栈信息
     file_stack = &system_data_buffer_ptr;
@@ -884,7 +884,7 @@ void RenderingSystemResourceLoader(int64_t render_context, int64_t file_handle)
     
     // 获取文件信息
     FUN_180334500(render_context, resource_info);
-    resource_buffer = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x18, 8, 3);
+    resource_buffer = (uint64_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x18, 8, 3);
     resource_format = &system_buffer_ptr;
     if (resource_stack != (void *)0x0) {
         resource_format = resource_stack;
@@ -893,11 +893,11 @@ void RenderingSystemResourceLoader(int64_t render_context, int64_t file_handle)
     // 初始化资源缓冲区
     *resource_buffer = 0;
     *(int8_t *)(resource_buffer + 2) = 0;
-    FUN_18062dee0(resource_buffer, resource_format, &unknown_var_4880_ptr);
+    FUN_18062dee0(resource_buffer, resource_format, &processed_var_4880_ptr);
     
     // 检查文件句柄
     if (resource_buffer[1] == 0) {
-        SystemCore_ResourceManager0(&unknown_var_7632_ptr);
+        SystemCore_ResourceManager0(&processed_var_7632_ptr);
         if (resource_buffer[1] != 0) {
             fclose();
             resource_buffer[1] = 0;
@@ -1224,7 +1224,7 @@ void RenderingSystemDataSerializer(int64_t render_context, int64_t file_handle, 
     buffer_start = _ftelli64(*(uint64_t *)(file_handle + 8));
     
     // 更新文件信息
-    FUN_180062300(system_message_context, &unknown_var_7576_ptr, data_flags, buffer_start - offset,
+    FUN_180062300(system_message_context, &processed_var_7576_ptr, data_flags, buffer_start - offset,
                   *(uint64_t *)(render_context + 0x2d0));
 }
 

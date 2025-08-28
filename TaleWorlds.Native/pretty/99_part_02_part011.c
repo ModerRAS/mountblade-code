@@ -301,7 +301,7 @@ LAB_1800ef375:
                 uVar30 = extraout_XMM0_Da_00;
               }
               if (*(int64_t *)(lVar19 + 0x2e0) == 0) {
-                puStack_88 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0xa8,8,3);
+                puStack_88 = (uint64_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr,0xa8,8,3);
                 *puStack_88 = 0;
                 puStack_88[1] = 0;
                 puStack_88[2] = 0;
@@ -421,7 +421,7 @@ LAB_1800ef81c:
                     uVar30 = extraout_XMM0_Da_01;
                   }
                   if (*(int64_t *)(lVar19 + 0x2f0) == 0) {
-                    ppppppplStackX_8 = (int64_t *******)FUN_18062b1e0(system_memory_pool_ptr,0x18,8);
+                    ppppppplStackX_8 = (int64_t *******)CoreSystem_LoggingManager0(system_memory_pool_ptr,0x18,8);
                     *ppppppplStackX_8 = (int64_t ******)0x0;
                     ppppppplStackX_8[1] = (int64_t ******)0x0;
                     *(int32_t *)(ppppppplStackX_8 + 2) = 0;
@@ -469,11 +469,11 @@ LAB_1800ef805:
               }
               else {
                 if (bVar7) {
-                  ppppppplVar15 = (int64_t *******)FUN_18062b1e0(system_memory_pool_ptr,200,8);
+                  ppppppplVar15 = (int64_t *******)CoreSystem_LoggingManager0(system_memory_pool_ptr,200,8);
                   ppppppplStackX_8 = ppppppplVar15;
                   FUN_180049830(ppppppplVar15);
                   pppppplVar16 = pppppplStack_e0;
-                  *ppppppplVar15 = (int64_t ******)&unknown_var_6584_ptr;
+                  *ppppppplVar15 = (int64_t ******)&processed_var_6584_ptr;
                   ppppppplVar15[0x18] = (int64_t ******)0x0;
                   pppppplStack_b0 = pppppplStack_e0;
                   (*(code *)(*pppppplStack_e0)[5])(pppppplStack_e0);
@@ -520,10 +520,10 @@ LAB_1800ef805:
               if (cVar17 == '\0') goto LAB_1800ef691;
             }
             else if (cVar17 == '\0') goto LAB_1800ef6dd;
-            ppppppplVar15 = (int64_t *******)FUN_18062b1e0(system_memory_pool_ptr,0xd0,8);
+            ppppppplVar15 = (int64_t *******)CoreSystem_LoggingManager0(system_memory_pool_ptr,0xd0,8);
             ppppppplStackX_8 = ppppppplVar15;
             FUN_180049830(ppppppplVar15);
-            *ppppppplVar15 = (int64_t ******)&unknown_var_6728_ptr;
+            *ppppppplVar15 = (int64_t ******)&processed_var_6728_ptr;
             ppppppplVar15[0x18] = (int64_t ******)0x0;
             *(bool *)(ppppppplVar15 + 0x19) = bVar28;
             if (pppppplVar8 != (int64_t ******)0x0) {

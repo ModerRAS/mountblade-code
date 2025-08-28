@@ -92,7 +92,7 @@ void update_render_object_status(int64_t render_context, int64_t *object_list)
         }
         else {
           // 处理错误情况
-          SystemCore_ResourceManager0(&unknown_var_5232_ptr);
+          SystemCore_ResourceManager0(&processed_var_5232_ptr);
         }
       }
       list_iterator = list_iterator + 2;
@@ -145,7 +145,7 @@ void perform_render_transform(uint64_t *transform_matrix, int64_t transform_type
   // 检查渲染标志
   if (*(int *)(transform_matrix + 0x42) != 0) {
     // 获取着色器参数
-    if ((void *)*transform_matrix == &unknown_var_9304_ptr) {
+    if ((void *)*transform_matrix == &processed_var_9304_ptr) {
       shader_params = (float *)(transform_matrix + 0x66);
     }
     else {

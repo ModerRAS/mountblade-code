@@ -768,7 +768,7 @@ void FUN_180459640(int32_t param_1)
   uVar3 = FUN_1806fd3c0(*(int32_t *)(lVar1 + 0x218),*(int32_t *)(lVar1 + 0x21c),aiStackX_8);
   *puVar2 = uVar3;
   if (aiStackX_8[0] < 0) {
-    SystemCore_ResourceManager0(&unknown_var_7344_ptr);
+    SystemCore_ResourceManager0(&processed_var_7344_ptr);
     *puVar2 = 0;
   }
   FUN_18033bd40(lVar1 + 0x220,alStack_28);

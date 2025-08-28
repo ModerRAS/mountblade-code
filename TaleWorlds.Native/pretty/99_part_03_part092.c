@@ -275,7 +275,7 @@ void FUN_18024f8e0(int64_t param_1)
       }
       puStackX_10 = &uStack_60;
       uStack_58 = &lStackX_8;
-      puStack_50 = &unknown_var_9920_ptr;
+      puStack_50 = &processed_var_9920_ptr;
       pcStack_48 = FUN_1801bbfb0;
       uStack_80 = (int32_t)lVar1;
       uStack_7c = (int32_t)((uint64_t)lVar1 >> 0x20);
@@ -303,7 +303,7 @@ void FUN_18024f8e0(int64_t param_1)
        0 < (int)((*(int64_t *)(lVar2 + 0x5b0) - *(int64_t *)(lVar2 + 0x5a8)) / 0xc))) {
       puStackX_10 = &uStack_60;
       uStack_60 = &lStackX_8;
-      puStack_50 = &unknown_var_9424_ptr;
+      puStack_50 = &processed_var_9424_ptr;
       pcStack_48 = FUN_1801bbf00;
       uStack_78 = (int32_t)lVar2;
       uStack_74 = (int32_t)((uint64_t)lVar2 >> 0x20);
@@ -502,7 +502,7 @@ void FUN_18024fb60(int64_t param_1,int64_t param_2,int64_t param_3)
   uStack_80 = &uStack_110;
   uStack_78 = alStack_d0;
   uStack_f8 = FUN_180253fe0;
-  uStack_f0 = &unknown_var_2112_ptr;
+  uStack_f0 = &rendering_buffer_2112_ptr;
   lStack_a8 = param_1;
   plStack_108 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x40,8,system_allocation_flags);
   *plStack_108 = (int64_t)plStack_b0;

@@ -150,7 +150,7 @@ void FUN_180059000(int64_t *param_1)
       puStack_288 = auStack_278;
       auStack_278[0] = 0;
       uStack_280 = 4;
-      strcpy_s(auStack_278,0x10,&unknown_var_4276_ptr);
+      strcpy_s(auStack_278,0x10,&processed_var_4276_ptr);
       FUN_18062cb00(&puStack_2e8,&puStack_308,&puStack_290);
       puStack_290 = &system_state_ptr;
       iStack_374 = 0;

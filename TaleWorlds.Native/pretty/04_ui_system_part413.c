@@ -50,7 +50,7 @@ void FUN_180896c60(uint64_t param_1,int64_t param_2,uint param_3,char param_4)
   if (param_3 != 0) {
     iVar3 = *(int *)(param_2 + 0x220);
     if (iVar3 == 0) {
-      puStack_278 = &unknown_var_1896_ptr;
+      puStack_278 = &ui_system_data_1896_ptr;
       uStack_270 = 0;
       uStack_264 = 0;
       uStack_268 = param_3;
@@ -62,7 +62,7 @@ LAB_180896ce3:
     else {
       iStack_2f0 = 0;
       if (1 < iVar3 - 1U) {
-        puStack_2f8 = &unknown_var_2152_ptr;
+        puStack_2f8 = &rendering_buffer_2152_ptr;
         ppuVar6 = &puStack_2f8;
         uStack_2b0 = 0;
         uStack_2e8 = 0;
@@ -75,7 +75,7 @@ LAB_180896ce3:
         uStack_2ac = param_3;
         goto LAB_180896ce3;
       }
-      puStack_2f8 = &unknown_var_2024_ptr;
+      puStack_2f8 = &rendering_buffer_2024_ptr;
       lStack_2d8 = (uint64_t)param_3 << 0x20;
       uStack_2e8 = *(uint64_t *)(param_2 + 0x228);
       uStack_2e0 = (uint64_t)CONCAT14(iVar3 != 1,*(int32_t *)(param_2 + 0x230));
@@ -87,7 +87,7 @@ LAB_180896ce3:
     iStack_290 = *(int *)(param_2 + 0x18);
     uStack_28c = *(int32_t *)(param_2 + 0x1c);
     iStack_2a0 = 0;
-    puStack_2a8 = &unknown_var_5584_ptr;
+    puStack_2a8 = &processed_var_5584_ptr;
     uStack_284 = 0;
     uStack_288 = param_3;
     iVar3 = SystemNetworkProcessor(param_1,&puStack_2a8);
@@ -97,7 +97,7 @@ LAB_180896ce3:
     if (0 < iVar3) {
       do {
         iStack_2f0 = 0;
-        puStack_2f8 = &unknown_var_3872_ptr;
+        puStack_2f8 = &memory_allocator_3872_ptr;
         uStack_2e8 = CONCAT44(uStack_2e8._4_4_,param_3);
         iVar4 = SystemNetworkProcessor(param_1,&puStack_2f8);
         if (iVar4 != 0) goto FUN_1808974f4;
@@ -118,7 +118,7 @@ LAB_180896ce3:
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(int32_t *)(lVar1 + 0x18);
         uStack_280 = *(int32_t *)(lVar1 + 0x1c);
-        puStack_2a8 = &unknown_var_4888_ptr;
+        puStack_2a8 = &processed_var_4888_ptr;
         iVar4 = iVar5 + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = iVar7;
@@ -129,7 +129,7 @@ LAB_180896ce3:
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &unknown_var_9536_ptr;
+          puStack_2f8 = &processed_var_9536_ptr;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = iVar5;
           iVar5 = SystemNetworkProcessor(param_1,&puStack_2f8);
@@ -137,7 +137,7 @@ LAB_180896ce3:
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &unknown_var_9656_ptr;
+          puStack_2f8 = &processed_var_9656_ptr;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           iVar5 = SystemNetworkProcessor(param_1,&puStack_2f8);
@@ -165,7 +165,7 @@ LAB_180896ce3:
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(int32_t *)(lVar1 + 0x18);
         uStack_280 = *(int32_t *)(lVar1 + 0x1c);
-        puStack_2a8 = &unknown_var_4888_ptr;
+        puStack_2a8 = &processed_var_4888_ptr;
         iVar4 = iVar5 + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = iVar7;
@@ -176,7 +176,7 @@ LAB_180896ce3:
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &unknown_var_9536_ptr;
+          puStack_2f8 = &processed_var_9536_ptr;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = iVar5;
           iVar5 = SystemNetworkProcessor(param_1,&puStack_2f8);
@@ -184,7 +184,7 @@ LAB_180896ce3:
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &unknown_var_9656_ptr;
+          puStack_2f8 = &processed_var_9656_ptr;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           iVar5 = SystemNetworkProcessor(param_1,&puStack_2f8);
@@ -212,7 +212,7 @@ LAB_180896ce3:
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(int32_t *)(lVar1 + 0x18);
         uStack_280 = *(int32_t *)(lVar1 + 0x1c);
-        puStack_2a8 = &unknown_var_4888_ptr;
+        puStack_2a8 = &processed_var_4888_ptr;
         iVar4 = iVar5 + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = iVar7;
@@ -223,7 +223,7 @@ LAB_180896ce3:
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &unknown_var_9536_ptr;
+          puStack_2f8 = &processed_var_9536_ptr;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = iVar5;
           iVar5 = SystemNetworkProcessor(param_1,&puStack_2f8);
@@ -231,7 +231,7 @@ LAB_180896ce3:
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &unknown_var_9656_ptr;
+          puStack_2f8 = &processed_var_9656_ptr;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           iVar5 = SystemNetworkProcessor(param_1,&puStack_2f8);
@@ -259,7 +259,7 @@ LAB_180896ce3:
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(int32_t *)(lVar1 + 0x18);
         uStack_280 = *(int32_t *)(lVar1 + 0x1c);
-        puStack_2a8 = &unknown_var_4888_ptr;
+        puStack_2a8 = &processed_var_4888_ptr;
         iVar4 = iVar5 + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = iVar7;
@@ -270,7 +270,7 @@ LAB_180896ce3:
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &unknown_var_9536_ptr;
+          puStack_2f8 = &processed_var_9536_ptr;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = iVar5;
           iVar5 = SystemNetworkProcessor(param_1,&puStack_2f8);
@@ -278,7 +278,7 @@ LAB_180896ce3:
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &unknown_var_9656_ptr;
+          puStack_2f8 = &processed_var_9656_ptr;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           iVar5 = SystemNetworkProcessor(param_1,&puStack_2f8);
@@ -309,7 +309,7 @@ LAB_180896ce3:
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(int32_t *)(lVar1 + 0x18);
         uStack_280 = *(int32_t *)(lVar1 + 0x1c);
-        puStack_2a8 = &unknown_var_5272_ptr;
+        puStack_2a8 = &processed_var_5272_ptr;
         iVar4 = iVar5 + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = iVar7;
@@ -320,7 +320,7 @@ LAB_180896ce3:
         iVar5 = iVar4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &unknown_var_24_ptr;
+          puStack_2f8 = &rendering_buffer_24_ptr;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = iVar7;
           iVar7 = SystemNetworkProcessor(param_1,&puStack_2f8);
@@ -388,7 +388,7 @@ void FUN_180896e11(void)
         uVar6 = *(int32_t *)(lVar1 + 0x1c);
         *(int32_t *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
-        *(void **)(unaff_RBP + -0x80) = &unknown_var_4888_ptr;
+        *(void **)(unaff_RBP + -0x80) = &processed_var_4888_ptr;
         unaff_R12D = unaff_R12D + 1;
         *(int32_t *)(unaff_RBP + -0x54) = uStackX_20;
         *(int32_t *)(unaff_RBP + -0x70) = unaff_EBX;
@@ -402,7 +402,7 @@ void FUN_180896e11(void)
         fVar10 = fStackX_24;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
-          in_stack_00000030 = &unknown_var_9536_ptr;
+          in_stack_00000030 = &processed_var_9536_ptr;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = iVar8;
           iVar8 = SystemNetworkProcessor(fStackX_24,&stack0x00000030);
@@ -411,7 +411,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &unknown_var_9656_ptr;
+          in_stack_00000030 = &processed_var_9656_ptr;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = SystemNetworkProcessor(fVar10,&stack0x00000030);
@@ -441,7 +441,7 @@ void FUN_180896e11(void)
         uVar6 = *(int32_t *)(lVar1 + 0x1c);
         *(int32_t *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
-        *(void **)(unaff_RBP + -0x80) = &unknown_var_4888_ptr;
+        *(void **)(unaff_RBP + -0x80) = &processed_var_4888_ptr;
         unaff_R12D = unaff_R12D + 1;
         *(int32_t *)(unaff_RBP + -0x54) = uStackX_20;
         *(int32_t *)(unaff_RBP + -0x70) = unaff_EBX;
@@ -455,7 +455,7 @@ void FUN_180896e11(void)
         fVar10 = fStackX_24;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
-          in_stack_00000030 = &unknown_var_9536_ptr;
+          in_stack_00000030 = &processed_var_9536_ptr;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = iVar8;
           iVar8 = SystemNetworkProcessor(fStackX_24,&stack0x00000030);
@@ -464,7 +464,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &unknown_var_9656_ptr;
+          in_stack_00000030 = &processed_var_9656_ptr;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = SystemNetworkProcessor(fVar10,&stack0x00000030);
@@ -494,7 +494,7 @@ void FUN_180896e11(void)
         uVar6 = *(int32_t *)(lVar1 + 0x1c);
         *(int32_t *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
-        *(void **)(unaff_RBP + -0x80) = &unknown_var_4888_ptr;
+        *(void **)(unaff_RBP + -0x80) = &processed_var_4888_ptr;
         unaff_R12D = unaff_R12D + 1;
         *(int32_t *)(unaff_RBP + -0x54) = uStackX_20;
         *(int32_t *)(unaff_RBP + -0x70) = unaff_EBX;
@@ -508,7 +508,7 @@ void FUN_180896e11(void)
         fVar10 = fStackX_24;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
-          in_stack_00000030 = &unknown_var_9536_ptr;
+          in_stack_00000030 = &processed_var_9536_ptr;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = iVar8;
           iVar8 = SystemNetworkProcessor(fStackX_24,&stack0x00000030);
@@ -517,7 +517,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &unknown_var_9656_ptr;
+          in_stack_00000030 = &processed_var_9656_ptr;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = SystemNetworkProcessor(fVar10,&stack0x00000030);
@@ -547,7 +547,7 @@ void FUN_180896e11(void)
         uVar6 = *(int32_t *)(lVar1 + 0x1c);
         *(int32_t *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
-        *(void **)(unaff_RBP + -0x80) = &unknown_var_4888_ptr;
+        *(void **)(unaff_RBP + -0x80) = &processed_var_4888_ptr;
         unaff_R12D = unaff_R12D + 1;
         *(int32_t *)(unaff_RBP + -0x54) = uStackX_20;
         *(int32_t *)(unaff_RBP + -0x70) = unaff_EBX;
@@ -561,7 +561,7 @@ void FUN_180896e11(void)
         fVar10 = fStackX_24;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
-          in_stack_00000030 = &unknown_var_9536_ptr;
+          in_stack_00000030 = &processed_var_9536_ptr;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = iVar8;
           iVar8 = SystemNetworkProcessor(fStackX_24,&stack0x00000030);
@@ -570,7 +570,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &unknown_var_9656_ptr;
+          in_stack_00000030 = &processed_var_9656_ptr;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = SystemNetworkProcessor(fVar10,&stack0x00000030);
@@ -603,7 +603,7 @@ void FUN_180896e11(void)
         uVar6 = *(int32_t *)(lVar1 + 0x1c);
         *(int32_t *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = iVar8;
-        *(void **)(unaff_RBP + -0x80) = &unknown_var_5272_ptr;
+        *(void **)(unaff_RBP + -0x80) = &processed_var_5272_ptr;
         iVar8 = iVar8 + 1;
         *(int32_t *)(unaff_RBP + -0x54) = uStackX_20;
         *(int32_t *)(unaff_RBP + -0x70) = unaff_EBX;
@@ -615,7 +615,7 @@ void FUN_180896e11(void)
         if ((iVar9 != 0) || (iVar9 = FUN_18088cbb0(lVar2,&fStackX_24,0), iVar9 != 0)) break;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
-          in_stack_00000030 = &unknown_var_24_ptr;
+          in_stack_00000030 = &rendering_buffer_24_ptr;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = iVar9;
           iVar9 = SystemNetworkProcessor(fStackX_24,&stack0x00000030);

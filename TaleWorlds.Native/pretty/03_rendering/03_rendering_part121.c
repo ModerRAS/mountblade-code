@@ -390,7 +390,7 @@ int64_t* rendering_system_array_data_copy(int64_t** dest_ptr, int64_t* src_start
             dest_data[0x10] = 0;
             
             // 设置对象内部结构
-            *(void **)(dest_data + 0xc) = &unknown_var_3480_ptr;
+            *(void **)(dest_data + 0xc) = &memory_allocator_3480_ptr;
             *(uint **)(dest_data + 0xe) = dest_data + 0x12;
             dest_data[0x10] = 0;
             *(int8_t *)(dest_data + 0x12) = 0;
@@ -662,7 +662,7 @@ void rendering_system_memory_allocator(int64_t context_ptr, int64_t size) {
     uint64_t* allocated_memory;
     
     // 分配内存（包含对齐和初始化）
-    allocated_memory = FUN_18062b1e0(system_memory_pool_ptr, size * 8 + 8, RENDERING_SYSTEM_MEMORY_ALIGNMENT, *(int8_t *)(context_ptr + 0x2c));
+    allocated_memory = CoreSystem_LoggingManager0(system_memory_pool_ptr, size * 8 + 8, RENDERING_SYSTEM_MEMORY_ALIGNMENT, *(int8_t *)(context_ptr + 0x2c));
     
     // 初始化内存块
     memset(allocated_memory, 0, size * 8);

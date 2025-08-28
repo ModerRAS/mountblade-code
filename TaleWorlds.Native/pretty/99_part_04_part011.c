@@ -316,7 +316,7 @@ void DataStructureProcessor(uint64_t context_ptr, int64_t data_buffer, uint *res
         iteration_count = (uint64_t)data_value;
         do {
             // 初始化处理环境
-            stack_data_ptr = &unknown_var_336_ptr;
+            stack_data_ptr = &memory_allocator_336_ptr;
             stack_buffer_ptr = large_buffer;
             stack_flag = 0;
             large_buffer[0] = 0;
@@ -333,7 +333,7 @@ void DataStructureProcessor(uint64_t context_ptr, int64_t data_buffer, uint *res
             }
             
             // 遍历数据表进行匹配
-            table_ptr = (int64_t *)&unknown_var_8416_ptr;
+            table_ptr = (int64_t *)&processed_var_8416_ptr;
             table_index = 0;
             do {
                 // 计算字符串长度
@@ -358,13 +358,13 @@ void DataStructureProcessor(uint64_t context_ptr, int64_t data_buffer, uint *res
                     
                     // 检查匹配结果
                     if (comparison_result == 0) {
-                        *result_ptr = *result_ptr | *(uint *)(&unknown_var_8424_ptr + table_index * 0x10);
+                        *result_ptr = *result_ptr | *(uint *)(&processed_var_8424_ptr + table_index * 0x10);
                         break;
                     }
                 }
                 else if (stack_flag == 0) {
                     if (comparison_result == 0) {
-                        *result_ptr = *result_ptr | *(uint *)(&unknown_var_8424_ptr + table_index * 0x10);
+                        *result_ptr = *result_ptr | *(uint *)(&processed_var_8424_ptr + table_index * 0x10);
                         break;
                     }
                 }
@@ -444,7 +444,7 @@ void ContainerInitializer(uint64_t context_ptr, uint init_flag, int64_t *contain
     container_ptr[1] = current_position + 4;
     
     // 遍历表进行初始化
-    table_ptr = (uint64_t *)&unknown_var_8416_ptr;
+    table_ptr = (uint64_t *)&processed_var_8416_ptr;
     do {
         if ((*(uint *)(table_ptr + 1) & init_flag) != 0) {
             FUN_180639de0(container_ptr, *table_ptr);

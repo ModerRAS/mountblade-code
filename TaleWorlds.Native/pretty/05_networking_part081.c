@@ -177,7 +177,7 @@ void FUN_18088af30(int64_t param_1,uint64_t param_2,int8_t param_3)
       (**(code **)*puVar3)(puVar3,0);
       plStack_298 = (int64_t *)CONCAT71(plStack_298._1_7_,1);
                     // WARNING: Subroutine does not return
-      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar3,&unknown_var_5856_ptr,0x17a);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar3,&processed_var_5856_ptr,0x17a);
     }
   }
   else if (*(int64_t *)(param_1 + 0xb0) == 0) {
@@ -185,7 +185,7 @@ void FUN_18088af30(int64_t param_1,uint64_t param_2,int8_t param_3)
     uStack_288 = 1;
     uStack_290 = 0;
     plStack_298 = (int64_t *)((uint64_t)plStack_298 & 0xffffffff00000000);
-    lVar4 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x38,&unknown_var_5856_ptr,0x171);
+    lVar4 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x38,&processed_var_5856_ptr,0x171);
     if (lVar4 != 0) {
       uVar5 = func_0x0001808967b0(lVar4,param_1,(bVar1 & 1) << 0x18);
       *(uint64_t *)(param_1 + 0xb0) = uVar5;
@@ -352,11 +352,11 @@ void FUN_18088afd0(void)
       puVar3 = *(uint64_t **)(unaff_RDI + 0xb0);
       (**(code **)*puVar3)(puVar3,0);
                     // WARNING: Subroutine does not return
-      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar3,&unknown_var_5856_ptr,0x17a,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar3,&processed_var_5856_ptr,0x17a,1);
     }
   }
   else if ((*(int64_t *)(unaff_RDI + 0xb0) == 0) &&
-          (lVar4 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x38,&unknown_var_5856_ptr,0x171,
+          (lVar4 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x38,&processed_var_5856_ptr,0x171,
                                  (uint64_t)in_stack_00000020 & 0xffffffff00000000), lVar4 != 0)) {
     uVar2 = func_0x0001808967b0(lVar4);
     *(uint64_t *)(unaff_RDI + 0xb0) = uVar2;

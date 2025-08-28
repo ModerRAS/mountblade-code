@@ -22,7 +22,7 @@ void FUN_18019aac0(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t pa
   int32_t uStack_48;
   
   SystemCore_NetworkHandler0(&puStack_88,param_3,param_3,param_4,0,0xfffffffffffffffe);
-  System_DataHandler(&puStack_88,&unknown_var_2452_ptr,*(uint64_t *)(param_2 + 0x20));
+  System_DataHandler(&puStack_88,&rendering_buffer_2452_ptr,*(uint64_t *)(param_2 + 0x20));
   lVar3 = *param_1;
   if (0 < iStack_78) {
     CoreMemoryPoolProcessor(lVar3 + 0x60780,*(int *)(lVar3 + 0x60790) + iStack_78);
@@ -90,7 +90,7 @@ void FUN_18019aac0(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     if (*(void **)(lVar5 + 8) != (void *)0x0) {
       puVar6 = *(void **)(lVar5 + 8);
     }
-    System_DataHandler(*param_1 + 0x60780,&unknown_var_2440_ptr,puVar6,*(int32_t *)(lVar5 + 0x20));
+    System_DataHandler(*param_1 + 0x60780,&rendering_buffer_2440_ptr,puVar6,*(int32_t *)(lVar5 + 0x20));
   }
   System_DataHandler(*param_1 + 0x60780,&system_data_cc18);
   puStack_88 = &system_data_buffer_ptr;

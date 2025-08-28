@@ -803,7 +803,7 @@ LAB_1802eefe9:
     if (cVar5 != '\0') {
       puStack_70 = &system_data_buffer_ptr;
       if (puStack_68 == (void *)0x0) {
-        return &unknown_var_3233_ptr;
+        return &memory_allocator_3233_ptr;
       }
                     // WARNING: Subroutine does not return
       CoreMemoryPoolInitializer();

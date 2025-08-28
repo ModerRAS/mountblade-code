@@ -67,7 +67,7 @@ void FUN_18057e880(uint64_t *param_1)
   int64_t *plVar2;
   int64_t lVar3;
   
-  *param_1 = &unknown_var_1480_ptr;
+  *param_1 = &ui_system_data_1480_ptr;
   plVar1 = (int64_t *)param_1[4];
   lVar3 = *plVar1;
   plVar2 = plVar1;
@@ -121,7 +121,7 @@ void FUN_18057e880(uint64_t *param_1)
     CoreEngineMemoryPoolCleaner();
   }
   FUN_18057ef40(param_1 + 3);
-  *param_1 = &unknown_var_1592_ptr;
+  *param_1 = &ui_system_data_1592_ptr;
   return;
 }
 
@@ -197,7 +197,7 @@ FUN_18057ea00(int64_t param_1,float *param_2,float *param_3,float param_4,int32_
   fStack_178 = fVar8 * fStack_178;
   fStack_174 = fVar8 * fStack_174;
   fStack_170 = fVar8 * fStack_170;
-  puStack_e8 = &unknown_var_1560_ptr;
+  puStack_e8 = &ui_system_data_1560_ptr;
   uStack_e0 = param_5;
   uVar5 = 0;
   uStack_d0 = 0;
@@ -216,7 +216,7 @@ FUN_18057ea00(int64_t param_1,float *param_2,float *param_3,float param_4,int32_
   uStack_120 = 0x7f7fffff00000000;
   if (param_4 <= 0.01) {
     uStack_118 = 0;
-    puStack_158 = &unknown_var_3376_ptr;
+    puStack_158 = &memory_allocator_3376_ptr;
     param_5 = CONCAT22(param_5._2_2_,1);
     cVar4 = (**(code **)(**(int64_t **)(param_1 + 8) + 0x2b0))
                       (*(int64_t **)(param_1 + 8),&fStack_168,&fStack_178,fVar8 * fVar7,
@@ -233,7 +233,7 @@ FUN_18057ea00(int64_t param_1,float *param_2,float *param_3,float param_4,int32_
     }
   }
   else {
-    puStack_158 = &unknown_var_3312_ptr;
+    puStack_158 = &memory_allocator_3312_ptr;
     param_6._0_4_ = 0;
     uStack_b0 = 0;
     uStack_a8 = 0x3f80000000000000;
@@ -271,8 +271,8 @@ FUN_18057ea00(int64_t param_1,float *param_2,float *param_3,float param_4,int32_
 void FUN_18057eec0(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_1560_ptr;
-  *param_1 = &unknown_var_4032_ptr;
+  *param_1 = &ui_system_data_1560_ptr;
+  *param_1 = &processed_var_4032_ptr;
   return;
 }
 
@@ -282,8 +282,8 @@ uint64_t *
 FUN_18057eef0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_1560_ptr;
-  *param_1 = &unknown_var_4032_ptr;
+  *param_1 = &ui_system_data_1560_ptr;
+  *param_1 = &processed_var_4032_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x10,param_3,param_4,0xfffffffffffffffe);
   }
@@ -881,7 +881,7 @@ void FUN_18057f390(void)
 uint64_t * FUN_18057f3e0(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_1592_ptr;
+  *param_1 = &ui_system_data_1592_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }

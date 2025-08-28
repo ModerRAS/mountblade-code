@@ -55,7 +55,7 @@ void FUN_1808168c0(int64_t param_1,uint param_2,char param_3)
         piStack_c8 = (int *)0x0;
         iVar3 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),auStack_90,1);
         if (iVar3 != 0) break;
-        iVar3 = func_0x00018076b6b0(auStack_90,&unknown_var_9588_ptr,4);
+        iVar3 = func_0x00018076b6b0(auStack_90,&processed_var_9588_ptr,4);
         if (iVar3 == 0) {
           if (param_3 == '\0') {
             uVar8 = uStack_8c;
@@ -74,7 +74,7 @@ joined_r0x000180816c9e:
           }
         }
         else {
-          iVar3 = func_0x00018076b6b0(auStack_90,&unknown_var_840_ptr,4);
+          iVar3 = func_0x00018076b6b0(auStack_90,&processed_var_840_ptr,4);
           if (iVar3 == 0) {
             piStack_c8 = (int *)0x0;
             FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),param_1 + 0x1e0,4,1);
@@ -117,7 +117,7 @@ joined_r0x000180816c9e:
             }
           }
           else {
-            iVar3 = func_0x00018076b6b0(auStack_90,&unknown_var_848_ptr);
+            iVar3 = func_0x00018076b6b0(auStack_90,&processed_var_848_ptr);
             if (iVar3 == 0) {
               piStack_c8 = (int *)0x0;
               iVar3 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),&uStack_a8,4,1);
@@ -125,7 +125,7 @@ joined_r0x000180816c9e:
               *(int32_t *)(*(int64_t *)(param_1 + 8) + 0x18) = uStack_a8;
             }
             else {
-              iVar3 = func_0x00018076b6b0(auStack_90,&unknown_var_9516_ptr);
+              iVar3 = func_0x00018076b6b0(auStack_90,&processed_var_9516_ptr);
               if (iVar3 == 0) {
                 piStack_c8 = (int *)0x0;
                 iVar3 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),auStack_98,1,4);
@@ -135,7 +135,7 @@ joined_r0x000180816c9e:
                 }
                 break;
               }
-              iVar3 = func_0x00018076b6b0(auStack_90,&unknown_var_856_ptr,4);
+              iVar3 = func_0x00018076b6b0(auStack_90,&processed_var_856_ptr,4);
               if (iVar3 == 0) {
                 if (*(int64_t *)(param_1 + 0x1e8) != 0) {
                   piStack_c8 = (int *)0x0;
@@ -159,7 +159,7 @@ joined_r0x000180816c9e:
                 }
               }
               else {
-                iVar3 = func_0x00018076b6b0(auStack_90,&unknown_var_864_ptr,4);
+                iVar3 = func_0x00018076b6b0(auStack_90,&processed_var_864_ptr,4);
                 if (iVar3 == 0) {
                   piStack_c8 = &iStack_a0;
                   iVar3 = FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),auStack_70,1);
@@ -170,7 +170,7 @@ joined_r0x000180816c9e:
                   }
                 }
                 else {
-                  iVar3 = func_0x00018076b6b0(auStack_90,&unknown_var_1144_ptr,4);
+                  iVar3 = func_0x00018076b6b0(auStack_90,&ui_system_data_1144_ptr,4);
                   if (iVar3 == 0) {
                     if (param_3 == '\0') {
                       piVar1 = (int *)(param_1 + 0x110);
@@ -254,7 +254,7 @@ void FUN_180816928(void)
       uVar8 = 0;
       iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x31,1,8,0);
       if (iVar2 != 0) break;
-      iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&unknown_var_9588_ptr,4);
+      iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_9588_ptr,4);
       if (iVar2 == 0) {
         if (unaff_DIL == '\0') {
           uVar6 = *(uint *)(unaff_RBP + -0x2d);
@@ -272,7 +272,7 @@ joined_r0x000180816c9e:
         }
       }
       else {
-        iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&unknown_var_840_ptr,4);
+        iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_840_ptr,4);
         if (iVar2 == 0) {
           uVar8 = 0;
           FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBX + 0x1e0,4,1,0);
@@ -313,7 +313,7 @@ joined_r0x000180816c9e:
           }
         }
         else {
-          iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&unknown_var_848_ptr);
+          iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_848_ptr);
           if (iVar2 == 0) {
             iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x49,4,1,0);
             if (iVar2 != 0) break;
@@ -321,7 +321,7 @@ joined_r0x000180816c9e:
                  *(int32_t *)(unaff_RBP + -0x49);
           }
           else {
-            iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&unknown_var_9516_ptr);
+            iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_9516_ptr);
             if (iVar2 == 0) {
               iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x39,1,4,0);
               if (iVar2 == 0) {
@@ -330,7 +330,7 @@ joined_r0x000180816c9e:
               }
               break;
             }
-            iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&unknown_var_856_ptr,4);
+            iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_856_ptr,4);
             if (iVar2 == 0) {
               if (*(int64_t *)(unaff_RBX + 0x1e8) != 0) {
                 iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x45,4,1,0);
@@ -352,7 +352,7 @@ joined_r0x000180816c9e:
               }
             }
             else {
-              iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&unknown_var_864_ptr,4);
+              iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_864_ptr,4);
               if (iVar2 == 0) {
                 iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x11,1,0x3c,
                                       unaff_RBP + -0x41);
@@ -363,7 +363,7 @@ joined_r0x000180816c9e:
                 }
               }
               else {
-                iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&unknown_var_1144_ptr,4);
+                iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&ui_system_data_1144_ptr,4);
                 if (iVar2 == 0) {
                   if (unaff_DIL == '\0') {
                     piVar1 = (int *)(unaff_RBX + 0x110);
@@ -465,7 +465,7 @@ void FUN_180816a57(void)
   int32_t uVar9;
   
   do {
-    iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&unknown_var_840_ptr,4);
+    iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_840_ptr,4);
     iVar6 = (int)unaff_R13;
     if (iVar2 == 0) {
       FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBX + 0x1e0,4,1);
@@ -505,14 +505,14 @@ void FUN_180816a57(void)
       }
     }
     else {
-      iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&unknown_var_848_ptr);
+      iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_848_ptr);
       if (iVar2 == 0) {
         iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x49,4,1);
         if (iVar2 != 0) goto LAB_180816a24;
         *(int32_t *)(*(int64_t *)(unaff_RBX + 8) + 0x18) = *(int32_t *)(unaff_RBP + -0x49);
       }
       else {
-        iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&unknown_var_9516_ptr);
+        iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_9516_ptr);
         if (iVar2 == 0) {
           iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x39,1,4);
           if (iVar2 == 0) {
@@ -523,7 +523,7 @@ LAB_180816a24:
                     // WARNING: Subroutine does not return
           SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x2f) ^ (uint64_t)&stack0x00000000);
         }
-        iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&unknown_var_856_ptr,4);
+        iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_856_ptr,4);
         if (iVar2 == 0) {
           if (*(uint64_t *)(unaff_RBX + 0x1e8) != unaff_R13) {
             iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x45,4,1);
@@ -545,7 +545,7 @@ LAB_180816a24:
           }
         }
         else {
-          iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&unknown_var_864_ptr,4);
+          iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_864_ptr,4);
           if (iVar2 == 0) {
             iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x11,1,0x3c,
                                   unaff_RBP + -0x41);
@@ -556,7 +556,7 @@ LAB_180816a24:
             }
           }
           else {
-            iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&unknown_var_1144_ptr,4);
+            iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&ui_system_data_1144_ptr,4);
             if (iVar2 == 0) {
               if (unaff_DIL == '\0') {
                 piVar1 = (int *)(unaff_RBX + 0x110);
@@ -615,7 +615,7 @@ LAB_180816b9b:
     iVar2 = FUN_180769ed0(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x31,1);
     uVar9 = (int32_t)(uVar4 >> 0x20);
     if (iVar2 != 0) goto LAB_180816a24;
-    iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&unknown_var_9588_ptr,4);
+    iVar2 = func_0x00018076b6b0(unaff_RBP + -0x31,&processed_var_9588_ptr,4);
     if (iVar2 == 0) {
       if (unaff_DIL == '\0') {
         uVar7 = *(uint *)(unaff_RBP + -0x2d);

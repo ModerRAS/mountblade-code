@@ -118,7 +118,7 @@ process_render_string(uint64_t param_1, uint64_t *string_buffer, uint64_t param_
   *string_buffer = &system_state_ptr;
   string_buffer[1] = 0;
   *(int32_t *)(string_buffer + 2) = 0;
-  *string_buffer = &unknown_var_3432_ptr;
+  *string_buffer = &memory_allocator_3432_ptr;
   string_buffer[1] = string_buffer + 3;
   *(int8_t *)(string_buffer + 3) = 0;
   *(int32_t *)(string_buffer + 2) = 0x16;
@@ -142,7 +142,7 @@ cleanup_render_resources(uint64_t *resource_ptr, uint64_t cleanup_flags, uint64_
   uint64_t cleanup_flag;
   
   cleanup_flag = MAX_RENDER_QUEUE_SIZE;
-  *resource_ptr = &unknown_var_40_ptr;
+  *resource_ptr = &processed_var_40_ptr;
   if ((int64_t *)resource_ptr[0x1e] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)resource_ptr[0x1e] + 0x38))();
   }

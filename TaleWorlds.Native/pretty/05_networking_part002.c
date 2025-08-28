@@ -141,7 +141,7 @@ void NetworkInitializePacket(uint64_t packet_context)
                     (status_code = FUN_18088dec0(*(uint64_t *)(network_handles[0] + 0x98), 
                                                data_pointers, 0x10), status_code == 0)) {
                     // 设置数据包处理器
-                    *data_pointers[0] = &unknown_var_3472_ptr;
+                    *data_pointers[0] = &memory_allocator_3472_ptr;
                     *(int32_t *)(data_pointers[0] + 1) = 0x10;
                     func_0x00018088e0d0(*(uint64_t *)(network_handles[0] + 0x98));
                     // 数据包处理器激活（不返回）
@@ -160,7 +160,7 @@ void NetworkInitializePacket(uint64_t packet_context)
         packet_buffer = stack_buffer;
         stack_buffer[0] = 0;
         // 错误报告函数调用（不返回）
-        DataTransformer(status_code, 0xb, packet_context, &unknown_var_3576_ptr);
+        DataTransformer(status_code, 0xb, packet_context, &memory_allocator_3576_ptr);
     }
 
 cleanup:
@@ -1536,7 +1536,7 @@ int SerializeMaterialData(int64_t data_ptr, int64_t buffer_ptr, int buffer_size)
 void SendPacketHeader(int64_t header_ptr, uint64_t target_ptr, int32_t packet_size)
 {
     // 调用底层发送函数传输包头
-    FUN_18083f850(target_ptr, packet_size, &unknown_var_4736_ptr, 
+    FUN_18083f850(target_ptr, packet_size, &processed_var_4736_ptr, 
                  *(int32_t *)(header_ptr + 0x10), *(int32_t *)(header_ptr + 0x18));
     return;
 }
@@ -1557,7 +1557,7 @@ void SendPacketHeader(int64_t header_ptr, uint64_t target_ptr, int32_t packet_si
 void SendPacketFooter(int64_t footer_ptr, uint64_t target_ptr, int32_t packet_size)
 {
     // 调用底层发送函数传输包尾
-    FUN_18083f8f0(target_ptr, packet_size, &unknown_var_4864_ptr, 
+    FUN_18083f8f0(target_ptr, packet_size, &processed_var_4864_ptr, 
                  *(int32_t *)(footer_ptr + 0x10), *(int32_t *)(footer_ptr + 0x18),
                  *(int32_t *)(footer_ptr + 0x1c));
     return;
@@ -1596,7 +1596,7 @@ int SendDataPacket(int64_t packet_ptr, int64_t target_ptr, int packet_size)
     tertiary_header = *(int32_t *)(packet_ptr + 0x10);
     
     // 发送数据包头
-    sent_bytes = DataProcessor(target_ptr, packet_size, &unknown_var_4992_ptr);
+    sent_bytes = DataProcessor(target_ptr, packet_size, &processed_var_4992_ptr);
     
     // 发送分隔符
     processed_bytes = DataProcessor(target_ptr + sent_bytes, 
@@ -1656,7 +1656,7 @@ int SendDataPacket(int64_t packet_ptr, int64_t target_ptr, int packet_size)
 void SendAckPacket(int64_t ack_ptr, uint64_t target_ptr, int32_t ack_size)
 {
     // 调用底层发送函数传输确认包
-    FUN_18083f850(target_ptr, ack_size, &unknown_var_4352_ptr, 
+    FUN_18083f850(target_ptr, ack_size, &processed_var_4352_ptr, 
                  *(int32_t *)(ack_ptr + 0x10), *(int32_t *)(ack_ptr + 0x18));
     return;
 }
@@ -1677,7 +1677,7 @@ void SendAckPacket(int64_t ack_ptr, uint64_t target_ptr, int32_t ack_size)
 void SendNackPacket(int64_t nack_ptr, uint64_t target_ptr, int32_t nack_size)
 {
     // 调用底层发送函数传输非确认包
-    FUN_18083f8f0(target_ptr, nack_size, &unknown_var_4480_ptr, 
+    FUN_18083f8f0(target_ptr, nack_size, &processed_var_4480_ptr, 
                  *(int32_t *)(nack_ptr + 0x10), *(int32_t *)(nack_ptr + 0x18),
                  *(int32_t *)(nack_ptr + 0x1c));
     return;
@@ -1715,7 +1715,7 @@ int SendHeartbeatPacket(int64_t heartbeat_ptr, int64_t target_ptr, int heartbeat
     tertiary_header = *(int32_t *)(heartbeat_ptr + 0x10);
     
     // 发送心跳包头
-    sent_bytes = DataProcessor(target_ptr, heartbeat_size, &unknown_var_4608_ptr);
+    sent_bytes = DataProcessor(target_ptr, heartbeat_size, &processed_var_4608_ptr);
     
     // 发送分隔符
     processed_bytes = DataProcessor(target_ptr + sent_bytes, 
@@ -1775,7 +1775,7 @@ int SendHeartbeatPacket(int64_t heartbeat_ptr, int64_t target_ptr, int heartbeat
 void SendDisconnectPacket(int64_t disconnect_ptr, uint64_t target_ptr, int32_t disconnect_size)
 {
     // 调用底层发送函数传输断开连接包
-    FUN_18083f850(target_ptr, disconnect_size, &unknown_var_3712_ptr, 
+    FUN_18083f850(target_ptr, disconnect_size, &memory_allocator_3712_ptr, 
                  *(int32_t *)(disconnect_ptr + 0x10), *(int32_t *)(disconnect_ptr + 0x18));
     return;
 }
@@ -1796,7 +1796,7 @@ void SendDisconnectPacket(int64_t disconnect_ptr, uint64_t target_ptr, int32_t d
 void SendPingPacket(int64_t ping_ptr, uint64_t target_ptr, int32_t ping_size)
 {
     // 调用底层发送函数传输Ping包
-    FUN_18083f850(target_ptr, ping_size, &unknown_var_3840_ptr, 
+    FUN_18083f850(target_ptr, ping_size, &memory_allocator_3840_ptr, 
                  *(int32_t *)(ping_ptr + 0x10), *(int32_t *)(ping_ptr + 0x18));
     return;
 }
@@ -1817,7 +1817,7 @@ void SendPingPacket(int64_t ping_ptr, uint64_t target_ptr, int32_t ping_size)
 void SendPongPacket(int64_t pong_ptr, uint64_t target_ptr, int32_t pong_size)
 {
     // 调用底层发送函数传输Pong包
-    FUN_18083f850(target_ptr, pong_size, &unknown_var_5120_ptr, 
+    FUN_18083f850(target_ptr, pong_size, &processed_var_5120_ptr, 
                  *(int32_t *)(pong_ptr + 0x10), *(int32_t *)(pong_ptr + 0x18));
     return;
 }

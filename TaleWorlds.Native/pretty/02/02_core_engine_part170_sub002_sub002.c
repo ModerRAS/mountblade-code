@@ -37,8 +37,8 @@ void initialize_engine_configuration(int64_t engine_context, uint64_t param2, ui
     void* stack_ptr_38;
     
     // 初始化函数指针和常量
-    function_ptr = (code*)&unknown_var_2512_ptr;
-    stack_ptr_38 = &unknown_var_9440_ptr;
+    function_ptr = (code*)&rendering_buffer_2512_ptr;
+    stack_ptr_38 = &processed_var_9440_ptr;
     
     // 第一阶段：初始化基本配置
     *(int32_t*)(engine_context + 0x128) = 0;
@@ -62,7 +62,7 @@ void initialize_engine_configuration(int64_t engine_context, uint64_t param2, ui
     }
     
     // 调用引擎子模块初始化
-    (*(code**)(*(int64_t*)(engine_context + 0xe8) + 0x10))(engine_context + 0xe8, &unknown_var_6400_ptr);
+    (*(code**)(*(int64_t*)(engine_context + 0xe8) + 0x10))(engine_context + 0xe8, &processed_var_6400_ptr);
     
     // 配置参数设置 - 第一组
     stack_data_8._0_4_ = 0;
@@ -75,7 +75,7 @@ void initialize_engine_configuration(int64_t engine_context, uint64_t param2, ui
             if (*(void**)(engine_context + 0xf0) != (void*)0x0) {
                 data_ptr = *(void**)(engine_context + 0xf0);
             }
-            SystemCore_ResourceManager0(&unknown_var_544_ptr, data_ptr);
+            SystemCore_ResourceManager0(&processed_var_544_ptr, data_ptr);
         }
         config_value = *(int32_t*)(engine_context + 0x128);
     }
@@ -92,7 +92,7 @@ void initialize_engine_configuration(int64_t engine_context, uint64_t param2, ui
                 if (*(void**)(engine_context + 0xf0) != (void*)0x0) {
                     data_ptr = *(void**)(engine_context + 0xf0);
                 }
-                SystemCore_ResourceManager0(&unknown_var_544_ptr, data_ptr);
+                SystemCore_ResourceManager0(&processed_var_544_ptr, data_ptr);
             }
             config_value = *(int32_t*)(engine_context + 0x128);
         }
@@ -111,7 +111,7 @@ void initialize_engine_configuration(int64_t engine_context, uint64_t param2, ui
     
     // 最终阶段：设置资源路径
     temp_long = engine_context + 0xf50;
-    (*(code**)(*(int64_t*)(engine_context + 0xf90) + 0x10))((int64_t*)(engine_context + 0xf90), &unknown_var_7240_ptr);
+    (*(code**)(*(int64_t*)(engine_context + 0xf90) + 0x10))((int64_t*)(engine_context + 0xf90), &processed_var_7240_ptr);
     
     // 设置资源路径字符串
     stack_ptr_70 = &system_data_buffer_ptr;

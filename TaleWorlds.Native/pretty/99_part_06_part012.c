@@ -12,7 +12,7 @@ void FUN_1803af8d0(uint64_t *param_1)
   int64_t lVar4;
   int64_t *plVar5;
   
-  *param_1 = &unknown_var_952_ptr;
+  *param_1 = &processed_var_952_ptr;
   iVar2 = _Mtx_lock(0x180c91f70);
   if (iVar2 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar2);
@@ -142,7 +142,7 @@ FUN_1803afb60(int64_t param_1,float *param_2,int param_3,float *param_4,byte par
           }
           puVar5 = (uint64_t *)FUN_180195330(fVar8,iVar7);
         }
-        if ((void *)*puVar5 == &unknown_var_8576_ptr) {
+        if ((void *)*puVar5 == &processed_var_8576_ptr) {
           fVar8 = *(float *)(puVar5[2] + 0x1c) /
                   (float)(1 << ((byte)*(int32_t *)(puVar5 + 5) & 0x1f));
         }
@@ -271,7 +271,7 @@ FUN_1803afbe2(float param_1,float param_2,int param_3,uint64_t param_4,uint64_t 
     }
     puVar4 = (uint64_t *)FUN_180195330(auVar7._0_8_,iVar6);
   }
-  if ((void *)*puVar4 == &unknown_var_8576_ptr) {
+  if ((void *)*puVar4 == &processed_var_8576_ptr) {
     fVar8 = *(float *)(puVar4[2] + 0x1c) / (float)(1 << ((byte)*(int32_t *)(puVar4 + 5) & 0x1f));
   }
   else {
@@ -395,7 +395,7 @@ FUN_1803afbe6(float param_1,float param_2,float param_3,uint64_t param_4,uint64_
     }
     puVar4 = (uint64_t *)FUN_180195330(auVar7._0_8_,iVar6);
   }
-  if ((void *)*puVar4 == &unknown_var_8576_ptr) {
+  if ((void *)*puVar4 == &processed_var_8576_ptr) {
     fVar8 = *(float *)(puVar4[2] + 0x1c) / (float)(1 << ((byte)*(int32_t *)(puVar4 + 5) & 0x1f));
   }
   else {
@@ -632,7 +632,7 @@ BADSPACEBASE * FUN_1803afec0(int64_t param_1,float *param_2,float *param_3)
           }
           puVar7 = (uint64_t *)FUN_180195330(fVar10,iVar9);
         }
-        if ((void *)*puVar7 == &unknown_var_8576_ptr) {
+        if ((void *)*puVar7 == &processed_var_8576_ptr) {
           fVar10 = *(float *)(puVar7[2] + 0x1c) /
                    (float)(1 << ((byte)*(int32_t *)(puVar7 + 5) & 0x1f));
         }
@@ -715,7 +715,7 @@ uint64_t FUN_1803aff35(float param_1,float param_2,int param_3,float param_4)
     }
     puVar5 = (uint64_t *)FUN_180195330(fVar8,iVar7);
   }
-  if ((void *)*puVar5 == &unknown_var_8576_ptr) {
+  if ((void *)*puVar5 == &processed_var_8576_ptr) {
     fVar8 = *(float *)(puVar5[2] + 0x1c) / (float)(1 << ((byte)*(int32_t *)(puVar5 + 5) & 0x1f));
   }
   else {

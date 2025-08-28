@@ -106,7 +106,7 @@ void FUN_18042d180(int *param_1,int *param_2,int *param_3,int *param_4)
              (piStack_4a0 = (int *)FUN_18042bff0(param_1,auStack_458), (char)*piStack_4a0 != '\0'))
           {
             do {
-              iVar3 = strcmp(piStack_4a0,&unknown_var_9832_ptr);
+              iVar3 = strcmp(piStack_4a0,&processed_var_9832_ptr);
               if (iVar3 == 0) {
                 bVar2 = true;
               }
@@ -115,7 +115,7 @@ void FUN_18042d180(int *param_1,int *param_2,int *param_3,int *param_4)
             } while ((char)*piStack_4a0 != '\0');
             if (bVar2) {
               piStack_4a0 = (int *)FUN_18042bff0(param_1,auStack_458);
-              iVar3 = strncmp(piStack_4a0,&unknown_var_9856_ptr,3);
+              iVar3 = strncmp(piStack_4a0,&processed_var_9856_ptr,3);
               if (iVar3 == 0) {
                 piStack_4a0 = (int *)((int64_t)piStack_4a0 + 3);
                 iVar3 = strtol(piStack_4a0,&piStack_4a0,10);
@@ -127,7 +127,7 @@ void FUN_18042d180(int *param_1,int *param_2,int *param_3,int *param_4)
                   piStack_4a0 = piVar8;
                   cVar1 = *(char *)piVar8;
                 }
-                iVar3 = strncmp(piVar8,&unknown_var_9828_ptr,3);
+                iVar3 = strncmp(piVar8,&processed_var_9828_ptr,3);
                 if (iVar3 == 0) {
                   piStack_4a0 = (int *)((int64_t)piStack_4a0 + 3);
                   iVar3 = strtol(piStack_4a0,0,10);
@@ -749,7 +749,7 @@ void FUN_18042da00(uint64_t param_1,uint param_2,int param_3,int32_t param_4,uin
 
 {
   FUN_18042d960(param_1,0xffffffff,0xffffffff,param_2,param_3,param_4,1,param_5,0,param_2 & 3,
-                &unknown_var_9864_ptr,0x42,0x4d,((param_2 & 3) + param_2 * 3) * param_3 + 0x36,0,0,0x36,
+                &processed_var_9864_ptr,0x42,0x4d,((param_2 & 3) + param_2 * 3) * param_3 + 0x36,0,0,0x36,
                 0x28,param_2,param_3,1,0x18,0,0,0,0,0,0);
   return;
 }

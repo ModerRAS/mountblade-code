@@ -106,7 +106,7 @@ void FUN_1804d2fd0(int64_t *param_1,int64_t param_2)
   uStack_190 = auStack_178;
   plStack_188 = alStack_1c8 + 2;
   pcStack_1d8 = FUN_1804df640;
-  pcStack_1d0 = (code *)&unknown_var_240_ptr;
+  pcStack_1d0 = (code *)&rendering_buffer_240_ptr;
   plStack_1a8 = param_1;
   aplStack_1e8[0] = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,(int)lVar13 + 0x28,8,system_allocation_flags);
   *aplStack_1e8[0] = (int64_t)plStack_1a8;
@@ -175,7 +175,7 @@ LAB_1804d32bc:
     } while ((int)(uVar12 + 1) < *(int *)((int64_t)param_1 + 0x2c3c));
   }
   pplStack_1b0 = aplStack_1e8;
-  pcStack_1d8 = (code *)&unknown_var_176_ptr;
+  pcStack_1d8 = (code *)&ui_system_data_176_ptr;
   pcStack_1d0 = FUN_1804df470;
   pplStack_1f0 = aplStack_1e8;
   uStack_1f8 = 0xffffffffffffffff;

@@ -77,7 +77,7 @@ void FUN_18020bb70(uint64_t param_1,int64_t *param_2)
       if (pcStack_2a0 != (char *)0x0) {
         pcVar6 = pcStack_2a0;
       }
-      FUN_180626eb0(acStack_238,0x200,&unknown_var_2176_ptr,pcVar6);
+      FUN_180626eb0(acStack_238,0x200,&rendering_buffer_2176_ptr,pcVar6);
       puStack_288 = &system_data_buffer_ptr;
       uStack_270 = 0;
       puStack_280 = (int8_t *)0x0;

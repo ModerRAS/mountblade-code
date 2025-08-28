@@ -169,7 +169,7 @@ void RenderingSystem_MatrixProcessor(int64_t param_1, int64_t param_2, uint64_t 
             
             do {
                 // 矩阵初始化和处理
-                int32_t *puVar5 = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, 0xa8, 8, 3);
+                int32_t *puVar5 = (int32_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr, 0xa8, 8, 3);
                 int64_t *plVar2 = (int64_t *)(puVar5 + 0x22);
                 *plVar2 = (int64_t)&system_state_ptr;
                 
@@ -343,7 +343,7 @@ void RenderingSystem_MemoryProcessor(int64_t param_1, int64_t param_2, uint64_t 
             
             do {
                 // 内存初始化和处理
-                int32_t *puVar6 = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x48, 8, 3);
+                int32_t *puVar6 = (int32_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x48, 8, 3);
                 int64_t *plVar1 = (int64_t *)(puVar6 + 10);
                 *plVar1 = (int64_t)&system_state_ptr;
                 
@@ -417,11 +417,11 @@ void RenderingSystem_DataSerializer(int64_t param_1, uint param_2)
     // 简化实现：数据序列化
     uint64_t uVar18 = (uint64_t)param_2;
     uint64_t uStack_68 = 0xfffffffffffffffe;
-    int64_t *plVar6 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0xe0, 8, 3);
+    int64_t *plVar6 = (int64_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr, 0xe0, 8, 3);
     
     // 初始化序列化器
     FUN_180049830(plVar6);
-    *plVar6 = (int64_t)&unknown_var_7880_ptr;
+    *plVar6 = (int64_t)&processed_var_7880_ptr;
     uint64_t *puVar1 = (uint64_t *)(plVar6 + 0x18);
     *puVar1 = 0;
     plVar6[0x19] = 0;

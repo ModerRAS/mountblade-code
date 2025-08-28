@@ -507,7 +507,7 @@ uint64_t * FUN_180436ae0(uint64_t *param_1)
   *plVar3 = (int64_t)&system_handler1_ptr;
   *plVar3 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar3 + 1) = 0;
-  *plVar3 = (int64_t)&unknown_var_6720_ptr;
+  *plVar3 = (int64_t)&processed_var_6720_ptr;
   FUN_180094c20(plVar3 + 2);
   plVar3[0x2a] = 0;
   *(int32_t *)(plVar3 + 1) = 0;

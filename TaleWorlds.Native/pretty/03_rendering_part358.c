@@ -307,14 +307,14 @@ void FUN_180461a20(int64_t param_1,int64_t param_2,int64_t param_3)
     apiStack_50[0] =
          (int *)(((int64_t)*(int *)(*(int64_t *)(param_2 + 0x3580) + 0x628) * 0x80 +
                  (int64_t)*(int *)(param_3 + 0x9a28)) * 0x20 + render_system_data_memory);
-    puStack_40 = &unknown_var_848_ptr;
-    puStack_38 = &unknown_var_800_ptr;
+    puStack_40 = &processed_var_848_ptr;
+    puStack_38 = &processed_var_800_ptr;
     FUN_18015b810(apiStack_50[0],0,apiStack_50[0][2] - *apiStack_50[0],0x10,0xffffffffffffffff,
                   apiStack_50,uVar6);
     lStack_30 = (((int64_t)*(int *)(*(int64_t *)(param_2 + 0x3580) + 0x628) + 8) * 0x80 +
                 (int64_t)*(int *)(param_3 + 0x9a28)) * 0x20 + render_system_data_memory;
-    puStack_20 = &unknown_var_736_ptr;
-    puStack_18 = &unknown_var_688_ptr;
+    puStack_20 = &processed_var_736_ptr;
+    puStack_18 = &processed_var_688_ptr;
     FUN_18015b810();
     func_0x00018024f0d0(lVar1,*(uint64_t *)(param_2 + 0x3580),param_3);
   }
@@ -669,7 +669,7 @@ uint64_t *
 FUN_180462890(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_1304_ptr;
+  *param_1 = &ui_system_data_1304_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
@@ -684,7 +684,7 @@ uint64_t *
 FUN_1804628e0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_1200_ptr;
+  *param_1 = &ui_system_data_1200_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
@@ -744,7 +744,7 @@ void FUN_1804629b0(uint64_t param_1,int64_t *param_2,int param_3)
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_c8;
   uStack_a8 = 0;
   param_3 = param_3 * 0x70;
-  puStack_88 = &unknown_var_3480_ptr;
+  puStack_88 = &memory_allocator_3480_ptr;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 0x1c;
@@ -790,7 +790,7 @@ void FUN_180462ae0(uint64_t param_1,int64_t *param_2,int param_3)
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_c8;
   uStack_a8 = 0;
   param_3 = param_3 * 0x1e0;
-  puStack_88 = &unknown_var_3480_ptr;
+  puStack_88 = &memory_allocator_3480_ptr;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 0x1c;
@@ -864,11 +864,11 @@ uint64_t * FUN_180462cc0(int64_t param_1,uint64_t *param_2)
     *plVar3 = (int64_t)&system_handler1_ptr;
     *plVar3 = (int64_t)&system_handler2_ptr;
     *(int32_t *)(plVar3 + 1) = 0;
-    *plVar3 = (int64_t)&unknown_var_6544_ptr;
+    *plVar3 = (int64_t)&processed_var_6544_ptr;
     plVar3[2] = 0;
     plVar3[3] = 0;
     *(int8_t *)(plVar3 + 4) = 0;
-    *plVar3 = (int64_t)&unknown_var_1200_ptr;
+    *plVar3 = (int64_t)&ui_system_data_1200_ptr;
     (**(code **)(*plVar3 + 0x28))(plVar3);
     *param_2 = plVar3;
   }
@@ -882,11 +882,11 @@ uint64_t * FUN_180462cc0(int64_t param_1,uint64_t *param_2)
     *plVar3 = (int64_t)&system_handler1_ptr;
     *plVar3 = (int64_t)&system_handler2_ptr;
     *(int32_t *)(plVar3 + 1) = 0;
-    *plVar3 = (int64_t)&unknown_var_6544_ptr;
+    *plVar3 = (int64_t)&processed_var_6544_ptr;
     plVar3[2] = 0;
     plVar3[3] = 0;
     *(int8_t *)(plVar3 + 4) = 0;
-    *plVar3 = (int64_t)&unknown_var_1200_ptr;
+    *plVar3 = (int64_t)&ui_system_data_1200_ptr;
     (**(code **)(*plVar3 + 0x28))(plVar3);
     *param_2 = plVar3;
   }
@@ -922,11 +922,11 @@ uint64_t * FUN_180462e40(int64_t param_1,uint64_t *param_2)
     *plVar3 = (int64_t)&system_handler1_ptr;
     *plVar3 = (int64_t)&system_handler2_ptr;
     *(int32_t *)(plVar3 + 1) = 0;
-    *plVar3 = (int64_t)&unknown_var_6544_ptr;
+    *plVar3 = (int64_t)&processed_var_6544_ptr;
     plVar3[2] = 0;
     plVar3[3] = 0;
     *(int8_t *)(plVar3 + 4) = 0;
-    *plVar3 = (int64_t)&unknown_var_1304_ptr;
+    *plVar3 = (int64_t)&ui_system_data_1304_ptr;
     (**(code **)(*plVar3 + 0x28))(plVar3);
     *param_2 = plVar3;
   }
@@ -940,11 +940,11 @@ uint64_t * FUN_180462e40(int64_t param_1,uint64_t *param_2)
     *plVar3 = (int64_t)&system_handler1_ptr;
     *plVar3 = (int64_t)&system_handler2_ptr;
     *(int32_t *)(plVar3 + 1) = 0;
-    *plVar3 = (int64_t)&unknown_var_6544_ptr;
+    *plVar3 = (int64_t)&processed_var_6544_ptr;
     plVar3[2] = 0;
     plVar3[3] = 0;
     *(int8_t *)(plVar3 + 4) = 0;
-    *plVar3 = (int64_t)&unknown_var_1304_ptr;
+    *plVar3 = (int64_t)&ui_system_data_1304_ptr;
     (**(code **)(*plVar3 + 0x28))(plVar3);
     *param_2 = plVar3;
   }

@@ -571,7 +571,7 @@ void ui_system_process_audio_signals(void *ui_context, void *audio_data, int sig
     FUN_1807342b0(*(int16_t *)((char *)unaff_RBX + 0xae2), 
                    *(int8_t *)((char *)unaff_RBX + 0xae4));
     
-    base_offset = *(int64_t *)(&unknown_var_4360_ptr + (int64_t)*(char *)((char *)unaff_RBX + 0xae8) * 8);
+    base_offset = *(int64_t *)(&processed_var_4360_ptr + (int64_t)*(char *)((char *)unaff_RBX + 0xae8) * 8);
     
     if (unaff_EDI < *(int *)((char *)unaff_RBX + 0x914)) {
         data_pointer = (char *)((char *)unaff_RBX + 0xacc);
@@ -595,7 +595,7 @@ void ui_system_process_audio_signals(void *ui_context, void *audio_data, int sig
     
     // 设置音频处理参数
     *(int *)((char *)unaff_RSI + 0x88) =
-         (int)*(short *)(&unknown_var_9600_ptr + (int64_t)*(char *)((char *)unaff_RBX + 0xae9) * 2);
+         (int)*(short *)(&processed_var_9600_ptr + (int64_t)*(char *)((char *)unaff_RBX + 0xae9) * 2);
     
     SystemSecurityChecker(stack_param ^ (uint64_t)&stack0x00000000);
 }

@@ -779,7 +779,7 @@ void FUN_1804f6330(int64_t param_1,uint64_t param_2,uint64_t param_3)
   *(int32_t *)(param_1 + 0x98d948) = 0;
   *(int32_t *)(param_1 + 0x87b714) = 0;
   FUN_1805f3360(system_system_memory);
-  if (*(void **)*system_system_data_memory == &unknown_var_424_ptr) {
+  if (*(void **)*system_system_data_memory == &processed_var_424_ptr) {
     cVar1 = *(int *)(system_system_data_memory + 0xe0) != 0;
   }
   else {

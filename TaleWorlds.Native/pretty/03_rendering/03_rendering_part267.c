@@ -461,14 +461,14 @@ void FUN_180416900(int64_t param_1, uint64_t param_2, int64_t param_3, int64_t p
             pcVar10 = pcVar8;
             pcVar8 = pcVar10 + 1;
         } while (*pcVar8 != '\0');
-        *puVar7 = &unknown_var_5252_ptr;
+        *puVar7 = &processed_var_5252_ptr;
         puVar7[2] = pcVar10 + -0x180a180f3;
         
         /* 配置曲线参数 */
         SystemMemoryManager(param_3, puVar7, &system_memory_3a84, param_2);
-        FUN_180630c80(param_3, puVar7, &unknown_var_2256_ptr, 1);
+        FUN_180630c80(param_3, puVar7, &rendering_buffer_2256_ptr, 1);
         FUN_18062f990(param_3, puVar7, &system_memory_b1c0);
-        FUN_18062f990(param_3, puVar7, &unknown_var_5184_ptr);
+        FUN_18062f990(param_3, puVar7, &processed_var_5184_ptr);
         
         /* 链接到输出结构 */
         if (*(int64_t *)(param_4 + 0x30) == 0) {
@@ -497,7 +497,7 @@ void FUN_180416900(int64_t param_1, uint64_t param_2, int64_t param_3, int64_t p
             pcVar10 = pcVar8;
             pcVar8 = pcVar10 + 1;
         } while (*pcVar8 != '\0');
-        *puVar9 = &unknown_var_5204_ptr;
+        *puVar9 = &processed_var_5204_ptr;
         puVar9[2] = pcVar10 + -0x180a180c3;
         
         /* 链接到曲线对象 */
@@ -539,16 +539,16 @@ void FUN_180416900(int64_t param_1, uint64_t param_2, int64_t param_3, int64_t p
                     pcVar10 = pcVar8;
                     pcVar8 = pcVar10 + 1;
                 } while (*pcVar8 != '\0');
-                *puVar7 = &unknown_var_5272_ptr;
+                *puVar7 = &processed_var_5272_ptr;
                 puVar7[2] = pcVar10 + -0x180a18107;
                 
                 /* 设置颜色关键帧时间 */
-                FUN_18062f990(param_3, puVar7, &unknown_var_5276_ptr, (float)iVar1 * KEYFRAME_TIME_SCALE_FACTOR);
-                FUN_18062f990(param_3, puVar7, &unknown_var_3692_ptr);
+                FUN_18062f990(param_3, puVar7, &processed_var_5276_ptr, (float)iVar1 * KEYFRAME_TIME_SCALE_FACTOR);
+                FUN_18062f990(param_3, puVar7, &memory_allocator_3692_ptr);
                 
                 /* 设置颜色关键帧值 */
                 _fStackX_8 = CONCAT44(iVar3, fVar2 * KEYFRAME_TIME_SCALE_FACTOR);
-                FUN_1806307a0(param_3, puVar7, &unknown_var_5264_ptr, &fStackX_8);
+                FUN_1806307a0(param_3, puVar7, &processed_var_5264_ptr, &fStackX_8);
                 
                 /* 链接到关键帧容器 */
                 if (puVar9[6] == 0) {
@@ -577,16 +577,16 @@ void FUN_180416900(int64_t param_1, uint64_t param_2, int64_t param_3, int64_t p
                     pcVar10 = pcVar8;
                     pcVar8 = pcVar10 + 1;
                 } while (*pcVar8 != '\0');
-                *puVar7 = &unknown_var_5272_ptr;
+                *puVar7 = &processed_var_5272_ptr;
                 puVar7[2] = pcVar10 + -0x180a18107;
                 
                 /* 设置透明度关键帧时间 */
-                FUN_18062f990(param_3, puVar7, &unknown_var_5276_ptr, (float)iVar4 * KEYFRAME_TIME_SCALE_FACTOR);
-                FUN_18062f990(param_3, puVar7, &unknown_var_3692_ptr);
+                FUN_18062f990(param_3, puVar7, &processed_var_5276_ptr, (float)iVar4 * KEYFRAME_TIME_SCALE_FACTOR);
+                FUN_18062f990(param_3, puVar7, &memory_allocator_3692_ptr);
                 
                 /* 设置透明度关键帧值 */
                 _fStackX_8 = CONCAT44(iVar6, fVar5 * KEYFRAME_TIME_SCALE_FACTOR);
-                FUN_1806307a0(param_3, puVar7, &unknown_var_5264_ptr, &fStackX_8);
+                FUN_1806307a0(param_3, puVar7, &processed_var_5264_ptr, &fStackX_8);
                 
                 /* 链接到关键帧容器 */
                 if (puVar9[6] == 0) {

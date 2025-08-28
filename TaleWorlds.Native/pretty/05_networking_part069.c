@@ -290,7 +290,7 @@ LAB_1808788de:
              ((((0x71 < uVar18 || (iVar8 = FUN_1808df570(param_1), iVar8 == 0)) &&
                ((0x73 < uVar18 || (iVar8 = FUN_180868f00(FUN_180876d90,param_1,param_5), iVar8 == 0)
                 ))) && ((0x74 < uVar18 ||
-                        (iVar8 = FUN_180868f00(&unknown_var_6608_ptr,param_1,param_5), iVar8 == 0)))))) {
+                        (iVar8 = FUN_180868f00(&processed_var_6608_ptr,param_1,param_5), iVar8 == 0)))))) {
             if (uVar18 < 99) {
               iVar8 = FUN_180868d20(FUN_1808794d0,param_1,param_5);
               if ((((iVar8 != 0) ||
@@ -338,7 +338,7 @@ LAB_1808788de:
                       uStack_110 = (uint)uStack_c0._6_2_;
                       lStack_118 = CONCAT44(lStack_118._4_4_,(uint)uStack_c0._4_2_);
                     // WARNING: Subroutine does not return
-                      SystemDataValidator(auStack_80,0x27,&unknown_var_8960_ptr,(uint64_t)uStack_c0 & 0xffffffff
+                      SystemDataValidator(auStack_80,0x27,&processed_var_8960_ptr,(uint64_t)uStack_c0 & 0xffffffff
                                    );
                     }
                     lStack_118 = CONCAT71(lStack_118._1_7_,*(int8_t *)(puVar19 + 3));
@@ -584,7 +584,7 @@ void FUN_1808789b7(float param_1)
                ((0x71 < unaff_R13D || (iVar10 = FUN_1808df570(unaff_R12), iVar10 == 0)))) &&
               ((0x73 < unaff_R13D || (iVar10 = FUN_180868f00(FUN_180876d90,unaff_R12), iVar10 == 0))
               )) && ((0x74 < unaff_R13D ||
-                     (iVar10 = FUN_180868f00(&unknown_var_6608_ptr,unaff_R12), iVar10 == 0)))) {
+                     (iVar10 = FUN_180868f00(&processed_var_6608_ptr,unaff_R12), iVar10 == 0)))) {
             if (unaff_R13D < 99) {
               iVar10 = FUN_180868d20(FUN_1808794d0,unaff_R12);
               if ((((iVar10 != 0) || (iVar10 = FUN_180869080(FUN_1808794d0,unaff_R12), iVar10 != 0))
@@ -631,7 +631,7 @@ void FUN_1808789b7(float param_1)
                     *(int64_t *)(unaff_RBP + -0x49) = lVar12;
                     if (lVar12 == 0) {
                     // WARNING: Subroutine does not return
-                      SystemDataValidator(unaff_RBP + -0x39,0x27,&unknown_var_8960_ptr,
+                      SystemDataValidator(unaff_RBP + -0x39,0x27,&processed_var_8960_ptr,
                                     *(int32_t *)(unaff_RBP + -0x79),
                                     *(int16_t *)(unaff_RBP + -0x75));
                     }

@@ -62,7 +62,7 @@
 
 /** 文件操作常量 */
 #define FILE_IO_BUFFER_SIZE 8
-#define FILE_IO_CHUNK_SIZE 1
+#define FILE_IO_CHSYSTEM_SIZE 1
 
 /** 通用常量 */
 #define RENDERING_FLOAT_1_0 1.0f
@@ -92,7 +92,7 @@ extern void CoreSystemConfigManager(uint64_t param_1);
 extern void FUN_180179aa0(uint64_t param_1, uint64_t param_2, int param_3, uint64_t param_4, int param_5);
 extern void FUN_1801b9a40(int64_t param_1, int param_2);
 extern void System_BufferManager(int64_t param_1, int64_t param_2, int64_t param_3, uint64_t param_4, uint64_t param_5);
-extern void FUN_18062b1e0(uint64_t param_1, int param_2, int param_3, int param_4);
+extern void CoreSystem_LoggingManager0(uint64_t param_1, int param_2, int param_3, int param_4);
 extern void FUN_1800c17c0(int32_t param_1, int64_t param_2);
 extern void FUN_18020d730(uint64_t param_1, uint64_t param_2);
 extern void CoreEngine_MemoryAllocator(uint64_t param_1, int64_t param_2, int8_t param_3);

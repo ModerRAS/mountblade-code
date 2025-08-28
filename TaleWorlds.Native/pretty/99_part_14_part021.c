@@ -40,16 +40,16 @@ bool FUN_1808fbe31(void)
     iVar2 = iVar2 + 1;
     uVar1 = 0;
     if (8 < iVar2) {
-      puVar3 = &unknown_var_9072_ptr;
+      puVar3 = &processed_var_9072_ptr;
       uVar1 = 0xef;
 LAB_1808fbebe:
-      FUN_1808fb790(&unknown_var_8640_ptr,uVar1,&unknown_var_8608_ptr,puVar3);
+      FUN_1808fb790(&processed_var_8640_ptr,uVar1,&processed_var_8608_ptr,puVar3);
       free();
       free();
       return system_system_config != unaff_R12;
     }
   }
-  puVar3 = &unknown_var_9024_ptr;
+  puVar3 = &processed_var_9024_ptr;
   uVar1 = 0xeb;
   goto LAB_1808fbebe;
 }
@@ -75,7 +75,7 @@ void FUN_1808fbf50(int64_t param_1,uint64_t param_2)
   
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_248;
   if (param_1 != 0) {
-    uVar1 = _set_invalid_parameter_handler(&unknown_var_1520_ptr);
+    uVar1 = _set_invalid_parameter_handler(&ui_system_data_1520_ptr);
 
 
 
@@ -141,7 +141,7 @@ void SystemSecurityChecker(int64_t param_1)
   *(uint64_t *)(puVar3 + 0x28) = system_system_control_config;
   *(uint64_t *)(puVar3 + -8) = 0x1808fcdc0;
   system_system_data_config = system_system_data_config;
-  FUN_1808fccc0(&unknown_var_9672_ptr);
+  FUN_1808fccc0(&processed_var_9672_ptr);
   return;
 }
 
@@ -215,9 +215,9 @@ uint64_t FUN_1808fc074(uint64_t param_1,int param_2,int64_t param_3)
       FUN_1808fd75c();
       func_0x0001808fd3d0();
       FUN_1808fd5e4();
-      iVar6 = _initterm_e(&unknown_var_6104_ptr,&unknown_var_6120_ptr);
+      iVar6 = _initterm_e(&processed_var_6104_ptr,&processed_var_6120_ptr);
       if ((iVar6 == 0) && (cVar4 = FUN_1808fc490(), cVar4 != '\0')) {
-        _initterm(&system_callback2_ptr,&unknown_var_6072_ptr);
+        _initterm(&system_callback2_ptr,&processed_var_6072_ptr);
         system_system_data_config = 2;
         bVar2 = false;
       }
@@ -266,9 +266,9 @@ uint64_t FUN_1808fc0c4(uint64_t param_1,uint64_t param_2)
       FUN_1808fd75c();
       func_0x0001808fd3d0();
       FUN_1808fd5e4();
-      iVar5 = _initterm_e(&unknown_var_6104_ptr,&unknown_var_6120_ptr);
+      iVar5 = _initterm_e(&processed_var_6104_ptr,&processed_var_6120_ptr);
       if ((iVar5 == 0) && (cVar3 = FUN_1808fc490(), cVar3 != '\0')) {
-        _initterm(&system_callback2_ptr,&unknown_var_6072_ptr);
+        _initterm(&system_callback2_ptr,&processed_var_6072_ptr);
         system_system_data_config = 2;
         bVar2 = false;
       }
@@ -388,7 +388,7 @@ int entry(uint64_t param_1,int param_2,uint64_t param_3)
 uint64_t * FUN_1808fc3e4(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_9424_ptr;
+  *param_1 = &processed_var_9424_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x18);
   }
@@ -744,11 +744,11 @@ FUN_1808fc978(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   byte bVar9;
   
   InitializeCriticalSectionAndSpinCount(0x180c82210,4000,param_3,param_4,0xfffffffffffffffe);
-  lVar4 = GetModuleHandleW(&unknown_var_9472_ptr);
-  if ((lVar4 == 0) && (lVar4 = GetModuleHandleW(&unknown_var_9544_ptr), lVar4 == 0)) goto LAB_1808fcaca;
-  lVar5 = GetProcAddress(lVar4,&unknown_var_9576_ptr);
-  uVar6 = GetProcAddress(lVar4,&unknown_var_9608_ptr);
-  uVar7 = GetProcAddress(lVar4,&unknown_var_9640_ptr);
+  lVar4 = GetModuleHandleW(&processed_var_9472_ptr);
+  if ((lVar4 == 0) && (lVar4 = GetModuleHandleW(&processed_var_9544_ptr), lVar4 == 0)) goto LAB_1808fcaca;
+  lVar5 = GetProcAddress(lVar4,&processed_var_9576_ptr);
+  uVar6 = GetProcAddress(lVar4,&processed_var_9608_ptr);
+  uVar7 = GetProcAddress(lVar4,&processed_var_9640_ptr);
   if ((lVar5 == 0) || ((uVar6 == 0 || (uVar7 == 0)))) {
     system_system_data_config = CreateEventW(0,1,0);
     if (system_system_data_config != 0) goto LAB_1808fca68;
@@ -1006,7 +1006,7 @@ void FUN_1808fccf4(void)
   *(uint64_t *)(puVar3 + 0x28) = system_system_control_config;
   *(uint64_t *)(puVar3 + -8) = 0x1808fcdc0;
   system_system_data_config = system_system_data_config;
-  FUN_1808fccc0(&unknown_var_9672_ptr);
+  FUN_1808fccc0(&processed_var_9672_ptr);
   return;
 }
 
@@ -1057,7 +1057,7 @@ void FUN_1808fcddc(int32_t param_1)
   uRam0000000180c82280 = (uint64_t)*(uint *)(puVar3 + 0x30);
   *(uint64_t *)(puVar3 + -8) = 0x1808fce72;
   system_system_data_config = system_system_data_config;
-  FUN_1808fccc0(&unknown_var_9672_ptr);
+  FUN_1808fccc0(&processed_var_9672_ptr);
   return;
 }
 
@@ -1181,7 +1181,7 @@ void tls_callback_0(uint64_t param_1,int param_2)
   int64_t *plVar1;
   
   if (param_2 == 2) {
-    for (plVar1 = (int64_t *)&unknown_var_6088_ptr; plVar1 != (int64_t *)&unknown_var_6096_ptr;
+    for (plVar1 = (int64_t *)&processed_var_6088_ptr; plVar1 != (int64_t *)&processed_var_6096_ptr;
         plVar1 = plVar1 + 1) {
       if (*plVar1 != 0) {
         _guard_dispatch_icall();
@@ -1322,7 +1322,7 @@ void FUN_1808fd18c(uint64_t param_1,int64_t param_2,uint *param_3)
   *(uint64_t *)(puVar4 + 0x28) = system_system_control_config;
   *(uint64_t *)(puVar4 + -8) = 0x1808fcdc0;
   system_system_data_config = system_system_data_config;
-  FUN_1808fccc0(&unknown_var_9672_ptr);
+  FUN_1808fccc0(&processed_var_9672_ptr);
   return;
 }
 

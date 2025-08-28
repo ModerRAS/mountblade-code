@@ -240,7 +240,7 @@ int64_t * FUN_18033d790(int64_t *param_1,int64_t *param_2,int64_t *param_3,int32
       *(void **)(param_4 + 0xc) = &system_state_ptr;
       *(uint64_t *)(param_4 + 0xe) = 0;
       param_4[0x10] = 0;
-      *(void **)(param_4 + 0xc) = &unknown_var_3480_ptr;
+      *(void **)(param_4 + 0xc) = &memory_allocator_3480_ptr;
       *(int32_t **)(param_4 + 0xe) = param_4 + 0x12;
       param_4[0x10] = 0;
       *(int8_t *)(param_4 + 0x12) = 0;

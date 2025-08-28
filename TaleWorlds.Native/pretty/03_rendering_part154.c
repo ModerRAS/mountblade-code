@@ -983,7 +983,7 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     operation_counter = 0;
     
     // 初始化第一个渲染对象
-    string_pointer = &unknown_var_3480_ptr;
+    string_pointer = &memory_allocator_3480_ptr;
     string_buffer = string_data;
     string_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     string_length = 0x16;
@@ -996,7 +996,7 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     object_pointer_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
     string_pointer = &system_state_ptr;
-    texture_pointer = &unknown_var_3480_ptr;
+    texture_pointer = &memory_allocator_3480_ptr;
     texture_buffer = texture_data;
     texture_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     texture_length = 4;
@@ -1009,7 +1009,7 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     object_pointer_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
     texture_pointer = &system_state_ptr;
-    shader_pointer = &unknown_var_3480_ptr;
+    shader_pointer = &memory_allocator_3480_ptr;
     shader_buffer = shader_data;
     shader_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     shader_length = 0x16;
@@ -1022,7 +1022,7 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     object_pointer_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
     shader_pointer = &system_state_ptr;
-    pipeline_pointer = &unknown_var_3480_ptr;
+    pipeline_pointer = &memory_allocator_3480_ptr;
     pipeline_buffer = pipeline_data;
     pipeline_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     pipeline_length = 0x16;
@@ -1079,7 +1079,7 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
     stack_guard = RENDERING_SYSTEM_MAGIC_NUMBER;
     data_pointer = param_1;
     FUN_1803456e0();
-    *data_pointer = &unknown_var_7800_ptr;
+    *data_pointer = &processed_var_7800_ptr;
     object_pointer = data_pointer + 0x12;
     *object_pointer = (int64_t)&system_state_ptr;
     operation_flag = 0;
@@ -1115,12 +1115,12 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
     param_1[0x28] = 0;
     *(int8_t *)((int64_t)param_1 + 0x8a) = 1;
     (**(code **)(*object_pointer + 0x10))(object_pointer, &system_buffer_ptr);
-    (**(code **)(*object_pointer + 0x10))(object_pointer, &unknown_var_7664_ptr);
+    (**(code **)(*object_pointer + 0x10))(object_pointer, &processed_var_7664_ptr);
     object_pointer = param_1 + 0x20;
-    *object_pointer = (int64_t)&unknown_var_7664_ptr;
-    param_1[0x21] = &unknown_var_7832_ptr;
-    param_1[0x22] = &unknown_var_7660_ptr;
-    param_1[0x23] = &unknown_var_7648_ptr;
+    *object_pointer = (int64_t)&processed_var_7664_ptr;
+    param_1[0x21] = &processed_var_7832_ptr;
+    param_1[0x22] = &processed_var_7660_ptr;
+    param_1[0x23] = &processed_var_7648_ptr;
     
     // 处理配置数组
     do {
@@ -1231,7 +1231,7 @@ void RenderingSystem_ResourceReleaser(uint64_t *param_1, uint64_t param_2, uint6
     uint64_t resource_handle;
     
     resource_handle = RENDERING_SYSTEM_MAGIC_NUMBER;
-    *param_1 = &unknown_var_7800_ptr;
+    *param_1 = &processed_var_7800_ptr;
     if ((int64_t *)param_1[0x24] != (int64_t *)0x0) {
         status_flag = (**(code **)(*(int64_t *)param_1[0x24] + 0xd8))();
         if (status_flag != '\0') {
@@ -1265,9 +1265,9 @@ void RenderingSystem_ResourceReleaser(uint64_t *param_1, uint64_t param_2, uint6
     *(int32_t *)(param_1 + 0x15) = 0;
     param_1[0x12] = &system_state_ptr;
     resource_handle = RENDERING_SYSTEM_MAGIC_NUMBER;
-    *param_1 = &unknown_var_4544_ptr;
+    *param_1 = &processed_var_4544_ptr;
     FUN_180080df0();
-    *param_1 = &unknown_var_4912_ptr;
+    *param_1 = &processed_var_4912_ptr;
     FUN_1802f5b10(param_1 + 4, param_1[6], param_3, param_4, resource_handle);
     *param_1 = &system_handler2_ptr;
     *param_1 = &system_handler1_ptr;
@@ -1445,7 +1445,7 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     operation_counter = 0;
     
     // 初始化参数对象
-    string_pointer = &unknown_var_3480_ptr;
+    string_pointer = &memory_allocator_3480_ptr;
     string_buffer = string_data;
     string_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     string_length = 10;
@@ -1458,7 +1458,7 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     object_pointer_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
     string_pointer = &system_state_ptr;
-    texture_pointer = &unknown_var_3480_ptr;
+    texture_pointer = &memory_allocator_3480_ptr;
     texture_buffer = texture_data;
     texture_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     texture_length = 0x0f;
@@ -1471,7 +1471,7 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     object_pointer_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
     texture_pointer = &system_state_ptr;
-    shader_pointer = &unknown_var_3480_ptr;
+    shader_pointer = &memory_allocator_3480_ptr;
     shader_buffer = shader_data;
     shader_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     shader_length = 0x16;
@@ -1484,7 +1484,7 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     object_pointer_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
     shader_pointer = &system_state_ptr;
-    pipeline_pointer = &unknown_var_3480_ptr;
+    pipeline_pointer = &memory_allocator_3480_ptr;
     pipeline_buffer = pipeline_data;
     pipeline_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     pipeline_length = 0x16;
@@ -1497,7 +1497,7 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     object_pointer_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
     pipeline_pointer = &system_state_ptr;
-    config_pointer = &unknown_var_3480_ptr;
+    config_pointer = &memory_allocator_3480_ptr;
     config_buffer = config_data;
     config_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
     config_length = 0x0c;
@@ -1533,7 +1533,7 @@ void RenderingSystem_ObjectLifecycleManager(int64_t *param_1) {
     int64_t *object_pointer;
     char object_flag;
     
-    if (*(code **)(*param_1 + 0x178) != (code *)&unknown_var_4048_ptr) {
+    if (*(code **)(*param_1 + 0x178) != (code *)&processed_var_4048_ptr) {
         (**(code **)(*param_1 + 0x178))();
         return;
     }
@@ -1605,7 +1605,7 @@ void RenderingSystem_AdvancedParameterManager(int64_t param_1, int64_t param_2, 
         if (object_array[0] != object_array[2]) {
             texture_pointer = object_array[0] + 1;
             do {
-                config_data_pointer = &unknown_var_3432_ptr;
+                config_data_pointer = &memory_allocator_3432_ptr;
                 string_buffer = stack_data;
                 stack_data[0] = 0;
                 operation_flag = (int)texture_pointer[1];
@@ -1925,7 +1925,7 @@ void RenderingSystem_Initializer(uint64_t *param_1) {
     
     stack_guard = RENDERING_SYSTEM_MAGIC_NUMBER;
     FUN_1803624e0();
-    *param_1 = &unknown_var_8440_ptr;
+    *param_1 = &processed_var_8440_ptr;
     param_1[0x2b] = &system_state_ptr;
     param_1[0x2c] = 0;
     *(int32_t *)(param_1 + 0x2d) = 0;
@@ -2030,7 +2030,7 @@ void RenderingSystem_Creator(uint64_t param_1, uint64_t param_2, uint64_t param_
     resource_pointer = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x1a8, 8, 3);
     stack_guard = RENDERING_SYSTEM_MAGIC_NUMBER;
     FUN_1803624e0(resource_pointer, param_2, param_1);
-    *resource_pointer = &unknown_var_8440_ptr;
+    *resource_pointer = &processed_var_8440_ptr;
     resource_pointer[0x2b] = &system_state_ptr;
     resource_pointer[0x2c] = 0;
     *(int32_t *)(resource_pointer + 0x2d) = 0;

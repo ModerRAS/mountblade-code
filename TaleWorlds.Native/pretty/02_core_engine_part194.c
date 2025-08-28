@@ -139,7 +139,7 @@ void FUN_180176de0(void)
       puStack_288 = auStack_278;
       auStack_278[0] = 0;
       uStack_280 = 4;
-      strcpy_s(auStack_278,0x10,&unknown_var_4276_ptr);
+      strcpy_s(auStack_278,0x10,&processed_var_4276_ptr);
       CoreEngineController(&puStack_2e8,&puStack_308,&puStack_290);
       puStack_290 = &system_state_ptr;
       iStack_374 = 0;
@@ -640,7 +640,7 @@ void FUN_180177da0(uint64_t param_1,int64_t param_2)
                           (*(int64_t **)(lVar13 + 0x148),auStack_838);
         if ((lVar7 == 0) &&
            (lVar7 = (**(code **)(**(int64_t **)(lVar13 + 0x148) + 0x10))
-                              (*(int64_t **)(lVar13 + 0x148),&unknown_var_88_ptr), lVar7 == 0)) {
+                              (*(int64_t **)(lVar13 + 0x148),&processed_var_88_ptr), lVar7 == 0)) {
           lVar7 = (**(code **)(**(int64_t **)(lVar13 + 0x148) + 8))
                             (*(int64_t **)(lVar13 + 0x148),0);
         }

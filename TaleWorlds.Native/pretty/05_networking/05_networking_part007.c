@@ -621,7 +621,7 @@ void network_connection_pool_manager(int64_t *connection_pool, uint pool_size, u
         result = FUN_18088f710(network_context, stack_buffer2);
         if ((result == 0) && (result = FUN_18088f710(stack_buffer2, &stack_buffer), result == 0)) {
             // 配置连接池属性
-            result = AdvancedSystemOptimizer(stack_buffer, &unknown_var_7592_ptr, (int64_t)connection_pool + 0x14, connection_pool + 3,
+            result = AdvancedSystemOptimizer(stack_buffer, &processed_var_7592_ptr, (int64_t)connection_pool + 0x14, connection_pool + 3,
                                   (int64_t)connection_pool + 0x1c);
             if (((result == 3) ||
                 (((result = FUN_18088eea0(&stack_buffer, (int64_t)connection_pool + 0x14), result == 0 &&
@@ -629,7 +629,7 @@ void network_connection_pool_manager(int64_t *connection_pool, uint pool_size, u
                  (result = FUN_18088eea0(&stack_buffer, (int64_t)connection_pool + 0x1c), result == 0)))) &&
                 (result = FUN_18088f710(stack_buffer2, &stack_buffer), result == 0)) {
                 // 设置连接池参数
-                result = AdvancedSystemOptimizer(stack_buffer, &unknown_var_7592_ptr, connection_pool + 4, (int64_t)connection_pool + 0x24,
+                result = AdvancedSystemOptimizer(stack_buffer, &processed_var_7592_ptr, connection_pool + 4, (int64_t)connection_pool + 0x24,
                                       connection_pool + 5);
                 if (((result == 3) ||
                     (((result = FUN_18088eea0(&stack_buffer, connection_pool + 4), result == 0 &&
@@ -968,7 +968,7 @@ uint64_t network_memory_allocator(int64_t *memory_ptr, uint64_t size)
     allocated_memory = 0;
     if (result != 0) {
         if (result - 1U < 0x3fffffff) {
-            allocated_memory = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), size, &unknown_var_8432_ptr, NETWORK_HEADER_SIZE, 0, 0,
+            allocated_memory = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), size, &processed_var_8432_ptr, NETWORK_HEADER_SIZE, 0, 0,
                                         1);
             if (allocated_memory != 0) {
                 if ((int)memory_ptr[1] != 0) {
@@ -983,7 +983,7 @@ uint64_t network_memory_allocator(int64_t *memory_ptr, uint64_t size)
 allocation_complete:
     if ((0 < *(int *)((int64_t)memory_ptr + 0xc)) && (*memory_ptr != 0)) {
         // 释放旧内存
-        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *memory_ptr, &unknown_var_8432_ptr, BUFFER_SIZE, 1);
+        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *memory_ptr, &processed_var_8432_ptr, BUFFER_SIZE, 1);
     }
     *memory_ptr = allocated_memory;
     *(int *)((int64_t)memory_ptr + 0xc) = result;
@@ -1010,14 +1010,14 @@ uint64_t network_memory_deallocator(uint64_t param1, uint64_t size)
     release_complete:
         if ((0 < *(int *)((int64_t)memory_ptr + 0xc)) && (*memory_ptr != 0)) {
             // 释放内存
-            SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *memory_ptr, &unknown_var_8432_ptr, BUFFER_SIZE, 1);
+            SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *memory_ptr, &processed_var_8432_ptr, BUFFER_SIZE, 1);
         }
         *memory_ptr = allocated_memory;
         *(int *)((int64_t)memory_ptr + 0xc) = size_int;
         return NETWORK_ERROR_NONE;
     }
     if ((int)size - 1U < 0x3fffffff) {
-        allocated_memory = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), size, &unknown_var_8432_ptr, NETWORK_HEADER_SIZE, 0);
+        allocated_memory = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), size, &processed_var_8432_ptr, NETWORK_HEADER_SIZE, 0);
         if (allocated_memory != 0) {
             if ((int)memory_ptr[1] != 0) {
                 // 复制数据到新内存
@@ -1069,7 +1069,7 @@ uint64_t network_connection_array_manager(int64_t *connection_array, int array_s
     if (array_size != 0) {
         if (array_size * 0x14 - 1U < 0x3fffffff) {
             dest_ptr = (int32_t *)
-                     SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), array_size * 0x14, &unknown_var_8432_ptr,
+                     SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), array_size * 0x14, &processed_var_8432_ptr,
                                    NETWORK_HEADER_SIZE, 0, 0, 1);
             if (dest_ptr != (int32_t *)0x0) {
                 current_size = (int)connection_array[1];
@@ -1099,7 +1099,7 @@ uint64_t network_connection_array_manager(int64_t *connection_array, int array_s
 array_management_complete:
     if ((0 < *(int *)((int64_t)connection_array + 0xc)) && (*connection_array != 0)) {
         // 清理旧数组
-        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *connection_array, &unknown_var_8432_ptr, BUFFER_SIZE, 1);
+        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *connection_array, &processed_var_8432_ptr, BUFFER_SIZE, 1);
     }
     *connection_array = (int64_t)dest_ptr;
     *(int *)((int64_t)connection_array + 0xc) = array_size;
@@ -1134,7 +1134,7 @@ uint64_t network_connection_array_cleaner(uint64_t param1, int array_size)
     array_clean_complete:
         if ((0 < *(int *)((int64_t)memory_ptr + 0xc)) && (*memory_ptr != 0)) {
             // 清理数组内存
-            SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *memory_ptr, &unknown_var_8432_ptr, BUFFER_SIZE, 1);
+            SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *memory_ptr, &processed_var_8432_ptr, BUFFER_SIZE, 1);
         }
         *memory_ptr = (int64_t)dest_ptr;
         *(int *)((int64_t)memory_ptr + 0xc) = size_int;
@@ -1142,7 +1142,7 @@ uint64_t network_connection_array_cleaner(uint64_t param1, int array_size)
     }
     if (array_size * 0x14 - 1U < 0x3fffffff) {
         dest_ptr = (int32_t *)
-                 SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), array_size * 0x14, &unknown_var_8432_ptr,
+                 SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), array_size * 0x14, &processed_var_8432_ptr,
                                NETWORK_HEADER_SIZE, 0);
         if (dest_ptr != (int32_t *)0x0) {
             current_size = (int)memory_ptr[1];
@@ -1215,7 +1215,7 @@ void network_message_broadcaster(uint64_t message_id)
        (result = FUN_18088dec0(*(uint64_t *)(stack_array[0] + 0x98), ptr_array, 0x18), result == 0))
     {
         // 设置广播消息
-        *ptr_array[0] = &unknown_var_8024_ptr;
+        *ptr_array[0] = &processed_var_8024_ptr;
         *(int32_t *)(ptr_array[0] + 1) = 0x18;
         *(int *)(ptr_array[0] + 2) = (int)message_id;
         func_0x00018088e0d0(*(uint64_t *)(stack_array[0] + 0x98));
@@ -1266,7 +1266,7 @@ void network_connection_closer(uint64_t connection_id)
         stack_ptr = large_buffer;
         large_buffer[0] = 0;
         // 记录关闭日志
-        DataTransformer(result, 0xb, connection_id, &unknown_var_4712_ptr);
+        DataTransformer(result, 0xb, connection_id, &processed_var_4712_ptr);
     }
 connection_close_complete:
     // 安全清理
@@ -1307,7 +1307,7 @@ void network_config_setter(uint64_t config_id, uint64_t *config_data)
         func_0x00018074bda0(large_buffer, 0x100, 0);
         stack_ptr = large_buffer;
         // 记录配置日志
-        DataTransformer(0x1f, 0xd, config_id, &unknown_var_6920_ptr);
+        DataTransformer(0x1f, 0xd, config_id, &processed_var_6920_ptr);
     }
     stack_value = 0;
     result = func_0x00018088c590(config_id, &stack_long);
@@ -1323,7 +1323,7 @@ void network_config_setter(uint64_t config_id, uint64_t *config_data)
     if ((status == 0) &&
        (result = FUN_18088dec0(*(uint64_t *)(stack_long + 0x98), ptr_array, 0x48), result == 0)) {
         // 设置配置数据
-        *ptr_array[0] = &unknown_var_6816_ptr;
+        *ptr_array[0] = &processed_var_6816_ptr;
         *(int32_t *)(ptr_array[0] + 1) = 0x48;
         *(int *)(ptr_array[0] + 2) = (int)config_id;
         value4 = config_data[1];
@@ -1377,7 +1377,7 @@ void network_connection_validator(uint64_t connection_id, uint64_t validation_da
         func_0x00018074bda0(large_buffer, 0x100, validation_data);
         stack_ptr = large_buffer;
         // 记录验证日志
-        DataTransformer(result, 0xb, connection_id, &unknown_var_5000_ptr);
+        DataTransformer(result, 0xb, connection_id, &processed_var_5000_ptr);
     }
     // 安全清理
     SystemSecurityChecker(security_cookie ^ (uint64_t)stack_buffer);

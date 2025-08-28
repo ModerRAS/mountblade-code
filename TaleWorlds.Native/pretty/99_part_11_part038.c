@@ -465,7 +465,7 @@ uint64_t FUN_1807a5040(int64_t *param_1,int32_t param_2,int32_t *param_3,int64_t
       fVar2 = *(float *)(lVar1 + 0x3dc);
 code_r0x0001807a5150:
                     // WARNING: Subroutine does not return
-      SystemDataValidator(param_4,0x20,&unknown_var_2048_ptr,(double)fVar2);
+      SystemDataValidator(param_4,0x20,&rendering_buffer_2048_ptr,(double)fVar2);
     }
     break;
   case 1:
@@ -566,7 +566,7 @@ void FUN_1807a51a0(int64_t param_1)
         fVar8 = (5.0 / (float)iVar1) * *(float *)(param_1 + 0x238);
       }
       else {
-        fVar8 = *(float *)(&unknown_var_6484_ptr + (uVar7 + (int64_t)iVar3 * 9) * 4) *
+        fVar8 = *(float *)(&processed_var_6484_ptr + (uVar7 + (int64_t)iVar3 * 9) * 4) *
                 *(float *)(param_1 + 0x238);
       }
       iVar2 = (int)((*(float *)(param_1 + 0x230) - fVar8) * *(float *)(param_1 + 0x25c));
@@ -613,7 +613,7 @@ void FUN_1807a5201(int param_1,int64_t param_2,int *param_3,uint64_t param_4)
       fVar5 = (in_XMM3_Da / (float)in_EAX) * *(float *)(param_2 + 0x238);
     }
     else {
-      fVar5 = *(float *)(&unknown_var_6484_ptr + (uVar4 + (int64_t)param_1 * 9) * 4) *
+      fVar5 = *(float *)(&processed_var_6484_ptr + (uVar4 + (int64_t)param_1 * 9) * 4) *
               *(float *)(param_2 + 0x238);
     }
     iVar2 = (int)((*(float *)(param_2 + 0x230) - fVar5) * *(float *)(param_2 + 0x25c));

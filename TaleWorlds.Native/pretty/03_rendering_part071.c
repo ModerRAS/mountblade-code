@@ -628,7 +628,7 @@ uint64_t *
 FUN_1803095e0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_3952_ptr;
+  *param_1 = &memory_allocator_3952_ptr;
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
@@ -652,7 +652,7 @@ void FUN_180309640(uint64_t *param_1)
   int64_t lVar3;
   uint64_t uVar4;
   
-  *param_1 = &unknown_var_3952_ptr;
+  *param_1 = &memory_allocator_3952_ptr;
   puVar2 = (uint64_t *)param_1[1];
   if (puVar2 == (uint64_t *)0x0) {
     return;
@@ -728,7 +728,7 @@ FUN_180309740(uint64_t *param_1,int param_2,int32_t param_3,int32_t param_4,
   *param_1 = &system_handler1_ptr;
   *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &unknown_var_4176_ptr;
+  *param_1 = &processed_var_4176_ptr;
   *(int *)(param_1 + 3) = param_2;
   *(int32_t *)((int64_t)param_1 + 0x1c) = param_3;
   *(int32_t *)(param_1 + 4) = param_4;
@@ -825,7 +825,7 @@ void FUN_180309950(uint64_t *param_1)
   int64_t *plStackX_18;
   int64_t *plStackX_20;
   
-  *param_1 = &unknown_var_4176_ptr;
+  *param_1 = &processed_var_4176_ptr;
   lVar5 = render_system_data_memory;
   iVar6 = *(int *)((int64_t)param_1 + 0x24);
   lVar7 = (int64_t)iVar6;

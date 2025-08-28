@@ -568,7 +568,7 @@ void FUN_18038c180(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&unknown_var_5304_ptr);
+  FUN_180062300(system_message_context,&processed_var_5304_ptr);
 }
 
 

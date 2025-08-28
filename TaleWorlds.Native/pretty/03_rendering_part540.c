@@ -201,7 +201,7 @@ void FUN_180561b50(int64_t param_1,int64_t *param_2)
     lVar9 = param_2[1];
   }
   param_2[1] = lVar9 + 4;
-  puVar13 = (uint64_t *)&unknown_var_7520_ptr;
+  puVar13 = (uint64_t *)&processed_var_7520_ptr;
   uVar11 = uVar14;
   do {
     if ((puVar13[1] & uVar2) != 0) {
@@ -825,7 +825,7 @@ void FUN_180562f10(int64_t param_1)
   uint64_t *puVar1;
   
   puVar1 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,3);
-  *puVar1 = &unknown_var_7752_ptr;
+  *puVar1 = &processed_var_7752_ptr;
   *(int32_t *)(puVar1 + 1) = *(int32_t *)(param_1 + 8);
   *(int32_t *)((int64_t)puVar1 + 0xc) = *(int32_t *)(param_1 + 0xc);
   *(int32_t *)(puVar1 + 2) = *(int32_t *)(param_1 + 0x10);

@@ -66,7 +66,7 @@ void serialize_rendering_data(int64_t *render_obj, int64_t *output_buf, uint64_t
     output_buf[1] = (int64_t)buffer_ptr;
     
     // 获取数据数组指针
-    if ((void *)*render_obj == &unknown_var_9304_ptr) {
+    if ((void *)*render_obj == &processed_var_9304_ptr) {
         array_ptr = render_obj + 0x66;
     }
     else {
@@ -1130,7 +1130,7 @@ find_in_rendering_hash_table(int64_t hash_table, uint64_t *result_ptr, uint64_t 
         return result_ptr;
     }
     
-    data_value = FUN_18062b1e0(system_memory_pool_ptr, (uint64_t)param5._4_4_ * 8 + 8, 8,
+    data_value = CoreSystem_LoggingManager0(system_memory_pool_ptr, (uint64_t)param5._4_4_ * 8 + 8, 8,
                                 *(int8_t *)(hash_table + 0x2c));
     memset(data_value, 0, (uint64_t)param5._4_4_ * 8);
 }
@@ -1213,7 +1213,7 @@ find_in_rendering_string_hash(int64_t hash_table, int64_t *result_ptr, uint64_t 
         return result_ptr;
     }
     
-    data_value = FUN_18062b1e0(system_memory_pool_ptr, (uint64_t)param5._4_4_ * 8 + 8, 8,
+    data_value = CoreSystem_LoggingManager0(system_memory_pool_ptr, (uint64_t)param5._4_4_ * 8 + 8, 8,
                                 *(int8_t *)(hash_table + 0x2c));
     memset(data_value, 0, (uint64_t)param5._4_4_ * 8);
 }

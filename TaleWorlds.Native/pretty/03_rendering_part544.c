@@ -43,7 +43,7 @@ void FUN_180566420(int64_t param_1,float param_2)
   puStack_a8 = auStack_98;
   auStack_98[0] = 0;
   uStack_a0 = 7;
-  strcpy_s(auStack_98,0x10,&unknown_var_4064_ptr);
+  strcpy_s(auStack_98,0x10,&processed_var_4064_ptr);
   (*pcVar1)(render_system_data_memory,&puStack_b0,param_2 * 0.1);
   puStack_b0 = &system_state_ptr;
   fVar5 = *(float *)(param_1 + 0x440) * 0.0031847134;
@@ -192,7 +192,7 @@ void FUN_180566900(uint64_t param_1)
   puVar10 = puStack_148;
   lStack_150 = ((int64_t)puStack_100 - (int64_t)puStack_108 >> 5) + -1;
   if (lStack_150 == 0) {
-    FUN_1801ae4a0(param_1,&unknown_var_8576_ptr);
+    FUN_1801ae4a0(param_1,&processed_var_8576_ptr);
     puVar20 = puStack_100;
     puVar18 = puStack_108;
     puVar5 = puStack_128;
@@ -233,7 +233,7 @@ void FUN_180566900(uint64_t param_1)
     if (iVar6 < 0x10) {
       iVar6 = 0x10;
     }
-    pcVar8 = (char *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)iVar6,&unknown_var_3251_ptr);
+    pcVar8 = (char *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)iVar6,&memory_allocator_3251_ptr);
     *pcVar8 = '\0';
     pcStack_198 = pcVar8;
     uVar7 = CoreEngineSystemCleanup(pcVar8);
@@ -820,7 +820,7 @@ void FUN_180567bb0(int64_t param_1)
        (double)((float)(*(int64_t *)
                          (&system_error_code + (int64_t)*(int *)(render_system_memory + 0x87b790) * 8) -
                        *(int64_t *)(render_system_memory + 0x87b788)) * 1e-05);
-  SystemBufferProcessor(lVar1,*(int32_t *)(param_1 + 0x5f0),&unknown_var_8192_ptr);
+  SystemBufferProcessor(lVar1,*(int32_t *)(param_1 + 0x5f0),&processed_var_8192_ptr);
   FUN_180569670(lVar1);
   FUN_18055f4e0(lVar1,*(int *)(lVar1 + 0x5c8) + *(int *)(param_1 + 0x5e8) + 8);
   FUN_18055f4e0(param_1 + 0x20,*(int *)(param_1 + 0x5e8) + 8);

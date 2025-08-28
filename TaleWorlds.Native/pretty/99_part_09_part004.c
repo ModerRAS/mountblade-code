@@ -38,7 +38,7 @@ void FUN_1805bf290(int64_t *param_1,int32_t *param_2,float param_3)
       iVar3 = FUN_180619450(param_1 + 0x408);
       if (iVar3 == 4) {
         iStack_58 = 0;
-        puStack_e8 = &unknown_var_6432_ptr;
+        puStack_e8 = &processed_var_6432_ptr;
         uStack_dc = 0x31b789;
         uStack_e0 = 2;
         uStack_d8 = 0;
@@ -76,7 +76,7 @@ void FUN_1805bf290(int64_t *param_1,int32_t *param_2,float param_3)
       uStack_dc = 0x31b789;
       uStack_e0 = 2;
       uStack_d8 = 0;
-      puStack_e8 = &unknown_var_3392_ptr;
+      puStack_e8 = &memory_allocator_3392_ptr;
       uStack_d0 = *param_2;
       uStack_cc = param_2[1];
       uStack_c8 = param_2[2];

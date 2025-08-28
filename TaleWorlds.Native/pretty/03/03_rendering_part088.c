@@ -296,32 +296,32 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
       // 配置渲染系统
       config_param = *(int32_t *)(render_params + 0x1bd4);
       current_state = 0;
-      temp_ptr6 = &unknown_var_3480_ptr;
+      temp_ptr6 = &memory_allocator_3480_ptr;
       temp_ptr7 = temp_buffer8;
       temp_buffer8[0] = 0;
       temp_param35 = 0xc;
-      strcpy_s(temp_buffer8, 0x40, &unknown_var_6328_ptr);
+      strcpy_s(temp_buffer8, 0x40, &processed_var_6328_ptr);
       stack_guard1._0_1_ = 1;
       stack_param1 = config_param;
       rendering_system_configure_render_context(&temp_ptr6, render_context + 0x22);
       temp_ptr6 = &system_state_ptr;
       config_param = *(int32_t *)(render_params + 0x1bd4);
       is_enabled = system_buffer_aa6a == '\0';
-      temp_ptr15 = &unknown_var_3480_ptr;
+      temp_ptr15 = &memory_allocator_3480_ptr;
       temp_ptr16 = temp_buffer9;
       temp_buffer9[0] = 0;
       temp_param36 = 0xc;
-      strcpy_s(temp_buffer9, 0x40, &unknown_var_6312_ptr);
+      strcpy_s(temp_buffer9, 0x40, &processed_var_6312_ptr);
       stack_param1 = config_param;
       stack_guard1._0_1_ = is_enabled;
       rendering_system_configure_render_context(&temp_ptr15, render_context + 0x21);
       temp_ptr15 = &system_state_ptr;
       config_param = *(int32_t *)(render_params + 0x1bd4);
-      temp_ptr17 = &unknown_var_3480_ptr;
+      temp_ptr17 = &memory_allocator_3480_ptr;
       temp_ptr18 = temp_buffer10;
       temp_buffer10[0] = 0;
       temp_param37 = 0x17;
-      strcpy_s(temp_buffer10, 0x40, &unknown_var_6288_ptr);
+      strcpy_s(temp_buffer10, 0x40, &processed_var_6288_ptr);
       stack_guard1 = CONCAT71(stack_guard1._1_7_,1);
       stack_param1 = config_param;
       rendering_system_configure_render_context(&temp_ptr17, render_context + 0x24);
@@ -331,11 +331,11 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
       if (*(code **)(temp_var1 + 0x9620) != (code *)0x0) {
         (**(code **)(temp_var1 + 0x9620))(temp_var1 + 0x9610, 0, 0);
       }
-      *(void **)(temp_var1 + 0x9620) = &unknown_var_7024_ptr;
-      *(void **)(temp_var1 + 0x9628) = &unknown_var_7008_ptr;
-      *(void **)(temp_var1 + 0x9610) = &unknown_var_4240_ptr;
+      *(void **)(temp_var1 + 0x9620) = &processed_var_7024_ptr;
+      *(void **)(temp_var1 + 0x9628) = &processed_var_7008_ptr;
+      *(void **)(temp_var1 + 0x9610) = &processed_var_4240_ptr;
       *(uint64_t **)(temp_var1 + 0x9650) = render_context;
-      rendering_system_setup_render_pipeline(temp_var1, &unknown_var_6432_ptr);
+      rendering_system_setup_render_pipeline(temp_var1, &processed_var_6432_ptr);
       rendering_system_copy_render_data(temp_var1 + 0x3580, render_params + 0x3580);
       do {
         temp_var7 = render_context[0x24];
@@ -370,7 +370,7 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
         *(int32_t *)((int64_t)render_context + 0x5c) = 0;
         *(int32_t *)((int64_t)render_context + 0x4c) = 5;
         resource_array2 = &temp_resource5;
-        temp_resource5 = (int64_t *)&unknown_var_3432_ptr;
+        temp_resource5 = (int64_t *)&memory_allocator_3432_ptr;
         temp_ptr9 = temp_buffer4;
         temp_param26 = 0;
         temp_buffer4[0] = 0;
@@ -401,14 +401,14 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
       else if (current_state == 6) {
         *(int32_t *)((int64_t)render_context + 0x4c) = 0x13;
         resource_array3 = &temp_resource3;
-        temp_resource3 = (int64_t *)&unknown_var_3432_ptr;
+        temp_resource3 = (int64_t *)&memory_allocator_3432_ptr;
         temp_ptr2 = temp_buffer1;
         temp_param17 = 0;
         temp_buffer1[0] = 0;
         temp_param18 = 0x21;
         temp_param19 = *(int32_t *)(render_params + 0x1bd4);
         temp_ptr3 = render_context;
-        if ((void *)*render_context == &unknown_var_6584_ptr) {
+        if ((void *)*render_context == &processed_var_6584_ptr) {
           LOCK();
           *(int *)(render_context + 1) = *(int *)(render_context + 1) + 1;
           UNLOCK();
@@ -443,11 +443,11 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
           if (*(code **)(temp_var1 + 0x9620) != (code *)0x0) {
             (**(code **)(temp_var1 + 0x9620))(temp_var1 + 0x9610, 0, 0);
           }
-          *(void **)(temp_var1 + 0x9620) = &unknown_var_7024_ptr;
-          *(void **)(temp_var1 + 0x9628) = &unknown_var_7008_ptr;
-          *(void **)(temp_var1 + 0x9610) = &unknown_var_4240_ptr;
+          *(void **)(temp_var1 + 0x9620) = &processed_var_7024_ptr;
+          *(void **)(temp_var1 + 0x9628) = &processed_var_7008_ptr;
+          *(void **)(temp_var1 + 0x9610) = &processed_var_4240_ptr;
           *(uint64_t **)(temp_var1 + 0x9650) = render_context;
-          rendering_system_setup_render_pipeline(temp_var1, &unknown_var_6408_ptr);
+          rendering_system_setup_render_pipeline(temp_var1, &processed_var_6408_ptr);
           rendering_system_copy_render_data(temp_var1 + 0x3580, render_params + 0x3580);
           current_state = 0;
           do {
@@ -482,7 +482,7 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
           else if (current_state == 10) {
             *(int32_t *)((int64_t)render_context + 0x4c) = 0xb;
             resource_array4 = &temp_resource6;
-            temp_resource6 = (int64_t *)&unknown_var_3432_ptr;
+            temp_resource6 = (int64_t *)&memory_allocator_3432_ptr;
             temp_ptr10 = temp_buffer5;
             temp_param28 = 0;
             temp_buffer5[0] = 0;
@@ -513,14 +513,14 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
           else if (current_state == 0xc) {
             *(int32_t *)((int64_t)render_context + 0x4c) = 0x13;
             resource_array5 = &temp_resource4;
-            temp_resource4 = (int64_t *)&unknown_var_3432_ptr;
+            temp_resource4 = (int64_t *)&memory_allocator_3432_ptr;
             temp_ptr4 = temp_buffer2;
             temp_param20 = 0;
             temp_buffer2[0] = 0;
             temp_param21 = 0x20;
             temp_param22 = *(int32_t *)(render_params + 0x1bd4);
             temp_ptr5 = render_context;
-            if ((void *)*render_context == &unknown_var_6584_ptr) {
+            if ((void *)*render_context == &processed_var_6584_ptr) {
               LOCK();
               *(int *)(render_context + 1) = *(int *)(render_context + 1) + 1;
               UNLOCK();
@@ -555,21 +555,21 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
               if (function_ptr != (code *)0x0) {
                 (*function_ptr)(temp_var1 + 0x9610, 0, 0);
               }
-              *(void **)(temp_var1 + 0x9620) = &unknown_var_7024_ptr;
-              *(void **)(temp_var1 + 0x9628) = &unknown_var_7008_ptr;
-              function_ptr = (code *)&unknown_var_4240_ptr;
+              *(void **)(temp_var1 + 0x9620) = &processed_var_7024_ptr;
+              *(void **)(temp_var1 + 0x9628) = &processed_var_7008_ptr;
+              function_ptr = (code *)&processed_var_4240_ptr;
             }
             else {
               if (function_ptr != (code *)0x0) {
                 (*function_ptr)(temp_var1 + 0x9610, 0, 0);
               }
-              *(void **)(temp_var1 + 0x9620) = &unknown_var_7024_ptr;
-              *(void **)(temp_var1 + 0x9628) = &unknown_var_7008_ptr;
+              *(void **)(temp_var1 + 0x9620) = &processed_var_7024_ptr;
+              *(void **)(temp_var1 + 0x9628) = &processed_var_7008_ptr;
               function_ptr = rendering_system_initialize_state;
             }
             *(code **)(temp_var1 + 0x9610) = function_ptr;
             *(uint64_t **)(temp_var1 + 0x9650) = render_context;
-            rendering_system_setup_render_pipeline(temp_var1, &unknown_var_6408_ptr);
+            rendering_system_setup_render_pipeline(temp_var1, &processed_var_6408_ptr);
             rendering_system_copy_render_data(temp_var1 + 0x3580, render_params + 0x3580);
             current_state = 0;
             do {
@@ -604,7 +604,7 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
             else if (current_state == 0x10) {
               *(int32_t *)((int64_t)render_context + 0x4c) = 0x11;
               resource_array6 = &temp_resource7;
-              temp_resource7 = (int64_t *)&unknown_var_3432_ptr;
+              temp_resource7 = (int64_t *)&memory_allocator_3432_ptr;
               temp_ptr11 = temp_buffer6;
               temp_param30 = 0;
               temp_buffer6[0] = 0;
@@ -636,13 +636,13 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
               temp_param25 = *(int32_t *)(render_params + 0x1bd4);
               *(int32_t *)((int64_t)render_context + 0x4c) = 0x13;
               resource_array6 = (int64_t **)&temp_ptr6;
-              temp_ptr6 = &unknown_var_3432_ptr;
+              temp_ptr6 = &memory_allocator_3432_ptr;
               temp_ptr7 = temp_buffer3;
               temp_param23 = 0;
               temp_buffer3[0] = 0;
               temp_param24 = 0x1f;
               temp_ptr8 = render_context;
-              if ((void *)*render_context == &unknown_var_6584_ptr) {
+              if ((void *)*render_context == &processed_var_6584_ptr) {
                 LOCK();
                 *(int *)(render_context + 1) = *(int *)(render_context + 1) + 1;
                 UNLOCK();
@@ -840,11 +840,11 @@ void rendering_system_manage_resources(int64_t render_context, int64_t *resource
   // 设置渲染参数
   *(int32_t *)(render_context + 0x10) = param1;
   if (*(int64_t *)(render_context + 0x40) == 0) {
-    temp_ptr1 = &unknown_var_3480_ptr;
+    temp_ptr1 = &memory_allocator_3480_ptr;
     temp_ptr2 = temp_buffer;
     temp_buffer[0] = 0;
     temp_param3 = 0x14;
-    strcpy_s(temp_buffer, 0x40, &unknown_var_6384_ptr);
+    strcpy_s(temp_buffer, 0x40, &processed_var_6384_ptr);
     stack_param2 = param2;
     stack_param1 = 1;
     rendering_system_configure_render_context(&temp_ptr1, render_context + 0x40);
@@ -970,7 +970,7 @@ uint64_t * rendering_system_create_render_object(uint64_t *render_object, uint64
   *render_object = &system_handler1_ptr;
   *render_object = &system_handler2_ptr;
   *(int32_t *)(render_object + 1) = 0;
-  *render_object = &unknown_var_6584_ptr;
+  *render_object = &processed_var_6584_ptr;
   
   // 初始化渲染对象参数
   render_object[3] = 0;

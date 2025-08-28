@@ -176,7 +176,7 @@ void FUN_1803ca330(int64_t param_1,uint64_t *param_2,uint64_t *param_3,int64_t p
     uStack_d0 = afStack_c0;
     afStack_c0[0] = (float)((uint)afStack_c0[0] & 0xffffff00);
     fStack_c8 = 7.00649e-45;
-    strcpy_s(afStack_c0,0x10,&unknown_var_3180_ptr);
+    strcpy_s(afStack_c0,0x10,&memory_allocator_3180_ptr);
     lVar13 = system_system_data_memory;
     iVar8 = FUN_180191c00(system_system_data_memory,&uStack_d8);
     if ((iVar8 == -1) ||

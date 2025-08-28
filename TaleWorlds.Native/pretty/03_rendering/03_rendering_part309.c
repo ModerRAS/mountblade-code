@@ -123,7 +123,7 @@
 #define DATA_PROCESSING_BYTE_SHIFT 0x18          /**< 数据处理字节位移 */
 #define DATA_PROCESSING_BYTE_ALIGNMENT 0x1f     /**< 数据处理字节对齐 */
 #define DATA_PROCESSING_WORD_SHIFT 0x10          /**< 数据处理字位移 */
-#define DATA_PROCESSING_CHUNK_SIZE 8             /**< 数据处理块大小 */
+#define DATA_PROCESSING_CHSYSTEM_SIZE 8             /**< 数据处理块大小 */
 #define DATA_PROCESSING_MAX_ITERATIONS 2         /**< 数据处理最大迭代次数 */
 #define DATA_PROCESSING_PIXEL_GROUP_SIZE 4        /**< 数据处理像素组大小 */
 #define DATA_PROCESSING_LOOP_INCREMENT 8          /**< 数据处理循环增量 */
@@ -580,7 +580,7 @@ void RenderingAdvancedImageProcessor(void)
     *(int32_t *)(contextParam2 + BUFFER_OFFSET_CONTROL_DATA) = CONTROL_CODE_PATTERN_1;
     *(char *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_1) = (char)((uint)controlParam1 >> CONTROL_CODE_BIT_SHIFT);
     *(char *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_2) = (char)((uint)stackParam2 >> CONTROL_CODE_BIT_SHIFT);
-    *(int8_t *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_3) = DATA_PROCESSING_CHUNK_SIZE;
+    *(int8_t *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_3) = DATA_PROCESSING_CHSYSTEM_SIZE;
     *(char *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_4) = (char)controlParam1;
     *(char *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_5) = (char)stackParam2;
     *(int32_t *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_6) = CONTROL_CODE_PATTERN_2;
@@ -629,12 +629,12 @@ void RenderingAdvancedImageProcessor(void)
         processingCount = stackParam2;
         do {
             if (0 < stackParam2) {
-                stackParam8 = DATA_PROCESSING_CHUNK_SIZE;
+                stackParam8 = DATA_PROCESSING_CHSYSTEM_SIZE;
                 do {
                     stackPointer = stackPointer;
                     qualityIndex = stackParam8;
                     stackParam1 = 0;
-                    stackParam9 = stackParam7 + DATA_PROCESSING_CHUNK_SIZE;
+                    stackParam9 = stackParam7 + DATA_PROCESSING_CHSYSTEM_SIZE;
                     for (stackParam4 = stackParam7; stackParam4 < stackParam9; stackParam4 = stackParam4 + 1) {
                         encodingStep = stackParam4;
                         if (processingCount <= stackParam4) {
@@ -738,18 +738,18 @@ void RenderingAdvancedImageProcessor(void)
                     stackParam6 = HelperImageProcessing(stackPointer, &stack0x0000004c, &stack0x00000050, contextParam2 + BUFFER_OFFSET_LUMINANCE_DATA_1, contextParam2 + BUFFER_OFFSET_FLOAT_DATA_1);
                     stackControl1 = HelperImageProcessing(stackPointer, &stack0x0000004c, &stack0x00000050, contextParam2 + BUFFER_OFFSET_LUMINANCE_DATA_2, contextParam2 + BUFFER_OFFSET_NEGATIVE_FLOAT_DATA_1);
                     stackControl2 = HelperImageProcessing(stackPointer, &stack0x0000004c, &stack0x00000050, contextParam2 + BUFFER_OFFSET_LUMINANCE_DATA_3, contextParam2 + BUFFER_OFFSET_NEGATIVE_FLOAT_DATA_1);
-                    stackParam8 = qualityIndex + DATA_PROCESSING_CHUNK_SIZE;
+                    stackParam8 = qualityIndex + DATA_PROCESSING_CHSYSTEM_SIZE;
                     processingCount = stackParam2;
                 } while (qualityIndex < stackParam2);
             }
-            stackParam7 = stackParam7 + DATA_PROCESSING_CHUNK_SIZE;
+            stackParam7 = stackParam7 + DATA_PROCESSING_CHSYSTEM_SIZE;
         } while (stackParam7 < processingCount);
     }
     
     // 执行数据编码处理
     stackParam3 = stackParam5 + 7;
     controlCode = DATA_PROCESSING_BYTE_MASK << (DATA_PROCESSING_BYTE_SHIFT - (char)stackParam3 & DATA_PROCESSING_BYTE_ALIGNMENT) | stackParam3;
-    if (DATA_PROCESSING_CHUNK_SIZE < (int)stackParam3) {
+    if (DATA_PROCESSING_CHSYSTEM_SIZE < (int)stackParam3) {
         memoryOffset = (ImageMemoryOffset)(stackParam3 >> 3);
         do {
             char tempChar = (char)(controlCode >> DATA_PROCESSING_WORD_SHIFT);
@@ -816,11 +816,11 @@ void ImageColorSpaceConverter(int param_1, int param_2, int64_t param_3)
     // 主要处理循环
     do {
         if (0 < stackParam2) {
-            stackParam8 = DATA_PROCESSING_CHUNK_SIZE;
+            stackParam8 = DATA_PROCESSING_CHSYSTEM_SIZE;
             do {
                 stackPointer = stackPointer;
                 qualityIndex = stackParam8;
-                stackParam9 = param_1 + DATA_PROCESSING_CHUNK_SIZE;
+                stackParam9 = param_1 + DATA_PROCESSING_CHSYSTEM_SIZE;
                 for (; param_1 < stackParam9; param_1 = param_1 + 1) {
                     processingCount = param_1;
                     if (param_2 <= param_1) {
@@ -929,20 +929,20 @@ void ImageColorSpaceConverter(int param_1, int param_2, int64_t param_3)
                 stackControl1 = HelperImageProcessing(stackPointer, (int64_t)&stack0x00000048 + 4, &stack0x00000050, contextParam2 + BUFFER_OFFSET_LUMINANCE_DATA_1, contextParam2 + BUFFER_OFFSET_FLOAT_DATA_1);
                 stackControl2 = HelperImageProcessing(stackPointer, (int64_t)&stack0x00000048 + 4, &stack0x00000050, contextParam2 + BUFFER_OFFSET_LUMINANCE_DATA_2, contextParam2 + BUFFER_OFFSET_NEGATIVE_FLOAT_DATA_1);
                 stackControl3 = HelperImageProcessing(stackPointer, (int64_t)&stack0x00000048 + 4, &stack0x00000050, contextParam2 + BUFFER_OFFSET_LUMINANCE_DATA_3, contextParam2 + BUFFER_OFFSET_NEGATIVE_FLOAT_DATA_1);
-                stackParam8 = qualityIndex + DATA_PROCESSING_CHUNK_SIZE;
+                stackParam8 = qualityIndex + DATA_PROCESSING_CHSYSTEM_SIZE;
                 param_3 = 0;
                 param_1 = stackParam5;
                 param_2 = stackParam1;
             } while (qualityIndex < stackParam2);
         }
-        param_1 = param_1 + DATA_PROCESSING_CHUNK_SIZE;
+        param_1 = param_1 + DATA_PROCESSING_CHSYSTEM_SIZE;
         stackParam5 = param_1;
     } while (param_1 < param_2);
     
     // 执行数据编码处理
     stackParam10 = stackParam5 + 7;
     controlCode = DATA_PROCESSING_BYTE_MASK << (DATA_PROCESSING_BYTE_SHIFT - (char)stackParam10 & DATA_PROCESSING_BYTE_ALIGNMENT) | stackParam10;
-    if (DATA_PROCESSING_CHUNK_SIZE < (int)stackParam10) {
+    if (DATA_PROCESSING_CHSYSTEM_SIZE < (int)stackParam10) {
         memoryOffset = (ImageMemoryOffset)(stackParam10 >> 3);
         do {
             tempChar = (char)(controlCode >> DATA_PROCESSING_WORD_SHIFT);
@@ -996,7 +996,7 @@ void ImageDataEncoder(uint64_t param_1, uint64_t param_2, uint param_3)
     // 执行数据编码处理
     tempUInt = tempInt + 7;
     param_3 = DATA_PROCESSING_BYTE_MASK << (tempChar2 - (char)tempUInt & DATA_PROCESSING_BYTE_ALIGNMENT) | param_3;
-    if (DATA_PROCESSING_CHUNK_SIZE < (int)tempUInt) {
+    if (DATA_PROCESSING_CHSYSTEM_SIZE < (int)tempUInt) {
         memoryOffset = (ImageMemoryOffset)(tempUInt >> 3);
         do {
             tempChar = (char)(param_3 >> DATA_PROCESSING_WORD_SHIFT);

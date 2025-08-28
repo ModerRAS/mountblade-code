@@ -938,11 +938,11 @@ void FUN_180188620(int64_t param_1,uint64_t *param_2)
   uStack_88 = *(int8_t *)(param_2 + 1);
   uStack_87 = *(int8_t *)((int64_t)param_2 + 9);
   uStack_80 = param_2[2];
-  puStack_98 = &unknown_var_424_ptr;
+  puStack_98 = &processed_var_424_ptr;
   ppuStack_60 = &puStack_98;
   plStack_20 = (int64_t *)0x0;
   if ((ppuStack_60 != (void **)0x0) &&
-     (plStack_20 = (int64_t *)(*(code *)&unknown_var_5008_ptr)(ppuStack_60,alStack_58),
+     (plStack_20 = (int64_t *)(*(code *)&processed_var_5008_ptr)(ppuStack_60,alStack_58),
      ppuStack_60 != (void **)0x0)) {
     (**(code **)(*ppuStack_60 + 0x20))
               (ppuStack_60,CONCAT71((int7)((uint64_t)&puStack_98 >> 8),ppuStack_60 != &puStack_98))

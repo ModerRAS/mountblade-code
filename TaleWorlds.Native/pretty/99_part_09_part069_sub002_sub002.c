@@ -249,7 +249,7 @@ void FUN_1805e8630(int64_t *******param_1,int64_t *******param_2,uint64_t param_
               if (pppppplVar11[lVar25 * 2 + -2][3] != (int64_t ****)0x0) {
                 pppplVar20 = pppppplVar11[lVar25 * 2 + -2][3];
               }
-              lVar25 = strstr(pppplVar20,&unknown_var_3624_ptr);
+              lVar25 = strstr(pppplVar20,&memory_allocator_3624_ptr);
               if (lVar25 != 0) {
                 puStack_1d0 = &system_data_buffer_ptr;
                 uStack_1b8 = 0;
@@ -283,7 +283,7 @@ void FUN_1805e8630(int64_t *******param_1,int64_t *******param_2,uint64_t param_
          (int64_t)ppppppplStack_1d8[8] - (int64_t)*ppppppplVar18 >> 4 != 0)) {
         do {
           lVar25 = *(int64_t *)(uVar32 + (int64_t)*ppppppplVar18);
-          puStack_b8 = &unknown_var_672_ptr;
+          puStack_b8 = &processed_var_672_ptr;
           puStack_b0 = auStack_a0;
           auStack_a0[0] = 0;
           iStack_a8 = 0x10;

@@ -12,10 +12,10 @@
 
 // 全局常量定义
 // 渲染系统数据指针
-#define RENDER_DATA_PTR_1       unknown_var_3432
-#define RENDER_DATA_PTR_2       unknown_var_3456
-#define RENDER_DATA_PTR_3       unknown_var_720
-#define RENDER_DATA_PTR_4       unknown_var_9304
+#define RENDER_DATA_PTR_1       memory_allocator_3432
+#define RENDER_DATA_PTR_2       memory_allocator_3456
+#define RENDER_DATA_PTR_3       processed_var_720
+#define RENDER_DATA_PTR_4       processed_var_9304
 #define RENDER_STRING_PTR       system_memory_ff10
 #define RENDER_EMPTY_STRING     system_buffer_ptr
 #define RENDER_SECURITY_KEY      GET_SECURITY_COOKIE()
@@ -272,7 +272,7 @@ void create_render_object_context(uint64_t *render_object, uint64_t context_data
   object_data = 0;
   name_length = 0;
   context_param = context_data;
-  memory_handle = FUN_18062b1e0(RENDER_CONFIG_DATA, 0x1c8, 8, 3);
+  memory_handle = CoreSystem_LoggingManager0(RENDER_CONFIG_DATA, 0x1c8, 8, 3);
   context_handle = FUN_180339110(memory_handle);
   context_offset = context_handle;
   

@@ -370,7 +370,7 @@ void FUN_180469c50(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   uint64_t uVar6;
   uint64_t uVar5;
   
-  *param_1 = &unknown_var_1728_ptr;
+  *param_1 = &ui_system_data_1728_ptr;
   uVar5 = 0;
   plVar1 = param_1 + 0x1a;
   lVar3 = *plVar1;
@@ -456,11 +456,11 @@ FUN_180469ec0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3432_ptr;
+  *param_2 = &memory_allocator_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0x1b;
-  strcpy_s(param_2[1],0x80,&unknown_var_1824_ptr,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&ui_system_data_1824_ptr,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
@@ -485,7 +485,7 @@ int64_t * FUN_180469f40(int64_t *param_1,int64_t param_2,int64_t param_3,uint64_
   *param_1 = (int64_t)&system_handler1_ptr;
   *param_1 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = (int64_t)&unknown_var_4912_ptr;
+  *param_1 = (int64_t)&processed_var_4912_ptr;
   param_1[3] = 0;
   plVar1 = param_1 + 4;
   param_1[7] = 0;
@@ -495,7 +495,7 @@ int64_t * FUN_180469f40(int64_t *param_1,int64_t param_2,int64_t param_3,uint64_
   param_1[6] = 0;
   *(int8_t *)(param_1 + 7) = 0;
   param_1[8] = 0;
-  *param_1 = (int64_t)&unknown_var_1864_ptr;
+  *param_1 = (int64_t)&ui_system_data_1864_ptr;
   *(int32_t *)(param_1 + 10) = 0;
   lVar3 = param_1[3];
   if (param_1[3] != param_2) {
@@ -538,11 +538,11 @@ FUN_18046a090(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_1864_ptr;
+  *param_1 = &ui_system_data_1864_ptr;
   if ((*(int *)(param_1 + 10) != 0) && (system_cache_buffer != 0)) {
     (**(code **)(system_cache_buffer + 0x18))();
   }
-  *param_1 = &unknown_var_4912_ptr;
+  *param_1 = &processed_var_4912_ptr;
   FUN_1802f5b10(param_1 + 4,param_1[6],param_3,param_4,uVar1);
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;

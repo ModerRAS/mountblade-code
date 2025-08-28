@@ -1178,8 +1178,8 @@ LAB_DEBUG_INITIALIZED:
 
 // 原始实现：
 // - 函数名：FUN_180043690 到 FUN_180045fa6
-// - 变量名：system_memory_67d0、unknown_var_3432 等
-// - 常量名：unknown_var_384、unknown_var_1640 等
+// - 变量名：system_memory_67d0、memory_allocator_3432 等
+// - 常量名：memory_allocator_384、ui_system_data_1640 等
 //
 // 简化实现：
 // - 函数名：initialize_string_processor_016、setup_thread_local_storage 等

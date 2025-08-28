@@ -738,12 +738,12 @@ void 关闭句柄(uint64_t *handle_ptr)
 void 销毁互斥锁清理资源(uint64_t *mutex_ptr)
 
 {
-  *mutex_ptr = &unknown_var_6384_ptr;
+  *mutex_ptr = &processed_var_6384_ptr;
   if (*(char *)((int64_t)mutex_ptr + 0xb1) != '\0') {
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
-  *mutex_ptr = &unknown_var_5224_ptr;
+  *mutex_ptr = &processed_var_5224_ptr;
   mutex_ptr[7] = &system_data_buffer_ptr;
   if (mutex_ptr[8] != 0) {
                     // WARNING: Subroutine does not return
@@ -781,7 +781,7 @@ uint64_t *
   uint64_t alloc_flags;
   
   alloc_flags = 0xfffffffffffffffe;
-  *mutex_ptr = &unknown_var_6384_ptr;
+  *mutex_ptr = &processed_var_6384_ptr;
   if (*(char *)((int64_t)mutex_ptr + 0xb1) != '\0') {
     FUN_180639250();
   }
@@ -836,12 +836,12 @@ void 初始化线程池资源(uint64_t param1,int64_t config_ptr)
   puStack_1a0 = auStack_190;
   auStack_190[0] = 0;
   uStack_198 = 6;
-  strcpy_s(auStack_190,0x10,&unknown_var_9216_ptr);
+  strcpy_s(auStack_190,0x10,&processed_var_9216_ptr);
   puVar3 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x208,8,3);
   lStack_248 = lVar1 + 0x70;
   puStack_238 = puVar3;
   FUN_18020e0e0(puVar3,&puStack_1a8,3,lVar1 + 0x2e0);
-  *puVar3 = &unknown_var_9056_ptr;
+  *puVar3 = &processed_var_9056_ptr;
   puStack_238 = puVar3;
   FUN_18020e840(puVar3);
   SystemInitializer(lVar1 + 0x48,&puStack_238);

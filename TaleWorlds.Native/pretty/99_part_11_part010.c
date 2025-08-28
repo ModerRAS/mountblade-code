@@ -378,12 +378,12 @@ uint64_t FUN_1806e12f0(uint64_t param_1,int64_t param_2)
     lVar3 = 0;
     lVar4 = lVar3;
     do {
-      pcVar1 = &unknown_var_2448_ptr + lVar4;
+      pcVar1 = &rendering_buffer_2448_ptr + lVar4;
       lVar4 = lVar4 + 1;
       if (*pcVar1 != *(char *)(param_2 + -1 + lVar4)) {
         do {
           lVar4 = lVar3 + 1;
-          if (*(char *)(param_2 + lVar3) != (&unknown_var_2396_ptr)[lVar3]) {
+          if (*(char *)(param_2 + lVar3) != (&rendering_buffer_2396_ptr)[lVar3]) {
             return 0;
           }
           lVar3 = lVar4;

@@ -588,8 +588,8 @@ void ui_system_animation_controller(int64_t context, float param2, uint64_t para
 }
 
 // 全局变量定义
-#define UI_SYSTEM_GLOBAL_DATA_1 unknown_var_1864
-#define UI_SYSTEM_GLOBAL_DATA_2 unknown_var_2072
+#define UI_SYSTEM_GLOBAL_DATA_1 ui_system_data_1864
+#define UI_SYSTEM_GLOBAL_DATA_2 rendering_buffer_2072
 #define UI_SYSTEM_GLOBAL_DATA GET_SECURITY_COOKIE()
 
 // 内部函数声明

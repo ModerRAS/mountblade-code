@@ -32,7 +32,7 @@ void FUN_1806c21de(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *pa
     if ((char)unaff_RBX[9] != '\0') {
       iVar1 = *(int *)(*unaff_RBX + 0x10);
       if (iVar1 == 0) {
-        puVar6 = &unknown_var_1920_ptr;
+        puVar6 = &ui_system_data_1920_ptr;
       }
       else {
         puVar6 = *(void **)(*(int64_t *)(*unaff_RBX + 8) + (uint64_t)(iVar1 - 1) * 0x18);
@@ -122,7 +122,7 @@ void FUN_1806c221f(void)
     if ((char)unaff_RBX[9] != cVar7) {
       iVar1 = *(int *)(*unaff_RBX + 0x10);
       if (iVar1 == 0) {
-        puVar5 = &unknown_var_1920_ptr;
+        puVar5 = &ui_system_data_1920_ptr;
       }
       else {
         puVar5 = *(void **)(*(int64_t *)(*unaff_RBX + 8) + (uint64_t)(iVar1 - 1) * 0x18);

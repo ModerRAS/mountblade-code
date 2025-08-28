@@ -140,11 +140,11 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
   depth_stencil_state = 0xfffffffffffffffe;
   frame_sync = GET_SECURITY_COOKIE() ^ (uint64_t)alignment_buffer;
   render_pass = (code **)0x0;
-  vertex_shader = (code *)&unknown_var_3480_ptr;
+  vertex_shader = (code *)&memory_allocator_3480_ptr;
   pixel_shader = (code *)vertex_data;
   vertex_data[0] = vertex_data[0] & 0xffffff00;
   topology = 0x1e;
-  blend_state = strcpy_s(vertex_data, 0x40, &unknown_var_6680_ptr);
+  blend_state = strcpy_s(vertex_data, 0x40, &processed_var_6680_ptr);
   primitive_restart = 1;
   scissor_enable = 1;
   viewport = 0;
@@ -180,7 +180,7 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       
       // 初始化资源池
       if (*(int64_t *)(pipeline_config + 0x410) == 0) {
-        resource_ptr = (uint64_t *)FUN_18009e9e0((int64_t)render_state, &vertex_buffer, &unknown_var_848_ptr);
+        resource_ptr = (uint64_t *)FUN_18009e9e0((int64_t)render_state, &vertex_buffer, &processed_var_848_ptr);
         render_target = *resource_ptr;
         *resource_ptr = 0;
         input_layout = *(code ***)(pipeline_config + 0x410);
@@ -269,11 +269,11 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       (**(code **)(*state_block + 0x148))(state_block, 1, 1, 1);
       
       // 配置第二渲染通道
-      vertex_shader = (code *)&unknown_var_3480_ptr;
+      vertex_shader = (code *)&memory_allocator_3480_ptr;
       pixel_shader = (code *)vertex_data;
       vertex_data[0] = vertex_data[0] & 0xffffff00;
       topology = 0x1f;
-      blend_state = strcpy_s(vertex_data, 0x40, &unknown_var_6840_ptr);
+      blend_state = strcpy_s(vertex_data, 0x40, &processed_var_6840_ptr);
       primitive_restart = 1;
       scissor_enable = 1;
       viewport = 0;
@@ -344,11 +344,11 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       *(float *)((int64_t)render_pass + 0x3c) = viewport_scale;
       *(int32_t *)(render_pass + 8) = 0x7f7fffff;
       vertex_buffer = &geometry_shader;
-      hull_shader = (code *)&unknown_var_4992_ptr;
-      stream_output_buffer = &unknown_var_7008_ptr;
+      hull_shader = (code *)&processed_var_4992_ptr;
+      stream_output_buffer = &processed_var_7008_ptr;
       geometry_shader = FUN_18031d520;
       input_layout = &geometry_shader;
-      (*(code *)&unknown_var_7008_ptr)(render_pass, &geometry_shader);
+      (*(code *)&processed_var_7008_ptr)(render_pass, &geometry_shader);
       if (hull_shader != (code *)0x0) {
         (*hull_shader)(&geometry_shader, 0, 0);
       }
@@ -517,11 +517,11 @@ void RenderingSystem_ObjectProcessor(int64_t render_object)
     if (render_context != (int64_t *)0x0) {
       (**(code **)(*render_context + 0x28))(render_context);
       render_state = *(int *)(render_object + 0x60);
-      render_target = &unknown_var_3480_ptr;
+      render_target = &memory_allocator_3480_ptr;
       shader_data = texture_buffer;
       texture_buffer[0] = 0;
       format = 0x10;
-      strcpy_s(texture_buffer, 0x40, &unknown_var_6816_ptr);
+      strcpy_s(texture_buffer, 0x40, &processed_var_6816_ptr);
       topology = 1;
       scissor_enable = 1;
       depth_stencil_state = 0x10;
@@ -952,7 +952,7 @@ void RenderingSystem_DataTransfer(int64_t source_context, int64_t target_context
   texture_depth = (int32_t)(int64_t)((double)*(float *)(target_context + 0x11c20) / aspect_ratio_x);
   texture_mips = (int32_t)(int64_t)((double)*(float *)(target_context + 0x11c24) / aspect_ratio_y);
   texture_format = 0x1e;
-  frame_buffer_ptr = &unknown_var_3432_ptr;
+  frame_buffer_ptr = &memory_allocator_3432_ptr;
   shader_data = user_buffer;
   user_buffer[0] = 0;
   data_size = 0x1b;
@@ -1185,7 +1185,7 @@ RenderingSystem_MemoryAllocator(uint64_t *memory_ptr, uint64_t alloc_flags, uint
 
 {
   // 初始化内存指针链表
-  *memory_ptr = &unknown_var_6880_ptr;
+  *memory_ptr = &processed_var_6880_ptr;
   *memory_ptr = &system_handler2_ptr;
   *memory_ptr = &system_handler1_ptr;
   

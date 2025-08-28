@@ -686,7 +686,7 @@ void process_configuration_file(int64_t param_1)
           }
           processed_line[config_name_len + 1] = '\0';
         }
-        config_ptr = &unknown_var_3432_ptr;
+        config_ptr = &memory_allocator_3432_ptr;
         config_name = value_buffer;
         config_name_length = 0;
         value_buffer[0] = 0;
@@ -701,11 +701,11 @@ void process_configuration_file(int64_t param_1)
         if (6 < config_name_length) {
           line_length = 0;
           do {
-            if ((&unknown_var_3520_ptr + line_length)[(int64_t)(config_name + -0x180a10500)] !=
-                (&unknown_var_3520_ptr)[line_length]) goto LAB_18021a863;
+            if ((&memory_allocator_3520_ptr + line_length)[(int64_t)(config_name + -0x180a10500)] !=
+                (&memory_allocator_3520_ptr)[line_length]) goto LAB_18021a863;
             line_length = line_length + 1;
           } while (line_length < 7);
-          if ((config_name_length != 0xc) || (compare_result = strcmp(config_name, &unknown_var_3472_ptr), compare_result != 0)) {
+          if ((config_name_length != 0xc) || (compare_result = strcmp(config_name, &memory_allocator_3472_ptr), compare_result != 0)) {
             FUN_180217f60(param_1 + 0x260, &config_ptr);
           }
         }
@@ -780,7 +780,7 @@ void process_resource_file(int64_t param_1, uint64_t param_2, uint64_t param_3, 
   if (file_ptr != (void *)0x0) {
     default_ptr = file_ptr;
   }
-  alloc_result = FUN_18062dee0(&stack_cookie, default_ptr, &unknown_var_4880_ptr);
+  alloc_result = FUN_18062dee0(&stack_cookie, default_ptr, &processed_var_4880_ptr);
   file_handle = temp_long2;
   if (temp_long2 == 0) {
     file_handle = FUN_1801595d0(alloc_result, &string_ptr);
@@ -797,7 +797,7 @@ void process_resource_file(int64_t param_1, uint64_t param_2, uint64_t param_3, 
       default_ptr = *(void **)(file_handle + 8);
     }
     buffer_size2 = string_size;
-    SystemCore_ResourceManager0(&unknown_var_5040_ptr, default_ptr);
+    SystemCore_ResourceManager0(&processed_var_5040_ptr, default_ptr);
     string_ptr = &system_data_buffer_ptr;
     if (data_offset != 0) {
                     // WARNING: Subroutine does not return
@@ -962,7 +962,7 @@ LAB_18021ae8e:
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     error_handler = *(void **)(param_2 + 8);
   }
-  FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, &unknown_var_4496_ptr, error_handler);
+  FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, &processed_var_4496_ptr, error_handler);
   return -1;
 }
 
@@ -1029,7 +1029,7 @@ LAB_18021ae8e:
   if (*(void **)(unaff_RSI + 8) != (void *)0x0) {
     error_handler = *(void **)(unaff_RSI + 8);
   }
-  FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, &unknown_var_4496_ptr);
+  FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, &processed_var_4496_ptr);
   return -1;
 }
 
@@ -1105,7 +1105,7 @@ LAB_18021af9e:
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     error_handler = *(void **)(param_2 + 8);
   }
-  FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, &unknown_var_4680_ptr, error_handler);
+  FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, &processed_var_4680_ptr, error_handler);
   return -1;
 }
 

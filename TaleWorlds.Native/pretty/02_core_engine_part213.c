@@ -27,12 +27,12 @@ bool FUN_180190530(uint64_t param_1,int64_t param_2,int64_t param_3)
   if (*(void **)(param_2 + 0x10) != (void *)0x0) {
     puVar5 = *(void **)(param_2 + 0x10);
   }
-  lVar2 = strstr(puVar5,&unknown_var_1588_ptr);
+  lVar2 = strstr(puVar5,&ui_system_data_1588_ptr);
   puVar5 = &system_buffer_ptr;
   if (*(void **)(param_3 + 0x10) != (void *)0x0) {
     puVar5 = *(void **)(param_3 + 0x10);
   }
-  lVar3 = strstr(puVar5,&unknown_var_1588_ptr);
+  lVar3 = strstr(puVar5,&ui_system_data_1588_ptr);
   if (lVar2 == 0) {
     if ((lVar3 != 0) || (*(int *)(param_3 + 0x18) == 0)) {
       return false;
@@ -93,8 +93,8 @@ uint64_t * FUN_180190630(int64_t *param_1,int64_t param_2,uint64_t param_3,uint6
   puVar6 = (uint64_t *)param_1[1];
   if (puVar6 < (uint64_t *)param_1[2]) {
     param_1[1] = (int64_t)(puVar6 + 0x69);
-    *puVar6 = &unknown_var_5912_ptr;
-    *puVar6 = &unknown_var_5880_ptr;
+    *puVar6 = &processed_var_5912_ptr;
+    *puVar6 = &processed_var_5880_ptr;
     CoreEngineDataTransformer(puVar6 + 1,param_2 + 8,param_3,param_4,0xfffffffffffffffe);
     *(int32_t *)(puVar6 + 5) = *(int32_t *)(param_2 + 0x28);
     *(int32_t *)((int64_t)puVar6 + 0x2c) = *(int32_t *)(param_2 + 0x2c);
@@ -457,12 +457,12 @@ LAB_1801908b0:
           if (puStack_358 != (void *)0x0) {
             puVar7 = puStack_358;
           }
-          lVar3 = strstr(puVar7,&unknown_var_1588_ptr);
+          lVar3 = strstr(puVar7,&ui_system_data_1588_ptr);
           puVar7 = &system_buffer_ptr;
           if ((void *)*puVar9 != (void *)0x0) {
             puVar7 = (void *)*puVar9;
           }
-          lVar4 = strstr(puVar7,&unknown_var_1588_ptr);
+          lVar4 = strstr(puVar7,&ui_system_data_1588_ptr);
           bVar10 = lVar4 != 0;
           if (lVar3 == 0) {
             if (bVar10) goto LAB_1801909bf;
@@ -699,12 +699,12 @@ void FUN_180190ae0(uint64_t *param_1,uint64_t *param_2)
           if (puStack_358 != (void *)0x0) {
             puVar7 = puStack_358;
           }
-          lVar4 = strstr(puVar7,&unknown_var_1588_ptr);
+          lVar4 = strstr(puVar7,&ui_system_data_1588_ptr);
           puVar7 = &system_buffer_ptr;
           if ((void *)*puVar2 != (void *)0x0) {
             puVar7 = (void *)*puVar2;
           }
-          lVar5 = strstr(puVar7,&unknown_var_1588_ptr);
+          lVar5 = strstr(puVar7,&ui_system_data_1588_ptr);
           bVar12 = lVar5 != 0;
           if (lVar4 == 0) {
             if (bVar12) break;

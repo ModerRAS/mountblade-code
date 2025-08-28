@@ -192,7 +192,7 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
   if (connection_status == 0) {
     // 基础连接类型处理
     if ((*(byte *)(connection_handle + 0xc4) & 1) != 0) {
-      protocol_handler = &unknown_var_2016_ptr;
+      protocol_handler = &rendering_buffer_2016_ptr;
       goto process_connection_type;
     }
   handle_basic_connection:
@@ -203,7 +203,7 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
   else {
     if (connection_status == 1) {
       // 扩展连接类型处理
-      protocol_handler = &unknown_var_2032_ptr;
+      protocol_handler = &rendering_buffer_2032_ptr;
     process_connection_type:
       transfer_result = FUN_180738d90(connection_handle, protocol_handler, &latency_measurement);
     handle_connection_result:
@@ -213,18 +213,18 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
       if (connection_status != 2) {
         if (connection_status == 3) {
           // 安全连接类型处理
-          protocol_handler = &unknown_var_2048_ptr;
+          protocol_handler = &rendering_buffer_2048_ptr;
         }
         else {
           if (connection_status != 4) goto handle_basic_connection;
           // 持久连接类型处理
-          protocol_handler = &unknown_var_2064_ptr;
+          protocol_handler = &rendering_buffer_2064_ptr;
         }
         goto process_connection_type;
       }
       
       // 流连接类型处理
-      transfer_result = FUN_180738d90(connection_handle, &unknown_var_664_ptr, &latency_measurement);
+      transfer_result = FUN_180738d90(connection_handle, &processed_var_664_ptr, &latency_measurement);
       if (transfer_result == 0) {
         transfer_result = FUN_180739140(connection_handle, 0x19, &throughput_monitor);
         if ((transfer_result != 0) || 
@@ -724,7 +724,7 @@ void optimize_network_data_transfer(int64_t transfer_context)
   if (optimization_level == 0) {
     // 基础优化策略
     if ((*(byte *)(transfer_context + 0xc4) & 1) != 0) {
-      optimization_strategy = &unknown_var_2016_ptr;
+      optimization_strategy = &rendering_buffer_2016_ptr;
       goto apply_optimization_strategy;
     }
   handle_basic_optimization:
@@ -737,7 +737,7 @@ void optimize_network_data_transfer(int64_t transfer_context)
   else {
     if (optimization_level == 1) {
       // 高级优化策略
-      optimization_strategy = &unknown_var_2032_ptr;
+      optimization_strategy = &rendering_buffer_2032_ptr;
     apply_optimization_strategy:
       optimization_result = FUN_180738d90(adapter_handle, optimization_strategy, &throughput_target);
     handle_optimization_result:
@@ -747,18 +747,18 @@ void optimize_network_data_transfer(int64_t transfer_context)
       if (optimization_level != 2) {
         if (optimization_level == 3) {
           // 自适应优化策略
-          optimization_strategy = &unknown_var_2048_ptr;
+          optimization_strategy = &rendering_buffer_2048_ptr;
         }
         else {
           if (optimization_level != 4) goto handle_basic_optimization;
           // 智能优化策略
-          optimization_strategy = &unknown_var_2064_ptr;
+          optimization_strategy = &rendering_buffer_2064_ptr;
         }
         goto apply_optimization_strategy;
       }
       
       // 压缩优化策略
-      optimization_result = FUN_180738d90(adapter_handle, &unknown_var_664_ptr, &throughput_target);
+      optimization_result = FUN_180738d90(adapter_handle, &processed_var_664_ptr, &throughput_target);
       if (optimization_result == 0) {
         optimization_result = FUN_180739140(adapter_handle, 0x19, &quality_metrics);
         if ((optimization_result != 0) || 

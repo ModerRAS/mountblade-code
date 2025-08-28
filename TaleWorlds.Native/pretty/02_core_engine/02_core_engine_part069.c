@@ -10,7 +10,7 @@ void initialize_engine_core_structure(uint64_t *engine_context, uint64_t param2,
 
 {
   // 设置引擎上下文指针
-  *engine_context = &unknown_var_2016_ptr;
+  *engine_context = &rendering_buffer_2016_ptr;
   
   // 调用初始化函数
   FUN_18005d580();
@@ -104,7 +104,7 @@ void initialize_engine_core_structure(uint64_t *engine_context, uint64_t param2,
   SystemInputHandler(engine_context + 0x1c);
   
   // 设置引擎数据结构
-  *engine_context = &unknown_var_7304_ptr;
+  *engine_context = &processed_var_7304_ptr;
   engine_context[0x18] = &system_data_buffer_ptr;
   
   // 检查并初始化关键组件

@@ -65,7 +65,7 @@ uint64_t FUN_180743880(int64_t param_1)
   *(uint64_t *)(param_1 + 0x10820) = 0;
   if ((int64_t *)*plVar2 != plVar2) {
                     // WARNING: Subroutine does not return
-    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),((int64_t *)*plVar2)[2],&unknown_var_8208_ptr,
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),((int64_t *)*plVar2)[2],&processed_var_8208_ptr,
                   0xff,1);
   }
   *(int64_t **)(param_1 + 0x10838) = plVar2;
@@ -88,7 +88,7 @@ void FUN_1807438b7(void)
   
                     // WARNING: Subroutine does not return
   SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(unaff_RSI + 0x10),
-                &unknown_var_8208_ptr,0xff,1);
+                &processed_var_8208_ptr,0xff,1);
 }
 
 
@@ -428,7 +428,7 @@ void FUN_180743e90(uint64_t *param_1)
   int64_t lVar2;
   uint64_t *puVar3;
   
-  *param_1 = &unknown_var_8544_ptr;
+  *param_1 = &processed_var_8544_ptr;
   func_0x00018074fb20(param_1 + 0x10);
   FUN_1807554e0(param_1 + 0x3e);
   FUN_1807554e0(param_1 + 0x84);
@@ -618,7 +618,7 @@ uint64_t * FUN_180744640(uint64_t *param_1,uint64_t param_2)
   int64_t *plVar1;
   int iVar2;
   
-  *param_1 = &unknown_var_8544_ptr;
+  *param_1 = &processed_var_8544_ptr;
   FUN_180744d60(param_1 + 0x24fc);
   plVar1 = param_1 + 0x24fa;
   *(int64_t *)param_1[0x24fb] = *plVar1;
@@ -636,7 +636,7 @@ uint64_t * FUN_180744640(uint64_t *param_1,uint64_t param_2)
   FUN_180744e20(param_1 + 0x24f7);
   SystemStatusChecker(param_1 + 0x24f5);
   func_0x000180785a10(param_1 + 0x2487);
-  param_1[0x2444] = &unknown_var_8408_ptr;
+  param_1[0x2444] = &processed_var_8408_ptr;
   thunk_FUN_180742070(param_1 + 0x217a);
   thunk_FUN_180742070(param_1 + 0x2109);
   plVar1 = param_1 + 0xd8;
@@ -655,7 +655,7 @@ uint64_t * FUN_180744640(uint64_t *param_1,uint64_t param_2)
 uint64_t * FUN_180744750(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_8408_ptr;
+  *param_1 = &processed_var_8408_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x150);
   }
@@ -685,7 +685,7 @@ uint64_t FUN_180744780(int64_t param_1)
   iVar1 = (int)uVar5;
   plVar2 = (int64_t *)
            SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),(uVar6 + 0x16) * iVar1 * 4 + 0x40,
-                         &unknown_var_8576_ptr,0x3b5,0);
+                         &processed_var_8576_ptr,0x3b5,0);
   if (plVar2 == (int64_t *)0x0) {
     return 0x26;
   }

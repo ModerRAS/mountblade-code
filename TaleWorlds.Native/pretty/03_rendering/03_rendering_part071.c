@@ -30,10 +30,10 @@
 #define rendering_system_cleanup_render_object FUN_180309950
 
 // 全局变量别名定义
-#define g_rendering_system_data_table unknown_var_3952
-#define g_rendering_system_data_vtable unknown_var_3832
-#define g_rendering_system_string_constants unknown_var_3784
-#define g_rendering_system_string_table unknown_var_3800
+#define g_rendering_system_data_table memory_allocator_3952
+#define g_rendering_system_data_vtable memory_allocator_3832
+#define g_rendering_system_string_constants memory_allocator_3784
+#define g_rendering_system_string_table memory_allocator_3800
 #define g_rendering_system_memory_allocator system_main_module_state
 #define g_rendering_system_texture_manager system_buffer_ptr
 #define g_rendering_system_resource_manager system_memory_bc80
@@ -44,7 +44,7 @@
 #define g_rendering_system_resource_count render_system_control_resource
 #define g_rendering_system_module_registry system_memory_pool_ptr
 #define g_rendering_system_global_state SYSTEM_STATE_MANAGER
-#define g_rendering_system_name_registry unknown_var_6504
+#define g_rendering_system_name_registry processed_var_6504
 
 // 函数声明
 void rendering_system_process_data_blocks(void);

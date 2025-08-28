@@ -398,7 +398,7 @@ void FUN_180414420(uint64_t param_1,int8_t (*param_2) [16],int64_t param_3)
   CoreEngineDataTransformer(&puStack_f8,lVar4);
   *(int32_t *)(param_3 + 0x10) = 0;
   **(int8_t **)(param_3 + 8) = 0;
-  puStack_c8 = &unknown_var_3480_ptr;
+  puStack_c8 = &memory_allocator_3480_ptr;
   puStack_c0 = auStack_b0;
   uStack_b8 = 0;
   auStack_b0[0] = 0;
@@ -413,7 +413,7 @@ void FUN_180414420(uint64_t param_1,int8_t (*param_2) [16],int64_t param_3)
   uStack_138 = (uint)auVar1[8];
   puStack_140 = (void *)CONCAT44(puStack_140._4_4_,(uint)auVar1._6_2_);
   puStack_148 = (void *)CONCAT44(puStack_148._4_4_,(uint)auVar1._4_2_);
-  FUN_180626eb0(auStack_68,0x28,&unknown_var_6768_ptr,auVar1._0_8_);
+  FUN_180626eb0(auStack_68,0x28,&processed_var_6768_ptr,auVar1._0_8_);
   (**(code **)(puStack_c8 + 0x18))(&puStack_c8,auStack_68,0x24);
   puStack_140 = &system_buffer_ptr;
   if (render_system_control_memory != (void *)0x0) {
@@ -431,7 +431,7 @@ void FUN_180414420(uint64_t param_1,int8_t (*param_2) [16],int64_t param_3)
   if (puStack_f0 != (void *)0x0) {
     puVar5 = puStack_f0;
   }
-  FUN_1802e5050(param_3,&unknown_var_9128_ptr,puVar5,puVar6);
+  FUN_1802e5050(param_3,&processed_var_9128_ptr,puVar5,puVar6);
   puStack_c8 = &system_state_ptr;
   puStack_f8 = &system_data_buffer_ptr;
   if (puStack_f0 != (void *)0x0) {
@@ -735,7 +735,7 @@ FUN_180414a60(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4
       }
       else {
         if ((param_7 != (int64_t *)0x0) && (cStack_3c != '\0')) {
-          FUN_1800623b0(system_message_context,0,0x80000000000,9,&unknown_var_9184_ptr);
+          FUN_1800623b0(system_message_context,0,0x80000000000,9,&processed_var_9184_ptr);
         }
         lVar14 = alStack_158[0];
         uVar9 = (uint)uStack_88;
@@ -817,7 +817,7 @@ FUN_180414a60(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4
         if ((uint64_t)puVar4[2] < uVar10) {
           System_BufferManager(puVar4,uVar10);
         }
-        puStack_e8 = &unknown_var_3856_ptr;
+        puStack_e8 = &memory_allocator_3856_ptr;
         uStack_e0 = 1;
         FUN_18021f710(&puStack_e8,auStack_128,*plVar3,uStack_88,*puVar4,uVar10);
         if (cStack_110 == '\0') {
@@ -874,7 +874,7 @@ FUN_180414a60(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4
           return 1;
         }
         if (param_6 != 0) {
-          System_DataHandler(param_6,&unknown_var_9328_ptr);
+          System_DataHandler(param_6,&processed_var_9328_ptr);
         }
         ppuStack_138 = &puStack_108;
         puStack_108 = &system_data_buffer_ptr;

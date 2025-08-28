@@ -243,8 +243,8 @@ void RenderingSystem_AdvancedMaterialTextureProcessor(int64_t render_context, in
             render_state = *(int32_t*)(*material_ptr + 0x10);
             mode_flag = SystemCore_ThreadManager0(0x180c95578, 0, &system_param1_ptr);
             if ((mode_flag != '\0') && 
-                (mode_flag = SystemCore_ThreadManager0(0x180c95578, 4, &unknown_var_3472_ptr), mode_flag != '\0')) {
-                SystemCore_ThreadManager0(0x180c95578, render_state, &unknown_var_3424_ptr);
+                (mode_flag = SystemCore_ThreadManager0(0x180c95578, 4, &memory_allocator_3472_ptr), mode_flag != '\0')) {
+                SystemCore_ThreadManager0(0x180c95578, render_state, &memory_allocator_3424_ptr);
             }
             context_data = *(int64_t*)(*material_ptr + 0x8e8);
             *(uint64_t*)&render_system_material = *(uint64_t*)&render_system_material & 0xffffffff00000000;

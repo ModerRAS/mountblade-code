@@ -105,16 +105,16 @@ void FUN_18066c7e0(int64_t *param_1,int64_t param_2,uint64_t param_3,int64_t par
         *(int32_t *)(lStack_90 + 0x1318) = 1;
         if (*(int *)(lStack_88 + 0x760) < 1) {
           *(int *)(lStack_88 + 0x760) = iStack_a0;
-          SystemInitializationProcessor(lStack_88,7,&unknown_var_7632_ptr);
+          SystemInitializationProcessor(lStack_88,7,&processed_var_7632_ptr);
         }
         if (*(int *)(lVar14 + 0x764) < 1) {
           *(int *)(lVar14 + 0x764) = iStack_9c;
-          SystemInitializationProcessor(lVar14,7,&unknown_var_7656_ptr);
+          SystemInitializationProcessor(lVar14,7,&processed_var_7656_ptr);
         }
         iVar11 = FUN_18066e500(lVar14,*(int32_t *)(lVar14 + 0x760),
                                *(int32_t *)(lVar14 + 0x764));
         if (iVar11 != 0) {
-          SystemInitializationProcessor(lVar14,2,&unknown_var_7680_ptr);
+          SystemInitializationProcessor(lVar14,2,&processed_var_7680_ptr);
         }
         lVar12 = (int64_t)*(int *)(lVar14 + 0x9d4);
         iVar11 = 0;
@@ -842,17 +842,17 @@ void FUN_18066d4e0(void)
       cpuid_Extended_Feature_Enumeration_info(7);
     }
   }
-  render_system_config_global_data = &unknown_var_7287_ptr;
+  render_system_config_global_data = &processed_var_7287_ptr;
   if (bVar4) {
-    render_system_config_global_data = &unknown_var_656_ptr;
+    render_system_config_global_data = &processed_var_656_ptr;
   }
-  render_system_config_memory = &unknown_var_7997_ptr;
+  render_system_config_memory = &processed_var_7997_ptr;
   if (bVar4) {
-    render_system_config_memory = &unknown_var_1412_ptr;
+    render_system_config_memory = &ui_system_data_1412_ptr;
   }
-  render_system_config_memory = &unknown_var_2384_ptr;
+  render_system_config_memory = &rendering_buffer_2384_ptr;
   if (bVar6) {
-    render_system_config_memory = &unknown_var_2608_ptr;
+    render_system_config_memory = &rendering_buffer_2608_ptr;
   }
   render_system_config_memory = FUN_1806714a0;
   if (bVar6) {

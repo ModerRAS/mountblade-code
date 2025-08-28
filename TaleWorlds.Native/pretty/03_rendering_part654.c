@@ -760,7 +760,7 @@ FUN_18063dda0(int64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   uVar3 = param_1[1] - *param_1 >> 5;
   iVar2 = (int)uVar3;
   if (iVar2 == 0) {
-    FUN_180627910(param_2,&unknown_var_7104_ptr);
+    FUN_180627910(param_2,&processed_var_7104_ptr);
   }
   else {
     puStack_48 = &system_data_buffer_ptr;
@@ -775,7 +775,7 @@ FUN_18063dda0(int64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
         if (puVar1 != (void *)0x0) {
           puVar5 = puVar1;
         }
-        System_DataHandler(&puStack_48,&unknown_var_92_ptr,puVar5,param_4,uVar6,uVar7);
+        System_DataHandler(&puStack_48,&processed_var_92_ptr,puVar5,param_4,uVar6,uVar7);
         lVar4 = lVar4 + 0x20;
         uVar3 = uVar3 - 1;
       } while (uVar3 != 0);

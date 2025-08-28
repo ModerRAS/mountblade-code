@@ -684,7 +684,7 @@ void RenderingSystem_CoordinateTransformer(int64_t param_1, int64_t param_2)
                     }
                     
                     render_mode = SystemCore_ThreadManager0(transform_matrix, 0, &system_param1_ptr);
-                    if (((render_mode != '\0') && (render_mode = SystemCore_ThreadManager0(transform_matrix, 5, &unknown_var_3472_ptr), render_mode != '\0')) && ((render_mode = FUN_180645fa0(transform_matrix), render_mode != '\0' && (render_mode = FUN_180645fa0(transform_matrix), render_mode != '\0')))) {
+                    if (((render_mode != '\0') && (render_mode = SystemCore_ThreadManager0(transform_matrix, 5, &memory_allocator_3472_ptr), render_mode != '\0')) && ((render_mode = FUN_180645fa0(transform_matrix), render_mode != '\0' && (render_mode = FUN_180645fa0(transform_matrix), render_mode != '\0')))) {
                         FUN_180645fa0(transform_matrix);
                     }
                     

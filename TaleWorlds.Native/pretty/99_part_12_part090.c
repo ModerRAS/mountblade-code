@@ -402,7 +402,7 @@ uint64_t FUN_1808a5d60(uint64_t *param_1,uint64_t *param_2)
     uVar2 = uVar3;
     if (auStackX_20[0] >> 1 != 0) {
       if ((0x3ffffffe < uVar6 * 0x10 - 1) ||
-         (uVar2 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar6 * 0x10,&unknown_var_8432_ptr,
+         (uVar2 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar6 * 0x10,&processed_var_8432_ptr,
                                 0xf4,0,0,1), uVar2 == 0)) {
         uVar2 = 0x26;
         goto LAB_1808a5e95;
@@ -414,7 +414,7 @@ uint64_t FUN_1808a5d60(uint64_t *param_1,uint64_t *param_2)
     }
     if ((0 < *(int *)((int64_t)param_2 + 0xc)) && (*param_2 != 0)) {
                     // WARNING: Subroutine does not return
-      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_2,&unknown_var_8432_ptr,0x100,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_2,&processed_var_8432_ptr,0x100,1);
     }
     *param_2 = uVar2;
     *(uint *)((int64_t)param_2 + 0xc) = uVar6;
@@ -481,7 +481,7 @@ uint64_t FUN_1808a5d8f(void)
     uVar2 = unaff_RBX;
     if (in_stack_00000088 >> 1 != 0) {
       if ((0x3ffffffe < uVar4 * 0x10 - 1) ||
-         (uVar2 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar4 * 0x10,&unknown_var_8432_ptr,
+         (uVar2 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar4 * 0x10,&processed_var_8432_ptr,
                                 0xf4), uVar2 == 0)) {
         uVar2 = 0x26;
         goto LAB_1808a5e95;
@@ -493,7 +493,7 @@ uint64_t FUN_1808a5d8f(void)
     }
     if (((int)unaff_RBX < *(int *)((int64_t)unaff_R14 + 0xc)) && (*unaff_R14 != 0)) {
                     // WARNING: Subroutine does not return
-      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_R14,&unknown_var_8432_ptr,0x100,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_R14,&processed_var_8432_ptr,0x100,1);
     }
     *unaff_R14 = uVar2;
     *(uint *)((int64_t)unaff_R14 + 0xc) = uVar4;
@@ -595,7 +595,7 @@ uint64_t FUN_1808a5f10(uint64_t *param_1,uint64_t *param_2)
     uVar3 = uVar4;
     if (auStackX_20[0] >> 1 != 0) {
       if ((0x3ffffffe < uVar7 * 0x10 - 1) ||
-         (uVar3 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar7 * 0x10,&unknown_var_8432_ptr,
+         (uVar3 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar7 * 0x10,&processed_var_8432_ptr,
                                 0xf4,0,0,1), uVar3 == 0)) {
         uVar3 = 0x26;
         goto LAB_1808a6048;
@@ -607,7 +607,7 @@ uint64_t FUN_1808a5f10(uint64_t *param_1,uint64_t *param_2)
     }
     if ((0 < *(int *)((int64_t)param_2 + 0xc)) && (*param_2 != 0)) {
                     // WARNING: Subroutine does not return
-      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_2,&unknown_var_8432_ptr,0x100,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_2,&processed_var_8432_ptr,0x100,1);
     }
     *param_2 = uVar3;
     *(uint *)((int64_t)param_2 + 0xc) = uVar7;
@@ -696,7 +696,7 @@ uint64_t FUN_1808a5f3f(void)
     uVar3 = unaff_RBX;
     if (in_stack_00000088 >> 1 != 0) {
       if ((0x3ffffffe < uVar6 * 0x10 - 1) ||
-         (uVar3 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar6 * 0x10,&unknown_var_8432_ptr,
+         (uVar3 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar6 * 0x10,&processed_var_8432_ptr,
                                 0xf4), uVar3 == 0)) {
         uVar3 = 0x26;
         goto LAB_1808a6048;
@@ -708,7 +708,7 @@ uint64_t FUN_1808a5f3f(void)
     }
     if (((int)unaff_RBX < *(int *)((int64_t)unaff_R15 + 0xc)) && (*unaff_R15 != 0)) {
                     // WARNING: Subroutine does not return
-      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_R15,&unknown_var_8432_ptr,0x100,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_R15,&processed_var_8432_ptr,0x100,1);
     }
     *unaff_R15 = uVar3;
     *(uint *)((int64_t)unaff_R15 + 0xc) = uVar6;

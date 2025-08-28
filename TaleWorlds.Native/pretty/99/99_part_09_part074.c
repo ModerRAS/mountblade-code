@@ -186,21 +186,21 @@ void system_state_processor(uint64_t param_1, int8_t param_2, int32_t param_3, i
   }
   
   /* 系统数据处理流程 - 处理多个状态参数 */
-  FUN_1800623b0(system_message_context, 0, 4, 10, &unknown_var_2936_ptr, param_2);
-  FUN_1800623b0(system_message_context, 0, 4, 10, &unknown_var_2888_ptr, param_3);
-  FUN_1800623b0(system_message_context, 0, 4, 10, &unknown_var_2992_ptr, param_4);
+  FUN_1800623b0(system_message_context, 0, 4, 10, &rendering_buffer_2936_ptr, param_2);
+  FUN_1800623b0(system_message_context, 0, 4, 10, &rendering_buffer_2888_ptr, param_3);
+  FUN_1800623b0(system_message_context, 0, 4, 10, &rendering_buffer_2992_ptr, param_4);
   
   /* 系统状态验证 - 多层次状态检查 */
   system_status_flag = SystemCore_ThreadManager0(0x180c95578, 0, &system_param1_ptr);
   if (((((system_status_flag != '\0') && 
-         (system_status_flag = SystemCore_ThreadManager0(0x180c95578, 0x12, &unknown_var_3472_ptr), system_status_flag != '\0')) &&
+         (system_status_flag = SystemCore_ThreadManager0(0x180c95578, 0x12, &memory_allocator_3472_ptr), system_status_flag != '\0')) &&
         (system_status_flag = SystemCore_ThreadManager0(0x180c95578, param_2, &system_param1_ptr), system_status_flag != '\0')) &&
-       ((system_status_flag = SystemCore_ThreadManager0(0x180c95578, param_3, &unknown_var_3424_ptr), system_status_flag != '\0' &&
-        (system_status_flag = SystemCore_ThreadManager0(0x180c95578, param_4, &unknown_var_3424_ptr), system_status_flag != '\0')))) &&
+       ((system_status_flag = SystemCore_ThreadManager0(0x180c95578, param_3, &memory_allocator_3424_ptr), system_status_flag != '\0' &&
+        (system_status_flag = SystemCore_ThreadManager0(0x180c95578, param_4, &memory_allocator_3424_ptr), system_status_flag != '\0')))) &&
       (system_status_flag = SystemCore_ThreadManager0(0x180c95578, param_5, &system_memory_bc90), system_status_flag != '\0')) {
     
     /* 系统哈希值计算 - 用于数据索引和查找 */
-    system_hash_value = FUN_18055f6f0(&unknown_var_3232_ptr, param_6);
+    system_hash_value = FUN_18055f6f0(&memory_allocator_3232_ptr, param_6);
     system_bit_offset = system_system_config >> 0x1f & 0x1f;
     system_result_code = system_system_config + system_bit_offset;
     system_data_pointer = (uint64_t *)(system_system_config + (int64_t)(system_result_code >> 5) * 4);
@@ -291,9 +291,9 @@ void system_data_validator(int64_t *param_1)
   
   /* 系统数据验证流程 - 多级验证逻辑 */
   if (system_validation_flag != '\0') {
-    system_validation_flag = SystemCore_ThreadManager0(0x180c95578, 3, &unknown_var_3472_ptr);
+    system_validation_flag = SystemCore_ThreadManager0(0x180c95578, 3, &memory_allocator_3472_ptr);
     if (system_validation_flag != '\0') {
-      SystemCore_ThreadManager0(0x180c95578, system_parameter, &unknown_var_3424_ptr);
+      SystemCore_ThreadManager0(0x180c95578, system_parameter, &memory_allocator_3424_ptr);
     }
   }
   
@@ -380,9 +380,9 @@ void system_resource_manager(int64_t *param_1, uint64_t param_2, int64_t param_3
   
   /* 系统资源验证流程 - 多级验证逻辑 */
   if (system_validation_flag != '\0') {
-    system_validation_flag = SystemCore_ThreadManager0(0x180c95578, 3, &unknown_var_3472_ptr);
+    system_validation_flag = SystemCore_ThreadManager0(0x180c95578, 3, &memory_allocator_3472_ptr);
     if (system_validation_flag != '\0') {
-      SystemCore_ThreadManager0(0x180c95578, system_parameter, &unknown_var_3424_ptr);
+      SystemCore_ThreadManager0(0x180c95578, system_parameter, &memory_allocator_3424_ptr);
     }
   }
   
@@ -517,9 +517,9 @@ void system_parameter_handler(int64_t *param_1, int64_t param_2, int32_t param_3
     /* 系统参数状态验证 - 验证参数状态 */
     system_validation_flag = SystemCore_ThreadManager0(system_context, 0, &system_param1_ptr);
     if ((system_validation_flag != '\0') && 
-        (system_validation_flag = SystemCore_ThreadManager0(system_context, 0x16, &unknown_var_3472_ptr), 
+        (system_validation_flag = SystemCore_ThreadManager0(system_context, 0x16, &memory_allocator_3472_ptr), 
          system_validation_flag != '\0')) {
-      SystemCore_ThreadManager0(system_context, system_hash_value, &unknown_var_3488_ptr);
+      SystemCore_ThreadManager0(system_context, system_hash_value, &memory_allocator_3488_ptr);
     }
     
     /* 系统资源解锁 - 解锁资源 */
@@ -574,9 +574,9 @@ void system_thread_synchronizer(void)
   /* 系统状态验证 - 验证系统状态 */
   system_validation_flag = SystemCore_ThreadManager0(system_context, 0, &system_param1_ptr);
   if ((system_validation_flag != '\0') && 
-      (system_validation_flag = SystemCore_ThreadManager0(system_context, 0x16, &unknown_var_3472_ptr), 
+      (system_validation_flag = SystemCore_ThreadManager0(system_context, 0x16, &memory_allocator_3472_ptr), 
        system_validation_flag != '\0')) {
-    SystemCore_ThreadManager0(system_context, system_parameter, &unknown_var_3488_ptr);
+    SystemCore_ThreadManager0(system_context, system_parameter, &memory_allocator_3488_ptr);
   }
   
   /* 系统资源解锁 - 解锁系统资源 */
@@ -741,8 +741,8 @@ uint64_t *system_memory_controller(uint64_t *param_1, uint64_t param_2, int32_t 
   int32_t memory_parameter;
   
   /* 系统内存池初始化 - 初始化内存池 */
-  *param_1 = &unknown_var_1864_ptr;
-  *param_1 = &unknown_var_4336_ptr;
+  *param_1 = &ui_system_data_1864_ptr;
+  *param_1 = &processed_var_4336_ptr;
   
   /* 系统内存状态初始化 - 初始化内存状态 */
   memory_index = 0;
@@ -878,7 +878,7 @@ void system_deinitializer(uint64_t *param_1)
   uint64_t resource_count;
   
   /* 系统内存池解初始化 - 解初始化内存池 */
-  *param_1 = &unknown_var_4336_ptr;
+  *param_1 = &processed_var_4336_ptr;
   
   /* 系统资源清理 - 清理系统资源 */
   resource_handle = param_1[0x21f];
@@ -944,7 +944,7 @@ void system_deinitializer(uint64_t *param_1)
   
   /* 系统状态重置 - 重置系统状态 */
   if (param_1[1] == 0) {
-    *param_1 = &unknown_var_1864_ptr;
+    *param_1 = &ui_system_data_1864_ptr;
     return;
   }
   

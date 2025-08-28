@@ -199,7 +199,7 @@ void DataProcessor_ProcessConfigData(void)
                         }
                         
                         // 验证配置项
-                        length = (int64_t)&unknown_var_3408_ptr - (int64_t)name_ptr;
+                        length = (int64_t)&memory_allocator_3408_ptr - (int64_t)name_ptr;
                         while (*name_ptr == name_ptr[length]) {
                             name_ptr = name_ptr + 1;
                             if (value_ptr <= name_ptr) {
@@ -254,7 +254,7 @@ void DataProcessor_ProcessConfigData(void)
                             goto handle_far_plane;
                         }
                         
-                        length = (int64_t)&unknown_var_3392_ptr - (int64_t)name_ptr;
+                        length = (int64_t)&memory_allocator_3392_ptr - (int64_t)name_ptr;
                         while (*name_ptr == name_ptr[length]) {
                             name_ptr = name_ptr + 1;
                             if (value_ptr <= name_ptr) {
@@ -303,7 +303,7 @@ void DataProcessor_ProcessConfigData(void)
                                 goto handle_near_plane;
                             }
                             
-                            length = (int64_t)&unknown_var_3408_ptr - (int64_t)name_ptr;
+                            length = (int64_t)&memory_allocator_3408_ptr - (int64_t)name_ptr;
                             while (*name_ptr == name_ptr[length]) {
                                 name_ptr = name_ptr + 1;
                                 if (value_ptr <= name_ptr) {
@@ -394,7 +394,7 @@ void StringProcessor_HandleStrings(int32_t param_1)
                 goto apply_near_plane;
             }
             
-            length = (int64_t)&unknown_var_3408_ptr - (int64_t)value_ptr;
+            length = (int64_t)&memory_allocator_3408_ptr - (int64_t)value_ptr;
             while (*value_ptr == value_ptr[length]) {
                 value_ptr = value_ptr + 1;
                 if (name_ptr <= value_ptr) {
@@ -449,7 +449,7 @@ apply_near_plane:
                 goto apply_far_plane;
             }
             
-            length = (int64_t)&unknown_var_3392_ptr - (int64_t)value_ptr;
+            length = (int64_t)&memory_allocator_3392_ptr - (int64_t)value_ptr;
             while (*value_ptr == value_ptr[length]) {
                 value_ptr = value_ptr + 1;
                 if (name_ptr <= value_ptr) {
@@ -562,7 +562,7 @@ process_string_config:
                 goto apply_near_plane_config;
             }
             
-            length = (int64_t)&unknown_var_3408_ptr - (int64_t)value_ptr;
+            length = (int64_t)&memory_allocator_3408_ptr - (int64_t)value_ptr;
             while (*value_ptr == value_ptr[length]) {
                 value_ptr = value_ptr + 1;
                 if (name_ptr <= value_ptr) {
@@ -617,7 +617,7 @@ apply_near_plane_config:
                 goto apply_far_plane_config;
             }
             
-            length = (int64_t)&unknown_var_3392_ptr - (int64_t)value_ptr;
+            length = (int64_t)&memory_allocator_3392_ptr - (int64_t)value_ptr;
             while (*value_ptr == value_ptr[length]) {
                 value_ptr = value_ptr + 1;
                 if (name_ptr <= value_ptr) {
@@ -730,7 +730,7 @@ void ConfigProcessor_HandleConfig(int32_t param_1, uint64_t* param_2)
             
             name_ptr = name_ptr + (int64_t)value_ptr;
             if (value_ptr < name_ptr) {
-                length = (int64_t)&unknown_var_3392_ptr - (int64_t)value_ptr;
+                length = (int64_t)&memory_allocator_3392_ptr - (int64_t)value_ptr;
                 do {
                     if (*value_ptr != value_ptr[length]) goto move_to_next_config;
                     value_ptr = value_ptr + 1;
@@ -850,7 +850,7 @@ void DataValidator_ValidateData(int64_t param_1)
                 goto apply_validation;
             }
             
-            length = (int64_t)&unknown_var_3392_ptr - (int64_t)value_ptr;
+            length = (int64_t)&memory_allocator_3392_ptr - (int64_t)value_ptr;
             while (*value_ptr == value_ptr[length]) {
                 value_ptr = value_ptr + 1;
                 if (name_ptr <= value_ptr) {
@@ -1052,7 +1052,7 @@ void EntityManager_ProcessEntities(int64_t param_1, int64_t* param_2)
                                             entity_type = temp_ptr;
                                             if (end_ptr <= entity_id) break;
                                             
-                                            length = (int64_t)&unknown_var_3424_ptr - (int64_t)entity_id;
+                                            length = (int64_t)&memory_allocator_3424_ptr - (int64_t)entity_id;
                                             while (*entity_id == entity_id[length]) {
                                                 entity_id = entity_id + 1;
                                                 if (end_ptr <= entity_id) goto continue_entity_processing;
@@ -1066,7 +1066,7 @@ void EntityManager_ProcessEntities(int64_t param_1, int64_t* param_2)
                                 goto process_entity_init;
                             }
                             
-                            length = (int64_t)&unknown_var_3424_ptr - (int64_t)temp_ptr;
+                            length = (int64_t)&memory_allocator_3424_ptr - (int64_t)temp_ptr;
                             while (*temp_ptr == temp_ptr[length]) {
                                 temp_ptr = temp_ptr + 1;
                                 if (entity_id <= temp_ptr) {
@@ -1117,7 +1117,7 @@ void EntityManager_ProcessEntities(int64_t param_1, int64_t* param_2)
                                                 entity_type = temp_ptr;
                                                 if (end_ptr <= entity_id) break;
                                                 
-                                                length = (int64_t)&unknown_var_3424_ptr - (int64_t)entity_id;
+                                                length = (int64_t)&memory_allocator_3424_ptr - (int64_t)entity_id;
                                                 while (*entity_id == entity_id[length]) {
                                                     entity_id = entity_id + 1;
                                                     if (end_ptr <= entity_id) goto continue_entity_processing;
@@ -1135,7 +1135,7 @@ void EntityManager_ProcessEntities(int64_t param_1, int64_t* param_2)
                     } while (true);
                 }
                 
-                length = (int64_t)&unknown_var_3440_ptr - (int64_t)entity_id;
+                length = (int64_t)&memory_allocator_3440_ptr - (int64_t)entity_id;
                 while (*entity_id == entity_id[length]) {
                     entity_id = entity_id + 1;
                     if (temp_ptr <= entity_id) {
@@ -1243,7 +1243,7 @@ void EntityManager_ProcessEntities(int64_t param_1, int64_t* param_2)
                                                 entity_type = temp_ptr;
                                                 if (end_ptr <= entity_id) break;
                                                 
-                                                length = (int64_t)&unknown_var_3424_ptr - (int64_t)entity_id;
+                                                length = (int64_t)&memory_allocator_3424_ptr - (int64_t)entity_id;
                                                 while (*entity_id == entity_id[length]) {
                                                     entity_id = entity_id + 1;
                                                     if (end_ptr <= entity_id) goto continue_entity_processing;
@@ -1256,7 +1256,7 @@ void EntityManager_ProcessEntities(int64_t param_1, int64_t* param_2)
                                     goto process_entity_init;
                                 }
                                 
-                                length = (int64_t)&unknown_var_3424_ptr - (int64_t)temp_ptr;
+                                length = (int64_t)&memory_allocator_3424_ptr - (int64_t)temp_ptr;
                                 while (*temp_ptr == temp_ptr[length]) {
                                     temp_ptr = temp_ptr + 1;
                                     if (entity_id <= temp_ptr) {
@@ -1307,7 +1307,7 @@ void EntityManager_ProcessEntities(int64_t param_1, int64_t* param_2)
                                                     entity_type = temp_ptr;
                                                     if (end_ptr <= entity_id) break;
                                                     
-                                                    length = (int64_t)&unknown_var_3424_ptr - (int64_t)entity_id;
+                                                    length = (int64_t)&memory_allocator_3424_ptr - (int64_t)entity_id;
                                                     while (*entity_id == entity_id[length]) {
                                                         entity_id = entity_id + 1;
                                                         if (end_ptr <= entity_id) goto continue_entity_processing;
@@ -1326,7 +1326,7 @@ void EntityManager_ProcessEntities(int64_t param_1, int64_t* param_2)
                     }
                 }
                 
-                length = (int64_t)&unknown_var_3440_ptr - (int64_t)entity_id;
+                length = (int64_t)&memory_allocator_3440_ptr - (int64_t)entity_id;
                 while (*entity_id == entity_id[length]) {
                     entity_id = entity_id + 1;
                     if (temp_ptr <= entity_id) goto process_game_entity;
@@ -1476,7 +1476,7 @@ process_game_entity:
                             entity_type = temp_ptr;
                             if (end_ptr <= entity_id) break;
                             
-                            length = (int64_t)&unknown_var_3424_ptr - (int64_t)entity_id;
+                            length = (int64_t)&memory_allocator_3424_ptr - (int64_t)entity_id;
                             while (*entity_id == entity_id[length]) {
                                 entity_id = entity_id + 1;
                                 if (end_ptr <= entity_id) goto continue_entity_processing;
@@ -1489,7 +1489,7 @@ process_game_entity:
                 goto process_entity_init;
             }
             
-            length = (int64_t)&unknown_var_3424_ptr - (int64_t)temp_ptr;
+            length = (int64_t)&memory_allocator_3424_ptr - (int64_t)temp_ptr;
             while (*temp_ptr == temp_ptr[length]) {
                 temp_ptr = temp_ptr + 1;
                 if (entity_id <= temp_ptr) {
@@ -1540,7 +1540,7 @@ process_game_entity:
                                 entity_type = temp_ptr;
                                 if (end_ptr <= entity_id) break;
                                 
-                                length = (int64_t)&unknown_var_3424_ptr - (int64_t)entity_id;
+                                length = (int64_t)&memory_allocator_3424_ptr - (int64_t)entity_id;
                                 while (*entity_id == entity_id[length]) {
                                     entity_id = entity_id + 1;
                                     if (end_ptr <= entity_id) goto continue_entity_processing;

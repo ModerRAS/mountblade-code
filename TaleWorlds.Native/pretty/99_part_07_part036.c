@@ -91,7 +91,7 @@ float * FUN_1804bc610(uint64_t param_1,float *param_2,int64_t param_3)
   }
   lVar3 = puVar5[5];
   if (lVar3 == 0) {
-    SystemDataInitializer(&unknown_var_7976_ptr);
+    SystemDataInitializer(&processed_var_7976_ptr);
   }
   else {
     iVar1 = *(int *)(lVar3 + 0x298);
@@ -546,7 +546,7 @@ uint64_t * FUN_1804bca40(int64_t *param_1,uint64_t *param_2,int64_t param_3)
           lVar10 = 0;
           do {
             lVar11 = lVar10 + 1;
-            if (*(char *)(*(int64_t *)(lVar4 + 0x18) + lVar10) != (&unknown_var_7968_ptr)[lVar10])
+            if (*(char *)(*(int64_t *)(lVar4 + 0x18) + lVar10) != (&processed_var_7968_ptr)[lVar10])
             goto LAB_1804bcd47;
             lVar10 = lVar11;
           } while (lVar11 != 8);
@@ -561,7 +561,7 @@ LAB_1804bcd47:
         lVar13 = plVar5[7];
         lVar4 = *(int64_t *)(*(int64_t *)(lVar12 + lVar13) + 0x1b8);
         if ((*(int *)(lVar4 + 0x20) == 0xd) &&
-           (iVar7 = strcmp(*(uint64_t *)(lVar4 + 0x18),&unknown_var_8048_ptr), iVar7 == 0)) {
+           (iVar7 = strcmp(*(uint64_t *)(lVar4 + 0x18),&processed_var_8048_ptr), iVar7 == 0)) {
           lVar13 = *(int64_t *)(lVar13 + lVar12);
           uVar6 = func_0x0001804af690(lVar3,param_3 + 0x54c);
           *(float *)(lVar13 + 0x238) = (float)(uVar6 >> 0x10 & 0xff) * 0.003921569;

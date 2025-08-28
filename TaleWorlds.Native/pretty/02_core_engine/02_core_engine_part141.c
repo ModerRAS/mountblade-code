@@ -227,7 +227,7 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
     
     // 初始化动画参数
     AnimationInitializer(iVar11 + 0x11223347);
-    puVar15 = &unknown_var_2648_ptr;
+    puVar15 = &rendering_buffer_2648_ptr;
     if (animation_data != (void *)0x0) {
         puVar15 = animation_data;
     }
@@ -539,7 +539,7 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
     
     // 初始化动画
     AnimationInitializer(iVar11 + 0x11223347);
-    puVar15 = &unknown_var_2648_ptr;
+    puVar15 = &rendering_buffer_2648_ptr;
     if (animation_data != (void *)0x0) {
         puVar15 = animation_data;
     }

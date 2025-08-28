@@ -234,13 +234,13 @@ void FUN_1800c33e0(int64_t param_1)
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_178;
   lStack_128 = param_1;
   puVar2 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x88,8,3);
-  *puVar2 = &unknown_var_5912_ptr;
-  *puVar2 = &unknown_var_7536_ptr;
+  *puVar2 = &processed_var_5912_ptr;
+  *puVar2 = &processed_var_7536_ptr;
   plStack_140 = puVar2 + 1;
   *plStack_140 = (int64_t)&system_state_ptr;
   puVar2[2] = 0;
   *(int32_t *)(puVar2 + 3) = 0;
-  *plStack_140 = (int64_t)&unknown_var_3480_ptr;
+  *plStack_140 = (int64_t)&memory_allocator_3480_ptr;
   puVar2[2] = puVar2 + 4;
   *(int32_t *)(puVar2 + 3) = 0;
   *(int8_t *)(puVar2 + 4) = 0;
@@ -251,12 +251,12 @@ void FUN_1800c33e0(int64_t param_1)
   puVar2[0x10] = 0;
   *(int32_t *)(puVar2 + 0xc) = 0;
   *(int32_t *)((int64_t)puVar2 + 100) = 0x42480000;
-  puStack_f8 = &unknown_var_3480_ptr;
+  puStack_f8 = &memory_allocator_3480_ptr;
   puStack_f0 = auStack_e0;
   auStack_e0[0] = 0;
   uStack_e8 = 0xb;
   apuStack_138[0] = puVar2;
-  strcpy_s(auStack_e0,0x40,&unknown_var_1624_ptr);
+  strcpy_s(auStack_e0,0x40,&ui_system_data_1624_ptr);
   *(int32_t *)(puVar2 + 3) = uStack_e8;
   puVar6 = &system_buffer_ptr;
   if (puStack_f0 != (void *)0x0) {
@@ -268,7 +268,7 @@ void FUN_1800c33e0(int64_t param_1)
   lVar7 = 4;
   do {
     plStack_158 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x28,8,3);
-    *plStack_158 = (int64_t)&unknown_var_7520_ptr;
+    *plStack_158 = (int64_t)&processed_var_7520_ptr;
     plStack_110 = plStack_158 + 1;
     *plStack_110 = 0;
     plStack_158[2] = 0;
@@ -277,7 +277,7 @@ void FUN_1800c33e0(int64_t param_1)
     *plVar5 = (int64_t)plStack_158;
     uVar3 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x40,8,3);
     plVar4 = (int64_t *)FUN_1802c1260(uVar3);
-    puStack_98 = &unknown_var_3480_ptr;
+    puStack_98 = &memory_allocator_3480_ptr;
     puStack_90 = auStack_80;
     auStack_80[0] = 0;
     uStack_88 = 0xc;
@@ -512,7 +512,7 @@ void FUN_1800c3bf0(int64_t *param_1)
   int64_t *plVar1;
   
   plVar1 = param_1 + 0x17;
-  *(void **)((int64_t)*(int *)(*param_1 + 4) + -0xb8 + (int64_t)plVar1) = &unknown_var_1768_ptr;
+  *(void **)((int64_t)*(int *)(*param_1 + 4) + -0xb8 + (int64_t)plVar1) = &ui_system_data_1768_ptr;
   *(int *)((int64_t)*(int *)(*param_1 + 4) + -0xbc + (int64_t)plVar1) =
        *(int *)(*param_1 + 4) + -0xb8;
   FUN_18009fb60(param_1 + 3);

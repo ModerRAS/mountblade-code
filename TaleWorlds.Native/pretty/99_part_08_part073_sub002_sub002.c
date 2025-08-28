@@ -219,11 +219,11 @@ LAB_1805b9a5e:
     cVar19 = 0 < iVar22;
     *(char *)(unaff_RBP + 0x130) = cVar19;
   }
-  puVar39 = &unknown_var_2336_ptr;
+  puVar39 = &rendering_buffer_2336_ptr;
   if (param_2 != '\0') {
-    puVar39 = &unknown_var_2328_ptr;
+    puVar39 = &rendering_buffer_2328_ptr;
   }
-  func_0x000180508000(uVar47,&unknown_var_3152_ptr,puVar39,cVar19);
+  func_0x000180508000(uVar47,&memory_allocator_3152_ptr,puVar39,cVar19);
   if (cVar19 == '\0') {
     fVar48 = *(float *)((int64_t)unaff_RBX + 0x2c);
     lVar30 = unaff_RBX[6];

@@ -288,9 +288,9 @@ int32_t * FUN_18038a910(int32_t *param_1)
   *(uint64_t *)(param_1 + 0x148) = 0;
   *(uint64_t *)(param_1 + 0x14a) = 0;
   *param_1 = 0;
-  *(void **)(param_1 + 0x150) = &unknown_var_4272_ptr;
+  *(void **)(param_1 + 0x150) = &processed_var_4272_ptr;
   *(code **)(param_1 + 0x14e) = FUN_18038a340;
-  *(void **)(param_1 + 0x154) = &unknown_var_4272_ptr;
+  *(void **)(param_1 + 0x154) = &processed_var_4272_ptr;
   *(code **)(param_1 + 0x152) = FUN_18038a630;
   *(int8_t *)(param_1 + 0x147) = 1;
   puVar2 = param_1 + 0x156;
@@ -380,7 +380,7 @@ void FUN_18038aae0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
     } while ((int)uVar6 < (int)(uint)*(byte *)(param_2 + 0xa8));
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&unknown_var_5280_ptr);
+  FUN_180062300(system_message_context,&processed_var_5280_ptr);
 }
 
 

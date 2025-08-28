@@ -360,11 +360,11 @@ uint64_t * FUN_18026daf0(uint64_t *param_1,int64_t param_2)
 
 {
   FUN_18026ead0();
-  *param_1 = &unknown_var_7360_ptr;
+  *param_1 = &processed_var_7360_ptr;
   *(int32_t *)(param_1 + 5) = *(int32_t *)(param_2 + 0x28);
   *(int32_t *)((int64_t)param_1 + 0x2c) = *(int32_t *)(param_2 + 0x2c);
-  *param_1 = &unknown_var_7264_ptr;
-  *param_1 = &unknown_var_7168_ptr;
+  *param_1 = &processed_var_7264_ptr;
+  *param_1 = &processed_var_7168_ptr;
   FUN_18026e450(param_1);
   return param_1;
 }
@@ -378,7 +378,7 @@ FUN_18026db60(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_7440_ptr;
+  *param_1 = &processed_var_7440_ptr;
   FUN_1802708b0(param_1 + 1);
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -427,80 +427,80 @@ void FUN_18026dbe0(int64_t param_1)
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
-  *(void **)(param_1 + 0x430) = &unknown_var_7440_ptr;
+  *(void **)(param_1 + 0x430) = &processed_var_7440_ptr;
   FUN_1802708b0((int64_t *)(param_1 + 0x438));
   if (*(int64_t *)(param_1 + 0x438) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
-  *(void **)(param_1 + 0x3f8) = &unknown_var_7440_ptr;
+  *(void **)(param_1 + 0x3f8) = &processed_var_7440_ptr;
   FUN_1802708b0((int64_t *)(param_1 + 0x400));
   if (*(int64_t *)(param_1 + 0x400) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
-  *(void **)(param_1 + 0x3c0) = &unknown_var_7440_ptr;
+  *(void **)(param_1 + 0x3c0) = &processed_var_7440_ptr;
   FUN_1802708b0((int64_t *)(param_1 + 0x3c8));
   if (*(int64_t *)(param_1 + 0x3c8) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
-  *(void **)(param_1 + 0x388) = &unknown_var_7440_ptr;
+  *(void **)(param_1 + 0x388) = &processed_var_7440_ptr;
   FUN_1802708b0((int64_t *)(param_1 + 0x390));
   if (*(int64_t *)(param_1 + 0x390) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
-  *(void **)(param_1 + 0x350) = &unknown_var_7440_ptr;
+  *(void **)(param_1 + 0x350) = &processed_var_7440_ptr;
   FUN_1802708b0((int64_t *)(param_1 + 0x358));
   if (*(int64_t *)(param_1 + 0x358) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
-  *(void **)(param_1 + 0x318) = &unknown_var_7440_ptr;
+  *(void **)(param_1 + 0x318) = &processed_var_7440_ptr;
   FUN_1802708b0((int64_t *)(param_1 + 800));
   if (*(int64_t *)(param_1 + 800) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
-  *(void **)(param_1 + 0x2e0) = &unknown_var_7440_ptr;
+  *(void **)(param_1 + 0x2e0) = &processed_var_7440_ptr;
   FUN_1802708b0((int64_t *)(param_1 + 0x2e8));
   if (*(int64_t *)(param_1 + 0x2e8) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
   FUN_180269f50(param_1 + 0x270);
-  *(void **)(param_1 + 0x240) = &unknown_var_7440_ptr;
+  *(void **)(param_1 + 0x240) = &processed_var_7440_ptr;
   FUN_1802708b0((int64_t *)(param_1 + 0x248));
   if (*(int64_t *)(param_1 + 0x248) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
-  *(void **)(param_1 + 0x208) = &unknown_var_7440_ptr;
+  *(void **)(param_1 + 0x208) = &processed_var_7440_ptr;
   FUN_1802708b0((int64_t *)(param_1 + 0x210));
   if (*(int64_t *)(param_1 + 0x210) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
-  *(void **)(param_1 + 0x1d0) = &unknown_var_7440_ptr;
+  *(void **)(param_1 + 0x1d0) = &processed_var_7440_ptr;
   FUN_1802708b0((int64_t *)(param_1 + 0x1d8));
   if (*(int64_t *)(param_1 + 0x1d8) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
-  *(void **)(param_1 + 0x198) = &unknown_var_7440_ptr;
+  *(void **)(param_1 + 0x198) = &processed_var_7440_ptr;
   FUN_1802708b0((int64_t *)(param_1 + 0x1a0));
   if (*(int64_t *)(param_1 + 0x1a0) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
-  *(void **)(param_1 + 0x160) = &unknown_var_7440_ptr;
+  *(void **)(param_1 + 0x160) = &processed_var_7440_ptr;
   FUN_1802708b0((int64_t *)(param_1 + 0x168));
   if (*(int64_t *)(param_1 + 0x168) != 0) {
                     // WARNING: Subroutine does not return
     MemoryCleanupAndFree();
   }
-  *(void **)(param_1 + 0x108) = &unknown_var_7440_ptr;
+  *(void **)(param_1 + 0x108) = &processed_var_7440_ptr;
   FUN_1802708b0((int64_t *)(param_1 + 0x110));
   if (*(int64_t *)(param_1 + 0x110) != 0) {
                     // WARNING: Subroutine does not return

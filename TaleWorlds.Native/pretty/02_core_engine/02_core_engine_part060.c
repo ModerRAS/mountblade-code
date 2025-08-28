@@ -115,32 +115,32 @@ void initialize_resource_processing(uint64_t system_handle, int64_t resource_dat
   }
   FUN_1801299b0(puVar12,0,0);
   auStack_8f4[0] = 0;
-  bVar5 = FUN_18010f6f0(&unknown_var_2612_ptr,auStack_8f4,0);
+  bVar5 = FUN_18010f6f0(&rendering_buffer_2612_ptr,auStack_8f4,0);
   uVar15 = (uint)bVar5;
   uStack_8c8 = (uint)bVar5;
   func_0x00018012e760();
   alStack_8c0[0] = 0;
-  cVar6 = FUN_18010f6f0(&unknown_var_1920_ptr,alStack_8c0,0);
+  cVar6 = FUN_18010f6f0(&ui_system_data_1920_ptr,alStack_8c0,0);
   if (cVar6 != '\0') {
-    puStack_728 = &unknown_var_672_ptr;
+    puStack_728 = &processed_var_672_ptr;
     puStack_720 = auStack_710;
     auStack_710[0] = 0;
     uStack_718 = 0x11;
-    strcpy_s(auStack_710,0x20,&unknown_var_1896_ptr);
+    strcpy_s(auStack_710,0x20,&ui_system_data_1896_ptr);
     FUN_180097d40(puVar4,param_2,&puStack_728);
     puStack_728 = &system_state_ptr;
   }
   func_0x00018012e760();
-  cVar6 = FUN_180111070(&unknown_var_1944_ptr,lVar9 + 0x124);
+  cVar6 = FUN_180111070(&ui_system_data_1944_ptr,lVar9 + 0x124);
   if ((cVar6 != '\0') &&
      (uVar15 = (uint)bVar5, uStack_8c8 = uVar15, *(char *)(lVar9 + 0x124) != '\0')) {
     uVar15 = 1;
     uStack_8c8 = uVar15;
   }
   func_0x00018012e760();
-  FUN_180111070(&unknown_var_1936_ptr,lVar9 + 0x125);
+  FUN_180111070(&ui_system_data_1936_ptr,lVar9 + 0x125);
   func_0x00018012e760();
-  FUN_180111070(&unknown_var_1960_ptr,lVar9 + 0x126);
+  FUN_180111070(&ui_system_data_1960_ptr,lVar9 + 0x126);
   lVar2 = SYSTEM_DATA_MANAGER_A;
   *(int8_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
   lVar2 = *(int64_t *)(*(int64_t *)(lVar2 + 0x1af8) + 0x210);
@@ -175,11 +175,11 @@ LAB_180096e94:
       puVar14 = puVar14 + 2;
       lVar13 = lVar13 + -1;
     } while (lVar13 != 0);
-    puStack_558 = &unknown_var_1980_ptr;
+    puStack_558 = &ui_system_data_1980_ptr;
     uStack_3c8 = 0x3f0000003f000000;
     uStack_3c0 = 0x3f8000003f000000;
     uStack_6e8 = puVar4[0xf];
-    puStack_550 = &unknown_var_1972_ptr;
+    puStack_550 = &ui_system_data_1972_ptr;
     uStack_3b8 = 0x3f0000003f000000;
     uStack_3b0 = 0x3f8000003f000000;
     uStack_6e0 = puVar4[0x13];
@@ -190,10 +190,10 @@ LAB_180096e94:
       memmove(puVar4[3],uVar1,uVar3 - uVar1);
     }
     puVar4[4] = uVar3 - 4;
-    SystemDataInitializer(&unknown_var_2016_ptr);
+    SystemDataInitializer(&rendering_buffer_2016_ptr);
     fStack_8f8 = (float)core_system_memory;
     FUN_1800571e0(puVar4 + 3,&fStack_8f8);
-    puStack_548 = &unknown_var_1992_ptr;
+    puStack_548 = &ui_system_data_1992_ptr;
     uStack_3a8 = 0x3f4ccccd3e4ccccd;
     uStack_3a0 = 0x3f8000003f000000;
     uStack_6d8 = puVar4[3];
@@ -519,7 +519,7 @@ void initialize_resource_manager(int64_t *manager_ptr, int param_a, int param_b,
   *(int32_t *)(lVar3 + 0x8c) = 0x2c;
   *(uint *)(lVar3 + 8) = *(uint *)(lVar3 + 8) | 0x40;
   *(uint64_t *)(lVar3 + 0x110) = param_4;
-  *(void **)(lVar3 + 0x100) = &unknown_var_1840_ptr;
+  *(void **)(lVar3 + 0x100) = &ui_system_data_1840_ptr;
   *(code **)(lVar3 + 0xf8) = FUN_180099f90;
   uVar5 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xa0,8,3);
   plVar6 = (int64_t *)FUN_1800842a0(uVar5);
@@ -535,11 +535,11 @@ void initialize_resource_manager(int64_t *manager_ptr, int param_a, int param_b,
   auStack_48[0] = 0;
   uStack_50 = 5;
   pplStack_148 = (int64_t **)plVar7;
-  strcpy_s(auStack_48,0x10,&unknown_var_2264_ptr);
+  strcpy_s(auStack_48,0x10,&rendering_buffer_2264_ptr);
   *plVar7 = (int64_t)&system_handler1_ptr;
   *plVar7 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar7 + 1) = 0;
-  *plVar7 = (int64_t)&unknown_var_7064_ptr;
+  *plVar7 = (int64_t)&processed_var_7064_ptr;
   LOCK();
   *(int8_t *)(plVar7 + 2) = 0;
   UNLOCK();
@@ -565,7 +565,7 @@ void initialize_resource_manager(int64_t *manager_ptr, int param_a, int param_b,
   *plVar7 = (int64_t)&system_handler1_ptr;
   *plVar7 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar7 + 1) = 0;
-  *plVar7 = (int64_t)&unknown_var_6752_ptr;
+  *plVar7 = (int64_t)&processed_var_6752_ptr;
   plVar7[4] = 0;
   plVar7[2] = 0;
   *(byte *)(plVar7 + 5) = *(byte *)(plVar7 + 5) | 1;
@@ -579,7 +579,7 @@ void initialize_resource_manager(int64_t *manager_ptr, int param_a, int param_b,
   *plVar8 = (int64_t)&system_handler1_ptr;
   *plVar8 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar8 + 1) = 0;
-  *plVar8 = (int64_t)&unknown_var_6960_ptr;
+  *plVar8 = (int64_t)&processed_var_6960_ptr;
   LOCK();
   *(int32_t *)(plVar8 + 2) = 0;
   UNLOCK();
@@ -754,7 +754,7 @@ void configure_resource_manager(int64_t manager_handle)
   uStack_b8 = 0;
   uStack_b0 = 0;
   uStack_ac = 0;
-  FUN_18009e9e0(param_1,&plStackX_10,&unknown_var_2296_ptr);
+  FUN_18009e9e0(param_1,&plStackX_10,&rendering_buffer_2296_ptr);
   plStack_f8 = (int64_t *)0x0;
   pplStackX_20 = (int64_t **)&puStack_f0;
   puStack_f0 = &system_data_buffer_ptr;
@@ -770,7 +770,7 @@ void configure_resource_manager(int64_t manager_handle)
   uStack_cc = 0;
   uStack_c8 = 0;
   uStack_c4 = 0;
-  FUN_18009e9e0(pplStackX_20,&plStackX_18,&unknown_var_2280_ptr);
+  FUN_18009e9e0(pplStackX_20,&plStackX_18,&rendering_buffer_2280_ptr);
   uVar3 = uStack_b0;
   uVar5 = uStack_b8;
   puStack_150 = &system_data_buffer_ptr;

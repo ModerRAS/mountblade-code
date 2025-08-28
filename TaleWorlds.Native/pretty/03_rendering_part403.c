@@ -12,7 +12,7 @@ void FUN_180490f80(uint64_t *param_1)
   int iVar3;
   int64_t lVar4;
   
-  *param_1 = &unknown_var_8856_ptr;
+  *param_1 = &processed_var_8856_ptr;
   if (param_1[0x12] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
@@ -134,7 +134,7 @@ void FUN_180490f80(uint64_t *param_1)
         (**(code **)(*(int64_t *)param_1[0xb] + 0x38))();
       }
       _Mtx_destroy_in_situ();
-      *param_1 = &unknown_var_9360_ptr;
+      *param_1 = &processed_var_9360_ptr;
       return;
     }
                     // WARNING: Subroutine does not return

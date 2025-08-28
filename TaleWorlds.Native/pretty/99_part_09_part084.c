@@ -322,7 +322,7 @@ void FUN_1805f5510(uint64_t *param_1)
   uint64_t uVar10;
   bool bVar11;
   
-  *param_1 = &unknown_var_5464_ptr;
+  *param_1 = &processed_var_5464_ptr;
   uVar3 = param_1[4];
   lVar9 = 0;
   uVar4 = param_1[5];
@@ -406,7 +406,7 @@ LAB_1805f55b2:
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
-  *param_1 = &unknown_var_5880_ptr;
+  *param_1 = &processed_var_5880_ptr;
   return;
 }
 
@@ -545,7 +545,7 @@ uint64_t * FUN_1805f5690(int64_t *param_1)
     puVar8[1] = 0;
     *(int8_t *)(puVar8 + 2) = 0;
     puVar8[3] = 0;
-    *puVar8 = &unknown_var_5880_ptr;
+    *puVar8 = &processed_var_5880_ptr;
     puVar8[4] = 0;
     puVar8[5] = 0;
     puVar8[6] = 0;
@@ -553,7 +553,7 @@ uint64_t * FUN_1805f5690(int64_t *param_1)
     puVar8[8] = 0;
     *(int8_t *)(puVar8 + 9) = 0;
     puVar8[10] = param_1;
-    *puVar8 = &unknown_var_5464_ptr;
+    *puVar8 = &processed_var_5464_ptr;
     puVar8[0xb] = 0x20;
     puVar8[0xc] = 0;
     FUN_18005f430(puVar8);

@@ -485,7 +485,7 @@ void FUN_180571ef0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       *(void **)(puVar8 + -4) = &system_state_ptr;
       *(uint64_t *)(puVar8 + -2) = 0;
       *puVar8 = 0;
-      *(void **)(puVar8 + -4) = &unknown_var_672_ptr;
+      *(void **)(puVar8 + -4) = &processed_var_672_ptr;
       *(int32_t **)(puVar8 + -2) = puVar8 + 2;
       *puVar8 = 0;
       *(int8_t *)(puVar8 + 2) = 0;
@@ -558,7 +558,7 @@ LAB_18057213b:
       *puVar5 = &system_state_ptr;
       puVar5[1] = 0;
       *(int32_t *)(puVar5 + 2) = 0;
-      *puVar5 = &unknown_var_672_ptr;
+      *puVar5 = &processed_var_672_ptr;
       puVar5[1] = puVar5 + 3;
       *(int32_t *)(puVar5 + 2) = 0;
       *(int8_t *)(puVar5 + 3) = 0;

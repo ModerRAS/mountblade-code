@@ -112,8 +112,8 @@ void FUN_18052af20(int64_t param_1)
         }
         cVar4 = SystemBufferProcessor(0x180c95578,0,&system_param1_ptr);
         if ((cVar4 != '\0') &&
-           (cVar4 = SystemBufferProcessor(0x180c95578,0xd,&unknown_var_3472_ptr), cVar4 != '\0')) {
-          SystemBufferProcessor(0x180c95578,iVar6,&unknown_var_3424_ptr);
+           (cVar4 = SystemBufferProcessor(0x180c95578,0xd,&memory_allocator_3472_ptr), cVar4 != '\0')) {
+          SystemBufferProcessor(0x180c95578,iVar6,&memory_allocator_3424_ptr);
         }
         render_system_config = render_system_config & 0xffffffff00000000;
         iVar6 = (int)(render_system_config - render_system_config >> 3);

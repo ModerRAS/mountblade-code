@@ -311,7 +311,7 @@ void FUN_1803697f0(uint64_t param_1, uint64_t param_2)
     
     // 设置材质对象标识符
     context_id = 0x18036981a;
-    material_object_ptr = (uint64_t *)FUN_18062b1e0(RENDERING_GLOBAL_DATA_TABLE, 
+    material_object_ptr = (uint64_t *)CoreSystem_LoggingManager0(RENDERING_GLOBAL_DATA_TABLE, 
                                                     0x90, 8, 3);
     security_token = 0xfffffffffffffffe;
     texture_object_ptr = material_object_ptr;
@@ -1237,7 +1237,7 @@ void FUN_18036ab70(uint64_t param_1, uint64_t param_2)
     uint64_t security_context;        // 安全上下文
     
     // 创建目标纹理对象
-    target_texture_ptr = (uint64_t *)FUN_18062b1e0(RENDERING_GLOBAL_DATA_TABLE, 
+    target_texture_ptr = (uint64_t *)CoreSystem_LoggingManager0(RENDERING_GLOBAL_DATA_TABLE, 
                                                     0x118, 8, 3);
     security_context = 0xfffffffffffffffe;
     source_texture_ptr = target_texture_ptr;

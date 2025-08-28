@@ -68,7 +68,7 @@ void release_texture_resources(int64_t texture_context)
   *(uint64_t *)(texture_manager + 0xb0) = new_buffer;
   resource_pool = *(int64_t **)(*(int64_t *)(texture_manager + 0xa8) + 0x88);
   buffer_ptr = dimensions;
-  cleanup_callback = (code *)&unknown_var_3120_ptr;
+  cleanup_callback = (code *)&memory_allocator_3120_ptr;
   texture_callback = cleanup_texture_resources;
   cleanup_context = texture_manager;
   
@@ -264,7 +264,7 @@ void parse_texture_data_and_create(int64_t texture_params,int64_t data_stream)
   checksum = GET_SECURITY_COOKIE() ^ (uint64_t)name_buffer;
   *(int64_t *)(data_stream + 8) = *(int64_t *)(data_stream + 8) + 4;
   texture_quality = 0;
-  texture_data_ptr = &unknown_var_336_ptr;
+  texture_data_ptr = &memory_allocator_336_ptr;
   texture_name_buffer = texture_full_name;
   name_length_int = 0;
   texture_full_name[0] = 0;

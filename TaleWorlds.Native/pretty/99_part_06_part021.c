@@ -706,8 +706,8 @@ LAB_1803b1fdd:
       ppppiStack_68 = (int ****)0x0;
       puStack_60 = (uint64_t *)0x7f7fffff00000000;
       ppppiStack_58 = (int ****)&ppppiStack_68;
-      puStack_38 = &unknown_var_5952_ptr;
-      puStack_30 = &unknown_var_5936_ptr;
+      puStack_38 = &processed_var_5952_ptr;
+      puStack_30 = &processed_var_5936_ptr;
       uStack_50._0_4_ = SUB84(puVar9,0);
       uStack_50._4_4_ = (int32_t)((uint64_t)puVar9 >> 0x20);
       uStack_40 = (int32_t)uStack_50;
@@ -858,7 +858,7 @@ LAB_1803ba320:
           lVar4 = *(int64_t *)(param_1 + 0x28);
           lVar1 = *(int64_t *)(lVar4 + 0x268);
           if (lVar1 == 0) {
-            puStack_98 = &unknown_var_3480_ptr;
+            puStack_98 = &memory_allocator_3480_ptr;
             puStack_90 = auStack_80;
             uStack_88 = 0;
             auStack_80[0] = 0;
@@ -892,7 +892,7 @@ LAB_1803ba454:
                   FUN_1802fdb10(*(uint64_t *)(*(int64_t *)(param_1 + 0x28) + 0x260));
                   break;
                 }
-                lVar4 = (int64_t)&unknown_var_2344_ptr - (int64_t)pcVar8;
+                lVar4 = (int64_t)&rendering_buffer_2344_ptr - (int64_t)pcVar8;
                 while (*pcVar8 == pcVar8[lVar4]) {
                   pcVar8 = pcVar8 + 1;
                   if (pcVar2 <= pcVar8) goto LAB_1803ba454;
@@ -907,7 +907,7 @@ LAB_1803ba454:
               puVar10 = *(void **)(lVar1 + 0x290);
             }
             if (*(int64_t *)(lVar4 + 0x20) == 0) {
-              puVar7 = &unknown_var_1344_ptr;
+              puVar7 = &ui_system_data_1344_ptr;
             }
             else {
               puVar5 = *(void **)(*(int64_t *)(lVar4 + 0x20) + 0x4e0);
@@ -920,7 +920,7 @@ LAB_1803ba454:
             if (*(void **)(lVar4 + 0x290) != (void *)0x0) {
               puVar5 = *(void **)(lVar4 + 0x290);
             }
-            FUN_180627020(&unknown_var_1248_ptr,puVar5,puVar7,puVar10);
+            FUN_180627020(&ui_system_data_1248_ptr,puVar5,puVar7,puVar10);
             FUN_1802ed990(*(uint64_t *)(param_1 + 0x28),1);
           }
           lVar4 = *(int64_t *)(*(int64_t *)(param_1 + 0x28) + 0x260);

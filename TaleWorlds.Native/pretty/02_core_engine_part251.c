@@ -34,7 +34,7 @@ void FUN_180217300(int64_t *param_1)
     puStack_138 = auStack_118;
     auStack_118[0] = 0;
                     // WARNING: Subroutine does not return
-    DataTransformer(iVar2,3,lVar1,&unknown_var_7112_ptr);
+    DataTransformer(iVar2,3,lVar1,&processed_var_7112_ptr);
   }
   if (lStack_128 != 0) {
     SystemDataProcessor();
@@ -128,7 +128,7 @@ void FUN_180217530(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   }
   if (*(int64_t *)(param_1 + 0x2b8) - *(int64_t *)(param_1 + 0x2b0) >> 4 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&unknown_var_5328_ptr,0,param_4,uVar2);
+    FUN_180062300(system_message_context,&processed_var_5328_ptr,0,param_4,uVar2);
   }
   iVar1 = _Mtx_unlock(param_1 + 0x260);
   if (iVar1 != 0) {
@@ -237,7 +237,7 @@ void FUN_1802177f0(int64_t param_1)
   
   uStack_148 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_1a8;
-  FUN_1801299b0(&unknown_var_5280_ptr,0,0);
+  FUN_1801299b0(&processed_var_5280_ptr,0,0);
   plVar1 = *(int64_t **)(param_1 + 0x38);
   lVar6 = *plVar1;
   plVar7 = plVar1;
@@ -253,7 +253,7 @@ void FUN_1802177f0(int64_t param_1)
     do {
       plVar1 = *(int64_t **)(lVar6 + 8);
       FUN_180846610(plVar1[0xf],auStack_138,0x100,auStack_150);
-      if ((void *)*plVar1 == &unknown_var_2656_ptr) {
+      if ((void *)*plVar1 == &rendering_buffer_2656_ptr) {
         iVar3 = FUN_180846a90(plVar1[0x10],&iStack_160);
         FUN_180211a30(iVar3,&system_buffer_ptr);
         if ((iVar3 == 0) && ((iStack_160 == 0 || (iStack_160 == 3)))) {
@@ -266,14 +266,14 @@ void FUN_1802177f0(int64_t param_1)
       else {
         cVar2 = (**(code **)((void *)*plVar1 + 0x80))(plVar1);
       }
-      if ((void *)*plVar1 == &unknown_var_2656_ptr) {
+      if ((void *)*plVar1 == &rendering_buffer_2656_ptr) {
         FUN_180846810(plVar1[0x10],auStack_188);
       }
       else {
         (**(code **)((void *)*plVar1 + 0x90))(plVar1);
       }
       if (cVar2 != '\0') {
-        if ((void *)*plVar1 == &unknown_var_2656_ptr) {
+        if ((void *)*plVar1 == &rendering_buffer_2656_ptr) {
           iVar3 = FUN_1808473f0(plVar1[0x10],&fStack_15c,0);
           fVar8 = fStack_15c;
           if (iVar3 != 0) {
@@ -283,7 +283,7 @@ void FUN_1802177f0(int64_t param_1)
         else {
           fVar8 = (float)(**(code **)((void *)*plVar1 + 0x108))(plVar1);
         }
-        SystemCore_CacheManager0(&unknown_var_5296_ptr,auStack_138,(double)fVar8);
+        SystemCore_CacheManager0(&processed_var_5296_ptr,auStack_138,(double)fVar8);
         puStack_180 = &system_data_buffer_ptr;
         uStack_168 = 0;
         puStack_178 = (int32_t *)0x0;
@@ -295,7 +295,7 @@ void FUN_1802177f0(int64_t param_1)
         *puStack_178 = 0x706f7453;
         *(int16_t *)(puStack_178 + 1) = 0x5f;
         uStack_170 = 5;
-        System_DataHandler(&puStack_180,&unknown_var_552_ptr,auStack_138);
+        System_DataHandler(&puStack_180,&processed_var_552_ptr,auStack_138);
         uStack_158 = 0;
         puVar5 = (int32_t *)&system_buffer_ptr;
         if (puStack_178 != (int32_t *)0x0) {
@@ -439,7 +439,7 @@ void FUN_180217c40(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
         *puVar4 = &system_state_ptr;
         puVar4[1] = 0;
         *(int32_t *)(puVar4 + 2) = 0;
-        *puVar4 = &unknown_var_3432_ptr;
+        *puVar4 = &memory_allocator_3432_ptr;
         puVar4[1] = puVar4 + 3;
         *(int32_t *)(puVar4 + 2) = 0;
         *(int8_t *)(puVar4 + 3) = 0;
@@ -519,7 +519,7 @@ void FUN_180217db0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       *(void **)(puVar9 + -4) = &system_state_ptr;
       *(uint64_t *)(puVar9 + -2) = 0;
       *puVar9 = 0;
-      *(void **)(puVar9 + -4) = &unknown_var_3432_ptr;
+      *(void **)(puVar9 + -4) = &memory_allocator_3432_ptr;
       *(int32_t **)(puVar9 + -2) = puVar9 + 2;
       *puVar9 = 0;
       *(int8_t *)(puVar9 + 2) = 0;
@@ -598,7 +598,7 @@ LAB_18021800d:
       *puVar4 = &system_state_ptr;
       puVar4[1] = 0;
       *(int32_t *)(puVar4 + 2) = 0;
-      *puVar4 = &unknown_var_3432_ptr;
+      *puVar4 = &memory_allocator_3432_ptr;
       puVar4[1] = puVar4 + 3;
       *(int32_t *)(puVar4 + 2) = 0;
       *(int8_t *)(puVar4 + 3) = 0;

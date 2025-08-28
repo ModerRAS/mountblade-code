@@ -233,7 +233,7 @@ void FUN_180416cc0(int64_t *param_1, int64_t param_2, int64_t param_3)
                 RenderingSystemExtractPropertyValue(puVar7, RENDERING_VALUE_STRING, afStack_88);
                 
                 // 调用关键帧处理回调函数
-                FUN_180631850(puVar7, &unknown_var_5264_ptr, &uStackX_8);
+                FUN_180631850(puVar7, &processed_var_5264_ptr, &uStackX_8);
                 (**(code **)(*param_1 + 8))(param_1, (int)afStack_80[0], afStack_88[0], uStackX_8, 0);
                 
                 // 移动到下一个关键帧
@@ -262,7 +262,7 @@ void FUN_180416cc0(int64_t *param_1, int64_t param_2, int64_t param_3)
                 // 提取第一个关键帧数据
                 RenderingSystemExtractPropertyValue(firstKeyFrame, RENDERING_TIME_STRING, afStack_88);
                 RenderingSystemExtractPropertyValue(firstKeyFrame, RENDERING_VALUE_STRING, afStack_80);
-                FUN_180631850(firstKeyFrame, &unknown_var_5264_ptr, &uStackX_8);
+                FUN_180631850(firstKeyFrame, &processed_var_5264_ptr, &uStackX_8);
                 
                 // 标准化时间值
                 iStack_70 = (int)(afStack_88[0] * RENDERING_TIME_CONVERSION_FACTOR);
@@ -272,7 +272,7 @@ void FUN_180416cc0(int64_t *param_1, int64_t param_2, int64_t param_3)
                 // 提取第二个关键帧数据
                 RenderingSystemExtractPropertyValue(secondKeyFrame, RENDERING_TIME_STRING, afStack_88);
                 RenderingSystemExtractPropertyValue(secondKeyFrame, RENDERING_VALUE_STRING, afStack_80);
-                FUN_180631850(secondKeyFrame, &unknown_var_5264_ptr, &uStackX_8);
+                FUN_180631850(secondKeyFrame, &processed_var_5264_ptr, &uStackX_8);
                 
                 // 标准化时间值
                 iStack_60 = (int)(afStack_88[0] * RENDERING_TIME_CONVERSION_FACTOR);

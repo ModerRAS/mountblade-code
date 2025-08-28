@@ -192,7 +192,7 @@ void FUN_1801bf840(int64_t *param_1)
       }
       puVar4 = (uint64_t *)0x0;
       FUN_180049830(plVar3);
-      *plVar3 = (int64_t)&unknown_var_2528_ptr;
+      *plVar3 = (int64_t)&rendering_buffer_2528_ptr;
       plStack_c0 = plVar3 + 0x18;
       plVar3[0x1a] = 0;
       plVar3[0x1b] = (int64_t)_guard_check_icall;
@@ -287,15 +287,15 @@ LAB_1801bfd18:
       plVar3 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
       plStackX_20 = &uStack_b8;
       uStack_b0 = SUB84(plVar17,0);
-      pcStack_a8 = (code *)&unknown_var_3024_ptr;
-      puStack_a0 = &unknown_var_3952_ptr;
+      pcStack_a8 = (code *)&memory_allocator_3024_ptr;
+      puStack_a0 = &memory_allocator_3952_ptr;
       uStack_b8._0_4_ = (int32_t)uStack_68;
       uStack_b8._4_4_ = uStack_68._4_4_;
       iStack_ac = iVar22;
       uStack_60 = uStack_b0;
       iStack_5c = iVar22;
       FUN_180049830(plVar3);
-      *plVar3 = (int64_t)&unknown_var_2528_ptr;
+      *plVar3 = (int64_t)&rendering_buffer_2528_ptr;
       plStackX_20 = plVar3 + 0x18;
       plVar3[0x1a] = 0;
       plVar3[0x1b] = (int64_t)_guard_check_icall;
@@ -382,7 +382,7 @@ LAB_1801bffb0:
       plVar20 = plVar24 + uVar23;
       plVar3 = (int64_t *)*plVar20;
       pcVar25 = *(code **)(*plVar3 + 0x68);
-      if (pcVar25 == (code *)&unknown_var_9696_ptr) {
+      if (pcVar25 == (code *)&processed_var_9696_ptr) {
         cVar26 = (char)plVar3[2] != '\0';
         plVar24 = plStack_98;
       }
@@ -396,7 +396,7 @@ LAB_1801bffb0:
         if (cVar26 == '\0') {
           plVar20 = (int64_t *)*plVar20;
           pcVar25 = *(code **)(*plVar20 + 0x80);
-          if (pcVar25 == (code *)&unknown_var_1840_ptr) {
+          if (pcVar25 == (code *)&ui_system_data_1840_ptr) {
             FUN_1800496b0(plVar20 + 4);
           }
           else {

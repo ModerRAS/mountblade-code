@@ -200,8 +200,8 @@ void SystemInitializationManager(void) {
     
     // 第二阶段：系统数据结构初始化
     // 初始化系统全局数据指针
-    *(SystemDataPointer*)(rsi_value + 0x9620) = &unknown_var_7024_ptr;
-    *(SystemDataPointer*)(rsi_value + 0x9628) = &unknown_var_7008_ptr;
+    *(SystemDataPointer*)(rsi_value + 0x9620) = &processed_var_7024_ptr;
+    *(SystemDataPointer*)(rsi_value + 0x9628) = &processed_var_7008_ptr;
     
     // 设置系统主要处理函数
     *(SystemCodePointer*)(rsi_value + 0x9610) = FUN_1802436f0;
@@ -281,7 +281,7 @@ SystemUInt64* SystemMemoryAllocator(SystemUInt64* param_1, SystemUInt64 param_2)
     
     // 第一阶段：内存指针初始化
     // 设置内存指针的默认值
-    *param_1 = &unknown_var_9624_ptr;
+    *param_1 = &processed_var_9624_ptr;
     
     // 获取指针管理器
     pointer_manager = (SystemInt64*)param_1[0x1c];
@@ -395,13 +395,13 @@ void SystemGraphicsRenderer(SystemInt64 param_1) {
         var2 = *(SystemInt32*)(param_1 + 0x3594);
         
         // 初始化渲染数据结构
-        stack_data_ptr = &unknown_var_3432_ptr;
+        stack_data_ptr = &memory_allocator_3432_ptr;
         stack_buffer_ptr = stack_buffer2;
         stack_buffer2[0] = 0;
         stack_buffer_size = 10;
         
         // 复制渲染标识符
-        strcpy_s(stack_buffer2, 0x80, &unknown_var_336_ptr);
+        strcpy_s(stack_buffer2, 0x80, &memory_allocator_336_ptr);
         
         // 获取渲染数据源
         var9 = &system_buffer_ptr;
@@ -558,14 +558,14 @@ void SystemResourceCleanup(SystemInt64 param_1) {
         *(SystemFlagType*)(stack_params + 3) = *(SystemFlagType*)(param_1 + 0x1bd4);
         
         // 初始化资源数据结构
-        stack_data_ptr = &unknown_var_3432_ptr;
+        stack_data_ptr = &memory_allocator_3432_ptr;
         stack_buffer_ptr = stack_buffer2;
         stack_buffer2[0] = 0;
         stack_flag = SYSTEM_DEFAULT_FLAG_VALUE;
         stack_params[2] = var4;
         
         // 复制资源标识符
-        var5 = strcpy_s(stack_buffer2, 0x80, &unknown_var_400_ptr);
+        var5 = strcpy_s(stack_buffer2, 0x80, &processed_var_400_ptr);
         
         // 第四阶段：资源分配和管理
         // 创建新的资源管理器

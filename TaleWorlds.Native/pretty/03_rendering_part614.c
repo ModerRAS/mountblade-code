@@ -367,7 +367,7 @@ void FUN_180605ff0(int64_t param_1,int64_t param_2,int64_t param_3)
   if (plVar6 != (int64_t *)0x0) {
     (**(code **)(*plVar6 + 0x38))();
   }
-  FUN_180170ac0(*(uint64_t *)(param_1 + 0x10),&unknown_var_9752_ptr);
+  FUN_180170ac0(*(uint64_t *)(param_1 + 0x10),&processed_var_9752_ptr);
   FUN_1802ec3d0(*(uint64_t *)(param_1 + 0x10),*(uint64_t *)(lVar20 + 0x2548));
   FUN_1802fc0f0(*(uint64_t *)(*(int64_t *)(param_1 + 0x10) + 0x260),param_3);
   lVar20 = *(int64_t *)(param_1 + 0x10);
@@ -543,7 +543,7 @@ void FUN_1806061a0(int64_t param_1,int32_t *param_2,int32_t param_3,byte param_4
         puVar1[3] = uVar6;
       }
       else {
-        FUN_180627020(&unknown_var_7992_ptr,(int)cVar3);
+        FUN_180627020(&processed_var_7992_ptr,(int)cVar3);
       }
       lVar10 = lVar10 + 1;
       param_6 = param_6 + 4;
@@ -618,7 +618,7 @@ void FUN_1806061b3(uint64_t param_1,int32_t *param_2,int32_t param_3)
         puVar1[3] = uVar6;
       }
       else {
-        FUN_180627020(&unknown_var_7992_ptr,(int)cVar3);
+        FUN_180627020(&processed_var_7992_ptr,(int)cVar3);
       }
       lVar10 = lVar10 + 1;
       in_stack_00000078 = in_stack_00000078 + 4;
@@ -694,7 +694,7 @@ void FUN_1806061c5(uint64_t param_1,uint64_t param_2,int32_t param_3)
         puVar1[3] = uVar6;
       }
       else {
-        FUN_180627020(&unknown_var_7992_ptr,(int)cVar3);
+        FUN_180627020(&processed_var_7992_ptr,(int)cVar3);
       }
       lVar10 = lVar10 + 1;
       in_stack_00000078 = in_stack_00000078 + 4;
@@ -749,7 +749,7 @@ void FUN_180606227(void)
       puVar1[3] = uVar5;
     }
     else {
-      FUN_180627020(&unknown_var_7992_ptr,(int)cVar2);
+      FUN_180627020(&processed_var_7992_ptr,(int)cVar2);
     }
     lVar6 = lVar6 + 1;
     in_stack_00000078 = in_stack_00000078 + 4;
@@ -803,7 +803,7 @@ void FUN_18060622e(void)
       puVar1[3] = uVar6;
     }
     else {
-      FUN_180627020(&unknown_var_7992_ptr,(int)cVar2);
+      FUN_180627020(&processed_var_7992_ptr,(int)cVar2);
     }
     unaff_RBX = unaff_RBX + 1;
     unaff_RDI = unaff_RDI + 4;

@@ -33,11 +33,11 @@ void initialize_audio_module(void)
     int8_t buffer[136];
     
     // 设置模块参数
-    module_ptr = (void *)&unknown_var_3432_ptr;  // 模块注册入口点
+    module_ptr = (void *)&memory_allocator_3432_ptr;  // 模块注册入口点
     buffer_ptr = buffer;
     buffer[0] = 0;
     buffer_size = 0x16;  // 22字节
-    strcpy_s(buffer, 0x80, &unknown_var_7304_ptr, in_R9, 0xfffffffffffffffe);
+    strcpy_s(buffer, 0x80, &processed_var_7304_ptr, in_R9, 0xfffffffffffffffe);
     
     // 注册音频模块
     module_registry_table[0] = register_module(&module_ptr);
@@ -54,7 +54,7 @@ int initialize_module_registry(void)
     uint64_t in_R9;
     
     // 初始化注册表指针
-    module_registry_entry = (void *)&unknown_var_3480_ptr;
+    module_registry_entry = (void *)&memory_allocator_3480_ptr;
     module_registry_entry[1] = (void *)&system_buffer_91c8;
     
     return result;
@@ -168,7 +168,7 @@ void register_physics_module(void)
     // 设置物理模块数据
     parent_node[6] = 0x4770584fbb1df897;  // 模块ID哈希值
     parent_node[7] = 0x47f249e43f66f2ab;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_3520_ptr;      // 模块数据指针
+    parent_node[8] = &memory_allocator_3520_ptr;      // 模块数据指针
     parent_node[9] = 1;                   // 模块状态 (已启用)
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -225,7 +225,7 @@ void register_input_module(void)
     // 设置输入模块数据
     parent_node[6] = 0x4666df49b97e0f10;  // 模块ID哈希值
     parent_node[7] = 0x4e4b0d63a6ad1d8f;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_3544_ptr;      // 模块数据指针
+    parent_node[8] = &memory_allocator_3544_ptr;      // 模块数据指针
     parent_node[9] = 0;                   // 模块状态
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -282,7 +282,7 @@ void register_network_module(void)
     // 设置网络模块数据
     parent_node[6] = 0x46ecbd4daf41613e;  // 模块ID哈希值
     parent_node[7] = 0xdc42c056bbde8482;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_3560_ptr;      // 模块数据指针
+    parent_node[8] = &memory_allocator_3560_ptr;      // 模块数据指针
     parent_node[9] = 0;                   // 模块状态
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -339,7 +339,7 @@ void register_ui_module(void)
     // 设置UI模块数据
     parent_node[6] = 0x4c868a42644030f6;  // 模块ID哈希值
     parent_node[7] = 0xc29193aa9d9b35b9;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_3576_ptr;      // 模块数据指针
+    parent_node[8] = &memory_allocator_3576_ptr;      // 模块数据指针
     parent_node[9] = 0;                   // 模块状态
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -396,7 +396,7 @@ void register_resource_module(void)
     // 设置资源模块数据
     parent_node[6] = 0x40ea3a798283cbbb;  // 模块ID哈希值
     parent_node[7] = 0x7f74eb2c5a7fadae;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_3600_ptr;      // 模块数据指针
+    parent_node[8] = &memory_allocator_3600_ptr;      // 模块数据指针
     parent_node[9] = 3;                   // 模块状态 (优化级别)
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -453,7 +453,7 @@ void register_scripting_module(void)
     // 设置脚本模块数据
     parent_node[6] = 0x45b8d074df27d12f;  // 模块ID哈希值
     parent_node[7] = 0x8d98f4c06880eda4;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_3632_ptr;      // 模块数据指针
+    parent_node[8] = &memory_allocator_3632_ptr;      // 模块数据指针
     parent_node[9] = 3;                   // 模块状态 (优化级别)
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -510,7 +510,7 @@ void register_scene_module(void)
     // 设置场景模块数据
     parent_node[6] = 0x421c3cedd07d816d;  // 模块ID哈希值
     parent_node[7] = 0xbec25de793b7afa6;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_3744_ptr;      // 模块数据指针
+    parent_node[8] = &memory_allocator_3744_ptr;      // 模块数据指针
     parent_node[9] = 0;                   // 模块状态
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -567,7 +567,7 @@ void register_entity_module(void)
     // 设置实体模块数据
     parent_node[6] = 0x4c22bb0c326587ce;  // 模块ID哈希值
     parent_node[7] = 0x5e3cf00ce2978287;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_3768_ptr;      // 模块数据指针
+    parent_node[8] = &memory_allocator_3768_ptr;      // 模块数据指针
     parent_node[9] = 1;                   // 模块状态 (已启用)
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -586,11 +586,11 @@ void initialize_animation_module(void)
     int8_t buffer[136];
     
     // 设置模块参数
-    module_ptr = (void *)&unknown_var_3432_ptr;  // 模块注册入口点
+    module_ptr = (void *)&memory_allocator_3432_ptr;  // 模块注册入口点
     buffer_ptr = buffer;
     buffer[0] = 0;
     buffer_size = 0x12;  // 18字节
-    strcpy_s(buffer, 0x80, &unknown_var_4992_ptr, in_R9, 0xfffffffffffffffe);
+    strcpy_s(buffer, 0x80, &processed_var_4992_ptr, in_R9, 0xfffffffffffffffe);
     
     // 注册动画模块
     module_registry_table[3] = register_module(&module_ptr);
@@ -610,11 +610,11 @@ void initialize_ai_module(void)
     int8_t buffer[136];
     
     // 设置模块参数
-    module_ptr = (void *)&unknown_var_3432_ptr;  // 模块注册入口点
+    module_ptr = (void *)&memory_allocator_3432_ptr;  // 模块注册入口点
     buffer_ptr = buffer;
     buffer[0] = 0;
     buffer_size = 8;  // 8字节
-    strcpy_s(buffer, 0x80, &unknown_var_6248_ptr, in_R9, 0xfffffffffffffffe);
+    strcpy_s(buffer, 0x80, &processed_var_6248_ptr, in_R9, 0xfffffffffffffffe);
     
     // 注册AI模块
     module_registry_table[6] = register_module(&module_ptr);
@@ -672,7 +672,7 @@ void register_game_logic_module(void)
     // 设置游戏逻辑模块数据
     parent_node[6] = 0x43330a43fcdb3653;  // 模块ID哈希值
     parent_node[7] = 0xdcfdc333a769ec93;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_7584_ptr;      // 模块数据指针
+    parent_node[8] = &processed_var_7584_ptr;      // 模块数据指针
     parent_node[9] = 1;                   // 模块状态 (已启用)
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -729,7 +729,7 @@ void register_sound_effects_module(void)
     // 设置音效模块数据
     parent_node[6] = 0x431d7c8d7c475be2;  // 模块ID哈希值
     parent_node[7] = 0xb97f048d2153e1b0;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_7608_ptr;      // 模块数据指针
+    parent_node[8] = &processed_var_7608_ptr;      // 模块数据指针
     parent_node[9] = 4;                   // 模块状态 (优先级)
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -786,7 +786,7 @@ void register_music_module(void)
     // 设置音乐模块数据
     parent_node[6] = 0x4b2d79e470ee4e2c;  // 模块ID哈希值
     parent_node[7] = 0x9c552acd3ed5548d;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_7632_ptr;      // 模块数据指针
+    parent_node[8] = &processed_var_7632_ptr;      // 模块数据指针
     parent_node[9] = 0;                   // 模块状态
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -843,7 +843,7 @@ void register_voice_module(void)
     // 设置语音模块数据
     parent_node[6] = 0x49086ba08ab981a7;  // 模块ID哈希值
     parent_node[7] = 0xa9191d34ad910696;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_7656_ptr;      // 模块数据指针
+    parent_node[8] = &processed_var_7656_ptr;      // 模块数据指针
     parent_node[9] = 0;                   // 模块状态
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -870,7 +870,7 @@ void register_environment_audio_module(void)
     registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
     is_found = *(char *)((int64_t)root_node[1] + 0x19);
-    module_handler = &unknown_var_2048_ptr;
+    module_handler = &rendering_buffer_2048_ptr;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
     
@@ -900,7 +900,7 @@ void register_environment_audio_module(void)
     // 设置环境音效模块数据
     parent_node[6] = 0x4384dcc4b6d3f417;  // 模块ID哈希值
     parent_node[7] = 0x92a15d52fe2679bd;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_7704_ptr;      // 模块数据指针
+    parent_node[8] = &processed_var_7704_ptr;      // 模块数据指针
     parent_node[9] = 0;                   // 模块状态
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -957,7 +957,7 @@ void register_audio_mixer_module(void)
     // 设置音频混音模块数据
     parent_node[6] = 0x4140994454d56503;  // 模块ID哈希值
     parent_node[7] = 0x399eced9bb5517ad;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_7728_ptr;      // 模块数据指针
+    parent_node[8] = &processed_var_7728_ptr;      // 模块数据指针
     parent_node[9] = 0;                   // 模块状态
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -973,7 +973,7 @@ int initialize_debug_module(void)
     uint64_t in_R9;
     
     // 初始化调试模块指针
-    module_registry_base = (void *)&unknown_var_3432_ptr;
+    module_registry_base = (void *)&memory_allocator_3432_ptr;
     module_registry_base[1] = (void *)&system_buffer_a368;
     
     return result;
@@ -1030,7 +1030,7 @@ void register_performance_monitor_module(void)
     // 设置性能监控模块数据
     parent_node[6] = 0x45425dc186a5d575;  // 模块ID哈希值
     parent_node[7] = 0xfab48faa65382fa5;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_7824_ptr;      // 模块数据指针
+    parent_node[8] = &processed_var_7824_ptr;      // 模块数据指针
     parent_node[9] = 0;                   // 模块状态
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -1089,7 +1089,7 @@ void register_game_logic_module_alt(void)
     // 设置游戏逻辑模块数据
     parent_node[6] = 0x43330a43fcdb3653;  // 模块ID哈希值
     parent_node[7] = 0xdcfdc333a769ec93;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_7584_ptr;      // 模块数据指针
+    parent_node[8] = &processed_var_7584_ptr;      // 模块数据指针
     parent_node[9] = 1;                   // 模块状态 (已启用)
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -1146,7 +1146,7 @@ void register_sound_effects_module_alt(void)
     // 设置音效模块数据
     parent_node[6] = 0x431d7c8d7c475be2;  // 模块ID哈希值
     parent_node[7] = 0xb97f048d2153e1b0;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_7608_ptr;      // 模块数据指针
+    parent_node[8] = &processed_var_7608_ptr;      // 模块数据指针
     parent_node[9] = 4;                   // 模块状态 (优先级)
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -1203,7 +1203,7 @@ void register_music_module_alt(void)
     // 设置音乐模块数据
     parent_node[6] = 0x4b2d79e470ee4e2c;  // 模块ID哈希值
     parent_node[7] = 0x9c552acd3ed5548d;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_7632_ptr;      // 模块数据指针
+    parent_node[8] = &processed_var_7632_ptr;      // 模块数据指针
     parent_node[9] = 0;                   // 模块状态
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -1260,7 +1260,7 @@ void register_voice_module_alt(void)
     // 设置语音模块数据
     parent_node[6] = 0x49086ba08ab981a7;  // 模块ID哈希值
     parent_node[7] = 0xa9191d34ad910696;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_7656_ptr;      // 模块数据指针
+    parent_node[8] = &processed_var_7656_ptr;      // 模块数据指针
     parent_node[9] = 0;                   // 模块状态
     parent_node[10] = module_handler;     // 模块处理函数
     return;
@@ -1287,7 +1287,7 @@ void register_environment_audio_module_alt(void)
     registry = (int64_t *)get_module_registry();
     root_node = (uint64_t *)*registry;
     is_found = *(char *)((int64_t)root_node[1] + 0x19);
-    module_handler = &unknown_var_2048_ptr;
+    module_handler = &rendering_buffer_2048_ptr;
     parent_node = root_node;
     current_node = (uint64_t *)root_node[1];
     
@@ -1317,7 +1317,7 @@ void register_environment_audio_module_alt(void)
     // 设置环境音效模块数据
     parent_node[6] = 0x4384dcc4b6d3f417;  // 模块ID哈希值
     parent_node[7] = 0x92a15d52fe2679bd;  // 模块版本哈希值
-    parent_node[8] = &unknown_var_7704_ptr;      // 模块数据指针
+    parent_node[8] = &processed_var_7704_ptr;      // 模块数据指针
     parent_node[9] = 0;                   // 模块状态
     parent_node[10] = module_handler;     // 模块处理函数
     return;

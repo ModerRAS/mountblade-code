@@ -58,7 +58,7 @@ void FUN_1804a52b0(int64_t param_1,int32_t param_2)
       *(uint64_t *)(lVar1 + 0x418) = 0;
       *(int32_t *)(lVar1 + 0x410) = 1;
       (**(code **)(system_system_data_ui + 0x340))(*(int32_t *)(system_system_data_ui + 0x10));
-      FUN_1800622d0(system_message_context,0,0xd,&unknown_var_2104_ptr);
+      FUN_1800622d0(system_message_context,0,0xd,&rendering_buffer_2104_ptr);
       *(int8_t *)(system_main_module_state + 0x1ef) = 1;
     }
   }
@@ -66,8 +66,8 @@ void FUN_1804a52b0(int64_t param_1,int32_t param_2)
     (**(code **)(system_system_data_ui + 0xa0))(param_2);
     *(int32_t *)(param_1 + 0x420) = param_2;
     uVar5 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3,uVar5);
-    puStack_30 = &unknown_var_8352_ptr;
-    puStack_28 = &unknown_var_8320_ptr;
+    puStack_30 = &processed_var_8352_ptr;
+    puStack_28 = &processed_var_8320_ptr;
     alStack_40[0] = param_1;
     uVar5 = FUN_18006b640(uVar5,alStack_40);
     FUN_180056f10(system_system_data_ui + 0x220,uVar5);
@@ -156,8 +156,8 @@ void create_game_application(void)
   uStack_60 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_b8;
   uStack_68 = 0;
-  *puVar1 = &unknown_var_4416_ptr;
-  *puVar1 = &unknown_var_2120_ptr;
+  *puVar1 = &processed_var_4416_ptr;
+  *puVar1 = &rendering_buffer_2120_ptr;
   pcStack_98 = FUN_180627b90;
   puStack_58 = puVar1;
   DataStructureManager(puVar1 + 2,0x20,0x20,FUN_180627850);
@@ -170,7 +170,7 @@ void create_game_application(void)
   puStack_48 = auStack_38;
   auStack_38[0] = 0;
   iStack_40 = 6;
-  strcpy_s(auStack_38,0x10,&unknown_var_2588_ptr);
+  strcpy_s(auStack_38,0x10,&rendering_buffer_2588_ptr);
   uStack_68 = 1;
   puStack_88 = &system_data_buffer_ptr;
   uStack_70 = 0;
@@ -434,7 +434,7 @@ void FUN_1804a59b0(int64_t *param_1)
   uint64_t uVar7;
   uint64_t uVar6;
   
-  *param_1 = (int64_t)&unknown_var_6464_ptr;
+  *param_1 = (int64_t)&processed_var_6464_ptr;
   plVar2 = param_1 + 0x4f1;
   lVar5 = 0x3ff;
   lVar3 = 0x3ff;
@@ -500,7 +500,7 @@ void FUN_1804a59b0(int64_t *param_1)
                     // WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager();
     }
-    *param_1 = (int64_t)&unknown_var_9800_ptr;
+    *param_1 = (int64_t)&processed_var_9800_ptr;
     cVar1 = (**(code **)(param_1[5] + 0x30))(param_1 + 5);
     if (cVar1 != '\0') {
       (**(code **)(param_1[5] + 0x18))(param_1 + 5);
@@ -509,7 +509,7 @@ void FUN_1804a59b0(int64_t *param_1)
     FUN_18056fd20(param_1 + 0xc3);
     if (param_1[0xba] == 0) {
       param_1[0xba] = 0;
-      param_1[5] = (int64_t)&unknown_var_9728_ptr;
+      param_1[5] = (int64_t)&processed_var_9728_ptr;
       return;
     }
                     // WARNING: Subroutine does not return

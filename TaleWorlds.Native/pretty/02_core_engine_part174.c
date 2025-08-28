@@ -125,7 +125,7 @@ FUN_18015b2b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
       puVar3[-3] = (uint64_t)puVar3;
       puVar3[-2] = (uint64_t)(-(int)puVar3 & 7) + (int64_t)puVar3;
       puVar3[-1] = (uint64_t)puVar1;
-      *puVar1 = (uint64_t)&unknown_var_8432_ptr;
+      *puVar1 = (uint64_t)&processed_var_8432_ptr;
       puVar3[0x601] = (uint64_t)SystemResourceCleaner;
       iVar4 = iVar4 + 1;
       puVar3 = puVar3 + 0x611;
@@ -651,7 +651,7 @@ void FUN_18015b810(uint64_t param_1,int param_2,int param_3,int param_4,uint64_t
       *plVar4 = (int64_t)&system_handler1_ptr;
       *plVar4 = (int64_t)&system_handler2_ptr;
       *(int32_t *)(plVar4 + 1) = 0;
-      *plVar4 = (int64_t)&unknown_var_5008_ptr;
+      *plVar4 = (int64_t)&processed_var_5008_ptr;
       (**(code **)(*plVar4 + 0x28))(plVar4);
       LOCK();
       uVar1 = (int32_t)plVar4[2];

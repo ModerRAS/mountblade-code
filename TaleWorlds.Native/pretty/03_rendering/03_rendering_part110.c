@@ -96,9 +96,9 @@ void RenderingSystem_RemoveResourceData(int64_t resource_context, uint resource_
   
   uStack_68 = 0xfffffffffffffffe;
   uVar21 = (uint64_t)param_2;
-  puVar7 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0xe0,8,3);
+  puVar7 = (uint64_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr,0xe0,8,3);
   FUN_180049830(puVar7);
-  *puVar7 = (uint64_t)&unknown_var_7880_ptr;
+  *puVar7 = (uint64_t)&processed_var_7880_ptr;
   puVar1 = puVar7 + 0x18;
   *puVar1 = 0;
   puVar7[0x19] = 0;
@@ -517,15 +517,15 @@ void RenderingSystem_InitializeResourceHandler(int64_t resource_manager, char in
     }
     *(uint64_t *)(param_1 + 0x200) = 0;
   }
-  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3,uVar5);
+  puVar1 = (uint64_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr,0x18,8,3,uVar5);
   if (param_2 == '\0') {
-    puVar4 = &unknown_var_7864_ptr;
+    puVar4 = &processed_var_7864_ptr;
     if (param_3 != '\0') {
-      puVar4 = &unknown_var_9772_ptr;
+      puVar4 = &processed_var_9772_ptr;
     }
   }
   else {
-    puVar4 = &unknown_var_4880_ptr;
+    puVar4 = &processed_var_4880_ptr;
   }
   lVar2 = FUN_180334430(param_1,&puStack_40);
   puVar3 = &system_buffer_ptr;
@@ -855,7 +855,7 @@ LAB_1803349b9:
         plStackX_8 = (int64_t *)CONCAT44(plStackX_8._4_4_,iVar3);
         plVar5 = (int64_t *)FUN_18033a740(param_1 + 0xb48,&plStackX_8);
         lVar2 = *plVar5;
-        uVar9 = FUN_18062b1e0(system_memory_pool_ptr,0x300,0x10,9,uVar8,uVar9);
+        uVar9 = CoreSystem_LoggingManager0(system_memory_pool_ptr,0x300,0x10,9,uVar8,uVar9);
         plVar5 = (int64_t *)FUN_180075030(uVar9,0,1);
         plStackX_20 = plVar5;
         if (plVar5 != (int64_t *)0x0) {

@@ -102,7 +102,7 @@ void FUN_1803b8390(int64_t param_1)
         memcpy((int8_t *)((int64_t)puVar7 + 10),*(uint64_t *)(lVar1 + 0x4e0),
                (int64_t)(iVar5 + 1));
       }
-      puStack_178 = &unknown_var_3432_ptr;
+      puStack_178 = &memory_allocator_3432_ptr;
       puStack_170 = auStack_160;
       auStack_160[0] = 0;
       uStack_168 = 10;
@@ -175,7 +175,7 @@ void FUN_1803b8390(int64_t param_1)
         memcpy((int8_t *)((int64_t)puVar7 + 10),*(uint64_t *)(lVar1 + 0x4e0),
                (int64_t)(iVar5 + 1));
       }
-      puStack_d8 = &unknown_var_3432_ptr;
+      puStack_d8 = &memory_allocator_3432_ptr;
       puStack_d0 = auStack_c0;
       auStack_c0[0] = 0;
       uStack_c8 = 10;
@@ -520,7 +520,7 @@ uint64_t * FUN_1803b8a00(uint64_t param_1,uint64_t param_2,int param_3,int param
   uint64_t *puVar4;
   
   puVar4 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x880,0x10,0x23,0xfffffffffffffffe);
-  *puVar4 = &unknown_var_8576_ptr;
+  *puVar4 = &processed_var_8576_ptr;
   FUN_1803d1f30(puVar4 + 0x10);
   puVar4[0x108] = 0;
   puVar4[0x107] = 0;

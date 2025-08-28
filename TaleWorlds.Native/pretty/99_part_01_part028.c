@@ -601,7 +601,7 @@ void FUN_1800bbc40(uint64_t *param_1,int *param_2)
   iVar1 = *param_2;
   puStack_4c8 = param_1;
   if (iVar1 == 0) {
-    lVar2 = FUN_1800ba4b0(&puStack_4f0,&unknown_var_8996_ptr);
+    lVar2 = FUN_1800ba4b0(&puStack_4f0,&processed_var_8996_ptr);
     if (lStack_510 != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineMemoryPoolCleaner();

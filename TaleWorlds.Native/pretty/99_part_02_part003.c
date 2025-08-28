@@ -139,10 +139,10 @@ void FUN_1800ea780(int64_t *param_1)
   int64_t **pplStackX_10;
   int64_t *plStackX_18;
   
-  plVar4 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr,200,8,3,0xfffffffffffffffe);
+  plVar4 = (int64_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr,200,8,3,0xfffffffffffffffe);
   plStackX_18 = plVar4;
   FUN_180049830(plVar4);
-  *plVar4 = (int64_t)&unknown_var_5408_ptr;
+  *plVar4 = (int64_t)&processed_var_5408_ptr;
   *(int8_t *)(plVar4 + 0x18) = 1;
   lVar1 = *param_1;
   pplStackX_10 = (int64_t **)plVar4;

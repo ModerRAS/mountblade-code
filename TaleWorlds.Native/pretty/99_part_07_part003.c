@@ -465,7 +465,7 @@ void ConfigurationManager(int64_t *param_1, uint64_t param_2, int64_t param_3,
     
     // 参数验证和初始化
     char config_buffer[8];
-    StringCopy(config_buffer, &unknown_var_4088_ptr);
+    StringCopy(config_buffer, &processed_var_4088_ptr);
     
     // 获取配置名称
     pointer_t config_name = &system_buffer_ptr;
@@ -475,7 +475,7 @@ void ConfigurationManager(int64_t *param_1, uint64_t param_2, int64_t param_3,
     
     // 初始化配置参数
     pointer_t config_ptr = &context.temp_buffer1;
-    context.callback_function1 = &unknown_var_3480_ptr;
+    context.callback_function1 = &memory_allocator_3480_ptr;
     context.temp_buffer1 = stack_protection_buffer;
     context.temp_flags = 0;
     stack_protection_buffer[0] = 0;
@@ -842,14 +842,14 @@ void SystemInitializer(int64_t *param_1, int64_t param_2) {
         else {
             if (system_mode == -3) {
                 // 特殊模式处理
-                if (((int)param_1[0x3b] == 9) && (str_len = strcmp(param_1[0x3a], &unknown_var_5656_ptr), str_len == 0)) {
+                if (((int)param_1[0x3b] == 9) && (str_len = strcmp(param_1[0x3a], &processed_var_5656_ptr), str_len == 0)) {
                     // 查询资源信息
                     qword_t resource_info = QueryResource(param_2);
                     UpdateResource(param_1 + 0x85, resource_info);
                 }
                 else {
                     // 控制资源管理
-                    ControlResource(&unknown_var_7200_ptr, system_name);
+                    ControlResource(&processed_var_7200_ptr, system_name);
                 }
             }
             else if (system_mode == -2) {

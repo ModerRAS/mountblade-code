@@ -522,7 +522,7 @@ void execute_string_operation(int64_t param_1, int64_t param_2)
   
   uStack_88 = 0xfffffffffffffffe;
   uStack_18 = GLOBAL_DATA_KEY ^ (uint64_t)auStack_a8;
-  puStack_78 = &unknown_var_3480_ptr;
+  puStack_78 = &memory_allocator_3480_ptr;
   puStack_70 = auStack_60;
   uStack_68 = 0;
   auStack_60[0] = 0;
@@ -590,12 +590,12 @@ void process_display_configuration(uint64_t param_1, uint64_t param_2, uint64_t 
   if (iStack_54 != 8) {
     puVar1 = (uint64_t *)(param_4 + 0x18);
     uStack_108 = &puStack_e8;
-    puStack_e8 = &unknown_var_3480_ptr;
+    puStack_e8 = &memory_allocator_3480_ptr;
     puStack_e0 = auStack_d0;
     uStack_d8 = 0;
     auStack_d0[0] = 0;
     uStack_80 = 0;
-    initialize_display_info(&puStack_e8, &unknown_var_2032_ptr);
+    initialize_display_info(&puStack_e8, &rendering_buffer_2032_ptr);
     uStack_84 = uStack_68;
     uStack_90 = uStack_74;
     uStack_88 = uStack_6c;

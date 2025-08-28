@@ -102,13 +102,13 @@ void rendering_system_advanced_initialize(uint64_t *render_context, int init_par
   local_stack_var_4 = GET_SECURITY_COOKIE() ^ (uint64_t)local_stack_array_1;
   
   // 设置渲染上下文指针
-  *render_context = &unknown_var_3952_ptr;
+  *render_context = &memory_allocator_3952_ptr;
   local_uint_2 = 0;
   render_context[1] = 0;
   render_context[2] = 0;
   render_context[3] = 0;
   *(int32_t *)(render_context + 4) = 3;
-  *render_context = &unknown_var_3832_ptr;
+  *render_context = &memory_allocator_3832_ptr;
   render_context[0xd] = 0;
   render_context[0xe] = 0;
   
@@ -168,7 +168,7 @@ void rendering_system_advanced_initialize(uint64_t *render_context, int init_par
   *local_stack_ptr_1 = &system_state_ptr;
   render_context[0x381] = 0;
   *(int32_t *)(render_context + 0x382) = 0;
-  *local_stack_ptr_1 = &unknown_var_672_ptr;
+  *local_stack_ptr_1 = &processed_var_672_ptr;
   render_context[0x381] = render_context + 899;
   *(int32_t *)(render_context + 0x382) = 0;
   *(int8_t *)(render_context + 899) = 0;
@@ -176,11 +176,11 @@ void rendering_system_advanced_initialize(uint64_t *render_context, int init_par
   render_context[0x389] = 0;
   
   // 初始化渲染字符串处理
-  local_stack_ptr_5 = &unknown_var_672_ptr;
+  local_stack_ptr_5 = &processed_var_672_ptr;
   local_stack_ptr_6 = local_stack_array_3;
   local_stack_array_3[0] = 0;
   local_stack_var_3 = 0x15;
-  strcpy_s(local_stack_array_3, 0x20, &unknown_var_3800_ptr);
+  strcpy_s(local_stack_array_3, 0x20, &memory_allocator_3800_ptr);
   local_var_1 = FUN_180051f00(system_main_module_state, &local_stack_ptr_5);
   *(int8_t *)(render_context + 0x38a) = local_var_1;
   
@@ -190,11 +190,11 @@ void rendering_system_advanced_initialize(uint64_t *render_context, int init_par
   *(int *)(render_context + 0x387) = init_param;
   
   // 初始化渲染配置参数
-  local_stack_ptr_3 = &unknown_var_672_ptr;
+  local_stack_ptr_3 = &processed_var_672_ptr;
   local_stack_ptr_4 = local_stack_array_2;
   local_stack_array_2[0] = 0;
   local_stack_var_2 = 0xc;
-  strcpy_s(local_stack_array_2, 0x20, &unknown_var_3784_ptr);
+  strcpy_s(local_stack_array_2, 0x20, &memory_allocator_3784_ptr);
   *(int32_t *)(render_context + 0x382) = local_stack_var_2;
   
   // 处理渲染字符串配置
@@ -210,12 +210,12 @@ void rendering_system_advanced_initialize(uint64_t *render_context, int init_par
   do {
     local_long_2 = local_long_1;
     local_long_1 = local_long_2 + 1;
-  } while (*(char *)(*(int64_t *)(&unknown_var_6504_ptr + (int64_t)init_param * 8) + local_long_1) != '\0');
+  } while (*(char *)(*(int64_t *)(&processed_var_6504_ptr + (int64_t)init_param * 8) + local_long_1) != '\0');
   
   // 复制渲染参数字符串
   if ((0 < (int)local_long_1) && (*(uint *)(render_context + 0x382) + (int)local_long_1 < 0x1f)) {
     memcpy((uint64_t)*(uint *)(render_context + 0x382) + render_context[0x381],
-           *(int64_t *)(&unknown_var_6504_ptr + (int64_t)init_param * 8), (int64_t)((int)local_long_2 + 2));
+           *(int64_t *)(&processed_var_6504_ptr + (int64_t)init_param * 8), (int64_t)((int)local_long_2 + 2));
   }
   
   // 清理初始化状态
@@ -268,7 +268,7 @@ void rendering_system_advanced_cleanup(uint64_t *render_context, uint64_t param_
   uint64_t local_var_1;
   
   local_var_1 = 0xfffffffffffffffe;
-  *render_context = &unknown_var_3832_ptr;
+  *render_context = &memory_allocator_3832_ptr;
   
   // 执行资源清理预处理
   FUN_180306c30();
@@ -315,7 +315,7 @@ void rendering_system_advanced_cleanup(uint64_t *render_context, uint64_t param_
     if ((int64_t *)render_context[0xd] != (int64_t *)0x0) {
       (**(code **)(*(int64_t *)render_context[0xd] + 0x38))();
     }
-    *render_context = &unknown_var_3952_ptr;
+    *render_context = &memory_allocator_3952_ptr;
     if (render_context[1] == 0) {
       return;
     }

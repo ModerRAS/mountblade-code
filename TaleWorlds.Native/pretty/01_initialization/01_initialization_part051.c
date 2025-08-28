@@ -630,7 +630,7 @@ uint64_t * FUN_1800784e0(uint64_t *param_1, uint64_t param_2)
   uint64_t memory_flag;
   
   memory_flag = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_7192_ptr;
+  *param_1 = &processed_var_7192_ptr;
   FUN_180078550();
   SystemDataValidator(param_1 + 1, 8, 7, DataCacheManager, memory_flag);
   if ((param_2 & 1) != 0) {
@@ -703,7 +703,7 @@ void FUN_180078550(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
   *(int32_t *)((int64_t)param_1 + 0x7c) = 0x3f800000;
   
   // 根据上下文类型进行不同的初始化
-  if ((void *)*param_1 == &unknown_var_7192_ptr) {
+  if ((void *)*param_1 == &processed_var_7192_ptr) {
     param_1[0x10] = param_1[8];
     param_1[0x11] = param_1[9];
     param_1[0x12] = param_1[10];

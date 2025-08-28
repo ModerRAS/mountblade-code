@@ -539,20 +539,20 @@ int32_t initialize_render_resource(void* context, void* data_ptr, uint32_t param
     stack_value1 = param;
     
     // 查找资源信息
-    value1 = find_render_resource_info((int64_t)data_ptr, param, &unknown_var_624_ptr);
-    value2 = find_render_resource_info((int64_t)data_ptr, param, &unknown_var_648_ptr);
+    value1 = find_render_resource_info((int64_t)data_ptr, param, &processed_var_624_ptr);
+    value2 = find_render_resource_info((int64_t)data_ptr, param, &processed_var_648_ptr);
     *(int*)(context + 0x18) = value2;
-    value3 = find_render_resource_info((int64_t)data_ptr, param, &unknown_var_6872_ptr);
+    value3 = find_render_resource_info((int64_t)data_ptr, param, &processed_var_6872_ptr);
     *(int*)(context + 0x1c) = value3;
-    stack_data[2] = find_render_resource_info((int64_t)data_ptr, param, &unknown_var_656_ptr);
+    stack_data[2] = find_render_resource_info((int64_t)data_ptr, param, &processed_var_656_ptr);
     *(int*)(context + 0x20) = stack_data[2];
-    value4 = find_render_resource_info((int64_t)data_ptr, param, &unknown_var_632_ptr);
+    value4 = find_render_resource_info((int64_t)data_ptr, param, &processed_var_632_ptr);
     *(int*)(context + 0x24) = value4;
-    stack_data[0] = find_render_resource_info((int64_t)data_ptr, stack_value1, &unknown_var_640_ptr);
+    stack_data[0] = find_render_resource_info((int64_t)data_ptr, stack_value1, &processed_var_640_ptr);
     *(int*)(context + 0x28) = stack_data[0];
-    value5 = find_render_resource_info((int64_t)data_ptr, stack_value1, &unknown_var_680_ptr);
+    value5 = find_render_resource_info((int64_t)data_ptr, stack_value1, &processed_var_680_ptr);
     *(uint32_t*)(context + 0x2c) = value5;
-    value5 = find_render_resource_info((int64_t)data_ptr, stack_value1, &unknown_var_688_ptr);
+    value5 = find_render_resource_info((int64_t)data_ptr, stack_value1, &processed_var_688_ptr);
     *(uint32_t*)(context + 0x30) = value5;
     
     // 验证必要资源
@@ -580,7 +580,7 @@ int32_t initialize_render_resource(void* context, void* data_ptr, uint32_t param
     stack_data[0] = 2;
     stack_data2[0] = 0;
     stack_data3[0] = 0;
-    value5 = find_render_resource_info((int64_t)data_ptr, stack_value1, &unknown_var_664_ptr);
+    value5 = find_render_resource_info((int64_t)data_ptr, stack_value1, &processed_var_664_ptr);
     if (value5 == 0) {
         return 0;
     }
@@ -741,7 +741,7 @@ LAB_SET_RESULT:
     *(void**)(context + 0x58) = (void*)result;
     
 LAB_PROCESS_RESOURCE:
-    value5 = find_render_resource_info((int64_t)data_ptr, stack_value1, &unknown_var_672_ptr);
+    value5 = find_render_resource_info((int64_t)data_ptr, stack_value1, &processed_var_672_ptr);
     if (value5 == 0) {
         value2 = 0xffff;
     }

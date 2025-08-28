@@ -75,7 +75,7 @@ void FUN_1803c1a30(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t para
     pcVar6 = pcVar9;
     pcVar9 = pcVar6 + 1;
   } while (*pcVar9 != '\0');
-  *puVar4 = &unknown_var_4572_ptr;
+  *puVar4 = &processed_var_4572_ptr;
   puVar4[2] = pcVar6 + -0x180a0bafb;
   lVar8 = *(int64_t *)(param_1 + 8);
   if (*(int64_t *)(lVar8 + 0x268) != 0) {
@@ -186,7 +186,7 @@ LAB_1803c1cdd:
         pcVar6 = pcVar9;
         pcVar9 = pcVar6 + 1;
       } while (*pcVar9 != '\0');
-      *puVar5 = &unknown_var_4592_ptr;
+      *puVar5 = &processed_var_4592_ptr;
       puVar5[2] = pcVar6 + -0x180a0bb0f;
       puVar16 = &system_buffer_ptr;
       if (*(void **)(lVar8 + 0x28) != (void *)0x0) {
@@ -273,7 +273,7 @@ void FUN_1803c1e40(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t para
     pcVar8 = pcVar11;
     pcVar11 = pcVar8 + 1;
   } while (*pcVar11 != '\0');
-  *puVar6 = &unknown_var_1448_ptr;
+  *puVar6 = &ui_system_data_1448_ptr;
   puVar6[2] = pcVar8 + -0x180a23567;
   lVar13 = *(int64_t *)(param_1 + 8);
   uVar19 = uVar14;
@@ -284,7 +284,7 @@ void FUN_1803c1e40(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t para
       if (plVar4 != (int64_t *)0x0) {
         (**(code **)(*plVar4 + 0x28))(plVar4);
       }
-      if ((*(code **)(*plVar4 + 0x118) == (code *)&unknown_var_8224_ptr) ||
+      if ((*(code **)(*plVar4 + 0x118) == (code *)&processed_var_8224_ptr) ||
          (cVar5 = (**(code **)(*plVar4 + 0x118))(plVar4), cVar5 == '\0')) {
         lVar13 = *(int64_t *)(*(int64_t *)(param_1 + 8) + 0x268);
         if (lVar13 != 0) {
@@ -302,7 +302,7 @@ void FUN_1803c1e40(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t para
           pcVar8 = pcVar11;
           pcVar11 = pcVar8 + 1;
         } while (*pcVar11 != '\0');
-        *puVar7 = &unknown_var_1436_ptr;
+        *puVar7 = &ui_system_data_1436_ptr;
         puVar7[2] = pcVar8 + -0x180a2355b;
         puVar9 = (uint64_t *)DataPipelineManager(lVar1,0x60);
         *puVar9 = 0;
@@ -316,7 +316,7 @@ void FUN_1803c1e40(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t para
           pcVar8 = pcVar11;
           pcVar11 = pcVar8 + 1;
         } while (*pcVar11 != '\0');
-        *puVar9 = &unknown_var_400_ptr;
+        *puVar9 = &processed_var_400_ptr;
         puVar9[2] = pcVar8 + -0x180a1950f;
         lVar13 = *(int64_t *)(*(int64_t *)(param_1 + 8) + 0x268);
         uVar17 = 0;
@@ -442,7 +442,7 @@ void FUN_1803c21c0(int64_t param_1,int64_t param_2,int64_t param_3)
     pcVar6 = pcVar4;
     pcVar4 = pcVar6 + 1;
   } while (*pcVar4 != '\0');
-  *puVar3 = &unknown_var_2920_ptr;
+  *puVar3 = &rendering_buffer_2920_ptr;
   puVar3[2] = pcVar6 + -0x180a23b27;
   lVar1 = *(int64_t *)(param_1 + 8);
   lVar2 = *(int64_t *)(lVar1 + 0x268);
@@ -471,10 +471,10 @@ LAB_1803c2297:
     pcVar6 = pcVar4;
     pcVar4 = pcVar6 + 1;
   } while (*pcVar4 != '\0');
-  *puVar5 = &unknown_var_2912_ptr;
+  *puVar5 = &rendering_buffer_2912_ptr;
   puVar5[2] = pcVar6 + -0x180a23b1f;
-  SystemAllocationProcessor(param_2,puVar5,&system_data_3a84,&unknown_var_2872_ptr);
-  FUN_18062f7c0(param_2,puVar5,&unknown_var_3692_ptr,*(byte *)(*(int64_t *)(param_1 + 8) + 0x2e8) >> 6 & 1
+  SystemAllocationProcessor(param_2,puVar5,&system_data_3a84,&rendering_buffer_2872_ptr);
+  FUN_18062f7c0(param_2,puVar5,&memory_allocator_3692_ptr,*(byte *)(*(int64_t *)(param_1 + 8) + 0x2e8) >> 6 & 1
                );
   if (puVar3[6] == 0) {
     puVar5[10] = 0;
@@ -499,9 +499,9 @@ LAB_1803c2297:
     pcVar6 = pcVar4;
     pcVar4 = pcVar6 + 1;
   } while (*pcVar4 != '\0');
-  *puVar7 = &unknown_var_8684_ptr;
+  *puVar7 = &processed_var_8684_ptr;
   puVar7[2] = pcVar6 + -0x180a1674b;
-  FUN_180630010(param_2,puVar7,&unknown_var_3692_ptr,*(int64_t *)(param_1 + 8) + 0x180);
+  FUN_180630010(param_2,puVar7,&memory_allocator_3692_ptr,*(int64_t *)(param_1 + 8) + 0x180);
   if (puVar5[6] == 0) {
     puVar7[10] = 0;
     puVar5[6] = puVar7;
@@ -557,7 +557,7 @@ void FUN_1803c229c(void)
     pcVar3 = pcVar2;
     pcVar2 = pcVar3 + 1;
   } while (*pcVar2 != (char)unaff_R12);
-  *plVar1 = (int64_t)&unknown_var_2912_ptr;
+  *plVar1 = (int64_t)&rendering_buffer_2912_ptr;
   plVar1[2] = (int64_t)(pcVar3 + -0x180a23b1f);
   SystemAllocationProcessor();
   FUN_18062f7c0();
@@ -584,7 +584,7 @@ void FUN_1803c229c(void)
     pcVar3 = pcVar2;
     pcVar2 = pcVar3 + 1;
   } while (*pcVar2 != (char)unaff_R12);
-  *plVar4 = (int64_t)&unknown_var_8684_ptr;
+  *plVar4 = (int64_t)&processed_var_8684_ptr;
   plVar4[2] = (int64_t)(pcVar3 + -0x180a1674b);
   FUN_180630010();
   if (plVar1[6] == unaff_R12) {

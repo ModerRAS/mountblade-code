@@ -100,7 +100,7 @@ void rendering_data_processor(int64_t param_1, uint64_t param_2, int64_t param_3
 #define rendering_memory_allocator       CoreEngine_MemoryAllocator
 
 /** 渲染内存管理器 */
-#define rendering_memory_manager         FUN_18062b1e0
+#define rendering_memory_manager         CoreSystem_LoggingManager0
 
 /** 渲染并行处理器 */
 #define rendering_parallel_processor     FUN_18015b810

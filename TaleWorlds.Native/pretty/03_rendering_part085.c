@@ -248,25 +248,25 @@ void FUN_180317ee0(int64_t param_1,int64_t param_2,int64_t *param_3,uint64_t par
   puVar8 = (int32_t *)FUN_1800daa50();
   switch(param_7) {
   case 0:
-    FUN_180094b30(puVar8,&unknown_var_5488_ptr);
+    FUN_180094b30(puVar8,&processed_var_5488_ptr);
     break;
   case 1:
-    FUN_180094b30(puVar8,&unknown_var_5720_ptr);
+    FUN_180094b30(puVar8,&processed_var_5720_ptr);
     break;
   case 2:
-    FUN_180094b30(puVar8,&unknown_var_5680_ptr);
+    FUN_180094b30(puVar8,&processed_var_5680_ptr);
     break;
   case 3:
-    FUN_180094b30(puVar8,&unknown_var_5640_ptr);
+    FUN_180094b30(puVar8,&processed_var_5640_ptr);
     break;
   case 4:
-    FUN_180094b30(puVar8,&unknown_var_5600_ptr);
+    FUN_180094b30(puVar8,&processed_var_5600_ptr);
     break;
   case 5:
-    FUN_180094b30(puVar8,&unknown_var_5872_ptr);
+    FUN_180094b30(puVar8,&processed_var_5872_ptr);
     break;
   default:
-    FUN_180626ee0(&unknown_var_5816_ptr);
+    FUN_180626ee0(&processed_var_5816_ptr);
   }
   plVar9 = (int64_t *)FUN_1800bde30();
   if (plVar9 != (int64_t *)0x0) {
@@ -302,11 +302,11 @@ void FUN_180317ee0(int64_t param_1,int64_t param_2,int64_t *param_3,uint64_t par
     uStack_320 = 0x80;
     uStack_31c = 0x80;
     uStack_308 = *(int32_t *)(param_2 + 0x1bd4);
-    puStack_228 = &unknown_var_3432_ptr;
+    puStack_228 = &memory_allocator_3432_ptr;
     puStack_220 = auStack_210;
     auStack_210[0] = 0;
     uStack_218 = 0x11;
-    uVar15 = strcpy_s(auStack_210,0x80,&unknown_var_5792_ptr);
+    uVar15 = strcpy_s(auStack_210,0x80,&processed_var_5792_ptr);
     FUN_1800b1d80(uVar15,&plStack_2f8,&puStack_228,&uStack_320);
     plVar9 = plStack_2f8;
     puStack_228 = &system_state_ptr;

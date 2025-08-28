@@ -344,7 +344,7 @@ void FUN_1804c7bd0(int64_t *param_1,int64_t *param_2,float param_3)
   *(int32_t *)((int64_t)param_2 + 0xe4) = 0x3f800000;
   *(int32_t *)(param_2 + 0x1d) = 0x3f800000;
   *(int32_t *)((int64_t)param_2 + 0xec) = 0x3f800000;
-  if ((void *)*param_2 == &unknown_var_2024_ptr) {
+  if ((void *)*param_2 == &rendering_buffer_2024_ptr) {
     FUN_18029fc10(param_2,*(uint64_t *)(system_message_buffer + 0x1ca8),plVar1,0x80);
   }
   else {
@@ -497,7 +497,7 @@ void FUN_1804c7bd0(int64_t *param_1,int64_t *param_2,float param_3)
     *(int32_t *)(param_2 + 0x1d) = 0;
     *(int32_t *)((int64_t)param_2 + 0xec) = 0x3f000000;
     fStack_3c4 = fVar15;
-    if ((void *)*param_2 == &unknown_var_2024_ptr) {
+    if ((void *)*param_2 == &rendering_buffer_2024_ptr) {
       FUN_18029fc10(param_2,*(uint64_t *)(system_message_buffer + 0x1ca8),plVar1,0x80);
     }
     else {
@@ -670,7 +670,7 @@ void FUN_1804c7bd0(int64_t *param_1,int64_t *param_2,float param_3)
       *(int32_t *)(param_2 + 0x1d) = 0x3e4ccccd;
       *(int32_t *)((int64_t)param_2 + 0xec) = 0x3f800000;
       fStack_384 = fVar15;
-      if ((void *)*param_2 == &unknown_var_2024_ptr) {
+      if ((void *)*param_2 == &rendering_buffer_2024_ptr) {
         FUN_18029fc10(param_2,*(uint64_t *)(system_message_buffer + 0x1ca8),plVar1,0x80);
       }
       else {
@@ -839,7 +839,7 @@ void FUN_1804c7bd0(int64_t *param_1,int64_t *param_2,float param_3)
         *(int32_t *)((int64_t)param_2 + 0xe4) = 0x3f800000;
         *(int32_t *)(param_2 + 0x1d) = 0x3e40c0c1;
         *(float *)((int64_t)param_2 + 0xec) = (fVar13 + 1.0) * 0.5;
-        if ((void *)*param_2 == &unknown_var_2024_ptr) {
+        if ((void *)*param_2 == &rendering_buffer_2024_ptr) {
           FUN_18029fc10(param_2,*(uint64_t *)(system_message_buffer + 0x1ca8),plVar1,0x80);
         }
         else {
@@ -908,7 +908,7 @@ uint64_t FUN_1804c9480(int64_t param_1,uint64_t param_2)
   
   uVar19 = 0xfffffffffffffffe;
   uVar18 = 0;
-  if (*(void **)*system_system_data_memory == &unknown_var_424_ptr) {
+  if (*(void **)*system_system_data_memory == &processed_var_424_ptr) {
     cVar15 = *(int *)(system_system_data_memory + 0xe0) != 0;
   }
   else {

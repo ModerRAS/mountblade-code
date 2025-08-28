@@ -73,7 +73,7 @@ uint64_t FUN_18011aea0(int *param_1,uint64_t *param_2,uint param_3,int64_t param
     if (iVar7 != *(int *)(lVar3 + 0x1a90)) {
       if (((((param_3 & 1) != 0) && ((*(byte *)(param_1 + 0x13) & 1) == 0)) && (1 < *param_1)) &&
          (param_1[9] != -1)) {
-        qsort(*(uint64_t *)(param_1 + 2),(int64_t)*param_1,0x28,&unknown_var_9712_ptr);
+        qsort(*(uint64_t *)(param_1 + 2),(int64_t)*param_1,0x28,&processed_var_9712_ptr);
         iVar7 = param_1[8];
       }
       fVar12 = 0.0;
@@ -202,7 +202,7 @@ uint64_t FUN_18011aedb(int64_t param_1)
   if (iVar6 != *(int *)(unaff_RBX + 0x1a90)) {
     if (((((unaff_R14D & 1) != 0) && ((*(byte *)(unaff_RDI + 0x13) & 1) == 0)) && (1 < *unaff_RDI))
        && (unaff_RDI[9] != -1)) {
-      qsort(*(uint64_t *)(unaff_RDI + 2),(int64_t)*unaff_RDI,0x28,&unknown_var_9712_ptr);
+      qsort(*(uint64_t *)(unaff_RDI + 2),(int64_t)*unaff_RDI,0x28,&processed_var_9712_ptr);
       iVar6 = unaff_RDI[8];
     }
     fVar11 = 0.0;
@@ -309,7 +309,7 @@ uint64_t FUN_18011af38(void)
   if (iVar5 != *(int *)(unaff_RBX + 0x1a90)) {
     if (((((unaff_R14D & 1) != 0) && ((*(byte *)(unaff_RDI + 0x13) & 1) == 0)) && (1 < *unaff_RDI))
        && (unaff_RDI[9] != -1)) {
-      qsort(*(uint64_t *)(unaff_RDI + 2),(int64_t)*unaff_RDI,0x28,&unknown_var_9712_ptr);
+      qsort(*(uint64_t *)(unaff_RDI + 2),(int64_t)*unaff_RDI,0x28,&processed_var_9712_ptr);
       iVar5 = unaff_RDI[8];
     }
     fVar9 = 0.0;
@@ -401,7 +401,7 @@ uint64_t FUN_18011afbf(void)
   if (iVar5 != *(int *)(unaff_RBX + 0x1a90)) {
     if (((((unaff_R14D & 1) != 0) && ((*(byte *)(unaff_RDI + 0x13) & 1) == 0)) && (1 < *unaff_RDI))
        && (unaff_RDI[9] != -1)) {
-      qsort(*(uint64_t *)(unaff_RDI + 2),(int64_t)*unaff_RDI,0x28,&unknown_var_9712_ptr);
+      qsort(*(uint64_t *)(unaff_RDI + 2),(int64_t)*unaff_RDI,0x28,&processed_var_9712_ptr);
       iVar5 = unaff_RDI[8];
     }
     fVar9 = 0.0;
@@ -488,7 +488,7 @@ uint64_t FUN_18011afee(void)
   
   if (((((unaff_R14D & 1) != 0) && ((*(byte *)(unaff_RDI + 0x13) & 1) == 0)) && (1 < *unaff_RDI)) &&
      (unaff_RDI[9] != -1)) {
-    qsort(*(uint64_t *)(unaff_RDI + 2),(int64_t)*unaff_RDI,0x28,&unknown_var_9712_ptr);
+    qsort(*(uint64_t *)(unaff_RDI + 2),(int64_t)*unaff_RDI,0x28,&processed_var_9712_ptr);
     in_EAX = unaff_RDI[8];
   }
   fVar8 = 0.0;

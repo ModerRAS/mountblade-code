@@ -234,7 +234,7 @@ void FUN_18046c1a2(void)
 uint64_t * FUN_18046c1c0(uint64_t *param_1,uint param_2)
 
 {
-  *param_1 = &unknown_var_2376_ptr;
+  *param_1 = &rendering_buffer_2376_ptr;
   SystemDataValidator(param_1 + 2,0x20,0x200,FUN_180046860,0xfffffffffffffffe);
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
@@ -496,7 +496,7 @@ void FUN_18046c9e0(uint64_t *param_1)
   int64_t lVar4;
   int iVar5;
   
-  *param_1 = &unknown_var_2232_ptr;
+  *param_1 = &rendering_buffer_2232_ptr;
   iVar5 = 0;
   plVar1 = param_1 + 0x19;
   lVar3 = *plVar1;
@@ -543,10 +543,10 @@ void FUN_18046c9e0(uint64_t *param_1)
   }
   param_1[0x1a] = lVar3;
   if (*plVar1 == 0) {
-    *param_1 = &unknown_var_3280_ptr;
+    *param_1 = &memory_allocator_3280_ptr;
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ(param_1 + 4);
-    *param_1 = &unknown_var_1000_ptr;
+    *param_1 = &ui_system_data_1000_ptr;
     *param_1 = &system_handler2_ptr;
     *param_1 = &system_handler1_ptr;
     return;

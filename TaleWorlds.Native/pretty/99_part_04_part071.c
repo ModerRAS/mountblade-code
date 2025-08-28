@@ -263,7 +263,7 @@ void FUN_1802c8380(int64_t param_1,uint64_t param_2)
   if (lVar5 - (int64_t)*(int64_t **)(param_1 + 0x50) >> 3 != 0) {
     plVar1 = (int64_t *)**(int64_t **)(param_1 + 0x50);
     if ((int)plVar1[4] == 0x19) {
-      iVar2 = strcmp(plVar1[3],&unknown_var_7136_ptr);
+      iVar2 = strcmp(plVar1[3],&processed_var_7136_ptr);
       if ((iVar2 == 0) && (plVar1[0x27] == 0)) goto LAB_1802c83fe;
     }
     (**(code **)(*plVar1 + 0x48))(plVar1,0,param_2,0,*(int32_t *)(param_1 + 0x98));
@@ -475,7 +475,7 @@ void FUN_1802c84d0(int64_t param_1,int64_t param_2)
           auStack_58[0] = 0;
           uStack_60 = 0xb;
           puStack_68 = auStack_58;
-          strcpy_s(auStack_58,0x10,&unknown_var_4832_ptr);
+          strcpy_s(auStack_58,0x10,&processed_var_4832_ptr);
           lVar5 = FUN_1802c90a0(uVar2,&puStack_70);
           puStack_70 = &system_state_ptr;
           plVar6 = *(int64_t **)(lVar5 + 0x428);
@@ -688,7 +688,7 @@ void FUN_1802c8c60(int64_t param_1)
   }
   if (*(uint *)(param_1 + 0x98) != uVar2) {
     ppuStack_118 = &puStack_f8;
-    puStack_f8 = &unknown_var_3432_ptr;
+    puStack_f8 = &memory_allocator_3432_ptr;
     puStack_f0 = auStack_e0;
     uStack_e8 = 0;
     auStack_e0[0] = 0;
@@ -739,7 +739,7 @@ int64_t * FUN_1802c8dc0(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64
     lVar4 = 0;
     do {
       if ((*(int *)(*(int64_t *)(lVar4 + lVar1) + 0x20) == 9) &&
-         (iVar3 = strcmp(*(uint64_t *)(*(int64_t *)(lVar4 + lVar1) + 0x18),&unknown_var_8600_ptr,param_3
+         (iVar3 = strcmp(*(uint64_t *)(*(int64_t *)(lVar4 + lVar1) + 0x18),&processed_var_8600_ptr,param_3
                          ,param_4,uVar7,uVar8), iVar3 == 0)) {
         plVar2 = *(int64_t **)(*(int64_t *)(lVar1 + (int64_t)iVar6 * 8) + 0x428);
         *param_2 = (int64_t)plVar2;
@@ -780,7 +780,7 @@ int64_t * FUN_1802c8e90(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64
     lVar4 = 0;
     do {
       if ((*(int *)(*(int64_t *)(lVar4 + lVar1) + 0x20) == 9) &&
-         (iVar3 = strcmp(*(uint64_t *)(*(int64_t *)(lVar4 + lVar1) + 0x18),&unknown_var_8600_ptr,param_3
+         (iVar3 = strcmp(*(uint64_t *)(*(int64_t *)(lVar4 + lVar1) + 0x18),&processed_var_8600_ptr,param_3
                          ,param_4,uVar7,uVar8), iVar3 == 0)) {
         lVar1 = *(int64_t *)(lVar1 + (int64_t)iVar6 * 8);
         plVar2 = *(int64_t **)(lVar1 + 0x450 + (int64_t)(1 - *(int *)(lVar1 + 0x460)) * 8);

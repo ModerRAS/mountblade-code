@@ -5,18 +5,18 @@
 
 // 渲染系统常量定义
 #define RENDER_VTABLE_BASE            (&system_state_ptr)
-#define RENDER_VTABLE_EXTENDED        (&unknown_var_3432_ptr)
-#define RENDER_NAME_TEMPLATE          (&unknown_var_8816_ptr)
+#define RENDER_VTABLE_EXTENDED        (&memory_allocator_3432_ptr)
+#define RENDER_NAME_TEMPLATE          (&processed_var_8816_ptr)
 #define RENDERER_VTABLE1              (&system_handler1_ptr)
 #define RENDERER_VTABLE2              (&system_handler2_ptr)
-#define RENDERER_SHADER_TABLE         (&unknown_var_768_ptr)
-#define RENDERER_CONFIG_TABLE         (&unknown_var_9304_ptr)
-#define RENDERER_LOCK_TABLE           (&unknown_var_9288_ptr)
+#define RENDERER_SHADER_TABLE         (&processed_var_768_ptr)
+#define RENDERER_CONFIG_TABLE         (&processed_var_9304_ptr)
+#define RENDERER_LOCK_TABLE           (&processed_var_9288_ptr)
 #define RENDER_STATE_NULL             (&system_state_ptr)
 #define RENDER_MATERIAL_TABLE         (&system_data_buffer_ptr)
 #define RENDER_SPECIAL_TABLE          (system_resource_state)
 #define RENDER_ALLOC_TABLE            (system_memory_pool_ptr)
-#define RENDER_CHECK_FUNCTION         (&unknown_var_9120_ptr)
+#define RENDER_CHECK_FUNCTION         (&processed_var_9120_ptr)
 
 // 函数别名定义
 #define expand_buffer_if_needed       System_BufferManager
@@ -33,7 +33,7 @@
 #define cleanup_render_internal_data FUN_180284500
 #define cleanup_render_buffers       FUN_1802841d0
 #define trigger_render_cleanup       func_0x0001802eeba0
-#define allocate_render_memory       FUN_18062b1e0
+#define allocate_render_memory       CoreSystem_LoggingManager0
 
 /**
  * 序列化渲染对象数据到缓冲区
@@ -420,7 +420,7 @@ uint64_t * initialize_render_state(uint64_t *render_state)
   *render_state = &system_state_ptr;
   render_state[1] = 0;
   *(int32_t *)(render_state + 2) = 0;
-  *render_state = &unknown_var_768_ptr;
+  *render_state = &processed_var_768_ptr;
   render_state[1] = render_state + 3;
   *(int32_t *)(render_state + 2) = 0;
   *(int8_t *)(render_state + 3) = 0;

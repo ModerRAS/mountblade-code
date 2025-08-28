@@ -483,7 +483,7 @@ void FUN_1803d7c00(int64_t param_1,int64_t param_2,int64_t param_3)
     iVar1 = *(int *)(*(int64_t *)(param_1 + 0x68) + 0x14);
     ppuStack_58 = apuStack_78;
     pcStack_68 = FUN_1803d9750;
-    puStack_60 = &unknown_var_7360_ptr;
+    puStack_60 = &processed_var_7360_ptr;
     apuStack_78[0] = (int32_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x20,8,system_allocation_flags);
     uStack_b8 = (int32_t)param_1;
     uStack_b4 = (int32_t)((uint64_t)param_1 >> 0x20);

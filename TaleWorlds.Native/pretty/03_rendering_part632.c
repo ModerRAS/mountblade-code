@@ -51,7 +51,7 @@ void FUN_18061dc3a(int64_t param_1)
       lVar17 = 0;
       do {
         plVar3 = *(int64_t **)(lVar13 + *(int64_t *)(unaff_RDI + 0x48));
-        cVar12 = (**(code **)(*plVar3 + 0x20))(plVar3,&unknown_var_2112_ptr);
+        cVar12 = (**(code **)(*plVar3 + 0x20))(plVar3,&rendering_buffer_2112_ptr);
         plVar15 = (int64_t *)0x0;
         if (cVar12 != '\0') {
           plVar15 = plVar3;

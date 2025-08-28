@@ -282,8 +282,8 @@ void FUN_1801970c0(uint64_t **param_1,float param_2)
   }
   ppppuStackX_8 = (uint64_t ****)&ppuStack_a0;
   ppuStack_98 = (uint64_t **)afStackX_10;
-  ppuStack_90 = (uint64_t **)&unknown_var_2208_ptr;
-  puStack_88 = &unknown_var_2192_ptr;
+  ppuStack_90 = (uint64_t **)&rendering_buffer_2208_ptr;
+  puStack_88 = &rendering_buffer_2192_ptr;
   ppuStack_a0 = param_1;
   FUN_18015b810(&ppuStack_a0,0,(int64_t)param_1[0x53b] - (int64_t)param_1[0x53a] >> 3,0x10,
                 0xffffffffffffffff,&ppuStack_a0,uVar17);
@@ -408,7 +408,7 @@ LAB_1801974aa:
   ppppuStackX_8 = &pppuStack_80;
   pppuStack_80 = &ppuStack_a0;
   pfStack_78 = afStackX_10;
-  puStack_70 = &unknown_var_2128_ptr;
+  puStack_70 = &rendering_buffer_2128_ptr;
   pcStack_68 = FUN_1801bc9a0;
   FUN_18015b810(&pppuStack_80,0,(int64_t)ppuStack_98 - (int64_t)ppuStack_a0 >> 3,0x10,
                 0xffffffffffffffff,&pppuStack_80);

@@ -464,10 +464,10 @@ void FUN_180629770(void)
   
   uVar5 = 0xfffffffffffffffe;
   puVar1 = (uint64_t *)FUN_1808fc418(0x30);
-  *puVar1 = &unknown_var_4776_ptr;
+  *puVar1 = &processed_var_4776_ptr;
   puVar1[4] = 0;
   puVar1[5] = _guard_check_icall;
-  *puVar1 = &unknown_var_4712_ptr;
+  *puVar1 = &processed_var_4712_ptr;
   *(int32_t *)(puVar1 + 1) = 0x4000;
   if ((code *)puVar1[4] != (code *)0x0) {
     (*(code *)puVar1[4])(puVar1 + 2,0,0,in_R9,uVar5);

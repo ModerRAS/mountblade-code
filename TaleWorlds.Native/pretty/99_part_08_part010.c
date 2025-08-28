@@ -207,7 +207,7 @@ LAB_1804e8dc6:
                 (*(int64_t *)(*(int64_t *)(param_1 + 0x87b340) + (uint64_t)(uVar2 >> 4) * 8) +
                 lVar21);
       puVar3 = (void *)*puVar13;
-      if (puVar3 == &unknown_var_5584_ptr) {
+      if (puVar3 == &processed_var_5584_ptr) {
         FUN_180585d80();
       }
       else {
@@ -248,7 +248,7 @@ LAB_1804e8dc6:
       if (*piVar1 <= (int)param_15) {
         *piVar1 = param_15 + 1;
       }
-      if ((void *)*puVar13 == &unknown_var_5584_ptr) {
+      if ((void *)*puVar13 == &processed_var_5584_ptr) {
         FUN_180585d80();
       }
       else {
@@ -306,7 +306,7 @@ LAB_1804e89e2:
       param_2 = cStack_ca8;
     }
     lVar21 = *(int64_t *)(param_1 + 0x87b300) + -0xbe0;
-    apuStack_c38[0] = &unknown_var_5584_ptr;
+    apuStack_c38[0] = &processed_var_5584_ptr;
     uStack_64 = 0;
     FUN_180506660(auStack_b38);
     if (plStack_b58 != (int64_t *)0x0) {
@@ -318,7 +318,7 @@ LAB_1804e89e2:
     if (plStack_b68 != (int64_t *)0x0) {
       (**(code **)(*plStack_b68 + 0x38))();
     }
-    apuStack_c38[0] = &unknown_var_5552_ptr;
+    apuStack_c38[0] = &processed_var_5552_ptr;
   }
   CoreMemoryPoolReallocator(system_memory_pool_ptr,0x1f8,8,3);
   lVar9 = FUN_18058f390();
@@ -333,7 +333,7 @@ LAB_1804e89e2:
   pplStack_d00 = &plStack_ca0;
   uStack_d08 = (int64_t **)((uint64_t)uStack_d08._4_4_ << 0x20);
   uStack_d10 = 0;
-  pplStack_d18 = (int64_t **)&unknown_var_5760_ptr;
+  pplStack_d18 = (int64_t **)&processed_var_5760_ptr;
   FUN_18058e430(lVar9,pplStack_c78,uStack_c48,param_11);
   *(int16_t *)(lVar9 + 8) = 1;
   lVar7 = *(int64_t *)(lVar9 + 0xf8);
@@ -412,7 +412,7 @@ void FUN_1804e9160(int64_t param_1,uint param_2)
     }
     *(int16_t *)(lVar4 + 0x3d1) = 0;
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&unknown_var_1728_ptr);
+    FUN_180062300(system_message_context,&ui_system_data_1728_ptr);
   }
   *(int8_t *)(lVar4 + 0x3d0) = 0;
   lVar6 = *(int64_t *)(*(int64_t *)(param_1 + 0x87b340) + uVar7 * 8) + lVar6;
@@ -453,7 +453,7 @@ void FUN_1804e9160(int64_t param_1,uint param_2)
            ((uint64_t)(param_2 & 0xf) * 0xbe0 +
            *(int64_t *)(*(int64_t *)(param_1 + 0x87b340) + uVar7 * 8));
   auStackX_10[0] = param_2;
-  if ((void *)*puVar5 != &unknown_var_5584_ptr) {
+  if ((void *)*puVar5 != &processed_var_5584_ptr) {
     (**(code **)((void *)*puVar5 + 0x10))(puVar5);
   }
   *(int32_t *)(puVar5 + 1) = 0;

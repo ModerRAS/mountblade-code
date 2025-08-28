@@ -77,7 +77,7 @@ void FUN_1802089d7(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t pa
             else {
               cVar6 = FUN_1801ef300(lVar14,lVar9,lVar4);
               if (cVar6 == '\0') {
-                SystemDataInitializer(&unknown_var_1920_ptr);
+                SystemDataInitializer(&ui_system_data_1920_ptr);
                 iVar15 = *(int *)(lVar11 + uVar27);
                 param_3 = param_9;
                 uVar18 = (uint)param_6;

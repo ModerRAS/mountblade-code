@@ -660,7 +660,7 @@ void FUN_1802ec6e0(int64_t param_1,int64_t param_2,char param_3,int8_t param_4,
   *puStack_58 = &system_state_ptr;
   *(uint64_t *)(lVar9 + 0x28) = 0;
   *(int32_t *)(lVar9 + 0x30) = 0;
-  *puStack_58 = &unknown_var_3480_ptr;
+  *puStack_58 = &memory_allocator_3480_ptr;
   *(int8_t **)(lVar9 + 0x28) = (int8_t *)(lVar9 + 0x38);
   *(int32_t *)(lVar9 + 0x30) = 0;
   *(int8_t *)(lVar9 + 0x38) = 0;

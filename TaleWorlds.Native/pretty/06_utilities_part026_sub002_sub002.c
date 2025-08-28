@@ -54,7 +54,7 @@ void Unwind_180901f10(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x48);
-  *puVar1 = &unknown_var_1000_ptr;
+  *puVar1 = &ui_system_data_1000_ptr;
   *puVar1 = &system_handler2_ptr;
   *puVar1 = &system_handler1_ptr;
   return;
@@ -1053,12 +1053,12 @@ void Unwind_180902540(uint64_t param_1,int64_t param_2)
   int64_t lVar1;
   
   lVar1 = *(int64_t *)(param_2 + 0x70);
-  *(uint64_t *)(lVar1 + 0x20) = &unknown_var_6384_ptr;
+  *(uint64_t *)(lVar1 + 0x20) = &processed_var_6384_ptr;
   if (*(char *)(lVar1 + 0xd1) != '\0') {
     UtilitiesSystem_NetworkMonitor();
   }
   _Mtx_destroy_in_situ();
-  *(uint64_t *)(lVar1 + 0x20) = &unknown_var_5224_ptr;
+  *(uint64_t *)(lVar1 + 0x20) = &processed_var_5224_ptr;
   *(uint64_t *)(lVar1 + 0x58) = &system_data_buffer_ptr;
   if (*(int64_t *)(lVar1 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
@@ -1086,12 +1086,12 @@ void Unwind_180902550(uint64_t param_1,int64_t param_2)
   int64_t lVar1;
   
   lVar1 = *(int64_t *)(param_2 + 0x70);
-  *(uint64_t *)(lVar1 + 0xd8) = &unknown_var_6384_ptr;
+  *(uint64_t *)(lVar1 + 0xd8) = &processed_var_6384_ptr;
   if (*(char *)(lVar1 + 0x189) != '\0') {
     UtilitiesSystem_NetworkMonitor();
   }
   _Mtx_destroy_in_situ();
-  *(uint64_t *)(lVar1 + 0xd8) = &unknown_var_5224_ptr;
+  *(uint64_t *)(lVar1 + 0xd8) = &processed_var_5224_ptr;
   *(uint64_t *)(lVar1 + 0x110) = &system_data_buffer_ptr;
   if (*(int64_t *)(lVar1 + 0x118) != 0) {
                     // WARNING: Subroutine does not return
@@ -1119,12 +1119,12 @@ void Unwind_180902570(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x78);
-  *puVar1 = &unknown_var_6384_ptr;
+  *puVar1 = &processed_var_6384_ptr;
   if (*(char *)((int64_t)puVar1 + 0xb1) != '\0') {
     UtilitiesSystem_NetworkMonitor();
   }
   _Mtx_destroy_in_situ();
-  *puVar1 = &unknown_var_5224_ptr;
+  *puVar1 = &processed_var_5224_ptr;
   puVar1[7] = &system_data_buffer_ptr;
   if (puVar1[8] != 0) {
                     // WARNING: Subroutine does not return
@@ -1153,7 +1153,7 @@ void Unwind_180902580(uint64_t param_1,int64_t param_2)
   
   puVar1 = *(uint64_t **)(param_2 + 0x78);
   _Mtx_destroy_in_situ();
-  *puVar1 = &unknown_var_5224_ptr;
+  *puVar1 = &processed_var_5224_ptr;
   puVar1[7] = &system_data_buffer_ptr;
   if (puVar1[8] != 0) {
                     // WARNING: Subroutine does not return
@@ -3013,10 +3013,10 @@ void Unwind_180902c50(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x38);
-  *puVar1 = &unknown_var_3280_ptr;
+  *puVar1 = &memory_allocator_3280_ptr;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(puVar1 + 4);
-  *puVar1 = &unknown_var_1000_ptr;
+  *puVar1 = &ui_system_data_1000_ptr;
   *puVar1 = &system_handler2_ptr;
   *puVar1 = &system_handler1_ptr;
   return;
@@ -3033,7 +3033,7 @@ void Unwind_180902c60(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t
   
   puVar1 = *(uint64_t **)(param_2 + 0x38);
   uVar3 = 0xfffffffffffffffe;
-  *puVar1 = &unknown_var_2392_ptr;
+  *puVar1 = &rendering_buffer_2392_ptr;
   cVar2 = SystemQueueManager(puVar1,1,param_3,param_4,0xfffffffffffffffe);
   while (cVar2 != '\0') {
     cVar2 = SystemQueueManager(puVar1,1,param_3,param_4,uVar3);
@@ -5479,7 +5479,7 @@ void Unwind_180903610(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x40);
-  *puVar1 = &unknown_var_7304_ptr;
+  *puVar1 = &processed_var_7304_ptr;
   puVar1[0x18] = &system_data_buffer_ptr;
   if (puVar1[0x19] != 0) {
                     // WARNING: Subroutine does not return
@@ -5840,7 +5840,7 @@ void Unwind_180903760(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x80);
-  *puVar1 = &unknown_var_7304_ptr;
+  *puVar1 = &processed_var_7304_ptr;
   puVar1[0x18] = &system_data_buffer_ptr;
   if (puVar1[0x19] != 0) {
                     // WARNING: Subroutine does not return
@@ -10324,7 +10324,7 @@ void Unwind_180904680(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x50);
-  *puVar1 = &unknown_var_1000_ptr;
+  *puVar1 = &ui_system_data_1000_ptr;
   *puVar1 = &system_handler2_ptr;
   *puVar1 = &system_handler1_ptr;
   return;
@@ -10704,7 +10704,7 @@ void Unwind_1809048a0(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x20);
-  *puVar1 = &unknown_var_1000_ptr;
+  *puVar1 = &ui_system_data_1000_ptr;
   *puVar1 = &system_handler2_ptr;
   *puVar1 = &system_handler1_ptr;
   return;
@@ -11507,7 +11507,7 @@ void Unwind_180904ab0(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t
   
   puVar1 = *(uint64_t **)(param_2 + 0x160);
   uVar3 = 0xfffffffffffffffe;
-  *puVar1 = &unknown_var_2392_ptr;
+  *puVar1 = &rendering_buffer_2392_ptr;
   cVar2 = SystemQueueManager(puVar1,1,param_3,param_4,0xfffffffffffffffe);
   while (cVar2 != '\0') {
     cVar2 = SystemQueueManager(puVar1,1,param_3,param_4,uVar3);
@@ -11575,7 +11575,7 @@ void Unwind_180904af0(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t
   
   puVar1 = *(uint64_t **)(param_2 + 0x50);
   uVar3 = 0xfffffffffffffffe;
-  *puVar1 = &unknown_var_2392_ptr;
+  *puVar1 = &rendering_buffer_2392_ptr;
   cVar2 = SystemQueueManager(puVar1,1,param_3,param_4,0xfffffffffffffffe);
   while (cVar2 != '\0') {
     cVar2 = SystemQueueManager(puVar1,1,param_3,param_4,uVar3);
@@ -11606,7 +11606,7 @@ void Unwind_180904af0(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t
 void Unwind_180904b00(uint64_t param_1,int64_t param_2)
 
 {
-  **(uint64_t **)(param_2 + 0x40) = &unknown_var_9040_ptr;
+  **(uint64_t **)(param_2 + 0x40) = &processed_var_9040_ptr;
   return;
 }
 
@@ -11769,7 +11769,7 @@ void Catch_180904c60(uint64_t param_1,int64_t param_2)
 void Unwind_180904db0(uint64_t param_1,int64_t param_2)
 
 {
-  **(uint64_t **)(param_2 + 0x50) = &unknown_var_9040_ptr;
+  **(uint64_t **)(param_2 + 0x50) = &processed_var_9040_ptr;
   return;
 }
 
@@ -11792,12 +11792,12 @@ void Unwind_180904dd0(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x40);
-  *puVar1 = &unknown_var_6384_ptr;
+  *puVar1 = &processed_var_6384_ptr;
   if (*(char *)((int64_t)puVar1 + 0xb1) != '\0') {
     UtilitiesSystem_NetworkMonitor();
   }
   _Mtx_destroy_in_situ();
-  *puVar1 = &unknown_var_5224_ptr;
+  *puVar1 = &processed_var_5224_ptr;
   puVar1[7] = &system_data_buffer_ptr;
   if (puVar1[8] != 0) {
                     // WARNING: Subroutine does not return
@@ -11826,7 +11826,7 @@ void Unwind_180904de0(uint64_t param_1,int64_t param_2)
   
   puVar1 = *(uint64_t **)(param_2 + 0x40);
   _Mtx_destroy_in_situ();
-  *puVar1 = &unknown_var_5224_ptr;
+  *puVar1 = &processed_var_5224_ptr;
   puVar1[7] = &system_data_buffer_ptr;
   if (puVar1[8] != 0) {
                     // WARNING: Subroutine does not return
@@ -11854,7 +11854,7 @@ void Unwind_180904df0(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x40);
-  *puVar1 = &unknown_var_5224_ptr;
+  *puVar1 = &processed_var_5224_ptr;
   puVar1[7] = &system_data_buffer_ptr;
   if (puVar1[8] != 0) {
                     // WARNING: Subroutine does not return
@@ -11923,7 +11923,7 @@ void Unwind_180904e40(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t
   
   puVar1 = *(uint64_t **)(param_2 + 0x30);
   uVar3 = 0xfffffffffffffffe;
-  *puVar1 = &unknown_var_2392_ptr;
+  *puVar1 = &rendering_buffer_2392_ptr;
   cVar2 = SystemQueueManager(puVar1,1,param_3,param_4,0xfffffffffffffffe);
   while (cVar2 != '\0') {
     cVar2 = SystemQueueManager(puVar1,1,param_3,param_4,uVar3);
@@ -13477,7 +13477,7 @@ void Unwind_1809054f0(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x50);
-  *puVar1 = &unknown_var_3784_ptr;
+  *puVar1 = &memory_allocator_3784_ptr;
   UtilitiesSystem_Flyweight();
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
@@ -13829,7 +13829,7 @@ void Unwind_180905710(uint64_t param_1,int64_t param_2)
 void Unwind_180905720(uint64_t param_1,int64_t param_2)
 
 {
-  **(uint64_t **)(param_2 + 0x40) = &unknown_var_2280_ptr;
+  **(uint64_t **)(param_2 + 0x40) = &rendering_buffer_2280_ptr;
   return;
 }
 
@@ -13838,7 +13838,7 @@ void Unwind_180905720(uint64_t param_1,int64_t param_2)
 void Unwind_180905730(uint64_t param_1,int64_t param_2)
 
 {
-  **(uint64_t **)(param_2 + 0x60) = &unknown_var_2280_ptr;
+  **(uint64_t **)(param_2 + 0x60) = &rendering_buffer_2280_ptr;
   return;
 }
 
@@ -13913,7 +13913,7 @@ void Unwind_1809057b0(uint64_t param_1,int64_t param_2)
   uint64_t uVar10;
   
   puVar5 = *(uint64_t **)(param_2 + 0x40);
-  *puVar5 = &unknown_var_8656_ptr;
+  *puVar5 = &processed_var_8656_ptr;
   *(int8_t *)((int64_t)puVar5 + 0x162) = 1;
   plVar2 = puVar5 + 0x1a;
   plStackX_20 = plVar2;
@@ -14124,7 +14124,7 @@ void Unwind_180905810(uint64_t param_1,int64_t param_2)
 void Unwind_180905820(uint64_t param_1,int64_t param_2)
 
 {
-  **(uint64_t **)(param_2 + 0x2e0) = &unknown_var_4416_ptr;
+  **(uint64_t **)(param_2 + 0x2e0) = &processed_var_4416_ptr;
   return;
 }
 
@@ -14382,7 +14382,7 @@ void Unwind_1809058f0(uint64_t param_1,int64_t param_2)
 void Unwind_180905900(uint64_t param_1,int64_t param_2)
 
 {
-  **(uint64_t **)(param_2 + 0x48) = &unknown_var_1792_ptr;
+  **(uint64_t **)(param_2 + 0x48) = &ui_system_data_1792_ptr;
   return;
 }
 
@@ -14510,7 +14510,7 @@ void Unwind_180905950(uint64_t param_1,int64_t param_2)
   uint64_t uVar10;
   
   puVar5 = *(uint64_t **)(param_2 + 0x2e8);
-  *puVar5 = &unknown_var_8656_ptr;
+  *puVar5 = &processed_var_8656_ptr;
   *(int8_t *)((int64_t)puVar5 + 0x162) = 1;
   plVar2 = puVar5 + 0x1a;
   plStackX_20 = plVar2;
@@ -14891,10 +14891,10 @@ void Unwind_180905b00(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x50);
-  *puVar1 = &unknown_var_3280_ptr;
+  *puVar1 = &memory_allocator_3280_ptr;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(puVar1 + 4);
-  *puVar1 = &unknown_var_1000_ptr;
+  *puVar1 = &ui_system_data_1000_ptr;
   *puVar1 = &system_handler2_ptr;
   *puVar1 = &system_handler1_ptr;
   return;
@@ -15684,7 +15684,7 @@ void Unwind_180905db0(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t
 void Unwind_180905dd0(uint64_t param_1,int64_t param_2)
 
 {
-  **(uint64_t **)(param_2 + 0x50) = &unknown_var_3768_ptr;
+  **(uint64_t **)(param_2 + 0x50) = &memory_allocator_3768_ptr;
   return;
 }
 
@@ -15693,7 +15693,7 @@ void Unwind_180905dd0(uint64_t param_1,int64_t param_2)
 void Unwind_180905de0(uint64_t param_1,int64_t param_2)
 
 {
-  **(uint64_t **)(param_2 + 0x60) = &unknown_var_3768_ptr;
+  **(uint64_t **)(param_2 + 0x60) = &memory_allocator_3768_ptr;
   return;
 }
 
@@ -16128,10 +16128,10 @@ void Unwind_180905f90(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x70);
-  *puVar1 = &unknown_var_3280_ptr;
+  *puVar1 = &memory_allocator_3280_ptr;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(puVar1 + 4);
-  *puVar1 = &unknown_var_1000_ptr;
+  *puVar1 = &ui_system_data_1000_ptr;
   *puVar1 = &system_handler2_ptr;
   *puVar1 = &system_handler1_ptr;
   return;
@@ -17306,7 +17306,7 @@ void Unwind_180906510(uint64_t param_1,int64_t param_2)
 void Unwind_180906520(uint64_t param_1,int64_t param_2)
 
 {
-  **(uint64_t **)(param_2 + 0x48) = &unknown_var_5192_ptr;
+  **(uint64_t **)(param_2 + 0x48) = &processed_var_5192_ptr;
   return;
 }
 
@@ -17318,7 +17318,7 @@ void Unwind_180906530(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x48);
-  *puVar1 = &unknown_var_8584_ptr;
+  *puVar1 = &processed_var_8584_ptr;
   puVar1[2] = &system_state_ptr;
   *puVar1 = &system_handler2_ptr;
   *puVar1 = &system_handler1_ptr;
@@ -17465,7 +17465,7 @@ void Unwind_1809065a0(uint64_t param_1,int64_t param_2)
 void Unwind_1809065b0(uint64_t param_1,int64_t param_2)
 
 {
-  **(uint64_t **)(param_2 + 0x40) = &unknown_var_5192_ptr;
+  **(uint64_t **)(param_2 + 0x40) = &processed_var_5192_ptr;
   return;
 }
 
@@ -17525,7 +17525,7 @@ void Unwind_180906630(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0xa0);
-  *puVar1 = &unknown_var_8584_ptr;
+  *puVar1 = &processed_var_8584_ptr;
   puVar1[2] = &system_state_ptr;
   *puVar1 = &system_handler2_ptr;
   *puVar1 = &system_handler1_ptr;
@@ -17726,7 +17726,7 @@ void Unwind_1809067c0(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x50);
-  *puVar1 = &unknown_var_8584_ptr;
+  *puVar1 = &processed_var_8584_ptr;
   puVar1[2] = &system_state_ptr;
   *puVar1 = &system_handler2_ptr;
   *puVar1 = &system_handler1_ptr;
@@ -21107,7 +21107,7 @@ void Unwind_180907710(uint64_t param_1,int64_t param_2)
   int64_t lVar3;
   
   puVar2 = *(uint64_t **)(param_2 + 0x50);
-  *puVar2 = &unknown_var_1624_ptr;
+  *puVar2 = &ui_system_data_1624_ptr;
   puVar1 = (uint64_t *)puVar2[0x11];
   if (puVar1 != (uint64_t *)0x0) {
     lVar3 = __RTCastToVoid(puVar1);
@@ -21131,7 +21131,7 @@ void Unwind_180907710(uint64_t param_1,int64_t param_2)
   *(int32_t *)(puVar2 + 0x10) = 0;
   puVar2[0xd] = &system_state_ptr;
   UtilitiesSystem_ForensicAnalyzer(puVar2 + 7,puVar2[9]);
-  *puVar2 = &unknown_var_1792_ptr;
+  *puVar2 = &ui_system_data_1792_ptr;
   return;
 }
 
@@ -21159,7 +21159,7 @@ void Unwind_180907740(uint64_t param_1,int64_t param_2)
   int64_t lVar3;
   
   puVar2 = *(uint64_t **)(param_2 + 0x40);
-  *puVar2 = &unknown_var_1624_ptr;
+  *puVar2 = &ui_system_data_1624_ptr;
   puVar1 = (uint64_t *)puVar2[0x11];
   if (puVar1 != (uint64_t *)0x0) {
     lVar3 = __RTCastToVoid(puVar1);
@@ -21183,7 +21183,7 @@ void Unwind_180907740(uint64_t param_1,int64_t param_2)
   *(int32_t *)(puVar2 + 0x10) = 0;
   puVar2[0xd] = &system_state_ptr;
   UtilitiesSystem_ForensicAnalyzer(puVar2 + 7,puVar2[9]);
-  *puVar2 = &unknown_var_1792_ptr;
+  *puVar2 = &ui_system_data_1792_ptr;
   return;
 }
 
@@ -21811,7 +21811,7 @@ void Unwind_180907a00(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x70);
-  *puVar1 = &unknown_var_1952_ptr;
+  *puVar1 = &ui_system_data_1952_ptr;
   if (puVar1[3] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
@@ -24480,7 +24480,7 @@ void Unwind_1809088d0(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x28);
-  *puVar1 = &unknown_var_1000_ptr;
+  *puVar1 = &ui_system_data_1000_ptr;
   *puVar1 = &system_handler2_ptr;
   *puVar1 = &system_handler1_ptr;
   return;
@@ -25992,7 +25992,7 @@ void Unwind_180908ed0(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x20);
-  *puVar1 = &unknown_var_9816_ptr;
+  *puVar1 = &processed_var_9816_ptr;
   __std_exception_destroy(puVar1 + 1);
   return;
 }
@@ -26005,7 +26005,7 @@ void Unwind_180908ee0(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x40);
-  *puVar1 = &unknown_var_9816_ptr;
+  *puVar1 = &processed_var_9816_ptr;
   __std_exception_destroy(puVar1 + 1);
   return;
 }
@@ -26061,7 +26061,7 @@ void Unwind_180908f30(uint64_t param_1,int64_t param_2)
   
   lVar3 = *(int64_t *)(param_2 + 0x40);
   puVar4 = (uint64_t *)(lVar3 + -0xa0);
-  *puVar4 = &unknown_var_2440_ptr;
+  *puVar4 = &rendering_buffer_2440_ptr;
   if ((*(int64_t *)(lVar3 + -0x20) != 0) && (**(int64_t **)(lVar3 + -0x88) == lVar3 + -0x30)) {
     uVar1 = *(uint64_t *)(lVar3 + -0x10);
     lVar2 = *(int64_t *)(lVar3 + -0x18);
@@ -26086,7 +26086,7 @@ void * Catch_180908f50(uint64_t param_1,int64_t param_2)
   _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
             ((int64_t)*(int *)(**(int64_t **)(param_2 + 0x70) + 4) +
              (int64_t)*(int64_t **)(param_2 + 0x70),4,1);
-  return &unknown_var_247_ptr;
+  return &rendering_buffer_247_ptr;
 }
 
 
@@ -26104,7 +26104,7 @@ void Unwind_180908f90(uint64_t param_1,int64_t param_2)
   plVar1 = *(int64_t **)(param_2 + 0x38);
   plVar1 = *(int64_t **)((int64_t)*(int *)(*plVar1 + 4) + 0x48 + (int64_t)plVar1);
   if (plVar1 != (int64_t *)0x0) {
-    if (*(code **)(*plVar1 + 0x10) != (code *)&unknown_var_1712_ptr) {
+    if (*(code **)(*plVar1 + 0x10) != (code *)&ui_system_data_1712_ptr) {
       (**(code **)(*plVar1 + 0x10))();
       return;
     }
@@ -26127,7 +26127,7 @@ void Unwind_180908fa0(uint64_t param_1,int64_t param_2)
             ((int64_t)*(int *)(**(int64_t **)(param_2 + 0x38) + 4) + 0x48 +
             (int64_t)*(int64_t **)(param_2 + 0x38));
   if (plVar1 != (int64_t *)0x0) {
-    if (*(code **)(*plVar1 + 0x10) != (code *)&unknown_var_1712_ptr) {
+    if (*(code **)(*plVar1 + 0x10) != (code *)&ui_system_data_1712_ptr) {
       (**(code **)(*plVar1 + 0x10))();
       return;
     }
@@ -26150,7 +26150,7 @@ void Unwind_180908fb0(uint64_t param_1,int64_t param_2)
             ((int64_t)*(int *)(*(int64_t *)**(int64_t **)(param_2 + 0x40) + 4) + 0x48 +
             **(int64_t **)(param_2 + 0x40));
   if (plVar1 != (int64_t *)0x0) {
-    if (*(code **)(*plVar1 + 0x10) != (code *)&unknown_var_1712_ptr) {
+    if (*(code **)(*plVar1 + 0x10) != (code *)&ui_system_data_1712_ptr) {
       (**(code **)(*plVar1 + 0x10))();
       return;
     }
@@ -26170,7 +26170,7 @@ void * Catch_180908fc0(uint64_t param_1,int64_t param_2)
   _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
             ((int64_t)*(int *)(**(int64_t **)(param_2 + 0x70) + 4) +
              (int64_t)*(int64_t **)(param_2 + 0x70),4,1);
-  return &unknown_var_1038_ptr;
+  return &ui_system_data_1038_ptr;
 }
 
 
@@ -26192,7 +26192,7 @@ void Unwind_180909010(uint64_t param_1,int64_t param_2)
   
   lVar1 = param_2 + 0x128;
   *(void **)((int64_t)*(int *)(*(int64_t *)(param_2 + 0x80) + 4) + -0xa8 + lVar1) =
-       &unknown_var_2384_ptr;
+       &rendering_buffer_2384_ptr;
   iVar2 = *(int *)(*(int64_t *)(param_2 + 0x80) + 4);
   *(int *)((int64_t)iVar2 + -0xac + lVar1) = iVar2 + -0xa8;
   UtilitiesSystem_CacheValidator(param_2 + 0x88);
@@ -26236,7 +26236,7 @@ void Unwind_180909080(uint64_t param_1,int64_t param_2)
   uint64_t *puVar3;
   
   puVar3 = (uint64_t *)(param_2 + 0x88);
-  *puVar3 = &unknown_var_2440_ptr;
+  *puVar3 = &rendering_buffer_2440_ptr;
   if ((*(int64_t *)(param_2 + 0x108) != 0) && (**(int64_t **)(param_2 + 0xa0) == param_2 + 0xf8))
   {
     uVar1 = *(uint64_t *)(param_2 + 0x118);
@@ -26760,7 +26760,7 @@ void Unwind_180909320(uint64_t param_1,int64_t param_2)
   uint64_t uVar6;
   
   puVar3 = *(uint64_t **)(param_2 + 0x80);
-  *puVar3 = &unknown_var_928_ptr;
+  *puVar3 = &processed_var_928_ptr;
   if ((int64_t *)puVar3[0x1049] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)puVar3[0x1049] + 0x38))();
   }
@@ -26908,7 +26908,7 @@ void Unwind_1809093b0(uint64_t param_1,int64_t param_2)
   uint64_t uVar6;
   
   puVar3 = *(uint64_t **)(param_2 + 0x90);
-  *puVar3 = &unknown_var_928_ptr;
+  *puVar3 = &processed_var_928_ptr;
   if ((int64_t *)puVar3[0x1049] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)puVar3[0x1049] + 0x38))();
   }
@@ -27751,7 +27751,7 @@ void Unwind_1809096b0(uint64_t param_1,int64_t param_2)
   uint64_t uVar6;
   
   puVar3 = *(uint64_t **)(param_2 + 0x40);
-  *puVar3 = &unknown_var_928_ptr;
+  *puVar3 = &processed_var_928_ptr;
   if ((int64_t *)puVar3[0x1049] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)puVar3[0x1049] + 0x38))();
   }
@@ -28660,10 +28660,10 @@ void Unwind_180909b70(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x28);
-  *puVar1 = &unknown_var_3280_ptr;
+  *puVar1 = &memory_allocator_3280_ptr;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(puVar1 + 4);
-  *puVar1 = &unknown_var_1000_ptr;
+  *puVar1 = &ui_system_data_1000_ptr;
   *puVar1 = &system_handler2_ptr;
   *puVar1 = &system_handler1_ptr;
   return;
@@ -33959,7 +33959,7 @@ void Unwind_18090c1a0(uint64_t param_1,int64_t param_2)
 void Unwind_18090c1b0(uint64_t param_1,int64_t param_2)
 
 {
-  **(uint64_t **)(param_2 + 0x40) = &unknown_var_5912_ptr;
+  **(uint64_t **)(param_2 + 0x40) = &processed_var_5912_ptr;
   return;
 }
 
@@ -34009,7 +34009,7 @@ void Unwind_18090c1d0(uint64_t param_1,int64_t param_2)
   
   lVar1 = param_2 + 0x138;
   *(void **)((int64_t)*(int *)(*(int64_t *)(param_2 + 0x80) + 4) + -0xb8 + lVar1) =
-       &unknown_var_1768_ptr;
+       &ui_system_data_1768_ptr;
   iVar2 = *(int *)(*(int64_t *)(param_2 + 0x80) + 4);
   *(int *)((int64_t)iVar2 + -0xbc + lVar1) = iVar2 + -0xb8;
   UtilitiesSystem_CacheValidator(param_2 + 0x98);
@@ -34043,7 +34043,7 @@ void Unwind_18090c200(uint64_t param_1,int64_t param_2)
   
   lVar3 = *(int64_t *)(param_2 + 0x70);
   puVar4 = (uint64_t *)(lVar3 + -0xa0);
-  *puVar4 = &unknown_var_2440_ptr;
+  *puVar4 = &rendering_buffer_2440_ptr;
   if ((*(int64_t *)(lVar3 + -0x20) != 0) && (**(int64_t **)(lVar3 + -0x88) == lVar3 + -0x30)) {
     uVar1 = *(uint64_t *)(lVar3 + -0x10);
     lVar2 = *(int64_t *)(lVar3 + -0x18);
@@ -34083,7 +34083,7 @@ void Unwind_18090c240(uint64_t param_1,int64_t param_2)
   
   lVar3 = *(int64_t *)(param_2 + 0x40);
   puVar4 = (uint64_t *)(lVar3 + -0xa0);
-  *puVar4 = &unknown_var_2440_ptr;
+  *puVar4 = &rendering_buffer_2440_ptr;
   if ((*(int64_t *)(lVar3 + -0x20) != 0) && (**(int64_t **)(lVar3 + -0x88) == lVar3 + -0x30)) {
     uVar1 = *(uint64_t *)(lVar3 + -0x10);
     lVar2 = *(int64_t *)(lVar3 + -0x18);
@@ -34267,7 +34267,7 @@ void Unwind_18090c2e0(uint64_t param_1,int64_t param_2)
 void Unwind_18090c2f0(uint64_t param_1,int64_t param_2)
 
 {
-  **(uint64_t **)(param_2 + 0x78) = &unknown_var_5912_ptr;
+  **(uint64_t **)(param_2 + 0x78) = &processed_var_5912_ptr;
   return;
 }
 
@@ -34343,7 +34343,7 @@ void Unwind_18090c380(uint64_t param_1,int64_t param_2)
   
   lVar3 = *(int64_t *)(param_2 + 0x40);
   puVar4 = (uint64_t *)(lVar3 + 0x18);
-  *puVar4 = &unknown_var_2440_ptr;
+  *puVar4 = &rendering_buffer_2440_ptr;
   if ((*(int64_t *)(lVar3 + 0x98) != 0) && (**(int64_t **)(lVar3 + 0x30) == lVar3 + 0x88)) {
     uVar1 = *(uint64_t *)(lVar3 + 0xa8);
     lVar2 = *(int64_t *)(lVar3 + 0xa0);
@@ -43477,7 +43477,7 @@ void Unwind_18090edd0(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x88);
-  *puVar1 = &unknown_var_1000_ptr;
+  *puVar1 = &ui_system_data_1000_ptr;
   *puVar1 = &system_handler2_ptr;
   *puVar1 = &system_handler1_ptr;
   return;
@@ -43555,7 +43555,7 @@ void Unwind_18090ee30(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x98);
-  *puVar1 = &unknown_var_1000_ptr;
+  *puVar1 = &ui_system_data_1000_ptr;
   *puVar1 = &system_handler2_ptr;
   *puVar1 = &system_handler1_ptr;
   return;
@@ -45826,10 +45826,10 @@ void Unwind_18090fa20(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x130);
-  *puVar1 = &unknown_var_3280_ptr;
+  *puVar1 = &memory_allocator_3280_ptr;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(puVar1 + 4);
-  *puVar1 = &unknown_var_1000_ptr;
+  *puVar1 = &ui_system_data_1000_ptr;
   *puVar1 = &system_handler2_ptr;
   *puVar1 = &system_handler1_ptr;
   return;
@@ -47615,7 +47615,7 @@ void Unwind_180910360(uint64_t param_1,int64_t param_2)
 void Unwind_180910390(uint64_t param_1,int64_t param_2)
 
 {
-  **(uint64_t **)(param_2 + 0x40) = &unknown_var_7288_ptr;
+  **(uint64_t **)(param_2 + 0x40) = &processed_var_7288_ptr;
   return;
 }
 
@@ -47633,7 +47633,7 @@ void Unwind_1809103a0(uint64_t param_1,int64_t param_2)
 void Unwind_1809103b0(uint64_t param_1,int64_t param_2)
 
 {
-  **(uint64_t **)(param_2 + 0x48) = &unknown_var_3672_ptr;
+  **(uint64_t **)(param_2 + 0x48) = &memory_allocator_3672_ptr;
   return;
 }
 
@@ -47687,7 +47687,7 @@ void Unwind_1809103d0(void)
 void Unwind_1809103e0(uint64_t param_1,int64_t param_2)
 
 {
-  **(uint64_t **)(param_2 + 0x40) = &unknown_var_3528_ptr;
+  **(uint64_t **)(param_2 + 0x40) = &memory_allocator_3528_ptr;
   return;
 }
 
@@ -47696,7 +47696,7 @@ void Unwind_1809103e0(uint64_t param_1,int64_t param_2)
 void Unwind_1809103f0(uint64_t param_1,int64_t param_2)
 
 {
-  **(uint64_t **)(param_2 + 0x90) = &unknown_var_7288_ptr;
+  **(uint64_t **)(param_2 + 0x90) = &processed_var_7288_ptr;
   return;
 }
 
@@ -47708,7 +47708,7 @@ void Unwind_180910400(uint64_t param_1,int64_t param_2)
   uint64_t *puVar1;
   
   puVar1 = *(uint64_t **)(param_2 + 0x60);
-  *puVar1 = &unknown_var_1000_ptr;
+  *puVar1 = &ui_system_data_1000_ptr;
   *puVar1 = &system_handler2_ptr;
   *puVar1 = &system_handler1_ptr;
   return;
@@ -47741,7 +47741,7 @@ void Unwind_180910420(uint64_t param_1,int64_t param_2)
 void Unwind_180910430(uint64_t param_1,int64_t param_2)
 
 {
-  **(uint64_t **)(param_2 + 0x60) = &unknown_var_7760_ptr;
+  **(uint64_t **)(param_2 + 0x60) = &processed_var_7760_ptr;
   return;
 }
 
@@ -47766,7 +47766,7 @@ void Unwind_180910450(uint64_t param_1,int64_t param_2)
   lVar3 = *(int64_t *)(param_2 + 0x60);
   lVar1 = lVar3 + 0x1d8;
   *(void **)((int64_t)*(int *)(*(int64_t *)(lVar3 + 0x128) + 4) + -0xb0 + lVar1) =
-       &unknown_var_7544_ptr;
+       &processed_var_7544_ptr;
   iVar2 = *(int *)(*(int64_t *)(lVar3 + 0x128) + 4);
   *(int *)((int64_t)iVar2 + -0xb4 + lVar1) = iVar2 + -0xb0;
   UtilitiesSystem_CacheValidator(lVar3 + 0x138);
@@ -47949,7 +47949,7 @@ void Unwind_180910580(uint64_t param_1,int64_t param_2)
   
   lVar3 = *(int64_t *)(param_2 + 0x68);
   puVar4 = (uint64_t *)(lVar3 + 0x10);
-  *puVar4 = &unknown_var_2440_ptr;
+  *puVar4 = &rendering_buffer_2440_ptr;
   if ((*(int64_t *)(lVar3 + 0x90) != 0) && (**(int64_t **)(lVar3 + 0x28) == lVar3 + 0x80)) {
     uVar1 = *(uint64_t *)(lVar3 + 0xa0);
     lVar2 = *(int64_t *)(lVar3 + 0x98);
@@ -47971,7 +47971,7 @@ void Unwind_180910580(uint64_t param_1,int64_t param_2)
 void Unwind_180910590(uint64_t param_1,int64_t param_2)
 
 {
-  **(uint64_t **)(param_2 + 0x40) = &unknown_var_7760_ptr;
+  **(uint64_t **)(param_2 + 0x40) = &processed_var_7760_ptr;
   return;
 }
 
@@ -47987,7 +47987,7 @@ void Unwind_1809105a0(uint64_t param_1,int64_t param_2)
   lVar3 = *(int64_t *)(param_2 + 0x40);
   lVar1 = lVar3 + 0x1d8;
   *(void **)((int64_t)*(int *)(*(int64_t *)(lVar3 + 0x128) + 4) + -0xb0 + lVar1) =
-       &unknown_var_7544_ptr;
+       &processed_var_7544_ptr;
   iVar2 = *(int *)(*(int64_t *)(lVar3 + 0x128) + 4);
   *(int *)((int64_t)iVar2 + -0xb4 + lVar1) = iVar2 + -0xb0;
   UtilitiesSystem_CacheValidator(lVar3 + 0x138);
@@ -48158,7 +48158,7 @@ void Unwind_1809106a0(uint64_t param_1,int64_t param_2)
   
   lVar3 = *(int64_t *)(param_2 + 0x40);
   puVar4 = (uint64_t *)(lVar3 + -0xa0);
-  *puVar4 = &unknown_var_2440_ptr;
+  *puVar4 = &rendering_buffer_2440_ptr;
   if ((*(int64_t *)(lVar3 + -0x20) != 0) && (**(int64_t **)(lVar3 + -0x88) == lVar3 + -0x30)) {
     uVar1 = *(uint64_t *)(lVar3 + -0x10);
     lVar2 = *(int64_t *)(lVar3 + -0x18);
@@ -55750,7 +55750,7 @@ void Unwind_180912970(uint64_t param_1,int64_t param_2)
 }
 
 
-int32_t unknown_var_2048;
+int32_t rendering_buffer_2048;
 
 
 

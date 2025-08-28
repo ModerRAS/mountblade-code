@@ -393,14 +393,14 @@ void generate_system_info_report(uint64_t report_param)
     stack_ulong12 = 0xfffffffffffffffe;
     stack_ulong14 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer1;
     stack_uint1 = 0;
-    FUN_180627e10(report_param, &stack_ptr19, &unknown_var_816_ptr);
+    FUN_180627e10(report_param, &stack_ptr19, &processed_var_816_ptr);
     stack_ulong7 = 0;
     stack_long2 = 0;
     temp_ptr4 = &system_buffer_ptr;
     if (stack_ptr17 != (void *)0x0) {
         temp_ptr4 = stack_ptr17;
     }
-    temp_uint = FUN_18062dee0(&stack_ulong7, temp_ptr4, &unknown_var_572_ptr);
+    temp_uint = FUN_18062dee0(&stack_ulong7, temp_ptr4, &processed_var_572_ptr);
     stack_ptr2 = &system_data_buffer_ptr;
     stack_ulong1 = 0;
     stack_long1 = 0;
@@ -408,7 +408,7 @@ void generate_system_info_report(uint64_t report_param)
     FUN_180052020(temp_uint, &stack_ptr15);
     if ((system_cache_buffer == (int64_t *)0x0) ||
        (temp_char = (**(code **)(*system_cache_buffer + 0x28))(), temp_char == '\0')) {
-        temp_ptr4 = &unknown_var_832_ptr;
+        temp_ptr4 = &processed_var_832_ptr;
     }
     else {
         temp_long1 = (**(code **)(core_system_data_pointer + 0x30))();
@@ -420,7 +420,7 @@ void generate_system_info_report(uint64_t report_param)
     CoreMemoryPoolValidator(&stack_ptr18, temp_ptr4);
     if ((system_cache_buffer == (int64_t *)0x0) ||
        (temp_char = (**(code **)(*system_cache_buffer + 0x28))(), temp_char == '\0')) {
-        temp_ptr4 = &unknown_var_856_ptr;
+        temp_ptr4 = &processed_var_856_ptr;
     }
     else {
         temp_long1 = (**(code **)(core_system_data_pointer + 0x20))();
@@ -430,33 +430,33 @@ void generate_system_info_report(uint64_t report_param)
         }
     }
     CoreMemoryPoolValidator(&stack_ptr16, temp_ptr4);
-    stack_ptr28 = &unknown_var_672_ptr;
+    stack_ptr28 = &processed_var_672_ptr;
     stack_ptr29 = stack_buffer4;
     stack_uint16 = 0;
     stack_buffer4[0] = 0;
     stack_uint1 = 4;
-    FUN_18004b860(&stack_ptr28, &unknown_var_4576_ptr, 0x130a7);
+    FUN_18004b860(&stack_ptr28, &processed_var_4576_ptr, 0x130a7);
     stack_ptr1 = &system_buffer_ptr;
     if (stack_ptr29 != (void *)0x0) {
         stack_ptr1 = stack_ptr29;
     }
-    System_DataHandler(&stack_ptr2, &unknown_var_880_ptr, &unknown_var_48_ptr, &unknown_var_160_ptr);
+    System_DataHandler(&stack_ptr2, &processed_var_880_ptr, &processed_var_48_ptr, &ui_system_data_160_ptr);
     stack_uint1 = 0;
     stack_ptr28 = &system_state_ptr;
-    stack_ptr1 = &unknown_var_184_ptr;
-    System_DataHandler(&stack_ptr2, &unknown_var_880_ptr, &unknown_var_48_ptr, &unknown_var_192_ptr);
+    stack_ptr1 = &ui_system_data_184_ptr;
+    System_DataHandler(&stack_ptr2, &processed_var_880_ptr, &processed_var_48_ptr, &ui_system_data_192_ptr);
     stack_ptr1 = &system_memory_ba28;
-    System_DataHandler(&stack_ptr2, &unknown_var_880_ptr, &unknown_var_48_ptr, &unknown_var_96_ptr);
+    System_DataHandler(&stack_ptr2, &processed_var_880_ptr, &processed_var_48_ptr, &processed_var_96_ptr);
     stack_ptr1 = &system_buffer_ptr;
     if (stack_ptr18 != (void *)0x0) {
         stack_ptr1 = stack_ptr18;
     }
-    System_DataHandler(&stack_ptr2, &unknown_var_880_ptr, &unknown_var_48_ptr, &unknown_var_144_ptr);
+    System_DataHandler(&stack_ptr2, &processed_var_880_ptr, &processed_var_48_ptr, &ui_system_data_144_ptr);
     stack_ptr1 = &system_buffer_ptr;
     if (stack_ptr16 != (void *)0x0) {
         stack_ptr1 = stack_ptr16;
     }
-    System_DataHandler(&stack_ptr2, &unknown_var_880_ptr, &unknown_var_48_ptr, &unknown_var_128_ptr);
+    System_DataHandler(&stack_ptr2, &processed_var_880_ptr, &processed_var_48_ptr, &ui_system_data_128_ptr);
     stack_ptr16 = &system_data_buffer_ptr;
     if (stack_ptr16 != (void *)0x0) {
         // 警告：子函数不返回
@@ -486,7 +486,7 @@ void generate_system_info_report(uint64_t report_param)
     stack_ptr4 = (void *)0x0;
     stack_uint2 = 0;
     temp_ulong1 = FUN_180623ce0();
-    System_DataHandler(&stack_ptr5, &unknown_var_808_ptr, temp_ulong1 / 0x100000 & 0xffffffff);
+    System_DataHandler(&stack_ptr5, &processed_var_808_ptr, temp_ulong1 / 0x100000 & 0xffffffff);
     stack_buffer5[0] = 0x48;
     temp_ulong2 = GetCurrentProcess();
     temp_int = K32GetProcessMemoryInfo(temp_ulong2, stack_buffer5, 0x48);
@@ -494,19 +494,19 @@ void generate_system_info_report(uint64_t report_param)
     if (temp_int != 0) {
         temp_ulong1 = stack_ulong13;
     }
-    System_DataHandler(&stack_ptr3, &unknown_var_808_ptr, temp_ulong1 / 0x100000 & 0xffffffff);
+    System_DataHandler(&stack_ptr3, &processed_var_808_ptr, temp_ulong1 / 0x100000 & 0xffffffff);
     stack_ptr1 = &system_buffer_ptr;
-    System_DataHandler(&stack_ptr2, &unknown_var_880_ptr, &unknown_var_48_ptr, &unknown_var_896_ptr);
+    System_DataHandler(&stack_ptr2, &processed_var_880_ptr, &processed_var_48_ptr, &processed_var_896_ptr);
     stack_ptr1 = &system_buffer_ptr;
     if (stack_ptr6 != (void *)0x0) {
         stack_ptr1 = stack_ptr6;
     }
-    System_DataHandler(&stack_ptr2, &unknown_var_880_ptr, &unknown_var_48_ptr, &unknown_var_920_ptr);
+    System_DataHandler(&stack_ptr2, &processed_var_880_ptr, &processed_var_48_ptr, &processed_var_920_ptr);
     stack_ptr1 = &system_buffer_ptr;
     if (stack_ptr4 != (void *)0x0) {
         stack_ptr1 = stack_ptr4;
     }
-    System_DataHandler(&stack_ptr2, &unknown_var_880_ptr, &unknown_var_48_ptr, &unknown_var_936_ptr);
+    System_DataHandler(&stack_ptr2, &processed_var_880_ptr, &processed_var_48_ptr, &processed_var_936_ptr);
     temp_long1 = system_main_module_state;
     stack_ptr3 = &system_data_buffer_ptr;
     if (stack_ptr4 != (void *)0x0) {
@@ -534,12 +534,12 @@ void generate_system_info_report(uint64_t report_param)
     }
     stack_ptr1 = (void *)
                 ((double)(temp_long2 - core_system_data_pointer) * core_system_data_pointer - *(double *)(temp_long1 + 0x210));
-    System_DataHandler(&stack_ptr2, &unknown_var_968_ptr, &unknown_var_48_ptr, &unknown_var_952_ptr);
+    System_DataHandler(&stack_ptr2, &processed_var_968_ptr, &processed_var_48_ptr, &processed_var_952_ptr);
     stack_ptr1 = &system_buffer_ptr;
     if (stack_ptr15 != (void *)0x0) {
         stack_ptr1 = stack_ptr15;
     }
-    System_DataHandler(&stack_ptr2, &unknown_var_880_ptr, &unknown_var_48_ptr, &unknown_var_112_ptr);
+    System_DataHandler(&stack_ptr2, &processed_var_880_ptr, &processed_var_48_ptr, &ui_system_data_112_ptr);
     stack_ptr12 = (uint64_t *)0x0;
     stack_ptr13 = (uint64_t *)0x0;
     stack_ulong9 = 0;
@@ -552,7 +552,7 @@ void generate_system_info_report(uint64_t report_param)
     stack_ptr27 = stack_buffer3;
     stack_buffer3[0] = 0;
     stack_uint15 = 9;
-    strcpy_s(stack_buffer3, 0x10, &unknown_var_984_ptr);
+    strcpy_s(stack_buffer3, 0x10, &processed_var_984_ptr);
     process_and_add_path_to_container(&stack_ptr20, &stack_ptr15, &stack_ptr26);
     temp_ptr7 = stack_ptr21;
     temp_ptr8 = stack_ptr20;
@@ -579,7 +579,7 @@ void generate_system_info_report(uint64_t report_param)
     if (temp_ulong1 != 0) {
         if ((system_cache_buffer == (int64_t *)0x0) ||
            (temp_char = (**(code **)(*system_cache_buffer + 0x28))(), temp_char == '\0')) {
-            temp_ptr4 = &unknown_var_1000_ptr;
+            temp_ptr4 = &ui_system_data_1000_ptr;
         }
         else {
             temp_long1 = (**(code **)(core_system_data_pointer + 0x28))();
@@ -662,7 +662,7 @@ STRING_MATCH_FOUND:
                                     if ((void *)temp_ptr5[1] != (void *)0x0) {
                                         temp_ptr4 = (void *)temp_ptr5[1];
                                     }
-                                    System_DataHandler(&stack_ptr2, &unknown_var_880_ptr, &unknown_var_1016_ptr, temp_ptr4);
+                                    System_DataHandler(&stack_ptr2, &processed_var_880_ptr, &ui_system_data_1016_ptr, temp_ptr4);
                                     break;
                                 }
                             }
@@ -745,7 +745,7 @@ STRING_MATCH_FOUND:
         if (stack_ptr19 != (void *)0x0) {
             temp_ptr4 = stack_ptr19;
         }
-        System_DataHandler(&stack_ptr2, &unknown_var_552_ptr, temp_ptr4);
+        System_DataHandler(&stack_ptr2, &processed_var_552_ptr, temp_ptr4);
         stack_ptr14 = &system_data_buffer_ptr;
         if (stack_ptr19 != (void *)0x0) {
             // 警告：子函数不返回

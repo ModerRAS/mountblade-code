@@ -148,27 +148,27 @@ static void* system_handler1_ptr = NULL;
 static void* system_handler2_ptr = NULL;
 
 /** 未知变量指针（系统内部使用） */
-static void* unknown_var_3480_ptr = NULL;
+static void* memory_allocator_3480_ptr = NULL;
 static void* system_state_ptr = NULL;
-static void* unknown_var_6544_ptr = NULL;
-static void* unknown_var_2968_ptr = NULL;
-static void* unknown_var_3064_ptr = NULL;
-static void* unknown_var_3856_ptr = NULL;
-static void* unknown_var_4912_ptr = NULL;
-static void* unknown_var_4872_ptr = NULL;
-static void* unknown_var_8736_ptr = NULL;
-static void* unknown_var_4744_ptr = NULL;
-static void* unknown_var_4848_ptr = NULL;
-static void* unknown_var_4760_ptr = NULL;
-static void* unknown_var_4680_ptr = NULL;
-static void* unknown_var_4552_ptr = NULL;
-static void* unknown_var_4128_ptr = NULL;
-static void* unknown_var_4064_ptr = NULL;
-static void* unknown_var_4096_ptr = NULL;
-static void* unknown_var_4032_ptr = NULL;
-static void* unknown_var_3600_ptr = NULL;
-static void* unknown_var_3632_ptr = NULL;
-static void* unknown_var_8336_ptr = NULL;
+static void* processed_var_6544_ptr = NULL;
+static void* rendering_buffer_2968_ptr = NULL;
+static void* memory_allocator_3064_ptr = NULL;
+static void* memory_allocator_3856_ptr = NULL;
+static void* processed_var_4912_ptr = NULL;
+static void* processed_var_4872_ptr = NULL;
+static void* processed_var_8736_ptr = NULL;
+static void* processed_var_4744_ptr = NULL;
+static void* processed_var_4848_ptr = NULL;
+static void* processed_var_4760_ptr = NULL;
+static void* processed_var_4680_ptr = NULL;
+static void* processed_var_4552_ptr = NULL;
+static void* processed_var_4128_ptr = NULL;
+static void* processed_var_4064_ptr = NULL;
+static void* processed_var_4096_ptr = NULL;
+static void* processed_var_4032_ptr = NULL;
+static void* memory_allocator_3600_ptr = NULL;
+static void* memory_allocator_3632_ptr = NULL;
+static void* processed_var_8336_ptr = NULL;
 
 /** 系统数据FC60指针 */
 static void* system_data_fc60 = NULL;
@@ -478,7 +478,7 @@ void SystemConfigInitializer(uint64_t param_1, int64_t *param_2, int param_3)
     
     /* 计算配置大小并设置参数 */
     param_3 = param_3 * SYSTEM_DATA_SIZE_MULTIPLIER;
-    resource_ptr = &unknown_var_3480_ptr;
+    resource_ptr = &memory_allocator_3480_ptr;
     data_buffer = stack_buffer;
     stack_buffer[0] = 0;
     buffer_size = 0x1c;
@@ -539,11 +539,11 @@ uint64_t *SystemResourceAllocator(int64_t param_1, uint64_t *param_2)
         *resource_ptr = (int64_t)&system_handler1_ptr;
         *resource_ptr = (int64_t)&system_handler2_ptr;
         *(int32_t *)(resource_ptr + 1) = 0;
-        *resource_ptr = (int64_t)&unknown_var_6544_ptr;
+        *resource_ptr = (int64_t)&processed_var_6544_ptr;
         resource_ptr[2] = 0;
         resource_ptr[3] = 0;
         *(int8_t *)(resource_ptr + 4) = 0;
-        *resource_ptr = (int64_t)&unknown_var_2968_ptr;
+        *resource_ptr = (int64_t)&rendering_buffer_2968_ptr;
         (**(code **)(*resource_ptr + 0x28))(resource_ptr);
         *param_2 = resource_ptr;
     } else {
@@ -557,11 +557,11 @@ uint64_t *SystemResourceAllocator(int64_t param_1, uint64_t *param_2)
         *resource_ptr = (int64_t)&system_handler1_ptr;
         *resource_ptr = (int64_t)&system_handler2_ptr;
         *(int32_t *)(resource_ptr + 1) = 0;
-        *resource_ptr = (int64_t)&unknown_var_6544_ptr;
+        *resource_ptr = (int64_t)&processed_var_6544_ptr;
         resource_ptr[2] = 0;
         resource_ptr[3] = 0;
         *(int8_t *)(resource_ptr + 4) = 0;
-        *resource_ptr = (int64_t)&unknown_var_2968_ptr;
+        *resource_ptr = (int64_t)&rendering_buffer_2968_ptr;
         (**(code **)(*resource_ptr + 0x28))(resource_ptr);
         *param_2 = resource_ptr;
     }
@@ -811,7 +811,7 @@ uint64_t *SystemResourceManager(uint64_t *param_1, uint64_t *param_2, int64_t *p
     /* 检查资源类型并分配相应资源 */
     if (resource_data - 2U < 2) {
         resource_ptr = (int64_t *)SystemMemoryAllocator(system_memory_pool_ptr, 0x10, 8, 3);
-        *resource_ptr = (int64_t)&unknown_var_3856_ptr;
+        *resource_ptr = (int64_t)&memory_allocator_3856_ptr;
         *(bool *)(resource_ptr + 1) = resource_data == 3;
     }
     
@@ -830,7 +830,7 @@ uint64_t *SystemResourceManager(uint64_t *param_1, uint64_t *param_2, int64_t *p
     
     /* 处理资源分配 */
     if (resource_ptr == (int64_t *)0x0) {
-        (**(code **)(param_2[4] + 0x10))(param_2 + 4, &unknown_var_3064_ptr);
+        (**(code **)(param_2[4] + 0x10))(param_2 + 4, &memory_allocator_3064_ptr);
         *(int8_t *)(param_2 + 3) = 1;
         param_2[2] = 0;
         param_2[1] = 0;
@@ -876,8 +876,8 @@ uint64_t *SystemResourceManager(uint64_t *param_1, uint64_t *param_2, int64_t *p
  */
 void SystemCleaner(uint64_t *param_1)
 {
-    *param_1 = &unknown_var_4912_ptr;
-    *param_1 = &unknown_var_4872_ptr;
+    *param_1 = &processed_var_4912_ptr;
+    *param_1 = &processed_var_4872_ptr;
 }
 
 /**
@@ -893,8 +893,8 @@ void SystemCleaner(uint64_t *param_1)
  */
 uint64_t *SystemMemoryReleaser(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    *param_1 = &unknown_var_4912_ptr;
-    *param_1 = &unknown_var_4872_ptr;
+    *param_1 = &processed_var_4912_ptr;
+    *param_1 = &processed_var_4872_ptr;
     if ((param_2 & 1) != 0) {
         free(param_1, 8, param_3, param_4, 0xfffffffffffffffe);
     }
@@ -1153,7 +1153,7 @@ int8_t SystemStateChecker(void)
  */
 uint64_t *SystemResourceReleaser(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    *param_1 = &unknown_var_4848_ptr;
+    *param_1 = &processed_var_4848_ptr;
     if ((param_2 & 1) != 0) {
         free(param_1, 0x28, param_3, param_4, 0xfffffffffffffffe);
     }
@@ -1169,7 +1169,7 @@ uint64_t *SystemResourceReleaser(uint64_t *param_1, uint64_t param_2, uint64_t p
  */
 void SystemInitializer(uint64_t *param_1)
 {
-    *param_1 = &unknown_var_4848_ptr;
+    *param_1 = &processed_var_4848_ptr;
 }
 
 /**
@@ -1189,8 +1189,8 @@ uint64_t *SystemConfigManager(uint64_t *param_1, uint64_t param_2, uint64_t para
     uint64_t *config_ptr;
     
     /* 设置配置参数 */
-    *param_1 = &unknown_var_8736_ptr;
-    *param_1 = &unknown_var_4744_ptr;
+    *param_1 = &processed_var_8736_ptr;
+    *param_1 = &processed_var_4744_ptr;
     config_ptr = param_1 + 1;
     *config_ptr = 0;
     param_1[2] = 0;
@@ -1224,7 +1224,7 @@ uint64_t *SystemDestructor(uint64_t *param_1, uint param_2, uint64_t param_3, ui
     
     /* 初始化析构参数 */
     resource_handle = 0xfffffffffffffffe;
-    *param_1 = &unknown_var_4744_ptr;
+    *param_1 = &processed_var_4744_ptr;
     resource_index = 0;
     resource_ptr = param_1 + 1;
     resource_data = *resource_ptr;
@@ -1246,7 +1246,7 @@ uint64_t *SystemDestructor(uint64_t *param_1, uint param_2, uint64_t param_3, ui
     
     /* 检查是否需要完全释放 */
     if (*resource_ptr == 0) {
-        *param_1 = &unknown_var_8736_ptr;
+        *param_1 = &processed_var_8736_ptr;
         if ((param_2 & 1) != 0) {
             free(param_1, 0x30, resource_data, param_4, resource_handle);
         }
@@ -1364,7 +1364,7 @@ void SystemResourceCleaner(int64_t param_1)
  */
 uint64_t *SystemMemoryHandler(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    *param_1 = &unknown_var_4760_ptr;
+    *param_1 = &processed_var_4760_ptr;
     if ((param_2 & 1) != 0) {
         free(param_1, 0x10, param_3, param_4, 0xfffffffffffffffe);
     }
@@ -1380,7 +1380,7 @@ uint64_t *SystemMemoryHandler(uint64_t *param_1, uint64_t param_2, uint64_t para
  */
 void SystemMemoryInitializer(uint64_t *param_1)
 {
-    *param_1 = &unknown_var_4760_ptr;
+    *param_1 = &processed_var_4760_ptr;
 }
 
 /**
@@ -1396,9 +1396,9 @@ void SystemMemoryInitializer(uint64_t *param_1)
  */
 uint64_t *SystemObjectManager(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    *param_1 = &unknown_var_4680_ptr;
+    *param_1 = &processed_var_4680_ptr;
     param_1[2] = 0;
-    *param_1 = &unknown_var_4552_ptr;
+    *param_1 = &processed_var_4552_ptr;
     if ((param_2 & 1) != 0) {
         free(param_1, 0x30, param_3, param_4, 0xfffffffffffffffe);
     }
@@ -1474,7 +1474,7 @@ uint64_t *SystemTerminator(uint64_t *param_1, uint64_t param_2, uint64_t param_3
     
     /* 初始化终止参数 */
     system_flags = 0xfffffffffffffffe;
-    *param_1 = &unknown_var_4128_ptr;
+    *param_1 = &processed_var_4128_ptr;
     
     /* 执行系统清理 */
     SystemShutdownInitiator();
@@ -1487,9 +1487,9 @@ uint64_t *SystemTerminator(uint64_t *param_1, uint64_t param_2, uint64_t param_3
     
     /* 执行清理操作 */
     SystemCleanupExecutor(param_1 + 0x26);
-    param_1[0x1d] = &unknown_var_4912_ptr;
-    param_1[0x1d] = &unknown_var_4872_ptr;
-    param_1[0x1b] = &unknown_var_4760_ptr;
+    param_1[0x1d] = &processed_var_4912_ptr;
+    param_1[0x1d] = &processed_var_4872_ptr;
+    param_1[0x1b] = &processed_var_4760_ptr;
     SystemResourceFinalizer(param_1);
     
     /* 释放资源 */
@@ -1599,11 +1599,11 @@ uint64_t *SystemStateResetter(uint64_t *param_1, uint64_t param_2, uint64_t para
     
     /* 初始化重置参数 */
     system_flags = 0xfffffffffffffffe;
-    *param_1 = &unknown_var_4064_ptr;
+    *param_1 = &processed_var_4064_ptr;
     
     /* 执行状态重置 */
     (*(code *)**(uint64_t **)param_1[1])();
-    *param_1 = &unknown_var_4096_ptr;
+    *param_1 = &processed_var_4096_ptr;
     
     /* 释放资源 */
     if ((param_2 & 1) != 0) {
@@ -1622,8 +1622,8 @@ uint64_t *SystemStateResetter(uint64_t *param_1, uint64_t param_2, uint64_t para
  */
 void SystemConfigResetter(uint64_t *param_1)
 {
-    *param_1 = &unknown_var_3600_ptr;
-    *param_1 = &unknown_var_4032_ptr;
+    *param_1 = &memory_allocator_3600_ptr;
+    *param_1 = &processed_var_4032_ptr;
 }
 
 /**
@@ -1639,8 +1639,8 @@ void SystemConfigResetter(uint64_t *param_1)
  */
 uint64_t *SystemMemoryResetter(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    *param_1 = &unknown_var_3600_ptr;
-    *param_1 = &unknown_var_4032_ptr;
+    *param_1 = &memory_allocator_3600_ptr;
+    *param_1 = &processed_var_4032_ptr;
     if ((param_2 & 1) != 0) {
         free(param_1, 0x18, param_3, param_4, 0xfffffffffffffffe);
     }
@@ -1676,11 +1676,11 @@ uint64_t *SystemDataConstructor(uint64_t *param_1, uint64_t param_2)
     *param_1 = &system_handler1_ptr;
     *param_1 = &system_handler2_ptr;
     *(int32_t *)(param_1 + 1) = 0;
-    *param_1 = &unknown_var_8336_ptr;
+    *param_1 = &processed_var_8336_ptr;
     param_1[2] = 0;
     *(int32_t *)(param_1 + 3) = 0;
     param_1[4] = 0;
-    *param_1 = &unknown_var_3632_ptr;
+    *param_1 = &memory_allocator_3632_ptr;
     param_1[5] = param_2;
     
     /* 线程安全的计数器更新 */
@@ -1801,27 +1801,27 @@ void SystemModule_Initialize(void)
     system_handler2_ptr = NULL;
     
     /* 初始化所有未知变量指针 */
-    unknown_var_3480_ptr = NULL;
+    memory_allocator_3480_ptr = NULL;
     system_state_ptr = NULL;
-    unknown_var_6544_ptr = NULL;
-    unknown_var_2968_ptr = NULL;
-    unknown_var_3064_ptr = NULL;
-    unknown_var_3856_ptr = NULL;
-    unknown_var_4912_ptr = NULL;
-    unknown_var_4872_ptr = NULL;
-    unknown_var_8736_ptr = NULL;
-    unknown_var_4744_ptr = NULL;
-    unknown_var_4848_ptr = NULL;
-    unknown_var_4760_ptr = NULL;
-    unknown_var_4680_ptr = NULL;
-    unknown_var_4552_ptr = NULL;
-    unknown_var_4128_ptr = NULL;
-    unknown_var_4064_ptr = NULL;
-    unknown_var_4096_ptr = NULL;
-    unknown_var_4032_ptr = NULL;
-    unknown_var_3600_ptr = NULL;
-    unknown_var_3632_ptr = NULL;
-    unknown_var_8336_ptr = NULL;
+    processed_var_6544_ptr = NULL;
+    rendering_buffer_2968_ptr = NULL;
+    memory_allocator_3064_ptr = NULL;
+    memory_allocator_3856_ptr = NULL;
+    processed_var_4912_ptr = NULL;
+    processed_var_4872_ptr = NULL;
+    processed_var_8736_ptr = NULL;
+    processed_var_4744_ptr = NULL;
+    processed_var_4848_ptr = NULL;
+    processed_var_4760_ptr = NULL;
+    processed_var_4680_ptr = NULL;
+    processed_var_4552_ptr = NULL;
+    processed_var_4128_ptr = NULL;
+    processed_var_4064_ptr = NULL;
+    processed_var_4096_ptr = NULL;
+    processed_var_4032_ptr = NULL;
+    memory_allocator_3600_ptr = NULL;
+    memory_allocator_3632_ptr = NULL;
+    processed_var_8336_ptr = NULL;
     
     /* 初始化系统数据 */
     system_data_fc60 = NULL;
@@ -1853,27 +1853,27 @@ void SystemModule_Cleanup(void)
     system_handler2_ptr = NULL;
     
     /* 清理所有未知变量指针 */
-    unknown_var_3480_ptr = NULL;
+    memory_allocator_3480_ptr = NULL;
     system_state_ptr = NULL;
-    unknown_var_6544_ptr = NULL;
-    unknown_var_2968_ptr = NULL;
-    unknown_var_3064_ptr = NULL;
-    unknown_var_3856_ptr = NULL;
-    unknown_var_4912_ptr = NULL;
-    unknown_var_4872_ptr = NULL;
-    unknown_var_8736_ptr = NULL;
-    unknown_var_4744_ptr = NULL;
-    unknown_var_4848_ptr = NULL;
-    unknown_var_4760_ptr = NULL;
-    unknown_var_4680_ptr = NULL;
-    unknown_var_4552_ptr = NULL;
-    unknown_var_4128_ptr = NULL;
-    unknown_var_4064_ptr = NULL;
-    unknown_var_4096_ptr = NULL;
-    unknown_var_4032_ptr = NULL;
-    unknown_var_3600_ptr = NULL;
-    unknown_var_3632_ptr = NULL;
-    unknown_var_8336_ptr = NULL;
+    processed_var_6544_ptr = NULL;
+    rendering_buffer_2968_ptr = NULL;
+    memory_allocator_3064_ptr = NULL;
+    memory_allocator_3856_ptr = NULL;
+    processed_var_4912_ptr = NULL;
+    processed_var_4872_ptr = NULL;
+    processed_var_8736_ptr = NULL;
+    processed_var_4744_ptr = NULL;
+    processed_var_4848_ptr = NULL;
+    processed_var_4760_ptr = NULL;
+    processed_var_4680_ptr = NULL;
+    processed_var_4552_ptr = NULL;
+    processed_var_4128_ptr = NULL;
+    processed_var_4064_ptr = NULL;
+    processed_var_4096_ptr = NULL;
+    processed_var_4032_ptr = NULL;
+    memory_allocator_3600_ptr = NULL;
+    memory_allocator_3632_ptr = NULL;
+    processed_var_8336_ptr = NULL;
     
     /* 清理系统数据 */
     system_data_fc60 = NULL;

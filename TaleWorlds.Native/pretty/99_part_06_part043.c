@@ -98,7 +98,7 @@ FUN_1803d06e0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4
   
   uVar4 = 0xfffffffffffffffe;
   puVar3 = (int32_t *)FUN_1800daa50();
-  FUN_180094b30(puVar3,&unknown_var_5016_ptr);
+  FUN_180094b30(puVar3,&processed_var_5016_ptr);
   *puVar3 = 0x20;
   iVar1 = *(int *)(param_1 + 0x1c);
   puVar3[0x4706] = 0;

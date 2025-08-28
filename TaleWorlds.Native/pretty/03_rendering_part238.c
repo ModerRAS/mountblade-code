@@ -662,7 +662,7 @@ void FUN_1804007e0(uint64_t *param_1,uint64_t param_2,int64_t param_3,int32_t pa
   }
   ppuStack_1b0 = &puStack_a8;
   iVar7 = 0;
-  puStack_a8 = &unknown_var_3480_ptr;
+  puStack_a8 = &memory_allocator_3480_ptr;
   puStack_a0 = auStack_90;
   uStack_98 = 0;
   auStack_90[0] = 0;
@@ -678,7 +678,7 @@ void FUN_1804007e0(uint64_t *param_1,uint64_t param_2,int64_t param_3,int32_t pa
   FUN_1802c22a0(auStack_1b7,puVar6);
   if (((*(int *)(param_3 + 0x1d90) == 0) && (*(int *)(param_3 + 0x2dc0) == 0)) &&
      (*(int *)(param_3 + 0x2358) == 0)) {
-    if ((void *)*param_1 != &unknown_var_7704_ptr) {
+    if ((void *)*param_1 != &processed_var_7704_ptr) {
       (**(code **)((void *)*param_1 + 0x28))(param_1);
     }
     render_system_data_memory = render_system_data_memory + -1;
@@ -758,7 +758,7 @@ uint64_t * FUN_180400e70(uint64_t *param_1,uint64_t param_2)
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_6336_ptr;
+  *param_1 = &processed_var_6336_ptr;
   if ((int64_t *)param_1[0x8d] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x8d] + 0x38))();
   }
@@ -831,11 +831,11 @@ void FUN_180400f00(int64_t *param_1,int64_t param_2)
   uStack_220 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_2d8;
   FUN_1801f9270();
-  puStack_1d8 = &unknown_var_3480_ptr;
+  puStack_1d8 = &memory_allocator_3480_ptr;
   puStack_1d0 = auStack_1c0;
   auStack_1c0[0] = auStack_1c0[0] & 0xffffff00;
   uStack_1c8 = 9;
-  uVar4 = strcpy_s(auStack_1c0,0x40,&unknown_var_8600_ptr);
+  uVar4 = strcpy_s(auStack_1c0,0x40,&processed_var_8600_ptr);
   uStack_280 = 1;
   uStack_288 = 1;
   uStack_290 = 0;
@@ -867,11 +867,11 @@ void FUN_180400f00(int64_t *param_1,int64_t param_2)
   uStack_1c8 = (int32_t)param_1[0xe];
   puStack_1d8 = (void *)0x100000001;
   uStack_1a8 = *(int32_t *)(param_2 + 0x1bd4);
-  puStack_218 = &unknown_var_672_ptr;
+  puStack_218 = &processed_var_672_ptr;
   puStack_210 = auStack_200;
   auStack_200[0] = 0;
   uStack_208 = 0x13;
-  strcpy_s(auStack_200,0x20,&unknown_var_6304_ptr);
+  strcpy_s(auStack_200,0x20,&processed_var_6304_ptr);
   SystemCore_EncryptionEngine0(&puStack_248,&puStack_218);
   puStack_218 = &system_state_ptr;
   if (0 < *(int *)(param_2 + 0x3530)) {
@@ -880,11 +880,11 @@ void FUN_180400f00(int64_t *param_1,int64_t param_2)
     memcpy(puStack_240 + uStack_238,*(uint64_t *)(param_2 + 0x3528),
            (int64_t)(*(int *)(param_2 + 0x3530) + 1));
   }
-  puStack_218 = &unknown_var_672_ptr;
+  puStack_218 = &processed_var_672_ptr;
   puStack_210 = auStack_200;
   auStack_200[0] = 0;
   uStack_208 = 0x13;
-  strcpy_s(auStack_200,0x20,&unknown_var_6248_ptr);
+  strcpy_s(auStack_200,0x20,&processed_var_6248_ptr);
   SystemCore_EncryptionEngine0(&puStack_268,&puStack_218);
   puStack_218 = &system_state_ptr;
   if (0 < *(int *)(param_2 + 0x3530)) {
@@ -893,7 +893,7 @@ void FUN_180400f00(int64_t *param_1,int64_t param_2)
     memcpy(puStack_260 + uStack_258,*(uint64_t *)(param_2 + 0x3528),
            (int64_t)(*(int *)(param_2 + 0x3530) + 1));
   }
-  puStack_178 = &unknown_var_3432_ptr;
+  puStack_178 = &memory_allocator_3432_ptr;
   puStack_170 = auStack_160;
   auStack_160[0] = 0;
   uStack_168 = uStack_238;
@@ -914,7 +914,7 @@ void FUN_180400f00(int64_t *param_1,int64_t param_2)
     (**(code **)(*plStack_270 + 0x38))();
   }
   puStack_178 = &system_state_ptr;
-  puStack_d8 = &unknown_var_3432_ptr;
+  puStack_d8 = &memory_allocator_3432_ptr;
   puStack_d0 = auStack_c0;
   auStack_c0[0] = 0;
   uStack_c8 = uStack_258;

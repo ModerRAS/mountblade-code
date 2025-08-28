@@ -174,7 +174,7 @@ LAB_180878d26:
            ((0x6e < uVar18 || (iVar8 = FUN_1808deff0(lVar11), iVar8 == 0)))) &&
           (((0x71 < uVar18 || (iVar8 = FUN_1808df570(lVar11), iVar8 == 0)) &&
            ((0x73 < uVar18 || (iVar8 = FUN_180868f00(FUN_180876d90,lVar11), iVar8 == 0)))))) &&
-         ((0x74 < uVar18 || (iVar8 = FUN_180868f00(&unknown_var_6608_ptr,lVar11), iVar8 == 0)))) {
+         ((0x74 < uVar18 || (iVar8 = FUN_180868f00(&processed_var_6608_ptr,lVar11), iVar8 == 0)))) {
         if (uVar18 < 99) {
           iVar8 = FUN_180868d20(FUN_1808794d0,lVar11);
           if ((((iVar8 != 0) || (iVar8 = FUN_180869080(FUN_1808794d0,lVar11), iVar8 != 0)) ||
@@ -216,7 +216,7 @@ LAB_180878d26:
                 *(int64_t *)(unaff_RBP + -0x49) = lVar12;
                 if (lVar12 == 0) {
                     // WARNING: Subroutine does not return
-                  SystemDataValidator(unaff_RBP + -0x39,0x27,&unknown_var_8960_ptr,
+                  SystemDataValidator(unaff_RBP + -0x39,0x27,&processed_var_8960_ptr,
                                 *(int32_t *)(unaff_RBP + -0x79),
                                 *(int16_t *)(unaff_RBP + -0x75));
                 }
@@ -298,7 +298,7 @@ void FUN_180879270(int64_t param_1,int64_t *param_2)
       uStack_b0 = (uint)*(ushort *)((int64_t)puVar3 + 6);
       uStack_b8 = (uint)*(ushort *)(puVar3 + 1);
                     // WARNING: Subroutine does not return
-      SystemDataValidator(auStack_68,0x27,&unknown_var_8960_ptr,*puVar3);
+      SystemDataValidator(auStack_68,0x27,&processed_var_8960_ptr,*puVar3);
     }
     if (*(int *)(lVar2 + 0xb0) == -1) break;
     puVar3 = puVar3 + 5;
@@ -788,7 +788,7 @@ int FUN_180879880(int64_t param_1,int64_t param_2,int param_3)
   uStack_c = *(int32_t *)(param_1 + 0x1c);
   uVar1 = *(int32_t *)(param_1 + 0x24);
   uVar2 = *(int32_t *)(param_1 + 0x20);
-  iVar3 = SystemDataProcessor(param_2,param_3,&unknown_var_5688_ptr);
+  iVar3 = SystemDataProcessor(param_2,param_3,&processed_var_5688_ptr);
   iVar4 = SystemDataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074b650(iVar3 + param_2,param_3 - iVar3,&uStack_18);

@@ -58,7 +58,7 @@ void network_metadata_handler(uint64_t resource_id, uint64_t *output_data);
 void network_packet_writer(int64_t context_ptr, uint64_t data_ptr, int32_t data_size)
 {
   // 调用底层网络写入函数，传入上下文、数据、协议标识符和大小参数
-  FUN_18083f7b0(data_ptr, data_size, &unknown_var_2904_ptr, 
+  FUN_18083f7b0(data_ptr, data_size, &rendering_buffer_2904_ptr, 
                 *(int32_t *)(context_ptr + 0x10),
                 *(int32_t *)(context_ptr + 0x14));
   return;
@@ -85,7 +85,7 @@ int network_data_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_s
   field2_value = *(int32_t *)(config_ptr + 0x10);
   
   // 序列化第一个字段（协议标识符）
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_3320_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &memory_allocator_3320_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -131,7 +131,7 @@ int network_complex_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffe
   field1_value = *(int32_t *)(config_ptr + 0x20);
   
   // 序列化协议头
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_544_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &processed_var_544_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -177,7 +177,7 @@ int network_multi_field_serializer(int64_t config_ptr, int64_t buffer_ptr, int b
   field1_value = *(int32_t *)(config_ptr + 0x20);
   
   // 序列化协议标识符
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_32_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &memory_allocator_32_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -223,7 +223,7 @@ int network_extended_serializer(int64_t config_ptr, int64_t buffer_ptr, int buff
   field1_value = *(int32_t *)(config_ptr + 0x20);
   
   // 序列化扩展协议标识符
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_416_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &processed_var_416_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -269,7 +269,7 @@ int network_advanced_serializer(int64_t config_ptr, int64_t buffer_ptr, int buff
   field1_value = *(int32_t *)(config_ptr + 0x20);
   
   // 序列化高级协议标识符
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_9904_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &processed_var_9904_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -307,7 +307,7 @@ int network_simple_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer
   field1_value = *(int32_t *)(config_ptr + 0x10);
   
   // 序列化简单协议标识符
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_3032_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &memory_allocator_3032_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -329,7 +329,7 @@ int network_simple_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer
 void network_packet_dispatcher(int64_t context_ptr, uint64_t data_ptr, int32_t data_size)
 {
   // 调用底层网络分发函数
-  FUN_18083f7b0(data_ptr, data_size, &unknown_var_3176_ptr, 
+  FUN_18083f7b0(data_ptr, data_size, &memory_allocator_3176_ptr, 
                 *(int32_t *)(context_ptr + 0x10),
                 *(int32_t *)(context_ptr + 0x14));
   return;
@@ -362,7 +362,7 @@ int network_variable_serializer(int64_t config_ptr, int64_t buffer_ptr, int buff
   field1_value = *(int32_t *)(config_ptr + 0x20);
   
   // 序列化变量协议标识符
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_664_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &processed_var_664_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -408,7 +408,7 @@ int network_flag_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_s
   field1_value = *(int32_t *)(config_ptr + 0x20);
   
   // 序列化标志协议标识符
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_160_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &ui_system_data_160_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -466,7 +466,7 @@ int network_state_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_
   field_stack_18 = *(uint64_t *)(config_ptr + 0x40);
   
   // 序列化状态协议标识符
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_2256_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &rendering_buffer_2256_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -516,7 +516,7 @@ int network_stream_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer
   field2_value = *(int32_t *)(config_ptr + 0x14);
   
   // 序列化流协议标识符
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_2000_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &rendering_buffer_2000_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -570,7 +570,7 @@ int network_packet_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer
   field5_value = *(uint64_t *)(config_ptr + 0x10);
   
   // 序列化数据包协议标识符
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_2128_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &rendering_buffer_2128_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -658,7 +658,7 @@ int network_message_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffe
   field_stack_c = *(int32_t *)(config_ptr + 0x40);
   
   // 序列化消息协议标识符
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_1728_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &ui_system_data_1728_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(serialized_size + buffer_ptr, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -714,7 +714,7 @@ int network_command_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffe
   field1_value = *(int32_t *)(config_ptr + 0x14);
   
   // 序列化命令协议标识符
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_1864_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &ui_system_data_1864_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -752,7 +752,7 @@ int network_event_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_
   field1_value = *(int32_t *)(config_ptr + 0x10);
   
   // 序列化事件协议标识符
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_1600_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &ui_system_data_1600_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -786,7 +786,7 @@ int network_request_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffe
   field1_value = *(int32_t *)(config_ptr + 0x18);
   
   // 序列化请求协议标识符
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_904_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &processed_var_904_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -834,7 +834,7 @@ int network_response_serializer(int64_t config_ptr, int64_t buffer_ptr, int buff
   flag_value = *(int8_t *)(config_ptr + 0x1c);
   
   // 序列化响应协议标识符
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_1040_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &ui_system_data_1040_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -882,7 +882,7 @@ int network_error_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_
   field1_value = *(int32_t *)(config_ptr + 0x10);
   
   // 序列化错误协议标识符
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_1320_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &ui_system_data_1320_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -928,7 +928,7 @@ int network_info_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer_s
   flag_value = *(int8_t *)(config_ptr + 0x14);
   
   // 序列化信息协议标识符
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_1456_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &ui_system_data_1456_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -970,7 +970,7 @@ int network_basic_data_processor(int64_t config_ptr, int64_t buffer_ptr, int buf
   int temp_size;
   
   // 序列化基础协议标识符
-  processed_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_2512_ptr);
+  processed_size = DataProcessor(buffer_ptr, buffer_size, &rendering_buffer_2512_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(buffer_ptr + processed_size, buffer_size - processed_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -1002,7 +1002,7 @@ int network_binary_serializer(int64_t config_ptr, int64_t buffer_ptr, int buffer
   field1_value = *(int32_t *)(config_ptr + 0x18);
   
   // 序列化二进制协议标识符
-  serialized_size = DataProcessor(buffer_ptr, buffer_size, &unknown_var_128_ptr);
+  serialized_size = DataProcessor(buffer_ptr, buffer_size, &ui_system_data_128_ptr);
   
   // 序列化分隔符
   temp_size = DataProcessor(buffer_ptr + serialized_size, buffer_size - serialized_size, NETWORK_PROTOCOL_SEPARATOR);
@@ -1060,7 +1060,7 @@ void network_connection_handler(uint64_t connection_id, uint64_t *output_data)
     func_0x00018074bda0(stack_buffer_128, 0x100, 0);
     stack_buffer_158 = stack_buffer_128;
     // 错误处理：无效参数
-    DataTransformer(0x1f, 0xd, connection_id, &unknown_var_1112_ptr);
+    DataTransformer(0x1f, 0xd, connection_id, &ui_system_data_1112_ptr);
   }
   
   // 初始化连接管理器
@@ -1143,7 +1143,7 @@ void network_data_sender(uint64_t target_id, int64_t data_ptr)
       func_0x00018074bda0(stack_buffer_128, 0x100, 0);
       stack_buffer_148 = stack_buffer_128;
       // 错误处理：空数据指针
-      DataTransformer(0x1f, 0xb, target_id, &unknown_var_512_ptr);
+      DataTransformer(0x1f, 0xb, target_id, &processed_var_512_ptr);
     }
     // 调试模式下直接退出
     SystemSecurityChecker(stack_buffer_28 ^ (uint64_t)stack_buffer_168);
@@ -1211,7 +1211,7 @@ void network_broadcast_sender(uint64_t target_id, uint64_t data_ptr, uint64_t me
     func_0x00018074bda0(stack_buffer_138 + (sub_status + temp_status), 0x100 - (sub_status + temp_status), metadata);
     stack_buffer_148 = stack_buffer_138;
     // 错误处理：广播失败
-    DataTransformer(status_code, 0xb, target_id, &unknown_var_544_ptr);
+    DataTransformer(status_code, 0xb, target_id, &processed_var_544_ptr);
   }
   
   // 安全退出
@@ -1297,7 +1297,7 @@ void network_resource_handler(uint64_t resource_id, int32_t *result_ptr, uint64_
     func_0x00018074bda0(stack_buffer_138 + (sub_status + temp_status), 0x100 - (sub_status + temp_status), context);
     stack_buffer_158 = stack_buffer_138;
     // 错误处理：资源获取失败
-    DataTransformer(status_code, 0xb, resource_id, &unknown_var_5520_ptr);
+    DataTransformer(status_code, 0xb, resource_id, &processed_var_5520_ptr);
   }
   
 success_handler:
@@ -1368,7 +1368,7 @@ void network_data_extractor(uint64_t resource_id, uint64_t *output_data)
     func_0x00018074bda0(stack_buffer_128, 0x100, 0);
     stack_buffer_158 = stack_buffer_128;
     // 错误处理：无效输出指针
-    DataTransformer(0x1f, 0xf, resource_id, &unknown_var_9512_ptr);
+    DataTransformer(0x1f, 0xf, resource_id, &processed_var_9512_ptr);
   }
   
   // 初始化输出数据
@@ -1393,7 +1393,7 @@ void network_data_extractor(uint64_t resource_id, uint64_t *output_data)
   if ((sub_status == 0) &&
       (status_code = FUN_18088dec0(*(uint64_t *)(stack_buffer_148[0] + 0x98), stack_buffer_138, 0x20), status_code == 0)) {
     // 设置数据提取参数
-    *stack_buffer_138[0] = &unknown_var_9408_ptr;
+    *stack_buffer_138[0] = &processed_var_9408_ptr;
     *(int32_t *)(stack_buffer_138[0] + 1) = 0x20;
     *(int *)(stack_buffer_138[0] + 2) = (int)resource_id;
     
@@ -1456,7 +1456,7 @@ void network_metadata_handler(uint64_t resource_id, uint64_t *output_data)
     func_0x00018074bda0(stack_buffer_118, 0x100, output_data);
     stack_buffer_138 = stack_buffer_118;
     // 错误处理：元数据获取失败
-    DataTransformer(status_code, 0xb, resource_id, &unknown_var_408_ptr);
+    DataTransformer(status_code, 0xb, resource_id, &processed_var_408_ptr);
   }
   
 success_handler:

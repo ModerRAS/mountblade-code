@@ -141,7 +141,7 @@ void FUN_18012c305(void)
     *(int32_t *)(in_stack_00000040 + 0x16c) = 1;
     *(int32_t *)(in_stack_00000040 + 0x170) = 2;
     if ((unaff_R15D & 0x20) == 0) {
-      uVar8 = FUN_180123c00(in_stack_00000040,&unknown_var_2480_ptr,0);
+      uVar8 = FUN_180123c00(in_stack_00000040,&rendering_buffer_2480_ptr,0);
       cVar7 = FUN_180110000(uVar8,in_stack_00000040 + 0x40,0);
       if (cVar7 != '\0') {
         *(int8_t *)(in_stack_00000040 + 0xb3) = 1;
@@ -155,7 +155,7 @@ void FUN_18012c305(void)
                                   *(float *)(unaff_RSI + 0x165c)) - fVar19,
                                   *(float *)(in_stack_00000040 + 0x44) +
                                   *(float *)(unaff_RSI + 0x1660) + fVar19);
-      uVar8 = FUN_180123c00(in_stack_00000040,&unknown_var_2512_ptr,0);
+      uVar8 = FUN_180123c00(in_stack_00000040,&rendering_buffer_2512_ptr,0);
       cVar7 = FUN_18010fd40(uVar8,uVar9);
       if (cVar7 != '\0') {
         **(int8_t **)(unaff_RBP + 10) = 0;

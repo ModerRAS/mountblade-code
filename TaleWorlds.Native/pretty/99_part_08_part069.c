@@ -580,7 +580,7 @@ void FUN_1805b8920(int64_t *param_1)
   *(int8_t *)((int64_t)param_1 + 0x14a4) = 0;
   *(int32_t *)((int64_t)param_1 + 0x1b6c) = 0;
   if ((char)param_1[0x386] != '\0') {
-    func_0x000180508000(param_1,&unknown_var_3272_ptr,&unknown_var_3232_ptr,&unknown_var_6344_ptr,&unknown_var_6416_ptr);
+    func_0x000180508000(param_1,&memory_allocator_3272_ptr,&memory_allocator_3232_ptr,&processed_var_6344_ptr,&processed_var_6416_ptr);
     *(int8_t *)(param_1 + 0x386) = 0;
     *(int32_t *)((int64_t)param_1 + 0x1c0c) = 0xffffffff;
     *(int32_t *)((int64_t)param_1 + 0x1c14) = 0xffffffff;

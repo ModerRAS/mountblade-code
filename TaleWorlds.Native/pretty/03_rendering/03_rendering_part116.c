@@ -329,13 +329,13 @@ uint64_t *rendering_system_object_creator(uint64_t *param_1) {
     // FUN_180320470();
     
     // 设置对象函数表
-    *param_1 = &unknown_var_8368_ptr;
+    *param_1 = &processed_var_8368_ptr;
     param_1[0x16] = &system_state_ptr;
     param_1[0x17] = 0;
     *(uint32_t*)(param_1 + 0x18) = 0;
     
     // 设置对象数据结构
-    param_1[0x16] = &unknown_var_3480_ptr;
+    param_1[0x16] = &memory_allocator_3480_ptr;
     param_1[0x17] = param_1 + 0x19;
     *(uint32_t*)(param_1 + 0x18) = 0;
     *(uint8_t*)(param_1 + 0x19) = 0;

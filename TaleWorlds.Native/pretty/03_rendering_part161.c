@@ -104,7 +104,7 @@ void RenderingSystem_InitializeRenderState(uint64_t render_context)
     thread_counter = 0xfffffffffffffffe;
     security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
     status_flag = 0;
-    cleanup_handler = &unknown_var_3480_ptr;
+    cleanup_handler = &memory_allocator_3480_ptr;
     string_buffer = config_buffer;
     config_buffer[0] = 0;
     string_length = 5;
@@ -148,7 +148,7 @@ void RenderingSystem_CreateRenderContext(uint64_t *context_ptr)
     thread_counter = 0xfffffffffffffffe;
     context_data = context_ptr;
     SystemBaseInitializer();
-    *context_data = &unknown_var_1040_ptr;
+    *context_data = &ui_system_data_1040_ptr;
     cleanup_handler = &system_data_buffer_ptr;
     thread_counter = 0;
     string_buffer = (uint64_t *)0x0;
@@ -226,7 +226,7 @@ void RenderingSystem_SetupRenderParameters(uint64_t param_1, uint64_t param_2)
   uStack_28 = 0xfffffffffffffffe;
   puVar2 = puVar3;
   SystemBaseInitializer(puVar3,param_2,param_1);
-  *puVar2 = &unknown_var_1040_ptr;
+  *puVar2 = &ui_system_data_1040_ptr;
   puStack_108 = &system_data_buffer_ptr;
   uStack_f0 = 0;
   puStack_100 = (uint64_t *)0x0;
@@ -330,7 +330,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   uStack_330 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_368;
   uStack_348 = 0;
-  puStack_2c8 = &unknown_var_3480_ptr;
+  puStack_2c8 = &memory_allocator_3480_ptr;
   puStack_2c0 = auStack_2b0;
   auStack_2b0[0] = 0;
   uStack_2b8 = 0xb;
@@ -343,7 +343,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   appuStack_340[0] = apuStack_328;
   apuStack_328[0] = &system_state_ptr;
   puStack_2c8 = &system_state_ptr;
-  puStack_268 = &unknown_var_3480_ptr;
+  puStack_268 = &memory_allocator_3480_ptr;
   puStack_260 = auStack_250;
   auStack_250[0] = 0;
   uStack_258 = 0xb;
@@ -356,7 +356,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   appuStack_340[0] = apuStack_328;
   apuStack_328[0] = &system_state_ptr;
   puStack_268 = &system_state_ptr;
-  puStack_208 = &unknown_var_3480_ptr;
+  puStack_208 = &memory_allocator_3480_ptr;
   puStack_200 = auStack_1f0;
   auStack_1f0[0] = 0;
   uStack_1f8 = 0xd;
@@ -369,7 +369,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   appuStack_340[0] = apuStack_328;
   apuStack_328[0] = &system_state_ptr;
   puStack_208 = &system_state_ptr;
-  puStack_1a8 = &unknown_var_3480_ptr;
+  puStack_1a8 = &memory_allocator_3480_ptr;
   puStack_1a0 = auStack_190;
   auStack_190[0] = 0;
   uStack_198 = 0xd;
@@ -382,7 +382,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   appuStack_340[0] = apuStack_328;
   apuStack_328[0] = &system_state_ptr;
   puStack_1a8 = &system_state_ptr;
-  puStack_148 = &unknown_var_3480_ptr;
+  puStack_148 = &memory_allocator_3480_ptr;
   puStack_140 = auStack_130;
   auStack_130[0] = 0;
   uStack_138 = 0xe;
@@ -395,7 +395,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   appuStack_340[0] = apuStack_328;
   apuStack_328[0] = &system_state_ptr;
   puStack_148 = &system_state_ptr;
-  puStack_e8 = &unknown_var_3480_ptr;
+  puStack_e8 = &memory_allocator_3480_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 0xe;
@@ -408,7 +408,7 @@ void RenderingSystem_ProcessRenderConfiguration(uint64_t param_1)
   appuStack_340[0] = apuStack_328;
   apuStack_328[0] = &system_state_ptr;
   puStack_e8 = &system_state_ptr;
-  puStack_88 = &unknown_var_3480_ptr;
+  puStack_88 = &memory_allocator_3480_ptr;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 10;
@@ -684,7 +684,7 @@ void RenderingSystem_StringManagerInitializer(uint64_t *string_manager) {
     
     // 设置字符串管理器的基本结构
     uint64_t *manager_ptr = string_manager;
-    *manager_ptr = &unknown_var_1720_ptr; // 设置基础字符串表
+    *manager_ptr = &ui_system_data_1720_ptr; // 设置基础字符串表
     
     uint64_t *processor_ptr = manager_ptr + 0xe;
     *processor_ptr = &system_state_ptr; // 设置字符串处理器
@@ -811,7 +811,7 @@ void RenderingSystem_StringManagerInitializer(uint64_t *string_manager) {
  */
 uint64_t * RenderingSystem_ManagerCleaner(uint64_t *manager, uint64_t cleanup_flags) {
     // 重置管理器基础结构
-    *manager = &unknown_var_1720_ptr; // 设置基础表
+    *manager = &ui_system_data_1720_ptr; // 设置基础表
     
     // 清理扩展管理器
     int64_t *ext_manager = (int64_t *)manager[0x1d];
@@ -988,7 +988,7 @@ void RenderingSystem_ProcessorInitializer_Standard(int64_t render_context) {
         int8_t *string_buffer = security_buffer; // 重用安全缓冲区
         security_buffer[0] = 0;
         int32_t string_length = 7;
-        strcpy_s(security_buffer, 0x10, &unknown_var_1464_ptr); // 复制调试字符串
+        strcpy_s(security_buffer, 0x10, &ui_system_data_1464_ptr); // 复制调试字符串
         
         uint64_t string_handle = SystemStringHandleManager(system_resource_state, &string_ptr, 1);
         *(uint64_t *)(render_context + 0x98) = string_handle;
@@ -1060,7 +1060,7 @@ void RenderingSystem_ProcessorInitializer_Enhanced(int64_t render_context) {
         int8_t *string_buffer = security_buffer; // 重用安全缓冲区
         security_buffer[0] = 0;
         int32_t string_length = 7;
-        strcpy_s(security_buffer, 0x10, &unknown_var_1464_ptr); // 复制调试字符串
+        strcpy_s(security_buffer, 0x10, &ui_system_data_1464_ptr); // 复制调试字符串
         
         uint64_t string_handle = SystemStringHandleManager(system_resource_state, &string_ptr, 1);
         *(uint64_t *)(render_context + 0x98) = string_handle;
@@ -1128,7 +1128,7 @@ void RenderingSystem_ManagerCreator(uint64_t param_1, uint64_t param_2) {
     SystemBaseInitializer(manager, param_2, param_1);
     
     // 设置管理器基本结构
-    *manager_ptr = &unknown_var_1720_ptr; // 设置基础表
+    *manager_ptr = &ui_system_data_1720_ptr; // 设置基础表
     
     uint64_t *processor_ptr = manager_ptr + 0xe;
     *processor_ptr = &system_state_ptr; // 设置处理器

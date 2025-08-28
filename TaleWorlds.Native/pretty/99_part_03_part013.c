@@ -129,7 +129,7 @@ void FUN_1801d7560(void)
   puStack_280 = auStack_270;
   auStack_270[0] = 0;
   iStack_278 = 6;
-  strcpy_s(auStack_270,0x10,&unknown_var_2588_ptr);
+  strcpy_s(auStack_270,0x10,&rendering_buffer_2588_ptr);
   uStack_2f8 = 1;
   SystemCore_EncryptionEngine0(&puStack_2d0,&puStack_288);
   uStack_2f8 = 0;
@@ -177,7 +177,7 @@ void FUN_1801d7560(void)
   puStack_280 = auStack_270;
   auStack_270[0] = 0;
   iStack_278 = 6;
-  strcpy_s(auStack_270,0x10,&unknown_var_2588_ptr);
+  strcpy_s(auStack_270,0x10,&rendering_buffer_2588_ptr);
   uStack_2f8 = 2;
   puStack_2f0 = &system_data_buffer_ptr;
   uStack_2d8 = 0;
@@ -935,7 +935,7 @@ LAB_1801d80f9:
 LAB_1801d8153:
   uVar20 = 1 << ((byte)((int64_t)puStack_260 - (int64_t)puStack_268 >> 3) & 0x1f);
   uVar1 = *(uint64_t *)(uStack_330 + 0x1e0);
-  puStack_300 = &unknown_var_672_ptr;
+  puStack_300 = &processed_var_672_ptr;
   puStack_2f8 = auStack_2e8;
   auStack_2e8[0] = auStack_2e8[0] & 0xffffff00;
   uStack_2f0 = 0x14;
@@ -943,7 +943,7 @@ LAB_1801d8153:
   ppuVar8 = (void **)SystemCore_LoggingSystem0(uVar1,&puStack_300,0);
   puStack_300 = &system_state_ptr;
   uVar1 = *(uint64_t *)(uVar10 + 0x1e0);
-  puStack_2c8 = &unknown_var_3480_ptr;
+  puStack_2c8 = &memory_allocator_3480_ptr;
   puStack_2c0 = auStack_2b0;
   auStack_2b0[0] = 0;
   uStack_2b8 = 0x25;

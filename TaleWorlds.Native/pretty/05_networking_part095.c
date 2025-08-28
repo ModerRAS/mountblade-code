@@ -81,7 +81,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
     iVar6 = func_0x00018088c500(*(uint64_t *)(lVar8 + 0xd0),&uStack_1a0);
     if (iVar6 == 0) {
       uStack_170 = 0;
-      puStack_178 = &unknown_var_5400_ptr;
+      puStack_178 = &processed_var_5400_ptr;
       uStack_160 = uStack_1c8;
       uStack_168 = uStack_1a0;
       iVar6 = SystemNetworkProcessor(param_1,&puStack_178);
@@ -97,7 +97,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
             puVar16 = puStack_190;
             if ((cVar5 == '\0') && (*(float *)(lVar3 + 0x4c) != *(float *)(lVar4 + 0x28))) {
               uStack_f0 = *(int32_t *)(lVar14 + 4 + lVar9);
-              puStack_108 = &unknown_var_8856_ptr;
+              puStack_108 = &processed_var_8856_ptr;
               uStack_f8 = uStack_1c8;
               uStack_100 = 0;
               lVar9 = (**(code **)*puStack_190)(puStack_190);
@@ -132,7 +132,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
               uStack_12c = *(int32_t *)(lVar2 + 0x4c);
               uStack_128 = *(int32_t *)(lVar2 + 0x50);
               uStack_124 = *(int32_t *)(lVar2 + 0x54);
-              puStack_158 = &unknown_var_6816_ptr;
+              puStack_158 = &processed_var_6816_ptr;
               uStack_150 = 0;
               uStack_120 = *(int32_t *)(lVar2 + 0x58);
               uStack_11c = *(int32_t *)(lVar2 + 0x5c);
@@ -147,7 +147,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
           if (iVar6 == 0) {
             if (fStack_19c != 1.0) {
               fStack_1a8 = fStack_19c;
-              puStack_1c0 = &unknown_var_6552_ptr;
+              puStack_1c0 = &processed_var_6552_ptr;
               uStack_1b0 = uStack_1c8;
               uStack_1b8 = 0;
               iVar6 = SystemNetworkProcessor(param_1,&puStack_1c0);
@@ -157,7 +157,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
             if (iVar6 == 0) {
               if (afStack_198[0] != 1.0) {
                 fStack_1a8 = afStack_198[0];
-                puStack_1c0 = &unknown_var_6688_ptr;
+                puStack_1c0 = &processed_var_6688_ptr;
                 uStack_1b0 = uStack_1c8;
                 uStack_1b8 = 0;
                 iVar6 = SystemNetworkProcessor(param_1,&puStack_1c0);
@@ -169,7 +169,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
                 if (*pfVar15 != 0.0) {
                   uStack_1b0 = uStack_1c8;
                   uStack_1b8 = 0;
-                  puStack_1c0 = &unknown_var_7224_ptr;
+                  puStack_1c0 = &processed_var_7224_ptr;
                   fStack_1a8 = fVar13;
                   fStack_1a4 = *pfVar15;
                   iVar6 = SystemNetworkProcessor(param_1,&puStack_1c0);
@@ -178,7 +178,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
                 fVar13 = (float)((int)fVar13 + 1);
                 pfVar15 = pfVar15 + 1;
               } while ((int)fVar13 < 4);
-              pfVar15 = (float *)&unknown_var_3144_ptr;
+              pfVar15 = (float *)&memory_allocator_3144_ptr;
               fVar13 = 0.0;
               do {
                 fVar1 = *(float *)(lVar2 + -0x180985054 + (int64_t)pfVar15);
@@ -196,7 +196,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
               } while ((int)fVar13 < 6);
               uVar7 = func_0x000180855b70(param_2 + 200);
               if ((float)(uVar7 / 0x30) != 0.0) {
-                puStack_1c0 = &unknown_var_7752_ptr;
+                puStack_1c0 = &processed_var_7752_ptr;
                 uStack_1b0 = uStack_1c8;
                 uStack_1b8 = 0;
                 fStack_1a8 = (float)(uVar7 / 0x30);
@@ -205,7 +205,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
               }
               if ((*(uint *)(param_2 + 0x2d8) >> 1 & 1) != 0) {
                 uStack_1b8 = 0;
-                puStack_1c0 = &unknown_var_7360_ptr;
+                puStack_1c0 = &processed_var_7360_ptr;
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = (float)CONCAT31(fStack_1a8._1_3_,1);
                 iVar6 = SystemNetworkProcessor(param_1,&puStack_1c0);
@@ -214,7 +214,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
               iVar6 = FUN_1808605e0(param_2);
               if (iVar6 != 2) {
                 uStack_1b8 = 0;
-                puStack_1c0 = &unknown_var_7496_ptr;
+                puStack_1c0 = &processed_var_7496_ptr;
                 uStack_1b0 = uStack_1c8;
                 iVar6 = SystemNetworkProcessor(param_1,&puStack_1c0);
                 if (iVar6 != 0) goto FUN_180897b16;
@@ -222,7 +222,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
               iVar6 = FUN_1808605e0(param_2);
               if (iVar6 == 4) {
                 uStack_1b8 = 0;
-                puStack_1c0 = &unknown_var_7624_ptr;
+                puStack_1c0 = &processed_var_7624_ptr;
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = 0.0;
                 iVar6 = SystemNetworkProcessor(param_1,&puStack_1c0);
@@ -230,7 +230,7 @@ void FUN_1808975e0(int64_t param_1,int64_t param_2)
               }
               if ((*(uint *)(param_2 + 0x2d8) >> 3 & 1) != 0) {
                 uStack_1b8 = 0;
-                puStack_1c0 = &unknown_var_8024_ptr;
+                puStack_1c0 = &processed_var_8024_ptr;
                 uStack_1b0 = uStack_1c8;
                 SystemNetworkProcessor(param_1,&puStack_1c0);
               }
@@ -319,7 +319,7 @@ void FUN_180897644(void)
   lVar15 = (*(code *)*in_RAX)(puVar22);
   iVar13 = func_0x00018088c500(*(uint64_t *)(lVar15 + 0xd0),&stack0x00000048);
   if (iVar13 == 0) {
-    in_stack_00000070 = &unknown_var_5400_ptr;
+    in_stack_00000070 = &processed_var_5400_ptr;
     *(int32_t *)(unaff_RBP + -0xf) = uStackX_20;
     *(float *)(unaff_RBP + -0x10) = fStack0000000000000048;
     in_stack_00000078 = unaff_R13D;
@@ -337,7 +337,7 @@ void FUN_180897644(void)
           puVar22 = puStack0000000000000058;
           if ((cVar12 == '\0') && (*(float *)(lVar2 + 0x4c) != *(float *)(lVar3 + 0x28))) {
             uVar24 = *(int32_t *)(uVar20 + 4 + lVar15);
-            unaff_RBP[-4] = &unknown_var_8856_ptr;
+            unaff_RBP[-4] = &processed_var_8856_ptr;
             *(int32_t *)(unaff_RBP + -2) = uStackX_20;
             puVar4 = (uint64_t *)*puStack0000000000000058;
             *(int32_t *)(unaff_RBP + -1) = uVar24;
@@ -377,7 +377,7 @@ void FUN_180897644(void)
             uVar5 = *(int32_t *)(unaff_R15 + 0x4c);
             uVar6 = *(int32_t *)(unaff_R15 + 0x50);
             uVar7 = *(int32_t *)(unaff_R15 + 0x54);
-            unaff_RBP[-0xe] = &unknown_var_6816_ptr;
+            unaff_RBP[-0xe] = &processed_var_6816_ptr;
             unaff_RBP[-0xb] = uVar17;
             unaff_RBP[-10] = uVar16;
             *(float *)(unaff_RBP + -0xd) = unaff_R13D;
@@ -405,7 +405,7 @@ void FUN_180897644(void)
           in_stack_000001a8 = unaff_XMM6_Dc;
           if (fStack000000000000004c != 1.0) {
             fStack0000000000000040 = fStack000000000000004c;
-            in_stack_00000028 = &unknown_var_6552_ptr;
+            in_stack_00000028 = &processed_var_6552_ptr;
             in_stack_00000038 = uStackX_20;
             in_stack_00000030 = unaff_R13D;
             iVar13 = SystemNetworkProcessor(fStack000000000000004c,&stack0x00000028);
@@ -416,7 +416,7 @@ void FUN_180897644(void)
           if (iVar13 == 0) {
             if (in_stack_00000050 != 1.0) {
               fStack0000000000000040 = in_stack_00000050;
-              in_stack_00000028 = &unknown_var_6688_ptr;
+              in_stack_00000028 = &processed_var_6688_ptr;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               iVar13 = SystemNetworkProcessor(in_stack_00000050,&stack0x00000028);
@@ -428,7 +428,7 @@ void FUN_180897644(void)
               fVar1 = *pfVar21;
               if (fVar1 != 0.0) {
                 in_stack_00000038 = uStackX_20;
-                in_stack_00000028 = &unknown_var_7224_ptr;
+                in_stack_00000028 = &processed_var_7224_ptr;
                 in_stack_00000030 = unaff_R13D;
                 fStack0000000000000040 = fVar19;
                 fStack0000000000000044 = fVar1;
@@ -438,7 +438,7 @@ void FUN_180897644(void)
               fVar19 = (float)((int)fVar19 + 1);
               pfVar21 = pfVar21 + 1;
             } while ((int)fVar19 < 4);
-            pfVar21 = (float *)&unknown_var_3144_ptr;
+            pfVar21 = (float *)&memory_allocator_3144_ptr;
             fVar19 = unaff_R13D;
             do {
               fVar1 = *(float *)(unaff_R15 + -0x180985054 + (int64_t)pfVar21);
@@ -457,7 +457,7 @@ void FUN_180897644(void)
             uVar14 = func_0x000180855b70(unaff_R14 + 200);
             uVar24 = extraout_XMM0_Da_04;
             if ((float)(uVar14 / 0x30) != 0.0) {
-              in_stack_00000028 = &unknown_var_7752_ptr;
+              in_stack_00000028 = &processed_var_7752_ptr;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               fStack0000000000000040 = (float)(uVar14 / 0x30);
@@ -466,7 +466,7 @@ void FUN_180897644(void)
               if (iVar13 != 0) goto FUN_180897b0e;
             }
             if ((*(uint *)(unaff_R14 + 0x2d8) >> 1 & 1) != 0) {
-              in_stack_00000028 = &unknown_var_7360_ptr;
+              in_stack_00000028 = &processed_var_7360_ptr;
               in_stack_00000038 = uStackX_20;
               fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
               in_stack_00000030 = unaff_R13D;
@@ -475,7 +475,7 @@ void FUN_180897644(void)
             }
             iVar13 = FUN_1808605e0(unaff_R14);
             if (iVar13 != 2) {
-              in_stack_00000028 = &unknown_var_7496_ptr;
+              in_stack_00000028 = &processed_var_7496_ptr;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               iVar13 = SystemNetworkProcessor(extraout_XMM0_Da_06,&stack0x00000028);
@@ -484,7 +484,7 @@ void FUN_180897644(void)
             iVar13 = FUN_1808605e0(unaff_R14);
             uVar24 = extraout_XMM0_Da_07;
             if (iVar13 == 4) {
-              in_stack_00000028 = &unknown_var_7624_ptr;
+              in_stack_00000028 = &processed_var_7624_ptr;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               fStack0000000000000040 = unaff_R13D;
@@ -493,7 +493,7 @@ void FUN_180897644(void)
               if (iVar13 != 0) goto FUN_180897b0e;
             }
             if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
-              in_stack_00000028 = &unknown_var_8024_ptr;
+              in_stack_00000028 = &processed_var_8024_ptr;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               SystemNetworkProcessor(uVar24,&stack0x00000028);
@@ -584,7 +584,7 @@ void FUN_1808976b0(void)
       unaff_R12 = in_stack_00000058;
       if ((cVar12 == '\0') && (*(float *)(lVar2 + 0x4c) != *(float *)(lVar3 + 0x28))) {
         uVar23 = *(int32_t *)(uVar20 + 4 + lVar15);
-        unaff_RBP[-4] = &unknown_var_8856_ptr;
+        unaff_RBP[-4] = &processed_var_8856_ptr;
         *(int32_t *)(unaff_RBP + -2) = uStackX_20;
         puVar4 = (uint64_t *)*in_stack_00000058;
         *(int32_t *)(unaff_RBP + -1) = uVar23;
@@ -624,7 +624,7 @@ void FUN_1808976b0(void)
         uVar5 = *(int32_t *)(unaff_R15 + 0x4c);
         uVar6 = *(int32_t *)(unaff_R15 + 0x50);
         uVar7 = *(int32_t *)(unaff_R15 + 0x54);
-        unaff_RBP[-0xe] = &unknown_var_6816_ptr;
+        unaff_RBP[-0xe] = &processed_var_6816_ptr;
         unaff_RBP[-0xb] = uVar17;
         unaff_RBP[-10] = uVar16;
         *(float *)(unaff_RBP + -0xd) = unaff_R13D;
@@ -652,7 +652,7 @@ void FUN_1808976b0(void)
       in_stack_000001a8 = unaff_XMM6_Dc;
       if (in_stack_00000048._4_4_ != 1.0) {
         fStack0000000000000040 = in_stack_00000048._4_4_;
-        in_stack_00000028 = &unknown_var_6552_ptr;
+        in_stack_00000028 = &processed_var_6552_ptr;
         in_stack_00000038 = uStackX_20;
         in_stack_00000030 = unaff_R13D;
         iVar13 = SystemNetworkProcessor(in_stack_00000048._4_4_,&stack0x00000028);
@@ -663,7 +663,7 @@ void FUN_1808976b0(void)
       if (iVar13 == 0) {
         if (in_stack_00000050 != 1.0) {
           fStack0000000000000040 = in_stack_00000050;
-          in_stack_00000028 = &unknown_var_6688_ptr;
+          in_stack_00000028 = &processed_var_6688_ptr;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           iVar13 = SystemNetworkProcessor(in_stack_00000050,&stack0x00000028);
@@ -675,7 +675,7 @@ void FUN_1808976b0(void)
           fVar1 = *pfVar21;
           if (fVar1 != 0.0) {
             in_stack_00000038 = uStackX_20;
-            in_stack_00000028 = &unknown_var_7224_ptr;
+            in_stack_00000028 = &processed_var_7224_ptr;
             in_stack_00000030 = unaff_R13D;
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
@@ -685,7 +685,7 @@ void FUN_1808976b0(void)
           fVar19 = (float)((int)fVar19 + 1);
           pfVar21 = pfVar21 + 1;
         } while ((int)fVar19 < 4);
-        pfVar21 = (float *)&unknown_var_3144_ptr;
+        pfVar21 = (float *)&memory_allocator_3144_ptr;
         fVar19 = unaff_R13D;
         do {
           fVar1 = *(float *)(unaff_R15 + -0x180985054 + (int64_t)pfVar21);
@@ -704,7 +704,7 @@ void FUN_1808976b0(void)
         uVar14 = func_0x000180855b70(unaff_R14 + 200);
         uVar23 = extraout_XMM0_Da_03;
         if ((float)(uVar14 / 0x30) != 0.0) {
-          in_stack_00000028 = &unknown_var_7752_ptr;
+          in_stack_00000028 = &processed_var_7752_ptr;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           fStack0000000000000040 = (float)(uVar14 / 0x30);
@@ -713,7 +713,7 @@ void FUN_1808976b0(void)
           if (iVar13 != 0) goto FUN_180897afe;
         }
         if ((*(uint *)(unaff_R14 + 0x2d8) >> 1 & 1) != 0) {
-          in_stack_00000028 = &unknown_var_7360_ptr;
+          in_stack_00000028 = &processed_var_7360_ptr;
           in_stack_00000038 = uStackX_20;
           fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
           in_stack_00000030 = unaff_R13D;
@@ -722,7 +722,7 @@ void FUN_1808976b0(void)
         }
         iVar13 = FUN_1808605e0(unaff_R14);
         if (iVar13 != 2) {
-          in_stack_00000028 = &unknown_var_7496_ptr;
+          in_stack_00000028 = &processed_var_7496_ptr;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           iVar13 = SystemNetworkProcessor(extraout_XMM0_Da_05,&stack0x00000028);
@@ -731,7 +731,7 @@ void FUN_1808976b0(void)
         iVar13 = FUN_1808605e0(unaff_R14);
         uVar23 = extraout_XMM0_Da_06;
         if (iVar13 == 4) {
-          in_stack_00000028 = &unknown_var_7624_ptr;
+          in_stack_00000028 = &processed_var_7624_ptr;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           fStack0000000000000040 = unaff_R13D;
@@ -740,7 +740,7 @@ void FUN_1808976b0(void)
           if (iVar13 != 0) goto FUN_180897afe;
         }
         if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
-          in_stack_00000028 = &unknown_var_8024_ptr;
+          in_stack_00000028 = &processed_var_8024_ptr;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           SystemNetworkProcessor(uVar23,&stack0x00000028);

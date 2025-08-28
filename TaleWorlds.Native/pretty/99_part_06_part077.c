@@ -99,7 +99,7 @@ void FUN_1803f3dd0(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,uint64_t
   uStack_a8 = 0;
   uStack_a0 = 0xf;
   auStack_b8[0] = 0;
-  FUN_1800671b0(auStack_b8,&unknown_var_1024_ptr,0x11);
+  FUN_1800671b0(auStack_b8,&ui_system_data_1024_ptr,0x11);
   FUN_1804726c0(param_1,auStack_b8,uVar10);
   SystemResourceAllocator(&uStack_e8);
   plVar4 = plStack_100;
@@ -251,7 +251,7 @@ void FUN_1803f3fe0(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,uint64_t
   uStack_f8 = 0;
   uStack_f0 = 0xf;
   auStack_108[0] = 0;
-  FUN_1800671b0(auStack_108,&unknown_var_924_ptr,5);
+  FUN_1800671b0(auStack_108,&processed_var_924_ptr,5);
   FUN_1804726c0(param_1,auStack_108,uVar10);
   SystemResourceAllocator(&uStack_140);
   plVar4 = plStack_150;
@@ -509,7 +509,7 @@ void FUN_1803f44d0(int32_t *param_1,int32_t *param_2)
     uVar4 = FUN_1803f5220();
     lVar5 = *(int64_t *)(param_1 + 4);
     if (lVar5 == 0x3fffffffffffffe) {
-      lVar5 = __Xlength_error_std__YAXPEBD_Z(&unknown_var_2104_ptr);
+      lVar5 = __Xlength_error_std__YAXPEBD_Z(&rendering_buffer_2104_ptr);
     }
     *(int64_t *)(param_1 + 4) = lVar5 + 1;
     *(uint64_t *)(lVar2 + 8) = uVar4;
@@ -797,7 +797,7 @@ LAB_1803f4868:
   }
   plVar1 = *(int64_t **)((int64_t)*(int *)(*plStack_30 + 4) + 0x48 + (int64_t)plStack_30);
   if (plVar1 != (int64_t *)0x0) {
-    if (*(code **)(*plVar1 + 0x10) == (code *)&unknown_var_1712_ptr) {
+    if (*(code **)(*plVar1 + 0x10) == (code *)&ui_system_data_1712_ptr) {
       if (plVar1[0x10] != 0) {
         _unlock_file();
       }

@@ -21,7 +21,7 @@ void FUN_1803af3d0(uint64_t *param_1)
   int iStack_38;
   uint64_t uStack_30;
   
-  *param_1 = &unknown_var_952_ptr;
+  *param_1 = &processed_var_952_ptr;
   param_1[4] = 0;
   *(int32_t *)(param_1 + 0xb) = 0x3f800000;
   *(uint64_t *)((int64_t)param_1 + 0x5c) = 0x40000000;
@@ -116,14 +116,14 @@ LAB_1803af5ea:
     }
   }
   if (iStack_38 == 0xc) {
-    iVar5 = strcmp(puStack_40,&unknown_var_4352_ptr);
+    iVar5 = strcmp(puStack_40,&processed_var_4352_ptr);
     if (iVar5 != 0) goto LAB_1803af6b0;
 LAB_1803af880:
     uVar4 = 1;
   }
   else {
     if (iStack_38 == 9) {
-      iVar5 = strcmp(puStack_40,&unknown_var_4512_ptr);
+      iVar5 = strcmp(puStack_40,&processed_var_4512_ptr);
       if (iVar5 == 0) goto LAB_1803af880;
     }
 LAB_1803af6b0:

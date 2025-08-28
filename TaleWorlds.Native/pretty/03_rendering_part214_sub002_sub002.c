@@ -558,7 +558,7 @@ LAB_18038fba6:
         *(int64_t *)(lVar43 + 8) = *(int64_t *)(lVar43 + 8) + 1;
       }
       if (*(byte *)(lVar26 + 0xa8) != uVar38) {
-        FUN_180627020(&unknown_var_5536_ptr,(double)*(float *)(lVar26 + 0xe8),
+        FUN_180627020(&processed_var_5536_ptr,(double)*(float *)(lVar26 + 0xe8),
                       (double)*(float *)(lVar26 + 0xec),(double)*(float *)(lVar26 + 0xf0));
         lVar27 = *(int64_t *)(lVar26 + 0x60);
         if (lVar27 != 0) {
@@ -1267,7 +1267,7 @@ LAB_18039068b:
     plVar15 = (int64_t *)(uint64_t)uVar38;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&unknown_var_5392_ptr,param_8);
+  FUN_180062300(system_message_context,&processed_var_5392_ptr,param_8);
 }
 
 

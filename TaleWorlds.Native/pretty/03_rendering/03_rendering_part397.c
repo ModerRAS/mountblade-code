@@ -368,7 +368,7 @@ void RenderingSystemAdvancedPipelineManager(int64_t param_1, int64_t *param_2, i
         }
         
         // 配置渲染参数
-        puStack_e8 = &unknown_var_3432_ptr;
+        puStack_e8 = &memory_allocator_3432_ptr;
         puStack_e0 = auStack_d0;
         auStack_d0[0] = 0;
         uStack_d8 = uStack_3a8;
@@ -456,7 +456,7 @@ void RenderingSystemAdvancedPipelineManager(int64_t param_1, int64_t *param_2, i
         else {
             // 跨线程处理
             pplStack_3d0 = (int64_t **)&puStack_1c8;
-            puStack_1c8 = &unknown_var_3432_ptr;
+            puStack_1c8 = &memory_allocator_3432_ptr;
             puStack_1c0 = auStack_1b0;
             uStack_1b8 = 0;
             auStack_1b0[0] = 0;
@@ -471,7 +471,7 @@ void RenderingSystemAdvancedPipelineManager(int64_t param_1, int64_t *param_2, i
             uStack_fc = uStack_33c;
             uStack_f8 = CONCAT44(uStack_334, uStack_338);
             puStack_f0 = (uint64_t *)param_2[2];
-            if ((void *)*puStack_f0 == &unknown_var_8720_ptr) {
+            if ((void *)*puStack_f0 == &processed_var_8720_ptr) {
                 LOCK();
                 *(int *)(puStack_f0 + 1) = *(int *)(puStack_f0 + 1) + 1;
                 UNLOCK();
@@ -481,7 +481,7 @@ void RenderingSystemAdvancedPipelineManager(int64_t param_1, int64_t *param_2, i
             }
             
             // 创建跨线程通信
-            uVar11 = FUN_18062b1e0(system_memory_pool_ptr, 0x100, 8, 3);
+            uVar11 = CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x100, 8, 3);
             plVar12 = (int64_t *)FUN_18005ce30(uVar11, &puStack_1c8);
             plStack_328 = plVar12;
             if (plVar12 != (int64_t *)0x0) {
@@ -679,20 +679,20 @@ void RenderingSystemAdvancedPipelineManager(int64_t param_1, int64_t *param_2, i
             // 处理高级渲染特性
             if (((*(int *)(lVar18 + 0x124e8) < 1) && (*(int *)(lVar18 + 0x124ec) < 1)) && ((char)plVar8[0x104] != '\0')) {
                 // 启用高级渲染特性
-                uVar11 = FUN_18062b1e0(system_memory_pool_ptr, 0xa8, 8, 3);
+                uVar11 = CoreSystem_LoggingManager0(system_memory_pool_ptr, 0xa8, 8, 3);
                 lVar14 = FUN_180489080(uVar11);
                 FUN_18048b9e0(lVar14, param_2);
                 if (*(code **)(lVar14 + 0x98) != (code *)0x0) {
                     (**(code **)(lVar14 + 0x98))(lVar14 + 0x88, 0, 0);
                 }
-                *(void **)(lVar14 + 0x98) = &unknown_var_4992_ptr;
-                *(void **)(lVar14 + 0xa0) = &unknown_var_7008_ptr;
+                *(void **)(lVar14 + 0x98) = &processed_var_4992_ptr;
+                *(void **)(lVar14 + 0xa0) = &processed_var_7008_ptr;
                 *(code **)(lVar14 + 0x88) = FUN_180489700;
                 if (*(code **)(lVar18 + 0x9640) != (code *)0x0) {
                     (**(code **)(lVar18 + 0x9640))(lVar18 + 0x9630, 0, 0);
                 }
-                *(void **)(lVar18 + 0x9640) = &unknown_var_7024_ptr;
-                *(void **)(lVar18 + 0x9648) = &unknown_var_7008_ptr;
+                *(void **)(lVar18 + 0x9640) = &processed_var_7024_ptr;
+                *(void **)(lVar18 + 0x9648) = &processed_var_7008_ptr;
                 *(code **)(lVar18 + 0x9630) = FUN_180489990;
                 *(int64_t *)(lVar18 + 0x9658) = lVar14;
                 *(uint *)(lVar18 + 4) = *(uint *)(lVar18 + 4) | 0x4000;

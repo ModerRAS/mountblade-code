@@ -79,7 +79,7 @@ void SystemEventManager(uint64_t *event_system)
   int64_t *plStackX_20;
   uint64_t uVar9;
   
-  *param_1 = &unknown_var_8656_ptr;
+  *param_1 = &processed_var_8656_ptr;
   *(int8_t *)((int64_t)param_1 + 0x162) = 1;
   plVar2 = param_1 + 0x1a;
   plStackX_20 = plVar2;
@@ -263,7 +263,7 @@ int64_t * EventProcessor(int64_t *system_context, int64_t *event_handler, int64_
     uStack_b0 = 0;
     puStack_c0 = (uint64_t *)0x0;
     uStack_b8 = 0;
-    puVar7 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,&unknown_var_3251_ptr);
+    puVar7 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,&memory_allocator_3251_ptr);
     *(int8_t *)puVar7 = 0;
     puStack_c0 = puVar7;
     uVar5 = CoreEngineSystemCleanup(puVar7);
@@ -933,7 +933,7 @@ LAB_180158404:
       plVar1 = (int64_t *)
                FUN_1801580f0(param_1,&plStackX_20,
                              *(uint64_t *)
-                              (&unknown_var_7408_ptr + (int64_t)*(char *)(param_3 + 0x59) * 8),lVar2,0,
+                              (&processed_var_7408_ptr + (int64_t)*(char *)(param_3 + 0x59) * 8),lVar2,0,
                              *(int8_t *)(param_3 + 0x58),0);
       lVar2 = *plVar1;
       *plVar1 = 0;

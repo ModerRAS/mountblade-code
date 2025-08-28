@@ -531,33 +531,33 @@ void FUN_18065cc10(int64_t param_1)
   uint64_t uVar4;
   
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_98;
-  apuStack_78[0] = &unknown_var_3028_ptr;
-  apuStack_78[1] = &unknown_var_3040_ptr;
-  apuStack_78[2] = &unknown_var_3120_ptr;
-  apuStack_78[3] = &unknown_var_2636_ptr;
-  apuStack_78[4] = &unknown_var_3104_ptr;
-  apuStack_78[5] = &unknown_var_2712_ptr;
-  apuStack_78[6] = &unknown_var_3152_ptr;
-  apuStack_78[7] = &unknown_var_3136_ptr;
-  apuStack_78[8] = &unknown_var_3056_ptr;
-  apuStack_78[9] = &unknown_var_3048_ptr;
-  plVar1 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_1840_ptr);
+  apuStack_78[0] = &memory_allocator_3028_ptr;
+  apuStack_78[1] = &memory_allocator_3040_ptr;
+  apuStack_78[2] = &memory_allocator_3120_ptr;
+  apuStack_78[3] = &rendering_buffer_2636_ptr;
+  apuStack_78[4] = &memory_allocator_3104_ptr;
+  apuStack_78[5] = &rendering_buffer_2712_ptr;
+  apuStack_78[6] = &memory_allocator_3152_ptr;
+  apuStack_78[7] = &memory_allocator_3136_ptr;
+  apuStack_78[8] = &memory_allocator_3056_ptr;
+  apuStack_78[9] = &memory_allocator_3048_ptr;
+  plVar1 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&ui_system_data_1840_ptr);
   plVar1 = (int64_t *)(**(code **)(*plVar1 + 0x28))(plVar1,*(int32_t *)(param_1 + 0x38));
   (**(code **)(*plVar1 + 0x70))(plVar1,&system_data_fd38);
-  plVar1 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_1864_ptr);
+  plVar1 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&ui_system_data_1864_ptr);
   plVar1 = (int64_t *)(**(code **)(*plVar1 + 0x28))(plVar1,*(int32_t *)(param_1 + 0x3c));
   (**(code **)(*plVar1 + 0x70))(plVar1,&system_data_fd38);
-  plVar1 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_1936_ptr);
+  plVar1 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&ui_system_data_1936_ptr);
   plVar1 = (int64_t *)(**(code **)(*plVar1 + 0x28))(plVar1,*(int32_t *)(param_1 + 0x40));
   (**(code **)(*plVar1 + 0x70))(plVar1,&system_data_fd38);
-  plVar1 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_1952_ptr);
+  plVar1 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&ui_system_data_1952_ptr);
   plVar1 = (int64_t *)(**(code **)(*plVar1 + 0x28))(plVar1,*(int32_t *)(param_1 + 0x44));
   (**(code **)(*plVar1 + 0x70))(plVar1,&system_data_fd38);
   uVar2 = 0;
   uVar4 = uVar2;
   if (0 < *(int *)(param_1 + 0x60)) {
     do {
-      plVar1 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_1896_ptr);
+      plVar1 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&ui_system_data_1896_ptr);
       plVar1 = (int64_t *)(**(code **)(*plVar1 + 0x28))(plVar1,*(int32_t *)(param_1 + 4));
       (**(code **)(*plVar1 + 0x70))(plVar1,&system_data_fd38);
       uVar3 = (int)uVar4 + 1;
@@ -566,9 +566,9 @@ void FUN_18065cc10(int64_t param_1)
   }
   do {
     if (0.0 < *(float *)(param_1 + 0x6150 + uVar2 * 4)) {
-      plVar1 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_1912_ptr);
+      plVar1 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&ui_system_data_1912_ptr);
       plVar1 = (int64_t *)(**(code **)(*plVar1 + 0x70))(plVar1,apuStack_78[uVar2]);
-      plVar1 = (int64_t *)(**(code **)(*plVar1 + 0x70))(plVar1,&unknown_var_1880_ptr);
+      plVar1 = (int64_t *)(**(code **)(*plVar1 + 0x70))(plVar1,&ui_system_data_1880_ptr);
       if (uVar2 == 0) {
         uVar5 = *(int32_t *)(param_1 + 0x3c);
       }
@@ -625,7 +625,7 @@ uint64_t * FUN_18065cf30(uint64_t *param_1,uint64_t param_2)
 
 {
   param_1[399] = 0;
-  *param_1 = &unknown_var_1984_ptr;
+  *param_1 = &ui_system_data_1984_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0xc88);
   }

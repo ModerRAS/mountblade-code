@@ -31,8 +31,8 @@
  */
 #define MEMORY_BLOCK_SIZE           0x60    /**< 内存块大小 */
 #define MEMORY_LARGE_BLOCK_SIZE     0x330   /**< 大内存块大小 */
-#define MEMORY_CHUNK_SIZE           0x200   /**< 内存块组大小 */
-#define MEMORY_SMALL_CHUNK_SIZE     0x10    /**< 小内存块大小 */
+#define MEMORY_CHSYSTEM_SIZE           0x200   /**< 内存块组大小 */
+#define MEMORY_SMALL_CHSYSTEM_SIZE     0x10    /**< 小内存块大小 */
 #define MEMORY_PAGE_SIZE            0x800   /**< 内存页大小 */
 #define MEMORY_ENTRY_SIZE           0x18    /**< 内存条目大小 */
 #define MEMORY_LARGE_ENTRY_SIZE     0x12c30 /**< 大内存条目大小 */
@@ -89,11 +89,11 @@
 void clear_memory_block(int64_t memory_ptr, uint block_index)
 {
     // 检查块索引是否在有效范围内
-    if ((int)block_index < (int)(block_index + MEMORY_CHUNK_SIZE)) {
+    if ((int)block_index < (int)(block_index + MEMORY_CHSYSTEM_SIZE)) {
         // 计算内存块地址并清零
         memset(
             *(int64_t *)(memory_ptr + 8 + (uint64_t)(block_index >> 9) * 8) +
-            (int64_t)(int)(block_index + (block_index >> 9) * -MEMORY_CHUNK_SIZE) * MEMORY_BLOCK_SIZE,
+            (int64_t)(int)(block_index + (block_index >> 9) * -MEMORY_CHSYSTEM_SIZE) * MEMORY_BLOCK_SIZE,
             0,
             MEMORY_BLOCK_SIZE
         );
@@ -125,7 +125,7 @@ void clear_memory_block_fast(void)
     // 使用寄存器变量直接计算内存地址并清零
     memset(
         *(int64_t *)(unaff_RBP + 8 + (uint64_t)(unaff_EBX >> 9) * 8) +
-        (int64_t)(int)(unaff_EBX + (unaff_EBX >> 9) * -MEMORY_CHUNK_SIZE) * MEMORY_BLOCK_SIZE,
+        (int64_t)(int)(unaff_EBX + (unaff_EBX >> 9) * -MEMORY_CHSYSTEM_SIZE) * MEMORY_BLOCK_SIZE,
         0,
         MEMORY_BLOCK_SIZE
     );
@@ -175,12 +175,12 @@ void initialize_memory_structure(int64_t memory_ptr, uint block_index)
     uint64_t uVar5;
     
     uVar5 = (uint64_t)block_index;
-    if ((int)block_index < (int)(block_index + MEMORY_CHUNK_SIZE)) {
+    if ((int)block_index < (int)(block_index + MEMORY_CHSYSTEM_SIZE)) {
         do {
             // 计算内存块地址
             puVar3 = (uint64_t *)
                      (*(int64_t *)(memory_ptr + 8 + (uVar5 >> 9) * 8) +
-                     (int64_t)((int)uVar5 + (int)(uVar5 >> 9) * -MEMORY_CHUNK_SIZE) * MEMORY_LARGE_BLOCK_SIZE);
+                     (int64_t)((int)uVar5 + (int)(uVar5 >> 9) * -MEMORY_CHSYSTEM_SIZE) * MEMORY_LARGE_BLOCK_SIZE);
             
             // 初始化基本状态字段
             puVar3[0x11] = 0;
@@ -270,7 +270,7 @@ void initialize_memory_structure(int64_t memory_ptr, uint block_index)
             // 更新循环计数器
             uVar4 = (int)uVar5 + 1;
             uVar5 = (uint64_t)uVar4;
-        } while ((int)uVar4 < (int)(block_index + MEMORY_CHUNK_SIZE));
+        } while ((int)uVar4 < (int)(block_index + MEMORY_CHSYSTEM_SIZE));
     }
     return;
 }
@@ -290,13 +290,13 @@ void process_memory_batch(int64_t memory_ptr, uint block_index)
   uint64_t uVar2;
   
   uVar2 = (uint64_t)block_index;
-  if ((int)block_index < (int)(block_index + MEMORY_SMALL_CHUNK_SIZE)) {
+  if ((int)block_index < (int)(block_index + MEMORY_SMALL_CHSYSTEM_SIZE)) {
     do {
-      process_memory_data((int64_t)((int)uVar2 + (int)(uVar2 >> 4) * -MEMORY_SMALL_CHUNK_SIZE) * MEMORY_LARGE_ENTRY_SIZE +
+      process_memory_data((int64_t)((int)uVar2 + (int)(uVar2 >> 4) * -MEMORY_SMALL_CHSYSTEM_SIZE) * MEMORY_LARGE_ENTRY_SIZE +
                     *(int64_t *)(memory_ptr + 8 + (uVar2 >> 4) * 8));
       uVar1 = (int)uVar2 + 1;
       uVar2 = (uint64_t)uVar1;
-    } while ((int)uVar1 < (int)(block_index + MEMORY_SMALL_CHUNK_SIZE));
+    } while ((int)uVar1 < (int)(block_index + MEMORY_SMALL_CHSYSTEM_SIZE));
   }
   return;
 }
@@ -330,7 +330,7 @@ free_memory_structure(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64
   if ((code *)param_1[6] != (code *)0x0) {
     (*(code *)param_1[6])(param_1 + 4,0,0,param_4,uVar1);
   }
-  *param_1 = &unknown_var_1000_ptr;
+  *param_1 = &ui_system_data_1000_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {

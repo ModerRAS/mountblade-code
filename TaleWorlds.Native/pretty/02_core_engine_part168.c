@@ -94,16 +94,16 @@ void FUN_180151660(int64_t param_1)
   uVar6 = *(uint *)(param_1 + 0x98);
   if (0x2d < uVar6) {
 LAB_180152731:
-    SystemDataInitializer(&unknown_var_6264_ptr);
+    SystemDataInitializer(&processed_var_6264_ptr);
     goto code_r0x00018015273d;
   }
-  lVar11 = (uint64_t)*(uint *)(&unknown_var_7364_ptr + (int64_t)(int)uVar6 * 4) + 0x180000000;
+  lVar11 = (uint64_t)*(uint *)(&processed_var_7364_ptr + (int64_t)(int)uVar6 * 4) + 0x180000000;
   switch(uVar6) {
   case 0:
     cVar20 = FUN_1801c9940(system_global_data_ptr);
     if (cVar20 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,&unknown_var_6208_ptr);
+      FUN_180062300(system_message_context,&processed_var_6208_ptr);
     }
     break;
   case 1:
@@ -208,7 +208,7 @@ LAB_180152731:
     uStack_218 = (uint64_t)uStack_218._4_4_ << 0x20;
     iVar7 = (**(code **)(*plVar5 + 0x70))(plVar5,*(uint64_t *)(lVar11 + 0x10),0,4);
     if (iVar7 < 0) {
-      FUN_180220810(iVar7,&unknown_var_1768_ptr);
+      FUN_180220810(iVar7,&ui_system_data_1768_ptr);
     }
     iVar7 = *(int *)(param_1 + 0xb8);
     if (0 < iVar7) {
@@ -234,7 +234,7 @@ LAB_180152731:
     uStack_218 = (uint64_t)uStack_218._4_4_ << 0x20;
     iVar7 = (**(code **)(*plVar5 + 0x70))(plVar5,*(uint64_t *)(lVar11 + 0x10),0,4);
     if (iVar7 < 0) {
-      FUN_180220810(iVar7,&unknown_var_1768_ptr);
+      FUN_180220810(iVar7,&ui_system_data_1768_ptr);
     }
     uVar12 = *(uint64_t *)(param_1 + 0xb8) >> 6;
     iVar7 = (int)(*(uint64_t *)(param_1 + 0xb0) >> 6);
@@ -447,7 +447,7 @@ code_r0x000180151fd7:
       if (*(int64_t *)(system_parameter_buffer + 0x60) != 0) {
         while( true ) {
           pcVar4 = *(code **)(**(int64_t **)(system_parameter_buffer + 0x60) + 0x68);
-          if (pcVar4 == (code *)&unknown_var_9696_ptr) {
+          if (pcVar4 == (code *)&processed_var_9696_ptr) {
             cVar20 = (char)(*(int64_t **)(system_parameter_buffer + 0x60))[2] != '\0';
           }
           else {

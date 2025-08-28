@@ -861,7 +861,7 @@ void SystemStateManager(int64_t param_1)
         // 子线程处理
         FUN_18005e630(system_context_ptr);
         stackLongPtr1 = stackLongArray;
-        stackPtr1 = &unknown_var_2816_ptr;
+        stackPtr1 = &rendering_buffer_2816_ptr;
         stackCodePtr = FUN_1800adc50;
         stackLongArray[0] = param_1;
         FUN_18005c650(stackLongArray);
@@ -869,7 +869,7 @@ void SystemStateManager(int64_t param_1)
     
     // 执行系统调用
     (**(code **)(**(int64_t **)(param_1 + 0x1d70) + 0x48))
-            (*(int64_t **)(param_1 + 0x1d70), 0, &unknown_var_6656_ptr, stackLongPtrArray);
+            (*(int64_t **)(param_1 + 0x1d70), 0, &processed_var_6656_ptr, stackLongPtrArray);
     
     if (stackLongPtrArray[0] != (int64_t *)0x0) {
         (**(code **)(*stackLongPtrArray[0] + 0x10))();
@@ -891,12 +891,12 @@ void SystemStateManager(int64_t param_1)
     if (tempInt2 < 0) {
         if ((tempInt2 + 0x7785fffbU & 0xfffffffd) == 0) {
             tempUint2 = (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0x138))();
-            FUN_180220810(tempUint2, &unknown_var_6384_ptr);
+            FUN_180220810(tempUint2, &processed_var_6384_ptr);
         }
     } else {
         // 成功处理逻辑
         (**(code **)(**(int64_t **)(param_1 + 0x1d70) + 0x48))
-                  (*(int64_t **)(param_1 + 0x1d70), 0, &unknown_var_6656_ptr, stackLongPtrArray);
+                  (*(int64_t **)(param_1 + 0x1d70), 0, &processed_var_6656_ptr, stackLongPtrArray);
         stackUlong1 = 0;
         
         (**(code **)(**(int64_t **)(param_1 + 0x1d78) + 0x48))
@@ -921,16 +921,16 @@ void SystemStateManager(int64_t param_1)
         
         // 设置资源属性
         tempLongPtr1 = (int64_t *)(*(int64_t *)(param_1 + 0x121e0) + 0x10);
-        (**(code **)(*tempLongPtr1 + 0x10))(tempLongPtr1, &unknown_var_3144_ptr);
+        (**(code **)(*tempLongPtr1 + 0x10))(tempLongPtr1, &memory_allocator_3144_ptr);
         *(int64_t **)(*(int64_t *)(param_1 + 0x121e0) + 0x170) = stackLongPtrArray[0];
         
         // 初始化资源数据
         stackPtrPtr1 = &stackPtr4;
-        stackPtr4 = &unknown_var_3432_ptr;
+        stackPtr4 = &memory_allocator_3432_ptr;
         stackPtr5 = stackBuffer3;
         stackBuffer3[0] = 0;
         stackUint4 = 0x15;
-        strcpy_s(stackBuffer3, 0x80, &unknown_var_3144_ptr);
+        strcpy_s(stackBuffer3, 0x80, &memory_allocator_3144_ptr);
         
         stackPtrPtr2 = &stackPtr4;
         *(int64_t *)(*(int64_t *)(param_1 + 0x121e0) + 0x168) = *(int64_t *)(param_1 + 0x121e0);
@@ -988,11 +988,11 @@ void SystemStateManager(int64_t param_1)
         
         // 更新资源信息
         stackPtrPtr2 = &stackPtr2;
-        stackPtr2 = &unknown_var_3432_ptr;
+        stackPtr2 = &memory_allocator_3432_ptr;
         stackPtr3 = stackBuffer2;
         stackBuffer2[0] = 0;
         stackUint3 = 0x15;
-        strcpy_s(stackBuffer2, 0x80, &unknown_var_3144_ptr);
+        strcpy_s(stackBuffer2, 0x80, &memory_allocator_3144_ptr);
         
         stackPtrPtr1 = &stackPtr2;
         stackPtr2 = &system_state_ptr;
@@ -1219,7 +1219,7 @@ void AlgorithmExecutionController(int64_t param_1, int8_t *param_2)
                     (*(int64_t **)(param_1 + 0x1d78), &stackUint1, stackBuffer2);
     
     if (tempInt1 < 0) {
-        FUN_180220810(tempInt1, &unknown_var_5984_ptr);
+        FUN_180220810(tempInt1, &processed_var_5984_ptr);
     }
     
     // 清理栈并返回

@@ -106,7 +106,7 @@ void RenderingSystem_ProcessResourceBatch(int64_t render_context, int64_t output
     uStack_c0 = &lStackX_10;
     puStack_b8 = auStackX_18;
     pcStack_f8 = FUN_18033cc90;
-    puStack_f0 = &unknown_var_5632_ptr;
+    puStack_f0 = &processed_var_5632_ptr;
     uStack_c8 = (void *)param_1;
     puStack_108 = (int32_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,system_allocation_flags);
     *puStack_108 = (int32_t)uStack_c8;
@@ -140,7 +140,7 @@ void RenderingSystem_ProcessResourceBatch(int64_t render_context, int64_t output
     uStack_11e = 3;
     System_BufferManager(&lStack_138,uStack_e8);
     lVar9 = lStack_138;
-    uStack_c8 = &unknown_var_3856_ptr;
+    uStack_c8 = &memory_allocator_3856_ptr;
     uStack_c0 = (int64_t *)CONCAT71(uStack_c0._1_7_,1);
     FUN_18021f710(&uStack_c8,auStack_88,puVar6,uStack_110,lStack_138,uStack_e8);
     uStack_118 = 0;
@@ -223,7 +223,7 @@ LAB_1803329a3:
         *plVar10 = (int64_t)&system_state_ptr;
         *(uint64_t *)(puVar6 + 0x16) = 0;
         puVar6[0x18] = 0;
-        *plVar10 = (int64_t)&unknown_var_3480_ptr;
+        *plVar10 = (int64_t)&memory_allocator_3480_ptr;
         *(int32_t **)(puVar6 + 0x16) = puVar6 + 0x1a;
         puVar6[0x18] = 0;
         *(int8_t *)(puVar6 + 0x1a) = 0;
@@ -436,7 +436,7 @@ void RenderingSystem_ExecuteResourceProcessing(int64_t *resource_manager, int st
     uStack_1ce = 3;
     System_BufferManager(&lStack_1e8,uStack_1c8);
     lVar10 = lStack_1e8;
-    puStack_138 = &unknown_var_3856_ptr;
+    puStack_138 = &memory_allocator_3856_ptr;
     uStack_130 = 1;
     uStack_220 = uStack_1c8;
     lStack_228 = lStack_1e8;
@@ -548,7 +548,7 @@ LAB_1803330f8:
         *ppuStack_d8 = &system_state_ptr;
         ppuVar8[0xb] = (void *)0x0;
         *(int32_t *)(ppuVar8 + 0xc) = 0;
-        *ppuStack_d8 = &unknown_var_3480_ptr;
+        *ppuStack_d8 = &memory_allocator_3480_ptr;
         ppuVar8[0xb] = (void *)(ppuVar8 + 0xd);
         *(int32_t *)(ppuVar8 + 0xc) = 0;
         *(int8_t *)(ppuVar8 + 0xd) = 0;
@@ -557,7 +557,7 @@ LAB_1803330f8:
         *ppuStack_120 = &system_state_ptr;
         ppuVar8[0x1b] = (void *)0x0;
         *(int32_t *)(ppuVar8 + 0x1c) = 0;
-        *ppuStack_120 = &unknown_var_3480_ptr;
+        *ppuStack_120 = &memory_allocator_3480_ptr;
         ppuVar8[0x1b] = (void *)(ppuVar8 + 0x1d);
         *(int32_t *)(ppuVar8 + 0x1c) = 0;
         *(int8_t *)(ppuVar8 + 0x1d) = 0;
@@ -922,7 +922,7 @@ void RenderingSystem_CleanupResourceData(int64_t resource_context, char cleanup_
     iVar2 = *piVar8;
     puVar3 = *(uint64_t **)(param_1 + 0x148);
     if (puVar3 != (uint64_t *)0x0) {
-      if ((void *)*puVar3 == &unknown_var_8024_ptr) {
+      if ((void *)*puVar3 == &processed_var_8024_ptr) {
         cVar10 = *(char *)(puVar3 + 2) != '\0';
       }
       else {
@@ -941,7 +941,7 @@ void RenderingSystem_CleanupResourceData(int64_t resource_context, char cleanup_
       plVar7 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xd0,8,3,uVar11);
       plStackX_18 = plVar7;
       FUN_180049830(plVar7);
-      *plVar7 = (int64_t)&unknown_var_8024_ptr;
+      *plVar7 = (int64_t)&processed_var_8024_ptr;
       *(int *)(plVar7 + 0x18) = iVar2;
       plVar7[0x19] = param_1;
       plStackX_20 = plVar7;

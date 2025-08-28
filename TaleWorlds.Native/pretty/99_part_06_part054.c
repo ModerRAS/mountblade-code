@@ -11,7 +11,7 @@ void FUN_1803dd4f0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   uint64_t uVar2;
   
   uVar2 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_6656_ptr;
+  *param_1 = &processed_var_6656_ptr;
   if (param_1[0x21] != 0) {
     plVar1 = (int64_t *)param_1[0x21];
     param_1[0x21] = 0;
@@ -64,7 +64,7 @@ void FUN_1803dd4f0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   if ((int64_t *)param_1[0x21] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x21] + 0x38))();
   }
-  *param_1 = &unknown_var_768_ptr;
+  *param_1 = &processed_var_768_ptr;
   param_1[5] = 0;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;

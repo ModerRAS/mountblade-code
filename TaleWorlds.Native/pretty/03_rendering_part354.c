@@ -36,7 +36,7 @@ void FUN_18045c5c0(int64_t param_1)
   
   uStack_d0 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_178;
-  puStack_c8 = &unknown_var_3432_ptr;
+  puStack_c8 = &memory_allocator_3432_ptr;
   puStack_c0 = auStack_b0;
   uStack_b8 = 0;
   auStack_b0[0] = 0;
@@ -245,7 +245,7 @@ int8_t FUN_18045cb50(void)
   
   plVar1 = *(int64_t **)(system_global_data_ptr + 0x40);
   if (plVar1 != (int64_t *)0x0) {
-    if (*(code **)(*plVar1 + 0x68) == (code *)&unknown_var_9696_ptr) {
+    if (*(code **)(*plVar1 + 0x68) == (code *)&processed_var_9696_ptr) {
       cVar2 = (char)plVar1[2] != '\0';
     }
     else {
@@ -337,7 +337,7 @@ void FUN_18045cca0(int64_t param_1,int64_t param_2,uint64_t param_3)
   uStack_40 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_f8;
   *(int8_t *)(system_operation_state + 0x17e8) = 0;
   CoreMemoryPoolValidator(&puStack_d8,param_3);
-  puStack_78 = &unknown_var_672_ptr;
+  puStack_78 = &processed_var_672_ptr;
   puStack_70 = auStack_60;
   uStack_68 = 0;
   auStack_60[0] = 0;
@@ -350,7 +350,7 @@ void FUN_18045cca0(int64_t param_1,int64_t param_2,uint64_t param_3)
     uStack_68 = (int32_t)lVar1;
     strcpy_s(auStack_60,0x20,param_2);
   }
-  puStack_b0 = &unknown_var_672_ptr;
+  puStack_b0 = &processed_var_672_ptr;
   puStack_a8 = auStack_98;
   uStack_a0 = 0;
   auStack_98[0] = 0;
@@ -422,7 +422,7 @@ int8_t FUN_18045ceb0(void)
   ppplVar4 = system_global_data_ptr;
   ppplStackX_8 = (int64_t ***)pppplVar6;
   FUN_180049830(pppplVar6);
-  *pppplVar6 = (int64_t ***)&unknown_var_3624_ptr;
+  *pppplVar6 = (int64_t ***)&memory_allocator_3624_ptr;
   *(int8_t *)(pppplVar6 + 0x18) = 0;
   pppplVar6[0x19] = ppplVar4;
   ppplStackX_18 = (int64_t ***)pppplVar6;
@@ -439,7 +439,7 @@ int8_t FUN_18045ceb0(void)
 joined_r0x00018045cfc8:
     if (iVar5 != iVar2) {
       while( true ) {
-        if ((*pppplVar6)[0xd] == (int64_t **)&unknown_var_9696_ptr) {
+        if ((*pppplVar6)[0xd] == (int64_t **)&processed_var_9696_ptr) {
           cVar7 = *(char *)(pppplVar6 + 2) != '\0';
         }
         else {
@@ -592,11 +592,11 @@ void FUN_18045d290(uint64_t param_1,uint64_t param_2,float param_3)
   uStack_90 = 0;
   puStack_a8 = &system_state_ptr;
   CoreMemoryPoolValidator(&puStack_c8,param_1);
-  puStack_80 = &unknown_var_672_ptr;
+  puStack_80 = &processed_var_672_ptr;
   puStack_78 = auStack_68;
   auStack_68[0] = 0;
   iStack_70 = 0xc;
-  strcpy_s(auStack_68,0x20,&unknown_var_880_ptr);
+  strcpy_s(auStack_68,0x20,&processed_var_880_ptr);
   if (iStack_b8 == iStack_70) {
     if (iStack_b8 != 0) {
       pcVar5 = pcStack_c0;
@@ -742,7 +742,7 @@ void FUN_18045d610(float *param_1,float *param_2,float *param_3,float *param_4,f
   alStack_68[8] = 0;
   plStackX_8 = alStack_68;
   ppuStackX_10 = appuStack_90;
-  puStack_80 = &unknown_var_2640_ptr;
+  puStack_80 = &rendering_buffer_2640_ptr;
   pcStack_78 = FUN_1800adba0;
   appuStack_90[0] = &plStackX_8;
   FUN_18005c650(appuStack_90);
@@ -792,7 +792,7 @@ void FUN_18045d760(void)
               0x48) < render_system_config_memory) {
     SystemInitializer(&system_ptr_99c8);
     if (render_system_config_memory == -1) {
-      render_system_config_memory = &unknown_var_9208_ptr;
+      render_system_config_memory = &processed_var_9208_ptr;
       render_system_config_memory = &system_ptr_99e8;
 
 

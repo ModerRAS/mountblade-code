@@ -66,7 +66,7 @@
 #define RENDER_STATE_OFFSET         0x18           // 渲染状态偏移量
 #define RENDER_VERTEX_SIZE          0x18           // 顶点数据大小
 #define RENDER_BATCH_SIZE           0x50           // 批处理大小
-#define RENDER_CHUNK_SIZE           0x60           // 数据块大小
+#define RENDER_CHSYSTEM_SIZE           0x60           // 数据块大小
 
 /** SIMD指令掩码常量 */
 #define SIMD_MASK_0F                0x0f           // SIMD掩码0F

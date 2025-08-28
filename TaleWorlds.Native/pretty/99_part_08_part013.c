@@ -201,10 +201,10 @@ void FUN_1804ec4e0(int64_t param_1,int64_t param_2,int param_3,int64_t param_4,c
       uVar22 = *(int32_t *)(param_2 + 0x10);
       cVar5 = SystemBufferProcessor(0x180c95578,0,&system_param1_ptr);
       if ((((cVar5 != '\0') &&
-           (cVar5 = SystemBufferProcessor(0x180c95578,0xe,&unknown_var_3472_ptr), cVar5 != '\0')) &&
-          (cVar5 = SystemBufferProcessor(0x180c95578,uVar22,&unknown_var_3424_ptr), cVar5 != '\0')) &&
+           (cVar5 = SystemBufferProcessor(0x180c95578,0xe,&memory_allocator_3472_ptr), cVar5 != '\0')) &&
+          (cVar5 = SystemBufferProcessor(0x180c95578,uVar22,&memory_allocator_3424_ptr), cVar5 != '\0')) &&
          (cVar5 = SystemBufferProcessor(0x180c95578,(lVar10 >> 2) - (lVar10 >> 0x3f) & 0xffffffff,
-                                &unknown_var_3344_ptr), cVar5 != '\0')) {
+                                &memory_allocator_3344_ptr), cVar5 != '\0')) {
         SystemBufferProcessor(0x180c95578,param_5,&system_param1_ptr);
       }
       lVar9 = 0;
@@ -277,7 +277,7 @@ void FUN_1804ec4e0(int64_t param_1,int64_t param_2,int param_3,int64_t param_4,c
         }
         puVar13 = (uint64_t *)
                   (*(int64_t *)(*(int64_t *)(param_1 + 0x87bd50) + uVar16 * 8) + lVar9);
-        if ((void *)*puVar13 == &unknown_var_5520_ptr) {
+        if ((void *)*puVar13 == &processed_var_5520_ptr) {
           puVar13[2] = 0;
           plVar3 = (int64_t *)puVar13[3];
           puVar13[3] = 0;

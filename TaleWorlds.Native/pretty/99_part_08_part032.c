@@ -8,7 +8,7 @@ void FUN_1804ffdd0(uint64_t *param_1)
 
 {
   _Mtx_destroy_in_situ();
-  *param_1 = &unknown_var_5224_ptr;
+  *param_1 = &processed_var_5224_ptr;
   param_1[7] = &system_data_buffer_ptr;
   if (param_1[8] != 0) {
                     // WARNING: Subroutine does not return
@@ -194,7 +194,7 @@ FUN_180500130(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   if ((int64_t *)param_1[3] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[3] + 0x38))();
   }
-  *param_1 = &unknown_var_5552_ptr;
+  *param_1 = &processed_var_5552_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x40,param_3,param_4,uVar1);
   }
@@ -206,7 +206,7 @@ FUN_180500130(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
 uint64_t * FUN_180500190(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_5552_ptr;
+  *param_1 = &processed_var_5552_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x10);
   }
@@ -886,9 +886,9 @@ void FUN_1805a0af0(int64_t param_1,float param_2,char param_3)
       lVar6 = FUN_1805b5ad0();
       cVar3 = SystemBufferProcessor(lVar6,0,&system_param1_ptr);
       if (cVar3 != '\0') {
-        cVar3 = SystemBufferProcessor(lVar6,6,&unknown_var_3472_ptr);
+        cVar3 = SystemBufferProcessor(lVar6,6,&memory_allocator_3472_ptr);
         if (cVar3 != '\0') {
-          uVar4 = FUN_18055f6f0(&unknown_var_2976_ptr,param_2);
+          uVar4 = FUN_18055f6f0(&rendering_buffer_2976_ptr,param_2);
           uVar7 = *(int *)(lVar6 + 0x5c4) >> 0x1f & 0x1f;
           iVar5 = *(int *)(lVar6 + 0x5c4) + uVar7;
           puVar1 = (uint64_t *)(*(int64_t *)(lVar6 + 0x598) + (int64_t)(iVar5 >> 5) * 4);
@@ -923,9 +923,9 @@ void FUN_1805a0b96(void)
   lVar5 = FUN_1805b5ad0();
   cVar2 = SystemBufferProcessor(lVar5,0,&system_param1_ptr);
   if (cVar2 != '\0') {
-    cVar2 = SystemBufferProcessor(lVar5,6,&unknown_var_3472_ptr);
+    cVar2 = SystemBufferProcessor(lVar5,6,&memory_allocator_3472_ptr);
     if (cVar2 != '\0') {
-      uVar3 = FUN_18055f6f0(&unknown_var_2976_ptr);
+      uVar3 = FUN_18055f6f0(&rendering_buffer_2976_ptr);
       uVar6 = *(int *)(lVar5 + 0x5c4) >> 0x1f & 0x1f;
       iVar4 = *(int *)(lVar5 + 0x5c4) + uVar6;
       puVar1 = (uint64_t *)(*(int64_t *)(lVar5 + 0x598) + (int64_t)(iVar4 >> 5) * 4);

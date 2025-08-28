@@ -70,7 +70,7 @@ void FUN_180070930(uint64_t param_1,int64_t param_2,int32_t param_3,int64_t para
   uStack_50 = 0;
   uStack_98 = param_3;
   lStack_88 = param_4;
-  FUN_1800634b0(&uStack_58,0x10,&unknown_var_4576_ptr,param_3);
+  FUN_1800634b0(&uStack_58,0x10,&processed_var_4576_ptr,param_3);
   lVar9 = CoreMemoryPoolValidator(&puStack_d8,param_4);
   puStack_118 = &system_data_buffer_ptr;
   uStack_100 = 0;
@@ -185,7 +185,7 @@ LAB_180070b00:
   uStack_130 = 0;
   puVar18 = &system_data_f660;
   if (cStack_120 != '\0') {
-    puVar18 = &unknown_var_4216_ptr;
+    puVar18 = &processed_var_4216_ptr;
   }
   lVar15 = -1;
   do {
@@ -436,12 +436,12 @@ LAB_18007113f:
     puStack_d8 = &system_state_ptr;
   }
   puVar10 = puStack_110;
-  FUN_180062380(system_message_context,5,0xffffffff00000000,&unknown_var_3968_ptr);
+  FUN_180062380(system_message_context,5,0xffffffff00000000,&memory_allocator_3968_ptr);
   puStack_168 = &system_buffer_ptr;
   if (puStack_138 != (int8_t *)0x0) {
     puStack_168 = puStack_138;
   }
-  FUN_180062380(system_message_context,4,0xffffffff00000000,&unknown_var_4064_ptr);
+  FUN_180062380(system_message_context,4,0xffffffff00000000,&processed_var_4064_ptr);
   puStack_168 = &system_buffer_ptr;
   if (puVar10 != (int8_t *)0x0) {
     puStack_168 = puVar10;
@@ -466,7 +466,7 @@ LAB_18007113f:
       }
     }
     if ((core_system_data_memory == 0) || (*(int *)(core_system_data_memory + 0x168) == 2)) {
-      FUN_180062380(system_message_context,4,0xffffffff00000000,&unknown_var_4280_ptr);
+      FUN_180062380(system_message_context,4,0xffffffff00000000,&processed_var_4280_ptr);
       FUN_1800623e0();
       iVar4 = IsDebuggerPresent();
       if ((iVar4 != 0) && (system_data_2851 == '\0')) {
@@ -477,9 +477,9 @@ LAB_18007113f:
     }
   }
   if (system_debug_flag2 == '\0') {
-    puVar18 = &unknown_var_4332_ptr;
+    puVar18 = &processed_var_4332_ptr;
     if (cStack_120 != '\0') {
-      puVar18 = &unknown_var_4320_ptr;
+      puVar18 = &processed_var_4320_ptr;
     }
     do {
       while( true ) {
@@ -490,7 +490,7 @@ LAB_18007113f:
         if (((system_debug_flag == '\0') || (iVar4 = IsDebuggerPresent(), iVar4 != 0)) &&
            (system_debug_flag2 == '\0')) break;
         if (*(char *)(system_message_context + 0x18) != '\0') {
-          puStack_168 = &unknown_var_6936_ptr;
+          puStack_168 = &processed_var_6936_ptr;
           puStack_160 = puVar18;
           puStack_158 = puVar12;
           FUN_1800623b0(system_message_context,3,0xffffffff00000000,0xd);
@@ -525,11 +525,11 @@ LAB_18007113f:
         }
         if (((system_debug_flag == '\0') || (iVar4 = IsDebuggerPresent(), iVar4 != 0)) &&
            (system_debug_flag2 == '\0')) {
-          MessageBoxA(0,puVar12,&unknown_var_4344_ptr,0x41010);
+          MessageBoxA(0,puVar12,&processed_var_4344_ptr,0x41010);
         }
         else if (*(char *)(system_message_context + 0x18) != '\0') {
-          puStack_160 = &unknown_var_4344_ptr;
-          puStack_168 = &unknown_var_6936_ptr;
+          puStack_160 = &processed_var_4344_ptr;
+          puStack_168 = &processed_var_6936_ptr;
           puStack_158 = puVar12;
           FUN_1800623b0(system_message_context,3,0xffffffff00000000,0xd);
         }
@@ -606,7 +606,7 @@ LAB_1800715eb:
   }
   uVar7 = FUN_1800f98e0(puVar18);
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&unknown_var_4368_ptr,bVar13 ^ 1,uVar7);
+  FUN_180062300(system_message_context,&processed_var_4368_ptr,bVar13 ^ 1,uVar7);
 }
 
 
@@ -864,12 +864,12 @@ LAB_180071e34:
 LAB_180071eb0:
   *(int16_t *)(puStack_88 + uStack_80) = 10;
   uStack_80 = uVar2 + 0xe;
-  FUN_180062380(system_message_context,5,0xffffffff00000000,&unknown_var_3968_ptr);
+  FUN_180062380(system_message_context,5,0xffffffff00000000,&memory_allocator_3968_ptr);
   puVar8 = &system_buffer_ptr;
   if (puStack_88 != (int8_t *)0x0) {
     puVar8 = puStack_88;
   }
-  FUN_180062380(system_message_context,4,0xffffffff00000000,&unknown_var_4064_ptr,puVar8);
+  FUN_180062380(system_message_context,4,0xffffffff00000000,&processed_var_4064_ptr,puVar8);
   puVar5 = &system_buffer_ptr;
   if (puVar9 != (void *)0x0) {
     puVar5 = puVar9;

@@ -51,7 +51,7 @@ LAB_180193562:
                   (physics_context + 8,lVar4,pcVar2,puVar6,0xfffffffffffffffe);
         break;
       }
-      lVar4 = (int64_t)&unknown_var_1288_ptr - (int64_t)pcVar3;
+      lVar4 = (int64_t)&ui_system_data_1288_ptr - (int64_t)pcVar3;
       while (*pcVar3 == pcVar3[lVar4]) {
         pcVar3 = pcVar3 + 1;
         if (pcVar2 <= pcVar3) goto LAB_180193562;
@@ -104,7 +104,7 @@ LAB_180193610:
         *(int32_t *)(physics_context + 0x44) = uStack_38._4_4_;
         goto LAB_18019368b;
       }
-      lVar4 = (int64_t)&unknown_var_1920_ptr - (int64_t)pcVar8;
+      lVar4 = (int64_t)&ui_system_data_1920_ptr - (int64_t)pcVar8;
       while (*pcVar8 == pcVar8[lVar4]) {
         pcVar8 = pcVar8 + 1;
         if (pcVar2 <= pcVar8) goto LAB_180193610;
@@ -115,19 +115,19 @@ LAB_180193610:
 LAB_18019368b:
   
   // 处理各种物理材质属性标志位
-  lVar4 = FUN_180631000(material_data,&unknown_var_1992_ptr,acStackX_8);
+  lVar4 = FUN_180631000(material_data,&ui_system_data_1992_ptr,acStackX_8);
   if ((lVar4 != 0) && (acStackX_8[0] != '\0')) {
     *(byte *)(physics_context + 0x48) = *(byte *)(physics_context + 0x48) | 1; // 设置标志位1
   }
-  lVar4 = FUN_180631000(material_data,&unknown_var_1968_ptr,acStackX_8);
+  lVar4 = FUN_180631000(material_data,&ui_system_data_1968_ptr,acStackX_8);
   if ((lVar4 != 0) && (acStackX_8[0] != '\0')) {
     *(byte *)(physics_context + 0x48) = *(byte *)(physics_context + 0x48) | 4; // 设置标志位4
   }
-  lVar4 = FUN_180631000(material_data,&unknown_var_2048_ptr,acStackX_8);
+  lVar4 = FUN_180631000(material_data,&rendering_buffer_2048_ptr,acStackX_8);
   if ((lVar4 != 0) && (acStackX_8[0] != '\0')) {
     *(byte *)(physics_context + 0x48) = *(byte *)(physics_context + 0x48) | 2; // 设置标志位2
   }
-  lVar4 = FUN_180631000(material_data,&unknown_var_2016_ptr,acStackX_8);
+  lVar4 = FUN_180631000(material_data,&rendering_buffer_2016_ptr,acStackX_8);
   if ((lVar4 != 0) && (acStackX_8[0] != '\0')) {
     *(byte *)(physics_context + 0x48) = *(byte *)(physics_context + 0x48) | 8; // 设置标志位8
   }
@@ -158,7 +158,7 @@ LAB_180193772:
         }
         break;
       }
-      lVar4 = (int64_t)&unknown_var_2088_ptr - (int64_t)pcVar8;
+      lVar4 = (int64_t)&rendering_buffer_2088_ptr - (int64_t)pcVar8;
       while (*pcVar8 == pcVar8[lVar4]) {
         pcVar8 = pcVar8 + 1;
         if (pcVar2 <= pcVar8) goto LAB_180193772;
@@ -195,7 +195,7 @@ LAB_180193810:
         }
         break;
       }
-      lVar4 = (int64_t)&unknown_var_2064_ptr - (int64_t)pcVar8;
+      lVar4 = (int64_t)&rendering_buffer_2064_ptr - (int64_t)pcVar8;
       while (*pcVar8 == pcVar8[lVar4]) {
         pcVar8 = pcVar8 + 1;
         if (pcVar2 <= pcVar8) goto LAB_180193810;
@@ -232,7 +232,7 @@ LAB_1801938a0:
         }
         break;
       }
-      lVar4 = (int64_t)&unknown_var_2120_ptr - (int64_t)pcVar8;
+      lVar4 = (int64_t)&rendering_buffer_2120_ptr - (int64_t)pcVar8;
       while (*pcVar8 == pcVar8[lVar4]) {
         pcVar8 = pcVar8 + 1;
         if (pcVar2 <= pcVar8) goto LAB_1801938a0;
@@ -269,7 +269,7 @@ LAB_180193930:
         }
         break;
       }
-      lVar4 = (int64_t)&unknown_var_2104_ptr - (int64_t)pcVar8;
+      lVar4 = (int64_t)&rendering_buffer_2104_ptr - (int64_t)pcVar8;
       while (*pcVar8 == pcVar8[lVar4]) {
         pcVar8 = pcVar8 + 1;
         if (pcVar2 <= pcVar8) goto LAB_180193930;
@@ -306,7 +306,7 @@ LAB_1801939c0:
         }
         break;
       }
-      lVar4 = (int64_t)&unknown_var_2152_ptr - (int64_t)pcVar8;
+      lVar4 = (int64_t)&rendering_buffer_2152_ptr - (int64_t)pcVar8;
       while (*pcVar8 == pcVar8[lVar4]) {
         pcVar8 = pcVar8 + 1;
         if (pcVar2 <= pcVar8) goto LAB_1801939c0;
@@ -355,7 +355,7 @@ LAB_180193a50:
         }
         goto LAB_180193a66;
       }
-      lVar4 = (int64_t)&unknown_var_2136_ptr - (int64_t)pcVar8;
+      lVar4 = (int64_t)&rendering_buffer_2136_ptr - (int64_t)pcVar8;
       while (*pcVar8 == pcVar8[lVar4]) {
         pcVar8 = pcVar8 + 1;
         if (pcVar2 <= pcVar8) goto LAB_180193a50;
@@ -573,8 +573,8 @@ create_material_property_array(uint64_t array_size, uint64_t param_2, uint64_t p
     puVar3 = puVar3 + 4;
     do {
       // 初始化数组元素
-      puVar3[-2] = (uint64_t)&unknown_var_5912_ptr;
-      puVar3[-2] = (uint64_t)&unknown_var_2184_ptr;
+      puVar3[-2] = (uint64_t)&processed_var_5912_ptr;
+      puVar3[-2] = (uint64_t)&rendering_buffer_2184_ptr;
       puVar1 = puVar3 + -1;
       *puVar1 = (uint64_t)&system_state_ptr;
       *puVar3 = 0;
@@ -590,7 +590,7 @@ create_material_property_array(uint64_t array_size, uint64_t param_2, uint64_t p
       puVar3[6] = 0;
       puVar3[4] = 0;
       *(int32_t *)(puVar3 + 5) = 0;
-      (**(code **)(*puVar1 + 0x10))(puVar1,&unknown_var_2168_ptr);
+      (**(code **)(*puVar1 + 0x10))(puVar1,&rendering_buffer_2168_ptr);
       *(int8_t *)(puVar3 + 7) = 0;
       *(int32_t *)((int64_t)puVar3 + 0x3c) = 0x3e4ccccd; // 0.2
       *(int32_t *)(puVar3 + 8) = 0x3e99999a; // 0.3
@@ -1023,7 +1023,7 @@ initialize_material_property_node(uint64_t *node_ptr, uint64_t flags, uint64_t p
   node_ptr[2] = 0;
   *(int32_t *)(node_ptr + 4) = 0;
   node_ptr[1] = &system_state_ptr;
-  *node_ptr = &unknown_var_5912_ptr;
+  *node_ptr = &processed_var_5912_ptr;
   if ((flags & 1) != 0) {
     free(node_ptr,0x68,param_3,param_4,0xfffffffffffffffe);
   }

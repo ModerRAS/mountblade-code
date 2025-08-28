@@ -108,7 +108,7 @@ float * calculate_bounding_box(float *object_ptr)
         stack_temp_48 = *(void **)(object_ptr + 6);  // 更新数据指针
       }
       stack_temp_40 = CONCAT44(stack_temp_40._4_4_,*(int32_t *)(*(int64_t *)(object_ptr + 0x84) + 0x60));
-      stack_temp_58 = &unknown_var_5472_ptr;  // 设置未知数据指针
+      stack_temp_58 = &processed_var_5472_ptr;  // 设置未知数据指针
       stack_temp_80 = 0x18007967a;     // 设置函数地址
       stack_temp_50 = time_value;      // 保存时间值
       FUN_1800623b0(system_message_context,0,0x80000000000,3);

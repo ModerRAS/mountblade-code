@@ -99,7 +99,7 @@ void FUN_18018e0f0(uint64_t param_1,int64_t param_2,int64_t param_3)
       if (puStack_158 != (int8_t *)0x0) {
         puVar9 = puStack_158;
       }
-      lVar5 = strstr(puVar9,&unknown_var_1496_ptr);
+      lVar5 = strstr(puVar9,&ui_system_data_1496_ptr);
       puVar11 = puStack_120;
       if (lVar5 == 0) {
         puStack_160 = &system_data_buffer_ptr;
@@ -281,8 +281,8 @@ FUN_18018e7e0(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_
   uint64_t uVar5;
   
   uVar5 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_5912_ptr;
-  *param_1 = &unknown_var_5880_ptr;
+  *param_1 = &processed_var_5912_ptr;
+  *param_1 = &processed_var_5880_ptr;
   CoreEngineDataTransformer(param_1 + 1,param_2 + 8,param_3,param_4,0xfffffffffffffffe);
   *(int32_t *)(param_1 + 5) = *(int32_t *)(param_2 + 0x28);
   *(int32_t *)((int64_t)param_1 + 0x2c) = *(int32_t *)(param_2 + 0x2c);

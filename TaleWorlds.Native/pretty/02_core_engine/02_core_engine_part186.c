@@ -72,7 +72,7 @@ void process_engine_memory_allocation(int64_t param_1, uint64_t *param_2, uint64
   *(int32_t *)(temp_long3 + 0x1bd4) = 1;
   
   // 初始化字符串处理模块
-  initialize_string_processor(&unknown_var_1792_ptr, 0, 0x907);
+  initialize_string_processor(&ui_system_data_1792_ptr, 0, 0x907);
   temp_long3 = SYSTEM_DATA_MANAGER_A;
   
   // 设置处理标志
@@ -91,7 +91,7 @@ void process_engine_memory_allocation(int64_t param_1, uint64_t *param_2, uint64
     process_buffer_operation(SYSTEM_DATA_MANAGER_A + 0x1b80, stack_data);
     *(uint64_t *)(temp_long3 + 0x1718) = 0x3f8000003f800000;
     *(uint64_t *)(temp_long3 + 0x1720) = 0x3f8000003f800000;
-    initialize_default_values(&unknown_var_1776_ptr);
+    initialize_default_values(&ui_system_data_1776_ptr);
     temp_long3 = SYSTEM_DATA_MANAGER_A;
     
     // 处理数据队列操作
@@ -195,17 +195,17 @@ void process_engine_memory_allocation(int64_t param_1, uint64_t *param_2, uint64
   temp_long1 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
   temp_long3 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
   temp_long2 = (int64_t)*(int *)(temp_long3 + -0xc + temp_long1 * 0xc);
-  temp_ulong1 = (uint64_t)*(uint *)(&unknown_var_6056_ptr + temp_long2 * 0xc);
+  temp_ulong1 = (uint64_t)*(uint *)(&processed_var_6056_ptr + temp_long2 * 0xc);
   
   // 处理最终数据块
-  if (*(int *)(&unknown_var_6048_ptr + temp_long2 * 0xc) == 4) {
-    if (*(int *)(&unknown_var_6052_ptr + temp_long2 * 0xc) == 1) {
+  if (*(int *)(&processed_var_6048_ptr + temp_long2 * 0xc) == 4) {
+    if (*(int *)(&processed_var_6052_ptr + temp_long2 * 0xc) == 1) {
       *(int32_t *)(temp_ulong1 + 0x1628 + SYSTEM_DATA_MANAGER_A) =
            *(int32_t *)(temp_long3 + -8 + temp_long1 * 0xc);
       *(int *)(context_ptr + 0x1b90) = *(int *)(context_ptr + 0x1b90) + -1;
       return;
     }
-    if (*(int *)(&unknown_var_6052_ptr + temp_long2 * 0xc) == 2) {
+    if (*(int *)(&processed_var_6052_ptr + temp_long2 * 0xc) == 2) {
       *(int32_t *)(temp_ulong1 + 0x1628 + SYSTEM_DATA_MANAGER_A) =
            *(int32_t *)(temp_long3 + -8 + temp_long1 * 0xc);
       *(int32_t *)(temp_ulong1 + 0x162c + context_ptr) = *(int32_t *)(temp_long3 + -4 + temp_long1 * 0xc);
@@ -331,16 +331,16 @@ void optimized_memory_allocation_handler(void)
   temp_long2 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
   context_ptr = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
   temp_long3 = (int64_t)*(int *)(context_ptr + -0xc + temp_long2 * 0xc);
-  temp_ulong1 = (uint64_t)*(uint *)(&unknown_var_6056_ptr + temp_long3 * 0xc);
+  temp_ulong1 = (uint64_t)*(uint *)(&processed_var_6056_ptr + temp_long3 * 0xc);
   
   // 处理最终数据块
-  if (*(int *)(&unknown_var_6048_ptr + temp_long3 * 0xc) == 4) {
-    if (*(int *)(&unknown_var_6052_ptr + temp_long3 * 0xc) == 1) {
+  if (*(int *)(&processed_var_6048_ptr + temp_long3 * 0xc) == 4) {
+    if (*(int *)(&processed_var_6052_ptr + temp_long3 * 0xc) == 1) {
       *(int32_t *)(temp_ulong1 + 0x1628 + SYSTEM_DATA_MANAGER_A) = *(int32_t *)(context_ptr + -8 + temp_long2 * 0xc);
       *(int *)(temp_long1 + 0x1b90) = *(int *)(temp_long1 + 0x1b90) + -1;
       return;
     }
-    if (*(int *)(&unknown_var_6052_ptr + temp_long3 * 0xc) == 2) {
+    if (*(int *)(&processed_var_6052_ptr + temp_long3 * 0xc) == 2) {
       *(int32_t *)(temp_ulong1 + 0x1628 + SYSTEM_DATA_MANAGER_A) = *(int32_t *)(context_ptr + -8 + temp_long2 * 0xc);
       *(int32_t *)(temp_ulong1 + 0x162c + temp_long1) = *(int32_t *)(context_ptr + -4 + temp_long2 * 0xc);
     }
@@ -390,16 +390,16 @@ void simplified_state_cleanup(void)
   temp_long3 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
   temp_long1 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
   temp_long4 = (int64_t)*(int *)(temp_long1 + -0xc + temp_long3 * 0xc);
-  temp_ulong1 = (uint64_t)*(uint *)(&unknown_var_6056_ptr + temp_long4 * 0xc);
+  temp_ulong1 = (uint64_t)*(uint *)(&processed_var_6056_ptr + temp_long4 * 0xc);
   
   // 处理最终数据块
-  if (*(int *)(&unknown_var_6048_ptr + temp_long4 * 0xc) == 4) {
-    if (*(int *)(&unknown_var_6052_ptr + temp_long4 * 0xc) == 1) {
+  if (*(int *)(&processed_var_6048_ptr + temp_long4 * 0xc) == 4) {
+    if (*(int *)(&processed_var_6052_ptr + temp_long4 * 0xc) == 1) {
       *(int32_t *)(temp_ulong1 + 0x1628 + SYSTEM_DATA_MANAGER_A) = *(int32_t *)(temp_long1 + -8 + temp_long3 * 0xc);
       *(int *)(temp_long2 + 0x1b90) = *(int *)(temp_long2 + 0x1b90) + -1;
       return;
     }
-    if (*(int *)(&unknown_var_6052_ptr + temp_long4 * 0xc) == 2) {
+    if (*(int *)(&processed_var_6052_ptr + temp_long4 * 0xc) == 2) {
       *(int32_t *)(temp_ulong1 + 0x1628 + SYSTEM_DATA_MANAGER_A) = *(int32_t *)(temp_long1 + -8 + temp_long3 * 0xc);
       *(int32_t *)(temp_ulong1 + 0x162c + temp_long2) = *(int32_t *)(temp_long1 + -4 + temp_long3 * 0xc);
     }
@@ -435,16 +435,16 @@ void set_status_flag_by_index(int64_t param_1, int64_t param_2)
   temp_long3 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
   temp_long1 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
   temp_long4 = (int64_t)*(int *)(temp_long1 + -0xc + temp_long3 * 0xc);
-  temp_ulong1 = (uint64_t)*(uint *)(&unknown_var_6056_ptr + temp_long4 * 0xc);
+  temp_ulong1 = (uint64_t)*(uint *)(&processed_var_6056_ptr + temp_long4 * 0xc);
   
   // 处理数据块
-  if (*(int *)(&unknown_var_6048_ptr + temp_long4 * 0xc) == 4) {
-    if (*(int *)(&unknown_var_6052_ptr + temp_long4 * 0xc) == 1) {
+  if (*(int *)(&processed_var_6048_ptr + temp_long4 * 0xc) == 4) {
+    if (*(int *)(&processed_var_6052_ptr + temp_long4 * 0xc) == 1) {
       *(int32_t *)(temp_ulong1 + 0x1628 + SYSTEM_DATA_MANAGER_A) = *(int32_t *)(temp_long1 + -8 + temp_long3 * 0xc);
       *(int *)(temp_long2 + 0x1b90) = *(int *)(temp_long2 + 0x1b90) + -1;
       return;
     }
-    if (*(int *)(&unknown_var_6052_ptr + temp_long4 * 0xc) == 2) {
+    if (*(int *)(&processed_var_6052_ptr + temp_long4 * 0xc) == 2) {
       *(int32_t *)(temp_ulong1 + 0x1628 + SYSTEM_DATA_MANAGER_A) = *(int32_t *)(temp_long1 + -8 + temp_long3 * 0xc);
       *(int32_t *)(temp_ulong1 + 0x162c + temp_long2) = *(int32_t *)(temp_long1 + -4 + temp_long3 * 0xc);
     }
@@ -505,11 +505,11 @@ int64_t * initialize_standard_stream(int64_t *param_1)
   uint64_t temp_val1;
   
   temp_val1 = 0xfffffffffffffffe;
-  *param_1 = (int64_t)&unknown_var_2368_ptr;
+  *param_1 = (int64_t)&rendering_buffer_2368_ptr;
   __0__basic_ios_DU__char_traits_D_std___std__IEAA_XZ(param_1 + 0x15);
   __0__basic_ostream_DU__char_traits_D_std___std__QEAA_PEAV__basic_streambuf_DU__char_traits_D_std___1__N_Z
             (param_1, param_1 + 1, 0, 0, 1, temp_val1);
-  *(void **)((int64_t)*(int *)(*param_1 + 4) + (int64_t)param_1) = &unknown_var_2384_ptr;
+  *(void **)((int64_t)*(int *)(*param_1 + 4) + (int64_t)param_1) = &rendering_buffer_2384_ptr;
   *(int *)((int64_t)*(int *)(*param_1 + 4) + -4 + (int64_t)param_1) =
        *(int *)(*param_1 + 4) + -0xa8;
   initialize_stream_helper(param_1 + 1);

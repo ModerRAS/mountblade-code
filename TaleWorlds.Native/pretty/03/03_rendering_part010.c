@@ -103,7 +103,7 @@ void resize_render_object_array(render_context_t *render_context, size_t new_siz
         temp_ptr->flags = 0;
         
         // 设置对象名称相关属性
-        temp_ptr->vtable_ptr = &unknown_var_3432_ptr;
+        temp_ptr->vtable_ptr = &memory_allocator_3432_ptr;
         temp_ptr->object_data = temp_ptr + 3;  // 名称数据指针
         temp_ptr->flags = 0;
         temp_ptr->name[0] = '\0';
@@ -133,7 +133,7 @@ void resize_render_object_array(render_context_t *render_context, size_t new_siz
         new_object_ptr->flags = 0;
         
         // 设置对象名称相关属性
-        new_object_ptr->vtable_ptr = &unknown_var_3432_ptr;
+        new_object_ptr->vtable_ptr = &memory_allocator_3432_ptr;
         new_object_ptr->object_data = new_object_ptr + 2;  // 名称数据指针
         new_object_ptr->flags = 0;
         new_object_ptr->name[0] = '\0';
@@ -176,7 +176,7 @@ void resize_render_object_array(render_context_t *render_context, size_t new_siz
         array_ptr->flags = 0;
         
         // 设置对象名称相关属性
-        array_ptr->vtable_ptr = &unknown_var_3432_ptr;
+        array_ptr->vtable_ptr = &memory_allocator_3432_ptr;
         array_ptr->object_data = array_ptr + 3;  // 名称数据指针
         array_ptr->flags = 0;
         array_ptr->name[0] = '\0';
@@ -252,7 +252,7 @@ initialize_render_context(render_context_t *render_context, uint64_t init_flags,
   initialize_render_system();
   
   // 设置渲染上下文的虚函数表
-  render_context->vtable_ptr = &unknown_var_5192_ptr;
+  render_context->vtable_ptr = &processed_var_5192_ptr;
   
   // 如果需要重新初始化，先释放现有资源
   if ((init_flags & 1) != 0) {
@@ -374,12 +374,12 @@ LAB_1802733d5:
     render_manager = *(int64_t **)(render_context + 0xb0);
     *(int32_t *)(render_manager + 0x170) = 0;
     **(int8_t **)(render_manager + 0x168) = 0;
-    set_render_texture(render_manager + 0x160,&unknown_var_7284_ptr,property_value);
+    set_render_texture(render_manager + 0x160,&processed_var_7284_ptr,property_value);
     *(uint64_t *)(render_manager + 0x148) = property_value;
     render_manager = *(int64_t **)(render_context + 0xb0);
     *(int32_t *)(render_manager + 0x1a8) = 0;
     **(int8_t **)(render_manager + 0x1a0) = 0;
-    set_render_texture(render_manager + 0x198,&unknown_var_7284_ptr,texture_id);
+    set_render_texture(render_manager + 0x198,&processed_var_7284_ptr,texture_id);
     *(uint64_t *)(render_manager + 0x150) = texture_id;
   }
   return;
@@ -553,8 +553,8 @@ uint64_t * clone_render_object_data(uint64_t source_object, int64_t clone_flags)
   uint64_t *new_object;
   
   new_object = (uint64_t *)allocate_render_object_memory(system_memory_pool_ptr,0x1c8,8,3,0xfffffffffffffffe);
-  *new_object = &unknown_var_5192_ptr;
-  *new_object = &unknown_var_8792_ptr;
+  *new_object = &processed_var_5192_ptr;
+  *new_object = &processed_var_8792_ptr;
   *(int32_t *)(new_object + 1) = 0;
   *(int32_t *)((int64_t)new_object + 0xc) = 0;
   *(int32_t *)(new_object + 2) = 0;

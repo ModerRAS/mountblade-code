@@ -91,22 +91,22 @@ int UI_SetComponentProperties(void* context, uint32_t flags, void* properties, v
 #define UI_InitializeComponentMemory func_0x000180768c10
 
 // ==================== 地址别名定义 ====================
-#define UI_EVENT_QUEUE_CONFIG &unknown_var_528_ptr
-#define UI_SYSTEM_POINTER &unknown_var_648_ptr
-#define UI_DEFAULT_STRING &unknown_var_664_ptr
-#define UI_COMPONENT_VTABLE &unknown_var_840_ptr
-#define UI_COMPONENT_RELEASED_VTABLE &unknown_var_1552_ptr
-#define UI_TEXTURE_OBJECT_CONFIG &unknown_var_1936_ptr
-#define UI_SPECIAL_COMPONENT_VTABLE &unknown_var_920_ptr
-#define UI_COMPONENT_TYPE_VALIDATOR &unknown_var_2056_ptr
-#define UI_CUSTOM_COMPONENT_VALIDATOR1 &unknown_var_2072_ptr
-#define UI_CUSTOM_COMPONENT_VALIDATOR2 &unknown_var_2080_ptr
-#define UI_CUSTOM_COMPONENT_VALIDATOR3 &unknown_var_2096_ptr
-#define UI_CUSTOM_COMPONENT_VALIDATOR4 &unknown_var_2108_ptr
-#define UI_CUSTOM_COMPONENT_VALIDATOR5 &unknown_var_2116_ptr
-#define UI_COMPOSITE_COMPONENT_VTABLE &unknown_var_680_ptr
-#define UI_RENDER_COMPONENT_VTABLE &unknown_var_2352_ptr
-#define UI_RESOURCE_CLEANUP_CONFIG &unknown_var_2144_ptr
+#define UI_EVENT_QUEUE_CONFIG &processed_var_528_ptr
+#define UI_SYSTEM_POINTER &processed_var_648_ptr
+#define UI_DEFAULT_STRING &processed_var_664_ptr
+#define UI_COMPONENT_VTABLE &processed_var_840_ptr
+#define UI_COMPONENT_RELEASED_VTABLE &ui_system_data_1552_ptr
+#define UI_TEXTURE_OBJECT_CONFIG &ui_system_data_1936_ptr
+#define UI_SPECIAL_COMPONENT_VTABLE &processed_var_920_ptr
+#define UI_COMPONENT_TYPE_VALIDATOR &rendering_buffer_2056_ptr
+#define UI_CUSTOM_COMPONENT_VALIDATOR1 &rendering_buffer_2072_ptr
+#define UI_CUSTOM_COMPONENT_VALIDATOR2 &rendering_buffer_2080_ptr
+#define UI_CUSTOM_COMPONENT_VALIDATOR3 &rendering_buffer_2096_ptr
+#define UI_CUSTOM_COMPONENT_VALIDATOR4 &rendering_buffer_2108_ptr
+#define UI_CUSTOM_COMPONENT_VALIDATOR5 &rendering_buffer_2116_ptr
+#define UI_COMPOSITE_COMPONENT_VTABLE &processed_var_680_ptr
+#define UI_RENDER_COMPONENT_VTABLE &rendering_buffer_2352_ptr
+#define UI_RESOURCE_CLEANUP_CONFIG &rendering_buffer_2144_ptr
 #define UI_GLOBAL_DATA_TABLE SYSTEM_MAIN_CONTROL_BLOCK
 #define UI_GLOBAL_SECURITY_KEY GET_SECURITY_COOKIE()
 

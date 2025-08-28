@@ -260,7 +260,7 @@ void DataStructureCleanup(int64_t *data_structure)
         if (0 < (int)data_structure[0xd]) goto cleanup_complete;
         if ((0 < (int)count_var) && (data_structure[0xc] != 0)) {
           // 释放资源
-          ResourceReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),data_structure[0xc],&unknown_var_8432_ptr,0x100,1);
+          ResourceReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),data_structure[0xc],&processed_var_8432_ptr,0x100,1);
         }
         data_structure[0xc] = 0;
         *(int32_t *)((int64_t)data_structure + 0x6c) = 0;
@@ -321,7 +321,7 @@ skip_cleanup:
     node_ptr4[1] = (int64_t)node_ptr4;
     *node_ptr4 = (int64_t)node_ptr4;
     // 释放资源
-    ResourceReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),node_ptr4,&unknown_var_7344_ptr,0x18d,1);
+    ResourceReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),node_ptr4,&processed_var_7344_ptr,0x18d,1);
   }
   if (node_ptr2 == node_ptr3) {
     node_ptr2 = (int64_t *)0x0;
@@ -338,7 +338,7 @@ skip_cleanup:
   node_ptr3[1] = (int64_t)node_ptr3;
   *node_ptr3 = (int64_t)node_ptr3;
   // 释放资源
-  ResourceReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),node_ptr3,&unknown_var_7344_ptr,0xc0,1);
+  ResourceReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),node_ptr3,&processed_var_7344_ptr,0xc0,1);
 }
 
 /**
@@ -362,7 +362,7 @@ uint64_t * ResourceManager(uint64_t *resource_handle, uint64_t cleanup_flag)
 {
   int64_t *temp_ptr;
   
-  *resource_handle = &unknown_var_7280_ptr;
+  *resource_handle = &processed_var_7280_ptr;
   if (*(int *)(resource_handle + 0x10) == 1) {
     DataInitializer(resource_handle[10]);
   }
@@ -564,7 +564,7 @@ allocation_failed:
   }
 allocation_complete:
   temp_ptr2 = (int64_t *)
-           MemoryAllocator2(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_7344_ptr,300,0,0,1);
+           MemoryAllocator2(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&processed_var_7344_ptr,300,0,0,1);
   if (temp_ptr2 != (int64_t *)0x0) {
     *temp_ptr2 = (int64_t)temp_ptr2;
     temp_ptr2[1] = (int64_t)temp_ptr2;

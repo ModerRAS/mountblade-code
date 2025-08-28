@@ -49,7 +49,7 @@ void FUN_1803e4ba0(int64_t param_1,uint64_t param_2)
       plVar2 = plVar9 + uVar7;
       plVar5 = (int64_t *)*plVar2;
       pcVar1 = *(code **)(*plVar5 + 0x68);
-      if (pcVar1 == (code *)&unknown_var_9696_ptr) {
+      if (pcVar1 == (code *)&processed_var_9696_ptr) {
         cVar10 = (char)plVar5[2] != '\0';
         plVar9 = plStack_50;
       }
@@ -63,7 +63,7 @@ void FUN_1803e4ba0(int64_t param_1,uint64_t param_2)
         if (cVar10 == '\0') {
           plVar2 = (int64_t *)*plVar2;
           pcVar1 = *(code **)(*plVar2 + 0x80);
-          if (pcVar1 == (code *)&unknown_var_1840_ptr) {
+          if (pcVar1 == (code *)&ui_system_data_1840_ptr) {
             FUN_1800496b0(plVar2 + 4);
           }
           else {
@@ -419,7 +419,7 @@ LAB_1803e4fb4:
     ppppppplVar20 = (int64_t *******)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x108,8,3);
     ppppppplStack_1e0 = ppppppplVar20;
     FUN_180049830(ppppppplVar20);
-    *ppppppplVar20 = (int64_t ******)&unknown_var_8576_ptr;
+    *ppppppplVar20 = (int64_t ******)&processed_var_8576_ptr;
     ppppppplVar20[0x18] = (int64_t ******)0x0;
     ppppppplStack_210 = ppppppplVar20 + 0x1a;
     *ppppppplStack_210 = (int64_t ******)0x0;
@@ -562,7 +562,7 @@ LAB_1803e54a3:
     *(uint *)((int64_t)pppppplStack_90 + 0x2c) = uStack_1a0._4_4_;
     pppppplStack_90[7] = (int64_t *****)ppppppplStack_190;
     ppppppplStack_208 = (int64_t *******)&ppppplStack_138;
-    ppppplStack_138 = (int64_t *****)&unknown_var_3432_ptr;
+    ppppplStack_138 = (int64_t *****)&memory_allocator_3432_ptr;
     puStack_130 = auStack_120;
     uStack_128 = 0;
     auStack_120[0] = 0;
@@ -656,7 +656,7 @@ void FUN_1803e57c0(int64_t param_1,int param_2,int param_3)
   
   uVar12 = 0;
   alStack_38[1] = 0;
-  iVar3 = *(int *)(&unknown_var_6672_ptr + (int64_t)param_3 * 4);
+  iVar3 = *(int *)(&processed_var_6672_ptr + (int64_t)param_3 * 4);
   lVar4 = *(int64_t *)(param_1 + 400);
   alStack_38[0] =
        *(int64_t *)(*(int64_t *)(lVar4 + 0x80 + (int64_t)param_2 * 8) + 8 + (int64_t)iVar3 * 8);

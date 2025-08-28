@@ -289,7 +289,7 @@ void DataFlowProcessor(int64_t param_1, int64_t param_2, int64_t param_3)
     lStack_218 = param_2;
     
     /* 初始化数据结构 */
-    DataStructureInitializer(auStack_b8, &unknown_var_2568_ptr);
+    DataStructureInitializer(auStack_b8, &rendering_buffer_2568_ptr);
     lVar22 = param_2;
     
     /* 处理参数选择逻辑 */
@@ -1185,7 +1185,7 @@ void DataFlowSynchronizer(uint64_t param_1, int64_t param_2, uint64_t param_3, u
     uVar3 = *(uint64_t *)(param_2 + 0x1e0);
     
     /* 初始化通知系统 */
-    puStack_a8 = &unknown_var_3480_ptr;
+    puStack_a8 = &memory_allocator_3480_ptr;
     puStack_a0 = auStack_90;
     auStack_90[0] = 0;
     uStack_98 = 0x1b;

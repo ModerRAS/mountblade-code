@@ -59,7 +59,7 @@ void serialize_render_data(int64_t render_object, int64_t *output_buffer)
     output_buffer[1] = output_buffer[1] + 4;
     
     // 处理材质数据
-    System_DataSerializer(&unknown_var_304_ptr, *(uint32_t *)(render_object + 0x18), output_buffer);
+    System_DataSerializer(&memory_allocator_304_ptr, *(uint32_t *)(render_object + 0x18), output_buffer);
     
     // 处理材质标志
     buffer_ptr = (uint32_t *)output_buffer[1];
@@ -87,7 +87,7 @@ void serialize_render_data(int64_t render_object, int64_t *output_buffer)
     output_buffer[1] = buffer_pos + 4;
     
     // 处理材质标志位
-    uint64_t *flag_table = (uint64_t *)&unknown_var_208_ptr;
+    uint64_t *flag_table = (uint64_t *)&rendering_buffer_208_ptr;
     uint64_t flag_count = counter;
     do {
         if ((*(uint32_t *)(flag_table + 1) & material_flags) != 0) {
@@ -263,7 +263,7 @@ uint64_t * initialize_render_object_base(uint64_t *render_obj)
     *(uint32_t *)(render_obj + 2) = 0;
     
     // 设置渲染函数指针
-    *render_obj = &unknown_var_3480_ptr;
+    *render_obj = &memory_allocator_3480_ptr;
     render_obj[1] = render_obj + 3;
     *(uint32_t *)(render_obj + 2) = 0;
     *(int8_t *)(render_obj + 3) = 0;
@@ -345,11 +345,11 @@ uint64_t * create_render_object_instance(uint64_t param1, uint64_t *render_obj, 
     *render_obj = &system_state_ptr;
     render_obj[1] = 0;
     *(uint32_t *)(render_obj + 2) = 0;
-    *render_obj = &unknown_var_3432_ptr;
+    *render_obj = &memory_allocator_3432_ptr;
     render_obj[1] = render_obj + 3;
     *(int8_t *)(render_obj + 3) = 0;
     *(uint32_t *)(render_obj + 2) = 0xc;
-    strcpy_s(render_obj[1], 0x80, &unknown_var_8816_ptr, param4, 0, 0xfffffffffffffffe);
+    strcpy_s(render_obj[1], 0x80, &processed_var_8816_ptr, param4, 0, 0xfffffffffffffffe);
     return render_obj;
 }
 
@@ -366,7 +366,7 @@ uint64_t * initialize_advanced_render_object(uint64_t *render_obj)
     *render_obj = &system_handler1_ptr;
     *render_obj = &system_handler2_ptr;
     *(uint32_t *)(render_obj + 1) = 0;
-    *render_obj = &unknown_var_768_ptr;
+    *render_obj = &processed_var_768_ptr;
     *(uint32_t *)(render_obj + 2) = 4;  // 纹理单元数
     render_obj[3] = 0;
     render_obj[4] = 0;
@@ -374,7 +374,7 @@ uint64_t * initialize_advanced_render_object(uint64_t *render_obj)
     render_obj[5] = 0;
     
     // 设置材质属性
-    *render_obj = &unknown_var_9304_ptr;
+    *render_obj = &processed_var_9304_ptr;
     render_obj[7] = 0;
     render_obj[8] = 0;
     render_obj[9] = 0;
@@ -433,7 +433,7 @@ uint64_t * initialize_advanced_render_object(uint64_t *render_obj)
     *(uint32_t *)(render_obj + 0x5f) = 0;
     
     // 设置回调函数
-    render_obj[0x61] = &unknown_var_9288_ptr;
+    render_obj[0x61] = &processed_var_9288_ptr;
     LOCK();
     *(uint32_t *)(render_obj + 0x62) = 0;
     UNLOCK();
@@ -540,7 +540,7 @@ uint64_t * create_advanced_render_object_with_params(uint64_t *render_obj, uint6
     *render_obj = &system_handler1_ptr;
     *render_obj = &system_handler2_ptr;
     *(uint32_t *)(render_obj + 1) = 0;
-    *render_obj = &unknown_var_768_ptr;
+    *render_obj = &processed_var_768_ptr;
     *(uint32_t *)(render_obj + 2) = 4;  // 纹理单元数
     render_obj[3] = 0;
     render_obj[4] = 0;
@@ -548,7 +548,7 @@ uint64_t * create_advanced_render_object_with_params(uint64_t *render_obj, uint6
     render_obj[5] = 0;
     
     // 设置材质属性
-    *render_obj = &unknown_var_9304_ptr;
+    *render_obj = &processed_var_9304_ptr;
     render_obj[7] = 0;
     render_obj[8] = 0;
     render_obj[9] = 0;
@@ -607,7 +607,7 @@ uint64_t * create_advanced_render_object_with_params(uint64_t *render_obj, uint6
     *(uint32_t *)(render_obj + 0x5f) = 0;
     
     // 设置回调函数
-    render_obj[0x61] = &unknown_var_9288_ptr;
+    render_obj[0x61] = &processed_var_9288_ptr;
     LOCK();
     *(uint32_t *)(render_obj + 0x62) = 0;
     UNLOCK();
@@ -642,7 +642,7 @@ uint64_t * create_render_object_with_material_params(uint64_t *render_obj, uint6
     *render_obj = &system_handler1_ptr;
     *render_obj = &system_handler2_ptr;
     *(uint32_t *)(render_obj + 1) = 0;
-    *render_obj = &unknown_var_768_ptr;
+    *render_obj = &processed_var_768_ptr;
     *(uint32_t *)(render_obj + 2) = 4;  // 纹理单元数
     render_obj[3] = 0;
     render_obj[4] = 0;
@@ -650,7 +650,7 @@ uint64_t * create_render_object_with_material_params(uint64_t *render_obj, uint6
     render_obj[5] = 0;
     
     // 设置材质属性
-    *render_obj = &unknown_var_9304_ptr;
+    *render_obj = &processed_var_9304_ptr;
     render_obj[7] = 0;
     render_obj[8] = 0;
     render_obj[9] = 0;
@@ -709,7 +709,7 @@ uint64_t * create_render_object_with_material_params(uint64_t *render_obj, uint6
     *(uint32_t *)(render_obj + 0x5f) = 0;
     
     // 设置回调函数
-    render_obj[0x61] = &unknown_var_9288_ptr;
+    render_obj[0x61] = &processed_var_9288_ptr;
     LOCK();
     *(uint32_t *)(render_obj + 0x62) = 0;
     UNLOCK();
@@ -740,7 +740,7 @@ uint64_t * create_render_object_with_material_params(uint64_t *render_obj, uint6
  */
 void destroy_render_object(uint64_t *render_obj)
 {
-    *render_obj = &unknown_var_9304_ptr;
+    *render_obj = &processed_var_9304_ptr;
     FUN_180275960();  // 执行清理
     
     // 执行回调函数
@@ -752,7 +752,7 @@ void destroy_render_object(uint64_t *render_obj)
     }
     
     // 清理状态
-    render_obj[0x61] = &unknown_var_9288_ptr;
+    render_obj[0x61] = &processed_var_9288_ptr;
     render_obj[0x3e] = &system_data_buffer_ptr;
     if (render_obj[0x3f] != 0) {
         // 注意：此函数不会返回
@@ -767,7 +767,7 @@ void destroy_render_object(uint64_t *render_obj)
     FUN_1802841d0();
     
     // 重置基础属性
-    *render_obj = &unknown_var_768_ptr;
+    *render_obj = &processed_var_768_ptr;
     render_obj[5] = 0;
     *render_obj = &system_handler2_ptr;
     *render_obj = &system_handler1_ptr;
@@ -785,7 +785,7 @@ uint64_t get_render_object_data(int64_t *render_obj)
 {
     char is_valid;
     
-    if (*(code **)(*render_obj + 0xc0) == (code *)&unknown_var_9120_ptr) {
+    if (*(code **)(*render_obj + 0xc0) == (code *)&processed_var_9120_ptr) {
         is_valid = (render_obj[8] - render_obj[7] & 0xfffffffffffffff0U) == 0;
     }
     else {
@@ -808,7 +808,7 @@ uint64_t get_render_object_material_data(uint64_t *render_obj)
 {
     char is_valid;
     
-    if ((void *)*render_obj == &unknown_var_9304_ptr) {
+    if ((void *)*render_obj == &processed_var_9304_ptr) {
         is_valid = (render_obj[8] - render_obj[7] & 0xfffffffffffffff0) == 0;
     }
     else {

@@ -9,7 +9,7 @@ void FUN_180755270(int64_t *param_1)
 {
   if (param_1[0xc] != 0) {
                     // WARNING: Subroutine does not return
-    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[0xc],&unknown_var_336_ptr,0xb7,1);
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[0xc],&memory_allocator_336_ptr,0xb7,1);
   }
   SystemMemoryAllocator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x120));
   *(int64_t *)param_1[1] = *param_1;
@@ -37,7 +37,7 @@ uint64_t * FUN_1807554e0(uint64_t *param_1)
   param_1[0x31] = 0;
   param_1[0x30] = puVar1;
   *puVar1 = puVar1;
-  *param_1 = &unknown_var_456_ptr;
+  *param_1 = &processed_var_456_ptr;
   puVar1 = param_1 + 0x32;
   param_1[0x34] = 0;
   *(int32_t *)(param_1 + 0x35) = 0xffffffff;
@@ -879,7 +879,7 @@ uint64_t FUN_180756640(int64_t param_1,uint param_2,int64_t param_3)
   uStack_14 = *(int32_t *)((int64_t)puVar2 + 0x34);
   uStack_10 = *(int32_t *)(puVar2 + 7);
   uStack_c = *(int32_t *)((int64_t)puVar2 + 0x3c);
-  puStack_40 = &unknown_var_992_ptr;
+  puStack_40 = &processed_var_992_ptr;
   uVar3 = FUN_180742e00(*(uint64_t *)(param_1 + 8),&uStack_48,0,alStackX_8,0);
   if ((int)uVar3 == 0) {
     *(int64_t *)(param_1 + 0x70) = alStackX_8[0];

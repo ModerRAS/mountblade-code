@@ -304,12 +304,12 @@ int32_t FUN_1808eee30(uint64_t param_1,byte param_2,byte param_3)
         pcVar9[1] = pcVar9[1] | 1;
         *pcVar9 = '\x05';
         if (pcVar6[10] == '\x06') {
-          pcVar9[4] = (&unknown_var_1872_ptr)[param_2];
-          pcVar9[5] = (&unknown_var_1872_ptr)[param_3];
+          pcVar9[4] = (&ui_system_data_1872_ptr)[param_2];
+          pcVar9[5] = (&ui_system_data_1872_ptr)[param_3];
         }
         else if (pcVar6[10] == '\x05') {
-          pcVar9[4] = (&unknown_var_2128_ptr)[param_2];
-          pcVar9[5] = (&unknown_var_2128_ptr)[param_3];
+          pcVar9[4] = (&rendering_buffer_2128_ptr)[param_2];
+          pcVar9[5] = (&rendering_buffer_2128_ptr)[param_3];
         }
         else {
           pcVar9[4] = param_2;

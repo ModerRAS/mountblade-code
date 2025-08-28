@@ -130,7 +130,7 @@ void FUN_18027dd70(uint64_t *******param_1,uint64_t *******param_2)
     if (param_2[0x3f] != (uint64_t ******)0x0) {
       ppppppuVar12 = param_2[0x3f];
     }
-    SystemDataInitializer(&unknown_var_9120_ptr,ppppppuVar12);
+    SystemDataInitializer(&processed_var_9120_ptr,ppppppuVar12);
   }
 LAB_18027de2e:
   pppppppuVar29 = param_1 + 7;
@@ -623,7 +623,7 @@ LAB_18027e6bc:
             *(int32_t *)((int64_t)pbStack_230 + 0xc) = 0x5f7365;
             uStack_228 = 0xf;
             uStack_220._0_4_ = uVar31;
-            System_DataHandler(&puStack_238,&unknown_var_9116_ptr,iVar35);
+            System_DataHandler(&puStack_238,&processed_var_9116_ptr,iVar35);
             uVar31 = uStack_228 + 1;
             if (uVar31 != 0) {
               uVar9 = uStack_228 + 2;
@@ -728,7 +728,7 @@ LAB_18027e6bc:
                             );
                   pcVar4 = *(code **)(**(int64_t **)((int64_t)ppppppuVar12 + (int64_t)puVar16) +
                                      0x158);
-                  if (pcVar4 == (code *)&unknown_var_2528_ptr) {
+                  if (pcVar4 == (code *)&rendering_buffer_2528_ptr) {
                     plVar17 = *(int64_t **)((int64_t)ppppppuVar12 + (int64_t)puVar16) + 0x66;
                   }
                   else {
@@ -828,7 +828,7 @@ LAB_18027ed63:
                   puStack_168 = puVar18 + 1;
                   pcVar4 = *(code **)(**(int64_t **)(lStack_190 + (int64_t)pppppppuVar29[4]) +
                                      0x158);
-                  if (pcVar4 == (code *)&unknown_var_2528_ptr) {
+                  if (pcVar4 == (code *)&rendering_buffer_2528_ptr) {
                     puVar18 = (uint64_t *)
                               (*(int64_t **)(lStack_190 + (int64_t)pppppppuVar29[4]) + 0x66);
                   }

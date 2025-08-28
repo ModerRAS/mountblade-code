@@ -303,7 +303,7 @@ void FUN_1804bf9e0(int64_t param_1,int64_t param_2)
     strcpy_s(*(uint64_t *)(param_1 + 8),0x90);
     return;
   }
-  SystemCore_ResourceManager0(&unknown_var_616_ptr,0x90,param_2);
+  SystemCore_ResourceManager0(&processed_var_616_ptr,0x90,param_2);
   *(int32_t *)(param_1 + 0x10) = 0;
   **(int8_t **)(param_1 + 8) = 0;
   return;
@@ -380,7 +380,7 @@ void FUN_1804bfac0(int64_t param_1,int64_t param_2,int64_t param_3)
   
   uStack_108 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_128;
-  puStack_f8 = &unknown_var_760_ptr;
+  puStack_f8 = &processed_var_760_ptr;
   puStack_f0 = auStack_e0;
   uStack_e8 = 0;
   auStack_e0[0] = 0;
@@ -976,17 +976,17 @@ void FUN_1804bff30(int64_t param_1,byte *param_2)
     pbStackX_10 = param_2 + 3;
   }
   while( true ) {
-    cVar2 = (&unknown_var_496_ptr)[*pbStackX_10];
+    cVar2 = (&processed_var_496_ptr)[*pbStackX_10];
     while (cVar2 != '\0') {
       pbVar1 = pbStackX_10 + 1;
       pbStackX_10 = pbStackX_10 + 1;
-      cVar2 = (&unknown_var_496_ptr)[*pbVar1];
+      cVar2 = (&processed_var_496_ptr)[*pbVar1];
     }
     if (*pbStackX_10 == 0) break;
     if (*pbStackX_10 != 0x3c) {
       pbStack_18 = pbStackX_10;
       pbStack_10 = param_2;
-      FUN_18062e140(&unknown_var_8032_ptr,&pbStack_18);
+      FUN_18062e140(&processed_var_8032_ptr,&pbStack_18);
       return;
     }
     pbStackX_10 = pbStackX_10 + 1;

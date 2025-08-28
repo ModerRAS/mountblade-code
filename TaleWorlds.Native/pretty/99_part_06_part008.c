@@ -21,7 +21,7 @@ void FUN_1803aa090(uint64_t *param_1)
 {
   int64_t *plVar1;
   
-  *param_1 = &unknown_var_376_ptr;
+  *param_1 = &memory_allocator_376_ptr;
   FUN_180419360(param_1[0x1c4]);
   FUN_18033b330(param_1[0x1c4]);
   param_1[0x1c4] = 0;

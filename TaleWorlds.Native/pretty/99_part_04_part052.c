@@ -120,9 +120,9 @@ void FUN_1802b7360(int64_t *param_1,float param_2)
   uVar23 = 0;
   fVar5 = pfVar14[2];
   lVar32 = (int64_t)iVar25;
-  fVar42 = ((*(float *)(&unknown_var_5296_ptr + (int64_t)(int)uVar19 * 4) -
-            *(float *)(&unknown_var_5296_ptr + (int64_t)(int)uVar18 * 4)) * (fVar42 - (float)(int)uVar17)
-           + *(float *)(&unknown_var_5296_ptr + (int64_t)(int)uVar18 * 4)) * *pfVar14 + 1.0;
+  fVar42 = ((*(float *)(&processed_var_5296_ptr + (int64_t)(int)uVar19 * 4) -
+            *(float *)(&processed_var_5296_ptr + (int64_t)(int)uVar18 * 4)) * (fVar42 - (float)(int)uVar17)
+           + *(float *)(&processed_var_5296_ptr + (int64_t)(int)uVar18 * 4)) * *pfVar14 + 1.0;
   if (0 < iVar25) {
     lVar26 = lVar32 * 0x70;
     uVar29 = uVar23;

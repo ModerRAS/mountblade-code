@@ -865,7 +865,7 @@ void UISystemStateUpdater(void)
     
     // 执行状态更新操作
     UISystemEventHandler(*(int16_t *)(unaff_RBX + 0xae2), *(int8_t *)(unaff_RBX + 0xae4));
-    lVar2 = *(int64_t *)(&unknown_var_4360_ptr + (int64_t)*(char *)(unaff_RBX + 0xae8) * 8);
+    lVar2 = *(int64_t *)(&processed_var_4360_ptr + (int64_t)*(char *)(unaff_RBX + 0xae8) * 8);
     
     // 检查并更新状态
     if (unaff_EDI < *(int *)(unaff_RBX + 0x914)) {
@@ -887,7 +887,7 @@ void UISystemStateUpdater(void)
     
     // 更新状态信息
     *(int *)(unaff_RSI + 0x88) =
-         (int)*(short *)(&unknown_var_9600_ptr + (int64_t)*(char *)(unaff_RBX + 0xae9) * 2);
+         (int)*(short *)(&processed_var_9600_ptr + (int64_t)*(char *)(unaff_RBX + 0xae9) * 2);
     
     // 执行安全退出检查
     UISystemSecurityChecker(in_stack_00000070 ^ (uint64_t)&stack0x00000000);

@@ -6,7 +6,7 @@
 
 /* 常量定义 */
 #define DEFAULT_MATERIAL_HANDLE &system_buffer_ptr
-#define DEFAULT_TEXTURE_NAME &unknown_var_3432_ptr
+#define DEFAULT_TEXTURE_NAME &memory_allocator_3432_ptr
 #define EMPTY_STRING_PTR &system_state_ptr
 #define COMPONENT_SYSTEM_NAME &system_data_buffer_ptr
 #define MEMORY_BLOCK_SIZE 0x300
@@ -242,7 +242,7 @@ void process_render_objects_batch(int64_t****** render_context, int64_t******* m
                 // 创建新对象或使用现有对象
                 if (object_start == (int64_t*****)0xffffffffffffffff) {
                     // 创建新对象
-                    uint64_t new_object = FUN_18062b1e0(system_memory_pool_ptr, MEMORY_BLOCK_SIZE, MEMORY_ALIGNMENT);
+                    uint64_t new_object = CoreSystem_LoggingManager0(system_memory_pool_ptr, MEMORY_BLOCK_SIZE, MEMORY_ALIGNMENT);
                     temp_material = (int64_t*******)FUN_180075030(new_object, 0, 1);
                     
                     if (temp_material != (int64_t*******)0x0) {
@@ -411,7 +411,7 @@ void process_render_objects_batch(int64_t****** render_context, int64_t******* m
     temp_material = material_cache;
     
     // 处理特殊渲染路径
-    if ((*render_context)[0x2c] == (int64_t****)&unknown_var_6368_ptr) {
+    if ((*render_context)[0x2c] == (int64_t****)&processed_var_6368_ptr) {
         FUN_180276f30(render_context, (int64_t)render_context + 0x214, 0);
     }
     else {
@@ -458,7 +458,7 @@ uint64_t remove_render_object(int64_t* render_manager, int64_t target_object)
                 FUN_180284450(render_manager + 7, (int64_t)object_index * 0x10 + render_manager[7]);
                 
                 // 处理渲染回调
-                if (*(code**)(*render_manager + 0x160) == (code*)&unknown_var_6368_ptr) {
+                if (*(code**)(*render_manager + 0x160) == (code*)&processed_var_6368_ptr) {
                     FUN_180276f30(render_manager, (int64_t)render_manager + 0x214, 0);
                 }
                 else {
@@ -561,7 +561,7 @@ void update_material_system_status(int64_t material_system, int64_t* texture_dat
     
     // 处理默认纹理
     if (system_handle == 0) {
-        stack_name = &unknown_var_3432_ptr;
+        stack_name = &memory_allocator_3432_ptr;
         material_name = stack_data;
         stack_data[0] = 0;
         stack_flags = 0;
@@ -572,7 +572,7 @@ void update_material_system_status(int64_t material_system, int64_t* texture_dat
         texture_flags = stack_flags;
     }
     else {
-        stack_source = &unknown_var_3432_ptr;
+        stack_source = &memory_allocator_3432_ptr;
         material_name = stack_cache;
         stack_cache[0] = 0;
         stack_format = *(int32_t*)(system_handle + 0x48);
@@ -952,7 +952,7 @@ void process_render_system_component_update(int64_t render_system, int64_t compo
                 component_offset = *(int64_t*)(*(int64_t*)(render_system + 0x38) + processed_size);
             }
             else {
-                temp_value = FUN_18062b1e0(system_memory_pool_ptr, MEMORY_BLOCK_SIZE, MEMORY_ALIGNMENT, 9);
+                temp_value = CoreSystem_LoggingManager0(system_memory_pool_ptr, MEMORY_BLOCK_SIZE, MEMORY_ALIGNMENT, 9);
                 component_offset = FUN_180075030(temp_value, 0, 1);
             }
             

@@ -335,7 +335,7 @@ static void* RenderingSystemInitializeAnimationNode(void* node, const char* name
     while (*pcVar8 != '\0') {
         pcVar8++;
     }
-    *(void**)node = &unknown_var_5252_ptr;        // 名称表指针
+    *(void**)node = &processed_var_5252_ptr;        // 名称表指针
     *(int64_t*)((char*)node + 16) = pcVar8 - name;  // 名称长度
     
     return node;

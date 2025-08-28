@@ -48,7 +48,7 @@ void FUN_180283420(int64_t *param_1,int64_t *param_2,uint64_t param_3,uint64_t p
   *puVar6 = uVar2;
   puVar6 = (int32_t *)(param_2[1] + 4);
   param_2[1] = (int64_t)puVar6;
-  if ((void *)*param_1 == &unknown_var_9304_ptr) {
+  if ((void *)*param_1 == &processed_var_9304_ptr) {
     plVar12 = param_1 + 0x66;
   }
   else {

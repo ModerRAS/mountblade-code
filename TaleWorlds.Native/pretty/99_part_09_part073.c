@@ -268,7 +268,7 @@ void FUN_1805ec620(uint64_t *param_1,char param_2,int64_t *param_3,uint64_t para
   if (param_3 == (int64_t *)0x0) {
     plVar1 = (int64_t *)param_1[0xc];
     if (plVar1 != (int64_t *)0x0) {
-      if (*(code **)(*plVar1 + 0x130) == (code *)&unknown_var_4032_ptr) {
+      if (*(code **)(*plVar1 + 0x130) == (code *)&processed_var_4032_ptr) {
         iVar15 = (int)plVar1[0x42];
       }
       else {
@@ -281,7 +281,7 @@ void FUN_1805ec620(uint64_t *param_1,char param_2,int64_t *param_3,uint64_t para
     }
     plVar1 = (int64_t *)param_1[0xd];
     if (plVar1 != (int64_t *)0x0) {
-      if (*(code **)(*plVar1 + 0x130) == (code *)&unknown_var_4032_ptr) {
+      if (*(code **)(*plVar1 + 0x130) == (code *)&processed_var_4032_ptr) {
         iVar15 = (int)plVar1[0x42];
       }
       else {
@@ -295,7 +295,7 @@ void FUN_1805ec620(uint64_t *param_1,char param_2,int64_t *param_3,uint64_t para
     uStackX_8 = CONCAT44(uStackX_8._4_4_,-(uint)(param_2 != '\0')) & 0xffffffff00000021;
     plVar1 = (int64_t *)param_1[0xe];
     if (plVar1 != (int64_t *)0x0) {
-      if (*(code **)(*plVar1 + 0x130) == (code *)&unknown_var_4032_ptr) {
+      if (*(code **)(*plVar1 + 0x130) == (code *)&processed_var_4032_ptr) {
         iVar15 = (int)plVar1[0x42];
       }
       else {
@@ -307,7 +307,7 @@ void FUN_1805ec620(uint64_t *param_1,char param_2,int64_t *param_3,uint64_t para
     }
     plVar1 = (int64_t *)param_1[0xf];
     if (plVar1 != (int64_t *)0x0) {
-      if (*(code **)(*plVar1 + 0x130) == (code *)&unknown_var_4032_ptr) {
+      if (*(code **)(*plVar1 + 0x130) == (code *)&processed_var_4032_ptr) {
         iVar15 = (int)plVar1[0x42];
       }
       else {
@@ -319,7 +319,7 @@ void FUN_1805ec620(uint64_t *param_1,char param_2,int64_t *param_3,uint64_t para
     }
     plVar1 = (int64_t *)param_1[0x10];
     if (plVar1 != (int64_t *)0x0) {
-      if (*(code **)(*plVar1 + 0x130) == (code *)&unknown_var_4032_ptr) {
+      if (*(code **)(*plVar1 + 0x130) == (code *)&processed_var_4032_ptr) {
         iVar15 = (int)plVar1[0x42];
       }
       else {
@@ -356,7 +356,7 @@ void FUN_1805ec620(uint64_t *param_1,char param_2,int64_t *param_3,uint64_t para
     if (*(char *)((int64_t)param_1 + 0x126) != '\0') {
       plVar1 = (int64_t *)param_1[0xc];
       if (plVar1 != (int64_t *)0x0) {
-        if (*(code **)(*plVar1 + 0x130) == (code *)&unknown_var_4032_ptr) {
+        if (*(code **)(*plVar1 + 0x130) == (code *)&processed_var_4032_ptr) {
           iVar15 = (int)plVar1[0x42];
         }
         else {
@@ -369,7 +369,7 @@ void FUN_1805ec620(uint64_t *param_1,char param_2,int64_t *param_3,uint64_t para
       }
       plVar1 = (int64_t *)param_1[0xd];
       if (plVar1 != (int64_t *)0x0) {
-        if (*(code **)(*plVar1 + 0x130) == (code *)&unknown_var_4032_ptr) {
+        if (*(code **)(*plVar1 + 0x130) == (code *)&processed_var_4032_ptr) {
           iVar15 = (int)plVar1[0x42];
         }
         else {
@@ -382,7 +382,7 @@ void FUN_1805ec620(uint64_t *param_1,char param_2,int64_t *param_3,uint64_t para
       }
       plVar1 = (int64_t *)param_1[0xe];
       if (plVar1 != (int64_t *)0x0) {
-        if (*(code **)(*plVar1 + 0x130) == (code *)&unknown_var_4032_ptr) {
+        if (*(code **)(*plVar1 + 0x130) == (code *)&processed_var_4032_ptr) {
           iVar15 = (int)plVar1[0x42];
         }
         else {
@@ -395,7 +395,7 @@ void FUN_1805ec620(uint64_t *param_1,char param_2,int64_t *param_3,uint64_t para
       }
       plVar1 = (int64_t *)param_1[0xf];
       if (plVar1 != (int64_t *)0x0) {
-        if (*(code **)(*plVar1 + 0x130) == (code *)&unknown_var_4032_ptr) {
+        if (*(code **)(*plVar1 + 0x130) == (code *)&processed_var_4032_ptr) {
           iVar15 = (int)plVar1[0x42];
         }
         else {
@@ -408,7 +408,7 @@ void FUN_1805ec620(uint64_t *param_1,char param_2,int64_t *param_3,uint64_t para
       }
       plVar1 = (int64_t *)param_1[0x10];
       if (plVar1 != (int64_t *)0x0) {
-        if (*(code **)(*plVar1 + 0x130) == (code *)&unknown_var_4032_ptr) {
+        if (*(code **)(*plVar1 + 0x130) == (code *)&processed_var_4032_ptr) {
           iVar15 = (int)plVar1[0x42];
         }
         else {
@@ -492,7 +492,7 @@ void FUN_1805ec620(uint64_t *param_1,char param_2,int64_t *param_3,uint64_t para
     (**(code **)(*(int64_t *)param_1[0xb] + 0x148))((int64_t *)param_1[0xb],&system_data_0300);
     iVar15 = (**(code **)(*(int64_t *)param_1[0xb] + 0x130))();
     if (iVar15 == 0x21) goto LAB_1805ecb8d;
-    puVar16 = (uint64_t *)&unknown_var_6612_ptr;
+    puVar16 = (uint64_t *)&processed_var_6612_ptr;
   }
   (**(code **)(*(int64_t *)param_1[0xb] + 0x128))((int64_t *)param_1[0xb],puVar16);
 LAB_1805ecb8d:
@@ -565,12 +565,12 @@ void FUN_1805ecc80(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   FUN_1802ea790(lVar1,auStack_48);
   plVar3 = (int64_t *)param_1[0x10];
   if (plVar3 == (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)param_1[0xb] + 0x128))((int64_t *)param_1[0xb],&unknown_var_6612_ptr);
+    (**(code **)(*(int64_t *)param_1[0xb] + 0x128))((int64_t *)param_1[0xb],&processed_var_6612_ptr);
     (**(code **)(*(int64_t *)param_1[0xb] + 0x148))((int64_t *)param_1[0xb],param_2);
   }
   else {
     (**(code **)(*plVar3 + 0x148))(plVar3,param_2);
-    (**(code **)(*(int64_t *)param_1[0x10] + 0x128))((int64_t *)param_1[0x10],&unknown_var_6612_ptr);
+    (**(code **)(*(int64_t *)param_1[0x10] + 0x128))((int64_t *)param_1[0x10],&processed_var_6612_ptr);
     lVar1 = param_1[0x10];
     plVar3 = *(int64_t **)(lVar1 + 0x38);
     if (plVar3 < *(int64_t **)(lVar1 + 0x40)) {
@@ -746,11 +746,11 @@ LAB_1805ed103:
   }
   plStackX_8 = (int64_t *)0x0;
   plVar7 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x110,8,3);
-  *plVar7 = (int64_t)&unknown_var_1864_ptr;
-  *plVar7 = (int64_t)&unknown_var_1608_ptr;
+  *plVar7 = (int64_t)&ui_system_data_1864_ptr;
+  *plVar7 = (int64_t)&ui_system_data_1608_ptr;
   plVar7[9] = 0;
   plVar7[10] = 0;
-  *plVar7 = (int64_t)&unknown_var_312_ptr;
+  *plVar7 = (int64_t)&memory_allocator_312_ptr;
   fVar13 = *(float *)(param_1 + 0x2b);
   plVar7[0xb] = 0;
   plVar7[0xc] = 0;

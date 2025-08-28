@@ -51,18 +51,18 @@ void FUN_180091430(void)
     lVar9 = FUN_1800daa50();
     *plVar7 = lVar9;
     uVar16 = 0;
-    puStack_c8 = &unknown_var_3432_ptr;
+    puStack_c8 = &memory_allocator_3432_ptr;
     puStack_c0 = auStack_b0;
     auStack_b0[0] = 0;
     uStack_b8 = 0x1d;
-    strcpy_s(auStack_b0,0x80,&unknown_var_1632_ptr);
+    strcpy_s(auStack_b0,0x80,&ui_system_data_1632_ptr);
     puVar13 = &system_buffer_ptr;
     if (puStack_c0 != (void *)0x0) {
       puVar13 = puStack_c0;
     }
     (**(code **)(*(int64_t *)(lVar9 + 0x3520) + 0x10))((int64_t *)(lVar9 + 0x3520),puVar13);
     puStack_c8 = &system_state_ptr;
-    FUN_180094b30(*plVar7,&unknown_var_1736_ptr);
+    FUN_180094b30(*plVar7,&ui_system_data_1736_ptr);
     *(uint *)(*plVar7 + 4) = *(uint *)(*plVar7 + 4) | 0x8000000;
     *(uint *)(*plVar7 + 4) = *(uint *)(*plVar7 + 4) | 4;
     plVar11 = plVar7 + 0x2d4;
@@ -183,7 +183,7 @@ void FUN_180091430(void)
       *(int8_t *)((int64_t)puStack_110 + 0x1e) = 0;
       uStack_108 = 0x1e;
       uStack_100._0_4_ = uVar8;
-      System_DataHandler(&puStack_118,&unknown_var_1752_ptr,iVar1);
+      System_DataHandler(&puStack_118,&ui_system_data_1752_ptr,iVar1);
       puStack_118 = &system_data_buffer_ptr;
       if (puStack_110 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return

@@ -42,8 +42,8 @@ void FUN_180435038(void)
 void FUN_1804350c0(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_1608_ptr;
-  *param_1 = &unknown_var_1864_ptr;
+  *param_1 = &ui_system_data_1608_ptr;
+  *param_1 = &ui_system_data_1864_ptr;
   return;
 }
 

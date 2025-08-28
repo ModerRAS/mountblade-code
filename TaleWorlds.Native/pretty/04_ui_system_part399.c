@@ -134,7 +134,7 @@ uint64_t FUN_180889f10(int64_t param_1,uint *param_2)
     if (*(int64_t *)(param_1 + 0x2d8) != 0) {
                     // WARNING: Subroutine does not return
       SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x2d8),
-                    &unknown_var_5856_ptr,0x1a9,1);
+                    &processed_var_5856_ptr,0x1a9,1);
     }
                     // WARNING: Subroutine does not return
     memcpy(param_1 + 0x2c0,param_2,(int64_t)(int)uVar1);
@@ -156,7 +156,7 @@ void FUN_180889f60(uint64_t param_1,int64_t param_2)
   
   if (param_2 != 0) {
                     // WARNING: Subroutine does not return
-    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2,&unknown_var_5856_ptr,0x1a9,1);
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2,&processed_var_5856_ptr,0x1a9,1);
   }
                     // WARNING: Subroutine does not return
   memcpy(unaff_RDI + 0x2c0);

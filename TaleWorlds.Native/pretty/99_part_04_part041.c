@@ -553,7 +553,7 @@ void AdvancedDataProcessor(int64_t param_1, uint64_t param_2, int64_t param_3, i
     // 检查数据状态
     if ((*(int64_t *)(data_size + MEMORY_OFFSET_0x30) != SYSTEM_NULL_PTR) || (*(int64_t *)(data_size + MEMORY_OFFSET_0x40) != SYSTEM_NULL_PTR)) {
         if (param_5 != SYSTEM_NULL_PTR) {
-            SystemDataValidator(param_2, data_size, &unknown_var_9168_ptr);
+            SystemDataValidator(param_2, data_size, &processed_var_9168_ptr);
         }
         
         // 管理数据队列

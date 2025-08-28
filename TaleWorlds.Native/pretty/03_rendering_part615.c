@@ -155,7 +155,7 @@ void FUN_1806068f0(int64_t param_1,uint64_t *param_2)
     param_2[7] = uVar2;
     return;
   }
-  SystemCore_ResourceManager0(&unknown_var_8120_ptr);
+  SystemCore_ResourceManager0(&processed_var_8120_ptr);
   *param_2 = 0x3f800000;
   param_2[1] = 0;
   param_2[2] = 0x3f80000000000000;
@@ -194,7 +194,7 @@ void FUN_180606970(int64_t param_1,uint64_t *param_2)
     param_2[7] = uVar2;
     return;
   }
-  SystemCore_ResourceManager0(&unknown_var_8048_ptr);
+  SystemCore_ResourceManager0(&processed_var_8048_ptr);
   *param_2 = 0x3f800000;
   param_2[1] = 0;
   param_2[2] = 0x3f80000000000000;

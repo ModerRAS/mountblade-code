@@ -157,7 +157,7 @@ void CoreSystem_DataTransformer0(int64_t param_1,int param_2,int *param_3)
     piVar13 = param_3;
     if (0 < (int)uVar22) {
       do {
-        piVar12 = (int *)&unknown_var_7568_ptr;
+        piVar12 = (int *)&processed_var_7568_ptr;
         iVar14 = 0;
         do {
           if (*piVar13 == *piVar12) goto LAB_180160234;
@@ -274,7 +274,7 @@ LAB_1801604d9:
               }
               else {
                 iVar20 = 0;
-                piVar12 = (int *)&unknown_var_7568_ptr;
+                piVar12 = (int *)&processed_var_7568_ptr;
                 while (iVar15 != *piVar12) {
                   iVar20 = iVar20 + 1;
                   piVar12 = piVar12 + 1;
@@ -362,7 +362,7 @@ void FUN_180160341(int64_t param_1,uint64_t param_2,int *param_3)
               if (iVar3 == param_3[-6]) {
                 if (unaff_BPL == '\0') {
                   iVar6 = 0;
-                  piVar5 = (int *)&unknown_var_7568_ptr;
+                  piVar5 = (int *)&processed_var_7568_ptr;
                   while (iVar3 != *piVar5) {
                     iVar6 = iVar6 + 1;
                     piVar5 = piVar5 + 1;
@@ -480,7 +480,7 @@ LAB_180160546:
       lVar5 = 0;
       iVar8 = piVar4[lVar9 + 7];
       do {
-        if (uVar2 == *(uint *)(&unknown_var_7568_ptr + lVar5 * 4)) goto LAB_18016064a;
+        if (uVar2 == *(uint *)(&processed_var_7568_ptr + lVar5 * 4)) goto LAB_18016064a;
         lVar5 = lVar5 + 1;
       } while (lVar5 < 3);
       lVar5 = -1;
@@ -500,7 +500,7 @@ LAB_180160689:
         if ((*(char *)(core_system_data_config + 0x18 + uVar7 * 0x18) != '\0') ||
            ((pfVar1 = (float *)(core_system_data_config + 4 + uVar7 * 0x18), *pfVar1 <= 0.7 && *pfVar1 != 0.7
             && ((*(byte *)(core_system_data_config + 0x14 + uVar7 * 0x18) & 1) == 0)))) {
-          uVar7 = (uint64_t)*(uint *)(&unknown_var_7584_ptr + lVar5 * 4);
+          uVar7 = (uint64_t)*(uint *)(&processed_var_7584_ptr + lVar5 * 4);
           goto LAB_180160689;
         }
 LAB_180160797:
@@ -537,7 +537,7 @@ LAB_180160791:
                *pfVar1 <= 0.7 && *pfVar1 != 0.7 &&
                ((*(byte *)(core_system_data_config + 0x14 + uVar7 * 0x18) & 1) == 0)))))) {
             if ((lVar5 < 0) ||
-               (uVar7 = (uint64_t)*(uint *)(&unknown_var_7584_ptr + lVar5 * 4),
+               (uVar7 = (uint64_t)*(uint *)(&processed_var_7584_ptr + lVar5 * 4),
                *(char *)(core_system_data_config + 0x18 + uVar7 * 0x18) != '\0')) goto LAB_180160797;
             pfVar1 = (float *)(core_system_data_config + 4 + uVar7 * 0x18);
             if (*pfVar1 <= 0.7 && *pfVar1 != 0.7) {
@@ -603,7 +603,7 @@ char FUN_18016055e(int32_t param_1)
       lVar4 = 0;
       iVar7 = *(int *)(in_RAX + 0x1c + lVar8 * 4);
       do {
-        if (uVar2 == *(uint *)(&unknown_var_7568_ptr + lVar4 * 4)) goto LAB_18016064a;
+        if (uVar2 == *(uint *)(&processed_var_7568_ptr + lVar4 * 4)) goto LAB_18016064a;
         lVar4 = lVar4 + 1;
       } while (lVar4 < 3);
       lVar4 = -1;
@@ -623,7 +623,7 @@ LAB_180160689:
         if ((*(char *)(core_system_data_config + 0x18 + uVar6 * 0x18) != '\0') ||
            ((pfVar1 = (float *)(core_system_data_config + 4 + uVar6 * 0x18), *pfVar1 <= 0.7 && *pfVar1 != 0.7
             && ((*(byte *)(core_system_data_config + 0x14 + uVar6 * 0x18) & 1) == 0)))) {
-          uVar6 = (uint64_t)*(uint *)(&unknown_var_7584_ptr + lVar4 * 4);
+          uVar6 = (uint64_t)*(uint *)(&processed_var_7584_ptr + lVar4 * 4);
           goto LAB_180160689;
         }
 LAB_180160797:
@@ -660,7 +660,7 @@ LAB_180160791:
                *pfVar1 <= 0.7 && *pfVar1 != 0.7 &&
                ((*(byte *)(core_system_data_config + 0x14 + uVar6 * 0x18) & 1) == 0)))))) {
             if ((lVar4 < 0) ||
-               (uVar6 = (uint64_t)*(uint *)(&unknown_var_7584_ptr + lVar4 * 4),
+               (uVar6 = (uint64_t)*(uint *)(&processed_var_7584_ptr + lVar4 * 4),
                *(char *)(core_system_data_config + 0x18 + uVar6 * 0x18) != '\0')) goto LAB_180160797;
             pfVar1 = (float *)(core_system_data_config + 4 + uVar6 * 0x18);
             if (*pfVar1 <= 0.7 && *pfVar1 != 0.7) {
@@ -715,7 +715,7 @@ void FUN_1801605c8(void)
       lVar5 = 0;
       iVar3 = *(int *)(unaff_RBP + 0x18 + lVar6 * 4);
       do {
-        if (uVar2 == *(uint *)(&unknown_var_7568_ptr + lVar5 * 4)) goto LAB_18016064a;
+        if (uVar2 == *(uint *)(&processed_var_7568_ptr + lVar5 * 4)) goto LAB_18016064a;
         lVar5 = lVar5 + 1;
       } while (lVar5 < 3);
       lVar5 = -1;
@@ -735,7 +735,7 @@ LAB_180160689:
         if ((*(char *)(core_system_data_config + 0x18 + uVar4 * 0x18) != '\0') ||
            ((pfVar1 = (float *)(core_system_data_config + 4 + uVar4 * 0x18), *pfVar1 <= 0.7 && *pfVar1 != 0.7
             && ((*(byte *)(core_system_data_config + 0x14 + uVar4 * 0x18) & 1) == 0)))) {
-          uVar4 = (uint64_t)*(uint *)(&unknown_var_7584_ptr + lVar5 * 4);
+          uVar4 = (uint64_t)*(uint *)(&processed_var_7584_ptr + lVar5 * 4);
           goto LAB_180160689;
         }
 LAB_180160797:
@@ -772,7 +772,7 @@ LAB_180160791:
                *pfVar1 <= 0.7 && *pfVar1 != 0.7 &&
                ((*(byte *)(core_system_data_config + 0x14 + uVar4 * 0x18) & 1) == 0)))))) {
             if ((lVar5 < 0) ||
-               (uVar4 = (uint64_t)*(uint *)(&unknown_var_7584_ptr + lVar5 * 4),
+               (uVar4 = (uint64_t)*(uint *)(&processed_var_7584_ptr + lVar5 * 4),
                *(char *)(core_system_data_config + 0x18 + uVar4 * 0x18) != '\0')) goto LAB_180160797;
             pfVar1 = (float *)(core_system_data_config + 4 + uVar4 * 0x18);
             if (*pfVar1 <= 0.7 && *pfVar1 != 0.7) {
@@ -816,7 +816,7 @@ void FUN_1801605f0(uint64_t param_1,int64_t param_2,int64_t param_3)
       lVar5 = 0;
       iVar3 = *(int *)(param_3 + 0x18 + lVar6 * 4);
       do {
-        if (uVar2 == *(uint *)(&unknown_var_7568_ptr + lVar5 * 4)) goto LAB_18016064a;
+        if (uVar2 == *(uint *)(&processed_var_7568_ptr + lVar5 * 4)) goto LAB_18016064a;
         lVar5 = lVar5 + 1;
       } while (lVar5 < 3);
       lVar5 = -1;
@@ -835,7 +835,7 @@ LAB_180160689:
         if ((*(char *)(param_2 + 0x18 + uVar4 * 0x18) != '\0') ||
            ((pfVar1 = (float *)(param_2 + 4 + uVar4 * 0x18), *pfVar1 <= 0.7 && *pfVar1 != 0.7 &&
             ((*(byte *)(param_2 + 0x14 + uVar4 * 0x18) & 1) == 0)))) {
-          uVar4 = (uint64_t)*(uint *)(&unknown_var_7584_ptr + lVar5 * 4);
+          uVar4 = (uint64_t)*(uint *)(&processed_var_7584_ptr + lVar5 * 4);
           goto LAB_180160689;
         }
 LAB_180160797:
@@ -871,7 +871,7 @@ LAB_180160791:
               ((pfVar1 = (float *)(param_2 + 4 + uVar4 * 0x18), *pfVar1 <= 0.7 && *pfVar1 != 0.7 &&
                ((*(byte *)(param_2 + 0x14 + uVar4 * 0x18) & 1) == 0)))))) {
             if ((lVar5 < 0) ||
-               (uVar4 = (uint64_t)*(uint *)(&unknown_var_7584_ptr + lVar5 * 4),
+               (uVar4 = (uint64_t)*(uint *)(&processed_var_7584_ptr + lVar5 * 4),
                *(char *)(param_2 + 0x18 + uVar4 * 0x18) != '\0')) goto LAB_180160797;
             pfVar1 = (float *)(param_2 + 4 + uVar4 * 0x18);
             if (*pfVar1 <= 0.7 && *pfVar1 != 0.7) {

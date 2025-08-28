@@ -307,7 +307,7 @@ bool FUN_1806b8360(int64_t *param_1,int64_t *param_2,uint64_t param_3,float para
       uStack_218 = CONCAT44(piVar14[1],iVar15);
       uStack_210 = *(uint64_t *)(piVar14 + 2);
       (**(code **)(*(int64_t *)param_7 + 0x48))(param_7,auStack_148);
-      puStack_1c8 = &unknown_var_3312_ptr;
+      puStack_1c8 = &memory_allocator_3312_ptr;
       uStack_1c0 = 0;
       auStackX_20[0] = *param_5;
       uStack_1b8 = 0;
@@ -434,7 +434,7 @@ bool FUN_1806b83c5(int32_t param_1)
       *(int *)((int64_t)unaff_RBP + -0x7c) = iVar11;
     }
     (**(code **)(*(int64_t *)unaff_RBP[0x36] + 0x48))((int64_t *)unaff_RBP[0x36],unaff_RBP + 6);
-    unaff_RBP[-10] = &unknown_var_3312_ptr;
+    unaff_RBP[-10] = &memory_allocator_3312_ptr;
     unaff_RBP[-9] = 0;
     *(int16_t *)(unaff_RBP + 0x33) = *(int16_t *)unaff_RBP[0x34];
     lVar20 = *unaff_R14;
@@ -665,7 +665,7 @@ uint64_t FUN_1806b87e0(int64_t *param_1,int64_t *param_2,uint64_t param_3,int32_
       uStack_21c = 0;
       cStack_200 = '\0';
       uStack_1ec = 0;
-      puStack_248 = &unknown_var_3312_ptr;
+      puStack_248 = &memory_allocator_3312_ptr;
       auStackX_20[0] = *param_5;
       uStack_230 = 0xffffffff;
       uStack_218 = 0;
@@ -996,7 +996,7 @@ uint FUN_1806b8877(void)
     *(int8_t *)(unaff_RBP + -10) = 0;
     unaff_RBP[-5] = 0;
     *(int32_t **)(unaff_RBP + -8) = puVar23;
-    *(void **)(unaff_RBP + -0x1c) = &unknown_var_3312_ptr;
+    *(void **)(unaff_RBP + -0x1c) = &memory_allocator_3312_ptr;
     unaff_RBP[-6] = uVar31;
     *(int16_t *)(unaff_RBP + 0x7e) = **(int16_t **)(unaff_RBP + 0x80);
     unaff_RBP[-0x16] = 0xffffffff;

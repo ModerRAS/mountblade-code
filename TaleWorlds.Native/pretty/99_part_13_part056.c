@@ -72,7 +72,7 @@ void FUN_1808ccd80(void)
           *plVar1 = (int64_t)plVar1;
           (**(code **)(*plVar8 + 0x28))(plVar8,0);
                     // WARNING: Subroutine does not return
-          SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar8,&unknown_var_5904_ptr,0xec9,1);
+          SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar8,&processed_var_5904_ptr,0xec9,1);
         }
         break;
       }

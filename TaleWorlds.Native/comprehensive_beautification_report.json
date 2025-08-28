@@ -1,0 +1,13 @@
+{
+  "timestamp": "/root/WorkSpace/CSharp/mountblade-code/TaleWorlds.Native",
+  "total_files": 4248,
+  "processed_files": 2045,
+  "total_replacements": 32121,
+  "replacement_stats": {
+    "unknown_var": 31996,
+    "undefined": 0,
+    "UNK_": 120,
+    "DAT_": 5
+  },
+  "success_rate": 0.4814030131826742
+}

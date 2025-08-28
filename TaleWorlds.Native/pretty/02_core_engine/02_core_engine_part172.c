@@ -35,7 +35,7 @@ void EngineResourceManager_Destroy(uint64_t *param_1)
   int64_t *plStackX_20;
   uint64_t uVar9;
   
-  *param_1 = &g_pEngineResourceTable;  // 设置资源管理表指针 (原: unknown_var_8656)
+  *param_1 = &g_pEngineResourceTable;  // 设置资源管理表指针 (原: processed_var_8656)
   *(int8_t *)((int64_t)param_1 + 0x162) = 1;
   plVar2 = param_1 + 0x1a;
   plStackX_20 = plVar2;

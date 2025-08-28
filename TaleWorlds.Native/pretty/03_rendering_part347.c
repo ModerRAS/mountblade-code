@@ -219,7 +219,7 @@ void FUN_180454230(int64_t param_1,int64_t param_2)
   if (param_1 != 0) {
     uStack_88 = 0xfffffffffffffffe;
     uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_a8;
-    puStack_78 = &unknown_var_3480_ptr;
+    puStack_78 = &memory_allocator_3480_ptr;
     puStack_70 = auStack_60;
     uStack_68 = 0;
     auStack_60[0] = 0;
@@ -311,7 +311,7 @@ void FUN_1804543f0(int64_t param_1,uint64_t param_2)
   lStack_190 = param_1;
   if (*(char *)(param_1 + 0x5c42) != '\0') {
     FUN_1800b8500(param_1 + 0x8158);
-    FUN_1801ae4a0(param_1,&unknown_var_7008_ptr,param_1 + 0x8158);
+    FUN_1801ae4a0(param_1,&processed_var_7008_ptr,param_1 + 0x8158);
     *(int8_t *)(param_1 + 0x5c42) = 0;
   }
   if ((uint64_t)(*(int64_t *)(param_1 + 0x8160) - *(int64_t *)(param_1 + 0x8158) >> 3) < 3) {
@@ -390,7 +390,7 @@ void FUN_1804543f0(int64_t param_1,uint64_t param_2)
   if (plVar4 != (int64_t *)0x0) {
     (**(code **)(*plVar4 + 0x28))(plVar4);
   }
-  (**(code **)(plVar4[2] + 0x10))(plVar4 + 2,&unknown_var_384_ptr);
+  (**(code **)(plVar4[2] + 0x10))(plVar4 + 2,&memory_allocator_384_ptr);
   uVar3 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x130,8,6);
                     // WARNING: Subroutine does not return
   memset(uVar3,0,0x130);
@@ -879,7 +879,7 @@ void FUN_180455430(int64_t param_1,uint64_t param_2,uint64_t param_3)
   puStack_80 = &uStack_b8;
   ppuStack_78 = &puStack_68;
   uVar3 = 0;
-  puStack_68 = &unknown_var_504_ptr;
+  puStack_68 = &processed_var_504_ptr;
   ppuStack_30 = &puStack_68;
   lVar2 = *(int64_t *)(param_1 + 0x60858);
   uVar5 = uVar3;
@@ -966,7 +966,7 @@ void FUN_1804555a0(int32_t *param_1,int64_t param_2,uint64_t param_3)
   plStack_c0 = (int64_t *)0x0;
   uStack_d0 = &plStack_c0;
   ppuStack_c8 = &puStack_78;
-  puStack_78 = &unknown_var_6080_ptr;
+  puStack_78 = &processed_var_6080_ptr;
   uStack_d8._0_4_ = (int32_t)uVar2;
   uStack_d8._4_4_ = (int32_t)((uint64_t)uVar2 >> 0x20);
   uStack_70 = (int32_t)uStack_d8;

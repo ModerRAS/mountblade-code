@@ -721,11 +721,11 @@ void InitializationSystem_ConfigManager(int64_t *param_1)
     
     // 获取配置句柄
     config_handle = *(uint64_t*)(param_1[0x37] + 0x1e0);
-    data_pointer = &unknown_var_672_ptr;
+    data_pointer = &processed_var_672_ptr;
     config_pointer = config_info;
     config_info[0] = config_info[0] & 0xffffffffffffff00;
     config_flag._0_4_ = 0x12;
-    strcpy_s(config_info, 0x20, &unknown_var_5320_ptr);
+    strcpy_s(config_info, 0x20, &processed_var_5320_ptr);
     
     // 验证配置信息
     config_flag = SystemCore_LoggingSystem0(config_handle, &data_pointer, 0);
@@ -900,7 +900,7 @@ uint64_t InitializationSystem_PermissionValidator(int64_t param_1, int64_t param
             // 检查系统权限标志
             if ((*(SystemByte*)(param_1 + 0xfd) & 8) != 0) {
                 resource_context = 0xb8;
-                security_callback = (code*)&unknown_var_128_ptr;
+                security_callback = (code*)&ui_system_data_128_ptr;
                 do {
                     resource_data = *(StateContext*)(resource_context + *(int64_t*)(param_1 + 0x1b8));
                     if (((resource_data != 0) && (config_context = *(int64_t*)(resource_data + 0x370), config_context != 0)) &&
@@ -955,7 +955,7 @@ uint64_t InitializationSystem_PermissionValidator(int64_t param_1, int64_t param
                         // 更新权限信息
                         *(int64_t*)(*(int64_t*)(config_context + 0x3f70 + permission_key * 8) + 
                                       (uint64_t)(permission_level + permission_hash * -0x400) * 8) = resource_data;
-                        security_callback = (code*)&unknown_var_128_ptr;
+                        security_callback = (code*)&ui_system_data_128_ptr;
                     }
                     resource_context = resource_context + 8;
                 } while (resource_context < 0x138);

@@ -17,28 +17,28 @@
 
 // 函数: uint8_t RenderingCoreProcessor;
 uint8_t RenderingCoreProcessor;
-uint8_t unknown_var_5896;
+uint8_t processed_var_5896;
 uint8_t system_data_4210;
-uint8_t unknown_var_960;
-uint8_t unknown_var_840;
-uint8_t unknown_var_856;
-uint8_t unknown_var_872;
-uint8_t unknown_var_912;
-uint8_t unknown_var_6816;
-uint8_t unknown_var_6824;
-uint8_t unknown_var_6848;
-uint8_t unknown_var_6880;
-uint8_t unknown_var_6904;
-uint8_t unknown_var_6924;
-uint8_t unknown_var_6936;
-uint8_t unknown_var_6952;
-uint8_t unknown_var_6976;
-uint8_t unknown_var_6992;
-uint8_t unknown_var_7008;
-uint8_t unknown_var_7024;
-uint8_t unknown_var_7036;
-uint8_t unknown_var_7048;
-uint8_t unknown_var_976;
+uint8_t processed_var_960;
+uint8_t processed_var_840;
+uint8_t processed_var_856;
+uint8_t processed_var_872;
+uint8_t processed_var_912;
+uint8_t processed_var_6816;
+uint8_t processed_var_6824;
+uint8_t processed_var_6848;
+uint8_t processed_var_6880;
+uint8_t processed_var_6904;
+uint8_t processed_var_6924;
+uint8_t processed_var_6936;
+uint8_t processed_var_6952;
+uint8_t processed_var_6976;
+uint8_t processed_var_6992;
+uint8_t processed_var_7008;
+uint8_t processed_var_7024;
+uint8_t processed_var_7036;
+uint8_t processed_var_7048;
+uint8_t processed_var_976;
 uint8_t system_data_bc98;
 uint8_t system_data_bcb0;
 uint8_t system_data_bcb8;
@@ -47,235 +47,235 @@ uint8_t system_data_bca8;
 uint8_t system_data_bcd8;
 uint8_t system_data_bce0;
 uint8_t system_data_bce8;
-uint8_t unknown_var_1016;
-uint8_t unknown_var_1032;
-uint8_t unknown_var_1048;
-uint8_t unknown_var_1120;
-uint8_t unknown_var_1136;
-uint8_t unknown_var_1176;
+uint8_t ui_system_data_1016;
+uint8_t ui_system_data_1032;
+uint8_t ui_system_data_1048;
+uint8_t ui_system_data_1120;
+uint8_t ui_system_data_1136;
+uint8_t ui_system_data_1176;
 uint8_t system_data_fcc8;
-uint8_t unknown_var_1068;
-uint8_t unknown_var_1076;
-uint8_t unknown_var_1088;
-uint8_t unknown_var_1104;
-uint8_t unknown_var_1160;
-uint8_t unknown_var_1208;
-uint8_t unknown_var_1232;
-uint8_t unknown_var_1248;
-uint8_t unknown_var_1288;
-uint8_t unknown_var_1316;
-uint8_t unknown_var_1324;
-uint8_t unknown_var_1336;
-uint8_t unknown_var_1348;
-uint8_t unknown_var_1368;
-uint8_t unknown_var_1440;
-uint8_t unknown_var_1464;
-uint8_t unknown_var_1496;
-uint8_t unknown_var_3028;
-uint8_t unknown_var_1356;
-uint8_t unknown_var_1408;
-uint8_t unknown_var_1424;
-uint8_t unknown_var_1512;
-uint8_t unknown_var_1528;
-uint8_t unknown_var_1544;
-uint8_t unknown_var_1560;
-uint8_t unknown_var_1576;
-uint8_t unknown_var_1592;
-uint8_t unknown_var_1608;
-uint8_t unknown_var_1624;
-uint8_t unknown_var_1640;
-uint8_t unknown_var_1664;
-uint8_t unknown_var_1680;
-uint8_t unknown_var_1704;
-uint8_t unknown_var_1728;
-uint8_t unknown_var_1744;
-uint8_t unknown_var_1776;
-uint8_t unknown_var_1800;
-uint8_t unknown_var_1816;
-uint8_t unknown_var_1840;
-uint8_t unknown_var_1856;
-uint8_t unknown_var_1888;
-uint8_t unknown_var_1904;
-uint8_t unknown_var_1928;
-uint8_t unknown_var_1952;
-uint8_t unknown_var_1976;
-uint8_t unknown_var_1992;
-uint8_t unknown_var_2032;
-uint8_t unknown_var_2072;
-uint8_t unknown_var_2088;
-uint8_t unknown_var_2104;
-uint8_t unknown_var_2136;
-uint8_t unknown_var_2160;
-uint8_t unknown_var_2176;
-uint8_t unknown_var_2200;
-uint8_t unknown_var_2224;
-uint8_t unknown_var_2248;
-uint8_t unknown_var_2272;
-uint8_t unknown_var_2304;
-uint8_t unknown_var_2328;
-uint8_t unknown_var_2352;
-uint8_t unknown_var_2384;
-uint8_t unknown_var_2416;
-uint8_t unknown_var_2448;
-uint8_t unknown_var_2480;
-uint8_t unknown_var_2512;
-uint8_t unknown_var_2528;
-uint8_t unknown_var_2560;
-uint8_t unknown_var_2688;
-uint8_t unknown_var_2592;
-uint8_t unknown_var_2648;
-uint8_t unknown_var_2664;
-uint8_t unknown_var_2728;
-uint8_t unknown_var_2752;
-uint8_t unknown_var_2800;
-uint8_t unknown_var_2816;
-uint8_t unknown_var_2832;
-uint8_t unknown_var_2856;
-uint8_t unknown_var_2776;
-uint8_t unknown_var_2788;
-uint8_t unknown_var_2944;
-uint8_t unknown_var_2928;
-uint8_t unknown_var_2984;
-uint8_t unknown_var_2880;
-uint8_t unknown_var_2904;
-uint8_t unknown_var_2968;
-uint8_t unknown_var_2636;
-uint8_t unknown_var_2712;
-uint8_t unknown_var_3040;
-uint8_t unknown_var_3048;
-uint8_t unknown_var_3056;
-uint8_t unknown_var_3072;
-uint8_t unknown_var_3088;
-uint8_t unknown_var_3104;
-uint8_t unknown_var_3120;
-uint8_t unknown_var_3136;
-uint8_t unknown_var_3152;
-uint8_t unknown_var_3168;
-uint8_t unknown_var_3192;
-uint8_t unknown_var_3288;
-uint8_t unknown_var_3312;
-uint8_t unknown_var_3328;
-uint8_t unknown_var_3344;
+uint8_t ui_system_data_1068;
+uint8_t ui_system_data_1076;
+uint8_t ui_system_data_1088;
+uint8_t ui_system_data_1104;
+uint8_t ui_system_data_1160;
+uint8_t ui_system_data_1208;
+uint8_t ui_system_data_1232;
+uint8_t ui_system_data_1248;
+uint8_t ui_system_data_1288;
+uint8_t ui_system_data_1316;
+uint8_t ui_system_data_1324;
+uint8_t ui_system_data_1336;
+uint8_t ui_system_data_1348;
+uint8_t ui_system_data_1368;
+uint8_t ui_system_data_1440;
+uint8_t ui_system_data_1464;
+uint8_t ui_system_data_1496;
+uint8_t memory_allocator_3028;
+uint8_t ui_system_data_1356;
+uint8_t ui_system_data_1408;
+uint8_t ui_system_data_1424;
+uint8_t ui_system_data_1512;
+uint8_t ui_system_data_1528;
+uint8_t ui_system_data_1544;
+uint8_t ui_system_data_1560;
+uint8_t ui_system_data_1576;
+uint8_t ui_system_data_1592;
+uint8_t ui_system_data_1608;
+uint8_t ui_system_data_1624;
+uint8_t ui_system_data_1640;
+uint8_t ui_system_data_1664;
+uint8_t ui_system_data_1680;
+uint8_t ui_system_data_1704;
+uint8_t ui_system_data_1728;
+uint8_t ui_system_data_1744;
+uint8_t ui_system_data_1776;
+uint8_t ui_system_data_1800;
+uint8_t ui_system_data_1816;
+uint8_t ui_system_data_1840;
+uint8_t ui_system_data_1856;
+uint8_t ui_system_data_1888;
+uint8_t ui_system_data_1904;
+uint8_t ui_system_data_1928;
+uint8_t ui_system_data_1952;
+uint8_t ui_system_data_1976;
+uint8_t ui_system_data_1992;
+uint8_t rendering_buffer_2032;
+uint8_t rendering_buffer_2072;
+uint8_t rendering_buffer_2088;
+uint8_t rendering_buffer_2104;
+uint8_t rendering_buffer_2136;
+uint8_t rendering_buffer_2160;
+uint8_t rendering_buffer_2176;
+uint8_t rendering_buffer_2200;
+uint8_t rendering_buffer_2224;
+uint8_t rendering_buffer_2248;
+uint8_t rendering_buffer_2272;
+uint8_t rendering_buffer_2304;
+uint8_t rendering_buffer_2328;
+uint8_t rendering_buffer_2352;
+uint8_t rendering_buffer_2384;
+uint8_t rendering_buffer_2416;
+uint8_t rendering_buffer_2448;
+uint8_t rendering_buffer_2480;
+uint8_t rendering_buffer_2512;
+uint8_t rendering_buffer_2528;
+uint8_t rendering_buffer_2560;
+uint8_t rendering_buffer_2688;
+uint8_t rendering_buffer_2592;
+uint8_t rendering_buffer_2648;
+uint8_t rendering_buffer_2664;
+uint8_t rendering_buffer_2728;
+uint8_t rendering_buffer_2752;
+uint8_t rendering_buffer_2800;
+uint8_t rendering_buffer_2816;
+uint8_t rendering_buffer_2832;
+uint8_t rendering_buffer_2856;
+uint8_t rendering_buffer_2776;
+uint8_t rendering_buffer_2788;
+uint8_t rendering_buffer_2944;
+uint8_t rendering_buffer_2928;
+uint8_t rendering_buffer_2984;
+uint8_t rendering_buffer_2880;
+uint8_t rendering_buffer_2904;
+uint8_t rendering_buffer_2968;
+uint8_t rendering_buffer_2636;
+uint8_t rendering_buffer_2712;
+uint8_t memory_allocator_3040;
+uint8_t memory_allocator_3048;
+uint8_t memory_allocator_3056;
+uint8_t memory_allocator_3072;
+uint8_t memory_allocator_3088;
+uint8_t memory_allocator_3104;
+uint8_t memory_allocator_3120;
+uint8_t memory_allocator_3136;
+uint8_t memory_allocator_3152;
+uint8_t memory_allocator_3168;
+uint8_t memory_allocator_3192;
+uint8_t memory_allocator_3288;
+uint8_t memory_allocator_3312;
+uint8_t memory_allocator_3328;
+uint8_t memory_allocator_3344;
 uint8_t system_data_6038;
-uint8_t unknown_var_3216;
-uint8_t unknown_var_3232;
-uint8_t unknown_var_3384;
-uint8_t unknown_var_3416;
-uint8_t unknown_var_3432;
-uint8_t unknown_var_3360;
-uint8_t unknown_var_3488;
-uint8_t unknown_var_3448;
-uint8_t unknown_var_3512;
-uint8_t unknown_var_3536;
-uint8_t unknown_var_3560;
-uint8_t unknown_var_3584;
-uint8_t unknown_var_3608;
-uint8_t unknown_var_3632;
-uint8_t unknown_var_3656;
-uint8_t unknown_var_3680;
-uint8_t unknown_var_3704;
-uint8_t unknown_var_3744;
-uint8_t unknown_var_3784;
-uint8_t unknown_var_3808;
-uint8_t unknown_var_3832;
-uint8_t unknown_var_3856;
-uint8_t unknown_var_3880;
-uint8_t unknown_var_3912;
-uint8_t unknown_var_3944;
-uint8_t unknown_var_3968;
-uint8_t unknown_var_4000;
-uint8_t unknown_var_4024;
-uint8_t unknown_var_4056;
-uint8_t unknown_var_4072;
-uint8_t unknown_var_4088;
-uint8_t unknown_var_4112;
-uint8_t unknown_var_4240;
-uint8_t unknown_var_4264;
-uint8_t unknown_var_4152;
-uint8_t unknown_var_4280;
-uint8_t unknown_var_4344;
-uint8_t unknown_var_6788;
-uint8_t unknown_var_4136;
-uint8_t unknown_var_4200;
-uint8_t unknown_var_4216;
-uint8_t unknown_var_4376;
-uint8_t unknown_var_4392;
-uint8_t unknown_var_4404;
-uint8_t unknown_var_4416;
-uint8_t unknown_var_4456;
-uint8_t unknown_var_4472;
-uint8_t unknown_var_4544;
-uint8_t unknown_var_4560;
-uint8_t unknown_var_4576;
-uint8_t unknown_var_4592;
-uint8_t unknown_var_4496;
-uint8_t unknown_var_4512;
-uint8_t unknown_var_4520;
-uint8_t unknown_var_4608;
-uint8_t unknown_var_4624;
-uint8_t unknown_var_4648;
-uint8_t unknown_var_4680;
-uint8_t unknown_var_4640;
-uint8_t unknown_var_4744;
+uint8_t memory_allocator_3216;
+uint8_t memory_allocator_3232;
+uint8_t memory_allocator_3384;
+uint8_t memory_allocator_3416;
+uint8_t memory_allocator_3432;
+uint8_t memory_allocator_3360;
+uint8_t memory_allocator_3488;
+uint8_t memory_allocator_3448;
+uint8_t memory_allocator_3512;
+uint8_t memory_allocator_3536;
+uint8_t memory_allocator_3560;
+uint8_t memory_allocator_3584;
+uint8_t memory_allocator_3608;
+uint8_t memory_allocator_3632;
+uint8_t memory_allocator_3656;
+uint8_t memory_allocator_3680;
+uint8_t memory_allocator_3704;
+uint8_t memory_allocator_3744;
+uint8_t memory_allocator_3784;
+uint8_t memory_allocator_3808;
+uint8_t memory_allocator_3832;
+uint8_t memory_allocator_3856;
+uint8_t memory_allocator_3880;
+uint8_t memory_allocator_3912;
+uint8_t memory_allocator_3944;
+uint8_t memory_allocator_3968;
+uint8_t processed_var_4000;
+uint8_t processed_var_4024;
+uint8_t processed_var_4056;
+uint8_t processed_var_4072;
+uint8_t processed_var_4088;
+uint8_t processed_var_4112;
+uint8_t processed_var_4240;
+uint8_t processed_var_4264;
+uint8_t processed_var_4152;
+uint8_t processed_var_4280;
+uint8_t processed_var_4344;
+uint8_t processed_var_6788;
+uint8_t processed_var_4136;
+uint8_t processed_var_4200;
+uint8_t processed_var_4216;
+uint8_t processed_var_4376;
+uint8_t processed_var_4392;
+uint8_t processed_var_4404;
+uint8_t processed_var_4416;
+uint8_t processed_var_4456;
+uint8_t processed_var_4472;
+uint8_t processed_var_4544;
+uint8_t processed_var_4560;
+uint8_t processed_var_4576;
+uint8_t processed_var_4592;
+uint8_t processed_var_4496;
+uint8_t processed_var_4512;
+uint8_t processed_var_4520;
+uint8_t processed_var_4608;
+uint8_t processed_var_4624;
+uint8_t processed_var_4648;
+uint8_t processed_var_4680;
+uint8_t processed_var_4640;
+uint8_t processed_var_4744;
 uint8_t system_data_66e0;
-uint8_t unknown_var_7456;
-uint8_t unknown_var_7472;
-uint8_t unknown_var_7488;
-uint8_t unknown_var_5456;
-uint8_t unknown_var_3048;
-uint8_t unknown_var_6680;
-uint8_t unknown_var_6696;
-uint8_t unknown_var_3712;
-uint8_t unknown_var_6256;
-uint8_t unknown_var_6336;
-uint8_t unknown_var_6384;
-uint8_t unknown_var_3696;
-uint8_t unknown_var_6512;
-uint8_t unknown_var_6592;
-uint8_t unknown_var_6672;
+uint8_t processed_var_7456;
+uint8_t processed_var_7472;
+uint8_t processed_var_7488;
+uint8_t processed_var_5456;
+uint8_t memory_allocator_3048;
+uint8_t processed_var_6680;
+uint8_t processed_var_6696;
+uint8_t memory_allocator_3712;
+uint8_t processed_var_6256;
+uint8_t processed_var_6336;
+uint8_t processed_var_6384;
+uint8_t memory_allocator_3696;
+uint8_t processed_var_6512;
+uint8_t processed_var_6592;
+uint8_t processed_var_6672;
 uint8_t system_data_66ec;
-uint8_t unknown_var_8536;
-uint8_t unknown_var_7520;
-uint8_t unknown_var_7528;
-uint8_t unknown_var_7608;
-uint8_t unknown_var_7624;
-uint8_t unknown_var_7640;
-uint8_t unknown_var_7656;
-uint8_t unknown_var_7672;
-uint8_t unknown_var_7752;
-uint8_t unknown_var_7904;
-uint8_t unknown_var_8008;
-uint8_t unknown_var_8128;
-uint8_t unknown_var_8256;
-uint8_t unknown_var_8496;
-uint8_t unknown_var_7680;
-uint8_t unknown_var_7704;
-uint8_t unknown_var_7720;
-uint8_t unknown_var_7784;
-uint8_t unknown_var_7808;
-uint8_t unknown_var_7840;
-uint8_t unknown_var_7872;
-uint8_t unknown_var_7936;
-uint8_t unknown_var_7952;
-uint8_t unknown_var_7976;
-uint8_t unknown_var_8040;
-uint8_t unknown_var_8064;
-uint8_t unknown_var_8088;
-uint8_t unknown_var_8416;
-uint8_t unknown_var_8160;
-uint8_t unknown_var_8192;
-uint8_t unknown_var_8224;
-uint8_t unknown_var_8288;
-uint8_t unknown_var_8320;
-uint8_t unknown_var_8344;
-uint8_t unknown_var_8368;
-uint8_t unknown_var_8392;
-uint8_t unknown_var_8440;
-uint8_t unknown_var_8464;
-uint8_t unknown_var_7288;
-uint8_t unknown_var_8560;
-uint8_t unknown_var_7856;
-uint8_t unknown_var_8096;
+uint8_t processed_var_8536;
+uint8_t processed_var_7520;
+uint8_t processed_var_7528;
+uint8_t processed_var_7608;
+uint8_t processed_var_7624;
+uint8_t processed_var_7640;
+uint8_t processed_var_7656;
+uint8_t processed_var_7672;
+uint8_t processed_var_7752;
+uint8_t processed_var_7904;
+uint8_t processed_var_8008;
+uint8_t processed_var_8128;
+uint8_t processed_var_8256;
+uint8_t processed_var_8496;
+uint8_t processed_var_7680;
+uint8_t processed_var_7704;
+uint8_t processed_var_7720;
+uint8_t processed_var_7784;
+uint8_t processed_var_7808;
+uint8_t processed_var_7840;
+uint8_t processed_var_7872;
+uint8_t processed_var_7936;
+uint8_t processed_var_7952;
+uint8_t processed_var_7976;
+uint8_t processed_var_8040;
+uint8_t processed_var_8064;
+uint8_t processed_var_8088;
+uint8_t processed_var_8416;
+uint8_t processed_var_8160;
+uint8_t processed_var_8192;
+uint8_t processed_var_8224;
+uint8_t processed_var_8288;
+uint8_t processed_var_8320;
+uint8_t processed_var_8344;
+uint8_t processed_var_8368;
+uint8_t processed_var_8392;
+uint8_t processed_var_8440;
+uint8_t processed_var_8464;
+uint8_t processed_var_7288;
+uint8_t processed_var_8560;
+uint8_t processed_var_7856;
+uint8_t processed_var_8096;
 
 
 
@@ -288,29 +288,29 @@ uint8_t RenderingSystemInitializer;
 
 // 函数: uint8_t RenderingSystemManager;
 uint8_t RenderingSystemManager;
-uint8_t unknown_var_7792;
+uint8_t processed_var_7792;
 
 
 
 
 // 函数: uint8_t RenderingSystemController;
 uint8_t RenderingSystemController;
-uint8_t unknown_var_8592;
-uint8_t unknown_var_8576;
-uint8_t unknown_var_8192;
-uint8_t unknown_var_8632;
-uint8_t unknown_var_8672;
-uint8_t unknown_var_8776;
-uint8_t unknown_var_3400;
-uint8_t unknown_var_8736;
+uint8_t processed_var_8592;
+uint8_t processed_var_8576;
+uint8_t processed_var_8192;
+uint8_t processed_var_8632;
+uint8_t processed_var_8672;
+uint8_t processed_var_8776;
+uint8_t memory_allocator_3400;
+uint8_t processed_var_8736;
 
 
 
 
 // 函数: uint8_t RenderingSystemValidator;
 uint8_t RenderingSystemValidator;
-uint8_t unknown_var_9920;
-uint8_t unknown_var_6416;
+uint8_t processed_var_9920;
+uint8_t processed_var_6416;
 uint8_t SUB_18051f9a0;
 
 
@@ -325,1077 +325,1077 @@ uint8_t SUB_180525320;
 
 // 函数: uint8_t RenderingSystemAdvancedConfigurator;
 uint8_t RenderingSystemAdvancedConfigurator;
-uint8_t unknown_var_400;
+uint8_t processed_var_400;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedProcessor;
 uint8_t RenderingSystemAdvancedProcessor;
-uint8_t unknown_var_2640;
+uint8_t rendering_buffer_2640;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedManager;
 uint8_t RenderingSystemAdvancedManager;
-uint8_t unknown_var_3856;
+uint8_t memory_allocator_3856;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedValidator;
 uint8_t RenderingSystemAdvancedValidator;
-uint8_t unknown_var_3888;
+uint8_t memory_allocator_3888;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedOptimizer;
 uint8_t RenderingSystemAdvancedOptimizer;
-uint8_t unknown_var_7232;
+uint8_t processed_var_7232;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedController;
 uint8_t RenderingSystemAdvancedController;
-uint8_t unknown_var_7424;
+uint8_t processed_var_7424;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedHandler;
 uint8_t RenderingSystemAdvancedHandler;
-uint8_t unknown_var_7472;
+uint8_t processed_var_7472;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedCleaner;
 uint8_t RenderingSystemAdvancedCleaner;
-uint8_t unknown_var_7520;
+uint8_t processed_var_7520;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedResetter;
 uint8_t RenderingSystemAdvancedResetter;
-uint8_t unknown_var_7536;
+uint8_t processed_var_7536;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedFinalizer;
 uint8_t RenderingSystemAdvancedFinalizer;
-uint8_t unknown_var_7680;
+uint8_t processed_var_7680;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedSynchronizer;
 uint8_t RenderingSystemAdvancedSynchronizer;
-uint8_t unknown_var_8080;
+uint8_t processed_var_8080;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedCoordinator;
 uint8_t RenderingSystemAdvancedCoordinator;
-uint8_t unknown_var_8688;
+uint8_t processed_var_8688;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedIntegrator;
 uint8_t RenderingSystemAdvancedIntegrator;
-uint8_t unknown_var_8704;
+uint8_t processed_var_8704;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedUnifier;
 uint8_t RenderingSystemAdvancedUnifier;
-uint8_t unknown_var_8720;
-uint8_t unknown_var_8736;
-uint8_t unknown_var_8752;
+uint8_t processed_var_8720;
+uint8_t processed_var_8736;
+uint8_t processed_var_8752;
 
 
 
 
 // 函数: uint8_t RenderingSystemSpecialProcessor_118060faa0;
 uint8_t RenderingSystemSpecialProcessor_118060faa0;
-uint8_t unknown_var_8912;
+uint8_t processed_var_8912;
 
 
 
 
 // 函数: uint8_t RenderingSystemSpecialProcessor_118060fd90;
 uint8_t RenderingSystemSpecialProcessor_118060fd90;
-uint8_t unknown_var_8928;
+uint8_t processed_var_8928;
 
 
 
 
 // 函数: uint8_t RenderingSystemSpecialProcessor_118060fe60;
 uint8_t RenderingSystemSpecialProcessor_118060fe60;
-uint8_t unknown_var_8944;
+uint8_t processed_var_8944;
 
 
 
 
 // 函数: uint8_t RenderingSystemSpecialProcessor_118060fe80;
 uint8_t RenderingSystemSpecialProcessor_118060fe80;
-uint8_t unknown_var_8960;
+uint8_t processed_var_8960;
 
 
 
 
 // 函数: uint8_t RenderingSystemSpecialProcessor_132;
 uint8_t RenderingSystemSpecialProcessor_132;
-uint8_t unknown_var_8992;
+uint8_t processed_var_8992;
 
 
 
 
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180610190;
 uint8_t RenderingSystemSpecialProcessor_1180610190;
-uint8_t unknown_var_9392;
+uint8_t processed_var_9392;
 
 
 
 
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180610210;
 uint8_t RenderingSystemSpecialProcessor_1180610210;
-uint8_t unknown_var_9424;
+uint8_t processed_var_9424;
 
 
 
 
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180610560;
 uint8_t RenderingSystemSpecialProcessor_1180610560;
-uint8_t unknown_var_9472;
+uint8_t processed_var_9472;
 
 
 
 
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806106f0;
 uint8_t RenderingSystemSpecialProcessor_11806106f0;
-uint8_t unknown_var_9504;
+uint8_t processed_var_9504;
 
 
 
 
 // 函数: uint8_t RenderingSystemHyperProcessor_137;
 uint8_t RenderingSystemHyperProcessor_137;
-uint8_t unknown_var_9536;
+uint8_t processed_var_9536;
 
 
 
 
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180610900;
 uint8_t RenderingSystemSpecialProcessor_1180610900;
-uint8_t unknown_var_9552;
+uint8_t processed_var_9552;
 
 
 
 
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180610a30;
 uint8_t RenderingSystemSpecialProcessor_1180610a30;
-uint8_t unknown_var_9568;
+uint8_t processed_var_9568;
 
 
 
 
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180610ac0;
 uint8_t RenderingSystemSpecialProcessor_1180610ac0;
-uint8_t unknown_var_9584;
+uint8_t processed_var_9584;
 
 
 
 
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180610bd0;
 uint8_t RenderingSystemSpecialProcessor_1180610bd0;
-uint8_t unknown_var_9600;
+uint8_t processed_var_9600;
 
 
 
 
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180610e80;
 uint8_t RenderingSystemSpecialProcessor_1180610e80;
-uint8_t unknown_var_9616;
-uint8_t unknown_var_9728;
-uint8_t unknown_var_368;
+uint8_t processed_var_9616;
+uint8_t processed_var_9728;
+uint8_t memory_allocator_368;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedSerializer2;
 uint8_t RenderingSystemAdvancedSerializer2;
-uint8_t unknown_var_480;
+uint8_t processed_var_480;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedNormalizer2;
 uint8_t RenderingSystemAdvancedNormalizer2;
-uint8_t unknown_var_576;
-uint8_t unknown_var_592;
+uint8_t processed_var_576;
+uint8_t processed_var_592;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedSanitizer2;
 uint8_t RenderingSystemAdvancedSanitizer2;
-uint8_t unknown_var_624;
+uint8_t processed_var_624;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedValidator3;
 uint8_t RenderingSystemAdvancedValidator3;
-uint8_t unknown_var_704;
+uint8_t processed_var_704;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedAuditor2;
 uint8_t RenderingSystemAdvancedAuditor2;
-uint8_t unknown_var_720;
+uint8_t processed_var_720;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedAuthorizer2;
 uint8_t RenderingSystemAdvancedAuthorizer2;
-uint8_t unknown_var_736;
+uint8_t processed_var_736;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedAuthenticator2;
 uint8_t RenderingSystemAdvancedAuthenticator2;
-uint8_t unknown_var_800;
+uint8_t processed_var_800;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedDecryptor2;
 uint8_t RenderingSystemAdvancedDecryptor2;
-uint8_t unknown_var_816;
+uint8_t processed_var_816;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedEncryptor2;
 uint8_t RenderingSystemAdvancedEncryptor2;
-uint8_t unknown_var_2400;
+uint8_t rendering_buffer_2400;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedDecompressor2;
 uint8_t RenderingSystemAdvancedDecompressor2;
-uint8_t unknown_var_2672;
+uint8_t rendering_buffer_2672;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedCompressor2;
 uint8_t RenderingSystemAdvancedCompressor2;
-uint8_t unknown_var_2688;
+uint8_t rendering_buffer_2688;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedArchiver2;
 uint8_t RenderingSystemAdvancedArchiver2;
-uint8_t unknown_var_2848;
+uint8_t rendering_buffer_2848;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedLogger2;
 uint8_t RenderingSystemAdvancedLogger2;
-uint8_t unknown_var_2976;
+uint8_t rendering_buffer_2976;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedReporter2;
 uint8_t RenderingSystemAdvancedReporter2;
-uint8_t unknown_var_4496;
+uint8_t processed_var_4496;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedMonitor2;
 uint8_t RenderingSystemAdvancedMonitor2;
-uint8_t unknown_var_4528;
-uint8_t unknown_var_4560;
-uint8_t unknown_var_4576;
+uint8_t processed_var_4528;
+uint8_t processed_var_4560;
+uint8_t processed_var_4576;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedAnalyzer2;
 uint8_t RenderingSystemAdvancedAnalyzer2;
-uint8_t unknown_var_4944;
+uint8_t processed_var_4944;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedTransformer2;
 uint8_t RenderingSystemAdvancedTransformer2;
-uint8_t unknown_var_4960;
+uint8_t processed_var_4960;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedUnifier2;
 uint8_t RenderingSystemAdvancedUnifier2;
-uint8_t unknown_var_4976;
+uint8_t processed_var_4976;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedIntegrator2;
 uint8_t RenderingSystemAdvancedIntegrator2;
-uint8_t unknown_var_4992;
+uint8_t processed_var_4992;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedCoordinator2;
 uint8_t RenderingSystemAdvancedCoordinator2;
-uint8_t unknown_var_5024;
+uint8_t processed_var_5024;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedSynchronizer2;
 uint8_t RenderingSystemAdvancedSynchronizer2;
-uint8_t unknown_var_5104;
+uint8_t processed_var_5104;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedFinalizer2;
 uint8_t RenderingSystemAdvancedFinalizer2;
-uint8_t unknown_var_5120;
+uint8_t processed_var_5120;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedResetter2;
 uint8_t RenderingSystemAdvancedResetter2;
-uint8_t unknown_var_5152;
+uint8_t processed_var_5152;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedCleaner2;
 uint8_t RenderingSystemAdvancedCleaner2;
-uint8_t unknown_var_5200;
+uint8_t processed_var_5200;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedHandler2;
 uint8_t RenderingSystemAdvancedHandler2;
-uint8_t unknown_var_5936;
+uint8_t processed_var_5936;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedOptimizer2;
 uint8_t RenderingSystemAdvancedOptimizer2;
-uint8_t unknown_var_5952;
+uint8_t processed_var_5952;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedValidator2;
 uint8_t RenderingSystemAdvancedValidator2;
-uint8_t unknown_var_5968;
+uint8_t processed_var_5968;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedController2;
 uint8_t RenderingSystemAdvancedController2;
-uint8_t unknown_var_6000;
+uint8_t processed_var_6000;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedManager2;
 uint8_t RenderingSystemAdvancedManager2;
-uint8_t unknown_var_6016;
+uint8_t processed_var_6016;
 
 
 
 
 // 函数: uint8_t RenderingSystemAdvancedProcessor2;
 uint8_t RenderingSystemAdvancedProcessor2;
-uint8_t unknown_var_6096;
-uint8_t unknown_var_6128;
-uint8_t unknown_var_6176;
-uint8_t unknown_var_6240;
-uint8_t unknown_var_6512;
+uint8_t processed_var_6096;
+uint8_t processed_var_6128;
+uint8_t processed_var_6176;
+uint8_t processed_var_6240;
+uint8_t processed_var_6512;
 
 
 
 
 // 函数: uint8_t RenderingSystemMemorySynchronizer;
 uint8_t RenderingSystemMemorySynchronizer;
-uint8_t unknown_var_6576;
+uint8_t processed_var_6576;
 
 
 
 
 // 函数: uint8_t RenderingSystemMemoryFinalizer;
 uint8_t RenderingSystemMemoryFinalizer;
-uint8_t unknown_var_6608;
-uint8_t unknown_var_6816;
-uint8_t unknown_var_6896;
+uint8_t processed_var_6608;
+uint8_t processed_var_6816;
+uint8_t processed_var_6896;
 
 
 
 
 // 函数: uint8_t RenderingSystemMemoryResetter;
 uint8_t RenderingSystemMemoryResetter;
-uint8_t unknown_var_6928;
+uint8_t processed_var_6928;
 
 
 
 
 // 函数: uint8_t RenderingSystemMemoryCleaner;
 uint8_t RenderingSystemMemoryCleaner;
-uint8_t unknown_var_7104;
+uint8_t processed_var_7104;
 
 
 
 
 // 函数: uint8_t RenderingSystemMemoryHandler;
 uint8_t RenderingSystemMemoryHandler;
-uint8_t unknown_var_7584;
+uint8_t processed_var_7584;
 
 
 
 
 // 函数: uint8_t RenderingSystemMemoryOptimizer;
 uint8_t RenderingSystemMemoryOptimizer;
-uint8_t unknown_var_7600;
-uint8_t unknown_var_7680;
-uint8_t unknown_var_7696;
+uint8_t processed_var_7600;
+uint8_t processed_var_7680;
+uint8_t processed_var_7696;
 
 
 
 
 // 函数: uint8_t RenderingSystemMemoryValidator;
 uint8_t RenderingSystemMemoryValidator;
-uint8_t unknown_var_7712;
+uint8_t processed_var_7712;
 
 
 
 
 // 函数: uint8_t RenderingSystemMemoryController;
 uint8_t RenderingSystemMemoryController;
-uint8_t unknown_var_7728;
+uint8_t processed_var_7728;
 
 
 
 
 // 函数: uint8_t RenderingSystemMemoryManager;
 uint8_t RenderingSystemMemoryManager;
-uint8_t unknown_var_7744;
+uint8_t processed_var_7744;
 
 
 
 
 // 函数: uint8_t RenderingSystemMemoryProcessor;
 uint8_t RenderingSystemMemoryProcessor;
-uint8_t unknown_var_7920;
+uint8_t processed_var_7920;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreSerializer;
 uint8_t RenderingSystemCoreSerializer;
-uint8_t unknown_var_8192;
+uint8_t processed_var_8192;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreNormalizer;
 uint8_t RenderingSystemCoreNormalizer;
-uint8_t unknown_var_8320;
-uint8_t unknown_var_8336;
-uint8_t unknown_var_8352;
+uint8_t processed_var_8320;
+uint8_t processed_var_8336;
+uint8_t processed_var_8352;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreSanitizer;
 uint8_t RenderingSystemCoreSanitizer;
-uint8_t unknown_var_8368;
+uint8_t processed_var_8368;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreValidator2;
 uint8_t RenderingSystemCoreValidator2;
-uint8_t unknown_var_9264;
+uint8_t processed_var_9264;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreAuditor;
 uint8_t RenderingSystemCoreAuditor;
-uint8_t unknown_var_9568;
+uint8_t processed_var_9568;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreAuthorizer;
 uint8_t RenderingSystemCoreAuthorizer;
-uint8_t unknown_var_9728;
+uint8_t processed_var_9728;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreAuthenticator;
 uint8_t RenderingSystemCoreAuthenticator;
-uint8_t unknown_var_9952;
+uint8_t processed_var_9952;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreDecryptor;
 uint8_t RenderingSystemCoreDecryptor;
-uint8_t unknown_var_1184;
+uint8_t ui_system_data_1184;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreEncryptor;
 uint8_t RenderingSystemCoreEncryptor;
-uint8_t unknown_var_1200;
+uint8_t ui_system_data_1200;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreDecompressor;
 uint8_t RenderingSystemCoreDecompressor;
-uint8_t unknown_var_1248;
+uint8_t ui_system_data_1248;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreCompressor;
 uint8_t RenderingSystemCoreCompressor;
-uint8_t unknown_var_1264;
+uint8_t ui_system_data_1264;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreArchiver;
 uint8_t RenderingSystemCoreArchiver;
-uint8_t unknown_var_1280;
+uint8_t ui_system_data_1280;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreLogger;
 uint8_t RenderingSystemCoreLogger;
-uint8_t unknown_var_1376;
+uint8_t ui_system_data_1376;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreReporter;
 uint8_t RenderingSystemCoreReporter;
-uint8_t unknown_var_1456;
+uint8_t ui_system_data_1456;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreMonitor;
 uint8_t RenderingSystemCoreMonitor;
-uint8_t unknown_var_1520;
+uint8_t ui_system_data_1520;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreAnalyzer;
 uint8_t RenderingSystemCoreAnalyzer;
-uint8_t unknown_var_1536;
+uint8_t ui_system_data_1536;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreTransformer;
 uint8_t RenderingSystemCoreTransformer;
-uint8_t unknown_var_1696;
+uint8_t ui_system_data_1696;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreUnifier;
 uint8_t RenderingSystemCoreUnifier;
-uint8_t unknown_var_1728;
+uint8_t ui_system_data_1728;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreIntegrator;
 uint8_t RenderingSystemCoreIntegrator;
-uint8_t unknown_var_2880;
+uint8_t rendering_buffer_2880;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreCoordinator;
 uint8_t RenderingSystemCoreCoordinator;
-uint8_t unknown_var_2896;
+uint8_t rendering_buffer_2896;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreSynchronizer;
 uint8_t RenderingSystemCoreSynchronizer;
-uint8_t unknown_var_2912;
+uint8_t rendering_buffer_2912;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreFinalizer;
 uint8_t RenderingSystemCoreFinalizer;
-uint8_t unknown_var_2944;
+uint8_t rendering_buffer_2944;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreResetter;
 uint8_t RenderingSystemCoreResetter;
-uint8_t unknown_var_3296;
+uint8_t memory_allocator_3296;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreCleaner;
 uint8_t RenderingSystemCoreCleaner;
-uint8_t unknown_var_3440;
+uint8_t memory_allocator_3440;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreHandler;
 uint8_t RenderingSystemCoreHandler;
-uint8_t unknown_var_3488;
-uint8_t unknown_var_3536;
-uint8_t unknown_var_3552;
-uint8_t unknown_var_3568;
-uint8_t unknown_var_3584;
+uint8_t memory_allocator_3488;
+uint8_t memory_allocator_3536;
+uint8_t memory_allocator_3552;
+uint8_t memory_allocator_3568;
+uint8_t memory_allocator_3584;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreOptimizer;
 uint8_t RenderingSystemCoreOptimizer;
-uint8_t unknown_var_3600;
+uint8_t memory_allocator_3600;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreValidator;
 uint8_t RenderingSystemCoreValidator;
-uint8_t unknown_var_3616;
+uint8_t memory_allocator_3616;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreController;
 uint8_t RenderingSystemCoreController;
-uint8_t unknown_var_3904;
+uint8_t memory_allocator_3904;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreManager;
 uint8_t RenderingSystemCoreManager;
-uint8_t unknown_var_3936;
+uint8_t memory_allocator_3936;
 
 
 
 
 // 函数: uint8_t RenderingSystemCoreProcessor;
 uint8_t RenderingSystemCoreProcessor;
-uint8_t unknown_var_3952;
+uint8_t memory_allocator_3952;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowProcessor;
 uint8_t RenderingSystemDataFlowProcessor;
-uint8_t unknown_var_4928;
-uint8_t unknown_var_4976;
-uint8_t unknown_var_4992;
-uint8_t unknown_var_5136;
-uint8_t unknown_var_5168;
+uint8_t processed_var_4928;
+uint8_t processed_var_4976;
+uint8_t processed_var_4992;
+uint8_t processed_var_5136;
+uint8_t processed_var_5168;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowManager;
 uint8_t RenderingSystemDataFlowManager;
-uint8_t unknown_var_5184;
+uint8_t processed_var_5184;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowController;
 uint8_t RenderingSystemDataFlowController;
-uint8_t unknown_var_5200;
+uint8_t processed_var_5200;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowOptimizer;
 uint8_t RenderingSystemDataFlowOptimizer;
-uint8_t unknown_var_6896;
+uint8_t processed_var_6896;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowValidator;
 uint8_t RenderingSystemDataFlowValidator;
-uint8_t unknown_var_7104;
+uint8_t processed_var_7104;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowHandler;
 uint8_t RenderingSystemDataFlowHandler;
-uint8_t unknown_var_7120;
+uint8_t processed_var_7120;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowCleaner;
 uint8_t RenderingSystemDataFlowCleaner;
-uint8_t unknown_var_7136;
+uint8_t processed_var_7136;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowResetter;
 uint8_t RenderingSystemDataFlowResetter;
-uint8_t unknown_var_7264;
+uint8_t processed_var_7264;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowFinalizer;
 uint8_t RenderingSystemDataFlowFinalizer;
-uint8_t unknown_var_7280;
-uint8_t unknown_var_7328;
-uint8_t unknown_var_7344;
-uint8_t unknown_var_7360;
-uint8_t unknown_var_7536;
+uint8_t processed_var_7280;
+uint8_t processed_var_7328;
+uint8_t processed_var_7344;
+uint8_t processed_var_7360;
+uint8_t processed_var_7536;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowSynchronizer;
 uint8_t RenderingSystemDataFlowSynchronizer;
-uint8_t unknown_var_7632;
+uint8_t processed_var_7632;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowCoordinator;
 uint8_t RenderingSystemDataFlowCoordinator;
-uint8_t unknown_var_7744;
+uint8_t processed_var_7744;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowIntegrator;
 uint8_t RenderingSystemDataFlowIntegrator;
-uint8_t unknown_var_7760;
+uint8_t processed_var_7760;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowUnifier;
 uint8_t RenderingSystemDataFlowUnifier;
-uint8_t unknown_var_7792;
+uint8_t processed_var_7792;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowTransformer;
 uint8_t RenderingSystemDataFlowTransformer;
-uint8_t unknown_var_7808;
+uint8_t processed_var_7808;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowAnalyzer;
 uint8_t RenderingSystemDataFlowAnalyzer;
-uint8_t unknown_var_8000;
+uint8_t processed_var_8000;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowMonitor;
 uint8_t RenderingSystemDataFlowMonitor;
-uint8_t unknown_var_8016;
+uint8_t processed_var_8016;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowReporter;
 uint8_t RenderingSystemDataFlowReporter;
-uint8_t unknown_var_9728;
+uint8_t processed_var_9728;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowLogger;
 uint8_t RenderingSystemDataFlowLogger;
-uint8_t unknown_var_4256;
+uint8_t processed_var_4256;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowArchiver;
 uint8_t RenderingSystemDataFlowArchiver;
-uint8_t unknown_var_4512;
+uint8_t processed_var_4512;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowCompressor;
 uint8_t RenderingSystemDataFlowCompressor;
-uint8_t unknown_var_4880;
+uint8_t processed_var_4880;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowDecompressor;
 uint8_t RenderingSystemDataFlowDecompressor;
-uint8_t unknown_var_5856;
-uint8_t unknown_var_6048;
-uint8_t unknown_var_6752;
+uint8_t processed_var_5856;
+uint8_t processed_var_6048;
+uint8_t processed_var_6752;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowEncryptor;
 uint8_t RenderingSystemDataFlowEncryptor;
-uint8_t unknown_var_6816;
+uint8_t processed_var_6816;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowDecryptor;
 uint8_t RenderingSystemDataFlowDecryptor;
-uint8_t unknown_var_6832;
+uint8_t processed_var_6832;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowAuthenticator;
 uint8_t RenderingSystemDataFlowAuthenticator;
-uint8_t unknown_var_6848;
-uint8_t unknown_var_6928;
-uint8_t unknown_var_8224;
+uint8_t processed_var_6848;
+uint8_t processed_var_6928;
+uint8_t processed_var_8224;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowAuthorizer;
 uint8_t RenderingSystemDataFlowAuthorizer;
-uint8_t unknown_var_8960;
+uint8_t processed_var_8960;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowAuditor;
 uint8_t RenderingSystemDataFlowAuditor;
-uint8_t unknown_var_8976;
+uint8_t processed_var_8976;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowValidator2;
 uint8_t RenderingSystemDataFlowValidator2;
-uint8_t unknown_var_8992;
+uint8_t processed_var_8992;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowSanitizer;
 uint8_t RenderingSystemDataFlowSanitizer;
-uint8_t unknown_var_9104;
-uint8_t unknown_var_9536;
-uint8_t unknown_var_9616;
-uint8_t unknown_var_9648;
+uint8_t processed_var_9104;
+uint8_t processed_var_9536;
+uint8_t processed_var_9616;
+uint8_t processed_var_9648;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowNormalizer;
 uint8_t RenderingSystemDataFlowNormalizer;
-uint8_t unknown_var_9680;
+uint8_t processed_var_9680;
 
 
 
 
 // 函数: uint8_t RenderingSystemDataFlowSerializer;
 uint8_t RenderingSystemDataFlowSerializer;
-uint8_t unknown_var_9728;
+uint8_t processed_var_9728;
 
 
 
 
 // 函数: uint8_t RenderingSystem_DataStructureAnalyzer;
 uint8_t RenderingSystem_DataStructureAnalyzer;
-uint8_t unknown_var_192;
+uint8_t ui_system_data_192;
 
 
 
 
 // 函数: uint8_t RenderingSystem_DataStructureTransformer;
 uint8_t RenderingSystem_DataStructureTransformer;
-uint8_t unknown_var_912;
+uint8_t processed_var_912;
 
 
 
 
 // 函数: uint8_t RenderingSystem_DataStructureDeallocator;
 uint8_t RenderingSystem_DataStructureDeallocator;
-uint8_t unknown_var_1440;
+uint8_t ui_system_data_1440;
 
 
 
 
 // 函数: uint8_t RenderingSystem_DataStructureAllocator;
 uint8_t RenderingSystem_DataStructureAllocator;
-uint8_t unknown_var_2464;
+uint8_t rendering_buffer_2464;
 
 
 
 
 // 函数: uint8_t RenderingSystem_DataStructureOptimizer;
 uint8_t RenderingSystem_DataStructureOptimizer;
-uint8_t unknown_var_2480;
+uint8_t rendering_buffer_2480;
 
 
 
 
 // 函数: uint8_t RenderingSystem_DataStructureValidator;
 uint8_t RenderingSystem_DataStructureValidator;
-uint8_t unknown_var_2992;
+uint8_t rendering_buffer_2992;
 
 
 
 
 // 函数: uint8_t RenderingSystem_DataStructureCleaner;
 uint8_t RenderingSystem_DataStructureCleaner;
-uint8_t unknown_var_4736;
+uint8_t processed_var_4736;
 
 
 
 
 // 函数: uint8_t RenderingSystem_DataStructureInitializer;
 uint8_t RenderingSystem_DataStructureInitializer;
-uint8_t unknown_var_4864;
+uint8_t processed_var_4864;
 
 
 
 
 // 函数: uint8_t RenderingSystem_DataStructureManager;
 uint8_t RenderingSystem_DataStructureManager;
-uint8_t unknown_var_7280;
+uint8_t processed_var_7280;
 
 
 
 
 // 函数: uint8_t RenderingSystem_DataStructureProcessor;
 uint8_t RenderingSystem_DataStructureProcessor;
-uint8_t unknown_var_7328;
-uint8_t unknown_var_7360;
-uint8_t unknown_var_640;
-uint8_t unknown_var_2960;
-uint8_t unknown_var_48;
-uint8_t unknown_var_4640;
-uint8_t unknown_var_5664;
-uint8_t unknown_var_5712;
-uint8_t unknown_var_5728;
-uint8_t unknown_var_7504;
-uint8_t unknown_var_9200;
-uint8_t unknown_var_9216;
-uint8_t unknown_var_9232;
-uint8_t unknown_var_9280;
-uint8_t unknown_var_112;
-uint8_t unknown_var_128;
-uint8_t unknown_var_224;
-uint8_t unknown_var_1584;
-uint8_t unknown_var_1632;
-uint8_t unknown_var_1792;
-uint8_t unknown_var_1808;
-uint8_t unknown_var_2000;
-uint8_t unknown_var_2160;
-uint8_t unknown_var_2208;
-uint8_t unknown_var_4704;
-uint8_t unknown_var_4864;
-uint8_t unknown_var_5872;
-uint8_t unknown_var_5888;
-uint8_t unknown_var_5904;
-uint8_t unknown_var_5920;
-uint8_t unknown_var_5936;
-uint8_t unknown_var_6080;
-uint8_t unknown_var_6096;
-uint8_t unknown_var_6560;
-uint8_t unknown_var_7232;
-uint8_t unknown_var_1104;
-uint8_t unknown_var_2256;
-uint8_t unknown_var_4320;
-uint8_t unknown_var_5088;
-uint8_t unknown_var_5104;
-uint8_t unknown_var_5120;
-uint8_t unknown_var_5136;
-uint8_t unknown_var_5152;
-uint8_t unknown_var_5168;
-uint8_t unknown_var_5248;
-uint8_t unknown_var_5264;
-uint8_t unknown_var_5296;
-uint8_t unknown_var_5792;
-uint8_t unknown_var_5808;
-uint8_t unknown_var_5840;
-uint8_t unknown_var_5872;
-uint8_t unknown_var_3168;
-uint8_t unknown_var_3184;
-uint8_t unknown_var_3440;
-uint8_t unknown_var_3456;
-uint8_t unknown_var_3632;
-uint8_t unknown_var_3680;
-uint8_t unknown_var_4384;
-uint8_t unknown_var_7712;
-uint8_t unknown_var_8816;
-uint8_t unknown_var_9376;
-uint8_t unknown_var_2080;
-uint8_t unknown_var_3456;
-uint8_t unknown_var_3472;
-uint8_t unknown_var_3488;
-uint8_t unknown_var_3520;
-uint8_t unknown_var_3536;
-uint8_t unknown_var_3968;
-uint8_t unknown_var_3984;
+uint8_t processed_var_7328;
+uint8_t processed_var_7360;
+uint8_t processed_var_640;
+uint8_t rendering_buffer_2960;
+uint8_t processed_var_48;
+uint8_t processed_var_4640;
+uint8_t processed_var_5664;
+uint8_t processed_var_5712;
+uint8_t processed_var_5728;
+uint8_t processed_var_7504;
+uint8_t processed_var_9200;
+uint8_t processed_var_9216;
+uint8_t processed_var_9232;
+uint8_t processed_var_9280;
+uint8_t ui_system_data_112;
+uint8_t ui_system_data_128;
+uint8_t rendering_buffer_224;
+uint8_t ui_system_data_1584;
+uint8_t ui_system_data_1632;
+uint8_t ui_system_data_1792;
+uint8_t ui_system_data_1808;
+uint8_t rendering_buffer_2000;
+uint8_t rendering_buffer_2160;
+uint8_t rendering_buffer_2208;
+uint8_t processed_var_4704;
+uint8_t processed_var_4864;
+uint8_t processed_var_5872;
+uint8_t processed_var_5888;
+uint8_t processed_var_5904;
+uint8_t processed_var_5920;
+uint8_t processed_var_5936;
+uint8_t processed_var_6080;
+uint8_t processed_var_6096;
+uint8_t processed_var_6560;
+uint8_t processed_var_7232;
+uint8_t ui_system_data_1104;
+uint8_t rendering_buffer_2256;
+uint8_t processed_var_4320;
+uint8_t processed_var_5088;
+uint8_t processed_var_5104;
+uint8_t processed_var_5120;
+uint8_t processed_var_5136;
+uint8_t processed_var_5152;
+uint8_t processed_var_5168;
+uint8_t processed_var_5248;
+uint8_t processed_var_5264;
+uint8_t processed_var_5296;
+uint8_t processed_var_5792;
+uint8_t processed_var_5808;
+uint8_t processed_var_5840;
+uint8_t processed_var_5872;
+uint8_t memory_allocator_3168;
+uint8_t memory_allocator_3184;
+uint8_t memory_allocator_3440;
+uint8_t memory_allocator_3456;
+uint8_t memory_allocator_3632;
+uint8_t memory_allocator_3680;
+uint8_t processed_var_4384;
+uint8_t processed_var_7712;
+uint8_t processed_var_8816;
+uint8_t processed_var_9376;
+uint8_t rendering_buffer_2080;
+uint8_t memory_allocator_3456;
+uint8_t memory_allocator_3472;
+uint8_t memory_allocator_3488;
+uint8_t memory_allocator_3520;
+uint8_t memory_allocator_3536;
+uint8_t memory_allocator_3968;
+uint8_t memory_allocator_3984;
 
 
 

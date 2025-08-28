@@ -642,7 +642,7 @@ LAB_1803763e0:
                                         fVar42 = 0.0;
                                       }
                                       else if (*(code **)(*plVar18 + 0x198) ==
-                                               (code *)&unknown_var_2544_ptr) {
+                                               (code *)&rendering_buffer_2544_ptr) {
                                         fVar42 = *(float *)((int64_t)plVar18 + 0x244);
                                       }
                                       else {

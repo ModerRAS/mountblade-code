@@ -122,9 +122,9 @@ void FUN_1804940f4(uint64_t param_1,uint64_t param_2,int64_t param_3)
   unaff_RBP[-2] = fVar4 * unaff_RBP[-0xe];
   unaff_RBP[-1] = fStack000000000000003c;
   do {
-    uVar20 = (uint64_t)*(uint *)(&unknown_var_4400_ptr + lVar26);
-    uVar17 = (uint64_t)*(uint *)(&unknown_var_4336_ptr + lVar26);
-    uVar33 = (uint64_t)*(uint *)(&unknown_var_4368_ptr + lVar26);
+    uVar20 = (uint64_t)*(uint *)(&processed_var_4400_ptr + lVar26);
+    uVar17 = (uint64_t)*(uint *)(&processed_var_4336_ptr + lVar26);
+    uVar33 = (uint64_t)*(uint *)(&processed_var_4368_ptr + lVar26);
     fVar3 = (&stack0x00000060)[uVar20 * 4];
     fVar4 = *(float *)((int64_t)&stack0x00000064 + uVar20 * 0x10);
     fVar5 = unaff_RBP[uVar17 * 4 + -0x20];
@@ -141,9 +141,9 @@ void FUN_1804940f4(uint64_t param_1,uint64_t param_2,int64_t param_3)
     else {
       bVar9 = true;
     }
-    uVar20 = (uint64_t)*(uint *)(&unknown_var_4404_ptr + lVar26);
-    uVar17 = (uint64_t)*(uint *)(&unknown_var_4340_ptr + lVar26);
-    uVar33 = (uint64_t)*(uint *)(&unknown_var_4372_ptr + lVar26);
+    uVar20 = (uint64_t)*(uint *)(&processed_var_4404_ptr + lVar26);
+    uVar17 = (uint64_t)*(uint *)(&processed_var_4340_ptr + lVar26);
+    uVar33 = (uint64_t)*(uint *)(&processed_var_4372_ptr + lVar26);
     pfVar24[-2] = 1.0;
     pfVar24[-5] = (fVar40 + fVar3 + fVar5 + fVar7) / fVar35;
     pfVar24[-4] = (fVar41 + fVar4 + fVar6 + fVar8) / fVar35;
@@ -164,9 +164,9 @@ void FUN_1804940f4(uint64_t param_1,uint64_t param_2,int64_t param_3)
     else {
       bVar9 = true;
     }
-    uVar20 = (uint64_t)*(uint *)(&unknown_var_4408_ptr + lVar26);
-    uVar17 = (uint64_t)*(uint *)(&unknown_var_4344_ptr + lVar26);
-    uVar33 = (uint64_t)*(uint *)(&unknown_var_4376_ptr + lVar26);
+    uVar20 = (uint64_t)*(uint *)(&processed_var_4408_ptr + lVar26);
+    uVar17 = (uint64_t)*(uint *)(&processed_var_4344_ptr + lVar26);
+    uVar33 = (uint64_t)*(uint *)(&processed_var_4376_ptr + lVar26);
     pfVar24[2] = 1.0;
     pfVar24[-1] = (fVar40 + fVar3 + fVar5 + fVar7) / fVar35;
     *pfVar24 = (fVar41 + fVar4 + fVar6 + fVar8) / fVar35;
@@ -187,9 +187,9 @@ void FUN_1804940f4(uint64_t param_1,uint64_t param_2,int64_t param_3)
     else {
       bVar9 = true;
     }
-    uVar20 = (uint64_t)*(uint *)(&unknown_var_4412_ptr + lVar26);
-    uVar17 = (uint64_t)*(uint *)(&unknown_var_4348_ptr + lVar26);
-    uVar33 = (uint64_t)*(uint *)(&unknown_var_4380_ptr + lVar26);
+    uVar20 = (uint64_t)*(uint *)(&processed_var_4412_ptr + lVar26);
+    uVar17 = (uint64_t)*(uint *)(&processed_var_4348_ptr + lVar26);
+    uVar33 = (uint64_t)*(uint *)(&processed_var_4380_ptr + lVar26);
     pfVar24[6] = 1.0;
     pfVar24[3] = (fVar40 + fVar3 + fVar5 + fVar7) / fVar35;
     pfVar24[4] = (fVar41 + fVar4 + fVar6 + fVar8) / fVar35;

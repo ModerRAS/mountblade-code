@@ -159,7 +159,7 @@ void FUN_180567fd0(int64_t *param_1,uint64_t *param_2,uint64_t *param_3,uint64_t
   puVar14 = puStack_580;
   puStack_578 = puStack_580;
   pfStack_5d0 = (float *)lVar9;
-  puStack_4d8 = &unknown_var_3856_ptr;
+  puStack_4d8 = &memory_allocator_3856_ptr;
   uStack_4d0 = 1;
   puStack_5f8 = puStack_580;
   puStack_5f0 = puStack_528;
@@ -191,13 +191,13 @@ void FUN_180567fd0(int64_t *param_1,uint64_t *param_2,uint64_t *param_3,uint64_t
     if ((void *)param_2[1] != (void *)0x0) {
       puStack_5f0 = (void *)param_2[1];
     }
-    puStack_5f8 = &unknown_var_8632_ptr;
+    puStack_5f8 = &processed_var_8632_ptr;
     FUN_1800623b0(system_message_context,0,0x10000000000,8);
     puVar12 = &system_buffer_ptr;
     if ((void *)param_2[1] != (void *)0x0) {
       puVar12 = (void *)param_2[1];
     }
-    FUN_180627160(&unknown_var_8776_ptr,puVar12);
+    FUN_180627160(&processed_var_8776_ptr,puVar12);
   }
   else {
     uStack_538 = *(int32_t *)(puStack_518 + 2);
@@ -370,7 +370,7 @@ void FUN_180567fd0(int64_t *param_1,uint64_t *param_2,uint64_t *param_3,uint64_t
         iVar4 = FormatMessageA(0x1000,0,uVar3,0x400);
         if (iVar4 == 0) {
           uVar3 = GetLastError();
-          SystemDataInitializer(&unknown_var_3400_ptr,uVar3);
+          SystemDataInitializer(&memory_allocator_3400_ptr,uVar3);
         }
         puStack_5f0 = &system_buffer_ptr;
         if ((void *)puStack_560[1] != (void *)0x0) {
@@ -397,7 +397,7 @@ LAB_180568833:
       iVar4 = FormatMessageA(0x1000,0,uVar3,0x400);
       if (iVar4 == 0) {
         uVar3 = GetLastError();
-        SystemDataInitializer(&unknown_var_3400_ptr,uVar3);
+        SystemDataInitializer(&memory_allocator_3400_ptr,uVar3);
       }
       puStack_5f0 = &system_buffer_ptr;
       if ((void *)puStack_560[1] != (void *)0x0) {
@@ -406,7 +406,7 @@ LAB_180568833:
 LAB_1805688a3:
       param_2 = puStack_560;
       puStack_5e8 = auStack_468;
-      puStack_5f8 = &unknown_var_8672_ptr;
+      puStack_5f8 = &processed_var_8672_ptr;
       FUN_1800623b0(system_message_context,0,0x10000000000,3);
     }
     puStack_4f8 = &system_data_buffer_ptr;

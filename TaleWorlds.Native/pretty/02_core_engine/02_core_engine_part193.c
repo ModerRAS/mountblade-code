@@ -608,7 +608,7 @@ APPLY_QUALITY_SETTINGS:
 // - 函数FUN_1801760d0已转译为process_gpu_cache_creation：处理GPU缓存创建和管理
 // - 函数FUN_1801762b0已转译为process_tileset_creation：处理瓦片集创建和纹理管理  
 // - 函数FUN_1801769e0已转译为cleanup_engine_resources：清理引擎资源和管理内存
-// - 所有变量名已从DAT_、UNK_格式转译为语义化名称
+// - 所有变量名已从DAT_、SYSTEM_格式转译为语义化名称
 // - 添加了中文注释说明各函数的功能用途
 // - 代码格式已统一，符合C语言标准
 

@@ -8,7 +8,7 @@
 uint64_t core_system_data_pointer;  // 数据表指针
 uint64_t system_data_buffer_ptr;  // 默认对象模板
 uint64_t system_state_ptr;  // 基础对象模板
-uint64_t unknown_var_5392_ptr;  // 字符串处理模板
+uint64_t processed_var_5392_ptr;  // 字符串处理模板
 uint64_t system_buffer_ptr;  // 默认名称指针
 
 // 常量定义
@@ -69,7 +69,7 @@ void initialize_3d_object_transform(uint64_t *object_ptr, int64_t config_ptr)
             if (*(void **)(transform_data + 0x18) != (void *)0x0) {
                 name_ptr = *(void **)(transform_data + 0x18);
             }
-            register_bone_name(&unknown_var_5392_ptr, name_ptr);
+            register_bone_name(&processed_var_5392_ptr, name_ptr);
         }
         
         bone_index = bone_index + 1;
@@ -115,7 +115,7 @@ void initialize_3d_object_transform(uint64_t *object_ptr, int64_t config_ptr)
     set_bone_animation_data(object_ptr + 8, &local_var2, stack_var, local_var1, &stack_var[0]);
     
     // 处理特殊矩阵运算
-    if ((void *)*object_ptr == &unknown_var_7192_ptr) {
+    if ((void *)*object_ptr == &processed_var_7192_ptr) {
         // 执行4x4矩阵运算（简化实现）
         process_4x4_matrix_operations(object_ptr);
         return;

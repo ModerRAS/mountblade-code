@@ -199,14 +199,14 @@ typedef struct {
 #define SystemStringFormatter FUN_1800ba3b0                          // 系统字符串格式化器
 
 // 全局变量指针别名
-#define SystemResourceCallbackA unknown_var_7024_ptr                 // 系统资源回调A
-#define SystemResourceCallbackB unknown_var_7008_ptr                 // 系统资源回调B
+#define SystemResourceCallbackA processed_var_7024_ptr                 // 系统资源回调A
+#define SystemResourceCallbackB processed_var_7008_ptr                 // 系统资源回调B
 #define SystemBufferPointer system_buffer_ptr                         // 系统缓冲区指针
-#define SystemErrorHandlerA unknown_var_9624_ptr                     // 系统错误处理器A
+#define SystemErrorHandlerA processed_var_9624_ptr                     // 系统错误处理器A
 #define SystemMemoryPoolA system_data_buffer_ptr                       // 系统内存池A
 #define SystemCleanupHandlerA system_state_ptr                   // 系统清理处理器A
-#define SystemStringConstantA unknown_var_336_ptr                   // 系统字符串常量A
-#define SystemStringConstantB unknown_var_400_ptr                   // 系统字符串常量B
+#define SystemStringConstantA memory_allocator_336_ptr                   // 系统字符串常量A
+#define SystemStringConstantB processed_var_400_ptr                   // 系统字符串常量B
 
 // 函数声明
 SystemInt32 SystemCoreFunctionInitializer(SystemHandle context);
@@ -465,7 +465,7 @@ SystemUInt8 SystemStringFormatter(SystemHandle string_handle, SystemHandle* form
  * 
  * 主要功能：
  * - 初始化系统函数指针表（FUN_1802436f0）
- * - 设置默认资源处理回调（unknown_var_7024_ptr, unknown_var_7008_ptr）
+ * - 设置默认资源处理回调（processed_var_7024_ptr, processed_var_7008_ptr）
  * - 配置系统状态监控和清理机制
  * - 建立资源分配和释放的管理策略
  * 
@@ -519,10 +519,10 @@ SystemInt32 SystemResourceManager_Initialize(SystemHandle context)
     
     // 设置资源处理回调函数表
     resource_callback_ptr = (SystemHandle*)(*(SystemUInt64*)context + 0x9620);
-    *resource_callback_ptr = &unknown_var_7024_ptr;
+    *resource_callback_ptr = &processed_var_7024_ptr;
     
     resource_callback_ptr = (SystemHandle*)(*(SystemUInt64*)context + 0x9628);
-    *resource_callback_ptr = &unknown_var_7008_ptr;
+    *resource_callback_ptr = &processed_var_7008_ptr;
     
     // 设置系统核心函数指针
     system_table_ptr = (SystemHandle*)(*(SystemUInt64*)context + 0x9610);
@@ -646,7 +646,7 @@ SystemHandle SystemResourceAllocator_Allocate(SystemUInt32 size, SystemUInt32 al
     SystemHandle allocated_resource;
     
     // 设置默认资源类型
-    *resource_allocator = &unknown_var_9624_ptr;
+    *resource_allocator = &processed_var_9624_ptr;
     
     // 获取内存池指针
     memory_pool_ptr = (SystemHandle*)resource_allocator[0x1c];
@@ -769,13 +769,13 @@ SystemInt32 SystemResourceMonitor_Monitor(SystemHandle context)
         resource_counter2 = *(SystemInt32*)(context + 0x3594);
         
         // 配置监控参数
-        config_pointer = &unknown_var_3432_ptr;
+        config_pointer = &memory_allocator_3432_ptr;
         string_buffer = monitor_config;
         string_buffer[0] = 0;
         buffer_size = 10;
         
         // 设置监控字符串
-        strcpy_s(string_buffer, 0x80, &unknown_var_336_ptr);
+        strcpy_s(string_buffer, 0x80, &memory_allocator_336_ptr);
         
         // 获取资源名称
         resource_pointer = &system_buffer_ptr;
@@ -947,14 +947,14 @@ void SystemResourceManager_ReleaseAll(SystemHandle context)
         *(SystemUInt32*)(stack_guard + 3) = *(SystemUInt32*)(context + 0x1bd4);
         
         // 配置清理处理器
-        resource_allocator = &unknown_var_3432_ptr;
+        resource_allocator = &memory_allocator_3432_ptr;
         string_buffer = stack_guard + 4;
         string_buffer[0] = 0;
         buffer_size = 7;
         resource_sizes = allocation_size;
         
         // 执行字符串复制操作
-        allocation_size = strcpy_s(string_buffer, 0x80, &unknown_var_400_ptr);
+        allocation_size = strcpy_s(string_buffer, 0x80, &processed_var_400_ptr);
         
         // 调用资源分配器进行清理
         resource_allocator = (SystemHandle*)SystemResourceCleanupHandler(allocation_size, &cleanup_handlers[1], &resource_allocator, memory_stats);

@@ -319,7 +319,7 @@ LAB_18042e54d:
             uVar24 = uVar24 + 1;
             uVar14 = (int)uVar11 + 1;
             uVar11 = (uint64_t)uVar14;
-          } while ((int)(*(ushort *)(&unknown_var_5140_ptr + lVar10) - 1) < (int)uStack_78);
+          } while ((int)(*(ushort *)(&processed_var_5140_ptr + lVar10) - 1) < (int)uStack_78);
         }
         iVar16 = uVar14 + 0x101;
         if (iVar16 < 0x90) {
@@ -502,10 +502,10 @@ LAB_18042e17e:
             } while (uVar11 != 0);
           }
         }
-        if ((&unknown_var_5104_ptr)[uVar24] != 0) {
+        if ((&processed_var_5104_ptr)[uVar24] != 0) {
           bVar7 = (byte)uVar14;
-          uVar14 = uVar14 + (byte)(&unknown_var_5104_ptr)[uVar24];
-          uVar18 = uVar18 | uStack_78 - *(ushort *)(&unknown_var_5136_ptr + uVar24 * 2) << (bVar7 & 0x1f);
+          uVar14 = uVar14 + (byte)(&processed_var_5104_ptr)[uVar24];
+          uVar18 = uVar18 | uStack_78 - *(ushort *)(&processed_var_5136_ptr + uVar24 * 2) << (bVar7 & 0x1f);
           if (7 < (int)uVar14) {
             uVar11 = (uint64_t)(uVar14 >> 3);
             uVar14 = uVar14 + (uVar14 >> 3) * -8;
@@ -545,7 +545,7 @@ LAB_18042e23e:
             lVar21 = lVar10 * 2;
             lVar10 = lVar10 + 1;
             uVar9 = uVar9 + 1;
-          } while ((int)(*(ushort *)(&unknown_var_5044_ptr + lVar21) - 1) < iVar15);
+          } while ((int)(*(ushort *)(&processed_var_5044_ptr + lVar21) - 1) < iVar15);
         }
         iVar16 = 5;
         do {
@@ -586,10 +586,10 @@ LAB_18042e311:
             uVar11 = uVar11 - 1;
           } while (uVar11 != 0);
         }
-        if ((&unknown_var_6224_ptr)[lVar10] != 0) {
-          uVar18 = uVar18 | iVar15 - (uint)*(ushort *)(&unknown_var_5040_ptr + lVar10 * 2) <<
+        if ((&processed_var_6224_ptr)[lVar10] != 0) {
+          uVar18 = uVar18 | iVar15 - (uint)*(ushort *)(&processed_var_5040_ptr + lVar10 * 2) <<
                             ((byte)uVar9 & 0x1f);
-          uVar9 = uVar9 + (byte)(&unknown_var_6224_ptr)[lVar10];
+          uVar9 = uVar9 + (byte)(&processed_var_6224_ptr)[lVar10];
           if (7 < (int)uVar9) {
             uVar11 = (uint64_t)(uVar9 >> 3);
             uVar9 = uVar9 + (uVar9 >> 3) * -8;

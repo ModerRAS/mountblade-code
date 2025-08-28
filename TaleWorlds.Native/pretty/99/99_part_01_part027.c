@@ -1226,7 +1226,7 @@ void FUN_1800ba6f0(uint64_t module_param)
     buffer_value10 = module_param;
     path_length = GetModuleFileNameW(0, module_name, PATH_MAX_LENGTH);
     if (path_length == 0) {
-        FUN_180627160(&unknown_var_8696_ptr);
+        FUN_180627160(&processed_var_8696_ptr);
         debug_value = FUN_180628ca0();
         SystemCore_NetworkHandler0(module_param, debug_value);
         buffer_value8 = 1;
@@ -1288,7 +1288,7 @@ LAB_1800ba7cd:
  */
 uint64_t FUN_1800ba940(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-    FUN_1800ba4b0(param1, &unknown_var_8752_ptr, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
+    FUN_1800ba4b0(param1, &processed_var_8752_ptr, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
     return param1;
 }
 
@@ -1305,7 +1305,7 @@ uint64_t FUN_1800ba940(uint64_t param1, uint64_t param2, uint64_t param3, uint64
  */
 uint64_t FUN_1800ba980(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-    FUN_1800ba4b0(param1, &unknown_var_8824_ptr, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
+    FUN_1800ba4b0(param1, &processed_var_8824_ptr, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
     return param1;
 }
 
@@ -1322,7 +1322,7 @@ uint64_t FUN_1800ba980(uint64_t param1, uint64_t param2, uint64_t param3, uint64
  */
 uint64_t FUN_1800ba9c0(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-    FUN_1800ba4b0(param1, &unknown_var_8792_ptr, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
+    FUN_1800ba4b0(param1, &processed_var_8792_ptr, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
     return param1;
 }
 
@@ -1339,7 +1339,7 @@ uint64_t FUN_1800ba9c0(uint64_t param1, uint64_t param2, uint64_t param3, uint64
  */
 uint64_t FUN_1800baa00(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-    FUN_1800ba4b0(param1, &unknown_var_8872_ptr, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
+    FUN_1800ba4b0(param1, &processed_var_8872_ptr, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
     return param1;
 }
 
@@ -1356,7 +1356,7 @@ uint64_t FUN_1800baa00(uint64_t param1, uint64_t param2, uint64_t param3, uint64
  */
 uint64_t FUN_1800baa40(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-    FUN_1800ba4b0(param1, &unknown_var_8848_ptr, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
+    FUN_1800ba4b0(param1, &processed_var_8848_ptr, param3, param4, 0, SYSTEM_STACK_ALIGNMENT);
     return param1;
 }
 

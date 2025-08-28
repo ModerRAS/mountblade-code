@@ -429,7 +429,7 @@ void FUN_180272b60(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t pa
     lVar3 = lVar3 + 0x58;
     lVar11 = lVar11 + -1;
   } while (lVar11 != 0);
-  FUN_18025a940(&unknown_var_9712_ptr,*(int32_t *)(param_1 + 2000),param_2);
+  FUN_18025a940(&processed_var_9712_ptr,*(int32_t *)(param_1 + 2000),param_2);
   puVar4 = (int8_t *)param_2[1];
   uVar1 = *(int8_t *)(param_1 + 0x7d4);
   if ((uint64_t)((*param_2 - (int64_t)puVar4) + param_2[2]) < 2) {
@@ -806,7 +806,7 @@ void FUN_180272e40(int64_t *param_1,uint64_t param_2)
         *puVar6 = &system_state_ptr;
         puVar6[1] = 0;
         *(int32_t *)(puVar6 + 2) = 0;
-        *puVar6 = &unknown_var_3432_ptr;
+        *puVar6 = &memory_allocator_3432_ptr;
         puVar6[1] = puVar6 + 3;
         *(int32_t *)(puVar6 + 2) = 0;
         *(int8_t *)(puVar6 + 3) = 0;
@@ -827,7 +827,7 @@ void FUN_180272e40(int64_t *param_1,uint64_t param_2)
         puVar4[-1] = &system_state_ptr;
         *puVar4 = 0;
         *(int32_t *)(puVar4 + 1) = 0;
-        puVar4[-1] = &unknown_var_3432_ptr;
+        puVar4[-1] = &memory_allocator_3432_ptr;
         *puVar4 = puVar4 + 2;
         *(int32_t *)(puVar4 + 1) = 0;
         *(int8_t *)(puVar4 + 2) = 0;
@@ -859,7 +859,7 @@ void FUN_180272e40(int64_t *param_1,uint64_t param_2)
         *puVar4 = &system_state_ptr;
         puVar4[1] = 0;
         *(int32_t *)(puVar4 + 2) = 0;
-        *puVar4 = &unknown_var_3432_ptr;
+        *puVar4 = &memory_allocator_3432_ptr;
         puVar4[1] = puVar4 + 3;
         *(int32_t *)(puVar4 + 2) = 0;
         *(int8_t *)(puVar4 + 3) = 0;

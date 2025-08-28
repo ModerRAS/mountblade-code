@@ -40,7 +40,7 @@ extern void FUN_180058370(uint64_t *param_1, uint64_t param_2);
 extern void SystemDataValidator(uint64_t *param_1, int param_2, int param_3, code *param_4);
 extern void FUN_180152b00(int64_t *param_1);
 extern void CoreEngine_MemoryPoolManager(uint64_t *param_1);
-extern uint64_t FUN_18062b1e0(uint64_t *param_1, int param_2, int param_3, int param_4);
+extern uint64_t CoreSystem_LoggingManager0(uint64_t *param_1, int param_2, int param_3, int param_4);
 extern uint64_t *FUN_18005ce30(uint64_t *param_1, uint64_t **param_2);
 extern void FUN_18005e370(uint64_t *param_1, uint64_t **param_2);
 extern void CoreSystemConfigManager(uint64_t *param_1);
@@ -1025,7 +1025,7 @@ void render_thread_safe_operation(int64_t *render_context,uint64_t operation_par
     }
     
     // 创建任务
-    task_handle = FUN_18062b1e0(system_memory_pool_ptr,0x100,8,3);
+    task_handle = CoreSystem_LoggingManager0(system_memory_pool_ptr,0x100,8,3);
     task_ptr = (void **)FUN_18005ce30(task_handle,&puStack_128);
     ppuStack_130 = task_ptr;
     if (task_ptr != (void **)0x0) {
@@ -1126,7 +1126,7 @@ void render_thread_operation_alt(int64_t *render_context,uint64_t operation_para
     }
     
     // 创建任务
-    task_handle = FUN_18062b1e0(system_memory_pool_ptr,0x100,8,3);
+    task_handle = CoreSystem_LoggingManager0(system_memory_pool_ptr,0x100,8,3);
     task_ptr = (void **)FUN_18005ce30(task_handle,&puStack_108);
     ppuStack_110 = task_ptr;
     if (task_ptr != (void **)0x0) {

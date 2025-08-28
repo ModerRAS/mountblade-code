@@ -125,7 +125,7 @@ void FUN_180288f30(int64_t param_1,uint64_t param_2)
     do {
       puVar22 = (uint64_t *)0x0;
       lVar12 = *(int64_t *)(lStack_120 + uVar29 * 8);
-      puStack_e8 = &unknown_var_3432_ptr;
+      puStack_e8 = &memory_allocator_3432_ptr;
       pcStack_e0 = acStack_d0;
       acStack_d0[0] = '\0';
       uStack_d8 = *(uint *)(lVar12 + 0x20);

@@ -134,7 +134,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
     operation_result = *(int *)(data_params + 0x220);
     if (operation_result == 0) {
       // 初始化基础数据处理器
-      resource_handler = &unknown_var_1896_ptr;
+      resource_handler = &ui_system_data_1896_ptr;
       context_data = 0;
       config_context = 0;
       timeout_value = config_data;
@@ -147,7 +147,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
       // 处理复杂数据结构
       resource_count = 0;
       if (1 < operation_result - 1U) {
-        resource_handler = &unknown_var_2152_ptr;
+        resource_handler = &rendering_buffer_2152_ptr;
         handler_ptr = &resource_handler;
         process_flags = 0;
         context_data = 0;
@@ -161,7 +161,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
       }
       else {
         // 设置数据处理器参数
-        resource_handler = &unknown_var_2024_ptr;
+        resource_handler = &rendering_buffer_2024_ptr;
         resource_manager = (uint64_t)config_data << 0x20;
         context_data = *(uint64_t *)(data_params + 0x228);
         state_context = (uint64_t)CONCAT14(operation_result != 1,*(int32_t *)(data_params + 0x230));
@@ -177,7 +177,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
     status_flag = *(int32_t *)(data_params + 0x14);
     resource_count = *(int *)(data_params + 0x18);
     process_flags = *(int32_t *)(data_params + 0x1c);
-    data_processor = &unknown_var_5584_ptr;
+    data_processor = &processed_var_5584_ptr;
     config_context = 0;
     timeout_value = config_data;
     
@@ -191,7 +191,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
     if (0 < operation_result) {
       do {
         resource_count = 0;
-        resource_handler = &unknown_var_3872_ptr;
+        resource_handler = &memory_allocator_3872_ptr;
         context_data = CONCAT44(context_data._4_4_,config_data);
         validation_result = SystemNetworkProcessor(system_context,&resource_handler);
         if (validation_result != 0) goto PROCESS_ERROR;
@@ -218,7 +218,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         timeout_value = *(uint *)(temp_context_1 + 0x14);
         config_context = *(int32_t *)(temp_context_1 + 0x18);
         context_data = *(int32_t *)(temp_context_1 + 0x1c);
-        data_processor = &unknown_var_4888_ptr;
+        data_processor = &processed_var_4888_ptr;
         validation_result = process_result + 1;
         event_context = status_flag;
         resource_count = cleanup_result;
@@ -232,7 +232,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         // 处理变换数据
         if (transform_data[0] != 1.0) {
           state_context = CONCAT44(state_context._4_4_,transform_data[0]);
-          resource_handler = &unknown_var_9536_ptr;
+          resource_handler = &processed_var_9536_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           resource_count = process_result;
           process_result = SystemNetworkProcessor(system_context,&resource_handler);
@@ -242,7 +242,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         // 处理特殊标志
         if (*(char *)(temp_context_2 + 0x28) != '\0') {
           resource_count = 0;
-          resource_handler = &unknown_var_9656_ptr;
+          resource_handler = &processed_var_9656_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           state_context = CONCAT71(state_context._1_7_,1);
           process_result = SystemNetworkProcessor(system_context,&resource_handler);
@@ -275,7 +275,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         timeout_value = *(uint *)(temp_context_1 + 0x14);
         config_context = *(int32_t *)(temp_context_1 + 0x18);
         context_data = *(int32_t *)(temp_context_1 + 0x1c);
-        data_processor = &unknown_var_4888_ptr;
+        data_processor = &processed_var_4888_ptr;
         validation_result = process_result + 1;
         event_context = status_flag;
         resource_count = cleanup_result;
@@ -289,7 +289,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         // 处理变换数据
         if (transform_data[0] != 1.0) {
           state_context = CONCAT44(state_context._4_4_,transform_data[0]);
-          resource_handler = &unknown_var_9536_ptr;
+          resource_handler = &processed_var_9536_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           resource_count = process_result;
           process_result = SystemNetworkProcessor(system_context,&resource_handler);
@@ -299,7 +299,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         // 处理特殊标志
         if (*(char *)(temp_context_2 + 0x28) != '\0') {
           resource_count = 0;
-          resource_handler = &unknown_var_9656_ptr;
+          resource_handler = &processed_var_9656_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           state_context = CONCAT71(state_context._1_7_,1);
           process_result = SystemNetworkProcessor(system_context,&resource_handler);
@@ -332,7 +332,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         timeout_value = *(uint *)(temp_context_1 + 0x14);
         config_context = *(int32_t *)(temp_context_1 + 0x18);
         context_data = *(int32_t *)(temp_context_1 + 0x1c);
-        data_processor = &unknown_var_4888_ptr;
+        data_processor = &processed_var_4888_ptr;
         validation_result = process_result + 1;
         event_context = status_flag;
         resource_count = cleanup_result;
@@ -346,7 +346,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         // 处理变换数据
         if (transform_data[0] != 1.0) {
           state_context = CONCAT44(state_context._4_4_,transform_data[0]);
-          resource_handler = &unknown_var_9536_ptr;
+          resource_handler = &processed_var_9536_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           resource_count = process_result;
           process_result = SystemNetworkProcessor(system_context,&resource_handler);
@@ -356,7 +356,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         // 处理特殊标志
         if (*(char *)(temp_context_2 + 0x28) != '\0') {
           resource_count = 0;
-          resource_handler = &unknown_var_9656_ptr;
+          resource_handler = &processed_var_9656_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           state_context = CONCAT71(state_context._1_7_,1);
           process_result = SystemNetworkProcessor(system_context,&resource_handler);
@@ -389,7 +389,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         timeout_value = *(uint *)(temp_context_1 + 0x14);
         config_context = *(int32_t *)(temp_context_1 + 0x18);
         context_data = *(int32_t *)(temp_context_1 + 0x1c);
-        data_processor = &unknown_var_4888_ptr;
+        data_processor = &processed_var_4888_ptr;
         validation_result = process_result + 1;
         event_context = status_flag;
         resource_count = cleanup_result;
@@ -403,7 +403,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         // 处理变换数据
         if (transform_data[0] != 1.0) {
           state_context = CONCAT44(state_context._4_4_,transform_data[0]);
-          resource_handler = &unknown_var_9536_ptr;
+          resource_handler = &processed_var_9536_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           resource_count = process_result;
           process_result = SystemNetworkProcessor(system_context,&resource_handler);
@@ -413,7 +413,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         // 处理特殊标志
         if (*(char *)(temp_context_2 + 0x28) != '\0') {
           resource_count = 0;
-          resource_handler = &unknown_var_9656_ptr;
+          resource_handler = &processed_var_9656_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           state_context = CONCAT71(state_context._1_7_,1);
           process_result = SystemNetworkProcessor(system_context,&resource_handler);
@@ -449,7 +449,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         timeout_value = *(uint *)(temp_context_1 + 0x14);
         config_context = *(int32_t *)(temp_context_1 + 0x18);
         context_data = *(int32_t *)(temp_context_1 + 0x1c);
-        data_processor = &unknown_var_5272_ptr;
+        data_processor = &processed_var_5272_ptr;
         validation_result = process_result + 1;
         event_context = status_flag;
         resource_count = cleanup_result;
@@ -462,7 +462,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         
         if (transform_data[0] != 1.0) {
           state_context = CONCAT44(state_context._4_4_,transform_data[0]);
-          resource_handler = &unknown_var_24_ptr;
+          resource_handler = &rendering_buffer_24_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           resource_count = cleanup_result;
           cleanup_result = SystemNetworkProcessor(system_context,&resource_handler);
@@ -539,7 +539,7 @@ void UtilitiesSystem_StateManager(void)
         // 配置状态管理器
         *(int32_t *)(unaff_context + -0x78) = 0;
         *(int *)(unaff_context + -0x68) = unaff_value;
-        *(void **)(unaff_context + -0x80) = &unknown_var_4888_ptr;
+        *(void **)(unaff_context + -0x80) = &processed_var_4888_ptr;
         unaff_value = unaff_value + 1;
         *(int32_t *)(unaff_context + -0x54) = stack_param;
         *(int32_t *)(unaff_context + -0x70) = unaff_param;
@@ -555,7 +555,7 @@ void UtilitiesSystem_StateManager(void)
         transform_result = stack_data;
         if (stack_data != 1.0) {
           stack_transform = stack_data;
-          stack_handler = &unknown_var_9536_ptr;
+          stack_handler = &processed_var_9536_ptr;
           stack_config = stack_param;
           stack_value = validation_result;
           validation_result = SystemNetworkProcessor(stack_data,&stack_handler);
@@ -565,7 +565,7 @@ void UtilitiesSystem_StateManager(void)
         
         if (*(char *)(context_2 + 0x28) != '\0') {
           stack_value = 0;
-          stack_handler = &unknown_var_9656_ptr;
+          stack_handler = &processed_var_9656_ptr;
           stack_config = stack_param;
           stack_transform = (float)CONCAT31(stack_transform._1_3_,1);
           validation_result = SystemNetworkProcessor(transform_result,&stack_handler);
@@ -602,7 +602,7 @@ void UtilitiesSystem_StateManager(void)
         // 配置状态管理器
         *(int32_t *)(unaff_context + -0x78) = 0;
         *(int *)(unaff_context + -0x68) = unaff_value;
-        *(void **)(unaff_context + -0x80) = &unknown_var_4888_ptr;
+        *(void **)(unaff_context + -0x80) = &processed_var_4888_ptr;
         unaff_value = unaff_value + 1;
         *(int32_t *)(unaff_context + -0x54) = stack_param;
         *(int32_t *)(unaff_context + -0x70) = unaff_param;
@@ -618,7 +618,7 @@ void UtilitiesSystem_StateManager(void)
         transform_result = stack_data;
         if (stack_data != 1.0) {
           stack_transform = stack_data;
-          stack_handler = &unknown_var_9536_ptr;
+          stack_handler = &processed_var_9536_ptr;
           stack_config = stack_param;
           stack_value = validation_result;
           validation_result = SystemNetworkProcessor(stack_data,&stack_handler);
@@ -628,7 +628,7 @@ void UtilitiesSystem_StateManager(void)
         
         if (*(char *)(context_2 + 0x28) != '\0') {
           stack_value = 0;
-          stack_handler = &unknown_var_9656_ptr;
+          stack_handler = &processed_var_9656_ptr;
           stack_config = stack_param;
           stack_transform = (float)CONCAT31(stack_transform._1_3_,1);
           validation_result = SystemNetworkProcessor(transform_result,&stack_handler);
@@ -684,7 +684,7 @@ void UtilitiesSystem_StateManager(void)
         
         *(int32_t *)(unaff_context + -0x78) = 0;
         *(int *)(unaff_context + -0x68) = validation_result;
-        *(void **)(unaff_context + -0x80) = &unknown_var_5272_ptr;
+        *(void **)(unaff_context + -0x80) = &processed_var_5272_ptr;
         validation_result = validation_result + 1;
         *(int32_t *)(unaff_context + -0x54) = stack_param;
         *(int32_t *)(unaff_context + -0x70) = unaff_param;
@@ -698,7 +698,7 @@ void UtilitiesSystem_StateManager(void)
         
         if (stack_data != 1.0) {
           stack_transform = stack_data;
-          stack_handler = &unknown_var_24_ptr;
+          stack_handler = &rendering_buffer_24_ptr;
           stack_config = stack_param;
           stack_value = process_result;
           process_result = SystemNetworkProcessor(stack_data,&stack_handler);

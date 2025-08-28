@@ -17,7 +17,7 @@
 #define RENDERING_STACK_ALIGNMENT 8
 #define RENDERING_MAX_ITERATIONS 0x40
 #define RENDERING_MEMORY_BLOCK_SIZE 0x10
-#define RENDERING_FILE_CHUNK_SIZE 4
+#define RENDERING_FILE_CHSYSTEM_SIZE 4
 #define RENDERING_HASH_TABLE_SIZE 8
 #define RENDERING_MUTEX_TIMEOUT 0x30000
 #define RENDERING_THREAD_SAFE 3
@@ -783,7 +783,7 @@ void RenderingSystem_ExecuteBatchOperations(uint64_t *param_1, int param_2, int 
             resource_data = callback_stack[0];
             
             // 执行数据压缩处理
-            error_handler = &unknown_var_3856_ptr;
+            error_handler = &memory_allocator_3856_ptr;
             callback_status = 0;
             thread_counter = resource_id_2;
             processed_count = resource_id_2;

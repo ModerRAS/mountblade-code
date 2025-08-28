@@ -135,7 +135,7 @@ void FUN_180352bf0(uint64_t *param_1)
     FUN_1803456e0();
     
     // 设置渲染对象的基本配置
-    *puVar4 = &unknown_var_2008_ptr;   // 设置渲染对象类型
+    *puVar4 = &rendering_buffer_2008_ptr;   // 设置渲染对象类型
     
     // 配置渲染对象的虚函数表
     plVar1 = puVar4 + 0xf;       // 虚函数表指针位置
@@ -363,13 +363,13 @@ uint64_t * FUN_180352ff0(uint64_t param_1, uint64_t *param_2, uint64_t param_3, 
     *(int32_t *)(param_2 + 2) = 0;  // 清空数据长度
     
     // 设置数据对象的类型和配置
-    *param_2 = &unknown_var_3432_ptr;  // 设置数据对象类型
+    *param_2 = &memory_allocator_3432_ptr;  // 设置数据对象类型
     param_2[1] = param_2 + 3;   // 设置数据缓冲区指针
     *(int8_t *)(param_2 + 3) = 0;  // 初始化缓冲区
     *(int32_t *)(param_2 + 2) = 0x13;  // 设置缓冲区大小
     
     // 复制配置数据到缓冲区
-    strcpy_s(param_2[1], 0x80, &unknown_var_2448_ptr, param_4, 0, 0xfffffffffffffffe);
+    strcpy_s(param_2[1], 0x80, &rendering_buffer_2448_ptr, param_4, 0, 0xfffffffffffffffe);
     
     // 返回创建的数据对象指针
     return param_2;
@@ -391,7 +391,7 @@ uint64_t * FUN_180352ff0(uint64_t param_1, uint64_t *param_2, uint64_t param_3, 
 void FUN_180353070(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 设置渲染对象的属性类型
-    *param_1 = &unknown_var_4912_ptr;  // 属性类型标识
+    *param_1 = &processed_var_4912_ptr;  // 属性类型标识
     
     // 调用属性设置处理函数
     FUN_1802f5b10(param_1 + 4, param_1[6], param_3, param_4, 0xfffffffffffffffe);
@@ -528,7 +528,7 @@ void FUN_1803530c0(int64_t *param_1, int64_t param_2, uint64_t param_3)
         } while (*pcVar3 != '\0');
         
         // 设置变量属性
-        *puVar2 = &unknown_var_384_ptr;        // 变量类型
+        *puVar2 = &memory_allocator_384_ptr;        // 变量类型
         puVar2[2] = pcVar4 + -0x180a194ff;  // 变量名称偏移
         puVar5 = &system_buffer_ptr;        // 默认值
         if (puStack_7b0 != (int8_t *)0x0) {
@@ -826,7 +826,7 @@ void FUN_180354170(int64_t *param_1)
     
     // 检查渲染对象状态
     if (plVar2 != param_1 + 4) {
-    puStack_108 = &unknown_var_3432_ptr;
+    puStack_108 = &memory_allocator_3432_ptr;
     puStack_100 = auStack_f0;
     auStack_f0[0] = 0;
     uStack_f8 = (int32_t)plVar2[10];
@@ -907,7 +907,7 @@ int64_t * FUN_1803543b0(int64_t param_1,uint64_t *param_2,char param_3,char para
       }
     }
     else {
-      uVar5 = FUN_18062b1e0(system_memory_pool_ptr,0x58,8,0xd);
+      uVar5 = CoreSystem_LoggingManager0(system_memory_pool_ptr,0x58,8,0xd);
       plVar6 = (int64_t *)FUN_180469f40(uVar5,param_1,pcVar3);
       if (plVar6 != (int64_t *)0x0) {
         aplStack_a0[0] = plVar6;
@@ -927,7 +927,7 @@ int64_t * FUN_1803543b0(int64_t param_1,uint64_t *param_2,char param_3,char para
     }
     if (((param_3 != '\0') && (plVar6 != (int64_t *)0x0)) && (lVar2 != 0)) {
       (**(code **)(*plVar6 + 0x68))(plVar6);
-      if ((void *)*plVar6 == &unknown_var_1864_ptr) {
+      if ((void *)*plVar6 == &ui_system_data_1864_ptr) {
         (**(code **)(render_system_data_memory + 0x1e0))((int)plVar6[10]);
       }
       else {
@@ -973,7 +973,7 @@ void FUN_1803549f0(void)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x80,8,3,0xfffffffffffffffe);
+  uVar1 = CoreSystem_LoggingManager0(system_memory_pool_ptr,0x80,8,3,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
   memset(uVar1,0,0x80);
 }
@@ -990,7 +990,7 @@ void FUN_180354b70(void)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x80,8,3,0,0xfffffffffffffffe);
+  uVar1 = CoreSystem_LoggingManager0(system_memory_pool_ptr,0x80,8,3,0,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
   memset(uVar1,0,0x80);
 }
@@ -1367,7 +1367,7 @@ FUN_180355340(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4
                 *(int32_t *)(param_1 + 0x18),1);
   if ((char)auStackX_18[0] != '\0') {
     lVar1 = (auStackX_18[0] >> 0x20) * 8;
-    uVar2 = FUN_18062b1e0(system_memory_pool_ptr,lVar1 + 8,8,*(int8_t *)(param_1 + 0x2c));
+    uVar2 = CoreSystem_LoggingManager0(system_memory_pool_ptr,lVar1 + 8,8,*(int8_t *)(param_1 + 0x2c));
                     // WARNING: Subroutine does not return
     memset(uVar2,0,lVar1);
   }
@@ -1394,7 +1394,7 @@ void FUN_180355393(uint64_t param_1)
   uint64_t in_stack_00000070;
   
   lVar1 = (in_stack_00000070 >> 0x20) * 8;
-  uVar2 = FUN_18062b1e0(param_1,lVar1 + 8,8);
+  uVar2 = CoreSystem_LoggingManager0(param_1,lVar1 + 8,8);
                     // WARNING: Subroutine does not return
   memset(uVar2,0,lVar1);
 }

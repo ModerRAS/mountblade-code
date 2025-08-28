@@ -73,7 +73,7 @@ typedef float UISystemFloatValue;
 // ================================
 
 /** 未知变量指针 - 系统内部使用 */
-extern void* unknown_var_2048_ptr;
+extern void* rendering_buffer_2048_ptr;
 
 // ================================
 // 核心函数实现
@@ -164,7 +164,7 @@ UISystemReturnValue UISystem_ParameterExtractor(
     
     // 调用数据处理函数进行进一步处理
     // 注意：此函数不会返回（WARNING: Subroutine does not return）
-    UISystem_DataProcessor(context, UI_SYSTEM_OPERATION_CODE, &unknown_var_2048_ptr, (double)float_value);
+    UISystem_DataProcessor(context, UI_SYSTEM_OPERATION_CODE, &rendering_buffer_2048_ptr, (double)float_value);
     
     // 理论上不会执行到这里
     return UI_SYSTEM_STATUS_SUCCESS;

@@ -197,7 +197,7 @@ uint64_t * FUN_1807f7c50(uint64_t *param_1)
 {
   func_0x00018074fb20();
   *(int8_t *)((int64_t)param_1 + 0xc4) = 1;
-  *param_1 = &unknown_var_5752_ptr;
+  *param_1 = &processed_var_5752_ptr;
   return param_1;
 }
 
@@ -679,7 +679,7 @@ void FUN_1807f7db0(short *param_1)
     sVar1 = *psVar2;
   }
   lVar3 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
-                        (int)((int64_t)psVar2 - (int64_t)param_1 >> 1) * 2 + 2,&unknown_var_6160_ptr,0xca
+                        (int)((int64_t)psVar2 - (int64_t)param_1 >> 1) * 2 + 2,&processed_var_6160_ptr,0xca
                         ,0,0,1);
   if (lVar3 != 0) {
     lVar3 = lVar3 - (int64_t)param_1;

@@ -87,7 +87,7 @@ LAB_180211be9:
   do {
     lVar4 = lVar6;
     lVar6 = lVar4 + 1;
-  } while ((&unknown_var_660_ptr)[lVar4] != '\0');
+  } while ((&processed_var_660_ptr)[lVar4] != '\0');
   iVar10 = (int)(lVar4 + 1);
   uStack_40 = uVar9;
   if (0 < iVar10) {
@@ -603,7 +603,7 @@ LAB_180849c22:
   }
   if ((iVar4 == 0) &&
      (iVar3 = FUN_18088dec0(*(uint64_t *)(lStack_168 + 0x98),&puStack_160,0x28), iVar3 == 0)) {
-    *puStack_160 = &unknown_var_8424_ptr;
+    *puStack_160 = &processed_var_8424_ptr;
     *(int32_t *)(puStack_160 + 1) = 0x28;
     *(int32_t *)(puStack_160 + 4) = param_3;
     *(int *)(puStack_160 + 2) = (int)uVar1;
@@ -706,7 +706,7 @@ LAB_180211be9:
   do {
     lVar4 = lVar6;
     lVar6 = lVar4 + 1;
-  } while ((&unknown_var_660_ptr)[lVar4] != '\0');
+  } while ((&processed_var_660_ptr)[lVar4] != '\0');
   iVar10 = (int)(lVar4 + 1);
   uStack_40 = uVar9;
   if (0 < iVar10) {

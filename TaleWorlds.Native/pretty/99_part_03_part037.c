@@ -77,11 +77,11 @@ void FUN_1801f01c0(void)
   lVar4 = *(int64_t *)(lVar2 + 0x58);
   while( true ) {
     if (lVar4 == lVar2 + 0x50) {
-      puStack_60 = &unknown_var_672_ptr;
+      puStack_60 = &processed_var_672_ptr;
       puStack_58 = auStack_48;
       auStack_48[0] = 0;
       uStack_50 = 0x11;
-      strcpy_s(auStack_48,0x20,&unknown_var_4384_ptr);
+      strcpy_s(auStack_48,0x20,&processed_var_4384_ptr);
       uStack_90 = 1;
       uStack_98 = 0;
       uStack_b0 = 2;
@@ -102,7 +102,7 @@ void FUN_1801f01c0(void)
       }
       puStack_60 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,&unknown_var_4336_ptr,lVar6);
+      FUN_180062300(system_message_context,&processed_var_4336_ptr,lVar6);
     }
     iVar3 = *(int *)(lVar4 + 0x48) * 2;
     if (*(int64_t *)(lVar4 + 0x38) != 0) break;
@@ -601,7 +601,7 @@ LAB_1801f0caa:
   puStack_40 = auStack_30;
   auStack_30[0] = 0;
   uStack_38 = 6;
-  strcpy_s(auStack_30,0x10,&unknown_var_2588_ptr);
+  strcpy_s(auStack_30,0x10,&rendering_buffer_2588_ptr);
   uStack_98 = 1;
   SystemCore_EncryptionEngine0(&puStack_90,&puStack_48);
   uStack_98 = 0;

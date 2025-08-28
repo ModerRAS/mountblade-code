@@ -476,11 +476,11 @@ uint64_t * FUN_1802ac0a0(uint64_t *param_1)
   *param_1 = &system_handler1_ptr;
   *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &unknown_var_8584_ptr;
+  *param_1 = &processed_var_8584_ptr;
   param_1[2] = &system_state_ptr;
   param_1[3] = 0;
   *(int32_t *)(param_1 + 4) = 0;
-  param_1[2] = &unknown_var_3432_ptr;
+  param_1[2] = &memory_allocator_3432_ptr;
   param_1[3] = param_1 + 5;
   *(int32_t *)(param_1 + 4) = 0;
   *(int8_t *)(param_1 + 5) = 0;
@@ -488,7 +488,7 @@ uint64_t * FUN_1802ac0a0(uint64_t *param_1)
   *(int32_t *)(param_1 + 1) = 0;
   *(int16_t *)(param_1 + 0x16) = 0;
   param_1[0x15] = 0;
-  *param_1 = &unknown_var_4408_ptr;
+  *param_1 = &processed_var_4408_ptr;
   param_1[0x17] = 0;
   param_1[0x18] = 0;
   param_1[0x19] = 0;
@@ -506,9 +506,9 @@ FUN_1802ac160(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_4408_ptr;
+  *param_1 = &processed_var_4408_ptr;
   FUN_1800ff020();
-  *param_1 = &unknown_var_8584_ptr;
+  *param_1 = &processed_var_8584_ptr;
   param_1[2] = &system_state_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
@@ -545,7 +545,7 @@ void FUN_1802ac200(uint64_t param_1,int64_t *param_2,int64_t param_3)
   uStack_e0 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_108;
   uStack_e8 = 0;
-  puStack_c8 = &unknown_var_3432_ptr;
+  puStack_c8 = &memory_allocator_3432_ptr;
   puStack_c0 = auStack_b0;
   uStack_b8 = 0;
   auStack_b0[0] = 0;
@@ -562,7 +562,7 @@ void FUN_1802ac200(uint64_t param_1,int64_t *param_2,int64_t param_3)
   uStack_e8 = 1;
   puStack_c8 = &system_state_ptr;
   if (*param_2 == 0) {
-    FUN_180627020(&unknown_var_4520_ptr,param_3);
+    FUN_180627020(&processed_var_4520_ptr,param_3);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_108);
@@ -577,11 +577,11 @@ FUN_1802ac310(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3432_ptr;
+  *param_2 = &memory_allocator_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0x1c;
-  strcpy_s(param_2[1],0x80,&unknown_var_4568_ptr,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&processed_var_4568_ptr,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
@@ -593,13 +593,13 @@ uint64_t * FUN_1802ac390(uint64_t *param_1)
   *param_1 = &system_handler1_ptr;
   *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &unknown_var_768_ptr;
+  *param_1 = &processed_var_768_ptr;
   *(int32_t *)(param_1 + 2) = 4;
   param_1[3] = 0;
   param_1[4] = 0;
   *(int32_t *)(param_1 + 1) = 0;
   param_1[5] = 0;
-  *param_1 = &unknown_var_6616_ptr;
+  *param_1 = &processed_var_6616_ptr;
   param_1[9] = 0;
   *(int32_t *)(param_1 + 0x20) = 0;
   param_1[0x1a] = 0;
@@ -791,7 +791,7 @@ void FUN_1802ac800(uint64_t *param_1)
   char cVar4;
   int64_t lVar5;
   
-  *param_1 = &unknown_var_6616_ptr;
+  *param_1 = &processed_var_6616_ptr;
   plVar1 = param_1 + 0x27;
   lVar2 = param_1[0x28];
   lVar5 = *plVar1;
@@ -822,7 +822,7 @@ void FUN_1802ac800(uint64_t *param_1)
   if ((int64_t *)param_1[9] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[9] + 0x38))();
   }
-  *param_1 = &unknown_var_768_ptr;
+  *param_1 = &processed_var_768_ptr;
   param_1[5] = 0;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;

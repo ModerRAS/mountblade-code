@@ -765,7 +765,7 @@ void process_complex_data_serialization_variant(int32_t *config_ptr, int64_t buf
  * - FUN_18022873e: 复杂数据序列化处理变体
  * 
  * 简化实现改进：
- * - 使用描述性变量名替换DAT_和UNK_前缀
+ * - 使用描述性变量名替换DATA_和SYSTEM_前缀
  * - 添加了中文注释说明功能
  * - 保持了原有的代码结构和逻辑流程
  * - 将复杂的原始代码转换为更易读的形式

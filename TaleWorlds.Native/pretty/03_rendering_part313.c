@@ -27,8 +27,8 @@ void FUN_180434100(int64_t *param_1,int64_t param_2,int64_t param_3)
 uint64_t * FUN_180434170(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_1864_ptr;
-  *param_1 = &unknown_var_6328_ptr;
+  *param_1 = &ui_system_data_1864_ptr;
+  *param_1 = &processed_var_6328_ptr;
   DataStructureManager(param_1 + 3,0x48,4,FUN_1804350f0,FUN_180431c60);
   FUN_180300d00(param_1 + 0x28);
   FUN_180431730(param_1);
@@ -41,7 +41,7 @@ uint64_t * FUN_1804341e0(uint64_t *param_1,uint param_2)
 
 {
   SystemDataValidator(param_1 + 3,0x48,4,FUN_180431c60,0xfffffffffffffffe);
-  *param_1 = &unknown_var_1864_ptr;
+  *param_1 = &ui_system_data_1864_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x11b0);
   }
@@ -57,7 +57,7 @@ void FUN_180434250(uint64_t *param_1)
 
 {
   SystemDataValidator(param_1 + 3,0x48,4,FUN_180431c60,0xfffffffffffffffe);
-  *param_1 = &unknown_var_1864_ptr;
+  *param_1 = &ui_system_data_1864_ptr;
   return;
 }
 

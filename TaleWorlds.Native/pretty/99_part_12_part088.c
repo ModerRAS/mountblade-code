@@ -435,7 +435,7 @@ int32_t * FUN_1808a4c80(uint64_t *param_1,int64_t *param_2,uint64_t param_3)
       if ((0x3ffffffe < uVar13 * 0x14 - 1) ||
          (puVar7 = (int32_t *)
                    SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar13 * 0x14,
-                                 &unknown_var_8432_ptr,0xf4,0,0,1), puVar7 == (int32_t *)0x0)) {
+                                 &processed_var_8432_ptr,0xf4,0,0,1), puVar7 == (int32_t *)0x0)) {
         puVar7 = (int32_t *)0x26;
         goto LAB_1808a4de5;
       }
@@ -460,7 +460,7 @@ int32_t * FUN_1808a4c80(uint64_t *param_1,int64_t *param_2,uint64_t param_3)
     }
     if ((0 < *(int *)((int64_t)param_2 + 0xc)) && (*param_2 != 0)) {
                     // WARNING: Subroutine does not return
-      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_2,&unknown_var_8432_ptr,0x100,1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_2,&processed_var_8432_ptr,0x100,1);
     }
     *param_2 = (int64_t)puVar7;
     *(uint *)((int64_t)param_2 + 0xc) = uVar13;
@@ -544,7 +544,7 @@ uint64_t FUN_1808a4cb4(int32_t param_1)
       if ((0x3ffffffe < uVar12 * 0x14 - 1) ||
          (puVar7 = (int32_t *)
                    SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar12 * 0x14,
-                                 &unknown_var_8432_ptr,0xf4), param_1 = extraout_XMM0_Da,
+                                 &processed_var_8432_ptr,0xf4), param_1 = extraout_XMM0_Da,
          puVar7 == (int32_t *)0x0)) {
         uVar9 = 0x26;
         goto LAB_1808a4de5;
@@ -571,7 +571,7 @@ uint64_t FUN_1808a4cb4(int32_t param_1)
     }
     if (((int)uVar13 < *(int *)((int64_t)unaff_R14 + 0xc)) && (*unaff_R14 != 0)) {
                     // WARNING: Subroutine does not return
-      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_R14,&unknown_var_8432_ptr,0x100,1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_R14,&processed_var_8432_ptr,0x100,1);
     }
     *unaff_R14 = (int64_t)puVar7;
     *(uint *)((int64_t)unaff_R14 + 0xc) = uVar12;

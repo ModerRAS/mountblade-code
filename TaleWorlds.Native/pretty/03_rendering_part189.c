@@ -418,7 +418,7 @@ LAB_18037a2de:
               if (*(void **)(lVar38 + 0x10) != (void *)0x0) {
                 puVar28 = *(void **)(lVar38 + 0x10);
               }
-              FUN_180627020(&unknown_var_3856_ptr,puVar28);
+              FUN_180627020(&memory_allocator_3856_ptr,puVar28);
             }
             else {
               do {
@@ -764,12 +764,12 @@ void FUN_18037a770(int64_t param_1,int64_t param_2)
     if (puStack_3d0 != (int8_t *)0x0) {
       puVar7 = puStack_3d0;
     }
-    FUN_18062dee0(&uStack_350,puVar7,&unknown_var_9772_ptr);
+    FUN_18062dee0(&uStack_350,puVar7,&processed_var_9772_ptr);
     lVar2 = lStack_348;
     if (lStack_348 != 0) {
       plStack_398 = (int64_t *)CONCAT44(plStack_398._4_4_,0x58);
-      fwrite(&unknown_var_2980_ptr,4,1,lStack_348);
-      fwrite(&unknown_var_2976_ptr,4,1,lVar2);
+      fwrite(&rendering_buffer_2980_ptr,4,1,lStack_348);
+      fwrite(&rendering_buffer_2976_ptr,4,1,lVar2);
       fwrite(&plStack_398,4,1,lVar2);
       fwrite(auStack_2e8,4,1,lVar2);
       fwrite(&uStack_2cc,0x58,1,lVar2);

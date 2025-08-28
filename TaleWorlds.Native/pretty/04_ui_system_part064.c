@@ -54,7 +54,7 @@ bool FUN_18069bbd0(int64_t param_1,int param_2)
     uVar4 = *(int *)(param_1 + 0x1c) - uVar4;
     uVar3 = uVar3 - uVar2;
   }
-  bVar1 = (&unknown_var_8608_ptr)[uVar4];
+  bVar1 = (&processed_var_8608_ptr)[uVar4];
   *(int *)(param_1 + 0x18) = *(int *)(param_1 + 0x18) - (uint)bVar1;
   *(uint *)(param_1 + 0x1c) = uVar4 << (bVar1 & 0x1f);
   *(uint64_t *)(param_1 + 0x10) = uVar3 << (bVar1 & 0x3f);

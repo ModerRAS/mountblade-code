@@ -10,7 +10,7 @@ uint64_t SYSTEM_FILE_COUNTER_ADDR;  // 渲染上下文
 uint64_t SYSTEM_DATA_MANAGER_A;  // 引擎状态数据
 uint64_t system_data_buffer_ptr;   // 渲染资源管理器
 uint64_t system_state_ptr;   // 纹理管理器
-uint64_t unknown_var_3480_ptr;   // 缓冲区管理器
+uint64_t memory_allocator_3480_ptr;   // 缓冲区管理器
 uint64_t system_handler2_ptr;   // 渲染状态管理器
 uint64_t system_handler1_ptr;   // 渲染队列管理器
 uint64_t system_buffer_ptr;   // 默认渲染数据
@@ -420,7 +420,7 @@ void initialize_rendering_data(int64_t data_ptr, int64_t init_count)
       *(void **)(data_field_ptr + -0x5a) = &system_state_ptr;
       *(uint64_t *)(data_field_ptr + -0x58) = 0;
       data_field_ptr[-0x56] = 0;
-      *(void **)(data_field_ptr + -0x5a) = &unknown_var_3480_ptr;
+      *(void **)(data_field_ptr + -0x5a) = &memory_allocator_3480_ptr;
       *(int32_t **)(data_field_ptr + -0x58) = data_field_ptr + -0x54;
       data_field_ptr[-0x56] = 0;
       *(int8_t *)(data_field_ptr + -0x54) = 0;
@@ -565,7 +565,7 @@ int64_t * create_rendering_data(int64_t *data_ptr, int32_t *src_data_ptr, int32_
       *dest_data_ptr = &system_state_ptr;
       dest_data_ptr[1] = 0;
       *(int32_t *)(dest_data_ptr + 2) = 0;
-      *dest_data_ptr = &unknown_var_3480_ptr;
+      *dest_data_ptr = &memory_allocator_3480_ptr;
       dest_data_ptr[1] = dest_data_ptr + 3;
       *(int32_t *)(dest_data_ptr + 2) = 0;
       *(int8_t *)(dest_data_ptr + 3) = 0;

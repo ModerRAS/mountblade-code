@@ -104,7 +104,7 @@ void FUN_180088160(uint64_t param_1,int8_t param_2)
       if (puStack_2a8 != (int8_t *)0x0) {
         puVar11 = puStack_2a8;
       }
-      System_DataHandler(&puStack_250,&unknown_var_8076_ptr,puVar11,puVar13);
+      System_DataHandler(&puStack_250,&processed_var_8076_ptr,puVar11,puVar13);
       cVar3 = FUN_180624a00(&puStack_250);
       if (cVar3 != '\0') {
         FUN_18008b250(&puStack_250);
@@ -177,7 +177,7 @@ void FUN_180088160(uint64_t param_1,int8_t param_2)
       if (puStack_2c8 != (int8_t *)0x0) {
         puVar11 = puStack_2c8;
       }
-      System_DataHandler(&puStack_290,&unknown_var_8076_ptr,puVar11,puVar13);
+      System_DataHandler(&puStack_290,&processed_var_8076_ptr,puVar11,puVar13);
       cVar3 = FUN_180624a00(&puStack_290);
       if (cVar3 != '\0') {
         puVar1 = (uint64_t *)*plVar2;
@@ -194,7 +194,7 @@ void FUN_180088160(uint64_t param_1,int8_t param_2)
           puVar12 = puStack_288;
         }
                     // WARNING: Subroutine does not return
-        FUN_180062300(system_message_context,&unknown_var_8208_ptr,puVar12);
+        FUN_180062300(system_message_context,&processed_var_8208_ptr,puVar12);
       }
       puStack_290 = &system_data_buffer_ptr;
       if (puStack_288 != (void *)0x0) {
@@ -216,7 +216,7 @@ void FUN_180088160(uint64_t param_1,int8_t param_2)
     } while (lStack_258 < lVar10);
     if (iStack_2e8 != 0) goto LAB_180088ac9;
   }
-  SystemOptimizationProcessor(&unknown_var_8232_ptr);
+  SystemOptimizationProcessor(&processed_var_8232_ptr);
 LAB_180088ac9:
   plVar7 = (int64_t *)plVar2[0x17];
   if (plVar7 != plVar2 + 0x16) {
@@ -261,7 +261,7 @@ LAB_180088ac9:
     } while (plVar7 != plStack_2e0 + 0x16);
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&unknown_var_8288_ptr);
+  FUN_180062300(system_message_context,&processed_var_8288_ptr);
 }
 
 
@@ -543,7 +543,7 @@ void FUN_180089420(void)
       lStack_90 = 0;
       uStack_88 = 0;
       ppuStack_a8 = &puStack_78;
-      puStack_78 = &unknown_var_672_ptr;
+      puStack_78 = &processed_var_672_ptr;
       puStack_70 = auStack_60;
       uStack_68 = 0;
       auStack_60[0] = 0;

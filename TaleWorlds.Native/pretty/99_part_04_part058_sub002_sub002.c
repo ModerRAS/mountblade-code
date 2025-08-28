@@ -205,10 +205,10 @@ void FUN_1802b8cb0(int64_t *param_1,float param_2)
   if ((int)uVar14 < 0) {
     uVar14 = (uVar14 - 1 | 0xffffff00) + 1;
   }
-  fStack_274 = ((*(float *)(&unknown_var_5296_ptr + (int64_t)(int)uVar14 * 4) -
-                *(float *)(&unknown_var_5296_ptr + (int64_t)(int)uVar12 * 4)) *
+  fStack_274 = ((*(float *)(&processed_var_5296_ptr + (int64_t)(int)uVar14 * 4) -
+                *(float *)(&processed_var_5296_ptr + (int64_t)(int)uVar12 * 4)) *
                 (fVar28 - (float)(int)uVar11) +
-               *(float *)(&unknown_var_5296_ptr + (int64_t)(int)uVar12 * 4)) * *pfVar19 + 1.0;
+               *(float *)(&processed_var_5296_ptr + (int64_t)(int)uVar12 * 4)) * *pfVar19 + 1.0;
   fStack_270 = pfVar19[3] * pfVar19[2] * fStack_274;
   fStack_274 = pfVar19[3] * pfVar19[1] * fStack_274;
   iStack_2c8 = 0;

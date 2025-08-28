@@ -144,7 +144,7 @@ void FUN_1804d0610(int64_t param_1,int64_t param_2,uint param_3,int param_4)
                 do {
                   if ((*(uint *)(lVar19 + 8 + lVar22) & 1 << (bVar17 & 0x1f)) != 0) {
                     lVar18 = *plVar16;
-                    if (*(code **)(lVar18 + 0x158) == (code *)&unknown_var_2528_ptr) {
+                    if (*(code **)(lVar18 + 0x158) == (code *)&rendering_buffer_2528_ptr) {
                       plVar15 = plVar16 + 0x66;
                     }
                     else {
@@ -178,7 +178,7 @@ void FUN_1804d0610(int64_t param_1,int64_t param_2,uint param_3,int param_4)
                     uVar1 = (int32_t)plVar16[0xd];
                     uStack_1e8 = uVar3;
                     uStack_1e4 = uVar1;
-                    if (*(code **)(*plVar16 + 0x198) == (code *)&unknown_var_2544_ptr) {
+                    if (*(code **)(*plVar16 + 0x198) == (code *)&rendering_buffer_2544_ptr) {
                       lVar18 = (int64_t)plVar16 + 0x214;
                     }
                     else {
@@ -322,7 +322,7 @@ void FUN_1804d0610(int64_t param_1,int64_t param_2,uint param_3,int param_4)
                   do {
                     if ((*(uint *)(lVar19 + 8 + lVar22) & 1 << ((byte)iVar12 & 0x1f)) != 0) {
                       lVar18 = *plVar15;
-                      if (*(code **)(lVar18 + 0x158) == (code *)&unknown_var_2528_ptr) {
+                      if (*(code **)(lVar18 + 0x158) == (code *)&rendering_buffer_2528_ptr) {
                         plVar16 = plVar15 + 0x66;
                       }
                       else {
@@ -356,7 +356,7 @@ void FUN_1804d0610(int64_t param_1,int64_t param_2,uint param_3,int param_4)
                       uVar1 = (int32_t)plVar15[0xd];
                       uStack_178 = uVar3;
                       uStack_174 = uVar1;
-                      if (*(code **)(*plVar15 + 0x198) == (code *)&unknown_var_2544_ptr) {
+                      if (*(code **)(*plVar15 + 0x198) == (code *)&rendering_buffer_2544_ptr) {
                         lVar18 = (int64_t)plVar15 + 0x214;
                       }
                       else {
@@ -491,7 +491,7 @@ void FUN_1804d0610(int64_t param_1,int64_t param_2,uint param_3,int param_4)
                         do {
                           if ((*(uint *)(lVar22 + 8 + lVar19) & 1 << (bVar17 & 0x1f)) != 0) {
                             lVar18 = *plVar15;
-                            if (*(code **)(lVar18 + 0x158) == (code *)&unknown_var_2528_ptr) {
+                            if (*(code **)(lVar18 + 0x158) == (code *)&rendering_buffer_2528_ptr) {
                               plVar16 = plVar15 + 0x66;
                             }
                             else {
@@ -525,7 +525,7 @@ void FUN_1804d0610(int64_t param_1,int64_t param_2,uint param_3,int param_4)
                             uVar1 = (int32_t)plVar15[0xd];
                             uStack_108 = uVar3;
                             uStack_104 = uVar1;
-                            if (*(code **)(*plVar15 + 0x198) == (code *)&unknown_var_2544_ptr) {
+                            if (*(code **)(*plVar15 + 0x198) == (code *)&rendering_buffer_2544_ptr) {
                               lVar18 = (int64_t)plVar15 + 0x214;
                             }
                             else {

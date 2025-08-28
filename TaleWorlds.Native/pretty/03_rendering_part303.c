@@ -39,19 +39,19 @@ void FUN_18042c300(int64_t param_1,uint *param_2,int *param_3,int32_t *param_4)
   uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_4a8;
   bVar3 = false;
   lVar7 = FUN_18042bff0(param_1,auStack_458);
-  iVar4 = strcmp(lVar7,&unknown_var_9792_ptr);
+  iVar4 = strcmp(lVar7,&processed_var_9792_ptr);
   if (iVar4 != 0) {
     lVar9 = 0;
     do {
       lVar15 = lVar9 + 1;
-      if (*(char *)(lVar7 + lVar9) != (&unknown_var_9804_ptr)[lVar9]) goto LAB_18042c891;
+      if (*(char *)(lVar7 + lVar9) != (&processed_var_9804_ptr)[lVar9]) goto LAB_18042c891;
       lVar9 = lVar15;
     } while (lVar15 != 7);
   }
   pcStack_470 = (char *)FUN_18042bff0(param_1,auStack_458);
   if (*pcStack_470 != '\0') {
     do {
-      iVar4 = strcmp(pcStack_470,&unknown_var_9832_ptr);
+      iVar4 = strcmp(pcStack_470,&processed_var_9832_ptr);
       if (iVar4 == 0) {
         bVar3 = true;
       }
@@ -59,7 +59,7 @@ void FUN_18042c300(int64_t param_1,uint *param_2,int *param_3,int32_t *param_4)
     } while (*pcStack_470 != '\0');
     if (bVar3) {
       pcStack_470 = (char *)FUN_18042bff0(param_1,auStack_458);
-      iVar4 = strncmp(pcStack_470,&unknown_var_9856_ptr,3);
+      iVar4 = strncmp(pcStack_470,&processed_var_9856_ptr,3);
       if (iVar4 == 0) {
         pcStack_470 = pcStack_470 + 3;
         iVar4 = strtol(pcStack_470,&pcStack_470,10);
@@ -69,7 +69,7 @@ void FUN_18042c300(int64_t param_1,uint *param_2,int *param_3,int32_t *param_4)
           cVar1 = *pcStack_470;
         }
         iStack_468 = iVar4;
-        iVar5 = strncmp(pcStack_470,&unknown_var_9828_ptr,3);
+        iVar5 = strncmp(pcStack_470,&processed_var_9828_ptr,3);
         if (iVar5 == 0) {
           pcStack_470 = pcStack_470 + 3;
           uVar6 = strtol(pcStack_470,0,10);
@@ -346,7 +346,7 @@ void FUN_18042c990(int64_t param_1,int *param_2,int *param_3,int *param_4)
     piVar9 = param_2;
   }
   puVar1 = (uint64_t *)(param_1 + 0xb8);
-  puVar6 = &unknown_var_9812_ptr;
+  puVar6 = &processed_var_9812_ptr;
   piVar12 = aiStack_88;
   if (param_3 != (int *)0x0) {
     piVar12 = param_3;
@@ -355,7 +355,7 @@ void FUN_18042c990(int64_t param_1,int *param_2,int *param_3,int *param_4)
   if (param_4 != (int *)0x0) {
     piStack_80 = param_4;
   }
-  iVar2 = FUN_18042a2c0(param_1,&unknown_var_9812_ptr);
+  iVar2 = FUN_18042a2c0(param_1,&processed_var_9812_ptr);
   if (iVar2 != 0) {
     if ((*(int64_t *)(param_1 + 0x10) == 0) ||
        (iVar2 = *(int *)(param_1 + 0xc0) - *(int *)puVar1, 0x57 < iVar2)) {

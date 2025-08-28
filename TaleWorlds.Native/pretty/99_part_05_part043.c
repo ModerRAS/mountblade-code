@@ -101,7 +101,7 @@ void FUN_1802f47c0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
         *puVar4 = &system_state_ptr;
         puVar4[1] = 0;
         *(int32_t *)(puVar4 + 2) = 0;
-        *puVar4 = &unknown_var_3480_ptr;
+        *puVar4 = &memory_allocator_3480_ptr;
         puVar4[1] = puVar4 + 3;
         *(int32_t *)(puVar4 + 2) = 0;
         *(int8_t *)(puVar4 + 3) = 0;
@@ -337,7 +337,7 @@ void FUN_1802f4b90(int64_t param_1,uint64_t *param_2,uint64_t param_3)
         uStack_f8 = 0;
         FUN_180628210(&puStack_108,pcVar8,(int)pcVar12 - (int)pcVar8);
         pcVar8 = pcVar12 + 1;
-        puStack_a8 = &unknown_var_3480_ptr;
+        puStack_a8 = &memory_allocator_3480_ptr;
         puStack_a0 = auStack_90;
         auStack_90[0] = 0;
         uStack_98 = uStack_f8;
@@ -372,7 +372,7 @@ LAB_1802f4d0f:
               *puVar6 = &system_state_ptr;
               puVar6[1] = 0;
               *(int32_t *)(puVar6 + 2) = 0;
-              *puVar6 = &unknown_var_3480_ptr;
+              *puVar6 = &memory_allocator_3480_ptr;
               puVar6[1] = puVar6 + 3;
               *(int32_t *)(puVar6 + 2) = 0;
               *(int8_t *)(puVar6 + 3) = 0;
@@ -422,7 +422,7 @@ LAB_1802f4d0f:
       puStack_100 = (void *)0x0;
       uStack_f8 = 0;
       FUN_180628210(&puStack_108,pcVar8,(int)pcStack_e0 - (int)pcVar8);
-      puStack_a8 = &unknown_var_3480_ptr;
+      puStack_a8 = &memory_allocator_3480_ptr;
       puStack_a0 = auStack_90;
       auStack_90[0] = 0;
       uStack_98 = uStack_f8;
@@ -622,7 +622,7 @@ LAB_1802f5215:
   *(uint64_t *)(lVar4 + 0x40) = &system_state_ptr;
   *(uint64_t *)(lVar4 + 0x48) = 0;
   *(int32_t *)(lVar4 + 0x50) = 0;
-  *(uint64_t *)(lVar4 + 0x40) = &unknown_var_3432_ptr;
+  *(uint64_t *)(lVar4 + 0x40) = &memory_allocator_3432_ptr;
   *(int8_t **)(lVar4 + 0x48) = (int8_t *)(lVar4 + 0x58);
   *(int32_t *)(lVar4 + 0x50) = 0;
   *(int8_t *)(lVar4 + 0x58) = 0;
@@ -678,7 +678,7 @@ LAB_1802f5364:
       *puVar5 = &system_state_ptr;
       puVar5[1] = 0;
       *(int32_t *)(puVar5 + 2) = 0;
-      *puVar5 = &unknown_var_3480_ptr;
+      *puVar5 = &memory_allocator_3480_ptr;
       puVar5[1] = puVar5 + 3;
       *(int32_t *)(puVar5 + 2) = 0;
       *(int8_t *)(puVar5 + 3) = 0;

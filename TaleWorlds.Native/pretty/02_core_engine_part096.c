@@ -143,7 +143,7 @@ void FUN_18011a38c(void)
       fVar19 = (float)func_0x00018011a9b0(uVar9,(int64_t)(iVar11 + iVar2 + 1) % (int64_t)iVar1 &
                                                 0xffffffff);
       dVar23 = (double)fVar19;
-      FUN_18012ea30(&unknown_var_2256_ptr,iVar11,(double)fVar20,iVar11 + 1,dVar23);
+      FUN_18012ea30(&rendering_buffer_2256_ptr,iVar11,(double)fVar20,iVar11 + 1,dVar23);
     }
     else {
       uVar9 = *(uint64_t *)(unaff_RBP + 0xb8);

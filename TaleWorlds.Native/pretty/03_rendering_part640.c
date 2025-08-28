@@ -672,7 +672,7 @@ void FUN_180628380(int64_t param_1,int32_t param_2)
   uint64_t uStack_18;
   
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_48;
-  FUN_180060680(acStack_28,&unknown_var_4576_ptr,param_2);
+  FUN_180060680(acStack_28,&processed_var_4576_ptr,param_2);
   lVar1 = -1;
   do {
     lVar3 = lVar1;
@@ -739,7 +739,7 @@ void FUN_180628420(int64_t param_1,int32_t param_2)
   uint64_t uStack_18;
   
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_58;
-  FUN_180626eb0(acStack_38,0x20,&unknown_var_3388_ptr,param_2);
+  FUN_180626eb0(acStack_38,0x20,&memory_allocator_3388_ptr,param_2);
   lVar1 = -1;
   do {
     lVar3 = lVar1;
@@ -873,7 +873,7 @@ void FUN_180628570(int64_t param_1,uint64_t param_2)
   uint64_t uStack_18;
   
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_58;
-  FUN_180626eb0(acStack_38,0x20,&unknown_var_7284_ptr,param_2);
+  FUN_180626eb0(acStack_38,0x20,&processed_var_7284_ptr,param_2);
   lVar1 = -1;
   do {
     lVar3 = lVar1;

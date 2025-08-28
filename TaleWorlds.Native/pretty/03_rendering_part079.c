@@ -88,7 +88,7 @@ extern float render_system_control_memory;               // 渲染系统控制�
 extern int64_t *system_main_module_state;               // 系统主模块状态
 extern int64_t *system_operation_state;                 // 系统操作状态
 extern int64_t *system_state_01f0;                     // 系统状态01f0
-extern int64_t *unknown_var_4960_ptr;                  // 未知变量4960指针
+extern int64_t *processed_var_4960_ptr;                  // 未知变量4960指针
 extern int64_t *SYSTEM_STATE_MANAGER;                  // 系统状态管理器
 
 // ============================================================================
@@ -321,7 +321,7 @@ int64_t * FUN_18030f1e0(int64_t param_1)
     }
     
     // 注册对象到渲染系统
-    (**(code **)(plStackX_8[2] + 0x10))(plStackX_8 + 2, &unknown_var_4960_ptr);
+    (**(code **)(plStackX_8[2] + 0x10))(plStackX_8 + 2, &processed_var_4960_ptr);
     
     // 将对象添加到对象池
     FUN_1800b88d0(param_1 + RENDER_DATA_OFFSET + (int64_t)*(int *)(param_1 + 0x124) * OBJECT_POOL_SIZE, &plStackX_8);

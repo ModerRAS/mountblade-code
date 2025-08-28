@@ -140,7 +140,7 @@ void FUN_1803e67b0(int64_t param_1)
   uStack_2a8 = 0xfffffffffffffffe;
   uStack_68 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_3d8;
   lStack_368 = param_1;
-  FUN_1801ec5c0(auStack_2a0,&unknown_var_9624_ptr);
+  FUN_1801ec5c0(auStack_2a0,&processed_var_9624_ptr);
   fVar3 = (float)(*(int *)(*(int64_t *)(param_1 + 400) + 0x18) << 8);
   fVar4 = (float)(*(int *)(*(int64_t *)(param_1 + 400) + 0x14) << 8);
   uStack_36c = 0;
@@ -485,7 +485,7 @@ LAB_1803e70db:
             lVar9 = *(int64_t *)(*ppiVar4 + 2);
           }
           uStack_90 = 0x1803e712c;
-          System_DataHandler(param_2,&unknown_var_9612_ptr);
+          System_DataHandler(param_2,&processed_var_9612_ptr);
           plVar11 = (int64_t *)(lVar9 + 0x718);
           lVar9 = 0xf;
           do {
@@ -497,7 +497,7 @@ LAB_1803e70db:
             }
             dVar12 = (double)fVar15;
             uStack_90 = 0x1803e717a;
-            System_DataHandler(param_2,&unknown_var_9616_ptr);
+            System_DataHandler(param_2,&processed_var_9616_ptr);
             plVar11 = plVar11 + 1;
             lVar9 = lVar9 + -1;
           } while (lVar9 != 0);
@@ -522,14 +522,14 @@ LAB_1803e70db:
   lVar9 = 0;
   uStack_458 = 0;
   puStack_450 = &uStackX_18;
-  iVar2 = __stdio_common_vsprintf(*puVar5 | 1,0,0,&unknown_var_9680_ptr);
+  iVar2 = __stdio_common_vsprintf(*puVar5 | 1,0,0,&processed_var_9680_ptr);
   if (iVar2 < 0) {
     iVar2 = -1;
   }
   if (iVar2 < 0x400) {
     uStack_458 = 0;
     puStack_450 = &uStackX_18;
-    __stdio_common_vsprintf(*puVar5 | 1,acStack_438,0x400,&unknown_var_9680_ptr);
+    __stdio_common_vsprintf(*puVar5 | 1,acStack_438,0x400,&processed_var_9680_ptr);
     lVar9 = -1;
     do {
       lVar7 = lVar9;
@@ -548,7 +548,7 @@ LAB_1803e70db:
     if (iVar2 != 0) {
       lVar9 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)iVar2,3);
     }
-    FUN_18004b9b0(lVar9,(int64_t)iVar2,&unknown_var_9680_ptr,&uStackX_18);
+    FUN_18004b9b0(lVar9,(int64_t)iVar2,&processed_var_9680_ptr,&uStackX_18);
     FUN_1806281a0(param_2,lVar9);
     if (lVar9 != 0) {
                     // WARNING: Subroutine does not return
@@ -668,14 +668,14 @@ LAB_1803e70db:
       lVar8 = 0;
       uStack_3d0 = 0;
       puStack_3c8 = (uint64_t *)&stack0x000000a0;
-      iVar2 = __stdio_common_vsprintf(*puVar5 | 1,0,0,&unknown_var_9680_ptr);
+      iVar2 = __stdio_common_vsprintf(*puVar5 | 1,0,0,&processed_var_9680_ptr);
       if (iVar2 < 0) {
         iVar2 = -1;
       }
       if (iVar2 < 0x400) {
         uStack_3d0 = 0;
         puStack_3c8 = (uint64_t *)&stack0x000000a0;
-        uVar11 = __stdio_common_vsprintf(*puVar5 | 1,acStack_3b0,0x400,&unknown_var_9680_ptr);
+        uVar11 = __stdio_common_vsprintf(*puVar5 | 1,acStack_3b0,0x400,&processed_var_9680_ptr);
         lVar8 = -1;
         do {
           lVar6 = lVar8;
@@ -694,7 +694,7 @@ LAB_1803e70db:
         if (iVar2 != 0) {
           lVar8 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)iVar2,3);
         }
-        uVar11 = FUN_18004b9b0(lVar8,(int64_t)iVar2,&unknown_var_9680_ptr,&stack0x000000a0);
+        uVar11 = FUN_18004b9b0(lVar8,(int64_t)iVar2,&processed_var_9680_ptr,&stack0x000000a0);
         FUN_1806281a0(uVar11,lVar8);
         if (lVar8 != 0) {
                     // WARNING: Subroutine does not return
@@ -734,7 +734,7 @@ void FUN_1803e7203(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   int8_t *puStack_3c8;
   char acStack_3b0 [944];
   
-  puStack0000000000000098 = &unknown_var_9680_ptr;
+  puStack0000000000000098 = &processed_var_9680_ptr;
   uStack0000000000000060 = in_stack_00000068;
   uStack0000000000000050 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_3f0;
   uStack00000000000000a0 = param_3;
@@ -743,7 +743,7 @@ void FUN_1803e7203(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   lVar3 = 0;
   uStack_3d0 = 0;
   puStack_3c8 = (int8_t *)&stack0x000000a0;
-  iVar1 = __stdio_common_vsprintf(*puVar2 | 1,0,0,&unknown_var_9680_ptr);
+  iVar1 = __stdio_common_vsprintf(*puVar2 | 1,0,0,&processed_var_9680_ptr);
   if (iVar1 < 0) {
     iVar1 = -1;
   }

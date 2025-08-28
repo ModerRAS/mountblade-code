@@ -1217,7 +1217,7 @@ void RenderingSystemMemoryAccessor(int64_t param_1, uint64_t param_2, uint64_t p
         (**(code **)(*param_5 + 0x28))();
     }
     pplStack_28 = &plStackX_8;
-    uVar1 = FUN_18062b1e0(system_memory_pool_ptr, 0x1f8, 8, 3);
+    uVar1 = CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x1f8, 8, 3);
     lVar2 = FUN_18058f390(uVar1);
     puStack_20 = &param_5;
     param_5 = plStackX_8;
@@ -1225,7 +1225,7 @@ void RenderingSystemMemoryAccessor(int64_t param_1, uint64_t param_2, uint64_t p
     if (plStackX_8 != (int64_t *)0x0) {
         (**(code **)(*plStackX_8 + 0x28))();
     }
-    FUN_18058e430(lVar2, param_2, param_3, param_4, &unknown_var_5760_ptr, 0, 0, &param_5, 0, 0xffffffff, 0);
+    FUN_18058e430(lVar2, param_2, param_3, param_4, &processed_var_5760_ptr, 0, 0, &param_5, 0, 0xffffffff, 0);
     FUN_18005ea90(param_1 + 0x900, alStack_38);
     uVar1 = *(uint64_t *)(param_1 + 0x6d8);
     puStack_20 = &param_5;
@@ -1920,7 +1920,7 @@ void RenderingSystemOptimizer(int64_t param_1)
     }
     if (*(int64_t *)plVar2[0x1f] == 0) {
         // WARNING: Subroutine does not return
-        FUN_180062300(system_message_context, &unknown_var_1944_ptr);
+        FUN_180062300(system_message_context, &ui_system_data_1944_ptr);
     }
     lVar3 = FUN_18040db80(*(int64_t *)plVar2[0x1f]);
     fVar7 = 0.0;

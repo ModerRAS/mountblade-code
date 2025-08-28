@@ -233,7 +233,7 @@ void FUN_1804c4840(int64_t param_1,int64_t param_2)
     uStack_438 = 0x4120000041200000;
     lStack_430 = 0x7f7fffff00000000;
     uVar13 = *(uint64_t *)(*(int64_t *)(param_1 + 0x18) + 0x20);
-    uVar11 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x2f0,0x10,&unknown_var_2307_ptr);
+    uVar11 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x2f0,0x10,&rendering_buffer_2307_ptr);
     plVar12 = (int64_t *)FUN_1802e6b00(uVar11,4);
     plStack_470 = plVar12;
     plStack_280 = plVar12;
@@ -264,7 +264,7 @@ void FUN_1804c4840(int64_t param_1,int64_t param_2)
           uVar31 = uVar34;
           do {
             uVar18 = uVar31 + 1;
-            if (*(char *)(*(int64_t *)(lVar28 + 0x30) + uVar31) != (&unknown_var_1168_ptr)[uVar31])
+            if (*(char *)(*(int64_t *)(lVar28 + 0x30) + uVar31) != (&ui_system_data_1168_ptr)[uVar31])
             goto LAB_1804c5ea0;
             uVar31 = uVar18;
           } while (uVar18 != 4);
@@ -353,11 +353,11 @@ void FUN_1804c4840(int64_t param_1,int64_t param_2)
             uVar31 = uVar34;
             do {
               lVar37 = *(int64_t *)(lVar35 + (int64_t)plVar12);
-              puStack_130 = &unknown_var_672_ptr;
+              puStack_130 = &processed_var_672_ptr;
               puStack_128 = auStack_118;
               auStack_118[0] = 0;
               iStack_120 = 0xe;
-              strcpy_s(auStack_118,0x20,&unknown_var_6120_ptr);
+              strcpy_s(auStack_118,0x20,&processed_var_6120_ptr);
               puVar15 = (int8_t *)0x0;
               puStack_520 = &system_data_buffer_ptr;
               uStack_508._0_4_ = 0;
@@ -595,7 +595,7 @@ LAB_1804c4e56:
                   uStack_530 = 3;
                   puStack_538 = puVar16;
                   uStack_528._0_4_ = uVar36;
-                  FUN_180060680(acStack_f8,&unknown_var_4576_ptr,iVar9);
+                  FUN_180060680(acStack_f8,&processed_var_4576_ptr,iVar9);
                   lVar28 = -1;
                   do {
                     lVar35 = lVar28;
@@ -1007,7 +1007,7 @@ LAB_1804c5a6c:
                   puStack_580 = puStack_340;
                 }
                 dStack_588 = (double)afStack_4c8[2];
-                System_DataHandler(&puStack_4e8,&unknown_var_1176_ptr,(double)afStack_4c8[0],
+                System_DataHandler(&puStack_4e8,&ui_system_data_1176_ptr,(double)afStack_4c8[0],
                               (double)afStack_4c8[1]);
                 uVar13 = system_system_data_memory;
                 uVar48 = system_system_control_memory;

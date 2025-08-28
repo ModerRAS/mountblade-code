@@ -169,7 +169,7 @@ void SystemRegistryNodeCreator(void) {
     // 配置节点属性
     parent_node[6] = 0x40afa5469b6ac06d;
     parent_node[7] = 0x2f4bab01d34055a5;
-    parent_node[8] = &unknown_var_5056_ptr;
+    parent_node[8] = &processed_var_5056_ptr;
     parent_node[9] = 3;
     parent_node[10] = initialization_handler;
 }
@@ -227,7 +227,7 @@ void SystemRegistryNodeCreatorType2(void) {
     // 配置节点属性
     parent_node[6] = 0x43330a43fcdb3653;
     parent_node[7] = 0xdcfdc333a769ec93;
-    parent_node[8] = &unknown_var_7584_ptr;
+    parent_node[8] = &processed_var_7584_ptr;
     parent_node[9] = 1;
     parent_node[10] = initialization_handler;
 }
@@ -285,7 +285,7 @@ void SystemRegistryNodeCreatorType3(void) {
     // 配置节点属性
     parent_node[6] = 0x431d7c8d7c475be2;
     parent_node[7] = 0xb97f048d2153e1b0;
-    parent_node[8] = &unknown_var_7608_ptr;
+    parent_node[8] = &processed_var_7608_ptr;
     parent_node[9] = 4;
     parent_node[10] = initialization_handler;
 }
@@ -343,7 +343,7 @@ void SystemRegistryNodeCreatorType4(void) {
     // 配置节点属性
     parent_node[6] = 0x4b2d79e470ee4e2c;
     parent_node[7] = 0x9c552acd3ed5548d;
-    parent_node[8] = &unknown_var_7632_ptr;
+    parent_node[8] = &processed_var_7632_ptr;
     parent_node[9] = 0;
     parent_node[10] = initialization_handler;
 }
@@ -401,7 +401,7 @@ void SystemRegistryNodeCreatorType5(void) {
     // 配置节点属性
     parent_node[6] = 0x49086ba08ab981a7;
     parent_node[7] = 0xa9191d34ad910696;
-    parent_node[8] = &unknown_var_7656_ptr;
+    parent_node[8] = &processed_var_7656_ptr;
     parent_node[9] = 0;
     parent_node[10] = initialization_handler;
 }
@@ -459,7 +459,7 @@ void SystemRegistryNodeCreatorType6(void) {
     // 配置节点属性
     parent_node[6] = 0x402feffe4481676e;
     parent_node[7] = 0xd4c2151109de93a0;
-    parent_node[8] = &unknown_var_7680_ptr;
+    parent_node[8] = &processed_var_7680_ptr;
     parent_node[9] = 0;
     parent_node[10] = initialization_handler;
 }
@@ -488,7 +488,7 @@ void SystemRegistryNodeCreatorType7(void) {
     registry_manager = (SystemRegistryManager*)NetworkDataProcessor();
     root_node = (SystemRegistryNode*)*registry_manager;
     node_status = *(char *)((uint64_t)root_node[1] + 0x19);
-    initialization_handler = &unknown_var_2048_ptr;
+    initialization_handler = &rendering_buffer_2048_ptr;
     parent_node = root_node;
     current_node = (SystemRegistryNode*)root_node[1];
     
@@ -517,7 +517,7 @@ void SystemRegistryNodeCreatorType7(void) {
     // 配置节点属性
     parent_node[6] = 0x4384dcc4b6d3f417;
     parent_node[7] = 0x92a15d52fe2679bd;
-    parent_node[8] = &unknown_var_7704_ptr;
+    parent_node[8] = &processed_var_7704_ptr;
     parent_node[9] = 0;
     parent_node[10] = initialization_handler;
 }
@@ -575,7 +575,7 @@ void SystemRegistryNodeCreatorType8(void) {
     // 配置节点属性
     parent_node[6] = 0x4140994454d56503;
     parent_node[7] = 0x399eced9bb5517ad;
-    parent_node[8] = &unknown_var_7728_ptr;
+    parent_node[8] = &processed_var_7728_ptr;
     parent_node[9] = 0;
     parent_node[10] = initialization_handler;
 }
@@ -633,7 +633,7 @@ void SystemRegistryNodeCreatorType9(void) {
     // 配置节点属性
     parent_node[6] = 0x40db4257e97d3df8;
     parent_node[7] = 0x81d539e33614429f;
-    parent_node[8] = &unknown_var_7896_ptr;
+    parent_node[8] = &processed_var_7896_ptr;
     parent_node[9] = 4;
     parent_node[10] = initialization_handler;
 }
@@ -691,7 +691,7 @@ void SystemRegistryNodeCreatorType10(void) {
     // 配置节点属性
     parent_node[6] = 0x4e33c4803e67a08f;
     parent_node[7] = 0x703a29a844ce399;
-    parent_node[8] = &unknown_var_7920_ptr;
+    parent_node[8] = &processed_var_7920_ptr;
     parent_node[9] = 3;
     parent_node[10] = initialization_handler;
 }
@@ -749,7 +749,7 @@ void SystemRegistryNodeCreatorType11(void) {
     // 配置节点属性
     parent_node[6] = 0x43330a43fcdb3653;
     parent_node[7] = 0xdcfdc333a769ec93;
-    parent_node[8] = &unknown_var_7584_ptr;
+    parent_node[8] = &processed_var_7584_ptr;
     parent_node[9] = 1;
     parent_node[10] = initialization_handler;
 }
@@ -807,7 +807,7 @@ void SystemRegistryNodeCreatorType12(void) {
     // 配置节点属性
     parent_node[6] = 0x431d7c8d7c475be2;
     parent_node[7] = 0xb97f048d2153e1b0;
-    parent_node[8] = &unknown_var_7608_ptr;
+    parent_node[8] = &processed_var_7608_ptr;
     parent_node[9] = 4;
     parent_node[10] = initialization_handler;
 }
@@ -865,7 +865,7 @@ void SystemRegistryNodeCreatorType13(void) {
     // 配置节点属性
     parent_node[6] = 0x4b2d79e470ee4e2c;
     parent_node[7] = 0x9c552acd3ed5548d;
-    parent_node[8] = &unknown_var_7632_ptr;
+    parent_node[8] = &processed_var_7632_ptr;
     parent_node[9] = 0;
     parent_node[10] = initialization_handler;
 }
@@ -923,7 +923,7 @@ void SystemRegistryNodeCreatorType14(void) {
     // 配置节点属性
     parent_node[6] = 0x49086ba08ab981a7;
     parent_node[7] = 0xa9191d34ad910696;
-    parent_node[8] = &unknown_var_7656_ptr;
+    parent_node[8] = &processed_var_7656_ptr;
     parent_node[9] = 0;
     parent_node[10] = initialization_handler;
 }
@@ -981,7 +981,7 @@ void SystemRegistryNodeCreatorType15(void) {
     // 配置节点属性
     parent_node[6] = 0x402feffe4481676e;
     parent_node[7] = 0xd4c2151109de93a0;
-    parent_node[8] = &unknown_var_7680_ptr;
+    parent_node[8] = &processed_var_7680_ptr;
     parent_node[9] = 0;
     parent_node[10] = initialization_handler;
 }
@@ -1010,7 +1010,7 @@ void SystemRegistryNodeCreatorType16(void) {
     registry_manager = (SystemRegistryManager*)NetworkDataProcessor();
     root_node = (SystemRegistryNode*)*registry_manager;
     node_status = *(char *)((uint64_t)root_node[1] + 0x19);
-    initialization_handler = &unknown_var_2048_ptr;
+    initialization_handler = &rendering_buffer_2048_ptr;
     parent_node = root_node;
     current_node = (SystemRegistryNode*)root_node[1];
     
@@ -1039,7 +1039,7 @@ void SystemRegistryNodeCreatorType16(void) {
     // 配置节点属性
     parent_node[6] = 0x4384dcc4b6d3f417;
     parent_node[7] = 0x92a15d52fe2679bd;
-    parent_node[8] = &unknown_var_7704_ptr;
+    parent_node[8] = &processed_var_7704_ptr;
     parent_node[9] = 0;
     parent_node[10] = initialization_handler;
 }
@@ -1097,7 +1097,7 @@ void SystemRegistryNodeCreatorType17(void) {
     // 配置节点属性
     parent_node[6] = 0x4140994454d56503;
     parent_node[7] = 0x399eced9bb5517ad;
-    parent_node[8] = &unknown_var_7728_ptr;
+    parent_node[8] = &processed_var_7728_ptr;
     parent_node[9] = 0;
     parent_node[10] = initialization_handler;
 }
@@ -1155,7 +1155,7 @@ void SystemRegistryNodeCreatorType18(void) {
     // 配置节点属性
     parent_node[6] = 0x449bafe9b77ddd3c;
     parent_node[7] = 0xc160408bde99e59f;
-    parent_node[8] = &unknown_var_7776_ptr;
+    parent_node[8] = &processed_var_7776_ptr;
     parent_node[9] = 0;
     parent_node[10] = initialization_handler;
 }
@@ -1213,7 +1213,7 @@ void SystemRegistryNodeCreatorType19(void) {
     // 配置节点属性
     parent_node[6] = 0x45425dc186a5d575;
     parent_node[7] = 0xfab48faa65382fa5;
-    parent_node[8] = &unknown_var_7824_ptr;
+    parent_node[8] = &processed_var_7824_ptr;
     parent_node[9] = 0;
     parent_node[10] = initialization_handler;
 }
@@ -1271,7 +1271,7 @@ void SystemRegistryNodeCreatorType20(void) {
     // 配置节点属性
     parent_node[6] = 0x40db4257e97d3df8;
     parent_node[7] = 0x81d539e33614429f;
-    parent_node[8] = &unknown_var_7896_ptr;
+    parent_node[8] = &processed_var_7896_ptr;
     parent_node[9] = 4;
     parent_node[10] = initialization_handler;
 }
@@ -1329,7 +1329,7 @@ void SystemRegistryNodeCreatorType21(void) {
     // 配置节点属性
     parent_node[6] = 0x4e33c4803e67a08f;
     parent_node[7] = 0x703a29a844ce399;
-    parent_node[8] = &unknown_var_7920_ptr;
+    parent_node[8] = &processed_var_7920_ptr;
     parent_node[9] = 3;
     parent_node[10] = initialization_handler;
 }
@@ -1387,7 +1387,7 @@ void SystemRegistryNodeCreatorType22(void) {
     // 配置节点属性
     parent_node[6] = 0x42bea5b911d9c4bf;
     parent_node[7] = 0x1aa83fc0020dc1b6;
-    parent_node[8] = &unknown_var_4632_ptr;
+    parent_node[8] = &processed_var_4632_ptr;
     parent_node[9] = 0;
     parent_node[10] = initialization_handler;
 }
@@ -1445,7 +1445,7 @@ void SystemRegistryNodeCreatorType23(void) {
     // 配置节点属性
     parent_node[6] = 0x43330a43fcdb3653;
     parent_node[7] = 0xdcfdc333a769ec93;
-    parent_node[8] = &unknown_var_7584_ptr;
+    parent_node[8] = &processed_var_7584_ptr;
     parent_node[9] = 1;
     parent_node[10] = initialization_handler;
 }
@@ -1503,7 +1503,7 @@ void SystemRegistryNodeCreatorType24(void) {
     // 配置节点属性
     parent_node[6] = 0x431d7c8d7c475be2;
     parent_node[7] = 0xb97f048d2153e1b0;
-    parent_node[8] = &unknown_var_7608_ptr;
+    parent_node[8] = &processed_var_7608_ptr;
     parent_node[9] = 4;
     parent_node[10] = initialization_handler;
 }
@@ -1561,7 +1561,7 @@ void SystemRegistryNodeCreatorType25(void) {
     // 配置节点属性
     parent_node[6] = 0x4b2d79e470ee4e2c;
     parent_node[7] = 0x9c552acd3ed5548d;
-    parent_node[8] = &unknown_var_7632_ptr;
+    parent_node[8] = &processed_var_7632_ptr;
     parent_node[9] = 0;
     parent_node[10] = initialization_handler;
 }
@@ -1619,7 +1619,7 @@ void SystemRegistryNodeCreatorType26(void) {
     // 配置节点属性
     parent_node[6] = 0x49086ba08ab981a7;
     parent_node[7] = 0xa9191d34ad910696;
-    parent_node[8] = &unknown_var_7656_ptr;
+    parent_node[8] = &processed_var_7656_ptr;
     parent_node[9] = 0;
     parent_node[10] = initialization_handler;
 }

@@ -112,7 +112,7 @@ void rendering_system_queue_manager(int64_t *param_1, uint64_t *param_2)
   }
   
   // 分配渲染资源池
-  uVar9 = FUN_18062b1e0(system_memory_pool_ptr, RENDERING_POOL_SIZE_0x68, RENDERING_RESOURCE_ALIGNMENT, 3);
+  uVar9 = CoreSystem_LoggingManager0(system_memory_pool_ptr, RENDERING_POOL_SIZE_0x68, RENDERING_RESOURCE_ALIGNMENT, 3);
   puVar10 = (int32_t *)FUN_1803202a0(uVar9);
   puStackX_20 = puVar10;
   
@@ -253,7 +253,7 @@ void rendering_system_resource_processor(uint64_t *param_1, uint64_t param_2, in
   }
   
   // 分配渲染资源池
-  uVar5 = FUN_18062b1e0(system_memory_pool_ptr, RENDERING_POOL_SIZE_0xa8, RENDERING_RESOURCE_ALIGNMENT, 3);
+  uVar5 = CoreSystem_LoggingManager0(system_memory_pool_ptr, RENDERING_POOL_SIZE_0xa8, RENDERING_RESOURCE_ALIGNMENT, 3);
   puVar6 = (int32_t *)FUN_180320330(uVar5);
   
   // 复制渲染资源参数
@@ -374,7 +374,7 @@ void rendering_system_parameter_handler(uint64_t *param_1, int32_t *param_2, int
   }
   
   // 分配渲染参数池
-  uVar8 = FUN_18062b1e0(system_memory_pool_ptr, RENDERING_POOL_SIZE_0x48, RENDERING_RESOURCE_ALIGNMENT, 3);
+  uVar8 = CoreSystem_LoggingManager0(system_memory_pool_ptr, RENDERING_POOL_SIZE_0x48, RENDERING_RESOURCE_ALIGNMENT, 3);
   puVar9 = (int32_t *)FUN_1803203f0(uVar8);
   
   // 复制渲染参数数据
@@ -487,7 +487,7 @@ void *rendering_system_memory_allocator(int64_t param_1, int64_t param_2)
   *(int32_t *)(param_1 + 800) = uVar5;
   
   // 分配渲染内存池
-  uVar3 = FUN_18062b1e0(system_memory_pool_ptr, RENDERING_POOL_SIZE_0x560, RENDERING_RESOURCE_ALIGNMENT, 3);
+  uVar3 = CoreSystem_LoggingManager0(system_memory_pool_ptr, RENDERING_POOL_SIZE_0x560, RENDERING_RESOURCE_ALIGNMENT, 3);
   lVar1 = *(int64_t *)(param_1 + 0x2d8);
   
   // 初始化渲染内存参数
@@ -639,7 +639,7 @@ void rendering_system_pipeline_initializer(int64_t param_1)
   
   // 初始化渲染管线参数
   uVar12 = 0xfffffffffffffffe;
-  puVar5 = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, RENDERING_POOL_SIZE_0x908, RENDERING_RESOURCE_ALIGNMENT, 3);
+  puVar5 = (int32_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr, RENDERING_POOL_SIZE_0x908, RENDERING_RESOURCE_ALIGNMENT, 3);
   
   // 初始化渲染管线锁
   LOCK();
@@ -720,7 +720,7 @@ void rendering_system_pipeline_initializer(int64_t param_1)
                   0xffffffffffffffff, &plStack_58, uVar12, puVar13);
     
     // 初始化渲染管线节点
-    puVar8 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr, RENDERING_POOL_SIZE_0x20, RENDERING_RESOURCE_ALIGNMENT, 3);
+    puVar8 = (uint64_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr, RENDERING_POOL_SIZE_0x20, RENDERING_RESOURCE_ALIGNMENT, 3);
     *puVar8 = 0;
     puVar8[1] = 0;
     puVar8[2] = 0;
@@ -884,7 +884,7 @@ void rendering_system_advanced_processor(int64_t param_1, int64_t param_2, int p
     }
     
     // 分配渲染系统资源池
-    uVar6 = FUN_18062b1e0(system_memory_pool_ptr, RENDERING_POOL_SIZE_0x1b0, RENDERING_RESOURCE_ALIGNMENT, 3);
+    uVar6 = CoreSystem_LoggingManager0(system_memory_pool_ptr, RENDERING_POOL_SIZE_0x1b0, RENDERING_RESOURCE_ALIGNMENT, 3);
     puVar7 = (int32_t *)FUN_180320c80(uVar6);
     *puVar7 = 1;
     

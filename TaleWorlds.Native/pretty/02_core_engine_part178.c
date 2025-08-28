@@ -70,7 +70,7 @@ FUN_180160d20(uint64_t *param_1,uint64_t param_2,int64_t *param_3,uint64_t param
     if (puStack_60 != (void *)0x0) {
       puVar7 = puStack_60;
     }
-    lVar2 = strstr(puVar7,&unknown_var_9232_ptr);
+    lVar2 = strstr(puVar7,&processed_var_9232_ptr);
     iVar9 = *(int *)(param_1 + 2);
     if (lVar2 == 0) {
       iVar10 = iVar9 + 9;
@@ -154,7 +154,7 @@ FUN_180160d20(uint64_t *param_1,uint64_t param_2,int64_t *param_3,uint64_t param
     if (puStack_60 != (void *)0x0) {
       puVar7 = puStack_60;
     }
-    lVar2 = strstr(puVar7,&unknown_var_9232_ptr);
+    lVar2 = strstr(puVar7,&processed_var_9232_ptr);
     if (lVar2 == 0) {
       FUN_1800af2c0(SYSTEM_STATE_MANAGER,&puStack_68,&puStack_48);
     }
@@ -166,22 +166,22 @@ FUN_180160d20(uint64_t *param_1,uint64_t param_2,int64_t *param_3,uint64_t param
     if (puStack_60 != (void *)0x0) {
       puVar7 = puStack_60;
     }
-    lVar2 = strstr(puVar7,&unknown_var_8920_ptr);
+    lVar2 = strstr(puVar7,&processed_var_8920_ptr);
     puVar7 = &system_buffer_ptr;
     if (puStack_60 != (void *)0x0) {
       puVar7 = puStack_60;
     }
-    lVar3 = strstr(puVar7,&unknown_var_8904_ptr);
+    lVar3 = strstr(puVar7,&processed_var_8904_ptr);
     puVar7 = &system_buffer_ptr;
     if (puStack_60 != (void *)0x0) {
       puVar7 = puStack_60;
     }
-    lVar4 = strstr(puVar7,&unknown_var_8936_ptr);
+    lVar4 = strstr(puVar7,&processed_var_8936_ptr);
     puVar7 = &system_buffer_ptr;
     if (puStack_60 != (void *)0x0) {
       puVar7 = puStack_60;
     }
-    lVar5 = strstr(puVar7,&unknown_var_8992_ptr);
+    lVar5 = strstr(puVar7,&processed_var_8992_ptr);
     if ((((lVar2 == 0) && (lVar3 == 0)) && (lVar4 == 0)) && (lVar5 == 0)) {
       uVar6 = 0;
     }
@@ -261,7 +261,7 @@ FUN_180161170(uint64_t *param_1,uint64_t param_2,int64_t *param_3,uint64_t param
     if (puStack_60 != (void *)0x0) {
       puVar4 = puStack_60;
     }
-    lVar2 = strstr(puVar4,&unknown_var_6432_ptr);
+    lVar2 = strstr(puVar4,&processed_var_6432_ptr);
     iVar6 = *(int *)(param_1 + 2);
     if (lVar2 != 0) {
       CoreMemoryPoolProcessor(param_1,iVar6 + 0x2b);

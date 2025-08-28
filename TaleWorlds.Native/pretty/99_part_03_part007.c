@@ -340,7 +340,7 @@ LAB_1801cb5d2:
   if ((int64_t)plStack_338 - (int64_t)plStack_340 >> 3 == 0) {
     lVar13 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x40,(int8_t)uStack_2f0);
     puVar23 = (uint64_t *)(lVar13 + 0x20);
-    CoreMemoryPoolValidator(puVar23,&unknown_var_920_ptr);
+    CoreMemoryPoolValidator(puVar23,&processed_var_920_ptr);
     bVar2 = true;
     pppppppuVar5 = &pppppppuStack_318;
     pppppppuVar15 = pppppppuStack_308;

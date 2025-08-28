@@ -280,28 +280,28 @@ extern void *system_main_module_state;              // 系统主模块状态指�
 extern void *system_message_context;                 // 系统消息上下文指针
 
 // 系统常量引用
-extern void *unknown_var_3432_ptr;                  // 未知变量3432指针
-extern void *unknown_var_6404_ptr;                  // 未知变量6404指针
-extern void *unknown_var_6424_ptr;                  // 未知变量6424指针
-extern void *unknown_var_6456_ptr;                  // 未知变量6456指针
-extern void *unknown_var_6480_ptr;                  // 未知变量6480指针
-extern void *unknown_var_6504_ptr;                  // 未知变量6504指针
-extern void *unknown_var_6536_ptr;                  // 未知变量6536指针
-extern void *unknown_var_6576_ptr;                  // 未知变量6576指针
-extern void *unknown_var_6384_ptr;                  // 未知变量6384指针
-extern void *unknown_var_264_ptr;                    // 未知变量264指针
-extern void *unknown_var_6880_ptr;                  // 未知变量6880指针
-extern void *unknown_var_6896_ptr;                  // 未知变量6896指针
-extern void *unknown_var_6928_ptr;                  // 未知变量6928指针
-extern void *unknown_var_6960_ptr;                  // 未知变量6960指针
-extern void *unknown_var_6992_ptr;                  // 未知变量6992指针
-extern void *unknown_var_7024_ptr;                  // 未知变量7024指针
-extern void *unknown_var_7064_ptr;                  // 未知变量7064指针
-extern void *unknown_var_7104_ptr;                  // 未知变量7104指针
-extern void *unknown_var_7144_ptr;                  // 未知变量7144指针
-extern void *unknown_var_7184_ptr;                  // 未知变量7184指针
-extern void *unknown_var_7224_ptr;                  // 未知变量7224指针
-extern void *unknown_var_7264_ptr;                  // 未知变量7264指针
+extern void *memory_allocator_3432_ptr;                  // 未知变量3432指针
+extern void *processed_var_6404_ptr;                  // 未知变量6404指针
+extern void *processed_var_6424_ptr;                  // 未知变量6424指针
+extern void *processed_var_6456_ptr;                  // 未知变量6456指针
+extern void *processed_var_6480_ptr;                  // 未知变量6480指针
+extern void *processed_var_6504_ptr;                  // 未知变量6504指针
+extern void *processed_var_6536_ptr;                  // 未知变量6536指针
+extern void *processed_var_6576_ptr;                  // 未知变量6576指针
+extern void *processed_var_6384_ptr;                  // 未知变量6384指针
+extern void *rendering_buffer_264_ptr;                    // 未知变量264指针
+extern void *processed_var_6880_ptr;                  // 未知变量6880指针
+extern void *processed_var_6896_ptr;                  // 未知变量6896指针
+extern void *processed_var_6928_ptr;                  // 未知变量6928指针
+extern void *processed_var_6960_ptr;                  // 未知变量6960指针
+extern void *processed_var_6992_ptr;                  // 未知变量6992指针
+extern void *processed_var_7024_ptr;                  // 未知变量7024指针
+extern void *processed_var_7064_ptr;                  // 未知变量7064指针
+extern void *processed_var_7104_ptr;                  // 未知变量7104指针
+extern void *processed_var_7144_ptr;                  // 未知变量7144指针
+extern void *processed_var_7184_ptr;                  // 未知变量7184指针
+extern void *processed_var_7224_ptr;                  // 未知变量7224指针
+extern void *processed_var_7264_ptr;                  // 未知变量7264指针
 
 // 系统数据管理器变量
 extern uint64_t SYSTEM_DATA_MANAGER_A;              // 系统数据管理器A
@@ -925,7 +925,7 @@ void SystemDataProcessor(int64_t *param_1, int64_t param_2)
   uStack_107 = 0x1010101;
   uStack_103 = 1;
   uStack_108 = 1;
-  puStack_e8 = &unknown_var_3432_ptr;
+  puStack_e8 = &memory_allocator_3432_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = *(int32_t *)(param_2 + 0x10);
@@ -1193,7 +1193,7 @@ LAB_180054912:
         if (puStack_110 != (int8_t *)0x0) {
           puVar6 = puStack_110;
         }
-        System_DataHandler(&puStack_d0,&unknown_var_6404_ptr,puVar6);
+        System_DataHandler(&puStack_d0,&processed_var_6404_ptr,puVar6);
         cVar4 = FUN_180624a00(&puStack_d0);
         if (cVar4 == '\0') {
           FUN_180624910(&puStack_d0);
@@ -1234,31 +1234,31 @@ LAB_180054912:
               puVar6 = puStack_150;
             }
             uStack_148 = iVar9;
-            lVar14 = strstr(puVar6,&unknown_var_6424_ptr);
+            lVar14 = strstr(puVar6,&processed_var_6424_ptr);
             if (lVar14 == 0) {
               puVar6 = &system_buffer_ptr;
               if (puStack_150 != (int8_t *)0x0) {
                 puVar6 = puStack_150;
               }
-              lVar14 = strstr(puVar6,&unknown_var_6456_ptr);
+              lVar14 = strstr(puVar6,&processed_var_6456_ptr);
               if (lVar14 != 0) goto LAB_180054ec9;
               puVar6 = &system_buffer_ptr;
               if (puStack_150 != (int8_t *)0x0) {
                 puVar6 = puStack_150;
               }
-              lVar14 = strstr(puVar6,&unknown_var_6480_ptr);
+              lVar14 = strstr(puVar6,&processed_var_6480_ptr);
               if (lVar14 != 0) goto LAB_180054ec9;
               puVar6 = &system_buffer_ptr;
               if (puStack_150 != (int8_t *)0x0) {
                 puVar6 = puStack_150;
               }
-              lVar14 = strstr(puVar6,&unknown_var_6504_ptr);
+              lVar14 = strstr(puVar6,&processed_var_6504_ptr);
               if (lVar14 != 0) goto LAB_180054ec9;
               puVar6 = &system_buffer_ptr;
               if (puStack_150 != (int8_t *)0x0) {
                 puVar6 = puStack_150;
               }
-              lVar14 = strstr(puVar6,&unknown_var_6536_ptr);
+              lVar14 = strstr(puVar6,&processed_var_6536_ptr);
               if (lVar14 != 0) goto LAB_180054ec9;
               cVar4 = FUN_180624af0(&puStack_158);
               if (cVar4 == '\0') {
@@ -1335,7 +1335,7 @@ LAB_180054d57:
                   if (puStack_90 != (void *)0x0) {
                     puVar16 = puStack_90;
                   }
-                  System_DataHandler(&puStack_f0,&unknown_var_6576_ptr,puVar16);
+                  System_DataHandler(&puStack_f0,&processed_var_6576_ptr,puVar16);
                   FUN_18062db60(&puStack_f0,&puStack_78);
                   init_system_data_memory = 0;
                   puStack_f0 = &system_data_buffer_ptr;
@@ -1449,18 +1449,18 @@ void FUN_180055050(void)
   puVar2 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x198,8,3);
   puVar1 = puVar2 + 4;
   FUN_180637560(puVar1);
-  *puVar1 = &unknown_var_6384_ptr;
+  *puVar1 = &processed_var_6384_ptr;
   *(int16_t *)(puVar2 + 0x1a) = 1;
   *(int32_t *)(puVar2 + 9) = 0;
   *(int8_t *)((int64_t)puVar2 + 0x54) = 0;
-  *puVar1 = &unknown_var_264_ptr;
+  *puVar1 = &rendering_buffer_264_ptr;
   puVar1 = puVar2 + 0x1b;
   FUN_180637560(puVar1);
-  *puVar1 = &unknown_var_6384_ptr;
+  *puVar1 = &processed_var_6384_ptr;
   *(int16_t *)(puVar2 + 0x31) = 1;
   *(int32_t *)(puVar2 + 0x20) = 0;
   *(int8_t *)((int64_t)puVar2 + 0x10c) = 0;
-  *puVar1 = &unknown_var_264_ptr;
+  *puVar1 = &rendering_buffer_264_ptr;
   *puVar2 = 0;
   *(int8_t *)(puVar2 + 3) = 0;
   puVar2[2] = 0xffffffff00000000;
@@ -1710,24 +1710,24 @@ void FUN_180055fa0(void)
     }
     uVar2 = SYSTEM_DATA_MANAGER_A;
     SYSTEM_DATA_MANAGER_A = *puVar1;
-    FUN_1801299b0(&unknown_var_6880_ptr,0,0,in_R9,uVar6);
-    SystemCore_CacheManager0(&unknown_var_6896_ptr,*(int32_t *)(pcVar3 + 4));
-    SystemCore_CacheManager0(&unknown_var_6928_ptr,*(int32_t *)(pcVar3 + 8));
-    SystemCore_CacheManager0(&unknown_var_6960_ptr,*(int32_t *)(pcVar3 + 0xc));
-    SystemCore_CacheManager0(&unknown_var_6992_ptr,*(int32_t *)(pcVar3 + 0x10));
-    SystemCore_CacheManager0(&unknown_var_7024_ptr,*(int32_t *)(pcVar3 + 0x14));
-    SystemCore_CacheManager0(&unknown_var_7064_ptr,*(int32_t *)(pcVar3 + 0x18));
+    FUN_1801299b0(&processed_var_6880_ptr,0,0,in_R9,uVar6);
+    SystemCore_CacheManager0(&processed_var_6896_ptr,*(int32_t *)(pcVar3 + 4));
+    SystemCore_CacheManager0(&processed_var_6928_ptr,*(int32_t *)(pcVar3 + 8));
+    SystemCore_CacheManager0(&processed_var_6960_ptr,*(int32_t *)(pcVar3 + 0xc));
+    SystemCore_CacheManager0(&processed_var_6992_ptr,*(int32_t *)(pcVar3 + 0x10));
+    SystemCore_CacheManager0(&processed_var_7024_ptr,*(int32_t *)(pcVar3 + 0x14));
+    SystemCore_CacheManager0(&processed_var_7064_ptr,*(int32_t *)(pcVar3 + 0x18));
     for (pcVar5 = *(char **)(pcVar3 + 0x28); pcVar5 != pcVar3 + 0x20;
         pcVar5 = (char *)func_0x00018066bd70(pcVar5)) {
-      SystemCore_CacheManager0(&unknown_var_7104_ptr,*(int32_t *)(pcVar5 + 0x20),*(int32_t *)(pcVar5 + 0x24));
+      SystemCore_CacheManager0(&processed_var_7104_ptr,*(int32_t *)(pcVar5 + 0x20),*(int32_t *)(pcVar5 + 0x24));
     }
     for (pcVar5 = *(char **)(pcVar3 + 0x58); pcVar5 != pcVar3 + 0x50;
         pcVar5 = (char *)func_0x00018066bd70(pcVar5)) {
-      SystemCore_CacheManager0(&unknown_var_7144_ptr,*(int32_t *)(pcVar5 + 0x20),*(int32_t *)(pcVar5 + 0x24));
+      SystemCore_CacheManager0(&processed_var_7144_ptr,*(int32_t *)(pcVar5 + 0x20),*(int32_t *)(pcVar5 + 0x24));
     }
-    SystemCore_CacheManager0(&unknown_var_7184_ptr,*(int32_t *)(pcVar3 + 0x80));
-    SystemCore_CacheManager0(&unknown_var_7224_ptr,*(int32_t *)(pcVar3 + 0x84));
-    SystemCore_CacheManager0(&unknown_var_7264_ptr,*(int32_t *)(pcVar3 + 0x88));
+    SystemCore_CacheManager0(&processed_var_7184_ptr,*(int32_t *)(pcVar3 + 0x80));
+    SystemCore_CacheManager0(&processed_var_7224_ptr,*(int32_t *)(pcVar3 + 0x84));
+    SystemCore_CacheManager0(&processed_var_7264_ptr,*(int32_t *)(pcVar3 + 0x88));
     FUN_18012cfe0();
     SYSTEM_DATA_MANAGER_A = uVar2;
     iVar4 = _Mtx_unlock(0x180c91970);

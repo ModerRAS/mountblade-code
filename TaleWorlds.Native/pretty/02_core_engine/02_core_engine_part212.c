@@ -500,7 +500,7 @@ void load_and_process_resource_data(uint64_t param_1, int64_t param_2)
         resource_name = *(void **)(data_offset + 8);
     }
     
-    resource_ptr = &unknown_var_9208_ptr;
+    resource_ptr = &processed_var_9208_ptr;
     resource_type = file_data_buffer;
     resource_id = 0;
     file_data_buffer[0] = 0;
@@ -597,7 +597,7 @@ void load_and_process_resource_data(uint64_t param_1, int64_t param_2)
     
     resource_ptr = g_resource_header;
     buffer_ptr = line_storage;
-    *(void **)((int64_t)stream_params + (int64_t)*(int *)(stream_params[0] + 4)) = &unknown_var_1768_ptr;
+    *(void **)((int64_t)stream_params + (int64_t)*(int *)(stream_params[0] + 4)) = &ui_system_data_1768_ptr;
     *(int *)((int64_t)&buffer_offset + (int64_t)*(int *)(stream_params[0] + 4)) =
          *(int *)(stream_params[0] + 4) + -0xb8;
     

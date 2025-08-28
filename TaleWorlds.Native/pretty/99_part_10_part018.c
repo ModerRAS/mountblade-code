@@ -484,14 +484,14 @@ LAB_1806ae130:
       plVar10 = (int64_t *)PxGetFoundation();
       cVar7 = (**(code **)(*plVar10 + 0x28))(plVar10);
       if (cVar7 == '\0') {
-        puVar11 = &unknown_var_1728_ptr;
+        puVar11 = &ui_system_data_1728_ptr;
       }
       else {
         puVar11 = (void *)__std_type_info_name(0x180bfc3c8,0x180c827e0);
       }
       puVar12 = (int32_t *)
                 (**(code **)(*plVar9 + 8))
-                          (plVar9,(uint64_t)uVar18 * 0x78,puVar11,&unknown_var_4272_ptr,0x229);
+                          (plVar9,(uint64_t)uVar18 * 0x78,puVar11,&processed_var_4272_ptr,0x229);
       goto LAB_1806ae1a1;
     }
   }
@@ -506,7 +506,7 @@ LAB_1806ae1a1:
     puVar14 = puVar12 + 6;
     puVar16 = (int32_t *)(*param_1 + 0x18);
     do {
-      *(void **)(puVar14 + -6) = &unknown_var_3704_ptr;
+      *(void **)(puVar14 + -6) = &memory_allocator_3704_ptr;
       uVar6 = *(uint64_t *)(puVar16 + -2);
       *(uint64_t *)(puVar14 + -4) = *(uint64_t *)(puVar16 + -4);
       *(uint64_t *)(puVar14 + -2) = uVar6;
@@ -534,7 +534,7 @@ LAB_1806ae1a1:
     } while (puVar1 < puVar12 + uVar13 * 0x1e);
     uVar13 = (uint64_t)*(uint *)(param_1 + 1);
   }
-  *(void **)(puVar12 + uVar13 * 0x1e) = &unknown_var_3704_ptr;
+  *(void **)(puVar12 + uVar13 * 0x1e) = &memory_allocator_3704_ptr;
   uVar6 = *(uint64_t *)(param_2 + 0x10);
   *(uint64_t *)(puVar12 + uVar13 * 0x1e + 2) = *(uint64_t *)(param_2 + 8);
   *(uint64_t *)((int64_t)(puVar12 + uVar13 * 0x1e + 2) + 8) = uVar6;
@@ -564,7 +564,7 @@ LAB_1806ae1a1:
   puVar15 = (uint64_t *)*param_1;
   puVar17 = puVar15 + (uint64_t)*(uint *)(param_1 + 1) * 0xf;
   for (; puVar15 < puVar17; puVar15 = puVar15 + 0xf) {
-    *puVar15 = &unknown_var_3704_ptr;
+    *puVar15 = &memory_allocator_3704_ptr;
   }
   if ((-1 < *(int *)((int64_t)param_1 + 0xc)) && (lVar2 = *param_1, lVar2 != 0)) {
     plVar9 = (int64_t *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
@@ -614,7 +614,7 @@ int32_t * FUN_1806ae13b(void)
     puVar13 = puVar11 + 6;
     puVar15 = (int32_t *)(*unaff_RBX + 0x18);
     do {
-      *(void **)(puVar13 + -6) = &unknown_var_3704_ptr;
+      *(void **)(puVar13 + -6) = &memory_allocator_3704_ptr;
       uVar7 = *(uint64_t *)(puVar15 + -2);
       *(uint64_t *)(puVar13 + -4) = *(uint64_t *)(puVar15 + -4);
       *(uint64_t *)(puVar13 + -2) = uVar7;
@@ -642,7 +642,7 @@ int32_t * FUN_1806ae13b(void)
     } while (puVar1 < puVar11 + uVar12 * 0x1e);
     uVar12 = (uint64_t)*(uint *)(unaff_RBX + 1);
   }
-  *(void **)(puVar11 + uVar12 * 0x1e) = &unknown_var_3704_ptr;
+  *(void **)(puVar11 + uVar12 * 0x1e) = &memory_allocator_3704_ptr;
   uVar7 = *(uint64_t *)(unaff_RBP + 0x10);
   *(uint64_t *)(puVar11 + uVar12 * 0x1e + 2) = *(uint64_t *)(unaff_RBP + 8);
   *(uint64_t *)((int64_t)(puVar11 + uVar12 * 0x1e + 2) + 8) = uVar7;
@@ -672,7 +672,7 @@ int32_t * FUN_1806ae13b(void)
   puVar14 = (uint64_t *)*unaff_RBX;
   puVar16 = puVar14 + (uint64_t)*(uint *)(unaff_RBX + 1) * 0xf;
   for (; puVar14 < puVar16; puVar14 = puVar14 + 0xf) {
-    *puVar14 = &unknown_var_3704_ptr;
+    *puVar14 = &memory_allocator_3704_ptr;
   }
   if ((-1 < *(int *)((int64_t)unaff_RBX + 0xc)) && (lVar3 = *unaff_RBX, lVar3 != 0)) {
     plVar9 = (int64_t *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
@@ -712,7 +712,7 @@ int64_t FUN_1806ae19f(void)
     puVar9 = (int32_t *)&system_data_0018;
     puVar12 = (int32_t *)(*unaff_RBX + 0x18);
     do {
-      *(void **)(puVar9 + -6) = &unknown_var_3704_ptr;
+      *(void **)(puVar9 + -6) = &memory_allocator_3704_ptr;
       uVar7 = *(uint64_t *)(puVar12 + -2);
       *(uint64_t *)(puVar9 + -4) = *(uint64_t *)(puVar12 + -4);
       *(uint64_t *)(puVar9 + -2) = uVar7;
@@ -741,7 +741,7 @@ int64_t FUN_1806ae19f(void)
     uVar8 = (uint64_t)*(uint *)(unaff_RBX + 1);
   }
   puVar11 = (uint64_t *)(uVar8 * 0x78);
-  *puVar11 = &unknown_var_3704_ptr;
+  *puVar11 = &memory_allocator_3704_ptr;
   uVar7 = *(uint64_t *)(unaff_RBP + 0x10);
   puVar11[1] = *(uint64_t *)(unaff_RBP + 8);
   puVar11[2] = uVar7;
@@ -770,7 +770,7 @@ int64_t FUN_1806ae19f(void)
   puVar11 = (uint64_t *)*unaff_RBX;
   puVar13 = puVar11 + (uint64_t)*(uint *)(unaff_RBX + 1) * 0xf;
   for (; puVar11 < puVar13; puVar11 = puVar11 + 0xf) {
-    *puVar11 = &unknown_var_3704_ptr;
+    *puVar11 = &memory_allocator_3704_ptr;
   }
   if ((-1 < *(int *)((int64_t)unaff_RBX + 0xc)) && (lVar3 = *unaff_RBX, lVar3 != 0)) {
     plVar10 = (int64_t *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
@@ -808,7 +808,7 @@ int64_t FUN_1806ae340(int64_t *param_1,int64_t param_2)
   lVar7 = FUN_1806aaa10(param_1,iVar11);
   func_0x0001806aac60(lVar7,(uint64_t)*(uint *)(param_1 + 1) * 0x78 + lVar7,*param_1);
   puVar9 = (uint64_t *)((uint64_t)*(uint *)(param_1 + 1) * 0x78 + lVar7);
-  *puVar9 = &unknown_var_3704_ptr;
+  *puVar9 = &memory_allocator_3704_ptr;
   uVar5 = *(uint64_t *)(param_2 + 0x10);
   puVar9[1] = *(uint64_t *)(param_2 + 8);
   puVar9[2] = uVar5;
@@ -837,7 +837,7 @@ int64_t FUN_1806ae340(int64_t *param_1,int64_t param_2)
   puVar9 = (uint64_t *)*param_1;
   puVar10 = puVar9 + (uint64_t)*(uint *)(param_1 + 1) * 0xf;
   for (; puVar9 < puVar10; puVar9 = puVar9 + 0xf) {
-    *puVar9 = &unknown_var_3704_ptr;
+    *puVar9 = &memory_allocator_3704_ptr;
   }
   if ((-1 < *(int *)((int64_t)param_1 + 0xc)) && (lVar1 = *param_1, lVar1 != 0)) {
     plVar8 = (int64_t *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();

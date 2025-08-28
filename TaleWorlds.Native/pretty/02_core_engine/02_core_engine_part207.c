@@ -536,7 +536,7 @@ rebalance_string_tree(int64_t *param_1, uint64_t *param_2, char param_3, uint64_
   
   if (0x2aaaaaaaaaaaaa8 < (uint64_t)param_1[1]) {
     FUN_18018a9a0(0x2aaaaaaaaaaaaa9,param_6);
-    __Xlength_error_std__YAXPEBD_Z(&unknown_var_9176_ptr);
+    __Xlength_error_std__YAXPEBD_Z(&processed_var_9176_ptr);
     pcVar3 = (code *)swi(3);
     puVar4 = (uint64_t *)(*pcVar3)();
     return puVar4;
@@ -854,7 +854,7 @@ rebalance_numeric_tree(int64_t *param_1, uint64_t *param_2, char param_3, uint64
   
   if (0x666666666666664 < (uint64_t)param_1[1]) {
     func_0x000180188610(0x666666666666665,param_6);
-    __Xlength_error_std__YAXPEBD_Z(&unknown_var_9176_ptr);
+    __Xlength_error_std__YAXPEBD_Z(&processed_var_9176_ptr);
     pcVar3 = (code *)swi(3);
     puVar4 = (uint64_t *)(*pcVar3)();
     return puVar4;
@@ -1133,7 +1133,7 @@ uint64_t *
 initialize_string_iterator(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_5192_ptr;
+  *param_1 = &processed_var_5192_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x30,param_3,param_4,0xfffffffffffffffe);
   }
@@ -1154,7 +1154,7 @@ uint64_t *
 initialize_numeric_iterator(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_1136_ptr;
+  *param_1 = &ui_system_data_1136_ptr;
   if (param_1[0x16] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
@@ -1186,8 +1186,8 @@ uint64_t * create_string_mapping(uint64_t param_1, int64_t param_2)
   uint64_t *puVar2;
   
   puVar2 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x30,8,3,0xfffffffffffffffe);
-  *puVar2 = &unknown_var_5192_ptr;
-  *puVar2 = &unknown_var_1240_ptr;
+  *puVar2 = &processed_var_5192_ptr;
+  *puVar2 = &ui_system_data_1240_ptr;
   *(int32_t *)(puVar2 + 1) = 0;
   *(int32_t *)((int64_t)puVar2 + 0xc) = 0x539;
   *(int32_t *)((int64_t)puVar2 + 0x1c) = 1;

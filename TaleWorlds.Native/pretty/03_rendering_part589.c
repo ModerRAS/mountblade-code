@@ -420,7 +420,7 @@ uint64_t FUN_18058fdf0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
       if (*(void **)(param_1 + 0x18) != (void *)0x0) {
         puVar6 = *(void **)(param_1 + 0x18);
       }
-      SystemDataInitializer(&unknown_var_2416_ptr,puVar6);
+      SystemDataInitializer(&rendering_buffer_2416_ptr,puVar6);
     }
     else {
       lStack_70 = 0;

@@ -257,7 +257,7 @@ void FUN_180607c80(int param_1)
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_238);
   }
-  FUN_180626eb0(auStack_218,0x200,&unknown_var_2072_ptr);
+  FUN_180626eb0(auStack_218,0x200,&rendering_buffer_2072_ptr);
   FUN_18061c7a0(auStack_218);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_238);
@@ -284,7 +284,7 @@ void FUN_180607d30(int64_t param_1)
   
   uStack_88 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_a8;
-  puStack_78 = &unknown_var_3480_ptr;
+  puStack_78 = &memory_allocator_3480_ptr;
   puStack_70 = auStack_60;
   iStack_68 = 0;
   auStack_60[0] = 0;
@@ -374,7 +374,7 @@ uint64_t FUN_180607e80(int32_t param_1,int32_t param_2)
         uVar5 = (*pcVar3)();
         return uVar5;
       }
-      if ((void *)*puVar2 == &unknown_var_9568_ptr) {
+      if ((void *)*puVar2 == &processed_var_9568_ptr) {
                     // WARNING: Could not recover jumptable at 0x000180404403. Too many branches
                     // WARNING: Treating indirect jump as call
         uVar5 = (*(code *)puVar2[1])(puVar2[2]);
@@ -424,7 +424,7 @@ void FUN_180607f40(int param_1)
       SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_238);
     }
   }
-  FUN_180626eb0(auStack_218,0x200,&unknown_var_1952_ptr,&unknown_var_8432_ptr);
+  FUN_180626eb0(auStack_218,0x200,&ui_system_data_1952_ptr,&processed_var_8432_ptr);
   FUN_18061c7a0(auStack_218);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_238);
@@ -453,7 +453,7 @@ void FUN_180608000(int param_1)
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_238);
   }
-  FUN_180626eb0(auStack_218,0x200,&unknown_var_1952_ptr,&unknown_var_8384_ptr);
+  FUN_180626eb0(auStack_218,0x200,&ui_system_data_1952_ptr,&processed_var_8384_ptr);
   FUN_18061c7a0(auStack_218);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_238);
@@ -484,7 +484,7 @@ void FUN_1806080e0(int param_1)
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(uRam00000000000001d8);
   }
-  FUN_180626eb0(auStack_218,0x200,&unknown_var_1952_ptr,&unknown_var_8232_ptr);
+  FUN_180626eb0(auStack_218,0x200,&ui_system_data_1952_ptr,&processed_var_8232_ptr);
   FUN_18061c7a0(auStack_218);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(0);
@@ -515,7 +515,7 @@ void FUN_1806081c0(int param_1)
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(uRam00000000000001dc);
   }
-  FUN_180626eb0(auStack_218,0x200,&unknown_var_1952_ptr,&unknown_var_8184_ptr);
+  FUN_180626eb0(auStack_218,0x200,&ui_system_data_1952_ptr,&processed_var_8184_ptr);
   FUN_18061c7a0(auStack_218);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(0);
@@ -546,7 +546,7 @@ void FUN_1806082a0(int param_1)
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(uRam00000000000001e0);
   }
-  FUN_180626eb0(auStack_218,0x200,&unknown_var_1952_ptr,&unknown_var_8336_ptr);
+  FUN_180626eb0(auStack_218,0x200,&ui_system_data_1952_ptr,&processed_var_8336_ptr);
   FUN_18061c7a0(auStack_218);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(0);
@@ -611,7 +611,7 @@ void FUN_180608420(int param_1)
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(uRam00000000000001e4);
   }
-  FUN_180626eb0(auStack_218,0x200,&unknown_var_1952_ptr,&unknown_var_8280_ptr);
+  FUN_180626eb0(auStack_218,0x200,&ui_system_data_1952_ptr,&processed_var_8280_ptr);
   FUN_18061c7a0(auStack_218);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(0);
@@ -703,7 +703,7 @@ void FUN_180608620(int param_1)
                 0x48) < render_system_config_config) {
       SystemInitializer(&system_ptr_9f70);
       if (render_system_config_config == -1) {
-        render_system_config_config = &unknown_var_3480_ptr;
+        render_system_config_config = &memory_allocator_3480_ptr;
         render_system_config_config = &system_ptr_9f98;
 
 
@@ -851,7 +851,7 @@ int FUN_18060be80(uint64_t param_1,int8_t param_2)
   puVar2 = (uint64_t *)0x180c95e98;
 LAB_18060becd:
   if (puVar2[5] == 0) {
-    SystemCore_ResourceManager0(&unknown_var_7872_ptr);
+    SystemCore_ResourceManager0(&processed_var_7872_ptr);
     return 0;
   }
   return *(int *)(puVar2[5] + 0x298) + -1;

@@ -132,7 +132,7 @@ uint64_t FUN_18030cd70(int64_t param_1)
   char cVar2;
   
   plVar1 = *(int64_t **)(param_1 + 0x48);
-  if (*(code **)(*plVar1 + 0xc0) == (code *)&unknown_var_9120_ptr) {
+  if (*(code **)(*plVar1 + 0xc0) == (code *)&processed_var_9120_ptr) {
     cVar2 = (plVar1[8] - plVar1[7] & 0xfffffffffffffff0U) == 0;
   }
   else {
@@ -165,11 +165,11 @@ FUN_18030ce70(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3432_ptr;
+  *param_2 = &memory_allocator_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 0x15;
-  strcpy_s(param_2[1],0x80,&unknown_var_4936_ptr,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&processed_var_4936_ptr,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
@@ -188,7 +188,7 @@ uint64_t * FUN_18030cef0(uint64_t *param_1)
   uint64_t *puVar6;
   
   FUN_180244190();
-  *param_1 = &unknown_var_5008_ptr;
+  *param_1 = &processed_var_5008_ptr;
   param_1[0x1e] = &system_state_ptr;
   puVar5 = (uint64_t *)0x0;
   param_1[0x1f] = 0;
@@ -294,7 +294,7 @@ void FUN_18030d150(uint64_t *param_1)
   uint64_t uVar8;
   uint64_t uVar9;
   
-  *param_1 = &unknown_var_5008_ptr;
+  *param_1 = &processed_var_5008_ptr;
   uVar8 = 0;
   if (render_system_data_config != 0) {
     puVar1 = *(uint64_t **)(render_system_data_config + 0x20);
@@ -388,7 +388,7 @@ void FUN_18030d150(uint64_t *param_1)
   param_1[0x1f] = 0;
   *(int32_t *)(param_1 + 0x21) = 0;
   param_1[0x1e] = &system_state_ptr;
-  *param_1 = &unknown_var_9896_ptr;
+  *param_1 = &processed_var_9896_ptr;
   param_1[0x15] = &system_data_buffer_ptr;
   if (param_1[0x16] != 0) {
                     // WARNING: Subroutine does not return
@@ -429,7 +429,7 @@ uint64_t FUN_18030d400(int64_t param_1)
   
   plVar2 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,200,8,3,0xfffffffffffffffe);
   FUN_180049830(plVar2);
-  *plVar2 = (int64_t)&unknown_var_5304_ptr;
+  *plVar2 = (int64_t)&processed_var_5304_ptr;
   plVar2[0x18] = param_1;
   plStackX_8 = plVar2;
   (**(code **)(*plVar2 + 0x28))(plVar2);

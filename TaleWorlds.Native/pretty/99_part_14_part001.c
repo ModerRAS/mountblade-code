@@ -326,7 +326,7 @@ void BufferSizeInitializer(uint64_t param_1)
     
     // 初始化缓冲区大小和配置
     SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(unaff_RDI + 8),
-                &unknown_var_9296_ptr,MEMORY_BLOCK_SIZE_168,1);
+                &processed_var_9296_ptr,MEMORY_BLOCK_SIZE_168,1);
     
     return;
 }
@@ -382,7 +382,7 @@ uint64_t QueueSizeManager(int64_t param_1, uint param_2)
     if ((int)uVar1 == 0) {
         // 分配队列节点内存
         lVar2 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, 
-                            &unknown_var_9296_ptr, MEMORY_BLOCK_SIZE_36, 0, (char)uVar1, 1);
+                            &processed_var_9296_ptr, MEMORY_BLOCK_SIZE_36, 0, (char)uVar1, 1);
         *(int64_t *)(param_1 + 8) = lVar2;
         
         if (lVar2 == 0) {

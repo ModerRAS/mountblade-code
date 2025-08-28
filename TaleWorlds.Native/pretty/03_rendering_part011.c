@@ -228,7 +228,7 @@ LAB_180273bfe:
   if (0 < (int)uVar2) {
     do {
       uStack_910 = uVar16;
-      puStack_8e8 = &unknown_var_3480_ptr;
+      puStack_8e8 = &memory_allocator_3480_ptr;
       puStack_8e0 = auStack_8d0;
       uStack_8d8 = 0;
       auStack_8d0[0] = 0;
@@ -245,7 +245,7 @@ LAB_180273bfe:
         *puVar22 = &system_state_ptr;
         puVar22[1] = 0;
         *(int32_t *)(puVar22 + 2) = 0;
-        *puVar22 = &unknown_var_3480_ptr;
+        *puVar22 = &memory_allocator_3480_ptr;
         puVar22[1] = puVar22 + 3;
         *(int32_t *)(puVar22 + 2) = 0;
         *(int8_t *)(puVar22 + 3) = 0;
@@ -274,7 +274,7 @@ LAB_180273eb0:
             *puVar17 = &system_state_ptr;
             puVar17[1] = 0;
             *(int32_t *)(puVar17 + 2) = 0;
-            *puVar17 = &unknown_var_3480_ptr;
+            *puVar17 = &memory_allocator_3480_ptr;
             puVar17[1] = puVar17 + 3;
             *(int32_t *)(puVar17 + 2) = 0;
             *(int8_t *)(puVar17 + 3) = 0;
@@ -294,7 +294,7 @@ LAB_180273eb0:
         *puVar17 = &system_state_ptr;
         puVar17[1] = 0;
         *(int32_t *)(puVar17 + 2) = 0;
-        *puVar17 = &unknown_var_3480_ptr;
+        *puVar17 = &memory_allocator_3480_ptr;
         puVar17[1] = puVar17 + 3;
         *(int32_t *)(puVar17 + 2) = 0;
         *(int8_t *)(puVar17 + 3) = 0;

@@ -36,7 +36,7 @@
 #define SYSTEM_SUCCESS_CODE 0                      // 系统成功代码
 
 // 数据处理常量
-#define DATA_CHUNK_SIZE 0x10                       // 数据块大小
+#define DATA_CHSYSTEM_SIZE 0x10                       // 数据块大小
 #define DATA_HEADER_SIZE 0x14                      // 数据头大小
 #define DATA_ALIGNMENT_SIZE 0x20                   // 数据对齐大小
 #define DATA_MAX_ITERATIONS 0x8000                 // 数据最大迭代次数
@@ -248,7 +248,7 @@ void FUN_1808a0f37(void)
       
       // 边界条件检查
       if ((data_offset < *(uint64_t *)(unaff_RSI + 0x60)) ||
-         ((int64_t)*(int *)(unaff_RSI + 0x68) * DATA_CHUNK_SIZE + *(uint64_t *)(unaff_RSI + 0x60) <= data_offset))
+         ((int64_t)*(int *)(unaff_RSI + 0x68) * DATA_CHSYSTEM_SIZE + *(uint64_t *)(unaff_RSI + 0x60) <= data_offset))
         goto LAB_1808a1016;
       
       // 步骤4.2：系统状态验证
@@ -273,7 +273,7 @@ void FUN_1808a0f37(void)
       }
       
       // 更新数据偏移量
-      data_offset = data_offset + DATA_CHUNK_SIZE;
+      data_offset = data_offset + DATA_CHSYSTEM_SIZE;
     }
     
     // 步骤5：状态检查和错误处理

@@ -273,7 +273,7 @@ void FUN_1804b2750(int64_t param_1,int64_t *param_2,uint64_t param_3,float *para
   }
   plVar8 = (int64_t *)FUN_1801efdb0(uVar23,param_2);
   if (plVar8 == (int64_t *)0x0) {
-    SystemDataInitializer(&unknown_var_6240_ptr);
+    SystemDataInitializer(&processed_var_6240_ptr);
   }
   else {
     uVar3 = *(uint *)(plStack_c0 + 2);
@@ -703,7 +703,7 @@ LAB_1804b2fc9:
     do {
       lVar1 = *(int64_t *)(lVar8 + 0x290);
       if ((*(int *)(lVar1 + 0x30 + lVar10) == 8) &&
-         (iVar4 = strcmp(*(uint64_t *)(lVar1 + 0x28 + lVar10),&unknown_var_6224_ptr), iVar4 == 0)) {
+         (iVar4 = strcmp(*(uint64_t *)(lVar1 + 0x28 + lVar10),&processed_var_6224_ptr), iVar4 == 0)) {
         lVar11 = 0;
         if (0 < *(int *)(param_1 + 0x298)) {
           piVar5 = (int *)(*(int64_t *)(param_1 + 0x290) + 0x44);

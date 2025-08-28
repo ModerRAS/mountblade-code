@@ -249,32 +249,32 @@ void initialize_system_configuration(void)
     SYSTEM_DATA_MANAGER_A = *global_ptr;
     
     // 初始化基础配置数据结构
-    FUN_1801299b0(&unknown_var_6880_ptr, 0, 0, unused_r9, flag_value);
+    FUN_1801299b0(&processed_var_6880_ptr, 0, 0, unused_r9, flag_value);
     
     // 设置基础配置参数
-    SystemCore_CacheManager0(&unknown_var_6896_ptr, *(int32_t *)(config_data + 4));     // 参数1
-    SystemCore_CacheManager0(&unknown_var_6928_ptr, *(int32_t *)(config_data + 8));     // 参数2
-    SystemCore_CacheManager0(&unknown_var_6960_ptr, *(int32_t *)(config_data + 0xc));   // 参数3
-    SystemCore_CacheManager0(&unknown_var_6992_ptr, *(int32_t *)(config_data + 0x10));  // 参数4
-    SystemCore_CacheManager0(&unknown_var_7024_ptr, *(int32_t *)(config_data + 0x14));  // 参数5
-    SystemCore_CacheManager0(&unknown_var_7064_ptr, *(int32_t *)(config_data + 0x18));  // 参数6
+    SystemCore_CacheManager0(&processed_var_6896_ptr, *(int32_t *)(config_data + 4));     // 参数1
+    SystemCore_CacheManager0(&processed_var_6928_ptr, *(int32_t *)(config_data + 8));     // 参数2
+    SystemCore_CacheManager0(&processed_var_6960_ptr, *(int32_t *)(config_data + 0xc));   // 参数3
+    SystemCore_CacheManager0(&processed_var_6992_ptr, *(int32_t *)(config_data + 0x10));  // 参数4
+    SystemCore_CacheManager0(&processed_var_7024_ptr, *(int32_t *)(config_data + 0x14));  // 参数5
+    SystemCore_CacheManager0(&processed_var_7064_ptr, *(int32_t *)(config_data + 0x18));  // 参数6
     
     // 处理第一组配置数据（偏移0x28处的链表）
     for (iterator_ptr = *(char **)(config_data + 0x28); iterator_ptr != config_data + 0x20;
         iterator_ptr = (char *)func_0x00018066bd70(iterator_ptr)) {
-      SystemCore_CacheManager0(&unknown_var_7104_ptr, *(int32_t *)(iterator_ptr + 0x20), *(int32_t *)(iterator_ptr + 0x24));
+      SystemCore_CacheManager0(&processed_var_7104_ptr, *(int32_t *)(iterator_ptr + 0x20), *(int32_t *)(iterator_ptr + 0x24));
     }
     
     // 处理第二组配置数据（偏移0x58处的链表）
     for (iterator_ptr = *(char **)(config_data + 0x58); iterator_ptr != config_data + 0x50;
         iterator_ptr = (char *)func_0x00018066bd70(iterator_ptr)) {
-      SystemCore_CacheManager0(&unknown_var_7144_ptr, *(int32_t *)(iterator_ptr + 0x20), *(int32_t *)(iterator_ptr + 0x24));
+      SystemCore_CacheManager0(&processed_var_7144_ptr, *(int32_t *)(iterator_ptr + 0x20), *(int32_t *)(iterator_ptr + 0x24));
     }
     
     // 设置高级配置参数
-    SystemCore_CacheManager0(&unknown_var_7184_ptr, *(int32_t *)(config_data + 0x80));  // 高级参数1
-    SystemCore_CacheManager0(&unknown_var_7224_ptr, *(int32_t *)(config_data + 0x84));  // 高级参数2
-    SystemCore_CacheManager0(&unknown_var_7264_ptr, *(int32_t *)(config_data + 0x88));  // 高级参数3
+    SystemCore_CacheManager0(&processed_var_7184_ptr, *(int32_t *)(config_data + 0x80));  // 高级参数1
+    SystemCore_CacheManager0(&processed_var_7224_ptr, *(int32_t *)(config_data + 0x84));  // 高级参数2
+    SystemCore_CacheManager0(&processed_var_7264_ptr, *(int32_t *)(config_data + 0x88));  // 高级参数3
     
     // 完成配置初始化
     FUN_18012cfe0();
@@ -601,7 +601,7 @@ void initialize_resource_handler(int64_t *param_1)
   plVar4 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xd0,8,3);
   pplStack_60 = (int64_t **)plVar4;
   FUN_180049830(plVar4);
-  *plVar4 = (int64_t)&unknown_var_7704_ptr;
+  *plVar4 = (int64_t)&processed_var_7704_ptr;
   plVar4[0x18] = 0;
   *(int32_t *)(plVar4 + 0x19) = 0;
   plStack_68 = plVar4;
@@ -616,12 +616,12 @@ void initialize_resource_handler(int64_t *param_1)
   puStack_48 = auStack_38;
   auStack_38[0] = 0;
   uStack_40 = 0xc;
-  strcpy_s(auStack_38,0x10,&unknown_var_7296_ptr);
+  strcpy_s(auStack_38,0x10,&processed_var_7296_ptr);
   plVar4 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x208,8,3);
   lStack_78 = lVar3 + 0x70;
   pplStack_60 = (int64_t **)plVar4;
   FUN_18020e0e0(plVar4,&puStack_50,3,lVar3 + 0x2e0);
-  *plVar4 = (int64_t)&unknown_var_9056_ptr;
+  *plVar4 = (int64_t)&processed_var_9056_ptr;
   plStack_68 = plVar4;
   FUN_18020e840(plVar4);
   SystemInitializer(lVar3 + 0x48,&plStack_68);
@@ -743,7 +743,7 @@ void monitor_resource_performance(int64_t param_1)
     *(int16_t *)(puVar5 + 8) = 0x2072;
     *(int8_t *)((int64_t)puVar5 + 0x22) = 0;
     uStack_88 = 0x3e;
-    FUN_180060680(acStack_60,&unknown_var_4576_ptr,900);
+    FUN_180060680(acStack_60,&processed_var_4576_ptr,900);
     uVar3 = uStack_88;
     lVar4 = -1;
     do {
@@ -778,7 +778,7 @@ void monitor_resource_performance(int64_t param_1)
     uStack_a8 = 0;
     uStack_88 = uVar3 + 0x2b;
     (**(code **)(*(int64_t *)*core_system_data_config + 0x20))
-              ((int64_t *)*core_system_data_config,&unknown_var_7440_ptr,0x175c,puVar9);
+              ((int64_t *)*core_system_data_config,&processed_var_7440_ptr,0x175c,puVar9);
     *(double *)(param_1 + 0xc0) = dVar2;
     puStack_98 = &system_data_buffer_ptr;
     if (puStack_90 != (void *)0x0) {
@@ -817,8 +817,8 @@ void shutdown_resource_system(uint64_t param_1,uint64_t param_2,uint64_t param_3
       (*(code *)system_cache_buffer[0x11])(0);
     }
   }
-  puStack_20 = &unknown_var_5200_ptr;
-  puStack_18 = &unknown_var_5168_ptr;
+  puStack_20 = &processed_var_5200_ptr;
+  puStack_18 = &processed_var_5168_ptr;
   FUN_18005c650(auStack_30);
   *(int8_t *)(core_system_data_config + 0x3a0) = 1;
   FUN_18005e630(system_context_ptr);
@@ -870,7 +870,7 @@ void process_resource_event(uint64_t param_1,uint64_t *param_2,int32_t param_3)
   uStack_128 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_158;
   ppuStack_138 = &puStack_108;
-  puStack_108 = &unknown_var_3432_ptr;
+  puStack_108 = &memory_allocator_3432_ptr;
   puStack_100 = auStack_f0;
   uStack_f8 = 0;
   auStack_f0[0] = 0;
@@ -976,7 +976,7 @@ uint64_t * configure_resource_manager(uint64_t *param_1)
   param_1[0xc] = puVar1;
   param_1[0xd] = (uint64_t)(-(int)puVar1 & 7) + (int64_t)puVar1;
   param_1[0xe] = param_1 + 0x60f;
-  param_1[0x60f] = &unknown_var_8432_ptr;
+  param_1[0x60f] = &processed_var_8432_ptr;
   param_1[0x610] = SystemResourceCleaner;
   return param_1;
 }
@@ -1030,7 +1030,7 @@ void copy_resource_name(int64_t param_1,int64_t param_2)
     strcpy_s(*(uint64_t *)(param_1 + 8),0x400);
     return;
   }
-  SystemDataInitializer(&unknown_var_616_ptr,0x400);
+  SystemDataInitializer(&processed_var_616_ptr,0x400);
   *(int32_t *)(param_1 + 0x10) = 0;
   **(int8_t **)(param_1 + 8) = 0;
   return;

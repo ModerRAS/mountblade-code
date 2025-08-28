@@ -9,11 +9,11 @@ uint64_t _DAT;  // 核心引擎数据结构
 uint64_t _DAT;  // 错误处理系统
 uint64_t _DAT;  // 内存管理器
 uint64_t _DAT;  // 字符串常量池
-uint64_t unknown_var_8312_ptr;   // 错误消息指针
-uint64_t unknown_var_8368_ptr;   // 系统消息指针
-uint64_t unknown_var_8076_ptr;   // 警告消息指针
-uint64_t unknown_var_8376_ptr;   // 调试消息指针
-uint64_t unknown_var_8416_ptr;   // 状态消息指针
+uint64_t processed_var_8312_ptr;   // 错误消息指针
+uint64_t processed_var_8368_ptr;   // 系统消息指针
+uint64_t processed_var_8076_ptr;   // 警告消息指针
+uint64_t processed_var_8376_ptr;   // 调试消息指针
+uint64_t processed_var_8416_ptr;   // 状态消息指针
 uint64_t system_data_buffer_ptr;   // 内存管理对象
 uint64_t system_config_ptr;   // 默认字符串
 uint64_t system_state_ptr;   // 空指针标记
@@ -177,7 +177,7 @@ void process_string_search_and_memory_management(void)
     }
 error_handler:
                     // 调用错误处理函数
-    handle_error_message(_DAT,&unknown_var_8312_ptr);
+    handle_error_message(_DAT,&processed_var_8312_ptr);
 process_string_match:
     array_pointer = stack_long2;
     temp_uint1 = 0;
@@ -322,7 +322,7 @@ process_string_match:
         }
         
         // 执行字符串比较
-        compare_strings(&stack_pointer13,&unknown_var_8368_ptr,temp_pointer20,temp_pointer2);
+        compare_strings(&stack_pointer13,&processed_var_8368_ptr,temp_pointer20,temp_pointer2);
         current_char = validate_string_comparison(&stack_pointer13);
         offset_value = stack_long2;
         
@@ -341,7 +341,7 @@ process_string_match:
             if (temp_buffer1 != (int8_t *)0x0) {
                 temp_pointer20 = temp_buffer1;
             }
-            setup_string_comparison(&stack_pointer3,&unknown_var_8076_ptr,temp_pointer20,temp_pointer2);
+            setup_string_comparison(&stack_pointer3,&processed_var_8076_ptr,temp_pointer20,temp_pointer2);
             
             // 处理字符串替换
             if (compare_char != '\0') {
@@ -437,7 +437,7 @@ process_string_match:
                 if (stack_pointer14 != (void *)0x0) {
                     temp_pointer2 = stack_pointer14;
                 }
-                log_debug_message(&unknown_var_8376_ptr,temp_pointer2,temp_pointer1);
+                log_debug_message(&processed_var_8376_ptr,temp_pointer2,temp_pointer1);
             }
             else {
                 *(int32_t *)(stack_long6 + 4) =
@@ -580,7 +580,7 @@ process_string_match:
         }
         
         // 执行字符串处理
-        process_string_data(&stack_pointer12,&unknown_var_8368_ptr,temp_buffer1,temp_pointer2);
+        process_string_data(&stack_pointer12,&processed_var_8368_ptr,temp_buffer1,temp_pointer2);
         current_char = validate_string_processing(&stack_pointer12);
         
         // 处理字符串处理结果
@@ -740,7 +740,7 @@ void process_string_search_and_validation(uint64_t search_param1, int64_t search
         }
     }
     else {
-        log_status_message(&unknown_var_8416_ptr);
+        log_status_message(&processed_var_8416_ptr);
     }
     return;
 }

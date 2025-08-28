@@ -278,11 +278,11 @@ LAB_1800d6939:
   lVar26 = *(int64_t *)(param_3 + 0x90);
   if (lVar26 != 0) {
     FUN_1802e4ca0(lVar26);
-    uStack_1b8 = &unknown_var_672_ptr;
+    uStack_1b8 = &processed_var_672_ptr;
     uStack_1b0 = &fStack_1a0;
     fStack_1a0 = (float)((uint)fStack_1a0 & 0xffffff00);
     fStack_1a8 = 1.82169e-44;
-    strcpy_s(&fStack_1a0,0x20,&unknown_var_3344_ptr);
+    strcpy_s(&fStack_1a0,0x20,&memory_allocator_3344_ptr);
     lVar21 = FUN_1802e4d10(lVar26,&uStack_1b8);
     (**(code **)(**(int64_t **)(lVar21 + 0x20) + 0x80))(*(int64_t **)(lVar21 + 0x20),lVar21,0);
     uStack_1b8 = &system_state_ptr;
@@ -314,11 +314,11 @@ LAB_1800d6939:
     *(int32_t *)(lVar20 + 0x1af4) = uVar4;
     *(int32_t *)(lVar20 + 0x1af8) = uVar5;
     *(int32_t *)(lVar20 + 0x1afc) = uVar6;
-    puStack_180 = &unknown_var_672_ptr;
+    puStack_180 = &processed_var_672_ptr;
     puStack_178 = auStack_168;
     auStack_168[0] = 0;
     uStack_170 = 0xd;
-    strcpy_s(auStack_168,0x20,&unknown_var_3344_ptr);
+    strcpy_s(auStack_168,0x20,&memory_allocator_3344_ptr);
     puVar22 = (uint64_t *)FUN_1802e4d10(lVar26,&puStack_180);
     uVar16 = puVar22[1];
     *(uint64_t *)(lVar20 + 0x1b00) = *puVar22;

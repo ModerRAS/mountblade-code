@@ -735,10 +735,10 @@ void FUN_18035b330(int64_t param_1)
       *(int16_t *)(lVar2 + 0x2b0) = *(int16_t *)(lVar2 + 0x2b4);
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&unknown_var_3104_ptr);
+    FUN_180062300(system_message_context,&memory_allocator_3104_ptr);
   }
   pcVar1 = *(code **)(**(int64_t **)(param_1 + 0xd0) + 0x198);
-  if (pcVar1 != (code *)&unknown_var_2544_ptr) {
+  if (pcVar1 != (code *)&rendering_buffer_2544_ptr) {
     (*pcVar1)(*(int64_t **)(param_1 + 0xd0));
   }
                     // WARNING: Subroutine does not return

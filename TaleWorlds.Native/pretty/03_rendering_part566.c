@@ -56,7 +56,7 @@ void FUN_18057a3c0(int64_t param_1,int param_2,uint64_t param_3,int32_t param_4)
     if ((*(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +
                  0x48) < render_system_config_memory) && (SystemInitializer(&system_ptr_a038), render_system_config_memory == -1)) {
       render_system_config_memory = 0;
-      FUN_1808fc820(&unknown_var_2768_ptr);
+      FUN_1808fc820(&rendering_buffer_2768_ptr);
       FUN_1808fcb30(&system_ptr_a038);
     }
     puStack_118 = &system_ptr_a040;
@@ -189,7 +189,7 @@ void FUN_18057a7d0(int64_t param_1)
   
   puVar2 = *(uint64_t **)(param_1 + 0xabf0);
   if (puVar2 != (uint64_t *)0x0) {
-    if ((void *)*puVar2 == &unknown_var_4336_ptr) {
+    if ((void *)*puVar2 == &processed_var_4336_ptr) {
       FUN_1802091d0(puVar2 + 10);
       lVar6 = puVar2[0x114];
       iVar8 = 0;
@@ -235,8 +235,8 @@ uint64_t *
 FUN_18057a820(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_1608_ptr;
-  *param_1 = &unknown_var_1864_ptr;
+  *param_1 = &ui_system_data_1608_ptr;
+  *param_1 = &ui_system_data_1864_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x110,param_3,param_4,0xfffffffffffffffe);
   }

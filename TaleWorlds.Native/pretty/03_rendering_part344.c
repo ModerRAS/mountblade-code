@@ -462,7 +462,7 @@ void FUN_1804512f0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   puVar8 = (int8_t *)0x0;
   uVar11 = 0;
   uStack_198 = 0;
-  puStack_f8 = &unknown_var_3432_ptr;
+  puStack_f8 = &memory_allocator_3432_ptr;
   puStack_f0 = auStack_e0;
   uStack_e8 = 0;
   auStack_e0[0] = 0;

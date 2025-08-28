@@ -132,7 +132,7 @@ int64_t CoreEngineDataCopier(int64_t dest_ptr, int64_t src_ptr) {
             *puVar6 = &system_state_ptr;           // 设置基础结构
             puVar6[1] = 0;                       // 清空计数器
             *(int32_t *)(puVar6 + 2) = 0;     // 清空标志位
-            *puVar6 = &unknown_var_3432_ptr;            // 设置数据处理器
+            *puVar6 = &memory_allocator_3432_ptr;            // 设置数据处理器
             puVar6[1] = puVar6 + 3;              // 设置数据区域
             *(int32_t *)(puVar6 + 2) = 0;     // 清空处理标志
             *(int8_t *)(puVar6 + 3) = 0;     // 清空状态字节
@@ -185,7 +185,7 @@ int64_t CoreEngineDataCopier(int64_t dest_ptr, int64_t src_ptr) {
             *puVar6 = &system_state_ptr;
             puVar6[1] = 0;
             *(int32_t *)(puVar6 + 2) = 0;
-            *puVar6 = &unknown_var_3432_ptr;
+            *puVar6 = &memory_allocator_3432_ptr;
             puVar6[1] = puVar6 + 3;
             *(int32_t *)(puVar6 + 2) = 0;
             *(int8_t *)(puVar6 + 3) = 0;
@@ -232,7 +232,7 @@ int64_t CoreEngineDataCopier(int64_t dest_ptr, int64_t src_ptr) {
             *puVar6 = &system_state_ptr;
             puVar6[1] = 0;
             *(int32_t *)(puVar6 + 2) = 0;
-            *puVar6 = &unknown_var_3432_ptr;
+            *puVar6 = &memory_allocator_3432_ptr;
             puVar6[1] = puVar6 + 3;
             *(int32_t *)(puVar6 + 2) = 0;
             *(int8_t *)(puVar6 + 3) = 0;
@@ -283,7 +283,7 @@ int64_t CoreEngineDataCopier(int64_t dest_ptr, int64_t src_ptr) {
             *puVar6 = &system_state_ptr;
             puVar6[1] = 0;
             *(int32_t *)(puVar6 + 2) = 0;
-            *puVar6 = &unknown_var_3432_ptr;
+            *puVar6 = &memory_allocator_3432_ptr;
             puVar6[1] = puVar6 + 3;
             *(int32_t *)(puVar6 + 2) = 0;
             *(int8_t *)(puVar6 + 3) = 0;
@@ -379,8 +379,8 @@ int64_t *CoreEngineDataManager(uint64_t resource_type, int64_t *resource_ptr, in
         if (*(void **)(param_3 + 8) != (void *)0x0) {
             puVar6 = *(void **)(param_3 + 8);
         }
-        FUN_1806272a0(&unknown_var_1624_ptr, puVar6);
-        (**(code **)(*param_2 + 0x10))(param_2, &unknown_var_1600_ptr);
+        FUN_1806272a0(&ui_system_data_1624_ptr, puVar6);
+        (**(code **)(*param_2 + 0x10))(param_2, &ui_system_data_1600_ptr);
     }
     else {
         // 处理有数据的情况
@@ -735,7 +735,7 @@ int64_t *CoreEngineStringProcessor(int64_t *config_ptr, int64_t input_data) {
         
         // 检查引号匹配
         if (bVar3) {
-            SystemDataInitializer(&unknown_var_1672_ptr);
+            SystemDataInitializer(&ui_system_data_1672_ptr);
             FUN_180057110(param_1);
         }
     }
@@ -1159,7 +1159,7 @@ uint64_t *CoreEngineDataLoader(int64_t *param_array, uint64_t *config_ptr, uint6
             uStack_20 = 0;
             uStack_30 = 0;
             uStack_28 = 0;
-            System_DataHandler(&puStack_38, &unknown_var_1660_ptr, (double)*(float *)param_1[1], param_4, 0,
+            System_DataHandler(&puStack_38, &ui_system_data_1660_ptr, (double)*(float *)param_1[1], param_4, 0,
                           0xfffffffffffffffe);
             *param_2 = &system_state_ptr;
             param_2[1] = 0;

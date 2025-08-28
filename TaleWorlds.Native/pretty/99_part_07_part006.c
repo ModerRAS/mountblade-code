@@ -106,7 +106,7 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
   }
   ppuStack_4d0 = &puStack_3d8;
   plVar4 = (int64_t *)0x0;
-  puStack_3d8 = &unknown_var_3480_ptr;
+  puStack_3d8 = &memory_allocator_3480_ptr;
   puStack_3d0 = auStack_3c0;
   uStack_3c8 = 0;
   auStack_3c0[0] = 0;
@@ -119,7 +119,7 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
     puVar9 = (void *)param_1[3];
   }
   FUN_1802c22a0(auStack_4d7,puVar9);
-  if ((void *)*param_1 != &unknown_var_6168_ptr) {
+  if ((void *)*param_1 != &processed_var_6168_ptr) {
     (**(code **)((void *)*param_1 + 0x30))(param_1);
   }
   if (*(int *)(param_1 + 9) < 1) {
@@ -202,54 +202,54 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
     }
     uVar14 = uVar14 & *(uint *)(lVar3 + 0x1610);
     if ((param_5 & 1) != 0) {
-      puStack_378 = &unknown_var_3480_ptr;
+      puStack_378 = &memory_allocator_3480_ptr;
       puStack_370 = auStack_360;
       auStack_360[0] = 0;
       uStack_368 = 7;
-      strcpy_s(auStack_360,0x40,&unknown_var_1872_ptr);
+      strcpy_s(auStack_360,0x40,&ui_system_data_1872_ptr);
       plVar4 = (int64_t *)SystemCore_LoggingSystem0(lVar3,&puStack_378,0);
       puStack_378 = &system_state_ptr;
       lVar3 = param_1[6];
     }
     if ((param_5 & 8) != 0) {
-      puStack_318 = &unknown_var_3480_ptr;
+      puStack_318 = &memory_allocator_3480_ptr;
       puStack_310 = auStack_300;
       auStack_300[0] = 0;
       uStack_308 = 7;
-      strcpy_s(auStack_300,0x40,&unknown_var_1808_ptr);
+      strcpy_s(auStack_300,0x40,&ui_system_data_1808_ptr);
       uVar5 = SystemCore_LoggingSystem0(lVar3,&puStack_318,0);
       plVar4 = (int64_t *)((uint64_t)plVar4 | uVar5);
       puStack_318 = &system_state_ptr;
       lVar3 = param_1[6];
     }
     if ((param_5 & 4) != 0) {
-      puStack_2b8 = &unknown_var_3480_ptr;
+      puStack_2b8 = &memory_allocator_3480_ptr;
       puStack_2b0 = auStack_2a0;
       auStack_2a0[0] = 0;
       uStack_2a8 = 0xe;
-      strcpy_s(auStack_2a0,0x40,&unknown_var_1792_ptr);
+      strcpy_s(auStack_2a0,0x40,&ui_system_data_1792_ptr);
       uVar5 = SystemCore_LoggingSystem0(lVar3,&puStack_2b8,0);
       plVar4 = (int64_t *)((uint64_t)plVar4 | uVar5);
       puStack_2b8 = &system_state_ptr;
       lVar3 = param_1[6];
     }
     if ((param_5 & 2) != 0) {
-      puStack_258 = &unknown_var_3480_ptr;
+      puStack_258 = &memory_allocator_3480_ptr;
       puStack_250 = auStack_240;
       auStack_240[0] = 0;
       uStack_248 = 0xd;
-      strcpy_s(auStack_240,0x40,&unknown_var_1760_ptr);
+      strcpy_s(auStack_240,0x40,&ui_system_data_1760_ptr);
       uVar5 = SystemCore_LoggingSystem0(lVar3,&puStack_258,0);
       plVar4 = (int64_t *)((uint64_t)plVar4 | uVar5);
       puStack_258 = &system_state_ptr;
     }
     if ((*(int64_t *)(param_3 + 0x12498) != 0) && (*(int *)(param_3 + 0x2480) != 0)) {
       uVar6 = param_1[6];
-      puStack_1f8 = &unknown_var_3480_ptr;
+      puStack_1f8 = &memory_allocator_3480_ptr;
       puStack_1f0 = auStack_1e0;
       auStack_1e0[0] = 0;
       uStack_1e8 = 0xb;
-      strcpy_s(auStack_1e0,0x40,&unknown_var_1704_ptr);
+      strcpy_s(auStack_1e0,0x40,&ui_system_data_1704_ptr);
       uVar5 = SystemCore_LoggingSystem0(uVar6,&puStack_1f8,0);
       plVar4 = (int64_t *)((uint64_t)plVar4 | uVar5);
       puStack_1f8 = &system_state_ptr;
@@ -258,33 +258,33 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
        ((*(int64_t *)(param_3 + 0x11ec8) != 0 ||
         (*(int64_t *)(*(int64_t *)(param_3 + 0x11d00) + 0x150) != 0)))) {
       uVar6 = param_1[6];
-      puStack_198 = &unknown_var_3480_ptr;
+      puStack_198 = &memory_allocator_3480_ptr;
       puStack_190 = auStack_180;
       auStack_180[0] = 0;
       uStack_188 = 0x10;
-      strcpy_s(auStack_180,0x40,&unknown_var_1736_ptr);
+      strcpy_s(auStack_180,0x40,&ui_system_data_1736_ptr);
       uVar5 = SystemCore_LoggingSystem0(uVar6,&puStack_198,0);
       plVar4 = (int64_t *)((uint64_t)plVar4 | uVar5);
       puStack_198 = &system_state_ptr;
     }
     if (*(char *)(param_3 + 0x12c09) != '\0') {
       uVar6 = param_1[6];
-      puStack_138 = &unknown_var_3480_ptr;
+      puStack_138 = &memory_allocator_3480_ptr;
       puStack_130 = auStack_120;
       auStack_120[0] = 0;
       uStack_128 = 0xd;
-      strcpy_s(auStack_120,0x40,&unknown_var_1688_ptr);
+      strcpy_s(auStack_120,0x40,&ui_system_data_1688_ptr);
       uVar5 = SystemCore_LoggingSystem0(uVar6,&puStack_138,0);
       plVar4 = (int64_t *)((uint64_t)plVar4 | uVar5);
       puStack_138 = &system_state_ptr;
     }
     if ((char)param_5 < '\0') {
       uVar6 = param_1[6];
-      puStack_d8 = &unknown_var_3480_ptr;
+      puStack_d8 = &memory_allocator_3480_ptr;
       puStack_d0 = auStack_c0;
       auStack_c0[0] = 0;
       uStack_c8 = 0x11;
-      strcpy_s(auStack_c0,0x40,&unknown_var_1880_ptr);
+      strcpy_s(auStack_c0,0x40,&ui_system_data_1880_ptr);
       uVar5 = SystemCore_LoggingSystem0(uVar6,&puStack_d8,0);
       plVar4 = (int64_t *)((uint64_t)plVar4 | uVar5);
       puStack_d8 = &system_state_ptr;
@@ -360,7 +360,7 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
         *(int8_t *)(lVar7 + 0x1ce0 + lVar3) = 0;
       }
       FUN_18029e110(*(uint64_t *)(system_message_buffer + 0x1cd8));
-      if ((void *)*param_1 != &unknown_var_6168_ptr) {
+      if ((void *)*param_1 != &processed_var_6168_ptr) {
         (**(code **)((void *)*param_1 + 0x28))(param_1);
       }
       lVar3 = 0x8a38;
@@ -427,17 +427,17 @@ uint8_t FUN_1804a8e90;
 
 // 函数: uint8_t FUN_1804a9a20;
 uint8_t FUN_1804a9a20;
-uint8_t unknown_var_9760;
+uint8_t processed_var_9760;
 uint8_t system_data_f500;
-uint8_t unknown_var_9976;
+uint8_t processed_var_9976;
 uint8_t system_data_cc08;
-uint8_t unknown_var_1920;
+uint8_t ui_system_data_1920;
 uint8_t system_data_6110;
 uint8_t system_data_6380;
-int32_t unknown_var_9140;
-int32_t unknown_var_9144;
+int32_t processed_var_9140;
+int32_t processed_var_9144;
 uint8_t system_data_1044;
-int32_t unknown_var_9148;
+int32_t processed_var_9148;
 uint8_t system_data_6384;
 uint8_t system_data_1040;
 uint8_t system_data_64c0;
@@ -446,67 +446,67 @@ uint8_t system_data_64bc;
 uint8_t system_data_6370;
 uint8_t system_data_6108;
 uint8_t system_data_6148;
-uint8_t unknown_var_5040;
-uint8_t unknown_var_5056;
-uint8_t unknown_var_5088;
-uint8_t unknown_var_5104;
+uint8_t processed_var_5040;
+uint8_t processed_var_5056;
+uint8_t processed_var_5088;
+uint8_t processed_var_5104;
 uint8_t system_data_1d30;
 uint8_t system_data_1d28;
-uint64_t unknown_var_1160;
-uint8_t unknown_var_128;
-uint8_t unknown_var_152;
-uint8_t unknown_var_176;
-uint8_t unknown_var_632;
-uint8_t unknown_var_672;
-uint8_t unknown_var_704;
-uint8_t unknown_var_1152;
-uint8_t unknown_var_1184;
-uint8_t unknown_var_1640;
+uint64_t ui_system_data_1160;
+uint8_t ui_system_data_128;
+uint8_t ui_system_data_152;
+uint8_t ui_system_data_176;
+uint8_t processed_var_632;
+uint8_t processed_var_672;
+uint8_t processed_var_704;
+uint8_t ui_system_data_1152;
+uint8_t ui_system_data_1184;
+uint8_t ui_system_data_1640;
 uint8_t system_data_92b8;
 uint8_t system_data_90b0;
 uint8_t system_data_8f1a;
-uint8_t unknown_var_1664;
-uint8_t unknown_var_1688;
-uint8_t unknown_var_1840;
-uint8_t unknown_var_1864;
+uint8_t ui_system_data_1664;
+uint8_t ui_system_data_1688;
+uint8_t ui_system_data_1840;
+uint8_t ui_system_data_1864;
 uint8_t system_data_17d0;
 uint8_t system_data_18d0;
-uint8_t unknown_var_4752;
-uint8_t unknown_var_4976;
+uint8_t processed_var_4752;
+uint8_t processed_var_4976;
 
 
 
 // 函数: uint8_t FUN_1804a5e90;
 uint8_t FUN_1804a5e90;
-uint8_t unknown_var_1880;
+uint8_t ui_system_data_1880;
 uint8_t system_data_5eb8;
 uint8_t system_data_5ea8;
 uint8_t system_data_d36c;
 uint8_t system_data_5ea0;
-uint8_t unknown_var_1816;
+uint8_t ui_system_data_1816;
 uint8_t system_data_25c8;
 uint8_t system_data_2cd8;
 uint8_t system_data_2ce0;
 uint8_t system_data_25a0;
-uint64_t *unknown_var_4872;
-uint64_t *unknown_var_4936;
-int64_t unknown_var_7096;
-uint64_t unknown_var_7104;
-uint8_t unknown_var_8320;
-uint8_t unknown_var_8352;
-uint8_t unknown_var_2104;
+uint64_t *processed_var_4872;
+uint64_t *processed_var_4936;
+int64_t processed_var_7096;
+uint64_t processed_var_7104;
+uint8_t processed_var_8320;
+uint8_t processed_var_8352;
+uint8_t rendering_buffer_2104;
 uint8_t system_data_5be0;
 
 
 
 // 函数: uint8_t FUN_1804a7600;
 uint8_t FUN_1804a7600;
-uint8_t unknown_var_1952;
-uint8_t unknown_var_6080;
-uint8_t unknown_var_6160;
-uint8_t unknown_var_6240;
-uint8_t unknown_var_6320;
-uint8_t unknown_var_6400;
+uint8_t ui_system_data_1952;
+uint8_t processed_var_6080;
+uint8_t processed_var_6160;
+uint8_t processed_var_6240;
+uint8_t processed_var_6320;
+uint8_t processed_var_6400;
 uint8_t system_data_5f30;
 uint8_t system_data_dc90;
 uint8_t system_data_dca0;
@@ -519,64 +519,64 @@ uint8_t system_data_9e20;
 uint8_t system_data_9e28;
 uint8_t system_data_9e30;
 uint8_t system_data_8f20;
-uint8_t unknown_var_4656;
-uint8_t unknown_var_4688;
+uint8_t processed_var_4656;
+uint8_t processed_var_4688;
 
 
 
 // 函数: uint8_t FUN_1804ad200;
 uint8_t FUN_1804ad200;
-uint8_t unknown_var_5356;
+uint8_t processed_var_5356;
 uint8_t system_data_e0f8;
-uint8_t unknown_var_5472;
-uint8_t unknown_var_5480;
-uint8_t unknown_var_8396;
-uint8_t unknown_var_5456;
-uint8_t unknown_var_5464;
-uint8_t unknown_var_5496;
-uint8_t unknown_var_5560;
-uint8_t unknown_var_5576;
-uint8_t unknown_var_5592;
-uint8_t unknown_var_5608;
-uint8_t unknown_var_5624;
-uint8_t unknown_var_5664;
-uint8_t unknown_var_5776;
-uint8_t unknown_var_5800;
-uint8_t unknown_var_2216;
-uint8_t unknown_var_5704;
-uint8_t unknown_var_5728;
-uint8_t unknown_var_5744;
-uint8_t unknown_var_5760;
-uint8_t unknown_var_5820;
-uint8_t unknown_var_5832;
-uint8_t unknown_var_5848;
-uint8_t unknown_var_5864;
-uint8_t unknown_var_5880;
-uint8_t unknown_var_5904;
-uint8_t unknown_var_5928;
-uint8_t unknown_var_5960;
-uint8_t unknown_var_6024;
-uint8_t unknown_var_6136;
-uint8_t unknown_var_6168;
-uint8_t unknown_var_6200;
-uint8_t unknown_var_5616;
-uint8_t unknown_var_6072;
-uint8_t unknown_var_6096;
-uint8_t unknown_var_6112;
-uint8_t unknown_var_6120;
-uint8_t unknown_var_6184;
-uint8_t unknown_var_6336;
-uint8_t unknown_var_6352;
-uint8_t unknown_var_6512;
-uint8_t unknown_var_6240;
-uint8_t unknown_var_6224;
-uint8_t unknown_var_6304;
-uint8_t unknown_var_6320;
-uint8_t unknown_var_6696;
-uint8_t unknown_var_6760;
-uint8_t unknown_var_6776;
-uint8_t unknown_var_6792;
-uint8_t unknown_var_6808;
+uint8_t processed_var_5472;
+uint8_t processed_var_5480;
+uint8_t processed_var_8396;
+uint8_t processed_var_5456;
+uint8_t processed_var_5464;
+uint8_t processed_var_5496;
+uint8_t processed_var_5560;
+uint8_t processed_var_5576;
+uint8_t processed_var_5592;
+uint8_t processed_var_5608;
+uint8_t processed_var_5624;
+uint8_t processed_var_5664;
+uint8_t processed_var_5776;
+uint8_t processed_var_5800;
+uint8_t rendering_buffer_2216;
+uint8_t processed_var_5704;
+uint8_t processed_var_5728;
+uint8_t processed_var_5744;
+uint8_t processed_var_5760;
+uint8_t processed_var_5820;
+uint8_t processed_var_5832;
+uint8_t processed_var_5848;
+uint8_t processed_var_5864;
+uint8_t processed_var_5880;
+uint8_t processed_var_5904;
+uint8_t processed_var_5928;
+uint8_t processed_var_5960;
+uint8_t processed_var_6024;
+uint8_t processed_var_6136;
+uint8_t processed_var_6168;
+uint8_t processed_var_6200;
+uint8_t processed_var_5616;
+uint8_t processed_var_6072;
+uint8_t processed_var_6096;
+uint8_t processed_var_6112;
+uint8_t processed_var_6120;
+uint8_t processed_var_6184;
+uint8_t processed_var_6336;
+uint8_t processed_var_6352;
+uint8_t processed_var_6512;
+uint8_t processed_var_6240;
+uint8_t processed_var_6224;
+uint8_t processed_var_6304;
+uint8_t processed_var_6320;
+uint8_t processed_var_6696;
+uint8_t processed_var_6760;
+uint8_t processed_var_6776;
+uint8_t processed_var_6792;
+uint8_t processed_var_6808;
 
 
 
@@ -587,11 +587,11 @@ uint8_t FUN_1804bfc50;
 
 // 函数: uint8_t FUN_1800ae3f0;
 uint8_t FUN_1800ae3f0;
-uint8_t unknown_var_704;
-uint8_t unknown_var_6608;
-uint8_t unknown_var_6712;
-uint8_t unknown_var_6736;
-uint8_t unknown_var_6904;
+uint8_t processed_var_704;
+uint8_t processed_var_6608;
+uint8_t processed_var_6712;
+uint8_t processed_var_6736;
+uint8_t processed_var_6904;
 
 
 
@@ -602,32 +602,32 @@ uint8_t FUN_1804c97c0;
 
 // 函数: uint8_t FUN_1804c98d0;
 uint8_t FUN_1804c98d0;
-uint8_t unknown_var_1808;
-uint8_t unknown_var_1944;
-uint8_t unknown_var_1968;
-uint8_t unknown_var_2088;
-uint8_t unknown_var_2176;
+uint8_t ui_system_data_1808;
+uint8_t ui_system_data_1944;
+uint8_t ui_system_data_1968;
+uint8_t rendering_buffer_2088;
+uint8_t rendering_buffer_2176;
 uint8_t system_interrupt_handler;
 char system_data_2845;
-uint8_t unknown_var_2128;
-uint8_t unknown_var_2152;
-uint8_t unknown_var_2200;
-uint8_t unknown_var_2232;
-uint8_t unknown_var_2320;
+uint8_t rendering_buffer_2128;
+uint8_t rendering_buffer_2152;
+uint8_t rendering_buffer_2200;
+uint8_t rendering_buffer_2232;
+uint8_t rendering_buffer_2320;
 
 
 
 // 函数: uint8_t FUN_1804ce100;
 uint8_t FUN_1804ce100;
-uint8_t unknown_var_9440;
+uint8_t processed_var_9440;
 
 
 
 // 函数: uint8_t FUN_1804ce920;
 uint8_t FUN_1804ce920;
-uint8_t unknown_var_1536;
-uint8_t unknown_var_176;
-uint8_t unknown_var_240;
+uint8_t ui_system_data_1536;
+uint8_t ui_system_data_176;
+uint8_t rendering_buffer_240;
 
 
 
@@ -638,56 +638,56 @@ uint8_t FUN_1804df470;
 
 // 函数: uint8_t FUN_1804df640;
 uint8_t FUN_1804df640;
-uint8_t unknown_var_6724;
-uint8_t unknown_var_2264;
-uint8_t unknown_var_2288;
-uint8_t unknown_var_8704;
-uint8_t unknown_var_8720;
+uint8_t processed_var_6724;
+uint8_t rendering_buffer_2264;
+uint8_t rendering_buffer_2288;
+uint8_t processed_var_8704;
+uint8_t processed_var_8720;
 
 
 
 // 函数: uint8_t FUN_1804df080;
 uint8_t FUN_1804df080;
-uint8_t unknown_var_9008;
-uint8_t unknown_var_9408;
+uint8_t processed_var_9008;
+uint8_t processed_var_9408;
 
 
 
 // 函数: uint8_t FUN_1804df1a0;
 uint8_t FUN_1804df1a0;
-uint8_t unknown_var_9472;
-uint8_t unknown_var_9488;
+uint8_t processed_var_9472;
+uint8_t processed_var_9488;
 
 
 
 // 函数: uint8_t FUN_1804dee90;
 uint8_t FUN_1804dee90;
-uint8_t unknown_var_8640;
-uint8_t unknown_var_1184;
-uint8_t unknown_var_1200;
-uint8_t unknown_var_1264;
-uint8_t unknown_var_1280;
-uint8_t unknown_var_1344;
-uint8_t unknown_var_1360;
-uint8_t unknown_var_1168;
+uint8_t processed_var_8640;
+uint8_t ui_system_data_1184;
+uint8_t ui_system_data_1200;
+uint8_t ui_system_data_1264;
+uint8_t ui_system_data_1280;
+uint8_t ui_system_data_1344;
+uint8_t ui_system_data_1360;
+uint8_t ui_system_data_1168;
 
 
 
 // 函数: uint8_t FUN_1804dc080;
 uint8_t FUN_1804dc080;
-uint8_t unknown_var_2432;
-uint8_t unknown_var_9552;
-uint8_t unknown_var_480;
-uint8_t unknown_var_496;
+uint8_t rendering_buffer_2432;
+uint8_t processed_var_9552;
+uint8_t processed_var_480;
+uint8_t processed_var_496;
 
 
 
 // 函数: uint8_t FUN_1804df390;
 uint8_t FUN_1804df390;
-uint8_t unknown_var_7472;
-uint8_t unknown_var_7664;
-uint8_t unknown_var_7824;
-uint8_t unknown_var_7984;
+uint8_t processed_var_7472;
+uint8_t processed_var_7664;
+uint8_t processed_var_7824;
+uint8_t processed_var_7984;
 
 
 
@@ -709,23 +709,23 @@ uint8_t FUN_1804dec60;
 // 函数: uint8_t FUN_1804ded00;
 uint8_t FUN_1804ded00;
 uint8_t system_data_6018;
-uint8_t unknown_var_8048;
-uint8_t unknown_var_8064;
-uint8_t unknown_var_560;
-uint8_t unknown_var_576;
-uint8_t unknown_var_8128;
-uint8_t unknown_var_8144;
-uint8_t unknown_var_8208;
-uint8_t unknown_var_8224;
-uint8_t unknown_var_2560;
-uint8_t unknown_var_2608;
-uint8_t unknown_var_3408;
-uint8_t unknown_var_3728;
-uint8_t unknown_var_5376;
-uint8_t unknown_var_5552;
-uint8_t unknown_var_5584;
-uint8_t unknown_var_5760;
-uint8_t unknown_var_1728;
+uint8_t processed_var_8048;
+uint8_t processed_var_8064;
+uint8_t processed_var_560;
+uint8_t processed_var_576;
+uint8_t processed_var_8128;
+uint8_t processed_var_8144;
+uint8_t processed_var_8208;
+uint8_t processed_var_8224;
+uint8_t rendering_buffer_2560;
+uint8_t rendering_buffer_2608;
+uint8_t memory_allocator_3408;
+uint8_t memory_allocator_3728;
+uint8_t processed_var_5376;
+uint8_t processed_var_5552;
+uint8_t processed_var_5584;
+uint8_t processed_var_5760;
+uint8_t ui_system_data_1728;
 
 
 
@@ -846,19 +846,19 @@ uint8_t FUN_1805fffa0;
 
 // 函数: uint8_t FUN_1806e71c0;
 uint8_t FUN_1806e71c0;
-uint8_t unknown_var_1480;
-uint8_t unknown_var_1592;
-uint8_t unknown_var_1560;
-uint8_t unknown_var_1904;
-uint8_t unknown_var_1712;
+uint8_t ui_system_data_1480;
+uint8_t ui_system_data_1592;
+uint8_t ui_system_data_1560;
+uint8_t ui_system_data_1904;
+uint8_t ui_system_data_1712;
 
 
 
 // 函数: uint8_t FUN_1805f3060;
 uint8_t FUN_1805f3060;
-uint8_t unknown_var_4864;
-uint8_t unknown_var_5072;
-uint8_t unknown_var_5272;
+uint8_t processed_var_4864;
+uint8_t processed_var_5072;
+uint8_t processed_var_5272;
 
 
 
@@ -869,55 +869,55 @@ uint8_t FUN_1805f32b0;
 
 // 函数: uint8_t FUN_1804aa030;
 uint8_t FUN_1804aa030;
-uint8_t unknown_var_5568;
-uint8_t unknown_var_5464;
-uint8_t unknown_var_5880;
-uint8_t unknown_var_6040;
-uint8_t unknown_var_5512;
-uint8_t unknown_var_5528;
-uint8_t unknown_var_6176;
-uint8_t unknown_var_6256;
-uint8_t unknown_var_6336;
-uint8_t unknown_var_6416;
-uint8_t unknown_var_6496;
-uint8_t unknown_var_6864;
-uint8_t unknown_var_6568;
-uint8_t unknown_var_6688;
-uint8_t unknown_var_6744;
-uint8_t unknown_var_7056;
-uint8_t unknown_var_7112;
-uint8_t unknown_var_7168;
+uint8_t processed_var_5568;
+uint8_t processed_var_5464;
+uint8_t processed_var_5880;
+uint8_t processed_var_6040;
+uint8_t processed_var_5512;
+uint8_t processed_var_5528;
+uint8_t processed_var_6176;
+uint8_t processed_var_6256;
+uint8_t processed_var_6336;
+uint8_t processed_var_6416;
+uint8_t processed_var_6496;
+uint8_t processed_var_6864;
+uint8_t processed_var_6568;
+uint8_t processed_var_6688;
+uint8_t processed_var_6744;
+uint8_t processed_var_7056;
+uint8_t processed_var_7112;
+uint8_t processed_var_7168;
 
 
 
 // 函数: uint8_t FUN_1805f8910;
 uint8_t FUN_1805f8910;
-uint8_t unknown_var_1696;
+uint8_t ui_system_data_1696;
 
 
 
 // 函数: uint8_t FUN_1805f8820;
 uint8_t FUN_1805f8820;
-uint8_t unknown_var_5672;
-uint8_t unknown_var_5688;
-uint8_t unknown_var_5704;
-uint8_t unknown_var_5720;
-uint8_t unknown_var_5832;
-uint8_t unknown_var_5848;
-uint8_t unknown_var_5864;
-uint8_t unknown_var_5608;
-uint8_t unknown_var_5624;
-uint8_t unknown_var_5640;
-uint8_t unknown_var_5656;
-uint8_t unknown_var_5736;
-uint8_t unknown_var_5752;
-uint8_t unknown_var_5768;
-uint8_t unknown_var_5784;
-uint8_t unknown_var_5912;
-uint8_t unknown_var_5960;
-uint8_t unknown_var_5976;
-uint8_t unknown_var_5928;
-uint8_t unknown_var_5944;
+uint8_t processed_var_5672;
+uint8_t processed_var_5688;
+uint8_t processed_var_5704;
+uint8_t processed_var_5720;
+uint8_t processed_var_5832;
+uint8_t processed_var_5848;
+uint8_t processed_var_5864;
+uint8_t processed_var_5608;
+uint8_t processed_var_5624;
+uint8_t processed_var_5640;
+uint8_t processed_var_5656;
+uint8_t processed_var_5736;
+uint8_t processed_var_5752;
+uint8_t processed_var_5768;
+uint8_t processed_var_5784;
+uint8_t processed_var_5912;
+uint8_t processed_var_5960;
+uint8_t processed_var_5976;
+uint8_t processed_var_5928;
+uint8_t processed_var_5944;
 
 
 
@@ -928,22 +928,22 @@ uint8_t FUN_1805faf50;
 
 // 函数: uint8_t FUN_1805fd350;
 uint8_t FUN_1805fd350;
-uint8_t unknown_var_7224;
-uint8_t unknown_var_7240;
-uint8_t unknown_var_7256;
-uint8_t unknown_var_7272;
-uint8_t unknown_var_7104;
-uint8_t unknown_var_7496;
-uint8_t unknown_var_6736;
-uint8_t unknown_var_7536;
-uint8_t unknown_var_7624;
-uint8_t unknown_var_7672;
-uint8_t unknown_var_1952;
-uint8_t unknown_var_7760;
-uint8_t unknown_var_7792;
-uint8_t unknown_var_7848;
-uint8_t unknown_var_7872;
-uint8_t unknown_var_4208;
+uint8_t processed_var_7224;
+uint8_t processed_var_7240;
+uint8_t processed_var_7256;
+uint8_t processed_var_7272;
+uint8_t processed_var_7104;
+uint8_t processed_var_7496;
+uint8_t processed_var_6736;
+uint8_t processed_var_7536;
+uint8_t processed_var_7624;
+uint8_t processed_var_7672;
+uint8_t ui_system_data_1952;
+uint8_t processed_var_7760;
+uint8_t processed_var_7792;
+uint8_t processed_var_7848;
+uint8_t processed_var_7872;
+uint8_t processed_var_4208;
 
 
 
@@ -965,225 +965,225 @@ uint8_t FUN_1805f7180;
 // 函数: uint8_t FUN_1805f7330;
 uint8_t FUN_1805f7330;
 uint8_t system_data_5bd0;
-uint8_t unknown_var_400;
-uint8_t unknown_var_840;
-uint8_t unknown_var_872;
-uint8_t unknown_var_896;
-uint8_t unknown_var_904;
-uint8_t unknown_var_6264;
-uint8_t unknown_var_1408;
-uint8_t unknown_var_1488;
-uint8_t unknown_var_1584;
-uint8_t unknown_var_1528;
-uint8_t unknown_var_1640;
-uint8_t unknown_var_1696;
-uint8_t unknown_var_6560;
-uint8_t unknown_var_7484;
-uint8_t unknown_var_1872;
-uint8_t unknown_var_2000;
-uint8_t unknown_var_2432;
-uint8_t unknown_var_2488;
+uint8_t processed_var_400;
+uint8_t processed_var_840;
+uint8_t processed_var_872;
+uint8_t processed_var_896;
+uint8_t processed_var_904;
+uint8_t processed_var_6264;
+uint8_t ui_system_data_1408;
+uint8_t ui_system_data_1488;
+uint8_t ui_system_data_1584;
+uint8_t ui_system_data_1528;
+uint8_t ui_system_data_1640;
+uint8_t ui_system_data_1696;
+uint8_t processed_var_6560;
+uint8_t processed_var_7484;
+uint8_t ui_system_data_1872;
+uint8_t rendering_buffer_2000;
+uint8_t rendering_buffer_2432;
+uint8_t rendering_buffer_2488;
 
 
 
 // 函数: uint8_t FUN_1806f1000;
 uint8_t FUN_1806f1000;
-uint8_t unknown_var_8664;
-uint8_t unknown_var_8672;
-uint8_t unknown_var_8680;
-uint8_t unknown_var_8704;
-uint8_t unknown_var_8720;
-uint8_t unknown_var_8736;
-uint8_t unknown_var_8752;
-uint8_t unknown_var_9296;
+uint8_t processed_var_8664;
+uint8_t processed_var_8672;
+uint8_t processed_var_8680;
+uint8_t processed_var_8704;
+uint8_t processed_var_8720;
+uint8_t processed_var_8736;
+uint8_t processed_var_8752;
+uint8_t processed_var_9296;
 uint8_t system_data_c324;
 uint8_t system_data_c320;
 uint8_t system_data_c330;
 uint8_t system_data_c328;
 uint8_t system_data_c32c;
 uint8_t system_data_0f00;
-uint8_t unknown_var_8448;
-uint8_t unknown_var_8544;
-uint8_t unknown_var_9320;
-uint8_t unknown_var_8792;
-uint8_t unknown_var_8800;
-uint8_t unknown_var_9336;
-uint8_t unknown_var_9352;
-uint8_t unknown_var_9368;
-uint8_t unknown_var_9392;
-uint8_t unknown_var_9408;
-uint8_t unknown_var_4016;
-uint8_t unknown_var_4032;
-uint8_t unknown_var_4048;
-uint8_t unknown_var_4064;
-uint8_t unknown_var_4080;
-uint8_t unknown_var_4096;
-uint8_t unknown_var_4112;
-uint8_t unknown_var_4176;
-uint8_t unknown_var_4240;
-uint8_t unknown_var_4304;
-uint8_t unknown_var_4368;
-uint8_t unknown_var_4432;
-uint8_t unknown_var_4496;
-uint8_t unknown_var_4576;
-uint8_t unknown_var_4592;
-uint8_t unknown_var_4608;
-uint8_t unknown_var_4624;
-uint8_t unknown_var_4640;
-uint8_t unknown_var_9060;
-uint8_t unknown_var_9072;
-uint8_t unknown_var_9084;
-uint8_t unknown_var_9096;
-uint8_t unknown_var_9112;
-uint8_t unknown_var_9128;
-uint8_t unknown_var_9144;
-uint8_t unknown_var_9160;
+uint8_t processed_var_8448;
+uint8_t processed_var_8544;
+uint8_t processed_var_9320;
+uint8_t processed_var_8792;
+uint8_t processed_var_8800;
+uint8_t processed_var_9336;
+uint8_t processed_var_9352;
+uint8_t processed_var_9368;
+uint8_t processed_var_9392;
+uint8_t processed_var_9408;
+uint8_t processed_var_4016;
+uint8_t processed_var_4032;
+uint8_t processed_var_4048;
+uint8_t processed_var_4064;
+uint8_t processed_var_4080;
+uint8_t processed_var_4096;
+uint8_t processed_var_4112;
+uint8_t processed_var_4176;
+uint8_t processed_var_4240;
+uint8_t processed_var_4304;
+uint8_t processed_var_4368;
+uint8_t processed_var_4432;
+uint8_t processed_var_4496;
+uint8_t processed_var_4576;
+uint8_t processed_var_4592;
+uint8_t processed_var_4608;
+uint8_t processed_var_4624;
+uint8_t processed_var_4640;
+uint8_t processed_var_9060;
+uint8_t processed_var_9072;
+uint8_t processed_var_9084;
+uint8_t processed_var_9096;
+uint8_t processed_var_9112;
+uint8_t processed_var_9128;
+uint8_t processed_var_9144;
+uint8_t processed_var_9160;
 
 
 
 // 函数: uint8_t FUN_1806f4900;
 uint8_t FUN_1806f4900;
-uint8_t unknown_var_9176;
+uint8_t processed_var_9176;
 
 
 
 // 函数: uint8_t FUN_1806f4940;
 uint8_t FUN_1806f4940;
-uint8_t unknown_var_9192;
+uint8_t processed_var_9192;
 
 
 
 // 函数: uint8_t FUN_1806f4980;
 uint8_t FUN_1806f4980;
-uint8_t unknown_var_9212;
+uint8_t processed_var_9212;
 
 
 
 // 函数: uint8_t FUN_1806f49c0;
 uint8_t FUN_1806f49c0;
-uint8_t unknown_var_9224;
+uint8_t processed_var_9224;
 
 
 
 // 函数: uint8_t FUN_1806f4a00;
 uint8_t FUN_1806f4a00;
-uint8_t unknown_var_9240;
+uint8_t processed_var_9240;
 
 
 
 // 函数: uint8_t FUN_1806f4a40;
 uint8_t FUN_1806f4a40;
-uint8_t unknown_var_9272;
+uint8_t processed_var_9272;
 
 
 
 // 函数: uint8_t FUN_1806f4a90;
 uint8_t FUN_1806f4a90;
-uint8_t unknown_var_9304;
-uint8_t unknown_var_4656;
-uint8_t unknown_var_4672;
+uint8_t processed_var_9304;
+uint8_t processed_var_4656;
+uint8_t processed_var_4672;
 
 
 
 // 函数: uint8_t FUN_1806f4bc0;
 uint8_t FUN_1806f4bc0;
-uint8_t unknown_var_4688;
+uint8_t processed_var_4688;
 
 
 
 // 函数: uint8_t FUN_1806f4bf0;
 uint8_t FUN_1806f4bf0;
-uint8_t unknown_var_4704;
-uint8_t unknown_var_4720;
-uint8_t unknown_var_4736;
-uint8_t unknown_var_4752;
-uint8_t unknown_var_4768;
-uint8_t unknown_var_4784;
-uint8_t unknown_var_4800;
-uint8_t unknown_var_4816;
-uint8_t unknown_var_4928;
-uint8_t unknown_var_9328;
-uint8_t unknown_var_9344;
-uint8_t unknown_var_9360;
-uint8_t unknown_var_9376;
-uint8_t unknown_var_9392;
-uint8_t unknown_var_9408;
-uint8_t unknown_var_9416;
-uint8_t unknown_var_4944;
-uint8_t unknown_var_5008;
-uint8_t unknown_var_5072;
+uint8_t processed_var_4704;
+uint8_t processed_var_4720;
+uint8_t processed_var_4736;
+uint8_t processed_var_4752;
+uint8_t processed_var_4768;
+uint8_t processed_var_4784;
+uint8_t processed_var_4800;
+uint8_t processed_var_4816;
+uint8_t processed_var_4928;
+uint8_t processed_var_9328;
+uint8_t processed_var_9344;
+uint8_t processed_var_9360;
+uint8_t processed_var_9376;
+uint8_t processed_var_9392;
+uint8_t processed_var_9408;
+uint8_t processed_var_9416;
+uint8_t processed_var_4944;
+uint8_t processed_var_5008;
+uint8_t processed_var_5072;
 
 
 
 // 函数: uint8_t FUN_1806f4c40;
 uint8_t FUN_1806f4c40;
-uint8_t unknown_var_5088;
+uint8_t processed_var_5088;
 
 
 
 // 函数: uint8_t FUN_1806f4c80;
 uint8_t FUN_1806f4c80;
-uint8_t unknown_var_5104;
-uint8_t unknown_var_5120;
-uint8_t unknown_var_5136;
-uint8_t unknown_var_5152;
-uint8_t unknown_var_5168;
-uint8_t unknown_var_9440;
-uint8_t unknown_var_9448;
-uint8_t unknown_var_9464;
-uint8_t unknown_var_9480;
-uint8_t unknown_var_9496;
-uint8_t unknown_var_5184;
-uint8_t unknown_var_5200;
-uint8_t unknown_var_5216;
-uint8_t unknown_var_5232;
-uint8_t unknown_var_5248;
-uint8_t unknown_var_5264;
-uint8_t unknown_var_5280;
-uint8_t unknown_var_5296;
-uint8_t unknown_var_5456;
-uint8_t unknown_var_5472;
+uint8_t processed_var_5104;
+uint8_t processed_var_5120;
+uint8_t processed_var_5136;
+uint8_t processed_var_5152;
+uint8_t processed_var_5168;
+uint8_t processed_var_9440;
+uint8_t processed_var_9448;
+uint8_t processed_var_9464;
+uint8_t processed_var_9480;
+uint8_t processed_var_9496;
+uint8_t processed_var_5184;
+uint8_t processed_var_5200;
+uint8_t processed_var_5216;
+uint8_t processed_var_5232;
+uint8_t processed_var_5248;
+uint8_t processed_var_5264;
+uint8_t processed_var_5280;
+uint8_t processed_var_5296;
+uint8_t processed_var_5456;
+uint8_t processed_var_5472;
 
 
 
 // 函数: uint8_t FUN_1806f4da0;
 uint8_t FUN_1806f4da0;
-uint8_t unknown_var_5488;
+uint8_t processed_var_5488;
 
 
 
 // 函数: uint8_t FUN_1806f4dd0;
 uint8_t FUN_1806f4dd0;
-uint8_t unknown_var_5504;
+uint8_t processed_var_5504;
 
 
 
 // 函数: uint8_t FUN_1806f4e00;
 uint8_t FUN_1806f4e00;
-uint8_t unknown_var_5520;
-uint8_t unknown_var_9512;
-uint8_t unknown_var_9528;
-uint8_t unknown_var_9540;
-uint8_t unknown_var_9552;
-uint8_t unknown_var_5536;
-uint8_t unknown_var_5552;
-uint8_t unknown_var_5568;
-uint8_t unknown_var_5632;
-uint8_t unknown_var_5664;
-uint8_t unknown_var_5680;
-uint8_t unknown_var_5696;
-uint8_t unknown_var_5712;
-uint8_t unknown_var_5728;
-uint8_t unknown_var_5840;
-uint8_t unknown_var_5856;
-uint8_t unknown_var_5872;
-uint8_t unknown_var_5888;
-uint8_t unknown_var_5904;
-uint8_t unknown_var_9572;
-uint8_t unknown_var_9584;
-uint8_t unknown_var_9600;
-uint8_t unknown_var_9616;
-uint8_t unknown_var_9632;
+uint8_t processed_var_5520;
+uint8_t processed_var_9512;
+uint8_t processed_var_9528;
+uint8_t processed_var_9540;
+uint8_t processed_var_9552;
+uint8_t processed_var_5536;
+uint8_t processed_var_5552;
+uint8_t processed_var_5568;
+uint8_t processed_var_5632;
+uint8_t processed_var_5664;
+uint8_t processed_var_5680;
+uint8_t processed_var_5696;
+uint8_t processed_var_5712;
+uint8_t processed_var_5728;
+uint8_t processed_var_5840;
+uint8_t processed_var_5856;
+uint8_t processed_var_5872;
+uint8_t processed_var_5888;
+uint8_t processed_var_5904;
+uint8_t processed_var_9572;
+uint8_t processed_var_9584;
+uint8_t processed_var_9600;
+uint8_t processed_var_9616;
+uint8_t processed_var_9632;
 
 
 
@@ -1199,19 +1199,19 @@ uint8_t FUN_1806f4f50;
 
 // 函数: uint8_t FUN_1806f4f80;
 uint8_t FUN_1806f4f80;
-uint8_t unknown_var_5920;
-uint8_t unknown_var_5984;
-uint8_t unknown_var_6000;
-uint8_t unknown_var_6112;
-uint8_t unknown_var_6128;
-uint8_t unknown_var_6144;
-uint8_t unknown_var_9656;
+uint8_t processed_var_5920;
+uint8_t processed_var_5984;
+uint8_t processed_var_6000;
+uint8_t processed_var_6112;
+uint8_t processed_var_6128;
+uint8_t processed_var_6144;
+uint8_t processed_var_9656;
 
 
 
 // 函数: uint8_t FUN_1806f5010;
 uint8_t FUN_1806f5010;
-uint8_t unknown_var_9672;
+uint8_t processed_var_9672;
 
 
 

@@ -701,9 +701,9 @@ LAB_18059cd53:
       if ((lVar21 == 0) || (cVar8 = *(char *)(lVar21 + 100), cVar8 < '\0')) {
         plVar5 = *(int64_t **)(*(int64_t *)(param_1 + 0x108) + 0x590);
         lVar26 = (**(code **)(*plVar5 + 0x128))(plVar5,1);
-        puVar13 = &unknown_var_2600_ptr;
+        puVar13 = &rendering_buffer_2600_ptr;
         if (lVar21 == 0) {
-          puVar13 = &unknown_var_2648_ptr;
+          puVar13 = &rendering_buffer_2648_ptr;
         }
         puVar18 = &system_buffer_ptr;
         if (*(void **)(lVar26 + 0x18) != (void *)0x0) {

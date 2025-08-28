@@ -91,7 +91,7 @@ void FUN_18012f0c0(void)
     lVar14 = 0;
     if (((uVar16 >> 0x18 & 1) == 0) && (pcVar2 = (char *)(SYSTEM_DATA_MANAGER_A + 0x2e38), *pcVar2 != '\0')
        ) {
-      FUN_18013c760(&unknown_var_3196_ptr);
+      FUN_18013c760(&memory_allocator_3196_ptr);
       if (*(int64_t *)(lVar13 + 0x2e40) != 0) {
         lVar12 = __acrt_iob_func(1);
         if (*(int64_t *)(lVar13 + 0x2e40) == lVar12) {

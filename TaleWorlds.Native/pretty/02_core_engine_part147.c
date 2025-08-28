@@ -99,7 +99,7 @@ void FUN_1801376c9(float param_1,byte param_2,int param_3)
         *(int32_t *)(unaff_RBX + 0x1c4c) = uVar6;
         *(int32_t *)(unaff_RBX + 0x1c50) = uVar7;
         *(int32_t *)(unaff_RBX + 0x1c54) = unaff_RDI[0x19];
-        FUN_180121200(unaff_RBP + -0x19,0x14,&unknown_var_2680_ptr,*unaff_RDI);
+        FUN_180121200(unaff_RBP + -0x19,0x14,&rendering_buffer_2680_ptr,*unaff_RDI);
         lVar3 = SYSTEM_DATA_MANAGER_A;
         *(int32_t *)(unaff_RBP + -0x59) = 1;
         uVar12 = *(int32_t *)(lVar3 + 0x1630);
@@ -112,13 +112,13 @@ void FUN_1801376c9(float param_1,byte param_2,int param_3)
         lVar13 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
         lVar3 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
         lVar14 = (int64_t)*(int *)(lVar3 + -0xc + lVar13 * 0xc);
-        uVar16 = (uint64_t)*(uint *)(&unknown_var_6056_ptr + lVar14 * 0xc);
-        if (*(int *)(&unknown_var_6048_ptr + lVar14 * 0xc) == 4) {
-          if (*(int *)(&unknown_var_6052_ptr + lVar14 * 0xc) == 1) {
+        uVar16 = (uint64_t)*(uint *)(&processed_var_6056_ptr + lVar14 * 0xc);
+        if (*(int *)(&processed_var_6048_ptr + lVar14 * 0xc) == 4) {
+          if (*(int *)(&processed_var_6052_ptr + lVar14 * 0xc) == 1) {
             *(int32_t *)(uVar16 + 0x1628 + SYSTEM_DATA_MANAGER_A) =
                  *(int32_t *)(lVar3 + -8 + lVar13 * 0xc);
           }
-          else if (*(int *)(&unknown_var_6052_ptr + lVar14 * 0xc) == 2) {
+          else if (*(int *)(&processed_var_6052_ptr + lVar14 * 0xc) == 2) {
             *(int32_t *)(uVar16 + 0x1628 + SYSTEM_DATA_MANAGER_A) =
                  *(int32_t *)(lVar3 + -8 + lVar13 * 0xc);
             *(int32_t *)(uVar16 + 0x162c + unaff_RBX) =
@@ -204,7 +204,7 @@ LAB_180137a81:
       puVar20 = (uint64_t *)0x0;
     }
     if (((puVar20 == (uint64_t *)0x0) || (*(int *)((int64_t)puVar20 + 0x14) == -1)) ||
-       ((iVar11 = strcmp(&unknown_var_2304_ptr,puVar20 + 3), param_1 = extraout_XMM0_Da, iVar11 != 0 ||
+       ((iVar11 = strcmp(&rendering_buffer_2304_ptr,puVar20 + 3), param_1 = extraout_XMM0_Da, iVar11 != 0 ||
         (cVar10 = FUN_180138ed0(uVar16,*(uint64_t *)*puVar20), param_1 = extraout_XMM0_Da_00,
         cVar10 == '\0')))) {
       fVar26 = *(float *)(lVar3 + 0x38) - -4.0;
@@ -452,7 +452,7 @@ void FUN_1801376d4(float param_1,byte param_2,int param_3)
         *(int32_t *)(unaff_RBX + 0x1c4c) = uVar6;
         *(int32_t *)(unaff_RBX + 0x1c50) = uVar7;
         *(int32_t *)(unaff_RBX + 0x1c54) = unaff_RDI[0x19];
-        FUN_180121200(unaff_RBP + -0x19,0x14,&unknown_var_2680_ptr,*unaff_RDI);
+        FUN_180121200(unaff_RBP + -0x19,0x14,&rendering_buffer_2680_ptr,*unaff_RDI);
         lVar3 = SYSTEM_DATA_MANAGER_A;
         *(int32_t *)(unaff_RBP + -0x59) = 1;
         uVar12 = *(int32_t *)(lVar3 + 0x1630);
@@ -465,13 +465,13 @@ void FUN_1801376d4(float param_1,byte param_2,int param_3)
         lVar13 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1b90);
         lVar3 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b98);
         lVar14 = (int64_t)*(int *)(lVar3 + -0xc + lVar13 * 0xc);
-        uVar16 = (uint64_t)*(uint *)(&unknown_var_6056_ptr + lVar14 * 0xc);
-        if (*(int *)(&unknown_var_6048_ptr + lVar14 * 0xc) == 4) {
-          if (*(int *)(&unknown_var_6052_ptr + lVar14 * 0xc) == 1) {
+        uVar16 = (uint64_t)*(uint *)(&processed_var_6056_ptr + lVar14 * 0xc);
+        if (*(int *)(&processed_var_6048_ptr + lVar14 * 0xc) == 4) {
+          if (*(int *)(&processed_var_6052_ptr + lVar14 * 0xc) == 1) {
             *(int32_t *)(uVar16 + 0x1628 + SYSTEM_DATA_MANAGER_A) =
                  *(int32_t *)(lVar3 + -8 + lVar13 * 0xc);
           }
-          else if (*(int *)(&unknown_var_6052_ptr + lVar14 * 0xc) == 2) {
+          else if (*(int *)(&processed_var_6052_ptr + lVar14 * 0xc) == 2) {
             *(int32_t *)(uVar16 + 0x1628 + SYSTEM_DATA_MANAGER_A) =
                  *(int32_t *)(lVar3 + -8 + lVar13 * 0xc);
             *(int32_t *)(uVar16 + 0x162c + unaff_RBX) =
@@ -557,7 +557,7 @@ LAB_180137a81:
       puVar20 = (uint64_t *)0x0;
     }
     if (((puVar20 == (uint64_t *)0x0) || (*(int *)((int64_t)puVar20 + 0x14) == -1)) ||
-       ((iVar11 = strcmp(&unknown_var_2304_ptr,puVar20 + 3), param_1 = extraout_XMM0_Da, iVar11 != 0 ||
+       ((iVar11 = strcmp(&rendering_buffer_2304_ptr,puVar20 + 3), param_1 = extraout_XMM0_Da, iVar11 != 0 ||
         (cVar10 = FUN_180138ed0(uVar16,*(uint64_t *)*puVar20), param_1 = extraout_XMM0_Da_00,
         cVar10 == '\0')))) {
       fVar26 = *(float *)(lVar3 + 0x38) - -4.0;

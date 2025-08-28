@@ -546,7 +546,7 @@ uint64_t FUN_18044d4f0(int64_t param_1,uint param_2)
   uint64_t uStackX_8;
   
   if (param_1 != 0) {
-    uVar1 = FUN_18062b1e0(system_memory_pool_ptr,0xd8,8,3);
+    uVar1 = CoreSystem_LoggingManager0(system_memory_pool_ptr,0xd8,8,3);
     uStackX_8 = func_0x000180464d70(uVar1,&system_data_0300,0);
     FUN_180469480((int64_t *)(param_1 + 0xd0),
                   *(int64_t *)(param_1 + 0xd0) + (uint64_t)param_2 * 8,&uStackX_8);
@@ -779,7 +779,7 @@ FUN_18044d910(int32_t *param_1,char param_2,uint64_t param_3,int32_t param_4,
   uStack_38 = 0;
   uStack_34._0_2_ = CONCAT11((char)param_3,1);
   uStack_2c = param_4;
-  uVar2 = FUN_18062b1e0(system_memory_pool_ptr,0x60d30,0x10,0x1f);
+  uVar2 = CoreSystem_LoggingManager0(system_memory_pool_ptr,0x60d30,0x10,0x1f);
   plVar3 = (int64_t *)FUN_1801954d0(uVar2,&puStack_58);
   if (plVar3 != (int64_t *)0x0) {
     (**(code **)(*plVar3 + 0x28))(plVar3);
@@ -903,8 +903,8 @@ void FUN_18044dc10(int64_t param_1,uint64_t param_2)
   }
   if (aplStackX_8[0] != (int64_t *)0x0) {
     uStack_30 = aplStackX_8;
-    pcStack_20 = (code *)&unknown_var_7200_ptr;
-    puStack_18 = &unknown_var_7184_ptr;
+    pcStack_20 = (code *)&processed_var_7200_ptr;
+    puStack_18 = &processed_var_7184_ptr;
     uStack_38 = (int32_t)param_2;
     uStack_34 = (int32_t)((uint64_t)param_2 >> 0x20);
     uStack_28 = uStack_38;

@@ -111,8 +111,8 @@ void FUN_1800e1530(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
     }
   }
   puVar11 = (int8_t *)0x0;
-  FUN_180627e10(&puStack_c0,&puStack_e0,&unknown_var_4456_ptr);
-  FUN_180060680(&uStack_70,&unknown_var_4576_ptr,iVar16);
+  FUN_180627e10(&puStack_c0,&puStack_e0,&processed_var_4456_ptr);
+  FUN_180060680(&uStack_70,&processed_var_4576_ptr,iVar16);
   lVar3 = -1;
   do {
     lVar14 = lVar3;
@@ -706,7 +706,7 @@ void FUN_1800e2310(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t par
     uStack_288 = param_6;
     uStack_290 = param_5;
     uStack_298 = param_4;
-    FUN_180626eb0(acStack_248,0x200,&unknown_var_4576_ptr,puVar7);
+    FUN_180626eb0(acStack_248,0x200,&processed_var_4576_ptr,puVar7);
     FUN_18023a940(param_1);
     puStack_278 = &system_data_buffer_ptr;
     uStack_260 = 0;
@@ -804,11 +804,11 @@ void FUN_1800e24b0(uint64_t param_1,int64_t param_2)
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_218;
   FUN_18024c0f0(param_2,apuStack_88);
   ppuStack_f0 = &puStack_e8;
-  puStack_e8 = &unknown_var_3480_ptr;
+  puStack_e8 = &memory_allocator_3480_ptr;
   puStack_e0 = auStack_d0;
   uStack_d8 = 0;
   auStack_d0[0] = 0;
-  FUN_180049bf0(&puStack_e8,&unknown_var_4536_ptr);
+  FUN_180049bf0(&puStack_e8,&processed_var_4536_ptr);
   FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_e8);
   if (*(int *)(param_2 + 0x1bdc) != 0) {
     if (*(int *)(param_2 + 0x1bdc) == 3) {
@@ -847,23 +847,23 @@ void FUN_1800e24b0(uint64_t param_1,int64_t param_2)
       uVar2 = *(int32_t *)(param_2 + 0x1bdc);
       lVar1 = FUN_180244ff0(param_2);
       if (lVar1 != 0) {
-        ppuStack_1f0 = (void **)&unknown_var_4604_ptr;
+        ppuStack_1f0 = (void **)&processed_var_4604_ptr;
         ppuStack_1f8 = (void **)CONCAT44(ppuStack_1f8._4_4_,uVar2);
-        FUN_1800e2310(lVar1,9,&puStack_198,&unknown_var_4592_ptr);
+        FUN_1800e2310(lVar1,9,&puStack_198,&processed_var_4592_ptr);
       }
       uVar2 = *(int32_t *)(param_2 + 0x1bdc);
       lVar1 = *(int64_t *)
                (*(int64_t *)(*(int64_t *)(*(int64_t *)(param_2 + 0x99d0) + 0x58) + -8) + 0x428);
       if (lVar1 != 0) {
-        ppuStack_1f0 = (void **)&unknown_var_4620_ptr;
+        ppuStack_1f0 = (void **)&processed_var_4620_ptr;
         ppuStack_1f8 = (void **)CONCAT44(ppuStack_1f8._4_4_,uVar2);
-        FUN_1800e2310(lVar1,5,&puStack_1b8,&unknown_var_4608_ptr);
+        FUN_1800e2310(lVar1,5,&puStack_1b8,&processed_var_4608_ptr);
         uVar2 = *(int32_t *)(param_2 + 0x1bdc);
       }
       if (*(int64_t *)(param_2 + 0x9690) != 0) {
-        ppuStack_1f0 = (void **)&unknown_var_4620_ptr;
+        ppuStack_1f0 = (void **)&processed_var_4620_ptr;
         ppuStack_1f8 = (void **)CONCAT44(ppuStack_1f8._4_4_,uVar2);
-        FUN_1800e2310(*(int64_t *)(param_2 + 0x9690),8,&puStack_1d8,&unknown_var_4656_ptr);
+        FUN_1800e2310(*(int64_t *)(param_2 + 0x9690),8,&puStack_1d8,&processed_var_4656_ptr);
       }
       puStack_1d8 = &system_data_buffer_ptr;
       if (lStack_1d0 != 0) {

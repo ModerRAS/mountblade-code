@@ -135,7 +135,7 @@ SHADER_FOUND:
       material_index = saved_material_type;
     } while (loop_limit != 0);
   }
-  puStack_888 = &unknown_var_336_ptr;
+  puStack_888 = &memory_allocator_336_ptr;
   pbStack_880 = abStack_870;
   iStack_878 = 0;
   abStack_870[0] = 0;
@@ -249,7 +249,7 @@ LAB_180273bfe:
   if (0 < (int)uVar2) {
     do {
       uStack_910 = uVar16;
-      puStack_8e8 = &unknown_var_3480_ptr;
+      puStack_8e8 = &memory_allocator_3480_ptr;
       puStack_8e0 = auStack_8d0;
       uStack_8d8 = 0;
       auStack_8d0[0] = 0;
@@ -266,7 +266,7 @@ LAB_180273bfe:
         *puVar22 = &system_state_ptr;
         puVar22[1] = 0;
         *(int32_t *)(puVar22 + 2) = 0;
-        *puVar22 = &unknown_var_3480_ptr;
+        *puVar22 = &memory_allocator_3480_ptr;
         puVar22[1] = puVar22 + 3;
         *(int32_t *)(puVar22 + 2) = 0;
         *(int8_t *)(puVar22 + 3) = 0;
@@ -295,7 +295,7 @@ LAB_180273eb0:
             *puVar17 = &system_state_ptr;
             puVar17[1] = 0;
             *(int32_t *)(puVar17 + 2) = 0;
-            *puVar17 = &unknown_var_3480_ptr;
+            *puVar17 = &memory_allocator_3480_ptr;
             puVar17[1] = puVar17 + 3;
             *(int32_t *)(puVar17 + 2) = 0;
             *(int8_t *)(puVar17 + 3) = 0;
@@ -315,7 +315,7 @@ LAB_180273eb0:
         *puVar17 = &system_state_ptr;
         puVar17[1] = 0;
         *(int32_t *)(puVar17 + 2) = 0;
-        *puVar17 = &unknown_var_3480_ptr;
+        *puVar17 = &memory_allocator_3480_ptr;
         puVar17[1] = puVar17 + 3;
         *(int32_t *)(puVar17 + 2) = 0;
         *(int8_t *)(puVar17 + 3) = 0;
@@ -443,7 +443,7 @@ void serialize_material_data(int32_t *material_header, int64_t *data_stream)
   }
   *puVar15 = 2;
   param_2[1] = param_2[1] + 4;
-  System_DataSerializer(&unknown_var_304_ptr,*param_1,param_2);
+  System_DataSerializer(&memory_allocator_304_ptr,*param_1,param_2);
   puVar15 = (int32_t *)param_2[1];
   uVar11 = param_1[1];
   if ((uint64_t)((*param_2 - (int64_t)puVar15) + param_2[2]) < 5) {
@@ -464,7 +464,7 @@ void serialize_material_data(int32_t *material_header, int64_t *data_stream)
     lVar7 = param_2[1];
   }
   param_2[1] = lVar7 + 4;
-  puVar13 = (uint64_t *)&unknown_var_208_ptr;
+  puVar13 = (uint64_t *)&rendering_buffer_208_ptr;
   uVar12 = uVar16;
   do {
     if ((*(uint *)(puVar13 + 1) & uVar11) != 0) {

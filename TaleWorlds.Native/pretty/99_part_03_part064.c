@@ -89,7 +89,7 @@ void FUN_18023690b(void)
       if (*(void **)(in_stack_00000068 + 8) != (void *)0x0) {
         puVar12 = *(void **)(in_stack_00000068 + 8);
       }
-      FUN_180627020(&unknown_var_8000_ptr,puVar12);
+      FUN_180627020(&processed_var_8000_ptr,puVar12);
       bStackX_20 = 0;
     }
     if ((int)*(char *)(*unaff_RSI + 0xf6) < (char)bStackX_20 + 1) {

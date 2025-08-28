@@ -77,39 +77,39 @@ void FUN_18066d7c0(void)
   }
   render_system_config_config = FUN_1806780c0;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_4960_ptr;
+    render_system_config_config = (code *)&processed_var_4960_ptr;
   }
   render_system_config_config = FUN_1806782c0;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_5408_ptr;
+    render_system_config_config = (code *)&processed_var_5408_ptr;
   }
   render_system_config_config = FUN_180678430;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_4576_ptr;
+    render_system_config_config = (code *)&processed_var_4576_ptr;
   }
   render_system_config_config = FUN_180678540;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_4704_ptr;
+    render_system_config_config = (code *)&processed_var_4704_ptr;
   }
   render_system_config_config = FUN_180678810;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_6960_ptr;
+    render_system_config_config = (code *)&processed_var_6960_ptr;
   }
   render_system_config_config = FUN_1806789c0;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_7232_ptr;
+    render_system_config_config = (code *)&processed_var_7232_ptr;
   }
   render_system_config_config = FUN_180678b10;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_6688_ptr;
+    render_system_config_config = (code *)&processed_var_6688_ptr;
   }
   render_system_config_config = FUN_180678bc0;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_6784_ptr;
+    render_system_config_config = (code *)&processed_var_6784_ptr;
   }
   render_system_config_config = FUN_180678e20;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_3312_ptr;
+    render_system_config_config = (code *)&memory_allocator_3312_ptr;
   }
   render_system_config_config = FUN_180678ef0;
   if (bVar6) {
@@ -117,27 +117,27 @@ void FUN_18066d7c0(void)
   }
   render_system_config_config = FUN_180678fc0;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_3088_ptr;
+    render_system_config_config = (code *)&memory_allocator_3088_ptr;
   }
   render_system_config_config = FUN_1806790b0;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_3184_ptr;
+    render_system_config_config = (code *)&memory_allocator_3184_ptr;
   }
   render_system_config_config = FUN_180679310;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_4176_ptr;
+    render_system_config_config = (code *)&processed_var_4176_ptr;
   }
   render_system_config_config = FUN_180679480;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_4304_ptr;
+    render_system_config_config = (code *)&processed_var_4304_ptr;
   }
   render_system_config_config = FUN_1806795f0;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_3904_ptr;
+    render_system_config_config = (code *)&memory_allocator_3904_ptr;
   }
   render_system_config_config = FUN_1806796f0;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_4000_ptr;
+    render_system_config_config = (code *)&processed_var_4000_ptr;
   }
   render_system_config_config = FUN_18067c470;
   if (bVar4) {
@@ -149,7 +149,7 @@ void FUN_18066d7c0(void)
   }
   render_system_config_config = FUN_180683f90;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_8096_ptr;
+    render_system_config_config = (code *)&processed_var_8096_ptr;
   }
   render_system_config_config = FUN_18068d2b0;
   if (bVar4) {
@@ -157,27 +157,27 @@ void FUN_18066d7c0(void)
   }
   render_system_config_config = FUN_180679ac0;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_2944_ptr;
+    render_system_config_config = (code *)&rendering_buffer_2944_ptr;
   }
   render_system_config_config = FUN_180679b20;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_3008_ptr;
+    render_system_config_config = (code *)&memory_allocator_3008_ptr;
   }
-  render_system_config_config = &unknown_var_960_ptr;
+  render_system_config_config = &processed_var_960_ptr;
   if (bVar6) {
-    render_system_config_config = &unknown_var_2816_ptr;
+    render_system_config_config = &rendering_buffer_2816_ptr;
   }
-  render_system_config_config = &unknown_var_1008_ptr;
+  render_system_config_config = &ui_system_data_1008_ptr;
   if (bVar6) {
-    render_system_config_config = &unknown_var_2880_ptr;
+    render_system_config_config = &rendering_buffer_2880_ptr;
   }
   render_system_config_config = FUN_1806917c0;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_1552_ptr;
+    render_system_config_config = (code *)&ui_system_data_1552_ptr;
   }
   render_system_config_config = FUN_180691db0;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_9840_ptr;
+    render_system_config_config = (code *)&processed_var_9840_ptr;
   }
   render_system_config_config = FUN_180694010;
   if (bVar4) {
@@ -189,111 +189,111 @@ void FUN_18066d7c0(void)
   }
   render_system_config_config = FUN_180695bf0;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_2512_ptr;
+    render_system_config_config = (code *)&rendering_buffer_2512_ptr;
   }
   if (bVar5) {
-    render_system_config_config = (code *)&unknown_var_4432_ptr;
+    render_system_config_config = (code *)&processed_var_4432_ptr;
   }
   render_system_config_config = FUN_180695f70;
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_3392_ptr;
+    render_system_config_config = (code *)&memory_allocator_3392_ptr;
   }
   if (bVar5) {
-    render_system_config_config = (code *)&unknown_var_5920_ptr;
+    render_system_config_config = (code *)&processed_var_5920_ptr;
   }
   render_system_config_config = FUN_1806961a0;
   if (bVar8) {
-    render_system_config_config = (code *)&unknown_var_7008_ptr;
+    render_system_config_config = (code *)&processed_var_7008_ptr;
   }
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_9600_ptr;
+    render_system_config_config = (code *)&processed_var_9600_ptr;
   }
   render_system_config_config = FUN_180696370;
   if (bVar7) {
-    render_system_config_config = (code *)&unknown_var_5776_ptr;
+    render_system_config_config = (code *)&processed_var_5776_ptr;
   }
   render_system_config_config = FUN_180696540;
   if (bVar8) {
-    render_system_config_config = (code *)&unknown_var_7893_ptr;
+    render_system_config_config = (code *)&processed_var_7893_ptr;
   }
   if (bVar6) {
-    render_system_config_config = (code *)&unknown_var_6989_ptr;
+    render_system_config_config = (code *)&processed_var_6989_ptr;
   }
   render_system_config_config = FUN_180696710;
   if (bVar7) {
-    render_system_config_config = (code *)&unknown_var_7206_ptr;
+    render_system_config_config = (code *)&processed_var_7206_ptr;
   }
-  render_system_config_config = (code *)&unknown_var_160_ptr;
+  render_system_config_config = (code *)&ui_system_data_160_ptr;
   if (bVar4) {
     render_system_config_config = FUN_180697340;
   }
-  render_system_config_config = (code *)&unknown_var_560_ptr;
+  render_system_config_config = (code *)&processed_var_560_ptr;
   if (bVar4) {
     render_system_config_config = FUN_1806972a0;
   }
-  render_system_config_config = (code *)&unknown_var_48_ptr;
+  render_system_config_config = (code *)&processed_var_48_ptr;
   if (bVar4) {
     render_system_config_config = FUN_180697460;
   }
-  render_system_config_config = (code *)&unknown_var_416_ptr;
+  render_system_config_config = (code *)&processed_var_416_ptr;
   if (bVar4) {
     render_system_config_config = FUN_1806973c0;
   }
-  render_system_config_config = (code *)&unknown_var_5920_ptr;
+  render_system_config_config = (code *)&processed_var_5920_ptr;
   if (bVar4) {
     render_system_config_config = FUN_1806977e0;
   }
-  render_system_config_config = (code *)&unknown_var_9936_ptr;
+  render_system_config_config = (code *)&processed_var_9936_ptr;
   if (bVar4) {
     render_system_config_config = FUN_180697580;
   }
-  render_system_config_config = (code *)&unknown_var_272_ptr;
+  render_system_config_config = (code *)&rendering_buffer_272_ptr;
   if (bVar4) {
     render_system_config_config = FUN_1806974e0;
   }
   render_system_config_config = FUN_1806968e0;
   if (bVar8) {
-    render_system_config_config = (code *)&unknown_var_9412_ptr;
+    render_system_config_config = (code *)&processed_var_9412_ptr;
   }
   render_system_config_config = FUN_180696a60;
   if (bVar7) {
-    render_system_config_config = (code *)&unknown_var_9212_ptr;
+    render_system_config_config = (code *)&processed_var_9212_ptr;
   }
-  render_system_config_config = (code *)&unknown_var_9536_ptr;
+  render_system_config_config = (code *)&processed_var_9536_ptr;
   if (bVar4) {
     render_system_config_config = FUN_180697680;
   }
-  render_system_config_config = (code *)&unknown_var_9792_ptr;
+  render_system_config_config = (code *)&processed_var_9792_ptr;
   if (bVar4) {
     render_system_config_config = FUN_180697600;
   }
-  render_system_config_config = (code *)&unknown_var_9424_ptr;
+  render_system_config_config = (code *)&processed_var_9424_ptr;
   if (bVar4) {
     render_system_config_config = FUN_180697770;
   }
-  render_system_config_config = (code *)&unknown_var_9648_ptr;
+  render_system_config_config = (code *)&processed_var_9648_ptr;
   if (bVar4) {
     render_system_config_config = FUN_1806976f0;
   }
-  render_system_config_config = (code *)&unknown_var_2672_ptr;
+  render_system_config_config = (code *)&rendering_buffer_2672_ptr;
   if (bVar4) {
     render_system_config_config = FUN_1806978b0;
   }
   render_system_config_config = FUN_180696be0;
   if (bVar8) {
-    render_system_config_config = (code *)&unknown_var_8370_ptr;
+    render_system_config_config = (code *)&processed_var_8370_ptr;
   }
   render_system_config_config = FUN_180696d90;
   if (bVar7) {
-    render_system_config_config = (code *)&unknown_var_8398_ptr;
+    render_system_config_config = (code *)&processed_var_8398_ptr;
   }
   render_system_config_config = FUN_180696f40;
   if (bVar8) {
-    render_system_config_config = (code *)&unknown_var_9055_ptr;
+    render_system_config_config = (code *)&processed_var_9055_ptr;
   }
   render_system_config_config = FUN_1806970f0;
   if (bVar7) {
-    render_system_config_config = (code *)&unknown_var_7956_ptr;
+    render_system_config_config = (code *)&processed_var_7956_ptr;
   }
   render_system_config_config = FUN_180697dd0;
   if (bVar6) {
@@ -1121,7 +1121,7 @@ int32_t FUN_18066efd0(int64_t param_1,int param_2,int *param_3)
   }
   else {
     if (param_2 != 4) {
-      puVar4 = &unknown_var_7720_ptr;
+      puVar4 = &processed_var_7720_ptr;
       goto LAB_18066f069;
     }
     iVar2 = *(int *)(param_1 + 0x1c9c);
@@ -1134,7 +1134,7 @@ int32_t FUN_18066efd0(int64_t param_1,int param_2,int *param_3)
     FUN_18069c540(puVar1 + lVar3 * 0x24 + 0x1e0,param_3);
     return *puVar1;
   }
-  puVar4 = &unknown_var_7744_ptr;
+  puVar4 = &processed_var_7744_ptr;
 LAB_18066f069:
   SystemInitializationProcessor(puVar1,1,puVar4);
   return *puVar1;
@@ -1234,7 +1234,7 @@ int32_t FUN_18066f2e0(int64_t param_1,int param_2,int *param_3)
   }
   else {
     if (param_2 != 4) {
-      puVar5 = &unknown_var_7720_ptr;
+      puVar5 = &processed_var_7720_ptr;
       goto LAB_18066f3c7;
     }
     piVar6 = (int *)(param_1 + 0x1c9c);
@@ -1256,7 +1256,7 @@ int32_t FUN_18066f2e0(int64_t param_1,int param_2,int *param_3)
     FUN_18069c540(param_3,param_1 + 0x1a40 + (int64_t)*piVar6 * 0x90);
     return *puVar1;
   }
-  puVar5 = &unknown_var_7744_ptr;
+  puVar5 = &processed_var_7744_ptr;
 LAB_18066f3c7:
   SystemInitializationProcessor(puVar1,1,puVar5);
   return *puVar1;

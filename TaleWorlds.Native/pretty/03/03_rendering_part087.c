@@ -156,7 +156,7 @@ void render_system_texture_mapper(uint64_t render_context, int64_t texture_data,
     memory_checksum = GET_SECURITY_COOKIE() ^ (uint64_t)stack_protector;
     
     // 初始化纹理数据
-    FUN_1802c22a0(alignment_buffer, &unknown_var_6264_ptr);
+    FUN_1802c22a0(alignment_buffer, &processed_var_6264_ptr);
     texture_offset = system_message_buffer;
     
     // 计算纹理步长
@@ -305,11 +305,11 @@ apply_parameters:
                   *(int64_t *)(system_message_buffer + 0x1cd8) + 0x1be0, 0x230);
     
     // 设置数据源
-    data_source = &unknown_var_3480_ptr;
+    data_source = &memory_allocator_3480_ptr;
     data_target = data_buffer + 4;
     data_buffer[4] = 0;
     data_flags = 0xd;
-    strcpy_s(data_buffer + 4, 0x40, &unknown_var_984_ptr);
+    strcpy_s(data_buffer + 4, 0x40, &processed_var_984_ptr);
     
     // 初始化渲染资源
     FUN_1800b4910(system_resource_state, &texture_ptr, &data_source);
@@ -369,8 +369,8 @@ apply_parameters:
     FUN_18029cdd0(*(uint64_t *)(system_message_buffer + 0x1cd8), &data_source);
     
     texture_offset = system_message_buffer;
-    texture_handle = strnlen(&unknown_var_6216_ptr, 0x3f);
-    strncpy(texture_offset + 0x1ce0, &unknown_var_6216_ptr, texture_handle);
+    texture_handle = strnlen(&processed_var_6216_ptr, 0x3f);
+    strncpy(texture_offset + 0x1ce0, &processed_var_6216_ptr, texture_handle);
     *(int8_t *)(texture_handle + 0x1ce0 + texture_offset) = 0;
     
     // 完成纹理处理
@@ -496,7 +496,7 @@ void render_system_parameter_processor(uint64_t *render_context, int64_t texture
     texture_ptr[3] = 0x70616d65;
     *(int8_t *)(texture_ptr + 4) = 0;
     
-    param_source = &unknown_var_3432_ptr;
+    param_source = &memory_allocator_3432_ptr;
     data_end = data_block;
     data_block[0] = 0;
     param_source = &system_buffer_ptr;

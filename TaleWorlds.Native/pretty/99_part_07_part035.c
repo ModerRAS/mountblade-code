@@ -846,7 +846,7 @@ FUN_1804bc2d0(int64_t param_1,int32_t param_2,int32_t param_3,int32_t param_4,in
   if (puVar4[5] != 0) {
     return *(uint64_t *)(puVar4[5] + 0x2a0 + (int64_t)param_5 * 8);
   }
-  SystemCore_ResourceManager0(&unknown_var_7688_ptr);
+  SystemCore_ResourceManager0(&processed_var_7688_ptr);
   return 0;
 }
 
@@ -882,7 +882,7 @@ uint64_t FUN_1804bc380(int64_t param_1,int32_t param_2,int32_t param_3,int32_t p
   if (puVar4[5] != 0) {
     return *(uint64_t *)(puVar4[5] + 0x2b8);
   }
-  SystemCore_ResourceManager0(&unknown_var_7656_ptr);
+  SystemCore_ResourceManager0(&processed_var_7656_ptr);
   return 0;
 }
 
@@ -919,14 +919,14 @@ FUN_1804bc420(int64_t param_1,int32_t param_2,int32_t param_3,int param_4,int32_
   }
   lVar1 = puVar5[5];
   if (lVar1 == 0) {
-    SystemCore_ResourceManager0(&unknown_var_7728_ptr);
+    SystemCore_ResourceManager0(&processed_var_7728_ptr);
     return 0;
   }
   if (param_4 == 2) {
     return *(uint64_t *)(lVar1 + 0x2c8);
   }
   if (param_4 != 1) {
-    SystemCore_ResourceManager0(&unknown_var_7768_ptr);
+    SystemCore_ResourceManager0(&processed_var_7768_ptr);
     return 0;
   }
   return *(uint64_t *)(lVar1 + 0x2c0);

@@ -7,7 +7,7 @@ void FUN_18074b650(uint64_t param_1,uint64_t param_2,int32_t *param_3)
 
 {
                     // WARNING: Subroutine does not return
-  SystemValidationProcessor(param_1,param_2,&unknown_var_8960_ptr,*param_3,*(int16_t *)(param_3 + 1),
+  SystemValidationProcessor(param_1,param_2,&processed_var_8960_ptr,*param_3,*(int16_t *)(param_3 + 1),
                 *(int16_t *)((int64_t)param_3 + 6),*(int8_t *)(param_3 + 2),
                 *(int8_t *)((int64_t)param_3 + 9),*(int8_t *)((int64_t)param_3 + 10),
                 *(int8_t *)((int64_t)param_3 + 0xb),*(int8_t *)(param_3 + 3),
@@ -48,7 +48,7 @@ uint64_t FUN_18074b6f0(int8_t *param_1,int param_2,float *param_3)
     return 7;
   }
                     // WARNING: Subroutine does not return
-  SystemValidationProcessor((double)param_3[2],(double)param_3[1],&unknown_var_8944_ptr,(double)fVar1,
+  SystemValidationProcessor((double)param_3[2],(double)param_3[1],&processed_var_8944_ptr,(double)fVar1,
                 (double)param_3[1],(double)param_3[2]);
 }
 
@@ -74,7 +74,7 @@ uint64_t DataProcessor(int16_t *param_1,int param_2,int64_t param_3)
     memcpy(param_1,param_3,(int64_t)(iVar1 + 1));
   }
                     // WARNING: Subroutine does not return
-  SystemValidationProcessor(param_1,param_2,&unknown_var_552_ptr,param_3);
+  SystemValidationProcessor(param_1,param_2,&processed_var_552_ptr,param_3);
 }
 
 
@@ -108,7 +108,7 @@ void FUN_18074b8d6(uint64_t param_1)
   int32_t unaff_EDI;
   
                     // WARNING: Subroutine does not return
-  SystemValidationProcessor(param_1,unaff_EDI,&unknown_var_552_ptr);
+  SystemValidationProcessor(param_1,unaff_EDI,&processed_var_552_ptr);
 }
 
 
@@ -125,7 +125,7 @@ uint64_t FUN_18074b8e9(int16_t *param_1)
     *param_1 = 0x30;
     return 1;
   }
-  puStack0000000000000040 = &unknown_var_4576_ptr;
+  puStack0000000000000040 = &processed_var_4576_ptr;
   uStack0000000000000048 = 0;
   uVar1 = FUN_18076b930();
   return uVar1;
@@ -141,7 +141,7 @@ void FUN_18074b930(uint64_t param_1,uint64_t param_2,int32_t *param_3)
 {
   if (param_3 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
-    SystemValidationProcessor(param_1,param_2,&unknown_var_9012_ptr,param_3,*param_3);
+    SystemValidationProcessor(param_1,param_2,&processed_var_9012_ptr,param_3,*param_3);
   }
   FUN_18076b930();
   return;
@@ -170,7 +170,7 @@ uint FUN_18074b970(int8_t *param_1,int param_2,uint *param_3,int param_4)
     pcVar2 = param_1 + uVar4;
     if ((9 < uVar1) || ((int)(param_2 - uVar4) < 2)) {
                     // WARNING: Subroutine does not return
-      SystemValidationProcessor(pcVar2,param_2 - uVar4,&unknown_var_4576_ptr);
+      SystemValidationProcessor(pcVar2,param_2 - uVar4,&processed_var_4576_ptr);
     }
     pcVar2[1] = '\0';
     *pcVar2 = (char)uVar1 + '0';
@@ -187,7 +187,7 @@ uint FUN_18074b970(int8_t *param_1,int param_2,uint *param_3,int param_4)
         uVar1 = param_3[lVar5];
         if ((9 < uVar1) || (iVar3 < 2)) {
                     // WARNING: Subroutine does not return
-          SystemValidationProcessor(pcVar2,iVar3,&unknown_var_4576_ptr);
+          SystemValidationProcessor(pcVar2,iVar3,&processed_var_4576_ptr);
         }
         pcVar2[1] = '\0';
         *pcVar2 = (char)uVar1 + '0';
@@ -213,7 +213,7 @@ void FUN_18074ba80(uint64_t param_1,uint64_t param_2,int32_t *param_3)
 {
   if (param_3 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
-    SystemValidationProcessor(param_1,param_2,&unknown_var_9024_ptr,param_3,*param_3);
+    SystemValidationProcessor(param_1,param_2,&processed_var_9024_ptr,param_3,*param_3);
   }
   FUN_18076b930();
   return;
@@ -229,7 +229,7 @@ void FUN_18074bac0(uint64_t param_1,uint64_t param_2,float *param_3)
 {
   if (param_3 != (float *)0x0) {
                     // WARNING: Subroutine does not return
-    SystemValidationProcessor((double)*param_3,param_2,&unknown_var_9048_ptr,param_3,(double)*param_3);
+    SystemValidationProcessor((double)*param_3,param_2,&processed_var_9048_ptr,param_3,(double)*param_3);
   }
   FUN_18076b930();
   return;
@@ -313,7 +313,7 @@ void FUN_18074bc50(uint64_t param_1,int32_t param_2,int32_t *param_3)
 {
   if (param_3 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
-    SystemValidationProcessor(param_1,param_2,&unknown_var_9080_ptr,param_3,*param_3,*(int16_t *)(param_3 + 1),
+    SystemValidationProcessor(param_1,param_2,&processed_var_9080_ptr,param_3,*param_3,*(int16_t *)(param_3 + 1),
                   *(int16_t *)((int64_t)param_3 + 6),*(int8_t *)(param_3 + 2),
                   *(int8_t *)((int64_t)param_3 + 9),*(int8_t *)((int64_t)param_3 + 10),
                   *(int8_t *)((int64_t)param_3 + 0xb),*(int8_t *)(param_3 + 3),
@@ -366,7 +366,7 @@ void FUN_18074bc81(uint64_t param_1,int32_t param_2,int64_t param_3,int32_t para
   uStack0000000000000028 = param_2;
   uStack0000000000000068 = param_4;
                     // WARNING: Subroutine does not return
-  SystemValidationProcessor(param_1,unaff_R15D,&unknown_var_9080_ptr);
+  SystemValidationProcessor(param_1,unaff_R15D,&processed_var_9080_ptr);
 }
 
 
@@ -381,7 +381,7 @@ void FUN_18074bd20(void)
   void *puStack00000000000000b0;
   uint64_t uStack00000000000000b8;
   
-  puStack00000000000000b0 = &unknown_var_9020_ptr;
+  puStack00000000000000b0 = &processed_var_9020_ptr;
   uStack00000000000000b8 = 0;
   uStack0000000000000068 = 0x18076b3a8;
   FUN_18076b930();
@@ -400,11 +400,11 @@ void FUN_18074bd40(uint64_t param_1,uint64_t param_2,float *param_3)
   
   if (param_3 != (float *)0x0) {
                     // WARNING: Subroutine does not return
-    SystemValidationProcessor((double)param_3[2],(double)param_3[1],&unknown_var_9064_ptr,param_3,(double)*param_3,
+    SystemValidationProcessor((double)param_3[2],(double)param_3[1],&processed_var_9064_ptr,param_3,(double)*param_3,
                   (double)param_3[1],(double)param_3[2]);
   }
   uStackX_20 = 0;
-  FUN_18076b930(param_1,param_2,&unknown_var_9020_ptr,&uStackX_20);
+  FUN_18076b930(param_1,param_2,&processed_var_9020_ptr,&uStackX_20);
   return;
 }
 
@@ -418,7 +418,7 @@ void FUN_18074bdb0(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
 {
   if (param_3 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    SystemValidationProcessor(param_1,param_2,&unknown_var_9032_ptr,param_3,*param_3);
+    SystemValidationProcessor(param_1,param_2,&processed_var_9032_ptr,param_3,*param_3);
   }
   FUN_18076b930();
   return;
@@ -434,7 +434,7 @@ void FUN_18074bdf0(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
 {
   if (param_3 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    SystemValidationProcessor(param_1,param_2,&unknown_var_9040_ptr,param_3,*param_3);
+    SystemValidationProcessor(param_1,param_2,&processed_var_9040_ptr,param_3,*param_3);
   }
   FUN_18076b930();
   return;
@@ -451,12 +451,12 @@ void FUN_18074be30(uint64_t param_1,uint64_t param_2,char *param_3)
   void *puVar1;
   
   if (param_3 != (char *)0x0) {
-    puVar1 = &unknown_var_2336_ptr;
+    puVar1 = &rendering_buffer_2336_ptr;
     if (*param_3 != '\0') {
-      puVar1 = &unknown_var_2328_ptr;
+      puVar1 = &rendering_buffer_2328_ptr;
     }
                     // WARNING: Subroutine does not return
-    SystemValidationProcessor(param_1,param_2,&unknown_var_9056_ptr,param_3,puVar1);
+    SystemValidationProcessor(param_1,param_2,&processed_var_9056_ptr,param_3,puVar1);
   }
   FUN_18076b930();
   return;
@@ -473,9 +473,9 @@ void FUN_18074be90(uint64_t param_1,int param_2,char param_3)
   int iVar1;
   void *puVar2;
   
-  puVar2 = &unknown_var_2336_ptr;
+  puVar2 = &rendering_buffer_2336_ptr;
   if (param_3 != '\0') {
-    puVar2 = &unknown_var_2328_ptr;
+    puVar2 = &rendering_buffer_2328_ptr;
   }
   iVar1 = func_0x00018076b690(puVar2);
   if (iVar1 + 1 <= param_2) {
@@ -483,7 +483,7 @@ void FUN_18074be90(uint64_t param_1,int param_2,char param_3)
     memcpy(param_1,puVar2,(int64_t)(iVar1 + 1));
   }
                     // WARNING: Subroutine does not return
-  SystemValidationProcessor(param_1,param_2,&unknown_var_552_ptr,puVar2);
+  SystemValidationProcessor(param_1,param_2,&processed_var_552_ptr,puVar2);
 }
 
 

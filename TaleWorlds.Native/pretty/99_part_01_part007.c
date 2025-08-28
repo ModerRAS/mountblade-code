@@ -353,7 +353,7 @@ CONFIG_COMPLETE:
     
     /* 错误处理 */
     if (status_code < 0) {
-        FUN_180220810(status_code,&unknown_var_3352_ptr);
+        FUN_180220810(status_code,&memory_allocator_3352_ptr);
     }
     
     /* 设置输出缓冲区 */
@@ -479,7 +479,7 @@ CONFIG_COMPLETE:
     
     /* 设置栈保护和安全返回 */
     context_ptr2 = &stack_ptr1;
-    stack_ptr1 = &unknown_var_3432_ptr;
+    stack_ptr1 = &memory_allocator_3432_ptr;
     stack_ptr2 = buffer1;
     buffer1[0] = 0;
     temp_storage4 = *(int32_t *)(output_buffer + 0x20);
@@ -655,7 +655,7 @@ uint64_t ResourceInitializer(int64_t system_context, int* init_params, int64_t r
     
     /* 错误处理 */
     if (config_param2 < 0) {
-        FUN_180220810(config_param2,&unknown_var_3480_ptr);
+        FUN_180220810(config_param2,&memory_allocator_3480_ptr);
     }
     
     config_param2 = func_0x000180225d90(init_params[4]);
@@ -842,7 +842,7 @@ uint64_t ResourceInitializer(int64_t system_context, int* init_params, int64_t r
     
     /* 最终处理和清理 */
     context_ptr = &stack_ptr1;
-    stack_ptr1 = &unknown_var_3432_ptr;
+    stack_ptr1 = &memory_allocator_3432_ptr;
     stack_ptr2 = buffer1;
     buffer1[0] = 0;
     temp_storage24 = *(int32_t *)(resource_handle + 0x20);

@@ -415,7 +415,7 @@ int64_t *create_data_buffer(int64_t context, int64_t *buffer_ptr, uint64_t param
       *buffer_data = &system_state_ptr;
       buffer_data[1] = 0;
       *(int32_t *)(buffer_data + 2) = 0;
-      *buffer_data = &unknown_var_3432_ptr;
+      *buffer_data = &memory_allocator_3432_ptr;
       buffer_data[1] = buffer_data + 3;
       *(int32_t *)(buffer_data + 2) = 0;
       *(int8_t *)(buffer_data + 3) = 0;
@@ -446,9 +446,9 @@ uint64_t *initialize_object_structure(uint64_t *object_ptr)
   *object_ptr = &system_handler1_ptr;
   *object_ptr = &system_handler2_ptr;
   *(int32_t *)(object_ptr + 1) = 0;
-  *object_ptr = &unknown_var_7872_ptr;
+  *object_ptr = &processed_var_7872_ptr;
   FUN_18015c2b0(object_ptr + 2);
-  *object_ptr = &unknown_var_2656_ptr;
+  *object_ptr = &rendering_buffer_2656_ptr;
   object_ptr[0x11] = 0;
   *(int32_t *)(object_ptr + 0x12) = 0xffffffff;
   object_ptr[0x15] = 0;
@@ -763,7 +763,7 @@ uint64_t *initialize_thread_manager(uint64_t *manager_ptr)
   int64_t *lock_ptr;
   
   FUN_1801566b0();  // 初始化线程相关功能
-  *manager_ptr = &unknown_var_5528_ptr;
+  *manager_ptr = &processed_var_5528_ptr;
   _Mtx_init_in_situ(manager_ptr + 0x4c, 0x102);
   manager_ptr[0x56] = 0;
   manager_ptr[0x57] = 0;
@@ -900,7 +900,7 @@ void cleanup_thread_manager(uint64_t *manager_ptr)
   _Mtx_destroy_in_situ();
   
   // 重置管理器状态
-  *manager_ptr = &unknown_var_8656_ptr;
+  *manager_ptr = &processed_var_8656_ptr;
   *(int8_t *)((int64_t)manager_ptr + 0x162) = 1;
   resource_ptr2 = manager_ptr + 0x1a;
   temp_resource2 = resource_ptr2;
@@ -1076,7 +1076,7 @@ void initialize_processing_context(int64_t *context_ptr, uint64_t param2, int pa
   *(bool *)(context_ptr + 0x42) = *(int *)(SYSTEM_STATE_MANAGER + 0x1ce0) != 0;
   config_param1 = 0xffffffff;
   callback_func = SystemResourceCleaner;
-  FUN_180738730(0, 0, &unknown_var_1648_ptr, FUN_180211f70);
+  FUN_180738730(0, 0, &ui_system_data_1648_ptr, FUN_180211f70);
   FUN_180840330(context_ptr + 0x6d, 0x20214);
   config_param4 = 0;
   config_param6 = 0;

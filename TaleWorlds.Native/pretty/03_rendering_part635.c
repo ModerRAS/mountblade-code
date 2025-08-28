@@ -14,7 +14,7 @@ void FUN_18061fec0(uint64_t *param_1)
   uint64_t uVar5;
   uint64_t uVar6;
   
-  *param_1 = &unknown_var_2136_ptr;
+  *param_1 = &rendering_buffer_2136_ptr;
   uVar5 = 0;
   plVar2 = param_1 + 0x38;
   uVar4 = uVar5;
@@ -101,7 +101,7 @@ void FUN_18061fec0(uint64_t *param_1)
     }
     if (param_1[5] == 0) {
       if (param_1[1] == 0) {
-        *param_1 = &unknown_var_2256_ptr;
+        *param_1 = &rendering_buffer_2256_ptr;
         return;
       }
                     // WARNING: Subroutine does not return

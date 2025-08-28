@@ -458,7 +458,7 @@ void FUN_1800e5110(uint64_t param_1,uint64_t param_2,int64_t *param_3)
   code *pcStack_18;
   
   puStack_28 = auStackX_10;
-  puStack_20 = &unknown_var_1264_ptr;
+  puStack_20 = &ui_system_data_1264_ptr;
   pcStack_18 = FUN_1800ea6f0;
   uStack_40 = SUB84(param_3,0);
   uStack_3c = (int32_t)((uint64_t)param_3 >> 0x20);

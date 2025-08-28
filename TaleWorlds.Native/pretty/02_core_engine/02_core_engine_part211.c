@@ -103,7 +103,7 @@ void process_string_search_and_scoring(uint64_t param_1, int64_t param_2, int64_
         puVar9 = puStack_158;
       }
       // 执行字符串搜索
-      lVar5 = strstr(puVar9, &unknown_var_1496_ptr);
+      lVar5 = strstr(puVar9, &ui_system_data_1496_ptr);
       puVar11 = puStack_120;
       if (lVar5 == 0) {
         puStack_160 = &system_data_buffer_ptr;
@@ -293,8 +293,8 @@ initialize_data_structure_copy(uint64_t *param_1, int64_t param_2, uint64_t para
   uint64_t uVar5;
   
   uVar5 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_5912_ptr;
-  *param_1 = &unknown_var_5880_ptr;
+  *param_1 = &processed_var_5912_ptr;
+  *param_1 = &processed_var_5880_ptr;
   // 初始化数据结构
   CoreEngineDataTransformer(param_1 + 1, param_2 + 8, param_3, param_4, 0xfffffffffffffffe);
   *(int32_t *)(param_1 + 5) = *(int32_t *)(param_2 + 0x28);

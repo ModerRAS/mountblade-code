@@ -994,7 +994,7 @@ uint64_t FUN_1808de900(int64_t param_1,uint64_t param_2)
   uint64_t uVar3;
   
   puVar1 = (int32_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&unknown_var_8144_ptr,0x30,0,0,1);
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&processed_var_8144_ptr,0x30,0,0,1);
   if (puVar1 == (int32_t *)0x0) {
     uVar3 = 0x26;
   }

@@ -353,7 +353,7 @@ FUN_18056f3a0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_9520_ptr;
+  *param_1 = &processed_var_9520_ptr;
   _Mtx_destroy_in_situ();
   if (param_1[0x9891] != 0) {
                     // WARNING: Subroutine does not return
@@ -386,11 +386,11 @@ FUN_18056f3a0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
 void FUN_18056f480(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_9800_ptr;
+  *param_1 = &processed_var_9800_ptr;
   *(int32_t *)((int64_t)param_1 + 0x24) = 0;
   *(int16_t *)(param_1 + 4) = 0;
   param_1[2] = 2;
-  param_1[5] = &unknown_var_9728_ptr;
+  param_1[5] = &processed_var_9728_ptr;
   param_1[7] = 0;
   param_1[8] = 0;
   param_1[6] = 0xffffffffffffffff;
@@ -453,7 +453,7 @@ void FUN_18056f670(int64_t *param_1)
 {
   char cVar1;
   
-  *param_1 = (int64_t)&unknown_var_9800_ptr;
+  *param_1 = (int64_t)&processed_var_9800_ptr;
   cVar1 = (**(code **)(param_1[5] + 0x30))(param_1 + 5);
   if (cVar1 != '\0') {
     (**(code **)(param_1[5] + 0x18))(param_1 + 5);
@@ -465,7 +465,7 @@ void FUN_18056f670(int64_t *param_1)
     CoreMemoryPoolInitializer();
   }
   param_1[0xba] = 0;
-  param_1[5] = (int64_t)&unknown_var_9728_ptr;
+  param_1[5] = (int64_t)&processed_var_9728_ptr;
   return;
 }
 
@@ -522,7 +522,7 @@ void FUN_18056f700(int64_t param_1)
       puStack_40 = auStack_30;
       auStack_30[0] = 0;
       uStack_38 = 0xf;
-      strcpy_s(auStack_30,0x10,&unknown_var_9560_ptr);
+      strcpy_s(auStack_30,0x10,&processed_var_9560_ptr);
       uVar5 = FUN_18005e4d0(uVar5,&puStack_48);
       *(uint64_t *)(param_1 + 8) = uVar5;
       puStack_48 = &system_state_ptr;
@@ -798,7 +798,7 @@ uint64_t * FUN_18056fde0(uint64_t *param_1)
     if (puVar4 == (uint64_t *)0x0) {
       FUN_180287f70(auStack_30);
                     // WARNING: Subroutine does not return
-      _CxxThrowException(auStack_30,&unknown_var_2600_ptr);
+      _CxxThrowException(auStack_30,&rendering_buffer_2600_ptr);
     }
     puVar4[0x10] = puVar4;
   }
@@ -825,7 +825,7 @@ uint64_t * FUN_18056fde0(uint64_t *param_1)
       if (puVar3 == (uint64_t *)0x0) {
         FUN_180287f70(auStack_48);
                     // WARNING: Subroutine does not return
-        _CxxThrowException(auStack_48,&unknown_var_2600_ptr);
+        _CxxThrowException(auStack_48,&rendering_buffer_2600_ptr);
       }
       puVar4 = puVar3;
       if (puVar5 != (uint64_t *)0x0) {
@@ -929,7 +929,7 @@ LAB_18057001b:
 uint64_t * FUN_180570140(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_9728_ptr;
+  *param_1 = &processed_var_9728_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x20);
   }

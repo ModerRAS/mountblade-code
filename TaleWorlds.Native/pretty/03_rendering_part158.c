@@ -36,7 +36,7 @@ void FUN_1803663f0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
       lVar7 = lStack_48;
       do {
         lVar1 = *(int64_t *)(lVar5 + lVar4);
-        cVar3 = FUN_1802eee20(lVar1,&unknown_var_4260_ptr);
+        cVar3 = FUN_1802eee20(lVar1,&processed_var_4260_ptr);
         if ((cVar3 == '\0') &&
            (iVar6 = 0, *(int64_t *)(lVar1 + 0xf8) - *(int64_t *)(lVar1 + 0xf0) >> 3 != 0)) {
           do {
@@ -68,13 +68,13 @@ uint64_t * FUN_180366540(uint64_t *param_1)
   *param_1 = &system_handler1_ptr;
   *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &unknown_var_768_ptr;
+  *param_1 = &processed_var_768_ptr;
   *(int32_t *)(param_1 + 2) = 4;
   param_1[3] = 0;
   param_1[4] = 0;
   *(int32_t *)(param_1 + 1) = 0;
   param_1[5] = 0;
-  *param_1 = &unknown_var_9656_ptr;
+  *param_1 = &processed_var_9656_ptr;
   param_1[6] = 0;
   param_1[7] = 0;
   param_1[8] = 0;
@@ -98,7 +98,7 @@ uint64_t
 FUN_1803665f0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_180627910(param_2,&unknown_var_7160_ptr,param_3,param_4,0,0xfffffffffffffffe);
+  FUN_180627910(param_2,&processed_var_7160_ptr,param_3,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
@@ -176,7 +176,7 @@ FUN_1803667e0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
-  *param_1 = &unknown_var_768_ptr;
+  *param_1 = &processed_var_768_ptr;
   param_1[5] = 0;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
@@ -200,7 +200,7 @@ uint64_t * FUN_180366860(uint64_t param_1,uint64_t param_2)
   puVar2 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xb0,8,3,0xfffffffffffffffe);
   puVar3 = puVar2;
   FUN_1803456e0(puVar2,param_2,param_1);
-  *puVar2 = &unknown_var_192_ptr;
+  *puVar2 = &ui_system_data_192_ptr;
   puVar1 = puVar2 + 0xe;
   puVar2[0x11] = 0;
   *(int32_t *)(puVar2 + 0x13) = 3;
@@ -244,24 +244,24 @@ void FUN_180366900(int64_t param_1)
   
   uStack_c8 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_108;
-  apuStack_b8[0] = &unknown_var_9264_ptr;
-  apuStack_b8[1] = &unknown_var_9240_ptr;
+  apuStack_b8[0] = &processed_var_9264_ptr;
+  apuStack_b8[1] = &processed_var_9240_ptr;
   apuStack_b8[2] = &render_data_ptr;
-  apuStack_b8[3] = &unknown_var_9352_ptr;
-  apuStack_b8[4] = &unknown_var_9328_ptr;
-  apuStack_b8[5] = &unknown_var_9304_ptr;
-  apuStack_b8[6] = &unknown_var_9464_ptr;
-  apuStack_b8[7] = &unknown_var_9448_ptr;
-  apuStack_b8[8] = &unknown_var_9424_ptr;
-  apuStack_b8[9] = &unknown_var_9408_ptr;
-  apuStack_b8[10] = &unknown_var_9424_ptr;
+  apuStack_b8[3] = &processed_var_9352_ptr;
+  apuStack_b8[4] = &processed_var_9328_ptr;
+  apuStack_b8[5] = &processed_var_9304_ptr;
+  apuStack_b8[6] = &processed_var_9464_ptr;
+  apuStack_b8[7] = &processed_var_9448_ptr;
+  apuStack_b8[8] = &processed_var_9424_ptr;
+  apuStack_b8[9] = &processed_var_9408_ptr;
+  apuStack_b8[10] = &processed_var_9424_ptr;
   apuStack_b8[0xb] = &system_string1_ptr;
-  apuStack_b8[0xc] = &unknown_var_9528_ptr;
-  apuStack_b8[0xd] = &unknown_var_9504_ptr;
-  apuStack_b8[0xe] = &unknown_var_9488_ptr;
-  apuStack_b8[0xf] = &unknown_var_9632_ptr;
-  apuStack_b8[0x10] = &unknown_var_9624_ptr;
-  apuStack_b8[0x11] = &unknown_var_4260_ptr;
+  apuStack_b8[0xc] = &processed_var_9528_ptr;
+  apuStack_b8[0xd] = &processed_var_9504_ptr;
+  apuStack_b8[0xe] = &processed_var_9488_ptr;
+  apuStack_b8[0xf] = &processed_var_9632_ptr;
+  apuStack_b8[0x10] = &processed_var_9624_ptr;
+  apuStack_b8[0x11] = &processed_var_4260_ptr;
   puStack_e8 = (uint64_t *)0x0;
   puStack_e0 = (uint64_t *)0x0;
   uStack_d8 = 0;
@@ -346,24 +346,24 @@ void FUN_180366b10(int64_t param_1,int64_t param_2)
   if (param_1 != 0) {
     do {
       if (param_1 == param_2) break;
-      apuStack_c8[0] = &unknown_var_9264_ptr;
-      apuStack_c8[1] = &unknown_var_9240_ptr;
+      apuStack_c8[0] = &processed_var_9264_ptr;
+      apuStack_c8[1] = &processed_var_9240_ptr;
       apuStack_c8[2] = &render_data_ptr;
-      apuStack_c8[3] = &unknown_var_9352_ptr;
-      apuStack_c8[4] = &unknown_var_9328_ptr;
-      apuStack_c8[5] = &unknown_var_9304_ptr;
-      apuStack_c8[6] = &unknown_var_9464_ptr;
-      apuStack_c8[7] = &unknown_var_9448_ptr;
-      apuStack_c8[8] = &unknown_var_9424_ptr;
-      apuStack_c8[9] = &unknown_var_9408_ptr;
-      apuStack_c8[10] = &unknown_var_9424_ptr;
+      apuStack_c8[3] = &processed_var_9352_ptr;
+      apuStack_c8[4] = &processed_var_9328_ptr;
+      apuStack_c8[5] = &processed_var_9304_ptr;
+      apuStack_c8[6] = &processed_var_9464_ptr;
+      apuStack_c8[7] = &processed_var_9448_ptr;
+      apuStack_c8[8] = &processed_var_9424_ptr;
+      apuStack_c8[9] = &processed_var_9408_ptr;
+      apuStack_c8[10] = &processed_var_9424_ptr;
       apuStack_c8[0xb] = &system_string1_ptr;
-      apuStack_c8[0xc] = &unknown_var_9528_ptr;
-      apuStack_c8[0xd] = &unknown_var_9504_ptr;
-      apuStack_c8[0xe] = &unknown_var_9488_ptr;
-      apuStack_c8[0xf] = &unknown_var_9632_ptr;
-      apuStack_c8[0x10] = &unknown_var_9624_ptr;
-      apuStack_c8[0x11] = &unknown_var_4260_ptr;
+      apuStack_c8[0xc] = &processed_var_9528_ptr;
+      apuStack_c8[0xd] = &processed_var_9504_ptr;
+      apuStack_c8[0xe] = &processed_var_9488_ptr;
+      apuStack_c8[0xf] = &processed_var_9632_ptr;
+      apuStack_c8[0x10] = &processed_var_9624_ptr;
+      apuStack_c8[0x11] = &processed_var_4260_ptr;
       puStack_f8 = (uint64_t *)0x0;
       puStack_f0 = (uint64_t *)0x0;
       uStack_e8 = 0;

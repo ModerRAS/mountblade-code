@@ -918,7 +918,7 @@ initialize_file_read_context(uint64_t *file_context, int64_t file_info, uint64_t
   file_context[1] = 0;               // 清理偏移量
   *(int32_t *)(file_context + 2) = 0;  // 清理大小
   
-  *file_context = &unknown_var_2008_ptr;  // 设置路径缓冲区
+  *file_context = &rendering_buffer_2008_ptr;  // 设置路径缓冲区
   file_context[1] = file_context + 3;  // 设置路径指针
   *(int32_t *)(file_context + 2) = 0;  // 清理路径长度
   *(int8_t *)(file_context + 3) = 0;  // 路径终止符
@@ -950,7 +950,7 @@ uint64_t * initialize_memory_manager(uint64_t *memory_manager)
   memory_manager[1] = 0;               // 清理计数器
   *(int32_t *)(memory_manager + 2) = 0;  // 清理标志
   
-  *memory_manager = &unknown_var_2008_ptr;  // 设置数据缓冲区
+  *memory_manager = &rendering_buffer_2008_ptr;  // 设置数据缓冲区
   memory_manager[1] = memory_manager + 3;  // 设置数据指针
   *(int32_t *)(memory_manager + 2) = 0;  // 清理数据长度
   *(int8_t *)(memory_manager + 3) = 0;  // 数据终止符
@@ -1133,7 +1133,7 @@ void string_search_and_replace(int64_t target_string, int64_t search_string, int
   // 初始化栈保护
   stack_guard = 0xfffffffffffffffe;
   security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
-  temp_ptr = &unknown_var_2008_ptr;
+  temp_ptr = &rendering_buffer_2008_ptr;
   result_buffer = work_buffer;
   result_len = 0;
   work_buffer[0] = 0;
@@ -1200,7 +1200,7 @@ void set_string_value(int64_t target_string, int64_t source_string)
   }
   
   // 字符串过长，处理错误情况
-  handle_string_too_long_error(&unknown_var_616_ptr, 0x100, source_string);
+  handle_string_too_long_error(&processed_var_616_ptr, 0x100, source_string);
   *(int32_t *)(target_string + 0x10) = 0;
   **(int8_t **)(target_string + 8) = 0;
   return;
@@ -1280,7 +1280,7 @@ release_memory_manager(uint64_t *memory_manager, uint64_t release_flags, uint64_
 
 {
   // 重置内存管理器的各个字段
-  *memory_manager = &unknown_var_1000_ptr;
+  *memory_manager = &ui_system_data_1000_ptr;
   *memory_manager = &system_handler2_ptr;
   *memory_manager = &system_handler1_ptr;
   
@@ -1302,7 +1302,7 @@ uint64_t * release_string_buffer(uint64_t *string_buffer, uint64_t release_flags
 
 {
   // 重置字符串缓冲区
-  *string_buffer = &unknown_var_2280_ptr;
+  *string_buffer = &rendering_buffer_2280_ptr;
   
   // 根据标志决定是否释放内存
   if ((release_flags & 1) != 0) {

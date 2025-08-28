@@ -217,7 +217,7 @@ FUN_1801566b0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   int64_t *plStackX_18;
   int64_t *plStackX_20;
   
-  *param_1 = &unknown_var_8656_ptr;
+  *param_1 = &processed_var_8656_ptr;
   param_1[3] = 0;
   param_1[4] = _guard_check_icall;
   *(int32_t *)(param_1 + 10) = 0x3f800000;
@@ -266,7 +266,7 @@ FUN_1801566b0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
                         0x800,&puStackX_10);
   param_1[0x4a] = uVar1;
   if ((int)puStackX_10 < 0) {
-    SystemDataInitializer(&unknown_var_7224_ptr);
+    SystemDataInitializer(&processed_var_7224_ptr);
     param_1[0x4a] = 0;
   }
   FUN_1806faf00(param_1[0x4a],0xfa2,*(uint *)((int64_t)param_1 + 0x214) >> 2,&puStackX_10);
@@ -306,10 +306,10 @@ FUN_1801566b0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   *plVar2 = (int64_t)&system_handler1_ptr;
   *plVar2 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar2 + 1) = 0;
-  *plVar2 = (int64_t)&unknown_var_7872_ptr;
+  *plVar2 = (int64_t)&processed_var_7872_ptr;
   plStackX_20 = plVar2;
   FUN_18015c2b0(plVar2 + 2);
-  *plVar2 = (int64_t)&unknown_var_8264_ptr;
+  *plVar2 = (int64_t)&processed_var_8264_ptr;
   *(int32_t *)(plVar2 + 10) = 0xffffffff;
   plVar2[0xb] = 0;
   plStackX_18 = plVar2;

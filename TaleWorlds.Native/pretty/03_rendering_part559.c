@@ -451,7 +451,7 @@ void FUN_1805778d0(int64_t param_1,int64_t param_2)
     *(int64_t *)(param_1 + 0x2510) = param_2;
     if (param_2 != 0) {
       *(int64_t *)(param_1 + 0x3450) = param_2;
-      *(void **)(param_1 + 0x3458) = &unknown_var_3264_ptr;
+      *(void **)(param_1 + 0x3458) = &memory_allocator_3264_ptr;
     }
   }
   return;

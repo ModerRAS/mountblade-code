@@ -189,7 +189,7 @@ void safe_copy_string_to_buffer(int64_t string_buffer, int64_t source_string)
   }
   
   // 字符串过长，使用扩展处理函数
-  SystemDataInitializer(&unknown_var_616_ptr, 0x200, source_string);
+  SystemDataInitializer(&processed_var_616_ptr, 0x200, source_string);
   *(int *)(string_buffer + 0x10) = 0;  // 重置长度标志
   **(char **)(string_buffer + 8) = 0;  // 清空字符串内容
   return;
@@ -288,7 +288,7 @@ void string_replace_and_memory_operation(int64_t string_buffer, int64_t search_s
   // 初始化栈变量和安全cookie
   stack_value_278 = 0xfffffffffffffffe;
   security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_298;
-  stack_ptr_268 = &unknown_var_9208_ptr;
+  stack_ptr_268 = &processed_var_9208_ptr;
   stack_buffer_260 = stack_buffer_250;
   stack_value_258 = 0;
   stack_buffer_250[0] = 0;
@@ -342,7 +342,7 @@ uint64_t * create_memory_manager_object(uint64_t memory_pool, int32_t config_fla
   FUN_1802565b0(manager_ptr, memory_pool, config_flags);
   
   // 设置虚函数表
-  *manager_ptr = &unknown_var_9288_ptr;
+  *manager_ptr = &processed_var_9288_ptr;
   
   // 初始化成员变量
   manager_ptr[0x16] = 0;
@@ -373,7 +373,7 @@ uint64_t * create_advanced_memory_manager_object(uint64_t memory_pool, int32_t c
   FUN_1802565b0(manager_ptr, memory_pool, config_flags);
   
   // 设置高级虚函数表
-  *manager_ptr = &unknown_var_9496_ptr;
+  *manager_ptr = &processed_var_9496_ptr;
   
   // 初始化成员变量
   manager_ptr[0x16] = 0;
@@ -456,7 +456,7 @@ uint64_t * initialize_thread_manager(uint64_t *thread_manager)
     }
     
     // 调用线程对象的设置函数
-    (**(code **)(*(int64_t *)(*thread_pool + 0x10) + 0x10))((int64_t *)(*thread_pool + 0x10), &unknown_var_1584_ptr);
+    (**(code **)(*(int64_t *)(*thread_pool + 0x10) + 0x10))((int64_t *)(*thread_pool + 0x10), &ui_system_data_1584_ptr);
     
     object_ptr = *thread_pool;
     
@@ -861,7 +861,7 @@ void process_render_objects(float *render_manager, uint64_t render_context, int3
       render_object = *(int64_t **)(render_manager + render_index * 2 + 2);
       
       // 检查对象是否对齐
-      if (*(code **)(*render_object + 0xc0) == (code *)&unknown_var_9120_ptr) {
+      if (*(code **)(*render_object + 0xc0) == (code *)&processed_var_9120_ptr) {
         is_aligned = (render_object[8] - render_object[7] & 0xfffffffffffffff0U) == 0;
       }
       else {
@@ -1093,7 +1093,7 @@ int64_t * create_render_manager(int64_t *render_manager)
   
   // 调用渲染对象的设置函数
   (**(code **)(*(int64_t *)(*render_manager + 0x10) + 0x10))
-            ((int64_t *)(*render_manager + 0x10), &unknown_var_1688_ptr);
+            ((int64_t *)(*render_manager + 0x10), &ui_system_data_1688_ptr);
   
   return render_manager;
 }
@@ -1265,11 +1265,11 @@ void main_render_loop(void)
     if (current_state != '\0') goto ACTIVE_RENDERING;
     
     // 初始化渲染资源
-    resource_manager = &unknown_var_3480_ptr;
+    resource_manager = &memory_allocator_3480_ptr;
     string_buffer = stack_buffer_70;
     stack_buffer_70[0] = 0;
     buffer_size = 0x17;
-    render_result = strcpy_s(stack_buffer_70, 0x40, &unknown_var_1664_ptr);
+    render_result = strcpy_s(stack_buffer_70, 0x40, &ui_system_data_1664_ptr);
     active_flag = 1;
     render_result = FUN_180157390(render_result, &resource_ptr, &resource_manager, 0);
     FUN_180060b80(engine_context + 0x1698, render_result);
@@ -1395,7 +1395,7 @@ void update_render_parameters(void)
   
   // 分辨率发生变化，触发重新配置
   // 注意：此函数可能不返回，将触发系统重新初始化
-  FUN_180062300(system_message_context, &unknown_var_9840_ptr, *(int *)(config_ptr + 4), 
+  FUN_180062300(system_message_context, &processed_var_9840_ptr, *(int *)(config_ptr + 4), 
                 *(int32_t *)(config_ptr + 8), new_height, new_width);
 }
 

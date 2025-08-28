@@ -607,7 +607,7 @@ void FUN_1808f1cf0(void)
 {
   code *pcVar1;
   
-  __Xlength_error_std__YAXPEBD_Z(&unknown_var_1648_ptr);
+  __Xlength_error_std__YAXPEBD_Z(&ui_system_data_1648_ptr);
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;

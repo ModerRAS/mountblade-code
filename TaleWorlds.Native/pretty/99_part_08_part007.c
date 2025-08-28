@@ -59,8 +59,8 @@ void FUN_1804e0ad0(int param_1,uint64_t param_2,uint64_t param_3,int8_t param_4)
     FUN_180570940(&system_data_60c0);
     uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
     ppplStackX_18 = (int64_t ***)&uStack_58;
-    puStack_48 = &unknown_var_5104_ptr;
-    puStack_40 = &unknown_var_5088_ptr;
+    puStack_48 = &processed_var_5104_ptr;
+    puStack_40 = &processed_var_5088_ptr;
     ppplVar3 = (int64_t ***)FUN_18006b640(uVar2,&uStack_58);
     if (ppplVar3 != (int64_t ***)0x0) {
       ppplStackX_10 = ppplVar3;
@@ -84,8 +84,8 @@ void FUN_1804e0ad0(int param_1,uint64_t param_2,uint64_t param_3,int8_t param_4)
     FUN_18005e110(uVar2,&ppplStackX_10);
     uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
     ppplStackX_10 = (int64_t ***)&uStack_58;
-    puStack_48 = &unknown_var_5056_ptr;
-    puStack_40 = &unknown_var_5040_ptr;
+    puStack_48 = &processed_var_5056_ptr;
+    puStack_40 = &processed_var_5040_ptr;
     ppplVar3 = (int64_t ***)FUN_18006b640(uVar2,&uStack_58);
     if (ppplVar3 != (int64_t ***)0x0) {
       ppplStackX_18 = ppplVar3;

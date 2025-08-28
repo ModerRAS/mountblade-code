@@ -99,7 +99,7 @@ LAB_1807d37f6:
       if ((0 < (int)uVar3) && (*plVar1 != 0)) {
         uStack_318 = 1;
                     // WARNING: Subroutine does not return
-        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*plVar1,&unknown_var_8432_ptr,0x100);
+        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*plVar1,&processed_var_8432_ptr,0x100);
       }
       *plVar1 = 0;
       *(int32_t *)(param_1 + 0x94) = 0;
@@ -263,7 +263,7 @@ LAB_1807d37f6:
     if (0 < *(int *)(unaff_R15 + 0x90)) goto LAB_1807d38bd;
     if ((0 < (int)uVar3) && (*plVar1 != 0)) {
                     // WARNING: Subroutine does not return
-      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*plVar1,&unknown_var_8432_ptr,0x100,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*plVar1,&processed_var_8432_ptr,0x100,1);
     }
     *plVar1 = 0;
     *(int32_t *)(unaff_R15 + 0x94) = 0;
@@ -388,12 +388,12 @@ uint64_t FUN_1807d3ea0(int64_t param_1,int64_t param_2)
   if ((byte)(*(char *)(param_2 + 10) - 5U) < 2) {
     cVar1 = *(char *)(param_2 + 9);
     if (cVar1 == '\x01') {
-      iVar2 = func_0x00018076b630(param_2 + 0xc,&unknown_var_584_ptr);
+      iVar2 = func_0x00018076b630(param_2 + 0xc,&processed_var_584_ptr);
       if (iVar2 == 0) {
         *(int32_t *)(param_1 + 0x50) = 1;
       }
       else {
-        uVar3 = func_0x00018076b630(param_2 + 0xc,&unknown_var_600_ptr);
+        uVar3 = func_0x00018076b630(param_2 + 0xc,&processed_var_600_ptr);
         if ((int)uVar3 == 0) {
           *(int32_t *)(param_1 + 0x50) = 0;
           return uVar3;
@@ -423,12 +423,12 @@ uint64_t FUN_1807d3ebe(uint64_t param_1,int64_t param_2)
   uint64_t uVar2;
   int64_t unaff_RBX;
   
-  iVar1 = func_0x00018076b630(param_2 + 0xc,&unknown_var_584_ptr);
+  iVar1 = func_0x00018076b630(param_2 + 0xc,&processed_var_584_ptr);
   if (iVar1 == 0) {
     *(int32_t *)(unaff_RBX + 0x50) = 1;
   }
   else {
-    uVar2 = func_0x00018076b630(param_2 + 0xc,&unknown_var_600_ptr);
+    uVar2 = func_0x00018076b630(param_2 + 0xc,&processed_var_600_ptr);
     if ((int)uVar2 == 0) {
       *(int32_t *)(unaff_RBX + 0x50) = 0;
       return uVar2;
@@ -503,7 +503,7 @@ uint64_t FUN_1807d3f50(int64_t *param_1,int param_2)
   if (param_2 != 0) {
     if (param_2 * 0x10 - 1U < 0x3fffffff) {
       puVar7 = (int32_t *)
-               SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x10,&unknown_var_8432_ptr,
+               SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x10,&processed_var_8432_ptr,
                              0xf4,0,0,1);
       if (puVar7 != (int32_t *)0x0) {
         iVar2 = (int)param_1[1];
@@ -531,7 +531,7 @@ uint64_t FUN_1807d3f50(int64_t *param_1,int param_2)
 LAB_1807d3ff3:
   if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&processed_var_8432_ptr,0x100,1);
   }
   *param_1 = (int64_t)puVar7;
   *(int *)((int64_t)param_1 + 0xc) = param_2;
@@ -562,7 +562,7 @@ uint64_t FUN_1807d3f74(uint64_t param_1,int param_2)
 LAB_1807d3ff3:
     if ((0 < *(int *)((int64_t)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&processed_var_8432_ptr,0x100,1);
     }
     *unaff_RBX = (int64_t)puVar7;
     *(int *)((int64_t)unaff_RBX + 0xc) = unaff_EDI;
@@ -570,7 +570,7 @@ LAB_1807d3ff3:
   }
   if (param_2 * 0x10 - 1U < 0x3fffffff) {
     puVar7 = (int32_t *)
-             SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x10,&unknown_var_8432_ptr,
+             SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x10,&processed_var_8432_ptr,
                            0xf4,0);
     if (puVar7 != (int32_t *)0x0) {
       iVar2 = (int)unaff_RBX[1];
@@ -629,10 +629,10 @@ void FUN_1807d4060(int64_t param_1)
   if (*(int64_t *)(param_1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x30),
-                  &unknown_var_448_ptr,0x3f,1);
+                  &processed_var_448_ptr,0x3f,1);
   }
                     // WARNING: Subroutine does not return
-  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_448_ptr,0x40,1);
+  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&processed_var_448_ptr,0x40,1);
 }
 
 
@@ -640,7 +640,7 @@ void FUN_1807d4060(int64_t param_1)
 uint64_t * FUN_1807d4110(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_9984_ptr;
+  *param_1 = &processed_var_9984_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x30);
   }
@@ -659,13 +659,13 @@ uint64_t FUN_1807d4140(int64_t *param_1,uint64_t param_2)
   uint64_t uVar3;
   
   puVar2 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_736_ptr,0x10,0,0,1);
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&processed_var_736_ptr,0x10,0,0,1);
   if (puVar2 != (uint64_t *)0x0) {
     puVar2[3] = 0;
     puVar1 = puVar2 + 1;
     puVar2[2] = puVar1;
     *puVar1 = puVar1;
-    *puVar2 = &unknown_var_616_ptr;
+    *puVar2 = &processed_var_616_ptr;
     puVar2[4] = param_1;
     puVar2[5] = param_2;
                     // WARNING: Could not recover jumptable at 0x0001807d41c3. Too many branches
@@ -834,7 +834,7 @@ void FUN_1807d4550(uint64_t param_1)
 
 {
                     // WARNING: Subroutine does not return
-  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_736_ptr,0x1f,1);
+  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&processed_var_736_ptr,0x1f,1);
 }
 
 
@@ -852,7 +852,7 @@ uint64_t FUN_1807d4590(int64_t param_1,int param_2,int param_3,uint param_4,int 
     uVar2 = (uint)(param_3 != 0);
   }
   if (param_2 != 0) {
-    lVar1 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 4,&unknown_var_864_ptr,0x1ee,0
+    lVar1 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 4,&processed_var_864_ptr,0x1ee,0
                           ,0,1);
     *(int64_t *)(param_1 + 0xa0) = lVar1;
     if (lVar1 == 0) {
@@ -861,13 +861,13 @@ uint64_t FUN_1807d4590(int64_t param_1,int param_2,int param_3,uint param_4,int 
     *(int *)(param_1 + 0x9c) = param_2;
   }
   if (param_3 != 0) {
-    lVar1 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_3 * 4,&unknown_var_864_ptr,0x1f6,0
+    lVar1 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_3 * 4,&processed_var_864_ptr,0x1f6,0
                           ,0,1);
     *(int64_t *)(param_1 + 0xb0) = lVar1;
     if (lVar1 == 0) {
       return 0x26;
     }
-    lVar1 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_3 * 4,&unknown_var_864_ptr,0x1f9,0
+    lVar1 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_3 * 4,&processed_var_864_ptr,0x1f9,0
                           ,0,1);
     *(int64_t *)(param_1 + 0xb8) = lVar1;
     if (lVar1 == 0) {
@@ -876,7 +876,7 @@ uint64_t FUN_1807d4590(int64_t param_1,int param_2,int param_3,uint param_4,int 
     *(int *)(param_1 + 0xa8) = param_3;
   }
   if (param_4 != 0) {
-    lVar1 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_4 * 0x14,&unknown_var_864_ptr,
+    lVar1 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_4 * 0x14,&processed_var_864_ptr,
                           0x201,0,0,1);
     *(int64_t *)(param_1 + 8) = lVar1;
     if (lVar1 == 0) {
@@ -885,7 +885,7 @@ uint64_t FUN_1807d4590(int64_t param_1,int param_2,int param_3,uint param_4,int 
     *(uint *)(param_1 + 4) = param_4;
   }
   if (param_5 != 0) {
-    lVar1 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_5 * 0x14,&unknown_var_864_ptr,
+    lVar1 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_5 * 0x14,&processed_var_864_ptr,
                           0x209,0,0,1);
     *(int64_t *)(param_1 + 0x18) = lVar1;
     if (lVar1 == 0) {
@@ -894,7 +894,7 @@ uint64_t FUN_1807d4590(int64_t param_1,int param_2,int param_3,uint param_4,int 
     *(int *)(param_1 + 0x10) = param_5;
   }
   if (uVar2 != 0) {
-    lVar1 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar2 << 5,&unknown_var_864_ptr,0x211,0,
+    lVar1 = SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar2 << 5,&processed_var_864_ptr,0x211,0,
                           0,1);
     *(int64_t *)(param_1 + 0x28) = lVar1;
     if (lVar1 == 0) {
@@ -977,27 +977,27 @@ void FUN_1807d4800(uint64_t *param_1)
 {
   if (param_1[5] != 0) {
                     // WARNING: Subroutine does not return
-    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[5],&unknown_var_864_ptr,0x366,1);
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[5],&processed_var_864_ptr,0x366,1);
   }
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
-    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[1],&unknown_var_864_ptr,0x367,1);
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[1],&processed_var_864_ptr,0x367,1);
   }
   if (param_1[3] != 0) {
                     // WARNING: Subroutine does not return
-    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[3],&unknown_var_864_ptr,0x368,1);
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[3],&processed_var_864_ptr,0x368,1);
   }
   if (param_1[0x14] != 0) {
                     // WARNING: Subroutine does not return
-    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[0x14],&unknown_var_864_ptr,0x369,1);
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[0x14],&processed_var_864_ptr,0x369,1);
   }
   if (param_1[0x16] != 0) {
                     // WARNING: Subroutine does not return
-    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[0x16],&unknown_var_864_ptr,0x36a,1);
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[0x16],&processed_var_864_ptr,0x36a,1);
   }
   if (param_1[0x17] != 0) {
                     // WARNING: Subroutine does not return
-    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[0x17],&unknown_var_864_ptr,0x36b,1);
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[0x17],&processed_var_864_ptr,0x36b,1);
   }
   *param_1 = 0;
   param_1[1] = 0;

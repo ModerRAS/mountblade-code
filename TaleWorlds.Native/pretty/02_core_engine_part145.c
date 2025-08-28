@@ -78,7 +78,7 @@ void FUN_180136231(int64_t param_1,int64_t param_2,int param_3)
         puVar4 = puVar3;
         puVar6 = *(int32_t **)(puVar3 + 2);
       }
-      FUN_180121200(&bStackX_20,0x14,&unknown_var_2680_ptr,*puVar4);
+      FUN_180121200(&bStackX_20,0x14,&rendering_buffer_2680_ptr,*puVar4);
       uVar12 = 0xffffffff;
       pbVar5 = abStackX_21;
       bVar1 = bStackX_20;
@@ -86,7 +86,7 @@ void FUN_180136231(int64_t param_1,int64_t param_2,int param_3)
         if (((bVar1 == 0x23) && (*pbVar5 == 0x23)) && (pbVar5[1] == 0x23)) {
           uVar12 = 0xffffffff;
         }
-        uVar12 = *(uint *)(&unknown_var_6320_ptr + ((uint64_t)(uVar12 & 0xff) ^ (uint64_t)bVar1) * 4) ^
+        uVar12 = *(uint *)(&processed_var_6320_ptr + ((uint64_t)(uVar12 & 0xff) ^ (uint64_t)bVar1) * 4) ^
                  uVar12 >> 8;
         bVar1 = *pbVar5;
         pbVar5 = pbVar5 + 1;

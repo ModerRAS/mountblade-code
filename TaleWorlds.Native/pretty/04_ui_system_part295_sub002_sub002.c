@@ -735,7 +735,7 @@ int FUN_18082ffe0(int64_t *param_1,int64_t *param_2)
           bVar2 = *pbVar12;
           pbVar12 = pbVar12 + 1;
           uVar8 = (uint64_t)
-                  (*(uint *)(&unknown_var_4272_ptr + (uVar8 >> 0x18 ^ (uint64_t)bVar2) * 4) ^
+                  (*(uint *)(&processed_var_4272_ptr + (uVar8 >> 0x18 ^ (uint64_t)bVar2) * 4) ^
                   (int)uVar8 << 8);
           uVar6 = uVar6 - 1;
         } while (uVar6 != 0);
@@ -746,7 +746,7 @@ int FUN_18082ffe0(int64_t *param_1,int64_t *param_2)
         do {
           bVar2 = *pbVar10;
           pbVar10 = pbVar10 + 1;
-          uVar4 = *(uint *)(&unknown_var_4272_ptr + (uVar8 >> 0x18 ^ (uint64_t)bVar2) * 4) ^
+          uVar4 = *(uint *)(&processed_var_4272_ptr + (uVar8 >> 0x18 ^ (uint64_t)bVar2) * 4) ^
                   (int)uVar8 << 8;
           uVar8 = (uint64_t)uVar4;
           uVar6 = uVar6 - 1;
@@ -812,7 +812,7 @@ int FUN_18083009e(uint param_1,uint64_t param_2,uint param_3,byte *param_4)
     do {
       bVar1 = *pbVar7;
       pbVar7 = pbVar7 + 1;
-      param_3 = *(uint *)(&unknown_var_4272_ptr + ((uint64_t)(param_3 >> 0x18) ^ (uint64_t)bVar1) * 4) ^
+      param_3 = *(uint *)(&processed_var_4272_ptr + ((uint64_t)(param_3 >> 0x18) ^ (uint64_t)bVar1) * 4) ^
                 param_3 << 8;
       uVar5 = uVar5 - 1;
     } while (uVar5 != 0);
@@ -822,7 +822,7 @@ int FUN_18083009e(uint param_1,uint64_t param_2,uint param_3,byte *param_4)
     do {
       bVar1 = *param_4;
       param_4 = param_4 + 1;
-      param_3 = *(uint *)(&unknown_var_4272_ptr + ((uint64_t)(param_3 >> 0x18) ^ (uint64_t)bVar1) * 4) ^
+      param_3 = *(uint *)(&processed_var_4272_ptr + ((uint64_t)(param_3 >> 0x18) ^ (uint64_t)bVar1) * 4) ^
                 param_3 << 8;
       uVar5 = uVar5 - 1;
     } while (uVar5 != 0);

@@ -269,7 +269,7 @@ void FUN_18011b260(int *param_1)
   }
   else {
     if (1 < iVar14) {
-      qsort(*(uint64_t *)(lVar13 + 0x1ea0),(int64_t)*(int *)(lVar13 + 0x1e98),8,&unknown_var_9728_ptr);
+      qsort(*(uint64_t *)(lVar13 + 0x1ea0),(int64_t)*(int *)(lVar13 + 0x1e98),8,&processed_var_9728_ptr);
     }
     lVar21 = 1;
     do {
@@ -497,7 +497,7 @@ void FUN_18011bac0(int64_t param_1,byte *param_2)
       if (((bVar1 == 0x23) && (*pbVar2 == 0x23)) && (pbVar2[1] == 0x23)) {
         uVar4 = 0xffffffff;
       }
-      uVar4 = *(uint *)(&unknown_var_6320_ptr + ((uint64_t)(uVar4 & 0xff) ^ (uint64_t)bVar1) * 4) ^
+      uVar4 = *(uint *)(&processed_var_6320_ptr + ((uint64_t)(uVar4 & 0xff) ^ (uint64_t)bVar1) * 4) ^
               uVar4 >> 8;
       bVar1 = *pbVar2;
       pbVar2 = pbVar2 + 1;

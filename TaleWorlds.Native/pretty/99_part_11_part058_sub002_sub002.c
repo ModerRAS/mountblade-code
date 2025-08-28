@@ -143,7 +143,7 @@ uint64_t FUN_1807bbd80(int64_t param_1)
       if (puVar6[2] != 1) goto LAB_1807bbf64;
       uVar2 = *puVar6;
       if (uVar2 < 0x8c) {
-        lVar5 = (uint64_t)*(uint *)(&unknown_var_5432_ptr + (uint64_t)(byte)(&unknown_var_5444_ptr)[uVar2] * 4)
+        lVar5 = (uint64_t)*(uint *)(&processed_var_5432_ptr + (uint64_t)(byte)(&processed_var_5444_ptr)[uVar2] * 4)
                 + 0x180000000;
         switch(uVar2) {
         case 0:
@@ -161,7 +161,7 @@ uint64_t FUN_1807bbd80(int64_t param_1)
       }
       uVar2 = puVar6[1];
       if (0x8b < uVar2) goto LAB_1807bbf47;
-      lVar5 = (uint64_t)*(uint *)(&unknown_var_5584_ptr + (uint64_t)(byte)(&unknown_var_5616_ptr)[uVar2] * 4) +
+      lVar5 = (uint64_t)*(uint *)(&processed_var_5584_ptr + (uint64_t)(byte)(&processed_var_5616_ptr)[uVar2] * 4) +
               0x180000000;
       switch(uVar2) {
       case 0:
@@ -1212,7 +1212,7 @@ uint64_t FUN_1807bbda6(int64_t param_1,uint64_t param_2,char param_3)
       uVar2 = *puVar5;
       if (uVar2 < 0x8c) {
         param_1 = (uint64_t)
-                  *(uint *)(&unknown_var_5432_ptr + (uint64_t)(byte)(&unknown_var_5444_ptr)[uVar2] * 4) +
+                  *(uint *)(&processed_var_5432_ptr + (uint64_t)(byte)(&processed_var_5444_ptr)[uVar2] * 4) +
                   0x180000000;
         switch(uVar2) {
         case 0:
@@ -1230,7 +1230,7 @@ uint64_t FUN_1807bbda6(int64_t param_1,uint64_t param_2,char param_3)
       }
       uVar2 = puVar5[1];
       if (0x8b < uVar2) goto LAB_1807bbf47;
-      param_1 = (uint64_t)*(uint *)(&unknown_var_5584_ptr + (uint64_t)(byte)(&unknown_var_5616_ptr)[uVar2] * 4)
+      param_1 = (uint64_t)*(uint *)(&processed_var_5584_ptr + (uint64_t)(byte)(&processed_var_5616_ptr)[uVar2] * 4)
                 + 0x180000000;
       switch(uVar2) {
       case 0:

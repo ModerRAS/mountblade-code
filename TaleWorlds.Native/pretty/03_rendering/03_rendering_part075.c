@@ -41,7 +41,7 @@ extern uint64_t *cloth_string_constants;
 // 辅助函数声明
 void FUN_18005d4b0(int64_t param1, void *param2, int param3, uint64_t param4, uint64_t memory_flags);
 void DataPipelineManager(int64_t param1, int param2);
-void FUN_18062b1e0(void *allocator, int size, int alignment, int flags, uint64_t memory_flags);
+void CoreSystem_LoggingManager0(void *allocator, int size, int alignment, int flags, uint64_t memory_flags);
 void CoreEngine_MemoryAllocator(void *allocator, int size, int flags, uint64_t param4, int param5, uint64_t memory_flags);
 void FUN_180275090(uint64_t param1);
 void FUN_180275370(uint64_t param1, int64_t param2);
@@ -493,7 +493,7 @@ name_found:
         
         // 根据匹配结果处理资源
         if (match_count < 1) {
-            cleanup_param = FUN_18062b1e0(global_memory_allocator, RENDERING_CLOTH_DATA_SIZE, 8, 0x16);
+            cleanup_param = CoreSystem_LoggingManager0(global_memory_allocator, RENDERING_CLOTH_DATA_SIZE, 8, 0x16);
             resource_ptr = (int64_t *)FUN_180275540(cleanup_param, *(int64_t *)(render_context + 0x48) + 0x1f0, resource_handle);
             if (resource_ptr != (int64_t *)0x0) {
                 (**(code **)(*resource_ptr + 0x28))(resource_ptr);
@@ -501,7 +501,7 @@ name_found:
             rendering_system_update_cloth_simulation(render_context, resource_ptr);
         }
         else {
-            cleanup_param = FUN_18062b1e0(global_memory_allocator, RENDERING_CLOTH_DATA_SIZE, 8, 0x16);
+            cleanup_param = CoreSystem_LoggingManager0(global_memory_allocator, RENDERING_CLOTH_DATA_SIZE, 8, 0x16);
             resource_ptr = (int64_t *)FUN_180275370(cleanup_param, resource_handle);
             if (resource_ptr != (int64_t *)0x0) {
                 (**(code **)(*resource_ptr + 0x28))(resource_ptr);
@@ -546,13 +546,13 @@ uint64_t *rendering_system_create_cloth_object(
     int64_t *cloth_resource;
     
     // 分配布料对象内存
-    cloth_memory = FUN_18062b1e0(global_memory_allocator, 200, 8, 3, 0, RENDERING_MEMORY_FLAG_EXCLUSIVE);
+    cloth_memory = CoreSystem_LoggingManager0(global_memory_allocator, 200, 8, 3, 0, RENDERING_MEMORY_FLAG_EXCLUSIVE);
     
     cloth_type = *(uint8_t *)(render_context + 0x43);
     cloth_data[0] = *(uint64_t *)(render_context + 0x48);
     
     // 分配资源内存
-    cloth_data[2] = FUN_18062b1e0(global_memory_allocator, RENDERING_CLOTH_DATA_SIZE, 8, 0x16);
+    cloth_data[2] = CoreSystem_LoggingManager0(global_memory_allocator, RENDERING_CLOTH_DATA_SIZE, 8, 0x16);
     resource_ptr = (int64_t *)FUN_180275090(cloth_data[2]);
     
     if (resource_ptr != (int64_t *)0x0) {
@@ -662,7 +662,7 @@ void rendering_system_update_cloth_parameters(
     }
     
     // 分配资源内存
-    cleanup_param = FUN_18062b1e0(global_memory_allocator, RENDERING_CLOTH_DATA_SIZE, 8, 3);
+    cleanup_param = CoreSystem_LoggingManager0(global_memory_allocator, RENDERING_CLOTH_DATA_SIZE, 8, 3);
     resource_ptr = (int64_t *)FUN_180275090(cleanup_param);
     
     if (resource_ptr != (int64_t *)0x0) {

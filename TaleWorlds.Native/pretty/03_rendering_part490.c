@@ -261,11 +261,11 @@ LAB_18052bb8d:
           fVar27 = fVar27 + 0.01;
           fStack_150 = fVar27;
           if (*(int64_t *)(param_1 + 0x650) == 0) {
-            puStack_148 = &unknown_var_3432_ptr;
+            puStack_148 = &memory_allocator_3432_ptr;
             puStack_140 = auStack_130;
             auStack_130[0] = 0;
             uStack_138 = 0x1d;
-            strcpy_s(auStack_130,0x80,&unknown_var_6992_ptr);
+            strcpy_s(auStack_130,0x80,&processed_var_6992_ptr);
             FUN_1800c1520(render_system_data_memory,&fStack_1a0,&puStack_148);
             puStack_148 = &system_state_ptr;
             uVar16 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x168,8,3);
@@ -504,11 +504,11 @@ LAB_18052c185:
   iStack_78 = 0;
   if (*(char *)(param_2 + 0x15) == '\0') {
     cVar1 = *(char *)(param_1 + 0x744);
-    puStack_160 = &unknown_var_2560_ptr;
+    puStack_160 = &rendering_buffer_2560_ptr;
     puStack_158 = auStack_148;
     auStack_148[0] = 0;
     uStack_150 = 10;
-    strcpy_s(auStack_148,0xc,&unknown_var_2448_ptr);
+    strcpy_s(auStack_148,0xc,&rendering_buffer_2448_ptr);
     lVar4 = (int64_t)iStack_78;
     puVar5 = &system_buffer_ptr;
     if (puStack_158 != (void *)0x0) {
@@ -536,11 +536,11 @@ LAB_18052c185:
     else {
       fVar8 = 0.0;
     }
-    puStack_160 = &unknown_var_2608_ptr;
+    puStack_160 = &rendering_buffer_2608_ptr;
     puStack_158 = auStack_148;
     auStack_148[0] = 0;
     uStack_150 = 4;
-    strcpy_s(auStack_148,8,&unknown_var_2504_ptr);
+    strcpy_s(auStack_148,8,&rendering_buffer_2504_ptr);
     lVar4 = (int64_t)iStack_78;
     puVar5 = &system_buffer_ptr;
     if (puStack_158 != (void *)0x0) {

@@ -339,8 +339,8 @@ void rendering_system_parameter_processor(int64_t param_1, int64_t param_2, int6
             uVar26 = FUN_1800b33d0(system_resource_state,&plStack_118,&puStack_108);
             uStack_110 = 1;
             if (plStack_118 == (int64_t *)0x0) {
-                if (((uint)uStack_f8 == 0xb) && (iVar13 = strcmp(lStack_100,&unknown_var_9000_ptr), iVar13 == 0)) {
-                    uVar26 = FUN_180626ee0(&unknown_var_7584_ptr,&unknown_var_9000_ptr);
+                if (((uint)uStack_f8 == 0xb) && (iVar13 = strcmp(lStack_100,&processed_var_9000_ptr), iVar13 == 0)) {
+                    uVar26 = FUN_180626ee0(&processed_var_7584_ptr,&processed_var_9000_ptr);
                 }
                 else {
                     puVar14 = (uint64_t *)FUN_1800befa0(render_system_data_config,&plStack_c8);
@@ -423,7 +423,7 @@ void rendering_system_parameter_processor(int64_t param_1, int64_t param_2, int6
                 if (lVar17 == 0) goto LAB_180326da7;
                 cVar11 = FUN_1801ef300(uVar26,param_3,lVar17);
                 if (cVar11 == '\0') {
-                    SystemCore_ResourceManager0(&unknown_var_1920_ptr);
+                    SystemCore_ResourceManager0(&ui_system_data_1920_ptr);
                     goto LAB_180326e7a;
                 }
                 lVar19 = FUN_1801ef620(extraout_XMM0_Da_02,param_3,lVar17);
@@ -446,7 +446,7 @@ void rendering_system_parameter_processor(int64_t param_1, int64_t param_2, int6
             *(int32_t *)(param_3 + 0x110) = uVar21;
             
             // 分配和初始化渲染资源
-            puVar14 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x20,8,3);
+            puVar14 = (uint64_t *)CoreSystem_LoggingManager0(system_memory_pool_ptr,0x20,8,3);
             *puVar14 = 0;
             *(int32_t *)(puVar14 + 1) = 0;
             *(int32_t *)((int64_t)puVar14 + 0xc) = 0xffffffff;
@@ -473,7 +473,7 @@ void rendering_system_parameter_processor(int64_t param_1, int64_t param_2, int6
             if (*(int64_t *)(*(int64_t *)(param_3 + 0x1b8) + 0x3b8) != 0) {
                 FUN_18022cb40(*(int64_t *)(param_3 + 0x1b8),&plStack_118);
                 plVar16 = plStack_118;
-                puStack_a8 = &unknown_var_3480_ptr;
+                puStack_a8 = &memory_allocator_3480_ptr;
                 puStack_a0 = auStack_90;
                 auStack_90[0] = 0;
                 uStack_98 = 0x14;

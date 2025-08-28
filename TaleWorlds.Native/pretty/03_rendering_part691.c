@@ -69,7 +69,7 @@ uint64_t *
 FUN_180662150(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_1864_ptr;
+  *param_1 = &ui_system_data_1864_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x20,param_3,param_4,0xfffffffffffffffe);
   }
@@ -114,8 +114,8 @@ int64_t FUN_180662190(int64_t param_1,int8_t param_2,int8_t param_3,int8_t param
 uint64_t * FUN_180662260(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_1864_ptr;
-  *param_1 = &unknown_var_2072_ptr;
+  *param_1 = &ui_system_data_1864_ptr;
+  *param_1 = &rendering_buffer_2072_ptr;
   FUN_180662190(param_1 + 2,0xff,0xff,0,0,0,0xfffffffffffffffe);
   param_1[0x3a] = 0;
   *(int32_t *)(param_1 + 0x3b) = 0x40400000;
@@ -130,7 +130,7 @@ uint64_t *
 FUN_1806622e0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_1864_ptr;
+  *param_1 = &ui_system_data_1864_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x1f0,param_3,param_4,0xfffffffffffffffe);
   }

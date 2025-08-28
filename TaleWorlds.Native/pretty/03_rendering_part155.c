@@ -229,9 +229,9 @@ LAB_18036405b:
     if (puVar3 != (void *)0x0) {
       puVar7 = puVar3;
     }
-    System_DataHandler(&puStack_50,&unknown_var_8280_ptr,puVar7);
+    System_DataHandler(&puStack_50,&processed_var_8280_ptr,puVar7);
   }
-  System_DataHandler(&puStack_50,&unknown_var_8240_ptr,&system_data_ff70);
+  System_DataHandler(&puStack_50,&processed_var_8240_ptr,&system_data_ff70);
   puStack_50 = &system_data_buffer_ptr;
   if (puStack_48 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -275,11 +275,11 @@ void FUN_180364110(int64_t *param_1,int64_t param_2)
     }
     else {
       if ((((iVar9 != 0x16) ||
-           (iVar3 = strcmp(*(uint64_t *)(param_2 + 8),&unknown_var_8408_ptr), iVar3 != 0)) &&
+           (iVar3 = strcmp(*(uint64_t *)(param_2 + 8),&processed_var_8408_ptr), iVar3 != 0)) &&
           ((iVar9 != 0x17 ||
-           (iVar3 = strcmp(*(uint64_t *)(param_2 + 8),&unknown_var_8384_ptr), iVar3 != 0)))) &&
+           (iVar3 = strcmp(*(uint64_t *)(param_2 + 8),&processed_var_8384_ptr), iVar3 != 0)))) &&
          ((iVar9 != 0x13 ||
-          (iVar3 = strcmp(*(uint64_t *)(param_2 + 8),&unknown_var_8360_ptr), iVar3 != 0)))) {
+          (iVar3 = strcmp(*(uint64_t *)(param_2 + 8),&processed_var_8360_ptr), iVar3 != 0)))) {
         if (iVar9 != 0xd) {
           return;
         }
@@ -291,7 +291,7 @@ void FUN_180364110(int64_t *param_1,int64_t param_2)
       }
       if (((int64_t *)param_1[0x24] != (int64_t *)0x0) &&
          (cVar2 = (**(code **)(*(int64_t *)param_1[0x24] + 0x80))(), cVar2 != '\0')) {
-        if ((void *)*param_1 == &unknown_var_8440_ptr) {
+        if ((void *)*param_1 == &processed_var_8440_ptr) {
           FUN_1803638c0();
         }
         else {
@@ -480,7 +480,7 @@ void FUN_180364280(int64_t param_1,int64_t param_2,int64_t *param_3)
       plVar9 = plStack_138 + 1;
       do {
         uVar5 = 0;
-        puStack_e8 = &unknown_var_3432_ptr;
+        puStack_e8 = &memory_allocator_3432_ptr;
         puStack_e0 = auStack_d0;
         auStack_d0[0] = 0;
         iStack_d8 = (int)plVar9[1];

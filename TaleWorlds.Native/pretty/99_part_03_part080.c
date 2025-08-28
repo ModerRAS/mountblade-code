@@ -311,7 +311,7 @@ int64_t FUN_180245b90(int64_t param_1)
   *(uint64_t *)(param_1 + 0x1be8) = &system_state_ptr;
   *(uint64_t *)(param_1 + 0x1bf0) = 0;
   *(int32_t *)(param_1 + 0x1bf8) = 0;
-  *(uint64_t *)(param_1 + 0x1be8) = &unknown_var_3480_ptr;
+  *(uint64_t *)(param_1 + 0x1be8) = &memory_allocator_3480_ptr;
   *(int8_t **)(param_1 + 0x1bf0) = (int8_t *)(param_1 + 0x1c00);
   *(int32_t *)(param_1 + 0x1bf8) = 0;
   *(int8_t *)(param_1 + 0x1c00) = 0;
@@ -558,7 +558,7 @@ int64_t FUN_180245b90(int64_t param_1)
   *(uint64_t *)(param_1 + 0x3520) = &system_state_ptr;
   *(uint64_t *)(param_1 + 0x3528) = 0;
   *(int32_t *)(param_1 + 0x3530) = 0;
-  *(uint64_t *)(param_1 + 0x3520) = &unknown_var_3480_ptr;
+  *(uint64_t *)(param_1 + 0x3520) = &memory_allocator_3480_ptr;
   *(int8_t **)(param_1 + 0x3528) = (int8_t *)(param_1 + 0x3538);
   *(int32_t *)(param_1 + 0x3530) = 0;
   *(int8_t *)(param_1 + 0x3538) = 0;

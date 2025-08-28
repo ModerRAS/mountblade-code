@@ -49,7 +49,7 @@ void FUN_18007c490(int64_t *param_1,byte param_2,int64_t *param_3,int64_t *param
   }
   uStack_d8 = CONCAT31(uStack_d8._1_3_,param_2);
   uStack_e0 = param_1;
-  if ((void *)*param_1 == &unknown_var_7328_ptr) {
+  if ((void *)*param_1 == &processed_var_7328_ptr) {
     LOCK();
     *(int *)(param_1 + 1) = (int)param_1[1] + 1;
     UNLOCK();
@@ -60,8 +60,8 @@ void FUN_18007c490(int64_t *param_1,byte param_2,int64_t *param_3,int64_t *param
   if (param_5 == '\0') {
     plVar4 = *(int64_t **)(param_1[0x15] + 0x88);
     pcVar5 = *(code **)(*plVar4 + 0x70);
-    pcStack_f0 = (code *)&unknown_var_7904_ptr;
-    puStack_e8 = &unknown_var_7888_ptr;
+    pcStack_f0 = (code *)&processed_var_7904_ptr;
+    puStack_e8 = &processed_var_7888_ptr;
     uStack_100 = (int32_t)uStack_e0;
     uStack_fc = uStack_e0._4_4_;
     uStack_f8 = uStack_d8;
@@ -109,7 +109,7 @@ void FUN_18007c490(int64_t *param_1,byte param_2,int64_t *param_3,int64_t *param
       if ((void *)param_1[3] != (void *)0x0) {
         puVar7 = (void *)param_1[3];
       }
-      SystemDataInitializer(&unknown_var_5600_ptr,puVar7);
+      SystemDataInitializer(&processed_var_5600_ptr,puVar7);
       pcVar1 = (char *)(param_1[0x3c] + 0x15 + (uint64_t)param_2 * 0x18);
       LOCK();
       if (*pcVar1 == '\x01') {
@@ -149,7 +149,7 @@ void FUN_18007c790(int64_t *param_1)
   if (*(void **)(*param_1 + 0x18) != (void *)0x0) {
     puVar2 = *(void **)(*param_1 + 0x18);
   }
-  SystemDataInitializer(&unknown_var_5600_ptr,puVar2);
+  SystemDataInitializer(&processed_var_5600_ptr,puVar2);
   pcVar1 = (char *)(*(int64_t *)(*param_1 + 0x1e0) + 0x15 +
                    (uint64_t)*(byte *)(param_1 + 1) * 0x18);
   LOCK();

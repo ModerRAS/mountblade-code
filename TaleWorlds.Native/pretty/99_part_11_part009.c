@@ -12,8 +12,8 @@ void FUN_1806dec20(uint64_t *param_1)
   int64_t lVar1;
   int64_t *plVar2;
   
-  *param_1 = &unknown_var_2456_ptr;
-  param_1[3] = &unknown_var_2904_ptr;
+  *param_1 = &rendering_buffer_2456_ptr;
+  param_1[3] = &rendering_buffer_2904_ptr;
   if ((*(byte *)((int64_t)param_1 + 10) & 1) != 0) {
     lVar1 = param_1[0xd];
     if (lVar1 != 0) {
@@ -22,8 +22,8 @@ void FUN_1806dec20(uint64_t *param_1)
     }
     param_1[0xd] = 0;
   }
-  param_1[3] = &unknown_var_1416_ptr;
-  *param_1 = &unknown_var_2408_ptr;
+  param_1[3] = &ui_system_data_1416_ptr;
+  *param_1 = &rendering_buffer_2408_ptr;
   return;
 }
 
@@ -46,8 +46,8 @@ void FUN_1806dec44(int64_t param_1)
     (**(code **)(*plVar2 + 0x10))(plVar2,lVar1);
   }
   unaff_RBX[0xd] = 0;
-  unaff_RBX[3] = &unknown_var_1416_ptr;
-  *unaff_RBX = &unknown_var_2408_ptr;
+  unaff_RBX[3] = &ui_system_data_1416_ptr;
+  *unaff_RBX = &rendering_buffer_2408_ptr;
   return;
 }
 
@@ -62,8 +62,8 @@ void FUN_1806dec72(void)
 {
   uint64_t *unaff_RBX;
   
-  unaff_RBX[3] = &unknown_var_1416_ptr;
-  *unaff_RBX = &unknown_var_2408_ptr;
+  unaff_RBX[3] = &ui_system_data_1416_ptr;
+  *unaff_RBX = &rendering_buffer_2408_ptr;
   return;
 }
 
@@ -118,7 +118,7 @@ int64_t FUN_1806ded20(int64_t param_1,uint64_t param_2)
 uint64_t * FUN_1806ded90(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_2408_ptr;
+  *param_1 = &rendering_buffer_2408_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x10);
   }

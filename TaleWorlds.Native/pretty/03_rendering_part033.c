@@ -79,7 +79,7 @@ void FUN_180285cf0(float *param_1,float *param_2,float *param_3)
 uint64_t * FUN_180285df0(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_9288_ptr;
+  *param_1 = &processed_var_9288_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x18);
   }
@@ -94,14 +94,14 @@ int32_t * FUN_180285e20(int32_t *param_1)
   *(void **)(param_1 + 6) = &system_state_ptr;
   *(uint64_t *)(param_1 + 8) = 0;
   param_1[10] = 0;
-  *(void **)(param_1 + 6) = &unknown_var_3432_ptr;
+  *(void **)(param_1 + 6) = &memory_allocator_3432_ptr;
   *(int32_t **)(param_1 + 8) = param_1 + 0xc;
   param_1[10] = 0;
   *(int8_t *)(param_1 + 0xc) = 0;
   *(void **)(param_1 + 0x2c) = &system_state_ptr;
   *(uint64_t *)(param_1 + 0x2e) = 0;
   param_1[0x30] = 0;
-  *(void **)(param_1 + 0x2c) = &unknown_var_3432_ptr;
+  *(void **)(param_1 + 0x2c) = &memory_allocator_3432_ptr;
   *(int32_t **)(param_1 + 0x2e) = param_1 + 0x32;
   param_1[0x30] = 0;
   *(int8_t *)(param_1 + 0x32) = 0;

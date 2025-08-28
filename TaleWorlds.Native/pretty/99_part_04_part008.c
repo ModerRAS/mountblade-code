@@ -513,8 +513,8 @@ uint64_t * FUN_18025daf0(uint64_t param_1,int64_t param_2)
   uint64_t *puVar2;
   
   puVar2 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x20,8,3,0xfffffffffffffffe);
-  *puVar2 = &unknown_var_5192_ptr;
-  *puVar2 = &unknown_var_3616_ptr;
+  *puVar2 = &processed_var_5192_ptr;
+  *puVar2 = &memory_allocator_3616_ptr;
   *(int8_t *)(puVar2 + 1) = 0;
   *(uint64_t *)((int64_t)puVar2 + 0xc) = 0;
   *(uint64_t *)((int64_t)puVar2 + 0x14) = 0;
@@ -541,7 +541,7 @@ void FUN_18025db70(int64_t param_1)
   code *pcStack_18;
   
   if (*(int64_t *)(param_1 + 0xb0) != 0) {
-    pcStack_20 = (code *)&unknown_var_2656_ptr;
+    pcStack_20 = (code *)&rendering_buffer_2656_ptr;
     pcStack_18 = FUN_18025dd00;
     alStack_30[0] = param_1;
     (**(code **)(**(int64_t **)(param_1 + 0x88) + 0x60))
@@ -726,12 +726,12 @@ void FUN_18025df70(int64_t param_1)
     *plVar2 = (int64_t)&system_handler1_ptr;
     *plVar2 = (int64_t)&system_handler2_ptr;
     *(int32_t *)(plVar2 + 1) = 0;
-    *plVar2 = (int64_t)&unknown_var_8584_ptr;
+    *plVar2 = (int64_t)&processed_var_8584_ptr;
     plVar1 = plVar2 + 2;
     *plVar1 = (int64_t)&system_state_ptr;
     plVar2[3] = 0;
     *(int32_t *)(plVar2 + 4) = 0;
-    *plVar1 = (int64_t)&unknown_var_3432_ptr;
+    *plVar1 = (int64_t)&memory_allocator_3432_ptr;
     plVar2[3] = (int64_t)(plVar2 + 5);
     *(int32_t *)(plVar2 + 4) = 0;
     *(int8_t *)(plVar2 + 5) = 0;
@@ -739,7 +739,7 @@ void FUN_18025df70(int64_t param_1)
     *(int32_t *)(plVar2 + 1) = 0;
     *(int16_t *)(plVar2 + 0x16) = 0;
     plVar2[0x15] = 0;
-    *plVar2 = (int64_t)&unknown_var_5960_ptr;
+    *plVar2 = (int64_t)&processed_var_5960_ptr;
     plVar2[0x15] = param_1;
     plVar2[0x17] = 0;
     *(int8_t *)((int64_t)plVar2 + 300) = 0;
@@ -824,8 +824,8 @@ void FUN_18025e150(int32_t param_1,int64_t param_2)
     if (*(int64_t *)(lVar2 + 0xb8) != 0) {
       plStackX_8 = *(int64_t **)(lVar2 + 0xa8);
       uStack_30 = &plStackX_8;
-      pcStack_20 = (code *)&unknown_var_4016_ptr;
-      puStack_18 = &unknown_var_4000_ptr;
+      pcStack_20 = (code *)&processed_var_4016_ptr;
+      puStack_18 = &processed_var_4000_ptr;
       uStack_38 = (int32_t)lVar2;
       uStack_34 = (int32_t)((uint64_t)lVar2 >> 0x20);
       uStack_28 = uStack_38;

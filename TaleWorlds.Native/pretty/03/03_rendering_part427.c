@@ -269,7 +269,7 @@ void rendering_system_initialize_texture_handler(uint64_t param1, uint64_t param
   texture_manager = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x78,8,3,0xfffffffffffffffe);
   texture_ptr = texture_manager;
   FUN_1803456e0(texture_ptr,param2,param1);
-  *texture_ptr = &unknown_var_2720_ptr;
+  *texture_ptr = &rendering_buffer_2720_ptr;
   *(int32_t *)(texture_ptr + 0xe) = 0x1f;
   init_stack_ptr = &system_data_buffer_ptr;
   alloc_context = 0;
@@ -315,7 +315,7 @@ void rendering_system_process_texture_data(uint64_t param1)
   process_context = 0xfffffffffffffffe;
   security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)texture_buffer;
   process_param = 0;
-  process_ptr = &unknown_var_3432_ptr;
+  process_ptr = &memory_allocator_3432_ptr;
   texture_data_ptr = data_buffer;
   data_buffer[0] = 0;
   data_size = 0xd;
@@ -350,7 +350,7 @@ rendering_system_create_texture_manager(uint64_t *param1, uint64_t param2, uint6
   uint64_t alloc_flag;
   
   alloc_flag = 0xfffffffffffffffe;
-  *param1 = &unknown_var_2720_ptr;
+  *param1 = &rendering_buffer_2720_ptr;
   FUN_1803457d0();
   if ((param2 & 1) != 0) {
     free(param1,0x78,param3,param4,alloc_flag);
@@ -383,7 +383,7 @@ void rendering_system_cleanup_texture_manager(uint64_t param1, uint64_t param2)
   resource_data = 0xfffffffffffffffe;
   resource_ptr = manager_ptr;
   FUN_1803456e0(manager_ptr,param2,param1);
-  *resource_ptr = &unknown_var_4296_ptr;
+  *resource_ptr = &processed_var_4296_ptr;
   resource_ptr[0xe] = &system_state_ptr;
   resource_ptr[0xf] = 0;
   *(int32_t *)(resource_ptr + 0x10) = 0;
@@ -460,7 +460,7 @@ void rendering_system_initialize_shader_manager(uint64_t param1, uint64_t param2
   shader_manager = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x78,8,3,0xfffffffffffffffe);
   shader_ptr = shader_manager;
   FUN_1803456e0(shader_ptr,param2,param1);
-  *shader_ptr = &unknown_var_4704_ptr;
+  *shader_ptr = &processed_var_4704_ptr;
   init_stack_ptr = &system_data_buffer_ptr;
   alloc_context = 0;
   alloc_ptr = (uint64_t *)0x0;
@@ -496,7 +496,7 @@ uint64_t * rendering_system_create_shader_object(uint64_t param1, int32_t param2
   
   shader_ptr = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xb8,8,0x1a,0xfffffffffffffffe);
   FUN_1802565b0(shader_ptr,param1,param2);
-  *shader_ptr = &unknown_var_2496_ptr;
+  *shader_ptr = &rendering_buffer_2496_ptr;
   shader_ptr[0x16] = 0;
   return shader_ptr;
 }
@@ -556,8 +556,8 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   data_buffer = 0xfffffffffffffffe;
   security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)init_buffer;
   data_param = 0;
-  *param1 = &unknown_var_4416_ptr;
-  *param1 = &unknown_var_2120_ptr;
+  *param1 = &processed_var_4416_ptr;
+  *param1 = &rendering_buffer_2120_ptr;
   init_function = FUN_180627b90;
   alloc_ptr = param1;
   DataStructureManager(param1 + 2,0x20,0x20,FUN_180627850);
@@ -570,7 +570,7 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   alloc_ptr3 = string_buffer;
   string_buffer[0] = 0;
   string_size = 6;
-  strcpy_s(string_buffer,0x10,&unknown_var_2588_ptr);
+  strcpy_s(string_buffer,0x10,&rendering_buffer_2588_ptr);
   data_param = 1;
   stack_ptr = &system_data_buffer_ptr;
   data_context = 0;
@@ -836,7 +836,7 @@ void rendering_system_update_texture_cache(void)
         cache_size = *cache_start_ptr;
         texture_manager = *(uint64_t **)(cache_base + 0x148);
         if (texture_manager != (uint64_t *)0x0) {
-          if ((void *)*texture_manager == &unknown_var_8024_ptr) {
+          if ((void *)*texture_manager == &processed_var_8024_ptr) {
             cache_flag = *(char *)(texture_manager + 2) != '\0';
           }
           else {
@@ -854,7 +854,7 @@ void rendering_system_update_texture_cache(void)
         cache_entry_ptr = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xd0,8,3,cache_param);
         cache_stack_ptr2 = cache_entry_ptr;
         FUN_180049830(cache_entry_ptr);
-        *cache_entry_ptr = (int64_t)&unknown_var_8024_ptr;
+        *cache_entry_ptr = (int64_t)&processed_var_8024_ptr;
         *(int *)(cache_entry_ptr + 0x18) = cache_size;
         cache_entry_ptr[0x19] = cache_base;
         cache_stack_ptr2 = cache_entry_ptr;
@@ -934,7 +934,7 @@ void rendering_system_update_render_cache(void)
     cache_size = *cache_start_ptr;
     texture_manager = *(uint64_t **)(cache_base + 0x148);
     if (texture_manager != (uint64_t *)0x0) {
-      if ((void *)*texture_manager == &unknown_var_8024_ptr) {
+      if ((void *)*texture_manager == &processed_var_8024_ptr) {
         cache_flag = *(char *)(texture_manager + 2) != '\0';
       }
       else {
@@ -952,7 +952,7 @@ void rendering_system_update_render_cache(void)
     cache_entry_ptr = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xd0,8,3,cache_param);
     in_stack_00000040 = cache_entry_ptr;
     FUN_180049830(cache_entry_ptr);
-    *cache_entry_ptr = (int64_t)&unknown_var_8024_ptr;
+    *cache_entry_ptr = (int64_t)&processed_var_8024_ptr;
     *(int *)(cache_entry_ptr + 0x18) = cache_size;
     cache_entry_ptr[0x19] = cache_base;
     in_stack_00000048 = cache_entry_ptr;
@@ -1042,7 +1042,7 @@ void rendering_system_setup_render_pipeline(void)
   int32_t *config_ptr;
   uint64_t *resource_ptr;
   
-  FUN_1802567b0(render_system_data_texture[0x15],&system_buffer_d688,&unknown_var_9616_ptr,rendering_system_create_shader_object,0xfffffffffffffffe);
+  FUN_1802567b0(render_system_data_texture[0x15],&system_buffer_d688,&processed_var_9616_ptr,rendering_system_create_shader_object,0xfffffffffffffffe);
   config_ptr = (int32_t *)FUN_18008d660(render_system_data_texture + 0x1c,&system_buffer_d688);
   *config_ptr = 1;
   resource_ptr = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x38,8,3);
@@ -1052,8 +1052,8 @@ void rendering_system_setup_render_pipeline(void)
   resource_ptr[4] = 0;
   resource_ptr[5] = 0;
   resource_ptr[6] = 0;
-  *resource_ptr = &unknown_var_2096_ptr;
-  *resource_ptr = &unknown_var_2072_ptr;
+  *resource_ptr = &rendering_buffer_2096_ptr;
+  *resource_ptr = &rendering_buffer_2072_ptr;
   pipeline_ptr = resource_ptr + 1;
   resource_ptr[4] = 0;
   *(int32_t *)(resource_ptr + 6) = 3;

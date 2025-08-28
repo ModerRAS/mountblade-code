@@ -517,9 +517,9 @@ int FUN_1804660e0(uint64_t param_1,uint64_t *param_2,void *param_3,void *param_4
   iVar1 = *(int *)(param_2 + 2);
   if (iVar1 == 6) {
     param_3 = (void *)param_2[1];
-    param_4 = &unknown_var_1148_ptr;
+    param_4 = &ui_system_data_1148_ptr;
     lVar2 = 0;
-    while (lVar3 = lVar2 + 1, param_3[lVar2] == (&unknown_var_1148_ptr)[lVar2]) {
+    while (lVar3 = lVar2 + 1, param_3[lVar2] == (&ui_system_data_1148_ptr)[lVar2]) {
       lVar2 = lVar3;
       if (lVar3 == 7) {
         *param_2 = &system_data_buffer_ptr;
@@ -535,9 +535,9 @@ int FUN_1804660e0(uint64_t param_1,uint64_t *param_2,void *param_3,void *param_4
     }
   }
   if (iVar1 == 7) {
-    param_3 = &unknown_var_1496_ptr;
+    param_3 = &ui_system_data_1496_ptr;
     lVar2 = 0;
-    while (lVar3 = lVar2, *(char *)(param_2[1] + lVar3) == (&unknown_var_1496_ptr)[lVar3]) {
+    while (lVar3 = lVar2, *(char *)(param_2[1] + lVar3) == (&ui_system_data_1496_ptr)[lVar3]) {
       lVar2 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
         FUN_180627b90(param_2);
@@ -546,7 +546,7 @@ int FUN_1804660e0(uint64_t param_1,uint64_t *param_2,void *param_3,void *param_4
     }
   }
   if (iVar1 == 9) {
-    iVar1 = strcmp(param_2[1],&unknown_var_1504_ptr,param_3,param_4,0xfffffffffffffffe);
+    iVar1 = strcmp(param_2[1],&ui_system_data_1504_ptr,param_3,param_4,0xfffffffffffffffe);
     if (iVar1 == 0) {
       FUN_180627b90(param_2);
       return 1;

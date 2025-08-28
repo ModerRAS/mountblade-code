@@ -165,8 +165,8 @@ void FUN_18014ccf0(void)
   while (lVar5 != lVar3) {
     iVar4 = iVar2 + 1;
     uVar1 = *(uint64_t *)(lVar5 + 0x20);
-    pcStack_88 = (code *)&unknown_var_3584_ptr;
-    puStack_80 = &unknown_var_3568_ptr;
+    pcStack_88 = (code *)&memory_allocator_3584_ptr;
+    puStack_80 = &memory_allocator_3568_ptr;
     apiStack_98[0] = aiStackX_10;
     FUN_18014a370(uVar1,0,apiStack_98,in_R9,uVar7);
     if (pcStack_88 != (code *)0x0) {
@@ -180,12 +180,12 @@ void FUN_18014ccf0(void)
       uStack_9c = *(int32_t *)(lVar5 + 0x34);
       ppiStackX_18 = apiStack_78;
       puStack_68 = &system_param1_ptr;
-      puStack_60 = &unknown_var_3488_ptr;
+      puStack_60 = &memory_allocator_3488_ptr;
       apiStack_78[0] = aiStackX_10;
       FUN_180149ed0(uVar1,apiStack_78,&uStack_a8);
       ppiStackX_18 = apiStack_58;
       puStack_48 = &system_param1_ptr;
-      puStack_40 = &unknown_var_3488_ptr;
+      puStack_40 = &memory_allocator_3488_ptr;
       apiStack_58[0] = aiStackX_10;
       FUN_180149bd0(uVar1);
     }
@@ -699,7 +699,7 @@ void FUN_18014d7f0(int64_t *param_1,float *param_2,int64_t *param_3)
     ppuStack_2f0 = ppuVar16;
     plStack_2e0 = param_1;
     FUN_18014e330(param_1,ppuVar16);
-    puStack_2b8 = &unknown_var_9208_ptr;
+    puStack_2b8 = &processed_var_9208_ptr;
     puStack_2b0 = auStack_2a0;
     uStack_2a8 = 0;
     auStack_2a0[0] = 0;

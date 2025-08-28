@@ -746,7 +746,7 @@ FUN_1806f5c30(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   plVar3 = (int64_t *)PxGetFoundation();
   cVar1 = (**(code **)(*plVar3 + 0x28))(plVar3);
   if (cVar1 == '\0') {
-    puVar4 = &unknown_var_1728_ptr;
+    puVar4 = &ui_system_data_1728_ptr;
   }
   else {
     puVar4 = (void *)__std_type_info_name(0x180bfc700,0x180c827e0);
@@ -760,10 +760,10 @@ FUN_1806f5c30(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
     (**(code **)(*param_1 + 0x20))(param_1);
     auStackX_8[0] = 3;
     uVar7 = param_4;
-    FUN_1806f6880(plVar2,0x106,auStackX_8,param_2,param_3,param_4,param_5,0x80,&unknown_var_696_ptr);
+    FUN_1806f6880(plVar2,0x106,auStackX_8,param_2,param_3,param_4,param_5,0x80,&processed_var_696_ptr);
     uVar8 = (int32_t)((uint64_t)uVar7 >> 0x20);
-    *plVar2 = (int64_t)&unknown_var_264_ptr;
-    plVar2[3] = (int64_t)&unknown_var_616_ptr;
+    *plVar2 = (int64_t)&rendering_buffer_264_ptr;
+    plVar2[3] = (int64_t)&processed_var_616_ptr;
     lVar5 = plVar2[0xd];
     *(uint64_t *)(lVar5 + 0x50) = 0;
     *(uint64_t *)(lVar5 + 0x58) = 0;
@@ -835,8 +835,8 @@ uint * FUN_1806f5e90(int64_t *param_1,int64_t param_2)
   }
   else {
     *(int16_t *)((int64_t)puVar6 + 10) = 2;
-    *(void **)puVar6 = &unknown_var_264_ptr;
-    *(void **)(puVar6 + 6) = &unknown_var_616_ptr;
+    *(void **)puVar6 = &rendering_buffer_264_ptr;
+    *(void **)(puVar6 + 6) = &processed_var_616_ptr;
     lVar2 = *param_1;
   }
   *param_1 = lVar2 + 0x70;

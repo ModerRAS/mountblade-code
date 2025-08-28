@@ -107,7 +107,7 @@ void FUN_180111c30(float param_1,uint64_t *param_2)
         pcStack_108._0_4_ = *(int32_t *)(lVar3 + 0x1664);
         FUN_180298260(*(uint64_t *)(lVar1 + 0x2e8),&fStack_e0,uVar8,param_1);
       }
-      FUN_180121200(&uStack_b8,0x20,&unknown_var_2112_ptr,(double)(param_1 * 100.0 + 0.01));
+      FUN_180121200(&uStack_b8,0x20,&rendering_buffer_2112_ptr,(double)(param_1 * 100.0 + 0.01));
       lVar1 = SYSTEM_DATA_MANAGER_A;
       pfStack_100 = (float *)&uStack_b8;
       pfStack_f0 = (float *)0x0;
@@ -315,7 +315,7 @@ void FUN_180111c84(void)
       FUN_180298260(*(uint64_t *)(unaff_RDI + 0x2e8),&stack0x00000048,uVar3,unaff_XMM8_Da,uVar13);
       uVar7 = (int32_t)((uint64_t)uVar13 >> 0x20);
     }
-    FUN_180121200(&stack0x00000070,0x20,&unknown_var_2112_ptr,(double)(unaff_XMM8_Da * 100.0 + 0.01));
+    FUN_180121200(&stack0x00000070,0x20,&rendering_buffer_2112_ptr,(double)(unaff_XMM8_Da * 100.0 + 0.01));
     lVar6 = SYSTEM_DATA_MANAGER_A;
     pfVar4 = *(float **)(SYSTEM_DATA_MANAGER_A + 0x19f0);
     fVar12 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8);
@@ -443,7 +443,7 @@ void FUN_180111d99(void)
     FUN_180298260(*(uint64_t *)(unaff_RDI + 0x2e8),&stack0x00000048,uVar4,unaff_XMM8_Da,uVar11);
     uVar12 = (int32_t)((uint64_t)uVar11 >> 0x20);
   }
-  FUN_180121200(&stack0x00000070,0x20,&unknown_var_2112_ptr,(double)(unaff_XMM8_Da * 100.0 + 0.01));
+  FUN_180121200(&stack0x00000070,0x20,&rendering_buffer_2112_ptr,(double)(unaff_XMM8_Da * 100.0 + 0.01));
   lVar2 = SYSTEM_DATA_MANAGER_A;
   pfVar1 = *(float **)(SYSTEM_DATA_MANAGER_A + 0x19f0);
   fVar7 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8);
@@ -751,7 +751,7 @@ void FUN_180112280(void)
           uVar6 = func_0x000180121e20(&fStack_78);
           FUN_180293d20(*(uint64_t *)(lVar9 + 0x2e8),&fStackX_10,&uStackX_8,uVar6,0x3f800000);
           if (*(char *)(lVar4 + 0x2e38) != '\0') {
-            FUN_18013c760(&unknown_var_2124_ptr);
+            FUN_18013c760(&rendering_buffer_2124_ptr);
           }
         }
       }
@@ -800,7 +800,7 @@ void FUN_180112280(void)
         uVar6 = func_0x000180121e20(&uStack_68);
         FUN_180293d20(*(uint64_t *)(lVar9 + 0x2e8),&fStack_78,&uStackX_8,uVar6,0x3f800000);
         if (*(char *)(lVar4 + 0x2e38) != '\0') {
-          FUN_18013c800(&fStack_78,&unknown_var_2128_ptr,0);
+          FUN_18013c800(&fStack_78,&rendering_buffer_2128_ptr,0);
         }
         if (*(int64_t *)(lVar9 + 0x210) != 0) {
           FUN_180134400();

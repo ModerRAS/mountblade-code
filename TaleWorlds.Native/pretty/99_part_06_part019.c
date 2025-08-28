@@ -351,7 +351,7 @@ void FUN_1803b7060(int64_t param_1)
     }
     *puVar6 = 0;
     *(int8_t *)(puVar6 + 2) = 0;
-    FUN_18062dee0(puVar6,puVar8,&unknown_var_4880_ptr);
+    FUN_18062dee0(puVar6,puVar8,&processed_var_4880_ptr);
     iVar4 = FUN_18062e090(puVar6);
     if (iVar4 != 0) {
       uVar7 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)iVar4,3);
@@ -374,7 +374,7 @@ void FUN_1803b7060(int64_t param_1)
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(puVar6);
   }
-  FUN_1806272a0(&unknown_var_872_ptr);
+  FUN_1806272a0(&processed_var_872_ptr);
   puStack_d0 = &system_config_ptr;
   puStack_c8 = auStack_b8;
   auStack_b8[0] = 0;
@@ -495,7 +495,7 @@ void FUN_1803b7530(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   }
   *puVar2 = 0;
   *(int8_t *)(puVar2 + 2) = 0;
-  FUN_18062dee0(puVar2,puVar3,&unknown_var_9772_ptr);
+  FUN_18062dee0(puVar2,puVar3,&processed_var_9772_ptr);
   if (puVar2[1] != 0) {
     lVar4 = lStack_38 - lStack_40;
     if (lStack_40 == 0) {
@@ -936,7 +936,7 @@ void FUN_1803b8120(int64_t param_1,int param_2)
     uStack_138 = 0x13;
     FUN_180628380(&puStack_148,param_2);
     uStack_f8 = *(int32_t *)(*(int64_t *)(param_1 + 0x68) + 0xa4);
-    puStack_d8 = &unknown_var_3432_ptr;
+    puStack_d8 = &memory_allocator_3432_ptr;
     puStack_d0 = auStack_c0;
     auStack_c0[0] = 0;
     uStack_c8 = uStack_138;

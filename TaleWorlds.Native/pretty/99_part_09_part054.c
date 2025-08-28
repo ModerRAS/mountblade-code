@@ -263,7 +263,7 @@ void FUN_1805d67c0(int64_t param_1,int64_t *param_2,int32_t param_3)
   int64_t lVar2;
   
   lVar2 = param_1;
-  func_0x000180508000(param_1,&unknown_var_3320_ptr,&unknown_var_3288_ptr,*(uint64_t *)(param_1 + 0x20f0),
+  func_0x000180508000(param_1,&memory_allocator_3320_ptr,&memory_allocator_3288_ptr,*(uint64_t *)(param_1 + 0x20f0),
                       param_2,*(int32_t *)(param_1 + 0x209c),param_3);
   *(int32_t *)(lVar2 + 0x209c) = param_3;
   if (param_2 != (int64_t *)0x0) {

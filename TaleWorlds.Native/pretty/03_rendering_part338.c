@@ -527,7 +527,7 @@ void FUN_180449d70(int64_t param_1,int64_t param_2)
     do {
       lVar9 = lStack_138;
       lVar10 = *(int64_t *)(lStack_138 + *(int64_t *)(param_1 + 0x38));
-      puStack_e8 = &unknown_var_3432_ptr;
+      puStack_e8 = &memory_allocator_3432_ptr;
       puStack_e0 = auStack_d0;
       iStack_d8 = 0;
       auStack_d0[0] = 0;
@@ -685,7 +685,7 @@ void FUN_18044a080(int64_t param_1,int64_t param_2)
     do {
       lVar9 = lStack_138;
       lVar10 = *(int64_t *)(lStack_138 + *(int64_t *)(param_1 + 0x38));
-      puStack_e8 = &unknown_var_3432_ptr;
+      puStack_e8 = &memory_allocator_3432_ptr;
       puStack_e0 = auStack_d0;
       iStack_d8 = 0;
       auStack_d0[0] = 0;
@@ -817,7 +817,7 @@ void FUN_18044a3a0(int64_t param_1,int64_t param_2)
   if (0 < iVar2) {
     do {
       lVar1 = *(int64_t *)(lVar5 + *(int64_t *)(param_1 + 0x38));
-      puStack_e8 = &unknown_var_3432_ptr;
+      puStack_e8 = &memory_allocator_3432_ptr;
       puStack_e0 = auStack_d0;
       iStack_d8 = 0;
       auStack_d0[0] = 0;
@@ -1019,7 +1019,7 @@ void FUN_18044a810(uint64_t param_1,int param_2,uint64_t param_3,uint64_t param_
   }
   lVar3 = FUN_1800b6de0(system_resource_state,&puStack_58,0);
   if (lVar3 == 0) {
-    SystemCore_ResourceManager0(&unknown_var_104_ptr,param_1);
+    SystemCore_ResourceManager0(&ui_system_data_104_ptr,param_1);
   }
   else {
     if ((0 < *(int *)(render_system_data_memory + 0x700)) &&
@@ -1029,7 +1029,7 @@ void FUN_18044a810(uint64_t param_1,int param_2,uint64_t param_3,uint64_t param_
       uStack_60 = 0;
       puStack_70 = (int32_t *)0x0;
       uStack_68 = 0;
-      puVar4 = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x11,&unknown_var_3251_ptr);
+      puVar4 = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x11,&memory_allocator_3251_ptr);
       *(int8_t *)puVar4 = 0;
       puStack_70 = puVar4;
       uVar2 = CoreMemoryPoolCleaner(puVar4);
@@ -1046,7 +1046,7 @@ void FUN_18044a810(uint64_t param_1,int param_2,uint64_t param_3,uint64_t param_
       CoreMemoryPoolInitializer(puVar4);
     }
     if ((param_2 != -1) && (*(int *)(lVar3 + 0x58) < param_2)) {
-      SystemCore_ResourceManager0(&unknown_var_288_ptr,param_1,*(int *)(lVar3 + 0x58),param_2);
+      SystemCore_ResourceManager0(&rendering_buffer_288_ptr,param_1,*(int *)(lVar3 + 0x58),param_2);
     }
   }
   puStack_58 = &system_data_buffer_ptr;

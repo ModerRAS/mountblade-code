@@ -905,7 +905,7 @@ LAB_1804beda8:
       if ((puVar8 == puVar12) || (uVar13 < *(uint *)(puVar8 + 4))) goto LAB_1804beda8;
     }
     if (puVar8[5] == 0) {
-      SystemDataInitializer(&unknown_var_7800_ptr);
+      SystemDataInitializer(&processed_var_7800_ptr);
       iVar14 = 0;
     }
     else {
@@ -1001,7 +1001,7 @@ LAB_1804bef10:
       if ((puVar8 == puVar12) || (uVar13 < *(uint *)(puVar8 + 4))) goto LAB_1804bef10;
     }
     if (puVar8[5] == 0) {
-      SystemDataInitializer(&unknown_var_7832_ptr);
+      SystemDataInitializer(&processed_var_7832_ptr);
       iVar14 = 0;
     }
     else {

@@ -346,7 +346,7 @@ LAB_180346795:
 uint64_t * FUN_1803467b0(uint64_t *param_1,uint param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_4912_ptr;
+  *param_1 = &processed_var_4912_ptr;
   FUN_1802f5b10(param_1 + 4,param_1[6],param_3,param_4,0xfffffffffffffffe);
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
@@ -397,7 +397,7 @@ void FUN_180346870(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 uint64_t * FUN_1803468a0(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_5664_ptr;
+  *param_1 = &processed_var_5664_ptr;
   if (param_1[0x11] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
@@ -430,7 +430,7 @@ void FUN_180346910(uint64_t *param_1)
   uVar3 = 0xfffffffffffffffe;
   puVar2 = param_1;
   FUN_1803456e0();
-  *puVar2 = &unknown_var_5664_ptr;
+  *puVar2 = &processed_var_5664_ptr;
   puVar2[0x11] = 0;
   puVar2[0x12] = 0;
   puVar2[0x13] = 0;
@@ -738,7 +738,7 @@ void FUN_180346f00(int64_t param_1)
   if (*(void **)(lVar1 + 0x290) != (void *)0x0) {
     puVar2 = *(void **)(lVar1 + 0x290);
   }
-  FUN_180627020(&unknown_var_5328_ptr,puVar2);
+  FUN_180627020(&processed_var_5328_ptr,puVar2);
   return;
 }
 
@@ -771,7 +771,7 @@ void FUN_180346f40(uint64_t param_1)
   uStack_150 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_188;
   uStack_168 = 0;
-  puStack_148 = &unknown_var_3480_ptr;
+  puStack_148 = &memory_allocator_3480_ptr;
   puStack_140 = auStack_130;
   auStack_130[0] = 0;
   uStack_138 = 0xb;
@@ -783,7 +783,7 @@ void FUN_180346f40(uint64_t param_1)
   uStack_168 = 0;
   apuStack_88[0] = &system_state_ptr;
   puStack_148 = &system_state_ptr;
-  puStack_e8 = &unknown_var_3480_ptr;
+  puStack_e8 = &memory_allocator_3480_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 0x11;

@@ -66,7 +66,7 @@ void FUN_1802c6190(uint64_t *param_1)
     uVar10 = system_system_data_memory;
     uStack_198 = 0;
     iVar14 = iVar14 << 4;
-    puStack_98 = &unknown_var_3480_ptr;
+    puStack_98 = &memory_allocator_3480_ptr;
     puStack_90 = auStack_80;
     auStack_80[0] = 0;
     uStack_88 = 0x1c;
@@ -100,7 +100,7 @@ void FUN_1802c6190(uint64_t *param_1)
       } while (uVar12 < *(uint *)(param_1 + 10));
     }
     pplStack_1a0 = (int64_t **)&puStack_178;
-    puStack_178 = &unknown_var_3432_ptr;
+    puStack_178 = &memory_allocator_3432_ptr;
     puStack_170 = auStack_160;
     uStack_168 = 0;
     auStack_160[0] = 0;
@@ -108,7 +108,7 @@ void FUN_1802c6190(uint64_t *param_1)
     uStack_d8 = *param_1;
     plStack_d0 = plVar7;
     iStack_c8 = *(int *)(param_1 + 10) << 4;
-    if (*(code **)(*plVar7 + 0x28) == (code *)&unknown_var_3248_ptr) {
+    if (*(code **)(*plVar7 + 0x28) == (code *)&memory_allocator_3248_ptr) {
       LOCK();
       *(int *)(plVar7 + 1) = (int)plVar7[1] + 1;
       UNLOCK();
@@ -247,19 +247,19 @@ void FUN_1802c64d0(int64_t *param_1,uint64_t param_2)
   uStack_1d8 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_2e8;
   ppuStack_2b0 = &puStack_a8;
-  puStack_a8 = &unknown_var_3480_ptr;
+  puStack_a8 = &memory_allocator_3480_ptr;
   puStack_a0 = auStack_90;
   uStack_98 = 0;
   auStack_90[0] = 0;
-  FUN_180049bf0(&puStack_a8,&unknown_var_8408_ptr);
+  FUN_180049bf0(&puStack_a8,&processed_var_8408_ptr);
   FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_a8);
   auStack_2b8[0] = 0;
   lVar6 = param_1[4];
-  puStack_168 = &unknown_var_672_ptr;
+  puStack_168 = &processed_var_672_ptr;
   puStack_160 = auStack_150;
   auStack_150[0] = 0;
   uStack_158 = 0xe;
-  strcpy_s(auStack_150,0x20,&unknown_var_3032_ptr);
+  strcpy_s(auStack_150,0x20,&memory_allocator_3032_ptr);
   ppuStack_2a8 = (void **)SystemCore_LoggingSystem0(lVar6,&puStack_168,1);
   puStack_168 = &system_state_ptr;
   uStack_2a0 = 0;
@@ -301,11 +301,11 @@ void FUN_1802c64d0(int64_t *param_1,uint64_t param_2)
   }
   lVar5 = FUN_180299eb0(uVar1,0,&puStack_1d0,auStack_2b8);
   lVar6 = param_1[4];
-  puStack_168 = &unknown_var_672_ptr;
+  puStack_168 = &processed_var_672_ptr;
   puStack_160 = auStack_150;
   auStack_150[0] = 0;
   uStack_158 = 0xc;
-  strcpy_s(auStack_150,0x20,&unknown_var_3152_ptr);
+  strcpy_s(auStack_150,0x20,&memory_allocator_3152_ptr);
   ppuStack_2a8 = (void **)SystemCore_LoggingSystem0(lVar6,&puStack_168,1);
   puStack_168 = &system_state_ptr;
   uStack_2a0 = 0;
@@ -373,11 +373,11 @@ void FUN_1802c64d0(int64_t *param_1,uint64_t param_2)
       *(int *)(lVar4 + 0x82b4) = *(int *)(lVar4 + 0x82b4) + 1;
     }
     ppuStack_2a8 = &puStack_168;
-    puStack_168 = &unknown_var_3480_ptr;
+    puStack_168 = &memory_allocator_3480_ptr;
     puStack_160 = auStack_150;
     uStack_158 = 0;
     auStack_150[0] = 0;
-    FUN_180049bf0(&puStack_168,&unknown_var_8336_ptr);
+    FUN_180049bf0(&puStack_168,&processed_var_8336_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_168);
     uStack_2c0 = 1;
     uStack_2c8 = 0xffffffff;
@@ -402,11 +402,11 @@ void FUN_1802c64d0(int64_t *param_1,uint64_t param_2)
     FUN_1802c2ac0(&puStack_168);
     ppuStack_2a8 = &puStack_108;
     ppuVar8 = (void **)0x0;
-    puStack_108 = &unknown_var_3480_ptr;
+    puStack_108 = &memory_allocator_3480_ptr;
     ppuStack_100 = (void **)auStack_f0;
     uStack_f8 = 0;
     auStack_f0[0] = auStack_f0[0] & 0xffffff00;
-    FUN_180049bf0(&puStack_108,&unknown_var_8352_ptr);
+    FUN_180049bf0(&puStack_108,&processed_var_8352_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_108);
     lVar4 = system_main_module_state;
     lVar6 = *(int64_t *)(system_message_buffer + 0x1cd8);
@@ -479,7 +479,7 @@ uint64_t *
 FUN_1802c6e20(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_8440_ptr;
+  *param_1 = &processed_var_8440_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {

@@ -361,7 +361,7 @@ LAB_18036d232:
 uint64_t * FUN_18036d290(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_2088_ptr;
+  *param_1 = &rendering_buffer_2088_ptr;
   param_1[0xe] = &system_data_buffer_ptr;
   if (param_1[0xf] != 0) {
                     // WARNING: Subroutine does not return
@@ -399,7 +399,7 @@ void FUN_18036d330(uint64_t param_1,uint64_t param_2)
   puVar3 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x98,8,3,0xfffffffffffffffe);
   puVar4 = puVar3;
   FUN_1803456e0(puVar3,param_2,param_1);
-  *puVar4 = &unknown_var_2088_ptr;
+  *puVar4 = &rendering_buffer_2088_ptr;
   plVar1 = puVar4 + 0xe;
   *plVar1 = (int64_t)&system_state_ptr;
   puVar4[0xf] = 0;
@@ -586,7 +586,7 @@ void FUN_18036d7a0(uint64_t *param_1)
 {
   int64_t lVar1;
   
-  if ((void *)*param_1 == &unknown_var_2088_ptr) {
+  if ((void *)*param_1 == &rendering_buffer_2088_ptr) {
     FUN_18036d5a0();
     lVar1 = param_1[3];
     if (*(int *)(lVar1 + 0x148) != 0x100000) {
@@ -774,7 +774,7 @@ void FUN_18036d920(uint64_t *param_1)
   uStack_48 = 0xfffffffffffffffe;
   puVar7 = param_1;
   FUN_1803456e0();
-  *puVar7 = &unknown_var_2456_ptr;
+  *puVar7 = &rendering_buffer_2456_ptr;
   lVar4 = 0;
   puVar7[0x10] = 0;
   puVar7[0x11] = 0;
@@ -937,7 +937,7 @@ void FUN_18036e6e0(uint64_t param_1,uint64_t param_2)
   uStack_48 = 0xfffffffffffffffe;
   puVar8 = puVar7;
   FUN_1803456e0(puVar7,param_2,param_1);
-  *puVar8 = &unknown_var_2456_ptr;
+  *puVar8 = &rendering_buffer_2456_ptr;
   lVar4 = 0;
   puVar8[0x10] = 0;
   puVar8[0x11] = 0;

@@ -786,7 +786,7 @@ void FUN_18053ee50(uint64_t *param_1)
 {
   uint64_t *puVar1;
   
-  SystemDataInitializer(&unknown_var_8896_ptr);
+  SystemDataInitializer(&processed_var_8896_ptr);
   for (puVar1 = *(uint64_t **)
                  (*(int64_t *)(render_system_config + 8) +
                  (*param_1 % (uint64_t)*(uint *)(render_system_config + 0x10)) * 8);

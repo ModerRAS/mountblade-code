@@ -60,7 +60,7 @@ void process_resource_cleanup_and_management(uint64_t *context_ptr)
           stack_guard1 = 0;
           status_flag1 = status_flag;
           status_flag2 = status_flag;
-          cleanup_ptr = (int64_t *)allocate_memory_block(context_ptr,&resource_ptr2,&unknown_var_3472_ptr,*resource_array + 0x18);
+          cleanup_ptr = (int64_t *)allocate_memory_block(context_ptr,&resource_ptr2,&memory_allocator_3472_ptr,*resource_array + 0x18);
           temp_var1 = *cleanup_ptr;
           *cleanup_ptr = 0;
           resource_ptr1 = (int64_t *)*resource_array;
@@ -80,7 +80,7 @@ void process_resource_cleanup_and_management(uint64_t *context_ptr)
     } while (timeout_value != 0);
   }
   if (-1 < *(int *)(*(int64_t *)(core_system_data_buffer + 0x2018) + 0x330)) {
-    process_system_tasks(context_ptr[0x6d],&unknown_var_4464_ptr,&resource_ptr2);
+    process_system_tasks(context_ptr[0x6d],&processed_var_4464_ptr,&resource_ptr2);
     execute_task_queue(resource_ptr2,&resource_ptr1);
     if (resource_ptr1 == (int64_t *)0x0) {
       *(int8_t *)((int64_t)context_ptr + 0x401) = 1;
@@ -91,7 +91,7 @@ void process_resource_cleanup_and_management(uint64_t *context_ptr)
       memset(large_buffer,0,0xd8);
     }
   }
-  if ((void *)*context_ptr == &unknown_var_5528_ptr) {
+  if ((void *)*context_ptr == &processed_var_5528_ptr) {
     initialize_system_state();
     pending_tasks = (uint64_t *)0x0;
     active_tasks = (uint64_t *)0x0;
@@ -138,7 +138,7 @@ void process_resource_cleanup_and_management(uint64_t *context_ptr)
   }
   if (*(char *)(context_ptr + 0x42) == '\0') {
     operation_result = get_system_status(context_ptr[0x6d]);
-    register_task_result(operation_result,&unknown_var_4408_ptr);
+    register_task_result(operation_result,&processed_var_4408_ptr);
   }
                     // WARNING: Subroutine does not return
   cleanup_system_state(security_cookie ^ (uint64_t)local_buffer);
@@ -606,7 +606,7 @@ APPEND_ERROR_CODE:
   do {
     system_data = error_offset;
     error_offset = system_data + 1;
-  } while ((&unknown_var_660_ptr)[system_data] != '\0');
+  } while ((&processed_var_660_ptr)[system_data] != '\0');
   char_count = (int)(system_data + 1);
   buffer_capacity = message_length;
   if (0 < char_count) {

@@ -214,7 +214,7 @@ uint64_t FUN_18076e1c0(int64_t *param_1,int param_2,float *param_3,int64_t param
   }
   if (param_4 != 0) {
                     // WARNING: Subroutine does not return
-    SystemValidationProcessor(param_4,0x20,&unknown_var_2048_ptr,(double)*param_3);
+    SystemValidationProcessor(param_4,0x20,&rendering_buffer_2048_ptr,(double)*param_3);
   }
   return 0;
 }

@@ -19,7 +19,7 @@ void FUN_1804c60b0(uint64_t param_1,uint64_t param_2)
   puVar2 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x78,8,3,0xfffffffffffffffe);
   puVar4 = puVar2;
   FUN_1803456e0(puVar2,param_2,param_1);
-  *puVar4 = &unknown_var_1216_ptr;
+  *puVar4 = &ui_system_data_1216_ptr;
   puStack_40 = &system_data_buffer_ptr;
   uStack_28 = 0;
   puStack_38 = (int32_t *)0x0;

@@ -245,7 +245,7 @@ LAB_18020ceb6:
         *puStack_48 = &system_state_ptr;
         *(uint64_t *)(lVar10 + 0x28) = 0;
         *(int32_t *)(lVar10 + 0x30) = 0;
-        *puStack_48 = &unknown_var_3480_ptr;
+        *puStack_48 = &memory_allocator_3480_ptr;
         *(int8_t **)(lVar10 + 0x28) = (int8_t *)(lVar10 + 0x38);
         *(int32_t *)(lVar10 + 0x30) = 0;
         *(int8_t *)(lVar10 + 0x38) = 0;
@@ -988,7 +988,7 @@ void FUN_18020ddf0(uint64_t param_1,int64_t param_2)
   uStack_7e8 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_838;
   uStack_808 = 0;
-  puStack_6b8 = &unknown_var_2008_ptr;
+  puStack_6b8 = &rendering_buffer_2008_ptr;
   puStack_6b0 = auStack_6a0;
   uStack_6a8 = 0;
   auStack_6a0[0] = 0;
@@ -1001,7 +1001,7 @@ void FUN_18020ddf0(uint64_t param_1,int64_t param_2)
     strcpy_s(auStack_6a0,0x100,param_2);
   }
   lVar1 = FUN_180624440(apuStack_478,&puStack_6b8);
-  puStack_598 = &unknown_var_2008_ptr;
+  puStack_598 = &rendering_buffer_2008_ptr;
   puStack_590 = auStack_580;
   auStack_580[0] = 0;
   uStack_588 = *(int32_t *)(lVar1 + 0x10);
@@ -1015,12 +1015,12 @@ void FUN_18020ddf0(uint64_t param_1,int64_t param_2)
   uStack_810 = 0x118;
   puStack_818 = auStack_258;
   MultiByteToWideChar(0xfde9,0,puStack_590,0xffffffff);
-  puStack_7d8 = &unknown_var_2368_ptr;
+  puStack_7d8 = &rendering_buffer_2368_ptr;
   __0__basic_ios_DU__char_traits_D_std___std__IEAA_XZ(auStack_730);
   uStack_808 = 1;
   __0__basic_ostream_DU__char_traits_D_std___std__QEAA_PEAV__basic_streambuf_DU__char_traits_D_std___1__N_Z
             (&puStack_7d8,auStack_7d0,0,0);
-  *(void **)(auStack_7d0 + (int64_t)*(int *)(puStack_7d8 + 4) + -8) = &unknown_var_2384_ptr;
+  *(void **)(auStack_7d0 + (int64_t)*(int *)(puStack_7d8 + 4) + -8) = &rendering_buffer_2384_ptr;
   *(int *)((int64_t)&iStack_7dc + (int64_t)*(int *)(puStack_7d8 + 4)) =
        *(int *)(puStack_7d8 + 4) + -0xa8;
   FUN_18009ec20(auStack_7d0);
@@ -1039,7 +1039,7 @@ void FUN_18020ddf0(uint64_t param_1,int64_t param_2)
               (auStack_7d0 + (int64_t)*(int *)(puStack_7d8 + 4) + -8,2);
   }
   puStack_7f8 = auStack_730;
-  *(void **)(auStack_7d0 + (int64_t)*(int *)(puStack_7d8 + 4) + -8) = &unknown_var_2384_ptr;
+  *(void **)(auStack_7d0 + (int64_t)*(int *)(puStack_7d8 + 4) + -8) = &rendering_buffer_2384_ptr;
   *(int *)((int64_t)&iStack_7dc + (int64_t)*(int *)(puStack_7d8 + 4)) =
        *(int *)(puStack_7d8 + 4) + -0xa8;
   FUN_18009fb60(auStack_7d0);

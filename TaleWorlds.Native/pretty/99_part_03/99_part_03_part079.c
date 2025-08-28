@@ -122,8 +122,8 @@ static void unmatched_system_component_initializer(void)
     void *resource_ptr;
     
     // 初始化系统组件
-    component_ptr = &unknown_var_7024_ptr;
-    resource_ptr = &unknown_var_7008_ptr;
+    component_ptr = &processed_var_7024_ptr;
+    resource_ptr = &processed_var_7008_ptr;
     
     // 设置系统回调
     // 原始代码中的复杂指针操作简化为基本的组件初始化
@@ -151,7 +151,7 @@ static uint64_t *unmatched_resource_allocator_manager(uint64_t *param_1, uint64_
     int64_t *memory_block;
     
     // 初始化资源
-    *param_1 = &unknown_var_9624_ptr;
+    *param_1 = &processed_var_9624_ptr;
     memory_block = (int64_t *)param_1[0x1c];
     
     if (memory_block == (int64_t *)0x0) {
@@ -222,13 +222,13 @@ static void unmatched_advanced_resource_processor(int64_t param_1)
         param2 = *(int *)(param_1 + 0x3594);
         
         // 初始化缓冲区
-        string_resource = &unknown_var_3432_ptr;
+        string_resource = &memory_allocator_3432_ptr;
         buffer_ptr = local_buffer;
         local_buffer[0] = 0;
         buffer_size = 10;
         
         // 复制字符串资源
-        strcpy_s(local_buffer, 0x80, &unknown_var_336_ptr);
+        strcpy_s(local_buffer, 0x80, &memory_allocator_336_ptr);
         
         // 处理字符串资源
         string_resource = &system_buffer_ptr;

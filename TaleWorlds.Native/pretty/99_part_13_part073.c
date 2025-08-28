@@ -381,14 +381,14 @@ void SystemResourceCleanup(void)
   *plVar1 = (int64_t)plVar1;
   
   // 设置系统状态标志
-  *unaff_R14 = &unknown_var_936_ptr;
+  *unaff_R14 = &processed_var_936_ptr;
   plVar1 = unaff_R14 + 4;
   plVar2 = (int64_t *)*plVar1;
   
   // 检查是否需要立即清理
   if ((plVar2 == plVar1) && ((int64_t *)unaff_R14[5] == plVar1)) {
     func_0x00018085dda0(plVar1);
-    *unaff_R14 = &unknown_var_1544_ptr;
+    *unaff_R14 = &ui_system_data_1544_ptr;
     *(int32_t *)(unaff_R14 + 1) = 0xdeadf00d;
     return;
   }
@@ -417,7 +417,7 @@ void SystemResourceCleanup(void)
   *plVar3 = (int64_t)plVar3;
   
   // 执行最终的资源释放操作（不返回）
-  ResourcePoolManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar3,&unknown_var_976_ptr,0x30);
+  ResourcePoolManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar3,&processed_var_976_ptr,0x30);
 }
 
 /**
@@ -545,7 +545,7 @@ uint64_t ReferenceCountInitialize(int ref_type, int64_t *ref_ptr)
   
   // 分配引用计数对象内存（16字节）
   piVar1 = (int *)ResourceQueryHandler(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), ref_type + 0x10, 0x10,
-                                &unknown_var_7616_ptr, 0x3e, 0, 0);
+                                &processed_var_7616_ptr, 0x3e, 0, 0);
   
   // 检查内存分配是否成功
   if (piVar1 == (int *)0x0) {
@@ -598,7 +598,7 @@ uint64_t ReferenceCountRelease(int64_t *ref_ptr)
     // 检查是否需要释放资源
     if (*(int *)(*ref_ptr + 4) == 0) {
       // 引用计数降为0，释放资源
-      ResourceDataProcessor(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *ref_ptr, &unknown_var_7616_ptr, 0x89);
+      ResourceDataProcessor(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *ref_ptr, &processed_var_7616_ptr, 0x89);
       *ref_ptr = 0;  // 清空引用指针
     }
   }
@@ -689,7 +689,7 @@ uint64_t ResourceArrayManagement(int64_t array_ptr, int64_t data_ptr, int array_
       iVar1 = *piVar2;
       if (iVar1 == 0) {
         puVar4 = (uint64_t *)
-                 ResourceSystemController(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_9456_ptr,0x112,0,0
+                 ResourceSystemController(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&processed_var_9456_ptr,0x112,0,0
                                ,1);
         if (puVar4 == (uint64_t *)0x0) {
           return 0x26;
@@ -697,7 +697,7 @@ uint64_t ResourceArrayManagement(int64_t array_ptr, int64_t data_ptr, int array_
         *(int32_t *)(puVar4 + 2) = 0;
 LAB_1808da52e:
         puVar4[1] = 0;
-        *puVar4 = &unknown_var_9360_ptr;
+        *puVar4 = &processed_var_9360_ptr;
         *(int32_t *)(puVar4 + 3) = 0;
         *(uint64_t **)(*(int64_t *)(param_1 + 0x48) + lVar8 * 8) = puVar4;
         *(int *)(puVar4 + 3) = piVar2[0xe];
@@ -705,7 +705,7 @@ LAB_1808da52e:
       else {
         if (iVar1 == 1) {
           puVar4 = (uint64_t *)
-                   ResourceSystemController(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_9456_ptr,0x119,0
+                   ResourceSystemController(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&processed_var_9456_ptr,0x119,0
                                  ,0,1);
           if (puVar4 == (uint64_t *)0x0) {
             return 0x26;
@@ -715,13 +715,13 @@ LAB_1808da52e:
         }
         if (iVar1 == 2) {
           puVar4 = (uint64_t *)
-                   ResourceSystemController(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_9456_ptr,0x120,0
+                   ResourceSystemController(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&processed_var_9456_ptr,0x120,0
                                  ,0,1);
           if (puVar4 == (uint64_t *)0x0) {
             return 0x26;
           }
           puVar4[1] = 0;
-          *puVar4 = &unknown_var_9360_ptr;
+          *puVar4 = &processed_var_9360_ptr;
           *(int32_t *)(puVar4 + 2) = 2;
           *(int8_t *)(puVar4 + 3) = 0;
           *(uint64_t **)(*(int64_t *)(param_1 + 0x48) + lVar8 * 8) = puVar4;
@@ -732,13 +732,13 @@ LAB_1808da52e:
             return 0x1c;
           }
           puVar4 = (uint64_t *)
-                   ResourceSystemController(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_9456_ptr,0x127,0
+                   ResourceSystemController(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&processed_var_9456_ptr,0x127,0
                                  ,0,1);
           if (puVar4 == (uint64_t *)0x0) {
             return 0x26;
           }
           puVar4[1] = 0;
-          *puVar4 = &unknown_var_9368_ptr;
+          *puVar4 = &processed_var_9368_ptr;
           *(int32_t *)(puVar4 + 2) = 3;
           puVar4[3] = 0;
           *(uint64_t **)(*(int64_t *)(param_1 + 0x48) + lVar8 * 8) = puVar4;
@@ -820,7 +820,7 @@ uint64_t ResourceObjectCreate(int64_t resource_handle, uint64_t *create_params, 
     uVar2 = 0x1f;
   }
   else {
-    lVar1 = ResourceSystemController(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x308,&unknown_var_7744_ptr,0x214,0,0,1);
+    lVar1 = ResourceSystemController(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x308,&processed_var_7744_ptr,0x214,0,0,1);
     if (lVar1 == 0) {
       uVar2 = 0x26;
     }
@@ -971,7 +971,7 @@ void ResourceConfigurationSet(uint64_t *config_ptr, int64_t *resource_ptr)
     uStack_1c = 0;
     uStack_24 = 0xffff;
     uStack_28 = 0xffffffff;
-    func_0x00018076b450(&uStack_20,&unknown_var_7984_ptr,8);
+    func_0x00018076b450(&uStack_20,&processed_var_7984_ptr,8);
     if (*(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +
                 0x48) < system_system_config) {
       SystemInitializer(&system_state_f508);
@@ -1343,7 +1343,7 @@ int ResourceHandleInitialize(int64_t resource_ptr, uint64_t *init_params)
   }
   (**(code **)*param_2)(param_2,0);
                     // WARNING: Subroutine does not return
-  ResourcePoolManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2,&unknown_var_7744_ptr,0x252,1);
+  ResourcePoolManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2,&processed_var_7744_ptr,0x252,1);
 }
 
 

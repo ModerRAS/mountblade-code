@@ -492,10 +492,10 @@ uint64_t FUN_18009f840(int64_t param_1)
 uint64_t * FUN_18009f890(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_9816_ptr;
+  *param_1 = &processed_var_9816_ptr;
   param_1[2] = 0;
-  param_1[1] = &unknown_var_2392_ptr;
-  *param_1 = &unknown_var_2416_ptr;
+  param_1[1] = &rendering_buffer_2392_ptr;
+  *param_1 = &rendering_buffer_2416_ptr;
   return param_1;
 }
 
@@ -507,7 +507,7 @@ uint64_t * FUN_18009f890(uint64_t *param_1)
 void FUN_18009f8d0(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_9816_ptr;
+  *param_1 = &processed_var_9816_ptr;
   __std_exception_destroy(param_1 + 1);
   return;
 }
@@ -521,7 +521,7 @@ FUN_18009f900(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_9816_ptr;
+  *param_1 = &processed_var_9816_ptr;
   __std_exception_destroy(param_1 + 1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x18,param_3,param_4,uVar1);
@@ -534,11 +534,11 @@ FUN_18009f900(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
 uint64_t * FUN_18009f960(uint64_t *param_1,int64_t param_2)
 
 {
-  *param_1 = &unknown_var_9816_ptr;
+  *param_1 = &processed_var_9816_ptr;
   param_1[1] = 0;
   param_1[2] = 0;
   __std_exception_copy(param_2 + 8);
-  *param_1 = &unknown_var_2416_ptr;
+  *param_1 = &rendering_buffer_2416_ptr;
   return param_1;
 }
 
@@ -587,7 +587,7 @@ LAB_18009fa43:
     if (lVar2 == -1) {
       FUN_18009f890(auStack_30);
                     // WARNING: Subroutine does not return
-      _CxxThrowException(auStack_30,&unknown_var_2464_ptr);
+      _CxxThrowException(auStack_30,&rendering_buffer_2464_ptr);
     }
     plStackX_18 = plStackX_10;
     FUN_1808ffb84(plStackX_10);
@@ -658,7 +658,7 @@ void FUN_18009fb60(uint64_t *param_1)
   uint64_t uVar1;
   uint64_t uVar2;
   
-  *param_1 = &unknown_var_2440_ptr;
+  *param_1 = &rendering_buffer_2440_ptr;
   if ((param_1[0x10] != 0) && (*(uint64_t **)param_1[3] == param_1 + 0xe)) {
     uVar1 = param_1[0x12];
     uVar2 = param_1[0x11];
@@ -686,7 +686,7 @@ void FUN_18009fbe0(int64_t *param_1)
   int64_t *plVar1;
   
   plVar1 = param_1 + 0x15;
-  *(void **)((int64_t)*(int *)(*param_1 + 4) + -0xa8 + (int64_t)plVar1) = &unknown_var_2384_ptr;
+  *(void **)((int64_t)*(int *)(*param_1 + 4) + -0xa8 + (int64_t)plVar1) = &rendering_buffer_2384_ptr;
   *(int *)((int64_t)*(int *)(*param_1 + 4) + -0xac + (int64_t)plVar1) =
        *(int *)(*param_1 + 4) + -0xa8;
   FUN_18009fb60(param_1 + 1);

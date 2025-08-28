@@ -23,10 +23,10 @@
 #define RESOURCE_MANAGER_HANDLE ui_system_buffer
 #define EMPTY_STRING_PTR       system_data_buffer_ptr
 #define NULL_STRING_PTR        system_state_ptr
-#define ERROR_FORMAT_PTR       unknown_var_3432
-#define WARNING_FORMAT_PTR     unknown_var_3432
-#define ERROR_TEMPLATE_STRING  unknown_var_1640
-#define WARNING_TEMPLATE_STRING unknown_var_1664
+#define ERROR_FORMAT_PTR       memory_allocator_3432
+#define WARNING_FORMAT_PTR     memory_allocator_3432
+#define ERROR_TEMPLATE_STRING  ui_system_data_1640
+#define WARNING_TEMPLATE_STRING ui_system_data_1664
 
 // 函数别名定义
 #define allocate_string_memory  CoreMemoryPoolValidator
@@ -607,7 +607,7 @@ void ui_initialize_resource_loader(uint64_t *param_1)
   temp_ptr = config_array;
   config_array[0] = config_array[0] & 0xffffffffffffff00;
   config_count = 6;
-  strcpy_s(config_array, 0x10, &unknown_var_2588_ptr);
+  strcpy_s(config_array, 0x10, &rendering_buffer_2588_ptr);
   buffer_flag = 1;
   SystemCore_EncryptionEngine0(&string_ptr, &format_handler);
   buffer_flag = 0;

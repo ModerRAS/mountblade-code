@@ -402,7 +402,7 @@ uint FUN_1804fb7c0(int *param_1)
     *param_1 = uVar2 + 1;
   }
   puVar5 = (uint64_t *)(lVar4 + *(int64_t *)(lVar1 + *(int64_t *)(param_1 + 10)));
-  if ((void *)*puVar5 == &unknown_var_5520_ptr) {
+  if ((void *)*puVar5 == &processed_var_5520_ptr) {
     puVar5[2] = 0;
     plVar3 = (int64_t *)puVar5[3];
     puVar5[3] = 0;
@@ -717,7 +717,7 @@ void FUN_1804fbb80(int64_t param_1)
   do {
     if (-1 < (int)plVar5[-0xd9]) {
       pcVar1 = *(code **)((void *)plVar5[-0xdb] + 0x68);
-      if ((void *)plVar5[-0xdb] == &unknown_var_7216_ptr) {
+      if ((void *)plVar5[-0xdb] == &processed_var_7216_ptr) {
         lVar2 = *plVar5;
         if (lVar2 != 0) {
           if (*(char *)(lVar2 + 0x8be) != '\0') {

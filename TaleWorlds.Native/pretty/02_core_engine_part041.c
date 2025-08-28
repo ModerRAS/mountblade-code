@@ -51,7 +51,7 @@ void FUN_180080060(int64_t *param_1)
       *(int *)(lVar1 + 0x14) = *(int *)(lVar1 + 0x14) + 1;
       UNLOCK();
       ppuStack_220 = &puStack_1f8;
-      puStack_1f8 = &unknown_var_3432_ptr;
+      puStack_1f8 = &memory_allocator_3432_ptr;
       puStack_1f0 = auStack_1e0;
       uStack_1e8 = 0;
       auStack_1e0[0] = 0;
@@ -79,7 +79,7 @@ void FUN_180080060(int64_t *param_1)
       *(int *)(lStack_78 + 0x10) = *(int *)(lStack_78 + 0x10) + 1;
       UNLOCK();
       pppuStack_228 = (void ***)&puStack_118;
-      puStack_118 = &unknown_var_3432_ptr;
+      puStack_118 = &memory_allocator_3432_ptr;
       puStack_110 = auStack_100;
       uStack_108 = 0;
       auStack_100[0] = 0;

@@ -537,7 +537,7 @@ void RenderingSystem_AdvancedDataFlowProcessor(int64_t target_ptr, int64_t sourc
         data_size_1 = (RenderDataSize)param_count_1;
         do {
             // 初始化处理环境
-            stack_ptr_4 = &unknown_var_336_ptr;
+            stack_ptr_4 = &memory_allocator_336_ptr;
             stack_ptr_5 = stack_buffer_3;
             stack_value_3 = 0;
             stack_buffer_3[0] = 0;
@@ -554,7 +554,7 @@ void RenderingSystem_AdvancedDataFlowProcessor(int64_t target_ptr, int64_t sourc
             }
             
             // 数据验证和处理
-            state_handle_2 = (RenderStateHandle *)&unknown_var_7520_ptr;
+            state_handle_2 = (RenderStateHandle *)&processed_var_7520_ptr;
             state_handle_3 = state_handle_1;
             do {
                 state_handle_1 = -1;
@@ -576,14 +576,14 @@ void RenderingSystem_AdvancedDataFlowProcessor(int64_t target_ptr, int64_t sourc
                     // 验证成功处理
                     if (comparison_result == 0) {
                         *(RenderDataSize *)(target_ptr + RENDERING_STATE_OFFSET_19) =
-                             *(RenderDataSize *)(target_ptr + RENDERING_STATE_OFFSET_19) | *(RenderDataSize *)(&unknown_var_7528_ptr + state_handle_3 * RENDERING_SYSTEM_DATA_ALIGNMENT * 4);
+                             *(RenderDataSize *)(target_ptr + RENDERING_STATE_OFFSET_19) | *(RenderDataSize *)(&processed_var_7528_ptr + state_handle_3 * RENDERING_SYSTEM_DATA_ALIGNMENT * 4);
                         break;
                     }
                 }
                 else if (stack_value_3 == 0) {
                     if (comparison_result == 0) {
                         *(RenderDataSize *)(target_ptr + RENDERING_STATE_OFFSET_19) =
-                             *(RenderDataSize *)(target_ptr + RENDERING_STATE_OFFSET_19) | *(RenderDataSize *)(&unknown_var_7528_ptr + state_handle_3 * RENDERING_SYSTEM_DATA_ALIGNMENT * 4);
+                             *(RenderDataSize *)(target_ptr + RENDERING_STATE_OFFSET_19) | *(RenderDataSize *)(&processed_var_7528_ptr + state_handle_3 * RENDERING_SYSTEM_DATA_ALIGNMENT * 4);
                         break;
                     }
                 }
@@ -631,7 +631,7 @@ void RenderingSystem_AdvancedDataFlowProcessor(int64_t target_ptr, int64_t sourc
     if (0 < (int)param_count_1) {
         do {
             // 初始化处理环境
-            stack_ptr_2 = &unknown_var_672_ptr;
+            stack_ptr_2 = &processed_var_672_ptr;
             stack_ptr_3 = stack_buffer_2;
             stack_value_2 = 0;
             stack_buffer_2[0] = 0;
@@ -650,14 +650,14 @@ void RenderingSystem_AdvancedDataFlowProcessor(int64_t target_ptr, int64_t sourc
             // 数据类型识别和处理
             flag_ptr_1 = stack_ptr_3;
             if (stack_value_2 == DATA_PROCESSING_THRESHOLD_5) {
-                comparison_result = RenderingSystem_StringComparator(stack_ptr_3, &unknown_var_7328_ptr);
+                comparison_result = RenderingSystem_StringComparator(stack_ptr_3, &processed_var_7328_ptr);
                 if (comparison_result == 0) {
                     // 类型1处理
                     object_ptr_1 = (RenderObjectPointer)RenderingSystem_MemoryAllocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_1, MEMORY_ALLOCATION_SIZE_7, 3);
                     object_ptr_1[1] = 0;
                     object_ptr_1[2] = 0;
                     object_ptr_1[3] = 0;
-                    *object_ptr_1 = &unknown_var_8256_ptr;
+                    *object_ptr_1 = &processed_var_8256_ptr;
                     
                     state_handle_1 = *(RenderStateHandle *)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET);
                     *(RenderValuePointer)(object_ptr_1 + 1) = *(RenderValuePointer)(state_handle_1 + RENDERING_SYSTEM_DATA_ALIGNMENT);
@@ -710,12 +710,12 @@ void RenderingSystem_AdvancedDataFlowProcessor(int64_t target_ptr, int64_t sourc
                     }
                 }
                 else {
-                    comparison_result = RenderingSystem_StringComparator(flag_ptr_1, &unknown_var_7656_ptr);
+                    comparison_result = RenderingSystem_StringComparator(flag_ptr_1, &processed_var_7656_ptr);
                     if (comparison_result == 0) {
                         // 类型2处理
                         stack_ptr_1 = (RenderObjectPointer)RenderingSystem_MemoryAllocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_2, MEMORY_ALLOCATION_SIZE_7, 3);
                         stack_ptr_1[1] = 0;
-                        *stack_ptr_1 = &unknown_var_7904_ptr;
+                        *stack_ptr_1 = &processed_var_7904_ptr;
                         *(RenderStateHandle *)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) = *(RenderStateHandle *)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) + RENDERING_SYSTEM_DATA_ALIGNMENT;
                         *(RenderValuePointer)(stack_ptr_1 + 1) = **(RenderValuePointer **)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET);
                         *(RenderStateHandle *)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) = *(RenderStateHandle *)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) + RENDERING_SYSTEM_DATA_ALIGNMENT;
@@ -724,13 +724,13 @@ void RenderingSystem_AdvancedDataFlowProcessor(int64_t target_ptr, int64_t sourc
                 }
             }
             else if (stack_value_2 == DATA_PROCESSING_THRESHOLD_6) {
-                comparison_result = RenderingSystem_StringComparator(stack_ptr_3, &unknown_var_7640_ptr);
+                comparison_result = RenderingSystem_StringComparator(stack_ptr_3, &processed_var_7640_ptr);
                 if (comparison_result == 0) {
                     // 类型3处理
                     object_ptr_1 = (RenderObjectPointer)RenderingSystem_MemoryAllocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_3, MEMORY_ALLOCATION_SIZE_7, 3);
                     object_ptr_1[1] = 0;
                     object_ptr_1[2] = 0;
-                    *object_ptr_1 = &unknown_var_8128_ptr;
+                    *object_ptr_1 = &processed_var_8128_ptr;
                     *(RenderStateHandle *)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) = *(RenderStateHandle *)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) + RENDERING_SYSTEM_DATA_ALIGNMENT;
                     *(RenderValuePointer)(object_ptr_1 + 1) = **(RenderValuePointer **)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET);
                     *(RenderStateHandle *)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) = *(RenderStateHandle *)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) + RENDERING_SYSTEM_DATA_ALIGNMENT;
@@ -779,11 +779,11 @@ void RenderingSystem_AdvancedDataFlowProcessor(int64_t target_ptr, int64_t sourc
                 }
             }
             else if (stack_value_2 == DATA_PROCESSING_THRESHOLD_7) {
-                comparison_result = RenderingSystem_StringComparator(stack_ptr_3, &unknown_var_7624_ptr);
+                comparison_result = RenderingSystem_StringComparator(stack_ptr_3, &processed_var_7624_ptr);
                 if (comparison_result == 0) {
                     // 类型4处理
                     stack_ptr_1 = (RenderObjectPointer)RenderingSystem_MemoryAllocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_4, MEMORY_ALLOCATION_SIZE_7, 3);
-                    *stack_ptr_1 = &unknown_var_8496_ptr;
+                    *stack_ptr_1 = &processed_var_8496_ptr;
                     stack_ptr_1[1] = 0;
                     stack_ptr_1[2] = 0;
                     stack_ptr_1[3] = 0;
@@ -811,24 +811,24 @@ void RenderingSystem_AdvancedDataFlowProcessor(int64_t target_ptr, int64_t sourc
                 if (stack_value_2 == DATA_PROCESSING_THRESHOLD_8) {
                     do {
                         state_handle_3 = state_handle_1;
-                        if (stack_ptr_3[state_handle_3] != (&unknown_var_7672_ptr)[state_handle_3]) break;
+                        if (stack_ptr_3[state_handle_3] != (&processed_var_7672_ptr)[state_handle_3]) break;
                         state_handle_1 = state_handle_3 + 1;
                     } while (state_handle_3 + 1 != DATA_PROCESSING_THRESHOLD_9);
                     stack_ptr_1 = (RenderObjectPointer)
                               RenderingSystem_MemoryAllocator(system_memory_pool_ptr, (int)state_handle_1 + MEMORY_ALLOCATION_SIZE_5, (int)state_handle_1 + MEMORY_ALLOCATION_SIZE_6, 3);
                     stack_ptr_1[1] = 0;
-                    *stack_ptr_1 = &unknown_var_8008_ptr;
+                    *stack_ptr_1 = &processed_var_8008_ptr;
                     *(RenderStateHandle)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) = *(RenderStateHandle)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) + RENDERING_SYSTEM_DATA_ALIGNMENT;
                     *(RenderValuePointer)(stack_ptr_1 + 1) = **(RenderValuePointer **)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET);
                     *(RenderStateHandle)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) = *(RenderStateHandle)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) + RENDERING_SYSTEM_DATA_ALIGNMENT;
                     *(RenderValuePointer)((RenderStateHandle)stack_ptr_1 + MEMORY_ALLOCATION_SIZE_2) = **(RenderValuePointer **)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET);
                 }
                 if ((stack_value_2 == DATA_PROCESSING_THRESHOLD_7) && 
-                    (comparison_result = RenderingSystem_StringComparator(stack_ptr_3, &unknown_var_7608_ptr), comparison_result == 0)) {
+                    (comparison_result = RenderingSystem_StringComparator(stack_ptr_3, &processed_var_7608_ptr), comparison_result == 0)) {
                     stack_ptr_1 = (RenderObjectPointer)RenderingSystem_MemoryAllocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_3, MEMORY_ALLOCATION_SIZE_7, 3);
                     stack_ptr_1[1] = 0;
                     stack_ptr_1[2] = 0;
-                    *stack_ptr_1 = &unknown_var_7752_ptr;
+                    *stack_ptr_1 = &processed_var_7752_ptr;
                     *(RenderStateHandle)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) = *(RenderStateHandle)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) + RENDERING_SYSTEM_DATA_ALIGNMENT;
                     *(RenderValuePointer)(stack_ptr_1 + 1) = **(RenderValuePointer **)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET);
                     *(RenderStateHandle)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) = *(RenderStateHandle)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) + RENDERING_SYSTEM_DATA_ALIGNMENT;

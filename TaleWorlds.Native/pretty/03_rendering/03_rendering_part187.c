@@ -290,7 +290,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                 scale_factor = *(float *)(register_rbp + -0xc);
                 rotation_angle = *(float *)(register_rbp + -0x10);
                 
-                if (undef_ptr == &unknown_var_8576_ptr) {
+                if (undef_ptr == &processed_var_8576_ptr) {
                     coord_w = *(float *)(register_r13[2] + OFFSET_0x1c) / (float)(1 << ((byte)*(int32_t *)(register_r13 + 5) & 0x1f));
                 }
                 else {
@@ -513,14 +513,14 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                             undef_ptr2 = undef_ptr;
                         }
                         temp_long = (*(int64_t **)(register_rbp + 0x68))[1] - **(int64_t **)(register_rbp + 0x68);
-                        undef_ptr = &unknown_var_3792_ptr;
+                        undef_ptr = &memory_allocator_3792_ptr;
                     }
                     else {
                         if (undef_ptr != (void *)0x0) {
                             undef_ptr2 = undef_ptr;
                         }
                         temp_long = (*(int64_t **)(register_rbp + 0x60))[1] - **(int64_t **)(register_rbp + 0x60);
-                        undef_ptr = &unknown_var_3824_ptr;
+                        undef_ptr = &memory_allocator_3824_ptr;
                     }
                     
                     FUN_180062300(system_message_context, undef_ptr, temp_long / 0x28, undef_ptr2);
@@ -691,7 +691,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
         register_xmm9_da = (float)random_val;
         register_xmm8_da = (coord_y * coord_z + register_xmm11_da) - (float)*(int *)(register_rbp + -0x38) * coord_x;
         
-        if (register_rax != &unknown_var_8576_ptr) {
+        if (register_rax != &processed_var_8576_ptr) {
             goto code_r0x00018037851f;
         }
         

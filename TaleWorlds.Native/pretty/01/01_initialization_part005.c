@@ -347,7 +347,7 @@ void register_resource_manager(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  puStackX_18 = &unknown_var_2048_ptr;
+  puStackX_18 = &rendering_buffer_2048_ptr;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -1002,7 +1002,7 @@ void register_resource_manager_2(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  puStackX_18 = &unknown_var_2048_ptr;
+  puStackX_18 = &rendering_buffer_2048_ptr;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {

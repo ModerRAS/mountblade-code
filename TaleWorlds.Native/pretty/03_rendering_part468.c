@@ -205,8 +205,8 @@ void FUN_18051ac20(int64_t param_1,char param_2)
     }
     uVar8 = *(int32_t *)(*plVar1 + 0x10);
     cVar3 = SystemBufferProcessor(0x180c95578,0,&system_param1_ptr);
-    if (((cVar3 != '\0') && (cVar3 = SystemBufferProcessor(0x180c95578,0xc,&unknown_var_3472_ptr), cVar3 != '\0'))
-       && (cVar3 = SystemBufferProcessor(0x180c95578,uVar8,&unknown_var_3424_ptr), cVar3 != '\0')) {
+    if (((cVar3 != '\0') && (cVar3 = SystemBufferProcessor(0x180c95578,0xc,&memory_allocator_3472_ptr), cVar3 != '\0'))
+       && (cVar3 = SystemBufferProcessor(0x180c95578,uVar8,&memory_allocator_3424_ptr), cVar3 != '\0')) {
       SystemBufferProcessor(0x180c95578,param_2,&system_param1_ptr);
     }
     render_system_config = render_system_config & 0xffffffff00000000;

@@ -14,7 +14,7 @@ void FUN_1806d3d20(uint64_t param_1,int64_t *param_2,int64_t *param_3)
   
   plVar4 = (int64_t *)PxGetFoundation();
   plVar4 = (int64_t *)(**(code **)(*plVar4 + 0x20))(plVar4);
-  plVar5 = (int64_t *)(**(code **)(*plVar4 + 8))(plVar4,0x70,&unknown_var_1304_ptr,&unknown_var_1240_ptr,0xc5);
+  plVar5 = (int64_t *)(**(code **)(*plVar4 + 8))(plVar4,0x70,&ui_system_data_1304_ptr,&ui_system_data_1240_ptr,0xc5);
   lVar3 = param_2[1];
   *plVar5 = *param_2;
   plVar5[1] = lVar3;
@@ -67,7 +67,7 @@ FUN_1806d3e50(int64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
      (cVar1 = (**(code **)(*param_1 + 0x28))(param_1,lVar2,param_3,param_4,param_5,param_6),
      cVar1 != '\0')) {
     param_2[1] = lVar2;
-    *param_2 = &unknown_var_9248_ptr;
+    *param_2 = &processed_var_9248_ptr;
     param_2[2] = lVar2;
     return param_2;
   }
@@ -92,7 +92,7 @@ FUN_1806d3f00(int64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
      (cVar1 = (**(code **)(*param_1 + 0x28))(param_1,lVar2,param_3,param_4,param_5,param_6),
      cVar1 != '\0')) {
     param_2[1] = lVar2;
-    *param_2 = &unknown_var_9264_ptr;
+    *param_2 = &processed_var_9264_ptr;
     param_2[2] = lVar2;
     return param_2;
   }
@@ -117,7 +117,7 @@ FUN_1806d3fb0(int64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
      (cVar1 = (**(code **)(*param_1 + 0x28))(param_1,lVar2,param_3,param_4,param_5,param_6),
      cVar1 != '\0')) {
     param_2[1] = lVar2;
-    *param_2 = &unknown_var_9112_ptr;
+    *param_2 = &processed_var_9112_ptr;
     param_2[2] = lVar2;
     return param_2;
   }
@@ -142,7 +142,7 @@ FUN_1806d4060(int64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
      (cVar1 = (**(code **)(*param_1 + 0x28))(param_1,lVar2,param_3,param_4,param_5,param_6),
      cVar1 != '\0')) {
     param_2[1] = lVar2;
-    *param_2 = &unknown_var_7216_ptr;
+    *param_2 = &processed_var_7216_ptr;
     param_2[2] = lVar2;
     return param_2;
   }
@@ -167,7 +167,7 @@ FUN_1806d4110(int64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
      (cVar1 = (**(code **)(*param_1 + 0x28))(param_1,lVar2,param_3,param_4,param_5,param_6),
      cVar1 != '\0')) {
     param_2[1] = lVar2;
-    *param_2 = &unknown_var_9208_ptr;
+    *param_2 = &processed_var_9208_ptr;
     param_2[2] = lVar2;
     return param_2;
   }

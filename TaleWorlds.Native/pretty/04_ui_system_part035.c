@@ -561,16 +561,16 @@ void FUN_180673e10(int64_t param_1,int param_2,int param_3,int param_4,uint64_t 
   else {
     if (param_4 == 0) {
       uStack_4c8 = 0x10;
-      puStack_4c0 = &unknown_var_1248_ptr + (int64_t)param_3 * 0x60;
+      puStack_4c0 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
       func_0x0001800015e7(param_1,param_2,param_5,param_6);
       goto LAB_180673f27;
     }
     puStack_4c0 = (void *)CONCAT44(puStack_4c0._4_4_,0x20);
     uStack_4c8 = 0x15;
-    puStack_4b8 = &unknown_var_1248_ptr + (int64_t)param_3 * 0x60;
+    puStack_4b8 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
     func_0x00018000113a(param_1 - param_2 * 2,auStack_4a8,param_2,1);
   }
-  puStack_4b0 = &unknown_var_1248_ptr + (int64_t)param_4 * 0x60;
+  puStack_4b0 = &ui_system_data_1248_ptr + (int64_t)param_4 * 0x60;
   puStack_4b8 = (void *)CONCAT44(puStack_4b8._4_4_,param_6);
   puStack_4c0 = (void *)CONCAT44(puStack_4c0._4_4_,0x10);
   uStack_4c8 = 0x10;
@@ -647,11 +647,11 @@ void FUN_180674040(int64_t param_1,int param_2,int param_3,int param_4,uint64_t 
   uint64_t uStack_28;
   
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_268;
-  puStack_238 = &unknown_var_1248_ptr + (int64_t)param_3 * 0x60;
+  puStack_238 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
   uStack_240 = 8;
   uStack_248 = 9;
   func_0x00018001c6d0(param_1 - param_2 * 2,auStack_228,param_2,1);
-  puStack_230 = &unknown_var_1248_ptr + (int64_t)param_4 * 0x60;
+  puStack_230 = &ui_system_data_1248_ptr + (int64_t)param_4 * 0x60;
   puStack_238 = (void *)CONCAT44(puStack_238._4_4_,4);
   uStack_240 = 4;
   uStack_248 = 4;
@@ -753,21 +753,21 @@ void FUN_1806742a0(int64_t param_1,int param_2,int param_3,int param_4,uint64_t 
   
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_268;
   if (param_3 == 0) {
-    puStack_240 = &unknown_var_1248_ptr + (int64_t)param_4 * 0x60;
+    puStack_240 = &ui_system_data_1248_ptr + (int64_t)param_4 * 0x60;
     uStack_248 = 4;
     func_0x000180001787(param_1 - param_2 * 2,param_2,param_5,param_6);
   }
   else if (param_4 == 0) {
     uStack_248 = 4;
-    puStack_240 = &unknown_var_1248_ptr + (int64_t)param_3 * 0x60;
+    puStack_240 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
     func_0x0001800014e1(param_1,param_2,param_5,param_6);
   }
   else {
     puStack_240._0_4_ = 0x10;
     uStack_248 = 9;
-    puStack_238 = &unknown_var_1248_ptr + (int64_t)param_3 * 0x60;
+    puStack_238 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
     func_0x000180001030(param_1 - param_2 * 2,auStack_228,param_2,1);
-    puStack_230 = &unknown_var_1248_ptr + (int64_t)param_4 * 0x60;
+    puStack_230 = &ui_system_data_1248_ptr + (int64_t)param_4 * 0x60;
     puStack_238 = (void *)CONCAT44(puStack_238._4_4_,param_6);
     puStack_240 = (void *)CONCAT44(puStack_240._4_4_,4);
     uStack_248 = 8;
@@ -845,21 +845,21 @@ void FUN_1806744d0(int64_t param_1,int param_2,int param_3,int param_4,uint64_t 
   
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_268;
   if (param_3 == 0) {
-    puStack_240 = &unknown_var_1248_ptr + (int64_t)param_4 * 0x60;
+    puStack_240 = &ui_system_data_1248_ptr + (int64_t)param_4 * 0x60;
     uStack_248 = 8;
     func_0x000180001787(param_1 - param_2 * 2,param_2,param_5,param_6);
   }
   else if (param_4 == 0) {
     uStack_248 = 8;
-    puStack_240 = &unknown_var_1248_ptr + (int64_t)param_3 * 0x60;
+    puStack_240 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
     func_0x0001800014e1(param_1,param_2,param_5,param_6);
   }
   else {
     puStack_240._0_4_ = 0x10;
     uStack_248 = 0xd;
-    puStack_238 = &unknown_var_1248_ptr + (int64_t)param_3 * 0x60;
+    puStack_238 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
     func_0x000180001030(param_1 - param_2 * 2,auStack_228,param_2,1);
-    puStack_230 = &unknown_var_1248_ptr + (int64_t)param_4 * 0x60;
+    puStack_230 = &ui_system_data_1248_ptr + (int64_t)param_4 * 0x60;
     puStack_238 = (void *)CONCAT44(puStack_238._4_4_,param_6);
     puStack_240 = (void *)CONCAT44(puStack_240._4_4_,8);
     uStack_248 = 8;

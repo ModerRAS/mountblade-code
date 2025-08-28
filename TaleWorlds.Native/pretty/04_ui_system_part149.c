@@ -731,7 +731,7 @@ uint64_t FUN_180755070(int64_t *param_1)
       SystemConfigManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x120));
     }
                     // WARNING: Subroutine does not return
-    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[0xc],&unknown_var_336_ptr,0xb7,1);
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1[0xc],&memory_allocator_336_ptr,0xb7,1);
   }
   plVar1 = (int64_t *)param_1[8];
   while (plVar1 != param_1 + 8) {
@@ -830,7 +830,7 @@ void FUN_1807551c2(void)
   
   if (unaff_RDI[0xc] != 0) {
                     // WARNING: Subroutine does not return
-    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),unaff_RDI[0xc],&unknown_var_336_ptr,0xb7,1);
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),unaff_RDI[0xc],&memory_allocator_336_ptr,0xb7,1);
   }
   SystemStateManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x120));
   *(int64_t *)unaff_RDI[1] = *unaff_RDI;

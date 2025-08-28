@@ -663,7 +663,7 @@ LAB_180406929:
   puStack_40 = &system_state_ptr;
 LAB_18040698e:
   iVar3 = FUN_18084acb0(param_1);
-  FUN_180211a30(iVar3,&unknown_var_6792_ptr);
+  FUN_180211a30(iVar3,&processed_var_6792_ptr);
   return iVar3 == 0;
 }
 
@@ -779,7 +779,7 @@ LAB_180211be9:
   do {
     lVar4 = lVar7;
     lVar7 = lVar4 + 1;
-  } while ((&unknown_var_660_ptr)[lVar4] != '\0');
+  } while ((&processed_var_660_ptr)[lVar4] != '\0');
   iVar11 = (int)(lVar4 + 1);
   uStack_40 = uVar10;
   if (0 < iVar11) {
@@ -904,7 +904,7 @@ uint64_t FUN_180406a70(uint64_t *param_1)
   float fStack_18;
   
   FUN_1808455f0(param_1[0x10],auStackX_8);
-  iVar3 = FUN_180847230(auStackX_8[0],&unknown_var_6816_ptr,auStack_28);
+  iVar3 = FUN_180847230(auStackX_8[0],&processed_var_6816_ptr,auStack_28);
   if ((iVar3 == 0) && (fStack_18 == 1.0)) {
     uVar1 = 1;
   }
@@ -912,7 +912,7 @@ uint64_t FUN_180406a70(uint64_t *param_1)
     uVar1 = 0;
   }
   *(int8_t *)(param_1 + 0xe) = uVar1;
-  if ((void *)*param_1 == &unknown_var_2656_ptr) {
+  if ((void *)*param_1 == &rendering_buffer_2656_ptr) {
     if (param_1[0x10] == 0) {
       return 0;
     }
@@ -1189,7 +1189,7 @@ LAB_180211be9:
   do {
     lVar4 = lVar6;
     lVar6 = lVar4 + 1;
-  } while ((&unknown_var_660_ptr)[lVar4] != '\0');
+  } while ((&processed_var_660_ptr)[lVar4] != '\0');
   iVar10 = (int)(lVar4 + 1);
   uStack_40 = uVar9;
   if (0 < iVar10) {

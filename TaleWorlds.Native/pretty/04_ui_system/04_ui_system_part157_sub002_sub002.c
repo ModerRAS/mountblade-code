@@ -503,7 +503,7 @@ LAB_18075fba0:
                   *(int64_t *)(*plVar6 + 8) = plVar6[1];
                   plVar6[1] = (int64_t)plVar6;
                   *plVar6 = (int64_t)plVar6;
-                  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar6, &unknown_var_1040_ptr, 0xb73,
+                  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar6, &ui_system_data_1040_ptr, 0xb73,
                                 1);
                 }
               }
@@ -525,7 +525,7 @@ LAB_18075fba0:
           // 处理事件系统清理
           if ((*(uint *)(param_1 + 100) >> 1 & 1) != 0) {
             SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *(uint64_t *)(param_1 + 0xe8),
-                          &unknown_var_1040_ptr, 0xb8f, 1);
+                          &ui_system_data_1040_ptr, 0xb8f, 1);
           }
           
           // 处理系统关闭
@@ -537,7 +537,7 @@ LAB_18075fba0:
               uVar7 = 0xb9a;
               param_1 = *(int64_t *)(param_1 + 0x130);
             }
-            SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_1, &unknown_var_1040_ptr, uVar7, 1);
+            SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_1, &ui_system_data_1040_ptr, uVar7, 1);
           }
           uVar4 = 0;
         }
@@ -545,7 +545,7 @@ LAB_18075fba0:
         // 处理资源释放失败的情况
         if (*(int64_t *)(param_1 + 0x1f0) == 0) {
 LAB_18075fb15:
-          SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), lVar1, &unknown_var_1040_ptr, 0xb53, 1);
+          SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), lVar1, &ui_system_data_1040_ptr, 0xb53, 1);
         }
         uVar4 = FUN_180743cc0(*(uint64_t *)(param_1 + 0xa8), 0);
         if ((int)uVar4 == 0) {
@@ -635,7 +635,7 @@ LAB_18075fba0:
               *(int64_t *)(*plVar6 + 8) = plVar6[1];
               plVar6[1] = (int64_t)plVar6;
               *plVar6 = (int64_t)plVar6;
-              SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar6, &unknown_var_1040_ptr, 0xb73,
+              SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar6, &ui_system_data_1040_ptr, 0xb73,
                             1);
             }
           }
@@ -657,7 +657,7 @@ LAB_18075fba0:
       // 处理事件系统清理
       if ((*(uint *)(param_1 + 100) >> 1 & 1) != 0) {
         SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *(uint64_t *)(param_1 + 0xe8),
-                      &unknown_var_1040_ptr, 0xb8f, 1);
+                      &ui_system_data_1040_ptr, 0xb8f, 1);
       }
       
       // 处理系统关闭
@@ -669,7 +669,7 @@ LAB_18075fba0:
           uVar7 = 0xb9a;
           param_1 = *(int64_t *)(param_1 + 0x130);
         }
-        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_1, &unknown_var_1040_ptr, uVar7, 1);
+        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_1, &ui_system_data_1040_ptr, uVar7, 1);
       }
       uVar4 = 0;
     }
@@ -677,7 +677,7 @@ LAB_18075fba0:
     // 处理资源释放失败的情况
     if (*(int64_t *)(param_1 + 0x1f0) == 0) {
 LAB_18075fb15:
-      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), lVar1, &unknown_var_1040_ptr, 0xb53, 1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), lVar1, &ui_system_data_1040_ptr, 0xb53, 1);
     }
     uVar4 = FUN_180743cc0(*(uint64_t *)(param_1 + 0xa8), 0);
     if ((int)uVar4 == 0) {

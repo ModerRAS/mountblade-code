@@ -217,7 +217,7 @@ LAB_1803b6243:
     uStack_980 = &puStack_a00;
     piStack_978 = &iStack_a84;
     pcStack_868 = FUN_1803b9640;
-    puStack_860 = &unknown_var_6016_ptr;
+    puStack_860 = &processed_var_6016_ptr;
     plStack_998 = param_1;
     apuStack_878[0] = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x28,8,system_allocation_flags);
     *apuStack_878[0] = plStack_998;
@@ -326,7 +326,7 @@ LAB_1803b6243:
         CoreMemoryPoolInitializer(uStack_a80);
       }
     }
-    if ((void *)*param_1 != &unknown_var_952_ptr) {
+    if ((void *)*param_1 != &processed_var_952_ptr) {
       (**(code **)((void *)*param_1 + 0x28))(param_1);
     }
     iVar22 = 0;
@@ -481,7 +481,7 @@ LAB_1803b5f97:
     }
     (**(code **)(*param_1 + 8))(param_1);
     FUN_180639d30(param_1 + 900);
-    if ((void *)*param_1 != &unknown_var_952_ptr) {
+    if ((void *)*param_1 != &processed_var_952_ptr) {
       (**(code **)((void *)*param_1 + 0x28))(param_1);
     }
     iVar21 = iVar22;

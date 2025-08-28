@@ -108,7 +108,7 @@ void process_resource_initialization(int64_t *engine_context, int64_t resource_p
   uStack_107 = 0x1010101;
   uStack_103 = 1;
   uStack_108 = 1;
-  puStack_e8 = &unknown_var_3432_ptr;
+  puStack_e8 = &memory_allocator_3432_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = *(int32_t *)(param_2 + 0x10);
@@ -384,7 +384,7 @@ LAB_180054912:
         if (puStack_110 != (int8_t *)0x0) {
           puVar6 = puStack_110;
         }
-        System_DataHandler(&puStack_d0,&unknown_var_6404_ptr,puVar6);
+        System_DataHandler(&puStack_d0,&processed_var_6404_ptr,puVar6);
         cVar4 = FUN_180624a00(&puStack_d0);
         if (cVar4 == '\0') {
           FUN_180624910(&puStack_d0);
@@ -425,31 +425,31 @@ LAB_180054912:
               puVar6 = puStack_150;
             }
             uStack_148 = iVar9;
-            lVar14 = strstr(puVar6,&unknown_var_6424_ptr);
+            lVar14 = strstr(puVar6,&processed_var_6424_ptr);
             if (lVar14 == 0) {
               puVar6 = &system_buffer_ptr;
               if (puStack_150 != (int8_t *)0x0) {
                 puVar6 = puStack_150;
               }
-              lVar14 = strstr(puVar6,&unknown_var_6456_ptr);
+              lVar14 = strstr(puVar6,&processed_var_6456_ptr);
               if (lVar14 != 0) goto LAB_180054ec9;
               puVar6 = &system_buffer_ptr;
               if (puStack_150 != (int8_t *)0x0) {
                 puVar6 = puStack_150;
               }
-              lVar14 = strstr(puVar6,&unknown_var_6480_ptr);
+              lVar14 = strstr(puVar6,&processed_var_6480_ptr);
               if (lVar14 != 0) goto LAB_180054ec9;
               puVar6 = &system_buffer_ptr;
               if (puStack_150 != (int8_t *)0x0) {
                 puVar6 = puStack_150;
               }
-              lVar14 = strstr(puVar6,&unknown_var_6504_ptr);
+              lVar14 = strstr(puVar6,&processed_var_6504_ptr);
               if (lVar14 != 0) goto LAB_180054ec9;
               puVar6 = &system_buffer_ptr;
               if (puStack_150 != (int8_t *)0x0) {
                 puVar6 = puStack_150;
               }
-              lVar14 = strstr(puVar6,&unknown_var_6536_ptr);
+              lVar14 = strstr(puVar6,&processed_var_6536_ptr);
               if (lVar14 != 0) goto LAB_180054ec9;
               cVar4 = FUN_180624af0(&puStack_158);
               if (cVar4 == '\0') {
@@ -526,7 +526,7 @@ LAB_180054d57:
                   if (puStack_90 != (void *)0x0) {
                     puVar16 = puStack_90;
                   }
-                  System_DataHandler(&puStack_f0,&unknown_var_6576_ptr,puVar16);
+                  System_DataHandler(&puStack_f0,&processed_var_6576_ptr,puVar16);
                   FUN_18062db60(&puStack_f0,&puStack_78);
                   init_system_data_memory = 0;
                   puStack_f0 = &system_data_buffer_ptr;
@@ -646,20 +646,20 @@ void initialize_system_core(void)
   memory_pool = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x198,8,3);
   system_handle = memory_pool + 4;
   FUN_180637560(system_handle);
-  *system_handle = &unknown_var_6384_ptr;
+  *system_handle = &processed_var_6384_ptr;
   *(int16_t *)(memory_pool + 0x1a) = 1;
   *(int32_t *)(memory_pool + 9) = 0;
   *(int8_t *)((int64_t)memory_pool + 0x54) = 0;
-  *system_handle = &unknown_var_264_ptr;
+  *system_handle = &rendering_buffer_264_ptr;
   
   // 初始化第二个系统表项
   system_handle = memory_pool + 0x1b;
   FUN_180637560(system_handle);
-  *system_handle = &unknown_var_6384_ptr;
+  *system_handle = &processed_var_6384_ptr;
   *(int16_t *)(memory_pool + 0x31) = 1;
   *(int32_t *)(memory_pool + 0x20) = 0;
   *(int8_t *)((int64_t)memory_pool + 0x10c) = 0;
-  *system_handle = &unknown_var_264_ptr;
+  *system_handle = &rendering_buffer_264_ptr;
   
   // 设置系统表头部信息
   *memory_pool = 0;
@@ -975,32 +975,32 @@ void perform_system_cleanup(void)
     }
     list_state = SYSTEM_DATA_MANAGER_A;
     SYSTEM_DATA_MANAGER_A = *cleanup_list;
-    FUN_1801299b0(&unknown_var_6880_ptr,0,0,register_value,security_cookie);
+    FUN_1801299b0(&processed_var_6880_ptr,0,0,register_value,security_cookie);
     
     // 清理配置数据的基本字段
-    SystemCore_CacheManager0(&unknown_var_6896_ptr,*(int32_t *)(config_data + 4));
-    SystemCore_CacheManager0(&unknown_var_6928_ptr,*(int32_t *)(config_data + 8));
-    SystemCore_CacheManager0(&unknown_var_6960_ptr,*(int32_t *)(config_data + 0xc));
-    SystemCore_CacheManager0(&unknown_var_6992_ptr,*(int32_t *)(config_data + 0x10));
-    SystemCore_CacheManager0(&unknown_var_7024_ptr,*(int32_t *)(config_data + 0x14));
-    SystemCore_CacheManager0(&unknown_var_7064_ptr,*(int32_t *)(config_data + 0x18));
+    SystemCore_CacheManager0(&processed_var_6896_ptr,*(int32_t *)(config_data + 4));
+    SystemCore_CacheManager0(&processed_var_6928_ptr,*(int32_t *)(config_data + 8));
+    SystemCore_CacheManager0(&processed_var_6960_ptr,*(int32_t *)(config_data + 0xc));
+    SystemCore_CacheManager0(&processed_var_6992_ptr,*(int32_t *)(config_data + 0x10));
+    SystemCore_CacheManager0(&processed_var_7024_ptr,*(int32_t *)(config_data + 0x14));
+    SystemCore_CacheManager0(&processed_var_7064_ptr,*(int32_t *)(config_data + 0x18));
     
     // 清理第一个数据块列表
     for (iterator_ptr = *(char **)(config_data + 0x28); iterator_ptr != config_data + 0x20;
         iterator_ptr = (char *)func_0x00018066bd70(iterator_ptr)) {
-      SystemCore_CacheManager0(&unknown_var_7104_ptr,*(int32_t *)(iterator_ptr + 0x20),*(int32_t *)(iterator_ptr + 0x24));
+      SystemCore_CacheManager0(&processed_var_7104_ptr,*(int32_t *)(iterator_ptr + 0x20),*(int32_t *)(iterator_ptr + 0x24));
     }
     
     // 清理第二个数据块列表
     for (iterator_ptr = *(char **)(config_data + 0x58); iterator_ptr != config_data + 0x50;
         iterator_ptr = (char *)func_0x00018066bd70(iterator_ptr)) {
-      SystemCore_CacheManager0(&unknown_var_7144_ptr,*(int32_t *)(iterator_ptr + 0x20),*(int32_t *)(iterator_ptr + 0x24));
+      SystemCore_CacheManager0(&processed_var_7144_ptr,*(int32_t *)(iterator_ptr + 0x20),*(int32_t *)(iterator_ptr + 0x24));
     }
     
     // 清理剩余的配置字段
-    SystemCore_CacheManager0(&unknown_var_7184_ptr,*(int32_t *)(config_data + 0x80));
-    SystemCore_CacheManager0(&unknown_var_7224_ptr,*(int32_t *)(config_data + 0x84));
-    SystemCore_CacheManager0(&unknown_var_7264_ptr,*(int32_t *)(config_data + 0x88));
+    SystemCore_CacheManager0(&processed_var_7184_ptr,*(int32_t *)(config_data + 0x80));
+    SystemCore_CacheManager0(&processed_var_7224_ptr,*(int32_t *)(config_data + 0x84));
+    SystemCore_CacheManager0(&processed_var_7264_ptr,*(int32_t *)(config_data + 0x88));
     
     FUN_18012cfe0();  // 执行最终清理
     SYSTEM_DATA_MANAGER_A = list_state;

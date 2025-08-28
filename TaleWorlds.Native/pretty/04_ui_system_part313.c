@@ -117,7 +117,7 @@ uint64_t FUN_18083aa20(int64_t *param_1,int64_t param_2,int *param_3,int64_t par
             lVar10 = (int64_t)iVar15;
             iVar15 = iVar15 + iVar6;
             *(float *)*pauVar19 =
-                 *(float *)(&unknown_var_5936_ptr + (lVar10 >> 0x14) * 4) * *(float *)*pauVar19;
+                 *(float *)(&processed_var_5936_ptr + (lVar10 >> 0x14) * 4) * *(float *)*pauVar19;
             pauVar19 = (int8_t (*) [32])(*pauVar19 + 4);
           }
         }
@@ -135,10 +135,10 @@ uint64_t FUN_18083aa20(int64_t *param_1,int64_t param_2,int *param_3,int64_t par
         lVar20 = lVar20 + lVar12 * 4;
         pfVar8 = (float *)(param_4 + 8 + lVar1);
         do {
-          pfVar8[-2] = *(float *)(&unknown_var_5936_ptr + lVar16 * 4) * pfVar8[-2];
-          pfVar8[-1] = *(float *)(&unknown_var_5936_ptr + lVar16 * 4) * pfVar8[-1];
-          *pfVar8 = *(float *)(&unknown_var_5936_ptr + lVar16 * 4) * *pfVar8;
-          pfVar8[1] = pfVar8[1] * *(float *)(&unknown_var_5936_ptr + lVar16 * 4);
+          pfVar8[-2] = *(float *)(&processed_var_5936_ptr + lVar16 * 4) * pfVar8[-2];
+          pfVar8[-1] = *(float *)(&processed_var_5936_ptr + lVar16 * 4) * pfVar8[-1];
+          *pfVar8 = *(float *)(&processed_var_5936_ptr + lVar16 * 4) * *pfVar8;
+          pfVar8[1] = pfVar8[1] * *(float *)(&processed_var_5936_ptr + lVar16 * 4);
           lVar12 = lVar12 + -1;
           pfVar8 = pfVar8 + 4;
         } while (lVar12 != 0);
@@ -146,7 +146,7 @@ uint64_t FUN_18083aa20(int64_t *param_1,int64_t param_2,int *param_3,int64_t par
       if (lVar20 < lVar10) {
         do {
           *(float *)(param_4 + lVar20 * 4) =
-               *(float *)(&unknown_var_5936_ptr + (int64_t)iVar17 * 4) * *(float *)(param_4 + lVar20 * 4);
+               *(float *)(&processed_var_5936_ptr + (int64_t)iVar17 * 4) * *(float *)(param_4 + lVar20 * 4);
           lVar20 = lVar20 + 1;
         } while (lVar20 < lVar10);
       }
@@ -263,14 +263,14 @@ uint64_t FUN_18083aa68(uint64_t param_1,uint param_2,int64_t param_3,uint param_
           lVar10 = (int64_t)iVar14;
           iVar14 = iVar14 + iVar6;
           *(float *)*pauVar16 =
-               *(float *)(&unknown_var_5936_ptr + (lVar10 >> 0x14) * 4) * *(float *)*pauVar16;
+               *(float *)(&processed_var_5936_ptr + (lVar10 >> 0x14) * 4) * *(float *)*pauVar16;
           pauVar16 = (int8_t (*) [32])(*pauVar16 + 4);
         }
       }
       iVar18 = iVar18 + 1;
       lVar17 = lVar17 + 1;
     } while (iVar18 < *(int *)(unaff_R13 + 0x34));
-    in_R11 = &unknown_var_5936_ptr;
+    in_R11 = &processed_var_5936_ptr;
     in_EAX = in_stack_00000060;
   }
   lVar17 = (int64_t)(int)param_2;
@@ -405,7 +405,7 @@ uint64_t FUN_18083aa7d(uint64_t param_1,uint param_2,int64_t param_3,uint param_
         lVar10 = (int64_t)iVar14;
         iVar14 = iVar14 + iVar6;
         *(float *)*pauVar17 =
-             *(float *)(&unknown_var_5936_ptr + (lVar10 >> 0x14) * 4) * *(float *)*pauVar17;
+             *(float *)(&processed_var_5936_ptr + (lVar10 >> 0x14) * 4) * *(float *)*pauVar17;
         pauVar17 = (int8_t (*) [32])(*pauVar17 + 4);
       }
     }
@@ -422,10 +422,10 @@ uint64_t FUN_18083aa7d(uint64_t param_1,uint param_2,int64_t param_3,uint param_
       lVar10 = lVar10 + lVar11 * 4;
       pfVar8 = (float *)(unaff_R14 + 8 + lVar1);
       do {
-        pfVar8[-2] = *(float *)(&unknown_var_5936_ptr + lVar15 * 4) * pfVar8[-2];
-        pfVar8[-1] = *(float *)(&unknown_var_5936_ptr + lVar15 * 4) * pfVar8[-1];
-        *pfVar8 = *(float *)(&unknown_var_5936_ptr + lVar15 * 4) * *pfVar8;
-        pfVar8[1] = pfVar8[1] * *(float *)(&unknown_var_5936_ptr + lVar15 * 4);
+        pfVar8[-2] = *(float *)(&processed_var_5936_ptr + lVar15 * 4) * pfVar8[-2];
+        pfVar8[-1] = *(float *)(&processed_var_5936_ptr + lVar15 * 4) * pfVar8[-1];
+        *pfVar8 = *(float *)(&processed_var_5936_ptr + lVar15 * 4) * *pfVar8;
+        pfVar8[1] = pfVar8[1] * *(float *)(&processed_var_5936_ptr + lVar15 * 4);
         lVar11 = lVar11 + -1;
         pfVar8 = pfVar8 + 4;
       } while (lVar11 != 0);
@@ -433,7 +433,7 @@ uint64_t FUN_18083aa7d(uint64_t param_1,uint param_2,int64_t param_3,uint param_
     if (lVar10 < lVar16) {
       do {
         *(float *)(unaff_R14 + lVar10 * 4) =
-             *(float *)(&unknown_var_5936_ptr + (int64_t)in_R10D * 4) * *(float *)(unaff_R14 + lVar10 * 4)
+             *(float *)(&processed_var_5936_ptr + (int64_t)in_R10D * 4) * *(float *)(unaff_R14 + lVar10 * 4)
         ;
         lVar10 = lVar10 + 1;
       } while (lVar10 < lVar16);

@@ -172,7 +172,7 @@ LAB_18083198e:
       }
       lVar10 = (int64_t)*(int *)(*(int64_t *)(lVar1 + (int64_t)iVar2 * 8 + 0x20) + 0xc);
       uVar5 = (**(code **)(*(int64_t *)
-                            (&unknown_var_4256_ptr + (int64_t)*(int *)(lVar1 + 0x220 + lVar10 * 4) * 8) +
+                            (&processed_var_4256_ptr + (int64_t)*(int *)(lVar1 + 0x220 + lVar10 * 4) * 8) +
                           0x20))(param_1,param_2,*(uint64_t *)(lVar1 + 800 + lVar10 * 8));
     }
   }
@@ -243,7 +243,7 @@ LAB_18083198e:
         } while ((int)uVar7 < *(int *)(unaff_RBP + 4));
       }
       uVar5 = (**(code **)(*(int64_t *)
-                            (&unknown_var_4256_ptr +
+                            (&processed_var_4256_ptr +
                             (int64_t)
                             *(int *)(unaff_R12 + 0x220 +
                                     (int64_t)

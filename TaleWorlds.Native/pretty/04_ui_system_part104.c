@@ -207,13 +207,13 @@ void FUN_18072cc1b(void)
                     iStack0000000000000054,iVar18);
       fVar27 = (float)iVar8;
       if (iVar18 == 4) {
-        puStack0000000000000070 = &unknown_var_4112_ptr;
+        puStack0000000000000070 = &processed_var_4112_ptr;
         lVar19 = 0x22;
-        iVar18 = (int)(char)(&unknown_var_4108_ptr)[iStack0000000000000050];
+        iVar18 = (int)(char)(&processed_var_4108_ptr)[iStack0000000000000050];
       }
       else {
         iVar18 = 0xc;
-        puStack0000000000000070 = &unknown_var_4280_ptr;
+        puStack0000000000000070 = &processed_var_4280_ptr;
         lVar19 = 0xc;
       }
       dVar28 = (double)FUN_18072b3a0(*(int64_t *)(unaff_RBP + -0x60) +
@@ -268,7 +268,7 @@ void FUN_18072cc1b(void)
                          (float)((dVar30 + dVar30) / dVar32);
               }
               if ((unaff_XMM7_Da < fVar33) &&
-                 ((char)(&unknown_var_4112_ptr)[lVar20] + iVar16 <= in_stack_00000068)) {
+                 ((char)(&processed_var_4112_ptr)[lVar20] + iVar16 <= in_stack_00000068)) {
                 unaff_XMM7_Da = fVar33;
                 iVar8 = iVar16;
                 uStack0000000000000048 = uVar21;
@@ -434,13 +434,13 @@ void FUN_18072cdb2(float *param_1,int param_2,int param_3)
                   iStack0000000000000054,iVar13);
     fVar21 = (float)iVar6;
     if (iVar13 == 4) {
-      puStack0000000000000070 = &unknown_var_4112_ptr;
+      puStack0000000000000070 = &processed_var_4112_ptr;
       lVar20 = 0x22;
-      iVar13 = (int)(char)(&unknown_var_4108_ptr)[iStack0000000000000050];
+      iVar13 = (int)(char)(&processed_var_4108_ptr)[iStack0000000000000050];
     }
     else {
       iVar13 = 0xc;
-      puStack0000000000000070 = &unknown_var_4280_ptr;
+      puStack0000000000000070 = &processed_var_4280_ptr;
       lVar20 = 0xc;
     }
     dVar22 = (double)FUN_18072b3a0(*(int64_t *)(unaff_RBP + -0x60) +
@@ -496,7 +496,7 @@ void FUN_18072cdb2(float *param_1,int param_2,int param_3)
                        (float)((dVar24 + dVar24) / dVar25);
             }
             if ((unaff_XMM7_Da < fVar23) &&
-               ((char)(&unknown_var_4112_ptr)[lVar15] + iVar12 <= in_stack_00000068)) {
+               ((char)(&processed_var_4112_ptr)[lVar15] + iVar12 <= in_stack_00000068)) {
               unaff_XMM7_Da = fVar23;
               iVar6 = iVar12;
               uStack0000000000000048 = uVar16;

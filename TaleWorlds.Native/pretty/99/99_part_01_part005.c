@@ -198,7 +198,7 @@ void system_resource_allocator_and_initializer(uint64_t system_handle, int64_t r
     local_stack_value2 = 0;
     
     // 资源数据初始化
-    local_stack_ptr5 = &unknown_var_2008_ptr;
+    local_stack_ptr5 = &rendering_buffer_2008_ptr;
     local_stack_ptr6 = local_stack_buffer6;
     local_stack_value8 = 0;
     local_stack_buffer6[0] = 0;
@@ -225,7 +225,7 @@ void system_resource_allocator_and_initializer(uint64_t system_handle, int64_t r
     
     // 多字节字符转换
     MultiByteToWideChar(0xfde9, 0, local_stack_value3, 0xffffffff);
-    local_stack_ptr4 = &unknown_var_2368_ptr;
+    local_stack_ptr4 = &rendering_buffer_2368_ptr;
     
     // 基础IO流初始化
     __0__basic_ios_DU__char_traits_D_std___std__IEAA_XZ(local_stack_buffer4);
@@ -234,7 +234,7 @@ void system_resource_allocator_and_initializer(uint64_t system_handle, int64_t r
             (&local_stack_ptr4, local_stack_buffer2, 0, 0);
     
     // 流缓冲区管理
-    *(void **)(local_stack_buffer2 + (int64_t)*(int *)(local_stack_ptr4 + 4) + -8) = &unknown_var_2384_ptr;
+    *(void **)(local_stack_buffer2 + (int64_t)*(int *)(local_stack_ptr4 + 4) + -8) = &rendering_buffer_2384_ptr;
     *(int *)((int64_t)&local_stack_value6 + (int64_t)*(int *)(local_stack_ptr4 + 4)) =
          *(int *)(local_stack_ptr4 + 4) + -0xa8;
     
@@ -250,7 +250,7 @@ void system_resource_allocator_and_initializer(uint64_t system_handle, int64_t r
     
     // 资源状态检查
     if (local_stack_value7 == 0) {
-        SystemCore_ResourceManager0(&unknown_var_2560_ptr, resource_data);
+        SystemCore_ResourceManager0(&rendering_buffer_2560_ptr, resource_data);
     }
     
     // 系统资源清理
@@ -268,7 +268,7 @@ void system_resource_allocator_and_initializer(uint64_t system_handle, int64_t r
     
     // 资源释放和清理
     local_stack_ptr2 = local_stack_buffer4;
-    *(void **)(local_stack_buffer2 + (int64_t)*(int *)(local_stack_ptr4 + 4) + -8) = &unknown_var_2384_ptr;
+    *(void **)(local_stack_buffer2 + (int64_t)*(int *)(local_stack_ptr4 + 4) + -8) = &rendering_buffer_2384_ptr;
     *(int *)((int64_t)&local_stack_value6 + (int64_t)*(int *)(local_stack_ptr4 + 4)) =
          *(int *)(local_stack_ptr4 + 4) + -0xa8;
     FUN_18009fb60(local_stack_buffer2);
@@ -365,7 +365,7 @@ void advanced_system_initializer(uint64_t *system_ptr, uint64_t param2, uint64_t
     
     // 系统基础初始化
     FUN_18021f7f0();
-    *system_ptr = &unknown_var_6752_ptr;
+    *system_ptr = &processed_var_6752_ptr;
     system_ptr[0x2438] = 0;
     system_ptr[0x2439] = 0;
     system_ptr[0x243a] = 0;
@@ -613,15 +613,15 @@ void directx_subsystem_initializer(int64_t system_handle)
     local_stack_value2 = system_handle;
     
     // DirectX 11初始化尝试
-    local_var3 = CreateDXGIFactory1(&unknown_var_7144_ptr, local_var1);
+    local_var3 = CreateDXGIFactory1(&processed_var_7144_ptr, local_var1);
     if (local_var3 < 0) {
         *(int32_t *)(system_handle + 0x121bc) = 1;
-        local_var3 = CreateDXGIFactory1(&unknown_var_6712_ptr, local_var1);
+        local_var3 = CreateDXGIFactory1(&processed_var_6712_ptr, local_var1);
         if (local_var3 < 0) {
             *(int32_t *)(system_handle + 0x121bc) = 0;
-            local_var3 = CreateDXGIFactory1(&unknown_var_6728_ptr, local_var1);
+            local_var3 = CreateDXGIFactory1(&processed_var_6728_ptr, local_var1);
             if (local_var3 < 0) {
-                FUN_180220810(local_var3, &unknown_var_2664_ptr);
+                FUN_180220810(local_var3, &rendering_buffer_2664_ptr);
             }
         }
     }
@@ -652,7 +652,7 @@ void directx_subsystem_initializer(int64_t system_handle)
     // 渲染管线初始化
     (**(code **)(*local_stack_ptr1 + 0x40))(local_stack_ptr1, local_stack_buffer3);
     local_stack_ptr_ptr = &local_stack_ptr3;
-    local_stack_ptr3 = &unknown_var_3432_ptr;
+    local_stack_ptr3 = &memory_allocator_3432_ptr;
     local_stack_ptr4 = local_stack_buffer2;
     local_stack_value5 = 0;
     local_stack_buffer2[0] = 0;
@@ -660,7 +660,7 @@ void directx_subsystem_initializer(int64_t system_handle)
     local_stack_value4 = 6;
     
     // 图形资源分配
-    FUN_18004a180(&local_stack_ptr3, &unknown_var_6704_ptr);
+    FUN_18004a180(&local_stack_ptr3, &processed_var_6704_ptr);
     local_stack_value6 = 0;
     local_stack_value7 = 0;
     local_stack_value8 = 0;

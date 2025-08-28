@@ -541,7 +541,7 @@ void FUN_1801c1880(void *param_1,int64_t param_2,uint64_t param_3,int8_t *param_
   
   uStack_98 = 0xfffffffffffffffe;
   uStack_30 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_138;
-  puStack_90 = &unknown_var_672_ptr;
+  puStack_90 = &processed_var_672_ptr;
   puStack_88 = auStack_78;
   uStack_80 = 0;
   auStack_78[0] = auStack_78[0] & 0xffffff00;
@@ -621,7 +621,7 @@ FUN_1801c1aa0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_6552_ptr;
+  *param_1 = &processed_var_6552_ptr;
   FUN_180049470();
   if ((param_2 & 1) != 0) {
     free(param_1,0xe8,param_3,param_4,uVar1);

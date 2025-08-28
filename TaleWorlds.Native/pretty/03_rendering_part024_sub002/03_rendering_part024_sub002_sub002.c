@@ -283,7 +283,7 @@ void FUN_18027dd70(uint64_t *******param_1,uint64_t *******param_2)
         if (param_2[0x3f] != (uint64_t ******)0x0) {
             ppppppuVar12 = param_2[0x3f];
         }
-        SystemDataInitializer(&unknown_var_9120_ptr,ppppppuVar12);
+        SystemDataInitializer(&processed_var_9120_ptr,ppppppuVar12);
     }
     
 LAB_18027de2e:

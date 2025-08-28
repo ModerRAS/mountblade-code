@@ -158,7 +158,7 @@ void FUN_180389170(int64_t *param_1,int64_t param_2)
       pcVar7 = pcVar7 + (int64_t)pcVar6;
       pcVar1 = pcVar11;
       if (pcVar7 <= pcVar6) break;
-      lVar8 = (int64_t)&unknown_var_2796_ptr - (int64_t)pcVar6;
+      lVar8 = (int64_t)&rendering_buffer_2796_ptr - (int64_t)pcVar6;
       while (*pcVar6 == pcVar6[lVar8]) {
         pcVar6 = pcVar6 + 1;
         if (pcVar7 <= pcVar6) goto joined_r0x000180389222;
@@ -169,7 +169,7 @@ joined_r0x000180389222:
   do {
     if (pcVar1 == (char *)0x0) {
       ppuStack_48 = &puStack_70;
-      puStack_40 = &unknown_var_9632_ptr;
+      puStack_40 = &processed_var_9632_ptr;
       pcStack_38 = FUN_1803896b0;
       uStack_80 = SUB84(param_1,0);
       uStack_7c = (int32_t)((uint64_t)param_1 >> 0x20);
@@ -284,7 +284,7 @@ LAB_180389368:
         pcVar7 = pcVar7 + (int64_t)pcVar6;
         pcVar1 = pcVar11;
         if (pcVar7 <= pcVar6) break;
-        lVar8 = (int64_t)&unknown_var_2796_ptr - (int64_t)pcVar6;
+        lVar8 = (int64_t)&rendering_buffer_2796_ptr - (int64_t)pcVar6;
         while (*pcVar6 == pcVar6[lVar8]) {
           pcVar6 = pcVar6 + 1;
           if (pcVar7 <= pcVar6) goto joined_r0x000180389222;
@@ -603,7 +603,7 @@ void FUN_1803898a0(int64_t *param_1)
       puVar1 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x2c8,8,0x1d);
       plStack_e8 = puVar1;
       FUN_180490d10(puVar1);
-      *puVar1 = &unknown_var_2672_ptr;
+      *puVar1 = &rendering_buffer_2672_ptr;
       uVar2 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0xc00000,0x1d);
       puVar1[0x43] = uVar2;
       uVar2 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x80,0x1d);
@@ -615,7 +615,7 @@ void FUN_1803898a0(int64_t *param_1)
     puVar1 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x2c0,8,0x1d);
     plStack_e8 = puVar1;
     FUN_18048dd80(puVar1);
-    *puVar1 = &unknown_var_2480_ptr;
+    *puVar1 = &rendering_buffer_2480_ptr;
     uVar2 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0xc00000,0x1d);
     puVar1[0x42] = uVar2;
     uVar2 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x80,0x1d);
@@ -625,7 +625,7 @@ void FUN_1803898a0(int64_t *param_1)
   plVar4 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x210,0x10,3);
   ppuStack_e0 = (void **)plVar4;
   FUN_180049830(plVar4);
-  *plVar4 = (int64_t)&unknown_var_5144_ptr;
+  *plVar4 = (int64_t)&processed_var_5144_ptr;
   FUN_180094c20(plVar4 + 0x18);
   plVar4[0x40] = (int64_t)param_1;
   LOCK();

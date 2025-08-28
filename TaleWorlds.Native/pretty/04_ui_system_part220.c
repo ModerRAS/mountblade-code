@@ -589,7 +589,7 @@ uint64_t FUN_180795b70(int64_t *param_1,int param_2,int32_t *param_3,int64_t par
     fVar2 = *(float *)(lVar1 + 0x22c);
   }
                     // WARNING: Subroutine does not return
-  SystemDataValidator(param_4,0x20,&unknown_var_2048_ptr,(double)fVar2);
+  SystemDataValidator(param_4,0x20,&rendering_buffer_2048_ptr,(double)fVar2);
 }
 
 

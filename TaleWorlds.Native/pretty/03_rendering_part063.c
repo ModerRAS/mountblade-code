@@ -105,7 +105,7 @@ void FUN_18029fc10(int64_t param_1,int64_t param_2,uint64_t param_3,int32_t para
                     (*(int64_t **)(param_1 + 0x8400),*(uint64_t *)(param_2 + 0x10),0,4,0,
                      auStack_18);
   if (iVar1 < 0) {
-    FUN_180220810(iVar1,&unknown_var_1768_ptr);
+    FUN_180220810(iVar1,&ui_system_data_1768_ptr);
   }
                     // WARNING: Subroutine does not return
   memcpy(auStack_18[0],param_3,param_4);

@@ -36,8 +36,8 @@ void initialize_permission_request_context(uint64_t *param_1)
   stack_checksum = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
   status_flag = 0;
   alloc_ptr = (int64_t *)FUN_1808fc418(0x18);
-  *alloc_ptr = (int64_t)&unknown_var_1080_ptr;
-  *alloc_ptr = (int64_t)&unknown_var_1032_ptr;
+  *alloc_ptr = (int64_t)&ui_system_data_1080_ptr;
+  *alloc_ptr = (int64_t)&ui_system_data_1032_ptr;
   alloc_ptr[2] = 0;
   current_pos = 0;
   data_end = 0;
@@ -253,7 +253,7 @@ void get_ui_language_async(int64_t param_1,int64_t *param_2,uint64_t param_3)
   }
 LAB_180184089:
   *(uint64_t *)(data_size + 0x40) = callback_data;
-  NVGSDK_GetUILanguageAsync(*(uint64_t *)(param_1 + 8),&unknown_var_800_ptr,data_size);
+  NVGSDK_GetUILanguageAsync(*(uint64_t *)(param_1 + 8),&processed_var_800_ptr,data_size);
   status_flag = 1;
   context_ptr = alloc_array;
   if (temp_ptr != (int64_t *)0x0) {
@@ -624,7 +624,7 @@ void destroy_resource_node(int64_t *param_1,uint64_t param_2,uint64_t param_3,ui
 //        param_2 - 标志位
 uint64_t * create_resource_pointer(uint64_t *param_1,uint64_t param_2)
 {
-  *param_1 = &unknown_var_872_ptr;
+  *param_1 = &processed_var_872_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }
@@ -636,7 +636,7 @@ uint64_t * create_resource_pointer(uint64_t *param_1,uint64_t param_2)
 uint64_t *
 create_resource_pointer_extended(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
-  *param_1 = &unknown_var_872_ptr;
+  *param_1 = &processed_var_872_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x10,param_3,param_4,0xfffffffffffffffe);
   }
@@ -961,7 +961,7 @@ void get_highlights_user_settings_async(int64_t param_1,int64_t *param_2,uint64_
   }
 LAB_180184d09:
   *(uint64_t *)(data_size + 0x40) = callback_data;
-  NVGSDK_Highlights_GetUserSettingsAsync(*(uint64_t *)(param_1 + 8),&unknown_var_4336_ptr,data_size);
+  NVGSDK_Highlights_GetUserSettingsAsync(*(uint64_t *)(param_1 + 8),&processed_var_4336_ptr,data_size);
   status_flag = 1;
   context_ptr = alloc_array;
   if (temp_ptr != (int64_t *)0x0) {

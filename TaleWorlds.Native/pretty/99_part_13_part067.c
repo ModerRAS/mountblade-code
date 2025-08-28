@@ -183,7 +183,7 @@ LAB_1808d6a20:
       uStack_e0 = (uint)*(ushort *)(lVar5 + 0x16);
       uStack_e8 = (uint)*(ushort *)(lVar5 + 0x14);
                     // WARNING: Subroutine does not return
-      SystemDataValidator(auStack_78,0x27,&unknown_var_8960_ptr,*(int32_t *)(lVar5 + 0x10));
+      SystemDataValidator(auStack_78,0x27,&processed_var_8960_ptr,*(int32_t *)(lVar5 + 0x10));
     }
     if (((*(byte *)(lVar10 + 0x34) ^ *(byte *)(lVar5 + 0x34)) & 1) != 0) {
       lVar5 = *plVar11;
@@ -362,7 +362,7 @@ void FUN_1808d6a27(uint64_t param_1)
        (lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x278))
                           ((int64_t *)*unaff_R14,lVar5 + 0x10,1), lVar3 == 0)) {
                     // WARNING: Subroutine does not return
-      SystemDataValidator(&stack0x00000090,0x27,&unknown_var_8960_ptr,*(int32_t *)(lVar5 + 0x10),
+      SystemDataValidator(&stack0x00000090,0x27,&processed_var_8960_ptr,*(int32_t *)(lVar5 + 0x10),
                     *(int16_t *)(lVar5 + 0x14));
     }
     if (((*(byte *)(lVar3 + 0x34) ^ *(byte *)(lVar5 + 0x34)) & 1) != 0) {

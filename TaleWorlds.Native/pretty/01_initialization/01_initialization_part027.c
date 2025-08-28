@@ -716,7 +716,7 @@ void generate_timestamp_hash(uint *hash_value)
   uint uVar1;
   char cVar2;
   
-  if (*(void **)*init_system_data_config == &unknown_var_424_ptr) {
+  if (*(void **)*init_system_data_config == &processed_var_424_ptr) {
     cVar2 = *(int *)(init_system_data_config + 0xe0) != 0;
   }
   else {
@@ -751,7 +751,7 @@ bool validate_and_process_condition(int64_t context, uint64_t param_2)
         if (*(void **)(param_1 + 0x48) != (void *)0x0) {
           puVar2 = *(void **)(param_1 + 0x48);
         }
-        SystemDataInitializer(&unknown_var_544_ptr,puVar2);
+        SystemDataInitializer(&processed_var_544_ptr,puVar2);
       }
       SystemCore_ConfigurationHandler0(param_1,param_1 + 0x80);
       return false;
@@ -838,7 +838,7 @@ void set_status_flag(int64_t context, int32_t flag)
       if (*(void **)(param_1 + 0x1eb0) != (void *)0x0) {
         puVar2 = *(void **)(param_1 + 0x1eb0);
       }
-      SystemDataInitializer(&unknown_var_544_ptr,puVar2);
+      SystemDataInitializer(&processed_var_544_ptr,puVar2);
     }
     *(int32_t *)(context + 0x1ea0) = *(int32_t *)(context + 0x1ee8); // 设置状态标志
     return;
@@ -1013,7 +1013,7 @@ allocate_and_initialize_memory(uint64_t *memory_ptr, uint64_t flags, uint64_t pa
 
 {
   memory_ptr[4] = &system_state_ptr; // 设置内存标记
-  *memory_ptr = &unknown_var_1000_ptr; // 设置虚函数表
+  *memory_ptr = &ui_system_data_1000_ptr; // 设置虚函数表
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
@@ -1033,17 +1033,17 @@ uint64_t * FUN_18005ce30(uint64_t *param_1,uint64_t *param_2)
   *param_1 = &system_handler1_ptr;
   *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *memory_ptr = &unknown_var_1000_ptr; // 设置虚函数表
+  *memory_ptr = &ui_system_data_1000_ptr; // 设置虚函数表
   LOCK();
   *(int8_t *)(param_1 + 2) = 0;
   UNLOCK();
   param_1[3] = 0xffffffffffffffff;
-  *param_1 = &unknown_var_8464_ptr;
+  *param_1 = &processed_var_8464_ptr;
   puVar1 = param_1 + 4;
   *puVar1 = &system_state_ptr;
   param_1[5] = 0;
   *(int32_t *)(param_1 + 6) = 0;
-  *puVar1 = &unknown_var_3432_ptr;
+  *puVar1 = &memory_allocator_3432_ptr;
   param_1[5] = param_1 + 7;
   *(int32_t *)(param_1 + 6) = 0;
   *(int8_t *)(param_1 + 7) = 0;
@@ -1213,7 +1213,7 @@ void format_value_to_buffer(uint64_t value, int64_t buffer)
     iVar7 = iVar7 + 1;
     uVar2 = uVar2 >> 1;
   } while (uVar2 != 0);
-  cVar1 = (&unknown_var_8592_ptr)[iVar8 / iVar7];
+  cVar1 = (&processed_var_8592_ptr)[iVar8 / iVar7];
   uStack_30 = 0x18005d147;
   fVar9 = (float)powf(0x44800000);
   fVar10 = (float)(int64_t)param_1;
@@ -1227,14 +1227,14 @@ void format_value_to_buffer(uint64_t value, int64_t buffer)
   lVar5 = 0;
   uStack_458 = 0;
   pdStack_450 = &dStackX_18;
-  iVar8 = __stdio_common_vsprintf(*puVar4 | 1,0,0,&unknown_var_8600_ptr);
+  iVar8 = __stdio_common_vsprintf(*puVar4 | 1,0,0,&processed_var_8600_ptr);
   if (iVar8 < 0) {
     iVar8 = -1;
   }
   if (iVar8 < 0x400) {
     uStack_458 = 0;
     pdStack_450 = &dStackX_18;
-    __stdio_common_vsprintf(*puVar4 | 1,acStack_438,0x400,&unknown_var_8600_ptr);
+    __stdio_common_vsprintf(*puVar4 | 1,acStack_438,0x400,&processed_var_8600_ptr);
     lVar5 = -1;
     do {
       lVar6 = lVar5;
@@ -1253,7 +1253,7 @@ void format_value_to_buffer(uint64_t value, int64_t buffer)
     if (iVar8 != 0) {
       lVar5 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,(int64_t)iVar8,3);
     }
-    FUN_18004b9b0(lVar5,(int64_t)iVar8,&unknown_var_8600_ptr,&dStackX_18);
+    FUN_18004b9b0(lVar5,(int64_t)iVar8,&processed_var_8600_ptr,&dStackX_18);
     FUN_1806281a0(param_2,lVar5);
     if (lVar5 != 0) {
                     // WARNING: Subroutine does not return

@@ -189,7 +189,7 @@ void FUN_180422040(int64_t *param_1,int param_2)
         else {
           uVar8 = FUN_18041efc0(lVar22);
         }
-        pbVar17 = &unknown_var_1504_ptr + lVar20;
+        pbVar17 = &ui_system_data_1504_ptr + lVar20;
         lVar20 = lVar20 + 1;
         *(ushort *)
          ((int64_t)param_1 + ((uint64_t)*pbVar17 + (uint64_t)uVar11 * 0x40) * 2 + 0x3488) = uVar8
@@ -234,7 +234,7 @@ void FUN_180422040(int64_t *param_1,int param_2)
           *(char **)(lVar22 + 0xb8) = *(char **)(lVar22 + 0xb8) + 1;
         }
         bVar6 = false;
-        if (cVar12 == (&unknown_var_6308_ptr)[lVar20]) {
+        if (cVar12 == (&processed_var_6308_ptr)[lVar20]) {
           bVar6 = bVar7;
         }
         lVar20 = lVar20 + 1;
@@ -267,7 +267,7 @@ void FUN_180422040(int64_t *param_1,int param_2)
         *(char **)(lVar22 + 0xb8) = *(char **)(lVar22 + 0xb8) + 1;
       }
       bVar6 = false;
-      if (cVar12 == (&unknown_var_6260_ptr)[lVar20]) {
+      if (cVar12 == (&processed_var_6260_ptr)[lVar20]) {
         bVar6 = bVar7;
       }
       lVar20 = lVar20 + 1;
@@ -619,7 +619,7 @@ uint64_t FUN_180422ab0(uint64_t *param_1,int param_2)
               *(int32_t *)(param_1 + 0x90a) = 0;
               iVar6 = piVar3[2];
               if (0 < iVar6) {
-                pbVar15 = &unknown_var_6256_ptr;
+                pbVar15 = &processed_var_6256_ptr;
                 puVar14 = (uint *)((int64_t)param_1 + 0x46a4);
                 do {
                   pbVar4 = *(byte **)(piVar3 + 0x2e);

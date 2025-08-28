@@ -617,10 +617,10 @@ int64_t *RenderingSystemDataStructureBuilder(int64_t *param_1, int32_t *param_2,
         tempPtr5 = param_2 + 2;
         do {
             // 设置数据结构基础配置
-            *param_4 = &unknown_var_5552_ptr;
+            *param_4 = &processed_var_5552_ptr;
             *(int32_t *)(param_4 + 1) = *tempPtr5;
             *(int32_t *)((int64_t)param_4 + 0xc) = tempPtr5[1];
-            *param_4 = &unknown_var_5584_ptr;
+            *param_4 = &processed_var_5584_ptr;
             param_4[2] = *(uint64_t *)(tempPtr5 + 2);
             tempVar4 = *(uint64_t *)(tempPtr5 + 6);
             param_4[3] = *(uint64_t *)(tempPtr5 + 4);
@@ -1078,7 +1078,7 @@ void RenderingSystemAdvancedFunctionCallProcessor(int64_t *param_1, int64_t *par
     tempVar1 = SystemCore_NetworkHandler0(&tempPtr2, *param_2 + 0x60, param_3, param_4, 0, RENDERING_OFFSET_MASK);
     FUN_180628a40(&tempPtr2);
     tempPtr1 = (int64_t *)(*functionPtr)(param_1, tempVar1);
-    tempPtr1 = (int64_t *)(**(code **)(*tempPtr1 + 0x70))(tempPtr1, &unknown_var_1532_ptr);
+    tempPtr1 = (int64_t *)(**(code **)(*tempPtr1 + 0x70))(tempPtr1, &ui_system_data_1532_ptr);
     (**(code **)(*tempPtr1 + 0x50))(tempPtr1, *param_4);
     
     // 清理临时资源
@@ -1097,7 +1097,7 @@ void RenderingSystemAdvancedFunctionCallProcessor(int64_t *param_1, int64_t *par
         tempVar1 = SystemCore_NetworkHandler0(&tempPtr2, *param_2 + 0x80);
         FUN_180628a40(&tempPtr2);
         tempPtr1 = (int64_t *)(*functionPtr)(param_1, tempVar1);
-        tempPtr1 = (int64_t *)(**(code **)(*tempPtr1 + 0x70))(tempPtr1, &unknown_var_1532_ptr);
+        tempPtr1 = (int64_t *)(**(code **)(*tempPtr1 + 0x70))(tempPtr1, &ui_system_data_1532_ptr);
         (**(code **)(*tempPtr1 + 0x28))(tempPtr1, *param_5);
         
         // 再次清理临时资源

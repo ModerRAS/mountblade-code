@@ -232,7 +232,7 @@ configure_engine_display_settings(uint64_t *param_1)
              (uint64_t)(*(int64_t *)(lVar3 + 0x1870) - lVar4 >> 3));
     if (1 < (int)uVar7) {
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,&unknown_var_1760_ptr);
+      FUN_180062300(system_message_context,&ui_system_data_1760_ptr);
     }
   }
   *param_1 = &system_state_ptr;
@@ -699,11 +699,11 @@ uint64_t process_engine_render_queue(uint64_t param_1,uint64_t param_2,int64_t *
   void *puVar1;
   
   if (param_3[1] - *param_3 >> 5 == 0) {
-    puVar1 = &unknown_var_9908_ptr;
+    puVar1 = &processed_var_9908_ptr;
   }
   else {
     FUN_18032c450(*(uint64_t *)(system_main_module_state + 0x3d8));
-    puVar1 = &unknown_var_9916_ptr;
+    puVar1 = &processed_var_9916_ptr;
   }
   CoreMemoryPoolValidator(param_1,puVar1);
   return param_1;
@@ -778,7 +778,7 @@ uint64_t manage_engine_texture_resources(uint64_t param_1,uint64_t param_2,int64
       *(int32_t *)(lVar1 + 0x144) = 0;
       FUN_180323d00(lVar1,10);
     }
-    puVar4 = &unknown_var_9916_ptr;
+    puVar4 = &processed_var_9916_ptr;
   }
   CoreMemoryPoolValidator(param_1,puVar4);
   return param_1;
@@ -1232,7 +1232,7 @@ uint64_t configure_engine_scissor_region(uint64_t param_1,uint64_t param_2,int64
   uVar1 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3,0,0xfffffffffffffffe);
   plStackX_18 = alStack_40;
   alStack_40[0] = *param_4;
-  puStack_30 = &unknown_var_6656_ptr;
+  puStack_30 = &processed_var_6656_ptr;
   pcStack_28 = FUN_18016f990;
   plVar2 = (int64_t *)FUN_18006b640(uVar1,alStack_40);
   plStackX_20 = plVar2;
@@ -1288,10 +1288,10 @@ initialize_engine_clear_operation(uint64_t param_1,uint64_t param_2,uint64_t par
   void *puVar1;
   
   if (*(int *)(system_module_state + 0x3f0) == 0) {
-    puVar1 = &unknown_var_9688_ptr;
+    puVar1 = &processed_var_9688_ptr;
   }
   else {
-    FUN_180170ac0(0,&unknown_var_9728_ptr,param_3,param_4,0,0xfffffffffffffffe);
+    FUN_180170ac0(0,&processed_var_9728_ptr,param_3,param_4,0,0xfffffffffffffffe);
     puVar1 = &system_buffer_80cc;
   }
   CoreMemoryPoolValidator(param_1,puVar1);

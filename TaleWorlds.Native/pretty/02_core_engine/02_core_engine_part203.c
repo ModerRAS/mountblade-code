@@ -905,7 +905,7 @@ void FUN_180185cf0(uint64_t param_1,int64_t param_2)
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_278;
   lVar2 = (int64_t)*(int *)(system_message_buffer + 0x1d40) * 0xd0 +
           *(int64_t *)(system_message_buffer + 0x1d20);
-  puStack_c8 = &unknown_var_3432_ptr;
+  puStack_c8 = &memory_allocator_3432_ptr;
   puStack_c0 = auStack_b0;
   auStack_b0[0] = 0;
   uStack_b8 = *(int32_t *)(lVar2 + 0x20);
@@ -919,7 +919,7 @@ void FUN_180185cf0(uint64_t param_1,int64_t param_2)
   if (puStack_c0 != (void *)0x0) {
     puVar3 = puStack_c0;
   }
-  lVar2 = strstr(puVar3,&unknown_var_9640_ptr);
+  lVar2 = strstr(puVar3,&processed_var_9640_ptr);
   if (lVar2 != 0) {
     uStack_168 = 0;
     uStack_160 = 0xf;
@@ -944,7 +944,7 @@ void FUN_180185cf0(uint64_t param_1,int64_t param_2)
     puStack_198 = (uint64_t *)0x100000000;
     uStack_190 = 2;
     FUN_180189600(&uStack_158,&puStack_198,auStack_18c);
-    puStack_198 = (uint64_t *)&unknown_var_9744_ptr;
+    puStack_198 = (uint64_t *)&processed_var_9744_ptr;
     uStack_188 = uVar1;
     FUN_180188620(auStack_138,&puStack_198);
     uStack_1b8 = 0;
@@ -958,11 +958,11 @@ void FUN_180185cf0(uint64_t param_1,int64_t param_2)
     if (-1 < aiStack_1d0[0]) {
       uVar1 = func_0x0001801836e0();
                     // WARNING: Subroutine does not return
-      FUN_180062300(system_message_context,&unknown_var_9712_ptr,uVar1);
+      FUN_180062300(system_message_context,&processed_var_9712_ptr,uVar1);
     }
     uVar1 = func_0x0001801836e0();
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&unknown_var_9856_ptr,uVar1);
+    FUN_180062300(system_message_context,&processed_var_9856_ptr,uVar1);
   }
   puStack_c8 = &system_state_ptr;
                     // WARNING: Subroutine does not return

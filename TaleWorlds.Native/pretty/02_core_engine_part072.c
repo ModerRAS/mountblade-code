@@ -13,12 +13,12 @@ void FUN_180104cb0(int64_t param_1,int64_t param_2)
   uint64_t uStack_18;
   
   puStack_30 = (void *)0x180104cd3;
-  FUN_1800aec40(param_1,param_2,&unknown_var_7832_ptr,param_1 + 0x4d0);
+  FUN_1800aec40(param_1,param_2,&processed_var_7832_ptr,param_1 + 0x4d0);
   puStack_30 = &system_data_buffer_ptr;
   uStack_18 = 0;
   lStack_28 = 0;
   iStack_20 = 0;
-  System_DataHandler(&puStack_30,&unknown_var_7208_ptr,&unknown_var_7856_ptr,*(int32_t *)(param_1 + 0x5b0),
+  System_DataHandler(&puStack_30,&processed_var_7208_ptr,&processed_var_7856_ptr,*(int32_t *)(param_1 + 0x5b0),
                 0xfffffffffffffffe);
   fwrite(lStack_28,1,(int64_t)iStack_20,*(uint64_t *)(param_2 + 8));
   puStack_30 = &system_data_buffer_ptr;

@@ -63,7 +63,7 @@
 #define BUFFER_SIZE_MIN             0x100        /**< 最小缓冲区大小 */
 #define BUFFER_SIZE_MAX             0x100000     /**< 最大缓冲区大小 */
 #define BUFFER_ALIGNMENT            0x10         /**< 缓冲区对齐大小 */
-#define BUFFER_CHUNK_SIZE           0x1000       /**< 缓冲区块大小 */
+#define BUFFER_CHSYSTEM_SIZE           0x1000       /**< 缓冲区块大小 */
 
 /** @brief 字符串处理常量 */
 #define STRING_MAX_LENGTH           0x1000       /**< 字符串最大长度 */
@@ -587,15 +587,15 @@ DataErrorCode DataStructureProcessor(void* param_1, void* param_2, void** param_
     (*(void (**)(void**, void*))(param_5[2]))(param_5, structure_metadata);
     
     // 处理复杂数据结构元数据
-    ComplexMetadataHandler(param_5, &unknown_var_2028_ptr);
+    ComplexMetadataHandler(param_5, &rendering_buffer_2028_ptr);
     structure_handle = ComplexDataValidator(param_1, *(uint32_t*)(param_2 + 0xa4));
     ComplexMetadataHandler(param_5, structure_handle);
-    ComplexMetadataHandler(param_5, &unknown_var_2036_ptr);
+    ComplexMetadataHandler(param_5, &rendering_buffer_2036_ptr);
     ComplexMetadataHandler(param_5, &system_memory_2030);
     ComplexDataProcessor(param_5, param_2 + 0x80);
-    ComplexMetadataHandler(param_5, &unknown_var_2048_ptr);
-    ComplexMetadataHandler(param_5, &unknown_var_1928_ptr);
-    ComplexMetadataHandler(param_5, &unknown_var_1952_ptr);
+    ComplexMetadataHandler(param_5, &rendering_buffer_2048_ptr);
+    ComplexMetadataHandler(param_5, &ui_system_data_1928_ptr);
+    ComplexMetadataHandler(param_5, &ui_system_data_1952_ptr);
     ComplexMetadataHandler(param_5, &system_memory_206c);
     
     // 处理复杂数据结构条件分支
@@ -604,7 +604,7 @@ DataErrorCode DataStructureProcessor(void* param_1, void* param_2, void** param_
         if (structure_data != (void*)0x0) {
             structure_metadata = structure_data;
         }
-        ComplexDataProcessor(param_5, &unknown_var_1968_ptr, structure_metadata);
+        ComplexDataProcessor(param_5, &ui_system_data_1968_ptr, structure_metadata);
     }
     
     // 复杂数据结构主处理循环
@@ -626,7 +626,7 @@ DataErrorCode DataStructureProcessor(void* param_1, void* param_2, void** param_
             if (structure_data != (void*)0x0) {
                 structure_metadata = structure_data;
             }
-            ComplexDataProcessor(param_5, &unknown_var_1984_ptr, structure_metadata, structure_context);
+            ComplexDataProcessor(param_5, &ui_system_data_1984_ptr, structure_metadata, structure_context);
             structure_index = structure_index + 1;
             structure_offset = structure_offset + 0x78;
             structure_size = *param_3;
@@ -813,7 +813,7 @@ DataErrorCode DataResourceCleaner(void* param_1)
     }
     
     // 调用资源清理处理函数
-    ComplexDataProcessor(&cleanup_metadata, &unknown_var_2064_ptr, cleanup_data);
+    ComplexDataProcessor(&cleanup_metadata, &rendering_buffer_2064_ptr, cleanup_data);
     cleanup_handle = &system_data_buffer_ptr;
     
     if (cleanup_size != 0) {
@@ -829,7 +829,7 @@ DataErrorCode DataResourceCleaner(void* param_1)
     cleanup_marker = 1;
     cleanup_state = 0;
     cleanup_guard = 0;
-    cleanup_iterator = &unknown_var_264_ptr;
+    cleanup_iterator = &rendering_buffer_264_ptr;
     
     // 处理资源清理数据
     cleanup_data = &system_buffer_ptr;
@@ -860,11 +860,11 @@ DataErrorCode DataResourceCleaner(void* param_1)
         cleanup_flags = 0;
         
         // 调用资源清理状态处理函数
-        ResourceCleanupStateHandler(&cleanup_handle, &unknown_var_2080_ptr, 
+        ResourceCleanupStateHandler(&cleanup_handle, &rendering_buffer_2080_ptr, 
                                    *(uint32_t*)(param_1 + 0x430), cleanup_status);
         
         if (*(int*)(param_1 + 0x434) != 0) {
-            ResourceCleanupStateHandler(&cleanup_handle, &unknown_var_2088_ptr, 
+            ResourceCleanupStateHandler(&cleanup_handle, &rendering_buffer_2088_ptr, 
                                        *(uint32_t*)(param_1 + 0x434));
         }
         
@@ -882,7 +882,7 @@ DataErrorCode DataResourceCleaner(void* param_1)
     }
     
     // 最终资源清理处理
-    cleanup_iterator = &unknown_var_6384_ptr;
+    cleanup_iterator = &processed_var_6384_ptr;
     if (cleanup_marker & 0x0100) {
         ResourceCleanupFinalize(&cleanup_iterator);
     }

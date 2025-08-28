@@ -404,7 +404,7 @@ uint64_t FUN_180506580(uint64_t param_1,uint64_t param_2)
 void FUN_1805065c0(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_5224_ptr;
+  *param_1 = &processed_var_5224_ptr;
   param_1[7] = &system_data_buffer_ptr;
   if (param_1[8] != 0) {
                     // WARNING: Subroutine does not return
@@ -953,7 +953,7 @@ void FUN_180507360(int64_t param_1,int64_t param_2)
   
   plVar1 = *(int64_t **)(param_1 + 0x590);
   if (plVar1 != (int64_t *)0x0) {
-    if (*(code **)(*plVar1 + 0xe0) == (code *)&unknown_var_2640_ptr) {
+    if (*(code **)(*plVar1 + 0xe0) == (code *)&rendering_buffer_2640_ptr) {
       plVar1[0x49c] = 0;
       plVar1[0x49d] = 0;
     }

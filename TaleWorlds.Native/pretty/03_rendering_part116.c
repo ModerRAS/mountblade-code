@@ -481,25 +481,25 @@ uint64_t * FUN_180339110(uint64_t *param_1)
 
 {
   FUN_180320470();
-  *param_1 = &unknown_var_8368_ptr;
+  *param_1 = &processed_var_8368_ptr;
   param_1[0x16] = &system_state_ptr;
   param_1[0x17] = 0;
   *(int32_t *)(param_1 + 0x18) = 0;
-  param_1[0x16] = &unknown_var_3480_ptr;
+  param_1[0x16] = &memory_allocator_3480_ptr;
   param_1[0x17] = param_1 + 0x19;
   *(int32_t *)(param_1 + 0x18) = 0;
   *(int8_t *)(param_1 + 0x19) = 0;
   param_1[0x21] = &system_state_ptr;
   param_1[0x22] = 0;
   *(int32_t *)(param_1 + 0x23) = 0;
-  param_1[0x21] = &unknown_var_3480_ptr;
+  param_1[0x21] = &memory_allocator_3480_ptr;
   param_1[0x22] = param_1 + 0x24;
   *(int32_t *)(param_1 + 0x23) = 0;
   *(int8_t *)(param_1 + 0x24) = 0;
   param_1[0x2c] = &system_state_ptr;
   param_1[0x2d] = 0;
   *(int32_t *)(param_1 + 0x2e) = 0;
-  param_1[0x2c] = &unknown_var_3480_ptr;
+  param_1[0x2c] = &memory_allocator_3480_ptr;
   param_1[0x2d] = param_1 + 0x2f;
   *(int32_t *)(param_1 + 0x2e) = 0;
   *(int8_t *)(param_1 + 0x2f) = 0;

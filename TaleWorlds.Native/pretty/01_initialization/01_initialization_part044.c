@@ -38,7 +38,7 @@ void initialize_with_default_params(uint64_t system_handle, uint64_t config_para
   int64_t stack_check;            // 栈检查值
   
   // 调用系统初始化函数
-  FUN_1800623b0(system_message_context, 0, 0x100000000, 1, &unknown_var_4968_ptr, config_param, 0xfffffffffffffffe);
+  FUN_1800623b0(system_message_context, 0, 0x100000000, 1, &processed_var_4968_ptr, config_param, 0xfffffffffffffffe);
   
   // 检查系统状态
   if (system_debug_flag == '\0') {
@@ -52,7 +52,7 @@ void initialize_with_default_params(uint64_t system_handle, uint64_t config_para
     system_ptr = *(void **)*init_system_data_config;
     
     // 检查系统指针状态
-    if (system_ptr == &unknown_var_424_ptr) {
+    if (system_ptr == &processed_var_424_ptr) {
       // 使用系统配置检查初始化状态
       initialization_flag = *(int *)(init_system_data_config + 0xc40) != 0;
     }
@@ -105,7 +105,7 @@ void initialize_with_custom_params(uint64_t system_handle, int32_t custom_param,
   int64_t stack_check;            // 栈检查值
   
   // 调用系统初始化函数（使用自定义参数模式）
-  FUN_1800623b0(system_message_context, 0, 0x100000000, 0xc, &unknown_var_5000_ptr, additional_config, 0xfffffffffffffffe);
+  FUN_1800623b0(system_message_context, 0, 0x100000000, 0xc, &processed_var_5000_ptr, additional_config, 0xfffffffffffffffe);
   
   // 检查系统状态
   if (system_debug_flag == '\0') {
@@ -119,7 +119,7 @@ void initialize_with_custom_params(uint64_t system_handle, int32_t custom_param,
     system_ptr = *(void **)*init_system_data_config;
     
     // 检查系统指针状态
-    if (system_ptr == &unknown_var_424_ptr) {
+    if (system_ptr == &processed_var_424_ptr) {
       // 使用系统配置检查初始化状态
       initialization_flag = *(int *)(init_system_data_config + 0xc40) != 0;
     }

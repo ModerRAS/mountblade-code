@@ -179,12 +179,12 @@ void FUN_180110540(int param_1)
     
     // 初始化引擎上下文和计算参数
     lVar6 = SYSTEM_DATA_MANAGER_A;                       // 获取引擎上下文
-    puVar11 = &unknown_var_2064_ptr;                     // 初始化数据指针
+    puVar11 = &rendering_buffer_2064_ptr;                     // 初始化数据指针
     lVar4 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + ENGINE_OFFSET_CONTEXT);  // 获取上下文数据
     
     // 根据参数选择不同的计算路径
     if (param_1 == 0) {
-        puVar11 = &unknown_var_2080_ptr;                 // 选择模式0的数据指针
+        puVar11 = &rendering_buffer_2080_ptr;                 // 选择模式0的数据指针
     }
     
     // 执行初始计算和索引获取

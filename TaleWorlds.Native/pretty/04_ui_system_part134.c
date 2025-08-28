@@ -955,7 +955,7 @@ uint64_t UISystem_AdjustArrayCapacity(int64_t *param_1,int param_2)
   lVar1 = 0;
   if (param_2 != 0) {
     if (param_2 * 4 - 1U < 0x3fffffff) {
-      lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 4,&unknown_var_8432_ptr,0xf4,
+      lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 4,&processed_var_8432_ptr,0xf4,
                             0,0,1);
       if (lVar1 != 0) {
         if ((int)param_1[1] != 0) {
@@ -970,7 +970,7 @@ uint64_t UISystem_AdjustArrayCapacity(int64_t *param_1,int param_2)
 LAB_180747ea4:
   if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&processed_var_8432_ptr,0x100,1);
   }
   *param_1 = lVar1;
   *(int *)((int64_t)param_1 + 0xc) = param_2;
@@ -994,14 +994,14 @@ uint64_t UISystem_AdjustArrayCapacitySimple(uint64_t param_1,int param_2)
 LAB_180747ea4:
     if ((0 < *(int *)((int64_t)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&processed_var_8432_ptr,0x100,1);
     }
     *unaff_RBX = lVar1;
     *(int *)((int64_t)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if (param_2 * 4 - 1U < 0x3fffffff) {
-    lVar1 = UISystem_MemoryAllocator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 4,&unknown_var_8432_ptr,0xf4,0)
+    lVar1 = UISystem_MemoryAllocator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 4,&processed_var_8432_ptr,0xf4,0)
     ;
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
@@ -1039,7 +1039,7 @@ uint64_t UISystem_AdjustArrayCapacity64(int64_t *param_1,int param_2)
   lVar1 = 0;
   if (param_2 != 0) {
     if (param_2 * 8 - 1U < 0x3fffffff) {
-      lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 8,&unknown_var_8432_ptr,0xf4,
+      lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 8,&processed_var_8432_ptr,0xf4,
                             0,0,1);
       if (lVar1 != 0) {
         if ((int)param_1[1] != 0) {
@@ -1054,7 +1054,7 @@ uint64_t UISystem_AdjustArrayCapacity64(int64_t *param_1,int param_2)
 LAB_180747fa4:
   if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&processed_var_8432_ptr,0x100,1);
   }
   *param_1 = lVar1;
   *(int *)((int64_t)param_1 + 0xc) = param_2;
@@ -1078,14 +1078,14 @@ uint64_t UISystem_AdjustArrayCapacity64Simple(uint64_t param_1,int param_2)
 LAB_180747fa4:
     if ((0 < *(int *)((int64_t)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&processed_var_8432_ptr,0x100,1);
     }
     *unaff_RBX = lVar1;
     *(int *)((int64_t)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if (param_2 * 8 - 1U < 0x3fffffff) {
-    lVar1 = UISystem_MemoryAllocator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 8,&unknown_var_8432_ptr,0xf4,0)
+    lVar1 = UISystem_MemoryAllocator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 8,&processed_var_8432_ptr,0xf4,0)
     ;
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
@@ -1123,7 +1123,7 @@ uint64_t UISystem_AdjustArrayCapacity128(int64_t *param_1,int param_2)
   lVar1 = 0;
   if (param_2 != 0) {
     if (param_2 * 0x10 - 1U < 0x3fffffff) {
-      lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x10,&unknown_var_8432_ptr,
+      lVar1 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x10,&processed_var_8432_ptr,
                             0xf4,0,0,1);
       if (lVar1 != 0) {
         if ((int)param_1[1] != 0) {
@@ -1138,7 +1138,7 @@ uint64_t UISystem_AdjustArrayCapacity128(int64_t *param_1,int param_2)
 LAB_1807480a0:
   if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&unknown_var_8432_ptr,0x100,1);
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*param_1,&processed_var_8432_ptr,0x100,1);
   }
   *param_1 = lVar1;
   *(int *)((int64_t)param_1 + 0xc) = param_2;
@@ -1162,14 +1162,14 @@ uint64_t UISystem_AdjustArrayCapacity128Simple(uint64_t param_1,int param_2)
 LAB_1807480a0:
     if ((0 < *(int *)((int64_t)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
                     // WARNING: Subroutine does not return
-      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&unknown_var_8432_ptr,0x100,1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_RBX,&processed_var_8432_ptr,0x100,1);
     }
     *unaff_RBX = lVar1;
     *(int *)((int64_t)unaff_RBX + 0xc) = unaff_EDI;
     return 0;
   }
   if (param_2 * 0x10 - 1U < 0x3fffffff) {
-    lVar1 = UISystem_MemoryAllocator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x10,&unknown_var_8432_ptr,0xf4
+    lVar1 = UISystem_MemoryAllocator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x10,&processed_var_8432_ptr,0xf4
                           ,0);
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
@@ -1223,7 +1223,7 @@ uint64_t UISystem_AddComponent(int64_t param_1,int param_2,int64_t param_3,int8_
         uVar6 = UISystem_ComponentRemover(param_1,param_2);
         if ((int)uVar6 == 0) {
           puVar7 = (int32_t *)
-                   UISystem_MemoryAllocatorEx(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x60,&unknown_var_8576_ptr,0x1432,
+                   UISystem_MemoryAllocatorEx(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x60,&processed_var_8576_ptr,0x1432,
                                  0);
           if (puVar7 == (int32_t *)0x0) {
             uVar6 = 0x26;
@@ -1248,7 +1248,7 @@ uint64_t UISystem_AddComponent(int64_t param_1,int param_2,int64_t param_3,int8_
             if (iVar5 != 0) {
               UISystem_ComponentUnregistrar(*(uint64_t *)(param_1 + 0x670),puVar7);
                     // WARNING: Subroutine does not return
-              UISystem_MemoryReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&unknown_var_8576_ptr,0x1446,1);
+              UISystem_MemoryReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&processed_var_8576_ptr,0x1446,1);
             }
             *(int32_t **)(*(int64_t *)(param_1 + 0x6a0) + 0x30 + lVar8) = puVar7;
             uVar6 = 0;
@@ -1290,7 +1290,7 @@ uint64_t UISystem_AddComponentSimple(int32_t param_1)
     uVar6 = UISystem_ComponentRemover(param_1,unaff_RDI & 0xffffffff);
     if ((int)uVar6 == 0) {
       puVar7 = (int32_t *)
-               SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x60,&unknown_var_8576_ptr,0x1432,0);
+               SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x60,&processed_var_8576_ptr,0x1432,0);
       if (puVar7 == (int32_t *)0x0) {
         uVar6 = 0x26;
       }
@@ -1314,7 +1314,7 @@ uint64_t UISystem_AddComponentSimple(int32_t param_1)
         if (iVar5 != 0) {
           FUN_180788d20(*(uint64_t *)(unaff_RBX + 0x670),puVar7);
                     // WARNING: Subroutine does not return
-          UISystem_MemoryReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&unknown_var_8576_ptr,0x1446,1);
+          UISystem_MemoryReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&processed_var_8576_ptr,0x1446,1);
         }
         *(int32_t **)(*(int64_t *)(unaff_RBX + 0x6a0) + 0x30 + lVar8) = puVar7;
         uVar6 = 0;
@@ -1359,7 +1359,7 @@ uint64_t UISystem_AddComponentWithContext(int32_t param_1)
   uVar6 = UISystem_ComponentRemover(param_1,unaff_EDI);
   if ((int)uVar6 == 0) {
     puVar7 = (int32_t *)
-             SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x60,&unknown_var_8576_ptr,0x1432,0);
+             SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x60,&processed_var_8576_ptr,0x1432,0);
     if (puVar7 == (int32_t *)0x0) {
       uVar6 = 0x26;
     }
@@ -1383,7 +1383,7 @@ uint64_t UISystem_AddComponentWithContext(int32_t param_1)
       if (iVar5 != 0) {
         FUN_180788d20(*(uint64_t *)(unaff_RBX + 0x670),puVar7);
                     // WARNING: Subroutine does not return
-        UISystem_MemoryReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&unknown_var_8576_ptr,0x1446,1);
+        UISystem_MemoryReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&processed_var_8576_ptr,0x1446,1);
       }
       *(int32_t **)(*(int64_t *)(unaff_RBX + 0x6a0) + 0x30 + unaff_RBP) = puVar7;
       uVar6 = 0;
@@ -1433,7 +1433,7 @@ uint64_t UISystem_ValidateComponentAdd(int64_t param_1,int param_2)
   }
                     // WARNING: Subroutine does not return
   SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
-                *(uint64_t *)(lVar3 + 0x30 + *(int64_t *)(param_1 + 0x6a0)),&unknown_var_8576_ptr,0x1470
+                *(uint64_t *)(lVar3 + 0x30 + *(int64_t *)(param_1 + 0x6a0)),&processed_var_8576_ptr,0x1470
                 ,1);
 }
 
@@ -1462,7 +1462,7 @@ uint64_t UISystem_ValidateComponentAddSimple(void)
   }
                     // WARNING: Subroutine does not return
   UISystem_MemoryReleaser(*(uint64_t )(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
-                *(uint64_t *)(unaff_RDI + 0x30 + *(int64_t *)(unaff_RBX + 0x6a0)),&unknown_var_8576_ptr,
+                *(uint64_t *)(unaff_RDI + 0x30 + *(int64_t *)(unaff_RBX + 0x6a0)),&processed_var_8576_ptr,
                 0x1470,1);
 }
 
@@ -1492,7 +1492,7 @@ void UISystem_RemoveComponent(void)
   
                     // WARNING: Subroutine does not return
   UISystem_MemoryReleaser(*(uint64_t )(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
-                *(uint64_t *)(unaff_RDI + 0x30 + *(int64_t *)(unaff_RBX + 0x6a0)),&unknown_var_8576_ptr,
+                *(uint64_t *)(unaff_RDI + 0x30 + *(int64_t *)(unaff_RBX + 0x6a0)),&processed_var_8576_ptr,
                 0x1470,1);
 }
 

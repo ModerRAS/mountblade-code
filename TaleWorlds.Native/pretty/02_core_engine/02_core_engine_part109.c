@@ -1,3 +1,7 @@
+/* 函数别名定义: DataProcessingEngine */
+#define DataProcessingEngine DataProcessingEngine
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -995,7 +999,7 @@ void process_render_batch_update(uint64_t batch_params, int batch_index)
     if (0 < (int)texture_flags) {
       batch_handle = (uint64_t)texture_flags;
     }
-    FUN_18011dc70(engine_context + 0x1ad0, batch_handle);
+    DataProcessingEngine0(engine_context + 0x1ad0, batch_handle);
   }
   *(int *)(engine_context + 0x1ad0) = render_count;
   
@@ -1062,7 +1066,7 @@ void process_render_batch_update(uint64_t batch_params, int batch_index)
   *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1c04) = 0x43c80000;
   *(int32_t *)(batch_data + 0x1c08) = 0x43c80000;
   *(int32_t *)(batch_data + 0x1bd4) = 4;
-  FUN_1801299b0(&unknown_var_2432_ptr, 0, 0);
+  FUN_1801299b0(&rendering_buffer_2432_ptr, 0, 0);
   *(int8_t *)(engine_context + 2) = 1;
   return;
 }
@@ -1137,7 +1141,7 @@ void process_render_resource_cleanup(void)
   *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1c04) = 0x43c80000;
   *(int32_t *)(resource_ptr + 0x1c08) = 0x43c80000;
   *(int32_t *)(resource_ptr + 0x1bd4) = 4;
-  FUN_1801299b0(&unknown_var_2432_ptr, 0, 0);
+  FUN_1801299b0(&rendering_buffer_2432_ptr, 0, 0);
   *(int8_t *)(engine_context + 2) = 1;
   return;
 }

@@ -167,7 +167,7 @@ void UI_System_Handle_Event(int64_t ui_context, int64_t event_source, int64_t ev
   callback_ptr = ui_system_data_buffer;
   *(int8_t *)(ui_context + 0x189) = 1;
   if (callback_ptr == (code *)0x0) {
-    System_Event_Default_Handler(&unknown_var_9680_ptr);
+    System_Event_Default_Handler(&processed_var_9680_ptr);
   }
   else {
     event_data_ptr1 = &system_buffer_ptr;
@@ -181,9 +181,9 @@ void UI_System_Handle_Event(int64_t ui_context, int64_t event_source, int64_t ev
     (*callback_ptr)(event_data_ptr1, event_data_ptr2, ui_system_data_buffer, ui_system_control_buffer);
   }
   if (ui_system_data_buffer == (code *)0x0) {
-    System_Event_Initialize(&unknown_var_9720_ptr);
+    System_Event_Initialize(&processed_var_9720_ptr);
     if (ui_system_data_buffer == (code *)0x0) {
-      System_Event_Default_Handler(&unknown_var_9680_ptr);
+      System_Event_Default_Handler(&processed_var_9680_ptr);
       goto event_processed;
     }
   }
@@ -192,35 +192,35 @@ event_processed:
   *(int64_t *)(ui_context + 0x10) = ui_context;
   (**(code **)(ui_context + 0x78))(0, UI_Callback_Function_01);
   (**(code **)(ui_context + 0x78))(1, UI_Callback_Function_02);
-  (**(code **)(ui_context + 0x78))(2, &unknown_var_4448_ptr);
+  (**(code **)(ui_context + 0x78))(2, &processed_var_4448_ptr);
   (**(code **)(ui_context + 0x78))(3, UI_Callback_Function_03);
-  (**(code **)(ui_context + 0x78))(4, &unknown_var_4224_ptr);
-  (**(code **)(ui_context + 0x78))(5, &unknown_var_3232_ptr);
-  (**(code **)(ui_context + 0x78))(6, &unknown_var_4448_ptr);
-  (**(code **)(ui_context + 0x78))(7, &unknown_var_5088_ptr);
+  (**(code **)(ui_context + 0x78))(4, &processed_var_4224_ptr);
+  (**(code **)(ui_context + 0x78))(5, &memory_allocator_3232_ptr);
+  (**(code **)(ui_context + 0x78))(6, &processed_var_4448_ptr);
+  (**(code **)(ui_context + 0x78))(7, &processed_var_5088_ptr);
   (**(code **)(ui_context + 0x78))(8, UI_Callback_Function_04);
   (**(code **)(ui_context + 0x78))(9, UI_Callback_Function_05);
-  (**(code **)(ui_context + 0x78))(10, &unknown_var_5104_ptr);
+  (**(code **)(ui_context + 0x78))(10, &processed_var_5104_ptr);
   (**(code **)(ui_context + 0x78))(0xb, UI_Callback_Function_06);
-  (**(code **)(ui_context + 0x78))(0xc, &unknown_var_8096_ptr);
+  (**(code **)(ui_context + 0x78))(0xc, &processed_var_8096_ptr);
   (**(code **)(ui_context + 0x78))(0xd, UI_Callback_Function_07);
-  (**(code **)(ui_context + 0x78))(0xe, &unknown_var_4912_ptr);
-  (**(code **)(ui_context + 0x78))(0xf, &unknown_var_5472_ptr);
+  (**(code **)(ui_context + 0x78))(0xe, &processed_var_4912_ptr);
+  (**(code **)(ui_context + 0x78))(0xf, &processed_var_5472_ptr);
   (**(code **)(ui_context + 0x78))(0x10, UI_Callback_Function_08);
   (**(code **)(ui_context + 0x78))(0x11, UI_Callback_Function_09);
-  (**(code **)(ui_context + 0x78))(0x12, &unknown_var_5456_ptr);
+  (**(code **)(ui_context + 0x78))(0x12, &processed_var_5456_ptr);
   (**(code **)(ui_context + 0x78))(0x13, UI_Callback_Function_10);
   (**(code **)(ui_context + 0x78))(0x14, UI_Callback_Function_11);
   (**(code **)(ui_context + 0x78))(0x15, UI_Callback_Function_12);
   (**(code **)(ui_context + 0x78))(0x16, UI_Callback_Function_13);
   (**(code **)(ui_context + 0x78))(0x17, UI_Callback_Function_14);
   (**(code **)(ui_context + 0x78))(0x18, System_Callback_Function);
-  (**(code **)(ui_context + 0x78))(0x19, &unknown_var_6448_ptr);
-  (**(code **)(ui_context + 0x78))(0x1a, &unknown_var_9328_ptr);
+  (**(code **)(ui_context + 0x78))(0x19, &processed_var_6448_ptr);
+  (**(code **)(ui_context + 0x78))(0x1a, &processed_var_9328_ptr);
   (**(code **)(ui_context + 0x78))(0x1b, _guard_check_icall);
   (**(code **)(ui_context + 0x78))(0x1c, _guard_check_icall);
   (**(code **)(ui_context + 0x78))(0x1d, 0x180069ee0);
-  (**(code **)(ui_context + 0x78))(0x1e, &unknown_var_8224_ptr);
+  (**(code **)(ui_context + 0x78))(0x1e, &processed_var_8224_ptr);
   (**(code **)(ui_context + 0x78))(0x1f, _guard_check_icall);
   (**(code **)(ui_context + 0x78))(0x20, _guard_check_icall);
   (**(code **)(ui_context + 0x80))();
@@ -383,7 +383,7 @@ uint64_t UI_Process_Data(int64_t ui_context, int64_t data_dest, int64_t data_sou
     source_handle = 0;
     do {
       temp_handle = source_handle + 1;
-      if (*(char *)(buffer_handle + source_handle) != (&unknown_var_768_ptr)[source_handle]) goto data_process;
+      if (*(char *)(buffer_handle + source_handle) != (&processed_var_768_ptr)[source_handle]) goto data_process;
       source_handle = temp_handle;
     } while (temp_handle != 8);
     result_status = 0;
@@ -831,7 +831,7 @@ uint64_t * UI_Process_String_Data(int64_t *string_array, uint64_t *result_buffer
   if (string_length == 0) {
     array_size = string_array[1] - *string_array >> 5;
     if ((int)array_size == 0) {
-      System_String_Initialize(result_buffer, &unknown_var_9944_ptr);
+      System_String_Initialize(result_buffer, &processed_var_9944_ptr);
       stack_buffer = &system_data_buffer_ptr;
       if (buffer_handle == 0) {
         return result_buffer;
@@ -846,7 +846,7 @@ uint64_t * UI_Process_String_Data(int64_t *string_array, uint64_t *result_buffer
       if (string_data != (void *)0x0) {
         char_data = string_data;
       }
-      System_String_Format(&stack_buffer, &unknown_var_92_ptr, char_data);
+      System_String_Format(&stack_buffer, &processed_var_92_ptr, char_data);
       current_pos = current_pos + 0x20;
       array_size = array_size - 1;
     } while (array_size != 0);
@@ -998,7 +998,7 @@ void UI_Debug_Output(uint64_t debug_message)
 {
   UI_String_Process_Wrapper();
   OutputDebugStringA(debug_message);
-  System_Error_Reporter(&unknown_var_16_ptr);
+  System_Error_Reporter(&ui_system_data_16_ptr);
 }
 
 /**
@@ -1137,13 +1137,13 @@ void UI_Load_Assembly(void)
   stack_ptr_b8 = &system_state_ptr;
   *domain_handle = assembly_handle;
   if (assembly_handle == 0) {
-    System_Error_Reporter(&unknown_var_80_ptr, &system_memory_dda8);
+    System_Error_Reporter(&processed_var_80_ptr, &system_memory_dda8);
     assembly_handle = *domain_handle;
   }
   assembly_handle = mono_assembly_get_image(assembly_handle);
   domain_handle[1] = assembly_handle;
   if (assembly_handle == 0) {
-    System_Error_Reporter(&unknown_var_328_ptr);
+    System_Error_Reporter(&memory_allocator_328_ptr);
   }
   stack_ptr_90 = &system_data_buffer_ptr;
   stack_value_78 = 0;
@@ -1198,11 +1198,11 @@ uint64_t * UI_String_Copy(uint64_t source_string, uint64_t *dest_buffer, uint64_
   *dest_buffer = &system_state_ptr;
   dest_buffer[1] = 0;
   *(int32_t *)(dest_buffer + 2) = 0;
-  *dest_buffer = &unknown_var_3432_ptr;
+  *dest_buffer = &memory_allocator_3432_ptr;
   dest_buffer[1] = dest_buffer + 3;
   *(int8_t *)(dest_buffer + 3) = 0;
   *(int32_t *)(dest_buffer + 2) = 0x10;
-  strcpy_s(dest_buffer[1], 0x80, &unknown_var_384_ptr, copy_flags, 0, 0xfffffffffffffffe);
+  strcpy_s(dest_buffer[1], 0x80, &memory_allocator_384_ptr, copy_flags, 0, 0xfffffffffffffffe);
   return dest_buffer;
 }
 

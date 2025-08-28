@@ -415,7 +415,7 @@ uint64_t *Rendering_HashTableInsert(int64_t hash_table_ptr, uint64_t *insert_res
     
     // 处理复杂数据的内存分配
     if ((char)hash_value != '\0') {
-        new_memory = FUN_18062b1e0(MemoryAllocator_180c8ed18, (uint64_t)hash_value._4_4_ * 8 + 8, 8,
+        new_memory = CoreSystem_LoggingManager0(MemoryAllocator_180c8ed18, (uint64_t)hash_value._4_4_ * 8 + 8, 8,
                                   *(int8_t *)(hash_table_ptr + 0x2c));
         memset(new_memory, 0, (uint64_t)hash_value._4_4_ * 8);
     }
@@ -494,7 +494,7 @@ void Rendering_ContainerInsert(uint64_t container_ptr, uint64_t *insert_result, 
     
     // 处理复杂数据的内存分配
     if (resize_flag != '\0') {
-        new_memory = FUN_18062b1e0(MemoryAllocator_180c8ed18, (uint64_t)new_size * 8 + 8, 8,
+        new_memory = CoreSystem_LoggingManager0(MemoryAllocator_180c8ed18, (uint64_t)new_size * 8 + 8, 8,
                                   *(int8_t *)(container_base + 0x2c));
         memset(new_memory, 0, (uint64_t)new_size * 8);
     }
@@ -701,7 +701,7 @@ void Rendering_HashTableResize(int64_t hash_table_ptr, int64_t new_size)
     uint64_t new_memory;
     
     // 分配并初始化新内存
-    new_memory = FUN_18062b1e0(MemoryAllocator_180c8ed18, new_size * 8 + 8, 8, *(int8_t *)(hash_table_ptr + 0x2c));
+    new_memory = CoreSystem_LoggingManager0(MemoryAllocator_180c8ed18, new_size * 8 + 8, 8, *(int8_t *)(hash_table_ptr + 0x2c));
     memset(new_memory, 0, new_size * 8);
 }
 

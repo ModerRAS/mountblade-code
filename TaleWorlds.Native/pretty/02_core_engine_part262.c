@@ -69,7 +69,7 @@ void FUN_180229a10(int64_t *param_1,uint64_t param_2)
         *(void **)(puVar16 + -4) = &system_state_ptr;
         *(uint64_t *)(puVar16 + -2) = 0;
         *puVar16 = 0;
-        *(void **)(puVar16 + -4) = &unknown_var_3432_ptr;
+        *(void **)(puVar16 + -4) = &memory_allocator_3432_ptr;
         *(int32_t **)(puVar16 + -2) = puVar16 + 2;
         *puVar16 = 0;
         *(int8_t *)(puVar16 + 2) = 0;
@@ -112,7 +112,7 @@ void FUN_180229a10(int64_t *param_1,uint64_t param_2)
         puVar8[-1] = &system_state_ptr;
         *puVar8 = 0;
         *(int32_t *)(puVar8 + 1) = 0;
-        puVar8[-1] = &unknown_var_3432_ptr;
+        puVar8[-1] = &memory_allocator_3432_ptr;
         *puVar8 = puVar8 + 2;
         *(int32_t *)(puVar8 + 1) = 0;
         *(int8_t *)(puVar8 + 2) = 0;
@@ -156,7 +156,7 @@ void FUN_180229a10(int64_t *param_1,uint64_t param_2)
         puVar8[-1] = &system_state_ptr;
         *puVar8 = 0;
         *(int32_t *)(puVar8 + 1) = 0;
-        puVar8[-1] = &unknown_var_3432_ptr;
+        puVar8[-1] = &memory_allocator_3432_ptr;
         *puVar8 = puVar8 + 2;
         *(int32_t *)(puVar8 + 1) = 0;
         *(int8_t *)(puVar8 + 2) = 0;
@@ -304,7 +304,7 @@ void FUN_180229b30(int64_t *param_1,uint64_t param_2)
         *(void **)(puVar17 + -4) = &system_state_ptr;
         *(uint64_t *)(puVar17 + -2) = 0;
         *puVar17 = 0;
-        *(void **)(puVar17 + -4) = &unknown_var_3432_ptr;
+        *(void **)(puVar17 + -4) = &memory_allocator_3432_ptr;
         *(int32_t **)(puVar17 + -2) = puVar17 + 2;
         *puVar17 = 0;
         *(int8_t *)(puVar17 + 2) = 0;
@@ -318,7 +318,7 @@ void FUN_180229b30(int64_t *param_1,uint64_t param_2)
         *(void **)(puVar17 + 0x22) = &system_state_ptr;
         *(uint64_t *)(puVar17 + 0x24) = 0;
         puVar17[0x26] = 0;
-        *(void **)(puVar17 + 0x22) = &unknown_var_3480_ptr;
+        *(void **)(puVar17 + 0x22) = &memory_allocator_3480_ptr;
         *(int32_t **)(puVar17 + 0x24) = puVar17 + 0x28;
         puVar17[0x26] = 0;
         *(int8_t *)(puVar17 + 0x28) = 0;
@@ -452,7 +452,7 @@ void FUN_180229be0(int64_t *param_1,uint64_t param_2)
         *(void **)(puVar15 + -4) = &system_state_ptr;
         *(uint64_t *)(puVar15 + -2) = 0;
         *puVar15 = 0;
-        *(void **)(puVar15 + -4) = &unknown_var_3432_ptr;
+        *(void **)(puVar15 + -4) = &memory_allocator_3432_ptr;
         *(int32_t **)(puVar15 + -2) = puVar15 + 2;
         *puVar15 = 0;
         *(int8_t *)(puVar15 + 2) = 0;
@@ -495,7 +495,7 @@ void FUN_180229be0(int64_t *param_1,uint64_t param_2)
         puVar8[-1] = &system_state_ptr;
         *puVar8 = 0;
         *(int32_t *)(puVar8 + 1) = 0;
-        puVar8[-1] = &unknown_var_3432_ptr;
+        puVar8[-1] = &memory_allocator_3432_ptr;
         *puVar8 = puVar8 + 2;
         *(int32_t *)(puVar8 + 1) = 0;
         *(int8_t *)(puVar8 + 2) = 0;
@@ -539,7 +539,7 @@ void FUN_180229be0(int64_t *param_1,uint64_t param_2)
         puVar8[-1] = &system_state_ptr;
         *puVar8 = 0;
         *(int32_t *)(puVar8 + 1) = 0;
-        puVar8[-1] = &unknown_var_3432_ptr;
+        puVar8[-1] = &memory_allocator_3432_ptr;
         *puVar8 = puVar8 + 2;
         *(int32_t *)(puVar8 + 1) = 0;
         *(int8_t *)(puVar8 + 2) = 0;
@@ -622,7 +622,7 @@ void FUN_180229f80(int64_t *param_1,uint64_t param_2)
         *(void **)(puVar17 + -4) = &system_state_ptr;
         *(uint64_t *)(puVar17 + -2) = 0;
         *puVar17 = 0;
-        *(void **)(puVar17 + -4) = &unknown_var_3432_ptr;
+        *(void **)(puVar17 + -4) = &memory_allocator_3432_ptr;
         *(int32_t **)(puVar17 + -2) = puVar17 + 2;
         *puVar17 = 0;
         *(int8_t *)(puVar17 + 2) = 0;
@@ -636,7 +636,7 @@ void FUN_180229f80(int64_t *param_1,uint64_t param_2)
         *(void **)(puVar17 + 0x22) = &system_state_ptr;
         *(uint64_t *)(puVar17 + 0x24) = 0;
         puVar17[0x26] = 0;
-        *(void **)(puVar17 + 0x22) = &unknown_var_3480_ptr;
+        *(void **)(puVar17 + 0x22) = &memory_allocator_3480_ptr;
         *(int32_t **)(puVar17 + 0x24) = puVar17 + 0x28;
         puVar17[0x26] = 0;
         *(int8_t *)(puVar17 + 0x28) = 0;

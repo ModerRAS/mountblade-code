@@ -132,7 +132,7 @@ LAB_180198f21:
   iVar11 = (int)plStack_c0;
   uStack_f0 = uVar9;
   if ((int)plStack_c0 < 10) {
-    FUN_180060680(acStack_70,&unknown_var_4576_ptr,0);
+    FUN_180060680(acStack_70,&processed_var_4576_ptr,0);
     lVar16 = -1;
     do {
       lVar3 = lVar16;
@@ -144,7 +144,7 @@ LAB_180198f21:
                     // WARNING: Subroutine does not return
       memcpy(pbStack_f8 + uStack_f0,acStack_70,(int64_t)((int)lVar3 + 2));
     }
-    FUN_180060680(acStack_60,&unknown_var_4576_ptr,(uint64_t)plVar10 & 0xffffffff);
+    FUN_180060680(acStack_60,&processed_var_4576_ptr,(uint64_t)plVar10 & 0xffffffff);
     lVar16 = -1;
     do {
       lVar15 = lVar16 + 1;
@@ -211,7 +211,7 @@ LAB_1801991c0:
     pcVar8 = acStack_60;
   }
   else {
-    FUN_180060680(acStack_50,&unknown_var_4576_ptr,(uint64_t)plStack_c0 & 0xffffffff);
+    FUN_180060680(acStack_50,&processed_var_4576_ptr,(uint64_t)plStack_c0 & 0xffffffff);
     lVar16 = -1;
     do {
       lVar15 = lVar16 + 1;
@@ -333,7 +333,7 @@ int64_t * FUN_1801993a0(uint64_t param_1,int64_t *param_2,uint64_t param_3,char 
     FUN_180275cf0(lVar1,0,&plStack_30,1);
     (**(code **)(*(int64_t *)*param_2 + 0x100))((int64_t *)*param_2,0);
     (**(code **)(*(int64_t *)(*param_2 + 0x1f0) + 0x10))
-              ((int64_t *)(*param_2 + 0x1f0),&unknown_var_2416_ptr);
+              ((int64_t *)(*param_2 + 0x1f0),&rendering_buffer_2416_ptr);
     FUN_180276f30(*param_2,*param_2 + 0x214,1);
     (**(code **)(*(int64_t *)*param_2 + 0x148))((int64_t *)*param_2,&system_data_0300);
   }
@@ -432,7 +432,7 @@ void FUN_180199500(int64_t param_1,float param_2,char param_3)
             break;
           }
           *(float *)(lVar8 + 0x8320 + param_1) =
-               fVar12 - param_2 * *(float *)(&unknown_var_1600_ptr +
+               fVar12 - param_2 * *(float *)(&ui_system_data_1600_ptr +
                                             (int64_t)*(char *)(lVar7 + lVar5 * 0xc) * 4);
           uVar11 = CONCAT71((int7)(uVar11 >> 8),1);
           iVar3 = *(int *)(lVar8 + 0x8324 + param_1);

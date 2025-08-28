@@ -746,7 +746,7 @@ uint64_t *
 FUN_1802db150(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_9592_ptr;
+  *param_1 = &processed_var_9592_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
@@ -761,7 +761,7 @@ uint64_t *
 FUN_1802db1a0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_9696_ptr;
+  *param_1 = &processed_var_9696_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {

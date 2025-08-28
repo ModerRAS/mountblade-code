@@ -238,7 +238,7 @@ int Network_ConnectionPoolManager(int64_t *param_1, int64_t param_2, int param_3
   int iVar2;
   
   // 连接池初始化
-  iVar1 = SystemDataProcessor(param_2, param_3, &unknown_var_7656_ptr);
+  iVar1 = SystemDataProcessor(param_2, param_3, &processed_var_7656_ptr);
   iVar2 = SystemDataProcessor(param_2 + iVar1, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   
@@ -270,7 +270,7 @@ int Network_ExtendedConnectionPoolManager(int64_t *param_1, int64_t param_2, int
   int iVar2;
   
   // 扩展连接池初始化
-  iVar1 = SystemDataProcessor(param_2, param_3, &unknown_var_8816_ptr);
+  iVar1 = SystemDataProcessor(param_2, param_3, &processed_var_8816_ptr);
   iVar2 = SystemDataProcessor(param_2 + iVar1, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   
@@ -302,7 +302,7 @@ int Network_EnhancedConnectionPoolManager(int64_t *param_1, int64_t param_2, int
   int iVar2;
   
   // 增强连接池初始化
-  iVar1 = SystemDataProcessor(param_2, param_3, &unknown_var_1184_ptr);
+  iVar1 = SystemDataProcessor(param_2, param_3, &ui_system_data_1184_ptr);
   iVar2 = SystemDataProcessor(param_2 + iVar1, param_3 - iVar1, &system_temp_buffer);
   iVar1 = iVar1 + iVar2;
   
@@ -379,7 +379,7 @@ void Network_ResourceManager(int64_t param_1, int32_t *param_2, int64_t *param_3
       uStack_a8 = uStack_54 & 0xffff;
       
       // 调用资源处理函数
-      SystemValidationProcessor(auStack_40, 0x27, &unknown_var_8960_ptr, uStack_58);
+      SystemValidationProcessor(auStack_40, 0x27, &processed_var_8960_ptr, uStack_58);
     }
     
     // 资源状态检查
@@ -480,7 +480,7 @@ void Network_AdvancedResourceManager(int64_t param_1, int32_t *param_2, int64_t 
       uStack_98 = uStack_44 & 0xffff;
       
       // 调用高级资源处理函数
-      SystemValidationProcessor(auStack_38, 0x27, &unknown_var_8960_ptr, uStack_48);
+      SystemValidationProcessor(auStack_38, 0x27, &processed_var_8960_ptr, uStack_48);
     }
     
     // 高级资源状态检查
@@ -519,7 +519,7 @@ void Network_Monitor(uint64_t param_1)
   
   if (lVar2 == 0) {
     // 监控初始化
-    SystemValidationProcessor(&stack0x00000080, 0x27, &unknown_var_8960_ptr, 
+    SystemValidationProcessor(&stack0x00000080, 0x27, &processed_var_8960_ptr, 
                   uStack0000000000000070 & 0xffffffff,
                   uStack0000000000000070._4_2_);
   }
@@ -608,7 +608,7 @@ void Network_Diagnostic(int64_t param_1, int32_t *param_2, int64_t *param_3)
       uStack_a8 = uStack_54 & 0xffff;
       
       // 调用诊断处理函数
-      SystemValidationProcessor(auStack_40, 0x27, &unknown_var_8960_ptr, uStack_58);
+      SystemValidationProcessor(auStack_40, 0x27, &processed_var_8960_ptr, uStack_58);
     }
     
     // 诊断结果检查
@@ -896,7 +896,7 @@ uint Network_ResourceReleaser(int64_t *param_1)
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
       // 资源释放
       SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
-                    *param_1, &unknown_var_8432_ptr, 0x100, 1);
+                    *param_1, &processed_var_8432_ptr, 0x100, 1);
     }
     *param_1 = 0;
     uVar3 = 0;
@@ -921,7 +921,7 @@ uint Network_ResourceReleaser(int64_t *param_1)
   if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
     // 最终资源释放
     SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
-                  *param_1, &unknown_var_8432_ptr, 0x100, 1);
+                  *param_1, &processed_var_8432_ptr, 0x100, 1);
   }
   *param_1 = 0;
   *(int32_t *)((int64_t)param_1 + 0xc) = 0;
@@ -978,7 +978,7 @@ uint64_t Network_SystemCleaner(int64_t param_1)
     }
     if ((0 < (int)uVar4) && (*plVar1 != 0)) {
       SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
-                    *plVar1, &unknown_var_8432_ptr, 0x100, 1);
+                    *plVar1, &processed_var_8432_ptr, 0x100, 1);
     }
     *plVar1 = 0;
     uVar4 = 0;
@@ -1022,7 +1022,7 @@ uint64_t Network_ComponentCleaner(int64_t *param_1)
     if ((0 < (int)uVar3) && (*param_1 != 0)) {
       // 组件释放
       SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
-                    *param_1, &unknown_var_8432_ptr, 0x100, 1);
+                    *param_1, &processed_var_8432_ptr, 0x100, 1);
     }
     *param_1 = 0;
     uVar3 = 0;
@@ -1068,7 +1068,7 @@ uint64_t Network_CacheCleaner(int64_t *param_1)
     if ((0 < (int)uVar5) && (*param_1 != 0)) {
       // 缓存释放
       SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
-                    *param_1, &unknown_var_8432_ptr, 0x100, 1);
+                    *param_1, &processed_var_8432_ptr, 0x100, 1);
     }
     *param_1 = 0;
     *(int32_t *)((int64_t)param_1 + 0xc) = 0;

@@ -239,7 +239,7 @@ int32_t rendering_system_get_render_status(uint64_t render_object, int64_t state
     if (*(void **)(state_context + 8) != (void *)0x0) {
       error_msg_ptr = *(void **)(state_context + 8);
     }
-    FUN_180627020(&unknown_var_7152_ptr, error_msg_ptr);
+    FUN_180627020(&processed_var_7152_ptr, error_msg_ptr);
   }
   return 0xffffffff;
 }
@@ -323,7 +323,7 @@ uint64_t rendering_system_get_global_render_data(void)
     // 如果数据初始化失败，执行清理和重新初始化
     if (render_system_config_camera == -1) {
       FUN_18058f390(0x180d48f30);
-      FUN_1808fc820(&unknown_var_2656_ptr);
+      FUN_1808fc820(&rendering_buffer_2656_ptr);
       FUN_1808fcb30(&system_state_9128);
       return 0x180d48f30;
     }
@@ -888,7 +888,7 @@ int64_t * rendering_system_manage_render_queue(int64_t *queue_ptr, int64_t *item
   result_ptr = (int64_t *)0x0;
   
   // 分配新项目内存
-  allocation_result = FUN_18062b1e0(system_memory_pool_ptr, 0x98d9e0, 0x10, 8, 0, 0xfffffffffffffffe);
+  allocation_result = CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x98d9e0, 0x10, 8, 0, 0xfffffffffffffffe);
   new_item = (int64_t *)FUN_1804f2420(allocation_result);
   *item_ptr = (int64_t)new_item;
   
@@ -1003,8 +1003,8 @@ void rendering_system_process_render_state(int64_t *state_ptr, uint64_t param_1,
   state_data = *state_ptr;
   if (state_data != 0) {
     // 获取状态信息
-    system_status = SystemSynchronizationProcessor(param_2, &stack_pointer, &unknown_var_3296_ptr);
-    FUN_1804fe350(&unknown_var_3952_ptr, system_status, &unknown_var_4016_ptr, &stack_pointer);
+    system_status = SystemSynchronizationProcessor(param_2, &stack_pointer, &memory_allocator_3296_ptr);
+    FUN_1804fe350(&memory_allocator_3952_ptr, system_status, &processed_var_4016_ptr, &stack_pointer);
     
     // 检查状态有效性
     if ((((system_status != '\0') && (-1 < (int)(uint)stack_pointer)) &&
@@ -1029,8 +1029,8 @@ void rendering_system_process_render_state(int64_t *state_ptr, uint64_t param_1,
         
         // 处理状态清理
         if ((system_status != '\0') &&
-           (system_status = SystemBufferProcessor(0x180c95578, 0x13, &unknown_var_3472_ptr), system_status != '\0')) {
-          SystemBufferProcessor(0x180c95578, state_flag, &unknown_var_3296_ptr);
+           (system_status = SystemBufferProcessor(0x180c95578, 0x13, &memory_allocator_3472_ptr), system_status != '\0')) {
+          SystemBufferProcessor(0x180c95578, state_flag, &memory_allocator_3296_ptr);
         }
         
         // 清理全局状态
@@ -1107,7 +1107,7 @@ void rendering_system_cleanup_render_resources(void)
   
   // 执行状态检查函数
   system_status = SystemSynchronizationProcessor();
-  FUN_1804fe350(&unknown_var_3952_ptr, system_status, &unknown_var_4016_ptr, &stack_param);
+  FUN_1804fe350(&memory_allocator_3952_ptr, system_status, &processed_var_4016_ptr, &stack_param);
   
   // 验证系统状态
   if (((system_status != '\0') && (-1 < (int)stack_param)) &&
@@ -1136,8 +1136,8 @@ void rendering_system_cleanup_render_resources(void)
         
         // 验证系统状态
         if ((system_status != '\0') && 
-            (system_status = SystemBufferProcessor(0x180c95578, 0x13, &unknown_var_3472_ptr), system_status != '\0')) {
-          SystemBufferProcessor(0x180c95578, status_flag, &unknown_var_3296_ptr);
+            (system_status = SystemBufferProcessor(0x180c95578, 0x13, &memory_allocator_3472_ptr), system_status != '\0')) {
+          SystemBufferProcessor(0x180c95578, status_flag, &memory_allocator_3296_ptr);
         }
         
         // 清理状态数据
@@ -1234,8 +1234,8 @@ void rendering_system_reset_render_state(uint context_param)
       
       // 验证系统状态
       if ((system_status != '\0') && 
-          (system_status = SystemBufferProcessor(0x180c95578, 0x13, &unknown_var_3472_ptr), system_status != '\0')) {
-        SystemBufferProcessor(0x180c95578, status_flag, &unknown_var_3296_ptr);
+          (system_status = SystemBufferProcessor(0x180c95578, 0x13, &memory_allocator_3472_ptr), system_status != '\0')) {
+        SystemBufferProcessor(0x180c95578, status_flag, &memory_allocator_3296_ptr);
       }
       
       // 清理状态数据

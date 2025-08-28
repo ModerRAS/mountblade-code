@@ -49,7 +49,7 @@ void FUN_1802d2930(int64_t param_1,int32_t param_2)
   uVar17 = *(int64_t *)(param_1 + 0xb00) - *plVar1 >> 3;
   puStackX_18 = &uStack_68;
   puStack_60 = auStackX_10;
-  puStack_58 = &unknown_var_8304_ptr;
+  puStack_58 = &processed_var_8304_ptr;
   pcStack_50 = FUN_1802d9500;
   uStack_78 = (int32_t)param_1;
   uStack_74 = (int32_t)((uint64_t)param_1 >> 0x20);
@@ -153,7 +153,7 @@ uint64_t FUN_1802d2c20(int64_t param_1,int32_t param_2,int64_t *param_3)
   uStack_20 = 0xfffffffffffffffe;
   FUN_1800c1750(param_1,&plStackX_20,param_2);
   if (plStackX_20 == (int64_t *)0x0) {
-    FUN_180627020(&unknown_var_9528_ptr,param_2);
+    FUN_180627020(&processed_var_9528_ptr,param_2);
     uVar5 = 0;
   }
   else {

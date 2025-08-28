@@ -84,7 +84,7 @@ void FUN_1806ab3e4(uint param_1,int64_t param_2,char *param_3,char *param_4,uint
       (param_1 <= in_stack_000000e8)) ||
      (lVar20 = *(int64_t *)(param_2 + (uint64_t)in_stack_000000e8 * 8), lVar20 == 0)) {
 FUN_1806ab8be:
-    *unaff_RBX = &unknown_var_3704_ptr;
+    *unaff_RBX = &memory_allocator_3704_ptr;
     unaff_RBX[1] = param_3;
     unaff_RBX[2] = param_3;
     *(int32_t *)(unaff_RBX + 3) = 0xffffffff;
@@ -145,7 +145,7 @@ FUN_1806ab8be:
     _cStack00000000000000d0 = *(int32_t *)(unaff_R13 + 0x90);
     puVar9 = (uint64_t *)
              (**(code **)(*system_system_buffer_ui + 8))
-                       (system_system_buffer_ui,0x68,&unknown_var_5536_ptr,&unknown_var_5360_ptr,0x36a);
+                       (system_system_buffer_ui,0x68,&processed_var_5536_ptr,&processed_var_5360_ptr,0x36a);
     if (puVar9 != (uint64_t *)0x0) {
       plVar5 = *(int64_t **)(unaff_R13 + 0x98);
       *(int32_t *)(puVar9 + 3) = uVar21;
@@ -158,7 +158,7 @@ FUN_1806ab8be:
       *(int32_t *)((int64_t)puVar9 + 0x4c) = _cStack00000000000000d0;
       *(int32_t *)(puVar9 + 10) = param_7._0_4_;
       *(uint *)((int64_t)puVar9 + 0x54) = (uint)param_6;
-      *puVar9 = &unknown_var_5048_ptr;
+      *puVar9 = &processed_var_5048_ptr;
       *(int32_t *)(puVar9 + 7) = uStack0000000000000060;
       *(int32_t *)((int64_t)puVar9 + 0x3c) = uStack0000000000000064;
       *(int32_t *)(puVar9 + 8) = uStack0000000000000068;
@@ -226,7 +226,7 @@ FUN_1806ab8be:
       }
     }
     lVar20 = *(int64_t *)(*plVar5 + (uint64_t)(*(int *)(unaff_R13 + 0x90) - 1) * 8);
-    *unaff_RBX = &unknown_var_3704_ptr;
+    *unaff_RBX = &memory_allocator_3704_ptr;
     uVar10 = *(uint64_t *)(lVar20 + 0x10);
     unaff_RBX[1] = *(uint64_t *)(lVar20 + 8);
     unaff_RBX[2] = uVar10;
@@ -245,7 +245,7 @@ FUN_1806ab8be:
   }
   else {
 LAB_1806ab69a:
-    *unaff_RBX = &unknown_var_3704_ptr;
+    *unaff_RBX = &memory_allocator_3704_ptr;
     unaff_RBX[1] = param_3;
     unaff_RBX[2] = param_3;
     *(int32_t *)(unaff_RBX + 3) = 0xffffffff;
@@ -364,7 +364,7 @@ void FUN_1806ab4af(uint param_1,int64_t param_2,uint64_t param_3)
     _cStack00000000000000d0 = *(int32_t *)(unaff_R13 + 0x90);
     puVar7 = (uint64_t *)
              (**(code **)(*system_system_buffer_ui + 8))
-                       (system_system_buffer_ui,0x68,&unknown_var_5536_ptr,&unknown_var_5360_ptr,0x36a);
+                       (system_system_buffer_ui,0x68,&processed_var_5536_ptr,&processed_var_5360_ptr,0x36a);
     if (puVar7 != (uint64_t *)0x0) {
       plVar3 = *(int64_t **)(unaff_R13 + 0x98);
       *(int32_t *)(puVar7 + 3) = uVar13;
@@ -377,7 +377,7 @@ void FUN_1806ab4af(uint param_1,int64_t param_2,uint64_t param_3)
       *(int32_t *)((int64_t)puVar7 + 0x4c) = _cStack00000000000000d0;
       *(int32_t *)(puVar7 + 10) = uStack0000000000000038;
       *(uint *)((int64_t)puVar7 + 0x54) = uStack0000000000000030;
-      *puVar7 = &unknown_var_5048_ptr;
+      *puVar7 = &processed_var_5048_ptr;
       *(int32_t *)(puVar7 + 7) = uStack0000000000000060;
       *(int32_t *)((int64_t)puVar7 + 0x3c) = uStack0000000000000064;
       *(int32_t *)(puVar7 + 8) = uStack0000000000000068;
@@ -446,7 +446,7 @@ void FUN_1806ab4af(uint param_1,int64_t param_2,uint64_t param_3)
       }
     }
     lVar4 = *(int64_t *)(*plVar3 + (uint64_t)(*(int *)(unaff_R13 + 0x90) - 1) * 8);
-    *unaff_RBX = &unknown_var_3704_ptr;
+    *unaff_RBX = &memory_allocator_3704_ptr;
     uVar8 = *(uint64_t *)(lVar4 + 0x10);
     unaff_RBX[1] = *(uint64_t *)(lVar4 + 8);
     unaff_RBX[2] = uVar8;
@@ -465,7 +465,7 @@ void FUN_1806ab4af(uint param_1,int64_t param_2,uint64_t param_3)
   }
   else {
 LAB_1806ab69a:
-    *unaff_RBX = &unknown_var_3704_ptr;
+    *unaff_RBX = &memory_allocator_3704_ptr;
     unaff_RBX[1] = param_3;
     unaff_RBX[2] = param_3;
     *(int32_t *)(unaff_RBX + 3) = 0xffffffff;
@@ -577,7 +577,7 @@ void FUN_1806ab70c(void)
     }
   }
   lVar2 = *(int64_t *)(*plVar1 + (uint64_t)(*(int *)(unaff_R13 + 0x90) - 1) * 8);
-  *unaff_RBX = &unknown_var_3704_ptr;
+  *unaff_RBX = &memory_allocator_3704_ptr;
   uVar3 = *(uint64_t *)(lVar2 + 0x10);
   unaff_RBX[1] = *(uint64_t *)(lVar2 + 8);
   unaff_RBX[2] = uVar3;
@@ -608,7 +608,7 @@ void FUN_1806ab8be(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   uint64_t *unaff_RBX;
   uint64_t unaff_RSI;
   
-  *unaff_RBX = &unknown_var_3704_ptr;
+  *unaff_RBX = &memory_allocator_3704_ptr;
   unaff_RBX[1] = param_3;
   unaff_RBX[2] = param_3;
   *(int32_t *)(unaff_RBX + 3) = 0xffffffff;

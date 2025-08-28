@@ -414,11 +414,11 @@ bool FUN_1808c2150(int64 param_1, int64 param_2, int32 *param_3)
   // 根据模式选择排序策略
   if (iVar2 == 2) {
     func_0x0001808bd8a0(plVar1);
-    pcVar10 = (code *)&unknown_var_6080_ptr;
+    pcVar10 = (code *)&processed_var_6080_ptr;
   }
   else if (iVar2 == 3) {
     func_0x0001808bd8a0(plVar1);
-    pcVar10 = (code *)&unknown_var_5984_ptr;
+    pcVar10 = (code *)&processed_var_5984_ptr;
   }
   else {
     if (iVar2 != 4) goto LAB_1808c2219;
@@ -1060,7 +1060,7 @@ LAB_1808c2c1e:
       plVar8 = plVar15;
       if (*(int32 *)(*(int64 *)(lVar11 + 0x50) + 0xd8) < *(int32 *)(lVar11 + 0x30)) {
         func_0x0001808bd8a0(plVar7);
-        qsort(*plVar7, (int64)*(int32 *)(lVar11 + 0x30), 8, &unknown_var_5984_ptr);
+        qsort(*plVar7, (int64)*(int32 *)(lVar11 + 0x30), 8, &processed_var_5984_ptr);
       }
       
       // 处理排序后的数据
@@ -1401,7 +1401,7 @@ uint64 FUN_1808c2ec0(int64 param_1, int64 param_2, int8 param_3)
     
     // 分配对象内存
     plVar2 = (IntPtr)
-             SystemResourceManager(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), ALLOCATION_SIZE_MEDIUM, &unknown_var_1696_ptr, 0xbf, 0, 0, 1);
+             SystemResourceManager(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), ALLOCATION_SIZE_MEDIUM, &ui_system_data_1696_ptr, 0xbf, 0, 0, 1);
     
     if (plVar2 == (IntPtr)NULL_POINTER) {
       return ALLOCATION_ERROR_CODE;
@@ -1574,7 +1574,7 @@ LAB_1808c3135:
       plVar2[1] = (int64)plVar2;
       *plVar2 = (int64)plVar2;
       // WARNING: Subroutine does not return
-      SystemDataValidator(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_1696_ptr, 0xe1, 1);
+      SystemDataValidator(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &ui_system_data_1696_ptr, 0xe1, 1);
     }
   }
   else {
@@ -1611,7 +1611,7 @@ LAB_1808c3135:
   plVar2[1] = (int64)plVar2;
   *plVar2 = (int64)plVar2;
   // WARNING: Subroutine does not return
-  SystemDataValidator(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_1696_ptr, 0xe1, 1);
+  SystemDataValidator(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &ui_system_data_1696_ptr, 0xe1, 1);
 }
 
 // ============================================================================
@@ -1724,7 +1724,7 @@ int32 FUN_1808c3220(IntPtr param_1, uint64 param_2, uint64 param_3, UIntPtr para
   
   // 分配对象内存
   puVar7 = (UIntPtr)
-           SystemResourceManager(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), ALLOCATION_SIZE_LARGE, &unknown_var_3008_ptr, 0x12f, 0, 0, 1);
+           SystemResourceManager(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), ALLOCATION_SIZE_LARGE, &memory_allocator_3008_ptr, 0x12f, 0, 0, 1);
   lVar8 = lStack_60;
   
   if (puVar7 == (UIntPtr)NULL_POINTER) {
@@ -1739,7 +1739,7 @@ int32 FUN_1808c3220(IntPtr param_1, uint64 param_2, uint64 param_3, UIntPtr para
   puVar7[3] = 0;
   puVar7[4] = lVar10;
   puVar1 = puVar7 + 5;
-  *puVar7 = &unknown_var_2936_ptr;
+  *puVar7 = &rendering_buffer_2936_ptr;
   *puVar1 = puVar1;
   puVar7[6] = puVar1;
   puVar1 = puVar7 + 7;
@@ -2003,7 +2003,7 @@ int32 FUN_1808c3266(void)
   
   // 分配对象内存
   puVar6 = (UIntPtr)
-           SystemResourceManager(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), ALLOCATION_SIZE_LARGE, &unknown_var_3008_ptr, 0x12f, 0);
+           SystemResourceManager(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), ALLOCATION_SIZE_LARGE, &memory_allocator_3008_ptr, 0x12f, 0);
   lVar7 = lStack0000000000000058;
   
   if (puVar6 == (UIntPtr)NULL_POINTER) {
@@ -2018,7 +2018,7 @@ int32 FUN_1808c3266(void)
   puVar6[3] = 0;
   puVar6[4] = lVar9;
   puVar1 = puVar6 + 5;
-  *puVar6 = &unknown_var_2936_ptr;
+  *puVar6 = &rendering_buffer_2936_ptr;
   *puVar1 = puVar1;
   puVar6[6] = puVar1;
   puVar1 = puVar6 + 7;
@@ -2283,7 +2283,7 @@ uint64 FUN_1808c3700(UIntPtr param_1, IntPtr param_2)
       // 执行对象销毁
       ((*(code **)(*param_2 + 0x28))(param_2, 0));
       // WARNING: Subroutine does not return
-      SystemDataValidator(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &unknown_var_3008_ptr, 0x161, 1);
+      SystemDataValidator(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &memory_allocator_3008_ptr, 0x161, 1);
     }
   }
   
@@ -2414,7 +2414,7 @@ LAB_1808c38c7:
     if (uVar1 == SUCCESS_CODE) {
       FUN_1808bbe80(plVar2);
       // WARNING: Subroutine does not return
-      SystemDataValidator(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_3008_ptr, 0x172, 1);
+      SystemDataValidator(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &memory_allocator_3008_ptr, 0x172, 1);
     }
   }
   
@@ -2545,7 +2545,7 @@ LAB_1808c38c7:
     if (uVar2 == SUCCESS_CODE) {
       FUN_1808bbe80(plVar3);
       // WARNING: Subroutine does not return
-      SystemDataValidator(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar3, &unknown_var_3008_ptr, 0x172, 1);
+      SystemDataValidator(*(uint64 *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar3, &memory_allocator_3008_ptr, 0x172, 1);
     }
   }
   

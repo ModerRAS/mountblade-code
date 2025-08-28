@@ -1326,7 +1326,7 @@ uint64_t ReferenceCount_Manager(int64_t *param_1, uint64_t *param_2)
     status_t status = (*(status_t (**)(void**, void*))(*param_1 + 0x18))(param_1, param_2);
     if (status == SYSTEM_SUCCESS) {
       (*(void (**)(void*, int))(*param_2))(param_2, 0);
-      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &unknown_var_7872_ptr, 0xcc, 1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2, &processed_var_7872_ptr, 0xcc, 1);
     }
   } else {
     status_t status = SYSTEM_SUCCESS;
@@ -2069,7 +2069,7 @@ void* SystemStructure_Initialize(void* param_1)
   
   /* 设置魔数和版本信息 */
   *(uint32_t *)(param_1 + 1) = 0xb1e55ed1;  /* 魔数 */
-  *(uint64_t*)param_1 = &unknown_var_1544_ptr;     /* 虚函数表 */
+  *(uint64_t*)param_1 = &ui_system_data_1544_ptr;     /* 虚函数表 */
   *(uint32_t *)((uint64_t)param_1 + 0xc) = 0x1b;  /* 版本 */
   
   /* 获取系统数据并设置 */
@@ -2104,7 +2104,7 @@ void* SystemStructure_Initialize(void* param_1)
   *(uint64_t*)(param_1 + 30) = 0; /* 字段30-31 */
   
   /* 第二阶段：设置第二个虚函数表 */
-  *(uint64_t*)param_1 = &unknown_var_8000_ptr;     /* 第二个虚函数表 */
+  *(uint64_t*)param_1 = &processed_var_8000_ptr;     /* 第二个虚函数表 */
   self_ptr = (uint64_t*)SystemCoreProcessor();
   vtable_ptr = self_ptr[1];
   
@@ -2188,7 +2188,7 @@ uint32_t DataBuffer_Manager(void** param_1)
     
     /* 条件性资源清理 */
     if ((0 < (int)buffer_size) && (*param_1 != 0)) {
-      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &processed_var_8432_ptr, 0x100, 1);
     }
     
     /* 重置缓冲区 */
@@ -2209,7 +2209,7 @@ uint32_t DataBuffer_Manager(void** param_1)
   /* 检查元素计数有效性 */
   if ((int)param_1[1] < 1) {
     if ((0 < *(int *)((uint64_t)param_1 + 0xc)) && (*param_1 != 0)) {
-      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &processed_var_8432_ptr, 0x100, 1);
     }
     
     /* 完全重置缓冲区 */

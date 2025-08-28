@@ -61,12 +61,12 @@ void FUN_18057f420(int64_t param_1,float *param_2,int64_t param_3)
   
   uStack_b0 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_158;
-  puStack_c8 = &unknown_var_6432_ptr;
+  puStack_c8 = &processed_var_6432_ptr;
   uStack_c0 = 2;
   uStack_b8 = 0;
   uStack_e0 = 2;
   uStack_d8 = 0;
-  puStack_e8 = &unknown_var_1904_ptr;
+  puStack_e8 = &ui_system_data_1904_ptr;
   lVar1 = *(int64_t *)(param_1 + 0x3c8);
   if (lVar1 != 0) {
     lStack_d0 = lVar1;
@@ -456,7 +456,7 @@ void FUN_18057f880(int64_t param_1,float *param_2,int64_t param_3,int *param_4)
     plStack_508 = alStack_5a8;
     piStack_500 = &iStack_5b8;
     uStack_548 = FUN_180588350;
-    uStack_540 = (float *)&unknown_var_1712_ptr;
+    uStack_540 = (float *)&ui_system_data_1712_ptr;
     plStack_528 = alStack_4e8;
     lStack_520 = param_1;
     uStack_518 = (code *)param_2;

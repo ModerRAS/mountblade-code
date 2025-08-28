@@ -533,12 +533,12 @@ FUN_180811820(uint64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4,i
   lVar11 = lVar10 + 0x180be9220;
   if (param_7 == 0) {
     if (param_6 == 0) {
-      puVar20 = &unknown_var_304_ptr;
-      puVar22 = &unknown_var_432_ptr;
+      puVar20 = &memory_allocator_304_ptr;
+      puVar22 = &processed_var_432_ptr;
     }
     else {
-      puVar20 = &unknown_var_368_ptr;
-      puVar22 = &unknown_var_496_ptr;
+      puVar20 = &memory_allocator_368_ptr;
+      puVar22 = &processed_var_496_ptr;
     }
   }
   else {

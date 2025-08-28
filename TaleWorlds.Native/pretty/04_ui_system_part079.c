@@ -57,13 +57,13 @@ void FUN_180712340(int64_t param_1,int64_t param_2,uint param_3,uint param_4,int
     }
     lVar13 = (int64_t)param_9;
     uVar11 = (uint)uVar12;
-    fVar19 = param_6 * *(float *)(&unknown_var_8408_ptr + lVar7 * 0xc);
+    fVar19 = param_6 * *(float *)(&processed_var_8408_ptr + lVar7 * 0xc);
     fVar17 = *(float *)(param_2 + (int64_t)(int)(1 - uVar11) * 4);
-    fVar26 = param_6 * *(float *)(&unknown_var_8400_ptr + lVar7 * 0xc);
-    fVar27 = param_6 * *(float *)(&unknown_var_8404_ptr + lVar7 * 0xc);
-    fVar21 = param_7 * *(float *)(&unknown_var_8400_ptr + lVar13 * 0xc);
-    fVar22 = param_7 * *(float *)(&unknown_var_8404_ptr + lVar13 * 0xc);
-    fVar23 = param_7 * *(float *)(&unknown_var_8408_ptr + lVar13 * 0xc);
+    fVar26 = param_6 * *(float *)(&processed_var_8400_ptr + lVar7 * 0xc);
+    fVar27 = param_6 * *(float *)(&processed_var_8404_ptr + lVar7 * 0xc);
+    fVar21 = param_7 * *(float *)(&processed_var_8400_ptr + lVar13 * 0xc);
+    fVar22 = param_7 * *(float *)(&processed_var_8404_ptr + lVar13 * 0xc);
+    fVar23 = param_7 * *(float *)(&processed_var_8408_ptr + lVar13 * 0xc);
     lVar7 = 0;
     iVar9 = 0;
     fVar14 = *(float *)(param_2 + (int64_t)(int)uVar11 * -4);
@@ -232,13 +232,13 @@ void FUN_1807123a8(float param_1,int64_t param_2,uint param_3,uint param_4)
   }
   lVar11 = (int64_t)in_stack_000001e0;
   uStack0000000000000044 = (uint)uVar10;
-  fStack00000000000001c8 = in_XMM1_Da * *(float *)(&unknown_var_8408_ptr + param_2 * 0xc);
+  fStack00000000000001c8 = in_XMM1_Da * *(float *)(&processed_var_8408_ptr + param_2 * 0xc);
   fVar15 = *(float *)(in_R10 + (int64_t)(int)(1 - uStack0000000000000044) * 4);
-  fVar23 = in_XMM1_Da * *(float *)(&unknown_var_8400_ptr + param_2 * 0xc);
-  fVar24 = in_XMM1_Da * *(float *)(&unknown_var_8404_ptr + param_2 * 0xc);
-  fVar18 = param_1 * *(float *)(&unknown_var_8400_ptr + lVar11 * 0xc);
-  fVar19 = param_1 * *(float *)(&unknown_var_8404_ptr + lVar11 * 0xc);
-  fVar20 = param_1 * *(float *)(&unknown_var_8408_ptr + lVar11 * 0xc);
+  fVar23 = in_XMM1_Da * *(float *)(&processed_var_8400_ptr + param_2 * 0xc);
+  fVar24 = in_XMM1_Da * *(float *)(&processed_var_8404_ptr + param_2 * 0xc);
+  fVar18 = param_1 * *(float *)(&processed_var_8400_ptr + lVar11 * 0xc);
+  fVar19 = param_1 * *(float *)(&processed_var_8404_ptr + lVar11 * 0xc);
+  fVar20 = param_1 * *(float *)(&processed_var_8408_ptr + lVar11 * 0xc);
   lVar11 = 0;
   iVar8 = 0;
   fVar12 = *(float *)(in_R10 + (int64_t)(int)uStack0000000000000044 * -4);

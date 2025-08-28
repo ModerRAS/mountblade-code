@@ -138,7 +138,7 @@ int FUN_1808b5390(int64_t *param_1,int32_t *param_2,uint64_t *param_3)
   puVar9 = puVar14;
   if (puVar8 == (uint64_t *)0x0) {
     puVar9 = (uint64_t *)
-             SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x38,&unknown_var_2080_ptr,0x124,0,0,1);
+             SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x38,&rendering_buffer_2080_ptr,0x124,0,0,1);
     if (puVar9 == (uint64_t *)0x0) {
       iVar12 = 0x26;
       puVar9 = puVar14;
@@ -226,7 +226,7 @@ LAB_1808b566f:
   }
   FUN_1808bb9a0(puVar9);
                     // WARNING: Subroutine does not return
-  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar9,&unknown_var_2144_ptr,0xc6,1);
+  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar9,&rendering_buffer_2144_ptr,0xc6,1);
 }
 
 
@@ -280,7 +280,7 @@ int FUN_1808b5408(void)
   plVar7 = (int64_t *)unaff_R12;
   if (plVar6 == (int64_t *)0x0) {
     plVar7 = (int64_t *)
-             SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x38,&unknown_var_2080_ptr,0x124);
+             SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x38,&rendering_buffer_2080_ptr,0x124);
     if (plVar7 == (int64_t *)0x0) {
       iVar10 = 0x26;
       plVar7 = (int64_t *)unaff_R12;
@@ -371,7 +371,7 @@ LAB_1808b566f:
   }
   FUN_1808bb9a0(plVar7);
                     // WARNING: Subroutine does not return
-  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar7,&unknown_var_2144_ptr,0xc6,1);
+  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar7,&rendering_buffer_2144_ptr,0xc6,1);
 }
 
 
@@ -445,7 +445,7 @@ int FUN_1808b542a(uint64_t param_1,uint64_t param_2,int64_t *param_3)
   plVar7 = (int64_t *)unaff_R12;
   if (plVar6 == (int64_t *)0x0) {
     plVar7 = (int64_t *)
-             SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x38,&unknown_var_2080_ptr,0x124);
+             SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x38,&rendering_buffer_2080_ptr,0x124);
     if (plVar7 == (int64_t *)0x0) {
       iVar9 = 0x26;
       plVar7 = (int64_t *)unaff_R12;
@@ -536,7 +536,7 @@ LAB_1808b566f:
   }
   FUN_1808bb9a0(plVar7);
                     // WARNING: Subroutine does not return
-  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar7,&unknown_var_2144_ptr,0xc6,1);
+  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar7,&rendering_buffer_2144_ptr,0xc6,1);
 }
 
 
@@ -577,7 +577,7 @@ int FUN_1808b5495(void)
   plVar7 = (int64_t *)unaff_R12;
   if (plVar6 == (int64_t *)0x0) {
     plVar7 = (int64_t *)
-             SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x38,&unknown_var_2080_ptr,0x124);
+             SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x38,&rendering_buffer_2080_ptr,0x124);
     if (plVar7 == (int64_t *)0x0) {
       iVar10 = 0x26;
       plVar7 = (int64_t *)unaff_R12;
@@ -668,7 +668,7 @@ LAB_1808b566f:
   }
   FUN_1808bb9a0(plVar7);
                     // WARNING: Subroutine does not return
-  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar7,&unknown_var_2144_ptr,0xc6,1);
+  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar7,&rendering_buffer_2144_ptr,0xc6,1);
 }
 
 
@@ -706,7 +706,7 @@ uint64_t FUN_1808b5720(int64_t param_1,int32_t param_2,int32_t param_3)
   int32_t uStack_18;
   int32_t uStack_14;
   
-  puStack_28 = &unknown_var_1456_ptr;
+  puStack_28 = &ui_system_data_1456_ptr;
   lStack_20 = param_1;
   uStack_18 = param_2;
   uStack_14 = param_3;
@@ -830,7 +830,7 @@ LAB_1808b5883:
     if (uVar3 == 0) {
       FUN_1808bb9a0(plVar6);
                     // WARNING: Subroutine does not return
-      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar6,&unknown_var_2080_ptr,0xe1,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar6,&rendering_buffer_2080_ptr,0xe1,1);
     }
   }
 LAB_1808b5986:

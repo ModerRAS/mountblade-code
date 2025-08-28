@@ -296,7 +296,7 @@ void load_game_data(uint64_t param1, int64_t context_ptr)
         temp_ptr6 = stack_data9;
     }
     stack_data10 = file_descriptor;
-    file_descriptor = FUN_18062dee0(&stack_data16, temp_ptr6, &unknown_var_4880_ptr);
+    file_descriptor = FUN_18062dee0(&stack_data16, temp_ptr6, &processed_var_4880_ptr);
     temp_long2 = stack_data26;
     if (file_descriptor == 0) {
         temp_data1 = _ftelli64(stack_data26);
@@ -617,11 +617,11 @@ bool validate_save_file(int64_t file_handle)
     if (((system_debug_flag == '\0') && (validation_result == false)) &&
        ((*(int *)(system_module_state + 0x620) == 0 && (file_handle == 0)))) {
         if (system_debug_flag2 == '\0') {
-            MessageBoxA(0, &unknown_var_9600_ptr, &unknown_var_9792_ptr, 0x41040);
+            MessageBoxA(0, &processed_var_9600_ptr, &processed_var_9792_ptr, 0x41040);
         }
         else if (*(char *)(system_message_context + 0x18) != '\0') {
-            FUN_1800623b0(system_message_context, 3, 0xffffffff00000000, 0xd, &unknown_var_6936_ptr, &unknown_var_9792_ptr,
-                          &unknown_var_9600_ptr);
+            FUN_1800623b0(system_message_context, 3, 0xffffffff00000000, 0xd, &processed_var_6936_ptr, &processed_var_9792_ptr,
+                          &processed_var_9600_ptr);
         }
     }
     if (temp_long1 != -1) {
@@ -690,18 +690,18 @@ void process_save_chunk(uint64_t param1)
         temp_ptr2 = stack_data4;
     }
     stack_data5 = temp_int1;
-    FUN_18062dee0(&stack_data7, temp_ptr2, &unknown_var_4880_ptr);
+    FUN_18062dee0(&stack_data7, temp_ptr2, &processed_var_4880_ptr);
     temp_long1 = stack_data8;
     stack_array1[0] = 0;
     if (stack_data8 != 0) {
         fread(stack_array1, 4, 1, stack_data8);
         if (stack_array1[0] == FILE_SIGNATURE_1) {
-            stack_data10 = &unknown_var_672_ptr;
+            stack_data10 = &processed_var_672_ptr;
             stack_data11 = stack_data13;
             stack_data12 = 0;
             stack_data13[0] = 0;
             stack_array1[1] = 1;
-            FUN_18004b860(&stack_data10, &unknown_var_4576_ptr, 0x130a7);
+            FUN_18004b860(&stack_data10, &processed_var_4576_ptr, 0x130a7);
             stack_data2 = 0;
             fread(&stack_data2, 4, 1, temp_long1);
             if (stack_data2 < 9) {
@@ -810,19 +810,19 @@ void create_save_file(void)
             if (stack_data3 != (int8_t *)0x0) {
                 temp_ptr2 = stack_data3;
             }
-            FUN_18062dee0(&stack_data10, temp_ptr2, &unknown_var_9772_ptr);
+            FUN_18062dee0(&stack_data10, temp_ptr2, &processed_var_9772_ptr);
             temp_long1 = stack_data11;
             if (stack_data11 == 0) {
-                FUN_180062300(system_message_context, &unknown_var_9856_ptr);
+                FUN_180062300(system_message_context, &processed_var_9856_ptr);
             }
             stack_array2[0] = FILE_SIGNATURE_1;
             fwrite(stack_array2, 4, 1, stack_data11);
-            stack_data13 = &unknown_var_672_ptr;
+            stack_data13 = &processed_var_672_ptr;
             stack_data14 = stack_data16;
             stack_data15 = 0;
             stack_data16[0] = 0;
             stack_array1[1] = 1;
-            FUN_18004b860(&stack_data13, &unknown_var_4576_ptr, 0x130a7);
+            FUN_18004b860(&stack_data13, &processed_var_4576_ptr, 0x130a7);
             stack_array1[0] = stack_data15;
             fwrite(stack_array1, 4, 1, temp_long1);
             temp_ptr3 = &system_buffer_ptr;
@@ -890,7 +890,7 @@ void build_save_path(int64_t *path_ptr, int64_t context_ptr)
         stack_data5 = stack_data7;
         stack_data7[0] = 0;
         stack_data6 = 6;
-        strcpy_s(stack_data7, 0x10, &unknown_var_2588_ptr);
+        strcpy_s(stack_data7, 0x10, &rendering_buffer_2588_ptr);
         stack_data2 = 1;
         temp_ptr2 = &system_buffer_ptr;
         if (stack_data5 != (void *)0x0) {

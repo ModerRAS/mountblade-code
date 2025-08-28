@@ -473,7 +473,7 @@ void FUN_18017b850(int64_t param_1)
   FUN_18021fbb0(system_message_buffer);
   FUN_180220fe0(plVar9);
   FUN_18021f910(plVar9);
-  if ((void *)*plVar9 == &unknown_var_6752_ptr) {
+  if ((void *)*plVar9 == &processed_var_6752_ptr) {
     FUN_1800ad2a0();
     FUN_1800acb60(plVar9);
     FUN_1800ac700(plVar9);
@@ -486,7 +486,7 @@ void FUN_18017b850(int64_t param_1)
   else {
     (**(code **)((void *)*plVar9 + 0xa8))(plVar9);
   }
-  if ((void *)*plVar9 != &unknown_var_6752_ptr) {
+  if ((void *)*plVar9 != &processed_var_6752_ptr) {
     (**(code **)((void *)*plVar9 + 0x80))(plVar9);
   }
   FUN_18029c9d0(plVar9[0x39b]);
@@ -550,7 +550,7 @@ void FUN_18017b850(int64_t param_1)
           if (*(void **)(lVar1 + 0x18) != (void *)0x0) {
             puVar7 = *(void **)(lVar1 + 0x18);
           }
-          SystemDataInitializer(&unknown_var_7664_ptr,puVar7,puVar11);
+          SystemDataInitializer(&processed_var_7664_ptr,puVar7,puVar11);
         }
         plVar10 = plVar10 + 1;
         lVar5 = lVar5 + -1;
@@ -587,7 +587,7 @@ void FUN_18017bc20(uint64_t param_1)
   uStack_f0 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_118;
   uStack_f8 = 0;
-  puStack_d8 = &unknown_var_3480_ptr;
+  puStack_d8 = &memory_allocator_3480_ptr;
   puStack_d0 = auStack_c0;
   auStack_c0[0] = 0;
   uStack_c8 = 0xc;
@@ -685,7 +685,7 @@ void FUN_18017bd30(uint64_t param_1)
   uStack_630 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_668;
   uStack_648 = 0;
-  puStack_5c8 = &unknown_var_3480_ptr;
+  puStack_5c8 = &memory_allocator_3480_ptr;
   puStack_5c0 = auStack_5b0;
   auStack_5b0[0] = 0;
   uStack_5b8 = 4;
@@ -698,7 +698,7 @@ void FUN_18017bd30(uint64_t param_1)
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
   puStack_5c8 = &system_state_ptr;
-  puStack_568 = &unknown_var_3480_ptr;
+  puStack_568 = &memory_allocator_3480_ptr;
   puStack_560 = auStack_550;
   auStack_550[0] = 0;
   uStack_558 = 7;
@@ -711,7 +711,7 @@ void FUN_18017bd30(uint64_t param_1)
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
   puStack_568 = &system_state_ptr;
-  puStack_508 = &unknown_var_3480_ptr;
+  puStack_508 = &memory_allocator_3480_ptr;
   puStack_500 = auStack_4f0;
   auStack_4f0[0] = 0;
   uStack_4f8 = 7;
@@ -724,7 +724,7 @@ void FUN_18017bd30(uint64_t param_1)
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
   puStack_508 = &system_state_ptr;
-  puStack_4a8 = &unknown_var_3480_ptr;
+  puStack_4a8 = &memory_allocator_3480_ptr;
   puStack_4a0 = auStack_490;
   auStack_490[0] = 0;
   uStack_498 = 7;
@@ -737,7 +737,7 @@ void FUN_18017bd30(uint64_t param_1)
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
   puStack_4a8 = &system_state_ptr;
-  puStack_448 = &unknown_var_3480_ptr;
+  puStack_448 = &memory_allocator_3480_ptr;
   puStack_440 = auStack_430;
   auStack_430[0] = 0;
   uStack_438 = 7;
@@ -750,7 +750,7 @@ void FUN_18017bd30(uint64_t param_1)
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
   puStack_448 = &system_state_ptr;
-  puStack_3e8 = &unknown_var_3480_ptr;
+  puStack_3e8 = &memory_allocator_3480_ptr;
   puStack_3e0 = auStack_3d0;
   auStack_3d0[0] = 0;
   uStack_3d8 = 0x11;
@@ -763,7 +763,7 @@ void FUN_18017bd30(uint64_t param_1)
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
   puStack_3e8 = &system_state_ptr;
-  puStack_388 = &unknown_var_3480_ptr;
+  puStack_388 = &memory_allocator_3480_ptr;
   puStack_380 = auStack_370;
   auStack_370[0] = 0;
   uStack_378 = 0x22;
@@ -776,7 +776,7 @@ void FUN_18017bd30(uint64_t param_1)
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
   puStack_388 = &system_state_ptr;
-  puStack_328 = &unknown_var_3480_ptr;
+  puStack_328 = &memory_allocator_3480_ptr;
   puStack_320 = auStack_310;
   auStack_310[0] = 0;
   uStack_318 = 0xb;
@@ -789,7 +789,7 @@ void FUN_18017bd30(uint64_t param_1)
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
   puStack_328 = &system_state_ptr;
-  puStack_2c8 = &unknown_var_3480_ptr;
+  puStack_2c8 = &memory_allocator_3480_ptr;
   puStack_2c0 = auStack_2b0;
   auStack_2b0[0] = 0;
   uStack_2b8 = 0x12;
@@ -802,7 +802,7 @@ void FUN_18017bd30(uint64_t param_1)
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
   puStack_2c8 = &system_state_ptr;
-  puStack_268 = &unknown_var_3480_ptr;
+  puStack_268 = &memory_allocator_3480_ptr;
   puStack_260 = auStack_250;
   auStack_250[0] = 0;
   uStack_258 = 0x12;
@@ -815,7 +815,7 @@ void FUN_18017bd30(uint64_t param_1)
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
   puStack_268 = &system_state_ptr;
-  puStack_208 = &unknown_var_3480_ptr;
+  puStack_208 = &memory_allocator_3480_ptr;
   puStack_200 = auStack_1f0;
   auStack_1f0[0] = 0;
   uStack_1f8 = 0x1e;
@@ -828,7 +828,7 @@ void FUN_18017bd30(uint64_t param_1)
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
   puStack_208 = &system_state_ptr;
-  puStack_1a8 = &unknown_var_3480_ptr;
+  puStack_1a8 = &memory_allocator_3480_ptr;
   puStack_1a0 = auStack_190;
   auStack_190[0] = 0;
   uStack_198 = 0x1b;
@@ -841,7 +841,7 @@ void FUN_18017bd30(uint64_t param_1)
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
   puStack_1a8 = &system_state_ptr;
-  puStack_148 = &unknown_var_3480_ptr;
+  puStack_148 = &memory_allocator_3480_ptr;
   puStack_140 = auStack_130;
   auStack_130[0] = 0;
   uStack_138 = 0x1b;
@@ -854,7 +854,7 @@ void FUN_18017bd30(uint64_t param_1)
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
   puStack_148 = &system_state_ptr;
-  puStack_e8 = &unknown_var_3480_ptr;
+  puStack_e8 = &memory_allocator_3480_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 0x18;
@@ -867,7 +867,7 @@ void FUN_18017bd30(uint64_t param_1)
   appuStack_640[0] = apuStack_628;
   apuStack_628[0] = &system_state_ptr;
   puStack_e8 = &system_state_ptr;
-  puStack_88 = &unknown_var_3480_ptr;
+  puStack_88 = &memory_allocator_3480_ptr;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 0xc;
@@ -907,7 +907,7 @@ void FUN_18017c750(uint64_t param_1,uint64_t param_2)
   uVar4 = 0xfffffffffffffffe;
   puVar3 = puVar2;
   FUN_1803456e0(puVar2,param_2,param_1);
-  *puVar3 = &unknown_var_5664_ptr;
+  *puVar3 = &processed_var_5664_ptr;
   puVar3[0x11] = 0;
   puVar3[0x12] = 0;
   puVar3[0x13] = 0;
@@ -958,7 +958,7 @@ void FUN_18017c7a0(uint64_t param_1,uint64_t param_2)
   uVar4 = 0xfffffffffffffffe;
   puVar3 = puVar2;
   FUN_1803456e0(puVar2,param_2,param_1);
-  *puVar3 = &unknown_var_6048_ptr;
+  *puVar3 = &processed_var_6048_ptr;
   puVar3[0xe] = 0;
   *(int32_t *)(puVar3 + 0xf) = 0x3f800000;
   puStack_90 = &system_data_buffer_ptr;
@@ -1023,7 +1023,7 @@ void FUN_18017c7e0(uint64_t param_1,int64_t param_2)
   puVar2 = puVar1;
   puStack_140 = puVar1;
   FUN_1803456e0(puVar1,param_2,param_1);
-  *puVar2 = &unknown_var_6496_ptr;
+  *puVar2 = &processed_var_6496_ptr;
   *(int16_t *)(puVar2 + 0x12) = 0;
   *(int8_t *)((int64_t)puVar2 + 0x92) = 0;
   *(bool *)((int64_t)puVar2 + 0x93) = *(char *)(param_2 + 0x2e5) == '\0';
@@ -1037,35 +1037,35 @@ void FUN_18017c7e0(uint64_t param_1,int64_t param_2)
   puStack_130 = auStack_120;
   auStack_120[0] = 0;
   uStack_128 = 8;
-  strcpy_s(auStack_120,0x10,&unknown_var_8280_ptr);
+  strcpy_s(auStack_120,0x10,&processed_var_8280_ptr);
   FUN_1803460a0(puVar1,&puStack_138,puVar1 + 0x12,3);
   puStack_138 = &system_state_ptr;
-  puStack_110 = &unknown_var_672_ptr;
+  puStack_110 = &processed_var_672_ptr;
   puStack_108 = auStack_f8;
   auStack_f8[0] = 0;
   uStack_100 = 0x13;
-  strcpy_s(auStack_f8,0x20,&unknown_var_6464_ptr);
+  strcpy_s(auStack_f8,0x20,&processed_var_6464_ptr);
   FUN_1803460a0(puVar1,&puStack_110,(int64_t)puVar1 + 0x92,3);
   puStack_110 = &system_state_ptr;
-  puStack_d8 = &unknown_var_672_ptr;
+  puStack_d8 = &processed_var_672_ptr;
   puStack_d0 = auStack_c0;
   auStack_c0[0] = 0;
   uStack_c8 = 0x11;
-  strcpy_s(auStack_c0,0x20,&unknown_var_6440_ptr);
+  strcpy_s(auStack_c0,0x20,&processed_var_6440_ptr);
   FUN_1803460a0(puVar1,&puStack_d8,(int64_t)puVar1 + 0x8c,2);
   puStack_d8 = &system_state_ptr;
-  puStack_a0 = &unknown_var_672_ptr;
+  puStack_a0 = &processed_var_672_ptr;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xf;
-  strcpy_s(auStack_88,0x20,&unknown_var_6424_ptr);
+  strcpy_s(auStack_88,0x20,&processed_var_6424_ptr);
   FUN_1803460a0(puVar1,&puStack_a0,puVar1 + 0x11,2);
   puStack_a0 = &system_state_ptr;
-  puStack_68 = &unknown_var_672_ptr;
+  puStack_68 = &processed_var_672_ptr;
   puStack_60 = auStack_50;
   auStack_50[0] = 0;
   uStack_58 = 9;
-  strcpy_s(auStack_50,0x20,&unknown_var_6408_ptr);
+  strcpy_s(auStack_50,0x20,&processed_var_6408_ptr);
   FUN_1803460a0(puVar1,&puStack_68,puVar1 + 0xf,5);
   puStack_68 = &system_state_ptr;
                     // WARNING: Subroutine does not return

@@ -105,7 +105,7 @@ LAB_18030dd85:
   }
   plStack_e0 = (int64_t *)0x0;
   plStack_e8 = plVar15;
-  (**(code **)(plVar15[2] + 0x10))(plVar15 + 2,&unknown_var_4912_ptr);
+  (**(code **)(plVar15[2] + 0x10))(plVar15 + 2,&processed_var_4912_ptr);
   FUN_18007ea10(plVar15,1);
   FUN_18007e930(plVar15);
   plStack_d8 = (int64_t *)0x0;
@@ -744,7 +744,7 @@ void FUN_18030eaf0(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   if (plVar8 != (int64_t *)0x0) {
     (**(code **)(*plVar8 + 0x28))(plVar8);
   }
-  (**(code **)(plVar8[2] + 0x10))(plVar8 + 2,&unknown_var_4976_ptr);
+  (**(code **)(plVar8[2] + 0x10))(plVar8 + 2,&processed_var_4976_ptr);
   if (*(char *)((int64_t)plVar8 + 0xfb) != '\x01') {
     *(int8_t *)((int64_t)plVar8 + 0xfb) = 1;
     FUN_180079520(plVar8);

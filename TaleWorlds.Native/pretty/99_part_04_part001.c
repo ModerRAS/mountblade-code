@@ -123,7 +123,7 @@ FUN_180257820(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
 {
   code *pcVar1;
   
-  *param_1 = &unknown_var_1568_ptr;
+  *param_1 = &ui_system_data_1568_ptr;
   param_1[3] = 0;
   param_1[4] = _guard_check_icall;
   if (param_1 + 1 != param_2) {
@@ -152,7 +152,7 @@ FUN_1802578c0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   
   uVar3 = 0xfffffffffffffffe;
   puVar1 = (uint64_t *)FUN_1808fc418(0x28);
-  *puVar1 = &unknown_var_1568_ptr;
+  *puVar1 = &ui_system_data_1568_ptr;
   puVar1[3] = 0;
   puVar1[4] = _guard_check_icall;
   if (puVar1 + 1 != param_1) {
@@ -244,7 +244,7 @@ FUN_180257ae0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
 uint64_t * FUN_180257b30(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_1952_ptr;
+  *param_1 = &ui_system_data_1952_ptr;
   if (param_1[3] != 0) {
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer();
@@ -276,7 +276,7 @@ int64_t FUN_180257b80(int64_t param_1)
   *(uint64_t *)(param_1 + 0x60) = &system_state_ptr;
   *(uint64_t *)(param_1 + 0x68) = 0;
   *(int32_t *)(param_1 + 0x70) = 0;
-  *(uint64_t *)(param_1 + 0x60) = &unknown_var_3432_ptr;
+  *(uint64_t *)(param_1 + 0x60) = &memory_allocator_3432_ptr;
   *(int8_t **)(param_1 + 0x68) = (int8_t *)(param_1 + 0x78);
   *(int32_t *)(param_1 + 0x70) = 0;
   *(int8_t *)(param_1 + 0x78) = 0;
@@ -291,7 +291,7 @@ int64_t FUN_180257b80(int64_t param_1)
 uint64_t * FUN_180257c40(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_1792_ptr;
+  *param_1 = &ui_system_data_1792_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }
@@ -307,7 +307,7 @@ uint64_t * FUN_180257c40(uint64_t *param_1,uint64_t param_2)
 void FUN_180257c80(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_1952_ptr;
+  *param_1 = &ui_system_data_1952_ptr;
   if (param_1[3] != 0) {
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer();
@@ -323,8 +323,8 @@ uint64_t *
 FUN_180257cb0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_1824_ptr;
-  *param_1 = &unknown_var_1952_ptr;
+  *param_1 = &ui_system_data_1824_ptr;
+  *param_1 = &ui_system_data_1952_ptr;
   if (param_1[3] != 0) {
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer();
@@ -461,7 +461,7 @@ uint64_t * FUN_180257f00(uint64_t *param_1,uint64_t param_2)
   param_1[3] = 0;
   *(int32_t *)(param_1 + 5) = 0;
   param_1[2] = &system_state_ptr;
-  *param_1 = &unknown_var_5192_ptr;
+  *param_1 = &processed_var_5192_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0xb0);
   }
@@ -513,7 +513,7 @@ FUN_180258000(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   param_1[2] = 0;
   *(int32_t *)(param_1 + 4) = 0;
   param_1[1] = &system_state_ptr;
-  *param_1 = &unknown_var_5192_ptr;
+  *param_1 = &processed_var_5192_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x70,param_3,param_4,uVar1);
   }
@@ -661,7 +661,7 @@ uint64_t * FUN_180258380(uint64_t *param_1,uint64_t param_2)
   uint64_t *puVar1;
   int64_t lVar2;
   
-  *param_1 = &unknown_var_2712_ptr;
+  *param_1 = &rendering_buffer_2712_ptr;
   puVar1 = (uint64_t *)param_1[0x11];
   if (puVar1 != (uint64_t *)0x0) {
     lVar2 = __RTCastToVoid(puVar1);
@@ -1078,8 +1078,8 @@ uint64_t * FUN_180258930(uint64_t param_1,int64_t param_2)
   uint64_t *puVar7;
   
   puVar7 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xb0,8,3,0xfffffffffffffffe);
-  *puVar7 = &unknown_var_5192_ptr;
-  *puVar7 = &unknown_var_2912_ptr;
+  *puVar7 = &processed_var_5192_ptr;
+  *puVar7 = &rendering_buffer_2912_ptr;
   puVar1 = puVar7 + 2;
   *puVar1 = &system_state_ptr;
   puVar7[3] = 0;
@@ -1151,8 +1151,8 @@ uint64_t * FUN_180258ab0(uint64_t param_1,int64_t param_2)
   uint64_t *puVar3;
   
   puVar3 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x70,8,3,0xfffffffffffffffe);
-  *puVar3 = &unknown_var_5192_ptr;
-  *puVar3 = &unknown_var_2880_ptr;
+  *puVar3 = &processed_var_5192_ptr;
+  *puVar3 = &rendering_buffer_2880_ptr;
   puVar1 = puVar3 + 1;
   *puVar1 = &system_state_ptr;
   puVar3[2] = 0;

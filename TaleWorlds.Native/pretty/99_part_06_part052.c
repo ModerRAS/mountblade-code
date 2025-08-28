@@ -159,7 +159,7 @@ uint64_t * FUN_1803dc330(uint64_t *param_1)
   *param_1 = &system_handler1_ptr;
   *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &unknown_var_3592_ptr;
+  *param_1 = &memory_allocator_3592_ptr;
   param_1[9] = 0;
   param_1[0x13] = 0;
   *(int32_t *)(param_1 + 0x1a) = 0;
@@ -209,7 +209,7 @@ uint64_t * FUN_1803dc330(uint64_t *param_1)
 void FUN_1803dc460(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_3592_ptr;
+  *param_1 = &memory_allocator_3592_ptr;
   if ((int64_t *)param_1[0x13] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x13] + 0x38))();
   }

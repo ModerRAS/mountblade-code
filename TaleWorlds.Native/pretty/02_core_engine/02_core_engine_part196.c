@@ -1119,17 +1119,17 @@ void move_data_block(int64_t param_1, int64_t *param_2)
 }
 
 // 全局变量和常量定义
-#define GLOBAL_POINTER_TABLE_001     unknown_var_4968
-#define GLOBAL_MEMORY_TABLE_001      unknown_var_5024
-#define GLOBAL_MEMORY_TABLE_002      unknown_var_5056
-#define GLOBAL_MEMORY_TABLE_003      unknown_var_5088
-#define GLOBAL_MEMORY_TABLE_004      unknown_var_5168
+#define GLOBAL_POINTER_TABLE_001     processed_var_4968
+#define GLOBAL_MEMORY_TABLE_001      processed_var_5024
+#define GLOBAL_MEMORY_TABLE_002      processed_var_5056
+#define GLOBAL_MEMORY_TABLE_003      processed_var_5088
+#define GLOBAL_MEMORY_TABLE_004      processed_var_5168
 #define GLOBAL_MEMORY_MANAGER        system_memory_pool_ptr
 #define GLOBAL_EVENT_QUEUE           system_context_ptr
 #define GLOBAL_DATA_TABLE_001        system_memory_c740
-#define GLOBAL_CLEANUP_ROUTINE_001   unknown_var_7712
-#define GLOBAL_CLEANUP_ROUTINE_002   unknown_var_7696
-#define GLOBAL_CLEANUP_ROUTINE_003   unknown_var_7824
+#define GLOBAL_CLEANUP_ROUTINE_001   processed_var_7712
+#define GLOBAL_CLEANUP_ROUTINE_002   processed_var_7696
+#define GLOBAL_CLEANUP_ROUTINE_003   processed_var_7824
 
 // 函数指针声明
 #define trigger_error_handler         CoreEngineMemoryPoolCleaner

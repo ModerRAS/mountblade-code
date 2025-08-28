@@ -810,7 +810,7 @@ int32_t FUN_18060cf50(void)
   puVar2 = (uint64_t *)0x180c95e98;
 LAB_18060cf9b:
   if (puVar2[5] == 0) {
-    SystemDataInitializer(&unknown_var_7872_ptr);
+    SystemDataInitializer(&processed_var_7872_ptr);
     return 0;
   }
   return *(int32_t *)(puVar2[5] + 0x3c0);

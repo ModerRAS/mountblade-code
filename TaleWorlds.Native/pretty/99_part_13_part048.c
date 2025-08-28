@@ -117,7 +117,7 @@ FUN_1808c6620(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   puVar1 = param_1 + 3;
   *puVar1 = puVar1;
   param_1[4] = puVar1;
-  *param_1 = &unknown_var_3160_ptr;
+  *param_1 = &memory_allocator_3160_ptr;
   param_1[5] = param_2;
   param_1[6] = param_3;
   *(int32_t *)(param_1 + 7) = 0;
@@ -141,7 +141,7 @@ uint64_t * FUN_1808c66a0(uint64_t *param_1,uint param_2)
   int64_t *plVar1;
   int64_t *plVar2;
   
-  *param_1 = &unknown_var_3160_ptr;
+  *param_1 = &memory_allocator_3160_ptr;
   FUN_1808b3490(param_1[0xb],param_1);
   plVar1 = param_1 + 3;
   plVar2 = param_1 + 1;
@@ -153,7 +153,7 @@ uint64_t * FUN_1808c66a0(uint64_t *param_1,uint param_2)
   *(uint64_t *)(*plVar1 + 8) = param_1[4];
   param_1[4] = plVar1;
   *plVar1 = (int64_t)plVar1;
-  *param_1 = &unknown_var_3136_ptr;
+  *param_1 = &memory_allocator_3136_ptr;
   *(int64_t *)param_1[2] = *plVar2;
   *(uint64_t *)(*plVar2 + 8) = param_1[2];
   param_1[2] = plVar2;
@@ -176,7 +176,7 @@ uint64_t * FUN_1808c6770(uint64_t *param_1,uint64_t param_2)
   int64_t *plVar1;
   
   plVar1 = param_1 + 1;
-  *param_1 = &unknown_var_3136_ptr;
+  *param_1 = &memory_allocator_3136_ptr;
   *(int64_t *)param_1[2] = *plVar1;
   *(uint64_t *)(*plVar1 + 8) = param_1[2];
   param_1[2] = plVar1;
@@ -673,7 +673,7 @@ uint64_t * FUN_1808c6d60(uint64_t *param_1,uint64_t *param_2)
     *piVar1 = *piVar1 + -1;
     if (*piVar1 == 0) {
                     // WARNING: Subroutine does not return
-      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar2,&unknown_var_2208_ptr,0x76,1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),lVar2,&rendering_buffer_2208_ptr,0x76,1);
     }
   }
   return param_1;

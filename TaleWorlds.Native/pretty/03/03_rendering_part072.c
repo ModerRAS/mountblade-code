@@ -641,7 +641,7 @@ uint64_t * render_system_advanced_resource_manager(uint64_t *resource_context, u
   int64_t resource_ptr;
   
   temp_var4 = 0xfffffffffffffffe;
-  *resource_context = &unknown_var_4072_ptr;
+  *resource_context = &processed_var_4072_ptr;
   resource_table = render_system_data_texture;
   resource_indices[0] = *(int *)(resource_context + 2);
   resource_ptr = (int64_t)resource_indices[0];
@@ -935,12 +935,12 @@ uint64_t * render_system_resource_data_initializer(uint64_t resource_id, uint64_
   *resource_data_context = &system_state_ptr;
   resource_data_context[1] = 0;
   *(int32_t *)(resource_data_context + 2) = 0;
-  *resource_data_context = &unknown_var_3432_ptr;
+  *resource_data_context = &memory_allocator_3432_ptr;
   resource_data_context[1] = resource_data_context + 3;
   *(int8_t *)(resource_data_context + 3) = 0;
   *(int32_t *)(resource_data_context + 2) = 0x1c;
   // 复制资源数据字符串
-  strcpy_s(resource_data_context[1], 0x80, &unknown_var_4304_ptr, resource_options, 0, 0xfffffffffffffffe);
+  strcpy_s(resource_data_context[1], 0x80, &processed_var_4304_ptr, resource_options, 0, 0xfffffffffffffffe);
   return resource_data_context;
 }
 

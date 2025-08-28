@@ -296,11 +296,11 @@ void FUN_18036b380(int64_t *******param_1)
     uStack_4b8 = 0;
     iStack_4a4 = 0;
     iStack_4a8 = 0;
-    puStack_138 = &unknown_var_3480_ptr;
+    puStack_138 = &memory_allocator_3480_ptr;
     puStack_130 = auStack_120;
     auStack_120[0] = 0;
     uStack_128 = 10;
-    uVar13 = strcpy_s(auStack_120,0x40,&unknown_var_1680_ptr);
+    uVar13 = strcpy_s(auStack_120,0x40,&ui_system_data_1680_ptr);
     FUN_1800b3430(uVar13,&plStack_390,&puStack_138,1);
     puStack_138 = &system_state_ptr;
     uStack_458 = (int64_t ****)0x3f8000003f800000;
@@ -344,7 +344,7 @@ void FUN_18036b380(int64_t *******param_1)
           fStack_1e4 = fVar46;
           fStack_1e0 = fVar47;
           fStack_1dc = fVar35;
-          if (pppplVar5 == (int64_t ****)&unknown_var_2544_ptr) {
+          if (pppplVar5 == (int64_t ****)&rendering_buffer_2544_ptr) {
             puVar17 = (uint64_t *)((int64_t)param_1[0x13] + 0x214);
           }
           else {

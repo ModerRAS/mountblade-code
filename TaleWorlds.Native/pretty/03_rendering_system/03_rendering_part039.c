@@ -14,8 +14,8 @@
 #define process_render_batch FUN_18028b091
 
 // 比较函数常量
-#define texture_compare_func unknown_var_6720
-#define vertex_compare_func unknown_var_6784
+#define texture_compare_func processed_var_6720
+#define vertex_compare_func processed_var_6784
 
 // 函数: void calculate_texture_coordinates(uint *texture_coords, int *vertex_data, int texture_width, int texture_height)
 // 功能: 计算纹理坐标和顶点数据映射关系

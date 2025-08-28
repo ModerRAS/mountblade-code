@@ -514,7 +514,7 @@ LAB_18032d78f:
       CoreMemoryPoolProcessor(&stack_ptr, resource_size);
       *(int16_t *)(string_ptr + string_length) = RENDERING_PATH_SEPARATOR;
       string_length = resource_size;
-      FUN_180626eb0(temp_path, 0x20, &unknown_var_3388_ptr, **(int32_t **)(resource_handle + 8));
+      FUN_180626eb0(temp_path, 0x20, &memory_allocator_3388_ptr, **(int32_t **)(resource_handle + 8));
       resource_handle = -1;
       
       do {
@@ -543,7 +543,7 @@ LAB_18032d78f:
       process_info = 0;
       buffer_flag = 0;
       string_length = data_count;
-      FUN_18062dee0(&process_info, data_ptr, &unknown_var_9772_ptr);
+      FUN_18062dee0(&process_info, data_ptr, &processed_var_9772_ptr);
       path_data[0] = 0;
       path_data[1] = 0;
       path_data[2] = 0;

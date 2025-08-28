@@ -155,8 +155,8 @@ void FUN_18057c8c0(int64_t param_1,int32_t *param_2,uint64_t param_3)
   *(int16_t *)(param_1 + 0x2588) = *(int16_t *)((int64_t)param_2 + 0xaa);
   lVar20 = (int64_t)*(int *)(param_1 + 0xac) * 0xe0 + render_system_config;
   plStack_210 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x40,8,3);
-  *plStack_210 = (int64_t)&unknown_var_1864_ptr;
-  *plStack_210 = (int64_t)&unknown_var_2120_ptr;
+  *plStack_210 = (int64_t)&ui_system_data_1864_ptr;
+  *plStack_210 = (int64_t)&rendering_buffer_2120_ptr;
   plStack_210[1] = 0;
   plStack_210[2] = 0;
   plStack_210[3] = 0;
@@ -175,7 +175,7 @@ void FUN_18057c8c0(int64_t param_1,int32_t *param_2,uint64_t param_3)
     *(float *)((int64_t)plStack_210 + 0x24) = fVar1 - fVar2;
   }
   puVar13 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xc88,8,3);
-  *puVar13 = &unknown_var_1984_ptr;
+  *puVar13 = &ui_system_data_1984_ptr;
   puVar13[3] = 0;
   puVar11 = puVar13 + 9;
   lVar19 = 6;

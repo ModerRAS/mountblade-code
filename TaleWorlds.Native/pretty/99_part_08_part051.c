@@ -607,7 +607,7 @@ void FUN_1805ac830(int64_t *param_1,int64_t *param_2,char param_3,uint64_t param
           plVar2 = *(int64_t **)(lVar16 + lVar21);
           iVar11 = (**(code **)(*plVar2 + 0x98))(plVar2);
           if (iVar11 == 0) {
-            if (*(code **)(*plVar2 + 0x158) == (code *)&unknown_var_2528_ptr) {
+            if (*(code **)(*plVar2 + 0x158) == (code *)&rendering_buffer_2528_ptr) {
               pfVar15 = (float *)(plVar2 + 0x66);
             }
             else {

@@ -206,7 +206,7 @@ void FUN_18019fc79(int64_t param_1,int64_t param_2)
               plVar1 = *(int64_t **)(lVar21 + uVar27);
               iVar22 = (**(code **)(*plVar1 + 0x98))(plVar1);
               if ((iVar22 == 0) && ((int)plVar1[0x42] != 0)) {
-                if (*(code **)(*plVar1 + 0x158) == (code *)&unknown_var_2528_ptr) {
+                if (*(code **)(*plVar1 + 0x158) == (code *)&rendering_buffer_2528_ptr) {
                   pfVar19 = (float *)(plVar1 + 0x66);
                 }
                 else {

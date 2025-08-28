@@ -32,7 +32,7 @@ uint64_t * FUN_18029aa70(uint64_t *param_1)
   int64_t lVar2;
   uint64_t *puVar3;
   
-  *param_1 = &unknown_var_928_ptr;
+  *param_1 = &processed_var_928_ptr;
   param_1[0x2ef] = 0;
   param_1[0x2f2] = 0;
   param_1[0x2f3] = 0;
@@ -102,7 +102,7 @@ FUN_18029ac70(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_928_ptr;
+  *param_1 = &processed_var_928_ptr;
   if ((int64_t *)param_1[0x1049] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x1049] + 0x38))();
   }
@@ -127,7 +127,7 @@ void FUN_18029ace0(uint64_t *param_1)
   int64_t lVar4;
   uint64_t uVar5;
   
-  *param_1 = &unknown_var_928_ptr;
+  *param_1 = &processed_var_928_ptr;
   if ((int64_t *)param_1[0x1049] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x1049] + 0x38))();
   }
@@ -266,7 +266,7 @@ void FUN_18029ae20(int64_t *param_1)
     (**(code **)(*param_1 + 0xb0))(param_1,iVar3,iVar3,0x33);
     iVar3 = iVar3 + 1;
   } while (iVar3 < 9);
-  if ((void *)*param_1 == &unknown_var_2024_ptr) {
+  if ((void *)*param_1 == &rendering_buffer_2024_ptr) {
     plVar2 = param_1 + 0x1147;
     plVar5 = param_1 + 0x1087;
     do {
@@ -372,7 +372,7 @@ void FUN_18029ae29(int64_t *param_1)
     uVar3 = (int)uVar4 + 1;
     uVar4 = (uint64_t)uVar3;
   } while ((int)uVar3 < 9);
-  if ((void *)*param_1 == &unknown_var_2024_ptr) {
+  if ((void *)*param_1 == &rendering_buffer_2024_ptr) {
     uVar4 = unaff_RBP & 0xffffffff;
     plVar2 = param_1 + 0x1147;
     puVar5 = (uint64_t *)(param_1 + 0x1087);
@@ -754,7 +754,7 @@ void FUN_18029b1d0(int64_t *param_1,uint64_t param_2,int32_t param_3,int64_t *pa
   }
   else {
     ppuStack_148 = &puStack_128;
-    puStack_128 = &unknown_var_3432_ptr;
+    puStack_128 = &memory_allocator_3432_ptr;
     puStack_120 = auStack_110;
     uStack_118 = 0;
     auStack_110[0] = 0;
@@ -764,7 +764,7 @@ void FUN_18029b1d0(int64_t *param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     uStack_88 = param_2;
     uStack_80 = param_3;
     plStack_68 = param_4;
-    if (*(code **)(*param_4 + 0x28) == (code *)&unknown_var_3248_ptr) {
+    if (*(code **)(*param_4 + 0x28) == (code *)&memory_allocator_3248_ptr) {
       LOCK();
       *(int *)(param_4 + 1) = (int)param_4[1] + 1;
       UNLOCK();
@@ -835,7 +835,7 @@ void FUN_18029b390(int64_t *param_1,uint64_t param_2,int64_t *param_3)
   }
   else {
     ppuStack_128 = &puStack_108;
-    puStack_108 = &unknown_var_3432_ptr;
+    puStack_108 = &memory_allocator_3432_ptr;
     puStack_100 = auStack_f0;
     uStack_f8 = 0;
     auStack_f0[0] = 0;
@@ -843,7 +843,7 @@ void FUN_18029b390(int64_t *param_1,uint64_t param_2,int64_t *param_3)
     uStack_58 = *(int32_t *)((int64_t)param_3 + 0x1c);
     uStack_68 = param_2;
     plStack_60 = param_3;
-    if (*(code **)(*param_3 + 0x28) == (code *)&unknown_var_3248_ptr) {
+    if (*(code **)(*param_3 + 0x28) == (code *)&memory_allocator_3248_ptr) {
       LOCK();
       *(int *)(param_3 + 1) = (int)param_3[1] + 1;
       UNLOCK();

@@ -291,10 +291,10 @@ extern void* system_ptr_9218;                 // 系统指针9218
 extern void* system_buffer_ptr;               // 系统缓冲区指针
 extern void* system_data_buffer_ptr;          // 系统数据缓冲区指针
 extern void* system_state_ptr;                // 系统状态指针
-extern void* unknown_var_2320_ptr;             // 未知变量2320指针
-extern void* unknown_var_2332_ptr;             // 未知变量2332指针
-extern void* unknown_var_2340_ptr;             // 未知变量2340指针
-extern void* unknown_var_2352_ptr;             // 未知变量2352指针
+extern void* rendering_buffer_2320_ptr;             // 未知变量2320指针
+extern void* rendering_buffer_2332_ptr;             // 未知变量2332指针
+extern void* rendering_buffer_2340_ptr;             // 未知变量2340指针
+extern void* rendering_buffer_2352_ptr;             // 未知变量2352指针
 
 /** 系统配置全局变量 */
 extern int32_t core_system_config_memory;     // 核心系统配置内存
@@ -991,7 +991,7 @@ int8_t SystemMessageProcessor(uint64_t param_1, int64_t param_2, uint64_t param_
   uVar4 = (uint)*(ushort *)(param_2 + 0x32e);
   
   // 调用消息处理函数
-  SystemCore_CacheManager0(&unknown_var_2320_ptr, puVar3, uVar2, *(int16_t *)(param_2 + 0x32c), uVar4);
+  SystemCore_CacheManager0(&rendering_buffer_2320_ptr, puVar3, uVar2, *(int16_t *)(param_2 + 0x32c), uVar4);
   
   // 初始化数据处理栈变量
   uStack_40 = 0x3f8000003f800000;  // 双精度浮点1.0
@@ -1214,7 +1214,7 @@ void DataProcessingAndSortingFunction(uint64_t param_1, uint64_t param_2, int64_
     pcVar9 = pcVar10 + 1;
   } while (*pcVar9 != '\0');
   
-  *puVar8 = &unknown_var_2340_ptr;
+  *puVar8 = &rendering_buffer_2340_ptr;
   puVar8[2] = pcVar10 + -0x180a01603;
   
   // 设置缓冲区指针
@@ -1224,8 +1224,8 @@ void DataProcessingAndSortingFunction(uint64_t param_1, uint64_t param_2, int64_
   }
   
   // 调用数据处理函数
-  SystemAllocationProcessor(param_3, puVar8, &unknown_var_2332_ptr, puVar19);
-  FUN_180630e10(param_3, puVar8, &unknown_var_2352_ptr, *(double *)(param_5 + 0x40) * 1000.0);
+  SystemAllocationProcessor(param_3, puVar8, &rendering_buffer_2332_ptr, puVar19);
+  FUN_180630e10(param_3, puVar8, &rendering_buffer_2352_ptr, *(double *)(param_5 + 0x40) * 1000.0);
   
   // 递归处理数据
   uVar17 = uVar15;

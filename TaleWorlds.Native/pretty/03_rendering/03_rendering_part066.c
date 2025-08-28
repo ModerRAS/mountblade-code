@@ -888,7 +888,7 @@ void rendering_system_remove_render_object(int64_t *render_object, char removal_
         
         object_manager = render_object[0xd9];
         if (object_manager != 0) {
-            cleanup_handle = FUN_18062b1e0(system_memory_pool_ptr, 0xe0, 8, 3, cleanup_handle, &stack_object);
+            cleanup_handle = CoreSystem_LoggingManager0(system_memory_pool_ptr, 0xe0, 8, 3, cleanup_handle, &stack_object);
             stack_pointer = &global_state_5280_ptr;
             cleanup_callback = FUN_180304860;
             cleanup_buffer[0] = object_manager;

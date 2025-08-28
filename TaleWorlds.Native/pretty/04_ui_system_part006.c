@@ -593,11 +593,11 @@ UISystem_StringCopier(uint64_t source_string, uint64_t *target_ptr, uint64_t ope
   *target_ptr = &system_state_ptr;
   target_ptr[1] = 0;
   *(int32_t *)(target_ptr + 2) = 0;
-  *target_ptr = &unknown_var_3432_ptr;
+  *target_ptr = &memory_allocator_3432_ptr;
   target_ptr[1] = target_ptr + 3;
   *(int8_t *)(target_ptr + 3) = 0;
   *(int32_t *)(target_ptr + 2) = 0x17;
-  strcpy_s(target_ptr[1],STRING_BUFFER_SIZE,&unknown_var_1640_ptr,validation_flag,0,0xfffffffffffffffe);
+  strcpy_s(target_ptr[1],STRING_BUFFER_SIZE,&ui_system_data_1640_ptr,validation_flag,0,0xfffffffffffffffe);
   return target_ptr;
 }
 
@@ -623,11 +623,11 @@ UISystem_StringProcessor(uint64_t source_string, uint64_t *target_ptr, uint64_t 
   *target_ptr = &system_state_ptr;
   target_ptr[1] = 0;
   *(int32_t *)(target_ptr + 2) = 0;
-  *target_ptr = &unknown_var_3432_ptr;
+  *target_ptr = &memory_allocator_3432_ptr;
   target_ptr[1] = target_ptr + 3;
   *(int8_t *)(target_ptr + 3) = 0;
   *(int32_t *)(target_ptr + 2) = 0x11;
-  strcpy_s(target_ptr[1],STRING_BUFFER_SIZE,&unknown_var_1664_ptr,validation_flag,0,0xfffffffffffffffe);
+  strcpy_s(target_ptr[1],STRING_BUFFER_SIZE,&ui_system_data_1664_ptr,validation_flag,0,0xfffffffffffffffe);
   return target_ptr;
 }
 
@@ -1069,7 +1069,7 @@ void UISystem_ResourceManager(uint64_t *resource_context)
   context_array = context_buffer;
   context_buffer[0] = context_buffer[0] & 0xffffffffffffff00;
   context_size = 6;
-  strcpy_s(context_buffer,0x10,&unknown_var_2588_ptr);
+  strcpy_s(context_buffer,0x10,&rendering_buffer_2588_ptr);
   buffer_flag = 1;
   SystemCore_EncryptionEngine0(&data_buffer,&context_ptr);
   buffer_flag = 0;

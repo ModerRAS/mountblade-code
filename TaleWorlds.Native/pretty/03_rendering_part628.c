@@ -62,7 +62,7 @@ void FUN_18061c7a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   }
   uStack_268 = 0;
   puVar1 = *(void **)*render_system_data_memory;
-  if (puVar1 == &unknown_var_424_ptr) {
+  if (puVar1 == &processed_var_424_ptr) {
     cVar8 = *(int *)(render_system_data_memory + 0xc40) != 0;
   }
   else {
@@ -70,7 +70,7 @@ void FUN_18061c7a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   }
   if (cVar8 == '\0') {
     (**(code **)(*(int64_t *)render_system_data_memory[1] + 0x18))
-              ((int64_t *)render_system_data_memory[1],&puStack_278,&unknown_var_7484_ptr);
+              ((int64_t *)render_system_data_memory[1],&puStack_278,&processed_var_7484_ptr);
   }
   puStack_278 = &system_data_buffer_ptr;
   if (puStack_270 != (int8_t *)0x0) {
@@ -108,7 +108,7 @@ void FUN_18061c990(int64_t param_1,int param_2,uint64_t param_3)
     SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_248);
   }
   uStack_228 = param_3;
-  FUN_180626eb0(auStack_218,0x200,&unknown_var_1912_ptr,param_2);
+  FUN_180626eb0(auStack_218,0x200,&ui_system_data_1912_ptr,param_2);
   FUN_18061c7a0(auStack_218);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_248);
@@ -133,7 +133,7 @@ void FUN_18061ca10(int64_t param_1,int param_2)
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_238);
   }
-  FUN_180626eb0(auStack_218,0x200,&unknown_var_1872_ptr,param_2);
+  FUN_180626eb0(auStack_218,0x200,&ui_system_data_1872_ptr,param_2);
   FUN_18061c7a0(auStack_218);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_238);
@@ -174,7 +174,7 @@ LAB_18061cadc:
     }
   }
   iStack_228 = iVar2;
-  FUN_180626eb0(auStack_218,0x200,&unknown_var_2000_ptr,param_1);
+  FUN_180626eb0(auStack_218,0x200,&rendering_buffer_2000_ptr,param_1);
   FUN_18061c7a0(auStack_218);
 LAB_18061cb49:
                     // WARNING: Subroutine does not return
@@ -186,7 +186,7 @@ LAB_18061cb49:
 uint64_t * FUN_18061cb70(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_2432_ptr;
+  *param_1 = &rendering_buffer_2432_ptr;
   param_1[1] = 0;
   param_1[2] = 0;
   param_1[3] = 0;
@@ -551,7 +551,7 @@ void FUN_18061cd80(uint64_t *param_1)
   int64_t lVar2;
   uint64_t uVar3;
   
-  *param_1 = &unknown_var_2432_ptr;
+  *param_1 = &rendering_buffer_2432_ptr;
   uVar3 = 0;
   plVar1 = param_1 + 2;
   lVar2 = *plVar1;
@@ -593,9 +593,9 @@ uint64_t FUN_18061ce30(uint64_t param_1,uint64_t param_2)
 uint64_t * FUN_18061ce90(uint64_t *param_1,uint param_2)
 
 {
-  *param_1 = &unknown_var_2488_ptr;
+  *param_1 = &rendering_buffer_2488_ptr;
   SystemDataValidator(param_1 + 1,0x38,2,FUN_18061cd80,0xfffffffffffffffe);
-  *param_1 = &unknown_var_3672_ptr;
+  *param_1 = &memory_allocator_3672_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x80);
   }
@@ -607,10 +607,10 @@ uint64_t * FUN_18061ce90(uint64_t *param_1,uint param_2)
 uint64_t * FUN_18061cf30(uint64_t *param_1,uint param_2)
 
 {
-  *param_1 = &unknown_var_2376_ptr;
+  *param_1 = &rendering_buffer_2376_ptr;
   SystemDataValidator(param_1 + 8,0x38,2,FUN_18061cd80,0xfffffffffffffffe);
   FUN_18061cd80(param_1 + 1);
-  *param_1 = &unknown_var_2456_ptr;
+  *param_1 = &rendering_buffer_2456_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0xb8);
   }
@@ -831,7 +831,7 @@ uint64_t *
 FUN_18061d170(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_4848_ptr;
+  *param_1 = &processed_var_4848_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x38,param_3,param_4,0xfffffffffffffffe);
   }

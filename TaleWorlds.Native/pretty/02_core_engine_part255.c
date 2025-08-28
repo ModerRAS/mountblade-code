@@ -34,11 +34,11 @@ void FUN_18021fbb0(int64_t param_1)
   
   uStack_f0 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_168;
-  puStack_e8 = &unknown_var_3480_ptr;
+  puStack_e8 = &memory_allocator_3480_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 9;
-  strcpy_s(auStack_d0,0x40,&unknown_var_4328_ptr);
+  strcpy_s(auStack_d0,0x40,&processed_var_4328_ptr);
   uStack_110 = 1;
   uStack_118 = 0;
   uStack_120 = 0;
@@ -59,11 +59,11 @@ void FUN_18021fbb0(int64_t param_1)
     (**(code **)(*plStack_f8 + 0x38))();
   }
   puStack_e8 = &system_state_ptr;
-  puStack_88 = &unknown_var_3480_ptr;
+  puStack_88 = &memory_allocator_3480_ptr;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 0xd;
-  strcpy_s(auStack_70,0x40,&unknown_var_4400_ptr);
+  strcpy_s(auStack_70,0x40,&processed_var_4400_ptr);
   uStack_110 = 1;
   uStack_118 = 0;
   uStack_120 = 0;
@@ -84,11 +84,11 @@ void FUN_18021fbb0(int64_t param_1)
     (**(code **)(*plStack_108 + 0x38))();
   }
   puStack_88 = &system_state_ptr;
-  puStack_e8 = &unknown_var_3480_ptr;
+  puStack_e8 = &memory_allocator_3480_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 0x14;
-  strcpy_s(auStack_d0,0x40,&unknown_var_4416_ptr);
+  strcpy_s(auStack_d0,0x40,&processed_var_4416_ptr);
   uStack_110 = 1;
   uStack_118 = 0;
   uStack_120 = 0;
@@ -109,11 +109,11 @@ void FUN_18021fbb0(int64_t param_1)
     (**(code **)(*plStack_100 + 0x38))();
   }
   puStack_e8 = &system_state_ptr;
-  puStack_88 = &unknown_var_3480_ptr;
+  puStack_88 = &memory_allocator_3480_ptr;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 0x1c;
-  strcpy_s(auStack_70,0x40,&unknown_var_4344_ptr);
+  strcpy_s(auStack_70,0x40,&processed_var_4344_ptr);
   uStack_110 = 1;
   uStack_118 = 0;
   uStack_120 = 0;
@@ -134,11 +134,11 @@ void FUN_18021fbb0(int64_t param_1)
     (**(code **)(*plStack_f8 + 0x38))();
   }
   puStack_88 = &system_state_ptr;
-  puStack_e8 = &unknown_var_3480_ptr;
+  puStack_e8 = &memory_allocator_3480_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 0x10;
-  strcpy_s(auStack_d0,0x40,&unknown_var_4376_ptr);
+  strcpy_s(auStack_d0,0x40,&processed_var_4376_ptr);
   uStack_110 = 1;
   uStack_118 = 0;
   uStack_120 = 0;
@@ -159,11 +159,11 @@ void FUN_18021fbb0(int64_t param_1)
     (**(code **)(*plStack_100 + 0x38))();
   }
   puStack_e8 = &system_state_ptr;
-  puStack_88 = &unknown_var_3480_ptr;
+  puStack_88 = &memory_allocator_3480_ptr;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 10;
-  strcpy_s(auStack_70,0x40,&unknown_var_4472_ptr);
+  strcpy_s(auStack_70,0x40,&processed_var_4472_ptr);
   uStack_110 = 1;
   uStack_118 = 0;
   uStack_120 = 0;
@@ -184,11 +184,11 @@ void FUN_18021fbb0(int64_t param_1)
     (**(code **)(*plStack_f8 + 0x38))();
   }
   puStack_88 = &system_state_ptr;
-  puStack_e8 = &unknown_var_3480_ptr;
+  puStack_e8 = &memory_allocator_3480_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 0xf;
-  strcpy_s(auStack_d0,0x40,&unknown_var_4488_ptr);
+  strcpy_s(auStack_d0,0x40,&processed_var_4488_ptr);
   uStack_110 = 1;
   uStack_118 = 0;
   uStack_120 = 0;
@@ -209,11 +209,11 @@ void FUN_18021fbb0(int64_t param_1)
     (**(code **)(*plStack_100 + 0x38))();
   }
   puStack_e8 = &system_state_ptr;
-  puStack_88 = &unknown_var_3480_ptr;
+  puStack_88 = &memory_allocator_3480_ptr;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 0xb;
-  strcpy_s(auStack_70,0x40,&unknown_var_4440_ptr);
+  strcpy_s(auStack_70,0x40,&processed_var_4440_ptr);
   uStack_110 = 1;
   uStack_118 = 0;
   uStack_120 = 0;
@@ -234,11 +234,11 @@ void FUN_18021fbb0(int64_t param_1)
     (**(code **)(*plStack_f8 + 0x38))();
   }
   puStack_88 = &system_state_ptr;
-  puStack_e8 = &unknown_var_3480_ptr;
+  puStack_e8 = &memory_allocator_3480_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 0xe;
-  strcpy_s(auStack_d0,0x40,&unknown_var_4456_ptr);
+  strcpy_s(auStack_d0,0x40,&processed_var_4456_ptr);
   uStack_110 = 1;
   uStack_118 = 0;
   uStack_120 = 0;
@@ -259,11 +259,11 @@ void FUN_18021fbb0(int64_t param_1)
     (**(code **)(*plStack_100 + 0x38))();
   }
   puStack_e8 = &system_state_ptr;
-  puStack_88 = &unknown_var_3480_ptr;
+  puStack_88 = &memory_allocator_3480_ptr;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 9;
-  strcpy_s(auStack_70,0x40,&unknown_var_4560_ptr);
+  strcpy_s(auStack_70,0x40,&processed_var_4560_ptr);
   uStack_110 = 1;
   uStack_118 = 0;
   uStack_120 = 0;
@@ -284,11 +284,11 @@ void FUN_18021fbb0(int64_t param_1)
     (**(code **)(*plStack_f8 + 0x38))();
   }
   puStack_88 = &system_state_ptr;
-  puStack_e8 = &unknown_var_3480_ptr;
+  puStack_e8 = &memory_allocator_3480_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 0x16;
-  strcpy_s(auStack_d0,0x40,&unknown_var_4576_ptr);
+  strcpy_s(auStack_d0,0x40,&processed_var_4576_ptr);
   uStack_110 = 1;
   uStack_118 = 0;
   uStack_120 = 0;
@@ -309,11 +309,11 @@ void FUN_18021fbb0(int64_t param_1)
     (**(code **)(*plStack_100 + 0x38))();
   }
   puStack_e8 = &system_state_ptr;
-  puStack_88 = &unknown_var_3480_ptr;
+  puStack_88 = &memory_allocator_3480_ptr;
   puStack_80 = auStack_70;
   auStack_70[0] = 0;
   uStack_78 = 0x14;
-  strcpy_s(auStack_70,0x40,&unknown_var_4504_ptr);
+  strcpy_s(auStack_70,0x40,&processed_var_4504_ptr);
   uStack_110 = 1;
   uStack_118 = 0;
   uStack_120 = 0;
@@ -334,11 +334,11 @@ void FUN_18021fbb0(int64_t param_1)
     (**(code **)(*plStack_f8 + 0x38))();
   }
   puStack_88 = &system_state_ptr;
-  puStack_e8 = &unknown_var_3480_ptr;
+  puStack_e8 = &memory_allocator_3480_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = 0x1a;
-  strcpy_s(auStack_d0,0x40,&unknown_var_4528_ptr);
+  strcpy_s(auStack_d0,0x40,&processed_var_4528_ptr);
   uStack_110 = 1;
   uStack_118 = 0;
   uStack_120 = 0;

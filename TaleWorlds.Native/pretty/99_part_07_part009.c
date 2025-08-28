@@ -591,11 +591,11 @@ void FUN_1804a3270(void)
   }
   uVar2 = SYSTEM_DATA_MANAGER_A;
   SYSTEM_DATA_MANAGER_A = *puVar1;
-  cVar3 = FUN_1801299b0(&unknown_var_1664_ptr,0,0,in_R9,uVar5);
+  cVar3 = FUN_1801299b0(&ui_system_data_1664_ptr,0,0,in_R9,uVar5);
   if (cVar3 != '\0') {
-    FUN_180111070(&unknown_var_1688_ptr,&system_data_8f1a);
-    FUN_180111070(&unknown_var_1840_ptr,0x180d48f19);
-    FUN_180111070(&unknown_var_1864_ptr,0x180d48f18);
+    FUN_180111070(&ui_system_data_1688_ptr,&system_data_8f1a);
+    FUN_180111070(&ui_system_data_1840_ptr,0x180d48f19);
+    FUN_180111070(&ui_system_data_1864_ptr,0x180d48f18);
     FUN_18012cfe0();
   }
   if (system_data_8f1a != '\0') {
@@ -647,14 +647,14 @@ void FUN_1804a33c0(void)
   if (system_system_ui != (code *)0x0) {
     (*system_system_ui)(&system_data_17c0,0,0);
   }
-  system_system_ui = (code *)&unknown_var_4976_ptr;
+  system_system_ui = (code *)&processed_var_4976_ptr;
   system_system_ui = FUN_1804a5e90;
   system_system_ui = FUN_180546d20;
   if (system_system_ui != (code *)0x0) {
     (*system_system_ui)(&system_data_18c0,0,0);
   }
-  system_system_ui = (code *)&unknown_var_4752_ptr;
-  system_system_ui = &unknown_var_6016_ptr;
+  system_system_ui = (code *)&processed_var_4752_ptr;
+  system_system_ui = &processed_var_6016_ptr;
   system_system_ui = FUN_180546f70;
   return;
 }

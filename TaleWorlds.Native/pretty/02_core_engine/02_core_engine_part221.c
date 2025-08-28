@@ -16,7 +16,7 @@
 #include "TaleWorlds.Native.Split.h"
 
 /* 全局变量和常量 */
-#define GLOBAL_ENGINE_VTABLE_1 (&unknown_var_7040_ptr)
+#define GLOBAL_ENGINE_VTABLE_1 (&processed_var_7040_ptr)
 #define GLOBAL_ENGINE_VTABLE_2 (&system_handler2_ptr)
 #define GLOBAL_ENGINE_VTABLE_3 (&system_handler1_ptr)
 #define GLOBAL_EVENT_SYSTEM_HANDLE (core_system_data_string)
@@ -764,24 +764,24 @@ SCENE_INITIALIZED:
     if (*(float *)(scene_context + 0x3140) <= 0.1) {
         // 创建简单实体
         entity_list = (int64_t *)CoreEngineMemoryPoolReallocator(GLOBAL_MEMORY_ALLOCATOR, 0x10, 8, 3);
-        *entity_list = (int64_t)&unknown_var_6232_ptr;
+        *entity_list = (int64_t)&processed_var_6232_ptr;
         entity_list[1] = scene_context;
     }
     else if (*(int *)(scene_context + 0x3054) == 2) {
         // 创建中等复杂度实体
         entity_list = (int64_t *)CoreEngineMemoryPoolReallocator(GLOBAL_MEMORY_ALLOCATOR, 0x20, 8, 3);
-        *entity_list = (int64_t)&unknown_var_6232_ptr;
+        *entity_list = (int64_t)&processed_var_6232_ptr;
         entity_list[1] = scene_context;
-        *entity_list = (int64_t)&unknown_var_6136_ptr;
+        *entity_list = (int64_t)&processed_var_6136_ptr;
         entity_list[2] = 0;
         entity_list[3] = 0;
     }
     else {
         // 创建复杂实体
         entity_list = (int64_t *)CoreEngineMemoryPoolReallocator(GLOBAL_MEMORY_ALLOCATOR, 0x70, 8, 3);
-        *entity_list = (int64_t)&unknown_var_6232_ptr;
+        *entity_list = (int64_t)&processed_var_6232_ptr;
         entity_list[1] = scene_context;
-        *entity_list = (int64_t)&unknown_var_6184_ptr;
+        *entity_list = (int64_t)&processed_var_6184_ptr;
         entity_list[2] = 0;
         entity_list[3] = 0;
         entity_list[4] = 0;
@@ -829,7 +829,7 @@ int64_t *create_game_entity(uint64_t entity_type, int64_t *entity_output, int8_t
     
     // 检查实体创建是否成功
     if (*entity_output == 0) {
-        FUN_180626ee0(&unknown_var_2272_ptr);  // 触发实体创建错误
+        FUN_180626ee0(&rendering_buffer_2272_ptr);  // 触发实体创建错误
     }
     
     // 获取实体引用并初始化
@@ -993,12 +993,12 @@ uint64_t update_entity_status(int64_t world_context, int64_t *entity_ptr, int8_t
     update_result = 0xfffffffffffffffe;
     
     // 检查实体属性
-    entity_property = FUN_1802eee20(*entity_ptr, &unknown_var_6976_ptr);
+    entity_property = FUN_1802eee20(*entity_ptr, &processed_var_6976_ptr);
     if (entity_property != '\0') {
         *(int16_t *)(world_context + 0x5c40) = 0x101;
     }
     
-    entity_property = FUN_1802eee20(*entity_ptr, &unknown_var_7008_ptr);
+    entity_property = FUN_1802eee20(*entity_ptr, &processed_var_7008_ptr);
     if (entity_property != '\0') {
         *(int8_t *)(world_context + 0x5bf0) = 1;
         *(int8_t *)(world_context + 0x5c42) = 1;
@@ -1025,7 +1025,7 @@ uint64_t update_entity_status(int64_t world_context, int64_t *entity_ptr, int8_t
                     if (*(void **)(world_entity + 0x290) != (void *)0x0) {
                         property_vtable = *(void **)(world_entity + 0x290);
                     }
-                    property_list = (int64_t *)SystemDataInitializer(&unknown_var_2304_ptr, property_vtable);
+                    property_list = (int64_t *)SystemDataInitializer(&rendering_buffer_2304_ptr, property_vtable);
                 }
                 
                 if ((int64_t *)*entity_ptr != (int64_t *)0x0) {

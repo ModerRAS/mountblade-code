@@ -285,7 +285,7 @@ void FUN_18027f510(int64_t param_1,int64_t *param_2)
               puStack_190[2] = 0x6873656d;
               puStack_190[3] = 0x5f7365;
               uStack_188 = 0xf;
-              System_DataHandler(&puStack_198,&unknown_var_4576_ptr,iVar15);
+              System_DataHandler(&puStack_198,&processed_var_4576_ptr,iVar15);
               puVar16 = (int32_t *)&system_buffer_ptr;
               if (puStack_190 != (int32_t *)0x0) {
                 puVar16 = puStack_190;

@@ -96,7 +96,7 @@ uint64_t * FUN_1801954d0(uint64_t *param_1,int64_t param_2)
   *param_1 = &system_handler2_ptr;
   uVar9 = 0;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &unknown_var_7040_ptr;
+  *param_1 = &processed_var_7040_ptr;
   param_1[8] = 0;
   *(int16_t *)(param_1 + 3) = 0x100;
   *(int8_t *)((int64_t)param_1 + 0x1a) = 0;
@@ -360,7 +360,7 @@ uint64_t * FUN_1801954d0(uint64_t *param_1,int64_t param_2)
     UNLOCK();
     uVar8 = uVar8 + 1;
   } while (uVar8 < 8);
-  DataStructureManager(param_1 + 0x7f7,0x908,2,&unknown_var_1248_ptr,FUN_1800e7d00);
+  DataStructureManager(param_1 + 0x7f7,0x908,2,&ui_system_data_1248_ptr,FUN_1800e7d00);
   *(int32_t *)(param_1 + 0xa39) = 0;
   LOCK();
   *(int32_t *)(param_1 + 0xa3a) = 0;
@@ -669,7 +669,7 @@ uint64_t * FUN_1801954d0(uint64_t *param_1,int64_t param_2)
   *(uint64_t *)((int64_t)param_1 + 0x3eb4) = 0;
   *(uint64_t *)((int64_t)param_1 + 0x3ebc) = 0;
   *(int32_t *)((int64_t)param_1 + 0x3ec4) = 0xc2c80000;
-  (**(code **)(param_1[0x7da] + 0x10))(param_1 + 0x7da,&unknown_var_2256_ptr);
+  (**(code **)(param_1[0x7da] + 0x10))(param_1 + 0x7da,&rendering_buffer_2256_ptr);
   *(int8_t *)((int64_t)param_1 + 0x561) = 0;
   *(int16_t *)(param_1 + 0x9f) = 0x101;
   *(int8_t *)((int64_t)param_1 + 0x314) = 1;
@@ -788,7 +788,7 @@ uint64_t * FUN_1801954d0(uint64_t *param_1,int64_t param_2)
   if (plStack_190 != (int64_t *)0x0) {
     uVar4 = (**(code **)(*plStack_190 + 0x38))();
   }
-  uVar5 = FUN_180095000(uVar4,&plStack_100,&unknown_var_2232_ptr,0);
+  uVar5 = FUN_180095000(uVar4,&plStack_100,&rendering_buffer_2232_ptr,0);
   FUN_180076910(plVar7,uVar5);
   if (plStack_100 != (int64_t *)0x0) {
     (**(code **)(*plStack_100 + 0x38))();

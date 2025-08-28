@@ -171,7 +171,7 @@ uint64_t render_system_resource_status_checker(int64_t resource_context)
   char status_flag;
   
   resource_ptr = *(int64_t **)(resource_context + 0x48);
-  if (*(code **)(*resource_ptr + 0xc0) == (code *)&unknown_var_9120_ptr) {
+  if (*(code **)(*resource_ptr + 0xc0) == (code *)&processed_var_9120_ptr) {
     status_flag = (resource_ptr[8] - resource_ptr[7] & 0xfffffffffffffff0U) == 0;
   }
   else {
@@ -230,12 +230,12 @@ uint64_t * render_system_resource_data_initializer(uint64_t resource_id, uint64_
   *resource_data_context = &system_state_ptr;
   resource_data_context[1] = 0;
   *(int32_t *)(resource_data_context + 2) = 0;
-  *resource_data_context = &unknown_var_3432_ptr;
+  *resource_data_context = &memory_allocator_3432_ptr;
   resource_data_context[1] = resource_data_context + 3;
   *(int8_t *)(resource_data_context + 3) = 0;
   *(int32_t *)(resource_data_context + 2) = 0x15;
   // 复制资源数据字符串
-  strcpy_s(resource_data_context[1], 0x80, &unknown_var_4936_ptr, resource_options, 0, 0xfffffffffffffffe);
+  strcpy_s(resource_data_context[1], 0x80, &processed_var_4936_ptr, resource_options, 0, 0xfffffffffffffffe);
   return resource_data_context;
 }
 
@@ -267,7 +267,7 @@ uint64_t * render_system_advanced_resource_manager(uint64_t *resource_context)
   
   // 初始化资源管理器
   FUN_180244190();
-  *resource_context = &unknown_var_5008_ptr;
+  *resource_context = &processed_var_5008_ptr;
   resource_context[0x1e] = &system_state_ptr;
   temp_ptr5 = (uint64_t *)0x0;
   resource_context[0x1f] = 0;
@@ -395,7 +395,7 @@ void render_system_resource_cleaner(uint64_t *resource_context)
   uint64_t iteration_count;
   
   // 重置资源上下文
-  *resource_context = &unknown_var_5008_ptr;
+  *resource_context = &processed_var_5008_ptr;
   temp_counter = 0;
   if (render_system_data_buffer != 0) {
     temp_ptr1 = *(uint64_t **)(render_system_data_buffer + 0x20);
@@ -494,7 +494,7 @@ void render_system_resource_cleaner(uint64_t *resource_context)
   resource_context[0x1f] = 0;
   *(int32_t *)(resource_context + 0x21) = 0;
   resource_context[0x1e] = &system_state_ptr;
-  *resource_context = &unknown_var_9896_ptr;
+  *resource_context = &processed_var_9896_ptr;
   resource_context[0x15] = &system_data_buffer_ptr;
   if (resource_context[0x16] != 0) {
     // 释放资源
@@ -547,7 +547,7 @@ uint64_t render_system_render_object_creator(int64_t render_context)
   // 分配渲染对象内存
   render_obj = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr, 200, 8, 3, 0xfffffffffffffffe);
   FUN_180049830(render_obj);
-  *render_obj = (int64_t)&unknown_var_5304_ptr;
+  *render_obj = (int64_t)&processed_var_5304_ptr;
   render_obj[0x18] = render_context;
   stack_ptr8 = render_obj;
   // 初始化渲染对象

@@ -104,7 +104,7 @@ void process_system_resources(uint64_t param_1, int8_t param_2)
       if (string_data_ptr != (int8_t *)0x0) {
         string_buffer_ptr = string_data_ptr;
       }
-      System_DataHandler(&stack_ptr_1, &unknown_var_8076_ptr, string_buffer_ptr, alternate_data_ptr);
+      System_DataHandler(&stack_ptr_1, &processed_var_8076_ptr, string_buffer_ptr, alternate_data_ptr);
       validation_flag = FUN_180624a00(&stack_ptr_1);
       if (validation_flag != '\0') {
         FUN_18008b250(&stack_ptr_1);
@@ -177,7 +177,7 @@ void process_system_resources(uint64_t param_1, int8_t param_2)
       if (string_ptr != (int8_t *)0x0) {
         string_buffer_ptr = string_ptr;
       }
-      System_DataHandler(&buffer_ptr_2, &unknown_var_8076_ptr, string_buffer_ptr, alternate_data_ptr);
+      System_DataHandler(&buffer_ptr_2, &processed_var_8076_ptr, string_buffer_ptr, alternate_data_ptr);
       validation_flag = FUN_180624a00(&buffer_ptr_2);
       if (validation_flag != '\0') {
         resource_manager_ptr = (uint64_t *)*data_array_ptr;
@@ -194,7 +194,7 @@ void process_system_resources(uint64_t param_1, int8_t param_2)
           resource_data_ptr = buffer_ptr_3;
         }
                     // WARNING: Subroutine does not return
-        FUN_180062300(system_message_context, &unknown_var_8208_ptr, resource_data_ptr);
+        FUN_180062300(system_message_context, &processed_var_8208_ptr, resource_data_ptr);
       }
       buffer_ptr_2 = &system_data_buffer_ptr;
       if (buffer_ptr_3 != (void *)0x0) {
@@ -216,7 +216,7 @@ void process_system_resources(uint64_t param_1, int8_t param_2)
     } while (stack_data_2 < total_items);
     if (processing_index != 0) goto LAB_180088ac9;
   }
-  SystemCore_ResourceManager0(&unknown_var_8232_ptr);
+  SystemCore_ResourceManager0(&processed_var_8232_ptr);
 LAB_180088ac9:
   next_item_ptr = (int64_t *)data_array_ptr[0x17];
   if (next_item_ptr != data_array_ptr + 0x16) {
@@ -261,7 +261,7 @@ LAB_180088ac9:
     } while (next_item_ptr != array_base_ptr + 0x16);
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context, &unknown_var_8288_ptr);
+  FUN_180062300(system_message_context, &processed_var_8288_ptr);
 }
 
 
@@ -545,7 +545,7 @@ void batch_process_system_data(void)
       stack_long_1 = 0;
       stack_uint = 0;
       buffer_ptr_ptr = &stack_ptr_2;
-      stack_ptr_2 = &unknown_var_672_ptr;
+      stack_ptr_2 = &processed_var_672_ptr;
       string_ptr = temp_buffer_2;
       buffer_size = 0;
       temp_buffer_2[0] = 0;

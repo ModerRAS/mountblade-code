@@ -407,7 +407,7 @@ void FUN_180091970(uint64_t param_1)
     *(int *)(plVar10 + 0x17) = (int)lVar11;
     *(int32_t *)((int64_t)plVar10 + 0xbc) = uVar3;
     FUN_18024b8d0(lVar20);
-    FUN_180094b30(lVar20,&unknown_var_1744_ptr);
+    FUN_180094b30(lVar20,&ui_system_data_1744_ptr);
     if ((int)(system_operation_state[0x30e] - system_operation_state[0x30d] >> 3) == 0) {
       *(int8_t *)(lVar20 + 0x12c0a) = 1;
     }
@@ -472,12 +472,12 @@ void FUN_180091970(uint64_t param_1)
       uStack_240 = 7;
       uStack_250 = (uint)*(ushort *)(*(int64_t *)(system_message_buffer + 0x121e0) + 0x32c);
       uStack_24c = (uint)*(ushort *)(*(int64_t *)(system_message_buffer + 0x121e0) + 0x32e);
-      puStack_138 = &unknown_var_3480_ptr;
+      puStack_138 = &memory_allocator_3480_ptr;
       puStack_130 = auStack_120;
       auStack_120[0] = 0;
       uStack_128 = 0x12;
-      strcpy_s(auStack_120,0x40,&unknown_var_1792_ptr);
-      puStack_d8 = &unknown_var_3432_ptr;
+      strcpy_s(auStack_120,0x40,&ui_system_data_1792_ptr);
+      puStack_d8 = &memory_allocator_3432_ptr;
       puStack_d0 = auStack_c0;
       auStack_c0[0] = 0;
       uStack_c8 = uStack_128;
@@ -600,8 +600,8 @@ void FUN_180091970(uint64_t param_1)
   }
   uVar12 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
   pplStack_298 = (int64_t **)&uStack_1a0;
-  puStack_190 = &unknown_var_7104_ptr;
-  puStack_188 = &unknown_var_7088_ptr;
+  puStack_190 = &processed_var_7104_ptr;
+  puStack_188 = &processed_var_7088_ptr;
   uStack_1b0._0_4_ = (int32_t)lVar20;
   uStack_1b0._4_4_ = (int32_t)((uint64_t)lVar20 >> 0x20);
   uStack_1a0 = (int32_t)uStack_1b0;
@@ -649,7 +649,7 @@ void FUN_180091970(uint64_t param_1)
   else {
     (**(code **)(**(int64_t **)(system_parameter_buffer + 0x60) + 0x60))();
     plVar13 = *(int64_t **)(system_parameter_buffer + 0x60);
-    if (*(code **)(*plVar13 + 0x70) == (code *)&unknown_var_1280_ptr) {
+    if (*(code **)(*plVar13 + 0x70) == (code *)&ui_system_data_1280_ptr) {
       LOCK();
       *(int8_t *)(plVar13 + 2) = 1;
       UNLOCK();
@@ -664,7 +664,7 @@ void FUN_180091970(uint64_t param_1)
   uVar9 = FUN_1801b5480(system_parameter_buffer + 0xb8);
   if (*(char *)(system_parameter_buffer + 0x12dc) != '\0') {
     pplStack_258 = aplStack_178;
-    puStack_168 = &unknown_var_7056_ptr;
+    puStack_168 = &processed_var_7056_ptr;
     pcStack_160 = _guard_check_icall;
     uVar9 = FUN_18005c650(aplStack_178);
   }

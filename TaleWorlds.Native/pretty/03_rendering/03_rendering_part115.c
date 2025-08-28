@@ -25,7 +25,7 @@
 #define RENDER_OBJECT_SIZE_ADVANCED 0x200
 #define RENDER_OBJECT_SIZE_SPECIAL 0xd8
 #define RENDER_OBJECT_SIZE_ENHANCED 0xf8
-#define RENDER_OBJECT_CHUNK_SIZE 0x1a0
+#define RENDER_OBJECT_CHSYSTEM_SIZE 0x1a0
 
 // 全局变量
 extern void *g_rendering_memory_pool;
@@ -142,11 +142,11 @@ void rendering_system_process_object_data(int64_t object_context, uint64_t opera
   
   // 计算数据块数量
   chunk_offset = data_end >> 0x3f;
-  if (data_end / RENDER_OBJECT_CHUNK_SIZE + chunk_offset != chunk_offset) {
+  if (data_end / RENDER_OBJECT_CHSYSTEM_SIZE + chunk_offset != chunk_offset) {
     chunk_index = 0;
     do {
       buffer_ptr = (int64_t *)data_buffer[1];
-      chunk_offset = chunk_index * RENDER_OBJECT_CHUNK_SIZE + data_start;
+      chunk_offset = chunk_index * RENDER_OBJECT_CHSYSTEM_SIZE + data_start;
       
       // 检查缓冲区容量
       if (buffer_ptr < (int64_t *)data_buffer[2]) {
@@ -184,7 +184,7 @@ void rendering_system_process_object_data(int64_t object_context, uint64_t opera
       data_start = *(int64_t *)(object_context + 0x90);
       buffer_capacity = buffer_capacity + 1;
       chunk_index = (uint64_t)buffer_capacity;
-    } while (chunk_index < (uint64_t)((*(int64_t *)(object_context + 0x98) - data_start) / RENDER_OBJECT_CHUNK_SIZE));
+    } while (chunk_index < (uint64_t)((*(int64_t *)(object_context + 0x98) - data_start) / RENDER_OBJECT_CHSYSTEM_SIZE));
   }
   
   return;
@@ -213,7 +213,7 @@ void rendering_system_batch_process_objects(uint64_t operation_context, uint64_t
   chunk_index = 0;
   do {
     buffer_ptr = (int64_t *)data_buffer[1];
-    object_data = chunk_index * RENDER_OBJECT_CHUNK_SIZE + object_data;
+    object_data = chunk_index * RENDER_OBJECT_CHSYSTEM_SIZE + object_data;
     
     if (buffer_ptr < (int64_t *)data_buffer[2]) {
       data_buffer[1] = (uint64_t)(buffer_ptr + 1);
@@ -252,7 +252,7 @@ void rendering_system_batch_process_objects(uint64_t operation_context, uint64_t
     chunk_index = (uint64_t)buffer_capacity;
     
     // 检查是否完成所有对象处理
-    buffer_size = (int64_t)((*(int64_t *)(operation_context + 0x98) - object_data) / RENDER_OBJECT_CHUNK_SIZE);
+    buffer_size = (int64_t)((*(int64_t *)(operation_context + 0x98) - object_data) / RENDER_OBJECT_CHSYSTEM_SIZE);
     if ((uint64_t)((buffer_size >> 7) - (buffer_size >> 0x3f)) <= chunk_index) {
       return;
     }
@@ -341,26 +341,26 @@ int64_t rendering_system_copy_object_data(int64_t target_object, int64_t source_
   offset2 = *(int64_t *)(source_object + 0x98) - offset1;
   offset3 = offset2 >> 0x3f;
   
-  if (offset2 / RENDER_OBJECT_CHUNK_SIZE + offset3 != offset3) {
+  if (offset2 / RENDER_OBJECT_CHSYSTEM_SIZE + offset3 != offset3) {
     buffer_size = 0;
     do {
       chunk_index = *(uint64_t *)(target_object + 0x98);
-      offset1 = buffer_size * RENDER_OBJECT_CHUNK_SIZE + offset1;
+      offset1 = buffer_size * RENDER_OBJECT_CHSYSTEM_SIZE + offset1;
       
       if (chunk_index < *(uint64_t *)(target_object + 0xa0)) {
-        *(uint64_t *)(target_object + 0x98) = chunk_index + RENDER_OBJECT_CHUNK_SIZE;
+        *(uint64_t *)(target_object + 0x98) = chunk_index + RENDER_OBJECT_CHSYSTEM_SIZE;
         rendering_system_copy_data_chunk(chunk_index, offset1);
       }
       else {
         // 重新分配内存
         offset3 = *(int64_t *)(target_object + 0x90);
-        offset2 = (int64_t)(chunk_index - offset3) / RENDER_OBJECT_CHUNK_SIZE;
+        offset2 = (int64_t)(chunk_index - offset3) / RENDER_OBJECT_CHSYSTEM_SIZE;
         
         if (offset2 == 0) {
           offset2 = 1;
         }
         
-        offset4 = rendering_system_reallocate_memory(g_rendering_memory_pool, offset2 * RENDER_OBJECT_CHUNK_SIZE, *(uint8_t *)(target_object + 0xa8));
+        offset4 = rendering_system_reallocate_memory(g_rendering_memory_pool, offset2 * RENDER_OBJECT_CHSYSTEM_SIZE, *(uint8_t *)(target_object + 0xa8));
         chunk_index = *(uint64_t *)(target_object + 0x98);
         offset3 = *(int64_t *)(target_object + 0x90);
         
@@ -375,7 +375,7 @@ int64_t rendering_system_copy_object_data(int64_t target_object, int64_t source_
         if (offset3 != chunk_index) {
           do {
             rendering_system_free_data_chunk(offset3);
-            offset3 = offset3 + RENDER_OBJECT_CHUNK_SIZE;
+            offset3 = offset3 + RENDER_OBJECT_CHSYSTEM_SIZE;
           } while (offset3 != chunk_index);
           offset3 = *(int64_t *)(target_object + 0x90);
         }
@@ -385,14 +385,14 @@ int64_t rendering_system_copy_object_data(int64_t target_object, int64_t source_
         }
         
         *(int64_t *)(target_object + 0x90) = offset4;
-        *(int64_t *)(target_object + 0x98) = offset5 + RENDER_OBJECT_CHUNK_SIZE;
-        *(int64_t *)(target_object + 0xa0) = offset2 * RENDER_OBJECT_CHUNK_SIZE + offset4;
+        *(int64_t *)(target_object + 0x98) = offset5 + RENDER_OBJECT_CHSYSTEM_SIZE;
+        *(int64_t *)(target_object + 0xa0) = offset2 * RENDER_OBJECT_CHSYSTEM_SIZE + offset4;
       }
       
       offset1 = *(int64_t *)(source_object + 0x90);
       chunk_count = chunk_count + 1;
       buffer_size = (uint64_t)chunk_count;
-    } while (buffer_size < (uint64_t)((*(int64_t *)(source_object + 0x98) - offset1) / RENDER_OBJECT_CHUNK_SIZE));
+    } while (buffer_size < (uint64_t)((*(int64_t *)(source_object + 0x98) - offset1) / RENDER_OBJECT_CHSYSTEM_SIZE));
   }
   
   return target_object;
@@ -420,22 +420,22 @@ void rendering_system_allocate_object_memory(int64_t allocation_context, int64_t
   chunk_index = 0;
   do {
     allocation_size = *(uint64_t *)(allocation_context + 0x98);
-    chunk_offset = chunk_index * RENDER_OBJECT_CHUNK_SIZE + chunk_offset;
+    chunk_offset = chunk_index * RENDER_OBJECT_CHSYSTEM_SIZE + chunk_offset;
     
     if (allocation_size < *(uint64_t *)(allocation_context + 0xa0)) {
-      *(uint64_t *)(allocation_context + 0x98) = allocation_size + RENDER_OBJECT_CHUNK_SIZE;
+      *(uint64_t *)(allocation_context + 0x98) = allocation_size + RENDER_OBJECT_CHSYSTEM_SIZE;
       rendering_system_copy_data_chunk(allocation_size, chunk_offset);
     }
     else {
       buffer_start = *(int64_t *)(allocation_context + 0x90);
-      buffer_size = (int64_t)((int64_t)allocation_size - buffer_start) / RENDER_OBJECT_CHUNK_SIZE;
+      buffer_size = (int64_t)((int64_t)allocation_size - buffer_start) / RENDER_OBJECT_CHSYSTEM_SIZE;
       buffer_size = (buffer_size >> 7) - (buffer_size >> 0x3f);
       
       if (buffer_size == 0) {
         buffer_size = 1;
       }
       
-      new_buffer = rendering_system_reallocate_memory(g_rendering_memory_pool, buffer_size * RENDER_OBJECT_CHUNK_SIZE, *(uint8_t *)(allocation_context + 0xa8));
+      new_buffer = rendering_system_reallocate_memory(g_rendering_memory_pool, buffer_size * RENDER_OBJECT_CHSYSTEM_SIZE, *(uint8_t *)(allocation_context + 0xa8));
       allocation_size = *(uint64_t *)(allocation_context + 0x98);
       buffer_start = *(int64_t *)(allocation_context + 0x90);
       
@@ -451,7 +451,7 @@ void rendering_system_allocate_object_memory(int64_t allocation_context, int64_t
       if (buffer_end != allocation_size) {
         do {
           rendering_system_free_data_chunk(buffer_end);
-          buffer_end = buffer_end + RENDER_OBJECT_CHUNK_SIZE;
+          buffer_end = buffer_end + RENDER_OBJECT_CHSYSTEM_SIZE;
         } while (buffer_end != allocation_size);
         buffer_end = *(int64_t *)(allocation_context + 0x90);
       }
@@ -461,15 +461,15 @@ void rendering_system_allocate_object_memory(int64_t allocation_context, int64_t
       }
       
       *(int64_t *)(allocation_context + 0x90) = new_buffer;
-      *(int64_t *)(allocation_context + 0x98) = buffer_end + RENDER_OBJECT_CHUNK_SIZE;
-      *(int64_t *)(allocation_context + 0xa0) = buffer_size * RENDER_OBJECT_CHUNK_SIZE + new_buffer;
+      *(int64_t *)(allocation_context + 0x98) = buffer_end + RENDER_OBJECT_CHSYSTEM_SIZE;
+      *(int64_t *)(allocation_context + 0xa0) = buffer_size * RENDER_OBJECT_CHSYSTEM_SIZE + new_buffer;
     }
     
     chunk_offset = *(int64_t *)(allocation_context + 0x90);
     allocation_count = allocation_count + 1;
     chunk_index = (uint64_t)allocation_count;
     
-    if ((uint64_t)((*(int64_t *)(allocation_context + 0x98) - chunk_offset) / RENDER_OBJECT_CHUNK_SIZE) <= chunk_index) {
+    if ((uint64_t)((*(int64_t *)(allocation_context + 0x98) - chunk_offset) / RENDER_OBJECT_CHSYSTEM_SIZE) <= chunk_index) {
       return;
     }
   } while( true );

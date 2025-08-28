@@ -49,17 +49,17 @@ LAB_18052a0d7:
       }
       if (bVar3) {
         if (**(int64_t **)(lVar2 + 0xf8) == 0) {
-          puVar8 = &unknown_var_6832_ptr;
+          puVar8 = &processed_var_6832_ptr;
         }
         else {
           plVar7 = (int64_t *)**(int64_t **)(lVar2 + 0xf8);
           if (plVar7 == (int64_t *)0x0) {
-            puVar8 = &unknown_var_6952_ptr;
+            puVar8 = &processed_var_6952_ptr;
           }
           else {
             (**(code **)(*plVar7 + 0x28))(plVar7);
             (**(code **)(*plVar7 + 0x38))(plVar7);
-            puVar8 = &unknown_var_6912_ptr;
+            puVar8 = &processed_var_6912_ptr;
           }
         }
                     // WARNING: Subroutine does not return

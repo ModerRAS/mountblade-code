@@ -92,12 +92,12 @@ void FUN_1801afbc0(int64_t param_1)
   
   if (*(int64_t *)(param_1 + 0x330) == 0) {
     puVar1 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x2078,8,3);
-    *puVar1 = &unknown_var_3952_ptr;
+    *puVar1 = &memory_allocator_3952_ptr;
     puVar1[1] = 0;
     puVar1[2] = 0;
     puVar1[3] = 0;
     *(int32_t *)(puVar1 + 4) = 3;
-    *puVar1 = &unknown_var_5952_ptr;
+    *puVar1 = &processed_var_5952_ptr;
     DataStructureManager(puVar1 + 0xe,0x20,0x100,FUN_1800ed810,FUN_180046860);
     puVar1[0x40e] = 0;
     puVar1[0xd] = 0;
@@ -215,7 +215,7 @@ void FUN_1801afca0(int64_t param_1)
       if ((void *)plStack_f0[3] != (void *)0x0) {
         puStack_108 = (void *)plStack_f0[3];
       }
-      puStack_118 = &unknown_var_5472_ptr;
+      puStack_118 = &processed_var_5472_ptr;
       iStack_110 = iVar2;
       FUN_1800623b0(system_message_context,0,0x80000000000,3);
     }
@@ -274,7 +274,7 @@ void FUN_1801afca0(int64_t param_1)
     LOCK();
     *(int8_t *)(lVar1 + 0xf9) = 1;
     UNLOCK();
-    puStack_58 = &unknown_var_672_ptr;
+    puStack_58 = &processed_var_672_ptr;
     puStack_50 = auStack_40;
     auStack_40[0] = 0;
     uStack_48 = 0xe;

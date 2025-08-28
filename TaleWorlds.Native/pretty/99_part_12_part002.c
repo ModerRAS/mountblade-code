@@ -413,7 +413,7 @@ void FUN_1807c5ed0(int64_t param_1)
         parseStatus = ParseConfigSection(param_1, tagName, &bufferSize, 0);
         
         if ((parseStatus == PARSER_SUCCESS) && 
-            (parseStatus = ValidateSectionHeader(&unknown_var_7960_ptr, tagName, 0xc), 
+            (parseStatus = ValidateSectionHeader(&processed_var_7960_ptr, tagName, 0xc), 
              parseStatus == PARSER_SUCCESS)) {
             
             // 查找配置节开始
@@ -422,7 +422,7 @@ void FUN_1807c5ed0(int64_t param_1)
                 streamControl = 0;
                 parseStatus = ParseConfigSection(param_1, tagName, &bufferSize, 0);
                 if (parseStatus != PARSER_SUCCESS) goto ParseErrorHandler;
-                parseStatus = ValidateSectionHeader(&unknown_var_7976_ptr, tagName, 3);
+                parseStatus = ValidateSectionHeader(&processed_var_7976_ptr, tagName, 3);
             } while (parseStatus != PARSER_SUCCESS);
             
             // 主解析循环
@@ -533,13 +533,13 @@ void FUN_1807c5ed0(int64_t param_1)
                     } while ((int64_t)maxLength < PARSER_MAX_TOKEN_LENGTH);
                     
                     tagName[contentLength + PARSER_BUFFER_SIZE] = '\0';
-                    parseStatus = ValidateSectionHeader(&unknown_var_7984_ptr, tagName, 8);
+                    parseStatus = ValidateSectionHeader(&processed_var_7984_ptr, tagName, 8);
                     if (parseStatus == PARSER_SUCCESS) {
                         parseFlags = 0;
                         bufferSize = 6;
                         streamControl = CONCAT44(streamControl._4_4_, 
                                                   readPosition + 1);
-                        ProcessConfigurationData(param_1, 8, &unknown_var_7836_ptr, 
+                        ProcessConfigurationData(param_1, 8, &processed_var_7836_ptr, 
                                                   tagName + PARSER_BUFFER_SIZE);
                     }
                 }
@@ -602,7 +602,7 @@ void FUN_1807c5f17(void)
     streamPosition = 0;
     parseStatus = ParseConfigSection();
     if ((parseStatus != PARSER_SUCCESS) || 
-        (parseStatus = ValidateSectionHeader(&unknown_var_7960_ptr, &tempBuffer, 0xc), 
+        (parseStatus = ValidateSectionHeader(&processed_var_7960_ptr, &tempBuffer, 0xc), 
          parseStatus != PARSER_SUCCESS)) {
         
     StreamErrorHandler:
@@ -615,7 +615,7 @@ void FUN_1807c5f17(void)
         bufferSize = PARSER_BUFFER_SIZE;
         parseStatus = ParseConfigSection();
         if (parseStatus != PARSER_SUCCESS) goto StreamErrorHandler;
-        parseStatus = ValidateSectionHeader(&unknown_var_7976_ptr, &tempBuffer, 3);
+        parseStatus = ValidateSectionHeader(&processed_var_7976_ptr, &tempBuffer, 3);
     } while (parseStatus != PARSER_SUCCESS);
     
     // 主流处理循环
@@ -719,7 +719,7 @@ void FUN_1807c5f17(void)
             } while ((int64_t)maxLength < PARSER_MAX_TOKEN_LENGTH);
             
             *(int8_t *)(framePointer + 0x150 + readPosition) = 0;
-            parseStatus = ValidateSectionHeader(&unknown_var_7984_ptr, &tempBuffer, 8);
+            parseStatus = ValidateSectionHeader(&processed_var_7984_ptr, &tempBuffer, 8);
             if (parseStatus == PARSER_SUCCESS) {
                 ProcessConfigurationData();
             }
@@ -882,7 +882,7 @@ void FUN_1807c5fb3(void)
             } while ((int64_t)maxLength < PARSER_MAX_TOKEN_LENGTH);
             
             *(int8_t *)(framePointer + 0x150 + readPosition) = fillChar;
-            parseStatus = ValidateSectionHeader(&unknown_var_7984_ptr, &tempBuffer, 8);
+            parseStatus = ValidateSectionHeader(&processed_var_7984_ptr, &tempBuffer, 8);
             if (parseStatus == PARSER_SUCCESS) {
                 ProcessConfigurationData();
             }

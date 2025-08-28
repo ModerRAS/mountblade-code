@@ -1,3 +1,7 @@
+/* 函数别名定义: DataProcessingEngine */
+#define DataProcessingEngine DataProcessingEngine
+
+
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 
@@ -422,7 +426,7 @@ void RenderingSystem_ProcessRectangleArea(int64_t render_context, float *start_c
       if (current_count + 1 < default_capacity) {
         buffer_capacity = default_capacity;
       }
-      FUN_18011dc70(buffer_count_ptr, buffer_capacity);
+      DataProcessingEngine0(buffer_count_ptr, buffer_capacity);
       current_count = *buffer_count_ptr;
     }
     
@@ -579,7 +583,7 @@ void RenderingSystem_ProcessDualCoordinates(void)
     if (current_count + 1 < buffer_capacity) {
       new_capacity = buffer_capacity;
     }
-    FUN_18011dc70(buffer_count_ptr, new_capacity);
+    DataProcessingEngine0(buffer_count_ptr, new_capacity);
     current_count = *buffer_count_ptr;
   }
   
@@ -603,7 +607,7 @@ void RenderingSystem_ProcessDualCoordinates(void)
     if (current_count + 1 < default_capacity) {
       buffer_capacity = default_capacity;
     }
-    FUN_18011dc70(buffer_count_ptr, buffer_capacity);
+    DataProcessingEngine0(buffer_count_ptr, buffer_capacity);
     current_count = *buffer_count_ptr;
   }
   
@@ -768,7 +772,7 @@ void RenderingSystem_AlignTextureCoordinates(int64_t render_context, float *star
       if (buffer_capacity + 1 < default_capacity) {
         current_count = default_capacity;
       }
-      FUN_18011dc70(buffer_count_ptr, current_count);
+      DataProcessingEngine0(buffer_count_ptr, current_count);
       buffer_capacity = *buffer_count_ptr;
     }
     
@@ -853,7 +857,7 @@ void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, int64_t render_c
     if (current_count + 1 < buffer_capacity) {
       new_capacity = buffer_capacity;
     }
-    FUN_18011dc70(buffer_count_ptr, new_capacity);
+    DataProcessingEngine0(buffer_count_ptr, new_capacity);
     current_count = *buffer_count_ptr;
   }
   
@@ -875,7 +879,7 @@ void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, int64_t render_c
     if (buffer_capacity + 1 < default_capacity) {
       current_count = default_capacity;
     }
-    FUN_18011dc70(buffer_count_ptr, current_count);
+    DataProcessingEngine0(buffer_count_ptr, current_count);
     buffer_capacity = *buffer_count_ptr;
   }
   
@@ -956,7 +960,7 @@ void RenderingSystem_AlignCoordinates(float coord_x, int64_t render_context)
     if (current_count + 1 < buffer_capacity) {
       new_capacity = buffer_capacity;
     }
-    FUN_18011dc70(aligned_coord, new_capacity);
+    DataProcessingEngine0(aligned_coord, new_capacity);
     current_count = *buffer_count_ptr;
   }
   
@@ -978,7 +982,7 @@ void RenderingSystem_AlignCoordinates(float coord_x, int64_t render_context)
     if (current_count + 1 < default_capacity) {
       buffer_capacity = default_capacity;
     }
-    FUN_18011dc70(aligned_coord + 0.5, buffer_capacity);
+    DataProcessingEngine0(aligned_coord + 0.5, buffer_capacity);
     current_count = *buffer_count_ptr;
   }
   

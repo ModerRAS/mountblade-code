@@ -159,14 +159,14 @@ int * process_object_collision(int *object_data)
   position_x = (float)object_data[0xc];
   *(int *)(object_transform + 0x104) = object_data[0xb];
   *(float *)(object_transform + 0x100) = position_x - collision_width;
-  collision_result_char = FUN_18010fad0(&unknown_var_2296_ptr, 0, matrix_data);
+  collision_result_char = FUN_18010fad0(&rendering_buffer_2296_ptr, 0, matrix_data);
   position_x = (float)object_data[0xc];
   *(int *)(object_transform + 0x104) = object_data[0xb];
   if (collision_result_char != '\0') {
     boundary_check = -1;
   }
   *(float *)(object_transform + 0x100) = (position_x - collision_width) + collision_height;
-  collision_result_char = FUN_18010fad0(&unknown_var_2316_ptr, 1, matrix_data);
+  collision_result_char = FUN_18010fad0(&rendering_buffer_2316_ptr, 1, matrix_data);
   camera_data = SYSTEM_DATA_MANAGER_A;
   if (collision_result_char != '\0') {
     boundary_check = 1;

@@ -78,16 +78,16 @@ void FUN_180166dd0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,int64_t *
     CoreEngineDataTransformer(&puStack_388,*param_4 + 0x20);
     CoreEngineDataTransformer(&puStack_348,*param_4 + 0x40);
     CoreEngineDataTransformer(&puStack_3a8,*param_4 + 0x60);
-    puStack_288 = &unknown_var_3480_ptr;
+    puStack_288 = &memory_allocator_3480_ptr;
     puStack_280 = auStack_270;
     uStack_278 = 0;
     auStack_270[0] = 0;
-    puStack_230 = &unknown_var_3480_ptr;
+    puStack_230 = &memory_allocator_3480_ptr;
     puStack_228 = auStack_218;
     uStack_220 = 0;
     auStack_218[0] = 0;
     ppuStack_3b8 = &puStack_1d8;
-    puStack_1d8 = &unknown_var_3480_ptr;
+    puStack_1d8 = &memory_allocator_3480_ptr;
     puStack_1d0 = auStack_1c0;
     uStack_1c8 = 0;
     auStack_1c0[0] = 0;
@@ -118,7 +118,7 @@ void FUN_180166dd0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,int64_t *
     }
     FUN_1802c2c40(auStack_118);
     FUN_1802c4c30(auStack_118);
-    puStack_178 = &unknown_var_3480_ptr;
+    puStack_178 = &memory_allocator_3480_ptr;
     puStack_170 = auStack_160;
     auStack_160[0] = 0;
     uStack_168 = uStack_358;

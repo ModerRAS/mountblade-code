@@ -645,12 +645,12 @@ void FUN_180093780(uint64_t param_1,int param_2,int param_3)
     *plVar9 = (int64_t)&system_handler1_ptr;
     *plVar9 = (int64_t)&system_handler2_ptr;
     *(int32_t *)(plVar9 + 1) = 0;
-    *plVar9 = (int64_t)&unknown_var_1000_ptr;
+    *plVar9 = (int64_t)&ui_system_data_1000_ptr;
     LOCK();
     *(int8_t *)(plVar9 + 2) = 0;
     UNLOCK();
     plVar9[3] = -1;
-    *plVar9 = (int64_t)&unknown_var_2640_ptr;
+    *plVar9 = (int64_t)&rendering_buffer_2640_ptr;
     *(int32_t *)(plVar9 + 5) = 5;
     plVar9[4] = lVar2;
     (**(code **)(*plVar9 + 0x28))(plVar9);

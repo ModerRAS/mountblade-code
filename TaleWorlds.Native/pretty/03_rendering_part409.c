@@ -595,11 +595,11 @@ void FUN_180492a90(void *param_1)
     plStack_100 = (int64_t *)0x0;
     uStack_11c = 1;
     uStack_10c = 3;
-    puStack_c8 = &unknown_var_3432_ptr;
+    puStack_c8 = &memory_allocator_3432_ptr;
     puStack_c0 = auStack_b0;
     auStack_b0[0] = 0;
     uStack_b8 = 0x12;
-    uVar5 = strcpy_s(auStack_b0,0x80,&unknown_var_8600_ptr);
+    uVar5 = strcpy_s(auStack_b0,0x80,&processed_var_8600_ptr);
     puVar4 = (uint64_t *)FUN_1800b2450(uVar5,&ppuStack_f0,&puStack_c8,&puStack_128);
     uVar1 = *puVar4;
     *puVar4 = 0;

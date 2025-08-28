@@ -344,7 +344,7 @@ void FUN_1800b6620(void)
       do {
         plVar5 = *(int64_t **)(uVar9 * 8 + lVar6);
         pcVar1 = *(code **)(*plVar5 + 0x68);
-        if (pcVar1 == (code *)&unknown_var_9696_ptr) {
+        if (pcVar1 == (code *)&processed_var_9696_ptr) {
           cVar11 = (char)plVar5[2] != '\0';
         }
         else {
@@ -357,7 +357,7 @@ void FUN_1800b6620(void)
           if (cVar11 == '\0') {
             plVar5 = *(int64_t **)(uVar9 * 8 + *(int64_t *)(lVar10 + lVar4));
             pcVar1 = *(code **)(*plVar5 + 0x80);
-            if (pcVar1 == (code *)&unknown_var_1840_ptr) {
+            if (pcVar1 == (code *)&ui_system_data_1840_ptr) {
               FUN_1800496b0(plVar5 + 4);
             }
             else {

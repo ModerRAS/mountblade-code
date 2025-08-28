@@ -148,7 +148,7 @@ uint64_t FUN_180441c50(int64_t param_1,uint64_t param_2)
     if (*(void **)(param_1 + 0x290) != (void *)0x0) {
       puVar2 = *(void **)(param_1 + 0x290);
     }
-    SystemCore_ResourceManager0(&unknown_var_9664_ptr,puVar2);
+    SystemCore_ResourceManager0(&processed_var_9664_ptr,puVar2);
   }
   return 0;
 }

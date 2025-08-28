@@ -75,14 +75,14 @@ void FUN_1805aed50(int64_t param_1,float *param_2)
     afStack_48[2] = -afStack_48[2];
     afStack_48[3] = -afStack_48[3];
   }
-  cVar2 = SystemCore_ThreadManager0(param_1,iVar3,&unknown_var_3056_ptr);
+  cVar2 = SystemCore_ThreadManager0(param_1,iVar3,&memory_allocator_3056_ptr);
   do {
     if (uVar9 != (int64_t)iVar3) {
       if (cVar2 == '\0') {
         cVar2 = '\0';
       }
       else {
-        uVar4 = FUN_18055f6f0(&unknown_var_3392_ptr,afStack_48[uVar9]);
+        uVar4 = FUN_18055f6f0(&memory_allocator_3392_ptr,afStack_48[uVar9]);
         iVar7 = *(int *)(param_1 + 0x5c4);
         bVar5 = (byte)iVar7 & 0x1f;
         if (iVar7 < 0) {
@@ -127,7 +127,7 @@ void FUN_1805af0d0(int64_t param_1,int64_t param_2,char param_3)
   
   if (param_3 == '\0') {
     lVar8 = *(int64_t *)(param_2 + 0x658);
-    *(void **)(lVar8 + 0x138) = &unknown_var_3568_ptr;
+    *(void **)(lVar8 + 0x138) = &memory_allocator_3568_ptr;
     *(int64_t *)(lVar8 + 0x130) = param_1;
     lVar8 = *(int64_t *)(param_2 + 0x590);
     *(int8_t **)(lVar8 + 0x24f8) = &SUB_1805afbb0;

@@ -26,7 +26,7 @@
 
 // 数据处理常量
 #define MAX_ITERATION_COUNT 5
-#define ARRAY_CHUNK_SIZE 0x20
+#define ARRAY_CHSYSTEM_SIZE 0x20
 #define MEMORY_ALIGNMENT 0x10
 #define BINARY_SEARCH_THRESHOLD 0
 
@@ -343,7 +343,7 @@ uint64_t *DataProcessor_StructureManager(uint64_t *param_1, int64_t param_2, uin
     int64_t lVar6;
     
     // 初始化数据结构
-    *param_1 = &unknown_var_7440_ptr;
+    *param_1 = &processed_var_7440_ptr;
     lVar6 = *(int64_t *)(param_2 + 0x10) - *(int64_t *)(param_2 + 8) >> 5;
     uVar2 = *(uint *)(param_2 + 0x20);
     *(uint *)(param_1 + 4) = uVar2;
@@ -359,7 +359,7 @@ uint64_t *DataProcessor_StructureManager(uint64_t *param_1, int64_t param_2, uin
     // 设置数据结构参数
     param_1[1] = lVar4;
     param_1[2] = lVar4;
-    param_1[3] = lVar6 * ARRAY_CHUNK_SIZE + lVar4;
+    param_1[3] = lVar6 * ARRAY_CHSYSTEM_SIZE + lVar4;
     puVar5 = (uint64_t *)param_1[1];
     lVar6 = *(int64_t *)(param_2 + 0x10) - *(int64_t *)(param_2 + 8) >> 5;
     
@@ -415,7 +415,7 @@ uint64_t *DataProcessor_MemoryManager(uint64_t *param_1, uint64_t param_2, uint6
     
     // 初始化内存管理器
     uVar1 = 0xfffffffffffffffe;
-    *param_1 = &unknown_var_7440_ptr;
+    *param_1 = &processed_var_7440_ptr;
     DataProcessor_StructureManager(param_1 + 1);
     
     // 清理现有内存

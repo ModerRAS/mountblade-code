@@ -198,13 +198,13 @@ uint64_t *rendering_system_set_render_parameters(uint64_t param_1, uint64_t *par
     *(int32_t *)(param_2 + 2) = 0;
     
     // 设置纹理数据缓冲区
-    *param_2 = &unknown_var_3432_ptr;
+    *param_2 = &memory_allocator_3432_ptr;
     param_2[1] = param_2 + 3;
     *(int8_t *)(param_2 + 3) = 0;
     *(int32_t *)(param_2 + 2) = 0xf;
     
     // 复制字符串数据到缓冲区
-    strcpy_s(param_2[1], RENDER_PARAMETER_BUFFER_SIZE, &unknown_var_5704_ptr, param_4, 0, 0xfffffffffffffffe);
+    strcpy_s(param_2[1], RENDER_PARAMETER_BUFFER_SIZE, &processed_var_5704_ptr, param_4, 0, 0xfffffffffffffffe);
     
     return param_2;
 }
@@ -245,7 +245,7 @@ void rendering_system_initialize_render_context(uint64_t *render_context)
     
     // 初始化渲染系统基础组件
     FUN_1803456e0();
-    *context_pointer = &unknown_var_3352_ptr;
+    *context_pointer = &memory_allocator_3352_ptr;
     FUN_180094c20(context_pointer + 0xe);
     
     // 清理现有资源
@@ -332,7 +332,7 @@ uint64_t *rendering_system_destroy_render_object(uint64_t *render_object, uint64
     int64_t *resource_manager;
     
     // 重置对象指针
-    *render_object = &unknown_var_3352_ptr;
+    *render_object = &memory_allocator_3352_ptr;
     
     // 释放主资源管理器
     resource_manager = (int64_t *)render_object[0x36];
@@ -470,10 +470,10 @@ void rendering_system_update_render_system(int64_t render_context)
             render_mode = 1;
             
             // 设置字符串缓冲区
-            string_buffer = &unknown_var_3432_ptr;
+            string_buffer = &memory_allocator_3432_ptr;
             parameter_buffer[0] = 0;
             string_length = 0xc;
-            strcpy_s(parameter_buffer, 0x80, &unknown_var_3312_ptr);
+            strcpy_s(parameter_buffer, 0x80, &memory_allocator_3312_ptr);
             
             // 处理渲染参数
             FUN_1800b1230(system_resource_state, &render_parameter, &string_buffer, &render_width);
@@ -608,17 +608,17 @@ void rendering_system_process_render_parameters(int64_t render_context, int64_t 
                 *(int32_t *)((uint64_t)buffer_position + string_buffer) = 0x676e702e;  // ".png"
                 *(int8_t *)((int32_t *)((uint64_t)buffer_position + string_buffer) + 1) = 0;
                 parameter_array[0] = &output_buffer;
-                output_buffer = &unknown_var_3432_ptr;
+                output_buffer = &memory_allocator_3432_ptr;
                 string_pointer = output_data;
                 output_size = 0;
                 output_data[0] = 0;
                 alignment_value = 0x2d;
                 data_value_48 = 3;
                 buffer_position = parameter_index + 5;
-                parameter_value = FUN_18062b1e0(system_memory_pool_ptr, 0x20, 8, 3);
+                parameter_value = CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x20, 8, 3);
                 data_value_70 = SystemCore_NetworkHandler0(parameter_value, &buffer_pointer);
                 data_pointer = (uint64_t *)(**(code **)(**(int64_t **)(render_context + 0x1b0) + 0x60))();
-                if ((void *)*data_pointer == &unknown_var_8720_ptr) {
+                if ((void *)*data_pointer == &processed_var_8720_ptr) {
                     LOCK();
                     *(int *)(data_pointer + 1) = *(int *)(data_pointer + 1) + 1;
                     UNLOCK();
@@ -627,7 +627,7 @@ void rendering_system_process_render_parameters(int64_t render_context, int64_t 
                     (**(code **)((void *)*data_pointer + 0x28))(data_pointer);
                 }
                 data_value_78 = (**(code **)(**(int64_t **)(render_context + 0x1b0) + 0x60))();
-                parameter_value = FUN_18062b1e0(system_memory_pool_ptr, 0x100, 8, 3);
+                parameter_value = CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x100, 8, 3);
                 parameter_pointer = (void **)FUN_18005ce30(parameter_value, &output_buffer);
                 output_pointer = parameter_pointer;
                 if (parameter_pointer != (void **)0x0) {

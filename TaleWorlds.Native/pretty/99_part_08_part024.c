@@ -235,8 +235,8 @@ uint64_t FUN_1804f7af0(int64_t param_1,int param_2,char param_3)
       __Throw_C_error_std__YAXH_Z(iVar6);
     }
     cVar5 = SystemBufferProcessor(0x180c95578,0,&system_param1_ptr);
-    if ((cVar5 != '\0') && (cVar5 = SystemBufferProcessor(0x180c95578,0xf,&unknown_var_3472_ptr), cVar5 != '\0')) {
-      SystemBufferProcessor(0x180c95578,param_2,&unknown_var_3344_ptr);
+    if ((cVar5 != '\0') && (cVar5 = SystemBufferProcessor(0x180c95578,0xf,&memory_allocator_3472_ptr), cVar5 != '\0')) {
+      SystemBufferProcessor(0x180c95578,param_2,&memory_allocator_3344_ptr);
     }
     system_system_memory = system_system_memory & 0xffffffff00000000;
     iVar6 = (int)(system_system_memory - system_system_memory >> 3);

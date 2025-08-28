@@ -123,7 +123,7 @@ uint64_t RenderingSystemProcessResourceRequest(int64_t render_context, int64_t *
             if (mutex_result != RENDERING_SYSTEM_MUTEX_LOCK_SUCCESS) {
                 __Throw_C_error_std__YAXH_Z(mutex_result);
             }
-            return_value = FUN_18062b1e0(system_memory_pool_ptr, 0x3d0, 8, 3);
+            return_value = CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x3d0, 8, 3);
             temp_ptr3 = (int64_t *)FUN_180275090(return_value);
             stack_ptr2 = (int64_t *)CONCAT44(stack_ptr2._4_4_, stack_ptr1._0_4_);
             stack_ptr3 = temp_ptr3;
@@ -144,7 +144,7 @@ uint64_t RenderingSystemProcessResourceRequest(int64_t render_context, int64_t *
             if (mutex_result != RENDERING_SYSTEM_MUTEX_LOCK_SUCCESS) {
                 __Throw_C_error_std__YAXH_Z(mutex_result);
             }
-            return_value = FUN_18062b1e0(system_memory_pool_ptr, 0x468, 8, 3);
+            return_value = CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x468, 8, 3);
             temp_ptr3 = (int64_t *)FUN_1803dd0f0(return_value);
             stack_ptr2 = (int64_t *)CONCAT44(stack_ptr2._4_4_, stack_ptr1._0_4_);
             stack_ptr3 = temp_ptr3;
@@ -156,7 +156,7 @@ uint64_t RenderingSystemProcessResourceRequest(int64_t render_context, int64_t *
             
             // 处理纹理资源相关操作
             if (*(int *)(resource_params + 0x160) != 0) {
-                temp_ptr2 = (uint64_t *)FUN_1800b32c0(system_resource_state, &stack_ptr2, resource_params + 0x150, 1, &unknown_var_7656_ptr);
+                temp_ptr2 = (uint64_t *)FUN_1800b32c0(system_resource_state, &stack_ptr2, resource_params + 0x150, 1, &processed_var_7656_ptr);
                 FUN_1800763c0(*temp_ptr2, &stack_ptr1);
                 if (stack_ptr2 != (int64_t *)0x0) {
                     (**(code **)(*stack_ptr2 + 0x38))();
@@ -206,7 +206,7 @@ uint64_t RenderingSystemProcessResourceRequest(int64_t render_context, int64_t *
             if (mutex_result != RENDERING_SYSTEM_MUTEX_LOCK_SUCCESS) {
                 __Throw_C_error_std__YAXH_Z(mutex_result);
             }
-            return_value = FUN_18062b1e0(system_memory_pool_ptr, 0xf0, 8, 3);
+            return_value = CoreSystem_LoggingManager0(system_memory_pool_ptr, 0xf0, 8, 3);
             temp_ptr3 = (int64_t *)FUN_18039dda0(return_value);
             stack_ptr2 = (int64_t *)CONCAT44(stack_ptr2._4_4_, stack_ptr1._0_4_);
             stack_ptr3 = temp_ptr3;
@@ -227,7 +227,7 @@ uint64_t RenderingSystemProcessResourceRequest(int64_t render_context, int64_t *
             if (mutex_result != RENDERING_SYSTEM_MUTEX_LOCK_SUCCESS) {
                 __Throw_C_error_std__YAXH_Z(mutex_result);
             }
-            return_value = FUN_18062b1e0(system_memory_pool_ptr, 0x168, 8, 3);
+            return_value = CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x168, 8, 3);
             temp_ptr3 = (int64_t *)FUN_1802ac390(return_value);
             stack_ptr2 = (int64_t *)CONCAT44(stack_ptr2._4_4_, stack_ptr1._0_4_);
             stack_ptr3 = temp_ptr3;
@@ -683,7 +683,7 @@ void RenderingSystemCleanupResources(int64_t render_context)
     
     while (temp_long2 != temp_long3) {
         temp_ptr1 = *(int64_t **)(temp_long2 + 8);
-        if ((void *)*temp_ptr1 == &unknown_var_8720_ptr) {
+        if ((void *)*temp_ptr1 == &processed_var_8720_ptr) {
             LOCK();
             temp_ptr3 = temp_ptr1 + 1;
             temp_long1 = *temp_ptr3;

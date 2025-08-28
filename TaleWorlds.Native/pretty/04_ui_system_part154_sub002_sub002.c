@@ -902,7 +902,7 @@ uint64_t FUN_18075a030(int64_t param_1,int64_t param_2)
     uVar5 = *(int *)(param_1 + 0x20) - *(int *)(param_1 + 0x18);
     *(int *)(param_1 + 8) = iVar1;
     lVar2 = FUN_180742650(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(uint64_t *)(param_1 + 0x18),
-                          iVar1 * 8 + 0x10,&unknown_var_1040_ptr,0x3cd,0);
+                          iVar1 * 8 + 0x10,&ui_system_data_1040_ptr,0x3cd,0);
     if (lVar2 != 0) {
       *(int64_t *)(param_1 + 0x18) = lVar2;
       uVar4 = lVar2 + 0xfU & 0xfffffffffffffff0;

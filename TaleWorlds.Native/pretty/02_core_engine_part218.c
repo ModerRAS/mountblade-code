@@ -485,8 +485,8 @@ uint64_t *
 FUN_180194b60(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_8320_ptr;
-  *param_1 = &unknown_var_8736_ptr;
+  *param_1 = &processed_var_8320_ptr;
+  *param_1 = &processed_var_8736_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8,param_3,param_4,0xfffffffffffffffe);
   }
@@ -516,8 +516,8 @@ uint64_t *
 FUN_180194c60(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_7912_ptr;
-  *param_1 = &unknown_var_8336_ptr;
+  *param_1 = &processed_var_7912_ptr;
+  *param_1 = &processed_var_8336_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {
@@ -532,8 +532,8 @@ uint64_t *
 FUN_180194cc0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_7864_ptr;
-  *param_1 = &unknown_var_7888_ptr;
+  *param_1 = &processed_var_7864_ptr;
+  *param_1 = &processed_var_7888_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8,param_3,param_4,0xfffffffffffffffe);
   }
@@ -554,11 +554,11 @@ FUN_180194d10(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   *plVar1 = (int64_t)&system_handler1_ptr;
   *plVar1 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar1 + 1) = 0;
-  *plVar1 = (int64_t)&unknown_var_8336_ptr;
+  *plVar1 = (int64_t)&processed_var_8336_ptr;
   plVar1[2] = 0;
   *(int32_t *)(plVar1 + 3) = 0;
   plVar1[4] = 0;
-  *plVar1 = (int64_t)&unknown_var_7912_ptr;
+  *plVar1 = (int64_t)&processed_var_7912_ptr;
   plVar1[0xd] = 0;
   plVar1[5] = 0x3f800000;
   plVar1[6] = 0;
@@ -592,11 +592,11 @@ FUN_180194e00(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   *plVar1 = (int64_t)&system_handler1_ptr;
   *plVar1 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar1 + 1) = 0;
-  *plVar1 = (int64_t)&unknown_var_8336_ptr;
+  *plVar1 = (int64_t)&processed_var_8336_ptr;
   plVar1[2] = 0;
   *(int32_t *)(plVar1 + 3) = 0;
   plVar1[4] = 0;
-  *plVar1 = (int64_t)&unknown_var_7912_ptr;
+  *plVar1 = (int64_t)&processed_var_7912_ptr;
   plVar1[0xd] = 0;
   plVar1[5] = 0x3f800000;
   plVar1[6] = 0;
@@ -630,8 +630,8 @@ uint64_t * FUN_180194ef0(int64_t param_1)
   uint64_t *puVar5;
   
   puVar1 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,8,8,3,0xfffffffffffffffe);
-  *puVar1 = &unknown_var_8736_ptr;
-  *puVar1 = &unknown_var_8320_ptr;
+  *puVar1 = &processed_var_8736_ptr;
+  *puVar1 = &processed_var_8320_ptr;
   puVar5 = *(uint64_t **)(param_1 + 0x30);
   if (puVar5 < *(uint64_t **)(param_1 + 0x38)) {
     *(uint64_t **)(param_1 + 0x30) = puVar5 + 1;
@@ -682,11 +682,11 @@ uint64_t * FUN_180195000(uint64_t param_1,uint64_t *param_2)
   *plVar1 = (int64_t)&system_handler1_ptr;
   *plVar1 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar1 + 1) = 0;
-  *plVar1 = (int64_t)&unknown_var_8336_ptr;
+  *plVar1 = (int64_t)&processed_var_8336_ptr;
   plVar1[2] = 0;
   *(int32_t *)(plVar1 + 3) = 0;
   plVar1[4] = 0;
-  *plVar1 = (int64_t)&unknown_var_7912_ptr;
+  *plVar1 = (int64_t)&processed_var_7912_ptr;
   plVar1[0xd] = 0;
   plVar1[5] = 0x3f800000;
   plVar1[6] = 0;
@@ -716,8 +716,8 @@ uint64_t * FUN_1801950d0(int64_t param_1)
   uint64_t *puStackX_8;
   
   puVar1 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,8,8,3,0xfffffffffffffffe);
-  *puVar1 = &unknown_var_7888_ptr;
-  *puVar1 = &unknown_var_7864_ptr;
+  *puVar1 = &processed_var_7888_ptr;
+  *puVar1 = &processed_var_7864_ptr;
   puStackX_8 = puVar1;
   SystemInitializer(param_1 + 0x48,&puStackX_8);
   return puVar1;
@@ -842,11 +842,11 @@ uint64_t * FUN_1801951e0(uint64_t param_1,uint64_t *param_2)
   *plVar1 = (int64_t)&system_handler1_ptr;
   *plVar1 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar1 + 1) = 0;
-  *plVar1 = (int64_t)&unknown_var_8336_ptr;
+  *plVar1 = (int64_t)&processed_var_8336_ptr;
   plVar1[2] = 0;
   *(int32_t *)(plVar1 + 3) = 0;
   plVar1[4] = 0;
-  *plVar1 = (int64_t)&unknown_var_7912_ptr;
+  *plVar1 = (int64_t)&processed_var_7912_ptr;
   plVar1[0xd] = 0;
   plVar1[5] = 0x3f800000;
   plVar1[6] = 0;
@@ -884,7 +884,7 @@ FUN_1801952e0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_7144_ptr;
+  *param_1 = &processed_var_7144_ptr;
   FUN_1801c2640();
   if ((param_2 & 1) != 0) {
     free(param_1,0xb8,param_3,param_4,uVar1);
@@ -926,11 +926,11 @@ FUN_1801953d0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  *param_2 = &unknown_var_3432_ptr;
+  *param_2 = &memory_allocator_3432_ptr;
   param_2[1] = param_2 + 3;
   *(int8_t *)(param_2 + 3) = 0;
   *(int32_t *)(param_2 + 2) = 8;
-  strcpy_s(param_2[1],0x80,&unknown_var_2216_ptr,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&rendering_buffer_2216_ptr,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 

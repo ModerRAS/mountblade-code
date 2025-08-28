@@ -498,7 +498,7 @@ uint32_t ProcessPipelineResource(void* device, void* resource,
         
         if (stack_data[0] == NULL) {
             /* 处理资源获取失败 */
-            FUN_180627020(&unknown_var_9528_ptr, *(uint32_t*)(resource_info + 0xf0));
+            FUN_180627020(&processed_var_9528_ptr, *(uint32_t*)(resource_info + 0xf0));
             if (stack_data[0] != NULL) {
                 (*(void(**)(void*))(*stack_data[0] + 0x38))(stack_data[0]);
             }
@@ -933,7 +933,7 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
         }
         
         /* 检查纹理类型 */
-        resource_offset = strstr(shader_name, &unknown_var_7544_ptr);
+        resource_offset = strstr(shader_name, &processed_var_7544_ptr);
         if (resource_offset != 0) {
             /* 获取纹理哈希值 */
             resource_state = FUN_18032b4a0(device_context);
@@ -956,7 +956,7 @@ uint32_t InitializeResourceContext(void* resource_context, void* device_context,
         HASH_FOUND:
             if (hash_entry == *(uint32_t**)(resource_offset + resource_offset * 8)) {
                 /* 处理纹理引用计数 */
-                if ((void*)*texture_resource == &unknown_var_8720_ptr) {
+                if ((void*)*texture_resource == &processed_var_8720_ptr) {
                     LOCK();
                     *(int*)(texture_resource + 1) = *(int*)(texture_resource + 1) + 1;
                     UNLOCK();

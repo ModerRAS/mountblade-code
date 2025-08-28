@@ -27,11 +27,11 @@ void FUN_1804a3460(void)
   uStack_88 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_c8;
   uStack_a8 = 0;
-  puStack_78 = &unknown_var_3480_ptr;
+  puStack_78 = &memory_allocator_3480_ptr;
   puStack_70 = auStack_60;
   auStack_60[0] = 0;
   uStack_68 = 0x12;
-  strcpy_s(auStack_60,0x40,&unknown_var_1880_ptr);
+  strcpy_s(auStack_60,0x40,&ui_system_data_1880_ptr);
   FUN_1800b08e0(uVar2,&plStack_98,&puStack_78,1);
   uStack_a8 = 1;
   puStack_78 = &system_state_ptr;

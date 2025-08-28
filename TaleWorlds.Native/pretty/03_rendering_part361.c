@@ -345,7 +345,7 @@ FUN_180464ff0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   *param_1 = &system_handler1_ptr;
   *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &unknown_var_1728_ptr;
+  *param_1 = &ui_system_data_1728_ptr;
   param_1[4] = 0;
   param_1[5] = _guard_check_icall;
   param_1[8] = 0;
@@ -356,7 +356,7 @@ FUN_180464ff0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   *plVar1 = (int64_t)&system_state_ptr;
   param_1[0x10] = 0;
   *(int32_t *)(param_1 + 0x11) = 0;
-  *plVar1 = (int64_t)&unknown_var_3480_ptr;
+  *plVar1 = (int64_t)&memory_allocator_3480_ptr;
   param_1[0x10] = param_1 + 0x12;
   *(int32_t *)(param_1 + 0x11) = 0;
   *(int8_t *)(param_1 + 0x12) = 0;
@@ -390,12 +390,12 @@ FUN_180464ff0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   param_1[0x38] = &system_state_ptr;
   param_1[0x39] = 0;
   *(int32_t *)(param_1 + 0x3a) = 0;
-  param_1[0x38] = &unknown_var_3432_ptr;
+  param_1[0x38] = &memory_allocator_3432_ptr;
   param_1[0x39] = param_1 + 0x3b;
   *(int32_t *)(param_1 + 0x3a) = 0;
   *(int8_t *)(param_1 + 0x3b) = 0;
   *(int32_t *)(param_1 + 0xe) = 0;
-  (**(code **)(*plVar1 + 0x10))(plVar1,&unknown_var_1400_ptr,&system_state_ptr,param_4,0xfffffffffffffffe);
+  (**(code **)(*plVar1 + 0x10))(plVar1,&ui_system_data_1400_ptr,&system_state_ptr,param_4,0xfffffffffffffffe);
   param_1[0x37] = param_2;
   *(int32_t *)(param_1 + 0x1e) = 0;
   *(int32_t *)(param_1 + 0x36) = 0;
@@ -429,7 +429,7 @@ uint64_t * FUN_180465210(uint64_t *param_1,int64_t param_2,uint64_t param_3)
   *param_1 = &system_handler1_ptr;
   *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &unknown_var_1728_ptr;
+  *param_1 = &ui_system_data_1728_ptr;
   param_1[4] = 0;
   param_1[5] = _guard_check_icall;
   param_1[8] = 0;
@@ -440,7 +440,7 @@ uint64_t * FUN_180465210(uint64_t *param_1,int64_t param_2,uint64_t param_3)
   *plVar1 = (int64_t)&system_state_ptr;
   param_1[0x10] = 0;
   *(int32_t *)(param_1 + 0x11) = 0;
-  *plVar1 = (int64_t)&unknown_var_3480_ptr;
+  *plVar1 = (int64_t)&memory_allocator_3480_ptr;
   param_1[0x10] = param_1 + 0x12;
   *(int32_t *)(param_1 + 0x11) = 0;
   *(int8_t *)(param_1 + 0x12) = 0;
@@ -474,7 +474,7 @@ uint64_t * FUN_180465210(uint64_t *param_1,int64_t param_2,uint64_t param_3)
   param_1[0x38] = &system_state_ptr;
   param_1[0x39] = 0;
   *(int32_t *)(param_1 + 0x3a) = 0;
-  param_1[0x38] = &unknown_var_3432_ptr;
+  param_1[0x38] = &memory_allocator_3432_ptr;
   param_1[0x39] = param_1 + 0x3b;
   *(int32_t *)(param_1 + 0x3a) = 0;
   *(int8_t *)(param_1 + 0x3b) = 0;

@@ -324,7 +324,7 @@ void FUN_1801b4720(int64_t param_1,int param_2)
       lVar3 = *(int64_t *)(param_1 + 0x60b28);
       lVar2 = *(int64_t *)(param_1 + 0x60b20);
       plStackX_8 = alStack_30;
-      puStack_20 = &unknown_var_8688_ptr;
+      puStack_20 = &processed_var_8688_ptr;
       pcStack_18 = FUN_1801bbc00;
       plVar6 = alStack_30;
       uVar5 = 0xffffffffffffffff;
@@ -569,7 +569,7 @@ int64_t FUN_1801b4a60(int64_t param_1)
   if (*(char *)(param_1 + 0x5c40) != '\0') {
     if (*(char *)(param_1 + 0x5c41) != '\0') {
       FUN_1800b8500(param_1 + 0x8138);
-      FUN_1801ae4a0(param_1,&unknown_var_6976_ptr,param_1 + 0x8138);
+      FUN_1801ae4a0(param_1,&processed_var_6976_ptr,param_1 + 0x8138);
       *(int8_t *)(param_1 + 0x5c41) = 0;
     }
     puStack_60 = (uint64_t *)0x0;
@@ -665,7 +665,7 @@ int64_t FUN_1801b4cd0(int64_t param_1)
   if (*(char *)(param_1 + 0x5bf0) != '\0') {
     if (*(char *)(param_1 + 0x5c42) != '\0') {
       FUN_1800b8500(param_1 + 0x8158);
-      FUN_1801ae4a0(param_1,&unknown_var_7008_ptr,param_1 + 0x8158);
+      FUN_1801ae4a0(param_1,&processed_var_7008_ptr,param_1 + 0x8158);
       *(int8_t *)(param_1 + 0x5c42) = 0;
     }
     puStack_60 = (uint64_t *)0x0;
@@ -827,22 +827,22 @@ void FUN_1801b5040(int64_t param_1)
   }
   if (*(float *)(param_1 + 0x3140) <= 0.1) {
     plVar3 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x10,8,3,uVar4);
-    *plVar3 = (int64_t)&unknown_var_6232_ptr;
+    *plVar3 = (int64_t)&processed_var_6232_ptr;
     plVar3[1] = param_1;
   }
   else if (*(int *)(param_1 + 0x3054) == 2) {
     plVar3 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x20,8,3,uVar4);
-    *plVar3 = (int64_t)&unknown_var_6232_ptr;
+    *plVar3 = (int64_t)&processed_var_6232_ptr;
     plVar3[1] = param_1;
-    *plVar3 = (int64_t)&unknown_var_6136_ptr;
+    *plVar3 = (int64_t)&processed_var_6136_ptr;
     plVar3[2] = 0;
     plVar3[3] = 0;
   }
   else {
     plVar3 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x70,8,3,uVar4);
-    *plVar3 = (int64_t)&unknown_var_6232_ptr;
+    *plVar3 = (int64_t)&processed_var_6232_ptr;
     plVar3[1] = param_1;
-    *plVar3 = (int64_t)&unknown_var_6184_ptr;
+    *plVar3 = (int64_t)&processed_var_6184_ptr;
     plVar3[2] = 0;
     plVar3[3] = 0;
     plVar3[4] = 0;

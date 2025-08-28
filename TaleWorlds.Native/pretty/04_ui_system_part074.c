@@ -231,7 +231,7 @@ LAB_18070d1ad:
         }
       }
       if (*(int *)(param_6 + 0x18) - iVar9 < iVar2) {
-        uStack_16c = FUN_18070f3e0(param_6,&unknown_var_3328_ptr);
+        uStack_16c = FUN_18070f3e0(param_6,&memory_allocator_3328_ptr);
       }
     }
     iVar9 = 0x1f;

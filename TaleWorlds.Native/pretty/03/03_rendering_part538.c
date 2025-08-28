@@ -507,8 +507,8 @@ void ProcessRenderElements(RenderBuffer* element_buffer, void* data_source)
 RenderObject* InitializeRenderObject(RenderObject* render_object)
 {
   // 设置虚函数表和基础结构
-  *render_object = &unknown_var_5192_ptr;
-  *render_object = &unknown_var_8536_ptr;
+  *render_object = &processed_var_5192_ptr;
+  *render_object = &processed_var_8536_ptr;
   
   // 初始化渲染状态和参数
   render_object[0xb] = &system_state_ptr;
@@ -749,7 +749,7 @@ void CleanupRenderObject(RenderObject* render_object)
   render_object[0xb] = &system_state_ptr;
   
   // 重置虚函数表
-  *render_object = &unknown_var_5192_ptr;
+  *render_object = &processed_var_5192_ptr;
   return;
 }
 
@@ -1071,7 +1071,7 @@ int InitializeRenderContext(RenderObject* render_object)
       if (*(void **)(context + 0x18) != (void *)0x0) {
         object_name = *(void **)(context + 0x18);
       }
-      FUN_180627020(&unknown_var_7872_ptr, object_name);
+      FUN_180627020(&processed_var_7872_ptr, object_name);
       return 0;
     }
     // 更新哈希表索引
@@ -1305,7 +1305,7 @@ int EnsureRenderContext(RenderObject* render_object)
         object_name = *(void **)(context + 0x18);
       }
       // 记录哈希冲突错误
-      FUN_180627020(&unknown_var_7872_ptr, object_name);
+      FUN_180627020(&processed_var_7872_ptr, object_name);
       return 0;
     }
     

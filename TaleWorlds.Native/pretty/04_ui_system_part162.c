@@ -533,7 +533,7 @@ static int32_t ui_system_sync_control_state(uint32_t control_id, int8_t sync_mod
             func_0x000180743c20(context_ptr, 7);
         }
         
-        sync_data_ptr = UISystem_ContextAllocator(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x450, &unknown_var_1040_ptr, 0x16e5, 0);
+        sync_data_ptr = UISystem_ContextAllocator(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x450, &ui_system_data_1040_ptr, 0x16e5, 0);
         *(int64_t*)(g_ui_system_context->controls[control_id].control_data + 0x208) = sync_data_ptr;
         
         if (sync_data_ptr == 0) {
@@ -766,7 +766,7 @@ static void ui_system_set_control_property(uint32_t control_id, int32_t property
             stack_data[0x40] = 1;
             stack_data[0x38] = 0;
             stack_data[0x30] = 0;
-            property_ptr = (uint64_t*)UISystem_ContextManager(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x18, &unknown_var_1040_ptr, 0x1288);
+            property_ptr = (uint64_t*)UISystem_ContextManager(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x18, &ui_system_data_1040_ptr, 0x1288);
             
             if (property_ptr != (uint64_t*)0x0) {
                 *(uint32_t*)(property_ptr + 1) = (uint32_t)temp_data;

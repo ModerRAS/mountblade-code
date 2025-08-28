@@ -37,7 +37,7 @@ void FUN_1804f8630(uint64_t param_1,int32_t param_2,int64_t param_3,int32_t para
       puStack_68 = auStack_58;
       auStack_58[0] = 0;
       uStack_60 = 0xc;
-      strcpy_s(auStack_58,0x10,&unknown_var_5088_ptr);
+      strcpy_s(auStack_58,0x10,&processed_var_5088_ptr);
       lVar2 = system_system_data_config;
       iVar3 = FUN_180191c00(system_system_data_config,&puStack_70);
       if ((iVar3 == -1) ||
@@ -270,7 +270,7 @@ void FUN_1804f8bd0(int64_t param_1,float param_2,float param_3)
   *(int8_t *)(param_1 + 0x87b718) = 1;
   if (param_3 <= param_2) {
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&unknown_var_5064_ptr,(double)param_2);
+    FUN_180062300(system_message_context,&processed_var_5064_ptr,(double)param_2);
   }
   if (0.0033333334 < param_2) {
     FUN_1804e93e0(param_1,param_2);

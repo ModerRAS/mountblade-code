@@ -115,7 +115,7 @@ LAB_18040a42e:
           pcVar11 = pcVar11 + (int64_t)pcVar12;
           pcVar18 = pcVar22;
           if (pcVar11 <= pcVar12) break;
-          lVar14 = (int64_t)&unknown_var_3880_ptr - (int64_t)pcVar12;
+          lVar14 = (int64_t)&memory_allocator_3880_ptr - (int64_t)pcVar12;
           while (*pcVar12 == pcVar12[lVar14]) {
             pcVar12 = pcVar12 + 1;
             if (pcVar11 <= pcVar12) goto LAB_18040a48e;
@@ -142,7 +142,7 @@ LAB_18040a48e:
           pcVar11 = pcVar12 + (int64_t)pcVar11;
           pcVar18 = pcVar22;
           if (pcVar11 <= pcVar12) break;
-          lVar14 = (int64_t)&unknown_var_3896_ptr - (int64_t)pcVar12;
+          lVar14 = (int64_t)&memory_allocator_3896_ptr - (int64_t)pcVar12;
           while (*pcVar12 == pcVar12[lVar14]) {
             pcVar12 = pcVar12 + 1;
             if (pcVar11 <= pcVar12) goto LAB_18040a4ef;
@@ -388,7 +388,7 @@ LAB_18040ac5d:
       pcVar11 = pcVar11 + (int64_t)pcVar12;
       pcVar18 = pcVar22;
       if (pcVar11 <= pcVar12) break;
-      lVar14 = (int64_t)&unknown_var_3896_ptr - (int64_t)pcVar12;
+      lVar14 = (int64_t)&memory_allocator_3896_ptr - (int64_t)pcVar12;
       while (*pcVar12 == pcVar12[lVar14]) {
         pcVar12 = pcVar12 + 1;
         if (pcVar11 <= pcVar12) goto LAB_18040acbf;
@@ -516,11 +516,11 @@ uint64_t * FUN_18040af60(uint64_t *param_1)
   *param_1 = &system_handler1_ptr;
   *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
-  *param_1 = &unknown_var_8584_ptr;
+  *param_1 = &processed_var_8584_ptr;
   param_1[2] = &system_state_ptr;
   param_1[3] = 0;
   *(int32_t *)(param_1 + 4) = 0;
-  param_1[2] = &unknown_var_3432_ptr;
+  param_1[2] = &memory_allocator_3432_ptr;
   param_1[3] = param_1 + 5;
   *(int32_t *)(param_1 + 4) = 0;
   *(int8_t *)(param_1 + 5) = 0;
@@ -528,9 +528,9 @@ uint64_t * FUN_18040af60(uint64_t *param_1)
   *(int32_t *)(param_1 + 1) = 0;
   *(int16_t *)(param_1 + 0x16) = 0;
   param_1[0x15] = 0;
-  param_1[0x17] = &unknown_var_5912_ptr;
-  *param_1 = &unknown_var_8920_ptr;
-  param_1[0x17] = &unknown_var_8888_ptr;
+  param_1[0x17] = &processed_var_5912_ptr;
+  *param_1 = &processed_var_8920_ptr;
+  param_1[0x17] = &processed_var_8888_ptr;
   param_1[0x2b] = 0;
   param_1[0x2c] = 0;
   param_1[0x2d] = 0;
@@ -581,8 +581,8 @@ uint64_t * FUN_18040af60(uint64_t *param_1)
 uint64_t * FUN_18040b150(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_8920_ptr;
-  param_1[0x17] = &unknown_var_8888_ptr;
+  *param_1 = &processed_var_8920_ptr;
+  param_1[0x17] = &processed_var_8888_ptr;
   if (param_1[0x28] != 0) {
     FUN_18040da70();
     param_1[0x28] = 0;
@@ -596,8 +596,8 @@ uint64_t * FUN_18040b150(uint64_t *param_1,uint64_t param_2)
   *(int32_t *)(param_1 + 0x3a) = 0;
   param_1[0x37] = &system_state_ptr;
   FUN_180229940();
-  param_1[0x17] = &unknown_var_5912_ptr;
-  *param_1 = &unknown_var_8584_ptr;
+  param_1[0x17] = &processed_var_5912_ptr;
+  *param_1 = &processed_var_8584_ptr;
   param_1[2] = &system_state_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
@@ -669,9 +669,9 @@ LAB_18040b43a:
   }
   else {
     if (iVar3 == 0x11) {
-      iVar4 = strcmp(*(uint64_t *)(param_2 + 8),&unknown_var_8376_ptr);
+      iVar4 = strcmp(*(uint64_t *)(param_2 + 8),&processed_var_8376_ptr);
       if (iVar4 == 0) goto LAB_18040b43a;
-      iVar4 = strcmp(*(uint64_t *)(param_2 + 8),&unknown_var_8232_ptr);
+      iVar4 = strcmp(*(uint64_t *)(param_2 + 8),&processed_var_8232_ptr);
       if (iVar4 == 0) {
         return '\x01';
       }
@@ -706,7 +706,7 @@ LAB_18040b43a:
       if (*(void **)(param_1 + 0x18) != (void *)0x0) {
         puVar6 = *(void **)(param_1 + 0x18);
       }
-      SystemDataInitializer(&unknown_var_8256_ptr,puVar6,puVar8);
+      SystemDataInitializer(&processed_var_8256_ptr,puVar6,puVar8);
     }
     cVar9 = -1;
   }
@@ -732,7 +732,7 @@ char FUN_18040b460(byte param_1,int64_t param_2)
     do {
       lVar3 = func_0x0001800464d0(param_2);
       param_1 = (byte)uVar7;
-      pcVar4 = *(char **)(&unknown_var_6704_ptr + (int64_t)cVar6 * 8);
+      pcVar4 = *(char **)(&processed_var_6704_ptr + (int64_t)cVar6 * 8);
       lVar3 = lVar3 - (int64_t)pcVar4;
       do {
         cVar1 = *pcVar4;
@@ -753,7 +753,7 @@ char FUN_18040b460(byte param_1,int64_t param_2)
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar5 = *(void **)(param_2 + 8);
   }
-  SystemDataInitializer(&unknown_var_8320_ptr,puVar5,*(uint64_t *)(&system_data_39c8 + (int64_t)(char)param_1 * 8))
+  SystemDataInitializer(&processed_var_8320_ptr,puVar5,*(uint64_t *)(&system_data_39c8 + (int64_t)(char)param_1 * 8))
   ;
   return -1;
 }

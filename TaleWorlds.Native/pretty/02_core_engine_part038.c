@@ -812,7 +812,7 @@ void * FUN_180079430(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t 
               0x48) < core_system_config_ui) {
     SystemInitializer(&system_ptr_9158);
     if (core_system_config_ui == -1) {
-      core_system_config_ui = &unknown_var_3432_ptr;
+      core_system_config_ui = &memory_allocator_3432_ptr;
       core_system_config_ui = &system_ptr_9178;
 
 

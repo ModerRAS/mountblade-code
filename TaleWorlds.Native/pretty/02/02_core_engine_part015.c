@@ -212,24 +212,24 @@ void initialize_system_configuration(void)
     }
     old_config = SYSTEM_DATA_MANAGER_A;
     SYSTEM_DATA_MANAGER_A = *config_ptr;
-    FUN_1801299b0(&unknown_var_6880_ptr, 0, 0, in_R9, config_flag);
-    SystemCore_CacheManager0(&unknown_var_6896_ptr, *(int32_t *)(base_config + 4));
-    SystemCore_CacheManager0(&unknown_var_6928_ptr, *(int32_t *)(base_config + 8));
-    SystemCore_CacheManager0(&unknown_var_6960_ptr, *(int32_t *)(base_config + 0xc));
-    SystemCore_CacheManager0(&unknown_var_6992_ptr, *(int32_t *)(base_config + 0x10));
-    SystemCore_CacheManager0(&unknown_var_7024_ptr, *(int32_t *)(base_config + 0x14));
-    SystemCore_CacheManager0(&unknown_var_7064_ptr, *(int32_t *)(base_config + 0x18));
+    FUN_1801299b0(&processed_var_6880_ptr, 0, 0, in_R9, config_flag);
+    SystemCore_CacheManager0(&processed_var_6896_ptr, *(int32_t *)(base_config + 4));
+    SystemCore_CacheManager0(&processed_var_6928_ptr, *(int32_t *)(base_config + 8));
+    SystemCore_CacheManager0(&processed_var_6960_ptr, *(int32_t *)(base_config + 0xc));
+    SystemCore_CacheManager0(&processed_var_6992_ptr, *(int32_t *)(base_config + 0x10));
+    SystemCore_CacheManager0(&processed_var_7024_ptr, *(int32_t *)(base_config + 0x14));
+    SystemCore_CacheManager0(&processed_var_7064_ptr, *(int32_t *)(base_config + 0x18));
     for (config_item = *(char **)(base_config + 0x28); config_item != base_config + 0x20;
         config_item = (char *)func_0x00018066bd70(config_item)) {
-      SystemCore_CacheManager0(&unknown_var_7104_ptr, *(int32_t *)(config_item + 0x20), *(int32_t *)(config_item + 0x24));
+      SystemCore_CacheManager0(&processed_var_7104_ptr, *(int32_t *)(config_item + 0x20), *(int32_t *)(config_item + 0x24));
     }
     for (config_item = *(char **)(base_config + 0x58); config_item != base_config + 0x50;
         config_item = (char *)func_0x00018066bd70(config_item)) {
-      SystemCore_CacheManager0(&unknown_var_7144_ptr, *(int32_t *)(config_item + 0x20), *(int32_t *)(config_item + 0x24));
+      SystemCore_CacheManager0(&processed_var_7144_ptr, *(int32_t *)(config_item + 0x20), *(int32_t *)(config_item + 0x24));
     }
-    SystemCore_CacheManager0(&unknown_var_7184_ptr, *(int32_t *)(base_config + 0x80));
-    SystemCore_CacheManager0(&unknown_var_7224_ptr, *(int32_t *)(base_config + 0x84));
-    SystemCore_CacheManager0(&unknown_var_7264_ptr, *(int32_t *)(base_config + 0x88));
+    SystemCore_CacheManager0(&processed_var_7184_ptr, *(int32_t *)(base_config + 0x80));
+    SystemCore_CacheManager0(&processed_var_7224_ptr, *(int32_t *)(base_config + 0x84));
+    SystemCore_CacheManager0(&processed_var_7264_ptr, *(int32_t *)(base_config + 0x88));
     FUN_18012cfe0();
     SYSTEM_DATA_MANAGER_A = old_config;
     lock_result = _Mtx_unlock(0x180c91970);
@@ -528,7 +528,7 @@ void initialize_object_manager(int64_t *param_1)
   plVar4 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xd0,8,3);
   pplStack_60 = (int64_t **)plVar4;
   FUN_180049830(plVar4);
-  *plVar4 = (int64_t)&unknown_var_7704_ptr;
+  *plVar4 = (int64_t)&processed_var_7704_ptr;
   plVar4[0x18] = 0;
   *(int32_t *)(plVar4 + 0x19) = 0;
   plStack_68 = plVar4;
@@ -543,12 +543,12 @@ void initialize_object_manager(int64_t *param_1)
   puStack_48 = auStack_38;
   auStack_38[0] = 0;
   uStack_40 = 0xc;
-  strcpy_s(auStack_38,0x10,&unknown_var_7296_ptr);
+  strcpy_s(auStack_38,0x10,&processed_var_7296_ptr);
   plVar4 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x208,8,3);
   lStack_78 = lVar3 + 0x70;
   pplStack_60 = (int64_t **)plVar4;
   FUN_18020e0e0(plVar4,&puStack_50,3,lVar3 + 0x2e0);
-  *plVar4 = (int64_t)&unknown_var_9056_ptr;
+  *plVar4 = (int64_t)&processed_var_9056_ptr;
   plStack_68 = plVar4;
   FUN_18020e840(plVar4);
   FUN_18005ea90(lVar3 + 0x48,&plStack_68);
@@ -685,7 +685,7 @@ void monitor_and_report_system_status(int64_t param_1)
     *(int16_t *)(puVar5 + 8) = 0x2072;
     *(int8_t *)((int64_t)puVar5 + 0x22) = 0;
     uStack_88 = 0x3e;
-    FUN_180060680(acStack_60,&unknown_var_4576_ptr,900);
+    FUN_180060680(acStack_60,&processed_var_4576_ptr,900);
     uVar3 = uStack_88;
     lVar4 = -1;
     do {
@@ -720,7 +720,7 @@ void monitor_and_report_system_status(int64_t param_1)
     uStack_a8 = 0;
     uStack_88 = uVar3 + 0x2b;
     (**(code **)(*(int64_t *)*core_system_data_config + 0x20))
-              ((int64_t *)*core_system_data_config,&unknown_var_7440_ptr,0x175c,puVar9);
+              ((int64_t *)*core_system_data_config,&processed_var_7440_ptr,0x175c,puVar9);
     *(double *)(param_1 + 0xc0) = dVar2;
     puStack_98 = &system_data_buffer_ptr;
     if (puStack_90 != (void *)0x0) {
@@ -767,8 +767,8 @@ void execute_system_cleanup(uint64_t param_1,uint64_t param_2,uint64_t param_3,u
       (*(code *)system_cache_buffer[0x11])(0);
     }
   }
-  puStack_20 = &unknown_var_5200_ptr;
-  puStack_18 = &unknown_var_5168_ptr;
+  puStack_20 = &processed_var_5200_ptr;
+  puStack_18 = &processed_var_5168_ptr;
   FUN_18005c650(auStack_30);
   *(int8_t *)(core_system_data_config + 0x3a0) = 1;
   FUN_18005e630(system_context_ptr);
@@ -827,7 +827,7 @@ void process_async_operation(uint64_t param_1,uint64_t *param_2,int32_t param_3)
   uStack_128 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_158;
   ppuStack_138 = &puStack_108;
-  puStack_108 = &unknown_var_3432_ptr;
+  puStack_108 = &memory_allocator_3432_ptr;
   puStack_100 = auStack_f0;
   uStack_f8 = 0;
   auStack_f0[0] = 0;
@@ -964,7 +964,7 @@ uint64_t * initialize_advanced_object_pool(uint64_t *param_1)
   param_1[0xc] = puVar1;
   param_1[0xd] = (uint64_t)(-(int)puVar1 & 7) + (int64_t)puVar1;
   param_1[0xe] = param_1 + 0x60f;
-  param_1[0x60f] = &unknown_var_8432_ptr;
+  param_1[0x60f] = &processed_var_8432_ptr;
   param_1[0x610] = FUN_180059ba0;
   return param_1;
 }
@@ -1032,7 +1032,7 @@ void copy_string_to_object(int64_t param_1,int64_t param_2)
     strcpy_s(*(uint64_t *)(param_1 + 8),0x400);
     return;
   }
-  SystemCore_ResourceManager0(&unknown_var_616_ptr,0x400);
+  SystemCore_ResourceManager0(&processed_var_616_ptr,0x400);
   *(int32_t *)(param_1 + 0x10) = 0;
   **(int8_t **)(param_1 + 8) = 0;
   return;

@@ -9,7 +9,7 @@
 #define render_global_data system_parameter_buffer
 #define render_config_data system_main_module_state
 #define render_tls_value init_system_config_render
-#define default_render_context unknown_var_3432
+#define default_render_context memory_allocator_3432
 
 /**
  * 处理渲染数据

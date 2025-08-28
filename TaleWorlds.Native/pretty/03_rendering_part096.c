@@ -266,7 +266,7 @@ uint64_t FUN_180323d00(int64_t param_1,int32_t param_2,int32_t param_3)
   uStack_f8 = auStackX_10;
   uStack_f0 = auStackX_18;
   pcStack_98 = FUN_18033d170;
-  puStack_90 = &unknown_var_6880_ptr;
+  puStack_90 = &processed_var_6880_ptr;
   uStack_100 = param_1;
   apuStack_a8[0] = (int32_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x20,8,system_allocation_flags);
   *apuStack_a8[0] = (int32_t)uStack_108;
@@ -294,7 +294,7 @@ uint64_t FUN_180323d00(int64_t param_1,int32_t param_2,int32_t param_3)
   uStack_130 = auStackX_10;
   uStack_128 = auStackX_18;
   pcStack_78 = FUN_18033d080;
-  puStack_70 = &unknown_var_6640_ptr;
+  puStack_70 = &processed_var_6640_ptr;
   uStack_138 = param_1;
   apuStack_88[0] = (int32_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x20,8,system_allocation_flags);
   *apuStack_88[0] = (int32_t)uStack_140;

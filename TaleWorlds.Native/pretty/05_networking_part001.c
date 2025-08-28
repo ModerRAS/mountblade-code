@@ -278,13 +278,13 @@ typedef struct {
 /* ================================================ */
 
 /** 网络系统全局数据指针 */
-void* unknown_var_5984;
+void* processed_var_5984;
 
 /** 网络系统配置数据指针 */
-void* unknown_var_6080;
+void* processed_var_6080;
 
 /** 网络系统连接表指针 */
-void* unknown_var_2208;
+void* rendering_buffer_2208;
 
 /** 网络系统状态标志 */
 uint8_t system_memory_eaac;
@@ -293,73 +293,73 @@ uint8_t system_memory_eaac;
 uint8_t system_memory_eaa8;
 
 /** 网络系统事件队列指针 */
-void* unknown_var_2336;
+void* rendering_buffer_2336;
 
 /** 网络系统统计信息指针 */
-void* unknown_var_2520;
+void* rendering_buffer_2520;
 
 /** 网络系统回调函数指针 */
-void* unknown_var_2560;
+void* rendering_buffer_2560;
 
 /** 网络系统配置结构指针 */
-void* unknown_var_2624;
+void* rendering_buffer_2624;
 
 /** 网络系统线程句柄 */
-void* unknown_var_2288;
+void* rendering_buffer_2288;
 
 /** 网络系统错误处理指针 */
 uint8_t system_memory_f7b8;
 
 /** 网络系统连接池指针 */
-void* unknown_var_2912;
+void* rendering_buffer_2912;
 
 /** 网络系统数据包池指针 */
-void* unknown_var_3024;
+void* memory_allocator_3024;
 
 /** 网络系统内存池指针 */
-void* unknown_var_2888;
+void* rendering_buffer_2888;
 
 /** 网络系统加密密钥指针 */
-void* unknown_var_3216;
+void* memory_allocator_3216;
 
 /** 网络系统压缩算法指针 */
-void* unknown_var_3264;
+void* memory_allocator_3264;
 
 /** 网络系统协议版本指针 */
-void* unknown_var_5856;
+void* processed_var_5856;
 
 /** 网络系统调试信息指针 */
-void* unknown_var_4316;
+void* processed_var_4316;
 
 /** 网络系统日志系统指针 */
-void* unknown_var_4324;
+void* processed_var_4324;
 
 /** 网络系统性能监控指针 */
-void* unknown_var_4424;
+void* processed_var_4424;
 
 /** 网络系统安全策略指针 */
-void* unknown_var_4552;
+void* processed_var_4552;
 
 /** 网络系统负载均衡指针 */
-void* unknown_var_4592;
+void* processed_var_4592;
 
 /** 网络系统故障恢复指针 */
-void* unknown_var_4696;
+void* processed_var_4696;
 
 /** 网络系统带宽管理指针 */
-void* unknown_var_3384;
+void* memory_allocator_3384;
 
 /** 网络系统QoS管理指针 */
 uint8_t system_memory_eaf0;
 
 /** 网络系统连接缓存指针 */
-void* unknown_var_4744;
+void* processed_var_4744;
 
 /** 网络系统路由表指针 */
-void* unknown_var_5984;
+void* processed_var_5984;
 
 /** 网络系统心跳检测指针 */
-void* unknown_var_6824;
+void* processed_var_6824;
 
 /* ================================================ */
 /* 核心函数实现 */
@@ -1251,37 +1251,37 @@ uint8_t NetworkingSystem_SearchConnection(int64_t searchBase, int64_t searchOffs
 
 // 原始函数声明 - 保持二进制兼容性
 uint8_t FUN_1808632b0;
-uint8_t unknown_var_5984;
-uint8_t unknown_var_6080;
-uint8_t unknown_var_2208;
+uint8_t processed_var_5984;
+uint8_t processed_var_6080;
+uint8_t rendering_buffer_2208;
 uint8_t system_memory_eaac;
 uint8_t system_memory_eaa8;
-uint8_t unknown_var_2336;
-uint8_t unknown_var_2520;
-uint8_t unknown_var_2560;
-uint8_t unknown_var_2288;
+uint8_t rendering_buffer_2336;
+uint8_t rendering_buffer_2520;
+uint8_t rendering_buffer_2560;
+uint8_t rendering_buffer_2288;
 uint8_t system_memory_f7b8;
-uint8_t unknown_var_2912;
-uint8_t unknown_var_3024;
-uint8_t unknown_var_2888;
-uint8_t unknown_var_3216;
-uint8_t unknown_var_3264;
-uint8_t unknown_var_5856;
-uint8_t unknown_var_4316;
-uint8_t unknown_var_4324;
-uint8_t unknown_var_4424;
-uint8_t unknown_var_4552;
-uint8_t unknown_var_4592;
-uint8_t unknown_var_4696;
-uint8_t unknown_var_3384;
+uint8_t rendering_buffer_2912;
+uint8_t memory_allocator_3024;
+uint8_t rendering_buffer_2888;
+uint8_t memory_allocator_3216;
+uint8_t memory_allocator_3264;
+uint8_t processed_var_5856;
+uint8_t processed_var_4316;
+uint8_t processed_var_4324;
+uint8_t processed_var_4424;
+uint8_t processed_var_4552;
+uint8_t processed_var_4592;
+uint8_t processed_var_4696;
+uint8_t memory_allocator_3384;
 uint8_t system_memory_eaf0;
-uint8_t unknown_var_4744;
-uint8_t unknown_var_5984;
+uint8_t processed_var_4744;
+uint8_t processed_var_5984;
 uint8_t FUN_180873f80;
-uint8_t unknown_var_6824;
+uint8_t processed_var_6824;
 uint8_t FUN_1808793e0;
 uint8_t FUN_1808777c0;
-uint8_t unknown_var_6608;
+uint8_t processed_var_6608;
 uint8_t FUN_180877810;
 uint8_t FUN_180877f00;
 uint8_t FUN_1808780d0;
@@ -1291,129 +1291,129 @@ uint8_t FUN_180876d70;
 uint8_t FUN_180876d90;
 uint8_t FUN_180876eb0;
 uint8_t FUN_180876fb0;
-uint8_t unknown_var_5688;
-uint8_t unknown_var_292;
-uint8_t unknown_var_4252;
-uint8_t unknown_var_4260;
-uint8_t unknown_var_4268;
-uint8_t unknown_var_4276;
-uint8_t unknown_var_4284;
-uint8_t unknown_var_4292;
-uint8_t unknown_var_4300;
-uint8_t unknown_var_4308;
-uint8_t unknown_var_4332;
-uint8_t unknown_var_4340;
-uint8_t unknown_var_4348;
-uint8_t unknown_var_4356;
-uint8_t unknown_var_4248;
-uint8_t unknown_var_4296;
-uint8_t unknown_var_4336;
-uint8_t unknown_var_4384;
-uint8_t unknown_var_4464;
-uint8_t unknown_var_4504;
-uint8_t unknown_var_4632;
-uint8_t unknown_var_4672;
-uint8_t unknown_var_6856;
+uint8_t processed_var_5688;
+uint8_t rendering_buffer_292;
+uint8_t processed_var_4252;
+uint8_t processed_var_4260;
+uint8_t processed_var_4268;
+uint8_t processed_var_4276;
+uint8_t processed_var_4284;
+uint8_t processed_var_4292;
+uint8_t processed_var_4300;
+uint8_t processed_var_4308;
+uint8_t processed_var_4332;
+uint8_t processed_var_4340;
+uint8_t processed_var_4348;
+uint8_t processed_var_4356;
+uint8_t processed_var_4248;
+uint8_t processed_var_4296;
+uint8_t processed_var_4336;
+uint8_t processed_var_4384;
+uint8_t processed_var_4464;
+uint8_t processed_var_4504;
+uint8_t processed_var_4632;
+uint8_t processed_var_4672;
+uint8_t processed_var_6856;
 uint8_t system_memory_eaf8;
-uint8_t unknown_var_5584;
-int32_t unknown_var_6156;
-int32_t unknown_var_6160;
-int32_t unknown_var_6164;
-uint8_t unknown_var_6880;
-uint8_t unknown_var_7008;
-uint8_t unknown_var_7136;
-uint8_t unknown_var_7392;
-uint8_t unknown_var_7512;
-uint8_t unknown_var_7256;
-uint8_t unknown_var_8368;
-uint8_t unknown_var_7360;
+uint8_t processed_var_5584;
+int32_t processed_var_6156;
+int32_t processed_var_6160;
+int32_t processed_var_6164;
+uint8_t processed_var_6880;
+uint8_t processed_var_7008;
+uint8_t processed_var_7136;
+uint8_t processed_var_7392;
+uint8_t processed_var_7512;
+uint8_t processed_var_7256;
+uint8_t processed_var_8368;
+uint8_t processed_var_7360;
 uint8_t FUN_18088ea60;
-uint8_t unknown_var_7528;
-uint8_t unknown_var_7568;
-uint8_t unknown_var_7572;
-uint8_t unknown_var_7576;
-uint8_t unknown_var_7580;
-uint8_t unknown_var_7584;
-uint8_t unknown_var_7608;
+uint8_t processed_var_7528;
+uint8_t processed_var_7568;
+uint8_t processed_var_7572;
+uint8_t processed_var_7576;
+uint8_t processed_var_7580;
+uint8_t processed_var_7584;
+uint8_t processed_var_7608;
 uint8_t system_memory_eaa0;
 uint8_t system_memory_eaa4;
-uint8_t unknown_var_7712;
-uint8_t unknown_var_7656;
-uint8_t unknown_var_8816;
-uint8_t unknown_var_1184;
-uint8_t unknown_var_6120;
-uint8_t unknown_var_9280;
-uint8_t unknown_var_9656;
-uint8_t unknown_var_9776;
-uint8_t unknown_var_7840;
-uint8_t unknown_var_7872;
-uint8_t unknown_var_9216;
-uint8_t unknown_var_8008;
-uint8_t unknown_var_8128;
-uint8_t unknown_var_2024;
-uint8_t unknown_var_2152;
-uint8_t unknown_var_4888;
-uint8_t unknown_var_5272;
-uint8_t unknown_var_7224;
-uint8_t unknown_var_3144;
-uint8_t unknown_var_4504;
-uint8_t unknown_var_5976;
-uint8_t unknown_var_8024;
-uint8_t unknown_var_8236;
-uint8_t unknown_var_8240;
-uint8_t unknown_var_8280;
-uint8_t unknown_var_8352;
-uint8_t unknown_var_8416;
-uint8_t unknown_var_8512;
-uint8_t unknown_var_8720;
-uint8_t unknown_var_8832;
-uint8_t unknown_var_8960;
-uint8_t unknown_var_9120;
-uint8_t unknown_var_1496;
-uint8_t unknown_var_7904;
-uint8_t unknown_var_8152;
-uint8_t unknown_var_8192;
-uint8_t unknown_var_9360;
-uint8_t unknown_var_9456;
-uint8_t unknown_var_688;
-uint8_t unknown_var_472;
-uint8_t unknown_var_512;
-uint8_t unknown_var_552;
-uint8_t unknown_var_592;
-uint8_t unknown_var_632;
-uint8_t unknown_var_816;
-uint8_t unknown_var_9792;
-uint8_t unknown_var_9992;
-uint8_t unknown_var_440;
-uint8_t unknown_var_9568;
-uint8_t unknown_var_288;
-uint8_t unknown_var_9728;
-uint8_t unknown_var_9344;
-uint8_t unknown_var_232;
-uint8_t unknown_var_9808;
-uint8_t unknown_var_408;
-uint8_t unknown_var_672;
-uint8_t unknown_var_48;
-uint8_t unknown_var_400;
-uint8_t unknown_var_9648;
-uint8_t unknown_var_176;
-uint8_t unknown_var_112;
-uint8_t unknown_var_344;
-uint8_t unknown_var_9368;
-uint8_t unknown_var_9736;
-uint8_t unknown_var_9352;
-uint8_t unknown_var_9872;
-uint8_t unknown_var_1104;
-uint8_t unknown_var_6220;
-uint8_t unknown_var_6272;
-uint8_t unknown_var_6324;
-uint8_t unknown_var_1880;
-uint8_t unknown_var_1232;
-uint8_t unknown_var_1360;
-uint8_t unknown_var_1488;
-uint8_t unknown_var_1520;
-uint8_t unknown_var_1456;
-uint8_t unknown_var_1424;
+uint8_t processed_var_7712;
+uint8_t processed_var_7656;
+uint8_t processed_var_8816;
+uint8_t ui_system_data_1184;
+uint8_t processed_var_6120;
+uint8_t processed_var_9280;
+uint8_t processed_var_9656;
+uint8_t processed_var_9776;
+uint8_t processed_var_7840;
+uint8_t processed_var_7872;
+uint8_t processed_var_9216;
+uint8_t processed_var_8008;
+uint8_t processed_var_8128;
+uint8_t rendering_buffer_2024;
+uint8_t rendering_buffer_2152;
+uint8_t processed_var_4888;
+uint8_t processed_var_5272;
+uint8_t processed_var_7224;
+uint8_t memory_allocator_3144;
+uint8_t processed_var_4504;
+uint8_t processed_var_5976;
+uint8_t processed_var_8024;
+uint8_t processed_var_8236;
+uint8_t processed_var_8240;
+uint8_t processed_var_8280;
+uint8_t processed_var_8352;
+uint8_t processed_var_8416;
+uint8_t processed_var_8512;
+uint8_t processed_var_8720;
+uint8_t processed_var_8832;
+uint8_t processed_var_8960;
+uint8_t processed_var_9120;
+uint8_t ui_system_data_1496;
+uint8_t processed_var_7904;
+uint8_t processed_var_8152;
+uint8_t processed_var_8192;
+uint8_t processed_var_9360;
+uint8_t processed_var_9456;
+uint8_t processed_var_688;
+uint8_t processed_var_472;
+uint8_t processed_var_512;
+uint8_t processed_var_552;
+uint8_t processed_var_592;
+uint8_t processed_var_632;
+uint8_t processed_var_816;
+uint8_t processed_var_9792;
+uint8_t processed_var_9992;
+uint8_t processed_var_440;
+uint8_t processed_var_9568;
+uint8_t rendering_buffer_288;
+uint8_t processed_var_9728;
+uint8_t processed_var_9344;
+uint8_t rendering_buffer_232;
+uint8_t processed_var_9808;
+uint8_t processed_var_408;
+uint8_t processed_var_672;
+uint8_t processed_var_48;
+uint8_t processed_var_400;
+uint8_t processed_var_9648;
+uint8_t ui_system_data_176;
+uint8_t ui_system_data_112;
+uint8_t memory_allocator_344;
+uint8_t processed_var_9368;
+uint8_t processed_var_9736;
+uint8_t processed_var_9352;
+uint8_t processed_var_9872;
+uint8_t ui_system_data_1104;
+uint8_t processed_var_6220;
+uint8_t processed_var_6272;
+uint8_t processed_var_6324;
+uint8_t ui_system_data_1880;
+uint8_t ui_system_data_1232;
+uint8_t ui_system_data_1360;
+uint8_t ui_system_data_1488;
+uint8_t ui_system_data_1520;
+uint8_t ui_system_data_1456;
+uint8_t ui_system_data_1424;
 
 /* ================================================ */
 /* 模块结束标记 */

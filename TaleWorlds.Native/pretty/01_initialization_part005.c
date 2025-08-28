@@ -36,19 +36,19 @@ uint8_t system_memory_0bb0;                           // 系统配置数据块12
 uint8_t system_memory_0b88;                           // 系统配置数据块13
 
 // 系统引用变量
-uint8_t unknown_var_7728_ptr;                           // 系统引用指针1
-uint8_t unknown_var_7584_ptr;                           // 系统引用指针2
-uint8_t unknown_var_7608_ptr;                           // 系统引用指针3
-uint8_t unknown_var_7632_ptr;                           // 系统引用指针4
-uint8_t unknown_var_7656_ptr;                           // 系统引用指针5
-uint8_t unknown_var_7680_ptr;                           // 系统引用指针6
-uint8_t unknown_var_7704_ptr;                           // 系统引用指针7
-uint8_t unknown_var_7824_ptr;                           // 系统引用指针8
-uint8_t unknown_var_7776_ptr;                           // 系统引用指针9
-uint8_t unknown_var_5032_ptr;                           // 系统引用指针10
-uint8_t unknown_var_5056_ptr;                           // 系统引用指针11
-uint8_t unknown_var_7896_ptr;                           // 系统引用指针12
-uint8_t unknown_var_7920_ptr;                           // 系统引用指针13
+uint8_t processed_var_7728_ptr;                           // 系统引用指针1
+uint8_t processed_var_7584_ptr;                           // 系统引用指针2
+uint8_t processed_var_7608_ptr;                           // 系统引用指针3
+uint8_t processed_var_7632_ptr;                           // 系统引用指针4
+uint8_t processed_var_7656_ptr;                           // 系统引用指针5
+uint8_t processed_var_7680_ptr;                           // 系统引用指针6
+uint8_t processed_var_7704_ptr;                           // 系统引用指针7
+uint8_t processed_var_7824_ptr;                           // 系统引用指针8
+uint8_t processed_var_7776_ptr;                           // 系统引用指针9
+uint8_t processed_var_5032_ptr;                           // 系统引用指针10
+uint8_t processed_var_5056_ptr;                           // 系统引用指针11
+uint8_t processed_var_7896_ptr;                           // 系统引用指针12
+uint8_t processed_var_7920_ptr;                           // 系统引用指针13
 
 // 系统回调函数
 uint8_t FUN_18025cc00;                           // 系统回调函数1
@@ -64,7 +64,7 @@ uint8_t FUN_180262b00;                           // 系统回调函数9
 // 系统工具函数
 uint8_t RenderPipelineProcessor;                           // 系统工具函数1
 uint8_t RenderShaderProcessor;                           // 系统工具函数2
-uint8_t unknown_var_2048_ptr;                           // 系统工具变量
+uint8_t rendering_buffer_2048_ptr;                           // 系统工具变量
 
 // 系统数据缓冲区
 uint8_t system_memory_aa70;                           // 系统数据缓冲区1
@@ -179,7 +179,7 @@ typedef int64_t (*SystemToolFunction)(void);      // 系统工具函数类型
  * 配置数据：
  * - 组件标识符：0x4140994454d56503
  * - 配置版本：0x399eced9bb5517ad
- * - 数据引用：&unknown_var_7728_ptr
+ * - 数据引用：&processed_var_7728_ptr
  * - 状态标志：0x00
  * - 回调函数：NULL
  */
@@ -234,7 +234,7 @@ void SystemInitialization_RegisterComponent1(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x4140994454d56503;        // 组件标识符
   parent_component_ptr[7] = 0x399eced9bb5517ad;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7728_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7728_ptr;             // 数据引用
   parent_component_ptr[9] = 0;                         // 状态标志
   parent_component_ptr[10] = callback_function;        // 回调函数
   return;
@@ -269,7 +269,7 @@ void SystemInitialization_RegisterComponent1(void)
  * 配置数据：
  * - 组件标识符：0x43330a43fcdb3653
  * - 配置版本：0xdcfdc333a769ec93
- * - 数据引用：&unknown_var_7584_ptr
+ * - 数据引用：&processed_var_7584_ptr
  * - 状态标志：0x01
  * - 回调函数：SystemCallback_Handler1
  */
@@ -324,7 +324,7 @@ void SystemInitialization_RegisterComponent2(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x43330a43fcdb3653;        // 组件标识符
   parent_component_ptr[7] = 0xdcfdc333a769ec93;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7584_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7584_ptr;             // 数据引用
   parent_component_ptr[9] = 1;                         // 状态标志
   parent_component_ptr[10] = callback_function;       // 回调函数
   return;
@@ -359,7 +359,7 @@ void SystemInitialization_RegisterComponent2(void)
  * 配置数据：
  * - 组件标识符：0x431d7c8d7c475be2
  * - 配置版本：0xb97f048d2153e1b0
- * - 数据引用：&unknown_var_7608_ptr
+ * - 数据引用：&processed_var_7608_ptr
  * - 状态标志：0x04
  * - 回调函数：SystemCallback_Handler2
  */
@@ -414,7 +414,7 @@ void SystemInitialization_RegisterComponent3(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x431d7c8d7c475be2;        // 组件标识符
   parent_component_ptr[7] = 0xb97f048d2153e1b0;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7608_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7608_ptr;             // 数据引用
   parent_component_ptr[9] = 4;                         // 状态标志
   parent_component_ptr[10] = callback_function;       // 回调函数
   return;
@@ -449,7 +449,7 @@ void SystemInitialization_RegisterComponent3(void)
  * 配置数据：
  * - 组件标识符：0x4b2d79e470ee4e2c
  * - 配置版本：0x9c552acd3ed5548d
- * - 数据引用：&unknown_var_7632_ptr
+ * - 数据引用：&processed_var_7632_ptr
  * - 状态标志：0x00
  * - 回调函数：NULL
  */
@@ -504,7 +504,7 @@ void SystemInitialization_RegisterComponent4(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x4b2d79e470ee4e2c;        // 组件标识符
   parent_component_ptr[7] = 0x9c552acd3ed5548d;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7632_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7632_ptr;             // 数据引用
   parent_component_ptr[9] = 0;                         // 状态标志
   parent_component_ptr[10] = callback_function;        // 回调函数
   return;
@@ -539,7 +539,7 @@ void SystemInitialization_RegisterComponent4(void)
  * 配置数据：
  * - 组件标识符：0x49086ba08ab981a7
  * - 配置版本：0xa9191d34ad910696
- * - 数据引用：&unknown_var_7656_ptr
+ * - 数据引用：&processed_var_7656_ptr
  * - 状态标志：0x00
  * - 回调函数：SystemCallback_Handler3
  */
@@ -594,7 +594,7 @@ void SystemInitialization_RegisterComponent5(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x49086ba08ab981a7;        // 组件标识符
   parent_component_ptr[7] = 0xa9191d34ad910696;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7656_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7656_ptr;             // 数据引用
   parent_component_ptr[9] = 0;                         // 状态标志
   parent_component_ptr[10] = callback_function;       // 回调函数
   return;
@@ -629,7 +629,7 @@ void SystemInitialization_RegisterComponent5(void)
  * 配置数据：
  * - 组件标识符：0x402feffe4481676e
  * - 配置版本：0xd4c2151109de93a0
- * - 数据引用：&unknown_var_7680_ptr
+ * - 数据引用：&processed_var_7680_ptr
  * - 状态标志：0x00
  * - 回调函数：NULL
  */
@@ -684,7 +684,7 @@ void SystemInitialization_RegisterComponent6(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x402feffe4481676e;        // 组件标识符
   parent_component_ptr[7] = 0xd4c2151109de93a0;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7680_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7680_ptr;             // 数据引用
   parent_component_ptr[9] = 0;                         // 状态标志
   parent_component_ptr[10] = callback_function;        // 回调函数
   return;
@@ -719,9 +719,9 @@ void SystemInitialization_RegisterComponent6(void)
  * 配置数据：
  * - 组件标识符：0x4384dcc4b6d3f417
  * - 配置版本：0x92a15d52fe2679bd
- * - 数据引用：&unknown_var_7704_ptr
+ * - 数据引用：&processed_var_7704_ptr
  * - 状态标志：0x00
- * - 回调函数：&unknown_var_2048_ptr
+ * - 回调函数：&rendering_buffer_2048_ptr
  */
 void SystemInitialization_RegisterComponent7(void)
 
@@ -741,7 +741,7 @@ void SystemInitialization_RegisterComponent7(void)
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
   component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
-  tool_function = &unknown_var_2048_ptr;
+  tool_function = &rendering_buffer_2048_ptr;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
   
@@ -774,7 +774,7 @@ void SystemInitialization_RegisterComponent7(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x4384dcc4b6d3f417;        // 组件标识符
   parent_component_ptr[7] = 0x92a15d52fe2679bd;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7704_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7704_ptr;             // 数据引用
   parent_component_ptr[9] = 0;                         // 状态标志
   parent_component_ptr[10] = tool_function;           // 工具函数
   return;
@@ -809,7 +809,7 @@ void SystemInitialization_RegisterComponent7(void)
  * 配置数据：
  * - 组件标识符：0x4140994454d56503
  * - 配置版本：0x399eced9bb5517ad
- * - 数据引用：&unknown_var_7728_ptr
+ * - 数据引用：&processed_var_7728_ptr
  * - 状态标志：0x00
  * - 回调函数：NULL
  */
@@ -864,7 +864,7 @@ void SystemInitialization_RegisterComponent8(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x4140994454d56503;        // 组件标识符
   parent_component_ptr[7] = 0x399eced9bb5517ad;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7728_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7728_ptr;             // 数据引用
   parent_component_ptr[9] = 0;                         // 状态标志
   parent_component_ptr[10] = callback_function;        // 回调函数
   return;
@@ -989,7 +989,7 @@ void SystemInitialization_InitializeDataBuffers(void)
  * 配置数据：
  * - 组件标识符：0x45425dc186a5d575
  * - 配置版本：0xfab48faa65382fa5
- * - 数据引用：&unknown_var_7824_ptr
+ * - 数据引用：&processed_var_7824_ptr
  * - 状态标志：0x00
  * - 回调函数：SystemCallback_Handler4
  */
@@ -1044,7 +1044,7 @@ void SystemInitialization_RegisterComponent9(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x45425dc186a5d575;        // 组件标识符
   parent_component_ptr[7] = 0xfab48faa65382fa5;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7824_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7824_ptr;             // 数据引用
   parent_component_ptr[9] = 0;                         // 状态标志
   parent_component_ptr[10] = callback_function;       // 回调函数
   return;
@@ -1079,7 +1079,7 @@ void SystemInitialization_RegisterComponent9(void)
  * 配置数据：
  * - 组件标识符：0x449bafe9b77ddd3c
  * - 配置版本：0xc160408bde99e59f
- * - 数据引用：&unknown_var_7776_ptr
+ * - 数据引用：&processed_var_7776_ptr
  * - 状态标志：0x00
  * - 回调函数：SystemCallback_Handler5
  */
@@ -1134,7 +1134,7 @@ void SystemInitialization_RegisterComponent10(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x449bafe9b77ddd3c;        // 组件标识符
   parent_component_ptr[7] = 0xc160408bde99e59f;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7776_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7776_ptr;             // 数据引用
   parent_component_ptr[9] = 0;                         // 状态标志
   parent_component_ptr[10] = callback_function;       // 回调函数
   return;
@@ -1169,7 +1169,7 @@ void SystemInitialization_RegisterComponent10(void)
  * 配置数据：
  * - 组件标识符：0x406be72011d07d37
  * - 配置版本：0x71876af946c867ab
- * - 数据引用：&unknown_var_5032_ptr
+ * - 数据引用：&processed_var_5032_ptr
  * - 状态标志：0x00
  * - 回调函数：SystemCallback_Handler6
  */
@@ -1224,7 +1224,7 @@ void SystemInitialization_RegisterComponent11(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x406be72011d07d37;        // 组件标识符
   parent_component_ptr[7] = 0x71876af946c867ab;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_5032_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_5032_ptr;             // 数据引用
   parent_component_ptr[9] = 0;                         // 状态标志
   parent_component_ptr[10] = callback_function;       // 回调函数
   return;
@@ -1259,7 +1259,7 @@ void SystemInitialization_RegisterComponent11(void)
  * 配置数据：
  * - 组件标识符：0x40afa5469b6ac06d
  * - 配置版本：0x2f4bab01d34055a5
- * - 数据引用：&unknown_var_5056_ptr
+ * - 数据引用：&processed_var_5056_ptr
  * - 状态标志：0x03
  * - 回调函数：SystemCallback_Handler7
  */
@@ -1314,7 +1314,7 @@ void SystemInitialization_RegisterComponent12(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x40afa5469b6ac06d;        // 组件标识符
   parent_component_ptr[7] = 0x2f4bab01d34055a5;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_5056_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_5056_ptr;             // 数据引用
   parent_component_ptr[9] = 3;                         // 状态标志
   parent_component_ptr[10] = callback_function;       // 回调函数
   return;
@@ -1349,7 +1349,7 @@ void SystemInitialization_RegisterComponent12(void)
  * 配置数据：
  * - 组件标识符：0x43330a43fcdb3653
  * - 配置版本：0xdcfdc333a769ec93
- * - 数据引用：&unknown_var_7584_ptr
+ * - 数据引用：&processed_var_7584_ptr
  * - 状态标志：0x01
  * - 回调函数：SystemCallback_Handler1
  */
@@ -1404,7 +1404,7 @@ void SystemInitialization_RegisterComponent13(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x43330a43fcdb3653;        // 组件标识符
   parent_component_ptr[7] = 0xdcfdc333a769ec93;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7584_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7584_ptr;             // 数据引用
   parent_component_ptr[9] = 1;                         // 状态标志
   parent_component_ptr[10] = callback_function;       // 回调函数
   return;
@@ -1439,7 +1439,7 @@ void SystemInitialization_RegisterComponent13(void)
  * 配置数据：
  * - 组件标识符：0x431d7c8d7c475be2
  * - 配置版本：0xb97f048d2153e1b0
- * - 数据引用：&unknown_var_7608_ptr
+ * - 数据引用：&processed_var_7608_ptr
  * - 状态标志：0x04
  * - 回调函数：SystemCallback_Handler2
  */
@@ -1494,7 +1494,7 @@ void SystemInitialization_RegisterComponent14(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x431d7c8d7c475be2;        // 组件标识符
   parent_component_ptr[7] = 0xb97f048d2153e1b0;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7608_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7608_ptr;             // 数据引用
   parent_component_ptr[9] = 4;                         // 状态标志
   parent_component_ptr[10] = callback_function;       // 回调函数
   return;
@@ -1529,7 +1529,7 @@ void SystemInitialization_RegisterComponent14(void)
  * 配置数据：
  * - 组件标识符：0x4b2d79e470ee4e2c
  * - 配置版本：0x9c552acd3ed5548d
- * - 数据引用：&unknown_var_7632_ptr
+ * - 数据引用：&processed_var_7632_ptr
  * - 状态标志：0x00
  * - 回调函数：NULL
  */
@@ -1584,7 +1584,7 @@ void SystemInitialization_RegisterComponent15(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x4b2d79e470ee4e2c;        // 组件标识符
   parent_component_ptr[7] = 0x9c552acd3ed5548d;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7632_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7632_ptr;             // 数据引用
   parent_component_ptr[9] = 0;                         // 状态标志
   parent_component_ptr[10] = callback_function;        // 回调函数
   return;
@@ -1619,7 +1619,7 @@ void SystemInitialization_RegisterComponent15(void)
  * 配置数据：
  * - 组件标识符：0x49086ba08ab981a7
  * - 配置版本：0xa9191d34ad910696
- * - 数据引用：&unknown_var_7656_ptr
+ * - 数据引用：&processed_var_7656_ptr
  * - 状态标志：0x00
  * - 回调函数：SystemCallback_Handler3
  */
@@ -1674,7 +1674,7 @@ void SystemInitialization_RegisterComponent16(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x49086ba08ab981a7;        // 组件标识符
   parent_component_ptr[7] = 0xa9191d34ad910696;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7656_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7656_ptr;             // 数据引用
   parent_component_ptr[9] = 0;                         // 状态标志
   parent_component_ptr[10] = callback_function;       // 回调函数
   return;
@@ -1709,7 +1709,7 @@ void SystemInitialization_RegisterComponent16(void)
  * 配置数据：
  * - 组件标识符：0x402feffe4481676e
  * - 配置版本：0xd4c2151109de93a0
- * - 数据引用：&unknown_var_7680_ptr
+ * - 数据引用：&processed_var_7680_ptr
  * - 状态标志：0x00
  * - 回调函数：NULL
  */
@@ -1764,7 +1764,7 @@ void SystemInitialization_RegisterComponent17(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x402feffe4481676e;        // 组件标识符
   parent_component_ptr[7] = 0xd4c2151109de93a0;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7680_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7680_ptr;             // 数据引用
   parent_component_ptr[9] = 0;                         // 状态标志
   parent_component_ptr[10] = callback_function;        // 回调函数
   return;
@@ -1799,9 +1799,9 @@ void SystemInitialization_RegisterComponent17(void)
  * 配置数据：
  * - 组件标识符：0x4384dcc4b6d3f417
  * - 配置版本：0x92a15d52fe2679bd
- * - 数据引用：&unknown_var_7704_ptr
+ * - 数据引用：&processed_var_7704_ptr
  * - 状态标志：0x00
- * - 回调函数：&unknown_var_2048_ptr
+ * - 回调函数：&rendering_buffer_2048_ptr
  */
 void SystemInitialization_RegisterComponent18(void)
 
@@ -1821,7 +1821,7 @@ void SystemInitialization_RegisterComponent18(void)
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
   current_component_ptr = (SystemContextHandle*)*root_component_ptr;
   component_status = *(char*)((int64_t)current_component_ptr[1] + MEMORY_DATA_OFFSET);
-  tool_function = &unknown_var_2048_ptr;
+  tool_function = &rendering_buffer_2048_ptr;
   parent_component_ptr = root_component_ptr;
   next_component_ptr = (SystemContextHandle*)current_component_ptr[1];
   
@@ -1854,7 +1854,7 @@ void SystemInitialization_RegisterComponent18(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x4384dcc4b6d3f417;        // 组件标识符
   parent_component_ptr[7] = 0x92a15d52fe2679bd;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7704_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7704_ptr;             // 数据引用
   parent_component_ptr[9] = 0;                         // 状态标志
   parent_component_ptr[10] = tool_function;           // 工具函数
   return;
@@ -1889,7 +1889,7 @@ void SystemInitialization_RegisterComponent18(void)
  * 配置数据：
  * - 组件标识符：0x4140994454d56503
  * - 配置版本：0x399eced9bb5517ad
- * - 数据引用：&unknown_var_7728_ptr
+ * - 数据引用：&processed_var_7728_ptr
  * - 状态标志：0x00
  * - 回调函数：NULL
  */
@@ -1944,7 +1944,7 @@ void SystemInitialization_RegisterComponent19(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x4140994454d56503;        // 组件标识符
   parent_component_ptr[7] = 0x399eced9bb5517ad;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7728_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7728_ptr;             // 数据引用
   parent_component_ptr[9] = 0;                         // 状态标志
   parent_component_ptr[10] = callback_function;        // 回调函数
   return;
@@ -1979,7 +1979,7 @@ void SystemInitialization_RegisterComponent19(void)
  * 配置数据：
  * - 组件标识符：0x40db4257e97d3df8
  * - 配置版本：0x81d539e33614429f
- * - 数据引用：&unknown_var_7896_ptr
+ * - 数据引用：&processed_var_7896_ptr
  * - 状态标志：0x04
  * - 回调函数：SystemCallback_Handler8
  */
@@ -2034,7 +2034,7 @@ void SystemInitialization_RegisterComponent20(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x40db4257e97d3df8;        // 组件标识符
   parent_component_ptr[7] = 0x81d539e33614429f;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7896_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7896_ptr;             // 数据引用
   parent_component_ptr[9] = 4;                         // 状态标志
   parent_component_ptr[10] = callback_function;       // 回调函数
   return;
@@ -2069,7 +2069,7 @@ void SystemInitialization_RegisterComponent20(void)
  * 配置数据：
  * - 组件标识符：0x4e33c4803e67a08f
  * - 配置版本：0x703a29a844ce399
- * - 数据引用：&unknown_var_7920_ptr
+ * - 数据引用：&processed_var_7920_ptr
  * - 状态标志：0x03
  * - 回调函数：SystemCallback_Handler9
  */
@@ -2124,7 +2124,7 @@ void SystemInitialization_RegisterComponent21(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x4e33c4803e67a08f;        // 组件标识符
   parent_component_ptr[7] = 0x703a29a844ce399;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7920_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7920_ptr;             // 数据引用
   parent_component_ptr[9] = 3;                         // 状态标志
   parent_component_ptr[10] = callback_function;       // 回调函数
   return;
@@ -2159,7 +2159,7 @@ void SystemInitialization_RegisterComponent21(void)
  * 配置数据：
  * - 组件标识符：0x43330a43fcdb3653
  * - 配置版本：0xdcfdc333a769ec93
- * - 数据引用：&unknown_var_7584_ptr
+ * - 数据引用：&processed_var_7584_ptr
  * - 状态标志：0x01
  * - 回调函数：SystemCallback_Handler1
  */
@@ -2214,7 +2214,7 @@ void SystemInitialization_RegisterComponent22(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x43330a43fcdb3653;        // 组件标识符
   parent_component_ptr[7] = 0xdcfdc333a769ec93;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7584_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7584_ptr;             // 数据引用
   parent_component_ptr[9] = 1;                         // 状态标志
   parent_component_ptr[10] = callback_function;       // 回调函数
   return;
@@ -2249,7 +2249,7 @@ void SystemInitialization_RegisterComponent22(void)
  * 配置数据：
  * - 组件标识符：0x431d7c8d7c475be2
  * - 配置版本：0xb97f048d2153e1b0
- * - 数据引用：&unknown_var_7608_ptr
+ * - 数据引用：&processed_var_7608_ptr
  * - 状态标志：0x04
  * - 回调函数：SystemCallback_Handler2
  */
@@ -2304,7 +2304,7 @@ void SystemInitialization_RegisterComponent23(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x431d7c8d7c475be2;        // 组件标识符
   parent_component_ptr[7] = 0xb97f048d2153e1b0;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7608_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7608_ptr;             // 数据引用
   parent_component_ptr[9] = 4;                         // 状态标志
   parent_component_ptr[10] = callback_function;       // 回调函数
   return;
@@ -2339,7 +2339,7 @@ void SystemInitialization_RegisterComponent23(void)
  * 配置数据：
  * - 组件标识符：0x4b2d79e470ee4e2c
  * - 配置版本：0x9c552acd3ed5548d
- * - 数据引用：&unknown_var_7632_ptr
+ * - 数据引用：&processed_var_7632_ptr
  * - 状态标志：0x00
  * - 回调函数：NULL
  */
@@ -2394,7 +2394,7 @@ void SystemInitialization_RegisterComponent24(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x4b2d79e470ee4e2c;        // 组件标识符
   parent_component_ptr[7] = 0x9c552acd3ed5548d;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7632_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7632_ptr;             // 数据引用
   parent_component_ptr[9] = 0;                         // 状态标志
   parent_component_ptr[10] = callback_function;        // 回调函数
   return;
@@ -2429,7 +2429,7 @@ void SystemInitialization_RegisterComponent24(void)
  * 配置数据：
  * - 组件标识符：0x49086ba08ab981a7
  * - 配置版本：0xa9191d34ad910696
- * - 数据引用：&unknown_var_7656_ptr
+ * - 数据引用：&processed_var_7656_ptr
  * - 状态标志：0x00
  * - 回调函数：SystemCallback_Handler3
  */
@@ -2484,7 +2484,7 @@ void SystemInitialization_RegisterComponent25(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x49086ba08ab981a7;        // 组件标识符
   parent_component_ptr[7] = 0xa9191d34ad910696;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7656_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7656_ptr;             // 数据引用
   parent_component_ptr[9] = 0;                         // 状态标志
   parent_component_ptr[10] = callback_function;       // 回调函数
   return;
@@ -2519,7 +2519,7 @@ void SystemInitialization_RegisterComponent25(void)
  * 配置数据：
  * - 组件标识符：0x402feffe4481676e
  * - 配置版本：0xd4c2151109de93a0
- * - 数据引用：&unknown_var_7680_ptr
+ * - 数据引用：&processed_var_7680_ptr
  * - 状态标志：0x00
  * - 回调函数：NULL
  */
@@ -2574,7 +2574,7 @@ void SystemInitialization_RegisterComponent26(void)
   // 设置组件配置数据
   parent_component_ptr[6] = 0x402feffe4481676e;        // 组件标识符
   parent_component_ptr[7] = 0xd4c2151109de93a0;        // 配置版本
-  parent_component_ptr[8] = &unknown_var_7680_ptr;             // 数据引用
+  parent_component_ptr[8] = &processed_var_7680_ptr;             // 数据引用
   parent_component_ptr[9] = 0;                         // 状态标志
   parent_component_ptr[10] = callback_function;        // 回调函数
   return;

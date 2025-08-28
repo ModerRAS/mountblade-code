@@ -237,10 +237,10 @@ code_r0x0001800630e9:
       CoreEngineMemoryPoolCleaner(puVar5);
     case 2:
       plVar7 = (int64_t *)(*(int64_t *)(param_1 + 0x20) + 0xd8);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&unknown_var_32_ptr);
+      (**(code **)(*plVar7 + 0x70))(plVar7,&memory_allocator_32_ptr);
       FUN_180639250(*(int64_t *)(param_1 + 0x20) + 0xd8);
       plVar7 = (int64_t *)(*(int64_t *)(param_1 + 0x20) + 0x20);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&unknown_var_32_ptr);
+      (**(code **)(*plVar7 + 0x70))(plVar7,&memory_allocator_32_ptr);
       FUN_180639250(*(int64_t *)(param_1 + 0x20) + 0x20);
       if (((*(byte *)(*(int64_t *)(param_1 + 0x20) + 8) & 2) != 0) &&
          (iRam0000000180c912e0 = iRam0000000180c912e0 + -1, iRam0000000180c912e0 == 0)) {
@@ -258,7 +258,7 @@ code_r0x0001800630e9:
       break;
     case 3:
       plVar7 = (int64_t *)(*(int64_t *)(param_1 + 0x20) + 0xd8);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&unknown_var_32_ptr);
+      (**(code **)(*plVar7 + 0x70))(plVar7,&memory_allocator_32_ptr);
       FUN_180639250(*(int64_t *)(param_1 + 0x20) + 0xd8);
       FUN_18062da70(*(int64_t *)(param_1 + 0x20) + 0xe0);
       break;
@@ -273,7 +273,7 @@ code_r0x0001800630e9:
       plVar7 = (int64_t *)(*(int64_t *)(param_1 + 0x20) + 0xd8);
       (**(code **)(*plVar7 + 0x108))(plVar7,1);
       plVar7 = (int64_t *)(*(int64_t *)(param_1 + 0x20) + 0xd8);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&unknown_var_9984_ptr);
+      (**(code **)(*plVar7 + 0x70))(plVar7,&processed_var_9984_ptr);
       break;
     case 5:
       iVar8 = *(int *)(param_1 + 0x58);
@@ -290,11 +290,11 @@ code_r0x0001800630e9:
                         0x180000000,*(int32_t *)(param_1 + 0x50));
           iVar4 = WriteConsoleA(init_system_data_buffer,puVar9,uVar2,auStackX_20,0);
           if ((iVar4 == 0) || (auStackX_20[0] < uVar2)) {
-            FUN_18005d3a0(&unknown_var_92_ptr,puVar9);
+            FUN_18005d3a0(&processed_var_92_ptr,puVar9);
           }
           iVar4 = SetConsoleTextAttribute(init_system_data_buffer,0xf);
           if (iVar4 == 0) {
-            FUN_18005d3a0(&unknown_var_9952_ptr);
+            FUN_18005d3a0(&processed_var_9952_ptr);
           }
         }
         if ((*(byte *)(puVar5 + 1) & 8) != 0) {
@@ -325,7 +325,7 @@ code_r0x0001800630e9:
     }
   }
   else {
-    SystemDataInitializer(&unknown_var_56_ptr);
+    SystemDataInitializer(&processed_var_56_ptr);
   }
   return;
 }
@@ -450,7 +450,7 @@ uint64_t *cleanup_string_buffer(uint64_t *buffer_ptr, uint64_t flags, uint64_t p
   buffer_ptr[7] = 0;
   *(int32_t *)(buffer_ptr + 9) = 0;
   buffer_ptr[6] = &system_state_ptr;
-  *buffer_ptr = &unknown_var_1000_ptr;
+  *buffer_ptr = &ui_system_data_1000_ptr;
   *buffer_ptr = &system_handler2_ptr;
   *buffer_ptr = &system_handler1_ptr;
   if ((flags & 1) != 0) {
@@ -471,12 +471,12 @@ uint64_t *initialize_string_buffer_with_config(uint64_t *buffer_ptr, int32_t con
   *buffer_ptr = &system_handler1_ptr;
   *buffer_ptr = &system_handler2_ptr;
   *(int32_t *)(buffer_ptr + 1) = 0;
-  *buffer_ptr = &unknown_var_1000_ptr;
+  *buffer_ptr = &ui_system_data_1000_ptr;
   LOCK();
   *(int8_t *)(buffer_ptr + 2) = 0;
   UNLOCK();
   buffer_ptr[3] = 0xffffffffffffffff;
-  *buffer_ptr = &unknown_var_128_ptr;
+  *buffer_ptr = &ui_system_data_128_ptr;
   buffer_manager = buffer_ptr + 6;
   *buffer_manager = (int64_t)&system_state_ptr;
   buffer_ptr[7] = 0;
@@ -570,12 +570,12 @@ void write_log_to_file(uint64_t file_handle, int64_t message_data)
   
   log_buffer = 0;
   file_stream = 0;
-  initialize_file_stream(file_handle,&message_ptr2,&unknown_var_560_ptr);
+  initialize_file_stream(file_handle,&message_ptr2,&processed_var_560_ptr);
   default_message = &system_buffer_ptr;
   if (message_ptr3 != (void *)0x0) {
     default_message = message_ptr3;
   }
-  initialize_log_buffer(&log_buffer,default_message,&unknown_var_572_ptr);
+  initialize_log_buffer(&log_buffer,default_message,&processed_var_572_ptr);
   file_stream2 = file_stream;
   temp_var2 = -1;
   message_length = temp_var2;
@@ -673,7 +673,7 @@ not_found:
         do {
           char_index2 = char_index1 + 1;
           if (*(char *)(*(int64_t *)((int64_t)file_array1 + scan_index + 8) + (int64_t)(file_length + -4) +
-                       char_index1) != (&unknown_var_652_ptr)[char_index1]) goto not_found;
+                       char_index1) != (&processed_var_652_ptr)[char_index1]) goto not_found;
           char_index1 = char_index2;
         } while (char_index2 != 5);
         is_match = true;
@@ -821,12 +821,12 @@ void FUN_180064010(uint64_t param_1)
   puStack_2a0 = &system_state_ptr;
   uStack_2f8 = 0;
   lStack_2f0 = 0;
-  FUN_180627e10(param_1,&puStack_280,&unknown_var_664_ptr);
+  FUN_180627e10(param_1,&puStack_280,&processed_var_664_ptr);
   puVar3 = &system_buffer_ptr;
   if (puStack_278 != (void *)0x0) {
     puVar3 = puStack_278;
   }
-  FUN_18062dee0(&uStack_2f8,puVar3,&unknown_var_572_ptr);
+  FUN_18062dee0(&uStack_2f8,puVar3,&processed_var_572_ptr);
   FUN_1800ae730(SYSTEM_STATE_MANAGER,&uStack_2f8);
   if (lStack_2f0 != 0) {
     fclose();
@@ -852,12 +852,12 @@ void FUN_180064010(uint64_t param_1)
   }
   uStack_2e0 = 0;
   lStack_2d8 = 0;
-  FUN_180627e10(param_1,&puStack_260,&unknown_var_688_ptr);
+  FUN_180627e10(param_1,&puStack_260,&processed_var_688_ptr);
   puVar3 = &system_buffer_ptr;
   if (puStack_258 != (void *)0x0) {
     puVar3 = puStack_258;
   }
-  FUN_18062dee0(&uStack_2e0,puVar3,&unknown_var_572_ptr);
+  FUN_18062dee0(&uStack_2e0,puVar3,&processed_var_572_ptr);
   FUN_1800ae730(init_system_data_buffer,&uStack_2e0);
   if (lStack_2d8 != 0) {
     fclose();
@@ -938,19 +938,19 @@ uint64_t process_file_operations(uint64_t file_handle)
   file_list3 = file_array2;
   file_list2 = file_array1;
   if ((status_char == '\0') || (file_array1 == file_array2)) {
-    log_system_message(system_message_context,5,3,&unknown_var_736_ptr);
+    log_system_message(system_message_context,5,3,&processed_var_736_ptr);
     operation_result = get_operation_result();
     file_list1 = file_list2;
   }
   else {
     log_buffer = 0;
     log_handle = 0;
-    initialize_file_stream(file_handle,&message_ptr,&unknown_var_712_ptr);
+    initialize_file_stream(file_handle,&message_ptr,&processed_var_712_ptr);
     default_path = &system_buffer_ptr;
     if (custom_message != (void *)0x0) {
       default_path = custom_message;
     }
-    initialize_log_buffer(&log_buffer,default_path,&unknown_var_572_ptr);
+    initialize_log_buffer(&log_buffer,default_path,&processed_var_572_ptr);
     operation_result = (int64_t)file_list3 - (int64_t)file_list2 >> 5;
     output_buffer = &system_data_buffer_ptr;
     buffer_pos = 0;
@@ -964,7 +964,7 @@ uint64_t process_file_operations(uint64_t file_handle)
         if ((void *)*file_list1 != (void *)0x0) {
           default_path = (void *)*file_list1;
         }
-        write_error_message(&output_buffer,&unknown_var_92_ptr,default_path);
+        write_error_message(&output_buffer,&processed_var_92_ptr,default_path);
         file_list1 = file_list1 + 4;
         operation_result = operation_result - 1;
       } while (operation_result != 0);

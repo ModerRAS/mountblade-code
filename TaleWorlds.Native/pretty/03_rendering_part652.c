@@ -67,7 +67,7 @@ int64_t System_BufferManager(int64_t *param_1,uint64_t param_2)
     }
   }
   if ((lVar5 == 0) || (param_1[1] == 0)) {
-    FUN_180626ee0(&unknown_var_6984_ptr,param_2);
+    FUN_180626ee0(&processed_var_6984_ptr,param_2);
     lVar5 = *param_1;
   }
   param_1[2] = param_2;
@@ -126,7 +126,7 @@ int64_t FUN_180639cda(int64_t param_1,uint64_t param_2)
   *unaff_RBX = lVar1;
   unaff_RBX[1] = lVar1;
   if ((lVar1 == 0) || (unaff_RBX[1] == 0)) {
-    FUN_180626ee0(&unknown_var_6984_ptr);
+    FUN_180626ee0(&processed_var_6984_ptr);
     lVar1 = *unaff_RBX;
   }
   unaff_RBX[2] = unaff_RDI;

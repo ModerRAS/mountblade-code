@@ -14,7 +14,7 @@ void FUN_18058a940(int64_t param_1)
   int iVar5;
   int iVar6;
   
-  plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_1920_ptr);
+  plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&ui_system_data_1920_ptr);
   plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,*(int32_t *)(param_1 + 0x1284));
   (**(code **)(*plVar2 + 0x70))(plVar2,&system_data_fd38);
   iVar5 = 0;
@@ -22,7 +22,7 @@ void FUN_18058a940(int64_t param_1)
   if (0 < *(int *)(param_1 + 0x100)) {
     puVar4 = (int32_t *)(param_1 + 0x134);
     do {
-      plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_7100_ptr);
+      plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&processed_var_7100_ptr);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x50))(plVar2,iVar6);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&system_data_f674);
       if (*(int64_t *)(puVar4 + -0xb) == 0) {
@@ -36,24 +36,24 @@ void FUN_18058a940(int64_t param_1)
         }
       }
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,puVar3);
-      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&unknown_var_1984_ptr);
+      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&ui_system_data_1984_ptr);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,puVar4[-9]);
-      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&unknown_var_1976_ptr);
+      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&ui_system_data_1976_ptr);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,*puVar4);
-      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&unknown_var_2024_ptr);
+      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&rendering_buffer_2024_ptr);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,puVar4[-8]);
       (**(code **)(*plVar2 + 0x70))(plVar2,&system_data_fd38);
       iVar6 = iVar6 + 1;
       puVar4 = puVar4 + 0x12;
     } while (iVar6 < *(int *)(param_1 + 0x100));
   }
-  plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_2000_ptr);
+  plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&rendering_buffer_2000_ptr);
   plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,*(int32_t *)(param_1 + 0x2434));
   (**(code **)(*plVar2 + 0x70))(plVar2,&system_data_fd38);
   if (0 < *(int *)(param_1 + 0x12b0)) {
     puVar4 = (int32_t *)(param_1 + 0x12e4);
     do {
-      plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_7100_ptr);
+      plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&processed_var_7100_ptr);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x50))(plVar2,iVar5);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&system_data_f674);
       if (*(int64_t *)(puVar4 + -0xb) == 0) {
@@ -67,11 +67,11 @@ void FUN_18058a940(int64_t param_1)
         }
       }
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,puVar3);
-      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&unknown_var_1984_ptr);
+      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&ui_system_data_1984_ptr);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,puVar4[-9]);
-      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&unknown_var_1976_ptr);
+      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&ui_system_data_1976_ptr);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,*puVar4);
-      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&unknown_var_2024_ptr);
+      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&rendering_buffer_2024_ptr);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,puVar4[-8]);
       (**(code **)(*plVar2 + 0x70))(plVar2,&system_data_fd38);
       iVar5 = iVar5 + 1;
@@ -99,7 +99,7 @@ void FUN_18058a952(void)
   int iVar6;
   int64_t unaff_RDI;
   
-  plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_1920_ptr);
+  plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&ui_system_data_1920_ptr);
   plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,*(int32_t *)(unaff_RDI + 0x1284));
   (**(code **)(*plVar2 + 0x70))(plVar2,&system_data_fd38);
   iVar5 = 0;
@@ -107,7 +107,7 @@ void FUN_18058a952(void)
   if (0 < *(int *)(unaff_RDI + 0x100)) {
     puVar4 = (int32_t *)(unaff_RDI + 0x134);
     do {
-      plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_7100_ptr);
+      plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&processed_var_7100_ptr);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x50))(plVar2,iVar6);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&system_data_f674);
       if (*(int64_t *)(puVar4 + -0xb) == 0) {
@@ -121,24 +121,24 @@ void FUN_18058a952(void)
         }
       }
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,puVar3);
-      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&unknown_var_1984_ptr);
+      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&ui_system_data_1984_ptr);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,puVar4[-9]);
-      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&unknown_var_1976_ptr);
+      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&ui_system_data_1976_ptr);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,*puVar4);
-      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&unknown_var_2024_ptr);
+      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&rendering_buffer_2024_ptr);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,puVar4[-8]);
       (**(code **)(*plVar2 + 0x70))(plVar2,&system_data_fd38);
       iVar6 = iVar6 + 1;
       puVar4 = puVar4 + 0x12;
     } while (iVar6 < *(int *)(unaff_RDI + 0x100));
   }
-  plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_2000_ptr);
+  plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&rendering_buffer_2000_ptr);
   plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,*(int32_t *)(unaff_RDI + 0x2434));
   (**(code **)(*plVar2 + 0x70))(plVar2,&system_data_fd38);
   if (0 < *(int *)(unaff_RDI + 0x12b0)) {
     puVar4 = (int32_t *)(unaff_RDI + 0x12e4);
     do {
-      plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_7100_ptr);
+      plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&processed_var_7100_ptr);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x50))(plVar2,iVar5);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&system_data_f674);
       if (*(int64_t *)(puVar4 + -0xb) == 0) {
@@ -152,11 +152,11 @@ void FUN_18058a952(void)
         }
       }
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,puVar3);
-      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&unknown_var_1984_ptr);
+      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&ui_system_data_1984_ptr);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,puVar4[-9]);
-      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&unknown_var_1976_ptr);
+      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&ui_system_data_1976_ptr);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,*puVar4);
-      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&unknown_var_2024_ptr);
+      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&rendering_buffer_2024_ptr);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,puVar4[-8]);
       (**(code **)(*plVar2 + 0x70))(plVar2,&system_data_fd38);
       iVar5 = iVar5 + 1;
@@ -185,7 +185,7 @@ void FUN_18058aaf3(void)
   
   puVar4 = (int32_t *)(unaff_RDI + 0x12e4);
   do {
-    plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_7100_ptr);
+    plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&processed_var_7100_ptr);
     plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x50))(plVar2,unaff_EBP);
     plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&system_data_f674);
     if (*(int64_t *)(puVar4 + -0xb) == 0) {
@@ -199,11 +199,11 @@ void FUN_18058aaf3(void)
       }
     }
     plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,puVar3);
-    plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&unknown_var_1984_ptr);
+    plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&ui_system_data_1984_ptr);
     plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,puVar4[-9]);
-    plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&unknown_var_1976_ptr);
+    plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&ui_system_data_1976_ptr);
     plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,*puVar4);
-    plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&unknown_var_2024_ptr);
+    plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&rendering_buffer_2024_ptr);
     plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x28))(plVar2,puVar4[-8]);
     (**(code **)(*plVar2 + 0x70))(plVar2,&system_data_fd38);
     unaff_EBP = unaff_EBP + 1;
@@ -241,7 +241,7 @@ void FUN_18058ac10(int64_t *param_1,int64_t param_2)
   }
   if (*(int64_t *)param_1[0x1f] == 0) {
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&unknown_var_1944_ptr);
+    FUN_180062300(system_message_context,&ui_system_data_1944_ptr);
   }
   lVar2 = FUN_18040db80(*(int64_t *)param_1[0x1f]);
   fVar6 = 0.0;
@@ -293,7 +293,7 @@ void FUN_18058ac62(void)
   
   if (*in_RAX == 0) {
                     // WARNING: Subroutine does not return
-    FUN_180062300(system_message_context,&unknown_var_1944_ptr);
+    FUN_180062300(system_message_context,&ui_system_data_1944_ptr);
   }
   lVar3 = FUN_18040db80(*in_RAX);
   fVar6 = 0.0;

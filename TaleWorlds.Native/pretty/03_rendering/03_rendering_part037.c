@@ -134,7 +134,7 @@ void process_rendering_resources(int64_t render_context, uint64_t resource_param
     stack_uint64_t = resource_param;
     
     // 检查系统状态并确定时间值
-    if (*(void **)*_DAT == &unknown_var_424_ptr) {
+    if (*(void **)*_DAT == &processed_var_424_ptr) {
         char_val = *(int *)(_DAT + 0xe0) != 0;
     }
     else {
@@ -169,7 +169,7 @@ void process_rendering_resources(int64_t render_context, uint64_t resource_param
         do {
             mem_ptr = (uint64_t *)0x0;
             long_val = *(int64_t *)(stack_long3 + hash_val1 * 8);
-            stack_ptr4 = &unknown_var_3432_ptr;
+            stack_ptr4 = &memory_allocator_3432_ptr;
             stack_char_ptr2 = stack_buffer3;
             stack_buffer3[0] = '\0';
             stack_uint12 = *(uint *)(long_val + 0x20);

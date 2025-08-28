@@ -681,7 +681,7 @@ void FUN_180852090(uint64_t *param_1, uint64_t *param_2)
             plStack_318 = (int64_t *)CONCAT44(plStack_318._4_4_, (uint)uStack_2c8._4_2_);
             
             // 警告：子函数不返回
-            SystemDataValidator(auStack_78, 0x27, &unknown_var_8960_ptr, (uint64_t)uStack_2c8 & 0xffffffff);
+            SystemDataValidator(auStack_78, 0x27, &processed_var_8960_ptr, (uint64_t)uStack_2c8 & 0xffffffff);
         }
         
         // 更新会话状态
@@ -727,14 +727,14 @@ LAB_1808522f9:
                     lVar7 = (**(code **)*param_1)(param_1);
                     iVar5 = *(int *)(lVar7 + 0xd0);
                     if (iVar5 == 2) {
-                        pcVar21 = (code *)&unknown_var_6080_ptr;
+                        pcVar21 = (code *)&processed_var_6080_ptr;
 LAB_180852282:
                         // 执行排序操作
                         qsort(puVar2, lVar6, 8, pcVar21);
                     }
                     else {
                         if (iVar5 == 3) {
-                            pcVar21 = (code *)&unknown_var_5984_ptr;
+                            pcVar21 = (code *)&processed_var_5984_ptr;
                             goto LAB_180852282;
                         }
                         if (iVar5 == 4) {
@@ -965,7 +965,7 @@ LAB_180852518:
                 if ((0 < (int)uVar17) && (*plVar13 != 0)) {
                     plStack_318 = (int64_t *)CONCAT71(plStack_318._1_7_, 1);
                     // 警告：子函数不返回
-                    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
+                    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &processed_var_8432_ptr, 0x100);
                 }
                 *plVar13 = 0;
                 *(int32_t *)((int64_t)param_1 + 0x8c) = 0;
@@ -1037,7 +1037,7 @@ LAB_1808526bf:
             if ((0 < (int)uVar17) && (*plVar13 != 0)) {
                 plStack_318 = (int64_t *)CONCAT71(plStack_318._1_7_, 1);
                 // 警告：子函数不返回
-                SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
+                SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &processed_var_8432_ptr, 0x100);
             }
             *plVar13 = 0;
             *(int32_t *)((int64_t)param_1 + 0x9c) = 0;

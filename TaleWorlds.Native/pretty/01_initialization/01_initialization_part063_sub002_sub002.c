@@ -32,9 +32,9 @@
  */
 
 // 全局变量声明
-int32_t unknown_var_1776;          // 未知数据常量 - 可能是配置参数
-uint8_t unknown_var_247;          // 未知数据常量 - 可能是状态标志
-uint8_t unknown_var_1038;          // 未知数据常量 - 可能是控制标志
+int32_t ui_system_data_1776;          // 未知数据常量 - 可能是配置参数
+uint8_t rendering_buffer_247;          // 未知数据常量 - 可能是状态标志
+uint8_t ui_system_data_1038;          // 未知数据常量 - 可能是控制标志
 
 /**
  * @brief 计算权重系数

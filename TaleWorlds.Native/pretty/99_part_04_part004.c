@@ -40,7 +40,7 @@ void FUN_180259b10(int32_t *param_1,int64_t *param_2)
   puVar7[3] = uVar6;
   param_2[1] = param_2[1] + 0x10;
   System_QueueProcessor(param_2,param_1 + 4);
-  FUN_18025a940(&unknown_var_7680_ptr,param_1[0xc],param_2);
+  FUN_18025a940(&processed_var_7680_ptr,param_1[0xc],param_2);
   puVar7 = (int32_t *)param_2[1];
   if ((uint64_t)((*param_2 - (int64_t)puVar7) + param_2[2]) < 0x11) {
     System_BufferManager(param_2,(int64_t)puVar7 + (0x10 - *param_2));
@@ -837,7 +837,7 @@ void FUN_18025a7b0(int64_t *param_1,int64_t param_2,uint *param_3)
   *(uint **)(param_2 + 8) = *(uint **)(param_2 + 8) + 1;
   if (uVar3 != 0) {
     do {
-      puStack_468 = &unknown_var_336_ptr;
+      puStack_468 = &memory_allocator_336_ptr;
       pbStack_460 = abStack_450;
       iStack_458 = 0;
       abStack_450[0] = 0;

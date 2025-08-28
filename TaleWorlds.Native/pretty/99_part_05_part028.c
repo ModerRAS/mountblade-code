@@ -185,7 +185,7 @@ void FUN_1802e94a0(int64_t param_1,int64_t *param_2,uint64_t *param_3,float *par
             plVar12 = (int64_t *)plVar13[7];
             if (plVar12 < (int64_t *)plVar13[8]) {
               do {
-                if (*(code **)(*plVar13 + 0x158) == (code *)&unknown_var_2528_ptr) {
+                if (*(code **)(*plVar13 + 0x158) == (code *)&rendering_buffer_2528_ptr) {
                   pfVar9 = (float *)(plVar13 + 0x66);
                 }
                 else {

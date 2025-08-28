@@ -159,7 +159,7 @@ void FUN_1800392a0(void) {
     
     // 获取当前节点的状态标志
     search_context.found_node->flags = *(InitializationSystemNodeFlags *)((long long)search_context.found_node[1] + INITIALIZATION_SYSTEM_NODE_FLAG_OFFSET);
-    search_context.search_key = &unknown_var_2048_ptr;
+    search_context.search_key = &rendering_buffer_2048_ptr;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
@@ -207,7 +207,7 @@ void FUN_1800392a0(void) {
     // 设置新节点的属性
     search_context.found_node[6] = 0x4384dcc4b6d3f417;  // 节点哈希值1
     search_context.found_node[7] = 0x92a15d52fe2679bd;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_7704_ptr;      // 节点数据指针
+    search_context.found_node[8] = &processed_var_7704_ptr;      // 节点数据指针
     search_context.found_node[9] = 0;                  // 节点状态标志
     search_context.found_node[10] = search_context.search_key;  // 节点键值
     
@@ -289,7 +289,7 @@ void FUN_1800393a0(void) {
     // 设置新节点的属性（使用不同的哈希值）
     search_context.found_node[6] = 0x4140994454d56503;  // 节点哈希值1
     search_context.found_node[7] = 0x399eced9bb5517ad;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_7728_ptr;      // 节点数据指针
+    search_context.found_node[8] = &processed_var_7728_ptr;      // 节点数据指针
     search_context.found_node[9] = 0;                  // 节点状态标志
     search_context.found_node[10] = search_context.search_key;  // 节点键值（空指针）
     
@@ -372,7 +372,7 @@ void FUN_1800394a0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x43330a43fcdb3653;  // 节点哈希值1
     search_context.found_node[7] = 0xdcfdc333a769ec93;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_7584_ptr;      // 节点数据指针
+    search_context.found_node[8] = &processed_var_7584_ptr;      // 节点数据指针
     search_context.found_node[9] = 1;                  // 节点状态标志
     search_context.found_node[10] = callback_function;  // 节点回调函数
     
@@ -455,7 +455,7 @@ void FUN_1800395a0(void) {
     // 设置新节点的属性（使用不同的哈希值）
     search_context.found_node[6] = 0x431d7c8d7c475be2;  // 节点哈希值1
     search_context.found_node[7] = 0xb97f048d2153e1b0;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_7608_ptr;      // 节点数据指针
+    search_context.found_node[8] = &processed_var_7608_ptr;      // 节点数据指针
     search_context.found_node[9] = 4;                  // 节点状态标志
     search_context.found_node[10] = callback_function;  // 节点回调函数
     
@@ -534,7 +534,7 @@ void FUN_1800396a0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x4b2d79e470ee4e2c;  // 节点哈希值1
     search_context.found_node[7] = 0x9c552acd3ed5548d;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_7632_ptr;      // 节点数据指针
+    search_context.found_node[8] = &processed_var_7632_ptr;      // 节点数据指针
     search_context.found_node[9] = 0;                  // 节点状态标志
     search_context.found_node[10] = 0;                 // 节点键值（空指针）
     
@@ -617,7 +617,7 @@ void FUN_1800397a0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x49086ba08ab981a7;  // 节点哈希值1
     search_context.found_node[7] = 0xa9191d34ad910696;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_7656_ptr;      // 节点数据指针
+    search_context.found_node[8] = &processed_var_7656_ptr;      // 节点数据指针
     search_context.found_node[9] = 0;                  // 节点状态标志
     search_context.found_node[10] = callback_function;  // 节点回调函数
     
@@ -696,7 +696,7 @@ void FUN_1800398a0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x402feffe4481676e;  // 节点哈希值1
     search_context.found_node[7] = 0xd4c2151109de93a0;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_7680_ptr;      // 节点数据指针
+    search_context.found_node[8] = &processed_var_7680_ptr;      // 节点数据指针
     search_context.found_node[9] = 0;                  // 节点状态标志
     search_context.found_node[10] = 0;                 // 节点键值（空指针）
     
@@ -730,7 +730,7 @@ void FUN_1800399a0(void) {
     search_context.found_node->flags = node_flags;
     
     // 获取全局键值指针
-    global_key_ptr = &unknown_var_2048_ptr;
+    global_key_ptr = &rendering_buffer_2048_ptr;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
@@ -779,7 +779,7 @@ void FUN_1800399a0(void) {
     // 设置新节点的属性（使用全局哈希值）
     search_context.found_node[6] = 0x4384dcc4b6d3f417;  // 节点哈希值1
     search_context.found_node[7] = 0x92a15d52fe2679bd;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_7704_ptr;      // 节点数据指针
+    search_context.found_node[8] = &processed_var_7704_ptr;      // 节点数据指针
     search_context.found_node[9] = 0;                  // 节点状态标志
     search_context.found_node[10] = global_key_ptr;    // 节点键值（全局指针）
     
@@ -858,7 +858,7 @@ void FUN_180039aa0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x4140994454d56503;  // 节点哈希值1
     search_context.found_node[7] = 0x399eced9bb5517ad;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_7728_ptr;      // 节点数据指针
+    search_context.found_node[8] = &processed_var_7728_ptr;      // 节点数据指针
     search_context.found_node[9] = 0;                  // 节点状态标志
     search_context.found_node[10] = 0;                 // 节点键值（空指针）
     
@@ -941,7 +941,7 @@ void FUN_180039bb0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x43330a43fcdb3653;  // 节点哈希值1
     search_context.found_node[7] = 0xdcfdc333a769ec93;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_7584_ptr;      // 节点数据指针
+    search_context.found_node[8] = &processed_var_7584_ptr;      // 节点数据指针
     search_context.found_node[9] = 1;                  // 节点状态标志
     search_context.found_node[10] = callback_function;  // 节点回调函数
     
@@ -1024,7 +1024,7 @@ void FUN_180039cb0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x431d7c8d7c475be2;  // 节点哈希值1
     search_context.found_node[7] = 0xb97f048d2153e1b0;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_7608_ptr;      // 节点数据指针
+    search_context.found_node[8] = &processed_var_7608_ptr;      // 节点数据指针
     search_context.found_node[9] = 4;                  // 节点状态标志
     search_context.found_node[10] = callback_function;  // 节点回调函数
     
@@ -1103,7 +1103,7 @@ void FUN_180039db0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x4b2d79e470ee4e2c;  // 节点哈希值1
     search_context.found_node[7] = 0x9c552acd3ed5548d;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_7632_ptr;      // 节点数据指针
+    search_context.found_node[8] = &processed_var_7632_ptr;      // 节点数据指针
     search_context.found_node[9] = 0;                  // 节点状态标志
     search_context.found_node[10] = 0;                 // 节点键值（空指针）
     
@@ -1186,7 +1186,7 @@ void FUN_180039eb0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x49086ba08ab981a7;  // 节点哈希值1
     search_context.found_node[7] = 0xa9191d34ad910696;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_7656_ptr;      // 节点数据指针
+    search_context.found_node[8] = &processed_var_7656_ptr;      // 节点数据指针
     search_context.found_node[9] = 0;                  // 节点状态标志
     search_context.found_node[10] = callback_function;  // 节点回调函数
     
@@ -1265,7 +1265,7 @@ void FUN_180039fb0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x402feffe4481676e;  // 节点哈希值1
     search_context.found_node[7] = 0xd4c2151109de93a0;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_7680_ptr;      // 节点数据指针
+    search_context.found_node[8] = &processed_var_7680_ptr;      // 节点数据指针
     search_context.found_node[9] = 0;                  // 节点状态标志
     search_context.found_node[10] = 0;                 // 节点键值（空指针）
     
@@ -1299,7 +1299,7 @@ void FUN_18003a0b0(void) {
     search_context.found_node->flags = node_flags;
     
     // 获取全局键值指针
-    global_key_ptr = &unknown_var_2048_ptr;
+    global_key_ptr = &rendering_buffer_2048_ptr;
     
     // 初始化搜索上下文
     search_context.current_depth = 0;
@@ -1348,7 +1348,7 @@ void FUN_18003a0b0(void) {
     // 设置新节点的属性（使用全局哈希值）
     search_context.found_node[6] = 0x4384dcc4b6d3f417;  // 节点哈希值1
     search_context.found_node[7] = 0x92a15d52fe2679bd;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_7704_ptr;      // 节点数据指针
+    search_context.found_node[8] = &processed_var_7704_ptr;      // 节点数据指针
     search_context.found_node[9] = 0;                  // 节点状态标志
     search_context.found_node[10] = global_key_ptr;    // 节点键值（全局指针）
     
@@ -1427,7 +1427,7 @@ void FUN_18003a1b0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x4140994454d56503;  // 节点哈希值1
     search_context.found_node[7] = 0x399eced9bb5517ad;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_7728_ptr;      // 节点数据指针
+    search_context.found_node[8] = &processed_var_7728_ptr;      // 节点数据指针
     search_context.found_node[9] = 0;                  // 节点状态标志
     search_context.found_node[10] = 0;                 // 节点键值（空指针）
     
@@ -1593,7 +1593,7 @@ void FUN_18003a3b0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x4770584fbb1df897;  // 节点哈希值1
     search_context.found_node[7] = 0x47f249e43f66f2ab;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_3520_ptr;      // 节点数据指针
+    search_context.found_node[8] = &memory_allocator_3520_ptr;      // 节点数据指针
     search_context.found_node[9] = 1;                  // 节点状态标志（激活状态）
     search_context.found_node[10] = key_callback;      // 节点键值回调函数（空指针）
     
@@ -1676,7 +1676,7 @@ void FUN_18003a4b0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x4666df49b97e0f10;  // 节点哈希值1
     search_context.found_node[7] = 0x4e4b0d63a6ad1d8f;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_3544_ptr;      // 节点数据指针
+    search_context.found_node[8] = &memory_allocator_3544_ptr;      // 节点数据指针
     search_context.found_node[9] = 0;                  // 节点状态标志
     search_context.found_node[10] = key_callback;      // 节点键值回调函数（空指针）
     
@@ -1759,7 +1759,7 @@ void FUN_18003a5b0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x46ecbd4daf41613e;  // 节点哈希值1
     search_context.found_node[7] = 0xdc42c056bbde8482;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_3560_ptr;      // 节点数据指针
+    search_context.found_node[8] = &memory_allocator_3560_ptr;      // 节点数据指针
     search_context.found_node[9] = 0;                  // 节点状态标志
     search_context.found_node[10] = key_callback;      // 节点键值回调函数（空指针）
     
@@ -1842,7 +1842,7 @@ void FUN_18003a6b0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x4c868a42644030f6;  // 节点哈希值1
     search_context.found_node[7] = 0xc29193aa9d9b35b9;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_3576_ptr;      // 节点数据指针
+    search_context.found_node[8] = &memory_allocator_3576_ptr;      // 节点数据指针
     search_context.found_node[9] = 0;                  // 节点状态标志
     search_context.found_node[10] = key_callback;      // 节点键值回调函数（空指针）
     
@@ -1925,7 +1925,7 @@ void FUN_18003a7b0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x40ea3a798283cbbb;  // 节点哈希值1
     search_context.found_node[7] = 0x7f74eb2c5a7fadae;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_3600_ptr;      // 节点数据指针
+    search_context.found_node[8] = &memory_allocator_3600_ptr;      // 节点数据指针
     search_context.found_node[9] = 3;                  // 节点状态标志（特殊状态）
     search_context.found_node[10] = key_callback;      // 节点键值回调函数（空指针）
     
@@ -2008,7 +2008,7 @@ void FUN_18003a8b0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x45b8d074df27d12f;  // 节点哈希值1
     search_context.found_node[7] = 0x8d98f4c06880eda4;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_3632_ptr;      // 节点数据指针
+    search_context.found_node[8] = &memory_allocator_3632_ptr;      // 节点数据指针
     search_context.found_node[9] = 3;                  // 节点状态标志（特殊状态）
     search_context.found_node[10] = key_callback;      // 节点键值回调函数（空指针）
     
@@ -2091,7 +2091,7 @@ void FUN_18003a9b0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x42d293584c8cf3e5;  // 节点哈希值1
     search_context.found_node[7] = 0x355ffeb2d29e668a;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_3728_ptr;      // 节点数据指针
+    search_context.found_node[8] = &memory_allocator_3728_ptr;      // 节点数据指针
     search_context.found_node[9] = 0;                  // 节点状态标志
     search_context.found_node[10] = key_callback;      // 节点键值回调函数（空指针）
     
@@ -2174,7 +2174,7 @@ void FUN_18003aab0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x421c3cedd07d816d;  // 节点哈希值1
     search_context.found_node[7] = 0xbec25de793b7afa6;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_3744_ptr;      // 节点数据指针
+    search_context.found_node[8] = &memory_allocator_3744_ptr;      // 节点数据指针
     search_context.found_node[9] = 0;                  // 节点状态标志
     search_context.found_node[10] = key_callback;      // 节点键值回调函数
     
@@ -2257,7 +2257,7 @@ void FUN_18003abb0(void) {
     // 设置新节点的属性（使用特定的哈希值）
     search_context.found_node[6] = 0x4c22bb0c326587ce;  // 节点哈希值1
     search_context.found_node[7] = 0x5e3cf00ce2978287;  // 节点哈希值2
-    search_context.found_node[8] = &unknown_var_3768_ptr;      // 节点数据指针
+    search_context.found_node[8] = &memory_allocator_3768_ptr;      // 节点数据指针
     search_context.found_node[9] = 1;                  // 节点状态标志（激活状态）
     search_context.found_node[10] = key_callback;      // 节点键值回调函数（空指针）
     

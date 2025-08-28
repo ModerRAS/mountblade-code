@@ -339,7 +339,7 @@ void UISystem_StateProcessor(int64_t param_1, int64_t param_2)
                     uStack_c8 = (uint)*(ushort *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_24);
                     
                     // 调用UI系统资源管理器
-                    UISystem_ResourceManager(auStack_68, UI_SYSTEM_FLAG_27, &unknown_var_8960_ptr, (int)plVar7[4]);
+                    UISystem_ResourceManager(auStack_68, UI_SYSTEM_FLAG_27, &processed_var_8960_ptr, (int)plVar7[4]);
                 }
                 
                 // 处理UI系统数据
@@ -416,7 +416,7 @@ void UISystem_StateProcessor(int64_t param_1, int64_t param_2)
                     uStack_c8 = (uint)*(ushort *)((int64_t)plVar7 + UI_SYSTEM_OFFSET_24);
                     
                     // 调用UI系统资源管理器
-                    UISystem_ResourceManager(auStack_68, UI_SYSTEM_FLAG_27, &unknown_var_8960_ptr, (int)plVar7[4]);
+                    UISystem_ResourceManager(auStack_68, UI_SYSTEM_FLAG_27, &processed_var_8960_ptr, (int)plVar7[4]);
                 }
                 uVar9 = UI_SYSTEM_FLAG_4;
                 

@@ -427,7 +427,7 @@ LAB_180119279:
                             ));
     }
     if (*(char *)(lVar3 + 0x2e38) != '\0') {
-      FUN_18013c800(&fStack_118,&unknown_var_2252_ptr,0);
+      FUN_18013c800(&fStack_118,&rendering_buffer_2252_ptr,0);
     }
     FUN_180122320(CONCAT44(fStack_114,fStack_118),param_3,param_4,0);
   }

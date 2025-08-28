@@ -89,7 +89,7 @@ void FUN_18023c450(int64_t *param_1,char param_2,int32_t param_3,int8_t *param_4
           pcStack_180 = pcVar8;
         }
         uStack_170 = param_3;
-        if ((void *)*param_1 == &unknown_var_8720_ptr) {
+        if ((void *)*param_1 == &processed_var_8720_ptr) {
           LOCK();
           *(int *)(param_1 + 1) = (int)param_1[1] + 1;
           UNLOCK();
@@ -103,7 +103,7 @@ void FUN_18023c450(int64_t *param_1,char param_2,int32_t param_3,int8_t *param_4
           lVar3 = FUN_18023cb40(auStack_a0,&plStack_1a0);
           lVar4 = FUN_18023cb40(auStack_68,lVar3);
           pcStack_158 = FUN_18023e120;
-          puStack_150 = &unknown_var_2320_ptr;
+          puStack_150 = &rendering_buffer_2320_ptr;
           uVar5 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x38,8,system_allocation_flags);
           FUN_18023cb40(uVar5,lVar4);
           lVar6 = lVar4 + 0x10;
@@ -349,7 +349,7 @@ int8_t FUN_18023cbe0(int64_t param_1,int64_t param_2)
   *(int32_t *)(param_2 + 0x60) = uVar4;
   *(uint64_t *)(param_2 + 100) = *(uint64_t *)(param_1 + 0x334);
   plVar1 = *(int64_t **)(*(int64_t *)(param_1 + 0xa8) + 0x88);
-  pcStack_20 = (code *)&unknown_var_2256_ptr;
+  pcStack_20 = (code *)&rendering_buffer_2256_ptr;
   pcStack_18 = FUN_18023e030;
   aplStack_30[0] = alStackX_10;
   alStackX_10[0] = param_2;
@@ -477,7 +477,7 @@ void FUN_18023ccc0(int64_t *param_1)
         ((sVar1 != 0x800 && (sVar1 != 0x1000)))))) ||
       ((*(int *)((int64_t)param_1 + 0x324) != 0xe &&
        (2 < *(int *)((int64_t)param_1 + 0x324) - 0x12U)))))) {
-    FUN_180627020(&unknown_var_8256_ptr);
+    FUN_180627020(&processed_var_8256_ptr);
   }
   uStack_400 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_4e8;
@@ -535,7 +535,7 @@ void FUN_18023ccc0(int64_t *param_1)
                       }
                       else {
                         ppplStack_4c0 = (int64_t ***)&plStack_128;
-                        plStack_128 = (int64_t *)&unknown_var_3432_ptr;
+                        plStack_128 = (int64_t *)&memory_allocator_3432_ptr;
                         puStack_120 = auStack_110;
                         uStack_118 = 0;
                         auStack_110[0] = 0;
@@ -603,7 +603,7 @@ void FUN_18023ccc0(int64_t *param_1)
                     }
                     else {
                       pplStack_4b0 = &plStack_208;
-                      plStack_208 = (int64_t *)&unknown_var_3432_ptr;
+                      plStack_208 = (int64_t *)&memory_allocator_3432_ptr;
                       puStack_200 = auStack_1f0;
                       uStack_1f8 = 0;
                       auStack_1f0[0] = 0;
@@ -647,7 +647,7 @@ void FUN_18023ccc0(int64_t *param_1)
       }
       if (param_1[0x3b] != 0) {
         ppplStack_4c0 = (int64_t ***)&plStack_3c8;
-        plStack_3c8 = (int64_t *)&unknown_var_3432_ptr;
+        plStack_3c8 = (int64_t *)&memory_allocator_3432_ptr;
         puStack_3c0 = auStack_3b0;
         uStack_3b8 = 0;
         auStack_3b0[0] = 0;
@@ -685,7 +685,7 @@ void FUN_18023ccc0(int64_t *param_1)
       }
       if (param_1[0x3c] != 0) {
         ppplStack_4c0 = (int64_t ***)&plStack_2e8;
-        plStack_2e8 = (int64_t *)&unknown_var_3432_ptr;
+        plStack_2e8 = (int64_t *)&memory_allocator_3432_ptr;
         puStack_2e0 = auStack_2d0;
         uStack_2d8 = 0;
         auStack_2d0[0] = 0;
@@ -736,8 +736,8 @@ void FUN_18023ccc0(int64_t *param_1)
         SystemCore_EncryptionEngine0(&puStack_460,param_1 + 2);
         uVar9 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
         ppplStack_4c0 = (int64_t ***)aplStack_420;
-        puStack_410 = &unknown_var_4672_ptr;
-        puStack_408 = &unknown_var_4512_ptr;
+        puStack_410 = &processed_var_4672_ptr;
+        puStack_408 = &processed_var_4512_ptr;
         aplStack_420[0] = param_1;
         plVar10 = (int64_t *)FUN_18006b640(uVar9,aplStack_420);
         uStack_470 = plVar10;
@@ -810,7 +810,7 @@ void FUN_18023ccc0(int64_t *param_1)
     else {
       uVar9 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
       pplStack_4a8 = (int64_t **)&uStack_440;
-      puStack_430 = &unknown_var_6656_ptr;
+      puStack_430 = &processed_var_6656_ptr;
       pcStack_428 = FUN_1802e51e0;
       uStack_470._0_4_ = SUB84(plVar10,0);
       uStack_470._4_4_ = (int32_t)((uint64_t)plVar10 >> 0x20);

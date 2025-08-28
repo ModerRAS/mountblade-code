@@ -293,7 +293,7 @@ void FUN_1802285e0(uint64_t param_1,int32_t param_2,uint64_t param_3)
   
   uStack_f0 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_118;
-  puStack_c0 = &unknown_var_3480_ptr;
+  puStack_c0 = &memory_allocator_3480_ptr;
   puStack_b8 = auStack_a8;
   uStack_b0 = 0;
   auStack_a8[0] = 0;

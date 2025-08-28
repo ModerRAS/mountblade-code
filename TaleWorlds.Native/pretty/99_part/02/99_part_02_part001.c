@@ -32,14 +32,14 @@
 #define SYSTEM_MIN_ALLOCATION_SIZE         0x10            // 最小分配大小
 #define SYSTEM_ALIGNMENT_MASK              0xF             // 对齐掩码
 #define SYSTEM_HASH_TABLE_SIZE             0x800            // 哈希表大小
-#define SYSTEM_ARRAY_CHUNK_SIZE            0x400            // 数组块大小
+#define SYSTEM_ARRAY_CHSYSTEM_SIZE            0x400            // 数组块大小
 #define SYSTEM_POOL_SIZE                   0x1000           // 内存池大小
 #define SYSTEM_STACK_SIZE                  0x2000           // 栈大小
 #define SYSTEM_HEAP_SIZE                   0x100000         // 堆大小
 
 /** 数据处理常量 */
 #define DATA_BUFFER_SIZE                   0x1000           // 数据缓冲区大小
-#define DATA_CHUNK_SIZE                    0x400            // 数据块大小
+#define DATA_CHSYSTEM_SIZE                    0x400            // 数据块大小
 #define DATA_ALIGNMENT                     0x10             // 数据对齐
 #define DATA_MAX_ELEMENTS                  0x10000          // 最大元素数量
 #define DATA_MIN_ELEMENTS                  0x10             // 最小元素数量

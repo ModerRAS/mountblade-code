@@ -420,7 +420,7 @@ void FUN_180095da0(uint64_t param_1,int64_t param_2,int64_t param_3,char param_4
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar10 = *(void **)(param_2 + 8);
   }
-  cVar2 = FUN_180118a80((double)(fVar15 * 1000.0),uVar11,&unknown_var_1872_ptr,puVar10,
+  cVar2 = FUN_180118a80((double)(fVar15 * 1000.0),uVar11,&ui_system_data_1872_ptr,puVar10,
                         (double)(fVar15 * 1000.0));
   FUN_180134130();
   pcVar7 = (char *)FUN_18009b960(param_3 + 0xf0,param_2 + 0x20);

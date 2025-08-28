@@ -667,7 +667,7 @@ int FUN_180841f50(int64_t param_1,int64_t param_2,int param_3)
 void FUN_180842030(int64_t param_1,uint64_t param_2,int32_t param_3)
 
 {
-  FUN_18083f850(param_2,param_3,&unknown_var_4736_ptr,*(int32_t *)(param_1 + 0x10),
+  FUN_18083f850(param_2,param_3,&processed_var_4736_ptr,*(int32_t *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18));
   return;
 }
@@ -680,7 +680,7 @@ void FUN_180842030(int64_t param_1,uint64_t param_2,int32_t param_3)
 void FUN_180842060(int64_t param_1,uint64_t param_2,int32_t param_3)
 
 {
-  FUN_18083f8f0(param_2,param_3,&unknown_var_4864_ptr,*(int32_t *)(param_1 + 0x10),
+  FUN_18083f8f0(param_2,param_3,&processed_var_4864_ptr,*(int32_t *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),*(int32_t *)(param_1 + 0x1c));
   return;
 }
@@ -707,7 +707,7 @@ int FUN_1808420a0(int64_t param_1,int64_t param_2,int param_3)
   uVar1 = *(int32_t *)(param_1 + 0x2c);
   uVar2 = *(int32_t *)(param_1 + 0x18);
   uVar3 = *(int32_t *)(param_1 + 0x10);
-  iVar4 = DataProcessor(param_2,param_3,&unknown_var_4992_ptr);
+  iVar4 = DataProcessor(param_2,param_3,&processed_var_4992_ptr);
   iVar5 = DataProcessor(param_2 + iVar4,param_3 - iVar4,&system_temp_buffer);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
@@ -734,7 +734,7 @@ int FUN_1808420a0(int64_t param_1,int64_t param_2,int param_3)
 void FUN_1808421c0(int64_t param_1,uint64_t param_2,int32_t param_3)
 
 {
-  FUN_18083f850(param_2,param_3,&unknown_var_4352_ptr,*(int32_t *)(param_1 + 0x10),
+  FUN_18083f850(param_2,param_3,&processed_var_4352_ptr,*(int32_t *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18));
   return;
 }
@@ -747,7 +747,7 @@ void FUN_1808421c0(int64_t param_1,uint64_t param_2,int32_t param_3)
 void FUN_1808421f0(int64_t param_1,uint64_t param_2,int32_t param_3)
 
 {
-  FUN_18083f8f0(param_2,param_3,&unknown_var_4480_ptr,*(int32_t *)(param_1 + 0x10),
+  FUN_18083f8f0(param_2,param_3,&processed_var_4480_ptr,*(int32_t *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),*(int32_t *)(param_1 + 0x1c));
   return;
 }
@@ -774,7 +774,7 @@ int FUN_180842230(int64_t param_1,int64_t param_2,int param_3)
   uVar1 = *(int32_t *)(param_1 + 0x2c);
   uVar2 = *(int32_t *)(param_1 + 0x18);
   uVar3 = *(int32_t *)(param_1 + 0x10);
-  iVar4 = DataProcessor(param_2,param_3,&unknown_var_4608_ptr);
+  iVar4 = DataProcessor(param_2,param_3,&processed_var_4608_ptr);
   iVar5 = DataProcessor(param_2 + iVar4,param_3 - iVar4,&system_temp_buffer);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
@@ -801,7 +801,7 @@ int FUN_180842230(int64_t param_1,int64_t param_2,int param_3)
 void FUN_180842350(int64_t param_1,uint64_t param_2,int32_t param_3)
 
 {
-  FUN_18083f850(param_2,param_3,&unknown_var_3712_ptr,*(int32_t *)(param_1 + 0x10),
+  FUN_18083f850(param_2,param_3,&memory_allocator_3712_ptr,*(int32_t *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18));
   return;
 }
@@ -814,7 +814,7 @@ void FUN_180842350(int64_t param_1,uint64_t param_2,int32_t param_3)
 void FUN_180842380(int64_t param_1,uint64_t param_2,int32_t param_3)
 
 {
-  FUN_18083f850(param_2,param_3,&unknown_var_3840_ptr,*(int32_t *)(param_1 + 0x10),
+  FUN_18083f850(param_2,param_3,&memory_allocator_3840_ptr,*(int32_t *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18));
   return;
 }
@@ -827,7 +827,7 @@ void FUN_180842380(int64_t param_1,uint64_t param_2,int32_t param_3)
 void FUN_1808423b0(int64_t param_1,uint64_t param_2,int32_t param_3)
 
 {
-  FUN_18083f850(param_2,param_3,&unknown_var_5120_ptr,*(int32_t *)(param_1 + 0x10),
+  FUN_18083f850(param_2,param_3,&processed_var_5120_ptr,*(int32_t *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18));
   return;
 }
@@ -840,7 +840,7 @@ void FUN_1808423b0(int64_t param_1,uint64_t param_2,int32_t param_3)
 void FUN_1808423e0(int64_t param_1,uint64_t param_2,int32_t param_3)
 
 {
-  FUN_18083f8f0(param_2,param_3,&unknown_var_5248_ptr,*(int32_t *)(param_1 + 0x10),
+  FUN_18083f8f0(param_2,param_3,&processed_var_5248_ptr,*(int32_t *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),*(int32_t *)(param_1 + 0x1c));
   return;
 }
@@ -867,7 +867,7 @@ int FUN_180842420(int64_t param_1,int64_t param_2,int param_3)
   uVar1 = *(int32_t *)(param_1 + 0x2c);
   uVar2 = *(int32_t *)(param_1 + 0x18);
   uVar3 = *(int32_t *)(param_1 + 0x10);
-  iVar4 = DataProcessor(param_2,param_3,&unknown_var_5376_ptr);
+  iVar4 = DataProcessor(param_2,param_3,&processed_var_5376_ptr);
   iVar5 = DataProcessor(param_2 + iVar4,param_3 - iVar4,&system_temp_buffer);
   iVar4 = iVar4 + iVar5;
   iVar5 = func_0x00018074b800(iVar4 + param_2,param_3 - iVar4,uVar3);
@@ -896,7 +896,7 @@ int FUN_180842540(int64_t param_1,int64_t param_2,int param_3)
   int iVar3;
   
   uVar1 = *(int32_t *)(param_1 + 0x10);
-  iVar2 = DataProcessor(param_2,param_3,&unknown_var_3976_ptr);
+  iVar2 = DataProcessor(param_2,param_3,&memory_allocator_3976_ptr);
   iVar3 = DataProcessor(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
@@ -913,7 +913,7 @@ int FUN_1808425b0(int64_t param_1,int64_t param_2,int param_3)
   int iVar3;
   
   uVar1 = *(int32_t *)(param_1 + 0x10);
-  iVar2 = DataProcessor(param_2,param_3,&unknown_var_4232_ptr);
+  iVar2 = DataProcessor(param_2,param_3,&processed_var_4232_ptr);
   iVar3 = DataProcessor(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
@@ -930,7 +930,7 @@ int FUN_180842620(int64_t param_1,int64_t param_2,int param_3)
   int iVar3;
   
   uVar1 = *(int32_t *)(param_1 + 0x10);
-  iVar2 = DataProcessor(param_2,param_3,&unknown_var_4104_ptr);
+  iVar2 = DataProcessor(param_2,param_3,&processed_var_4104_ptr);
   iVar3 = DataProcessor(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
@@ -949,7 +949,7 @@ int FUN_180842690(int64_t param_1,int64_t param_2,int param_3)
   
   uVar2 = *(uint64_t *)(param_1 + 0x18);
   uVar1 = *(int32_t *)(param_1 + 0x10);
-  iVar3 = DataProcessor(param_2,param_3,&unknown_var_9512_ptr);
+  iVar3 = DataProcessor(param_2,param_3,&processed_var_9512_ptr);
   iVar4 = DataProcessor(iVar3 + param_2,param_3 - iVar3,&system_temp_buffer);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar1);
@@ -970,7 +970,7 @@ int FUN_180842750(int64_t param_1,int64_t param_2,int param_3)
   int iVar3;
   
   uVar1 = *(int32_t *)(param_1 + 0x10);
-  iVar2 = DataProcessor(param_2,param_3,&unknown_var_9256_ptr);
+  iVar2 = DataProcessor(param_2,param_3,&processed_var_9256_ptr);
   iVar3 = DataProcessor(param_2 + iVar2,param_3 - iVar2,&system_temp_buffer);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
@@ -985,7 +985,7 @@ int FUN_180842750(int64_t param_1,int64_t param_2,int param_3)
 void FUN_1808427c0(int64_t param_1,uint64_t param_2,int32_t param_3)
 
 {
-  FUN_18083f9b0(param_2,param_3,&unknown_var_9880_ptr,*(int32_t *)(param_1 + 0x10),
+  FUN_18083f9b0(param_2,param_3,&processed_var_9880_ptr,*(int32_t *)(param_1 + 0x10),
                 *(int8_t *)(param_1 + 0x18));
   return;
 }

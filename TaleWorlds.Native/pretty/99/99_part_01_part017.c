@@ -217,7 +217,7 @@ process_data:
         *(void**)long_ptr2 = (void*)&system_handler1_ptr;
         *(void**)long_ptr2 = (void*)&system_handler2_ptr;
         *(unsigned int*)(long_ptr2 + 1) = 0;
-        *(void**)long_ptr2 = (void*)&unknown_var_2696_ptr;
+        *(void**)long_ptr2 = (void*)&rendering_buffer_2696_ptr;
         ((void**)long_ptr2)[6] = (void*)0;
         ((void**)long_ptr2)[2] = (void*)0;
         ((void**)long_ptr2)[3] = (void*)0;
@@ -229,7 +229,7 @@ process_data:
         *indirect_ptr1 = (void**)&system_state_ptr;
         ((void**)long_ptr2)[0xb] = (void*)0;
         *(unsigned int*)(long_ptr2 + 0xc) = 0;
-        *indirect_ptr1 = (void**)&unknown_var_2008_ptr;
+        *indirect_ptr1 = (void**)&rendering_buffer_2008_ptr;
         ((void**)long_ptr2)[0xb] = (void*)(long_ptr2 + 0xd);
         *(unsigned int*)(long_ptr2 + 0xc) = 0;
         *(unsigned char*)(long_ptr2 + 0xd) = 0;
@@ -274,7 +274,7 @@ process_data:
         else {
             stack_indirect_ptr1 = (void***)&stack_ptr8;
             stack_uint5 = 0;
-            stack_ptr8 = &unknown_var_3432_ptr;
+            stack_ptr8 = &memory_allocator_3432_ptr;
             stack_ptr10 = stack_buffer3;
             stack_uint3 = 0;
             stack_buffer3[0] = 0;
@@ -287,7 +287,7 @@ process_data:
             // 处理引用计数
             if (long_ptr4 != (void*)0x0) {
                 stack_uint5 = *(unsigned int*)((long long)long_ptr4 + 0x1c);
-                if (*(void**)(*long_ptr4 + 0x28) == (void*)&unknown_var_3248_ptr) {
+                if (*(void**)(*long_ptr4 + 0x28) == (void*)&memory_allocator_3248_ptr) {
                     LOCK();
                     *(int*)(long_ptr4 + 1) = (int)long_ptr4[1] + 1;
                     UNLOCK();
@@ -300,7 +300,7 @@ process_data:
             }
             
             // 处理资源对象引用计数
-            if (*(void**)long_ptr2 == &unknown_var_2696_ptr) {
+            if (*(void**)long_ptr2 == &rendering_buffer_2696_ptr) {
                 LOCK();
                 *(int*)(long_ptr2 + 1) = (int)long_ptr2[1] + 1;
                 UNLOCK();
@@ -496,7 +496,7 @@ expand_queue:
     }
     
     // 最终清理和结果处理
-    stack_ptr11 = &unknown_var_3432_ptr;
+    stack_ptr11 = &memory_allocator_3432_ptr;
     stack_ptr12 = stack_buffer3;
     stack_buffer3[0] = 0;
     stack_uint2 = *(unsigned int*)((long long)data_source + 0x10);

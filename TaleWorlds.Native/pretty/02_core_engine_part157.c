@@ -1,3 +1,7 @@
+/* 函数别名定义: DataProcessingEngine */
+#define DataProcessingEngine DataProcessingEngine
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -297,7 +301,7 @@ void FUN_18013e200(int32_t *param_1)
     if (0 < iVar2) {
       iVar1 = iVar2;
     }
-    FUN_18011dc70(param_1,iVar1);
+    DataProcessingEngine0(param_1,iVar1);
     *param_1 = 0;
     return;
   }

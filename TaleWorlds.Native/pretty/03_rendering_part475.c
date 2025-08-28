@@ -86,7 +86,7 @@ LAB_1805205ee:
     if (puStack_c0 != (void *)0x0) {
       puVar9 = puStack_c0;
     }
-    FUN_180627020(&unknown_var_1648_ptr,puVar9);
+    FUN_180627020(&ui_system_data_1648_ptr,puVar9);
     uVar11 = 0xffffffff;
   }
   else {

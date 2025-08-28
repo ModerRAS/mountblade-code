@@ -79,14 +79,14 @@ void * FUN_18064f9e0(uint64_t *param_1)
   UNLOCK();
   puVar9 = render_system_data_config;
   render_system_data_config = lVar3;
-  if (((void **)param_1[0x164] == &ExceptionList) && (param_1 != (uint64_t *)&unknown_var_7056_ptr)) {
+  if (((void **)param_1[0x164] == &ExceptionList) && (param_1 != (uint64_t *)&processed_var_7056_ptr)) {
     if ((render_system_control_config == (void **)0x0) || (render_system_control_config == &ExceptionList)) {
       bVar11 = true;
     }
     else {
       bVar11 = false;
     }
-    puVar9 = &unknown_var_7056_ptr;
+    puVar9 = &processed_var_7056_ptr;
     if (bVar11) {
       puVar9 = (void *)0x180bf4000;
     }
@@ -98,7 +98,7 @@ void * FUN_18064f9e0(uint64_t *param_1)
     puVar9 = (void *)*param_1;
     plVar1 = *(int64_t **)(puVar9 + 0x10);
     puVar10 = render_system_data_config;
-    if (plVar1 != (int64_t *)&unknown_var_7056_ptr) {
+    if (plVar1 != (int64_t *)&processed_var_7056_ptr) {
       plVar4 = *(int64_t **)(*plVar1 + 0x18);
       while (plVar4 != (int64_t *)0x0) {
         plVar2 = (int64_t *)plVar4[0x17c];
@@ -159,14 +159,14 @@ void FUN_18064fa37(void)
   bool bVar7;
   
   uVar4 = render_system_control_config;
-  if (unaff_RBX != (int64_t *)&unknown_var_7056_ptr) {
+  if (unaff_RBX != (int64_t *)&processed_var_7056_ptr) {
     if ((render_system_control_config == (void **)0x0) || (render_system_control_config == &ExceptionList)) {
       bVar7 = true;
     }
     else {
       bVar7 = false;
     }
-    puVar6 = &unknown_var_7056_ptr;
+    puVar6 = &processed_var_7056_ptr;
     if (bVar7) {
       puVar6 = (void *)0x180bf4000;
     }
@@ -175,7 +175,7 @@ void FUN_18064fa37(void)
          puVar6;
     FlsSetValue(uVar4);
     plVar1 = *(int64_t **)(*unaff_RBX + 0x10);
-    if (plVar1 != (int64_t *)&unknown_var_7056_ptr) {
+    if (plVar1 != (int64_t *)&processed_var_7056_ptr) {
       plVar3 = *(int64_t **)(*plVar1 + 0x18);
       while (plVar3 != (int64_t *)0x0) {
         plVar2 = (int64_t *)plVar3[0x17c];
@@ -659,7 +659,7 @@ void FUN_1806502e0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     FUN_180650490(&system_ptr_bdb0);
   }
   if (render_system_control_config != 0) {
-    FUN_1806501d0(0,0,&unknown_var_9496_ptr,param_1,&uStackX_10);
+    FUN_1806501d0(0,0,&processed_var_9496_ptr,param_1,&uStackX_10);
   }
   return;
 }
@@ -700,7 +700,7 @@ void FUN_180650340(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   bVar1 = render_system_config <= render_system_control_config;
   render_system_config = lVar2;
   if (bVar1) {
-    FUN_1806501d0(0,0,&unknown_var_9448_ptr,param_1,&uStackX_10);
+    FUN_1806501d0(0,0,&processed_var_9448_ptr,param_1,&uStackX_10);
   }
   return;
 }
@@ -737,7 +737,7 @@ void FUN_1806503d0(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   bVar1 = render_system_config <= render_system_control_config;
   render_system_config = uVar2;
   if (bVar1) {
-    FUN_1806501d0(0,0,&unknown_var_9424_ptr,param_2,&uStackX_18);
+    FUN_1806501d0(0,0,&processed_var_9424_ptr,param_2,&uStackX_18);
   }
 LAB_180650464:
   if (render_system_config != (code *)0x0) {
@@ -771,7 +771,7 @@ void FUN_180650490(int *param_1)
   
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_e8;
   acStack_b8[0] = '\0';
-  strncpy(acStack_b8,&unknown_var_9648_ptr,0x40);
+  strncpy(acStack_b8,&processed_var_9648_ptr,0x40);
   acStack_b8[0x40] = 0;
   strncat(acStack_b8,*(uint64_t *)(param_1 + 4),0x40);
   acStack_b8[0x40] = 0;
@@ -802,11 +802,11 @@ void FUN_180650490(int *param_1)
       return;
     }
     acStack_b8[uVar6] = '\0';
-    if ((acStack_b8[0] == '\0') || (lVar5 = strstr(&unknown_var_9664_ptr,acStack_b8), lVar5 != 0)) {
+    if ((acStack_b8[0] == '\0') || (lVar5 = strstr(&processed_var_9664_ptr,acStack_b8), lVar5 != 0)) {
       *param_1 = 1;
     }
     else {
-      lVar5 = strstr(&unknown_var_9568_ptr,acStack_b8);
+      lVar5 = strstr(&processed_var_9568_ptr,acStack_b8);
       if (lVar5 == 0) {
         apcStack_c8[0] = acStack_b8;
         iVar4 = strtol(acStack_b8,apcStack_c8,10);
@@ -898,9 +898,9 @@ LAB_180650673:
     *unaff_RSI = 1;
   }
   else {
-    lVar5 = strstr(&unknown_var_9664_ptr,unaff_RBP + -0x59);
+    lVar5 = strstr(&processed_var_9664_ptr,unaff_RBP + -0x59);
     if (lVar5 != 0) goto LAB_180650673;
-    lVar5 = strstr(&unknown_var_9568_ptr,unaff_RBP + -0x59);
+    lVar5 = strstr(&processed_var_9568_ptr,unaff_RBP + -0x59);
     if (lVar5 == 0) {
       *(int64_t *)(unaff_RBP + -0x69) = unaff_RBP + -0x59;
       iVar4 = strtol(unaff_RBP + -0x59,unaff_RBP + -0x69,10);

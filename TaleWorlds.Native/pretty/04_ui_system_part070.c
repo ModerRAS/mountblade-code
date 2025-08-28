@@ -206,14 +206,14 @@ void FUN_1807048a0(int param_1,int param_2,int param_3,int64_t param_4,int param
   uVar5 = 0;
   if ((uVar1 != 0) &&
      (lVar6 = (int64_t)(int)(uVar4 + param_3 * 4) + (int64_t)param_5 * 8, uVar5 = 0,
-     (&unknown_var_8368_ptr)[lVar6] != (&unknown_var_8370_ptr)[lVar6])) {
+     (&processed_var_8368_ptr)[lVar6] != (&processed_var_8370_ptr)[lVar6])) {
     func_0x000180705150(param_7,param_6,1);
     uVar5 = param_6;
   }
   if (lVar10 < lVar9) {
     do {
       *(int *)(param_4 + lVar10 * 4) =
-           (int)(char)(&unknown_var_8368_ptr)
+           (int)(char)(&processed_var_8368_ptr)
                       [(int64_t)(int)(*(int *)(param_4 + lVar10 * 4) + (uVar5 + param_3 * 2) * 2) +
                        (int64_t)param_5 * 8];
       lVar10 = lVar10 + 1;

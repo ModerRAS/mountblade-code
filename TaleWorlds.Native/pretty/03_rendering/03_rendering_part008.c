@@ -57,7 +57,7 @@ void rendering_system_execute_render_pipeline(void)
   } while (render_context != 0);
   
   // 处理渲染数据
-  FUN_18025a940(&unknown_var_9712_ptr, *(int32_t *)(data_context + 0x7c8));
+  FUN_18025a940(&processed_var_9712_ptr, *(int32_t *)(data_context + 0x7c8));
   char_buffer_ptr = (int8_t *)buffer_manager[1];
   char_value = *(int8_t *)(data_context + 0x7cc);
   
@@ -1029,7 +1029,7 @@ void rendering_system_process_render_commands(int64_t param1, int64_t param2)
     do {
       int_value = **(int **)(param2 + 8);
       *(int **)(param2 + 8) = *(int **)(param2 + 8) + 1;
-      stack_buffer_ptr = &unknown_var_3432_ptr;
+      stack_buffer_ptr = &memory_allocator_3432_ptr;
       stack_buffer_ptr2 = stack_data_buffer;
       stack_value = 0;
       stack_data_buffer[0] = 0;

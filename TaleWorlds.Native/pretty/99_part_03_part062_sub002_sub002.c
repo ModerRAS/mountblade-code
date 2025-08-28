@@ -752,7 +752,7 @@ void FUN_180235d00(uint64_t param_1,double param_2,uint64_t param_3,byte param_4
         if (*(void **)(lVar37 + 8) != (void *)0x0) {
           puVar43 = *(void **)(lVar37 + 8);
         }
-        FUN_180627020(&unknown_var_8000_ptr,puVar43);
+        FUN_180627020(&processed_var_8000_ptr,puVar43);
         bStackX_20 = 0;
       }
       if ((int)*(char *)(*unaff_RSI + 0xf6) < (char)bStackX_20 + 1) {

@@ -648,7 +648,7 @@ void FUN_18063ba00(int64_t *param_1,int64_t param_2,uint param_3,uint param_4)
   
   uStack_6e8 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_728;
-  puStack_6d8 = &unknown_var_2008_ptr;
+  puStack_6d8 = &rendering_buffer_2008_ptr;
   puStack_6d0 = auStack_6c0;
   uStack_6c8 = 0;
   auStack_6c0[0] = 0;
@@ -661,7 +661,7 @@ void FUN_18063ba00(int64_t *param_1,int64_t param_2,uint param_3,uint param_4)
     strcpy_s(auStack_6c0,0x100,param_2);
   }
   lVar4 = FUN_180624440(apuStack_498,&puStack_6d8);
-  puStack_5b8 = &unknown_var_2008_ptr;
+  puStack_5b8 = &rendering_buffer_2008_ptr;
   puStack_5b0 = auStack_5a0;
   auStack_5a0[0] = 0;
   uStack_5a8 = *(int32_t *)(lVar4 + 0x10);

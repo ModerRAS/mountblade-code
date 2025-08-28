@@ -351,7 +351,7 @@ void FUN_1803657c0(int64_t *param_1)
   int iVar5;
   uint64_t uVar6;
   
-  if (*(code **)(*param_1 + 0x178) == (code *)&unknown_var_4048_ptr) {
+  if (*(code **)(*param_1 + 0x178) == (code *)&processed_var_4048_ptr) {
     FUN_1803638c0();
   }
   else {
@@ -423,7 +423,7 @@ void FUN_180365820(uint64_t param_1)
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_388;
   uStack_368 = 0;
   FUN_180362fb0();
-  puStack_2a8 = &unknown_var_3432_ptr;
+  puStack_2a8 = &memory_allocator_3432_ptr;
   puStack_2a0 = auStack_290;
   auStack_290[0] = 0;
   uStack_298 = 0xf;
@@ -436,7 +436,7 @@ void FUN_180365820(uint64_t param_1)
   appuStack_360[0] = apuStack_348;
   apuStack_348[0] = &system_state_ptr;
   puStack_2a8 = &system_state_ptr;
-  puStack_208 = &unknown_var_3432_ptr;
+  puStack_208 = &memory_allocator_3432_ptr;
   puStack_200 = auStack_1f0;
   auStack_1f0[0] = 0;
   uStack_1f8 = 0x13;
@@ -449,7 +449,7 @@ void FUN_180365820(uint64_t param_1)
   appuStack_360[0] = apuStack_348;
   apuStack_348[0] = &system_state_ptr;
   puStack_208 = &system_state_ptr;
-  puStack_168 = &unknown_var_3432_ptr;
+  puStack_168 = &memory_allocator_3432_ptr;
   puStack_160 = auStack_150;
   auStack_150[0] = 0;
   uStack_158 = 0xc;
@@ -462,7 +462,7 @@ void FUN_180365820(uint64_t param_1)
   appuStack_360[0] = apuStack_348;
   apuStack_348[0] = &system_state_ptr;
   puStack_168 = &system_state_ptr;
-  puStack_c8 = &unknown_var_3432_ptr;
+  puStack_c8 = &memory_allocator_3432_ptr;
   puStack_c0 = auStack_b0;
   auStack_b0[0] = 0;
   uStack_b8 = 0xd;
@@ -981,7 +981,7 @@ void FUN_180366170(uint64_t *param_1)
   uVar4 = 0xfffffffffffffffe;
   puVar3 = param_1;
   FUN_1803456e0();
-  *puVar3 = &unknown_var_8872_ptr;
+  *puVar3 = &processed_var_8872_ptr;
   puVar3[0xf] = 0;
   puVar3[0x10] = 0;
   puVar3[0x11] = 0;
@@ -1053,7 +1053,7 @@ void FUN_1803663a0(uint64_t param_1,uint64_t param_2)
   uVar5 = 0xfffffffffffffffe;
   puVar4 = puVar3;
   FUN_1803456e0(puVar3,param_2,param_1);
-  *puVar4 = &unknown_var_8872_ptr;
+  *puVar4 = &processed_var_8872_ptr;
   puVar4[0xf] = 0;
   puVar4[0x10] = 0;
   puVar4[0x11] = 0;

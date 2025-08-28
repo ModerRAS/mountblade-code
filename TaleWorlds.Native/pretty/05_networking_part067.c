@@ -155,7 +155,7 @@ void FUN_180877970(int64_t param_1,int64_t *param_2)
             uStack_130 = (uint)*(ushort *)((int64_t)plVar3 + 0x26);
             uStack_138 = (uint)*(ushort *)((int64_t)plVar3 + 0x24);
                     // WARNING: Subroutine does not return
-            SystemValidationProcessor(&plStack_80,0x27,&unknown_var_8960_ptr,(int)plVar3[4]);
+            SystemValidationProcessor(&plStack_80,0x27,&processed_var_8960_ptr,(int)plVar3[4]);
           }
           if ((iStack_bc != 0) && ((int)uStack_d8 != 0)) {
             iVar4 = *(int *)(lStack_e0 +
@@ -178,7 +178,7 @@ void FUN_180877970(int64_t param_1,int64_t *param_2)
             uStack_130 = uStack_130 & 0xffffff00;
             uStack_138 = 0;
             plVar6 = (int64_t *)
-                     SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10,&unknown_var_5856_ptr,0xa0d
+                     SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10,&processed_var_5856_ptr,0xa0d
                                   );
             if (plVar6 == (int64_t *)0x0) goto LAB_180877e87;
             *plVar6 = 0;
@@ -253,7 +253,7 @@ LAB_180877e87:
     if ((0 < (int)uVar10) && (*plVar6 != 0)) {
       uStack_138 = CONCAT31(uStack_138._1_3_,1);
                     // WARNING: Subroutine does not return
-      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*plVar6,&unknown_var_8432_ptr,0x100);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*plVar6,&processed_var_8432_ptr,0x100);
     }
     *plVar6 = 0;
     *(int32_t *)((int64_t)plVar6 + 0xc) = 0;
@@ -271,7 +271,7 @@ LAB_180877e87:
 LAB_180877dfe:
   uStack_138 = CONCAT31(uStack_138._1_3_,1);
                     // WARNING: Subroutine does not return
-  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar6,&unknown_var_5856_ptr,0xa71);
+  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar6,&processed_var_5856_ptr,0xa71);
 }
 
 
@@ -320,7 +320,7 @@ void FUN_180877f00(int64_t param_1,int64_t *param_2)
       uStack_a0 = (uint)*(ushort *)((int64_t)puVar5 + 6);
       uStack_a8 = (uint)*(ushort *)(puVar5 + 1);
                     // WARNING: Subroutine does not return
-      SystemValidationProcessor(auStack_58,0x27,&unknown_var_8960_ptr,*puVar5);
+      SystemValidationProcessor(auStack_58,0x27,&processed_var_8960_ptr,*puVar5);
     }
     lVar3 = (**(code **)(*param_2 + 0x278))(param_2,lVar3 + 0x38,1);
     if (lVar3 == 0) {
@@ -511,7 +511,7 @@ void FUN_1808782a0(int64_t param_1,int64_t *param_2,int64_t *param_3)
         uStack_f0 = (uint)*(ushort *)(lVar2 + 0x66);
         uStack_f8 = (uint)*(ushort *)(lVar2 + 100);
                     // WARNING: Subroutine does not return
-        SystemValidationProcessor(&plStack_68,0x27,&unknown_var_8960_ptr,*(int32_t *)puVar1);
+        SystemValidationProcessor(&plStack_68,0x27,&processed_var_8960_ptr,*(int32_t *)puVar1);
       }
       if (*(int *)(lVar7 + 0x60) != 0x1f) goto LAB_180878734;
       aiStack_a8[0] = 0;
@@ -601,7 +601,7 @@ LAB_1808784e0:
                     uStack_f0 = uStack_f0 & 0xffffff00;
                     uStack_f8 = 0;
                     lVar10 = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar11 * 0x10,
-                                           &unknown_var_8432_ptr,0xf4);
+                                           &processed_var_8432_ptr,0xf4);
                     if (lVar10 == 0) goto LAB_180878734;
                     if (*(int *)(lVar7 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
@@ -613,7 +613,7 @@ LAB_1808784e0:
                     uStack_f8 = CONCAT31(uStack_f8._1_3_,1);
                     // WARNING: Subroutine does not return
                     SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
-                                  *(int64_t *)(lVar7 + 0x58),&unknown_var_8432_ptr,0x100);
+                                  *(int64_t *)(lVar7 + 0x58),&processed_var_8432_ptr,0x100);
                   }
                   *(int64_t *)(lVar7 + 0x58) = lVar10;
                   *(int *)(lVar7 + 100) = iVar11;

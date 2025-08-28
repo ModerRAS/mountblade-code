@@ -198,7 +198,7 @@ void add_rendering_object_by_index(int64_t *render_context_ptr, int object_index
   
   // 执行更新操作
   if (update_flag != '\0') {
-    if (*(code **)(*render_context_ptr + 0x160) == (code *)&unknown_var_6368_ptr) {
+    if (*(code **)(*render_context_ptr + 0x160) == (code *)&processed_var_6368_ptr) {
       FUN_180276f30(render_context_ptr, (int64_t)render_context_ptr + 0x214, 0);
     }
     else {
@@ -270,7 +270,7 @@ void add_rendering_object_by_bitmask(int64_t *render_context_ptr, uint bitmask_f
   
   // 执行更新操作
   if (update_flag != '\0') {
-    if (*(code **)(*render_context_ptr + 0x160) == (code *)&unknown_var_6368_ptr) {
+    if (*(code **)(*render_context_ptr + 0x160) == (code *)&processed_var_6368_ptr) {
       FUN_180276f30(render_context_ptr, (int64_t)render_context_ptr + 0x214, 0);
     }
     else {
@@ -461,7 +461,7 @@ LAB_180276376:
       
       // 距离检测
       if ((result_flag != 0) && (temp_float18 = *(float *)(object_ptr + 0xd), temp_float18 != 3.4028235e+38)) {
-        if ((void *)*object_ptr == &unknown_var_9304_ptr) {
+        if ((void *)*object_ptr == &processed_var_9304_ptr) {
           collision_data = (int64_t)object_ptr + 0x214;
         }
         else {
@@ -500,7 +500,7 @@ LAB_180276376:
       // 复杂碰撞检测路径
       result_flag = *(uint64_t *)(render_flags + 10);
       if ((result_flag != 0) && (temp_float18 = *(float *)(object_ptr + 0xd), temp_float18 != 3.4028235e+38)) {
-        if ((void *)*object_ptr == &unknown_var_9304_ptr) {
+        if ((void *)*object_ptr == &processed_var_9304_ptr) {
           collision_data = (int64_t)object_ptr + 0x214;
         }
         else {
@@ -635,7 +635,7 @@ uint64_t process_rendering_transform(uint64_t transform_param1, uint64_t transfo
   
   // 执行碰撞检测
   if ((render_flags != 0) && (transform_result[0] = *(float *)(transform_ptr + 0xd), transform_result[0] != 3.4028235e+38)) {
-    if ((void *)*transform_ptr == &unknown_var_9304_ptr) {
+    if ((void *)*transform_ptr == &processed_var_9304_ptr) {
       collision_data = (int64_t)transform_ptr + 0x214;
     }
     else {
@@ -709,7 +709,7 @@ uint64_t optimize_rendering_objects(void)
   // 获取渲染参数
   position_data[3] = *(float *)(render_context + 0xd);
   if (position_data[3] != 3.4028235e+38) {
-    if ((void *)*render_context == &unknown_var_9304_ptr) {
+    if ((void *)*render_context == &processed_var_9304_ptr) {
       collision_data = (int64_t)render_context + 0x214;
     }
     else {

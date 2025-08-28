@@ -170,7 +170,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         // 分配字符串缓冲区
         buffer_ptr = (uint32_t*)
                     CoreEngine_MemoryAllocator(system_memory_pool_ptr, (int)temp_counter + RENDERING_SYSTEM_BUFFER_SIZE_12, 
-                                 &unknown_var_1379_ptr, param_4, RENDERING_SYSTEM_FLAG_0xfffffffffffffffe);
+                                 &ui_system_data_1379_ptr, param_4, RENDERING_SYSTEM_FLAG_0xfffffffffffffffe);
         
         // 初始化缓冲区
         *(uint8_t*)buffer_ptr = 0;
@@ -357,7 +357,7 @@ void rendering_system_advanced_object_manager(int64_t object_data)
     ulong_val3 = *(uint64_t*)(*(int64_t*)(object_data + 0x18) + 0x20);
     
     // 创建内存管理器
-    ulong_val = FUN_18062b1e0(system_memory_pool_ptr, 0x2f0, 0x10, 0xd);
+    ulong_val = CoreSystem_LoggingManager0(system_memory_pool_ptr, 0x2f0, 0x10, 0xd);
     long_ptr2 = (int64_t*)FUN_1802e6b00(ulong_val, 4);
     stack_long_ptr2 = long_ptr2;
     
@@ -370,7 +370,7 @@ void rendering_system_advanced_object_manager(int64_t object_data)
     
     // 检查对象状态
     if (long_ptr2[0x4d] == 0) {
-        FUN_180170ac0(long_ptr2, &unknown_var_4472_ptr);
+        FUN_180170ac0(long_ptr2, &processed_var_4472_ptr);
     }
     
     // 初始化对象数据
@@ -396,7 +396,7 @@ void rendering_system_advanced_object_manager(int64_t object_data)
     }
     
     stack_uint_38 = 0;
-    FUN_180170ac0(*(uint64_t*)(object_data + 0xe8), &unknown_var_2984_ptr);
+    FUN_180170ac0(*(uint64_t*)(object_data + 0xe8), &rendering_buffer_2984_ptr);
     long_val = *(int64_t*)(object_data + 0xe8);
     uint_val3 = *(uint*)(long_val + RENDERING_SYSTEM_OFFSET_0x2ac);
     *(uint*)(long_val + RENDERING_SYSTEM_OFFSET_0x2ac) = uint_val3 | RENDERING_SYSTEM_FLAG_0x2020000;
@@ -431,7 +431,7 @@ void rendering_system_advanced_object_manager(int64_t object_data)
             void_ptr = *(void**)(long_val + RENDERING_SYSTEM_OFFSET_0x290);
         }
         stack_ulong2 = 0x18036b358;
-        SystemCore_ResourceManager0(&unknown_var_1504_ptr, void_ptr);
+        SystemCore_ResourceManager0(&ui_system_data_1504_ptr, void_ptr);
     }
     
     // 更新对象状态

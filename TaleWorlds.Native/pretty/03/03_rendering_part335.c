@@ -96,7 +96,7 @@ void RenderingSystem_AdvancedRenderer(int64_t *param_1, char param_2)
   int32_t auStackX_10 [6];
   
   if (param_2 != '\0') {
-    (**(code **)(*param_1 + 0x128))(param_1, &unknown_var_1052_ptr);
+    (**(code **)(*param_1 + 0x128))(param_1, &ui_system_data_1052_ptr);
     return;
   }
   auStackX_10[0] = 0;
@@ -116,7 +116,7 @@ uint64_t *RenderingSystem_ResourceManager(uint64_t *param_1, uint64_t param_2, u
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_9832_ptr;
+  *param_1 = &processed_var_9832_ptr;
   FUN_18022f410(param_1 + 2);
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
@@ -145,7 +145,7 @@ int32_t *RenderingSystem_MaterialProcessor(int32_t *param_1, int64_t *param_2)
   *plVar2 = (int64_t)&system_handler1_ptr;
   *plVar2 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar2 + 1) = 0;
-  *plVar2 = (int64_t)&unknown_var_9832_ptr;
+  *plVar2 = (int64_t)&processed_var_9832_ptr;
   if (param_2 != (int64_t *)0x0) {
     (**(code **)(*param_2 + 0x28))(param_2);
   }

@@ -35,7 +35,7 @@ void FUN_18084c8cc(int32_t param_1)
     if ((int)unaff_R14[1] <= (int)uVar13) {
       if ((0 < (int)uVar8) && (*unaff_R14 != 0)) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_R14,&unknown_var_8432_ptr,0x100,1);
+        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*unaff_R14,&processed_var_8432_ptr,0x100,1);
       }
       *unaff_R14 = unaff_R12;
       *(uint *)((int64_t)unaff_R14 + 0xc) = uVar13;
@@ -81,7 +81,7 @@ LAB_18084c923:
     if ((int)uVar13 < *(int *)(unaff_R15 + 0x10)) goto LAB_18084ca76;
     if ((0 < (int)uVar8) && (unaff_R15[0xf] != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),unaff_R15[0xf],&unknown_var_8432_ptr,0x100,1);
+      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),unaff_R15[0xf],&processed_var_8432_ptr,0x100,1);
     }
     unaff_R15[0xf] = unaff_R12;
     *(uint *)((int64_t)unaff_R15 + 0x84) = uVar13;
@@ -161,7 +161,7 @@ LAB_18084ca76:
   FUN_18084c5a0(unaff_R15 + 7);
   FUN_18084c220(unaff_R15 + 5);
   *(int32_t *)(unaff_R15 + 1) = 0xdeadf00d;
-  *unaff_R15 = &unknown_var_1544_ptr;
+  *unaff_R15 = &ui_system_data_1544_ptr;
   return;
 }
 
@@ -213,7 +213,7 @@ void FUN_18084ca92(uint64_t param_1,uint64_t param_2,int64_t *param_3)
   FUN_18084c5a0(unaff_R15 + 7);
   FUN_18084c220(unaff_R15 + 5);
   *(int32_t *)(unaff_R15 + 1) = 0xdeadf00d;
-  *unaff_R15 = &unknown_var_1544_ptr;
+  *unaff_R15 = &ui_system_data_1544_ptr;
   return;
 }
 
@@ -246,7 +246,7 @@ void FUN_18084cae7(uint64_t param_1,uint64_t param_2,int64_t *param_3)
   FUN_18084c5a0(unaff_R15 + 7);
   FUN_18084c220(unaff_R15 + 5);
   *(int32_t *)(unaff_R15 + 1) = 0xdeadf00d;
-  *unaff_R15 = &unknown_var_1544_ptr;
+  *unaff_R15 = &ui_system_data_1544_ptr;
   return;
 }
 
@@ -256,7 +256,7 @@ uint64_t * FUN_18084cb70(uint64_t *param_1,uint64_t param_2)
 
 {
   *(int32_t *)(param_1 + 1) = 0xdeadf00d;
-  *param_1 = &unknown_var_1544_ptr;
+  *param_1 = &ui_system_data_1544_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x20);
   }

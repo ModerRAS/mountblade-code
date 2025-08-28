@@ -284,7 +284,7 @@ LAB_1800b0d28:
     *plVar7 = (int64_t)&system_handler1_ptr;
     *plVar7 = (int64_t)&system_handler2_ptr;
     *(int32_t *)(plVar7 + 1) = 0;
-    *plVar7 = (int64_t)&unknown_var_2696_ptr;
+    *plVar7 = (int64_t)&rendering_buffer_2696_ptr;
     plVar7[6] = 0;
     plVar7[2] = 0;
     plVar7[3] = 0;
@@ -296,7 +296,7 @@ LAB_1800b0d28:
     *pplVar1 = (int64_t *)&system_state_ptr;
     plVar7[0xb] = 0;
     *(int32_t *)(plVar7 + 0xc) = 0;
-    *pplVar1 = (int64_t *)&unknown_var_2008_ptr;
+    *pplVar1 = (int64_t *)&rendering_buffer_2008_ptr;
     plVar7[0xb] = (int64_t)(plVar7 + 0xd);
     *(int32_t *)(plVar7 + 0xc) = 0;
     *(int8_t *)(plVar7 + 0xd) = 0;
@@ -341,7 +341,7 @@ LAB_1800b0d28:
     else {
       pplStack_238 = (int64_t **)&puStack_1c8;
       uStack_110 = 0;
-      puStack_1c8 = &unknown_var_3432_ptr;
+      puStack_1c8 = &memory_allocator_3432_ptr;
       puStack_1c0 = auStack_1b0;
       uStack_1b8 = 0;
       auStack_1b0[0] = 0;
@@ -354,7 +354,7 @@ LAB_1800b0d28:
       // 处理引用计数
       if (plVar18 != (int64_t *)0x0) {
         uStack_110 = *(int32_t *)((int64_t)plVar18 + 0x1c);
-        if (*(code **)(*plVar18 + 0x28) == (code *)&unknown_var_3248_ptr) {
+        if (*(code **)(*plVar18 + 0x28) == (code *)&memory_allocator_3248_ptr) {
           LOCK();
           *(int *)(plVar18 + 1) = (int)plVar18[1] + 1;
           UNLOCK();
@@ -367,7 +367,7 @@ LAB_1800b0d28:
       }
       
       // 处理资源对象引用计数
-      if ((void *)*plVar7 == &unknown_var_2696_ptr) {
+      if ((void *)*plVar7 == &rendering_buffer_2696_ptr) {
         LOCK();
         *(int *)(plVar7 + 1) = (int)plVar7[1] + 1;
         UNLOCK();
@@ -564,7 +564,7 @@ LAB_1800b1065:
   }
   
   // 最终清理和结果处理
-  puStack_e8 = &unknown_var_3432_ptr;
+  puStack_e8 = &memory_allocator_3432_ptr;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = *(int32_t *)(lStack_250 + 0x10);

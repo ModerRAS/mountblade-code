@@ -452,7 +452,7 @@ uint ui_system_value_calculator(float *calculation_params, uint input_value)
   float ceiling_value;
   
   // 使用查找表进行数值计算
-  lookup_table = (uint *)&unknown_var_6192_ptr;
+  lookup_table = (uint *)&processed_var_6192_ptr;
   search_range = 0x100;
   
   do {
@@ -481,7 +481,7 @@ uint ui_system_parameter_optimizer(float *optimization_params, uint target_value
   float ceiling_value;
   
   // 参数优化处理
-  lookup_table = (uint *)&unknown_var_6192_ptr;
+  lookup_table = (uint *)&processed_var_6192_ptr;
   search_range = 0x100;
   
   do {
@@ -536,7 +536,7 @@ int8_t *ui_system_data_transformer(float *transform_params, int8_t *output_buffe
     return output_buffer;
   }
   
-  lookup_table = (uint *)&unknown_var_6192_ptr;
+  lookup_table = (uint *)&processed_var_6192_ptr;
   threshold_value = threshold_value * transform_params[1];
   
   if (threshold_value * transform_params[1] <= comparison_value) {

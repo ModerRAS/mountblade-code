@@ -190,7 +190,7 @@ FUN_1800e9840(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   if ((code *)param_1[6] != (code *)0x0) {
     (*(code *)param_1[6])(param_1 + 4,0,0,param_4,uVar1);
   }
-  *param_1 = &unknown_var_1000_ptr;
+  *param_1 = &ui_system_data_1000_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {

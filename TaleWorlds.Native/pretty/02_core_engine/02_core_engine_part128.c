@@ -117,10 +117,10 @@ void set_material_property_value(int property_index, uint32_t property_value)
     property_offset = (int64_t)property_index;
     
     // 检查属性类型和格式
-    if ((*(int *)(&unknown_var_6048_ptr + property_offset * 0xc) == 4) && 
-        (*(int *)(&unknown_var_6052_ptr + property_offset * 0xc) == 1)) {
+    if ((*(int *)(&processed_var_6048_ptr + property_offset * 0xc) == 4) && 
+        (*(int *)(&processed_var_6052_ptr + property_offset * 0xc) == 1)) {
         
-        property_id = *(uint *)(&unknown_var_6056_ptr + property_offset * 0xc);
+        property_id = *(uint *)(&processed_var_6056_ptr + property_offset * 0xc);
         uint32_t old_value = *(uint32_t *)((uint64_t)property_id + 0x1628 + engine_base);
         
         // 调用属性设置回调
@@ -173,10 +173,10 @@ void set_material_property_array(int property_index, uint64_t *property_array)
     property_offset = (int64_t)property_index;
     
     // 检查属性类型和格式
-    if ((*(int *)(&unknown_var_6048_ptr + property_offset * 0xc) == 4) && 
-        *(int *)(&unknown_var_6052_ptr + property_offset * 0xc) == 2) {
+    if ((*(int *)(&processed_var_6048_ptr + property_offset * 0xc) == 4) && 
+        *(int *)(&processed_var_6052_ptr + property_offset * 0xc) == 2) {
         
-        property_id = (uint64_t)*(uint *)(&unknown_var_6056_ptr + property_offset * 0xc);
+        property_id = (uint64_t)*(uint *)(&processed_var_6056_ptr + property_offset * 0xc);
         old_values[0] = *(uint64_t *)(property_id + 0x1628 + engine_base);
         old_values[1] = *(uint64_t *)(property_id + 0x1630 + engine_base);
         
@@ -245,13 +245,13 @@ void batch_update_material_properties(int property_count)
                 temp_offset = (int64_t)*(int *)(engine_base + 0x1b90);
                 property_buffer = *(int64_t *)(engine_base + 0x1b98);
                 property_index = (int64_t)*(int *)(property_buffer + -0xc + temp_offset * 0xc);
-                buffer_offset = (uint64_t)*(uint *)(&unknown_var_6056_ptr + property_index * 0xc);
+                buffer_offset = (uint64_t)*(uint *)(&processed_var_6056_ptr + property_index * 0xc);
                 
-                if (*(int *)(&unknown_var_6048_ptr + property_index * 0xc) == 4) {
-                    if (*(int *)(&unknown_var_6052_ptr + property_index * 0xc) == 1) {
+                if (*(int *)(&processed_var_6048_ptr + property_index * 0xc) == 4) {
+                    if (*(int *)(&processed_var_6052_ptr + property_index * 0xc) == 1) {
                         *(uint32_t *)(buffer_offset + 0x1628 + engine_base) = 
                             *(uint32_t *)(property_buffer + -8 + temp_offset * 0xc);
-                    } else if (*(int *)(&unknown_var_6052_ptr + property_index * 0xc) == 2) {
+                    } else if (*(int *)(&processed_var_6052_ptr + property_index * 0xc) == 2) {
                         *(uint32_t *)(buffer_offset + 0x1628 + engine_base) = 
                             *(uint32_t *)(property_buffer + -8 + temp_offset * 0xc);
                         *(uint32_t *)(buffer_offset + 0x162c + engine_base) = 
@@ -273,13 +273,13 @@ void batch_update_material_properties(int property_count)
         temp_offset = (int64_t)*(int *)(engine_base + 0x1b90);
         property_buffer = *(int64_t *)(engine_base + 0x1b98);
         property_index = (int64_t)*(int *)(property_buffer + -0xc + temp_offset * 0xc);
-        buffer_offset = (uint64_t)*(uint *)(&unknown_var_6056_ptr + property_index * 0xc);
+        buffer_offset = (uint64_t)*(uint *)(&processed_var_6056_ptr + property_index * 0xc);
         
-        if (*(int *)(&unknown_var_6048_ptr + property_index * 0xc) == 4) {
-            if (*(int *)(&unknown_var_6052_ptr + property_index * 0xc) == 1) {
+        if (*(int *)(&processed_var_6048_ptr + property_index * 0xc) == 4) {
+            if (*(int *)(&processed_var_6052_ptr + property_index * 0xc) == 1) {
                 *(uint32_t *)(buffer_offset + 0x1628 + engine_base) = 
                     *(uint32_t *)(property_buffer + -8 + temp_offset * 0xc);
-            } else if (*(int *)(&unknown_var_6052_ptr + property_index * 0xc) == 2) {
+            } else if (*(int *)(&processed_var_6052_ptr + property_index * 0xc) == 2) {
                 *(uint32_t *)(buffer_offset + 0x1628 + engine_base) = 
                     *(uint32_t *)(property_buffer + -8 + temp_offset * 0xc);
                 *(uint32_t *)(buffer_offset + 0x162c + engine_base) = 

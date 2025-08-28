@@ -18,7 +18,7 @@
 #define RENDER_SHIFT_VALUE_1F 0x1f            // 渲染位移值31位
 #define RENDER_CRITICAL_SECTION_SIZE 0x28    // 临界区结构体大小
 #define RENDER_STACK_BUFFER_SIZE 32           // 栈缓冲区大小
-#define RENDER_DATA_CHUNK_SIZE 16             // 数据块大小
+#define RENDER_DATA_CHSYSTEM_SIZE 16             // 数据块大小
 #define RENDER_COLOR_MASK 0xfefe              // 颜色掩码
 #define RENDER_TEXTURE_OFFSET_40 0x40         // 纹理偏移量1
 #define RENDER_TEXTURE_OFFSET_80 0x80         // 纹理偏移量2
@@ -618,7 +618,7 @@ void FUN_18069c200(int64_t param_1, uint64_t param_2, int8_t *param_3, int param
     int64_t data_index;
     code *texture_processor;
     int8_t stack_buffer[RENDER_STACK_BUFFER_SIZE];
-    int8_t data_chunk[RENDER_DATA_CHUNK_SIZE];
+    int8_t data_chunk[RENDER_DATA_CHSYSTEM_SIZE];
     uint64_t security_cookie;
     
     // 设置安全cookie
@@ -632,7 +632,7 @@ void FUN_18069c200(int64_t param_1, uint64_t param_2, int8_t *param_3, int param
         param_3 = param_3 + param_4;
         data_chunk[data_index] = data_value;
         data_index = data_index + 1;
-    } while (data_index < RENDER_DATA_CHUNK_SIZE);
+    } while (data_index < RENDER_DATA_CHSYSTEM_SIZE);
     
     // 选择纹理处理器
     if (render_mode == 0) {

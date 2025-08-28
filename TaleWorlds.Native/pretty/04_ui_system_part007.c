@@ -452,7 +452,7 @@ LAB_1806579f0:
 uint64_t * UISystem_MemoryManager(uint64_t *memory_ptr, uint64_t allocation_flag)
 
 {
-  *memory_ptr = &unknown_var_1792_ptr;
+  *memory_ptr = &ui_system_data_1792_ptr;
   if ((allocation_flag & 1) != 0) {
     free(memory_ptr,8);
   }
@@ -480,7 +480,7 @@ void UISystem_SteamInterfaceManager_User(uint64_t *interface_ptr)
   // 获取Steam用户句柄
   steam_user_handle = SteamAPI_GetHSteamUser();
   // 查找或创建用户接口
-  steam_interface_result = SteamInternal_FindOrCreateUserInterface(steam_user_handle,&unknown_var_1688_ptr);
+  steam_interface_result = SteamInternal_FindOrCreateUserInterface(steam_user_handle,&ui_system_data_1688_ptr);
   *interface_ptr = steam_interface_result;
   return;
 }
@@ -506,7 +506,7 @@ void UISystem_SteamInterfaceManager_Feature(uint64_t *interface_ptr)
   // 获取Steam用户句柄
   steam_user_handle = SteamAPI_GetHSteamUser();
   // 查找或创建功能接口
-  steam_interface_result = SteamInternal_FindOrCreateUserInterface(steam_user_handle,&unknown_var_1704_ptr);
+  steam_interface_result = SteamInternal_FindOrCreateUserInterface(steam_user_handle,&ui_system_data_1704_ptr);
   *interface_ptr = steam_interface_result;
   return;
 }
@@ -533,9 +533,9 @@ UISystem_DataStructureOperator(uint64_t *structure_ptr, uint64_t operation_flag,
   uint64_t memory_management_flag;
   
   memory_management_flag = 0xfffffffffffffffe;
-  *structure_ptr = &unknown_var_1744_ptr;
+  *structure_ptr = &ui_system_data_1744_ptr;
   FUN_18005d580();
-  *structure_ptr = &unknown_var_1792_ptr;
+  *structure_ptr = &ui_system_data_1792_ptr;
   if ((operation_flag & 1) != 0) {
     free(structure_ptr,MEMORY_BLOCK_SIZE,data_param1,data_param2,memory_management_flag);
   }

@@ -293,7 +293,7 @@ uint64_t *rendering_system_memory_allocator(uint64_t *memory_block, uint64_t all
     // 简化的内存分配逻辑
     
     // 基本的内存块初始化
-    *memory_block = &unknown_var_6880_ptr;
+    *memory_block = &processed_var_6880_ptr;
     *memory_block = &system_handler2_ptr;
     *memory_block = &system_handler1_ptr;
     

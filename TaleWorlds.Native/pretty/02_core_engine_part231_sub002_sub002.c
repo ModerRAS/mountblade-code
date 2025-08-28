@@ -346,70 +346,70 @@ void FUN_180200780(uint64_t param_1,int param_2,void **param_3)
         memcpy(puStack_200 + uStack_1f8,pcVar29,(int64_t)((int)lVar27 + 2));
       }
       iVar7 = func_0x000180203790();
-      puVar28 = &unknown_var_208_ptr;
+      puVar28 = &rendering_buffer_208_ptr;
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_208_ptr;
+        puVar31 = &rendering_buffer_208_ptr;
       }
       else if (iVar7 == 1) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else if (iVar7 == 2) {
-        puVar31 = &unknown_var_188_ptr;
+        puVar31 = &ui_system_data_188_ptr;
       }
       else if (iVar7 == 3) {
         puVar31 = &system_data_f804;
       }
       else {
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar7 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_224_ptr,puVar31);
+      System_DataHandler(&puStack_208,&rendering_buffer_224_ptr,puVar31);
       iVar7 = func_0x000180203740();
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_208_ptr;
+        puVar31 = &rendering_buffer_208_ptr;
       }
       else if (iVar7 == 1) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else if (iVar7 == 2) {
-        puVar31 = &unknown_var_188_ptr;
+        puVar31 = &ui_system_data_188_ptr;
       }
       else if (iVar7 == 3) {
         puVar31 = &system_data_f804;
       }
       else {
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar7 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_256_ptr,puVar31);
+      System_DataHandler(&puStack_208,&rendering_buffer_256_ptr,puVar31);
       iVar7 = func_0x0001802036f0();
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_208_ptr;
+        puVar31 = &rendering_buffer_208_ptr;
       }
       else if (iVar7 == 1) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else if (iVar7 == 2) {
-        puVar31 = &unknown_var_188_ptr;
+        puVar31 = &ui_system_data_188_ptr;
       }
       else if (iVar7 == 3) {
         puVar31 = &system_data_f804;
       }
       else {
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar7 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_352_ptr,puVar31);
+      System_DataHandler(&puStack_208,&memory_allocator_352_ptr,puVar31);
       iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x620);
       iVar32 = 1;
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else {
         if (iVar7 < 1) {
@@ -421,15 +421,15 @@ void FUN_180200780(uint64_t param_1,int param_2,void **param_3)
         else {
           iVar8 = 4;
         }
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar8 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_376_ptr,puVar31);
+      System_DataHandler(&puStack_208,&memory_allocator_376_ptr,puVar31);
       iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x690);
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else {
         if (iVar7 < 1) {
@@ -441,46 +441,46 @@ void FUN_180200780(uint64_t param_1,int param_2,void **param_3)
         else {
           iVar8 = 4;
         }
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar8 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_304_ptr,puVar31);
+      System_DataHandler(&puStack_208,&memory_allocator_304_ptr,puVar31);
       iVar7 = func_0x0001802036a0();
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_208_ptr;
+        puVar31 = &rendering_buffer_208_ptr;
       }
       else if (iVar7 == 1) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else if (iVar7 == 2) {
-        puVar31 = &unknown_var_188_ptr;
+        puVar31 = &ui_system_data_188_ptr;
       }
       else if (iVar7 == 3) {
         puVar31 = &system_data_f804;
       }
       else {
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar7 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_328_ptr,puVar31);
+      System_DataHandler(&puStack_208,&memory_allocator_328_ptr,puVar31);
       lVar11 = SYSTEM_STATE_MANAGER;
       iVar7 = func_0x00018010cc20(SYSTEM_STATE_MANAGER);
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_208_ptr;
+        puVar31 = &rendering_buffer_208_ptr;
       }
       else {
         iVar7 = func_0x00018010cc20(lVar11);
         if (iVar7 == 1) {
-          puVar31 = &unknown_var_220_ptr;
+          puVar31 = &rendering_buffer_220_ptr;
         }
         else {
           iVar7 = func_0x00018010cc20(lVar11);
           if (iVar7 == 2) {
-            puVar31 = &unknown_var_188_ptr;
+            puVar31 = &ui_system_data_188_ptr;
           }
           else {
             iVar7 = func_0x00018010cc20(lVar11);
@@ -489,58 +489,58 @@ void FUN_180200780(uint64_t param_1,int param_2,void **param_3)
             }
             else {
               iVar7 = func_0x00018010cc20(lVar11);
-              puVar31 = &unknown_var_292_ptr;
+              puVar31 = &rendering_buffer_292_ptr;
               if (iVar7 == 4) {
-                puVar31 = &unknown_var_280_ptr;
+                puVar31 = &rendering_buffer_280_ptr;
               }
             }
           }
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_464_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_464_ptr,puVar31);
       iVar7 = func_0x000180203660();
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_208_ptr;
+        puVar31 = &rendering_buffer_208_ptr;
       }
       else if (iVar7 == 1) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else if (iVar7 == 2) {
-        puVar31 = &unknown_var_188_ptr;
+        puVar31 = &ui_system_data_188_ptr;
       }
       else if (iVar7 == 3) {
         puVar31 = &system_data_f804;
       }
       else {
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar7 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_488_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_488_ptr,puVar31);
       iVar7 = func_0x000180203610();
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_208_ptr;
+        puVar31 = &rendering_buffer_208_ptr;
       }
       else if (iVar7 == 1) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else if (iVar7 == 2) {
-        puVar31 = &unknown_var_188_ptr;
+        puVar31 = &ui_system_data_188_ptr;
       }
       else if (iVar7 == 3) {
         puVar31 = &system_data_f804;
       }
       else {
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar7 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_408_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_408_ptr,puVar31);
       iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x5b0);
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else {
         if (iVar7 < 1) {
@@ -552,52 +552,52 @@ void FUN_180200780(uint64_t param_1,int param_2,void **param_3)
         else {
           iVar8 = 4;
         }
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar8 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_432_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_432_ptr,puVar31);
       iVar7 = func_0x0001802035d0();
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_208_ptr;
+        puVar31 = &rendering_buffer_208_ptr;
       }
       else if (iVar7 == 1) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else if (iVar7 == 2) {
-        puVar31 = &unknown_var_188_ptr;
+        puVar31 = &ui_system_data_188_ptr;
       }
       else if (iVar7 == 3) {
         puVar31 = &system_data_f804;
       }
       else {
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar7 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_576_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_576_ptr,puVar31);
       iVar7 = func_0x000180203590();
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_208_ptr;
+        puVar31 = &rendering_buffer_208_ptr;
       }
       else if (iVar7 == 1) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else if (iVar7 == 2) {
-        puVar31 = &unknown_var_188_ptr;
+        puVar31 = &ui_system_data_188_ptr;
       }
       else if (iVar7 == 3) {
         puVar31 = &system_data_f804;
       }
       else {
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar7 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_600_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_600_ptr,puVar31);
       iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x8c0);
       if (iVar7 < 1) {
         if (iVar7 != 0) {
@@ -608,21 +608,21 @@ void FUN_180200780(uint64_t param_1,int param_2,void **param_3)
           }
           goto LAB_180201300;
         }
-        puVar31 = &unknown_var_208_ptr;
+        puVar31 = &rendering_buffer_208_ptr;
       }
       else {
 LAB_1802012f1:
         uVar18 = 4;
 LAB_180201300:
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (uVar18 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_512_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_512_ptr,puVar31);
       iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0xfc0);
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else {
         if (iVar7 < 1) {
@@ -634,15 +634,15 @@ LAB_180201300:
         else {
           iVar8 = 4;
         }
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar8 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_536_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_536_ptr,puVar31);
       iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x850);
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else {
         if (iVar7 < 1) {
@@ -654,15 +654,15 @@ LAB_180201300:
         else {
           iVar8 = 4;
         }
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar8 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_680_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_680_ptr,puVar31);
       iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x9a0);
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else {
         if (iVar7 < 1) {
@@ -674,20 +674,20 @@ LAB_180201300:
         else {
           iVar8 = 4;
         }
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar8 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_696_ptr,puVar31);
-      puVar31 = &unknown_var_292_ptr;
+      System_DataHandler(&puStack_208,&processed_var_696_ptr,puVar31);
+      puVar31 = &rendering_buffer_292_ptr;
       if (0 < *(int *)(SYSTEM_STATE_MANAGER + 0x1030)) {
-        puVar31 = &unknown_var_280_ptr;
+        puVar31 = &rendering_buffer_280_ptr;
       }
-      System_DataHandler(&puStack_208,&unknown_var_624_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_624_ptr,puVar31);
       iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0xee0);
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else {
         if (iVar7 < 1) {
@@ -699,15 +699,15 @@ LAB_180201300:
         else {
           iVar8 = 4;
         }
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar8 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_656_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_656_ptr,puVar31);
       iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0xa10);
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else {
         if (iVar7 < 1) {
@@ -719,15 +719,15 @@ LAB_180201300:
         else {
           iVar8 = 4;
         }
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar8 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_768_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_768_ptr,puVar31);
       iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x7e0);
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_188_ptr;
+        puVar31 = &ui_system_data_188_ptr;
       }
       else {
         if (iVar7 < 1) {
@@ -739,15 +739,15 @@ LAB_180201300:
         else {
           iVar8 = 4;
         }
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar8 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_792_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_792_ptr,puVar31);
       iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x770);
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else {
         if (iVar7 < 1) {
@@ -759,15 +759,15 @@ LAB_180201300:
         else {
           iVar8 = 4;
         }
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar8 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
       System_DataHandler(&puStack_208,&system_state_ptr,puVar31);
       iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0xf50);
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else {
         if (iVar7 < 1) {
@@ -779,15 +779,15 @@ LAB_180201300:
         else {
           iVar8 = 4;
         }
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar8 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_744_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_744_ptr,puVar31);
       iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0x930);
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else {
         if (iVar7 < 1) {
@@ -799,41 +799,41 @@ LAB_180201300:
         else {
           iVar8 = 4;
         }
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar8 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_864_ptr,puVar31);
-      puVar31 = &unknown_var_292_ptr;
+      System_DataHandler(&puStack_208,&processed_var_864_ptr,puVar31);
+      puVar31 = &rendering_buffer_292_ptr;
       if (-1 < *(int *)(SYSTEM_STATE_MANAGER + 0x10a0)) {
-        puVar31 = &unknown_var_280_ptr;
+        puVar31 = &rendering_buffer_280_ptr;
       }
-      System_DataHandler(&puStack_208,&unknown_var_888_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_888_ptr,puVar31);
       iVar7 = func_0x000180203550();
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_208_ptr;
+        puVar31 = &rendering_buffer_208_ptr;
       }
       else if (iVar7 == 1) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else if (iVar7 == 2) {
-        puVar31 = &unknown_var_188_ptr;
+        puVar31 = &ui_system_data_188_ptr;
       }
       else if (iVar7 == 3) {
         puVar31 = &system_data_f804;
       }
       else {
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar7 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_808_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_808_ptr,puVar31);
       iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0xd20);
       if (iVar7 < 1) {
         if (iVar7 == 0) {
-          puVar31 = &unknown_var_208_ptr;
+          puVar31 = &rendering_buffer_208_ptr;
           goto LAB_1802016f7;
         }
         if (0 < iVar7) goto LAB_1802016d3;
@@ -846,35 +846,35 @@ LAB_180201300:
 LAB_1802016d3:
         uVar18 = 4;
       }
-      puVar31 = &unknown_var_292_ptr;
+      puVar31 = &rendering_buffer_292_ptr;
       if (uVar18 == 4) {
-        puVar31 = &unknown_var_280_ptr;
+        puVar31 = &rendering_buffer_280_ptr;
       }
 LAB_1802016f7:
-      System_DataHandler(&puStack_208,&unknown_var_832_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_832_ptr,puVar31);
       iVar7 = func_0x000180203500();
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_208_ptr;
+        puVar31 = &rendering_buffer_208_ptr;
       }
       else if (iVar7 == 1) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else if (iVar7 == 2) {
-        puVar31 = &unknown_var_188_ptr;
+        puVar31 = &ui_system_data_188_ptr;
       }
       else if (iVar7 == 3) {
         puVar31 = &system_data_f804;
       }
       else {
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar7 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_960_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_960_ptr,puVar31);
       iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0xc40);
       if (iVar7 == 1) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else {
         if (iVar7 < 2) {
@@ -886,35 +886,35 @@ LAB_1802016f7:
         else {
           iVar8 = 4;
         }
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar8 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_992_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_992_ptr,puVar31);
       iVar7 = func_0x0001802034c0();
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_208_ptr;
+        puVar31 = &rendering_buffer_208_ptr;
       }
       else if (iVar7 == 1) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else if (iVar7 == 2) {
-        puVar31 = &unknown_var_188_ptr;
+        puVar31 = &ui_system_data_188_ptr;
       }
       else if (iVar7 == 3) {
         puVar31 = &system_data_f804;
       }
       else {
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar7 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_912_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_912_ptr,puVar31);
       iVar7 = *(int *)(SYSTEM_STATE_MANAGER + 0xa80);
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_188_ptr;
+        puVar31 = &ui_system_data_188_ptr;
       }
       else {
         if (iVar7 < 1) {
@@ -926,91 +926,91 @@ LAB_1802016f7:
         else {
           iVar32 = 4;
         }
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar32 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_936_ptr,puVar31);
+      System_DataHandler(&puStack_208,&processed_var_936_ptr,puVar31);
       iVar7 = func_0x000180203470();
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_208_ptr;
+        puVar31 = &rendering_buffer_208_ptr;
       }
       else if (iVar7 == 1) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else if (iVar7 == 2) {
-        puVar31 = &unknown_var_188_ptr;
+        puVar31 = &ui_system_data_188_ptr;
       }
       else if (iVar7 == 3) {
         puVar31 = &system_data_f804;
       }
       else {
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar7 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_1064_ptr,puVar31);
+      System_DataHandler(&puStack_208,&ui_system_data_1064_ptr,puVar31);
       iVar7 = func_0x000180203420();
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_208_ptr;
+        puVar31 = &rendering_buffer_208_ptr;
       }
       else if (iVar7 == 1) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else if (iVar7 == 2) {
-        puVar31 = &unknown_var_188_ptr;
+        puVar31 = &ui_system_data_188_ptr;
       }
       else if (iVar7 == 3) {
         puVar31 = &system_data_f804;
       }
       else {
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar7 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_1088_ptr,puVar31);
+      System_DataHandler(&puStack_208,&ui_system_data_1088_ptr,puVar31);
       iVar7 = func_0x0001802033f0();
       if (iVar7 == 0) {
-        puVar31 = &unknown_var_208_ptr;
+        puVar31 = &rendering_buffer_208_ptr;
       }
       else if (iVar7 == 1) {
-        puVar31 = &unknown_var_220_ptr;
+        puVar31 = &rendering_buffer_220_ptr;
       }
       else if (iVar7 == 2) {
-        puVar31 = &unknown_var_188_ptr;
+        puVar31 = &ui_system_data_188_ptr;
       }
       else if (iVar7 == 3) {
         puVar31 = &system_data_f804;
       }
       else {
-        puVar31 = &unknown_var_292_ptr;
+        puVar31 = &rendering_buffer_292_ptr;
         if (iVar7 == 4) {
-          puVar31 = &unknown_var_280_ptr;
+          puVar31 = &rendering_buffer_280_ptr;
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_1016_ptr,puVar31);
+      System_DataHandler(&puStack_208,&ui_system_data_1016_ptr,puVar31);
       iVar7 = func_0x0001802033c0();
       if (iVar7 != 0) {
         if (iVar7 == 1) {
-          puVar28 = &unknown_var_220_ptr;
+          puVar28 = &rendering_buffer_220_ptr;
         }
         else if (iVar7 == 2) {
-          puVar28 = &unknown_var_188_ptr;
+          puVar28 = &ui_system_data_188_ptr;
         }
         else if (iVar7 == 3) {
           puVar28 = &system_data_f804;
         }
         else {
-          puVar28 = &unknown_var_292_ptr;
+          puVar28 = &rendering_buffer_292_ptr;
           if (iVar7 == 4) {
-            puVar28 = &unknown_var_280_ptr;
+            puVar28 = &rendering_buffer_280_ptr;
           }
         }
       }
-      System_DataHandler(&puStack_208,&unknown_var_1040_ptr,puVar28);
+      System_DataHandler(&puStack_208,&ui_system_data_1040_ptr,puVar28);
       lVar11 = *(int64_t *)(lVar5 + 0x70);
       lVar27 = *(int64_t *)(lVar5 + 0x68);
       uVar18 = uStack_1f8 + 0x10;
@@ -1055,7 +1055,7 @@ LAB_1802016f7:
       }
       FUN_1806284c0(&puStack_208,
                     *(int32_t *)(*(int64_t *)(lVar5 + 0x88) + -4 + (int64_t)iVar7 * 4));
-      FUN_1800ba4b0(auStack_1b8,&unknown_var_1112_ptr);
+      FUN_1800ba4b0(auStack_1b8,&ui_system_data_1112_ptr);
       uVar18 = uStack_1a8 + 6;
       CoreMemoryPoolProcessor(auStack_1b8,uVar18);
       puVar24 = (int32_t *)(puStack_1b0 + uStack_1a8);
@@ -1225,7 +1225,7 @@ LAB_180201e1d:
           *puStack_190 = 0;
         }
         iStack_178 = iStack_178 + 1;
-        System_DataHandler(&puStack_198,&unknown_var_1752_ptr,iVar7);
+        System_DataHandler(&puStack_198,&ui_system_data_1752_ptr,iVar7);
       } while( true );
     }
   }

@@ -18,7 +18,7 @@ uint64_t * FUN_180773a80(uint64_t *param_1)
   uint64_t *puVar1;
   
   func_0x00018074fb20();
-  *param_1 = &unknown_var_3104_ptr;
+  *param_1 = &memory_allocator_3104_ptr;
   puVar1 = param_1 + 0x2c;
   param_1[0x2d] = puVar1;
   *puVar1 = puVar1;
@@ -496,7 +496,7 @@ uint64_t FUN_180774390(int64_t *param_1)
   if (*(int64_t *)(*param_1 + 0x240) != 0) {
                     // WARNING: Subroutine does not return
     SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(*param_1 + 0x240),
-                  &unknown_var_3712_ptr,0x9a,1);
+                  &memory_allocator_3712_ptr,0x9a,1);
   }
   return 0;
 }
@@ -531,7 +531,7 @@ uint64_t FUN_180774450(int64_t *param_1,int param_2,int32_t *param_3,int64_t par
     fVar2 = *(float *)(lVar1 + 0x8278);
   }
                     // WARNING: Subroutine does not return
-  SystemValidationProcessor(param_4,0x20,&unknown_var_2048_ptr,(double)fVar2);
+  SystemValidationProcessor(param_4,0x20,&rendering_buffer_2048_ptr,(double)fVar2);
 }
 
 

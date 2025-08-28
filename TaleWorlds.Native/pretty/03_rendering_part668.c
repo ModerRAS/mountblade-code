@@ -21,7 +21,7 @@ void FUN_18064cf3c(int64_t param_1)
   int64_t in_R11;
   uint64_t uVar10;
   
-  puVar4 = &unknown_var_6944_ptr;
+  puVar4 = &processed_var_6944_ptr;
   if (in_RAX != (void *)0x0) {
     puVar4 = in_RAX;
   }
@@ -346,7 +346,7 @@ void FUN_18064d230(int64_t param_1,char param_2)
       }
       if (*(ushort *)(param_1 + 10) < uVar7) {
 LAB_18064d2a7:
-        FUN_1806503d0(0xe,&unknown_var_8816_ptr);
+        FUN_1806503d0(0xe,&processed_var_8816_ptr);
       }
       else {
         *puVar2 = *(uint64_t *)(param_1 + 0x20);
@@ -496,7 +496,7 @@ void FUN_18064d420(int64_t param_1)
         }
         if (*(ushort *)(lVar8 + 10) < uVar3) {
 LAB_18064d517:
-          FUN_1806503d0(0xe,&unknown_var_8816_ptr);
+          FUN_1806503d0(0xe,&processed_var_8816_ptr);
         }
         else {
           *puVar1 = *(uint64_t *)(lVar8 + 0x20);
@@ -583,7 +583,7 @@ void FUN_18064d44f(void)
         }
         if (*(ushort *)(lVar8 + 10) < uVar4) {
 LAB_18064d517:
-          FUN_1806503d0(0xe,&unknown_var_8816_ptr);
+          FUN_1806503d0(0xe,&processed_var_8816_ptr);
         }
         else {
           *puVar2 = *(uint64_t *)(lVar8 + 0x20);

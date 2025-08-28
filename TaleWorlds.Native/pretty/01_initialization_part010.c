@@ -322,7 +322,7 @@ void FUN_18003e510(void)
     // 设置组件属性
     previous_node[6] = 0x4140994454d56503;    // 组件类型标识符
     previous_node[7] = 0x399eced9bb5517ad;    // 组件版本信息
-    previous_node[8] = &unknown_var_7728_ptr;        // 绽数据指针
+    previous_node[8] = &processed_var_7728_ptr;        // 绽数据指针
     previous_node[9] = 0;                      // 组件状态
     previous_node[10] = component_flags;       // 组件标志
     return;
@@ -393,7 +393,7 @@ void FUN_18003e610(void)
     // 设置扩展组件属性
     previous_node[6] = 0x43330a43fcdb3653;    // 扩展组件类型标识符
     previous_node[7] = 0xdcfdc333a769ec93;    // 扩展组件版本信息
-    previous_node[8] = &unknown_var_7584_ptr;        // 扩展组件数据指针
+    previous_node[8] = &processed_var_7584_ptr;        // 扩展组件数据指针
     previous_node[9] = 1;                      // 扩展组件状态
     previous_node[10] = callback_function;     // 扩展组件回调函数
     return;
@@ -464,7 +464,7 @@ void FUN_18003e710(void)
     // 设置服务组件属性
     previous_node[6] = 0x431d7c8d7c475be2;    // 服务组件类型标识符
     previous_node[7] = 0xb97f048d2153e1b0;    // 服务组件版本信息
-    previous_node[8] = &unknown_var_7608_ptr;        // 服务组件数据指针
+    previous_node[8] = &processed_var_7608_ptr;        // 服务组件数据指针
     previous_node[9] = 4;                      // 服务组件状态
     previous_node[10] = service_handler;       // 服务处理函数
     return;
@@ -535,7 +535,7 @@ void FUN_18003e810(void)
     // 设置资源组件属性
     previous_node[6] = 0x4b2d79e470ee4e2c;    // 资源组件类型标识符
     previous_node[7] = 0x9c552acd3ed5548d;    // 资源组件版本信息
-    previous_node[8] = &unknown_var_7632_ptr;        // 资源组件数据指针
+    previous_node[8] = &processed_var_7632_ptr;        // 资源组件数据指针
     previous_node[9] = 0;                      // 资源组件状态
     previous_node[10] = resource_flags;        // 资源标志
     return;
@@ -606,7 +606,7 @@ void FUN_18003e910(void)
     // 设置日志组件属性
     previous_node[6] = 0x49086ba08ab981a7;    // 日志组件类型标识符
     previous_node[7] = 0xa9191d34ad910696;    // 日志组件版本信息
-    previous_node[8] = &unknown_var_7656_ptr;        // 日志组件数据指针
+    previous_node[8] = &processed_var_7656_ptr;        // 日志组件数据指针
     previous_node[9] = 0;                      // 日志组件状态
     previous_node[10] = log_handler;           // 日志处理函数
     return;
@@ -677,7 +677,7 @@ void FUN_18003ea10(void)
     // 设置配置组件属性
     previous_node[6] = 0x402feffe4481676e;    // 配置组件类型标识符
     previous_node[7] = 0xd4c2151109de93a0;    // 配置组件版本信息
-    previous_node[8] = &unknown_var_7680_ptr;        // 配置组件数据指针
+    previous_node[8] = &processed_var_7680_ptr;        // 配置组件数据指针
     previous_node[9] = 0;                      // 配置组件状态
     previous_node[10] = config_flags;           // 配置标志
     return;
@@ -717,7 +717,7 @@ void FUN_18003eb10(void)
     
     // 检查组件状态
     component_status = *(char *)((int64_t)registry_root[1] + 0x19);
-    cache_handler = &unknown_var_2048_ptr;       // 设置缓存处理函数
+    cache_handler = &rendering_buffer_2048_ptr;       // 设置缓存处理函数
     
     previous_node = registry_root;
     current_node = (uint64_t *)registry_root[1];
@@ -748,7 +748,7 @@ void FUN_18003eb10(void)
     // 设置缓存组件属性
     previous_node[6] = 0x4384dcc4b6d3f417;    // 缓存组件类型标识符
     previous_node[7] = 0x92a15d52fe2679bd;    // 缓存组件版本信息
-    previous_node[8] = &unknown_var_7704_ptr;        // 缓存组件数据指针
+    previous_node[8] = &processed_var_7704_ptr;        // 缓存组件数据指针
     previous_node[9] = 0;                      // 缓存组件状态
     previous_node[10] = cache_handler;         // 缓存处理函数
     return;
@@ -819,7 +819,7 @@ void FUN_18003ec10(void)
     // 设置存储组件属性
     previous_node[6] = 0x4140994454d56503;    // 存储组件类型标识符
     previous_node[7] = 0x399eced9bb5517ad;    // 存储组件版本信息
-    previous_node[8] = &unknown_var_7728_ptr;        // 存储组件数据指针
+    previous_node[8] = &processed_var_7728_ptr;        // 存储组件数据指针
     previous_node[9] = 0;                      // 存储组件状态
     previous_node[10] = storage_flags;         // 存储标志
     return;
@@ -849,7 +849,7 @@ void FUN_18003ed10(void)
     int8_t system_data[136];          // 系统数据缓冲区
     
     // 初始化系统服务
-    system_service = &unknown_var_3432_ptr;
+    system_service = &memory_allocator_3432_ptr;
     system_buffer = system_data;
     
     // 清零系统数据缓冲区
@@ -857,7 +857,7 @@ void FUN_18003ed10(void)
     buffer_size = 0x1b;                   // 设置缓冲区大小
     
     // 复制系统配置字符串
-    strcpy_s(system_data, 0x80, &unknown_var_1824_ptr, system_config, 0xfffffffffffffffe);
+    strcpy_s(system_data, 0x80, &ui_system_data_1824_ptr, system_config, 0xfffffffffffffffe);
     
     // 初始化系统配置
     init_system_file = FUN_180623800(&system_service);

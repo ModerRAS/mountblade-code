@@ -209,7 +209,7 @@ void FUN_180852090(uint64_t *param_1, uint64_t *param_2)
             plStack_318 = (int64_t *)CONCAT44(plStack_318._4_4_, (uint)uStack_2c8._4_2_);
             
             // 调用网络错误处理函数
-            SystemDataValidator(auStack_78, 0x27, &unknown_var_8960_ptr, (uint64_t)uStack_2c8 & 0xffffffff);
+            SystemDataValidator(auStack_78, 0x27, &processed_var_8960_ptr, (uint64_t)uStack_2c8 & 0xffffffff);
         }
         
         // 更新网络连接状态
@@ -267,12 +267,12 @@ void FUN_180852090(uint64_t *param_1, uint64_t *param_2)
                     
                     // 根据数据处理类型选择相应的排序算法
                     if (iVar5 == 2) {
-                        pcVar21 = (code *)&unknown_var_6080_ptr; // 快速排序算法
+                        pcVar21 = (code *)&processed_var_6080_ptr; // 快速排序算法
 LAB_180852282:
                         qsort(puVar2, lVar6, 8, pcVar21); // 执行排序操作
                     }
                     else if (iVar5 == 3) {
-                        pcVar21 = (code *)&unknown_var_5984_ptr; // 归并排序算法
+                        pcVar21 = (code *)&processed_var_5984_ptr; // 归并排序算法
                         goto LAB_180852282;               // 执行排序操作
                     }
                     else if (iVar5 == 4) {
@@ -580,7 +580,7 @@ LAB_180852518:
                 if ((0 < (int)uVar17) && (*plVar13 != 0)) {
                     plStack_318 = (int64_t *)CONCAT71(plStack_318._1_7_, 1);  // 设置验证标志
                     // 执行数据验证操作
-                    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
+                    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &processed_var_8432_ptr, 0x100);
                 }
                 
                 // 清理数据指针
@@ -686,7 +686,7 @@ LAB_1808526bf:
             if ((0 < (int)uVar17) && (*plVar13 != 0)) {
                 plStack_318 = (int64_t *)CONCAT71(plStack_318._1_7_, 1);  // 设置验证标志
                 // 执行数据验证操作
-                SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
+                SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &processed_var_8432_ptr, 0x100);
             }
             
             // 清理第二组数据指针

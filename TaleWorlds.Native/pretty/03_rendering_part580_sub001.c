@@ -43,7 +43,7 @@ void FUN_180587460(int64_t param_1,int64_t param_2,int64_t param_3)
   
   uStack_78 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_98;
-  puStack_70 = &unknown_var_1808_ptr;
+  puStack_70 = &ui_system_data_1808_ptr;
   puStack_68 = auStack_58;
   uStack_60 = 0;
   auStack_58[0] = 0;
@@ -92,7 +92,7 @@ void FUN_1805875c0(int64_t param_1,int64_t param_2)
     strcpy_s(*(uint64_t *)(param_1 + 8),7);
     return;
   }
-  SystemDataInitializer(&unknown_var_616_ptr,7,param_2);
+  SystemDataInitializer(&processed_var_616_ptr,7,param_2);
   *(int32_t *)(param_1 + 0x10) = 0;
   **(int8_t **)(param_1 + 8) = 0;
   return;
@@ -169,7 +169,7 @@ void FUN_1805876a0(int64_t param_1,int64_t param_2,int64_t param_3)
   
   uStack_68 = 0xfffffffffffffffe;
   uStack_40 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_88;
-  puStack_60 = &unknown_var_1856_ptr;
+  puStack_60 = &ui_system_data_1856_ptr;
   puStack_58 = auStack_48;
   uStack_50 = 0;
   auStack_48[0] = 0;

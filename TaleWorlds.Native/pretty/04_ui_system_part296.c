@@ -176,8 +176,8 @@ static uint64_t* system_memory_pool_ptr = (uint64_t*)SYSTEM_MEMORY_POOL_ADDR;   
 static uint64_t* system_main_module_state = (uint64_t*)SYSTEM_MAIN_MODULE_STATE_ADDR; /* 系统主模块状态指针 */
 
 /** 未知变量指针（需要进一步分析） */
-static uint64_t* unknown_var_4216_ptr = (uint64_t*)0x4216;  /* 未知变量4216指针 */
-static uint64_t* unknown_var_4232_ptr = (uint64_t*)0x4232;  /* 未知变量4232指针 */
+static uint64_t* processed_var_4216_ptr = (uint64_t*)0x4216;  /* 未知变量4216指针 */
+static uint64_t* processed_var_4232_ptr = (uint64_t*)0x4232;  /* 未知变量4232指针 */
 
 // ============================================================================
 // 核心函数实现
@@ -434,7 +434,7 @@ void UISystem_ResourceProcessor(uint64_t param_1, int64_t *param_2)
                 piVar6 = (int *)(uVar5 + UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x520);
                 uVar8 = uVar4;
                 do {
-                    (**(code **)(*(int64_t *)(&unknown_var_4216_ptr + (int64_t)*piVar6 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
+                    (**(code **)(*(int64_t *)(&processed_var_4216_ptr + (int64_t)*piVar6 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
                         (param_1, *(uint64_t *)(*(int64_t *)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x20) + uVar8));
                     uVar7 = (int)uVar4 + 1;
                     uVar4 = (uint64_t)uVar7;
@@ -451,7 +451,7 @@ void UISystem_ResourceProcessor(uint64_t param_1, int64_t *param_2)
                 piVar6 = (int *)(uVar5 + UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x820);
                 uVar8 = uVar4;
                 do {
-                    (**(code **)(*(int64_t *)(&unknown_var_4232_ptr + (int64_t)*piVar6 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
+                    (**(code **)(*(int64_t *)(&processed_var_4232_ptr + (int64_t)*piVar6 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
                         (param_1, *(uint64_t *)(uVar8 + *(int64_t *)(lVar2 + UI_SYSTEM_DATA_OFFSET_0x28)));
                     uVar7 = (int)uVar4 + 1;
                     uVar4 = (uint64_t)uVar7;
@@ -539,7 +539,7 @@ void UISystem_ResourceHandler(uint64_t param_1, int64_t *param_2)
                 piVar5 = (int *)(uVar4 + UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x520);
                 uVar7 = uVar3;
                 do {
-                    (**(code **)(*(int64_t *)(&unknown_var_4216_ptr + (int64_t)*piVar5 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
+                    (**(code **)(*(int64_t *)(&processed_var_4216_ptr + (int64_t)*piVar5 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
                         (param_1, *(uint64_t *)(*(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20) + uVar7));
                     uVar6 = (int)uVar3 + 1;
                     uVar3 = (uint64_t)uVar6;
@@ -556,7 +556,7 @@ void UISystem_ResourceHandler(uint64_t param_1, int64_t *param_2)
                 piVar5 = (int *)(uVar4 + UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x820);
                 uVar7 = uVar3;
                 do {
-                    (**(code **)(*(int64_t *)(&unknown_var_4232_ptr + (int64_t)*piVar5 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
+                    (**(code **)(*(int64_t *)(&processed_var_4232_ptr + (int64_t)*piVar5 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
                         (param_1, *(uint64_t *)(uVar7 + *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x28)));
                     uVar6 = (int)uVar3 + 1;
                     uVar3 = (uint64_t)uVar6;
@@ -645,7 +645,7 @@ void UISystem_StateController(uint64_t param_1, int64_t *param_2)
                 piVar5 = (int *)(uVar4 + UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x520);
                 uVar7 = uVar3;
                 do {
-                    (**(code **)(*(int64_t *)(&unknown_var_4216_ptr + (int64_t)*piVar5 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
+                    (**(code **)(*(int64_t *)(&processed_var_4216_ptr + (int64_t)*piVar5 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
                         (param_1, *(uint64_t *)(*(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x20) + uVar7));
                     uVar6 = (int)uVar3 + 1;
                     uVar3 = (uint64_t)uVar6;
@@ -662,7 +662,7 @@ void UISystem_StateController(uint64_t param_1, int64_t *param_2)
                 piVar5 = (int *)(uVar4 + UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x820);
                 uVar7 = uVar3;
                 do {
-                    (**(code **)(*(int64_t *)(&unknown_var_4232_ptr + (int64_t)*piVar5 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
+                    (**(code **)(*(int64_t *)(&processed_var_4232_ptr + (int64_t)*piVar5 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))
                         (param_1, *(uint64_t *)(uVar7 + *(int64_t *)(lVar1 + UI_SYSTEM_DATA_OFFSET_0x28)));
                     uVar6 = (int)uVar3 + 1;
                     uVar3 = (uint64_t)uVar6;
@@ -735,7 +735,7 @@ void UISystem_ResourceCleaner(uint64_t param_1, int64_t param_2)
             piVar2 = (int *)(unaff_RBP + UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x520);
             uVar4 = unaff_RBX & 0xffffffff;
             do {
-                (**(code **)(*(int64_t *)(&unknown_var_4216_ptr + (int64_t)*piVar2 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))();
+                (**(code **)(*(int64_t *)(&processed_var_4216_ptr + (int64_t)*piVar2 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))();
                 uVar3 = (int)uVar4 + 1;
                 uVar4 = (uint64_t)uVar3;
                 piVar2 = piVar2 + 1;
@@ -766,7 +766,7 @@ void UISystem_ResourceCleaner(uint64_t param_1, int64_t param_2)
         piVar2 = (int *)(unaff_RBP + UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x820);
         uVar4 = unaff_RBX & 0xffffffff;
         do {
-            (**(code **)(*(int64_t *)(&unknown_var_4232_ptr + (int64_t)*piVar2 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))();
+            (**(code **)(*(int64_t *)(&processed_var_4232_ptr + (int64_t)*piVar2 * 8) + UI_SYSTEM_DATA_OFFSET_0x20))();
             uVar3 = (int)uVar4 + 1;
             uVar4 = (uint64_t)uVar3;
             piVar2 = piVar2 + 1;

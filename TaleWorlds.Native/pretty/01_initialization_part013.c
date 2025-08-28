@@ -68,10 +68,10 @@ char system_memory_2864;              /* 线程系统状态 */
  * 全局对象实例
  * 存储系统中重要的全局对象和单例
  */
-uint8_t unknown_var_3432_ptr;         /* 全局回调管理器 */
-uint8_t unknown_var_384_ptr;         /* 全局字符串处理器 */
-uint8_t unknown_var_1640_ptr;         /* 全局路径管理器 */
-uint8_t unknown_var_1664_ptr;         /* 全局配置管理器 */
+uint8_t memory_allocator_3432_ptr;         /* 全局回调管理器 */
+uint8_t memory_allocator_384_ptr;         /* 全局字符串处理器 */
+uint8_t ui_system_data_1640_ptr;         /* 全局路径管理器 */
+uint8_t ui_system_data_1664_ptr;         /* 全局配置管理器 */
 
 /*=============================================================================
  * 系统初始化函数
@@ -99,13 +99,13 @@ void SystemCallbackManagerInitialize(void)
     int8_t auStack_88 [136];
     
     /* 初始化回调管理器结构 */
-    puStack_a0 = &unknown_var_3432_ptr;
+    puStack_a0 = &memory_allocator_3432_ptr;
     puStack_98 = auStack_88;
     auStack_88[0] = 0;
     uStack_90 = 0x10;
     
     /* 复制回调管理器配置 */
-    strcpy_s(auStack_88, 0x80, &unknown_var_384_ptr, in_R9, 0xfffffffffffffffe);
+    strcpy_s(auStack_88, 0x80, &memory_allocator_384_ptr, in_R9, 0xfffffffffffffffe);
     
     /* 注册回调管理器到系统 */
     init_system_memory = FUN_180623800(&puStack_a0);
@@ -191,13 +191,13 @@ void SystemPathManagerInitialize(void)
     int8_t auStack_88 [136];
     
     /* 初始化路径管理器结构 */
-    puStack_a0 = &unknown_var_3432_ptr;
+    puStack_a0 = &memory_allocator_3432_ptr;
     puStack_98 = auStack_88;
     auStack_88[0] = 0;
     uStack_90 = 0x17;
     
     /* 复制路径管理器配置 */
-    strcpy_s(auStack_88, 0x80, &unknown_var_1640_ptr, in_R9, 0xfffffffffffffffe);
+    strcpy_s(auStack_88, 0x80, &ui_system_data_1640_ptr, in_R9, 0xfffffffffffffffe);
     
     /* 注册路径管理器到系统 */
     init_system_memory = FUN_180623800(&puStack_a0);
@@ -226,13 +226,13 @@ void SystemConfigurationManagerInitialize(void)
     int8_t auStack_88 [136];
     
     /* 初始化配置管理器结构 */
-    puStack_a0 = &unknown_var_3432_ptr;
+    puStack_a0 = &memory_allocator_3432_ptr;
     puStack_98 = auStack_88;
     auStack_88[0] = 0;
     uStack_90 = 0x11;
     
     /* 复制配置管理器配置 */
-    strcpy_s(auStack_88, 0x80, &unknown_var_1664_ptr, in_R9, 0xfffffffffffffffe);
+    strcpy_s(auStack_88, 0x80, &ui_system_data_1664_ptr, in_R9, 0xfffffffffffffffe);
     
     /* 注册配置管理器到系统 */
     init_system_memory = FUN_180623800(&puStack_a0);
@@ -302,7 +302,7 @@ int SystemResourceManagerInitialize(void)
     init_system_buffer_memory = 0xffffffff;
     
     /* 注册资源管理器到系统 */
-    lVar1 = FUN_1808fc7d0(&unknown_var_3152_ptr);
+    lVar1 = FUN_1808fc7d0(&memory_allocator_3152_ptr);
     return (lVar1 != 0) - 1;
 }
 
@@ -327,7 +327,7 @@ int SystemMemoryManagerInitialize(void)
     func_0x000180741c80(0x180c0c340);
     
     /* 注册内存管理器到系统 */
-    lVar1 = FUN_1808fc7d0(&unknown_var_3168_ptr);
+    lVar1 = FUN_1808fc7d0(&memory_allocator_3168_ptr);
     return (lVar1 != 0) - 1;
 }
 
@@ -552,13 +552,13 @@ int FileIndexManagerInitialize(void)
     /* 初始化索引结构 */
     do {
         func_0x000180767970(puVar1);
-        *puVar1 = &unknown_var_6408_ptr;
+        *puVar1 = &processed_var_6408_ptr;
         puVar1 = puVar1 + 0x2b;
         lVar2 = lVar2 + -1;
     } while (lVar2 != 0);
     
     /* 注册索引管理器到系统 */
-    lVar2 = FUN_1808fc7d0(&unknown_var_3184_ptr);
+    lVar2 = FUN_1808fc7d0(&memory_allocator_3184_ptr);
     return (lVar2 != 0) - 1;
 }
 
@@ -645,7 +645,7 @@ int FileBackupManagerInitialize(void)
     FUN_1808dbcd0(0x180c4f510);
     
     /* 注册备份管理器到系统 */
-    lVar1 = FUN_1808fc7d0(&unknown_var_3344_ptr);
+    lVar1 = FUN_1808fc7d0(&memory_allocator_3344_ptr);
     return (lVar1 != 0) - 1;
 }
 
@@ -670,7 +670,7 @@ int FileSyncManagerInitialize(void)
     _Mtx_init_in_situ(0x180c82170, 2);
     
     /* 注册同步管理器到系统 */
-    lVar1 = FUN_1808fc7d0(&unknown_var_3360_ptr);
+    lVar1 = FUN_1808fc7d0(&memory_allocator_3360_ptr);
     return (lVar1 != 0) - 1;
 }
 
@@ -730,7 +730,7 @@ void SystemThreadManagerInitialize(int64_t param_1)
     
     /* 检查并初始化线程管理器 */
     if (init_system_memory != (int64_t *)0x0) {
-        if ((void *)*init_system_memory == &unknown_var_8768_ptr) {
+        if ((void *)*init_system_memory == &processed_var_8768_ptr) {
             cVar3 = (char)init_system_memory[2] != '\0';
         }
         else {
@@ -743,7 +743,7 @@ void SystemThreadManagerInitialize(int64_t param_1)
     plVar2 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0xc0, 8, 3, uVar4);
     plStackX_20 = plVar2;
     FUN_180049830(plVar2);
-    *plVar2 = (int64_t)&unknown_var_8768_ptr;
+    *plVar2 = (int64_t)&processed_var_8768_ptr;
     plVar2[3] = -4;
     pplStackX_10 = (int64_t **)plVar2;
     (**(code **)(*plVar2 + 0x28))(plVar2);
@@ -759,7 +759,7 @@ void SystemThreadManagerInitialize(int64_t param_1)
     init_system_memory = plVar2;
     
     /* 初始化线程管理器功能 */
-    if ((void *)*init_system_memory == &unknown_var_8768_ptr) {
+    if ((void *)*init_system_memory == &processed_var_8768_ptr) {
         if (init_system_data_memory != 0) {
             FUN_18006e990();
         }
@@ -785,12 +785,12 @@ LAB_180043e47:
         *plVar2 = (int64_t)&system_handler1_ptr;
         *plVar2 = (int64_t)&system_handler2_ptr;
         *(int32_t *)(plVar2 + 1) = 0;
-        *plVar2 = (int64_t)&unknown_var_1000_ptr;
+        *plVar2 = (int64_t)&ui_system_data_1000_ptr;
         LOCK();
         *(int8_t *)(plVar2 + 2) = 0;
         UNLOCK();
         plVar2[3] = -1;
-        *plVar2 = (int64_t)&unknown_var_864_ptr;
+        *plVar2 = (int64_t)&processed_var_864_ptr;
         plVar2[4] = 0x180c91060;
         plStackX_20 = plVar2;
         (**(code **)(*plVar2 + 0x28))(plVar2);
@@ -821,8 +821,8 @@ LAB_180043e47:
  */
 uint64_t * SystemMemoryAllocator(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    *param_1 = &unknown_var_864_ptr;
-    *param_1 = &unknown_var_1000_ptr;
+    *param_1 = &processed_var_864_ptr;
+    *param_1 = &ui_system_data_1000_ptr;
     *param_1 = &system_handler2_ptr;
     *param_1 = &system_handler1_ptr;
     if ((param_2 & 1) != 0) {
@@ -951,7 +951,7 @@ void SystemEnvironmentInitializer(void)
         plStack_208 = (int64_t *)CONCAT44(plStack_208._4_4_, 0x10);
         iVar4 = GetComputerNameA(applStack_150, &plStack_208);
         if (iVar4 == 0) {
-            FUN_180627160(&unknown_var_2736_ptr);
+            FUN_180627160(&rendering_buffer_2736_ptr);
         }
         else {
             if (0xf < ((uint64_t)plStack_208 & 0xffffffff)) goto LAB_180044db8;
@@ -963,7 +963,7 @@ void SystemEnvironmentInitializer(void)
         plStack_208 = (int64_t *)CONCAT44(plStack_208._4_4_, 0x101);
         iVar4 = GetUserNameA(auStack_138, &plStack_208);
         if (iVar4 == 0) {
-            FUN_180627160(&unknown_var_2776_ptr);
+            FUN_180627160(&rendering_buffer_2776_ptr);
         }
         else {
             if (0x100 < ((uint64_t)plStack_208 & 0xffffffff)) {
@@ -987,19 +987,19 @@ LAB_180044db8:
         if (puStack_1d0 != (void *)0x0) {
             puStack_220 = puStack_1d0;
         }
-        puStack_228 = &unknown_var_208_ptr;
+        puStack_228 = &rendering_buffer_208_ptr;
         FUN_1800623b0(system_message_context, 5, 0xffffffffffffffff, 4);
-        puStack_188 = &unknown_var_672_ptr;
+        puStack_188 = &processed_var_672_ptr;
         puStack_180 = auStack_170;
         uStack_178 = 0;
         auStack_170[0] = 0;
         uStack_200 = 2;
-        FUN_18004b860(&puStack_188, &unknown_var_4576_ptr, 0x130a7);
+        FUN_18004b860(&puStack_188, &processed_var_4576_ptr, 0x130a7);
         puStack_220 = &system_buffer_ptr;
         if (puStack_180 != (void *)0x0) {
             puStack_220 = puStack_180;
         }
-        puStack_228 = &unknown_var_232_ptr;
+        puStack_228 = &rendering_buffer_232_ptr;
         FUN_1800623b0(system_message_context, 5, 0xffffffffffffffff, 4);
         uStack_200 = 0;
         puStack_188 = &system_state_ptr;
@@ -1110,7 +1110,7 @@ void SystemDebugManagerInitialize(uint64_t param_1, int64_t param_2)
     SymSetSearchPath(init_system_memory, puVar13);
     lVar7 = plVar6[0xb];
     if (lVar7 == 0) {
-        lVar7 = LoadLibraryA(&unknown_var_3528_ptr);
+        lVar7 = LoadLibraryA(&memory_allocator_3528_ptr);
         plVar6[0xb] = lVar7;
         if (lVar7 != 0) goto LAB_180044ee3;
         puStack_b8 = &system_data_buffer_ptr;
@@ -1168,8 +1168,8 @@ LAB_180044faf:
     puVar8 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 8, 8, 3);
     *puVar8 = 0;
     puVar9 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 8, 8, 3);
-    *puVar8 = &unknown_var_384_ptr;
-    *puVar9 = &unknown_var_424_ptr;
+    *puVar8 = &memory_allocator_384_ptr;
+    *puVar9 = &processed_var_424_ptr;
     puVar10 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x20, 8, 3);
     puVar11 = (int8_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 1, 1, 3);
     *puVar11 = 0;
@@ -1187,7 +1187,7 @@ LAB_180044faf:
     /* 初始化性能计数器 */
     iVar2 = QueryPerformanceFrequency(&pplStackX_18);
     if (iVar2 == 0) {
-        FUN_180626ee0(&unknown_var_2608_ptr);
+        FUN_180626ee0(&rendering_buffer_2608_ptr);
     }
     init_system_data_memory = 1.0 / (double)(int64_t)pplStackX_18;
     timeBeginPeriod(1);
@@ -1277,7 +1277,7 @@ int32_t SystemExitManager(void)
     /* 等待系统完成当前操作 */
     if (init_system_memory != (uint64_t *)0x0) {
         while( true ) {
-            if ((void *)*init_system_memory == &unknown_var_8768_ptr) {
+            if ((void *)*init_system_memory == &processed_var_8768_ptr) {
                 cVar11 = *(char *)(init_system_memory + 2) != '\0';
             }
             else {
@@ -1292,7 +1292,7 @@ int32_t SystemExitManager(void)
     pppplVar6 = (int64_t ****)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0xc0, 8, 3, uVar12);
     pppplStackX_8 = pppplVar6;
     FUN_180049830(pppplVar6);
-    *pppplVar6 = (int64_t ***)&unknown_var_3368_ptr;
+    *pppplVar6 = (int64_t ***)&memory_allocator_3368_ptr;
     ppplStackX_20 = (int64_t ***)pppplVar6;
     (*(code *)(*pppplVar6)[5])(pppplVar6);
     lVar10 = system_context_ptr;
@@ -1303,7 +1303,7 @@ int32_t SystemExitManager(void)
     
     /* 等待所有操作完成 */
     while( true ) {
-        if (*pppplVar6 == (int64_t ***)&unknown_var_3368_ptr) {
+        if (*pppplVar6 == (int64_t ***)&memory_allocator_3368_ptr) {
             cVar11 = *(char *)(pppplVar6 + 2) != '\0';
         }
         else {
@@ -1356,7 +1356,7 @@ int32_t SystemExitManager(void)
     /* 等待系统完成清理 */
     while( true ) {
         pplVar3 = *pppplVar14[1];
-        if (pplVar3 == (int64_t **)&unknown_var_3624_ptr) {
+        if (pplVar3 == (int64_t **)&memory_allocator_3624_ptr) {
             cVar11 = *(char *)(pppplVar14[1] + 2) != '\0';
         }
         else {
@@ -1371,7 +1371,7 @@ int32_t SystemExitManager(void)
     pppplStackX_8 = init_system_data_memory;
     if (init_system_data_memory != (int64_t ****)0x0) {
         lVar10 = __RTCastToVoid(init_system_data_memory);
-        *pppplVar8 = (int64_t ***)&unknown_var_2208_ptr;
+        *pppplVar8 = (int64_t ***)&rendering_buffer_2208_ptr;
         PostQueuedCompletionStatus(pppplVar8[0x42686], 0, 0xffffffffffffffff);
         CloseHandle(pppplVar8[0x42686]);
         ppplStackX_10 = (int64_t ***)(pppplVar8 + 0x42687);
@@ -1491,7 +1491,7 @@ void SystemStringCopier(int64_t param_1, int64_t param_2)
         strcpy_s(*(uint64_t *)(param_1 + 8), 0x1000);
         return;
     }
-    SystemDataInitializer(&unknown_var_616_ptr, 0x1000, param_2);
+    SystemDataInitializer(&processed_var_616_ptr, 0x1000, param_2);
     *(int32_t *)(param_1 + 0x10) = 0;
     **(int8_t **)(param_1 + 8) = 0;
     return;
@@ -1614,7 +1614,7 @@ uint64_t * SystemMemoryReleaser(uint64_t *param_1, uint64_t param_2, uint64_t pa
  */
 uint64_t * SystemResourceCleaner(uint64_t *param_1, uint param_2)
 {
-    *param_1 = &unknown_var_2208_ptr;
+    *param_1 = &rendering_buffer_2208_ptr;
     PostQueuedCompletionStatus(param_1[0x42686], 0, 0xffffffffffffffff, 0, 0xfffffffffffffffe);
     CloseHandle(param_1[0x42686]);
     if (param_1[0x42687] != 0) {
@@ -1702,7 +1702,7 @@ void SystemShortStringCopier(int64_t param_1, int64_t param_2)
         strcpy_s(*(uint64_t *)(param_1 + 8), 0x400);
         return;
     }
-    SystemDataInitializer(&unknown_var_616_ptr, 0x400, param_2);
+    SystemDataInitializer(&processed_var_616_ptr, 0x400, param_2);
     *(int32_t *)(param_1 + 0x10) = 0;
     **(int8_t **)(param_1 + 8) = 0;
     return;

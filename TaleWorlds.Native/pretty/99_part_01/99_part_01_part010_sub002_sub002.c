@@ -232,9 +232,9 @@ void FUN_1800a73e0(int64_t param_1, uint64_t param_2, int64_t param_3, int8_t pa
     
     // 条件分支处理
     if (system_system_control_memory == 10) {
-        iVar2 = strcmp(system_system_control_memory, &unknown_var_4312_ptr);
+        iVar2 = strcmp(system_system_control_memory, &processed_var_4312_ptr);
         if (iVar2 != 0) goto LAB_1800a7646;
-        (**(code **)(puStack_858 + 0x10))(&puStack_858, &unknown_var_4368_ptr);
+        (**(code **)(puStack_858 + 0x10))(&puStack_858, &processed_var_4368_ptr);
         cStack_968 = '\x01';
 LAB_1800a765c:
         cStack_940 = '\x01';
@@ -242,18 +242,18 @@ LAB_1800a765c:
     else {
         if (system_system_control_memory != 0xc) {
             if (system_system_control_memory == 0xd) {
-                iVar2 = strcmp(system_system_control_memory, &unknown_var_4432_ptr);
+                iVar2 = strcmp(system_system_control_memory, &processed_var_4432_ptr);
                 if (iVar2 == 0) {
-                    (**(code **)(puStack_858 + 0x10))(&puStack_858, &unknown_var_4528_ptr);
+                    (**(code **)(puStack_858 + 0x10))(&puStack_858, &processed_var_4528_ptr);
                     cStack_968 = '\x01';
                     cStack_93f = '\x01';
                     goto LAB_1800a7660;
                 }
             }
             else if (system_system_control_memory == 9) {
-                iVar2 = strcmp(system_system_control_memory, &unknown_var_4512_ptr);
+                iVar2 = strcmp(system_system_control_memory, &processed_var_4512_ptr);
                 if (iVar2 == 0) {
-                    (**(code **)(puStack_858 + 0x10))(&puStack_858, &unknown_var_4608_ptr);
+                    (**(code **)(puStack_858 + 0x10))(&puStack_858, &processed_var_4608_ptr);
                     cStack_93d = '\x01';
                     cStack_93b = '\x01';
                     goto LAB_1800a7660;
@@ -261,21 +261,21 @@ LAB_1800a765c:
             }
             else if (system_system_control_memory == 0xc) goto LAB_1800a7617;
 LAB_1800a7646:
-            (**(code **)(puStack_858 + 0x10))(&puStack_858, &unknown_var_4688_ptr);
+            (**(code **)(puStack_858 + 0x10))(&puStack_858, &processed_var_4688_ptr);
             cStack_93c = '\x01';
             goto LAB_1800a765c;
         }
-        iVar2 = strcmp(system_system_control_memory, &unknown_var_4352_ptr);
+        iVar2 = strcmp(system_system_control_memory, &processed_var_4352_ptr);
         if (iVar2 == 0) {
-            (**(code **)(puStack_858 + 0x10))(&puStack_858, &unknown_var_4448_ptr);
+            (**(code **)(puStack_858 + 0x10))(&puStack_858, &processed_var_4448_ptr);
             cStack_968 = '\x01';
             cStack_93e = '\x01';
         }
         else {
 LAB_1800a7617:
-            iVar2 = strcmp(uVar5, &unknown_var_4592_ptr);
+            iVar2 = strcmp(uVar5, &processed_var_4592_ptr);
             if (iVar2 != 0) goto LAB_1800a7646;
-            (**(code **)(puStack_858 + 0x10))(&puStack_858, &unknown_var_4752_ptr);
+            (**(code **)(puStack_858 + 0x10))(&puStack_858, &processed_var_4752_ptr);
             cStack_93d = '\x01';
             cStack_93a = '\x01';
         }
@@ -324,7 +324,7 @@ LAB_1800a7660:
     uVar5 = FUN_180627600(apuStack_518, uStack_790);
     SystemCore_EncryptionEngine0(auStack_750, uVar5);
     apuStack_518[0] = &system_state_ptr;
-    puStack_638 = &unknown_var_2008_ptr;
+    puStack_638 = &rendering_buffer_2008_ptr;
     puStack_630 = auStack_620;
     auStack_620[0] = 0;
     iStack_628 = iStack_740;

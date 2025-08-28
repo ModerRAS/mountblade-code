@@ -46,7 +46,7 @@ void NetworkSystem_ErrorHandler(uint64_t param_1)(uint64_t param_1)
     NetworkTimeManager_ClearTimeout(param_1);
                     // WARNING: Subroutine does not return
     // 重新初始化网络系统
-    NetworkStatisticsCollector_UpdateStats(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_5856_ptr,0x43b,1);
+    NetworkStatisticsCollector_UpdateStats(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&processed_var_5856_ptr,0x43b,1);
   }
   return;
 }

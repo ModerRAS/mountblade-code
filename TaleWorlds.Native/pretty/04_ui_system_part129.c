@@ -23,7 +23,7 @@ uint64_t FUN_180743010(int64_t param_1)
   int64_t lVar4;
   
   plVar1 = (int64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x18,&unknown_var_8208_ptr,0xd0,0,0,1);
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x18,&processed_var_8208_ptr,0xd0,0,0,1);
   if (plVar1 == (int64_t *)0x0) {
     return 0x26;
   }
@@ -31,10 +31,10 @@ uint64_t FUN_180743010(int64_t param_1)
   *plVar1 = (int64_t)plVar1;
   plVar1[2] = 0;
   plVar2 = (int64_t *)
-           SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x2000,&unknown_var_8208_ptr,0xd6,0);
+           SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x2000,&processed_var_8208_ptr,0xd6,0);
   if (plVar2 == (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar1,&unknown_var_8208_ptr,0xd9,1);
+    SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar1,&processed_var_8208_ptr,0xd9,1);
   }
   lVar4 = 0x100;
   plVar3 = plVar2;

@@ -509,7 +509,7 @@ int UtilitiesSystem_DataHandler1(int64_t param_1)
         // 执行系统调用
         SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                      data_pointer, 
-                     &unknown_var_2144_ptr, 
+                     &rendering_buffer_2144_ptr, 
                      0xb8, 
                      1);
     }
@@ -624,7 +624,7 @@ uint64_t UtilitiesSystem_ResultProcessor1(int64_t param_1, uint64_t param_2)
                 // 执行清理操作
                 FUN_180741df0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                              data_pointer, 
-                             &unknown_var_8432_ptr, 
+                             &processed_var_8432_ptr, 
                              0xe9);
                 return result_flags;
             }
@@ -687,7 +687,7 @@ int UtilitiesSystem_ConfigValidator1(int32_t param_1)
         // 执行配置清理
         FUN_180741df0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                      config_pointer, 
-                     &unknown_var_8432_ptr, 
+                     &processed_var_8432_ptr, 
                      0xe9, 
                      config_flags);
         return validation_status;
@@ -1760,7 +1760,7 @@ void UtilitiesSystem_ArrayProcessor1(int64_t param_1, int64_t param_2)
             if ((0x3ffffffe < new_size * 8 - 1U) ||
                 (data_pointer = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                              new_size * 8, 
-                                             &unknown_var_8432_ptr, 
+                                             &processed_var_8432_ptr, 
                                              UTIL_MEMORY_BLOCK_SIZE, 
                                              0, 
                                              0, 
@@ -1781,7 +1781,7 @@ void UtilitiesSystem_ArrayProcessor1(int64_t param_1, int64_t param_2)
             (*(int64_t *)(stack_data2 + 0x20) != 0)) {
             SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                          *(int64_t *)(stack_data2 + 0x20), 
-                         &unknown_var_8432_ptr, 
+                         &processed_var_8432_ptr, 
                          0x100, 
                          1);
         }
@@ -1884,7 +1884,7 @@ void UtilitiesSystem_ArrayProcessor2(uint64_t param_1, uint64_t param_2,
             if ((0x3ffffffe < new_size * 8 - 1U) ||
                 (data_pointer = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                              new_size * 8, 
-                                             &unknown_var_8432_ptr, 
+                                             &processed_var_8432_ptr, 
                                              UTIL_MEMORY_BLOCK_SIZE, 
                                              0), 
                  data_pointer == 0)) {
@@ -1903,7 +1903,7 @@ void UtilitiesSystem_ArrayProcessor2(uint64_t param_1, uint64_t param_2,
             (*(int64_t *)(in_stack_00000070 + 0x20) != 0)) {
             SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                          *(int64_t *)(in_stack_00000070 + 0x20), 
-                         &unknown_var_8432_ptr, 
+                         &processed_var_8432_ptr, 
                          0x100, 
                          1);
         }
@@ -1997,7 +1997,7 @@ void UtilitiesSystem_ArrayProcessor3(int64_t in_RAX, uint64_t in_stack_00000060,
             
             data_pointer = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                         new_size * 8, 
-                                        &unknown_var_8432_ptr, 
+                                        &processed_var_8432_ptr, 
                                         UTIL_MEMORY_BLOCK_SIZE, 
                                         0);
             
@@ -2017,7 +2017,7 @@ void UtilitiesSystem_ArrayProcessor3(int64_t in_RAX, uint64_t in_stack_00000060,
             (*(int64_t *)(unaff_RBX + 0x20) != 0)) {
             SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                          *(int64_t *)(unaff_RBX + 0x20), 
-                         &unknown_var_8432_ptr, 
+                         &processed_var_8432_ptr, 
                          0x100, 
                          1);
         }
@@ -2097,7 +2097,7 @@ void UtilitiesSystem_ArrayProcessor4(int param_1, int param_2,
             
             unaff_RSI = SystemCore_DatabaseManager0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                      new_size * 8, 
-                                     &unknown_var_8432_ptr, 
+                                     &processed_var_8432_ptr, 
                                      UTIL_MEMORY_BLOCK_SIZE);
             
             if (unaff_RSI == 0) {
@@ -2116,7 +2116,7 @@ void UtilitiesSystem_ArrayProcessor4(int param_1, int param_2,
             (*(int64_t *)(unaff_RBX + 0x20) != 0)) {
             SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                          *(int64_t *)(unaff_RBX + 0x20), 
-                         &unknown_var_8432_ptr, 
+                         &processed_var_8432_ptr, 
                          0x100, 
                          1);
         }

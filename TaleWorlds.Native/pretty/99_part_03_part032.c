@@ -31,8 +31,8 @@ void FUN_1801eb320(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     }
   }
   plStack_28 = param_1 + 1;
-  puStack_20 = &unknown_var_3392_ptr;
-  puStack_18 = &unknown_var_3376_ptr;
+  puStack_20 = &memory_allocator_3392_ptr;
+  puStack_18 = &memory_allocator_3376_ptr;
   uStack_40 = (int32_t)*param_1;
   uStack_3c = (int32_t)((uint64_t)*param_1 >> 0x20);
   uStack_30 = uStack_40;
@@ -457,7 +457,7 @@ void FUN_1801ebc10(int64_t param_1)
 void FUN_1801ebc30(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_3768_ptr;
+  *param_1 = &memory_allocator_3768_ptr;
   FUN_1801ebae0();
   _Mtx_destroy_in_situ();
   FUN_180057830();
@@ -673,7 +673,7 @@ FUN_1801ec160(uint64_t *param_1,int64_t param_2,uint64_t *param_3,uint64_t param
   uint64_t *puVar5;
   
   FUN_180049830();
-  *param_1 = &unknown_var_3864_ptr;
+  *param_1 = &memory_allocator_3864_ptr;
   puVar1 = param_1 + 0x18;
   *puVar1 = 0;
   param_1[0x19] = 0;
@@ -880,7 +880,7 @@ void FUN_1801ec3f0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
     puVar4 = (void *)param_1[1];
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(system_message_context,&unknown_var_92_ptr,puVar4);
+  FUN_180062300(system_message_context,&processed_var_92_ptr,puVar4);
 }
 
 
@@ -946,7 +946,7 @@ void FUN_1801ec6a0(uint64_t param_1,int32_t param_2)
       if (*(void **)(lVar1 + 0x630) != (void *)0x0) {
         puVar3 = *(void **)(lVar1 + 0x630);
       }
-      SystemCore_ResourceManager0(&unknown_var_544_ptr,puVar3);
+      SystemCore_ResourceManager0(&processed_var_544_ptr,puVar3);
     }
     *(int32_t *)(lVar1 + 0x620) = *(int32_t *)(lVar1 + 0x668);
     return;

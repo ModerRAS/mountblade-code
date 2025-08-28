@@ -105,7 +105,7 @@ LAB_18047a298:
     if (lVar4 == -1) {
       FUN_18009f890(auStack_50);
                     // WARNING: Subroutine does not return
-      _CxxThrowException(auStack_50,&unknown_var_2464_ptr);
+      _CxxThrowException(auStack_50,&rendering_buffer_2464_ptr);
     }
     plStack_100 = plStack_108;
     FUN_1808ffb84(plStack_108);
@@ -130,11 +130,11 @@ LAB_18047a2ec:
   FUN_18047b290(alStack_c8,0,&plStackX_20);
   uStack_b0 = 0;
   plStack_f8 = (int64_t *)FUN_1808fc418(0x30);
-  *plStack_f8 = (int64_t)&unknown_var_6184_ptr;
+  *plStack_f8 = (int64_t)&processed_var_6184_ptr;
   plStack_f8[1] = 0x14;
   plStack_f8[2] = 0;
   plStack_f8[3] = 0;
-  *plStack_f8 = (int64_t)&unknown_var_6136_ptr;
+  *plStack_f8 = (int64_t)&processed_var_6136_ptr;
   *(uint64_t *)((int64_t)plStack_f8 + 0x24) = 0;
   *(int32_t *)((int64_t)plStack_f8 + 0x2c) = 0;
   uStack_98 = 1;
@@ -420,7 +420,7 @@ FUN_18047a810(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_5320_ptr;
+  *param_1 = &processed_var_5320_ptr;
   free(param_1[3]);
   *param_1 = ___7facet_locale_std__6B__exref;
   *param_1 = ___7_Facet_base_std__6B__exref;
@@ -627,7 +627,7 @@ LAB_18047ab4b:
     uVar8 = __0_Locinfo_std__QEAA_PEBD_Z(auStack_a0,puVar7);
     uStack_c8 = 3;
     __0facet_locale_std__IEAA__K_Z(plVar6,0);
-    *plVar6 = (int64_t)&unknown_var_5320_ptr;
+    *plVar6 = (int64_t)&processed_var_5320_ptr;
     puVar9 = (int32_t *)__Getcoll__Locinfo_std__QEBA_AU_Collvec__XZ(uVar8,auStack_b0);
     uVar1 = puVar9[1];
     uVar2 = puVar9[2];
@@ -1035,7 +1035,7 @@ void FUN_18047b310(void)
 {
   code *pcVar1;
   
-  __Xlength_error_std__YAXPEBD_Z(&unknown_var_4976_ptr);
+  __Xlength_error_std__YAXPEBD_Z(&processed_var_4976_ptr);
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
@@ -1134,7 +1134,7 @@ void FUN_18047b3a0(int64_t *param_1)
   else {
     cVar1 = *(char *)*param_1;
     *(char *)(param_1 + 0xf) = cVar1;
-    lVar3 = strchr(&unknown_var_5824_ptr,(int)cVar1);
+    lVar3 = strchr(&processed_var_5824_ptr,(int)cVar1);
     if (lVar3 == 0) {
       iVar2 = 0;
     }

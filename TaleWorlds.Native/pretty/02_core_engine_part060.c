@@ -135,24 +135,24 @@ extern void* system_handler1_ptr;             // 系统处理器1句柄
 extern void* system_handler2_ptr;             // 系统处理器2句柄
 
 // 未知变量映射定义 - 根据上下文分析的有意义名称
-#define system_data_flag_ptr (&unknown_var_2612_ptr)     // 系统数据标志指针
-#define system_context_flag_ptr (&unknown_var_1920_ptr)  // 系统上下文标志指针
-#define system_config_data_ptr (&unknown_var_672_ptr)    // 系统配置数据指针
-#define system_string_data_ptr (&unknown_var_1896_ptr)   // 系统字符串数据指针
-#define system_status_flag_ptr (&unknown_var_1944_ptr)   // 系统状态标志指针
-#define system_processing_flag_ptr (&unknown_var_1936_ptr) // 系统处理标志指针
-#define system_manager_flag_ptr (&unknown_var_1960_ptr)  // 系统管理器标志指针
-#define system_queue_data_ptr (&unknown_var_1980_ptr)   // 系统队列数据指针
-#define system_buffer_data_ptr (&unknown_var_1972_ptr)   // 系统缓冲区数据指针
-#define system_resource_data_ptr (&unknown_var_2016_ptr) // 系统资源数据指针
-#define system_sync_data_ptr (&unknown_var_1992_ptr)     // 系统同步数据指针
-#define system_init_data_ptr (&unknown_var_1840_ptr)     // 系统初始化数据指针
-#define system_callback_data_ptr (&unknown_var_2264_ptr) // 系统回调数据指针
-#define system_message_data_ptr (&unknown_var_7064_ptr) // 系统消息数据指针
-#define system_handler_data_ptr (&unknown_var_6752_ptr) // 系统处理器数据指针
-#define system_resource_manager_ptr (&unknown_var_6960_ptr) // 系统资源管理器指针
-#define system_processing_data_ptr (&unknown_var_2296_ptr) // 系统处理数据指针
-#define system_context_data_ptr (&unknown_var_2280_ptr) // 系统上下文数据指针
+#define system_data_flag_ptr (&rendering_buffer_2612_ptr)     // 系统数据标志指针
+#define system_context_flag_ptr (&ui_system_data_1920_ptr)  // 系统上下文标志指针
+#define system_config_data_ptr (&processed_var_672_ptr)    // 系统配置数据指针
+#define system_string_data_ptr (&ui_system_data_1896_ptr)   // 系统字符串数据指针
+#define system_status_flag_ptr (&ui_system_data_1944_ptr)   // 系统状态标志指针
+#define system_processing_flag_ptr (&ui_system_data_1936_ptr) // 系统处理标志指针
+#define system_manager_flag_ptr (&ui_system_data_1960_ptr)  // 系统管理器标志指针
+#define system_queue_data_ptr (&ui_system_data_1980_ptr)   // 系统队列数据指针
+#define system_buffer_data_ptr (&ui_system_data_1972_ptr)   // 系统缓冲区数据指针
+#define system_resource_data_ptr (&rendering_buffer_2016_ptr) // 系统资源数据指针
+#define system_sync_data_ptr (&ui_system_data_1992_ptr)     // 系统同步数据指针
+#define system_init_data_ptr (&ui_system_data_1840_ptr)     // 系统初始化数据指针
+#define system_callback_data_ptr (&rendering_buffer_2264_ptr) // 系统回调数据指针
+#define system_message_data_ptr (&processed_var_7064_ptr) // 系统消息数据指针
+#define system_handler_data_ptr (&processed_var_6752_ptr) // 系统处理器数据指针
+#define system_resource_manager_ptr (&processed_var_6960_ptr) // 系统资源管理器指针
+#define system_processing_data_ptr (&rendering_buffer_2296_ptr) // 系统处理数据指针
+#define system_context_data_ptr (&rendering_buffer_2280_ptr) // 系统上下文数据指针
 
 // 全局变量引用
 extern uint64_t* core_system_data_memory;

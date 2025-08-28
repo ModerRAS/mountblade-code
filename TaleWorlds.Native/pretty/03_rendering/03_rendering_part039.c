@@ -813,8 +813,8 @@ void process_rendering_bitstream(void *render_context, int bit_position, uint bi
 
 // 函数别名定义 - 保持兼容性
 #define evaluate_texture_position FUN_18028aa10
-#define partition_comparator unknown_var_6720
-#define partition_validator unknown_var_6784
+#define partition_comparator processed_var_6720
+#define partition_validator processed_var_6784
 #define stack_buffer stack0x00000030
 #define process_advanced_rendering_data FUN_18028adf9
 #define validate_rendering_partitions FUN_18028af71

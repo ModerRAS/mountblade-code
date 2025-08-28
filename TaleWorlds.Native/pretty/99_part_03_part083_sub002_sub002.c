@@ -815,7 +815,7 @@ void FUN_180248910(int64_t param_1)
         puStack_f0 = &system_state_ptr;
         uVar10 = (uint64_t)(iVar6 + 1);
       }
-      System_DataHandler(plVar17 + -5,&unknown_var_624_ptr,uVar16,uVar13,*(int32_t *)*plVar17);
+      System_DataHandler(plVar17 + -5,&processed_var_624_ptr,uVar16,uVar13,*(int32_t *)*plVar17);
       if (*(int *)*plVar17 != 0) {
         puStack_218 = &system_data_buffer_ptr;
         uStack_200 = 0;

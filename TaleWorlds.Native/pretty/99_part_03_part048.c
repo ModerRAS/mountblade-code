@@ -543,7 +543,7 @@ void FUN_1801fe1c0(uint64_t *param_1)
   int64_t *plVar3;
   int iVar4;
   
-  (**(code **)(param_1[5] + 0x10))(param_1 + 5,&unknown_var_9856_ptr);
+  (**(code **)(param_1[5] + 0x10))(param_1 + 5,&processed_var_9856_ptr);
   uVar1 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d8,8,3);
   lVar2 = FUN_1801fa330(uVar1);
   param_1[1] = lVar2;

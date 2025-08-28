@@ -122,8 +122,8 @@ void FUN_1803c9620(void **param_1,uint64_t *param_2,int64_t param_3,uint param_4
     CoreMemoryPoolInitializer(lVar3);
   }
   puVar6 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,3);
-  *puVar6 = &unknown_var_4096_ptr;
-  *puVar6 = &unknown_var_4064_ptr;
+  *puVar6 = &processed_var_4096_ptr;
+  *puVar6 = &processed_var_4064_ptr;
   *(float *)(puVar6 + 2) = fVar15;
   puVar6[1] = 0;
   puVar6[1] = puVar5;
@@ -251,8 +251,8 @@ FUN_1803c9a90(int64_t *param_1,int64_t *param_2,int64_t param_3,float param_4,in
   uVar2 = FUN_1803ca950(param_1,param_3);
   puVar3 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,3);
   lVar1 = param_1[0x46];
-  *puVar3 = &unknown_var_4096_ptr;
-  *puVar3 = &unknown_var_4064_ptr;
+  *puVar3 = &processed_var_4096_ptr;
+  *puVar3 = &processed_var_4064_ptr;
   *(int *)(puVar3 + 2) = (int)lVar1;
   puVar3[1] = 0;
   puVar3[1] = uVar2;
@@ -398,7 +398,7 @@ FUN_1803c9d00(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t param_4,
     if (*(void **)(*param_3 + 0x18) != (void *)0x0) {
       puVar9 = *(void **)(*param_3 + 0x18);
     }
-    SystemCore_ResourceManager0(&unknown_var_4896_ptr,(double)fVar12,puVar9);
+    SystemCore_ResourceManager0(&processed_var_4896_ptr,(double)fVar12,puVar9);
     fVar12 = 1.0;
   }
   uStack_d8 = (int32_t)param_3[9];
@@ -406,7 +406,7 @@ FUN_1803c9d00(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t param_4,
   uStack_e0 = (int32_t)param_3[8];
   cVar2 = FUN_1806b7380(plVar5,fVar12,&uStack_e0,0);
   if (cVar2 == '\0') {
-    SystemCore_ResourceManager0(&unknown_var_3192_ptr);
+    SystemCore_ResourceManager0(&memory_allocator_3192_ptr);
   }
   (**(code **)(*plVar5 + 0x100))(plVar5,&fStack_f0);
   if (fStack_f0 <= 0.1) {

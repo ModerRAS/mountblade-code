@@ -11,7 +11,7 @@
 // 常量定义
 #define INVALID_HANDLE          0xFFFFFFFFFFFFFFFE
 #define CONTAINER_BLOCK_SIZE    0x78
-#define CONTAINER_CHUNK_SIZE    0x1E0
+#define CONTAINER_CHSYSTEM_SIZE    0x1E0
 #define FLOAT_ONE               0x3F800000
 #define FLOAT_MAX_VALUE         0x7F7FFFFF
 #define DOUBLE_ONE              0x3FF0000000000000
@@ -276,7 +276,7 @@ void container_batch_cleanup(int64_t *container_info)
             if (current_block == block_end) {
                 block_ptr = block_ptr + 1;          // 移动到下一个块指针
                 current_block = *block_ptr;          // 获取新的块起始地址
-                block_end = current_block + CONTAINER_CHUNK_SIZE;  // 计算新的块结束地址
+                block_end = current_block + CONTAINER_CHSYSTEM_SIZE;  // 计算新的块结束地址
             }
         } while (current_block != container_info[6]);  // 直到遍历完所有块
     }
@@ -334,7 +334,7 @@ void container_manager_cleanup(void)
     // 无限循环遍历所有容器
     while (true) {
         container_start = *container_ptr;           // 获取容器起始地址
-        container_end = container_start + CONTAINER_CHUNK_SIZE;  // 计算容器结束地址
+        container_end = container_start + CONTAINER_CHSYSTEM_SIZE;  // 计算容器结束地址
         
         // 清理当前容器中的所有块
         if (container_start < container_end) {

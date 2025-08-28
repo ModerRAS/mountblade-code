@@ -66,7 +66,7 @@ void Empty_Function(void)
 // 初始化虚表指针A
 uint64_t * Initialize_VTable_Pointer_A(uint64_t *vtable, uint64_t flags)
 {
-  *vtable = &unknown_var_3528_ptr;
+  *vtable = &memory_allocator_3528_ptr;
   if ((flags & 1) != 0) {
     free(vtable, 8);
   }
@@ -136,7 +136,7 @@ void Format_String_To_Buffer(int64_t buffer_context, uint64_t format_str, uint64
 // 初始化虚表指针C
 uint64_t * Initialize_VTable_Pointer_C(uint64_t *vtable, uint64_t flags)
 {
-  *vtable = &unknown_var_3616_ptr;
+  *vtable = &memory_allocator_3616_ptr;
   if ((flags & 1) != 0) {
     free(vtable, 8);
   }
@@ -149,7 +149,7 @@ uint64_t * Initialize_VTable_Pointer_C(uint64_t *vtable, uint64_t flags)
 // 初始化虚表指针D
 uint64_t * Initialize_VTable_Pointer_D(uint64_t *vtable, uint64_t flags)
 {
-  *vtable = &unknown_var_3672_ptr;
+  *vtable = &memory_allocator_3672_ptr;
   if ((flags & 1) != 0) {
     free(vtable, 8);
   }
@@ -354,7 +354,7 @@ uint64_t * Initialize_Memory_Manager(uint64_t *manager)
   *manager = &system_state_ptr;
   manager[1] = 0;
   *(int32_t *)(manager + 2) = 0;
-  *manager = &unknown_var_3480_ptr;
+  *manager = &memory_allocator_3480_ptr;
   manager[1] = manager + 3;
   *(int32_t *)(manager + 2) = 0;
   *(int8_t *)(manager + 3) = 0;
@@ -898,7 +898,7 @@ Initialize_Complex_Object(int8_t *object, uint64_t param_2, uint64_t param_3, ui
   *(uint64_t *)(object + 0xa8) = 0;
   *(int32_t *)(object + 0xb0) = 0;
   *object = 0;
-  (**(code **)(*component_c + 0x10))(component_c, &unknown_var_4696_ptr, &system_state_ptr, param_4, 0xfffffffffffffffe);
+  (**(code **)(*component_c + 0x10))(component_c, &processed_var_4696_ptr, &system_state_ptr, param_4, 0xfffffffffffffffe);
   *(uint64_t *)(object + 0x28) = 0;
   *(int32_t *)(object + 0x30) = 0;
   object[0x7c] = 0;
@@ -978,7 +978,7 @@ uint64_t * Initialize_Advanced_System_Object(uint64_t *system_object)
   *plVar3 = (int64_t)&system_state_ptr;
   param_1[0x33] = 0;
   *(int32_t *)(param_1 + 0x34) = 0;
-  *plVar3 = (int64_t)&unknown_var_672_ptr;
+  *plVar3 = (int64_t)&processed_var_672_ptr;
   param_1[0x33] = param_1 + 0x35;
   *(int32_t *)(param_1 + 0x34) = 0;
   *(int8_t *)(param_1 + 0x35) = 0;
@@ -1044,7 +1044,7 @@ uint64_t * Initialize_Advanced_System_Object(uint64_t *system_object)
   *param_1 = 0;
   *(int32_t *)(param_1 + 99) = 0;
   (**(code **)(*plVar7 + 0x10))
-            (plVar7,&unknown_var_4720_ptr,&system_data_buffer_ptr,&system_state_ptr,0xfffffffffffffffe);
+            (plVar7,&processed_var_4720_ptr,&system_data_buffer_ptr,&system_state_ptr,0xfffffffffffffffe);
   *(int32_t *)(param_1 + 0x3d) = 0;
   *(int32_t *)((int64_t)param_1 + 0x1ed) = 0x1000001;
   param_1[0x62] = 0;
@@ -1057,7 +1057,7 @@ uint64_t * Initialize_Advanced_System_Object(uint64_t *system_object)
   LOCK();
   *(int8_t *)(param_1 + 0x79) = 0;
   UNLOCK();
-  (**(code **)(*plVar3 + 0x10))(plVar3,&unknown_var_4736_ptr);
+  (**(code **)(*plVar3 + 0x10))(plVar3,&processed_var_4736_ptr);
   (**(code **)(*plVar2 + 0x10))(plVar2,&system_buffer_ptr);
   *(int8_t *)(param_1 + 0x2d) = 0;
   param_1[0x13] = 0;
@@ -1144,7 +1144,7 @@ LAB_18004c7ef:
       *puVar6 = &system_handler1_ptr;
       *puVar6 = &system_handler2_ptr;
       *(int32_t *)(puVar6 + 1) = 0;
-      *puVar6 = &unknown_var_8624_ptr;
+      *puVar6 = &processed_var_8624_ptr;
       puVar6[2] = 0;
       puVar6[3] = 0;
       puVar6[4] = 0;

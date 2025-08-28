@@ -46,16 +46,16 @@ void FUN_1804f4a40(int64_t param_1,uint64_t param_2,uint64_t param_3)
   _uStackX_10 = CONCAT71(stack0x00000011,bVar4);
   uVar5 = extraout_XMM0_Da;
   if (cVar2 != '\0') {
-    cVar2 = SystemSynchronizationProcessor(param_3,&iStack_68,&unknown_var_3424_ptr);
+    cVar2 = SystemSynchronizationProcessor(param_3,&iStack_68,&memory_allocator_3424_ptr);
     uVar5 = extraout_XMM0_Da_00;
     if (cVar2 != '\0') {
-      cVar2 = SystemSynchronizationProcessor(param_3,aiStackX_20,&unknown_var_3424_ptr);
+      cVar2 = SystemSynchronizationProcessor(param_3,aiStackX_20,&memory_allocator_3424_ptr);
       uVar5 = extraout_XMM0_Da_01;
       if (cVar2 != '\0') {
         cVar2 = SystemSynchronizationProcessor(param_3,&uStack_64,&system_data_bc90);
         uVar5 = extraout_XMM0_Da_02;
         if (cVar2 != '\0') {
-          cVar2 = FUN_180646700(param_3,afStack_60,&unknown_var_3232_ptr);
+          cVar2 = FUN_180646700(param_3,afStack_60,&memory_allocator_3232_ptr);
           uVar5 = extraout_XMM0_Da_03;
           if (cVar2 != '\0') {
             cVar2 = '\x01';
@@ -237,15 +237,15 @@ void FUN_1804f4ce0(int64_t param_1,uint64_t param_2,uint64_t param_3)
   uStack_40 = 0xffffffffffffffff;
   auStack_38[0] = 0xffffffff;
   uStackX_10 = param_2;
-  cVar1 = SystemSynchronizationProcessor(param_3,&iStack_48,&unknown_var_3424_ptr);
-  if ((cVar1 != '\0') && (cVar1 = SystemSynchronizationProcessor(param_3,&iStack_44,&unknown_var_3424_ptr), cVar1 != '\0'))
+  cVar1 = SystemSynchronizationProcessor(param_3,&iStack_48,&memory_allocator_3424_ptr);
+  if ((cVar1 != '\0') && (cVar1 = SystemSynchronizationProcessor(param_3,&iStack_44,&memory_allocator_3424_ptr), cVar1 != '\0'))
   {
     aiStackX_20[0] = (int)(char)uStackX_10;
-    cVar1 = SystemSynchronizationProcessor(param_3,aiStackX_20,&unknown_var_3248_ptr);
+    cVar1 = SystemSynchronizationProcessor(param_3,aiStackX_20,&memory_allocator_3248_ptr);
     if (((cVar1 != '\0') &&
-        (((cVar1 = FUN_180646700(param_3,auStack_30,&unknown_var_3360_ptr), cVar1 != '\0' &&
-          (cVar1 = FUN_180646700(param_3,auStack_2c,&unknown_var_3360_ptr), cVar1 != '\0')) &&
-         (cVar1 = FUN_180646700(param_3,auStack_28,&unknown_var_3376_ptr), cVar1 != '\0')))) &&
+        (((cVar1 = FUN_180646700(param_3,auStack_30,&memory_allocator_3360_ptr), cVar1 != '\0' &&
+          (cVar1 = FUN_180646700(param_3,auStack_2c,&memory_allocator_3360_ptr), cVar1 != '\0')) &&
+         (cVar1 = FUN_180646700(param_3,auStack_28,&memory_allocator_3376_ptr), cVar1 != '\0')))) &&
        (((cVar1 = SystemSynchronizationProcessor(param_3,&uStack_40,&system_data_bca0), cVar1 != '\0' &&
          (cVar1 = SystemSynchronizationProcessor(param_3,(int64_t)&uStack_40 + 4,&system_data_bca0), cVar1 != '\0')) &&
         (cVar1 = SystemSynchronizationProcessor(param_3,auStack_38,&system_data_bca0), cVar1 != '\0')))) {

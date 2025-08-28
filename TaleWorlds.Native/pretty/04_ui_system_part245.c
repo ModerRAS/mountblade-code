@@ -911,7 +911,7 @@ code_r0x00018080aeb0:
       uVar9 = *(uint *)*param_2;
       if (uVar9 < 8) {
         do {
-          switch((uint64_t)*(uint *)(&unknown_var_5008_ptr + (int64_t)(int)uVar9 * 4) + 0x180000000) {
+          switch((uint64_t)*(uint *)(&processed_var_5008_ptr + (int64_t)(int)uVar9 * 4) + 0x180000000) {
           case 0x18080af90:
             iVar16 = FUN_180807950(param_1,param_2);
             if (iVar16 == 0) goto LAB_18080af9f;

@@ -245,7 +245,7 @@ void FUN_180457c60(int64_t param_1,char param_2,char param_3,uint64_t *param_4)
     param_4[7] = uVar3;
     return;
   }
-  SystemDataInitializer(&unknown_var_640_ptr);
+  SystemDataInitializer(&processed_var_640_ptr);
   *param_4 = 0x3f800000;
   param_4[1] = 0;
   param_4[2] = 0x3f80000000000000;
@@ -896,7 +896,7 @@ void FUN_180458460(int64_t param_1,int64_t param_2)
   
   uStack_888 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_8b8;
-  puStack_458 = &unknown_var_336_ptr;
+  puStack_458 = &memory_allocator_336_ptr;
   puStack_450 = auStack_440;
   uStack_448 = 0;
   auStack_440[0] = 0;
@@ -911,7 +911,7 @@ void FUN_180458460(int64_t param_1,int64_t param_2)
   }
   FUN_1800b3970();
   if (plStack_898 != (int64_t *)0x0) {
-    puStack_878 = &unknown_var_336_ptr;
+    puStack_878 = &memory_allocator_336_ptr;
     puStack_870 = auStack_860;
     uStack_868 = 0;
     auStack_860[0] = 0;

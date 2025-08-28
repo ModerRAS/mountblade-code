@@ -116,7 +116,7 @@ void NetworkProtocol_SendBasic(void* context, uint8_t* data_buffer, uint32_t dat
     }
     
     // 调用底层协议发送函数
-    FUN_18083f7b0(data_buffer, data_size, &unknown_var_2904_ptr, 
+    FUN_18083f7b0(data_buffer, data_size, &rendering_buffer_2904_ptr, 
                 *(uint32_t*)((uint8_t*)context + 0x10),
                 *(uint32_t*)((uint8_t*)context + 0x14));
 }
@@ -163,7 +163,7 @@ int NetworkProtocol_SerializeDualField(void* context, uint8_t* output_buffer, in
     field2 = *(uint32_t*)((uint8_t*)context + 0x10);
     
     // 序列化协议头部
-    header_size = DataProcessor(output_buffer, buffer_size, &unknown_var_3320_ptr);
+    header_size = DataProcessor(output_buffer, buffer_size, &memory_allocator_3320_ptr);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -231,7 +231,7 @@ int NetworkProtocol_SerializeQuadField(void* context, uint8_t* output_buffer, in
     final_field = *(uint32_t*)((uint8_t*)context + 0x20);
     
     // 序列化协议头部
-    header_size = DataProcessor(output_buffer, buffer_size, &unknown_var_544_ptr);
+    header_size = DataProcessor(output_buffer, buffer_size, &processed_var_544_ptr);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -295,7 +295,7 @@ int NetworkProtocol_SerializeVariableField(void* context, uint8_t* output_buffer
     field2 = *(uint32_t*)((uint8_t*)context + 0x14);
     
     // 序列化协议头部
-    header_size = DataProcessor(output_buffer, buffer_size, &unknown_var_2000_ptr);
+    header_size = DataProcessor(output_buffer, buffer_size, &rendering_buffer_2000_ptr);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -377,7 +377,7 @@ int NetworkProtocol_SerializeTimestamp(void* context, uint8_t* output_buffer, in
     field4 = *(uint32_t*)((uint8_t*)context + 0x24);
     
     // 序列化协议头部
-    header_size = DataProcessor(output_buffer, buffer_size, &unknown_var_2128_ptr);
+    header_size = DataProcessor(output_buffer, buffer_size, &rendering_buffer_2128_ptr);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -475,7 +475,7 @@ int NetworkProtocol_SerializeComplexStructure(void* context, uint8_t* output_buf
     flags = *(uint8_t*)((uint8_t*)context + 0x50);
     
     // 序列化协议头部
-    header_size = DataProcessor(output_buffer, buffer_size, &unknown_var_1728_ptr);
+    header_size = DataProcessor(output_buffer, buffer_size, &ui_system_data_1728_ptr);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -567,7 +567,7 @@ int NetworkProtocol_SerializeSecurity(void* context, uint8_t* output_buffer, int
     field1 = *(uint32_t*)((uint8_t*)context + 0x18);
     
     // 序列化安全协议头部
-    header_size = DataProcessor(output_buffer, buffer_size, &unknown_var_904_ptr);
+    header_size = DataProcessor(output_buffer, buffer_size, &processed_var_904_ptr);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -640,7 +640,7 @@ int NetworkProtocol_SerializeError(void* context, uint8_t* output_buffer, int bu
     error_flag = *(uint8_t*)((uint8_t*)context + 0x14);
     
     // 序列化错误协议头部
-    header_size = DataProcessor(output_buffer, buffer_size, &unknown_var_1456_ptr);
+    header_size = DataProcessor(output_buffer, buffer_size, &ui_system_data_1456_ptr);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -712,7 +712,7 @@ int NetworkProtocol_QueryResource(void* context, uint8_t* output_buffer, int buf
     }
     
     // 序列化查询协议头部
-    header_size = DataProcessor(output_buffer, buffer_size, &unknown_var_2512_ptr);
+    header_size = DataProcessor(output_buffer, buffer_size, &rendering_buffer_2512_ptr);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -827,7 +827,7 @@ int FUN_180844910(int64_t param_1, int64_t param_2, int param_3)
     field2 = *(uint32_t*)((uint8_t*)param_1 + 0x10);
     field1 = *(uint32_t*)((uint8_t*)param_1 + 0x14);
     
-    header_size = DataProcessor((uint8_t*)param_2, param_3, &unknown_var_1864_ptr);
+    header_size = DataProcessor((uint8_t*)param_2, param_3, &ui_system_data_1864_ptr);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -862,7 +862,7 @@ int FUN_1808449c0(int64_t param_1, int64_t param_2, int param_3)
     
     field1 = *(uint32_t*)((uint8_t*)param_1 + 0x10);
     
-    header_size = DataProcessor((uint8_t*)param_2, param_3, &unknown_var_1600_ptr);
+    header_size = DataProcessor((uint8_t*)param_2, param_3, &ui_system_data_1600_ptr);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -918,7 +918,7 @@ int FUN_180844e90(int64_t param_1, int64_t param_2, int param_3)
     field2 = *(uint32_t*)((uint8_t*)param_1 + 0x10);
     field1 = *(uint32_t*)((uint8_t*)param_1 + 0x18);
     
-    header_size = DataProcessor((uint8_t*)param_2, param_3, &unknown_var_128_ptr);
+    header_size = DataProcessor((uint8_t*)param_2, param_3, &ui_system_data_128_ptr);
     if (header_size < 0) return header_size;
     total_size += header_size;
     
@@ -967,7 +967,7 @@ void FUN_180844f40(uint64_t param_1, uint64_t *param_2)
         }
         func_0x00018074bda0(auStack_128,0x100,0);
         puStack_158 = auStack_128;
-        DataTransformer(0x1f,0xd,param_1,&unknown_var_1112_ptr);
+        DataTransformer(0x1f,0xd,param_1,&ui_system_data_1112_ptr);
     }
     uStack_148 = 0;
     uStack_140 = 0;
@@ -1019,7 +1019,7 @@ void FUN_180845090(uint64_t param_1, int64_t param_2)
         if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
             func_0x00018074bda0(auStack_128,0x100,0);
             puStack_148 = auStack_128;
-            DataTransformer(0x1f,0xb,param_1,&unknown_var_512_ptr);
+            DataTransformer(0x1f,0xb,param_1,&processed_var_512_ptr);
         }
         SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_168);
     }
@@ -1058,7 +1058,7 @@ void FUN_1808451c0(uint64_t param_1, uint64_t param_2, uint64_t param_3)
         iVar3 = DataProcessor(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
         func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
         puStack_148 = auStack_138;
-        DataTransformer(iVar1,0xb,param_1,&unknown_var_544_ptr);
+        DataTransformer(iVar1,0xb,param_1,&processed_var_544_ptr);
     }
     SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_168);
 }
@@ -1108,7 +1108,7 @@ void FUN_1808452a0(uint64_t param_1, int32_t *param_2, uint64_t param_3)
         iVar3 = DataProcessor(auStack_138 + iVar2,0x100 - iVar2,&system_temp_buffer);
         func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
         puStack_158 = auStack_138;
-        DataTransformer(iVar1,0xb,param_1,&unknown_var_5520_ptr);
+        DataTransformer(iVar1,0xb,param_1,&processed_var_5520_ptr);
     }
 LAB_1808453a2:
     SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_178);
@@ -1151,7 +1151,7 @@ void FUN_1808453c0(uint64_t param_1, uint64_t *param_2)
         }
         func_0x00018074bda0(auStack_128,0x100,0);
         puStack_158 = auStack_128;
-        DataTransformer(0x1f,0xf,param_1,&unknown_var_9512_ptr);
+        DataTransformer(0x1f,0xf,param_1,&processed_var_9512_ptr);
     }
     *param_2 = 0;
     alStack_148[1] = 0;
@@ -1168,7 +1168,7 @@ LAB_180845484:
     if ((iVar2 == 0) &&
        (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
     {
-        *apuStack_138[0] = &unknown_var_9408_ptr;
+        *apuStack_138[0] = &processed_var_9408_ptr;
         *(int32_t *)(apuStack_138[0] + 1) = 0x20;
         *(int *)(apuStack_138[0] + 2) = (int)param_1;
         iVar1 = func_0x00018088e0d0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138[0]);
@@ -1205,7 +1205,7 @@ void FUN_180845520(uint64_t param_1, uint64_t *param_2)
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
         func_0x00018074bda0(auStack_118,0x100,param_2);
         puStack_138 = auStack_118;
-        DataTransformer(iVar1,0xb,param_1,&unknown_var_408_ptr);
+        DataTransformer(iVar1,0xb,param_1,&processed_var_408_ptr);
     }
 LAB_1808455bc:
     SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_158);

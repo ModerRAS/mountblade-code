@@ -554,9 +554,9 @@ FUN_180738730(int64_t param_1,uint param_2,int64_t param_3,int64_t param_4,int64
         if (param_3 == 0) {
           if ((param_4 == 0) && (param_5 == 0)) {
             lVar4 = *(int64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0);
-            *(void **)(lVar4 + 0x358) = &unknown_var_528_ptr;
-            *(void **)(lVar4 + 0x360) = &unknown_var_544_ptr;
-            *(void **)(lVar4 + 0x368) = &unknown_var_512_ptr;
+            *(void **)(lVar4 + 0x358) = &processed_var_528_ptr;
+            *(void **)(lVar4 + 0x360) = &processed_var_544_ptr;
+            *(void **)(lVar4 + 0x368) = &processed_var_512_ptr;
             return 0;
           }
         }
@@ -607,7 +607,7 @@ uint64_t FUN_1807388c0(uint64_t *param_1,int param_2)
     return 0x1f;
   }
   uVar5 = 0;
-  lVar1 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x127f8,&unknown_var_4608_ptr,0x91,0);
+  lVar1 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x127f8,&processed_var_4608_ptr,0x91,0);
   uVar2 = uVar5;
   if (lVar1 != 0) {
     uVar2 = FUN_180743e90(lVar1);
@@ -629,7 +629,7 @@ uint64_t FUN_1807388c0(uint64_t *param_1,int param_2)
     } while ((int64_t)uVar5 < 8);
     if (7 < (int)uVar6) {
                     // WARNING: Subroutine does not return
-      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar2,&unknown_var_4608_ptr,0xa3,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar2,&processed_var_4608_ptr,0xa3,1);
     }
     uVar4 = FUN_180741c20();
     if ((int)uVar4 == 0) {
@@ -680,7 +680,7 @@ uint64_t FUN_1807388f6(int64_t param_1,uint64_t param_2,uint64_t param_3)
     } while ((int64_t)uVar5 < 8);
     if (7 < (int)uVar6) {
                     // WARNING: Subroutine does not return
-      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar2,&unknown_var_4608_ptr,0xa3,1);
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar2,&processed_var_4608_ptr,0xa3,1);
     }
     uVar4 = FUN_180741c20();
     if ((int)uVar4 == 0) {
@@ -821,7 +821,7 @@ void FUN_180738c00(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t pa
     func_0x00018074bda0(auStack_148 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_4);
     puStack_168 = auStack_148;
                     // WARNING: Subroutine does not return
-    DataTransformer(iVar1,1,param_1,&unknown_var_5776_ptr);
+    DataTransformer(iVar1,1,param_1,&processed_var_5776_ptr);
   }
 FUN_180738d3d:
   if (lStack_158 != 0) {
@@ -873,7 +873,7 @@ void FUN_180738c1d(uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t pa
     iVar3 = SystemDataProcessor(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
     func_0x00018074bda0(&stack0x00000040 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_4);
                     // WARNING: Subroutine does not return
-    DataTransformer(iVar1,1,param_1,&unknown_var_5776_ptr,&stack0x00000040);
+    DataTransformer(iVar1,1,param_1,&processed_var_5776_ptr,&stack0x00000040);
   }
 FUN_180738d3d:
   if (param_6 != 0) {
@@ -977,7 +977,7 @@ void FUN_180738d90(uint64_t param_1,uint64_t param_2,uint64_t param_3)
     func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
     puStack_158 = auStack_138;
                     // WARNING: Subroutine does not return
-    DataTransformer(iVar1,1,param_1,&unknown_var_5640_ptr);
+    DataTransformer(iVar1,1,param_1,&processed_var_5640_ptr);
   }
 FUN_180738e7f:
   if (lStack_148 != 0) {
@@ -1023,7 +1023,7 @@ void FUN_180738dad(uint64_t param_1,uint64_t param_2,uint64_t param_3)
     iVar3 = SystemDataProcessor(&stack0x00000040 + iVar2,0x100 - iVar2,&system_temp_buffer);
     func_0x00018074bda0(&stack0x00000040 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
                     // WARNING: Subroutine does not return
-    DataTransformer(iVar1,1,param_1,&unknown_var_5640_ptr,&stack0x00000040);
+    DataTransformer(iVar1,1,param_1,&processed_var_5640_ptr,&stack0x00000040);
   }
 FUN_180738e7f:
   if (lStack0000000000000030 != 0) {

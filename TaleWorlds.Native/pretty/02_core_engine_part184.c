@@ -1409,7 +1409,7 @@ CONTINUE_PROCESSING:
                             stack_data_9 = 0x10;
                         }
                         
-                        stack_ptr_10 = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (int64_t)stack_data_9, &unknown_var_563_ptr);
+                        stack_ptr_10 = (int8_t *)MemoryAllocator(system_memory_pool_ptr, (int64_t)stack_data_9, &processed_var_563_ptr);
                         *stack_ptr_10 = 0;
                         FormatProcessor(stack_ptr_10);
                         memcpy(stack_ptr_10, stack_ptr_15, stack_data_13);

@@ -134,7 +134,7 @@ void FUN_1805d4fe0(int64_t *param_1)
       }
       if (fVar11 < *(float *)((int64_t)param_1 + 0x104) * *(float *)((int64_t)param_1 + 0x104)) {
         iStack_98 = 0;
-        puStack_158 = &unknown_var_6432_ptr;
+        puStack_158 = &processed_var_6432_ptr;
         uStack_150 = 2;
         uStack_148 = 0;
         uStack_14c = 0x31b789;

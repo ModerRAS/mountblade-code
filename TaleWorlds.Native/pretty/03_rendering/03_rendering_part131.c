@@ -442,7 +442,7 @@ LAB_180346795:
  */
 uint64_t * rendering_system_create_render_parameter_object(uint64_t *param_obj, uint param_flags, uint64_t param_data, uint64_t param_size)
 {
-  *param_obj = &unknown_var_4912_ptr;
+  *param_obj = &processed_var_4912_ptr;
   FUN_1802f5b10(param_obj + 4, param_obj[6], param_data, param_size, 0xfffffffffffffffe);
   *param_obj = &system_handler2_ptr;
   *param_obj = &system_handler1_ptr;
@@ -510,7 +510,7 @@ void rendering_system_process_render_data_type3(int64_t data_ptr, uint64_t param
  */
 uint64_t * rendering_system_create_render_parameter_manager(uint64_t *manager_obj, uint64_t manager_size)
 {
-  *manager_obj = &unknown_var_5664_ptr;
+  *manager_obj = &processed_var_5664_ptr;
   if (manager_obj[0x11] != 0) {
     // 错误处理：清理资源
     CoreEngine_MemoryPoolManager();
@@ -541,7 +541,7 @@ void rendering_system_initialize_render_parameter_system(uint64_t *system_ptr)
   init_param_2 = 0xfffffffffffffffe;
   temp_ptr = system_ptr;
   FUN_1803456e0();
-  *temp_ptr = &unknown_var_5664_ptr;
+  *temp_ptr = &processed_var_5664_ptr;
   temp_ptr[0x11] = 0;
   temp_ptr[0x12] = 0;
   temp_ptr[0x13] = 0;
@@ -852,7 +852,7 @@ void rendering_system_update_render_parameter_state(int64_t state_ptr)
   if (*(void **)(render_context_ptr + 0x290) != (void *)0x0) {
     temp_ptr = *(void **)(render_context_ptr + 0x290);
   }
-  FUN_180627020(&unknown_var_5328_ptr, temp_ptr);
+  FUN_180627020(&processed_var_5328_ptr, temp_ptr);
   return;
 }
 
@@ -883,7 +883,7 @@ void rendering_system_execute_render_parameter_callback(uint64_t callback_param)
   callback_data = 0xfffffffffffffffe;
   callback_info = GET_SECURITY_COOKIE() ^ (uint64_t)callback_stack;
   callback_flag = 0;
-  callback_ptr = &unknown_var_3480_ptr;
+  callback_ptr = &memory_allocator_3480_ptr;
   callback_string_ptr = callback_buffer;
   callback_buffer[0] = 0;
   callback_length = 0xb;
@@ -895,7 +895,7 @@ void rendering_system_execute_render_parameter_callback(uint64_t callback_param)
   callback_flag = 0;
   callback_params[0] = &system_state_ptr;
   callback_ptr = &system_state_ptr;
-  callback_handler_ptr = &unknown_var_3480_ptr;
+  callback_handler_ptr = &memory_allocator_3480_ptr;
   callback_handler_string_ptr = callback_handler_buffer;
   callback_handler_buffer[0] = 0;
   callback_handler_length = 0x11;

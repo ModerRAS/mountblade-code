@@ -419,8 +419,8 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
       (*(int *)(SYSTEM_STATE_MANAGER + 0x314) != *(int *)(SYSTEM_STATE_MANAGER + 0x310))) ||
      (*(int *)(SYSTEM_STATE_MANAGER + 0x544) != *(int *)(SYSTEM_STATE_MANAGER + 0x540))) {
     temp_stack_pointer = temp_array1;
-    temp_pointer1 = &unknown_var_5376_ptr;
-    temp_pointer2 = &unknown_var_5360_ptr;
+    temp_pointer1 = &processed_var_5376_ptr;
+    temp_pointer2 = &processed_var_5360_ptr;
     FUN_18005c650(temp_array1);
   }
   
@@ -430,8 +430,8 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
       (*(int *)(SYSTEM_STATE_MANAGER + 0x3f4) != *(int *)(SYSTEM_STATE_MANAGER + 0x3f0))))) {
     callback_param = SystemStateHandler(system_memory_pool_ptr, 0x40, 8, 3);
     temp_stack_pointer = temp_array2;
-    temp_pointer3 = &unknown_var_5328_ptr;
-    temp_pointer4 = &unknown_var_5312_ptr;
+    temp_pointer3 = &processed_var_5328_ptr;
+    temp_pointer4 = &processed_var_5312_ptr;
     resource_pointer = (int64_t *)FUN_18005c2a0(callback_param, temp_array2);
     temp_stack_pointer2 = resource_pointer;
     
@@ -684,7 +684,7 @@ void InitializationSystem_ResourceManager(ResourceHandle resource_handle, Config
   stack_counter = 6;
   
   // 获取并处理进程名称
-  FUN_180060680(process_name_buffer, &unknown_var_4576_ptr, process_id);
+  FUN_180060680(process_name_buffer, &processed_var_4576_ptr, process_id);
   resource_manager = -1;
   
   // 计算进程名称长度
@@ -702,7 +702,7 @@ void InitializationSystem_ResourceManager(ResourceHandle resource_handle, Config
   // 处理系统路径信息
   temp_pointer = &system_memory_d128;
   if (system_memory_2841 != '\0') {
-    temp_pointer = &unknown_var_6256_ptr;
+    temp_pointer = &processed_var_6256_ptr;
   }
   
   DataValidator(temp_buffer2, temp_pointer);
@@ -902,7 +902,7 @@ CALLBACK_PROCESSING_LOOP:
   
   // 执行字符串比较
   array_size = func_0x0001800464d0(&temp_pointer1);
-  resource_pointer = (uint64_t *)&unknown_var_8064_ptr;
+  resource_pointer = (uint64_t *)&processed_var_8064_ptr;
   
   do {
     string_pointer = (char *)*resource_pointer;

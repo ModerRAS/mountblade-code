@@ -152,9 +152,9 @@ void FUN_180535970(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   
   // 步骤2：设置渲染状态地址并初始化渲染索引
   renderStackAddress1 = 0x18053599e;
-  renderStatusFlag = SystemSynchronizationProcessor(param_3,renderIndexArray,&unknown_var_3424_ptr);
+  renderStatusFlag = SystemSynchronizationProcessor(param_3,renderIndexArray,&memory_allocator_3424_ptr);
   renderStackAddress1 = 0x1805359bc;
-  FUN_1804fe350(&unknown_var_3768_ptr,renderStatusFlag,&unknown_var_3816_ptr,renderIndexArray);
+  FUN_1804fe350(&memory_allocator_3768_ptr,renderStatusFlag,&memory_allocator_3816_ptr,renderIndexArray);
   
   // 步骤3：检查渲染状态，如果未激活则返回
   if (renderStatusFlag == '\0') {
@@ -385,7 +385,7 @@ void FUN_18053598c(int32_t param_1)
   render_stack_address = 0x18053599e;
   render_status_valid = SystemSynchronizationProcessor(param_1, &render_stack_index);
   render_stack_address = 0x1805359bc;
-  FUN_1804fe350(&unknown_var_3768_ptr, render_status_valid, &unknown_var_3816_ptr, &render_stack_index);
+  FUN_1804fe350(&memory_allocator_3768_ptr, render_status_valid, &memory_allocator_3816_ptr, &render_stack_index);
   
   // 步骤2：检查渲染状态有效性，无效则返回
   if (render_status_valid == '\0') {
@@ -866,8 +866,8 @@ void FUN_180535a30(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   }
   
   // 步骤2：执行渲染状态初始化和验证
-  render_status_flag = SystemSynchronizationProcessor(param_3, render_index_array, &unknown_var_3424_ptr);
-  FUN_1804fe350(&unknown_var_3872_ptr, render_status_flag, &unknown_var_3816_ptr, render_index_array);
+  render_status_flag = SystemSynchronizationProcessor(param_3, render_index_array, &memory_allocator_3424_ptr);
+  FUN_1804fe350(&memory_allocator_3872_ptr, render_status_flag, &memory_allocator_3816_ptr, render_index_array);
   
   // 步骤3：根据状态标志执行条件更新
   if (render_status_flag != '\0') {
@@ -917,7 +917,7 @@ void FUN_180535a48(void)
   
   // 步骤1：执行渲染状态初始化
   render_init_status = SystemSynchronizationProcessor();
-  FUN_1804fe350(&unknown_var_3872_ptr, render_init_status, &unknown_var_3816_ptr, &render_stack_parameter);
+  FUN_1804fe350(&memory_allocator_3872_ptr, render_init_status, &memory_allocator_3816_ptr, &render_stack_parameter);
   
   // 步骤2：根据初始化状态执行标志设置
   if (render_init_status != '\0') {
@@ -1217,7 +1217,7 @@ void FUN_180535ba0(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   }
   
   // 步骤2：执行第一轮状态验证
-  validation_status = SystemSynchronizationProcessor(param_3, render_index_array, &unknown_var_3424_ptr);
+  validation_status = SystemSynchronizationProcessor(param_3, render_index_array, &memory_allocator_3424_ptr);
   if (validation_status != '\0') {
     // 步骤2.1：设置第一轮条件验证结果
     condition_array[0] = (uint)((char)condition_array[0] != '\0');
@@ -1238,7 +1238,7 @@ void FUN_180535ba0(int64_t *param_1,uint64_t param_2,uint64_t param_3)
 LAB_180535c06:
   
   // 步骤4：执行状态验证和结果处理
-  FUN_1804fe790(&unknown_var_4328_ptr, validation_status, &unknown_var_4200_ptr, render_index_array, condition_array);
+  FUN_1804fe790(&processed_var_4328_ptr, validation_status, &processed_var_4200_ptr, render_index_array, condition_array);
   
   // 步骤5：根据最终状态执行渲染操作
   if (validation_status != '\0') {

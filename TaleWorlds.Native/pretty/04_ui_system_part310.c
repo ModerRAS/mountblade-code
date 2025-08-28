@@ -33,8 +33,8 @@ void FUN_180839208(void)
   *(uint64_t *)(in_R11 + -0x70) = unaff_XMM9_Qb;
                     // WARNING: Could not recover jumptable at 0x000180839239. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((uint64_t)*(uint *)(&unknown_var_4848_ptr + in_RAX * 4) + 0x180000000))
-            ((code *)((uint64_t)*(uint *)(&unknown_var_4848_ptr + in_RAX * 4) + 0x180000000));
+  (*(code *)((uint64_t)*(uint *)(&processed_var_4848_ptr + in_RAX * 4) + 0x180000000))
+            ((code *)((uint64_t)*(uint *)(&processed_var_4848_ptr + in_RAX * 4) + 0x180000000));
   return;
 }
 

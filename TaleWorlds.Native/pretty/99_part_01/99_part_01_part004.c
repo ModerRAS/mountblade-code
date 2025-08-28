@@ -328,7 +328,7 @@ LAB_1800a0f0c:
   }
   plVar1 = *(int64_t **)((int64_t)*(int *)(*plStack_30 + 4) + 0x48 + (int64_t)plStack_30);
   if (plVar1 != (int64_t *)0x0) {
-    if (*(code **)(*plVar1 + 0x10) == (code *)&unknown_var_1712_ptr) {
+    if (*(code **)(*plVar1 + 0x10) == (code *)&ui_system_data_1712_ptr) {
       if (plVar1[0x10] != 0) {
         _unlock_file();
       }
@@ -361,7 +361,7 @@ uint64_t * StreamInitializer(uint64_t *param_1,int64_t *param_2)
   *param_1 = param_2;
   plVar1 = *(int64_t **)((int64_t)*(int *)(*param_2 + 4) + 0x48 + (int64_t)param_2);
   if (plVar1 != (int64_t *)0x0) {
-    if (*(code **)(*plVar1 + 8) == (code *)&unknown_var_1680_ptr) {
+    if (*(code **)(*plVar1 + 8) == (code *)&ui_system_data_1680_ptr) {
       if (plVar1[0x10] != 0) {
         _lock_file();
       }
@@ -402,7 +402,7 @@ void StreamUnlocker(int64_t *param_1)
   
   plVar1 = *(int64_t **)((int64_t)*(int *)(*(int64_t *)*param_1 + 4) + 0x48 + *param_1);
   if (plVar1 != (int64_t *)0x0) {
-    if (*(code **)(*plVar1 + 0x10) != (code *)&unknown_var_1712_ptr) {
+    if (*(code **)(*plVar1 + 0x10) != (code *)&ui_system_data_1712_ptr) {
       (**(code **)(*plVar1 + 0x10))();
       return;
     }
@@ -440,7 +440,7 @@ void StreamCleaner(int64_t *param_1)
   }
   plVar1 = *(int64_t **)((int64_t)*(int *)(*(int64_t *)*param_1 + 4) + 0x48 + *param_1);
   if (plVar1 != (int64_t *)0x0) {
-    if (*(code **)(*plVar1 + 0x10) != (code *)&unknown_var_1712_ptr) {
+    if (*(code **)(*plVar1 + 0x10) != (code *)&ui_system_data_1712_ptr) {
       (**(code **)(*plVar1 + 0x10))();
       return;
     }
@@ -538,7 +538,7 @@ LAB_1800a1263:
   }
   plVar1 = *(int64_t **)((int64_t)*(int *)(*plStack_30 + 4) + 0x48 + (int64_t)plStack_30);
   if (plVar1 != (int64_t *)0x0) {
-    if (*(code **)(*plVar1 + 0x10) == (code *)&unknown_var_1712_ptr) {
+    if (*(code **)(*plVar1 + 0x10) == (code *)&ui_system_data_1712_ptr) {
       if (plVar1[0x10] != 0) {
         _unlock_file();
       }
@@ -776,7 +776,7 @@ int64_t * DataFormattingProcessor(int64_t *param_1,uint64_t param_2,uint64_t par
                     // WARNING: Could not recover jumptable at 0x0001800a135a. Too many branches
                     // WARNING: Treating indirect jump as call
     plVar2 = (int64_t *)
-             (*(code *)((uint64_t)*(uint *)(&unknown_var_2032_ptr + in_RAX * 4) + 0x180000000))();
+             (*(code *)((uint64_t)*(uint *)(&rendering_buffer_2032_ptr + in_RAX * 4) + 0x180000000))();
     return plVar2;
   }
   if ((param_4 & 1) == 0) {
@@ -817,7 +817,7 @@ void SystemCallProcessor(void)
   *(uint64_t *)(in_R11 + 0x18) = unaff_R14;
                     // WARNING: Could not recover jumptable at 0x0001800a135a. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((uint64_t)*(uint *)(&unknown_var_2032_ptr + in_RAX * 4) + 0x180000000))();
+  (*(code *)((uint64_t)*(uint *)(&rendering_buffer_2032_ptr + in_RAX * 4) + 0x180000000))();
   return;
 }
 
@@ -1374,7 +1374,7 @@ int64_t FileCloseProcessor(int64_t param_1)
 void ExceptionObjectDestroyer(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_9816_ptr;
+  *param_1 = &processed_var_9816_ptr;
   __std_exception_destroy(param_1 + 1);
   return;
 }
@@ -1400,7 +1400,7 @@ ExceptionMemoryDeallocator(uint64_t *param_1,uint64_t param_2,uint64_t param_3,u
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_9816_ptr;
+  *param_1 = &processed_var_9816_ptr;
   __std_exception_destroy(param_1 + 1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x18,param_3,param_4,uVar1);
@@ -1423,7 +1423,7 @@ ExceptionMemoryDeallocator(uint64_t *param_1,uint64_t param_2,uint64_t param_3,u
 uint64_t * ExceptionObjectCopier(uint64_t *param_1,int64_t param_2)
 
 {
-  *param_1 = &unknown_var_9816_ptr;
+  *param_1 = &processed_var_9816_ptr;
   param_1[1] = 0;
   param_1[2] = 0;
   __std_exception_copy(param_2 + 8);

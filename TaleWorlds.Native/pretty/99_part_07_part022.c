@@ -104,7 +104,7 @@ LAB_1804b0ec6:
     puStack_98 = puVar7;
   }
   if (puStack_98 == (uint64_t *)0x0) {
-    SystemDataInitializer(&unknown_var_6512_ptr);
+    SystemDataInitializer(&processed_var_6512_ptr);
     if ((plStack_128 != (int64_t *)0x0) && (plStack_120 != (int64_t *)0x0)) {
       if (cStack_f6 != '\0') {
         FUN_180075b70();

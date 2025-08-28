@@ -107,7 +107,7 @@ void FUN_18059a7f0(int64_t param_1,int64_t param_2,int16_t param_3,int16_t param
   if (puVar3 != (void *)0x0) {
     puVar16 = puVar3;
   }
-  System_DataHandler(&puStack_40,&unknown_var_2736_ptr,puVar16);
+  System_DataHandler(&puStack_40,&rendering_buffer_2736_ptr,puVar16);
   iVar15 = uStack_30 + 0x2a;
   if (iVar15 != 0) {
     uVar10 = uStack_30 + 0x2b;
@@ -141,13 +141,13 @@ LAB_1805aa1de:
     puVar14 = puStack_38;
   }
   uStack_30 = iVar15;
-  FUN_180627340(&unknown_var_2792_ptr,puVar14,(double)*(float *)(param_2 + 0x1c),
+  FUN_180627340(&rendering_buffer_2792_ptr,puVar14,(double)*(float *)(param_2 + 0x1c),
                 (double)*(float *)(param_2 + 0x20),(double)*(float *)(param_2 + 0x24));
   puVar14 = (int32_t *)&system_buffer_ptr;
   if (puStack_38 != (int32_t *)0x0) {
     puVar14 = puStack_38;
   }
-  SystemDataInitializer(&unknown_var_2704_ptr,puVar14);
+  SystemDataInitializer(&rendering_buffer_2704_ptr,puVar14);
   puStack_40 = &system_data_buffer_ptr;
   if (puStack_38 == (int32_t *)0x0) {
     return;
@@ -302,7 +302,7 @@ void FUN_18059a907(uint64_t param_1,int64_t param_2)
   if (puVar1 != (void *)0x0) {
     puVar7 = puVar1;
   }
-  System_DataHandler(&stack0x00000058,&unknown_var_2736_ptr,puVar7);
+  System_DataHandler(&stack0x00000058,&rendering_buffer_2736_ptr,puVar7);
   iVar6 = uStack0000000000000068 + 0x2a;
   if (iVar6 != 0) {
     uVar3 = uStack0000000000000068 + 0x2b;
@@ -338,13 +338,13 @@ LAB_1805aa1de:
     puVar5 = puStack0000000000000060;
   }
   uStack0000000000000068 = iVar6;
-  FUN_180627340(&unknown_var_2792_ptr,puVar5,(double)*(float *)(param_2 + 0x1c),
+  FUN_180627340(&rendering_buffer_2792_ptr,puVar5,(double)*(float *)(param_2 + 0x1c),
                 (double)*(float *)(param_2 + 0x20));
   puVar5 = (int32_t *)&system_buffer_ptr;
   if (puStack0000000000000060 != (int32_t *)0x0) {
     puVar5 = puStack0000000000000060;
   }
-  SystemDataInitializer(&unknown_var_2704_ptr,puVar5);
+  SystemDataInitializer(&rendering_buffer_2704_ptr,puVar5);
   puStack0000000000000058 = &system_data_buffer_ptr;
   if (puStack0000000000000060 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return

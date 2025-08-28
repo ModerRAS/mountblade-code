@@ -286,7 +286,7 @@ void FUN_1806163f0(void)
     }
     puVar1 = (void *)*render_system_config;
     puVar2 = render_system_config;
-    if ((void *)*render_system_config == &unknown_var_9520_ptr) {
+    if ((void *)*render_system_config == &processed_var_9520_ptr) {
       render_system_config[0x9892] = render_system_config[0x9891];
       return;
     }
@@ -334,22 +334,22 @@ void FUN_1806164e0(void)
       do {
         plVar2 = (int64_t *)(**(code **)(*plVar5 + 0x20))(plVar5,iVar4);
         if ((int)plVar2[2] == 1) {
-          plVar3 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_400_ptr);
+          plVar3 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&processed_var_400_ptr);
           plVar3 = (int64_t *)(**(code **)(*plVar3 + 0x50))(plVar3,iVar4);
-          plVar3 = (int64_t *)(**(code **)(*plVar3 + 0x70))(plVar3,&unknown_var_872_ptr);
+          plVar3 = (int64_t *)(**(code **)(*plVar3 + 0x70))(plVar3,&processed_var_872_ptr);
           plVar3 = (int64_t *)
                    (**(code **)(*plVar3 + 0x28))(plVar3,(float)*(double *)(*plVar2 + 0x58e0));
           (**(code **)(*plVar3 + 0x70))(plVar3,&system_counter_cc18);
-          plVar3 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_840_ptr);
+          plVar3 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&processed_var_840_ptr);
           plVar2 = (int64_t *)
                    (**(code **)(*plVar3 + 0x28))(plVar3,(float)*(double *)(*plVar2 + 0x58e8));
           (**(code **)(*plVar2 + 0x70))(plVar2,&system_counter_cc18);
         }
         iVar4 = iVar4 + 1;
       } while (iVar4 < 0x3ff);
-      plVar5 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_904_ptr);
+      plVar5 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&processed_var_904_ptr);
       plVar5 = (int64_t *)(**(code **)(*plVar5 + 0x28))(plVar5,(float)render_system_config);
-      (**(code **)(*plVar5 + 0x70))(plVar5,&unknown_var_896_ptr);
+      (**(code **)(*plVar5 + 0x70))(plVar5,&processed_var_896_ptr);
     }
   }
   return;
@@ -392,22 +392,22 @@ void FUN_1806164fc(int param_1)
     do {
       plVar2 = (int64_t *)(**(code **)(*plVar5 + 0x20))(plVar5,iVar4);
       if ((int)plVar2[2] == 1) {
-        plVar3 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_400_ptr);
+        plVar3 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&processed_var_400_ptr);
         plVar3 = (int64_t *)(**(code **)(*plVar3 + 0x50))(plVar3,iVar4);
-        plVar3 = (int64_t *)(**(code **)(*plVar3 + 0x70))(plVar3,&unknown_var_872_ptr);
+        plVar3 = (int64_t *)(**(code **)(*plVar3 + 0x70))(plVar3,&processed_var_872_ptr);
         plVar3 = (int64_t *)
                  (**(code **)(*plVar3 + 0x28))(plVar3,(float)*(double *)(*plVar2 + 0x58e0));
         (**(code **)(*plVar3 + 0x70))(plVar3,&system_counter_cc18);
-        plVar3 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_840_ptr);
+        plVar3 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&processed_var_840_ptr);
         plVar2 = (int64_t *)
                  (**(code **)(*plVar3 + 0x28))(plVar3,(float)*(double *)(*plVar2 + 0x58e8));
         (**(code **)(*plVar2 + 0x70))(plVar2,&system_counter_cc18);
       }
       iVar4 = iVar4 + 1;
     } while (iVar4 < 0x3ff);
-    plVar5 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_904_ptr);
+    plVar5 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&processed_var_904_ptr);
     plVar5 = (int64_t *)(**(code **)(*plVar5 + 0x28))(plVar5,(float)render_system_config);
-    (**(code **)(*plVar5 + 0x70))(plVar5,&unknown_var_896_ptr);
+    (**(code **)(*plVar5 + 0x70))(plVar5,&processed_var_896_ptr);
   }
   return;
 }
@@ -439,22 +439,22 @@ void FUN_180616540(int param_1)
   do {
     plVar1 = (int64_t *)(**(code **)(*unaff_RDI + 0x20))(unaff_RDI,iVar3);
     if ((int)plVar1[2] == 1) {
-      plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_400_ptr);
+      plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&processed_var_400_ptr);
       plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x50))(plVar2,iVar3);
-      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&unknown_var_872_ptr);
+      plVar2 = (int64_t *)(**(code **)(*plVar2 + 0x70))(plVar2,&processed_var_872_ptr);
       plVar2 = (int64_t *)
                (**(code **)(*plVar2 + 0x28))(plVar2,(float)*(double *)(*plVar1 + 0x58e0));
       (**(code **)(*plVar2 + 0x70))(plVar2,&system_counter_cc18);
-      plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_840_ptr);
+      plVar2 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&processed_var_840_ptr);
       plVar1 = (int64_t *)
                (**(code **)(*plVar2 + 0x28))(plVar2,(float)*(double *)(*plVar1 + 0x58e8));
       (**(code **)(*plVar1 + 0x70))(plVar1,&system_counter_cc18);
     }
     iVar3 = iVar3 + 1;
   } while (iVar3 < 0x3ff);
-  plVar1 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&unknown_var_904_ptr);
+  plVar1 = (int64_t *)(**(code **)(*render_system_data_config + 0x70))(render_system_data_config,&processed_var_904_ptr);
   plVar1 = (int64_t *)(**(code **)(*plVar1 + 0x28))(plVar1,(float)render_system_config);
-  (**(code **)(*plVar1 + 0x70))(plVar1,&unknown_var_896_ptr);
+  (**(code **)(*plVar1 + 0x70))(plVar1,&processed_var_896_ptr);
   return;
 }
 
@@ -901,7 +901,7 @@ void FUN_180616b10(int32_t param_1,char param_2)
         render_system_config = FUN_1805b5ad0();
       }
       render_system_config = param_1;
-      SystemBufferProcessor(render_system_config,1,&unknown_var_6264_ptr);
+      SystemBufferProcessor(render_system_config,1,&processed_var_6264_ptr);
     }
   }
   return;

@@ -624,7 +624,7 @@ LAB_1800b56df:
         if (*(void **)(*param_2 + 0x18) != (void *)0x0) {
             puVar7 = *(void **)(*param_2 + 0x18);
         }
-        SystemCore_ResourceManager0(&unknown_var_7912_ptr, puVar7);
+        SystemCore_ResourceManager0(&processed_var_7912_ptr, puVar7);
     }
     
     // 清理事件处理器
@@ -689,7 +689,7 @@ void SystemMemoryManager(uint64_t param_1, int64_t *param_2) {
     if (plVar7 != *(int64_t **)(system_resource_state + 0x1d8)) {
         do {
             // 初始化内存块信息
-            puStack_98 = &unknown_var_3480_ptr;
+            puStack_98 = &memory_allocator_3480_ptr;
             puStack_90 = auStack_80;
             auStack_80[0] = 0;
             uStack_88 = *(int32_t *)(*plVar7 + 0x20);
@@ -708,7 +708,7 @@ void SystemMemoryManager(uint64_t param_1, int64_t *param_2) {
                 *puVar4 = &system_state_ptr;
                 puVar4[1] = 0;
                 *(int32_t *)(puVar4 + 2) = 0;
-                *puVar4 = &unknown_var_3480_ptr;
+                *puVar4 = &memory_allocator_3480_ptr;
                 puVar4[1] = puVar4 + 3;
                 *(int32_t *)(puVar4 + 2) = 0;
                 *(int8_t *)(puVar4 + 3) = 0;
@@ -746,7 +746,7 @@ LAB_1800b5909:
                         *puVar2 = &system_state_ptr;
                         puVar2[1] = 0;
                         *(int32_t *)(puVar2 + 2) = 0;
-                        *puVar2 = &unknown_var_3480_ptr;
+                        *puVar2 = &memory_allocator_3480_ptr;
                         puVar2[1] = puVar2 + 3;
                         *(int32_t *)(puVar2 + 2) = 0;
                         *(int8_t *)(puVar2 + 3) = 0;
@@ -768,7 +768,7 @@ LAB_1800b5909:
                 *puVar2 = &system_state_ptr;
                 puVar2[1] = 0;
                 *(int32_t *)(puVar2 + 2) = 0;
-                *puVar2 = &unknown_var_3480_ptr;
+                *puVar2 = &memory_allocator_3480_ptr;
                 puVar2[1] = puVar2 + 3;
                 *(int32_t *)(puVar2 + 2) = 0;
                 *(int8_t *)(puVar2 + 3) = 0;
@@ -870,8 +870,8 @@ void SystemStatusMonitor(uint64_t param_1, int64_t *param_2, float param_3) {
         
         // 初始化监控数据缓冲区
         do {
-            (**(code **)(puStack_90 + 0x10))(&puStack_90, &unknown_var_7896_ptr);
-            FUN_180060680(acStack_50, &unknown_var_4576_ptr, iVar7);
+            (**(code **)(puStack_90 + 0x10))(&puStack_90, &processed_var_7896_ptr);
+            FUN_180060680(acStack_50, &processed_var_4576_ptr, iVar7);
             lVar2 = -1;
             
             // 计算字符串长度

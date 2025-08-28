@@ -248,7 +248,7 @@ LAB_1805f5f17:
 uint64_t * FUN_1805f5fa0(uint64_t *param_1,uint64_t param_2)
 
 {
-  *param_1 = &unknown_var_5880_ptr;
+  *param_1 = &processed_var_5880_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x58);
   }
@@ -278,7 +278,7 @@ void FUN_1805f6020(uint64_t *param_1)
 {
   int64_t *plVar1;
   
-  *param_1 = &unknown_var_5896_ptr;
+  *param_1 = &processed_var_5896_ptr;
   plVar1 = (int64_t *)param_1[0x1c];
   param_1[0x1c] = 0;
   if (plVar1 != (int64_t *)0x0) {
@@ -314,10 +314,10 @@ void FUN_1805f6020(uint64_t *param_1)
   if ((int64_t *)param_1[0x1c] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x1c] + 0x38))();
   }
-  *param_1 = &unknown_var_3280_ptr;
+  *param_1 = &memory_allocator_3280_ptr;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(param_1 + 4);
-  *param_1 = &unknown_var_1000_ptr;
+  *param_1 = &ui_system_data_1000_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   return;
@@ -625,7 +625,7 @@ FUN_1805f6720(uint64_t *param_1,int64_t *param_2,int64_t *param_3,int64_t *param
   int64_t *plVar2;
   
   FUN_180049830();
-  *param_1 = &unknown_var_6040_ptr;
+  *param_1 = &processed_var_6040_ptr;
   param_1[0x18] = 0;
   param_1[0x19] = 0;
   param_1[0x1a] = 0;

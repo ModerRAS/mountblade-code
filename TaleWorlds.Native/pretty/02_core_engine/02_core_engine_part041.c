@@ -71,7 +71,7 @@ void release_engine_resources(int64_t *resource_ptr)
             *(int *)(ref_count + 0x14) = *(int *)(ref_count + 0x14) + 1;
             UNLOCK();
             resource_list = &resource_type;
-            resource_type = &unknown_var_3432_ptr;
+            resource_type = &memory_allocator_3432_ptr;
             resource_info = resource_cache;
             buffer_size = 0;
             resource_cache[0] = 0;
@@ -99,7 +99,7 @@ void release_engine_resources(int64_t *resource_ptr)
             *(int *)(heap_buffer + 0x10) = *(int *)(heap_buffer + 0x10) + 1;
             UNLOCK();
             interface_ptr = (void ***)&resource_properties;
-            resource_properties = &unknown_var_3432_ptr;
+            resource_properties = &memory_allocator_3432_ptr;
             resource_metadata = metadata_buffer;
             metadata_size = 0;
             metadata_buffer[0] = 0;

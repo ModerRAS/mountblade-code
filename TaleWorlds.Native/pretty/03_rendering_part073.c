@@ -69,7 +69,7 @@ void FUN_18030a720(int64_t param_1,int32_t param_2,float *param_3)
     puVar14 = *(uint64_t **)(param_1 + 0x48);
     if (*(int *)(param_1 + 0x30) == *(int *)(puVar14[0x79] + 0x10)) {
       if (*(char *)(param_1 + 0x42) != '\0') {
-        if ((void *)*puVar14 == &unknown_var_9304_ptr) {
+        if ((void *)*puVar14 == &processed_var_9304_ptr) {
           pfVar18 = (float *)(puVar14 + 0x66);
         }
         else {
@@ -268,7 +268,7 @@ void FUN_18030aab0(int64_t param_1,int64_t param_2,int64_t param_3,float *param_
   
   if (*(char *)(param_1 + 0x42) != '\0') {
     pcVar3 = *(code **)(**(int64_t **)(param_1 + 0x48) + 0x158);
-    if (pcVar3 == (code *)&unknown_var_2528_ptr) {
+    if (pcVar3 == (code *)&rendering_buffer_2528_ptr) {
       pfVar21 = (float *)(*(int64_t **)(param_1 + 0x48) + 0x66);
     }
     else {
@@ -338,10 +338,10 @@ void FUN_18030aab0(int64_t param_1,int64_t param_2,int64_t param_3,float *param_
           if ((int)uVar24 < 0) {
             uVar24 = (uVar24 - 1 | 0xffffff00) + 1;
           }
-          fVar28 = ((*(float *)(&unknown_var_5296_ptr + (int64_t)(int)uVar24 * 4) -
-                    *(float *)(&unknown_var_5296_ptr + (int64_t)(int)uVar23 * 4)) *
+          fVar28 = ((*(float *)(&processed_var_5296_ptr + (int64_t)(int)uVar24 * 4) -
+                    *(float *)(&processed_var_5296_ptr + (int64_t)(int)uVar23 * 4)) *
                     (fVar28 - (float)(int)uVar22) +
-                   *(float *)(&unknown_var_5296_ptr + (int64_t)(int)uVar23 * 4)) * *pfVar21 + 1.0;
+                   *(float *)(&processed_var_5296_ptr + (int64_t)(int)uVar23 * 4)) * *pfVar21 + 1.0;
           if (*(int *)(param_1 + 0x70) == 1) {
             fVar31 = pfVar21[3];
             fVar29 = fVar31 * *(float *)(param_1 + 0x7c) * fVar28;
@@ -533,7 +533,7 @@ void FUN_18030aade(int64_t *param_1)
   *(int32_t *)(in_RAX + -100) = unaff_XMM9_Db;
   *(int32_t *)(in_RAX + -0x60) = unaff_XMM9_Dc;
   *(int32_t *)(in_RAX + -0x5c) = unaff_XMM9_Dd;
-  if (*(code **)(*param_1 + 0x158) == (code *)&unknown_var_2528_ptr) {
+  if (*(code **)(*param_1 + 0x158) == (code *)&rendering_buffer_2528_ptr) {
     pfVar25 = (float *)(param_1 + 0x66);
   }
   else {
@@ -620,10 +620,10 @@ void FUN_18030aade(int64_t *param_1)
         if ((int)uVar28 < 0) {
           uVar28 = (uVar28 - 1 | 0xffffff00) + 1;
         }
-        fVar32 = ((*(float *)(&unknown_var_5296_ptr + (int64_t)(int)uVar28 * 4) -
-                  *(float *)(&unknown_var_5296_ptr + (int64_t)(int)uVar27 * 4)) *
+        fVar32 = ((*(float *)(&processed_var_5296_ptr + (int64_t)(int)uVar28 * 4) -
+                  *(float *)(&processed_var_5296_ptr + (int64_t)(int)uVar27 * 4)) *
                   (fVar32 - (float)(int)uVar26) +
-                 *(float *)(&unknown_var_5296_ptr + (int64_t)(int)uVar27 * 4)) * *pfVar25 + 1.0;
+                 *(float *)(&processed_var_5296_ptr + (int64_t)(int)uVar27 * 4)) * *pfVar25 + 1.0;
         if (*(int *)(unaff_RDI + 0x70) == 1) {
           fVar1 = pfVar25[3];
           fVar34 = *(float *)(unaff_RDI + 0x74);

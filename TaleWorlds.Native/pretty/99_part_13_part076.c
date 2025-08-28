@@ -8,7 +8,7 @@ void FUN_1808dcda0(uint64_t param_1)
 
 {
                     // WARNING: Subroutine does not return
-  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&unknown_var_8016_ptr,0x1dc,1);
+  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,&processed_var_8016_ptr,0x1dc,1);
 }
 
 
@@ -23,7 +23,7 @@ FUN_1808dcde0(uint64_t param_1,uint64_t param_2,uint64_t *param_3,int64_t *param
   uint64_t *puVar2;
   
   puVar2 = (uint64_t *)
-           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10,&unknown_var_8016_ptr,0x1d1,0,0,1);
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10,&processed_var_8016_ptr,0x1d1,0,0,1);
   if (puVar2 == (uint64_t *)0x0) {
     uVar1 = 0x26;
   }

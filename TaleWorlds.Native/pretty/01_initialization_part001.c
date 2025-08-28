@@ -44,26 +44,26 @@
 // 系统初始化相关变量
 uint8_t FUN_18007fcd0;                           // 系统初始化函数指针 - 主要初始化入口
 uint8_t system_memory_c768;                           // 系统配置数据块 - 存储核心配置信息
-uint8_t unknown_var_3520;                           // 系统环境变量 - 存储环境配置
+uint8_t memory_allocator_3520;                           // 系统环境变量 - 存储环境配置
 uint8_t system_memory_c9b8;                           // 系统状态数据 - 当前系统状态信息
-uint8_t unknown_var_3544;                           // 系统启动变量 - 启动时序控制
+uint8_t memory_allocator_3544;                           // 系统启动变量 - 启动时序控制
 uint8_t system_memory_c940;                           // 系统配置数据 - 模块配置信息
-uint8_t unknown_var_3560;                           // 系统依赖变量 - 依赖关系数据
+uint8_t memory_allocator_3560;                           // 系统依赖变量 - 依赖关系数据
 uint8_t system_memory_c918;                           // 系统状态数据 - 状态转换信息
-uint8_t unknown_var_3576;                           // 系统资源变量 - 资源分配数据
+uint8_t memory_allocator_3576;                           // 系统资源变量 - 资源分配数据
 uint8_t system_memory_c968;                           // 系统配置数据 - 硬件配置信息
-uint8_t unknown_var_3600;                           // 系统线程变量 - 线程管理数据
+uint8_t memory_allocator_3600;                           // 系统线程变量 - 线程管理数据
 uint8_t system_memory_c990;                           // 系统状态数据 - 性能监控信息
-uint8_t unknown_var_3632;                           // 系统安全变量 - 安全策略数据
+uint8_t memory_allocator_3632;                           // 系统安全变量 - 安全策略数据
 uint8_t system_memory_c9e0;                           // 系统配置数据 - 网络配置信息
-uint8_t unknown_var_3728;                           // 系统日志变量 - 日志管理数据
+uint8_t memory_allocator_3728;                           // 系统日志变量 - 日志管理数据
 uint8_t system_memory_c8f0;                           // 系统状态数据 - 错误状态信息
 
 // 内存管理相关变量
 uint8_t FUN_180073930;                           // 内存管理函数指针 - 内存分配器
-uint8_t unknown_var_3744;                           // 内存管理变量 - 内存池状态
+uint8_t memory_allocator_3744;                           // 内存管理变量 - 内存池状态
 uint8_t system_memory_c8c8;                           // 内存配置数据 - 内存池配置
-uint8_t unknown_var_3768;                           // 内存管理变量 - 内存块管理
+uint8_t memory_allocator_3768;                           // 内存管理变量 - 内存块管理
 uint8_t system_memory_5268;                           // 内存池数据 - 内存池头部
 uint8_t system_memory_5270;                           // 内存池配置 - 内存池参数
 uint8_t system_memory_5280;                           // 内存池状态 - 内存池统计
@@ -71,11 +71,11 @@ uint8_t system_memory_5288;                           // 内存池统计 - 内�
 
 // 系统启动相关变量
 uint8_t FUN_18005ab20;                           // 系统启动函数指针 - 启动序列控制器
-uint8_t unknown_var_6256;                           // 启动配置数据 - 启动参数配置
+uint8_t processed_var_6256;                           // 启动配置数据 - 启动参数配置
 
 // 系统配置相关变量
 uint8_t FUN_1800637c0;                           // 配置管理函数指针 - 配置解析器
-uint8_t unknown_var_6288;                           // 配置数据块 - 配置文件数据
+uint8_t processed_var_6288;                           // 配置数据块 - 配置文件数据
 
 // 系统状态相关变量
 uint8_t FUN_1800637f0;                           // 状态管理函数指针 - 状态管理器

@@ -107,8 +107,8 @@
 #define SystemMemoryPoolPtr system_memory_pool_ptr
 #define SystemSystemMemory system_system_memory
 #define SystemStateManager SYSTEM_STATE_MANAGER
-#define SystemContextVar1632 unknown_var_1632_ptr
-#define SystemContextVar3432 unknown_var_3432_ptr
+#define SystemContextVar1632 ui_system_data_1632_ptr
+#define SystemContextVar3432 memory_allocator_3432_ptr
 #define SystemContextVar720 system_state_ptr
 #define SystemBufferPtr system_buffer_ptr
 #define SystemResourceState system_resource_state

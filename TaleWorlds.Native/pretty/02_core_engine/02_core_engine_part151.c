@@ -128,7 +128,7 @@ void process_resource_collision(int32_t *collision_data)
           fVar19 = fVar3 + *(float *)(lVar5 + 0x38 + *(int64_t *)(param_1 + 4));
           fVar18 = (*(float *)(lVar5 + 0x40 + *(int64_t *)(param_1 + 6)) +
                    *(float *)(lVar5 + 0x38 + *(int64_t *)(param_1 + 6))) - fVar3;
-          iVar11 = FUN_18012e350(&unknown_var_2744_ptr);
+          iVar11 = FUN_18012e350(&rendering_buffer_2744_ptr);
           if (*(int *)(lVar16 + 0x1b2c) == iVar11) {
             lVar5 = *(int64_t *)(puVar6 + 4);
             puStackX_8 = puVar6;
@@ -621,7 +621,7 @@ LAB_18013b1d6:
     } while ((int)uVar7 < *(int *)(lVar4 + 0x2e28));
   }
   if (1 < (int)uVar12) {
-    qsort(puVar9,(int64_t)(int)uVar12,8,&unknown_var_9408_ptr);
+    qsort(puVar9,(int64_t)(int)uVar12,8,&processed_var_9408_ptr);
   }
   if (0 < (int)uVar12) {
     uVar10 = (uint64_t)uVar12;

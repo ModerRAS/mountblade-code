@@ -448,8 +448,8 @@ LAB_180378e96:
                 if ((lVar1 != 0) && (cVar3 = FUN_1801b5f00(param_2), cVar3 != '\0')) {
                   iVar14 = iVar14 + 1;
                   ppuStack_268 = apiStack_118;
-                  puStack_108 = &unknown_var_1104_ptr;
-                  puStack_100 = &unknown_var_3488_ptr;
+                  puStack_108 = &ui_system_data_1104_ptr;
+                  puStack_100 = &memory_allocator_3488_ptr;
                   apiStack_118[0] = aiStackX_20;
                   FUN_180149bd0(lVar1);
                 }

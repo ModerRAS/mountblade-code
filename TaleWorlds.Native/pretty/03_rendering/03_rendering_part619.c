@@ -752,7 +752,7 @@ void rendering_system_time_initializer(void)
   render_system_pointer = 0;
   
   // 检查是否启用时间同步
-  if (*(void **)*render_system_data_pointer == &unknown_var_424_ptr) {
+  if (*(void **)*render_system_data_pointer == &processed_var_424_ptr) {
     is_enabled = *(int *)(render_system_data_pointer + 0xe0) != 0;
   }
   else {

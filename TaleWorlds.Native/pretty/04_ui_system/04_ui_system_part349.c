@@ -175,7 +175,7 @@ void ui_system_control_state_manager(int64_t param_1, int64_t param_2)
                     local_state_2 = (uint)*(ushort *)((int64_t)current_control_ptr + 0x24);
                     
                     // 警告：子程序不返回
-                    ui_system_control_initializer(temp_buffer, 0x27, &unknown_var_8960_ptr, (int)current_control_ptr[4]);
+                    ui_system_control_initializer(temp_buffer, 0x27, &processed_var_8960_ptr, (int)current_control_ptr[4]);
                 }
                 
                 // 处理控件进度和状态
@@ -244,7 +244,7 @@ void ui_system_control_state_manager(int64_t param_1, int64_t param_2)
                     local_state_2 = (uint)*(ushort *)((int64_t)current_control_ptr + 0x24);
                     
                     // 警告：子程序不返回
-                    ui_system_control_initializer(temp_buffer, 0x27, &unknown_var_8960_ptr, (int)current_control_ptr[4]);
+                    ui_system_control_initializer(temp_buffer, 0x27, &processed_var_8960_ptr, (int)current_control_ptr[4]);
                 }
                 
                 operation_flag = 4;
@@ -435,7 +435,7 @@ uint64_t ui_system_event_handler(int64_t param_1)
  * @brief 安全cookie全局变量
  * @details 用于栈溢出检测的安全cookie，与局部变量进行异或操作
  * 
- * @var unknown_var_8960_ptr
+ * @var processed_var_8960_ptr
  * @brief 未知数据结构
  * @details 用于控件初始化的未知数据结构指针
  */

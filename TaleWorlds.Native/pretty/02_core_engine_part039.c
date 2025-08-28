@@ -103,7 +103,7 @@ float * FUN_1800795b0(float *param_1)
         puStack_48 = *(void **)(param_1 + 6);
       }
       uStack_40 = CONCAT44(uStack_40._4_4_,*(int32_t *)(*(int64_t *)(param_1 + 0x84) + 0x60));
-      puStack_58 = &unknown_var_5472_ptr;
+      puStack_58 = &processed_var_5472_ptr;
       uStack_80 = 0x18007967a;
       fStack_50 = fVar6;
       FUN_1800623b0(system_message_context,0,0x80000000000,3);

@@ -307,9 +307,9 @@ void FUN_1800a73e0(int64_t param_1, uint64_t param_2, int64_t param_3, int8_t pa
   // 根据系统配置检测文件类型并设置相应的状态标志
   if (system_system_control_memory == 10) {
     // 处理类型10的文件
-    iVar2 = strcmp(system_system_control_memory, &unknown_var_4312_ptr);  // 比较文件类型字符串
+    iVar2 = strcmp(system_system_control_memory, &processed_var_4312_ptr);  // 比较文件类型字符串
     if (iVar2 != 0) goto LAB_1800a7646;                // 如果不匹配，跳转到默认处理
-    (**(code **)(puStack_858 + 0x10))(&puStack_858, &unknown_var_4368_ptr);  // 调用类型特定的处理函数
+    (**(code **)(puStack_858 + 0x10))(&puStack_858, &processed_var_4368_ptr);  // 调用类型特定的处理函数
     cStack_968 = '\x01';                             // 设置字符栈变量1标志
 LAB_1800a765c:
     cStack_940 = '\x01';                             // 设置状态标志1
@@ -319,9 +319,9 @@ LAB_1800a765c:
     if (system_system_control_memory != 0xc) {
       // 处理类型0xd的文件
       if (system_system_control_memory == 0xd) {
-        iVar2 = strcmp(system_system_control_memory, &unknown_var_4432_ptr);  // 比较文件类型字符串
+        iVar2 = strcmp(system_system_control_memory, &processed_var_4432_ptr);  // 比较文件类型字符串
         if (iVar2 == 0) {
-          (**(code **)(puStack_858 + 0x10))(&puStack_858, &unknown_var_4528_ptr);  // 调用处理函数
+          (**(code **)(puStack_858 + 0x10))(&puStack_858, &processed_var_4528_ptr);  // 调用处理函数
           cStack_968 = '\x01';                         // 设置字符栈变量1标志
           cStack_93f = '\x01';                         // 设置状态标志2
           goto LAB_1800a7660;                          // 跳转到统一处理点
@@ -329,9 +329,9 @@ LAB_1800a765c:
       }
       // 处理类型9的文件
       else if (system_system_control_memory == 9) {
-        iVar2 = strcmp(system_system_control_memory, &unknown_var_4512_ptr);  // 比较文件类型字符串
+        iVar2 = strcmp(system_system_control_memory, &processed_var_4512_ptr);  // 比较文件类型字符串
         if (iVar2 == 0) {
-          (**(code **)(puStack_858 + 0x10))(&puStack_858, &unknown_var_4608_ptr);  // 调用处理函数
+          (**(code **)(puStack_858 + 0x10))(&puStack_858, &processed_var_4608_ptr);  // 调用处理函数
           cStack_93d = '\x01';                         // 设置状态标志4
           cStack_93b = '\x01';                         // 设置状态标志6
           goto LAB_1800a7660;                          // 跳转到统一处理点
@@ -342,24 +342,24 @@ LAB_1800a765c:
       
       // 默认处理路径
 LAB_1800a7646:
-      (**(code **)(puStack_858 + 0x10))(&puStack_858, &unknown_var_4688_ptr);  // 调用默认处理函数
+      (**(code **)(puStack_858 + 0x10))(&puStack_858, &processed_var_4688_ptr);  // 调用默认处理函数
       cStack_93c = '\x01';                             // 设置状态标志5
       goto LAB_1800a765c;                              // 跳转到状态设置点
     }
     
     // 处理类型0xc的文件
-    iVar2 = strcmp(system_system_control_memory, &unknown_var_4352_ptr);   // 比较文件类型字符串
+    iVar2 = strcmp(system_system_control_memory, &processed_var_4352_ptr);   // 比较文件类型字符串
     if (iVar2 == 0) {
-      (**(code **)(puStack_858 + 0x10))(&puStack_858, &unknown_var_4448_ptr);  // 调用处理函数
+      (**(code **)(puStack_858 + 0x10))(&puStack_858, &processed_var_4448_ptr);  // 调用处理函数
       cStack_968 = '\x01';                             // 设置字符栈变量1标志
       cStack_93e = '\x01';                             // 设置状态标志3
     }
     else {
       // 处理其他类型
 LAB_1800a7617:
-      iVar2 = strcmp(uVar5, &unknown_var_4592_ptr);          // 比较路径字符串
+      iVar2 = strcmp(uVar5, &processed_var_4592_ptr);          // 比较路径字符串
       if (iVar2 != 0) goto LAB_1800a7646;              // 如果不匹配，跳转到默认处理
-      (**(code **)(puStack_858 + 0x10))(&puStack_858, &unknown_var_4752_ptr);  // 调用处理函数
+      (**(code **)(puStack_858 + 0x10))(&puStack_858, &processed_var_4752_ptr);  // 调用处理函数
       cStack_93d = '\x01';                             // 设置状态标志4
       cStack_93a = '\x01';                             // 设置状态标志7
     }
@@ -430,7 +430,7 @@ LAB_1800a7660:
   apuStack_518[0] = &system_state_ptr;                // 设置路径数组初始值
   
   // 文件名处理初始化
-  puStack_638 = &unknown_var_2008_ptr;                    // 初始化字符串指针1
+  puStack_638 = &rendering_buffer_2008_ptr;                    // 初始化字符串指针1
   puStack_630 = auStack_620;                       // 设置字符串指针2
   auStack_620[0] = 0;                              // 初始化字符串缓冲区
   iStack_628 = iStack_740;                         // 设置字符串长度1
@@ -567,7 +567,7 @@ LAB_1800a7a55:
 LAB_1800a7ae4:
   *(int16_t *)(puStack_958 + uStack_950) = 0x5f;
   uStack_950 = uVar16;
-  FUN_180626eb0(acStack_98,0x20,&unknown_var_3388_ptr,param_5);
+  FUN_180626eb0(acStack_98,0x20,&memory_allocator_3388_ptr,param_5);
   lVar6 = -1;
   do {
     lVar8 = lVar6;
@@ -618,7 +618,7 @@ LAB_1800a7ba5:
 LAB_1800a7c35:
   *(int16_t *)(puStack_958 + uStack_950) = 0x5f;
   uStack_950 = uVar11;
-  FUN_180626eb0(acStack_78,0x20,&unknown_var_7284_ptr,param_6);
+  FUN_180626eb0(acStack_78,0x20,&processed_var_7284_ptr,param_6);
   lVar6 = -1;
   do {
     lVar8 = lVar6;
@@ -669,7 +669,7 @@ LAB_1800a7d01:
 LAB_1800a7d91:
   *(int16_t *)(puStack_958 + uStack_950) = 0x5f;
   uStack_950 = uVar11;
-  FUN_180060680(acStack_a8,&unknown_var_4576_ptr,param_4);
+  FUN_180060680(acStack_a8,&processed_var_4576_ptr,param_4);
   lVar6 = -1;
   do {
     lVar8 = lVar6;
@@ -720,7 +720,7 @@ LAB_1800a7e51:
 LAB_1800a7ee0:
   *(int16_t *)(puStack_958 + uStack_950) = 0x5f;
   uStack_950 = uVar11;
-  FUN_180060680(acStack_b8,&unknown_var_4576_ptr,iVar17);
+  FUN_180060680(acStack_b8,&processed_var_4576_ptr,iVar17);
   lVar6 = -1;
   do {
     lVar8 = lVar6;
@@ -838,7 +838,7 @@ LAB_1800a814a:
       if (*(void **)(param_11 + 8) != (void *)0x0) {
         puVar15 = *(void **)(param_11 + 8);
       }
-      System_DataHandler(&puStack_7d0,&unknown_var_4888_ptr,puVar15);
+      System_DataHandler(&puStack_7d0,&processed_var_4888_ptr,puVar15);
       lVar8 = lStack_760;
       puVar15 = &system_buffer_ptr;
       if (puStack_7c8 != (void *)0x0) {
@@ -851,7 +851,7 @@ LAB_1800a814a:
       }
       uStack_6f0 = 0;
       uStack_6e0 = 0;
-      FUN_18062dee0(&uStack_6f0,puVar15,&unknown_var_4880_ptr);
+      FUN_18062dee0(&uStack_6f0,puVar15,&processed_var_4880_ptr);
       lVar7 = lStack_6e8;
       uVar5 = _ftelli64(lStack_6e8);
       _fseeki64(lVar7,0,2);
@@ -966,7 +966,7 @@ LAB_1800a837b:
       do {
         lVar6 = lVar6 + 1;
       } while (puVar15[lVar6] != '\0');
-      if ((0 < (int)uStack_888) && (lVar8 = strstr(puStack_890,&unknown_var_4832_ptr), lVar8 != 0)) {
+      if ((0 < (int)uStack_888) && (lVar8 = strstr(puStack_890,&processed_var_4832_ptr), lVar8 != 0)) {
         iVar2 = 0x22;
         iVar17 = (int)lVar8 - (int)puStack_890;
         if (uStack_888 < iVar17 + 0x22U) {
@@ -1076,22 +1076,22 @@ LAB_1800a87af:
       if (cStack_93b != '\0') {
         switch(param_9) {
         case 0:
-          puVar15 = &unknown_var_5408_ptr;
+          puVar15 = &processed_var_5408_ptr;
           break;
         case 1:
-          puVar15 = &unknown_var_5448_ptr;
+          puVar15 = &processed_var_5448_ptr;
           break;
         case 2:
-          puVar15 = &unknown_var_5464_ptr;
+          puVar15 = &processed_var_5464_ptr;
           break;
         case 3:
-          puVar15 = &unknown_var_5480_ptr;
+          puVar15 = &processed_var_5480_ptr;
           break;
         case 4:
-          puVar15 = &unknown_var_5520_ptr;
+          puVar15 = &processed_var_5520_ptr;
           break;
         case 5:
-          puVar15 = &unknown_var_5432_ptr;
+          puVar15 = &processed_var_5432_ptr;
           break;
         default:
           goto LAB_1800a990c;
@@ -1101,22 +1101,22 @@ LAB_1800a87af:
       if (cStack_93a != '\0') {
         switch(param_9) {
         case 0:
-          puVar15 = &unknown_var_5496_ptr;
+          puVar15 = &processed_var_5496_ptr;
           break;
         case 1:
-          puVar15 = &unknown_var_5552_ptr;
+          puVar15 = &processed_var_5552_ptr;
           break;
         case 2:
-          puVar15 = &unknown_var_5568_ptr;
+          puVar15 = &processed_var_5568_ptr;
           break;
         case 3:
-          puVar15 = &unknown_var_5592_ptr;
+          puVar15 = &processed_var_5592_ptr;
           break;
         case 4:
-          puVar15 = &unknown_var_5624_ptr;
+          puVar15 = &processed_var_5624_ptr;
           break;
         case 5:
-          puVar15 = &unknown_var_5536_ptr;
+          puVar15 = &processed_var_5536_ptr;
           break;
         default:
           goto LAB_1800a990c;
@@ -1158,9 +1158,9 @@ LAB_1800a990c:
           lVar8 = lVar6 + uVar22;
           iVar17 = *(int *)(lVar8 + 0x10);
           if ((iVar17 != 0xb) ||
-             (iVar2 = strcmp(*(uint64_t *)(lVar8 + 8),&unknown_var_4992_ptr), iVar2 != 0)) {
+             (iVar2 = strcmp(*(uint64_t *)(lVar8 + 8),&processed_var_4992_ptr), iVar2 != 0)) {
             if ((iVar17 == 0xd) &&
-               (iVar17 = strcmp(*(uint64_t *)(lVar8 + 8),&unknown_var_5240_ptr), iVar17 == 0)) {
+               (iVar17 = strcmp(*(uint64_t *)(lVar8 + 8),&processed_var_5240_ptr), iVar17 == 0)) {
               CoreMemoryPoolProcessor(&puStack_988,uVar11 + 3);
               *(int32_t *)(puStack_980 + uStack_978) = 0x442d20;
               uStack_978 = uVar11 + 3;
@@ -1245,22 +1245,22 @@ LAB_1800a990c:
     if (cStack_93f != '\0') {
       switch(param_9) {
       case 0:
-        puVar15 = &unknown_var_5064_ptr;
+        puVar15 = &processed_var_5064_ptr;
         break;
       case 1:
-        puVar15 = &unknown_var_5056_ptr;
+        puVar15 = &processed_var_5056_ptr;
         break;
       case 2:
-        puVar15 = &unknown_var_5096_ptr;
+        puVar15 = &processed_var_5096_ptr;
         break;
       case 3:
-        puVar15 = &unknown_var_5072_ptr;
+        puVar15 = &processed_var_5072_ptr;
         break;
       case 4:
-        puVar15 = &unknown_var_5088_ptr;
+        puVar15 = &processed_var_5088_ptr;
         break;
       case 5:
-        puVar15 = &unknown_var_5080_ptr;
+        puVar15 = &processed_var_5080_ptr;
         break;
       default:
         goto LAB_1800a9108;
@@ -1270,22 +1270,22 @@ LAB_1800a990c:
     if ((cStack_93e != '\0') || (cStack_940 != '\0')) {
       switch(param_9) {
       case 0:
-        puVar15 = &unknown_var_5112_ptr;
+        puVar15 = &processed_var_5112_ptr;
         break;
       case 1:
-        puVar15 = &unknown_var_5104_ptr;
+        puVar15 = &processed_var_5104_ptr;
         break;
       case 2:
-        puVar15 = &unknown_var_5144_ptr;
+        puVar15 = &processed_var_5144_ptr;
         break;
       case 3:
-        puVar15 = &unknown_var_5120_ptr;
+        puVar15 = &processed_var_5120_ptr;
         break;
       case 4:
-        puVar15 = &unknown_var_5136_ptr;
+        puVar15 = &processed_var_5136_ptr;
         break;
       case 5:
-        puVar15 = &unknown_var_5128_ptr;
+        puVar15 = &processed_var_5128_ptr;
         break;
       default:
         goto LAB_1800a9108;
@@ -1348,9 +1348,9 @@ LAB_1800a9108:
       do {
         iVar17 = *(int *)(lVar6 + 0x10 + uVar22);
         if ((iVar17 != 0xb) ||
-           (iVar2 = strcmp(*(uint64_t *)(lVar6 + 8 + uVar22),&unknown_var_4992_ptr), iVar2 != 0)) {
+           (iVar2 = strcmp(*(uint64_t *)(lVar6 + 8 + uVar22),&processed_var_4992_ptr), iVar2 != 0)) {
           if ((iVar17 == 0xd) &&
-             (iVar2 = strcmp(*(uint64_t *)(lVar6 + 8 + uVar22),&unknown_var_5240_ptr), iVar2 == 0)) {
+             (iVar2 = strcmp(*(uint64_t *)(lVar6 + 8 + uVar22),&processed_var_5240_ptr), iVar2 == 0)) {
             CoreMemoryPoolProcessor(&puStack_988,uVar11 + 4);
             *(int32_t *)(puStack_980 + uStack_978) = 0x20442d20;
             *(int8_t *)((int64_t)(puStack_980 + uStack_978) + 4) = 0;
@@ -1363,7 +1363,7 @@ LAB_1800a9108:
             uStack_978 = uVar11 + 0x11;
           }
           else if ((iVar17 == 0xe) &&
-                  (iVar17 = strcmp(*(uint64_t *)(lVar6 + 8 + uVar22),&unknown_var_6472_ptr), iVar17 == 0)
+                  (iVar17 = strcmp(*(uint64_t *)(lVar6 + 8 + uVar22),&processed_var_6472_ptr), iVar17 == 0)
                   ) {
             CoreMemoryPoolProcessor(&puStack_988,uVar11 + 4);
             *(int32_t *)(puStack_980 + uStack_978) = 0x20442d20;
@@ -1515,22 +1515,22 @@ LAB_1800a9108:
   iStack_868 = 0;
   switch(param_9) {
   case 0:
-    puVar15 = &unknown_var_4132_ptr;
+    puVar15 = &processed_var_4132_ptr;
     break;
   case 1:
-    puVar15 = &unknown_var_4124_ptr;
+    puVar15 = &processed_var_4124_ptr;
     break;
   case 2:
-    puVar15 = &unknown_var_4164_ptr;
+    puVar15 = &processed_var_4164_ptr;
     break;
   case 3:
-    puVar15 = &unknown_var_4140_ptr;
+    puVar15 = &processed_var_4140_ptr;
     break;
   case 4:
-    puVar15 = &unknown_var_4156_ptr;
+    puVar15 = &processed_var_4156_ptr;
     break;
   case 5:
-    puVar15 = &unknown_var_4148_ptr;
+    puVar15 = &processed_var_4148_ptr;
     break;
   default:
     goto LAB_1800a8889;
@@ -1688,7 +1688,7 @@ LAB_1800a8b50:
     lVar6 = lStack_810;
     do {
       if ((*(int *)(lVar6 + 0x10 + lVar8) != 0xb) ||
-         (iVar17 = strcmp(*(uint64_t *)(lVar6 + 8 + lVar8),&unknown_var_4992_ptr), iVar17 != 0)) {
+         (iVar17 = strcmp(*(uint64_t *)(lVar6 + 8 + lVar8),&processed_var_4992_ptr), iVar17 != 0)) {
         uVar11 = uVar16 + 4;
         CoreMemoryPoolProcessor(&puStack_988,uVar11);
         *(int32_t *)(puStack_980 + uStack_978) = 0x20442f20;

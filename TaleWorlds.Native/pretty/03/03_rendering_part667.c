@@ -521,7 +521,7 @@ uint64_t rendering_system_data_structure_operator(int64_t param_1, uint64_t para
                     if (*(ushort *)((int64_t)puVar10 + 10) < uVar12) {
 LAB_18064c807:
                         // 链表长度异常，调用错误处理
-                        FUN_1806503d0(0xe, &unknown_var_8816_ptr);
+                        FUN_1806503d0(0xe, &processed_var_8816_ptr);
                     }
                     else {
                         // 正常处理链表
@@ -697,7 +697,7 @@ int8_t rendering_system_cache_manager(void)
                     if (*(ushort *)((int64_t)unaff_RBX + 10) < uVar10) {
 LAB_18064c807:
                         // 链表长度异常，调用错误处理
-                        FUN_1806503d0(0xe, &unknown_var_8816_ptr);
+                        FUN_1806503d0(0xe, &processed_var_8816_ptr);
                     }
                     else {
                         // 正常处理链表
@@ -988,7 +988,7 @@ int64_t rendering_system_resource_allocator(int64_t param_1, int64_t param_2, ui
                     if (*(ushort *)((int64_t)puVar12 + 10) < uVar13) {
 LAB_18064cae7:
                         // 链表长度异常，调用错误处理
-                        FUN_1806503d0(0xe, &unknown_var_8816_ptr);
+                        FUN_1806503d0(0xe, &processed_var_8816_ptr);
                     }
                     else {
                         // 正常处理链表
@@ -1260,7 +1260,7 @@ void rendering_system_hash_table_optimizer(int64_t param_1, uint64_t *param_2)
     
     // 检查哈希表项的大小
     if ((uint64_t)param_2[2] < 0x401) {
-        puVar4 = &unknown_var_6944_ptr;
+        puVar4 = &processed_var_6944_ptr;
         
         if ((void *)*param_2 != (void *)0x0) {
             puVar4 = (void *)*param_2;

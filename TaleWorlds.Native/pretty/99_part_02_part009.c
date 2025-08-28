@@ -729,7 +729,7 @@ void FUN_1800ed680(uint64_t *param_1,int param_2)
   LOCK();
   *(int *)param_1[10] = *(int *)param_1[10] + -1;
   UNLOCK();
-  if ((void *)*param_1 == &unknown_var_5112_ptr) {
+  if ((void *)*param_1 == &processed_var_5112_ptr) {
     while( true ) {
       LOCK();
       piVar1 = (int *)(param_1[8] + 0x10);
@@ -826,7 +826,7 @@ FUN_1800ed900(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
   
   uVar3 = 0xfffffffffffffffe;
   FUN_180049830();
-  *param_1 = &unknown_var_5264_ptr;
+  *param_1 = &processed_var_5264_ptr;
   puVar1 = param_1 + 0x18;
   param_1[0x1a] = 0;
   param_1[0x1b] = _guard_check_icall;

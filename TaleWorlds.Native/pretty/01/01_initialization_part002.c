@@ -931,11 +931,11 @@ void FUN_18002e8e0(void)
   int32_t uStack_90;
   int8_t auStack_88 [136];
   
-  puStack_a0 = &unknown_var_3432_ptr;
+  puStack_a0 = &memory_allocator_3432_ptr;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xb;
-  strcpy_s(auStack_88,0x80,&unknown_var_7352_ptr,in_R9,0xfffffffffffffffe);
+  strcpy_s(auStack_88,0x80,&processed_var_7352_ptr,in_R9,0xfffffffffffffffe);
   init_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
@@ -981,7 +981,7 @@ void FUN_18002e970(void)
   }
   puVar7[6] = AUDIO_COMPONENT_TYPE_ID;
   puVar7[7] = AUDIO_COMPONENT_VERSION;
-  puVar7[8] = &unknown_var_7584_ptr;
+  puVar7[8] = &processed_var_7584_ptr;
   puVar7[9] = 1;
   puVar7[10] = pcStackX_18;
   return;
@@ -1028,7 +1028,7 @@ void FUN_18002ea70(void)
   }
   puVar7[6] = INPUT_COMPONENT_TYPE_ID;
   puVar7[7] = INPUT_COMPONENT_VERSION;
-  puVar7[8] = &unknown_var_7608_ptr;
+  puVar7[8] = &processed_var_7608_ptr;
   puVar7[9] = 4;
   puVar7[10] = pcStackX_18;
   return;
@@ -1075,7 +1075,7 @@ void FUN_18002eb70(void)
   }
   puVar7[6] = PHYSICS_COMPONENT_TYPE_ID;
   puVar7[7] = PHYSICS_COMPONENT_VERSION;
-  puVar7[8] = &unknown_var_7632_ptr;
+  puVar7[8] = &processed_var_7632_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -1122,7 +1122,7 @@ void FUN_18002ec70(void)
   }
   puVar7[6] = NETWORK_COMPONENT_TYPE_ID;
   puVar7[7] = NETWORK_COMPONENT_VERSION;
-  puVar7[8] = &unknown_var_7656_ptr;
+  puVar7[8] = &processed_var_7656_ptr;
   puVar7[9] = 0;
   puVar7[10] = pcStackX_18;
   return;
@@ -1169,7 +1169,7 @@ void FUN_18002ed70(void)
   }
   puVar7[6] = AI_COMPONENT_TYPE_ID;
   puVar7[7] = AI_COMPONENT_VERSION;
-  puVar7[8] = &unknown_var_7680_ptr;
+  puVar7[8] = &processed_var_7680_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -1193,7 +1193,7 @@ void FUN_18002ee70(void)
   plVar4 = (int64_t *)NetworkDataProcessor();
   puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  puStackX_18 = &unknown_var_2048_ptr;
+  puStackX_18 = &rendering_buffer_2048_ptr;
   puVar7 = puVar2;
   puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
@@ -1216,7 +1216,7 @@ void FUN_18002ee70(void)
   }
   puVar7[6] = UI_COMPONENT_TYPE_ID;
   puVar7[7] = UI_COMPONENT_VERSION;
-  puVar7[8] = &unknown_var_7704_ptr;
+  puVar7[8] = &processed_var_7704_ptr;
   puVar7[9] = 0;
   puVar7[10] = puStackX_18;
   return;
@@ -1263,7 +1263,7 @@ void FUN_18002ef70(void)
   }
   puVar7[6] = ANIMATION_COMPONENT_TYPE_ID;
   puVar7[7] = ANIMATION_COMPONENT_VERSION;
-  puVar7[8] = &unknown_var_7728_ptr;
+  puVar7[8] = &processed_var_7728_ptr;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
   return;
@@ -1310,7 +1310,7 @@ void FUN_18002f070(void)
   }
   puVar7[6] = SCRIPT_COMPONENT_TYPE_ID;
   puVar7[7] = SCRIPT_COMPONENT_VERSION;
-  puVar7[8] = &unknown_var_7824_ptr;
+  puVar7[8] = &processed_var_7824_ptr;
   puVar7[9] = 0;
   puVar7[10] = pcStackX_18;
   return;
@@ -1357,7 +1357,7 @@ void FUN_18002f170(void)
   }
   puVar7[6] = AUDIO_COMPONENT_TYPE_ID;
   puVar7[7] = AUDIO_COMPONENT_VERSION;
-  puVar7[8] = &unknown_var_7584_ptr;
+  puVar7[8] = &processed_var_7584_ptr;
   puVar7[9] = 1;
   puVar7[10] = pcStackX_18;
   return;

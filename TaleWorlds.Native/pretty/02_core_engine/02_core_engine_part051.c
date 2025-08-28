@@ -762,7 +762,7 @@ ALLOCATION_COMPLETE:
       *next_element = &system_state_ptr;
       *(uint64_t *)(element_count + 0x20 + (int64_t)current_element) = 0;
       *(int32_t *)(element_count + 0x28 + (int64_t)current_element) = 0;
-      *next_element = &unknown_var_672_ptr;
+      *next_element = &processed_var_672_ptr;
       string_ptr = (int8_t *)((int64_t)current_element + element_count + 0x30);
       *(int8_t **)(element_count + 0x20 + (int64_t)current_element) = string_ptr;
       *(int32_t *)(element_count + 0x28 + (int64_t)current_element) = 0;

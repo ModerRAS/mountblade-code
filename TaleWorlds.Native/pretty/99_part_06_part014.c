@@ -23,7 +23,7 @@ void FUN_1803b13f0(int64_t param_1)
   }
   lVar2 = plVar1[*(int64_t *)(param_1 + 0x48)];
   while (lVar4 != lVar2) {
-    if ((void *)**(uint64_t **)(lVar4 + 8) != &unknown_var_8576_ptr) {
+    if ((void *)**(uint64_t **)(lVar4 + 8) != &processed_var_8576_ptr) {
       (**(code **)((void *)**(uint64_t **)(lVar4 + 8) + 0x40))();
     }
     lVar4 = *(int64_t *)(lVar4 + 0x10);
@@ -51,7 +51,7 @@ void FUN_1803b143a(void)
   int64_t unaff_RDI;
   
   do {
-    if ((void *)**(uint64_t **)(unaff_RDI + 8) != &unknown_var_8576_ptr) {
+    if ((void *)**(uint64_t **)(unaff_RDI + 8) != &processed_var_8576_ptr) {
       (**(code **)((void *)**(uint64_t **)(unaff_RDI + 8) + 0x40))();
     }
     unaff_RDI = *(int64_t *)(unaff_RDI + 0x10);
@@ -165,7 +165,7 @@ LAB_1803b153e:
           if (*ppiVar4 != *(int **)(lVar1 + lVar6 * 8)) {
             puVar7 = *(uint64_t **)(*ppiVar4 + 2);
           }
-          if ((void *)*puVar7 == &unknown_var_8576_ptr) {
+          if ((void *)*puVar7 == &processed_var_8576_ptr) {
             if (puVar7[0x10f] != 0) {
                     // WARNING: Subroutine does not return
               CoreEngineMemoryPoolCleaner();
@@ -236,7 +236,7 @@ LAB_1803b153e:
         if (*ppiVar4 != *(int **)(lVar1 + lVar5 * 8)) {
           puVar6 = *(uint64_t **)(*ppiVar4 + 2);
         }
-        if ((void *)*puVar6 == &unknown_var_8576_ptr) {
+        if ((void *)*puVar6 == &processed_var_8576_ptr) {
           if (puVar6[0x10f] != 0) {
                     // WARNING: Subroutine does not return
             CoreEngineMemoryPoolCleaner();
@@ -778,8 +778,8 @@ LAB_1803b1fdd:
       ppppiStack_68 = (int ****)0x0;
       puStack_60 = (uint64_t *)0x7f7fffff00000000;
       ppppiStack_58 = (int ****)&ppppiStack_68;
-      puStack_38 = &unknown_var_5952_ptr;
-      puStack_30 = &unknown_var_5936_ptr;
+      puStack_38 = &processed_var_5952_ptr;
+      puStack_30 = &processed_var_5936_ptr;
       uStack_50._0_4_ = SUB84(puVar8,0);
       uStack_50._4_4_ = (int32_t)((uint64_t)puVar8 >> 0x20);
       uStack_40 = (int32_t)uStack_50;
@@ -829,7 +829,7 @@ void FUN_1803b20e0(int64_t param_1)
       }
       *plVar5 = 0;
       plVar3 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x158,8,3);
-      *plVar3 = (int64_t)&unknown_var_7192_ptr;
+      *plVar3 = (int64_t)&processed_var_7192_ptr;
       DataStructureManager(plVar3 + 1,8,7,&SUB_18005d5f0,DataCacheManager);
       FUN_180078550(plVar3);
       *plVar5 = (int64_t)plVar3;

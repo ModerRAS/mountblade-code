@@ -221,7 +221,7 @@ LAB_180329ed7:
     }
     if (*(int *)(param_3 + 0x160) != 0) {
       puVar3 = (uint64_t *)
-               FUN_1800b32c0(system_resource_state,&plStack_c8,param_3 + 0x150,1,&unknown_var_7656_ptr);
+               FUN_1800b32c0(system_resource_state,&plStack_c8,param_3 + 0x150,1,&processed_var_7656_ptr);
       FUN_1800763c0(*puVar3,&plStackX_18);
       if (plStack_c8 != (int64_t *)0x0) {
         (**(code **)(*plStack_c8 + 0x38))();
@@ -747,7 +747,7 @@ void RenderingSystem_FullInitializerAndCleaner(int64_t param_1)
   }
   while (lVar9 != lVar10) {
     plVar2 = *(int64_t **)(lVar9 + 8);
-    if ((void *)*plVar2 == &unknown_var_8720_ptr) {
+    if ((void *)*plVar2 == &processed_var_8720_ptr) {
       LOCK();
       plVar8 = plVar2 + 1;
       lVar7 = *plVar8;

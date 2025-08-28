@@ -150,7 +150,7 @@ int FUN_1802346f0(int64_t *param_1)
     if (*(void **)(*param_1 + 0x18) != (void *)0x0) {
       puVar2 = *(void **)(*param_1 + 0x18);
     }
-    FUN_1800623b0(system_message_context,0,0x80000000000,3,&unknown_var_5472_ptr,iVar1,puVar2,
+    FUN_1800623b0(system_message_context,0,0x80000000000,3,&processed_var_5472_ptr,iVar1,puVar2,
                   *(int32_t *)(param_1[1] + 0x60));
   }
   *(int8_t *)(param_1 + 6) = 1;
@@ -208,12 +208,12 @@ uint64_t FUN_1802349a0(uint64_t param_1)
   code *pcStack_20;
   uint64_t uStack_18;
   
-  puStack_48 = &unknown_var_3024_ptr;
+  puStack_48 = &memory_allocator_3024_ptr;
   uStack_18 = 0;
-  puStack_40 = &unknown_var_8160_ptr;
-  puStack_38 = &unknown_var_3040_ptr;
-  puStack_30 = &unknown_var_3120_ptr;
-  puStack_28 = &unknown_var_3184_ptr;
+  puStack_40 = &processed_var_8160_ptr;
+  puStack_38 = &memory_allocator_3040_ptr;
+  puStack_30 = &memory_allocator_3120_ptr;
+  puStack_28 = &memory_allocator_3184_ptr;
   pcStack_20 = FUN_180234880;
   ppuStack_58 = &puStack_48;
   uStack_50 = param_1;

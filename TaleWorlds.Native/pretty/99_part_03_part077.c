@@ -100,7 +100,7 @@ void FUN_180242e60(uint64_t *param_1)
   
   uStack_268 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_378;
-  if ((void *)*param_1 == &unknown_var_9328_ptr) {
+  if ((void *)*param_1 == &processed_var_9328_ptr) {
     puVar12 = (uint64_t *)param_1[0x110];
   }
   else {
@@ -139,7 +139,7 @@ void FUN_180242e60(uint64_t *param_1)
     }
     else {
       pplStack_310 = (int64_t **)&puStack_118;
-      puStack_118 = &unknown_var_3432_ptr;
+      puStack_118 = &memory_allocator_3432_ptr;
       puStack_110 = auStack_100;
       uStack_108 = 0;
       auStack_100[0] = 0;
@@ -154,7 +154,7 @@ void FUN_180242e60(uint64_t *param_1)
       uStack_4c = uStack_324;
       uStack_48 = CONCAT44(uStack_31c,uStack_320);
       puStack_40 = puVar12;
-      if ((void *)*puVar12 == &unknown_var_8720_ptr) {
+      if ((void *)*puVar12 == &processed_var_8720_ptr) {
         LOCK();
         *(int *)(puVar12 + 1) = *(int *)(puVar12 + 1) + 1;
         UNLOCK();
@@ -183,13 +183,13 @@ void FUN_180242e60(uint64_t *param_1)
     }
   }
   *(int *)((int64_t)param_1 + 0x894) = iVar6;
-  if ((void *)*param_1 != &unknown_var_9328_ptr) {
+  if ((void *)*param_1 != &processed_var_9328_ptr) {
     (**(code **)((void *)*param_1 + 0x60))(param_1);
   }
   if (0 < (int)system_system_data_memory[1]) goto LAB_18024346d;
-  if ((void *)*param_1 != &unknown_var_9328_ptr) {
+  if ((void *)*param_1 != &processed_var_9328_ptr) {
     (**(code **)((void *)*param_1 + 0x60))(param_1);
-    if ((void *)*param_1 != &unknown_var_9328_ptr) {
+    if ((void *)*param_1 != &processed_var_9328_ptr) {
       (**(code **)((void *)*param_1 + 0x60))(param_1);
     }
   }

@@ -66,7 +66,7 @@ void FUN_1803ef940(int64_t *param_1,int64_t param_2,int64_t *param_3,int64_t par
     puVar4 = (void *)param_1[0x41];
   }
   (**(code **)(*param_5 + 0x10))(param_5,puVar4);
-  FUN_180627f00(param_5,&unknown_var_1496_ptr);
+  FUN_180627f00(param_5,&ui_system_data_1496_ptr);
   uVar2 = FUN_1803ef110(param_1,*(int32_t *)(param_2 + 0xa4));
   FUN_180627f00(param_5,uVar2);
   FUN_180627f00(param_5,&system_data_5cb4);
@@ -79,13 +79,13 @@ void FUN_1803ef940(int64_t *param_1,int64_t param_2,int64_t *param_3,int64_t par
   if (lVar5 >> 6 != lVar5 >> 0x3f) {
     do {
       if ((*(int *)(uVar11 + 0x10 + lVar10) == 0xd) &&
-         (iVar1 = strcmp(*(uint64_t *)(uVar11 + 8 + lVar10),&unknown_var_5240_ptr), iVar1 == 0)) {
+         (iVar1 = strcmp(*(uint64_t *)(uVar11 + 8 + lVar10),&processed_var_5240_ptr), iVar1 == 0)) {
         puVar4 = *(void **)(uVar11 + 0x60 + lVar10);
         puVar8 = &system_buffer_ptr;
         if (puVar4 != (void *)0x0) {
           puVar8 = puVar4;
         }
-        System_DataHandler(param_5,&unknown_var_1520_ptr,puVar8);
+        System_DataHandler(param_5,&ui_system_data_1520_ptr,puVar8);
       }
       else {
         puVar4 = *(void **)(uVar11 + 0x60 + lVar10);
@@ -98,7 +98,7 @@ void FUN_1803ef940(int64_t *param_1,int64_t param_2,int64_t *param_3,int64_t par
         if (puVar4 != (void *)0x0) {
           puVar9 = puVar4;
         }
-        System_DataHandler(param_5,&unknown_var_1536_ptr,puVar9,puVar8);
+        System_DataHandler(param_5,&ui_system_data_1536_ptr,puVar9,puVar8);
       }
       uVar13 = (int)uVar6 + 1;
       uVar11 = uVar11 + 0x78;
@@ -175,16 +175,16 @@ void FUN_1803ef940(int64_t *param_1,int64_t param_2,int64_t *param_3,int64_t par
     if ((void *)param_1[0xa1] != (void *)0x0) {
       puVar4 = (void *)param_1[0xa1];
     }
-    System_DataHandler(param_5,&unknown_var_1752_ptr,puVar4);
+    System_DataHandler(param_5,&ui_system_data_1752_ptr,puVar4);
   }
   if ((cStack_328 != '\0') && (iStack_310 != 0)) {
     puVar4 = &system_buffer_ptr;
     if (puStack_318 != (void *)0x0) {
       puVar4 = puStack_318;
     }
-    System_DataHandler(param_5,&unknown_var_1728_ptr,puVar4);
+    System_DataHandler(param_5,&ui_system_data_1728_ptr,puVar4);
   }
-  FUN_180627f00(param_5,&unknown_var_1736_ptr);
+  FUN_180627f00(param_5,&ui_system_data_1736_ptr);
   FUN_180627f00(param_5,&system_data_2320);
   puVar7 = &uStack_298;
   if (0xf < uStack_280) {
