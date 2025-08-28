@@ -703,8 +703,8 @@ LAB_1808da52e:
 
 
 
-// 函数: void FUN_1808da5c0(longlong param_1,uint64_t param_2)
-void FUN_1808da5c0(longlong param_1,uint64_t param_2)
+// 函数: void ResourceConfigurationApply(longlong config_ptr, uint64_t resource_ptr)
+void ResourceConfigurationApply(longlong config_ptr, uint64_t resource_ptr)
 
 {
   int iVar1;

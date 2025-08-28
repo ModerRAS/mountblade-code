@@ -128,7 +128,15 @@ static RenderStatusFlags g_global_render_state = 0;        // 全局渲染状态
 // 函数别名定义
 //============================================================================
 
+// 主要函数别名
 #define RenderingSystem_ConnectionProcessor FUN_180391980
+
+// 连接处理函数别名
+#define RenderingSystem_ConnectionHandleCleanup FUN_18038b160
+#define RenderingSystem_ConnectionAllocator FUN_18038af00
+#define RenderingSystem_ConnectionPointFinder FUN_18038c180
+#define RenderingSystem_ConnectionValidator FUN_18038d8f0
+#define RenderingSystem_ConnectionOptimizer FUN_18038ee20
 
 //============================================================================
 // 枚举定义
@@ -552,9 +560,9 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                                                         *(int8_t*)(temp_connection_point + 4) = 1;
                                                     }
                                                     
-                                                    FUN_18038b160(temp_connection_point[2]);
+                                                    RenderingSystem_ConnectionHandleCleanup(temp_connection_point[2]);
                                                 } else {
-                                                    FUN_18038d8f0(param_1, temp_connection_point);
+                                                    RenderingSystem_ConnectionValidator(param_1, temp_connection_point);
                                                 }
                                                 
                                                 final_connection_point = temp_connection_point;
