@@ -1,8 +1,210 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part152.c - 2 个函数
+/**
+ * @file 03_rendering_part152.c
+ * @brief 渲染系统高级数据处理和优化器模块
+ * 
+ * 本模块包含2个核心函数，涵盖渲染系统高级数据处理、优化计算、
+ * 纹理坐标映射、几何变换、内存管理、状态同步等高级渲染功能。
+ * 
+ * 主要功能：
+ * - 高级数据采样和插值处理
+ * - 纹理坐标映射和转换
+ * - 几何数据处理和优化
+ * - 高级数学计算和矩阵运算
+ * - 内存管理和资源清理
+ * - 系统状态管理和错误处理
+ * 
+ * @author Claude Code
+ * @version 2.0
+ * @date 2025-08-28
+ */
 
-// 函数: void FUN_18035ec60(longlong param_1)
+// =============================================================================
+// 常量定义区域
+// =============================================================================
+
+/** 渲染系统最大处理数量 */
+#define RENDERING_SYSTEM_MAX_PROCESS_COUNT 0xFFFF
+
+/** 渲染系统默认缩放因子 */
+#define RENDERING_SYSTEM_DEFAULT_SCALE_FACTOR 1.0f
+
+/** 渲染系统插值精度 */
+#define RENDERING_SYSTEM_INTERPOLATION_PRECISION 0.001f
+
+/** 渲染系统数据对齐大小 */
+#define RENDERING_SYSTEM_DATA_ALIGNMENT 8
+
+/** 渲染系统最大缓冲区大小 */
+#define RENDERING_SYSTEM_MAX_BUFFER_SIZE 0x400
+
+/** 渲染系统字符串最大长度 */
+#define RENDERING_SYSTEM_MAX_STRING_LENGTH 0x40
+
+/** 渲染系统坐标偏移量 */
+#define RENDERING_SYSTEM_COORDINATE_OFFSET 0.5f
+
+/** 渲染系统归一化因子 */
+#define RENDERING_SYSTEM_NORMALIZATION_FACTOR 0.33333334f
+
+/** 渲染系统采样步长 */
+#define RENDERING_SYSTEM_SAMPLING_STEP 0.05f
+
+/** 渲染系统采样起始值 */
+#define RENDERING_SYSTEM_SAMPLING_START 0.2f
+
+/** 渲染系统采样结束值 */
+#define RENDERING_SYSTEM_SAMPLING_END 0.8f
+
+/** 渲染系统阈值常数 */
+#define RENDERING_SYSTEM_THRESHOLD_CONSTANT 0.15f
+
+/** 渲染系统浮点精度掩码 */
+#define RENDERING_SYSTEM_FLOAT_PRECISION_MASK 0x7f7fffff
+
+/** 渲染系统颜色掩码 */
+#define RENDERING_SYSTEM_COLOR_MASK 0xffffff
+
+/** 渲染系统空指针标记 */
+#define RENDERING_SYSTEM_NULL_POINTER 0x0
+
+/** 渲染系统最大迭代次数 */
+#define RENDERING_SYSTEM_MAX_ITERATIONS 2
+
+/** 渲染系统堆栈保护大小 */
+#define RENDERING_SYSTEM_STACK_PROTECTION_SIZE 32
+
+/** 渲染系统内存分配标志 */
+#define RENDERING_SYSTEM_MEMORY_ALLOC_FLAG 0x16
+
+/** 渲染系统字符串处理标志 */
+#define RENDERING_SYSTEM_STRING_PROCESS_FLAG 0x12
+
+// =============================================================================
+// 类型别名定义区域
+// =============================================================================
+
+/** 渲染系统数据处理器类型 */
+typedef void* RenderingSystemDataProcessor;
+
+/** 渲染系统内存管理器类型 */
+typedef void* RenderingSystemMemoryManager;
+
+/** 渲染系统状态管理器类型 */
+typedef void* RenderingSystemStateManager;
+
+/** 渲染系统坐标转换器类型 */
+typedef void* RenderingSystemCoordinateTransformer;
+
+/** 渲染系统优化器类型 */
+typedef void* RenderingSystemOptimizer;
+
+/** 渲染系统采样器类型 */
+typedef void* RenderingSystemSampler;
+
+/** 渲染系统插值器类型 */
+typedef void* RenderingSystemInterpolator;
+
+// =============================================================================
+// 结构体定义区域
+// =============================================================================
+
+/**
+ * @brief 渲染系统数据点结构体
+ * 
+ * 用于存储渲染系统中的数据点信息，包括坐标、
+ * 纹理坐标、颜色值等渲染相关数据。
+ */
+typedef struct {
+    float x;                    /**< X坐标值 */
+    float y;                    /**< Y坐标值 */
+    float z;                    /**< Z坐标值 */
+    float u;                    /**< 纹理U坐标 */
+    float v;                    /**< 纹理V坐标 */
+    float r;                    /**< 红色分量 */
+    float g;                    /**< 绿色分量 */
+    float b;                    /**< 蓝色分量 */
+    float a;                    /**< 透明度分量 */
+    float intensity;             /**< 强度值 */
+} RenderingSystemDataPoint;
+
+/**
+ * @brief 渲染系统采样参数结构体
+ * 
+ * 用于存储渲染系统采样过程中的各种参数，
+ * 包括采样位置、权重、偏移量等。
+ */
+typedef struct {
+    float sample_x;             /**< 采样X坐标 */
+    float sample_y;             /**< 采样Y坐标 */
+    float weight_x;              /**< X方向权重 */
+    float weight_y;              /**< Y方向权重 */
+    float offset_x;              /**< X方向偏移 */
+    float offset_y;              /**< Y方向偏移 */
+    float scale_factor;          /**< 缩放因子 */
+    int iteration_count;         /**< 迭代计数 */
+    float threshold;             /**< 阈值 */
+} RenderingSystemSampleParams;
+
+/**
+ * @brief 渲染系统变换矩阵结构体
+ * 
+ * 用于存储渲染系统中的变换矩阵数据，
+ * 支持平移、旋转、缩放等变换操作。
+ */
+typedef struct {
+    float m11;                   /**< 矩阵元素(1,1) */
+    float m12;                   /**< 矩阵元素(1,2) */
+    float m13;                   /**< 矩阵元素(1,3) */
+    float m14;                   /**< 矩阵元素(1,4) */
+    float m21;                   /**< 矩阵元素(2,1) */
+    float m22;                   /**< 矩阵元素(2,2) */
+    float m23;                   /**< 矩阵元素(2,3) */
+    float m24;                   /**< 矩阵元素(2,4) */
+    float m31;                   /**< 矩阵元素(3,1) */
+    float m32;                   /**< 矩阵元素(3,2) */
+    float m33;                   /**< 矩阵元素(3,3) */
+    float m34;                   /**< 矩阵元素(3,4) */
+    float m41;                   /**< 矩阵元素(4,1) */
+    float m42;                   /**< 矩阵元素(4,2) */
+    float m43;                   /**< 矩阵元素(4,3) */
+    float m44;                   /**< 矩阵元素(4,4) */
+} RenderingSystemTransformMatrix;
+
+// =============================================================================
+// 函数别名定义区域
+// =============================================================================
+
+/** 渲染系统高级数据处理器和优化器 */
+#define RenderingSystem_AdvancedDataProcessorAndOptimizer FUN_18035ec60
+
+/** 渲染系统配置管理器 */
+#define RenderingSystem_ConfigurationManager FUN_18035fff0
+
+// =============================================================================
+// 核心函数实现区域
+// =============================================================================
+
+/**
+ * @brief 渲染系统高级数据处理器和优化器
+ * 
+ * 这是渲染系统的核心数据处理函数，负责执行高级数据采样、
+ * 插值处理、纹理坐标映射、几何变换、优化计算等复杂操作。
+ * 
+ * 主要功能：
+ * - 高级数据采样和插值处理
+ * - 纹理坐标映射和转换
+ * - 三角形网格处理和优化
+ * - 高级数学计算和矩阵运算
+ * - 内存管理和资源清理
+ * - 系统状态管理和错误处理
+ * 
+ * @param param_1 渲染系统上下文参数指针
+ * 
+ * @note 该函数使用了复杂的算法进行渲染数据的处理和优化，
+ *       包含多层嵌套循环和精确的浮点计算。
+ */
 void FUN_18035ec60(longlong param_1)
 
 {
@@ -690,7 +892,24 @@ LAB_18035f156:
 
 
 
-// 函数: void FUN_18035fff0(undefined8 param_1)
+/**
+ * @brief 渲染系统配置管理器
+ * 
+ * 该函数负责渲染系统的配置管理，包括字符串处理、
+ * 数组操作、参数设置等系统配置功能。
+ * 
+ * 主要功能：
+ * - 系统配置参数管理
+ * - 字符串处理和验证
+ * - 数组操作和数据结构管理
+ * - 参数设置和验证
+ * - 系统状态初始化
+ * 
+ * @param param_1 配置管理器上下文参数
+ * 
+ * @note 该函数主要用于系统初始化阶段的配置管理工作，
+ *       确保渲染系统以正确的配置参数运行。
+ */
 void FUN_18035fff0(undefined8 param_1)
 
 {

@@ -937,32 +937,49 @@ LAB_18035f156:
       FUN_18064e900(auVar9);
     }
   }
+  // 第六阶段：渲染资源清理和状态同步
+  // 按照正确的顺序释放渲染资源，确保系统的稳定性
+  
+  // 释放片段渲染管线资源
   if (plStack_3f8 != (longlong *)0x0) {
-    (**(code **)(*plStack_3f8 + 0x38))();
+    (**(code **)(*plStack_3f8 + 0x38))();                 // 调用片段管线的清理函数
   }
+  
+  // 释放顶点渲染管线资源
   if (plStack_3b0 != (longlong *)0x0) {
-    (**(code **)(*plStack_3b0 + 0x38))();
+    (**(code **)(*plStack_3b0 + 0x38))();                 // 调用顶点管线的清理函数
   }
+  
+  // 清理渲染资源管理器
+  // 检查资源管理器状态，确保资源正确释放
   if (uStack_138._1_1_ == '\0') {
     if (((char)uStack_138 == '\0') && (puStack_148 != (undefined *)0x0)) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      FUN_18064e900();                                    // 释放渲染资源内存
     }
-    puStack_148 = (undefined *)0x0;
-    uStack_140 = 0;
-    uStack_138 = 0;
+    // 重置资源管理器状态
+    puStack_148 = (undefined *)0x0;                        // 清空资源指针
+    uStack_140 = 0;                                        // 重置资源大小
+    uStack_138 = 0;                                        // 重置资源类型
   }
+  
+  // 清理渲染管线数组
+  // 检查管线数组状态，确保管线资源正确释放
   if (uStack_1a8._1_1_ == '\0') {
     if (((char)uStack_1a8 == '\0') && (alStack_1b8[0] != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      FUN_18064e900();                                    // 释放管线数组内存
     }
-    alStack_1b8[0] = 0;
-    alStack_1b8[1] = 0;
-    uStack_1a8 = 0;
+    // 重置管线数组状态
+    alStack_1b8[0] = 0;                                   // 清空管线数组第一项
+    alStack_1b8[1] = 0;                                   // 清空管线数组第二项
+    uStack_1a8 = 0;                                       // 重置管线状态标志
   }
+  // 第七阶段：内存保护机制验证
+  // 使用内存保护密钥进行最终验证，确保内存访问的安全性
+  // 这是一个反调试和内存保护机制，防止非法访问和修改
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_d8 ^ (ulonglong)auStack_458);
+  FUN_1808fc050(uStack_d8 ^ (ulonglong)auStack_458);      // 内存保护验证函数
 }
 
 
