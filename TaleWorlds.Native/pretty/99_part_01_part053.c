@@ -1083,8 +1083,8 @@ void AdvancedResourceManager(longlong param_1, longlong *param_2, uint64_t param
   uStack_e8 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_158;
   lVar1 = *param_2;
-  if ((((lVar1 == 0) || (*(short *)(lVar1 + 0x32c) != 0x80)) || (*(short *)(lVar1 + 0x32e) != 0x80))
-     || ((*(int *)(lVar1 + 0x324) != 0x1e || (*(int *)(lVar1 + 0x380) == 0)))) {
+  if ((((lVar1 == 0) || (*(short *)(lVar1 + 0x32c) != SYSTEM_STACK_BUFFER_SIZE)) || (*(short *)(lVar1 + 0x32e) != SYSTEM_STACK_BUFFER_SIZE))
+     || ((*(int *)(lVar1 + 0x324) != 0x1e || (*(int *)(lVar1 + 0x380) == SYSTEM_STATE_INACTIVE)))) {
     plStack_100 = (longlong *)*param_2;
     *param_2 = 0;
     if (plStack_100 != (longlong *)0x0) {
@@ -1093,8 +1093,8 @@ void AdvancedResourceManager(longlong param_1, longlong *param_2, uint64_t param
     uStack_12c = 1;
     uStack_113 = 0x1000001;
     uStack_104 = 0;
-    uStack_138 = 0x80;
-    uStack_134 = 0x80;
+    uStack_138 = SYSTEM_STACK_BUFFER_SIZE;
+    uStack_134 = SYSTEM_STACK_BUFFER_SIZE;
     uStack_130 = 6;
     uStack_128 = 0x1e;
     uStack_114 = param_5;
@@ -1126,7 +1126,7 @@ void AdvancedResourceManager(longlong param_1, longlong *param_2, uint64_t param
     puStack_d8 = &unknown_var_720_ptr;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_158);
+  SecurityChecker(uStack_38 ^ (ulonglong)auStack_158);
 }
 
 
