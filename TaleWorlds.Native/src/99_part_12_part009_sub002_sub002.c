@@ -1875,52 +1875,64 @@ undefined8 SystemConfigurationProcessor(longlong system_context, longlong config
   /* 根据操作状态进行相应处理 */
   if (operation_status[0] != '\0') {
     status_flags = *(byte *)(state_object + 0x3c);
-    if ((bVar4 & 2) != 0) {
-      (**(code **)(**(longlong **)(param_3 + 0x20) + 0x20))
-                (*(longlong **)(param_3 + 0x20),
-                 (float)(*(int *)(param_3 + 0x4c) + *(int *)(param_3 + 0x44)) *
-                 (float)*(int *)(param_3 + 0x70) * (float)*(int *)(param_3 + 0xb0) *
-                 (float)*(int *)(param_1 + 0xbe0) * 2.910383e-11 * *(float *)(param_2 + 0xf0),0);
-      bVar4 = *(byte *)(param_3 + 0x3c);
+    /* 处理音频参数更新（标志位2） */
+    if ((status_flags & 2) != 0) {
+      (**(code **)(**(longlong **)(state_object + 0x20) + 0x20))
+                (*(longlong **)(state_object + 0x20),
+                 (float)(*(int )(state_object + 0x4c) + *(int )(state_object + 0x44)) *
+                 (float)*(int )(state_object + 0x70) * (float)*(int )(state_object + 0xb0) *
+                 (float)*(int )(system_context + 0xbe0) * 2.910383e-11 * *(float *)(config_data + 0xf0), 0);
+      status_flags = *(byte *)(state_object + 0x3c);
     }
-    if ((bVar4 & 4) != 0) {
-      (**(code **)(**(longlong **)(param_3 + 0x20) + 0xb0))
-                (*(longlong **)(param_3 + 0x20),
-                 ((float)*(int *)(param_3 + 0x48) - 128.0) * *(float *)(param_1 + 0xbd8) *
-                 0.007874016);
-      bVar4 = *(byte *)(param_3 + 0x3c);
+    
+    /* 处理音量参数更新（标志位4） */
+    if ((status_flags & 4) != 0) {
+      (**(code **)(**(longlong **)(state_object + 0x20) + 0xb0))
+                (*(longlong **)(state_object + 0x20),
+                 ((float)*(int )(state_object + 0x48) - 128.0) * *(float )(system_context + 0xbd8) *
+                 0.007874016); /* 音量标准化系数 */
+      status_flags = *(byte *)(state_object + 0x3c);
     }
-    if ((bVar4 & 1) != 0) {
-      iVar3 = *(int *)(param_3 + 0x40) + *(int *)(param_3 + 0x50);
-      if (iVar3 < 1) {
-        iVar3 = 1;
+    
+    /* 处理频率参数更新（标志位1） */
+    if ((status_flags & 1) != 0) {
+      parameter_value = *(int )(state_object + 0x40) + *(int )(state_object + 0x50);
+      if (parameter_value < 1) {
+        parameter_value = 1; /* 确保最小值 */
       }
-      if ((*(byte *)(param_1 + 0xbe6) & 1) != 0) {
-        uVar2 = powf(iVar3,(4608.0 - (float)iVar3) * 0.0013020834);
-        auVar5._8_8_ = extraout_XMM0_Qb;
-        auVar5._0_8_ = extraout_XMM0_Qa;
-        auVar6._4_12_ = auVar5._4_12_;
-        auVar6._0_4_ = (float)extraout_XMM0_Qa * 8363.0 + 0.5;
-        if (((int)auVar6._0_4_ != -0x80000000) && ((float)(int)auVar6._0_4_ != auVar6._0_4_)) {
-          uVar9 = (undefined4)((ulonglong)extraout_XMM0_Qa >> 0x20);
-          auVar8._0_8_ = auVar6._0_8_;
-          auVar8._8_4_ = uVar9;
-          auVar8._12_4_ = uVar9;
-          auVar7._8_8_ = auVar8._8_8_;
-          auVar7._4_4_ = auVar6._0_4_;
-          auVar7._0_4_ = auVar6._0_4_;
-          movmskps(uVar2,auVar7);
+      
+      /* 如果启用了高级音频处理 */
+      if ((*(byte )(system_context + 0xbe6) & 1) != 0) {
+        calculation_result = powf(parameter_value, (4608.0 - (float)parameter_value) * 0.0013020834);
+        temp_buffer3._8_8_ = extraout_XMM0_Qb;
+        temp_buffer3._0_8_ = extraout_XMM0_Qa;
+        temp_buffer2._4_12_ = temp_buffer3._4_12_;
+        temp_buffer2._0_4_ = (float)extraout_XMM0_Qa * 8363.0 + 0.5; /* 频率缩放系数 */
+        if (((int)temp_buffer2._0_4_ != -0x80000000) && ((float)(int)temp_buffer2._0_4_ != temp_buffer2._0_4_)) {
+          temp_result = (undefined4)((ulonglong)extraout_XMM0_Qa >> 0x20);
+          temp_buffer4._0_8_ = temp_buffer2._0_8_;
+          temp_buffer4._8_4_ = temp_result;
+          temp_buffer4._12_4_ = temp_result;
+          temp_buffer1._8_8_ = temp_buffer4._8_8_;
+          temp_buffer1._4_4_ = temp_buffer2._0_4_;
+          temp_buffer1._0_4_ = temp_buffer2._0_4_;
+          movmskps(calculation_result, temp_buffer1);
         }
       }
-      FUN_180757470(*(undefined8 *)(param_3 + 0x20));
-      bVar4 = *(byte *)(param_3 + 0x3c);
+      
+      /* 应用音频处理 */
+      FUN_180757470(*(undefined8 *)(state_object + 0x20));
+      status_flags = *(byte )(state_object + 0x3c);
     }
-    if ((bVar4 & 0x20) != 0) {
-      FUN_180758220(*(undefined8 *)(param_3 + 0x20),0x80);
-      *(undefined4 *)(param_3 + 0x58) = 0;
+    
+    /* 处理高级音频特性（标志位32） */
+    if ((status_flags & 0x20) != 0) {
+      FUN_180758220(*(undefined8 )(state_object + 0x20), 0x80); /* 启用高级音频模式 */
+      *(undefined4 )(state_object + 0x58) = 0; /* 重置高级参数 */
     }
   }
-  return 0;
+  
+  return 0; /* 返回成功状态 */
 }
 
 
