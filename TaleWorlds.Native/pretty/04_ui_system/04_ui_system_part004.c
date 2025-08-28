@@ -517,135 +517,149 @@ void ui_config_parser(longlong *config_parser, longlong config_data)
   undefined8 item_data;            // 项目数据
   undefined4 item_flags;           // 项目标志
   
-  if (*(int *)(param_2 + 0x10) != 0) {
-    puStack_98 = (undefined8 *)0x0;
-    puStack_90 = (undefined8 *)0x0;
-    uStack_88 = 0;
-    uStack_80 = 3;
-    auStackX_10[0] = 10;
-    if (*(longlong *)(param_2 + 8) != 0) {
-      FUN_180057980(param_2,&puStack_98,auStackX_10);
+  // 检查配置数据是否有效
+  if (*(int *)(config_data + 0x10) != 0) {
+    result_array = (undefined8 *)0x0;
+    result_capacity = (undefined8 *)0x0;
+    item_data = 0;
+    item_flags = 3;
+    parse_config[0] = 10;  // 解析配置参数
+    // 如果配置数据包含有效内容，则进行解析
+    if (*(longlong *)(config_data + 8) != 0) {
+      parse_config_data(config_data, &result_array, parse_config);  // FUN_180057980
     }
-    uVar9 = (longlong)puStack_90 - (longlong)puStack_98 >> 5;
-    puVar15 = puStack_98;
-    puVar13 = puStack_98;
-    puVar5 = puStack_90;
-    if ((int)uVar9 != 0) {
-      uVar9 = uVar9 & 0xffffffff;
+    item_count = (longlong)result_capacity - (longlong)result_array >> 5;
+    temp_array = result_array;
+    item_array = result_array;
+    item_end = result_capacity;
+    if ((int)item_count != 0) {
+      item_count = item_count & 0xffffffff;
       do {
-        puStack_58 = (undefined8 *)0x0;
-        puStack_50 = (undefined8 *)0x0;
-        uStack_48 = 0;
-        uStack_40 = 3;
-        auStackX_10[0] = 0x40;
-        uStackX_18 = uVar9;
-        if (puVar15[1] != 0) {
-          FUN_180057980(puVar15,&puStack_58,auStackX_10);
+        // 初始化项目处理缓冲区
+        item_array = (undefined8 *)0x0;
+        item_end = (undefined8 *)0x0;
+        item_data = 0;
+        item_flags = 3;
+        parse_config[0] = 0x40;  // 项目处理配置
+        total_items = item_count;
+        // 如果项目有内容，则进行处理
+        if (temp_array[1] != 0) {
+          parse_config_data(temp_array, &item_array, parse_config);  // FUN_180057980
         }
-        puVar6 = puStack_50;
-        puVar5 = puStack_58;
-        puVar13 = puStack_58;
-        if (((longlong)puStack_50 - (longlong)puStack_58 & 0xffffffffffffffe0U) == 0x60) {
-          FUN_180627ae0(&puStack_78,puStack_58);
-          iVar7 = atoi(puVar5[5]);
-          iVar8 = atoi(puVar5[9]);
-          uStackX_20 = FUN_180650c20(&puStack_78);
-          puVar13 = (undefined8 *)param_1[1];
-          if (puVar13 < (undefined8 *)param_1[2]) {
-            *puVar13 = uStackX_20;
-            puVar13[1] = (longlong)iVar7;
-            puVar13[2] = (longlong)iVar8;
-            param_1[1] = param_1[1] + 0x18;
+        item_end = item_end;
+        item_array = item_array;
+        item_array = item_array;
+        // 检查项目数据格式是否正确
+        if (((longlong)item_end - (longlong)item_array & 0xffffffffffffffe0U) == 0x60) {
+          // 解析项目数据
+          parse_ui_config_data(&temp_buffer, item_array);  // FUN_180627ae0
+          parsed_width = atoi(item_array[5]);  // 解析宽度
+          parsed_height = atoi(item_array[9]); // 解析高度
+          parsed_value = create_ui_config_item(&temp_buffer);  // FUN_180650c20
+          item_array = (undefined8 *)config_parser[1];
+          // 检查是否有足够的空间存储配置项
+          if (item_array < (undefined8 *)config_parser[2]) {
+            *item_array = parsed_value;
+            item_array[1] = (longlong)parsed_width;
+            item_array[2] = (longlong)parsed_height;
+            config_parser[1] = config_parser[1] + 0x18;  // 移动到下一个位置
           }
           else {
-            lVar14 = *param_1;
-            lVar12 = ((longlong)puVar13 - lVar14) / 0x18;
-            if (lVar12 == 0) {
-              lVar12 = 1;
-LAB_18065258b:
-              puVar10 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,lVar12 * 0x18,(char)param_1[3]);
-              puVar13 = (undefined8 *)param_1[1];
-              lVar14 = *param_1;
+            // 空间不足，需要扩展数组
+            old_capacity = *config_parser;
+            new_capacity = ((longlong)item_array - old_capacity) / 0x18;
+            if (new_capacity == 0) {
+              new_capacity = 1;
+            expand_array:
+              // 分配新的数组空间
+              new_array = (undefined8 *)allocate_ui_memory(memory_allocator, new_capacity * 0x18, (char)config_parser[3]);  // FUN_18062b420
+              item_array = (undefined8 *)config_parser[1];
+              old_capacity = *config_parser;
             }
             else {
-              lVar12 = lVar12 * 2;
-              if (lVar12 != 0) goto LAB_18065258b;
-              puVar10 = (undefined8 *)0x0;
+              new_capacity = new_capacity * 2;
+              if (new_capacity != 0) goto expand_array;
+              new_array = (undefined8 *)0x0;
             }
-            lVar11 = ((longlong)puVar13 - lVar14) / 0x18;
-            puVar13 = puVar10;
-            if (0 < lVar11) {
+            // 复制现有数据到新数组
+            array_capacity = ((longlong)item_array - old_capacity) / 0x18;
+            item_array = new_array;
+            if (0 < array_capacity) {
               do {
-                puVar1 = (undefined4 *)((longlong)puVar13 + (lVar14 - (longlong)puVar10));
-                uVar2 = puVar1[1];
-                uVar3 = puVar1[2];
-                uVar4 = puVar1[3];
-                *(undefined4 *)puVar13 = *puVar1;
-                *(undefined4 *)((longlong)puVar13 + 4) = uVar2;
-                *(undefined4 *)(puVar13 + 1) = uVar3;
-                *(undefined4 *)((longlong)puVar13 + 0xc) = uVar4;
-                puVar13[2] = *(undefined8 *)
-                              ((longlong)puVar13 + (lVar14 - (longlong)puVar10) + 0x10);
-                lVar11 = lVar11 + -1;
-                puVar13 = puVar13 + 3;
-              } while (0 < lVar11);
+                dimension_data = (undefined4 *)((longlong)item_array + (old_capacity - (longlong)new_array));
+                width_value = dimension_data[1];
+                height_value = dimension_data[2];
+                depth_value = dimension_data[3];
+                *(undefined4 *)item_array = *dimension_data;
+                *(undefined4 *)((longlong)item_array + 4) = width_value;
+                *(undefined4 *)(item_array + 1) = height_value;
+                *(undefined4 *)((longlong)item_array + 0xc) = depth_value;
+                item_array[2] = *(undefined8 *)
+                              ((longlong)item_array + (old_capacity - (longlong)new_array) + 0x10);
+                array_capacity = array_capacity + -1;
+                item_array = item_array + 3;
+              } while (0 < array_capacity);
             }
-            *puVar13 = uStackX_20;
-            puVar13[1] = (longlong)iVar7;
-            puVar13[2] = (longlong)iVar8;
-            if (*param_1 != 0) {
-                    // WARNING: Subroutine does not return
-              FUN_18064e900();
+            // 存储新的配置项
+            *item_array = parsed_value;
+            item_array[1] = (longlong)parsed_width;
+            item_array[2] = (longlong)parsed_height;
+            if (*config_parser != 0) {
+              // 清理旧的数组
+              cleanup_ui_resources();  // FUN_18064e900
             }
-            *param_1 = (longlong)puVar10;
-            param_1[1] = (longlong)(puVar13 + 3);
-            param_1[2] = (longlong)(puVar10 + lVar12 * 3);
-            uVar9 = uStackX_18;
+            *config_parser = (longlong)new_array;
+            config_parser[1] = (longlong)(item_array + 3);
+            config_parser[2] = (longlong)(new_array + new_capacity * 3);
+            item_count = total_items;
           }
-          puStack_78 = &UNK_180a3c3e0;
-          if (lStack_70 != 0) {
-                    // WARNING: Subroutine does not return
-            FUN_18064e900();
+          // 清理临时缓冲区
+          temp_buffer = &ui_cleanup_marker;  // UNK_180a3c3e0
+          if (buffer_handle != 0) {
+            cleanup_ui_resources();  // FUN_18064e900
           }
-          lStack_70 = 0;
-          uStack_60 = 0;
-          puStack_78 = &UNK_18098bcb0;
-          for (puVar13 = puVar5; puVar13 != puVar6; puVar13 = puVar13 + 4) {
-            (**(code **)*puVar13)(puVar13,0);
+          buffer_handle = 0;
+          buffer_flags = 0;
+          temp_buffer = &ui_buffer_marker;  // UNK_18098bcb0
+          // 清理项目数组
+          for (item_array = item_array; item_array != item_end; item_array = item_array + 4) {
+            (**(code **)*item_array)(item_array, 0);
           }
         }
         else {
-          for (; puVar13 != puVar6; puVar13 = puVar13 + 4) {
-            (**(code **)*puVar13)(puVar13,0);
+          // 清理项目数组的备用路径
+          for (; item_array != item_end; item_array = item_array + 4) {
+            (**(code **)*item_array)(item_array, 0);
           }
         }
-        if (puVar5 != (undefined8 *)0x0) {
-                    // WARNING: Subroutine does not return
-          FUN_18064e900(puVar5);
+        // 清理项目数据
+        if (item_array != (undefined8 *)0x0) {
+          cleanup_ui_resources(item_array);  // FUN_18064e900
         }
-        puVar15 = puVar15 + 4;
-        uVar9 = uVar9 - 1;
-      } while (uVar9 != 0);
-      uStackX_18 = 0;
-      puVar15 = puStack_98;
-      puVar13 = puStack_98;
-      puVar5 = puStack_90;
+        temp_array = temp_array + 4;
+        item_count = item_count - 1;
+      } while (item_count != 0);
+      total_items = 0;
+      temp_array = result_array;
+      item_array = result_array;
+      item_end = result_capacity;
     }
-    for (; puVar10 = puStack_90, puVar6 = puStack_98, puVar15 != puStack_90; puVar15 = puVar15 + 4)
+    // 最终清理阶段
+    for (; new_array = result_capacity, item_end = result_array, temp_array != result_capacity; temp_array = temp_array + 4)
     {
-      puStack_98 = puVar13;
-      puStack_90 = puVar5;
-      (**(code **)*puVar15)(puVar15,0);
-      puVar13 = puStack_98;
-      puVar5 = puStack_90;
-      puStack_90 = puVar10;
-      puStack_98 = puVar6;
+      result_array = item_array;
+      result_capacity = item_end;
+      (**(code **)*temp_array)(temp_array, 0);
+      item_array = result_array;
+      item_end = result_capacity;
+      result_capacity = new_array;
+      result_array = item_end;
     }
-    if (puStack_98 != (undefined8 *)0x0) {
-      puStack_98 = puVar13;
-      puStack_90 = puVar5;
-                    // WARNING: Subroutine does not return
-      FUN_18064e900(puVar6);
+    if (result_array != (undefined8 *)0x0) {
+      result_array = item_array;
+      result_capacity = item_end;
+      // 最终资源清理
+      cleanup_ui_resources(item_end);  // FUN_18064e900
     }
   }
   return;
@@ -657,19 +671,24 @@ LAB_18065258b:
 
 
 
-// 函数: void FUN_1806526f0(void)
-void FUN_1806526f0(void)
+/**
+ * UI系统安全初始化函数
+ * 执行UI系统的安全初始化操作
+ * 
+ * 注意：此函数包含安全检查和异常处理机制
+ */
+void ui_security_initializer(void)
 
 {
-  undefined1 auStack_2a8 [144];
-  undefined8 uStack_218;
-  undefined1 auStack_178 [288];
-  ulonglong uStack_58;
+  undefined1 security_buffer [144];
+  undefined8 security_param;
+  undefined1 init_buffer [288];
+  ulonglong security_hash;
   
-  uStack_218 = 0xfffffffffffffffe;
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_2a8;
-                    // WARNING: Subroutine does not return
-  memset(auStack_178,0,0x118);
+  security_param = 0xfffffffffffffffe;  // 安全参数
+  security_hash = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  // 初始化UI系统安全缓冲区
+  memset(init_buffer, 0, 0x118);  // WARNING: Subroutine does not return
 }
 
 
@@ -678,39 +697,50 @@ void FUN_1806526f0(void)
 
 
 
-// 函数: void FUN_180652b60(undefined8 param_1,longlong *param_2)
-void FUN_180652b60(undefined8 param_1,longlong *param_2)
+/**
+ * UI系统线程安全数据处理器
+ * 在多线程环境中安全地处理UI系统数据
+ * 
+ * @param process_flag 处理标志
+ * @param data_array 数据数组指针
+ */
+void ui_threadsafe_data_processor(undefined8 process_flag, longlong *data_array)
 
 {
-  int iVar1;
-  longlong lVar2;
-  undefined1 auStack_de8 [184];
-  undefined1 auStack_d30 [32];
-  undefined8 uStack_d10;
-  undefined8 uStack_d08;
-  undefined1 auStack_848 [2048];
-  ulonglong uStack_48;
+  int mutex_result;
+  longlong data_count;
+  undefined1 security_buffer [184];
+  undefined1 temp_buffer [32];
+  undefined8 security_param1;
+  undefined8 security_param2;
+  undefined1 processing_buffer [2048];
+  ulonglong security_hash;
   
-  uStack_d10 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_de8;
-  FUN_180057110();
-  uStack_d08 = 0x180c96740;
-  iVar1 = _Mtx_lock(0x180c96740);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  security_param1 = 0xfffffffffffffffe;  // 安全参数1
+  security_hash = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  initialize_ui_processing();  // FUN_180057110
+  security_param2 = 0x180c96740;  // 互斥锁地址
+  // 获取线程互斥锁
+  mutex_result = _Mtx_lock(0x180c96740);
+  if (mutex_result != 0) {
+    // 互斥锁获取失败，抛出异常
+    __Throw_C_error_std__YAXH_Z(mutex_result);
   }
-  lVar2 = (param_2[1] - *param_2) / 6 + (param_2[1] - *param_2 >> 0x3f);
-  if ((int)(lVar2 >> 2) != (int)(lVar2 >> 0x3f)) {
-    FUN_180629090(auStack_d30);
-                    // WARNING: Subroutine does not return
-    memset(auStack_848,0,0x800);
+  // 计算需要处理的数据数量
+  data_count = (data_array[1] - *data_array) / 6 + (data_array[1] - *data_array >> 0x3f);
+  if ((int)(data_count >> 2) != (int)(data_count >> 0x3f)) {
+    prepare_ui_data_processing(temp_buffer);  // FUN_180629090
+    // 初始化处理缓冲区
+    memset(processing_buffer, 0, 0x800);  // WARNING: Subroutine does not return
   }
-  iVar1 = _Mtx_unlock(0x180c96740);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  // 释放线程互斥锁
+  mutex_result = _Mtx_unlock(0x180c96740);
+  if (mutex_result != 0) {
+    // 互斥锁释放失败，抛出异常
+    __Throw_C_error_std__YAXH_Z(mutex_result);
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_de8);
+  // 执行安全的数据处理操作
+  secure_ui_data_processing(security_hash ^ (ulonglong)security_buffer);  // FUN_1808fc050
 }
 
 
