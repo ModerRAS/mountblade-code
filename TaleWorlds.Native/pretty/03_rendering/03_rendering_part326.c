@@ -1,724 +1,1382 @@
-/**
- * TaleWorlds.Native 渲染系统 - 高级参数处理和状态管理模块
- * 
- * 本文件包含渲染系统的高级参数处理、状态管理和优化功能。
- * 这些函数负责处理渲染参数的设置、状态的查询和管理、性能优化等关键任务。
- * 
- * 主要功能模块：
- * - 渲染参数设置和状态管理
- * - 渲染配置选项处理
- * - 性能参数查询和优化
- * - 高级状态切换和控制
- * - 渲染模式配置
- * 
- * 技术特点：
- * - 支持多种渲染参数的动态设置
- * - 提供高效的状态查询机制
- * - 实现性能优化和配置管理
- * - 包含错误检查和安全验证
- * - 优化性能和内存使用效率
- * 
- * @file 03_rendering_part326.c
- * @version 1.0
- * @date 2024
- */
+#include "TaleWorlds.Native.Split.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdint.h>
-#include <stdbool.h>
+// 03_rendering_part326.c - 16 个函数
 
-// 渲染系统常量定义
-#define RENDERING_SYSTEM_MAX_CONFIG_OPTIONS 0x100
-#define RENDERING_SYSTEM_PARAM_TABLE_SIZE 0x43b168
-#define RENDERING_SYSTEM_STRING_BUFFER_SIZE 0x40
-#define RENDERING_SYSTEM_OPTIMIZATION_THRESHOLD 0x3f
-#define RENDERING_SYSTEM_MAX_RENDER_MODES 0x30
+// 函数: void FUN_180439fb5(void)
+void FUN_180439fb5(void)
 
-// 渲染系统状态码枚举
-typedef enum {
-    RENDERING_SYSTEM_SUCCESS = 0,
-    RENDERING_SYSTEM_ERROR_INVALID_PARAM = -1,
-    RENDERING_SYSTEM_ERROR_NOT_SUPPORTED = -2,
-    RENDERING_SYSTEM_ERROR_OUT_OF_RANGE = -3,
-    RENDERING_SYSTEM_ERROR_NOT_INITIALIZED = -4
-} RenderingSystemStatusCode;
-
-// 渲染系统参数类型枚举
-typedef enum {
-    RENDERING_PARAM_TYPE_INTEGER = 0,
-    RENDERING_PARAM_TYPE_FLOAT = 1,
-    RENDERING_PARAM_TYPE_BOOLEAN = 2,
-    RENDERING_PARAM_TYPE_STRING = 3,
-    RENDERING_PARAM_TYPE_ENUM = 4,
-    RENDERING_PARAM_TYPE_CUSTOM = 5
-} RenderingSystemParameterType;
-
-// 渲染系统配置选项结构体
-typedef struct {
-    uint32_t option_id;
-    uint32_t value;
-    uint32_t flags;
-    void* callback_data;
-} RenderingSystemConfigOption;
-
-// 渲染系统状态查询结构体
-typedef struct {
-    uint32_t state_id;
-    float float_value;
-    int int_value;
-    bool is_valid;
-    bool is_enabled;
-} RenderingSystemStateQuery;
-
-// 渲染系统参数设置上下文结构体
-typedef struct {
-    void* render_context;
-    uint32_t param_offset;
-    uint32_t validation_offset;
-    uint32_t default_offset;
-    void* validator_function;
-    void* string_data;
-} RenderingSystemParameterContext;
-
-/**
- * 渲染系统参数设置器（类型1）
- * 
- * 设置渲染系统的高级参数，支持参数验证和默认值处理。
- * 处理参数验证、回调函数调用和状态更新。
- * 
- * @param parameter_value 参数值
- * @return 设置操作的状态码
- * 
- * 设置流程：
- * 1. 获取渲染系统上下文
- * 2. 验证参数有效性
- * 3. 检查回调函数
- * 4. 执行参数验证
- * 5. 更新参数值
- * 6. 处理字符串数据
- * 7. 返回设置结果
- */
-RenderingSystemStatusCode rendering_system_parameter_setter_type1(int parameter_value) {
-    // 获取渲染系统上下文
-    void* render_context = (void*)0x180c86920;
-    
-    // 参数验证和设置（简化实现）
-    if (parameter_value < 0 || parameter_value > 1000) {
-        return RENDERING_SYSTEM_ERROR_OUT_OF_RANGE;
+{
+  longlong lVar1;
+  char cVar2;
+  undefined *puVar3;
+  float unaff_XMM6_Da;
+  undefined8 uStack0000000000000030;
+  int iStack0000000000000048;
+  
+  lVar1 = _DAT_180c86920;
+  uStack0000000000000030 = _iStack0000000000000048;
+  iStack0000000000000048 = (int)unaff_XMM6_Da;
+  if ((*(longlong *)(_DAT_180c86920 + 0x4c0) != 0) &&
+     (cVar2 = (**(code **)(_DAT_180c86920 + 0x4c8))(&stack0x00000048), cVar2 == '\0')) {
+    if (DAT_180c82860 == '\0') {
+      puVar3 = &DAT_18098bc73;
+      if (*(undefined **)(lVar1 + 0x470) != (undefined *)0x0) {
+        puVar3 = *(undefined **)(lVar1 + 0x470);
+      }
+      FUN_180626f80(&UNK_18098bc00,puVar3);
     }
-    
-    // 设置参数值
-    *(int*)((uint8_t*)render_context + 0x460) = parameter_value;
-    
-    return RENDERING_SYSTEM_SUCCESS;
-}
-
-/**
- * 渲染系统参数设置器（类型2）
- * 
- * 设置渲染系统的第二组参数，支持不同的参数范围和验证。
- * 
- * @param parameter_value 参数值
- * @return 设置操作的状态码
- * 
- * 设置流程：
- * 1. 获取渲染系统上下文
- * 2. 验证参数范围
- * 3. 执行参数验证
- * 4. 更新参数值
- * 5. 返回设置结果
- */
-RenderingSystemStatusCode rendering_system_parameter_setter_type2(int parameter_value) {
-    // 获取渲染系统上下文
-    void* render_context = (void*)0x180c86920;
-    
-    // 参数验证和设置（简化实现）
-    if (parameter_value < 0 || parameter_value > 2000) {
-        return RENDERING_SYSTEM_ERROR_OUT_OF_RANGE;
-    }
-    
-    // 设置参数值
-    *(int*)((uint8_t*)render_context + 0x2140) = parameter_value;
-    
-    return RENDERING_SYSTEM_SUCCESS;
-}
-
-/**
- * 渲染系统简单调用器
- * 
- * 执行简单的渲染系统调用，传递参数到核心函数。
- * 
- * @param parameter_value 参数值
- * @return 调用操作的状态码
- */
-RenderingSystemStatusCode rendering_system_simple_caller(int parameter_value) {
-    // 调用核心渲染函数（简化实现）
-    return RENDERING_SYSTEM_SUCCESS;
-}
-
-/**
- * 渲染系统空操作函数
- * 
- * 空操作函数，用于占位和初始化。
- * 
- * @return 操作状态码
- */
-RenderingSystemStatusCode rendering_system_empty_operation(void) {
-    // 执行空操作
-    return RENDERING_SYSTEM_SUCCESS;
-}
-
-/**
- * 渲染系统配置选项处理器
- * 
- * 处理渲染系统的配置选项，支持多种配置类型和验证。
- * 
- * @param option_id 配置选项ID
- * @param option_value 配置选项值
- * @return 处理操作的状态码
- * 
- * 处理流程：
- * 1. 验证配置选项ID
- * 2. 检查配置选项值
- * 3. 执行相应的配置操作
- * 4. 返回处理结果
- */
-RenderingSystemStatusCode rendering_system_config_option_processor(uint32_t option_id, int option_value) {
-    // 根据选项ID处理不同的配置选项
-    switch(option_id) {
-        case 0x15: // 渲染质量设置
-        case 0x16: // 纹理质量设置
-        case 0x1b: // 阴影质量设置
-            return RENDERING_SYSTEM_SUCCESS;
-            
-        case 0x1e: // 抗锯齿设置
-        case 0x1f: // 各向异性过滤设置
-        case 0x20: // 环境光遮蔽设置
-        case 0x21: // 屏幕空间反射设置
-            if (option_value >= 0 && option_value <= 5) {
-                return RENDERING_SYSTEM_SUCCESS;
-            }
-            return RENDERING_SYSTEM_ERROR_OUT_OF_RANGE;
-            
-        case 0x22: // 动态模糊设置
-            if (option_value == 0 || option_value == 1 || option_value == 2 || 
-                option_value == 3 || option_value == 5) {
-                return RENDERING_SYSTEM_SUCCESS;
-            }
-            return RENDERING_SYSTEM_ERROR_OUT_OF_RANGE;
-            
-        case 0x26: // 重置渲染状态
-            rendering_system_reset_render_state();
-            return RENDERING_SYSTEM_SUCCESS;
-            
-        case 0x27: // 优化渲染管线
-            rendering_system_optimize_render_pipeline();
-            return RENDERING_SYSTEM_SUCCESS;
-            
-        case 0x28: // 清理渲染资源
-            rendering_system_cleanup_render_resources();
-            return RENDERING_SYSTEM_SUCCESS;
-            
-        case 0x2a: // 更新渲染队列
-            rendering_system_update_render_queue();
-            return RENDERING_SYSTEM_SUCCESS;
-            
-        case 0x2d: // 执行渲染批处理
-            rendering_system_execute_render_batch();
-            return RENDERING_SYSTEM_SUCCESS;
-            
-        case 0x2f: // 重置渲染参数
-            rendering_system_reset_render_parameters();
-            return RENDERING_SYSTEM_SUCCESS;
-            
-        case 0x32: // 更新渲染统计
-            rendering_system_update_render_statistics();
-            return RENDERING_SYSTEM_SUCCESS;
-            
-        default:
-            return RENDERING_SYSTEM_ERROR_INVALID_PARAM;
-    }
-}
-
-/**
- * 渲染系统状态查询器
- * 
- * 查询渲染系统的各种状态参数，支持多种状态类型。
- * 
- * @param state_id 状态ID
- * @return 状态值（浮点数）
- * 
- * 查询流程：
- * 1. 验证状态ID
- * 2. 获取渲染系统上下文
- * 3. 查询相应的状态值
- * 4. 返回查询结果
- */
-float rendering_system_state_query(uint32_t state_id) {
-    // 获取渲染系统上下文
-    void* render_context = (void*)0x180c86920;
-    
-    // 检查系统状态
-    bool system_enabled = (*(longlong*)((uint8_t*)render_context + 0x7ab8) != 0) && 
-                        (*(int*)((uint8_t*)render_context + 0x540) >= 1);
-    
-    float result = -1.0f;
-    
-    // 根据状态ID查询不同的状态
-    switch(state_id) {
-        case 0:  result = *(float*)((uint8_t*)render_context + 0x1340); break; // 渲染距离
-        case 1:  result = *(float*)((uint8_t*)render_context + 0x1500); break; // 纹理细节
-        case 2:  result = *(float*)((uint8_t*)render_context + 0x13b0); break; // 阴影距离
-        case 3:  result = *(float*)((uint8_t*)render_context + 0x1420); break; // 粒子密度
-        case 4:  result = *(float*)((uint8_t*)render_context + 0x1490); break; // 后处理质量
-        case 5:  result = (float)rendering_system_get_performance_counter(); break;
-        case 6:  result = (float)*(int*)((uint8_t*)render_context + 0x12d0); break;
-        case 7:  result = (float)*(int*)((uint8_t*)render_context + 0x15e0); break;
-        case 8:  result = (float)*(int*)((uint8_t*)render_context + 0x1650); break;
-        case 9:  result = (float)*(int*)((uint8_t*)render_context + 0x2370); break;
-        case 10: result = (float)*(int*)((uint8_t*)render_context + 0x23e0); break;
-        case 0xb: result = *(float*)((uint8_t*)render_context + 0x16c0); break; // 亮度
-        case 0xc: result = (float)*(int*)((uint8_t*)render_context + 0x1730); break;
-        case 0xd: result = *(float*)((uint8_t*)render_context + 0x18f0); break; // 对比度
-        case 0xe: result = *(float*)((uint8_t*)render_context + 0x17a0); break; // 饱和度
-        case 0x19: 
-            result = system_enabled ? 100.0f : *(float*)((uint8_t*)render_context + 0x20d0);
-            break;
-        case 0x3e: result = rendering_system_check_feature_enabled(0xee0, 0xcb0) ? 1.0f : 0.0f; break;
-        case 0x3f: result = rendering_system_check_feature_enabled(0xf50, 0xd20) ? 1.0f : 0.0f; break;
-        case 0x40: result = rendering_system_check_feature_enabled(0xfc0, 0xd90) ? 1.0f : 0.0f; break;
-        case 0x41: result = rendering_system_check_feature_enabled(0x10a0, 0xe70) ? 1.0f : 0.0f; break;
-        case 0x43: result = *(float*)((uint8_t*)render_context + 0x1180); break; // FOV
-        case 0x44: result = *(float*)((uint8_t*)render_context + 0x11f0); break; // 曝光
-        default: result = -1.0f; break;
-    }
-    
-    return result;
-}
-
-/**
- * 渲染系统间接跳转处理器
- * 
- * 处理渲染系统的间接跳转操作，支持动态函数调用。
- * 
- * @param param1 参数1
- * @param param2 参数2
- * @param param3 参数3
- */
-void rendering_system_indirect_jump_handler(uint32_t param1, uint32_t param2, longlong param3) {
-    // 执行间接跳转操作（简化实现）
-    // 注意：原始代码中有一个无法恢复的跳转表
-}
-
-/**
- * 渲染系统返回函数
- * 
- * 简单的返回函数，用于控制流程。
- */
-void rendering_system_return_function(void) {
+    *(undefined4 *)(lVar1 + 0x460) = *(undefined4 *)(lVar1 + 0x4a8);
     return;
+  }
+  *(int *)(lVar1 + 0x460) = iStack0000000000000048;
+  return;
 }
 
-/**
- * 渲染系统配置执行器
- * 
- * 执行渲染系统的配置操作，支持多种配置类型。
- * 
- * @param config_id 配置ID
- * @return 执行操作的状态码
- */
-RenderingSystemStatusCode rendering_system_config_executor(uint32_t config_id) {
-    // 检查系统状态
-    bool system_enabled = (*(longlong*)((uint8_t*)0x180c86890 + 0x7ab8) != 0) && 
-                        (*(int*)((uint8_t*)0x180c86920 + 0x540) >= 1);
-    
-    // 根据配置ID执行相应的配置操作
-    switch(config_id) {
-        case 0x5:  // 获取性能计数器
-            rendering_system_get_performance_counter();
-            return RENDERING_SYSTEM_SUCCESS;
-            
-        case 0x10: // 版本相关配置
-        case 0x11: // 版本相关配置
-        case 0x12: // 版本相关配置
-            if (rendering_system_check_version_compatibility()) {
-                return RENDERING_SYSTEM_SUCCESS;
-            }
-            return RENDERING_SYSTEM_ERROR_NOT_SUPPORTED;
-            
-        case 0x19: // 系统启用状态
-            if (system_enabled) {
-                return RENDERING_SYSTEM_SUCCESS;
-            }
-            return RENDERING_SYSTEM_ERROR_NOT_INITIALIZED;
-            
-        case 0x1d: // 执行系统诊断
-            rendering_system_execute_diagnostics();
-            return RENDERING_SYSTEM_SUCCESS;
-            
-        case 0x3e: // 检查功能支持
-            if (rendering_system_check_feature_support(0xee0, 0xcb0)) {
-                return RENDERING_SYSTEM_SUCCESS;
-            }
-            return RENDERING_SYSTEM_ERROR_NOT_SUPPORTED;
-            
-        case 0x3f: // 检查功能支持
-            if (rendering_system_check_feature_support(0xf50, 0xd20)) {
-                return RENDERING_SYSTEM_SUCCESS;
-            }
-            return RENDERING_SYSTEM_ERROR_NOT_SUPPORTED;
-            
-        case 0x40: // 检查功能支持
-            if (rendering_system_check_feature_support(0xfc0, 0xd90)) {
-                return RENDERING_SYSTEM_SUCCESS;
-            }
-            return RENDERING_SYSTEM_ERROR_NOT_SUPPORTED;
-            
-        case 0x41: // 检查功能支持
-            if (rendering_system_check_feature_support(0x10a0, 0xe70)) {
-                return RENDERING_SYSTEM_SUCCESS;
-            }
-            return RENDERING_SYSTEM_ERROR_NOT_SUPPORTED;
-            
-        default:
-            return RENDERING_SYSTEM_SUCCESS;
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180439fd4(void)
+void FUN_180439fd4(void)
+
+{
+  longlong lVar1;
+  char cVar2;
+  undefined *puVar3;
+  float unaff_XMM6_Da;
+  undefined8 uStack0000000000000030;
+  int iStack0000000000000048;
+  
+  lVar1 = _DAT_180c86920;
+  uStack0000000000000030 = _iStack0000000000000048;
+  iStack0000000000000048 = (int)unaff_XMM6_Da;
+  if ((*(longlong *)(_DAT_180c86920 + 0x21a0) != 0) &&
+     (cVar2 = (**(code **)(_DAT_180c86920 + 0x21a8))(&stack0x00000048), cVar2 == '\0')) {
+    if (DAT_180c82860 == '\0') {
+      puVar3 = &DAT_18098bc73;
+      if (*(undefined **)(lVar1 + 0x2150) != (undefined *)0x0) {
+        puVar3 = *(undefined **)(lVar1 + 0x2150);
+      }
+      FUN_180626f80(&UNK_18098bc00,puVar3);
     }
+    *(undefined4 *)(lVar1 + 0x2140) = *(undefined4 *)(lVar1 + 0x2188);
+    return;
+  }
+  *(int *)(lVar1 + 0x2140) = iStack0000000000000048;
+  return;
 }
 
-/**
- * 渲染系统批量配置处理器
- * 
- * 批量处理多个渲染系统配置，提供高效的批量处理能力。
- * 
- * @param param1 配置标志1
- * @param param2 配置标志2
- * @param param3 配置标志3
- * @param param4 配置标志4
- * @param param5 配置标志5
- * @param param6 配置标志6
- * @param param7 配置标志7
- * @param param8 配置标志8
- * @param param9 配置标志9
- * @param param10 配置标志10
- */
-void rendering_system_batch_config_processor(int param1, int param2, int param3, int param4, int param5, int param6,
-                                        uint32_t param7, uint32_t param8, int param9, int param10) {
-    // 执行批量配置操作
-    if (param3 != 0) {
-        rendering_system_process_config_param1();
-    }
-    if (param4 != 0) {
-        rendering_system_process_config_param2();
-    }
-    if (param5 != 0) {
-        rendering_system_process_config_param3();
-    }
-    if (param6 != 0) {
-        rendering_system_process_config_param4();
-    }
-    if (param2 != 0) {
-        rendering_system_process_config_param5();
-    }
-    if (param9 != 0) {
-        rendering_system_process_config_param6();
-    }
-    if (param10 != 0) {
-        rendering_system_process_config_param7();
-    }
-    
-    // 执行核心处理
-    rendering_system_execute_core_processing();
-    
-    if (param1 != 0) {
-        rendering_system_process_config_param8();
-    }
-    
-    // 执行系统优化
-    rendering_system_execute_system_optimization();
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_180439ff3(void)
+void FUN_180439ff3(void)
+
+{
+  float unaff_XMM6_Da;
+  
+  FUN_18010cdf0(_DAT_180c86920,(int)unaff_XMM6_Da);
+  return;
 }
 
-/**
- * 渲染系统字符串配置处理器
- * 
- * 处理渲染系统的字符串配置，支持动态字符串操作。
- * 
- * @param config_id 配置ID
- * @return 处理操作的状态码
- */
-RenderingSystemStatusCode rendering_system_string_config_processor(int config_id) {
-    // 获取配置上下文
-    longlong config_context = (longlong)config_id * 0x70 + 
-                             *(longlong*)(*(longlong*)((uint8_t*)0x180c86870 + 8) + 0x18);
-    
-    // 处理字符串配置
-    char config_string[RENDERING_SYSTEM_STRING_BUFFER_SIZE];
-    uint32_t string_length = *(uint32_t*)(config_context + 0x10);
-    
-    // 获取默认字符串
-    void* string_ptr = *(void**)(config_context + 8);
-    void* default_string = &rendering_system_default_string_data;
-    
-    if (string_ptr != NULL) {
-        default_string = string_ptr;
-    }
-    
-    // 复制字符串
-    strncpy_s(config_string, RENDERING_SYSTEM_STRING_BUFFER_SIZE, default_string);
-    
-    // 添加格式化信息
-    if (string_length + 2 < RENDERING_SYSTEM_STRING_BUFFER_SIZE - 1) {
-        *(uint16_t*)(config_string + string_length) = 0x2820; // "( "
-        string_length += 2;
-    }
-    
-    // 获取配置名称
-    char config_name[16];
-    rendering_system_get_config_name(config_name, config_id);
-    
-    // 计算名称长度
-    size_t name_length = strlen(config_name);
-    if ((name_length > 0) && (string_length + name_length < RENDERING_SYSTEM_STRING_BUFFER_SIZE - 1)) {
-        memcpy(config_string + string_length, config_name, name_length + 1);
-        string_length += name_length;
-    }
-    
-    // 添加结束标记
-    if (string_length + 1 < RENDERING_SYSTEM_STRING_BUFFER_SIZE - 1) {
-        *(uint16_t*)(config_string + string_length) = 0x29; // ")"
-        string_length += 1;
-    }
-    
-    // 执行配置更新
-    rendering_system_execute_config_update(config_string);
-    
-    return RENDERING_SYSTEM_SUCCESS;
+
+
+
+
+// 函数: void FUN_18043a012(void)
+void FUN_18043a012(void)
+
+{
+  return;
 }
 
-/**
- * 渲染系统字符串复制器
- * 
- * 复制渲染系统的字符串数据，支持安全复制操作。
- * 
- * @param dest_context 目标上下文
- * @param string_id 字符串ID
- */
-void rendering_system_string_copier(longlong dest_context, uint32_t string_id) {
-    // 获取字符串数据
-    char string_data[16];
-    rendering_system_get_string_data(string_data, &rendering_system_string_reference_data, string_id);
-    
-    // 计算字符串长度
-    size_t length = strlen(string_data);
-    
-    // 安全复制字符串
-    if ((length > 0) && (*(uint32_t*)(dest_context + 0x10) + length < RENDERING_SYSTEM_STRING_BUFFER_SIZE - 1)) {
-        memcpy((uint8_t*)*(uint32_t*)(dest_context + 0x10) + *(longlong*)(dest_context + 8), 
-               string_data, length + 1);
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18043a140(undefined4 param_1,int param_2)
+void FUN_18043a140(undefined4 param_1,int param_2)
+
+{
+  switch(param_1) {
+  case 0x15:
+    return;
+  case 0x16:
+    return;
+  case 0x1b:
+    return;
+  case 0x1e:
+    if ((param_2 != 0) && (param_2 != 1)) {
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
     }
-}
-
-/**
- * 渲染系统字符串追加器
- * 
- * 追加字符串到渲染系统缓冲区，支持动态扩展。
- * 
- * @param dest_ptr 目标指针
- * @param append_length 追加长度
- * @param source_ptr 源指针
- */
-void rendering_system_string_appender(uint32_t dest_ptr, uint32_t append_length, uint32_t source_ptr) {
-    // 检查缓冲区容量
-    if (append_length < RENDERING_SYSTEM_STRING_BUFFER_SIZE) {
-        memcpy((uint8_t*)dest_ptr + *(longlong*)(source_ptr + 8), 
-               (uint8_t*)source_ptr, append_length + 1);
+    break;
+  case 0x1f:
+    if ((param_2 != 0) && (param_2 != 1)) {
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
     }
-}
-
-/**
- * 渲染系统清理函数
- * 
- * 清理渲染系统的资源和状态。
- */
-void rendering_system_cleanup_function(void) {
-    // 执行清理操作
-}
-
-/**
- * 渲染系统参数设置器（类型3）
- * 
- * 设置渲染系统的第三组参数，支持高级参数验证。
- * 
- * @param param1 参数1
- * @param param2 参数2
- * @return 设置操作的状态码
- */
-RenderingSystemStatusCode rendering_system_parameter_setter_type3(uint32_t param1, uint32_t param2) {
-    // 获取渲染系统上下文
-    void* render_context = (void*)0x180c86920;
-    
-    // 参数验证和设置（简化实现）
-    if ((*(longlong*)((uint8_t*)render_context + 0x1800) != 0) &&
-        rendering_system_validate_parameter(param2)) {
-        
-        // 设置参数值
-        *(uint32_t*)((uint8_t*)render_context + 0x17a0) = 
-            *(uint32_t*)((uint8_t*)render_context + 0x17e8);
-        return RENDERING_SYSTEM_SUCCESS;
+    break;
+  case 0x20:
+    if (param_2 != 0) {
+      if (param_2 == 1) {
+        return;
+      }
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
     }
-    
-    *(uint32_t*)((uint8_t*)render_context + 0x17a0) = param2;
-    return RENDERING_SYSTEM_SUCCESS;
-}
-
-/**
- * 渲染系统参数设置器（类型4）
- * 
- * 设置渲染系统的第四组参数，支持不同的验证机制。
- * 
- * @param param1 参数1
- * @param param2 参数2
- * @return 设置操作的状态码
- */
-RenderingSystemStatusCode rendering_system_parameter_setter_type4(uint32_t param1, uint32_t param2) {
-    // 获取渲染系统上下文
-    void* render_context = (void*)0x180c86920;
-    
-    // 参数验证和设置（简化实现）
-    if ((*(longlong*)((uint8_t*)render_context + 0x1170) != 0) &&
-        rendering_system_validate_parameter(param2)) {
-        
-        // 设置参数值
-        *(uint32_t*)((uint8_t*)render_context + 0x1110) = 
-            *(uint32_t*)((uint8_t*)render_context + 0x1158);
-        return RENDERING_SYSTEM_SUCCESS;
+    break;
+  case 0x21:
+    if ((param_2 != 0) && (param_2 != 1)) {
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
     }
-    
-    *(uint32_t*)((uint8_t*)render_context + 0x1110) = param2;
-    return RENDERING_SYSTEM_SUCCESS;
+    break;
+  case 0x22:
+    if ((param_2 == 0) || (param_2 == 1)) {
+      return;
+    }
+    if (((param_2 != 2) && (param_2 != 3)) && (param_2 == 5)) {
+      return;
+    }
+    return;
+  case 0x23:
+    if (param_2 != 0) {
+      if (param_2 == 1) {
+        return;
+      }
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
+    }
+    break;
+  case 0x24:
+    if ((param_2 != 0) && (param_2 != 1)) {
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 != 3) {
+        if (param_2 != 5) {
+          return;
+        }
+        return;
+      }
+      return;
+    }
+    break;
+  case 0x25:
+    if ((param_2 != 0) && (param_2 != 1)) {
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 != 3) {
+        if (param_2 != 5) {
+          return;
+        }
+        return;
+      }
+      return;
+    }
+    break;
+  case 0x26:
+    func_0x00018010e1f0(_DAT_180c86920);
+    return;
+  case 0x27:
+    func_0x00018010d370(_DAT_180c86920);
+    return;
+  case 0x28:
+    func_0x00018010d430(_DAT_180c86920);
+    return;
+  case 0x29:
+    if ((param_2 != 0) && (param_2 != 1)) {
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
+    }
+    break;
+  case 0x2a:
+    func_0x00018010e130(_DAT_180c86920);
+    return;
+  case 0x2b:
+    if (((param_2 != 0) && (param_2 != 1)) && (param_2 != 2)) {
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
+    }
+    break;
+  case 0x2c:
+    if ((param_2 != 0) && (param_2 != 1)) {
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
+    }
+    break;
+  case 0x2d:
+    func_0x00018010deb0(_DAT_180c86920);
+    return;
+  case 0x2e:
+    if (param_2 != 0) {
+      if (param_2 == 1) {
+        return;
+      }
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
+    }
+    break;
+  case 0x2f:
+    func_0x00018010ddf0(_DAT_180c86920);
+    return;
+  case 0x30:
+    if (((param_2 != 0) && (param_2 != 1)) && ((param_2 != 2 && ((param_2 != 3 && (param_2 == 5)))))
+       ) {
+      return;
+    }
+    break;
+  case 0x31:
+    if (param_2 != 0) {
+      if (param_2 == 1) {
+        return;
+      }
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
+    }
+    break;
+  case 0x32:
+    func_0x00018010df70(_DAT_180c86920);
+    return;
+  case 0x33:
+    if ((param_2 != 0) && (param_2 != 1)) {
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
+    }
+    break;
+  case 0x34:
+    if (((param_2 != 0) && (param_2 != 1)) && (param_2 != 2)) {
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
+    }
+    break;
+  case 0x35:
+    if ((param_2 != 0) && (param_2 != 1)) {
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
+    }
+    break;
+  case 0x36:
+    if ((param_2 != 0) && (param_2 != 1)) {
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
+    }
+    break;
+  case 0x37:
+    if ((param_2 != 0) && (param_2 != 1)) {
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
+    }
+    break;
+  case 0x38:
+    if ((param_2 != 0) && (param_2 != 1)) {
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
+    }
+    break;
+  case 0x39:
+    if (((param_2 != 0) && (param_2 != 1)) && (param_2 != 2)) {
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
+    }
+    break;
+  case 0x3a:
+    if (param_2 != 0) {
+      if (param_2 == 1) {
+        return;
+      }
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
+    }
+    break;
+  case 0x3b:
+    if ((param_2 != 0) && (param_2 != 1)) {
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
+    }
+    break;
+  case 0x3c:
+    if ((param_2 != 0) && (param_2 != 1)) {
+      if (param_2 == 2) {
+        return;
+      }
+      if (param_2 == 3) {
+        return;
+      }
+      if (param_2 != 5) {
+        return;
+      }
+      return;
+    }
+    break;
+  case 0x3e:
+    if (param_2 == 0) {
+      return;
+    }
+    if (param_2 == 1) {
+      return;
+    }
+    if (((param_2 != 2) && (param_2 != 3)) &&
+       ((param_2 == 5 && (*(int *)(_DAT_180c86920 + 0xee0) == 0)))) {
+      return;
+    }
+    if (*(int *)(_DAT_180c8a9c8 + 0xcb0) == 0) {
+      return;
+    }
+    return;
+  case 0x3f:
+    if (param_2 == 0) {
+      return;
+    }
+    if (param_2 == 1) {
+      return;
+    }
+    if ((((param_2 != 2) && (param_2 != 3)) && (param_2 == 5)) &&
+       (*(int *)(_DAT_180c86920 + 0xf50) == 0)) {
+      return;
+    }
+    if (*(int *)(_DAT_180c8a9c8 + 0xd20) == 0) {
+      return;
+    }
+    return;
+  case 0x40:
+    if (param_2 == 0) {
+      return;
+    }
+    if (param_2 == 1) {
+      return;
+    }
+    if (((param_2 != 2) && (param_2 != 3)) &&
+       ((param_2 == 5 && (*(int *)(_DAT_180c86920 + 0xfc0) == 0)))) {
+      return;
+    }
+    if (*(int *)(_DAT_180c8a9c8 + 0xd90) == 0) {
+      return;
+    }
+    return;
+  case 0x41:
+    if (param_2 == 0) {
+      return;
+    }
+    if (param_2 == 1) {
+      return;
+    }
+    if (param_2 == 2) {
+      return;
+    }
+    if (param_2 == 3) {
+      return;
+    }
+    if (param_2 != 5) {
+      return;
+    }
+    if (*(int *)(_DAT_180c86920 + 0x10a0) == 0) {
+      return;
+    }
+    if (*(int *)(_DAT_180c8a9c8 + 0xe70) == 0) {
+      return;
+    }
+    return;
+  case 0x42:
+    if ((((((param_2 == 0) || (param_2 == 1)) || (param_2 == 2)) ||
+         ((param_2 == 3 || (param_2 != 5)))) || (*(int *)(_DAT_180c86920 + 0x1030) != 0)) &&
+       (*(int *)(_DAT_180c8a9c8 + 0xe00) != 0)) {
+      return;
+    }
+    return;
+  }
+  return;
 }
 
-/**
- * 渲染系统消息处理器
- * 
- * 处理渲染系统的消息和事件，支持多种消息类型。
- * 
- * @param message_type 消息类型
- * @param param1 参数1
- * @param param2 参数2
- * @param param3 参数3
- * @param param4 参数4
- */
-void rendering_system_message_processor(uint32_t message_type, uint32_t param1, uint32_t param2, 
-                                    uint32_t param3, uint32_t param4) {
-    // 执行消息处理操作
-    rendering_system_execute_message_handler(message_type, param1, param2, param3, param4);
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+float FUN_18043ab40(undefined4 param_1)
+
+{
+  bool bVar1;
+  longlong lVar2;
+  int iVar3;
+  int iVar4;
+  int iVar5;
+  undefined8 uVar6;
+  float fVar7;
+  float fVar8;
+  float fVar9;
+  undefined8 uStackX_10;
+  
+  lVar2 = _DAT_180c86920;
+  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(_DAT_180c86920 + 0x540) < 1)) {
+    bVar1 = false;
+  }
+  else {
+    bVar1 = true;
+  }
+  fVar7 = -1.0;
+  fVar8 = -1.0;
+  switch(param_1) {
+  case 0:
+    fVar7 = *(float *)(_DAT_180c86920 + 0x1340);
+    goto code_r0x00018043b131;
+  case 1:
+    fVar7 = *(float *)(_DAT_180c86920 + 0x1500);
+    goto code_r0x00018043b131;
+  case 2:
+    fVar7 = *(float *)(_DAT_180c86920 + 0x13b0);
+    goto code_r0x00018043b131;
+  case 3:
+    fVar7 = *(float *)(_DAT_180c86920 + 0x1420);
+    goto code_r0x00018043b131;
+  case 4:
+    fVar7 = *(float *)(_DAT_180c86920 + 0x1490);
+    goto code_r0x00018043b131;
+  case 5:
+    iVar3 = (**(code **)(*_DAT_180c86878 + 0x98))();
+    break;
+  case 6:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x12d0);
+    break;
+  case 7:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x15e0);
+    break;
+  case 8:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x1650);
+    break;
+  case 9:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x2370);
+    break;
+  case 10:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x23e0);
+    break;
+  case 0xb:
+    fVar7 = *(float *)(_DAT_180c86920 + 0x16c0);
+    goto code_r0x00018043b131;
+  case 0xc:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x1730);
+    break;
+  case 0xd:
+    fVar7 = *(float *)(_DAT_180c86920 + 0x18f0);
+    goto code_r0x00018043b131;
+  case 0xe:
+    fVar7 = *(float *)(_DAT_180c86920 + 0x17a0);
+    goto code_r0x00018043b131;
+  case 0xf:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x2300);
+    break;
+  case 0x10:
+    if ((*(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
+      iVar3 = *(int *)(_DAT_180c86920 + 0x2450);
+      break;
+    }
+    goto code_r0x00018043b131;
+  case 0x11:
+    if ((*(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
+      fVar7 = *(float *)(_DAT_180c86920 + 0x24c0);
+    }
+    goto code_r0x00018043b131;
+  case 0x12:
+    if ((*(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
+      iVar3 = *(int *)(_DAT_180c86920 + 0x2530);
+      break;
+    }
+    goto code_r0x00018043b131;
+  case 0x13:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x25a0);
+    break;
+  case 0x14:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x1ea0);
+    break;
+  case 0x15:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x1f10);
+    break;
+  case 0x16:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x1810);
+    break;
+  case 0x17:
+    FUN_180171f10(*(undefined8 *)(_DAT_180c86870 + 8),&uStackX_10);
+    if (((float)uStackX_10 == (float)*(int *)(_DAT_180c86920 + 0x1d50)) &&
+       (uStackX_10._4_4_ == (float)*(int *)(_DAT_180c86920 + 0x1dc0))) {
+      iVar3 = FUN_180438350();
+      break;
+    }
+    iVar4 = FUN_180438350();
+    iVar3 = 0;
+    fVar7 = (float)(iVar4 + 1);
+    iVar4 = FUN_180438350();
+    if (0 < iVar4) {
+      do {
+        uVar6 = FUN_1804386b0(iVar3);
+        uStackX_10._0_4_ = (float)uVar6;
+        if (((float)uStackX_10 == (float)*(int *)(_DAT_180c86920 + 0x1d50)) &&
+           (uStackX_10._4_4_ = (float)((ulonglong)uVar6 >> 0x20),
+           uStackX_10._4_4_ == (float)*(int *)(_DAT_180c86920 + 0x1dc0))) goto code_r0x00018043b12e;
+        iVar3 = iVar3 + 1;
+        uStackX_10 = uVar6;
+        iVar4 = FUN_180438350();
+      } while (iVar3 < iVar4);
+    }
+    goto code_r0x00018043b131;
+  case 0x18:
+    iVar4 = func_0x0001804388d0();
+    iVar3 = 0;
+    if (0 < iVar4) {
+      fVar8 = *(float *)(lVar2 + 0x1e30);
+      do {
+        fVar9 = fVar8;
+        if (fVar8 <= 0.0) {
+          fVar9 = fVar8 - 0.9999999;
+        }
+        iVar5 = FUN_180438940(iVar3);
+        if (iVar5 == (int)fVar9) goto code_r0x00018043b12e;
+        iVar3 = iVar3 + 1;
+      } while (iVar3 < iVar4);
+    }
+    goto code_r0x00018043b131;
+  case 0x19:
+    if (bVar1) {
+      fVar7 = 100.0;
+    }
+    else {
+      fVar7 = *(float *)(_DAT_180c86920 + 0x20d0);
+    }
+    goto code_r0x00018043b131;
+  case 0x1a:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x1b90);
+    break;
+  case 0x1b:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x1f80);
+    break;
+  case 0x1c:
+    fVar7 = *(float *)(_DAT_180c86920 + 0x1110);
+    goto code_r0x00018043b131;
+  case 0x1d:
+    iVar3 = FUN_180104d00();
+    break;
+  case 0x1e:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x700);
+    break;
+  case 0x1f:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x380);
+    break;
+  case 0x20:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x3f0);
+    break;
+  case 0x21:
+    iVar3 = *(int *)(_DAT_180c86920 + 0xcb0);
+    break;
+  case 0x22:
+    iVar3 = *(int *)(_DAT_180c86920 + 0xc40);
+    break;
+  case 0x23:
+    iVar3 = *(int *)(_DAT_180c86920 + 0xd20);
+    break;
+  case 0x24:
+    iVar3 = *(int *)(_DAT_180c86920 + 0xaf0);
+    break;
+  case 0x25:
+    iVar3 = *(int *)(_DAT_180c86920 + 0xb60);
+    break;
+  case 0x26:
+    iVar3 = *(int *)(_DAT_180c86920 + 0xe0);
+    break;
+  case 0x27:
+    iVar3 = *(int *)(_DAT_180c86920 + 0xe00);
+    break;
+  case 0x28:
+    iVar3 = *(int *)(_DAT_180c86920 + 0xd90);
+    break;
+  case 0x29:
+    iVar3 = *(int *)(_DAT_180c86920 + 0xe70);
+    break;
+  case 0x2a:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x150);
+    break;
+  case 0x2b:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x1c0);
+    break;
+  case 0x2c:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x5b0);
+    break;
+  case 0x2d:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x310);
+    break;
+  case 0x2e:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x460);
+    break;
+  case 0x2f:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x4d0);
+    break;
+  case 0x30:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x540);
+    break;
+  case 0x31:
+    iVar3 = *(int *)(_DAT_180c86920 + 0xbd0);
+    break;
+  case 0x32:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x2a0);
+    break;
+  case 0x33:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x850);
+    break;
+  case 0x34:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x7e0);
+    break;
+  case 0x35:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x620);
+    break;
+  case 0x36:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x690);
+    break;
+  case 0x37:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x930);
+    break;
+  case 0x38:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x770);
+    break;
+  case 0x39:
+    iVar3 = *(int *)(_DAT_180c86920 + 0xa80);
+    break;
+  case 0x3a:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x8c0);
+    break;
+  case 0x3b:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x9a0);
+    break;
+  case 0x3c:
+    iVar3 = *(int *)(_DAT_180c86920 + 0xa10);
+    break;
+  case 0x3d:
+    fVar7 = *(float *)(_DAT_180c86920 + 0x2060);
+    goto code_r0x00018043b131;
+  case 0x3e:
+    if ((*(int *)(_DAT_180c86920 + 0xee0) == 0) || (*(int *)(_DAT_180c8a9c8 + 0xcb0) == 0)) {
+code_r0x00018043b0b3:
+      fVar7 = 0.0;
+    }
+    else {
+      fVar7 = 1.0;
+    }
+    goto code_r0x00018043b131;
+  case 0x3f:
+    if ((*(int *)(_DAT_180c86920 + 0xf50) == 0) || (*(int *)(_DAT_180c8a9c8 + 0xd20) == 0))
+    goto code_r0x00018043b0b3;
+    fVar7 = 1.0;
+    goto code_r0x00018043b131;
+  case 0x40:
+    if ((*(int *)(_DAT_180c86920 + 0xfc0) == 0) || (*(int *)(_DAT_180c8a9c8 + 0xd90) == 0))
+    goto code_r0x00018043b0b3;
+    fVar7 = 1.0;
+    goto code_r0x00018043b131;
+  case 0x41:
+    if ((*(int *)(_DAT_180c86920 + 0x10a0) == 0) || (*(int *)(_DAT_180c8a9c8 + 0xe70) == 0))
+    goto code_r0x00018043b0b3;
+    fVar7 = 1.0;
+  case 0x42:
+    goto code_r0x00018043b131;
+  case 0x43:
+    fVar7 = *(float *)(_DAT_180c86920 + 0x1180);
+    goto code_r0x00018043b131;
+  case 0x44:
+    fVar7 = *(float *)(_DAT_180c86920 + 0x11f0);
+    goto code_r0x00018043b131;
+  case 0x45:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x1ab0);
+    break;
+  case 0x46:
+    fVar7 = *(float *)(_DAT_180c86920 + 0x1260);
+    goto code_r0x00018043b131;
+  case 0x47:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x2140);
+    break;
+  case 0x48:
+    iVar3 = *(int *)(_DAT_180c86920 + 0x21b0);
+    break;
+  default:
+    goto FUN_18043b139;
+  }
+code_r0x00018043b12e:
+  fVar7 = (float)iVar3;
+code_r0x00018043b131:
+  fVar8 = fVar7;
+FUN_18043b139:
+  return fVar8;
 }
 
-// 辅助函数声明
-int rendering_system_get_performance_counter(void);
-bool rendering_system_check_feature_enabled(uint32_t feature_offset1, uint32_t feature_offset2);
-bool rendering_system_check_version_compatibility(void);
-bool rendering_system_check_feature_support(uint32_t feature_offset1, uint32_t feature_offset2);
-void rendering_system_reset_render_state(void);
-void rendering_system_optimize_render_pipeline(void);
-void rendering_system_cleanup_render_resources(void);
-void rendering_system_update_render_queue(void);
-void rendering_system_execute_render_batch(void);
-void rendering_system_reset_render_parameters(void);
-void rendering_system_update_render_statistics(void);
-void rendering_system_execute_diagnostics(void);
-void rendering_system_process_config_param1(void);
-void rendering_system_process_config_param2(void);
-void rendering_system_process_config_param3(void);
-void rendering_system_process_config_param4(void);
-void rendering_system_process_config_param5(void);
-void rendering_system_process_config_param6(void);
-void rendering_system_process_config_param7(void);
-void rendering_system_process_config_param8(void);
-void rendering_system_execute_core_processing(void);
-void rendering_system_execute_system_optimization(void);
-void rendering_system_get_config_name(char* buffer, int config_id);
-void rendering_system_execute_config_update(const char* config_string);
-void rendering_system_get_string_data(char* buffer, void* reference_data, uint32_t string_id);
-void rendering_system_execute_message_handler(uint32_t message_type, uint32_t param1, uint32_t param2, uint32_t param3, uint32_t param4);
-bool rendering_system_validate_parameter(uint32_t parameter);
 
-// 全局变量定义
-static const char rendering_system_default_string_data[] = "default_config";
-static const char rendering_system_string_reference_data[] = "reference_data";
 
-// 函数别名定义（为了保持与原始代码的兼容性）
-#define rendering_system_parameter_setter_type1 FUN_180439fb5
-#define rendering_system_parameter_setter_type2 FUN_180439fd4
-#define rendering_system_simple_caller FUN_180439ff3
-#define rendering_system_empty_operation FUN_18043a012
-#define rendering_system_config_option_processor FUN_18043a140
-#define rendering_system_state_query FUN_18043ab40
-#define rendering_system_indirect_jump_handler FUN_18043abac
-#define rendering_system_return_function FUN_18043b139
-#define rendering_system_config_executor FUN_18043b290
-#define rendering_system_batch_config_processor FUN_18043b930
-#define rendering_system_string_config_processor FUN_18043bbe0
-#define rendering_system_string_copier FUN_18043be00
-#define rendering_system_string_appender FUN_18043be50
-#define rendering_system_cleanup_function FUN_18043be7b
-#define rendering_system_parameter_setter_type3 FUN_18043be90
-#define rendering_system_parameter_setter_type4 FUN_18043bf20
-#define rendering_system_message_processor FUN_18043bfb0
 
-/**
- * 渲染系统模块技术说明
- * 
- * 本模块实现了渲染系统的高级参数处理和状态管理功能，包括：
- * 
- * 1. 参数处理系统
- *    - 多种参数类型设置器
- *    - 参数验证和范围检查
- *    - 默认值和回调处理
- *    - 参数状态管理
- * 
- * 2. 配置管理系统
- *    - 配置选项处理器
- *    - 批量配置处理
- *    - 字符串配置管理
- *    - 配置验证和错误处理
- * 
- * 3. 状态查询系统
- *    - 多种状态类型查询
- *    - 性能参数获取
- *    - 功能支持检查
- *    - 系统状态监控
- * 
- * 4. 消息处理系统
- *    - 消息类型识别
- *    - 参数化消息处理
- *    - 事件分发机制
- *    - 状态同步处理
- * 
- * 技术特点：
- * - 采用模块化设计，便于维护和扩展
- * - 支持多种参数类型和配置选项
- * - 提供完整的错误处理机制
- * - 优化性能和内存使用效率
- * - 符合渲染系统的实时性要求
- * 
- * 使用注意事项：
- * - 所有函数都需要进行参数有效性检查
- * - 配置操作需要注意线程安全性
- * - 字符串操作需要防止缓冲区溢出
- * - 状态查询需要考虑系统状态
- * 
- * 性能优化：
- * - 使用高效的参数验证算法
- * - 实现缓存友好的数据结构
- * - 减少不必要的内存拷贝
- * - 优化状态查询性能
- * 
- * 扩展性考虑：
- * - 支持插件式功能扩展
- * - 提供配置化参数管理
- * - 支持多种消息类型
- * - 可定制的验证策略
- */
+
+// 函数: void FUN_18043abac(undefined8 param_1,undefined8 param_2,longlong param_3)
+void FUN_18043abac(undefined8 param_1,undefined8 param_2,longlong param_3)
+
+{
+  longlong in_RAX;
+  code *UNRECOVERED_JUMPTABLE;
+  
+  UNRECOVERED_JUMPTABLE = (code *)((ulonglong)*(uint *)(param_3 + 0x43b168 + in_RAX * 4) + param_3);
+                    // WARNING: Could not recover jumptable at 0x00018043abbf. Too many branches
+                    // WARNING: Treating indirect jump as call
+  (*UNRECOVERED_JUMPTABLE)(UNRECOVERED_JUMPTABLE);
+  return;
+}
+
+
+
+
+
+// 函数: void FUN_18043b139(void)
+void FUN_18043b139(void)
+
+{
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18043b290(undefined4 param_1)
+void FUN_18043b290(undefined4 param_1)
+
+{
+  bool bVar1;
+  
+  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(_DAT_180c86920 + 0x540) < 1)) {
+    bVar1 = false;
+  }
+  else {
+    bVar1 = true;
+  }
+  switch(param_1) {
+  case 0:
+    return;
+  case 1:
+    return;
+  case 2:
+    return;
+  case 3:
+    return;
+  case 4:
+    return;
+  case 5:
+    (**(code **)(*_DAT_180c86878 + 0x98))();
+    return;
+  case 6:
+    return;
+  case 7:
+    return;
+  case 8:
+    return;
+  case 9:
+    return;
+  case 10:
+    return;
+  case 0xb:
+    return;
+  case 0xc:
+    return;
+  case 0xd:
+    return;
+  case 0xe:
+    return;
+  case 0xf:
+    return;
+  case 0x10:
+    if ((*(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
+      return;
+    }
+    break;
+  case 0x11:
+    if ((*(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
+      return;
+    }
+    break;
+  case 0x12:
+    if ((*(int *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 100) - 2U & 0xfffffffd) == 0) {
+      return;
+    }
+    break;
+  case 0x13:
+    return;
+  case 0x14:
+    return;
+  case 0x15:
+    return;
+  case 0x16:
+    return;
+  case 0x19:
+    if (!bVar1) {
+      return;
+    }
+    return;
+  case 0x1a:
+    return;
+  case 0x1b:
+    return;
+  case 0x1c:
+    return;
+  case 0x1d:
+    FUN_180104d00();
+    return;
+  case 0x1e:
+    return;
+  case 0x1f:
+    return;
+  case 0x20:
+    return;
+  case 0x21:
+    return;
+  case 0x22:
+    return;
+  case 0x23:
+    return;
+  case 0x24:
+    return;
+  case 0x25:
+    return;
+  case 0x26:
+    return;
+  case 0x27:
+    return;
+  case 0x28:
+    return;
+  case 0x29:
+    return;
+  case 0x2a:
+    return;
+  case 0x2b:
+    return;
+  case 0x2c:
+    return;
+  case 0x2d:
+    return;
+  case 0x2e:
+    return;
+  case 0x2f:
+    return;
+  case 0x30:
+    return;
+  case 0x31:
+    return;
+  case 0x32:
+    return;
+  case 0x33:
+    return;
+  case 0x34:
+    return;
+  case 0x35:
+    return;
+  case 0x36:
+    return;
+  case 0x37:
+    return;
+  case 0x38:
+    return;
+  case 0x39:
+    return;
+  case 0x3a:
+    return;
+  case 0x3b:
+    return;
+  case 0x3c:
+    return;
+  case 0x3d:
+    return;
+  case 0x3e:
+    if (*(int *)(_DAT_180c86920 + 0xee0) == 0) {
+      return;
+    }
+    if (*(int *)(_DAT_180c8a9c8 + 0xcb0) == 0) {
+      return;
+    }
+    return;
+  case 0x3f:
+    if (*(int *)(_DAT_180c86920 + 0xf50) == 0) {
+      return;
+    }
+    if (*(int *)(_DAT_180c8a9c8 + 0xd20) == 0) {
+      return;
+    }
+    return;
+  case 0x40:
+    if (*(int *)(_DAT_180c86920 + 0xfc0) == 0) {
+      return;
+    }
+    if (*(int *)(_DAT_180c8a9c8 + 0xd90) == 0) {
+      return;
+    }
+    return;
+  case 0x41:
+    if ((*(int *)(_DAT_180c86920 + 0x10a0) != 0) && (*(int *)(_DAT_180c8a9c8 + 0xe70) != 0)) {
+      return;
+    }
+    return;
+  case 0x43:
+    return;
+  case 0x44:
+    return;
+  case 0x45:
+    return;
+  case 0x46:
+    return;
+  case 0x47:
+    return;
+  case 0x48:
+  }
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18043b930(int param_1,int param_2,int param_3,int param_4,int param_5,int param_6,
+void FUN_18043b930(int param_1,int param_2,int param_3,int param_4,int param_5,int param_6,
+                  undefined8 param_7,undefined8 param_8,int param_9,int param_10)
+
+{
+  undefined8 uVar1;
+  undefined **ppuVar2;
+  undefined1 auStack_138 [32];
+  undefined **ppuStack_118;
+  undefined ***pppuStack_110;
+  undefined8 uStack_108;
+  undefined **ppuStack_100;
+  undefined *puStack_f8;
+  undefined1 *puStack_f0;
+  undefined4 uStack_e8;
+  undefined1 auStack_e0 [128];
+  undefined4 uStack_60;
+  ulonglong uStack_18;
+  
+  uStack_108 = 0xfffffffffffffffe;
+  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_138;
+  if (param_3 != 0) {
+    FUN_18010d9f0(_DAT_180c86920,*(undefined4 *)(_DAT_180c86920 + 0x8c0));
+  }
+  if (param_4 != 0) {
+    FUN_18010da70(_DAT_180c86920,*(undefined4 *)(_DAT_180c86920 + 0x850));
+  }
+  if (param_5 != 0) {
+    FUN_18010d870(_DAT_180c86920,*(undefined4 *)(_DAT_180c86920 + 0xa10));
+  }
+  if (param_6 != 0) {
+    FUN_18010daf0(_DAT_180c86920,*(undefined4 *)(_DAT_180c86920 + 0x7e0));
+  }
+  if (param_2 != 0) {
+    FUN_18010cd70(_DAT_180c86920,*(undefined4 *)(_DAT_180c86920 + 0x2060));
+  }
+  if (param_9 != 0) {
+    FUN_18043be90();
+  }
+  if (param_10 != 0) {
+    FUN_18010cdf0(_DAT_180c86920,*(undefined4 *)(_DAT_180c86920 + 0x21b0));
+  }
+  FUN_180103970();
+  if (param_1 != 0) {
+    FUN_1800b3a40();
+  }
+  ppuStack_118 = &puStack_f8;
+  puStack_f8 = &UNK_1809fcc28;
+  puStack_f0 = auStack_e0;
+  uStack_e8 = 0;
+  auStack_e0[0] = 0;
+  uStack_60 = 0x1b;
+  uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x100,8,3);
+  ppuVar2 = (undefined **)FUN_18005ce30(uVar1,&puStack_f8);
+  ppuStack_100 = ppuVar2;
+  if (ppuVar2 != (undefined **)0x0) {
+    (**(code **)(*ppuVar2 + 0x28))(ppuVar2);
+  }
+  uVar1 = _DAT_180c82868;
+  pppuStack_110 = &ppuStack_118;
+  ppuStack_118 = ppuVar2;
+  if (ppuVar2 != (undefined **)0x0) {
+    (**(code **)(*ppuVar2 + 0x28))(ppuVar2);
+  }
+  FUN_18005e370(uVar1,&ppuStack_118);
+  if (ppuVar2 != (undefined **)0x0) {
+    (**(code **)(*ppuVar2 + 0x38))(ppuVar2);
+  }
+  pppuStack_110 = (undefined ***)&puStack_f8;
+  puStack_f8 = &UNK_18098bcb0;
+  FUN_18004b1f0(0);
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_138);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18043bbe0(int param_1)
+void FUN_18043bbe0(int param_1)
+
+{
+  undefined *puVar1;
+  int iVar2;
+  longlong lVar3;
+  longlong lVar4;
+  undefined *puVar5;
+  undefined1 auStack_b8 [32];
+  undefined8 uStack_98;
+  undefined *puStack_88;
+  undefined1 *puStack_80;
+  uint uStack_78;
+  undefined1 auStack_70 [72];
+  char acStack_28 [16];
+  ulonglong uStack_18;
+  
+  uStack_98 = 0xfffffffffffffffe;
+  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  lVar4 = (longlong)param_1 * 0x70 + *(longlong *)(*(longlong *)(_DAT_180c86870 + 8) + 0x18);
+  puStack_88 = &UNK_1809fcc58;
+  puStack_80 = auStack_70;
+  auStack_70[0] = 0;
+  uStack_78 = *(uint *)(lVar4 + 0x10);
+  puVar1 = *(undefined **)(lVar4 + 8);
+  puVar5 = &DAT_18098bc73;
+  if (puVar1 != (undefined *)0x0) {
+    puVar5 = puVar1;
+  }
+  strcpy_s(auStack_70,0x40,puVar5);
+  if (uStack_78 + 2 < 0x3f) {
+    *(undefined2 *)(puStack_80 + uStack_78) = 0x2820;
+    *(undefined1 *)((longlong)(puStack_80 + uStack_78) + 2) = 0;
+    uStack_78 = uStack_78 + 2;
+  }
+  FUN_180060680(acStack_28,&UNK_1809fd0a0,param_1);
+  lVar4 = -1;
+  do {
+    lVar3 = lVar4;
+    lVar4 = lVar3 + 1;
+  } while (acStack_28[lVar3 + 1] != '\0');
+  iVar2 = (int)(lVar3 + 1);
+  if ((0 < iVar2) && (uStack_78 + iVar2 < 0x3f)) {
+                    // WARNING: Subroutine does not return
+    memcpy(puStack_80 + uStack_78,acStack_28,(longlong)((int)lVar3 + 2));
+  }
+  if (uStack_78 + 1 < 0x3f) {
+    *(undefined2 *)(puStack_80 + uStack_78) = 0x29;
+    uStack_78 = uStack_78 + 1;
+  }
+  (**(code **)(*_DAT_180c8f008 + 0x70))(_DAT_180c8f008,&puStack_88);
+  puStack_88 = &UNK_18098bcb0;
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_b8);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18043be00(longlong param_1,undefined4 param_2)
+void FUN_18043be00(longlong param_1,undefined4 param_2)
+
+{
+  longlong lVar1;
+  int iVar2;
+  longlong lVar3;
+  undefined1 auStack_48 [32];
+  char acStack_28 [16];
+  ulonglong uStack_18;
+  
+  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_48;
+  FUN_180060680(acStack_28,&UNK_1809fd0a0,param_2);
+  lVar1 = -1;
+  do {
+    lVar3 = lVar1;
+    lVar1 = lVar3 + 1;
+  } while (acStack_28[lVar3 + 1] != '\0');
+  iVar2 = (int)(lVar3 + 1);
+  if ((0 < iVar2) && (*(uint *)(param_1 + 0x10) + iVar2 < 0x3f)) {
+                    // WARNING: Subroutine does not return
+    memcpy((ulonglong)*(uint *)(param_1 + 0x10) + *(longlong *)(param_1 + 8),acStack_28,
+           (longlong)((int)lVar3 + 2));
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_48);
+}
+
+
+
+
+
+// 函数: void FUN_18043be50(undefined8 param_1,uint param_2)
+void FUN_18043be50(undefined8 param_1,uint param_2)
+
+{
+  int in_EAX;
+  longlong unaff_RDI;
+  undefined1 auStackX_20 [8];
+  ulonglong in_stack_00000030;
+  
+  if (param_2 + in_EAX < 0x3f) {
+                    // WARNING: Subroutine does not return
+    memcpy((ulonglong)param_2 + *(longlong *)(unaff_RDI + 8),auStackX_20,(longlong)(in_EAX + 1));
+  }
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(in_stack_00000030 ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+
+
+// 函数: void FUN_18043be7b(void)
+void FUN_18043be7b(void)
+
+{
+  ulonglong in_stack_00000030;
+  
+                    // WARNING: Subroutine does not return
+  FUN_1808fc050(in_stack_00000030 ^ (ulonglong)&stack0x00000000);
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18043be90(undefined8 param_1,undefined4 param_2)
+void FUN_18043be90(undefined8 param_1,undefined4 param_2)
+
+{
+  longlong lVar1;
+  char cVar2;
+  undefined *puVar3;
+  undefined4 auStackX_10 [6];
+  
+  lVar1 = _DAT_180c86920;
+  if ((*(longlong *)(_DAT_180c86920 + 0x1800) != 0) &&
+     (auStackX_10[0] = param_2, cVar2 = (**(code **)(_DAT_180c86920 + 0x1808))(auStackX_10),
+     param_2 = auStackX_10[0], cVar2 == '\0')) {
+    if (DAT_180c82860 == '\0') {
+      puVar3 = &DAT_18098bc73;
+      if (*(undefined **)(lVar1 + 0x17b0) != (undefined *)0x0) {
+        puVar3 = *(undefined **)(lVar1 + 0x17b0);
+      }
+      FUN_180626f80(&UNK_18098bc00,puVar3);
+    }
+    *(undefined4 *)(lVar1 + 0x17a0) = *(undefined4 *)(lVar1 + 0x17e8);
+    return;
+  }
+  *(undefined4 *)(lVar1 + 0x17a0) = param_2;
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18043bf20(undefined8 param_1,undefined4 param_2)
+void FUN_18043bf20(undefined8 param_1,undefined4 param_2)
+
+{
+  longlong lVar1;
+  char cVar2;
+  undefined *puVar3;
+  undefined4 auStackX_10 [6];
+  
+  lVar1 = _DAT_180c86920;
+  if ((*(longlong *)(_DAT_180c86920 + 0x1170) != 0) &&
+     (auStackX_10[0] = param_2, cVar2 = (**(code **)(_DAT_180c86920 + 0x1178))(auStackX_10),
+     param_2 = auStackX_10[0], cVar2 == '\0')) {
+    if (DAT_180c82860 == '\0') {
+      puVar3 = &DAT_18098bc73;
+      if (*(undefined **)(lVar1 + 0x1120) != (undefined *)0x0) {
+        puVar3 = *(undefined **)(lVar1 + 0x1120);
+      }
+      FUN_180626f80(&UNK_18098bc00,puVar3);
+    }
+    *(undefined4 *)(lVar1 + 0x1110) = *(undefined4 *)(lVar1 + 0x1158);
+    return;
+  }
+  *(undefined4 *)(lVar1 + 0x1110) = param_2;
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 函数: void FUN_18043bfb0(undefined4 param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
+void FUN_18043bfb0(undefined4 param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
+
+{
+  FUN_1800623b0(_DAT_180c86928,param_1,param_4,param_3,&UNK_180a29740,param_2);
+  return;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
