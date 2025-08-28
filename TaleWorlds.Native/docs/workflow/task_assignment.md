@@ -302,8 +302,8 @@
 - [-] `02_core_engine_part152.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
 - [-] `02_core_engine_part153.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
 - [-] `02_core_engine_part154.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
-- [ ] `02_core_engine_part155.c` - 未开始 - 负责人: - 预计完成时间: -
-- [ ] `02_core_engine_part156.c` - 未开始 - 负责人: - 预计完成时间: -
+- [-] `02_core_engine_part155.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
+- [-] `02_core_engine_part156.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
 - [ ] `02_core_engine_part157.c` - 未开始 - 负责人: - 预计完成时间: -
 - [ ] `02_core_engine_part158.c` - 未开始 - 负责人: - 预计完成时间: -
 - [ ] `02_core_engine_part159.c` - 未开始 - 负责人: - 预计完成时间: -

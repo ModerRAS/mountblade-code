@@ -193,25 +193,26 @@ cleanup_exit:
 
 
 
-// 函数: void FUN_18013bf40(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18013bf40(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void cleanup_collision_resources(longlong resource_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
+// 清理碰撞相关的资源
+declspec(noinline) void cleanup_collision_resources(longlong resource_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
 
 {
-  longlong lVar1;
-  undefined8 uVar2;
+  longlong resource_handle;
+  undefined8 cleanup_flag;
   
-  uVar2 = 0xfffffffffffffffe;
-  FUN_18013ea00(*(undefined8 *)(param_1 + 0x30));
-  *(undefined8 *)(param_1 + 0x30) = 0;
-  *(undefined8 *)(param_1 + 0x18) = 0;
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  lVar1 = *(longlong *)(param_1 + 0x28);
-  if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+  cleanup_flag = 0xfffffffffffffffe;
+  release_collision_data(*(undefined8 *)(resource_ptr + 0x30));
+  *(undefined8 *)(resource_ptr + 0x30) = 0;
+  *(undefined8 *)(resource_ptr + 0x18) = 0;
+  *(undefined8 *)(resource_ptr + 0x10) = 0;
+  resource_handle = *(longlong *)(resource_ptr + 0x28);
+  if (resource_handle != 0) {
+    if (g_engine_context != 0) {
+      *(int *)(g_engine_context + 0x3a8) = *(int *)(g_engine_context + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,uVar2);
+    deallocate_memory(resource_handle,g_engine_base,param3,param4,cleanup_flag);
   }
   return;
 }
@@ -222,42 +223,43 @@ void FUN_18013bf40(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18013bf60(int param_1,undefined4 param_2)
-void FUN_18013bf60(int param_1,undefined4 param_2)
+// 函数: void update_entity_collision_flags(int entity_type, undefined4 collision_flag)
+// 更新实体的碰撞标志
+void update_entity_collision_flags(int entity_type, undefined4 collision_flag)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
-  uint uVar5;
-  ulonglong uVar6;
+  longlong entity_list;
+  longlong entity_data;
+  ulonglong entity_index;
+  ulonglong list_index;
+  uint entity_count;
+  ulonglong array_index;
   
-  lVar2 = _DAT_180c8a9b0;
-  uVar3 = 0;
-  uVar4 = uVar3;
-  uVar6 = uVar3;
-  if (0 < *(int *)(_DAT_180c8a9b0 + 0x1aa0)) {
+  entity_list = g_engine_context;
+  entity_index = 0;
+  list_index = entity_index;
+  array_index = entity_index;
+  if (0 < *(int *)(g_engine_context + 0x1aa0)) {
     do {
-      lVar1 = *(longlong *)(uVar6 + *(longlong *)(lVar2 + 0x1aa8));
-      if ((*(int *)(lVar1 + 0x418) == param_1) && (*(longlong *)(lVar1 + 0x408) == 0)) {
-        *(undefined4 *)(lVar1 + 0x418) = param_2;
+      entity_data = *(longlong *)(array_index + *(longlong *)(entity_list + 0x1aa8));
+      if ((*(int *)(entity_data + 0x418) == entity_type) && (*(longlong *)(entity_data + 0x408) == 0)) {
+        *(undefined4 *)(entity_data + 0x418) = collision_flag;
       }
-      uVar5 = (int)uVar4 + 1;
-      uVar4 = (ulonglong)uVar5;
-      uVar6 = uVar6 + 8;
-    } while ((int)uVar5 < *(int *)(lVar2 + 0x1aa0));
+      entity_count = (int)list_index + 1;
+      list_index = (ulonglong)entity_count;
+      array_index = array_index + 8;
+    } while ((int)entity_count < *(int *)(entity_list + 0x1aa0));
   }
-  uVar4 = uVar3;
-  if (0 < *(int *)(lVar2 + 0x2e28)) {
+  list_index = entity_index;
+  if (0 < *(int *)(entity_list + 0x2e28)) {
     do {
-      if (*(int *)(uVar3 + 0x28 + *(longlong *)(lVar2 + 0x2e30)) == param_1) {
-        *(undefined4 *)(uVar3 + 0x28 + *(longlong *)(lVar2 + 0x2e30)) = param_2;
+      if (*(int *)(entity_index + 0x28 + *(longlong *)(entity_list + 0x2e30)) == entity_type) {
+        *(undefined4 *)(entity_index + 0x28 + *(longlong *)(entity_list + 0x2e30)) = collision_flag;
       }
-      uVar5 = (int)uVar4 + 1;
-      uVar3 = uVar3 + 0x38;
-      uVar4 = (ulonglong)uVar5;
-    } while ((int)uVar5 < *(int *)(lVar2 + 0x2e28));
+      entity_count = (int)list_index + 1;
+      entity_index = entity_index + 0x38;
+      list_index = (ulonglong)entity_count;
+    } while ((int)entity_count < *(int *)(entity_list + 0x2e28));
   }
   return;
 }
