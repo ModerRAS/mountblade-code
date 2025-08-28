@@ -2,6 +2,38 @@
 
 // 03_rendering_part012.c - 渲染系统数据序列化函数
 
+// 渲染系统常量定义
+#define RENDER_VTABLE_BASE            (&UNK_18098bcb0)
+#define RENDER_VTABLE_EXTENDED        (&UNK_1809fcc28)
+#define RENDER_NAME_TEMPLATE          (&UNK_180a167d0)
+#define RENDERER_VTABLE1              (&UNK_180a21690)
+#define RENDERER_VTABLE2              (&UNK_180a21720)
+#define RENDERER_SHADER_TABLE         (&UNK_180a14860)
+#define RENDERER_CONFIG_TABLE         (&UNK_180a169b8)
+#define RENDERER_LOCK_TABLE           (&UNK_180a169a8)
+#define RENDER_STATE_NULL             (&UNK_18098bcb0)
+#define RENDER_MATERIAL_TABLE         (&UNK_180a3c3e0)
+#define RENDER_SPECIAL_TABLE          (_DAT_180c86930)
+#define RENDER_ALLOC_TABLE            (_DAT_180c8ed18)
+#define RENDER_CHECK_FUNCTION         (&UNK_180277e10)
+
+// 函数别名定义
+#define expand_buffer_if_needed       FUN_180639bf0
+#define write_buffer_entry            FUN_180639ec0
+#define serialize_material_data      FUN_1806399d0
+#define serialize_render_block_data  FUN_180639ec0
+#define initialize_render_data_structures FUN_180285e20
+#define initialize_render_internal_data FUN_1802786d0
+#define apply_render_settings         FUN_18027a810
+#define get_special_render_data      FUN_1800b6de0
+#define apply_special_render_settings FUN_180275a60
+#define trigger_render_error         FUN_18064e900
+#define trigger_render_update        FUN_180079520
+#define cleanup_render_internal_data FUN_180284500
+#define cleanup_render_buffers       FUN_1802841d0
+#define trigger_render_cleanup       func_0x0001802eeba0
+#define allocate_render_memory       FUN_18062b1e0
+
 /**
  * 序列化渲染对象数据到缓冲区
  * @param render_object 渲染对象指针
@@ -75,7 +107,7 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
     offset_value = buffer[1];
   }
   buffer[1] = offset_value + 4;
-  entry_ptr = (undefined8 *)&RENDER_FLAG_TABLE;
+  entry_ptr = (undefined8 *)0x18098e1e0;
   entry_count = zero_counter;
   do {
     if ((*(uint *)(entry_ptr + 1) & mask_value) != 0) {
@@ -120,234 +152,257 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
     long_ptr = long_ptr + 2;
     offset_value = offset_value + -1;
   } while (offset_value != 0);
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (4 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  // 序列化渲染数据数组
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  *puVar11 = (int)uVar8;
-  param_2[1] = param_2[1] + 4;
-  uVar8 = uVar16;
-  plVar6 = plVar15;
+  *write_ptr = (int)index_counter;
+  buffer[1] = buffer[1] + 4;
+  index_counter = 0;
+  data_array = (longlong *)render_object + 0x30;
   do {
-    piVar10 = (int *)param_2[1];
-    if ((*plVar15 != 0) || (plVar15[1] != 0)) {
-      if ((ulonglong)((*param_2 - (longlong)piVar10) + param_2[2]) < 5) {
-        FUN_180639bf0(param_2,(longlong)piVar10 + (4 - *param_2));
-        piVar10 = (int *)param_2[1];
-      }
-      *piVar10 = (int)uVar8;
-      param_2[1] = param_2[1] + 4;
-      puVar11 = (undefined4 *)param_2[1];
-      if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 0x11) {
-        FUN_180639bf0(param_2,(longlong)puVar11 + (0x10 - *param_2));
-        puVar11 = (undefined4 *)param_2[1];
-      }
-      uVar2 = *(undefined4 *)((longlong)plVar6 + 4);
-      lVar9 = plVar6[1];
-      uVar3 = *(undefined4 *)((longlong)plVar6 + 0xc);
-      *puVar11 = (int)*plVar6;
-      puVar11[1] = uVar2;
-      puVar11[2] = (int)lVar9;
-      puVar11[3] = uVar3;
-      param_2[1] = param_2[1] + 0x10;
-      piVar10 = (int *)param_2[1];
+    if ((*data_array != 0) || (data_array[1] != 0)) {
+      index_counter = (ulonglong)((int)index_counter + 1);
     }
-    uVar12 = (int)uVar8 + 1;
-    uVar8 = (ulonglong)uVar12;
-    plVar15 = plVar15 + 2;
-    plVar6 = plVar6 + 2;
-  } while ((int)uVar12 < 0x10);
-  iVar1 = *(int *)(param_1 + 0x130);
-  if ((ulonglong)((*param_2 - (longlong)piVar10) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)piVar10 + (4 - *param_2));
-    piVar10 = (int *)param_2[1];
+    data_array = data_array + 2;
+    offset_value = offset_value + -1;
+  } while (offset_value != 0);
+  
+  // 序列化数据数组内容
+  data_array = (longlong *)render_object + 0x30;
+  offset_value = 0;
+  do {
+    if ((*data_array != 0) || (data_array[1] != 0)) {
+      write_ptr = (uint *)buffer[1];
+      if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
+        expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+        write_ptr = (uint *)buffer[1];
+      }
+      *write_ptr = (int)offset_value;
+      buffer[1] = buffer[1] + 4;
+      write_ptr = (uint *)buffer[1];
+      if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 0x11) {
+        expand_buffer_if_needed(buffer, (longlong)write_ptr + (0x10 - *buffer));
+        write_ptr = (uint *)buffer[1];
+      }
+      temp_value1 = *(uint *)((longlong)data_array + 4);
+      flag_value = data_array[1];
+      temp_value2 = *(uint *)((longlong)data_array + 0xc);
+      *write_ptr = (int)*data_array;
+      write_ptr[1] = temp_value1;
+      write_ptr[2] = (int)flag_value;
+      write_ptr[3] = temp_value2;
+      buffer[1] = buffer[1] + 0x10;
+    }
+    offset_value = (int)offset_value + 1;
+    data_array = data_array + 2;
+  } while ((int)offset_value < 0x10);
+  
+  // 序列化额外渲染数据
+  temp_value1 = *(uint *)(render_object + 0x130);
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  *piVar10 = iVar1;
-  puVar11 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar11;
-  lVar9 = *(longlong *)(param_1 + 0x140);
-  lVar7 = *(longlong *)(param_1 + 0x138);
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (4 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  *write_ptr = temp_value1;
+  write_ptr = (uint *)(buffer[1] + 4);
+  buffer[1] = (longlong)write_ptr;
+  flag_value = *(longlong *)(render_object + 0x140);
+  temp_value1 = *(longlong *)(render_object + 0x138);
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  *puVar11 = (int)((lVar9 - lVar7) / 0x58);
-  param_2[1] = param_2[1] + 4;
-  lVar7 = *(longlong *)(param_1 + 0x140) - *(longlong *)(param_1 + 0x138);
-  puVar11 = (undefined4 *)param_2[1];
-  lVar9 = lVar7 >> 0x3f;
-  uVar8 = uVar16;
-  if (lVar7 / 0x58 + lVar9 != lVar9) {
+  *write_ptr = (int)((flag_value - temp_value1) / 0x58);
+  buffer[1] = buffer[1] + 4;
+  
+  // 序列化渲染块数据
+  temp_value1 = *(longlong *)(render_object + 0x140) - *(longlong *)(render_object + 0x138);
+  write_ptr = (uint *)buffer[1];
+  flag_value = temp_value1 >> 0x3f;
+  index_counter = 0;
+  if (temp_value1 / 0x58 + flag_value != flag_value) {
     do {
-      FUN_180639ec0(param_2,uVar16 * 0x58 + *(longlong *)(param_1 + 0x138));
-      uVar12 = (int)uVar8 + 1;
-      uVar16 = (ulonglong)(int)uVar12;
-      uVar8 = (ulonglong)uVar12;
-    } while (uVar16 < (ulonglong)
-                      ((*(longlong *)(param_1 + 0x140) - *(longlong *)(param_1 + 0x138)) / 0x58));
-    puVar11 = (undefined4 *)param_2[1];
+      serialize_render_block_data(buffer, index_counter * 0x58 + *(longlong *)(render_object + 0x138));
+      offset_value = (int)index_counter + 1;
+      index_counter = (ulonglong)(int)offset_value;
+    } while (index_counter < (ulonglong)((*(longlong *)(render_object + 0x140) - *(longlong *)(render_object + 0x138)) / 0x58));
+    write_ptr = (uint *)buffer[1];
   }
-  uVar2 = *(undefined4 *)(param_1 + 0x158);
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (4 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  
+  // 序列化渲染参数
+  temp_value1 = *(uint *)(render_object + 0x158);
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  *puVar11 = uVar2;
-  puVar11 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar11;
-  uVar2 = *(undefined4 *)(param_1 + 0x15c);
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (4 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  *write_ptr = temp_value1;
+  write_ptr = (uint *)(buffer[1] + 4);
+  buffer[1] = (longlong)write_ptr;
+  temp_value1 = *(uint *)(render_object + 0x15c);
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  *puVar11 = uVar2;
-  puVar11 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar11;
-  uVar2 = *(undefined4 *)(param_1 + 0x160);
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (4 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  *write_ptr = temp_value1;
+  write_ptr = (uint *)(buffer[1] + 4);
+  buffer[1] = (longlong)write_ptr;
+  temp_value1 = *(uint *)(render_object + 0x160);
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  *puVar11 = uVar2;
-  puVar11 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar11;
-  uVar2 = *(undefined4 *)(param_1 + 0x164);
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (4 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  *write_ptr = temp_value1;
+  write_ptr = (uint *)(buffer[1] + 4);
+  buffer[1] = (longlong)write_ptr;
+  temp_value1 = *(uint *)(render_object + 0x164);
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  *puVar11 = uVar2;
-  puVar11 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar11;
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 0x11) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (0x10 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  *write_ptr = temp_value1;
+  write_ptr = (uint *)(buffer[1] + 4);
+  buffer[1] = (longlong)write_ptr;
+  
+  // 序列化渲染变换矩阵
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 0x11) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (0x10 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  *puVar11 = *(undefined4 *)(param_1 + 0x168);
-  lVar9 = param_2[1];
-  param_2[1] = lVar9 + 4;
-  *(undefined4 *)(lVar9 + 4) = *(undefined4 *)(param_1 + 0x16c);
-  lVar9 = param_2[1];
-  param_2[1] = lVar9 + 4;
-  *(undefined4 *)(lVar9 + 4) = *(undefined4 *)(param_1 + 0x170);
-  lVar9 = param_2[1];
-  param_2[1] = lVar9 + 4;
-  *(undefined4 *)(lVar9 + 4) = *(undefined4 *)(param_1 + 0x174);
-  puVar11 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar11;
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 0x11) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (0x10 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  *write_ptr = *(uint *)(render_object + 0x168);
+  flag_value = buffer[1];
+  buffer[1] = flag_value + 4;
+  *(uint *)(flag_value + 4) = *(uint *)(render_object + 0x16c);
+  flag_value = buffer[1];
+  buffer[1] = flag_value + 4;
+  *(uint *)(flag_value + 4) = *(uint *)(render_object + 0x170);
+  flag_value = buffer[1];
+  buffer[1] = flag_value + 4;
+  *(uint *)(flag_value + 4) = *(uint *)(render_object + 0x174);
+  write_ptr = (uint *)(buffer[1] + 4);
+  buffer[1] = (longlong)write_ptr;
+  
+  // 序列化渲染颜色数据
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 0x11) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (0x10 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  *puVar11 = *(undefined4 *)(param_1 + 0x178);
-  lVar9 = param_2[1];
-  param_2[1] = lVar9 + 4;
-  *(undefined4 *)(lVar9 + 4) = *(undefined4 *)(param_1 + 0x17c);
-  lVar9 = param_2[1];
-  param_2[1] = lVar9 + 4;
-  *(undefined4 *)(lVar9 + 4) = *(undefined4 *)(param_1 + 0x180);
-  lVar9 = param_2[1];
-  param_2[1] = lVar9 + 4;
-  *(undefined4 *)(lVar9 + 4) = *(undefined4 *)(param_1 + 0x184);
-  puVar11 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar11;
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 0x11) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (0x10 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  *write_ptr = *(uint *)(render_object + 0x178);
+  flag_value = buffer[1];
+  buffer[1] = flag_value + 4;
+  *(uint *)(flag_value + 4) = *(uint *)(render_object + 0x17c);
+  flag_value = buffer[1];
+  buffer[1] = flag_value + 4;
+  *(uint *)(flag_value + 4) = *(uint *)(render_object + 0x180);
+  flag_value = buffer[1];
+  buffer[1] = flag_value + 4;
+  *(uint *)(flag_value + 4) = *(uint *)(render_object + 0x184);
+  write_ptr = (uint *)(buffer[1] + 4);
+  buffer[1] = (longlong)write_ptr;
+  
+  // 序列化渲染光照数据
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 0x11) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (0x10 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  *puVar11 = *(undefined4 *)(param_1 + 0x188);
-  lVar9 = param_2[1];
-  param_2[1] = lVar9 + 4;
-  *(undefined4 *)(lVar9 + 4) = *(undefined4 *)(param_1 + 0x18c);
-  lVar9 = param_2[1];
-  param_2[1] = lVar9 + 4;
-  *(undefined4 *)(lVar9 + 4) = *(undefined4 *)(param_1 + 400);
-  lVar9 = param_2[1];
-  param_2[1] = lVar9 + 4;
-  *(undefined4 *)(lVar9 + 4) = *(undefined4 *)(param_1 + 0x194);
-  puVar11 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar11;
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 0x11) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (0x10 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  *write_ptr = *(uint *)(render_object + 0x188);
+  flag_value = buffer[1];
+  buffer[1] = flag_value + 4;
+  *(uint *)(flag_value + 4) = *(uint *)(render_object + 0x18c);
+  flag_value = buffer[1];
+  buffer[1] = flag_value + 4;
+  *(uint *)(flag_value + 4) = *(uint *)(render_object + 400);
+  flag_value = buffer[1];
+  buffer[1] = flag_value + 4;
+  *(uint *)(flag_value + 4) = *(uint *)(render_object + 0x194);
+  write_ptr = (uint *)(buffer[1] + 4);
+  buffer[1] = (longlong)write_ptr;
+  
+  // 序列化渲染纹理数据
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 0x11) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (0x10 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  *puVar11 = *(undefined4 *)(param_1 + 0x198);
-  lVar9 = param_2[1];
-  param_2[1] = lVar9 + 4;
-  *(undefined4 *)(lVar9 + 4) = *(undefined4 *)(param_1 + 0x19c);
-  lVar9 = param_2[1];
-  param_2[1] = lVar9 + 4;
-  *(undefined4 *)(lVar9 + 4) = *(undefined4 *)(param_1 + 0x1a0);
-  lVar9 = param_2[1];
-  param_2[1] = lVar9 + 4;
-  *(undefined4 *)(lVar9 + 4) = *(undefined4 *)(param_1 + 0x1a4);
-  puVar11 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar11;
-  uVar2 = *(undefined4 *)(param_1 + 0x1a8);
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (4 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  *write_ptr = *(uint *)(render_object + 0x198);
+  flag_value = buffer[1];
+  buffer[1] = flag_value + 4;
+  *(uint *)(flag_value + 4) = *(uint *)(render_object + 0x19c);
+  flag_value = buffer[1];
+  buffer[1] = flag_value + 4;
+  *(uint *)(flag_value + 4) = *(uint *)(render_object + 0x1a0);
+  flag_value = buffer[1];
+  buffer[1] = flag_value + 4;
+  *(uint *)(flag_value + 4) = *(uint *)(render_object + 0x1a4);
+  write_ptr = (uint *)(buffer[1] + 4);
+  buffer[1] = (longlong)write_ptr;
+  
+  // 序列化渲染状态数据
+  temp_value1 = *(uint *)(render_object + 0x1a8);
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  *puVar11 = uVar2;
-  puVar11 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar11;
-  uVar2 = *(undefined4 *)(param_1 + 0x1ac);
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (4 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  *write_ptr = temp_value1;
+  write_ptr = (uint *)(buffer[1] + 4);
+  buffer[1] = (longlong)write_ptr;
+  temp_value1 = *(uint *)(render_object + 0x1ac);
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  *puVar11 = uVar2;
-  puVar11 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar11;
-  uVar2 = *(undefined4 *)(param_1 + 0x1b0);
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (4 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  *write_ptr = temp_value1;
+  write_ptr = (uint *)(buffer[1] + 4);
+  buffer[1] = (longlong)write_ptr;
+  temp_value1 = *(uint *)(render_object + 0x1b0);
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  *puVar11 = uVar2;
-  puVar11 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar11;
-  uVar2 = *(undefined4 *)(param_1 + 0x1b4);
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (4 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  *write_ptr = temp_value1;
+  write_ptr = (uint *)(buffer[1] + 4);
+  buffer[1] = (longlong)write_ptr;
+  temp_value1 = *(uint *)(render_object + 0x1b4);
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  *puVar11 = uVar2;
-  puVar11 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar11;
-  uVar2 = *(undefined4 *)(param_1 + 0x1b8);
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (4 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  *write_ptr = temp_value1;
+  write_ptr = (uint *)(buffer[1] + 4);
+  buffer[1] = (longlong)write_ptr;
+  temp_value1 = *(uint *)(render_object + 0x1b8);
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  *puVar11 = uVar2;
-  puVar11 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar11;
-  uVar2 = *(undefined4 *)(param_1 + 0x1bc);
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (4 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  *write_ptr = temp_value1;
+  write_ptr = (uint *)(buffer[1] + 4);
+  buffer[1] = (longlong)write_ptr;
+  temp_value1 = *(uint *)(render_object + 0x1bc);
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  *puVar11 = uVar2;
-  puVar11 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar11;
-  uVar2 = *(undefined4 *)(param_1 + 0x1c0);
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (4 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  *write_ptr = temp_value1;
+  write_ptr = (uint *)(buffer[1] + 4);
+  buffer[1] = (longlong)write_ptr;
+  temp_value1 = *(uint *)(render_object + 0x1c0);
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  *puVar11 = uVar2;
-  puVar11 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar11;
-  uVar2 = *(undefined4 *)(param_1 + 0x1c4);
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (4 - *param_2));
-    *(undefined4 *)param_2[1] = uVar2;
+  *write_ptr = temp_value1;
+  write_ptr = (uint *)(buffer[1] + 4);
+  buffer[1] = (longlong)write_ptr;
+  temp_value1 = *(uint *)(render_object + 0x1c4);
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 5) {
+    expand_buffer_if_needed(buffer, (longlong)write_ptr + (4 - *buffer));
+    *(uint *)buffer[1] = temp_value1;
   }
   else {
-    *puVar11 = uVar2;
+    *write_ptr = temp_value1;
   }
-  param_2[1] = param_2[1] + 4;
+  buffer[1] = buffer[1] + 4;
   return;
 }
 

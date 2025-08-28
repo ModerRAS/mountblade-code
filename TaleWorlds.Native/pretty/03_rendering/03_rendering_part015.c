@@ -655,127 +655,143 @@ void render_object_depth_test(void)
 void render_bounding_box_calculation(longlong render_object, undefined8 *bounding_box, char include_children)
 
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  undefined1 auStack_e8 [224];
+  longlong object_end_ptr;           // 对象数据结束指针
+  undefined8 bounding_box_data;     // 边界框数据
+  longlong object_start_ptr;        // 对象数据开始指针
+  longlong *object_iterator;        // 对象迭代器
+  float bounding_sphere_radius;     // 边界球半径
+  float matrix_scale;               // 矩阵缩放值
+  float min_distance;               // 最小距离
+  float transformed_x;               // 变换后的X坐标
+  float transformed_y;               // 变换后的Y坐标
+  float transformed_z;               // 变换后的Z坐标
+  float magnitude_squared;         // 平方值
+  undefined1 transform_stack [224]; // 变换堆栈
   
-  lVar1 = *(longlong *)(param_1 + 0x40);
-  lVar3 = *(longlong *)(param_1 + 0x38);
-  *(undefined4 *)(param_2 + 6) = 0;
-  if (lVar1 - lVar3 >> 4 == 0) {
-    *param_2 = 0;
-    param_2[1] = 0;
-    param_2[2] = 0;
-    param_2[3] = 0;
-    param_2[4] = 0;
-    param_2[5] = 0;
+  // 获取对象的开始和结束指针
+  object_end_ptr = *(longlong *)(render_object + 0x40);
+  object_start_ptr = *(longlong *)(render_object + 0x38);
+  *(undefined4 *)(bounding_box + 6) = 0;
+  // 如果对象为空，初始化边界框为零
+  if (object_end_ptr - object_start_ptr >> 4 == 0) {
+    *bounding_box = 0;
+    bounding_box[1] = 0;
+    bounding_box[2] = 0;
+    bounding_box[3] = 0;
+    bounding_box[4] = 0;
+    bounding_box[5] = 0;
   }
   else {
-    *param_2 = 0x4cbebc204cbebc20;
-    param_2[1] = 0x7f7fffff4cbebc20;
-    *(undefined4 *)(param_2 + 4) = 0;
-    *(undefined4 *)((longlong)param_2 + 0x24) = 0;
-    *(undefined4 *)(param_2 + 5) = 0;
-    *(undefined4 *)((longlong)param_2 + 0x2c) = 0x7f7fffff;
-    param_2[2] = 0xccbebc20ccbebc20;
-    param_2[3] = 0x7f7fffffccbebc20;
-    plVar4 = *(longlong **)(param_1 + 0x38);
-    if (plVar4 < *(longlong **)(param_1 + 0x40)) {
+    // 初始化边界框为最大/最小值
+    *bounding_box = 0x4cbebc204cbebc20;  // 最小值
+    bounding_box[1] = 0x7f7fffff4cbebc20; // 最大值
+    *(undefined4 *)(bounding_box + 4) = 0;
+    *(undefined4 *)((longlong)bounding_box + 0x24) = 0;
+    *(undefined4 *)(bounding_box + 5) = 0;
+    *(undefined4 *)((longlong)bounding_box + 0x2c) = 0x7f7fffff;
+    bounding_box[2] = 0xccbebc20ccbebc20; // 最小值
+    bounding_box[3] = 0x7f7fffffccbebc20; // 最大值
+    // 遍历所有子对象并计算边界框
+    object_iterator = *(longlong **)(render_object + 0x38);
+    if (object_iterator < *(longlong **)(render_object + 0x40)) {
       do {
-        lVar1 = *plVar4;
-        if (param_3 != '\0') {
-          FUN_180075b70(lVar1);
+        longlong child_object = *object_iterator;
+        if (include_children != '\0') {
+          Render_UpdateObjectTransform(child_object);
         }
-        if (((*(byte *)(lVar1 + 0x100) & 0x20) == 0) || (*(longlong *)(param_1 + 0x28) == 0)) {
-          lVar3 = lVar1 + 0x120;
+        // 获取对象的变换矩阵
+        if (((*(byte *)(child_object + 0x100) & 0x20) == 0) || (*(longlong *)(render_object + 0x28) == 0)) {
+          object_start_ptr = child_object + 0x120;
         }
         else {
-          lVar3 = FUN_180194940(lVar1 + 0x120,auStack_e8,*(longlong *)(param_1 + 0x28) + 0x70);
+          object_start_ptr = Render_GetTransformMatrix(child_object + 0x120, transform_stack, *(longlong *)(render_object + 0x28) + 0x70);
         }
-        FUN_18063a240(param_2,lVar1 + 0x274,lVar3);
-        plVar4 = plVar4 + 2;
-      } while (plVar4 < *(longlong **)(param_1 + 0x40));
+        // 合并子对象的边界框
+        Render_MergeBoundingBox(bounding_box, child_object + 0x274, object_start_ptr);
+        object_iterator = object_iterator + 2;
+      } while (object_iterator < *(longlong **)(render_object + 0x40));
     }
-    if (((*(longlong *)(param_1 + 0x40) - (longlong)*(longlong **)(param_1 + 0x38) &
+    // 如果只有一个对象且没有特殊标志，直接使用其边界框
+    if (((*(longlong *)(render_object + 0x40) - (longlong)*(longlong **)(render_object + 0x38) &
          0xfffffffffffffff0U) == 0x10) &&
-       (lVar1 = **(longlong **)(param_1 + 0x38), (*(uint *)(lVar1 + 0x100) & 0x4000000) == 0)) {
-      uVar2 = *(undefined8 *)(lVar1 + 0x29c);
-      param_2[4] = *(undefined8 *)(lVar1 + 0x294);
-      param_2[5] = uVar2;
-      *(undefined4 *)(param_2 + 6) = *(undefined4 *)(**(longlong **)(param_1 + 0x38) + 0x2a4);
+       (longlong single_object = **(longlong **)(render_object + 0x38), (*(uint *)(single_object + 0x100) & 0x4000000) == 0)) {
+      bounding_box_data = *(undefined8 *)(single_object + 0x29c);
+      bounding_box[4] = *(undefined8 *)(single_object + 0x294);
+      bounding_box[5] = bounding_box_data;
+      *(undefined4 *)(bounding_box + 6) = *(undefined4 *)(**(longlong **)(render_object + 0x38) + 0x2a4);
     }
     else {
-      FUN_1800b9f60(param_2);
-      plVar4 = *(longlong **)(param_1 + 0x38);
-      fVar7 = 0.0;
-      if (plVar4 < *(longlong **)(param_1 + 0x40)) {
+      // 计算复杂的边界球半径
+      Render_InitBoundingBox(bounding_box);
+      object_iterator = *(longlong **)(render_object + 0x38);
+      min_distance = 0.0;
+      if (object_iterator < *(longlong **)(render_object + 0x40)) {
         do {
-          lVar1 = *plVar4;
-          if ((*(uint *)(lVar1 + 0x100) & 0x4000000) == 0) {
-            fVar8 = *(float *)(lVar1 + 0x294);
-            fVar9 = *(float *)(lVar1 + 0x298);
-            fVar10 = *(float *)(lVar1 + 0x29c);
-            fVar5 = *(float *)(lVar1 + 0x2a4);
+          longlong current_object = *object_iterator;
+          if ((*(uint *)(current_object + 0x100) & 0x4000000) == 0) {
+            // 直接使用边界框数据
+            transformed_x = *(float *)(current_object + 0x294);
+            transformed_y = *(float *)(current_object + 0x298);
+            transformed_z = *(float *)(current_object + 0x29c);
+            bounding_sphere_radius = *(float *)(current_object + 0x2a4);
           }
           else {
-            fVar5 = *(float *)(lVar1 + 0x298);
-            fVar10 = *(float *)(lVar1 + 0x294);
-            fVar6 = *(float *)(lVar1 + 0x29c);
-            fVar8 = *(float *)(lVar1 + 0x130) * fVar5 + *(float *)(lVar1 + 0x120) * fVar10 +
-                    *(float *)(lVar1 + 0x140) * fVar6 + *(float *)(lVar1 + 0x150);
-            fVar9 = *(float *)(lVar1 + 0x134) * fVar5 + *(float *)(lVar1 + 0x124) * fVar10 +
-                    *(float *)(lVar1 + 0x144) * fVar6 + *(float *)(lVar1 + 0x154);
-            fVar10 = *(float *)(lVar1 + 0x138) * fVar5 + *(float *)(lVar1 + 0x128) * fVar10 +
-                     *(float *)(lVar1 + 0x148) * fVar6 + *(float *)(lVar1 + 0x158);
-            fVar5 = *(float *)(lVar1 + 0x140) * *(float *)(lVar1 + 0x140) +
-                    *(float *)(lVar1 + 0x144) * *(float *)(lVar1 + 0x144) +
-                    *(float *)(lVar1 + 0x148) * *(float *)(lVar1 + 0x148);
-            fVar6 = *(float *)(lVar1 + 0x130) * *(float *)(lVar1 + 0x130) +
-                    *(float *)(lVar1 + 0x134) * *(float *)(lVar1 + 0x134) +
-                    *(float *)(lVar1 + 0x138) * *(float *)(lVar1 + 0x138);
-            fVar11 = *(float *)(lVar1 + 0x120) * *(float *)(lVar1 + 0x120) +
-                     *(float *)(lVar1 + 0x124) * *(float *)(lVar1 + 0x124) +
-                     *(float *)(lVar1 + 0x128) * *(float *)(lVar1 + 0x128);
-            if (fVar11 <= fVar6) {
-              if (fVar5 <= fVar6) {
-                fVar5 = fVar6;
+            // 计算变换后的边界球半径
+            bounding_sphere_radius = *(float *)(current_object + 0x298);
+            transformed_z = *(float *)(current_object + 0x294);
+            matrix_scale = *(float *)(current_object + 0x29c);
+            transformed_x = *(float *)(current_object + 0x130) * bounding_sphere_radius + *(float *)(current_object + 0x120) * transformed_z +
+                    *(float *)(current_object + 0x140) * matrix_scale + *(float *)(current_object + 0x150);
+            transformed_y = *(float *)(current_object + 0x134) * bounding_sphere_radius + *(float *)(current_object + 0x124) * transformed_z +
+                    *(float *)(current_object + 0x144) * matrix_scale + *(float *)(current_object + 0x154);
+            transformed_z = *(float *)(current_object + 0x138) * bounding_sphere_radius + *(float *)(current_object + 0x128) * transformed_z +
+                     *(float *)(current_object + 0x148) * matrix_scale + *(float *)(current_object + 0x158);
+            // 计算矩阵的缩放因子
+            bounding_sphere_radius = *(float *)(current_object + 0x140) * *(float *)(current_object + 0x140) +
+                    *(float *)(current_object + 0x144) * *(float *)(current_object + 0x144) +
+                    *(float *)(current_object + 0x148) * *(float *)(current_object + 0x148);
+            matrix_scale = *(float *)(current_object + 0x130) * *(float *)(current_object + 0x130) +
+                    *(float *)(current_object + 0x134) * *(float *)(current_object + 0x134) +
+                    *(float *)(current_object + 0x138) * *(float *)(current_object + 0x138);
+            magnitude_squared = *(float *)(current_object + 0x120) * *(float *)(current_object + 0x120) +
+                     *(float *)(current_object + 0x124) * *(float *)(current_object + 0x124) +
+                     *(float *)(current_object + 0x128) * *(float *)(current_object + 0x128);
+            // 选择最大的缩放因子
+            if (magnitude_squared <= matrix_scale) {
+              if (bounding_sphere_radius <= matrix_scale) {
+                bounding_sphere_radius = matrix_scale;
               }
             }
-            else if (fVar5 <= fVar11) {
-              fVar5 = fVar11;
+            else if (bounding_sphere_radius <= magnitude_squared) {
+              bounding_sphere_radius = magnitude_squared;
             }
-            if ((fVar5 - 1.0 <= -1e-06) || (1e-06 <= fVar5 - 1.0)) {
-              fVar5 = SQRT(fVar5) * *(float *)(lVar1 + 0x2a4);
+            // 计算最终的边界球半径
+            if ((bounding_sphere_radius - 1.0 <= -1e-06) || (1e-06 <= bounding_sphere_radius - 1.0)) {
+              bounding_sphere_radius = SQRT(bounding_sphere_radius) * *(float *)(current_object + 0x2a4);
             }
             else {
-              fVar5 = *(float *)(lVar1 + 0x2a4) * 1.0;
+              bounding_sphere_radius = *(float *)(current_object + 0x2a4) * 1.0;
             }
           }
-          fVar9 = *(float *)((longlong)param_2 + 0x24) - fVar9;
-          fVar9 = fVar9 * fVar9 +
-                  (*(float *)(param_2 + 4) - fVar8) * (*(float *)(param_2 + 4) - fVar8) +
-                  (*(float *)(param_2 + 5) - fVar10) * (*(float *)(param_2 + 5) - fVar10);
-          fVar8 = fVar7 - fVar5;
-          if (fVar8 <= 0.0) {
-            fVar8 = 0.0;
+          // 计算距离平方
+          transformed_y = *(float *)((longlong)bounding_box + 0x24) - transformed_y;
+          transformed_y = transformed_y * transformed_y +
+                  (*(float *)(bounding_box + 4) - transformed_x) * (*(float *)(bounding_box + 4) - transformed_x) +
+                  (*(float *)(bounding_box + 5) - transformed_z) * (*(float *)(bounding_box + 5) - transformed_z);
+          transformed_x = min_distance - bounding_sphere_radius;
+          if (transformed_x <= 0.0) {
+            transformed_x = 0.0;
           }
-          if (fVar8 * fVar8 < fVar9) {
-            fVar7 = SQRT(fVar9) + fVar5;
+          // 更新最小距离
+          if (transformed_x * transformed_x < transformed_y) {
+            min_distance = SQRT(transformed_y) + bounding_sphere_radius;
           }
-          plVar4 = plVar4 + 2;
-        } while (plVar4 < *(longlong **)(param_1 + 0x40));
-        if ((0.0 < fVar7) && (fVar7 < *(float *)(param_2 + 6) || fVar7 == *(float *)(param_2 + 6)))
+          object_iterator = object_iterator + 2;
+        } while (object_iterator < *(longlong **)(render_object + 0x40));
+        // 更新边界框的距离值
+        if ((0.0 < min_distance) && (min_distance < *(float *)(bounding_box + 6) || min_distance == *(float *)(bounding_box + 6)))
         {
-          *(float *)(param_2 + 6) = fVar7;
+          *(float *)(bounding_box + 6) = min_distance;
         }
       }
     }

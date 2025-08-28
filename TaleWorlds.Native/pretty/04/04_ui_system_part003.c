@@ -1077,60 +1077,60 @@ void ui_load_library_with_resource_check(longlong library_info)
     loaded_library_handle = library_handle;
     if (_DAT_180c967a0 != (undefined8 *)0x0) {
       do {
-        if ((short *)puVar2[4] < psVar1) {
-          puVar3 = (undefined8 *)*puVar2;
+        if ((short *)library_node_ptr[4] < library_handle) {
+          next_node_ptr = (undefined8 *)*library_node_ptr;
         }
         else {
-          puVar3 = (undefined8 *)puVar2[1];
-          puVar5 = puVar2;
+          next_node_ptr = (undefined8 *)library_node_ptr[1];
+          insert_position_ptr = library_node_ptr;
         }
-        puVar2 = puVar3;
-      } while (puVar3 != (undefined8 *)0x0);
-      if ((puVar5 != (undefined8 *)&DAT_180c96790) && ((short *)puVar5[4] <= psVar1))
-      goto LAB_180650dc8;
+        library_node_ptr = next_node_ptr;
+      } while (next_node_ptr != (undefined8 *)0x0);
+      if ((insert_position_ptr != (undefined8 *)&DAT_180c96790) && ((short *)insert_position_ptr[4] <= library_handle))
+      goto library_loaded;
     }
-    FUN_180650950(param_1,auStack_128);
-    FUN_18063ccc0(alStack_1d8);
-    psStack_190 = psVar1;
-    (**(code **)(alStack_1d8[0] + 0x10))(alStack_1d8,auStack_128);
-    uStack_1a8 = *(uint *)(param_1 + 0x10);
-    uVar6 = (ulonglong)uStack_1a8;
-    if (*(longlong *)(param_1 + 8) != 0) {
-      FUN_1806277c0(auStack_1b8,uVar6);
+    ui_parse_pe_resource_section(library_info,resource_buffer);
+    ui_initialize_resource_data(resource_data);
+    module_base_ptr = library_handle;
+    (**(code **)(resource_data[0] + 0x10))(resource_data,resource_buffer);
+    library_flags = *(uint *)(library_info + 0x10);
+    path_length = (ulonglong)library_flags;
+    if (*(longlong *)(library_info + 8) != 0) {
+      ui_copy_library_path(temp_buffer_1b8,path_length);
     }
-    if (uStack_1a8 != 0) {
+    if (library_flags != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(lStack_1b0,*(undefined8 *)(param_1 + 8),uVar6);
+      memcpy(pe_base_address,*(undefined8 *)(library_info + 8),path_length);
     }
-    if (lStack_1b0 != 0) {
-      *(undefined1 *)(uVar6 + lStack_1b0) = 0;
+    if (pe_base_address != 0) {
+      *(undefined1 *)(path_length + pe_base_address) = 0;
     }
-    uStack_19c = *(undefined4 *)(param_1 + 0x1c);
-    if (*psStack_190 == 0x5a4d) {
-      FUN_180650b30(alStack_1d8,psStack_190,psStack_190);
+    pe_header_offset = *(undefined4 *)(library_info + 0x1c);
+    if (*module_base_ptr == 0x5a4d) {
+      ui_parse_pe_header(resource_data,module_base_ptr,module_base_ptr);
     }
-    puVar5 = (undefined8 *)&DAT_180c96790;
-    puVar2 = _DAT_180c967a0;
-    while (puVar2 != (undefined8 *)0x0) {
-      if ((short *)puVar2[4] < psVar1) {
-        puVar2 = (undefined8 *)*puVar2;
+    insert_position_ptr = (undefined8 *)&DAT_180c96790;
+    library_node_ptr = _DAT_180c967a0;
+    while (library_node_ptr != (undefined8 *)0x0) {
+      if ((short *)library_node_ptr[4] < library_handle) {
+        library_node_ptr = (undefined8 *)*library_node_ptr;
       }
       else {
-        puVar5 = puVar2;
-        puVar2 = (undefined8 *)puVar2[1];
+        insert_position_ptr = library_node_ptr;
+        library_node_ptr = (undefined8 *)library_node_ptr[1];
       }
     }
-    if ((puVar5 == (undefined8 *)&DAT_180c96790) || (psVar1 < (short *)puVar5[4])) {
-      ppsStack_208 = &psStack_1f8;
-      puVar5 = (undefined8 *)FUN_1806515e0(puVar5,auStack_1e8);
-      puVar5 = (undefined8 *)*puVar5;
+    if ((insert_position_ptr == (undefined8 *)&DAT_180c96790) || (library_handle < (short *)insert_position_ptr[4])) {
+      library_handle_ptr = &loaded_library_handle;
+      insert_position_ptr = (undefined8 *)ui_insert_library_node(insert_position_ptr,temp_buffer_1e8);
+      insert_position_ptr = (undefined8 *)*insert_position_ptr;
     }
-    FUN_180650aa0(puVar5 + 5,alStack_1d8);
-    FUN_18063cfe0(alStack_1d8);
+    ui_setup_library_resource_handlers(insert_position_ptr + 5,resource_data);
+    ui_cleanup_resource_data(resource_data);
   }
-LAB_180650dc8:
+library_loaded:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_228);
+  cleanup_stack_guard(stack_guard_value ^ (ulonglong)stack_guard_buffer);
 }
 
 
@@ -1147,42 +1147,42 @@ LAB_180650dc8:
 void ui_create_process_snapshot(void)
 
 {
-  int iVar1;
-  undefined4 uVar2;
-  undefined8 uVar3;
-  longlong lVar4;
-  undefined1 auStack_3c8 [128];
-  undefined8 uStack_348;
-  undefined8 uStack_340;
-  undefined1 auStack_324 [748];
-  ulonglong uStack_38;
+  int lock_result;
+  undefined4 process_id;
+  undefined8 module_handle;
+  longlong snapshot_handle;
+  undefined1 stack_guard_buffer [128];
+  undefined8 operation_flag;
+  undefined8 mutex_handle;
+  undefined1 module_entry_buffer [748];
+  ulonglong stack_guard_value;
   
-  uStack_348 = 0xfffffffffffffffe;
+  operation_flag = 0xfffffffffffffffe;
   // 栈保护值初始化 - 使用随机种子与栈地址异或生成保护值
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_3c8;  // _DAT_180bf00a8: 栈保护随机种子
-  uStack_340 = 0x180c96740;
-  iVar1 = _Mtx_lock(0x180c96740);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  stack_guard_value = _DAT_180bf00a8 ^ (ulonglong)stack_guard_buffer;  // _DAT_180bf00a8: 栈保护随机种子
+  mutex_handle = 0x180c96740;
+  lock_result = _Mtx_lock(0x180c96740);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
   }
-  uVar3 = GetModuleHandleA(0);
-  uVar2 = GetProcessId(uVar3);
-  lVar4 = CreateToolhelp32Snapshot(0x18,uVar2);
+  module_handle = GetModuleHandleA(0);
+  process_id = GetProcessId(module_handle);
+  snapshot_handle = CreateToolhelp32Snapshot(0x18,process_id);
   while( true ) {
-    if (lVar4 != -1) {
+    if (snapshot_handle != -1) {
                     // WARNING: Subroutine does not return
-      memset(auStack_324,0,0x234);
+      memset(module_entry_buffer,0,0x234);
     }
-    iVar1 = GetLastError();
-    if (iVar1 != 0x18) break;
-    lVar4 = CreateToolhelp32Snapshot(0x18,uVar2);
+    lock_result = GetLastError();
+    if (lock_result != 0x18) break;
+    snapshot_handle = CreateToolhelp32Snapshot(0x18,process_id);
   }
-  iVar1 = _Mtx_unlock(0x180c96740);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  lock_result = _Mtx_unlock(0x180c96740);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_3c8);
+  cleanup_stack_guard(stack_guard_value ^ (ulonglong)stack_guard_buffer);
 }
 
 
@@ -1241,79 +1241,79 @@ void ui_tree_cleanup_operation(undefined8 param_1, undefined8 *node_ptr,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 undefined8 *
-FUN_1806515e0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,longlong *param_4,
-             ulonglong *param_5)
+ui_find_library_node_in_resource_tree(undefined8 param_1, undefined8 *param_2, undefined8 param_3, 
+                                     longlong *param_4, ulonglong *param_5)
 
 {
-  longlong *plVar1;
-  undefined8 *puVar2;
-  ulonglong uVar3;
-  longlong lVar4;
-  undefined8 *puVar5;
-  undefined4 uVar6;
-  bool bVar7;
+  longlong *node_bounds_ptr;
+  undefined8 *current_node_ptr;
+  ulonglong search_key;
+  longlong new_node_ptr;
+  undefined8 *insert_position_ptr;
+  undefined4 insertion_flag;
+  bool should_insert_left;
   
   if ((param_4 == _DAT_180c96790) || (param_4 == (longlong *)&DAT_180c96790)) {
     // _DAT_180c96790: 库资源树头节点指针
     // _DAT_180c967b0: 库资源树节点计数器
     if ((_DAT_180c967b0 != 0) && (param_4 = _DAT_180c96790, (ulonglong)_DAT_180c96790[4] < *param_5)
-       ) goto LAB_18065166c;
+       ) goto node_found;
   }
   else {
-    plVar1 = (longlong *)func_0x00018066bd70(param_4);
-    if (((ulonglong)param_4[4] < *param_5) && (*param_5 < (ulonglong)plVar1[4])) {
+    node_bounds_ptr = (longlong *)ui_get_library_node_bounds(param_4);
+    if (((ulonglong)param_4[4] < *param_5) && (*param_5 < (ulonglong)node_bounds_ptr[4])) {
       if (*param_4 != 0) {
-        param_4 = plVar1;
+        param_4 = node_bounds_ptr;
       }
-LAB_18065166c:
+node_found:
       if (param_4 != (longlong *)0x0) {
-        FUN_180651770();
+        ui_setup_library_resource_node();
         return param_2;
       }
     }
   }
-  puVar5 = (undefined8 *)&DAT_180c96790;
-  bVar7 = true;
+  insert_position_ptr = (undefined8 *)&DAT_180c96790;
+  should_insert_left = true;
   if (_DAT_180c967a0 != (undefined8 *)0x0) {
-    puVar2 = _DAT_180c967a0;
+    current_node_ptr = _DAT_180c967a0;
     do {
-      puVar5 = puVar2;
-      bVar7 = *param_5 < (ulonglong)puVar5[4];
-      if (bVar7) {
-        puVar2 = (undefined8 *)puVar5[1];
+      insert_position_ptr = current_node_ptr;
+      should_insert_left = *param_5 < (ulonglong)insert_position_ptr[4];
+      if (should_insert_left) {
+        current_node_ptr = (undefined8 *)insert_position_ptr[1];
       }
       else {
-        puVar2 = (undefined8 *)*puVar5;
+        current_node_ptr = (undefined8 *)*insert_position_ptr;
       }
-    } while (puVar2 != (undefined8 *)0x0);
+    } while (current_node_ptr != (undefined8 *)0x0);
   }
-  puVar2 = puVar5;
-  if (bVar7) {
-    if (puVar5 == _DAT_180c96798) {  // _DAT_180c96798: 库资源树尾节点指针
-      uVar3 = *param_5;
-      goto LAB_1806516e0;
+  current_node_ptr = insert_position_ptr;
+  if (should_insert_left) {
+    if (insert_position_ptr == _DAT_180c96798) {  // _DAT_180c96798: 库资源树尾节点指针
+      search_key = *param_5;
+      goto create_new_node;
     }
-    puVar2 = (undefined8 *)func_0x00018066b9a0(puVar5);
+    current_node_ptr = (undefined8 *)ui_allocate_tree_node(insert_position_ptr);
   }
-  uVar3 = *param_5;
-  if (uVar3 <= (ulonglong)puVar2[4]) {
-    *param_2 = puVar2;
+  search_key = *param_5;
+  if (search_key <= (ulonglong)current_node_ptr[4]) {
+    *param_2 = current_node_ptr;
     return param_2;
   }
-LAB_1806516e0:
-  if ((puVar5 == (undefined8 *)&DAT_180c96790) || (uVar3 < (ulonglong)puVar5[4])) {
-    uVar6 = 0;
+create_new_node:
+  if ((insert_position_ptr == (undefined8 *)&DAT_180c96790) || (search_key < (ulonglong)insert_position_ptr[4])) {
+    insertion_flag = 0;
   }
   else {
-    uVar6 = 1;
+    insertion_flag = 1;
   }
   // _DAT_180c8ed18: 内存分配器指针
   // DAT_180c967b8: 库资源树节点类型信息
-  lVar4 = FUN_18062b420(_DAT_180c8ed18,0xd8,DAT_180c967b8);
-  *(ulonglong *)(lVar4 + 0x20) = *param_5;
-  FUN_18063ccc0(lVar4 + 0x28);
+  new_node_ptr = ui_allocate_library_node(_DAT_180c8ed18,0xd8,DAT_180c967b8);
+  *(ulonglong *)(new_node_ptr + 0x20) = *param_5;
+  ui_initialize_node_data(new_node_ptr + 0x28);
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar4,puVar5,&DAT_180c96790,uVar6);
+  ui_insert_node_into_tree(new_node_ptr,insert_position_ptr,&DAT_180c96790,insertion_flag);
 }
 
 

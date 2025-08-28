@@ -1,9 +1,16 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part016.c - 10 个函数
+// 03_rendering_part016.c - 渲染系统距离计算和边界检测函数
 
-// 函数: void FUN_180276f8c(longlong param_1,longlong param_2)
-void FUN_180276f8c(longlong param_1,longlong param_2)
+/**
+ * 计算渲染边界距离
+ * 计算指定渲染对象的边界距离，并更新目标对象的距离信息
+ * @param source_obj 源渲染对象指针
+ * @param target_obj 目标对象指针，用于存储距离信息
+ * @param flags 渲染标志
+ * @param extra_param 附加参数
+ */
+void Calculate_Rendering_Boundary_Distance(longlong *source_obj, longlong *target_obj, undefined8 flags, undefined8 extra_param)
 
 {
   longlong lVar1;
@@ -155,8 +162,12 @@ void FUN_180276f8c(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180276fad(undefined4 param_1)
-void FUN_180276fad(undefined4 param_1)
+/**
+ * 优化渲染距离计算
+ * 对渲染距离进行优化计算，处理边界条件和精度优化
+ * @param render_flags 渲染标志位
+ */
+void Optimize_Rendering_Distance_Calculation(undefined4 render_flags)
 
 {
   longlong lVar1;
@@ -292,8 +303,11 @@ void FUN_180276fad(undefined4 param_1)
 
 
 
-// 函数: void FUN_180277019(void)
-void FUN_180277019(void)
+/**
+ * 渲染距离计算器
+ * 核心距离计算函数，处理渲染对象的距离相关计算
+ */
+void Rendering_Distance_Calculator(void)
 
 {
   longlong lVar1;
@@ -390,8 +404,12 @@ void FUN_180277019(void)
 
 
 
-// 函数: void FUN_180277036(longlong *param_1)
-void FUN_180277036(longlong *param_1)
+/**
+ * 处理渲染对象距离
+ * 处理单个渲染对象的距离计算和更新
+ * @param render_obj 渲染对象指针
+ */
+void Process_Render_Object_Distance(longlong *render_obj)
 
 {
   longlong lVar1;
@@ -487,8 +505,11 @@ void FUN_180277036(longlong *param_1)
 
 
 
-// 函数: void FUN_180277068(void)
-void FUN_180277068(void)
+/**
+ * 初始化渲染距离
+ * 初始化渲染系统的距离计算相关数据
+ */
+void Initialize_Rendering_Distance(void)
 
 {
   longlong lVar1;
@@ -574,8 +595,13 @@ void FUN_180277068(void)
 
 
 
-// 函数: void FUN_18027708e(longlong *param_1,longlong *param_2)
-void FUN_18027708e(longlong *param_1,longlong *param_2)
+/**
+ * 批量处理渲染距离
+ * 批量处理多个渲染对象的距离计算
+ * @param obj_start 对象数组起始指针
+ * @param obj_end 对象数组结束指针
+ */
+void Batch_Process_Rendering_Distance(longlong *obj_start, longlong *obj_end)
 
 {
   longlong lVar1;
@@ -655,8 +681,11 @@ void FUN_18027708e(longlong *param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_180277326(void)
-void FUN_180277326(void)
+/**
+ * 更新最小渲染距离
+ * 更新渲染系统的最小距离记录
+ */
+void Update_Minimum_Rendering_Distance(void)
 
 {
   longlong unaff_RDI;
@@ -672,8 +701,11 @@ void FUN_180277326(void)
 
 
 
-// 函数: void FUN_18027733a(void)
-void FUN_18027733a(void)
+/**
+ * 渲染距离处理空函数
+ * 空函数，用于渲染距离处理的占位符
+ */
+void Rendering_Distance_Processor_Empty(void)
 
 {
   return;
@@ -683,8 +715,12 @@ void FUN_18027733a(void)
 
 
 
-// 函数: void FUN_180277360(longlong param_1)
-void FUN_180277360(longlong param_1)
+/**
+ * 清理渲染对象引用
+ * 清理渲染对象的引用计数和相关资源
+ * @param render_context 渲染上下文指针
+ */
+void Cleanup_Render_Object_References(longlong render_context)
 
 {
   char *pcVar1;
@@ -750,7 +786,14 @@ void FUN_180277360(longlong param_1)
 
 
 
-int FUN_1802774e0(longlong param_1,longlong param_2)
+/**
+ * 计算渲染优先级
+ * 根据渲染标志和对象属性计算渲染优先级
+ * @param render_context 渲染上下文指针
+ * @param render_obj 渲染对象指针
+ * @return 计算出的优先级值
+ */
+int Calculate_Rendering_Priority(longlong render_context, longlong render_obj)
 
 {
   int iVar1;
@@ -775,7 +818,13 @@ int FUN_1802774e0(longlong param_1,longlong param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180277540(longlong param_1)
+/**
+ * 验证渲染对象状态
+ * 验证渲染对象的状态和有效性
+ * @param render_context 渲染上下文指针
+ * @return 验证结果，1表示有效，0表示无效
+ */
+undefined8 Validate_Render_Object_State(longlong render_context)
 
 {
   longlong *plVar1;
@@ -856,8 +905,13 @@ LAB_1802775f0:
 
 
 
-// 函数: void FUN_180277690(longlong param_1,uint param_2)
-void FUN_180277690(longlong param_1,uint param_2)
+/**
+ * 重置渲染标志
+ * 重置渲染对象的标志位，清除特定状态
+ * @param render_context 渲染上下文指针
+ * @param flags_to_reset 需要重置的标志位
+ */
+void Reset_Rendering_Flags(longlong render_context, uint flags_to_reset)
 
 {
   int *piVar1;
