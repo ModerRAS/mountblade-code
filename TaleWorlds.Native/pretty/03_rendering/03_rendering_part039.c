@@ -278,122 +278,130 @@ undefined4 process_rendering_partitions(longlong space_data, longlong render_inf
 
 
 
-int FUN_18028ada4(longlong param_1,longlong param_2,int param_3)
+/**
+ * 优化渲染空间分区布局
+ * 对空间分区数据进行优化布局，提高渲染性能
+ * @param render_context 渲染上下文指针
+ * @param optimization_data 优化数据指针
+ * @param partition_count 分区数量
+ * @return 优化状态码
+ */
+int optimize_rendering_layout(longlong render_context, longlong optimization_data, int partition_count)
 
 {
-  ushort *puVar1;
-  ushort uVar2;
-  ushort uVar3;
-  short *psVar4;
-  undefined8 uVar5;
-  longlong *plVar6;
-  int iVar7;
-  undefined8 *puVar8;
-  ushort *puVar9;
-  int iVar10;
-  int iVar11;
-  ushort *puVar12;
-  short *psVar13;
-  longlong lVar14;
-  short sVar15;
-  int *piVar16;
-  short sVar17;
-  int unaff_R14D;
-  longlong lVar18;
+  ushort *partition_ptr;
+  ushort partition_width;
+  ushort partition_height;
+  short *space_info;
+  undefined8 mapping_result;
+  longlong *texture_mapping;
+  int partition_index;
+  undefined8 *partition_data;
+  ushort *texture_ptr;
+  int layout_status;
+  int next_status;
+  ushort *next_texture_ptr;
+  short *partition_manager;
+  longlong space_offset;
+  short texture_id;
+  int *index_array;
+  short texture_offset;
+  int validation_status;
+  longlong partition_size;
   longlong in_stack_00000088;
   
-  iVar10 = 1;
-  if (0 < param_3) {
-    piVar16 = (int *)(param_2 + 0xc);
-    iVar7 = unaff_R14D;
+  layout_status = 1;
+  if (0 < partition_count) {
+    index_array = (int *)(optimization_data + 0xc);
+    partition_index = validation_status;
     do {
-      *piVar16 = iVar7;
-      piVar16 = piVar16 + 4;
-      iVar7 = iVar7 + 1;
-    } while (iVar7 < param_3);
+      *index_array = partition_index;
+      index_array = index_array + 4;
+      partition_index = partition_index + 1;
+    } while (partition_index < partition_count);
   }
-  lVar18 = (longlong)param_3;
-  qsort(param_2,lVar18,0x10,&UNK_18028ad30);
-  if (0 < lVar18) {
-    psVar13 = (short *)(param_2 + 10);
-    lVar14 = lVar18;
+  partition_size = (longlong)partition_count;
+  qsort(optimization_data, partition_size, 0x10, &partition_comparator);
+  if (0 < partition_size) {
+    partition_manager = (short *)(optimization_data + 10);
+    space_offset = partition_size;
     do {
-      uVar2 = psVar13[-3];
-      if ((uVar2 == 0) || (uVar3 = psVar13[-2], uVar3 == 0)) {
-        psVar13[-1] = 0;
-        psVar13[0] = 0;
+      partition_width = partition_manager[-3];
+      if ((partition_width == 0) || (partition_height = partition_manager[-2], partition_height == 0)) {
+        partition_manager[-1] = 0;
+        partition_manager[0] = 0;
       }
       else {
-        puVar8 = (undefined8 *)FUN_18028aaf0(&stack0x00000030,param_1,uVar2,uVar3);
-        uVar5 = *puVar8;
-        plVar6 = (longlong *)puVar8[1];
-        if (((plVar6 == (longlong *)0x0) ||
-            (*(int *)(param_1 + 4) < (int)((int)((ulonglong)uVar5 >> 0x20) + (uint)uVar3))) ||
-           (psVar4 = *(short **)(param_1 + 0x20), psVar4 == (short *)0x0)) {
-          unaff_R14D = 0;
-          psVar13[-1] = -1;
-          psVar13[0] = -1;
+        partition_data = (undefined8 *)calculate_texture_mapping(&stack_buffer, render_context, partition_width, partition_height);
+        mapping_result = *partition_data;
+        texture_mapping = (longlong *)partition_data[1];
+        if (((texture_mapping == (longlong *)0x0) ||
+            (*(int *)(render_context + 4) < (int)((int)((ulonglong)mapping_result >> 0x20) + (uint)partition_height))) ||
+           (space_info = *(short **)(render_context + 0x20), space_info == (short *)0x0)) {
+          validation_status = 0;
+          partition_manager[-1] = INVALID_TEXTURE_COORDINATE;
+          partition_manager[0] = INVALID_TEXTURE_COORDINATE;
         }
         else {
-          sVar17 = (short)((ulonglong)uVar5 >> 0x20);
-          psVar4[1] = uVar3 + sVar17;
-          sVar15 = (short)uVar5;
-          *psVar4 = sVar15;
-          *(undefined8 *)(param_1 + 0x20) = *(undefined8 *)(psVar4 + 4);
-          puVar9 = (ushort *)*plVar6;
-          iVar7 = (int)uVar5;
-          if ((int)(uint)*puVar9 < iVar7) {
-            puVar12 = puVar9 + 4;
-            puVar9 = *(ushort **)(puVar9 + 4);
-            *(short **)puVar12 = psVar4;
+          texture_id = (short)((ulonglong)mapping_result >> 0x20);
+          space_info[1] = partition_height + texture_id;
+          texture_offset = (short)mapping_result;
+          *space_info = texture_offset;
+          *(undefined8 *)(render_context + 0x20) = *(undefined8 *)(space_info + 4);
+          texture_ptr = (ushort *)*texture_mapping;
+          partition_index = (int)mapping_result;
+          if ((int)(uint)*texture_ptr < partition_index) {
+            next_texture_ptr = texture_ptr + 4;
+            texture_ptr = *(ushort **)(texture_ptr + 4);
+            *(short **)next_texture_ptr = space_info;
           }
           else {
-            *plVar6 = (longlong)psVar4;
+            *texture_mapping = (longlong)space_info;
           }
-          if (*(ushort **)(puVar9 + 4) != (ushort *)0x0) {
-            puVar12 = *(ushort **)(puVar9 + 4);
+          if (*(ushort **)(texture_ptr + 4) != (ushort *)0x0) {
+            next_texture_ptr = *(ushort **)(texture_ptr + 4);
             do {
-              if ((int)(iVar7 + (uint)uVar2) < (int)(uint)*puVar12) break;
-              *(undefined8 *)(puVar9 + 4) = *(undefined8 *)(param_1 + 0x20);
-              *(ushort **)(param_1 + 0x20) = puVar9;
-              puVar1 = puVar12 + 4;
-              puVar9 = puVar12;
-              puVar12 = *(ushort **)puVar1;
-            } while (*(ushort **)puVar1 != (ushort *)0x0);
+              if ((int)(partition_index + (uint)partition_width) < (int)(uint)*next_texture_ptr) break;
+              *(undefined8 *)(texture_ptr + 4) = *(undefined8 *)(render_context + 0x20);
+              *(ushort **)(render_context + 0x20) = texture_ptr;
+              partition_ptr = next_texture_ptr + 4;
+              texture_ptr = next_texture_ptr;
+              next_texture_ptr = *(ushort **)partition_ptr;
+            } while (*(ushort **)partition_ptr != (ushort *)0x0);
           }
-          *(ushort **)(psVar4 + 4) = puVar9;
-          if ((int)(uint)*puVar9 < (int)(iVar7 + (uint)uVar2)) {
-            *puVar9 = uVar2 + sVar15;
+          *(ushort **)(space_info + 4) = texture_ptr;
+          if ((int)(uint)*texture_ptr < (int)(partition_index + (uint)partition_width)) {
+            *texture_ptr = partition_width + texture_offset;
           }
-          unaff_R14D = 0;
-          psVar13[-1] = sVar15;
-          *psVar13 = sVar17;
+          validation_status = 0;
+          partition_manager[-1] = texture_offset;
+          *partition_manager = texture_id;
         }
       }
-      psVar13 = psVar13 + 8;
-      lVar14 = lVar14 + -1;
-      param_2 = in_stack_00000088;
-    } while (lVar14 != 0);
+      partition_manager = partition_manager + 8;
+      space_offset = space_offset + -1;
+      optimization_data = in_stack_00000088;
+    } while (space_offset != 0);
   }
-  qsort(param_2,lVar18,0x10,&UNK_18028ad70);
-  if (0 < lVar18) {
-    psVar13 = (short *)(param_2 + 10);
-    iVar7 = iVar10;
+  qsort(optimization_data, partition_size, 0x10, &partition_validator);
+  if (0 < partition_size) {
+    partition_manager = (short *)(optimization_data + 10);
+    partition_index = layout_status;
     do {
-      if ((psVar13[-1] != -1) || (iVar11 = unaff_R14D, *psVar13 != -1)) {
-        iVar11 = 1;
+      if ((partition_manager[-1] != INVALID_TEXTURE_COORDINATE) || (next_status = validation_status, *partition_manager != INVALID_TEXTURE_COORDINATE)) {
+        next_status = 1;
       }
-      *(int *)(psVar13 + 1) = iVar11;
-      iVar10 = unaff_R14D;
-      if (iVar11 != 0) {
-        iVar10 = iVar7;
+      *(int *)(partition_manager + 1) = next_status;
+      layout_status = validation_status;
+      if (next_status != 0) {
+        layout_status = partition_index;
       }
-      psVar13 = psVar13 + 8;
-      lVar18 = lVar18 + -1;
-      iVar7 = iVar10;
-    } while (lVar18 != 0);
+      partition_manager = partition_manager + 8;
+      partition_size = partition_size + -1;
+      partition_index = layout_status;
+    } while (partition_size != 0);
   }
-  return iVar10;
+  return partition_index;
 }
 
 

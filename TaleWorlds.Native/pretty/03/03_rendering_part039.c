@@ -1,98 +1,68 @@
-/**
- * @file 03_rendering_part039.c
- * @brief 渲染系统数据处理和优化模块
+/*
+ * TaleWorlds.Native 渲染系统美化代码 - 第39部分
+ * 渲染系统数据处理和优化模块
  * 
- * 本模块负责渲染系统的数据处理和优化功能，包括：
- * - 渲染数据查找和匹配
- * - 短数据处理和转换
- * - 数据排序和优化
- * - 内存管理和数据结构操作
+ * 本文件包含8个渲染相关函数，主要负责：
+ * - 渲染数据流处理和压缩算法
+ * - 数据提取和缓冲区管理
  * - 渲染参数计算和调整
+ * - 内存管理和数据结构操作
+ * - 高级渲染变换和顶点处理
  */
 
-#include <stdlib.h>
-#include <string.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include "common_types.h"
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
 
-// 渲染数据常量
-#define RENDER_DATA_MAX_SIZE 0x1000
-#define RENDER_DATA_ALIGNMENT 16
-#define RENDER_DATA_BUCKET_SIZE 32
-#define RENDER_DATA_HASH_SEED 0x40000000
-
-// 渲染数据标志
-#define RENDER_DATA_FLAG_VALID 0x00000001
-#define RENDER_DATA_FLAG_PROCESSED 0x00000002
-#define RENDER_DATA_FLAG_OPTIMIZED 0x00000004
-#define RENDER_DATA_FLAG_CACHED 0x00000008
-
-// 渲染数据类型
-#define RENDER_DATA_TYPE_SHORT 0x0001
-#define RENDER_DATA_TYPE_INT 0x0002
-#define RENDER_DATA_TYPE_FLOAT 0x0003
-#define RENDER_DATA_TYPE_CUSTOM 0x0004
-
-// 渲染数据结构体
+/* 渲染数据流处理器结构体 */
 typedef struct {
-    uint16_t* data_ptr;
-    uint32_t data_size;
-    uint32_t data_type;
-    uint32_t flags;
-    uint32_t hash_value;
-    uint32_t reference_count;
-    void* custom_data;
-    uint32_t reserved[8];
-} render_data_t;
+    uint8_t *stream_buffer;
+    uint32_t buffer_size;
+    uint32_t stream_position;
+    uint32_t data_length;
+    uint32_t compression_level;
+    bool is_compressed;
+    uint32_t checksum;
+} StreamProcessor;
 
-// 渲染数据查找结果结构体
+/* 数据提取器结构体 */
 typedef struct {
-    uint16_t* found_ptr;
-    uint32_t found_value;
-    uint32_t match_count;
-    uint32_t search_iterations;
-    uint32_t reserved[8];
-} render_data_lookup_result_t;
+    uint8_t *input_buffer;
+    uint32_t input_size;
+    uint32_t current_position;
+    uint32_t extracted_size;
+    uint32_t max_extract_size;
+    bool extraction_complete;
+} DataExtractor;
 
-// 渲染数据处理器结构体
+/* 渲染参数计算器结构体 */
 typedef struct {
-    render_data_t* data_array;
-    uint32_t data_count;
-    uint32_t max_count;
-    uint32_t current_index;
-    uint32_t flags;
-    void* processor_context;
-    uint32_t reserved[8];
-} render_data_processor_t;
+    float parameter_values[16];
+    uint32_t parameter_count;
+    uint32_t current_parameter;
+    bool calculation_complete;
+    float result_value;
+} ParameterCalculator;
 
-// 渲染排序上下文结构体
+/* 内存管理器结构体 */
 typedef struct {
-    void* sort_array;
-    uint32_t array_size;
-    uint32_t element_size;
-    int (*compare_func)(const void*, const void*);
-    uint32_t reserved[8];
-} render_sort_context_t;
+    void *memory_pool;
+    uint32_t pool_size;
+    uint32_t allocated_size;
+    uint32_t free_blocks;
+    bool defragmentation_needed;
+} MemoryManager;
 
-// 渲染数据查找上下文结构体
+/* 渲染变换处理器结构体 */
 typedef struct {
-    uint32_t* result_array;
-    uint32_t result_size;
-    uint32_t max_results;
-    uint32_t search_flags;
-    uint32_t reserved[8];
-} render_search_context_t;
-
-// 渲染数据缓存结构体
-typedef struct {
-    uint16_t* cache_data;
-    uint32_t cache_size;
-    uint32_t cache_capacity;
-    uint32_t hit_count;
-    uint32_t miss_count;
-    uint32_t reserved[8];
-} render_data_cache_t;
+    float transform_matrix[16];
+    float vertex_data[64];
+    uint32_t vertex_count;
+    uint32_t current_vertex;
+    bool transform_complete;
+} TransformProcessor;
 
 /**
  * @brief 查找渲染数据
