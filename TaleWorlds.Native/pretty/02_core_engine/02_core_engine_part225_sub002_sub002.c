@@ -1057,74 +1057,102 @@ uint32_t process_entity_data_transfer(longlong *entity_data)
 
 
 
-undefined8 FUN_18019c560(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: undefined8 cleanup_entity_resources(undefined8 resource_ptr, ulonglong cleanup_flags, undefined8 param_3, undefined8 param_4)
+// 清理实体资源，根据标志位决定是否释放内存
+// 参数:
+//   resource_ptr - 资源指针
+//   cleanup_flags - 清理标志位
+//   param_3, param_4 - 附加参数
+// 返回: 资源指针
+undefined8 cleanup_entity_resources(undefined8 resource_ptr, ulonglong cleanup_flags, undefined8 param_3, undefined8 param_4)
 
 {
-  undefined8 uVar1;
+  undefined8 temp_undefined8;  // 临时变量
   
-  uVar1 = 0xfffffffffffffffe;
-  FUN_180049470();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0xd0,param_3,param_4,uVar1);
+  temp_undefined8 = 0xfffffffffffffffe;  // 设置特殊值
+  FUN_180049470();  // 调用清理准备函数
+  
+  // 根据标志位决定是否释放内存
+  if ((cleanup_flags & 1) != 0) {
+    free(resource_ptr, 0xd0, param_3, param_4, temp_undefined8);
   }
-  return param_1;
+  
+  return resource_ptr;  // 返回原始资源指针
 }
 
 
 
-longlong * FUN_18019c5b0(longlong *param_1,longlong *param_2)
+// 函数: longlong * swap_entity_pointers(longlong *target_ptr_array, longlong *source_ptr_array)
+// 交换实体指针数组，安全地释放旧资源并设置新资源
+// 参数:
+//   target_ptr_array - 目标指针数组
+//   source_ptr_array - 源指针数组
+// 返回: 目标指针数组
+longlong * swap_entity_pointers(longlong *target_ptr_array, longlong *source_ptr_array)
 
 {
-  longlong *plVar1;
-  longlong *plVar2;
+  longlong *source_ptr;  // 源指针
+  longlong *target_ptr;  // 目标指针
   
-  plVar1 = (longlong *)*param_2;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x28))(plVar1);
+  // 处理第0个指针：获取源指针并清理旧的
+  source_ptr = (longlong *)*source_ptr_array;
+  if (source_ptr != (longlong *)0x0) {
+    (**(code **)(*source_ptr + 0x28))(source_ptr);  // 调用清理函数
   }
-  plVar2 = (longlong *)*param_1;
-  *param_1 = (longlong)plVar1;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
+  target_ptr = (longlong *)*target_ptr_array;
+  *target_ptr_array = (longlong)source_ptr;  // 设置新指针
+  if (target_ptr != (longlong *)0x0) {
+    (**(code **)(*target_ptr + 0x38))();  // 清理旧的目标指针
   }
-  plVar1 = (longlong *)param_2[1];
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x28))(plVar1);
+  
+  // 处理第1个指针
+  source_ptr = (longlong *)source_ptr_array[1];
+  if (source_ptr != (longlong *)0x0) {
+    (**(code **)(*source_ptr + 0x28))(source_ptr);
   }
-  plVar2 = (longlong *)param_1[1];
-  param_1[1] = (longlong)plVar1;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
+  target_ptr = (longlong *)target_ptr_array[1];
+  target_ptr_array[1] = (longlong)source_ptr;
+  if (target_ptr != (longlong *)0x0) {
+    (**(code **)(*target_ptr + 0x38))();
   }
-  plVar1 = (longlong *)param_2[2];
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x28))(plVar1);
+  
+  // 处理第2个指针
+  source_ptr = (longlong *)source_ptr_array[2];
+  if (source_ptr != (longlong *)0x0) {
+    (**(code **)(*source_ptr + 0x28))(source_ptr);
   }
-  plVar2 = (longlong *)param_1[2];
-  param_1[2] = (longlong)plVar1;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
+  target_ptr = (longlong *)target_ptr_array[2];
+  target_ptr_array[2] = (longlong)source_ptr;
+  if (target_ptr != (longlong *)0x0) {
+    (**(code **)(*target_ptr + 0x38))();
   }
-  plVar1 = (longlong *)param_2[3];
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x28))(plVar1);
+  
+  // 处理第3个指针
+  source_ptr = (longlong *)source_ptr_array[3];
+  if (source_ptr != (longlong *)0x0) {
+    (**(code **)(*source_ptr + 0x28))(source_ptr);
   }
-  plVar2 = (longlong *)param_1[3];
-  param_1[3] = (longlong)plVar1;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
+  target_ptr = (longlong *)target_ptr_array[3];
+  target_ptr_array[3] = (longlong)source_ptr;
+  if (target_ptr != (longlong *)0x0) {
+    (**(code **)(*target_ptr + 0x38))();
   }
-  plVar1 = (longlong *)param_2[4];
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x28))(plVar1);
+  
+  // 处理第4个指针
+  source_ptr = (longlong *)source_ptr_array[4];
+  if (source_ptr != (longlong *)0x0) {
+    (**(code **)(*source_ptr + 0x28))(source_ptr);
   }
-  plVar2 = (longlong *)param_1[4];
-  param_1[4] = (longlong)plVar1;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
+  target_ptr = (longlong *)target_ptr_array[4];
+  target_ptr_array[4] = (longlong)source_ptr;
+  if (target_ptr != (longlong *)0x0) {
+    (**(code **)(*target_ptr + 0x38))();
   }
-  *(char *)(param_1 + 5) = (char)param_2[5];
-  return param_1;
+  
+  // 复制状态标志
+  *(char *)(target_ptr_array + 5) = (char)source_ptr_array[5];
+  
+  return target_ptr_array;  // 返回更新后的目标数组
 }
 
 
