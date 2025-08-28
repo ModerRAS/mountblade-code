@@ -691,65 +691,86 @@ void process_float_data_and_initialize_context(longlong context_ptr, undefined1 
 
 
 
-undefined8 * FUN_18014a1b0(undefined8 *param_1)
-
+/**
+ * 初始化引擎资源管理器
+ * @param resource_ptr 资源指针
+ * @return 返回资源指针
+ */
+undefined8 * initialize_engine_resource_manager(undefined8 *resource_ptr)
 {
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
-  *(undefined4 *)(param_1 + 1) = 0;
-  *param_1 = &UNK_180a02e68;
-  param_1[2] = &UNK_18098bcb0;
-  param_1[3] = 0;
-  *(undefined4 *)(param_1 + 4) = 0;
-  param_1[2] = &UNK_1809fcc28;
-  param_1[3] = param_1 + 5;
-  *(undefined4 *)(param_1 + 4) = 0;
-  *(undefined1 *)(param_1 + 5) = 0;
-  *(undefined1 *)((longlong)param_1 + 0xb2) = 0;
-  *(undefined4 *)(param_1 + 1) = 0;
-  *(undefined2 *)(param_1 + 0x16) = 0;
-  param_1[0x15] = 0;
-  *param_1 = &UNK_180a07248;
-  param_1[0x15] = 0;
-  param_1[0x17] = 0;
-  *(undefined1 *)((longlong)param_1 + 300) = 0;
-  param_1[0x18] = 0;
-  param_1[0x19] = 0;
-  param_1[0x1a] = 0;
-  param_1[0x1b] = 0;
-  param_1[0x1c] = 0;
-  param_1[0x1d] = 0;
-  param_1[0x1e] = 0;
-  param_1[0x1f] = 0;
-  param_1[0x20] = 0;
-  *(undefined4 *)(param_1 + 0x25) = 0;
-  param_1[0x21] = 0;
-  param_1[0x22] = 0;
-  param_1[0x23] = 0;
-  param_1[0x24] = 0;
-  return param_1;
+  // 设置资源管理器的各个组件
+  *resource_ptr = &engine_resource_table;
+  *resource_ptr = &engine_resource_config;
+  *(undefined4 *)(resource_ptr + 1) = 0;
+  *resource_ptr = &engine_memory_pool;
+  resource_ptr[2] = &engine_resource_pool;
+  resource_ptr[3] = 0;
+  *(undefined4 *)(resource_ptr + 4) = 0;
+  resource_ptr[2] = &engine_callback_table;
+  resource_ptr[3] = resource_ptr + 5;
+  *(undefined4 *)(resource_ptr + 4) = 0;
+  *(undefined1 *)(resource_ptr + 5) = 0;
+  *(undefined1 *)((longlong)resource_ptr + 0xb2) = 0;
+  *(undefined4 *)(resource_ptr + 1) = 0;
+  *(undefined2 *)(resource_ptr + 0x16) = 0;
+  resource_ptr[0x15] = 0;
+  *resource_ptr = &global_resource_manager;
+  resource_ptr[0x15] = 0;
+  resource_ptr[0x17] = 0;
+  *(undefined1 *)((longlong)resource_ptr + 300) = 0;
+  resource_ptr[0x18] = 0;
+  resource_ptr[0x19] = 0;
+  resource_ptr[0x1a] = 0;
+  resource_ptr[0x1b] = 0;
+  resource_ptr[0x1c] = 0;
+  resource_ptr[0x1d] = 0;
+  resource_ptr[0x1e] = 0;
+  resource_ptr[0x1f] = 0;
+  resource_ptr[0x20] = 0;
+  *(undefined4 *)(resource_ptr + 0x25) = 0;
+  resource_ptr[0x21] = 0;
+  resource_ptr[0x22] = 0;
+  resource_ptr[0x23] = 0;
+  resource_ptr[0x24] = 0;
+  return resource_ptr;
 }
 
 
 
 undefined8 *
-FUN_18014a2d0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 清理引擎资源管理器
+ * @param resource_ptr 资源指针
+ * @param flags 清理标志位
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 返回资源指针
+ */
+undefined8 * cleanup_engine_resource_manager(undefined8 *resource_ptr, ulonglong flags, undefined8 param3, undefined8 param4)
 {
-  undefined8 uVar1;
+  undefined8 cleanup_flags;
   
-  uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a07248;
-  FUN_18014e610(param_1[0x17]);
-  param_1[0x17] = 0;
-  *param_1 = &UNK_180a02e68;
-  param_1[2] = &UNK_18098bcb0;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x140,param_3,param_4,uVar1);
+  cleanup_flags = 0xfffffffffffffffe;
+  
+  // 设置资源管理器为全局管理器
+  *resource_ptr = &global_resource_manager;
+  
+  // 清理资源链
+  cleanup_resource_chain(resource_ptr[0x17]);
+  resource_ptr[0x17] = 0;
+  
+  // 重置资源管理器组件
+  *resource_ptr = &engine_memory_pool;
+  resource_ptr[2] = &engine_resource_pool;
+  *resource_ptr = &engine_resource_config;
+  *resource_ptr = &engine_resource_table;
+  
+  // 根据标志位决定是否释放内存
+  if ((flags & 1) != 0) {
+    free(resource_ptr, 0x140, param3, param4, cleanup_flags);
   }
-  return param_1;
+  
+  return resource_ptr;
 }
 
 

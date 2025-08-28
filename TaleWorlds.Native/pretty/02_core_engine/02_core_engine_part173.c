@@ -1,9 +1,15 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part173.c - 10 个函数
+// 02_core_engine_part173.c - 引擎配置和数据处理模块
+// 核心引擎模块第173部分：包含引擎配置设置、数据处理、资源管理和文件操作功能
 
-// 函数: void FUN_180158780(longlong *param_1,int param_2)
-void FUN_180158780(longlong *param_1,int param_2)
+/**
+ * 设置引擎配置参数
+ * @param engine_context 引擎上下文指针
+ * @param config_type 配置类型 (0-3)
+ * 功能: 根据不同的配置类型设置引擎的相应参数
+ */
+void set_engine_configuration(longlong *engine_context, int config_type)
 
 {
   code *pcVar1;
@@ -62,7 +68,15 @@ LAB_180158962:
 
 
 
-longlong * FUN_180158990(longlong param_1,longlong *param_2,int param_3)
+/**
+ * 查找并获取引擎资源
+ * @param resource_manager 资源管理器指针
+ * @param output_ptr 输出结果指针
+ * @param resource_id 资源ID
+ * @return 返回输出结果指针
+ * 功能: 在资源管理器中查找指定ID的资源并返回
+ */
+longlong * find_engine_resource(longlong resource_manager, longlong *output_ptr, int resource_id)
 
 {
   longlong lVar1;
@@ -111,7 +125,14 @@ LAB_180158a0c:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180158a70(longlong param_1,int param_2)
+/**
+ * 移除并清理引擎资源
+ * @param resource_manager 资源管理器指针
+ * @param resource_id 资源ID
+ * @return 返回操作状态 (1=成功, 0=失败)
+ * 功能: 从资源管理器中移除指定ID的资源并进行清理
+ */
+undefined8 remove_engine_resource(longlong resource_manager, int resource_id)
 
 {
   longlong lVar1;
@@ -221,8 +242,13 @@ LAB_180158cb6:
 
 
 
-// 函数: void FUN_180158ce0(undefined8 param_1,longlong param_2)
-void FUN_180158ce0(undefined8 param_1,longlong param_2)
+/**
+ * 处理引擎事件通知
+ * @param event_handler 事件处理器
+ * @param event_id 事件ID
+ * 功能: 根据事件ID触发相应的引擎事件处理逻辑
+ */
+void process_engine_event(undefined8 event_handler, longlong event_id)
 
 {
   longlong lVar1;
@@ -281,8 +307,13 @@ void FUN_180158ce0(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180158e10(undefined8 param_1,longlong param_2)
-void FUN_180158e10(undefined8 param_1,longlong param_2)
+/**
+ * 处理引擎状态更新
+ * @param state_manager 状态管理器
+ * @param state_id 状态ID
+ * 功能: 根据状态ID更新引擎的相应状态
+ */
+void update_engine_state(undefined8 state_manager, longlong state_id)
 
 {
   longlong lVar1;

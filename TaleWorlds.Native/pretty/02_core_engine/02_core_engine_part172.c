@@ -1,9 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part172.c - 2 个函数
+// 02_core_engine_part172.c - 引擎核心资源管理和事件处理模块
 
-// 函数: void FUN_1801570c0(undefined8 *param_1)
-void FUN_1801570c0(undefined8 *param_1)
+// 函数: 引擎资源管理器析构函数
+// 功能: 清理和释放引擎资源管理器占用的所有资源
+// 参数: param_1 - 资源管理器实例指针
+void EngineResourceManager_Destroy(undefined8 *param_1)
 
 {
   longlong *plVar1;
@@ -21,7 +23,7 @@ void FUN_1801570c0(undefined8 *param_1)
   longlong *plStackX_20;
   ulonglong uVar9;
   
-  *param_1 = &UNK_180a07cd0;
+  *param_1 = &g_pEngineResourceTable;  // 设置资源管理表指针
   *(undefined1 *)((longlong)param_1 + 0x162) = 1;
   plVar2 = param_1 + 0x1a;
   plStackX_20 = plVar2;
@@ -42,9 +44,9 @@ void FUN_1801570c0(undefined8 *param_1)
           break;
         }
       }
-      FUN_18066c220(param_1 + 10,&plStackX_10,(ulonglong)*(uint *)(param_1 + 8),
-                    *(undefined4 *)(param_1 + 9),1);
-      piVar6 = (int *)FUN_18062b420(_DAT_180c8ed18,0x18,*(undefined1 *)((longlong)param_1 + 0x5c));
+      ResourceTable_AllocateSlot(param_1 + 10,&plStackX_10,(ulonglong)*(uint *)(param_1 + 8),
+                                       *(undefined4 *)(param_1 + 9),1);  // 分配资源表槽位
+      piVar6 = (int *)MemoryPool_Allocate(g_pMemoryPool,0x18,*(undefined1 *)((longlong)param_1 + 0x5c));  // 从内存池分配
       *piVar6 = iVar5;
       piVar6[2] = 0;
       piVar6[3] = 0;
@@ -52,7 +54,7 @@ void FUN_1801570c0(undefined8 *param_1)
       piVar6[5] = 0;
       if ((char)plStackX_10 != '\0') {
         uVar11 = uVar10 % ((ulonglong)plStackX_10 >> 0x20);
-        FUN_18015bdc0(param_1 + 6);
+        ResourceTable_IncrementRefCount(param_1 + 6);  // 增加资源引用计数
       }
       *(undefined8 *)(piVar6 + 4) = *(undefined8 *)(param_1[7] + uVar11 * 8);
       *(int **)(param_1[7] + uVar11 * 8) = piVar6;
@@ -70,7 +72,7 @@ LAB_1801571ef:
     } while ((ulonglong)(longlong)(int)uVar8 < (ulonglong)param_1[9]);
   }
   plVar1 = param_1 + 6;
-  FUN_18015b450(plVar1);
+  ResourceTable_Release(plVar1);  // 释放资源表
   plVar3 = param_1 + 0x2d;
   plVar4 = (longlong *)param_1[0x2e];
   plVar7 = (longlong *)*plVar3;
@@ -93,22 +95,22 @@ LAB_1801571ef:
     param_1[0x4a] = 0;
   }
   plStackX_10 = param_1 + 0x44;
-  FUN_18015b4f0();
+  EventQueue_Clear();  // 清空事件队列
   if ((longlong *)param_1[0x3d] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[0x3d] + 0x38))();
   }
   plStackX_10 = plVar3;
-  FUN_180057830(plVar3);
+  ThreadLocalStorage_Destroy(plVar3);  // 销毁线程本地存储
   plStackX_10 = param_1 + 0x28;
-  FUN_180048980();
+  MemoryPool_Destroy();  // 销毁内存池1
   plStackX_10 = param_1 + 0x24;
-  FUN_180048980();
+  MemoryPool_Destroy();  // 销毁内存池2
   plStackX_10 = plVar2;
   _Mtx_destroy_in_situ(plVar2);
   plStackX_10 = param_1 + 0x16;
   if (*plStackX_10 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    Assertion_Failure();  // 断言失败
   }
   plStackX_10 = param_1 + 0xc;
   _Mtx_destroy_in_situ();
@@ -116,7 +118,7 @@ LAB_1801571ef:
   FUN_18015b450(plVar1);
   if ((1 < (ulonglong)param_1[8]) && (param_1[7] != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    Assertion_Failure();  // 断言失败
   }
   if ((code *)param_1[3] != (code *)0x0) {
     (*(code *)param_1[3])(param_1 + 1,0,0);
@@ -333,7 +335,7 @@ LAB_180157862:
     puStack_c8 = &UNK_180a3c3e0;
     if (puStack_c0 != (undefined8 *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      Assertion_Failure();  // 断言失败
     }
     puStack_c0 = (undefined8 *)0x0;
     uStack_b0 = (ulonglong)uStack_b0._4_4_ << 0x20;
@@ -415,7 +417,7 @@ LAB_180157a6e:
   puStack_98 = &UNK_180a3c3e0;
   if (lStack_90 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    Assertion_Failure();  // 断言失败
   }
   lStack_90 = 0;
   uStack_80 = uStack_80 & 0xffffffff00000000;
@@ -560,7 +562,7 @@ LAB_180157e02:
     puStack_b0 = &UNK_180a3c3e0;
     if (puStack_a8 != (undefined4 *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      Assertion_Failure();  // 断言失败
     }
     puStack_a8 = (undefined4 *)0x0;
     uStack_98 = (ulonglong)uStack_98._4_4_ << 0x20;
@@ -572,7 +574,7 @@ LAB_180157e02:
   puStack_80 = &UNK_180a3c3e0;
   if (lStack_78 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    Assertion_Failure();  // 断言失败
   }
   lStack_78 = 0;
   uStack_68 = uStack_68 & 0xffffffff00000000;
@@ -654,7 +656,7 @@ FUN_180157ef0(longlong *param_1,longlong *param_2,undefined8 param_3,longlong pa
     puStack_a8 = &UNK_180a3c3e0;
     if (lStack_a0 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      Assertion_Failure();  // 断言失败
     }
     lStack_a0 = 0;
     uStack_90 = uStack_90 & 0xffffffff00000000;
@@ -743,7 +745,7 @@ FUN_1801580f0(longlong *param_1,longlong *param_2,undefined8 param_3,longlong pa
     puStack_a8 = &UNK_180a3c3e0;
     if (lStack_a0 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      Assertion_Failure();  // 断言失败
     }
     lStack_a0 = 0;
     uStack_90 = uStack_90 & 0xffffffff00000000;
@@ -897,7 +899,7 @@ LAB_18015860c:
   puStack_60 = &UNK_180a3c3e0;
   if (puStack_58 != (undefined8 *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    Assertion_Failure();  // 断言失败
   }
   puStack_58 = (undefined8 *)0x0;
   uStack_48 = (ulonglong)uStack_48._4_4_ << 0x20;

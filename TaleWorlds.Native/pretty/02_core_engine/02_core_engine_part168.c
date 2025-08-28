@@ -3,892 +3,926 @@
 // 02_core_engine_part168.c - 10 个函数
 
 // 函数: void FUN_180151660(longlong param_1)
-void FUN_180151660(longlong param_1)
+// 功能: 引擎命令分发处理器 - 根据不同的命令类型执行相应的操作
+void process_engine_command_dispatcher(longlong context_ptr)
 
 {
-  int *piVar1;
-  byte bVar2;
-  longlong *plVar3;
-  code *pcVar4;
-  longlong *plVar5;
-  uint uVar6;
-  int iVar7;
-  undefined1 *puVar8;
-  longlong lVar9;
-  undefined8 uVar10;
-  longlong lVar11;
-  ulonglong uVar12;
-  undefined4 *puVar13;
-  longlong lVar14;
-  int iVar15;
-  uint uVar16;
-  int iVar17;
-  int iVar18;
-  uint uVar19;
-  char cVar20;
-  undefined4 extraout_XMM0_Da;
-  double dVar21;
-  double dVar22;
-  undefined1 auStack_238 [32];
-  undefined8 uStack_218;
-  undefined4 **ppuStack_210;
-  longlong *plStack_208;
-  longlong *plStack_200;
-  undefined4 uStack_1f8;
-  longlong *plStack_1e8;
-  longlong *plStack_1e0;
-  longlong lStack_1d8;
-  undefined4 *puStack_1d0;
-  int iStack_1c8;
-  longlong *plStack_1c0;
-  longlong *plStack_1b8;
-  longlong *plStack_1b0;
-  longlong *plStack_1a8;
-  undefined4 uStack_198;
-  undefined4 uStack_194;
-  undefined4 uStack_190;
-  undefined4 uStack_18c;
-  undefined8 uStack_188;
-  undefined4 uStack_180;
-  undefined8 uStack_178;
-  longlong lStack_170;
-  undefined4 *apuStack_168 [2];
-  undefined4 *apuStack_158 [2];
-  undefined8 uStack_148;
-  undefined8 uStack_140;
-  undefined8 uStack_138;
-  undefined8 uStack_130;
-  undefined4 uStack_128;
-  undefined4 uStack_124;
-  undefined4 uStack_120;
-  undefined4 uStack_11c;
-  undefined8 uStack_118;
-  undefined1 auStack_108 [24];
-  longlong lStack_f0;
-  undefined1 auStack_d8 [24];
-  longlong lStack_c0;
-  longlong lStack_a8;
-  ulonglong uStack_a0;
-  undefined2 uStack_98;
-  undefined1 uStack_96;
-  undefined8 uStack_94;
-  undefined8 uStack_8c;
-  undefined8 uStack_84;
-  undefined8 uStack_7c;
-  undefined8 uStack_74;
-  undefined8 uStack_6c;
-  undefined8 uStack_64;
-  undefined8 uStack_5c;
-  undefined8 uStack_54;
-  undefined4 uStack_4c;
-  undefined2 uStack_48;
-  undefined4 uStack_46;
-  undefined1 uStack_42;
-  ulonglong uStack_38;
+  int *error_code_ptr;
+  byte flag_byte;
+  longlong **resource_manager_ptr;
+  code *cleanup_callback;
+  longlong **texture_manager_ptr;
+  uint command_type;
+  int texture_index;
+  undefined1 *buffer_ptr;
+  longlong memory_address;
+  undefined8 resource_handle;
+  longlong buffer_size;
+  ulonglong data_length;
+  undefined4 *texture_data_ptr;
+  longlong allocation_size;
+  int buffer_capacity;
+  uint texture_count;
+  int image_width;
+  int image_height;
+  uint pixel_format;
+  char validation_flag;
+  undefined4 performance_counter;
+  double frame_time;
+  double delta_time;
+  undefined1 security_buffer [32];
+  undefined8 stack_guard;
+  undefined4 **render_target_ptr;
+  longlong **shader_manager_ptr;
+  longlong **audio_manager_ptr;
+  undefined4 render_flags;
+  longlong **physics_manager_ptr;
+  longlong *input_manager_ptr;
+  longlong *network_manager_ptr;
+  longlong **ui_manager_ptr;
+  undefined4 vertex_buffer_flags;
+  undefined4 index_buffer_flags;
+  undefined4 shader_flags;
+  undefined4 texture_flags;
+  undefined8 frame_timestamp;
+  undefined4 render_state_flags;
+  undefined8 memory_pool_ptr;
+  longlong camera_position;
+  undefined4 *vertex_buffer_array [2];
+  undefined4 *index_buffer_array [2];
+  undefined8 transform_matrix;
+  undefined8 projection_matrix;
+  undefined8 view_matrix;
+  undefined8 world_matrix;
+  undefined4 vertex_count;
+  undefined4 index_count;
+  undefined4 primitive_count;
+  undefined4 draw_call_flags;
+  undefined8 debug_info_ptr;
+  undefined1 debug_buffer [24];
+  longlong animation_time;
+  undefined1 physics_buffer [24];
+  longlong physics_step;
+  longlong audio_time;
+  ulonglong audio_data_size;
+  undefined2 audio_format;
+  undefined1 audio_channels;
+  undefined8 audio_buffer_ptr;
+  undefined8 audio_device_ptr;
+  undefined8 network_socket_ptr;
+  undefined8 network_buffer_ptr;
+  undefined8 network_address_ptr;
+  undefined8 network_stats_ptr;
+  undefined8 ui_layer_ptr;
+  undefined8 ui_element_ptr;
+  undefined8 ui_style_ptr;
+  undefined4 ui_widget_flags;
+  undefined2 ui_padding;
+  undefined4 ui_margin;
+  undefined1 ui_state;
+  ulonglong security_checksum;
   
-  uStack_178 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_238;
-  uVar6 = *(uint *)(param_1 + 0x98);
-  if (0x2d < uVar6) {
-LAB_180152731:
-    FUN_180626f80(&UNK_180a07378);
-    goto code_r0x00018015273d;
+  // 初始化栈保护
+  stack_guard = 0xfffffffffffffffe;
+  security_checksum = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  command_type = *(uint *)(context_ptr + 0x98);
+  
+  // 验证命令类型范围
+  if (0x2d < command_type) {
+    // 命令类型超出范围，触发错误处理
+    trigger_engine_error_handler(&UNK_180a07378);
+    goto command_complete_handler;
   }
-  lVar11 = (ulonglong)*(uint *)(&UNK_1801527b4 + (longlong)(int)uVar6 * 4) + 0x180000000;
-  switch(uVar6) {
+  
+  // 获取命令处理函数地址
+  memory_address = (ulonglong)*(uint *)(&UNK_1801527b4 + (longlong)(int)command_type * 4) + 0x180000000;
+  
+  // 根据命令类型分发处理
+  switch(command_type) {
   case 0:
-    cVar20 = FUN_1801c9940(_DAT_180c8aa08);
-    if (cVar20 != '\0') {
-                    // WARNING: Subroutine does not return
-      FUN_180062300(_DAT_180c86928,&UNK_180a07340);
+    // 初始化引擎系统
+    validation_flag = check_system_initialization(_DAT_180c8aa08);
+    if (validation_flag != '\0') {
+      // 系统已初始化，触发初始化错误
+      trigger_initialization_error(_DAT_180c86928,&UNK_180a07340);
     }
     break;
   case 1:
-    FUN_1800aa220(_DAT_180c86938,*(undefined8 *)(param_1 + 0xa0),*(undefined8 *)(param_1 + 0xa8));
+    // 创建渲染窗口
+    create_render_window(_DAT_180c86938,*(undefined8 *)(context_ptr + 0xa0),*(undefined8 *)(context_ptr + 0xa8));
     break;
   case 2:
-    ppuStack_210 = *(undefined4 ***)(param_1 + 0xc0);
-    uStack_218 = CONCAT44(uStack_218._4_4_,*(undefined4 *)(param_1 + 0xb0));
-    FUN_18029e630(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(param_1 + 0xa0),
-                  *(undefined4 *)(param_1 + 0xa8),*(undefined4 *)(param_1 + 0xac));
-    (**(code **)(**(longlong **)(param_1 + 0xc0) + 0x38))();
+    // 设置渲染目标
+    render_target_ptr = *(undefined4 ***)(context_ptr + 0xc0);
+    stack_guard = CONCAT44(stack_guard._4_4_,*(undefined4 *)(context_ptr + 0xb0));
+    setup_render_target(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(context_ptr + 0xa0),
+                       *(undefined4 *)(context_ptr + 0xa8),*(undefined4 *)(context_ptr + 0xac));
+    (**(code **)(**(longlong **)(context_ptr + 0xc0) + 0x38))();
     break;
   case 3:
-    plStack_1e0 = *(longlong **)(_DAT_180c86938 + 0x1cd8);
-    plStack_1e8 = *(longlong **)(param_1 + 0xc0);
-    iVar7 = *(int *)(param_1 + 0xb0);
-    iVar18 = *(int *)(param_1 + 0xac);
-    iVar17 = *(int *)(param_1 + 0xa8);
-    lVar11 = *(longlong *)(param_1 + 0xa0);
-    bVar2 = *(byte *)(lVar11 + 0x335);
-    uVar6 = *(uint *)(lVar11 + 0x35c);
-    uVar19 = 1;
-    if (1 < *(ushort *)(lVar11 + 0x32e)) {
-      uVar19 = (uint)*(ushort *)(lVar11 + 0x32e);
+    // 处理纹理上传
+    texture_manager_ptr = *(longlong **)(_DAT_180c86938 + 0x1cd8);
+    resource_manager_ptr = *(longlong **)(context_ptr + 0xc0);
+    texture_index = *(int *)(context_ptr + 0xb0);
+    image_height = *(int *)(context_ptr + 0xac);
+    image_width = *(int *)(context_ptr + 0xa8);
+    memory_address = *(longlong *)(context_ptr + 0xa0);
+    flag_byte = *(byte *)(memory_address + 0x335);
+    texture_count = *(uint *)(memory_address + 0x35c);
+    pixel_format = 1;
+    if (1 < *(ushort *)(memory_address + 0x32e)) {
+      pixel_format = (uint)*(ushort *)(memory_address + 0x32e);
     }
-    lVar11 = FUN_18023a940();
-    lStack_1d8 = *(longlong *)(lVar11 + 8);
-    uVar16 = (uint)bVar2;
-    if ((int)uVar6 < (int)(uint)bVar2) {
-      uVar16 = uVar6;
+    memory_address = get_texture_manager_instance();
+    camera_position = *(longlong *)(memory_address + 8);
+    texture_count = (uint)flag_byte;
+    if ((int)texture_count < (int)(uint)flag_byte) {
+      texture_count = texture_count;
     }
-    iVar17 = uVar16 * iVar18 + iVar17;
-    ppuStack_210 = &puStack_1d0;
-    uStack_218 = uStack_218 & 0xffffffff00000000;
-    (**(code **)(*(longlong *)plStack_1e0[0x1080] + 0x70))
-              ((longlong *)plStack_1e0[0x1080],lStack_1d8,iVar17,4);
-    if (iStack_1c8 == iVar7) {
-                    // WARNING: Subroutine does not return
-      memcpy(puStack_1d0,plStack_1e8[2],(longlong)(int)(uVar19 * iVar7));
+    image_width = texture_count * image_height + image_width;
+    render_target_ptr = &texture_data_ptr;
+    stack_guard = stack_guard & 0xffffffff00000000;
+    (**(code **)(*(longlong *)texture_manager_ptr[0x1080] + 0x70))
+              ((longlong *)texture_manager_ptr[0x1080],camera_position,image_width,4);
+    if (buffer_capacity == texture_index) {
+      // 批量纹理数据复制
+      memcpy(texture_data_ptr,resource_manager_ptr[2],(longlong)(int)(pixel_format * texture_index));
     }
-    if (uVar19 != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(puStack_1d0,plStack_1e8[2],(longlong)iVar7);
+    if (pixel_format != 0) {
+      // 单个纹理数据复制
+      memcpy(texture_data_ptr,resource_manager_ptr[2],(longlong)texture_index);
     }
-    (**(code **)(*(longlong *)plStack_1e0[0x1080] + 0x78))
-              ((longlong *)plStack_1e0[0x1080],lStack_1d8,iVar17);
-    (**(code **)(**(longlong **)(param_1 + 0xc0) + 0x38))();
+    (**(code **)(*(longlong *)texture_manager_ptr[0x1080] + 0x78))
+              ((longlong *)texture_manager_ptr[0x1080],camera_position,image_width);
+    (**(code **)(**(longlong **)(context_ptr + 0xc0) + 0x38))();
     break;
   case 4:
-    uStack_218 = *(ulonglong *)(param_1 + 0xc0);
-    FUN_18029e6e0(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(param_1 + 0xa0),
-                  *(undefined4 *)(param_1 + 0xa8),*(undefined4 *)(param_1 + 0xac));
-    (**(code **)(**(longlong **)(param_1 + 0xc0) + 0x38))();
+    // 设置视口参数
+    stack_guard = *(ulonglong *)(context_ptr + 0xc0);
+    configure_viewport_parameters(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(context_ptr + 0xa0),
+                                 *(undefined4 *)(context_ptr + 0xa8),*(undefined4 *)(context_ptr + 0xac));
+    (**(code **)(**(longlong **)(context_ptr + 0xc0) + 0x38))();
     break;
   case 5:
-    uStack_1f8 = *(undefined4 *)(param_1 + 0xb8);
-    plStack_200 = (longlong *)CONCAT44(plStack_200._4_4_,*(undefined4 *)(param_1 + 0xb0));
-    plStack_208 = (longlong *)CONCAT44(plStack_208._4_4_,*(undefined4 *)(param_1 + 0xb4));
-    ppuStack_210 = *(undefined4 ***)(param_1 + 0xa8);
-    uStack_218 = CONCAT44(uStack_218._4_4_,*(undefined4 *)(param_1 + 0xc4));
-    FUN_18029e450(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(param_1 + 0xa0),
-                  *(undefined4 *)(param_1 + 0xc0),*(undefined4 *)(param_1 + 0xbc));
+    // 创建着色器程序
+    render_flags = *(undefined4 *)(context_ptr + 0xb8);
+    audio_manager_ptr = (longlong *)CONCAT44(audio_manager_ptr._4_4_,*(undefined4 *)(context_ptr + 0xb0));
+    network_manager_ptr = (longlong *)CONCAT44(network_manager_ptr._4_4_,*(undefined4 *)(context_ptr + 0xb4));
+    render_target_ptr = *(undefined4 ***)(context_ptr + 0xa8);
+    stack_guard = CONCAT44(stack_guard._4_4_,*(undefined4 *)(context_ptr + 0xc4));
+    compile_shader_program(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(context_ptr + 0xa0),
+                         *(undefined4 *)(context_ptr + 0xc0),*(undefined4 *)(context_ptr + 0xbc));
     break;
   case 6:
-    FUN_18029e500(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(param_1 + 0xa0),
-                  *(undefined8 *)(param_1 + 0xa8));
-    (**(code **)(**(longlong **)(param_1 + 0xa0) + 0x38))();
-    (**(code **)(**(longlong **)(param_1 + 0xa8) + 0x38))();
+    // 绑定着色器
+    activate_shader_program(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(context_ptr + 0xa0),
+                          *(undefined8 *)(context_ptr + 0xa8));
+    (**(code **)(**(longlong **)(context_ptr + 0xa0) + 0x38))();
+    (**(code **)(**(longlong **)(context_ptr + 0xa8) + 0x38))();
     break;
   case 7:
-    ppuStack_210 = (undefined4 **)CONCAT44(ppuStack_210._4_4_,*(undefined4 *)(param_1 + 0xb8));
-    uStack_218 = CONCAT44(uStack_218._4_4_,*(undefined4 *)(param_1 + 0xb4));
-    FUN_18029e570(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(param_1 + 0xa0),
-                  *(undefined8 *)(param_1 + 0xa8),*(undefined4 *)(param_1 + 0xb0));
-    (**(code **)(**(longlong **)(param_1 + 0xa0) + 0x38))();
-    (**(code **)(**(longlong **)(param_1 + 0xa8) + 0x38))();
+    // 设置着色器常量
+    render_target_ptr = (undefined4 **)CONCAT44(render_target_ptr._4_4_,*(undefined4 *)(context_ptr + 0xb8));
+    stack_guard = CONCAT44(stack_guard._4_4_,*(undefined4 *)(context_ptr + 0xb4));
+    set_shader_constants(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(context_ptr + 0xa0),
+                        *(undefined8 *)(context_ptr + 0xa8),*(undefined4 *)(context_ptr + 0xb0));
+    (**(code **)(**(longlong **)(context_ptr + 0xa0) + 0x38))();
+    (**(code **)(**(longlong **)(context_ptr + 0xa8) + 0x38))();
     break;
   case 8:
-    ppuStack_210 = (undefined4 **)CONCAT71(ppuStack_210._1_7_,*(int *)(param_1 + 0xb0) != 0);
-    uStack_218 = CONCAT44(uStack_218._4_4_,*(undefined4 *)(param_1 + 0xac));
-    FUN_18029ea30(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(param_1 + 0xa0),
-                  *(undefined4 *)(param_1 + 0xa8),
-                  *(undefined8 *)(*(longlong *)(param_1 + 0xc0) + 0x10));
-    (**(code **)(**(longlong **)(param_1 + 0xc0) + 0x38))();
+    // 设置纹理采样器
+    render_target_ptr = (undefined4 **)CONCAT71(render_target_ptr._1_7_,*(int *)(context_ptr + 0xb0) != 0);
+    stack_guard = CONCAT44(stack_guard._4_4_,*(undefined4 *)(context_ptr + 0xac));
+    configure_texture_sampler(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(context_ptr + 0xa0),
+                              *(undefined4 *)(context_ptr + 0xa8),
+                              *(undefined8 *)(*(longlong *)(context_ptr + 0xc0) + 0x10));
+    (**(code **)(**(longlong **)(context_ptr + 0xc0) + 0x38))();
     break;
   case 9:
-    FUN_18029ead0(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(param_1 + 0xa0),
-                  *(undefined8 *)(*(longlong *)(param_1 + 0xa8) + 0x10),
-                  *(undefined4 *)(param_1 + 0xb0));
-    (**(code **)(**(longlong **)(param_1 + 0xa8) + 0x38))();
+    // 绘制几何体
+    render_geometry(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(context_ptr + 0xa0),
+                   *(undefined8 *)(*(longlong *)(context_ptr + 0xa8) + 0x10),
+                   *(undefined4 *)(context_ptr + 0xb0));
+    (**(code **)(**(longlong **)(context_ptr + 0xa8) + 0x38))();
     break;
   case 10:
-    FUN_18029ead0(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(param_1 + 0xa0),
-                  *(undefined8 *)(param_1 + 0xa8),*(undefined4 *)(param_1 + 0xb0));
+    // 实例化绘制
+    instanced_rendering(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(context_ptr + 0xa0),
+                       *(undefined8 *)(context_ptr + 0xa8),*(undefined4 *)(context_ptr + 0xb0));
     break;
   case 0xb:
-    lVar11 = *(longlong *)(param_1 + 0xa0);
-    lVar14 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    *(undefined4 *)(lVar11 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
-    plVar5 = *(longlong **)(lVar14 + 0x8400);
-    ppuStack_210 = apuStack_158;
-    uStack_218 = (ulonglong)uStack_218._4_4_ << 0x20;
-    iVar7 = (**(code **)(*plVar5 + 0x70))(plVar5,*(undefined8 *)(lVar11 + 0x10),0,4);
-    if (iVar7 < 0) {
-      FUN_180220810(iVar7,&UNK_180a17358);
+    // 创建顶点缓冲区
+    memory_address = *(longlong *)(context_ptr + 0xa0);
+    allocation_size = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    *(undefined4 *)(memory_address + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    physics_manager_ptr = *(longlong **)(allocation_size + 0x8400);
+    render_target_ptr = vertex_buffer_array;
+    stack_guard = (ulonglong)stack_guard._4_4_ << 0x20;
+    error_code_ptr = (**(code **)(*physics_manager_ptr + 0x70))(physics_manager_ptr,*(undefined8 *)(memory_address + 0x10),0,4);
+    if (error_code_ptr < 0) {
+      handle_render_error(error_code_ptr,&UNK_180a17358);
     }
-    iVar7 = *(int *)(param_1 + 0xb8);
-    if (0 < iVar7) {
-      iVar18 = (int)*(undefined8 *)(param_1 + 0xb0);
-      if (iVar18 < iVar7) {
-        iVar7 = iVar18;
+    error_code_ptr = *(int *)(context_ptr + 0xb8);
+    if (0 < error_code_ptr) {
+      image_height = (int)*(undefined8 *)(context_ptr + 0xb0);
+      if (image_height < error_code_ptr) {
+        error_code_ptr = image_height;
       }
-                    // WARNING: Subroutine does not return
-      memcpy(apuStack_158[0],**(undefined8 **)(param_1 + 0xa8),(longlong)iVar7);
+      // 复制顶点数据
+      memcpy(vertex_buffer_array[0],**(undefined8 **)(context_ptr + 0xa8),(longlong)error_code_ptr);
     }
-    plVar5 = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
-    pcVar4 = *(code **)(*plVar5 + 0x78);
-    *(undefined4 *)(lVar11 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
-    (*pcVar4)(plVar5,*(undefined8 *)(lVar11 + 0x10),0);
+    physics_manager_ptr = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
+    cleanup_callback = *(code **)(*physics_manager_ptr + 0x78);
+    *(undefined4 *)(memory_address + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    (*cleanup_callback)(physics_manager_ptr,*(undefined8 *)(memory_address + 0x10),0);
     break;
   case 0xc:
-    lVar11 = *(longlong *)(param_1 + 0xa0);
-    lVar14 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    *(undefined4 *)(lVar11 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
-    plVar5 = *(longlong **)(lVar14 + 0x8400);
-    ppuStack_210 = apuStack_168;
-    lVar14 = 0;
-    uStack_218 = (ulonglong)uStack_218._4_4_ << 0x20;
-    iVar7 = (**(code **)(*plVar5 + 0x70))(plVar5,*(undefined8 *)(lVar11 + 0x10),0,4);
-    if (iVar7 < 0) {
-      FUN_180220810(iVar7,&UNK_180a17358);
+    // 创建索引缓冲区
+    memory_address = *(longlong *)(context_ptr + 0xa0);
+    allocation_size = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    *(undefined4 *)(memory_address + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    physics_manager_ptr = *(longlong **)(allocation_size + 0x8400);
+    render_target_ptr = index_buffer_array;
+    allocation_size = 0;
+    stack_guard = (ulonglong)stack_guard._4_4_ << 0x20;
+    error_code_ptr = (**(code **)(*physics_manager_ptr + 0x70))(physics_manager_ptr,*(undefined8 *)(memory_address + 0x10),0,4);
+    if (error_code_ptr < 0) {
+      handle_render_error(error_code_ptr,&UNK_180a17358);
     }
-    uVar12 = *(ulonglong *)(param_1 + 0xb8) >> 6;
-    iVar7 = (int)(*(ulonglong *)(param_1 + 0xb0) >> 6);
-    uVar6 = (uint)uVar12;
-    while (0 < (int)uVar6) {
-      puVar13 = *(undefined4 **)(lVar14 + *(longlong *)(param_1 + 0xa8));
-      iVar17 = (int)uVar12;
-      iVar18 = iVar17;
-      if (iVar7 < iVar17) {
-        iVar18 = iVar7;
+    data_length = *(ulonglong *)(context_ptr + 0xb8) >> 6;
+    error_code_ptr = (int)(*(ulonglong *)(context_ptr + 0xb0) >> 6);
+    texture_count = (uint)data_length;
+    while (0 < (int)texture_count) {
+      texture_data_ptr = *(undefined4 **)(allocation_size + *(longlong *)(context_ptr + 0xa8));
+      image_width = (int)data_length;
+      image_height = image_width;
+      if (error_code_ptr < image_width) {
+        image_height = error_code_ptr;
       }
-      iVar15 = 0;
-      if (3 < iVar18) {
-        uVar6 = (iVar18 - 4U >> 2) + 1;
-        uVar12 = (ulonglong)uVar6;
-        iVar15 = uVar6 * 4;
+      buffer_capacity = 0;
+      if (3 < image_height) {
+        texture_count = (image_height - 4U >> 2) + 1;
+        data_length = (ulonglong)texture_count;
+        buffer_capacity = texture_count * 4;
         do {
-          *apuStack_168[0] = *puVar13;
-          apuStack_168[0][1] = puVar13[1];
-          apuStack_168[0][2] = puVar13[2];
-          apuStack_168[0][3] = puVar13[0xc];
-          apuStack_168[0][4] = puVar13[4];
-          apuStack_168[0][5] = puVar13[5];
-          apuStack_168[0][6] = puVar13[6];
-          apuStack_168[0][7] = puVar13[0xd];
-          apuStack_168[0][8] = puVar13[8];
-          apuStack_168[0][9] = puVar13[9];
-          apuStack_168[0][10] = puVar13[10];
-          apuStack_168[0][0xb] = puVar13[0xe];
-          apuStack_168[0][0xc] = puVar13[0x10];
-          apuStack_168[0][0xd] = puVar13[0x11];
-          apuStack_168[0][0xe] = puVar13[0x12];
-          apuStack_168[0][0xf] = puVar13[0x1c];
-          apuStack_168[0][0x10] = puVar13[0x14];
-          apuStack_168[0][0x11] = puVar13[0x15];
-          apuStack_168[0][0x12] = puVar13[0x16];
-          apuStack_168[0][0x13] = puVar13[0x1d];
-          apuStack_168[0][0x14] = puVar13[0x18];
-          apuStack_168[0][0x15] = puVar13[0x19];
-          apuStack_168[0][0x16] = puVar13[0x1a];
-          apuStack_168[0][0x17] = puVar13[0x1e];
-          apuStack_168[0][0x18] = puVar13[0x20];
-          apuStack_168[0][0x19] = puVar13[0x21];
-          apuStack_168[0][0x1a] = puVar13[0x22];
-          apuStack_168[0][0x1b] = puVar13[0x2c];
-          apuStack_168[0][0x1c] = puVar13[0x24];
-          apuStack_168[0][0x1d] = puVar13[0x25];
-          apuStack_168[0][0x1e] = puVar13[0x26];
-          apuStack_168[0][0x1f] = puVar13[0x2d];
-          apuStack_168[0][0x20] = puVar13[0x28];
-          apuStack_168[0][0x21] = puVar13[0x29];
-          apuStack_168[0][0x22] = puVar13[0x2a];
-          apuStack_168[0][0x23] = puVar13[0x2e];
-          apuStack_168[0][0x24] = puVar13[0x30];
-          apuStack_168[0][0x25] = puVar13[0x31];
-          apuStack_168[0][0x26] = puVar13[0x32];
-          apuStack_168[0][0x27] = puVar13[0x3c];
-          apuStack_168[0][0x28] = puVar13[0x34];
-          apuStack_168[0][0x29] = puVar13[0x35];
-          apuStack_168[0][0x2a] = puVar13[0x36];
-          apuStack_168[0][0x2b] = puVar13[0x3d];
-          apuStack_168[0][0x2c] = puVar13[0x38];
-          apuStack_168[0][0x2d] = puVar13[0x39];
-          apuStack_168[0][0x2e] = puVar13[0x3a];
-          apuStack_168[0][0x2f] = puVar13[0x3e];
-          puVar13 = puVar13 + 0x40;
-          apuStack_168[0] = apuStack_168[0] + 0x30;
-          uVar12 = uVar12 - 1;
-        } while (uVar12 != 0);
+          // 批量索引数据复制和重组
+          *index_buffer_array[0] = *texture_data_ptr;
+          index_buffer_array[0][1] = texture_data_ptr[1];
+          index_buffer_array[0][2] = texture_data_ptr[2];
+          index_buffer_array[0][3] = texture_data_ptr[0xc];
+          index_buffer_array[0][4] = texture_data_ptr[4];
+          index_buffer_array[0][5] = texture_data_ptr[5];
+          index_buffer_array[0][6] = texture_data_ptr[6];
+          index_buffer_array[0][7] = texture_data_ptr[0xd];
+          index_buffer_array[0][8] = texture_data_ptr[8];
+          index_buffer_array[0][9] = texture_data_ptr[9];
+          index_buffer_array[0][10] = texture_data_ptr[10];
+          index_buffer_array[0][0xb] = texture_data_ptr[0xe];
+          index_buffer_array[0][0xc] = texture_data_ptr[0x10];
+          index_buffer_array[0][0xd] = texture_data_ptr[0x11];
+          index_buffer_array[0][0xe] = texture_data_ptr[0x12];
+          index_buffer_array[0][0xf] = texture_data_ptr[0x1c];
+          index_buffer_array[0][0x10] = texture_data_ptr[0x14];
+          index_buffer_array[0][0x11] = texture_data_ptr[0x15];
+          index_buffer_array[0][0x12] = texture_data_ptr[0x16];
+          index_buffer_array[0][0x13] = texture_data_ptr[0x1d];
+          index_buffer_array[0][0x14] = texture_data_ptr[0x18];
+          index_buffer_array[0][0x15] = texture_data_ptr[0x19];
+          index_buffer_array[0][0x16] = texture_data_ptr[0x1a];
+          index_buffer_array[0][0x17] = texture_data_ptr[0x1e];
+          index_buffer_array[0][0x18] = texture_data_ptr[0x20];
+          index_buffer_array[0][0x19] = texture_data_ptr[0x21];
+          index_buffer_array[0][0x1a] = texture_data_ptr[0x22];
+          index_buffer_array[0][0x1b] = texture_data_ptr[0x2c];
+          index_buffer_array[0][0x1c] = texture_data_ptr[0x24];
+          index_buffer_array[0][0x1d] = texture_data_ptr[0x25];
+          index_buffer_array[0][0x1e] = texture_data_ptr[0x26];
+          index_buffer_array[0][0x1f] = texture_data_ptr[0x2d];
+          index_buffer_array[0][0x20] = texture_data_ptr[0x28];
+          index_buffer_array[0][0x21] = texture_data_ptr[0x29];
+          index_buffer_array[0][0x22] = texture_data_ptr[0x2a];
+          index_buffer_array[0][0x23] = texture_data_ptr[0x2e];
+          index_buffer_array[0][0x24] = texture_data_ptr[0x30];
+          index_buffer_array[0][0x25] = texture_data_ptr[0x31];
+          index_buffer_array[0][0x26] = texture_data_ptr[0x32];
+          index_buffer_array[0][0x27] = texture_data_ptr[0x3c];
+          index_buffer_array[0][0x28] = texture_data_ptr[0x34];
+          index_buffer_array[0][0x29] = texture_data_ptr[0x35];
+          index_buffer_array[0][0x2a] = texture_data_ptr[0x36];
+          index_buffer_array[0][0x2b] = texture_data_ptr[0x3d];
+          index_buffer_array[0][0x2c] = texture_data_ptr[0x38];
+          index_buffer_array[0][0x2d] = texture_data_ptr[0x39];
+          index_buffer_array[0][0x2e] = texture_data_ptr[0x3a];
+          index_buffer_array[0][0x2f] = texture_data_ptr[0x3e];
+          texture_data_ptr = texture_data_ptr + 0x40;
+          index_buffer_array[0] = index_buffer_array[0] + 0x30;
+          data_length = data_length - 1;
+        } while (data_length != 0);
       }
-      if (iVar15 < iVar18) {
-        puVar13 = puVar13 + 2;
-        uVar12 = (ulonglong)(uint)(iVar18 - iVar15);
+      if (buffer_capacity < image_height) {
+        texture_data_ptr = texture_data_ptr + 2;
+        data_length = (ulonglong)(uint)(image_height - buffer_capacity);
         do {
-          *apuStack_168[0] = puVar13[-2];
-          apuStack_168[0][1] = puVar13[-1];
-          apuStack_168[0][2] = *puVar13;
-          apuStack_168[0][3] = puVar13[10];
-          apuStack_168[0][4] = puVar13[2];
-          apuStack_168[0][5] = puVar13[3];
-          apuStack_168[0][6] = puVar13[4];
-          apuStack_168[0][7] = puVar13[0xb];
-          apuStack_168[0][8] = puVar13[6];
-          apuStack_168[0][9] = puVar13[7];
-          apuStack_168[0][10] = puVar13[8];
-          apuStack_168[0][0xb] = puVar13[0xc];
-          puVar13 = puVar13 + 0x10;
-          apuStack_168[0] = apuStack_168[0] + 0xc;
-          uVar12 = uVar12 - 1;
-        } while (uVar12 != 0);
+          // 剩余索引数据复制
+          *index_buffer_array[0] = texture_data_ptr[-2];
+          index_buffer_array[0][1] = texture_data_ptr[-1];
+          index_buffer_array[0][2] = *texture_data_ptr;
+          index_buffer_array[0][3] = texture_data_ptr[10];
+          index_buffer_array[0][4] = texture_data_ptr[2];
+          index_buffer_array[0][5] = texture_data_ptr[3];
+          index_buffer_array[0][6] = texture_data_ptr[4];
+          index_buffer_array[0][7] = texture_data_ptr[0xb];
+          index_buffer_array[0][8] = texture_data_ptr[6];
+          index_buffer_array[0][9] = texture_data_ptr[7];
+          index_buffer_array[0][10] = texture_data_ptr[8];
+          index_buffer_array[0][0xb] = texture_data_ptr[0xc];
+          texture_data_ptr = texture_data_ptr + 0x10;
+          index_buffer_array[0] = index_buffer_array[0] + 0xc;
+          data_length = data_length - 1;
+        } while (data_length != 0);
       }
-      uVar6 = iVar17 - iVar7;
-      uVar12 = (ulonglong)uVar6;
-      lVar14 = lVar14 + 8;
+      texture_count = image_width - error_code_ptr;
+      data_length = (ulonglong)texture_count;
+      allocation_size = allocation_size + 8;
     }
-    plVar5 = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
-    pcVar4 = *(code **)(*plVar5 + 0x78);
-    *(undefined4 *)(lVar11 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
-    (*pcVar4)(plVar5,*(undefined8 *)(lVar11 + 0x10),0);
+    physics_manager_ptr = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
+    cleanup_callback = *(code **)(*physics_manager_ptr + 0x78);
+    *(undefined4 *)(memory_address + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    (*cleanup_callback)(physics_manager_ptr,*(undefined8 *)(memory_address + 0x10),0);
     break;
   case 0xd:
   case 0x1a:
-    goto LAB_180152731;
+    // 无效命令，跳转到错误处理
+    goto invalid_command_handler;
   default:
-    if (*(longlong **)(param_1 + 0xa0) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(param_1 + 0xa0) + 0x10))();
+    // 默认命令处理
+    if (*(longlong **)(context_ptr + 0xa0) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(context_ptr + 0xa0) + 0x10))();
     }
     break;
   case 0xf:
-    if (*(longlong *)(param_1 + 0xa0) != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+    // 内存分配失败处理
+    if (*(longlong *)(context_ptr + 0xa0) != 0) {
+      // 触发内存分配失败
+      trigger_memory_allocation_failure();
     }
     break;
   case 0x10:
-    uVar10 = *(undefined8 *)(param_1 + 0xa0);
-    lVar11 = VirtualQuery(uVar10,auStack_108,0x30);
-    lStack_c0 = lStack_f0;
-    goto code_r0x000180151fd7;
+    // 虚拟内存查询和释放
+    resource_handle = *(undefined8 *)(context_ptr + 0xa0);
+    memory_address = VirtualQuery(resource_handle,debug_buffer,0x30);
+    animation_time = physics_step;
+    goto memory_free_handler;
   case 0x11:
-    uVar10 = *(undefined8 *)(param_1 + 0xa0);
-    lVar11 = VirtualQuery(uVar10,auStack_d8,0x30);
-code_r0x000180151fd7:
-    lVar14 = lStack_c0;
-    if (lVar11 == 0) {
-      lVar14 = 0;
+    resource_handle = *(undefined8 *)(context_ptr + 0xa0);
+    memory_address = VirtualQuery(resource_handle,physics_buffer,0x30);
+memory_free_handler:
+    allocation_size = animation_time;
+    if (memory_address == 0) {
+      allocation_size = 0;
     }
-    VirtualFree(uVar10,0,0x8000);
+    VirtualFree(resource_handle,0,0x8000);
     LOCK();
-    lRam0000000180c961a8 = lRam0000000180c961a8 - lVar14;
+    lRam0000000180c961a8 = lRam0000000180c961a8 - allocation_size;
     UNLOCK();
     break;
   case 0x14:
-    FUN_180152870(*(undefined8 *)(param_1 + 0xa0));
+    // 释放资源
+    release_engine_resource(*(undefined8 *)(context_ptr + 0xa0));
     break;
   case 0x15:
-    ppuStack_210 = *(undefined4 ***)(param_1 + 200);
-    uStack_218 = *(ulonglong *)(param_1 + 0xb8);
-    FUN_18029eb90(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(param_1 + 0xa0),
-                  *(undefined4 *)(param_1 + 0xac),*(undefined4 *)(param_1 + 0xa8));
+    // 设置渲染状态
+    render_target_ptr = *(undefined4 ***)(context_ptr + 200);
+    stack_guard = *(ulonglong *)(context_ptr + 0xb8);
+    set_render_state(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(context_ptr + 0xa0),
+                     *(undefined4 *)(context_ptr + 0xac),*(undefined4 *)(context_ptr + 0xa8));
     break;
   case 0x16:
-    plVar5 = *(longlong **)(param_1 + 0xa0);
-    plVar3 = *(longlong **)(param_1 + 0xb0);
-    ppuStack_210 = (undefined4 **)
-                   CONCAT44(ppuStack_210._4_4_,*(undefined4 *)((longlong)plVar5 + 0x44));
-    uStack_218 = CONCAT44(uStack_218._4_4_,(int)plVar5[8]);
-    plStack_208 = plVar3;
-    plStack_200 = plVar5;
-    FUN_1800a4010(_DAT_180c86938,*(undefined4 *)(param_1 + 0xa8),*(undefined4 *)(param_1 + 0xac),
-                  *(undefined4 *)((longlong)plVar5 + 0x3c));
-    if (plVar3 != (longlong *)0x0) {
-      (**(code **)(*plVar3 + 0x38))(plVar3);
+    // 销毁渲染资源
+    physics_manager_ptr = *(longlong **)(context_ptr + 0xa0);
+    texture_manager_ptr = *(longlong **)(context_ptr + 0xb0);
+    render_target_ptr = (undefined4 **)
+                   CONCAT44(render_target_ptr._4_4_,*(undefined4 *)((longlong)physics_manager_ptr + 0x44));
+    stack_guard = CONCAT44(stack_guard._4_4_,(int)physics_manager_ptr[8]);
+    network_manager_ptr = texture_manager_ptr;
+    audio_manager_ptr = physics_manager_ptr;
+    destroy_render_resources(_DAT_180c86938,*(undefined4 *)(context_ptr + 0xa8),*(undefined4 *)(context_ptr + 0xac),
+                           *(undefined4 *)((longlong)physics_manager_ptr + 0x3c));
+    if (texture_manager_ptr != (longlong *)0x0) {
+      (**(code **)(*texture_manager_ptr + 0x38))(texture_manager_ptr);
     }
-    (**(code **)(*plVar5 + 0x38))(plVar5);
+    (**(code **)(*physics_manager_ptr + 0x38))(physics_manager_ptr);
     break;
   case 0x17:
-    lStack_a8 = 0;
-    uStack_a0 = 0;
-    uStack_98 = 0;
-    uStack_96 = 3;
-    uStack_46 = 0;
-    uStack_54 = 0;
-    uStack_4c = 0;
-    uStack_48 = 0;
-    uStack_42 = 0;
-    uStack_94 = 0;
-    uStack_8c = 0;
-    uStack_84 = 0;
-    uStack_7c = 0;
-    uStack_74 = 0;
-    uStack_6c = 0;
-    uStack_64 = 0;
-    uStack_5c = 0;
-    uVar10 = FUN_18023a940(*(undefined8 *)(_DAT_180c86938 + 0x121e0));
-    FUN_1800a5fc0(_DAT_180c86938,uVar10,&lStack_a8);
-    if ((((int)uStack_54 == 1) || ((int)uStack_54 - 7U < 2)) && (0 < (int)(uStack_a0 >> 2))) {
-      puVar8 = (undefined1 *)(lStack_a8 + 3);
-      uVar12 = uStack_a0 >> 2 & 0xffffffff;
+    // 初始化音频系统
+    audio_time = 0;
+    audio_data_size = 0;
+    audio_format = 0;
+    audio_channels = 3;
+    ui_margin = 0;
+    network_socket_ptr = 0;
+    network_address_ptr = 0;
+    network_stats_ptr = 0;
+    ui_element_ptr = 0;
+    ui_layer_ptr = 0;
+    ui_style_ptr = 0;
+    ui_state = 0;
+    audio_buffer_ptr = 0;
+    audio_device_ptr = 0;
+    network_buffer_ptr = 0;
+    resource_handle = get_audio_manager_instance(*(undefined8 *)(_DAT_180c86938 + 0x121e0));
+    initialize_audio_system(_DAT_180c86938,resource_handle,&audio_time);
+    if ((((int)network_socket_ptr == 1) || ((int)network_socket_ptr - 7U < 2)) && (0 < (int)(audio_data_size >> 2))) {
+      buffer_ptr = (undefined1 *)(audio_time + 3);
+      data_length = audio_data_size >> 2 & 0xffffffff;
       do {
-        *puVar8 = 0xff;
-        puVar8 = puVar8 + 4;
-        uVar12 = uVar12 - 1;
-      } while (uVar12 != 0);
+        *buffer_ptr = 0xff;
+        buffer_ptr = buffer_ptr + 4;
+        data_length = data_length - 1;
+      } while (data_length != 0);
     }
-    FUN_1802a8080(*(undefined8 *)(param_1 + 0xb0),&lStack_a8,*(undefined4 *)(param_1 + 0xb8));
-    FUN_18006f4c0(*(undefined8 *)(param_1 + 0xb0));
-    *(undefined8 *)(param_1 + 0xb0) = 0;
-    if (uStack_98._1_1_ == '\0') {
-      if (((char)uStack_98 == '\0') && (lStack_a8 != 0)) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900();
+    process_audio_data(*(undefined8 *)(context_ptr + 0xb0),&audio_time,*(undefined4 *)(context_ptr + 0xb8));
+    cleanup_audio_device(*(undefined8 *)(context_ptr + 0xb0));
+    *(undefined8 *)(context_ptr + 0xb0) = 0;
+    if (ui_style_ptr._1_1_ == '\0') {
+      if (((char)ui_style_ptr == '\0') && (audio_time != 0)) {
+        // 音频系统初始化失败
+        trigger_audio_system_failure();
       }
-      lStack_a8 = 0;
-      uStack_a0 = 0;
-      uStack_98 = 0;
+      audio_time = 0;
+      audio_data_size = 0;
+      ui_style_ptr = 0;
     }
     break;
   case 0x18:
-    FUN_18029ef00(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(param_1 + 0xa0));
+    // 更新物理系统
+    update_physics_system(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),*(undefined8 *)(context_ptr + 0xa0));
     break;
   case 0x19:
+    // 更新游戏逻辑
     if (*(int *)(_DAT_180c8a9c8 + 0x3f0) == 0) {
-      lVar11 = _DAT_180c86890 + 0x68;
-      lStack_170 = lVar11;
-      iVar7 = _Mtx_lock(lVar11);
-      if (iVar7 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar7);
+      memory_address = _DAT_180c86890 + 0x68;
+      camera_position = memory_address;
+      error_code_ptr = _Mtx_lock(memory_address);
+      if (error_code_ptr != 0) {
+        __Throw_C_error_std__YAXH_Z(error_code_ptr);
       }
       if (*(longlong *)(_DAT_180c86890 + 0x60) != 0) {
         while( true ) {
-          pcVar4 = *(code **)(**(longlong **)(_DAT_180c86890 + 0x60) + 0x68);
-          if (pcVar4 == (code *)&UNK_1800467f0) {
-            cVar20 = (char)(*(longlong **)(_DAT_180c86890 + 0x60))[2] != '\0';
+          cleanup_callback = *(code **)(**(longlong **)(_DAT_180c86890 + 0x60) + 0x68);
+          if (cleanup_callback == (code *)&UNK_1800467f0) {
+            validation_flag = (char)(*(longlong **)(_DAT_180c86890 + 0x60))[2] != '\0';
           }
           else {
-            cVar20 = (*pcVar4)();
+            validation_flag = (*cleanup_callback)();
           }
-          if (cVar20 != '\0') break;
-          uVar10 = FUN_18005e890(_DAT_180c82868);
-          FUN_18020ee40(uVar10);
+          if (validation_flag != '\0') break;
+          resource_handle = get_event_manager_instance(_DAT_180c82868);
+          process_event_queue(resource_handle);
         }
       }
-      iVar7 = _Mtx_unlock(lVar11);
-      if (iVar7 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar7);
+      error_code_ptr = _Mtx_unlock(memory_address);
+      if (error_code_ptr != 0) {
+        __Throw_C_error_std__YAXH_Z(error_code_ptr);
       }
     }
-    uVar10 = FUN_180629810();
-    *(undefined8 *)(_DAT_180c86890 + 0x1528) = uVar10;
-    FUN_180150ae0(*(undefined8 *)(param_1 + 0xa0));
-    lVar11 = _DAT_180c86890;
-    lVar14 = _DAT_180c86890;
+    resource_handle = get_performance_counter();
+    *(undefined8 *)(_DAT_180c86890 + 0x1528) = resource_handle;
+    update_game_logic(*(undefined8 *)(context_ptr + 0xa0));
+    memory_address = _DAT_180c86890;
+    allocation_size = _DAT_180c86890;
     if (*(char *)(_DAT_180c86890 + 0x12e7) == '\0') {
       if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8)
                    + 0x48) < iRam0000000180d49260) &&
-         (FUN_1808fcb90(0x180d49260), iRam0000000180d49260 == -1)) {
-        dRam0000000180d49268 = *(double *)(lVar11 + 0x1528);
-        FUN_1808fcb30(0x180d49260);
+         (check_performance_threshold(0x180d49260), iRam0000000180d49260 == -1)) {
+        dRam0000000180d49268 = *(double *)(memory_address + 0x1528);
+        clear_performance_flag(0x180d49260);
       }
-      lVar9 = _DAT_180c8ed58;
+      buffer_size = _DAT_180c8ed58;
       if (_DAT_180c8ed58 == 0) {
-        QueryPerformanceCounter(&lStack_1d8);
-        lVar9 = lStack_1d8;
+        QueryPerformanceCounter(&camera_position);
+        buffer_size = camera_position;
       }
-      lVar14 = _DAT_180c86890;
-      dVar21 = (double)(lVar9 - _DAT_180c8ed48) * _DAT_180c8ed50;
-      dVar22 = dVar21 - *(double *)(lVar11 + 0x1528);
-      *(double *)(lVar11 + 0x1530) = dVar22;
-      dVar22 = dVar22 + dRam0000000180d49268;
-      dRam0000000180d48d48 = dRam0000000180d48d48 + (dVar21 - dRam0000000180d48d50);
+      allocation_size = _DAT_180c86890;
+      frame_time = (double)(buffer_size - _DAT_180c8ed48) * _DAT_180c8ed50;
+      delta_time = frame_time - *(double *)(memory_address + 0x1528);
+      *(double *)(memory_address + 0x1530) = delta_time;
+      delta_time = delta_time + dRam0000000180d49268;
+      dRam0000000180d48d48 = dRam0000000180d48d48 + (frame_time - dRam0000000180d48d50);
       uRam0000000180d48d44 = uRam0000000180d48d44 + 1;
-      uVar12 = (ulonglong)uRam0000000180d48d44;
-      dRam0000000180d48d50 = dVar21;
-      dRam0000000180d49268 = dVar22;
+      data_length = (ulonglong)uRam0000000180d48d44;
+      dRam0000000180d48d50 = frame_time;
+      dRam0000000180d49268 = delta_time;
       if (1.0 < dRam0000000180d48d48) {
         dRam0000000180d48d48 = 0.0;
         uRam0000000180d48d44 = 0;
         dRam0000000180d49268 = 0.0;
-        *(double *)(lVar11 + 0x1510) = (double)(float)((double)uVar12 / dVar22);
+        *(double *)(memory_address + 0x1510) = (double)(float)((double)data_length / delta_time);
       }
     }
-    if (*(uint *)(lVar14 + 0x2ca8) == (*(uint *)(lVar14 + 0x2ca8) / 10) * 10) {
-      *(int *)(lVar14 + 0x1520) = *(int *)(lVar14 + 0x1520) + 1;
-      dVar21 = 1000.0 / *(double *)(lVar14 + 0x1510) + *(double *)(lVar14 + 0x1518);
-      *(double *)(lVar14 + 0x1518) = dVar21;
-      if (100000 < *(int *)(lVar14 + 0x1520)) {
-        *(undefined4 *)(lVar14 + 0x1520) = 100;
-        *(double *)(lVar14 + 0x1518) = dVar21 * 0.001;
+    if (*(uint *)(allocation_size + 0x2ca8) == (*(uint *)(allocation_size + 0x2ca8) / 10) * 10) {
+      *(int *)(allocation_size + 0x1520) = *(int *)(allocation_size + 0x1520) + 1;
+      frame_time = 1000.0 / *(double *)(allocation_size + 0x1510) + *(double *)(allocation_size + 0x1518);
+      *(double *)(allocation_size + 0x1518) = frame_time;
+      if (100000 < *(int *)(allocation_size + 0x1520)) {
+        *(undefined4 *)(allocation_size + 0x1520) = 100;
+        *(double *)(allocation_size + 0x1518) = frame_time * 0.001;
       }
     }
-    FUN_18006f4c0(*(undefined8 *)(param_1 + 0xa8));
-    *(undefined8 *)(param_1 + 0xa8) = 0;
+    cleanup_game_logic(*(undefined8 *)(context_ptr + 0xa8));
+    *(undefined8 *)(context_ptr + 0xa8) = 0;
     break;
   case 0x1b:
-    FUN_1800a3660(_DAT_180c86938);
+    // 关闭网络系统
+    shutdown_network_system(_DAT_180c86938);
     break;
   case 0x1c:
-    uStack_148 = *(undefined8 *)(param_1 + 0xa0);
-    uStack_140 = *(undefined8 *)(param_1 + 0xa8);
-    uStack_138 = *(undefined8 *)(param_1 + 0xb0);
-    uStack_130 = *(undefined8 *)(param_1 + 0xb8);
-    uStack_128 = *(undefined4 *)(param_1 + 0xc0);
-    uStack_124 = *(undefined4 *)(param_1 + 0xc4);
-    uStack_120 = *(undefined4 *)(param_1 + 200);
-    uStack_11c = *(undefined4 *)(param_1 + 0xcc);
-    uStack_118 = *(undefined8 *)(param_1 + 0xd0);
-    FUN_1800a43c0(_DAT_180c86938,&uStack_148,*(undefined8 *)(param_1 + 0xd8));
-    (**(code **)(**(longlong **)(param_1 + 0xd8) + 0x38))();
+    // 初始化网络连接
+    transform_matrix = *(undefined8 *)(context_ptr + 0xa0);
+    projection_matrix = *(undefined8 *)(context_ptr + 0xa8);
+    view_matrix = *(undefined8 *)(context_ptr + 0xb0);
+    world_matrix = *(undefined8 *)(context_ptr + 0xb8);
+    vertex_count = *(undefined4 *)(context_ptr + 0xc0);
+    index_count = *(undefined4 *)(context_ptr + 0xc4);
+    primitive_count = *(undefined4 *)(context_ptr + 200);
+    draw_call_flags = *(undefined4 *)(context_ptr + 0xcc);
+    debug_info_ptr = *(undefined8 *)(context_ptr + 0xd0);
+    initialize_network_connection(_DAT_180c86938,&transform_matrix,*(undefined8 *)(context_ptr + 0xd8));
+    (**(code **)(**(longlong **)(context_ptr + 0xd8) + 0x38))();
     break;
   case 0x1d:
-    uStack_198 = *(undefined4 *)(param_1 + 0xa0);
-    uStack_194 = *(undefined4 *)(param_1 + 0xa4);
-    uStack_190 = *(undefined4 *)(param_1 + 0xa8);
-    uStack_18c = *(undefined4 *)(param_1 + 0xac);
-    uStack_188 = *(undefined8 *)(param_1 + 0xb0);
-    uStack_180 = *(undefined4 *)(param_1 + 0xb8);
-    FUN_1800a4c50(_DAT_180c86938,&uStack_198,*(undefined8 *)(param_1 + 0xc0));
+    // 发送网络数据
+    vertex_buffer_flags = *(undefined4 *)(context_ptr + 0xa0);
+    index_buffer_flags = *(undefined4 *)(context_ptr + 0xa4);
+    shader_flags = *(undefined4 *)(context_ptr + 0xa8);
+    texture_flags = *(undefined4 *)(context_ptr + 0xac);
+    frame_timestamp = *(undefined8 *)(context_ptr + 0xb0);
+    render_state_flags = *(undefined4 *)(context_ptr + 0xb8);
+    send_network_data(_DAT_180c86938,&vertex_buffer_flags,*(undefined8 *)(context_ptr + 0xc0));
     break;
   case 0x1e:
   case 0x29:
   case 0x2a:
+    // 空操作命令
     break;
   case 0x1f:
-    plVar5 = *(longlong **)(param_1 + 0xa0);
-    uVar10 = FUN_18031a020(&plStack_1c0,plVar5[0x21],*(undefined4 *)(param_1 + 0xb0));
-    FUN_180060b80(plVar5 + 0x20,uVar10);
-    if (plStack_1c0 != (longlong *)0x0) {
-      (**(code **)(*plStack_1c0 + 0x38))();
+    // 加载游戏资源
+    physics_manager_ptr = *(longlong **)(context_ptr + 0xa0);
+    resource_handle = load_resource_bundle(&ui_manager_ptr,physics_manager_ptr[0x21],*(undefined4 *)(context_ptr + 0xb0));
+    register_resource_bundle(physics_manager_ptr + 0x20,resource_handle);
+    if (ui_manager_ptr != (longlong *)0x0) {
+      (**(code **)(*ui_manager_ptr + 0x38))();
     }
-    *(undefined4 *)(plVar5[0x20] + 0x3a8) = *(undefined4 *)(_DAT_180c86890 + 0x1500);
-    *(undefined4 *)((longlong)plVar5 + 0x4c) = 0x14;
-    (**(code **)(*plVar5 + 0x38))(plVar5);
+    *(undefined4 *)(physics_manager_ptr[0x20] + 0x3a8) = *(undefined4 *)(_DAT_180c86890 + 0x1500);
+    *(undefined4 *)((longlong)physics_manager_ptr + 0x4c) = 0x14;
+    (**(code **)(*physics_manager_ptr + 0x38))(physics_manager_ptr);
     break;
   case 0x20:
-    plVar5 = *(longlong **)(param_1 + 0xa0);
-    FUN_18031a020(&plStack_1e0,plVar5[0x22],*(undefined4 *)(param_1 + 0xb0));
-    plVar3 = plStack_1e0;
-    plStack_1b8 = plStack_1e0;
-    if (plStack_1e0 != (longlong *)0x0) {
-      (**(code **)(*plStack_1e0 + 0x28))(plStack_1e0);
+    // 卸载游戏资源
+    physics_manager_ptr = *(longlong **)(context_ptr + 0xa0);
+    load_resource_bundle(&texture_manager_ptr,physics_manager_ptr[0x22],*(undefined4 *)(context_ptr + 0xb0));
+    texture_manager_ptr = texture_manager_ptr;
+    ui_manager_ptr = texture_manager_ptr;
+    if (texture_manager_ptr != (longlong *)0x0) {
+      (**(code **)(*texture_manager_ptr + 0x28))(texture_manager_ptr);
     }
-    plStack_1b8 = (longlong *)plVar5[0x23];
-    plVar5[0x23] = (longlong)plVar3;
-    if (plStack_1b8 != (longlong *)0x0) {
-      (**(code **)(*plStack_1b8 + 0x38))();
+    ui_manager_ptr = (longlong *)physics_manager_ptr[0x23];
+    physics_manager_ptr[0x23] = (longlong)texture_manager_ptr;
+    if (ui_manager_ptr != (longlong *)0x0) {
+      (**(code **)(*ui_manager_ptr + 0x38))();
     }
-    *(undefined4 *)((longlong)plVar5 + 0x4c) = 0xd;
-    (**(code **)(*plVar5 + 0x38))(plVar5);
-    if (plStack_1e0 != (longlong *)0x0) {
-      (**(code **)(*plStack_1e0 + 0x38))();
+    *(undefined4 *)((longlong)physics_manager_ptr + 0x4c) = 0xd;
+    input_manager_ptr = (longlong *)physics_manager_ptr[0x22];
+    physics_manager_ptr[0x22] = 0;
+    if (input_manager_ptr != (longlong *)0x0) {
+      (**(code **)(*input_manager_ptr + 0x38))();
+    }
+    (**(code **)(*physics_manager_ptr + 0x38))(physics_manager_ptr);
+    if (texture_manager_ptr != (longlong *)0x0) {
+      (**(code **)(*texture_manager_ptr + 0x38))();
     }
     break;
   case 0x21:
-    plVar5 = *(longlong **)(param_1 + 0xa0);
-    FUN_18031a020(&plStack_1e8,plVar5[0x24],*(undefined4 *)(param_1 + 0xb0));
-    plVar3 = plStack_1e8;
-    plStack_1b0 = plStack_1e8;
-    if (plStack_1e8 != (longlong *)0x0) {
-      (**(code **)(*plStack_1e8 + 0x28))(plStack_1e8);
+    // 激活游戏资源
+    physics_manager_ptr = *(longlong **)(context_ptr + 0xa0);
+    load_resource_bundle(&resource_manager_ptr,physics_manager_ptr[0x24],*(undefined4 *)(context_ptr + 0xb0));
+    texture_manager_ptr = resource_manager_ptr;
+    shader_manager_ptr = resource_manager_ptr;
+    if (resource_manager_ptr != (longlong *)0x0) {
+      (**(code **)(*resource_manager_ptr + 0x28))(resource_manager_ptr);
     }
-    plStack_1b0 = (longlong *)plVar5[0x25];
-    plVar5[0x25] = (longlong)plVar3;
-    if (plStack_1b0 != (longlong *)0x0) {
-      (**(code **)(*plStack_1b0 + 0x38))();
+    shader_manager_ptr = (longlong *)physics_manager_ptr[0x25];
+    physics_manager_ptr[0x25] = (longlong)texture_manager_ptr;
+    if (shader_manager_ptr != (longlong *)0x0) {
+      (**(code **)(*shader_manager_ptr + 0x38))();
     }
-    *(undefined4 *)((longlong)plVar5 + 0x4c) = 7;
-    plStack_1a8 = (longlong *)plVar5[0x24];
-    plVar5[0x24] = 0;
-    if (plStack_1a8 != (longlong *)0x0) {
-      (**(code **)(*plStack_1a8 + 0x38))();
+    *(undefined4 *)((longlong)physics_manager_ptr + 0x4c) = 7;
+    audio_manager_ptr = (longlong *)physics_manager_ptr[0x24];
+    physics_manager_ptr[0x24] = 0;
+    if (audio_manager_ptr != (longlong *)0x0) {
+      (**(code **)(*audio_manager_ptr + 0x38))();
     }
-    (**(code **)(*plVar5 + 0x38))(plVar5);
-    if (plStack_1e8 != (longlong *)0x0) {
-      (**(code **)(*plStack_1e8 + 0x38))();
+    (**(code **)(*physics_manager_ptr + 0x38))(physics_manager_ptr);
+    if (resource_manager_ptr != (longlong *)0x0) {
+      (**(code **)(*resource_manager_ptr + 0x38))();
     }
     break;
   case 0x22:
-    FUN_18031ce00(*(undefined8 *)(param_1 + 0xa0),*(undefined8 *)(param_1 + 0xa8));
-    FUN_18031d820(*(undefined8 *)(param_1 + 0xa0),*(undefined8 *)(param_1 + 0xa8));
+    // 保存游戏状态
+    save_game_state(*(undefined8 *)(context_ptr + 0xa0),*(undefined8 *)(context_ptr + 0xa8));
+    serialize_game_data(*(undefined8 *)(context_ptr + 0xa0),*(undefined8 *)(context_ptr + 0xa8));
     break;
   case 0x23:
-    FUN_180205470(lVar11,*(undefined8 *)(param_1 + 0xa0));
+    // 加载游戏状态
+    load_game_state(memory_address,*(undefined8 *)(context_ptr + 0xa0));
     break;
   case 0x24:
-    FUN_180205470(lVar11,*(undefined8 *)(*(longlong *)(param_1 + 0xa0) + 0x18));
-    *(undefined8 *)(*(longlong *)(param_1 + 0xa0) + 0x18) = 0;
+    // 加载游戏状态到槽位
+    load_game_state(memory_address,*(undefined8 *)(*(longlong *)(context_ptr + 0xa0) + 0x18));
+    *(undefined8 *)(*(longlong *)(context_ptr + 0xa0) + 0x18) = 0;
     LOCK();
-    piVar1 = (int *)(*(longlong *)(param_1 + 0xa0) + 0x14);
-    *piVar1 = *piVar1 + -1;
+    error_code_ptr = (int *)(*(longlong *)(context_ptr + 0xa0) + 0x14);
+    *error_code_ptr = *error_code_ptr + -1;
     UNLOCK();
     break;
   case 0x25:
-    FUN_180206cb0(lVar11,*(undefined8 *)(param_1 + 0xa0));
+    // 保存游戏进度
+    save_game_progress(memory_address,*(undefined8 *)(context_ptr + 0xa0));
     break;
   case 0x26:
-    FUN_180206cb0(lVar11,*(undefined8 *)(*(longlong *)(param_1 + 0xa0) + 0x18));
-    *(undefined8 *)(*(longlong *)(param_1 + 0xa0) + 0x18) = 0;
+    // 保存游戏进度到槽位
+    save_game_progress(memory_address,*(undefined8 *)(*(longlong *)(context_ptr + 0xa0) + 0x18));
+    *(undefined8 *)(*(longlong *)(context_ptr + 0xa0) + 0x18) = 0;
     LOCK();
-    piVar1 = (int *)(*(longlong *)(param_1 + 0xa0) + 0x10);
-    *piVar1 = *piVar1 + -1;
+    error_code_ptr = (int *)(*(longlong *)(context_ptr + 0xa0) + 0x10);
+    *error_code_ptr = *error_code_ptr + -1;
     UNLOCK();
     break;
   case 0x27:
-    FUN_1801d7420();
+    // 重置游戏系统
+    reset_game_system();
     break;
   case 0x28:
-    FUN_18005cfc0();
+    // 清理游戏缓存
+    clear_game_cache();
     break;
   case 0x2b:
   case 0x2c:
-    if (*(longlong *)(param_1 + 0xa0) != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+    // 清理系统资源
+    if (*(longlong *)(context_ptr + 0xa0) != 0) {
+      // 触发系统清理
+      trigger_system_cleanup();
     }
-    *(undefined8 *)(param_1 + 0xa0) = 0;
-    if (*(longlong *)(param_1 + 0xa8) != 0) {
-      *(undefined8 *)(*(longlong *)(param_1 + 0xa8) + 0x1d8) = 0;
+    *(undefined8 *)(context_ptr + 0xa0) = 0;
+    if (*(longlong *)(context_ptr + 0xa8) != 0) {
+      *(undefined8 *)(*(longlong *)(context_ptr + 0xa8) + 0x1d8) = 0;
     }
     break;
   case 0x2d:
-    uVar10 = FUN_18023a940(*(undefined8 *)(param_1 + 0xa0));
-    FUN_180225ee0(extraout_XMM0_Da,*(undefined8 *)(param_1 + 0xa8),*(undefined4 *)(param_1 + 0xb0),
-                  uVar10);
-    (**(code **)(**(longlong **)(param_1 + 0xa0) + 0x38))();
+    // 处理用户输入
+    resource_handle = get_input_manager_instance(*(undefined8 *)(context_ptr + 0xa0));
+    process_user_input(performance_counter,*(undefined8 *)(context_ptr + 0xa8),*(undefined4 *)(context_ptr + 0xb0),
+                      resource_handle);
+    (**(code **)(**(longlong **)(context_ptr + 0xa0) + 0x38))();
   }
-code_r0x00018015273d:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_238);
+invalid_command_handler:
+command_complete_handler:
+                    // 命令处理完成，调用清理函数
+  cleanup_command_handler(security_checksum ^ (ulonglong)security_buffer);
 }
-
-
-
 
 
 // 函数: void FUN_180152870(longlong *param_1)
-void FUN_180152870(longlong *param_1)
+// 功能: 清理资源引用 - 释放资源并清除引用
+void cleanup_resource_reference(longlong *resource_ptr)
 
 {
-  if (param_1 == (longlong *)0x0) {
+  if (resource_ptr == (longlong *)0x0) {
     return;
   }
-  if (*(char *)((longlong)param_1 + 0x11) == '\0') {
-    if (((char)param_1[2] == '\0') && (*param_1 != 0)) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+  if (*(char *)((longlong)resource_ptr + 0x11) == '\0') {
+    if (((char)resource_ptr[2] == '\0') && (*resource_ptr != 0)) {
+      // 资源引用错误
+      trigger_resource_reference_error();
     }
-    *param_1 = 0;
-    param_1[1] = 0;
-    *(undefined1 *)(param_1 + 2) = 0;
+    *resource_ptr = 0;
+    resource_ptr[1] = 0;
+    *(undefined1 *)(resource_ptr + 2) = 0;
   }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900(param_1);
+                    // 资源清理失败
+  trigger_resource_cleanup_failure(resource_ptr);
 }
-
-
-
 
 
 // 函数: void FUN_1801528b0(longlong param_1)
-void FUN_1801528b0(longlong param_1)
+// 功能: 重置渲染管理器 - 清理渲染相关的管理器和状态
+void reset_render_manager(longlong manager_context)
 
 {
-  *(undefined8 *)(param_1 + 0x68) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_1 + 0x70) != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  // 重置主渲染管理器
+  *(undefined8 *)(manager_context + 0x68) = &UNK_180a3c3e0;
+  if (*(longlong *)(manager_context + 0x70) != 0) {
+    // 渲染管理器状态错误
+    trigger_render_manager_error();
   }
-  *(undefined8 *)(param_1 + 0x70) = 0;
-  *(undefined4 *)(param_1 + 0x80) = 0;
-  *(undefined8 *)(param_1 + 0x68) = &UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 0x48) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_1 + 0x50) != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  *(undefined8 *)(manager_context + 0x70) = 0;
+  *(undefined4 *)(manager_context + 0x80) = 0;
+  *(undefined8 *)(manager_context + 0x68) = &UNK_18098bcb0;
+  
+  // 重置纹理管理器
+  *(undefined8 *)(manager_context + 0x48) = &UNK_180a3c3e0;
+  if (*(longlong *)(manager_context + 0x50) != 0) {
+    // 纹理管理器状态错误
+    trigger_texture_manager_error();
   }
-  *(undefined8 *)(param_1 + 0x50) = 0;
-  *(undefined4 *)(param_1 + 0x60) = 0;
-  *(undefined8 *)(param_1 + 0x48) = &UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 0x28) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_1 + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  *(undefined8 *)(manager_context + 0x50) = 0;
+  *(undefined4 *)(manager_context + 0x60) = 0;
+  *(undefined8 *)(manager_context + 0x48) = &UNK_18098bcb0;
+  
+  // 重置着色器管理器
+  *(undefined8 *)(manager_context + 0x28) = &UNK_180a3c3e0;
+  if (*(longlong *)(manager_context + 0x30) != 0) {
+    // 着色器管理器状态错误
+    trigger_shader_manager_error();
   }
-  *(undefined8 *)(param_1 + 0x30) = 0;
-  *(undefined4 *)(param_1 + 0x40) = 0;
-  *(undefined8 *)(param_1 + 0x28) = &UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 8) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_1 + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  *(undefined8 *)(manager_context + 0x30) = 0;
+  *(undefined4 *)(manager_context + 0x40) = 0;
+  *(undefined8 *)(manager_context + 0x28) = &UNK_18098bcb0;
+  
+  // 重置缓冲区管理器
+  *(undefined8 *)(manager_context + 8) = &UNK_180a3c3e0;
+  if (*(longlong *)(manager_context + 0x10) != 0) {
+    // 缓冲区管理器状态错误
+    trigger_buffer_manager_error();
   }
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x20) = 0;
-  *(undefined8 *)(param_1 + 8) = &UNK_18098bcb0;
+  *(undefined8 *)(manager_context + 0x10) = 0;
+  *(undefined4 *)(manager_context + 0x20) = 0;
+  *(undefined8 *)(manager_context + 8) = &UNK_18098bcb0;
   return;
 }
-
-
-
 
 
 // 函数: void FUN_180152990(longlong *param_1)
-void FUN_180152990(longlong *param_1)
+// 功能: 批量重置渲染管理器 - 遍历管理器数组并逐个重置
+void batch_reset_render_managers(longlong *manager_array)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong array_start;
+  longlong array_end;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x98) {
-    FUN_1801528b0(lVar2);
+  array_start = manager_array[1];
+  for (array_end = *manager_array; array_end != array_start; array_end = array_end + 0x98) {
+    reset_render_manager(array_end);
   }
-  if (*param_1 == 0) {
+  if (*manager_array == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900();
+                    // 管理器数组错误
+  trigger_manager_array_error();
 }
-
-
-
 
 
 // 函数: void FUN_180152a00(longlong *param_1)
-void FUN_180152a00(longlong *param_1)
+// 功能: 批量重置纹理管理器 - 遍历纹理管理器数组并逐个重置
+void batch_reset_texture_managers(longlong *manager_array)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong array_start;
+  longlong array_end;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x98) {
-    FUN_1801528b0(lVar2);
+  array_start = manager_array[1];
+  for (array_end = *manager_array; array_end != array_start; array_end = array_end + 0x98) {
+    reset_render_manager(array_end);
   }
-  if (*param_1 == 0) {
+  if (*manager_array == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900();
+                    // 纹理管理器数组错误
+  trigger_texture_manager_array_error();
 }
-
-
-
 
 
 // 函数: void FUN_180152a20(undefined8 *param_1)
-void FUN_180152a20(undefined8 *param_1)
+// 功能: 重置着色器管理器 - 清理着色器相关的状态和资源
+void reset_shader_manager(undefined8 *shader_context)
 
 {
-  FUN_180152990();
-  *param_1 = &UNK_180a3c3e0;
-  if (param_1[1] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  batch_reset_render_managers();
+  *shader_context = &UNK_180a3c3e0;
+  if (shader_context[1] != 0) {
+    // 着色器上下文错误
+    trigger_shader_context_error();
   }
-  param_1[1] = 0;
-  *(undefined4 *)(param_1 + 3) = 0;
-  *param_1 = &UNK_18098bcb0;
+  shader_context[1] = 0;
+  *(undefined4 *)(shader_context + 3) = 0;
+  *shader_context = &UNK_18098bcb0;
   return;
 }
-
-
-
 
 
 // 函数: void FUN_180152a80(longlong *param_1)
-void FUN_180152a80(longlong *param_1)
+// 功能: 批量重置着色器管理器 - 遍历着色器管理器数组并逐个重置
+void batch_reset_shader_managers(longlong *manager_array)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong array_start;
+  longlong array_end;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x40) {
-    FUN_180152a20(lVar2);
+  array_start = manager_array[1];
+  for (array_end = *manager_array; array_end != array_start; array_end = array_end + 0x40) {
+    reset_shader_manager(array_end);
   }
-  if (*param_1 == 0) {
+  if (*manager_array == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900();
+                    // 着色器管理器数组错误
+  trigger_shader_manager_array_error();
 }
-
-
-
 
 
 // 函数: void FUN_180152ae0(longlong *param_1)
-void FUN_180152ae0(longlong *param_1)
+// 功能: 批量重置缓冲区管理器 - 遍历缓冲区管理器数组并逐个重置
+void batch_reset_buffer_managers(longlong *manager_array)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong array_start;
+  longlong array_end;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x40) {
-    FUN_180152a20(lVar2);
+  array_start = manager_array[1];
+  for (array_end = *manager_array; array_end != array_start; array_end = array_end + 0x40) {
+    reset_shader_manager(array_end);
   }
-  if (*param_1 == 0) {
+  if (*manager_array == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  FUN_18064e900();
+                    // 缓冲区管理器数组错误
+  trigger_buffer_manager_array_error();
 }
 
 
-
-
-
 // 函数: void FUN_180152b00(undefined8 *param_1)
-void FUN_180152b00(undefined8 *param_1)
+// 功能: 重置缓冲区管理器 - 清理缓冲区相关的状态和资源
+void reset_buffer_manager(undefined8 *buffer_context)
 
 {
-  FUN_180152a80();
-  *param_1 = &UNK_180a3c3e0;
-  if (param_1[1] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  batch_reset_shader_managers();
+  *buffer_context = &UNK_180a3c3e0;
+  if (buffer_context[1] != 0) {
+    // 缓冲区上下文错误
+    trigger_buffer_context_error();
   }
-  param_1[1] = 0;
-  *(undefined4 *)(param_1 + 3) = 0;
-  *param_1 = &UNK_18098bcb0;
+  buffer_context[1] = 0;
+  *(undefined4 *)(buffer_context + 3) = 0;
+  *buffer_context = &UNK_18098bcb0;
   return;
 }
 
 
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+// 警告：全局变量起始符号与较小符号重叠
 
 
 // 函数: void FUN_180152b60(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180152b60(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 功能: 初始化引擎模块 - 设置引擎的核心模块和初始化参数
+void initialize_engine_module(undefined8 module_handle,undefined8 init_flags,undefined8 config_data,undefined8 version_info)
 
 {
-  undefined4 uVar1;
-  undefined4 *puVar2;
-  undefined *puStack_50;
-  undefined4 *puStack_48;
-  undefined4 uStack_40;
-  undefined8 uStack_38;
+  undefined4 init_result;
+  undefined4 *module_config;
+  undefined *module_security;
+  undefined4 *module_resources;
+  undefined4 resource_count;
+  undefined8 resource_handle;
   
-  puStack_50 = &UNK_180a3c3e0;
-  uStack_38 = 0;
-  puStack_48 = (undefined4 *)0x0;
-  uStack_40 = 0;
-  puVar2 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x12,0x13,param_4,0xfffffffffffffffe);
-  *(undefined1 *)puVar2 = 0;
-  puStack_48 = puVar2;
-  uVar1 = FUN_18064e990(puVar2);
-  uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
-  *puVar2 = 0x69676e45;
-  puVar2[1] = 0x4d20656e;
-  puVar2[2] = 0x6c75646f;
-  puVar2[3] = 0x6e692065;
-  *(undefined2 *)(puVar2 + 4) = 0x69;
-  uStack_40 = 0x11;
-  FUN_1800ae520(param_1,&puStack_50);
-  puStack_50 = &UNK_180a3c3e0;
-                    // WARNING: Subroutine does not return
-  FUN_18064e900(puVar2);
+  module_security = &UNK_180a3c3e0;
+  resource_handle = 0;
+  module_resources = (undefined4 *)0x0;
+  resource_count = 0;
+  module_config = (undefined4 *)allocate_engine_memory(_DAT_180c8ed18,0x12,0x13,version_info,0xfffffffffffffffe);
+  *(undefined1 *)module_config = 0;
+  module_resources = module_config;
+  init_result = validate_engine_module(module_config);
+  resource_handle = CONCAT44(resource_handle._4_4_,init_result);
+  *module_config = 0x69676e45;  // "Engi"
+  module_config[1] = 0x4d20656e;  // "ne M"
+  module_config[2] = 0x6c75646f;  // "doul"
+  module_config[3] = 0x6e692065;  // "e in"
+  *(undefined2 *)(module_config + 4) = 0x69;  // "i"
+  resource_count = 0x11;
+  register_engine_module(module_handle,&module_security);
+  module_security = &UNK_180a3c3e0;
+                    // 模块初始化失败
+  trigger_module_initialization_failure(module_config);
 }
 
 
-
-undefined8 FUN_180153890(undefined8 param_1,ulonglong param_2)
+// 函数: undefined8 FUN_180153890(undefined8 param_1,ulonglong param_2)
+// 功能: 释放引擎内存 - 根据标志释放分配的内存
+undefined8 release_engine_memory(undefined8 memory_ptr,ulonglong free_flags)
 
 {
-  FUN_1801538d0();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x1010);
+  cleanup_engine_memory_allocation();
+  if ((free_flags & 1) != 0) {
+    free(memory_ptr,0x1010);
   }
-  return param_1;
+  return memory_ptr;
 }
-
-
-
-
-
