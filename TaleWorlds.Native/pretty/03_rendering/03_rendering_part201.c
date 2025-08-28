@@ -185,19 +185,19 @@ void rendering_parameter_calculator_type1(void)
                     }
                     else {
                         render_data_ptr2 = render_data_ptr1;
-                        undefined_ptr1 = (uint64_t *)undefined_ptr1[1];
+                        render_data_ptr1 = (uint64_t *)render_data_ptr1[1];
                     }
-                } while (undefined_ptr1 != (uint64_t *)0x0);
+                } while (render_data_ptr1 != (uint64_t *)0x0);
             }
             
             // 处理链表节点
-            if ((undefined_ptr2 == base_ptr) || (*ulong_ptr < (ulonglong)undefined_ptr2[RENDERING_INDEX_4])) {
-                undefined_ptr2 = (uint64_t *)rendering_matrix_calculator();
-                undefined_ptr2 = (uint64_t *)*undefined_ptr2;
+            if ((render_data_ptr2 == base_ptr) || (*ulong_ptr < (ulonglong)render_data_ptr2[RENDERING_INDEX_4])) {
+                render_data_ptr2 = (uint64_t *)rendering_matrix_calculator();
+                render_data_ptr2 = (uint64_t *)*render_data_ptr2;
             }
             
             // 检查循环条件
-            if (*(longlong *)(loop_counter1 + (longlong)undefined_ptr2) == temp_long1) {
+            if (*(longlong *)(loop_counter1 + (longlong)matrix_data_ptr2) == temp_long1) {
                 goto rendering_state_set;
             }
             
@@ -205,118 +205,118 @@ void rendering_parameter_calculator_type1(void)
         } while (loop_counter1 < RENDERING_SIZE_0X58);
         
         // 矩阵变换处理
-        undefined_ptr1 = (uint64_t *)(temp_long2 + RENDERING_SIZE_0XB0);
+        matrix_data_ptr1 = (uint64_t *)(temp_long2 + RENDERING_SIZE_0XB0);
         float_ptr = (float *)(temp_long2 + RENDERING_SIZE_0X50);
         loop_counter1 = base_long - temp_long2;
         
         // 矩阵计算循环
         do {
-            undefined_ptr2 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
-            undefined_ptr3 = base_ptr;
+            matrix_data_ptr2 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
+            matrix_data_ptr3 = base_ptr;
             
             // 链表遍历
-            if (undefined_ptr2 != (uint64_t *)0x0) {
+            if (matrix_data_ptr2 != (uint64_t *)0x0) {
                 do {
-                    if ((ulonglong)undefined_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
-                        undefined_ptr2 = (uint64_t *)*undefined_ptr2;
+                    if ((ulonglong)matrix_data_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
+                        render_data_ptr2 = (uint64_t *)*render_data_ptr2;
                     }
                     else {
-                        undefined_ptr3 = undefined_ptr2;
-                        undefined_ptr2 = (uint64_t *)undefined_ptr2[1];
+                        matrix_data_ptr3 = matrix_data_ptr2;
+                        matrix_data_ptr2 = (uint64_t *)matrix_data_ptr2[1];
                     }
-                } while (undefined_ptr2 != (uint64_t *)0x0);
+                } while (matrix_data_ptr2 != (uint64_t *)0x0);
             }
             
             // 处理矩阵节点
-            if ((undefined_ptr3 == base_ptr) || (*ulong_ptr < (ulonglong)undefined_ptr3[RENDERING_INDEX_4])) {
-                undefined_ptr3 = (uint64_t *)rendering_matrix_calculator();
-                undefined_ptr3 = (uint64_t *)*undefined_ptr3;
+            if ((matrix_data_ptr3 == base_ptr) || (*ulong_ptr < (ulonglong)matrix_data_ptr3[RENDERING_INDEX_4])) {
+                matrix_data_ptr3 = (uint64_t *)rendering_matrix_calculator();
+                matrix_data_ptr3 = (uint64_t *)*matrix_data_ptr3;
             }
             
             // 提取矩阵参数
-            int_param1 = *(int *)(*(longlong *)(loop_counter2 + (longlong)undefined_ptr3) + RENDERING_INDEX_0XC);
-            int_param2 = *(int *)(*(longlong *)(loop_counter2 + (longlong)undefined_ptr3) + RENDERING_INDEX_0X10);
+            int_param1 = *(int *)(*(longlong *)(loop_counter2 + (longlong)matrix_data_ptr3) + RENDERING_INDEX_0XC);
+            int_param2 = *(int *)(*(longlong *)(loop_counter2 + (longlong)matrix_data_ptr3) + RENDERING_INDEX_0X10);
             
             // 第二次链表遍历
-            undefined_ptr2 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
-            undefined_ptr3 = base_ptr;
+            matrix_data_ptr2 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
+            matrix_data_ptr3 = base_ptr;
             
-            if (undefined_ptr2 != (uint64_t *)0x0) {
+            if (matrix_data_ptr2 != (uint64_t *)0x0) {
                 do {
-                    if ((ulonglong)undefined_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
-                        undefined_ptr2 = (uint64_t *)*undefined_ptr2;
+                    if ((ulonglong)matrix_data_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
+                        render_data_ptr2 = (uint64_t *)*render_data_ptr2;
                     }
                     else {
-                        undefined_ptr3 = undefined_ptr2;
-                        undefined_ptr2 = (uint64_t *)undefined_ptr2[1];
+                        matrix_data_ptr3 = matrix_data_ptr2;
+                        matrix_data_ptr2 = (uint64_t *)matrix_data_ptr2[1];
                     }
-                } while (undefined_ptr2 != (uint64_t *)0x0);
+                } while (matrix_data_ptr2 != (uint64_t *)0x0);
             }
             
             // 处理第二个矩阵节点
-            if ((undefined_ptr3 == base_ptr) || (*ulong_ptr < (ulonglong)undefined_ptr3[RENDERING_INDEX_4])) {
-                undefined_ptr3 = (uint64_t *)rendering_matrix_calculator();
-                undefined_ptr3 = (uint64_t *)*undefined_ptr3;
+            if ((matrix_data_ptr3 == base_ptr) || (*ulong_ptr < (ulonglong)matrix_data_ptr3[RENDERING_INDEX_4])) {
+                matrix_data_ptr3 = (uint64_t *)rendering_matrix_calculator();
+                matrix_data_ptr3 = (uint64_t *)*matrix_data_ptr3;
             }
             
             // 提取第二组参数
-            int_param3 = *(int *)(*(longlong *)(loop_counter2 + (longlong)undefined_ptr3) + RENDERING_INDEX_0XC);
-            int_param4 = *(int *)(*(longlong *)(loop_counter2 + (longlong)undefined_ptr3) + RENDERING_INDEX_0X10);
+            int_param3 = *(int *)(*(longlong *)(loop_counter2 + (longlong)matrix_data_ptr3) + RENDERING_INDEX_0XC);
+            int_param4 = *(int *)(*(longlong *)(loop_counter2 + (longlong)matrix_data_ptr3) + RENDERING_INDEX_0X10);
             
             // 第三次链表遍历
-            undefined_ptr2 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
-            undefined_ptr3 = base_ptr;
+            matrix_data_ptr2 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
+            matrix_data_ptr3 = base_ptr;
             
-            if (undefined_ptr2 != (uint64_t *)0x0) {
+            if (matrix_data_ptr2 != (uint64_t *)0x0) {
                 do {
-                    if ((ulonglong)undefined_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
-                        undefined_ptr2 = (uint64_t *)*undefined_ptr2;
+                    if ((ulonglong)matrix_data_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
+                        render_data_ptr2 = (uint64_t *)*render_data_ptr2;
                     }
                     else {
-                        undefined_ptr3 = undefined_ptr2;
-                        undefined_ptr2 = (uint64_t *)undefined_ptr2[1];
+                        matrix_data_ptr3 = matrix_data_ptr2;
+                        matrix_data_ptr2 = (uint64_t *)matrix_data_ptr2[1];
                     }
-                } while (undefined_ptr2 != (uint64_t *)0x0);
+                } while (matrix_data_ptr2 != (uint64_t *)0x0);
             }
             
             // 处理第三个矩阵节点
-            if ((undefined_ptr3 == base_ptr) || (*ulong_ptr < (ulonglong)undefined_ptr3[RENDERING_INDEX_4])) {
-                undefined_ptr3 = (uint64_t *)rendering_matrix_calculator();
-                undefined_ptr3 = (uint64_t *)*undefined_ptr3;
+            if ((matrix_data_ptr3 == base_ptr) || (*ulong_ptr < (ulonglong)matrix_data_ptr3[RENDERING_INDEX_4])) {
+                matrix_data_ptr3 = (uint64_t *)rendering_matrix_calculator();
+                matrix_data_ptr3 = (uint64_t *)*matrix_data_ptr3;
             }
             
             // 提取第三组参数
-            int_param6 = *(int *)(*(longlong *)(loop_counter2 + (longlong)undefined_ptr3) + RENDERING_INDEX_0X10);
-            temp_float = *(float *)(*(longlong *)(loop_counter2 + (longlong)undefined_ptr3) + RENDERING_INDEX_8);
+            int_param6 = *(int *)(*(longlong *)(loop_counter2 + (longlong)matrix_data_ptr3) + RENDERING_INDEX_0X10);
+            temp_float = *(float *)(*(longlong *)(loop_counter2 + (longlong)matrix_data_ptr3) + RENDERING_INDEX_8);
             
             // 第四次链表遍历
-            undefined_ptr3 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
+            matrix_data_ptr3 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
             render_data_ptr2 = base_ptr;
             
-            if (undefined_ptr3 != (uint64_t *)0x0) {
+            if (matrix_data_ptr3 != (uint64_t *)0x0) {
                 do {
-                    if ((ulonglong)undefined_ptr3[RENDERING_INDEX_4] < *ulong_ptr) {
-                        undefined_ptr3 = (uint64_t *)*undefined_ptr3;
+                    if ((ulonglong)matrix_data_ptr3[RENDERING_INDEX_4] < *ulong_ptr) {
+                        matrix_data_ptr3 = (uint64_t *)*matrix_data_ptr3;
                     }
                     else {
-                        undefined_ptr2 = undefined_ptr3;
-                        undefined_ptr3 = (uint64_t *)undefined_ptr3[1];
+                        matrix_data_ptr2 = matrix_data_ptr3;
+                        matrix_data_ptr3 = (uint64_t *)matrix_data_ptr3[1];
                     }
-                } while (undefined_ptr3 != (uint64_t *)0x0);
+                } while (matrix_data_ptr3 != (uint64_t *)0x0);
             }
             
             // 处理第四个矩阵节点
-            if ((undefined_ptr2 == base_ptr) || (*ulong_ptr < (ulonglong)undefined_ptr2[RENDERING_INDEX_4])) {
-                undefined_ptr2 = (uint64_t *)rendering_matrix_calculator();
-                undefined_ptr2 = (uint64_t *)*undefined_ptr2;
+            if ((render_data_ptr2 == base_ptr) || (*ulong_ptr < (ulonglong)render_data_ptr2[RENDERING_INDEX_4])) {
+                render_data_ptr2 = (uint64_t *)rendering_matrix_calculator();
+                render_data_ptr2 = (uint64_t *)*render_data_ptr2;
             }
             
             // 计算最终参数
-            undefined_ptr2 = (uint64_t *)(loop_counter2 + (longlong)undefined_ptr2);
+            matrix_data_ptr2 = (uint64_t *)(loop_counter2 + (longlong)matrix_data_ptr2);
             loop_counter2 = loop_counter2 + RENDERING_INDEX_8;
             
             // 执行浮点数计算
-            *float_ptr = RENDERING_FLOAT_0_05 / (float)(int)((float *)*undefined_ptr2)[RENDERING_INDEX_4] + *(float *)*undefined_ptr2;
+            *float_ptr = RENDERING_FLOAT_0_05 / (float)(int)((float *)*matrix_data_ptr2)[RENDERING_INDEX_4] + *(float *)*matrix_data_ptr2;
             float_ptr[1] = RENDERING_FLOAT_0_05 / (float)int_param6 + temp_float;
             float_ptr[2] = ((float)int_param3 * RENDERING_FLOAT_0_9) / (float)int_param4;
             float_ptr[3] = ((float)int_param1 * RENDERING_FLOAT_0_9) / (float)int_param2;
@@ -324,27 +324,27 @@ void rendering_parameter_calculator_type1(void)
             float_ptr = float_ptr + RENDERING_INDEX_8;
             
             // 执行矩阵变换
-            undefined_ptr2 = (uint64_t *)((longlong)undefined_ptr1 + loop_counter1 + RENDERING_SIZE_0X120);
-            temp_var = undefined_ptr2[1];
-            *undefined_ptr1 = *undefined_ptr2;
-            undefined_ptr1[1] = temp_var;
+            matrix_data_ptr2 = (uint64_t *)((longlong)matrix_data_ptr1 + loop_counter1 + RENDERING_SIZE_0X120);
+            temp_var = matrix_data_ptr2[1];
+            *matrix_data_ptr1 = *matrix_data_ptr2;
+            matrix_data_ptr1[1] = temp_var;
             
-            undefined_ptr2 = (uint64_t *)((longlong)undefined_ptr1 + loop_counter1 + RENDERING_SIZE_0X130);
-            temp_var = undefined_ptr2[1];
-            undefined_ptr1[RENDERING_INDEX_2] = *undefined_ptr2;
-            undefined_ptr1[RENDERING_INDEX_3] = temp_var;
+            matrix_data_ptr2 = (uint64_t *)((longlong)matrix_data_ptr1 + loop_counter1 + RENDERING_SIZE_0X130);
+            temp_var = matrix_data_ptr2[1];
+            matrix_data_ptr1[RENDERING_INDEX_2] = *matrix_data_ptr2;
+            matrix_data_ptr1[RENDERING_INDEX_3] = temp_var;
             
-            undefined_ptr2 = (uint64_t *)((longlong)undefined_ptr1 + loop_counter1 + RENDERING_SIZE_0X140);
-            temp_var = undefined_ptr2[1];
-            render_data_ptr1[RENDERING_INDEX_4] = *undefined_ptr2;
-            undefined_ptr1[RENDERING_INDEX_5] = temp_var;
+            matrix_data_ptr2 = (uint64_t *)((longlong)matrix_data_ptr1 + loop_counter1 + RENDERING_SIZE_0X140);
+            temp_var = matrix_data_ptr2[1];
+            render_data_ptr1[RENDERING_INDEX_4] = *matrix_data_ptr2;
+            matrix_data_ptr1[RENDERING_INDEX_5] = temp_var;
             
-            undefined_ptr2 = (uint64_t *)((longlong)undefined_ptr1 + loop_counter1 + RENDERING_SIZE_0X150);
-            temp_var = undefined_ptr2[1];
-            undefined_ptr1[RENDERING_INDEX_6] = *undefined_ptr2;
-            undefined_ptr1[RENDERING_INDEX_7] = temp_var;
+            matrix_data_ptr2 = (uint64_t *)((longlong)matrix_data_ptr1 + loop_counter1 + RENDERING_SIZE_0X150);
+            temp_var = matrix_data_ptr2[1];
+            matrix_data_ptr1[RENDERING_INDEX_6] = *matrix_data_ptr2;
+            matrix_data_ptr1[RENDERING_INDEX_7] = temp_var;
             
-            undefined_ptr1 = undefined_ptr1 + RENDERING_INDEX_8;
+            matrix_data_ptr1 = matrix_data_ptr1 + RENDERING_INDEX_8;
         } while (loop_counter2 < RENDERING_SIZE_0X58);
     }
     else {
@@ -369,10 +369,10 @@ rendering_state_set:
             int_param6 = *(int *)(*long_ptr + RENDERING_INDEX_0X10);
             temp_float = *(float *)(*long_ptr + RENDERING_INDEX_8);
             
-            undefined_ptr1 = (uint64_t *)rendering_data_getter();
+            matrix_data_ptr1 = (uint64_t *)rendering_data_getter();
             
             // 设置浮点参数
-            *(float *)(temp_long2 + RENDERING_SIZE_0X50) = RENDERING_FLOAT_0_05 / (float)(int)((float *)*undefined_ptr1)[RENDERING_INDEX_4] + *(float *)*undefined_ptr1;
+            *(float *)(temp_long2 + RENDERING_SIZE_0X50) = RENDERING_FLOAT_0_05 / (float)(int)((float *)*matrix_data_ptr1)[RENDERING_INDEX_4] + *(float *)*matrix_data_ptr1;
             *(float *)(temp_long2 + RENDERING_SIZE_0X54) = RENDERING_FLOAT_0_05 / (float)int_param6 + temp_float;
             *(float *)(temp_long2 + RENDERING_SIZE_0X58) = ((float)int_param3 * RENDERING_FLOAT_0_9) / (float)int_param4;
             *(float *)(temp_long2 + 0x5c) = ((float)int_param1 * RENDERING_FLOAT_0_9) / (float)int_param2;
@@ -442,83 +442,83 @@ void rendering_parameter_calculator_type2(void)
     
     // 参数计算主循环
     do {
-        undefined_ptr2 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
-        undefined_ptr1 = base_ptr;
+        matrix_data_ptr2 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
+        matrix_data_ptr1 = base_ptr;
         
         // 链表遍历算法
-        if (undefined_ptr2 != (uint64_t *)0x0) {
+        if (matrix_data_ptr2 != (uint64_t *)0x0) {
             do {
-                if ((ulonglong)undefined_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
-                    undefined_ptr2 = (uint64_t *)*undefined_ptr2;
+                if ((ulonglong)matrix_data_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
+                    render_data_ptr2 = (uint64_t *)*render_data_ptr2;
                 }
                 else {
-                    undefined_ptr1 = undefined_ptr2;
-                    undefined_ptr2 = (uint64_t *)undefined_ptr2[1];
+                    matrix_data_ptr1 = matrix_data_ptr2;
+                    matrix_data_ptr2 = (uint64_t *)matrix_data_ptr2[1];
                 }
-            } while (undefined_ptr2 != (uint64_t *)0x0);
+            } while (matrix_data_ptr2 != (uint64_t *)0x0);
         }
         
         // 处理链表节点
-        if ((undefined_ptr1 == base_ptr) || (*ulong_ptr < (ulonglong)render_data_ptr1[RENDERING_INDEX_4])) {
-            undefined_ptr1 = (uint64_t *)rendering_matrix_calculator();
+        if ((matrix_data_ptr1 == base_ptr) || (*ulong_ptr < (ulonglong)render_data_ptr1[RENDERING_INDEX_4])) {
+            matrix_data_ptr1 = (uint64_t *)rendering_matrix_calculator();
             render_data_ptr1 = (uint64_t *)*render_data_ptr1;
         }
         
         // 提取第一组参数
-        int_param1 = *(int *)(*(longlong *)(temp_long1 + (longlong)undefined_ptr1) + RENDERING_INDEX_0XC);
-        int_param2 = *(int *)(*(longlong *)(temp_long1 + (longlong)undefined_ptr1) + RENDERING_INDEX_0X10);
+        int_param1 = *(int *)(*(longlong *)(temp_long1 + (longlong)matrix_data_ptr1) + RENDERING_INDEX_0XC);
+        int_param2 = *(int *)(*(longlong *)(temp_long1 + (longlong)matrix_data_ptr1) + RENDERING_INDEX_0X10);
         
         // 第二次链表遍历
-        undefined_ptr2 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
-        undefined_ptr1 = base_ptr;
+        matrix_data_ptr2 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
+        matrix_data_ptr1 = base_ptr;
         
-        if (undefined_ptr2 != (uint64_t *)0x0) {
+        if (matrix_data_ptr2 != (uint64_t *)0x0) {
             do {
-                if ((ulonglong)undefined_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
-                    undefined_ptr2 = (uint64_t *)*undefined_ptr2;
+                if ((ulonglong)matrix_data_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
+                    render_data_ptr2 = (uint64_t *)*render_data_ptr2;
                 }
                 else {
-                    undefined_ptr1 = undefined_ptr2;
-                    undefined_ptr2 = (uint64_t *)undefined_ptr2[1];
+                    matrix_data_ptr1 = matrix_data_ptr2;
+                    matrix_data_ptr2 = (uint64_t *)matrix_data_ptr2[1];
                 }
-            } while (undefined_ptr2 != (uint64_t *)0x0);
+            } while (matrix_data_ptr2 != (uint64_t *)0x0);
         }
         
         // 处理第二个节点
-        if ((undefined_ptr1 == base_ptr) || (*ulong_ptr < (ulonglong)render_data_ptr1[RENDERING_INDEX_4])) {
-            undefined_ptr1 = (uint64_t *)rendering_matrix_calculator();
+        if ((matrix_data_ptr1 == base_ptr) || (*ulong_ptr < (ulonglong)render_data_ptr1[RENDERING_INDEX_4])) {
+            matrix_data_ptr1 = (uint64_t *)rendering_matrix_calculator();
             render_data_ptr1 = (uint64_t *)*render_data_ptr1;
         }
         
         // 提取第二组参数
-        int_param3 = *(int *)(*(longlong *)(temp_long1 + (longlong)undefined_ptr1) + RENDERING_INDEX_0XC);
-        int_param4 = *(int *)(*(longlong *)(temp_long1 + (longlong)undefined_ptr1) + RENDERING_INDEX_0X10);
+        int_param3 = *(int *)(*(longlong *)(temp_long1 + (longlong)matrix_data_ptr1) + RENDERING_INDEX_0XC);
+        int_param4 = *(int *)(*(longlong *)(temp_long1 + (longlong)matrix_data_ptr1) + RENDERING_INDEX_0X10);
         
         // 第三次链表遍历
-        undefined_ptr2 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
-        undefined_ptr1 = base_ptr;
+        matrix_data_ptr2 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
+        matrix_data_ptr1 = base_ptr;
         
-        if (undefined_ptr2 != (uint64_t *)0x0) {
+        if (matrix_data_ptr2 != (uint64_t *)0x0) {
             do {
-                if ((ulonglong)undefined_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
-                    undefined_ptr2 = (uint64_t *)*undefined_ptr2;
+                if ((ulonglong)matrix_data_ptr2[RENDERING_INDEX_4] < *ulong_ptr) {
+                    render_data_ptr2 = (uint64_t *)*render_data_ptr2;
                 }
                 else {
-                    undefined_ptr1 = undefined_ptr2;
-                    undefined_ptr2 = (uint64_t *)undefined_ptr2[1];
+                    matrix_data_ptr1 = matrix_data_ptr2;
+                    matrix_data_ptr2 = (uint64_t *)matrix_data_ptr2[1];
                 }
-            } while (undefined_ptr2 != (uint64_t *)0x0);
+            } while (matrix_data_ptr2 != (uint64_t *)0x0);
         }
         
         // 处理第三个节点
-        if ((undefined_ptr1 == base_ptr) || (*ulong_ptr < (ulonglong)render_data_ptr1[RENDERING_INDEX_4])) {
-            undefined_ptr1 = (uint64_t *)rendering_matrix_calculator();
+        if ((matrix_data_ptr1 == base_ptr) || (*ulong_ptr < (ulonglong)render_data_ptr1[RENDERING_INDEX_4])) {
+            matrix_data_ptr1 = (uint64_t *)rendering_matrix_calculator();
             render_data_ptr1 = (uint64_t *)*render_data_ptr1;
         }
         
         // 提取第三组参数
-        int_param5 = *(int *)(*(longlong *)(temp_long1 + (longlong)undefined_ptr1) + RENDERING_INDEX_0X10);
-        temp_float = *(float *)(*(longlong *)(temp_long1 + (longlong)undefined_ptr1) + RENDERING_INDEX_8);
+        int_param5 = *(int *)(*(longlong *)(temp_long1 + (longlong)matrix_data_ptr1) + RENDERING_INDEX_0X10);
+        temp_float = *(float *)(*(longlong *)(temp_long1 + (longlong)matrix_data_ptr1) + RENDERING_INDEX_8);
         
         // 第四次链表遍历
         render_data_ptr1 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
@@ -531,23 +531,23 @@ void rendering_parameter_calculator_type2(void)
                 }
                 else {
                     render_data_ptr2 = render_data_ptr1;
-                    undefined_ptr1 = (uint64_t *)undefined_ptr1[1];
+                    render_data_ptr1 = (uint64_t *)render_data_ptr1[1];
                 }
-            } while (undefined_ptr1 != (uint64_t *)0x0);
+            } while (render_data_ptr1 != (uint64_t *)0x0);
         }
         
         // 处理第四个节点
-        if ((undefined_ptr2 == base_ptr) || (*ulong_ptr < (ulonglong)undefined_ptr2[RENDERING_INDEX_4])) {
-            undefined_ptr2 = (uint64_t *)rendering_matrix_calculator();
-            undefined_ptr2 = (uint64_t *)*undefined_ptr2;
+        if ((render_data_ptr2 == base_ptr) || (*ulong_ptr < (ulonglong)render_data_ptr2[RENDERING_INDEX_4])) {
+            render_data_ptr2 = (uint64_t *)rendering_matrix_calculator();
+            render_data_ptr2 = (uint64_t *)*render_data_ptr2;
         }
         
         // 计算最终参数
-        undefined_ptr2 = (uint64_t *)(temp_long1 + (longlong)undefined_ptr2);
+        matrix_data_ptr2 = (uint64_t *)(temp_long1 + (longlong)matrix_data_ptr2);
         temp_long1 = temp_long1 + RENDERING_INDEX_8;
         
         // 执行浮点数计算
-        *float_ptr = RENDERING_FLOAT_0_05 / (float)(int)((float *)*undefined_ptr2)[RENDERING_INDEX_4] + *(float *)*undefined_ptr2;
+        *float_ptr = RENDERING_FLOAT_0_05 / (float)(int)((float *)*matrix_data_ptr2)[RENDERING_INDEX_4] + *(float *)*matrix_data_ptr2;
         float_ptr[1] = RENDERING_FLOAT_0_05 / (float)int_param5 + temp_float;
         float_ptr[2] = ((float)int_param3 * xmm9_float) / (float)int_param4;
         float_ptr[3] = ((float)int_param1 * xmm9_float) / (float)int_param2;
@@ -555,19 +555,19 @@ void rendering_parameter_calculator_type2(void)
         float_ptr = float_ptr + RENDERING_INDEX_8;
         
         // 执行矩阵变换
-        undefined_ptr2 = (uint64_t *)((longlong)context_ptr + loop_counter + RENDERING_SIZE_0X120);
-        temp_var = undefined_ptr2[1];
-        *context_ptr = *undefined_ptr2;
+        matrix_data_ptr2 = (uint64_t *)((longlong)context_ptr + loop_counter + RENDERING_SIZE_0X120);
+        temp_var = matrix_data_ptr2[1];
+        *context_ptr = *matrix_data_ptr2;
         context_ptr[1] = temp_var;
         
-        undefined_ptr2 = (uint64_t *)((longlong)context_ptr + loop_counter + RENDERING_SIZE_0X130);
-        temp_var = undefined_ptr2[1];
-        context_ptr[RENDERING_INDEX_2] = *undefined_ptr2;
+        matrix_data_ptr2 = (uint64_t *)((longlong)context_ptr + loop_counter + RENDERING_SIZE_0X130);
+        temp_var = matrix_data_ptr2[1];
+        context_ptr[RENDERING_INDEX_2] = *matrix_data_ptr2;
         context_ptr[RENDERING_INDEX_3] = temp_var;
         
-        undefined_ptr2 = (uint64_t *)((longlong)context_ptr + loop_counter + RENDERING_SIZE_0X140);
-        temp_var = undefined_ptr2[1];
-        context_ptr[RENDERING_INDEX_4] = *undefined_ptr2;
+        matrix_data_ptr2 = (uint64_t *)((longlong)context_ptr + loop_counter + RENDERING_SIZE_0X140);
+        temp_var = matrix_data_ptr2[1];
+        context_ptr[RENDERING_INDEX_4] = *matrix_data_ptr2;
         context_ptr[RENDERING_INDEX_5] = temp_var;
         
         uint_ptr = (int32_t *)((longlong)context_ptr + loop_counter + RENDERING_SIZE_0X150);
@@ -650,7 +650,7 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     uint64_t *render_data_ptr2;
     char stack_char [8];
     longlong stack_long;
-    uint64_t stack_undefined;
+    uint64_t memory_stack_param;
     uint64_t *heap_ptr1;
     uint64_t *heap_ptr2;
     uint64_t *heap_ptr3;
@@ -664,17 +664,17 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     code *code_ptr1;
     code *code_ptr2;
     longlong **long_ptr_ptr;
-    uint64_t stack_undefined3;
+    uint64_t memory_stack_param3;
     int32_t stack_uint1;
     int16_t stack_ushort;
     uint64_t stack_int32_t;
-    uint64_t stack_undefined5;
+    uint64_t memory_stack_param5;
     int32_t stack_uint2;
     int8_t stack_byte;
     int32_t stack_uint3;
-    uint64_t stack_undefined6;
+    uint64_t memory_stack_param6;
     int16_t stack_ushort1;
-    uint64_t stack_undefined7;
+    uint64_t memory_stack_param7;
     int32_t stack_uint4;
     int8_t stack_byte1;
     longlong stack_long2;
@@ -683,15 +683,15 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     // 初始化栈数据
     stack_uint64_t = 0xfffffffffffffffe;
     stack_char[0] = *(char *)(param_3 + 0x20);
-    undefined_ptr1 = (uint64_t *)0x0;
+    matrix_data_ptr1 = (uint64_t *)0x0;
     stack_uint32_t = 0;
     stack_ushort = 0xff00;
     stack_int32_t = 0;
-    stack_undefined5 = 0xffffffffffffffff;
+    memory_stack_param5 = 0xffffffffffffffff;
     stack_uint2 = 0xffffffff;
     stack_byte = 0xff;
     stack_uint3 = 0xffffffff;
-    stack_undefined6 = 0;
+    memory_stack_param6 = 0;
     stack_ushort1 = RENDERING_FLAG_0X400;
     stack_uint64_t = 0;
     stack_uint4 = 0;
@@ -710,7 +710,7 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     
     // 调用渲染系统初始化函数
     (**(code **)(**(longlong **)(long_param3 + 0x27e8) + 0x1c8))
-            (*(longlong **)(long_param3 + 0x27e8), param_3, long_param3, &DAT, &stack_undefined3);
+            (*(longlong **)(long_param3 + 0x27e8), param_3, long_param3, &DAT, &memory_stack_param3);
     
     // 设置数据范围
     long_param1 = param_1 + 0x100;
@@ -729,24 +729,24 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     if (long_param2 != long_param1) {
         do {
             long_param3 = rendering_iterator(long_param3);
-            undefined_ptr2 = (uint64_t *)((longlong)undefined_ptr2 + 1);
+            matrix_data_ptr2 = (uint64_t *)((longlong)matrix_data_ptr2 + 1);
         } while (long_param3 != long_param1);
         
-        if (undefined_ptr2 != (uint64_t *)0x0) {
-            undefined_ptr1 = (uint64_t *)
-                     rendering_memory_allocator(_DAT, (longlong)undefined_ptr2 * 8, (int8_t)stack_uint);
+        if (matrix_data_ptr2 != (uint64_t *)0x0) {
+            matrix_data_ptr1 = (uint64_t *)
+                     rendering_memory_allocator(_DAT, (longlong)matrix_data_ptr2 * 8, (int8_t)stack_uint);
         }
     }
     
     // 设置堆数据指针
-    heap_ptr2 = undefined_ptr1 + (longlong)undefined_ptr2;
+    heap_ptr2 = matrix_data_ptr1 + (longlong)matrix_data_ptr2;
     heap_ptr3 = heap_ptr2;
-    heap_ptr1 = undefined_ptr1;
+    heap_ptr1 = matrix_data_ptr1;
     
     // 数据处理循环
     for (; long_param2 != long_param1; long_param2 = rendering_iterator(long_param2)) {
-        *undefined_ptr1 = *(uint64_t *)(long_param2 + 0x20);
-        undefined_ptr1 = undefined_ptr1 + 1;
+        *matrix_data_ptr1 = *(uint64_t *)(long_param2 + 0x20);
+        matrix_data_ptr1 = matrix_data_ptr1 + 1;
     }
     
     // 检查全局标志
@@ -755,11 +755,11 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
         heap_ptr_ptr = &heap_ptr1;
         char_ptr = stack_char;
         stack_int8_t = &stack_long;
-        stack_int16_t = &stack_undefined;
+        stack_int16_t = &memory_stack_param;
         code_ptr1 = rendering_callback_handler_type1;
         code_ptr2 = rendering_callback_handler_type2;
         stack_long = param_3;
-        stack_undefined = param_2;
+        memory_stack_param = param_2;
         stack_long1 = param_1;
         
         // 分配内存并设置回调
@@ -780,11 +780,11 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
         heap_ptr_ptr = &heap_ptr1;
         char_ptr = stack_char;
         stack_int8_t = &stack_long;
-        stack_int16_t = &stack_undefined;
+        stack_int16_t = &memory_stack_param;
         code_ptr1 = rendering_callback_handler_type3;
         code_ptr2 = rendering_callback_handler_type4;
         stack_long = param_3;
-        stack_undefined = param_2;
+        memory_stack_param = param_2;
         stack_long1 = param_1;
         
         // 分配内存并设置回调（替代路径）
