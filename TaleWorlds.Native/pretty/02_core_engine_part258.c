@@ -153,7 +153,7 @@ LAB_1802260bd:
       puVar6 = puVar6 + 0xf;
     } while (lVar5 + -0x68 + (int64_t)puVar6 != lVar8);
   }
-  FUN_1800b8300(puVar4,param_2);
+  SystemCommunicationProcessor(puVar4,param_2);
   CoreEngineDataTransformer(puVar4 + 0xb,param_2 + 0x58);
   lVar8 = param_1[1];
   lVar5 = *param_1;

@@ -591,7 +591,7 @@ uint64_t FUN_18089b2a0(int64_t param_1,uint64_t *param_2)
   int32_t uStack_2c;
   int8_t auStack_28 [32];
   
-  puVar2 = (int32_t *)FUN_180847820();
+  puVar2 = (int32_t *)SystemCoreProcessor();
   uStack_38 = *puVar2;
   uStack_34 = puVar2[1];
   uStack_30 = puVar2[2];

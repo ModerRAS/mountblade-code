@@ -50,7 +50,7 @@
 #define UtilitiesSystem_ResourceCleaner FUN_1808974f4
 
 // 工具系统参数验证器
-#define UtilitiesSystem_ParameterValidator FUN_180897520
+#define UtilitiesSystem_ParameterValidator SystemNetworkProcessor
 
 // 工具系统事件处理器
 #define UtilitiesSystem_EventHandler FUN_180897560
@@ -141,7 +141,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
       func_0x00018076b450(data_buffer,*(uint64_t *)(data_params + 0x228),0x200);
       handler_ptr = &resource_handler;
       // 执行数据处理
-      operation_result = FUN_180897520(system_context,handler_ptr);
+      operation_result = SystemNetworkProcessor(system_context,handler_ptr);
     }
     else {
       // 处理复杂数据结构
@@ -157,7 +157,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         event_context = 0;
         data_context = 0;
         timeout_value = config_data;
-        operation_result = FUN_180897520(system_context,handler_ptr);
+        operation_result = SystemNetworkProcessor(system_context,handler_ptr);
       }
       else {
         // 设置数据处理器参数
@@ -165,7 +165,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         resource_manager = (uint64_t)config_data << 0x20;
         context_data = *(uint64_t *)(data_params + 0x228);
         state_context = (uint64_t)CONCAT14(operation_result != 1,*(int32_t *)(data_params + 0x230));
-        operation_result = FUN_180897520(system_context,&resource_handler);
+        operation_result = SystemNetworkProcessor(system_context,&resource_handler);
       }
     }
     
@@ -182,7 +182,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
     timeout_value = config_data;
     
     // 执行主要数据处理
-    operation_result = FUN_180897520(system_context,&data_processor);
+    operation_result = SystemNetworkProcessor(system_context,&data_processor);
     if (operation_result != 0) goto PROCESS_ERROR;
     
     // 处理资源循环
@@ -193,7 +193,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         resource_count = 0;
         resource_handler = &unknown_var_3872_ptr;
         context_data = CONCAT44(context_data._4_4_,config_data);
-        validation_result = FUN_180897520(system_context,&resource_handler);
+        validation_result = SystemNetworkProcessor(system_context,&resource_handler);
         if (validation_result != 0) goto PROCESS_ERROR;
         cleanup_result = cleanup_result + 1;
       } while (cleanup_result < operation_result);
@@ -224,7 +224,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         resource_count = cleanup_result;
         timeout_value = config_data;
         resource_count = process_result;
-        process_result = FUN_180897520(system_context,&data_processor);
+        process_result = SystemNetworkProcessor(system_context,&data_processor);
         
         if ((process_result != 0) || (process_result = FUN_18088c970(temp_context_2,transform_data), process_result != 0))
         goto PROCESS_ERROR;
@@ -235,7 +235,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
           resource_handler = &unknown_var_9536_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           resource_count = process_result;
-          process_result = FUN_180897520(system_context,&resource_handler);
+          process_result = SystemNetworkProcessor(system_context,&resource_handler);
           if (process_result != 0) goto PROCESS_ERROR;
         }
         
@@ -245,7 +245,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
           resource_handler = &unknown_var_9656_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           state_context = CONCAT71(state_context._1_7_,1);
-          process_result = FUN_180897520(system_context,&resource_handler);
+          process_result = SystemNetworkProcessor(system_context,&resource_handler);
           if (process_result != 0) goto PROCESS_ERROR;
         }
         
@@ -255,7 +255,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
           resource_handler = &system_string2_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           state_context = CONCAT71(state_context._1_7_,1);
-          cleanup_result = FUN_180897520(system_context,&resource_handler);
+          cleanup_result = SystemNetworkProcessor(system_context,&resource_handler);
           if (cleanup_result != 0) goto PROCESS_ERROR;
         }
       }
@@ -281,7 +281,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         resource_count = cleanup_result;
         timeout_value = config_data;
         resource_count = process_result;
-        process_result = FUN_180897520(system_context,&data_processor);
+        process_result = SystemNetworkProcessor(system_context,&data_processor);
         
         if ((process_result != 0) || (process_result = FUN_18088c970(temp_context_2,transform_data), process_result != 0))
         goto PROCESS_ERROR;
@@ -292,7 +292,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
           resource_handler = &unknown_var_9536_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           resource_count = process_result;
-          process_result = FUN_180897520(system_context,&resource_handler);
+          process_result = SystemNetworkProcessor(system_context,&resource_handler);
           if (process_result != 0) goto PROCESS_ERROR;
         }
         
@@ -302,7 +302,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
           resource_handler = &unknown_var_9656_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           state_context = CONCAT71(state_context._1_7_,1);
-          process_result = FUN_180897520(system_context,&resource_handler);
+          process_result = SystemNetworkProcessor(system_context,&resource_handler);
           if (process_result != 0) goto PROCESS_ERROR;
         }
         
@@ -312,7 +312,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
           resource_handler = &system_string2_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           state_context = CONCAT71(state_context._1_7_,1);
-          cleanup_result = FUN_180897520(system_context,&resource_handler);
+          cleanup_result = SystemNetworkProcessor(system_context,&resource_handler);
           if (cleanup_result != 0) goto PROCESS_ERROR;
         }
       }
@@ -338,7 +338,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         resource_count = cleanup_result;
         timeout_value = config_data;
         resource_count = process_result;
-        process_result = FUN_180897520(system_context,&data_processor);
+        process_result = SystemNetworkProcessor(system_context,&data_processor);
         
         if ((process_result != 0) || (process_result = FUN_18088c970(temp_context_2,transform_data), process_result != 0))
         goto PROCESS_ERROR;
@@ -349,7 +349,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
           resource_handler = &unknown_var_9536_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           resource_count = process_result;
-          process_result = FUN_180897520(system_context,&resource_handler);
+          process_result = SystemNetworkProcessor(system_context,&resource_handler);
           if (process_result != 0) goto PROCESS_ERROR;
         }
         
@@ -359,7 +359,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
           resource_handler = &unknown_var_9656_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           state_context = CONCAT71(state_context._1_7_,1);
-          process_result = FUN_180897520(system_context,&resource_handler);
+          process_result = SystemNetworkProcessor(system_context,&resource_handler);
           if (process_result != 0) goto PROCESS_ERROR;
         }
         
@@ -369,7 +369,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
           resource_handler = &system_string2_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           state_context = CONCAT71(state_context._1_7_,1);
-          cleanup_result = FUN_180897520(system_context,&resource_handler);
+          cleanup_result = SystemNetworkProcessor(system_context,&resource_handler);
           if (cleanup_result != 0) goto PROCESS_ERROR;
         }
       }
@@ -395,7 +395,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         resource_count = cleanup_result;
         timeout_value = config_data;
         resource_count = process_result;
-        process_result = FUN_180897520(system_context,&data_processor);
+        process_result = SystemNetworkProcessor(system_context,&data_processor);
         
         if ((process_result != 0) || (process_result = FUN_18088c970(temp_context_2,transform_data), process_result != 0))
         goto PROCESS_ERROR;
@@ -406,7 +406,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
           resource_handler = &unknown_var_9536_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           resource_count = process_result;
-          process_result = FUN_180897520(system_context,&resource_handler);
+          process_result = SystemNetworkProcessor(system_context,&resource_handler);
           if (process_result != 0) goto PROCESS_ERROR;
         }
         
@@ -416,7 +416,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
           resource_handler = &unknown_var_9656_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           state_context = CONCAT71(state_context._1_7_,1);
-          process_result = FUN_180897520(system_context,&resource_handler);
+          process_result = SystemNetworkProcessor(system_context,&resource_handler);
           if (process_result != 0) goto PROCESS_ERROR;
         }
         
@@ -426,7 +426,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
           resource_handler = &system_string2_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           state_context = CONCAT71(state_context._1_7_,1);
-          cleanup_result = FUN_180897520(system_context,&resource_handler);
+          cleanup_result = SystemNetworkProcessor(system_context,&resource_handler);
           if (cleanup_result != 0) goto PROCESS_ERROR;
         }
       }
@@ -455,7 +455,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
         resource_count = cleanup_result;
         timeout_value = config_data;
         resource_count = process_result;
-        process_result = FUN_180897520(system_context,&data_processor);
+        process_result = SystemNetworkProcessor(system_context,&data_processor);
         
         if ((process_result != 0) || (cleanup_result = FUN_18088cbb0(temp_context_2,transform_data,0), cleanup_result != 0)) break;
         process_result = validation_result;
@@ -465,7 +465,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data
           resource_handler = &unknown_var_24_ptr;
           context_data = CONCAT44(context_data._4_4_,status_flag);
           resource_count = cleanup_result;
-          cleanup_result = FUN_180897520(system_context,&resource_handler);
+          cleanup_result = SystemNetworkProcessor(system_context,&resource_handler);
           if (cleanup_result != 0) break;
         }
       }
@@ -548,7 +548,7 @@ void UtilitiesSystem_StateManager(void)
         *(int32_t *)(unaff_context + -0x5c) = data_param_3;
         *(int32_t *)(unaff_context + -0x58) = data_param_4;
         
-        validation_result = FUN_180897520(data_param_1,unaff_context + -0x80);
+        validation_result = SystemNetworkProcessor(data_param_1,unaff_context + -0x80);
         if ((validation_result != 0) || (validation_result = FUN_18088c970(context_2,&stack_data), validation_result != 0))
         goto STATE_ERROR;
         
@@ -558,7 +558,7 @@ void UtilitiesSystem_StateManager(void)
           stack_handler = &unknown_var_9536_ptr;
           stack_config = stack_param;
           stack_value = validation_result;
-          validation_result = FUN_180897520(stack_data,&stack_handler);
+          validation_result = SystemNetworkProcessor(stack_data,&stack_handler);
           transform_result = extra_data;
           if (validation_result != 0) goto STATE_ERROR;
         }
@@ -568,7 +568,7 @@ void UtilitiesSystem_StateManager(void)
           stack_handler = &unknown_var_9656_ptr;
           stack_config = stack_param;
           stack_transform = (float)CONCAT31(stack_transform._1_3_,1);
-          validation_result = FUN_180897520(transform_result,&stack_handler);
+          validation_result = SystemNetworkProcessor(transform_result,&stack_handler);
           transform_result = extra_data;
           if (validation_result != 0) goto STATE_ERROR;
         }
@@ -578,7 +578,7 @@ void UtilitiesSystem_StateManager(void)
           stack_handler = &system_string2_ptr;
           stack_config = stack_param;
           stack_transform = (float)CONCAT31(stack_transform._1_3_,1);
-          validation_result = FUN_180897520(transform_result,&stack_handler);
+          validation_result = SystemNetworkProcessor(transform_result,&stack_handler);
           if (validation_result != 0) goto STATE_ERROR;
         }
       }
@@ -611,7 +611,7 @@ void UtilitiesSystem_StateManager(void)
         *(int32_t *)(unaff_context + -0x5c) = data_param_3;
         *(int32_t *)(unaff_context + -0x58) = data_param_4;
         
-        validation_result = FUN_180897520(data_param_1,unaff_context + -0x80);
+        validation_result = SystemNetworkProcessor(data_param_1,unaff_context + -0x80);
         if ((validation_result != 0) || (validation_result = FUN_18088c970(context_2,&stack_data), validation_result != 0))
         goto STATE_ERROR;
         
@@ -621,7 +621,7 @@ void UtilitiesSystem_StateManager(void)
           stack_handler = &unknown_var_9536_ptr;
           stack_config = stack_param;
           stack_value = validation_result;
-          validation_result = FUN_180897520(stack_data,&stack_handler);
+          validation_result = SystemNetworkProcessor(stack_data,&stack_handler);
           transform_result = extra_data;
           if (validation_result != 0) goto STATE_ERROR;
         }
@@ -631,7 +631,7 @@ void UtilitiesSystem_StateManager(void)
           stack_handler = &unknown_var_9656_ptr;
           stack_config = stack_param;
           stack_transform = (float)CONCAT31(stack_transform._1_3_,1);
-          validation_result = FUN_180897520(transform_result,&stack_handler);
+          validation_result = SystemNetworkProcessor(transform_result,&stack_handler);
           transform_result = extra_data;
           if (validation_result != 0) goto STATE_ERROR;
         }
@@ -641,7 +641,7 @@ void UtilitiesSystem_StateManager(void)
           stack_handler = &system_string2_ptr;
           stack_config = stack_param;
           stack_transform = (float)CONCAT31(stack_transform._1_3_,1);
-          validation_result = FUN_180897520(transform_result,&stack_handler);
+          validation_result = SystemNetworkProcessor(transform_result,&stack_handler);
           if (validation_result != 0) goto STATE_ERROR;
         }
       }
@@ -693,7 +693,7 @@ void UtilitiesSystem_StateManager(void)
         *(int32_t *)(unaff_context + -0x5c) = data_param_3;
         *(int32_t *)(unaff_context + -0x58) = data_param_4;
         
-        process_result = FUN_180897520(data_param_1,unaff_context + -0x80);
+        process_result = SystemNetworkProcessor(data_param_1,unaff_context + -0x80);
         if ((process_result != 0) || (process_result = FUN_18088cbb0(context_2,&stack_data,0), process_result != 0)) break;
         
         if (stack_data != 1.0) {
@@ -701,7 +701,7 @@ void UtilitiesSystem_StateManager(void)
           stack_handler = &unknown_var_24_ptr;
           stack_config = stack_param;
           stack_value = process_result;
-          process_result = FUN_180897520(stack_data,&stack_handler);
+          process_result = SystemNetworkProcessor(stack_data,&stack_handler);
           if (process_result != 0) break;
         }
       }

@@ -59,7 +59,7 @@ void FUN_1808782c0(int64_t param_1,uint64_t param_2,int64_t *param_3)
       lVar7 = (**(code **)(*param_3 + 0x318))(param_3,puVar1,1);
       if (lVar7 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18076b390(unaff_RBP + -9,0x27,&unknown_var_8960_ptr,*(int32_t *)puVar1,
+        SystemValidationProcessor(unaff_RBP + -9,0x27,&unknown_var_8960_ptr,*(int32_t *)puVar1,
                       *(int16_t *)(lVar2 + 100));
       }
       if (*(int *)(lVar7 + 0x60) != 0x1f) goto LAB_180878734;
@@ -84,7 +84,7 @@ void FUN_1808782c0(int64_t param_1,uint64_t param_2,int64_t *param_3)
       *(uint64_t *)(unaff_RBP + -1) = uVar5;
       iVar16 = FUN_18087dd70(unaff_RBP + -0x41,unaff_RBP + -9,lVar2 + 0x10);
       if (iVar16 != 0) goto LAB_180878734;
-      puVar8 = (uint64_t *)FUN_180847820();
+      puVar8 = (uint64_t *)SystemDataFlowProcessor();
       uVar5 = puVar8[1];
       *puVar1 = *puVar8;
       *(uint64_t *)(lVar2 + 0x68) = uVar5;
@@ -186,13 +186,13 @@ LAB_1808784e0:
     }
   }
 LAB_180878734:
-  iVar13 = FUN_180744cc0(unaff_RBP + -0x41);
+  iVar13 = SystemLockProcessor(unaff_RBP + -0x41);
   if ((iVar13 == 0) && (iVar13 = FUN_1808745b0(unaff_RBP + -0x31), iVar13 == 0)) {
     *(int32_t *)(unaff_RBP + -0x21) = 0xffffffff;
     *(int32_t *)(unaff_RBP + -0x1d) = 0;
   }
   FUN_1808745b0(unaff_RBP + -0x31);
-  FUN_180744cc0(unaff_RBP + -0x41);
+  SystemLockProcessor(unaff_RBP + -0x41);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1f) ^ (uint64_t)&stack0x00000000);
 LAB_1808786c3:
@@ -245,7 +245,7 @@ void FUN_180878771(void)
     *(int32_t *)(unaff_RBP + -0x1d) = unaff_R13D;
   }
   FUN_1808745b0(unaff_RBP + -0x31);
-  FUN_180744cc0(unaff_RBP + -0x41);
+  SystemLockProcessor(unaff_RBP + -0x41);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1f) ^ (uint64_t)&stack0x00000000);
 }
@@ -285,13 +285,13 @@ LAB_180878722:
   *(int *)(unaff_RBP + -0x49) = iVar5;
   if (iVar5 == -1) {
 LAB_180878734:
-    iVar5 = FUN_180744cc0(unaff_RBP + -0x41);
+    iVar5 = SystemLockProcessor(unaff_RBP + -0x41);
     if ((iVar5 == 0) && (iVar5 = FUN_1808745b0(unaff_RBP + -0x31), iVar5 == 0)) {
       *(int32_t *)(unaff_RBP + -0x21) = 0xffffffff;
       *(int32_t *)(unaff_RBP + -0x1d) = 0;
     }
     FUN_1808745b0(unaff_RBP + -0x31);
-    FUN_180744cc0(unaff_RBP + -0x41);
+    SystemLockProcessor(unaff_RBP + -0x41);
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1f) ^ (uint64_t)&stack0x00000000);
   }

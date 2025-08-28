@@ -26,14 +26,14 @@ void FUN_1808e7860(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -80,14 +80,14 @@ void FUN_1808e7930(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -134,14 +134,14 @@ void FUN_1808e7a00(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -188,14 +188,14 @@ void FUN_1808e7ad0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -243,14 +243,14 @@ void FUN_1808e7bb0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -297,14 +297,14 @@ void FUN_1808e7c80(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -352,14 +352,14 @@ void FUN_1808e7d60(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -407,14 +407,14 @@ void FUN_1808e7e40(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -462,14 +462,14 @@ void FUN_1808e7f20(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -517,14 +517,14 @@ void FUN_1808e8000(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -571,14 +571,14 @@ void FUN_1808e80d0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -626,14 +626,14 @@ void FUN_1808e81b0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -681,14 +681,14 @@ void FUN_1808e8290(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -736,14 +736,14 @@ void FUN_1808e8370(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -791,14 +791,14 @@ void FUN_1808e8450(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -846,14 +846,14 @@ void FUN_1808e8530(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -900,14 +900,14 @@ void FUN_1808e8600(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -954,14 +954,14 @@ void FUN_1808e86d0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -1008,14 +1008,14 @@ void FUN_1808e87a0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4,iVar6), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4,iVar6), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];
@@ -1063,14 +1063,14 @@ void FUN_1808e8880(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     if (iVar2 < 0x40) {
       iVar2 = 0x40;
     }
-    iVar2 = FUN_180849030(param_4,iVar2);
+    iVar2 = SystemDeallocationProcessor(param_4,iVar2);
     if (iVar2 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar2 = FUN_180849030(param_4), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_4), iVar2 != 0)) {
     return;
   }
   iVar2 = (int)param_4[1];

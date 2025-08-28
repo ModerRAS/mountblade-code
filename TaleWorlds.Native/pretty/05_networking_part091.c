@@ -49,7 +49,7 @@ void Network_ConnectionHandler(int64_t param_1, int64_t param_2)
   lStack_40 = param_2;
   
   // 调用底层连接处理函数
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 /**
@@ -379,7 +379,7 @@ void Network_ResourceManager(int64_t param_1, int32_t *param_2, int64_t *param_3
       uStack_a8 = uStack_54 & 0xffff;
       
       // 调用资源处理函数
-      FUN_18076b390(auStack_40, 0x27, &unknown_var_8960_ptr, uStack_58);
+      SystemValidationProcessor(auStack_40, 0x27, &unknown_var_8960_ptr, uStack_58);
     }
     
     // 资源状态检查
@@ -404,7 +404,7 @@ void Network_ResourceManager(int64_t param_1, int32_t *param_2, int64_t *param_3
  */
 void Network_ResourceCleaner(void)
 {
-  FUN_18076b390();
+  SystemValidationProcessor();
 }
 
 /**
@@ -480,7 +480,7 @@ void Network_AdvancedResourceManager(int64_t param_1, int32_t *param_2, int64_t 
       uStack_98 = uStack_44 & 0xffff;
       
       // 调用高级资源处理函数
-      FUN_18076b390(auStack_38, 0x27, &unknown_var_8960_ptr, uStack_48);
+      SystemValidationProcessor(auStack_38, 0x27, &unknown_var_8960_ptr, uStack_48);
     }
     
     // 高级资源状态检查
@@ -519,7 +519,7 @@ void Network_Monitor(uint64_t param_1)
   
   if (lVar2 == 0) {
     // 监控初始化
-    FUN_18076b390(&stack0x00000080, 0x27, &unknown_var_8960_ptr, 
+    SystemValidationProcessor(&stack0x00000080, 0x27, &unknown_var_8960_ptr, 
                   uStack0000000000000070 & 0xffffffff,
                   uStack0000000000000070._4_2_);
   }
@@ -608,7 +608,7 @@ void Network_Diagnostic(int64_t param_1, int32_t *param_2, int64_t *param_3)
       uStack_a8 = uStack_54 & 0xffff;
       
       // 调用诊断处理函数
-      FUN_18076b390(auStack_40, 0x27, &unknown_var_8960_ptr, uStack_58);
+      SystemValidationProcessor(auStack_40, 0x27, &unknown_var_8960_ptr, uStack_58);
     }
     
     // 诊断结果检查
@@ -630,7 +630,7 @@ void Network_Diagnostic(int64_t param_1, int32_t *param_2, int64_t *param_3)
  */
 void Network_DiagnosticCleaner(void)
 {
-  FUN_18076b390();
+  SystemValidationProcessor();
 }
 
 /**
@@ -833,7 +833,7 @@ int32_t Network_ResourceAllocator(int64_t param_1, uint64_t param_2, uint param_
   iVar5 = 0;
   uVar2 = *(uint *)(param_1 + 0x20);
   auStack_28[0] = 0;
-  iVar3 = FUN_18088c740(auStack_28, param_1);
+  iVar3 = SystemSecurityProcessor(auStack_28, param_1);
   
   if (iVar3 == 0) {
     // 资源分配处理
@@ -992,7 +992,7 @@ uint64_t Network_SystemCleaner(int64_t param_1)
   }
   *(int32_t *)(param_1 + 0x10) = 0;
   if ((0 < (int)((uVar4 ^ (int)uVar4 >> 0x1f) - ((int)uVar4 >> 0x1f))) &&
-     (uVar3 = FUN_180849030(plVar1, 0), (int)uVar3 != 0)) {
+     (uVar3 = SystemDeallocationProcessor(plVar1, 0), (int)uVar3 != 0)) {
     return uVar3;
   }
   return 0;

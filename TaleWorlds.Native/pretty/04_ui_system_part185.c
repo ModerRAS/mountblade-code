@@ -438,7 +438,7 @@ uint64_t FUN_1807758a0(int64_t *param_1,int param_2,int32_t *param_3,int64_t par
     puVar2 = &unknown_var_4372_ptr;
   }
                     // WARNING: Subroutine does not return
-  FUN_18076b390(param_4,0x20,puVar2,(double)fVar3);
+  SystemValidationProcessor(param_4,0x20,puVar2,(double)fVar3);
 }
 
 

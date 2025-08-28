@@ -767,7 +767,7 @@ void FUN_180076910(int64_t param_1,int64_t *param_2)
   if (*param_2 != *(int64_t *)(param_1 + 0x1b8)) {
     if (*(char *)(param_1 + 0xb1) != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_1808fd200();
+      SystemEventProcessor();
     }
     FUN_180080810(param_1 + 0x1b8);
     lVar2 = *(int64_t *)(param_1 + 0x1b8);

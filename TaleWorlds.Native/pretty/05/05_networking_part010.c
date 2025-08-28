@@ -537,7 +537,7 @@ void NetworkConnectionManager_CleanupConnection(int64_t* connection) {
         if (item_count < 0) {
             data_ptr = (int32_t*)(*connection + 0x14 + (int64_t)item_count * 0x18);
             do {
-                item_data = (int32_t*)FUN_180847820();
+                item_data = (int32_t*)SystemCoreProcessor();
                 item1 = item_data[1];
                 item2 = item_data[2];
                 item3 = item_data[3];
@@ -589,7 +589,7 @@ void NetworkPacketManager_ProcessPacketList(int32_t param1, int param2, uint par
     if (0 < param2) {
         list_ptr = data_ptr + 0x14 + remaining_items * 8;
         do {
-            item_data = (int32_t*)FUN_180847820();
+            item_data = (int32_t*)SystemCoreProcessor();
             param1 = *item_data;
             item1 = item_data[1];
             item2 = item_data[2];
@@ -636,7 +636,7 @@ void NetworkPacketManager_ProcessPackets(int64_t param1) {
     
     remaining_items = data_ptr + 0x14 + param1 * 8;
     do {
-        item_data = (int32_t*)FUN_180847820();
+        item_data = (int32_t*)SystemCoreProcessor();
         item1 = *item_data;
         item2 = item_data[1];
         item3 = item_data[2];
@@ -854,7 +854,7 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
         if (item_count < 0) {
             data_buffer = (int32_t*)((int64_t)item_count * 0x20 + 0x10 + *link_data);
             do {
-                item_data = (int32_t*)FUN_180847820();
+                item_data = (int32_t*)SystemCoreProcessor();
                 item1 = item_data[1];
                 item2 = item_data[2];
                 item3 = item_data[3];
@@ -901,7 +901,7 @@ void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
         if ((int)buffer_size < 0) {
             data_ptr = packet[0xf] + 0x1c + (int64_t)(int)buffer_size * 0x28;
             do {
-                data_buffer = (int32_t*)FUN_180847820();
+                data_buffer = (int32_t*)SystemCoreProcessor();
                 item1 = data_buffer[1];
                 item2 = data_buffer[2];
                 item3 = data_buffer[3];

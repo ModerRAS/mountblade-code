@@ -85,7 +85,7 @@ uint64_t FUN_18088c620(uint *param_1)
 
 
 
-uint64_t FUN_18088c740(int64_t *param_1,int64_t param_2)
+uint64_t SystemSecurityProcessor(int64_t *param_1,int64_t param_2)
 
 {
   uint64_t uVar1;
@@ -174,7 +174,7 @@ int32_t FUN_18088c8a0(int *param_1)
   if (*param_1 != 0) {
     iVar1 = func_0x00018088c590(*param_1,&uStackX_10);
     if (iVar1 != 0) goto LAB_18088c94a;
-    iVar1 = FUN_18088c740(&uStackX_8,uStackX_10);
+    iVar1 = SystemSecurityProcessor(&uStackX_8,uStackX_10);
     if (iVar1 != 0) goto LAB_18088c94a;
   }
   iVar1 = FUN_18088c620(param_1);
@@ -228,7 +228,7 @@ void FUN_18088c9b0(int *param_1,int64_t param_2)
   if (*param_1 != 0) {
     uStackX_8 = 0;
     func_0x00018088c590(*param_1,&uStackX_8);
-    FUN_18088c740(&uStackX_10,uStackX_8);
+    SystemSecurityProcessor(&uStackX_10,uStackX_8);
   }
   *(int64_t *)(param_1 + 2) = param_2;
   if (param_2 == 0) {
@@ -290,7 +290,7 @@ int32_t FUN_18088cae0(int *param_1)
   if (*param_1 != 0) {
     iVar1 = func_0x00018088c590(*param_1,&uStackX_10);
     if (iVar1 != 0) goto LAB_18088cb8a;
-    iVar1 = FUN_18088c740(&uStackX_8,uStackX_10);
+    iVar1 = SystemSecurityProcessor(&uStackX_8,uStackX_10);
     if (iVar1 != 0) goto LAB_18088cb8a;
   }
   iVar1 = FUN_18088c620(param_1);
@@ -666,7 +666,7 @@ void FUN_18088d0c0(int64_t param_1)
   uStack_e8 = 0;
   uStack_e0 = 0;
   uStack_100 = 0;
-  FUN_18088c740(&uStack_100,*(uint64_t *)(param_1 + 0x158));
+  SystemSecurityProcessor(&uStack_100,*(uint64_t *)(param_1 + 0x158));
   aiStack_108[0] = 0;
   FUN_1808e66f0(*(uint64_t *)(param_1 + 0x1e0),&uStack_f8,aiStack_108);
   piVar2 = (int *)func_0x000180879a50(*(uint64_t *)(param_1 + 0x158));

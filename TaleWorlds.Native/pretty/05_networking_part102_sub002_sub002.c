@@ -139,7 +139,7 @@ uint64_t FUN_18089c190(int64_t param_1,uint64_t *param_2)
   if ((int)uVar7 != 0) {
     return uVar7;
   }
-  puVar8 = (int32_t *)FUN_180847820();
+  puVar8 = (int32_t *)SystemCoreProcessor();
   uVar7 = 0;
   uStack_78 = *puVar8;
   uStack_74 = puVar8[1];
@@ -207,7 +207,7 @@ LAB_18089c40a:
         if (iVar13 < 0) {
           lVar11 = (int64_t)iVar13 * 0x18 + 0x14 + (int64_t)puStack_88;
           do {
-            puVar8 = (int32_t *)FUN_180847820();
+            puVar8 = (int32_t *)SystemCoreProcessor();
             uVar2 = puVar8[1];
             uVar3 = puVar8[2];
             uVar4 = puVar8[3];
@@ -279,7 +279,7 @@ LAB_18089c40a:
       if (iVar13 < 0) {
         lVar11 = (int64_t)iVar13 * 0x18 + 0x14 + (int64_t)puStack_88;
         do {
-          puVar8 = (int32_t *)FUN_180847820();
+          puVar8 = (int32_t *)SystemCoreProcessor();
           uVar2 = puVar8[1];
           uVar3 = puVar8[2];
           uVar4 = puVar8[3];
@@ -372,7 +372,7 @@ uint64_t * FUN_18089c1fb(void)
   if ((int)puVar11 != 0) {
     return puVar11;
   }
-  puVar12 = (int32_t *)FUN_180847820();
+  puVar12 = (int32_t *)SystemCoreProcessor();
   puVar11 = (uint64_t *)0x0;
   uVar9 = *(uint *)(unaff_RDI + 8);
   uVar20 = *puVar12;
@@ -452,7 +452,7 @@ LAB_18089c40a:
         if (iVar19 < 0) {
           lVar17 = (int64_t)iVar19 * 0x18 + 0x14 + (int64_t)puVar11;
           do {
-            puVar12 = (int32_t *)FUN_180847820();
+            puVar12 = (int32_t *)SystemCoreProcessor();
             uVar20 = puVar12[1];
             uVar2 = puVar12[2];
             uVar3 = puVar12[3];
@@ -531,7 +531,7 @@ LAB_18089c40a:
       if (iVar19 < 0) {
         lVar17 = (int64_t)iVar19 * 0x18 + 0x14 + (int64_t)puVar13;
         do {
-          pfVar14 = (float *)FUN_180847820();
+          pfVar14 = (float *)SystemCoreProcessor();
           fVar21 = *pfVar14;
           fVar5 = pfVar14[1];
           fVar6 = pfVar14[2];
@@ -619,7 +619,7 @@ uint64_t * FUN_18089c22e(void)
   float extraout_XMM0_Da_04;
   float fVar21;
   
-  puVar11 = (int32_t *)FUN_180847820();
+  puVar11 = (int32_t *)SystemCoreProcessor();
   puVar13 = (uint64_t *)0x0;
   uVar9 = *(uint *)(unaff_RDI + 8);
   uVar20 = *puVar11;
@@ -699,7 +699,7 @@ LAB_18089c40a:
         if (iVar19 < 0) {
           lVar17 = (int64_t)iVar19 * 0x18 + 0x14 + (int64_t)puVar13;
           do {
-            puVar11 = (int32_t *)FUN_180847820();
+            puVar11 = (int32_t *)SystemCoreProcessor();
             uVar20 = puVar11[1];
             uVar2 = puVar11[2];
             uVar3 = puVar11[3];
@@ -778,7 +778,7 @@ LAB_18089c40a:
       if (iVar19 < 0) {
         lVar17 = (int64_t)iVar19 * 0x18 + 0x14 + (int64_t)puVar12;
         do {
-          pfVar14 = (float *)FUN_180847820();
+          pfVar14 = (float *)SystemCoreProcessor();
           fVar21 = *pfVar14;
           fVar5 = pfVar14[1];
           fVar6 = pfVar14[2];
@@ -911,7 +911,7 @@ LAB_18089c40a:
         if (iVar18 < 0) {
           lVar16 = (int64_t)iVar18 * 0x18 + 0x14 + (int64_t)puVar14;
           do {
-            puVar12 = (int32_t *)FUN_180847820();
+            puVar12 = (int32_t *)SystemCoreProcessor();
             uVar1 = puVar12[1];
             uVar2 = puVar12[2];
             uVar3 = puVar12[3];
@@ -990,7 +990,7 @@ LAB_18089c40a:
       if (iVar18 < 0) {
         lVar16 = (int64_t)iVar18 * 0x18 + 0x14 + (int64_t)puVar14;
         do {
-          pfVar13 = (float *)FUN_180847820();
+          pfVar13 = (float *)SystemCoreProcessor();
           fVar20 = *pfVar13;
           fVar4 = pfVar13[1];
           fVar5 = pfVar13[2];

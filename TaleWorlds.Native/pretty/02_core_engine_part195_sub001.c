@@ -261,7 +261,7 @@ void FUN_180178770(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 
@@ -738,7 +738,7 @@ LAB_180179852:
   *(uint64_t *)(lVar4 + 0x38) = 0;
   *(int32_t *)(lVar4 + 0x40) = 3;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar4,plVar1,param_1,uVar5);
+  SystemConfigProcessor(lVar4,plVar1,param_1,uVar5);
 }
 
 
@@ -825,7 +825,7 @@ FUN_180179a0a:
   *(uint64_t *)(lVar7 + 0x30) = 0;
   *(uint64_t *)(lVar7 + 0x38) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar7,plVar4,param_1,uVar8);
+  SystemConfigProcessor(lVar7,plVar4,param_1,uVar8);
 }
 
 
@@ -861,7 +861,7 @@ void FUN_180179a0a(int32_t param_1)
   *(uint64_t *)(lVar4 + 0x30) = 0;
   *(uint64_t *)(lVar4 + 0x38) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar4);
+  SystemConfigProcessor(lVar4);
 }
 
 
@@ -956,7 +956,7 @@ FUN_180179b7a:
   *(int *)(lVar5 + 0x20) = *param_5;
   *(uint64_t *)(lVar5 + 0x28) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar5,plVar3,param_1,uVar6);
+  SystemConfigProcessor(lVar5,plVar3,param_1,uVar6);
 }
 
 
@@ -978,7 +978,7 @@ void FUN_180179b7a(void)
   *(int32_t *)(lVar1 + 0x20) = *unaff_RSI;
   *(uint64_t *)(lVar1 + 0x28) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar1);
+  SystemConfigProcessor(lVar1);
 }
 
 
@@ -1000,7 +1000,7 @@ void FUN_180179b91(void)
   *(int32_t *)(lVar1 + 0x20) = *unaff_RSI;
   *(uint64_t *)(lVar1 + 0x28) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar1);
+  SystemConfigProcessor(lVar1);
 }
 
 
@@ -1022,7 +1022,7 @@ void FUN_180179b95(void)
   *(int32_t *)(lVar1 + 0x20) = *unaff_RSI;
   *(uint64_t *)(lVar1 + 0x28) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar1);
+  SystemConfigProcessor(lVar1);
 }
 
 
@@ -1071,7 +1071,7 @@ void FUN_180179c00(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t par
   *(uint64_t *)(lVar1 + 0x38) = 0;
   *(int32_t *)(lVar1 + 0x40) = 3;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar1,param_3,param_1,uVar2);
+  SystemConfigProcessor(lVar1,param_3,param_1,uVar2);
 }
 
 
@@ -1113,7 +1113,7 @@ LAB_180179d1f:
   *(uint64_t *)(lVar5 + 0x30) = 0;
   *(uint64_t *)(lVar5 + 0x38) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar5,param_3,param_1,uVar6);
+  SystemConfigProcessor(lVar5,param_3,param_1,uVar6);
 }
 
 
@@ -1140,7 +1140,7 @@ void FUN_180179d80(int64_t param_1,uint64_t param_2,int64_t param_3,char param_4
   *(int *)(lVar1 + 0x20) = *param_5;
   *(uint64_t *)(lVar1 + 0x28) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar1,param_3,param_1,uVar2);
+  SystemConfigProcessor(lVar1,param_3,param_1,uVar2);
 }
 
 

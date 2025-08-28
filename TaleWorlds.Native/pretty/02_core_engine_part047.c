@@ -216,7 +216,7 @@ void FUN_180088160(uint64_t param_1,int8_t param_2)
     } while (lStack_258 < lVar10);
     if (iStack_2e8 != 0) goto LAB_180088ac9;
   }
-  FUN_180626f80(&unknown_var_8232_ptr);
+  SystemOptimizationProcessor(&unknown_var_8232_ptr);
 LAB_180088ac9:
   plVar7 = (int64_t *)plVar2[0x17];
   if (plVar7 != plVar2 + 0x16) {

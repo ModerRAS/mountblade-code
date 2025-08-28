@@ -61,7 +61,7 @@ void FUN_1801c79a0(uint64_t param_1,int64_t param_2,int64_t param_3,uint64_t *pa
   if (*(void **)(param_5 + 0x18) != (void *)0x0) {
     puVar10 = *(void **)(param_5 + 0x18);
   }
-  FUN_180630b20(param_3,param_2,&unknown_var_248_ptr,puVar10);
+  SystemAllocationProcessor(param_3,param_2,&unknown_var_248_ptr,puVar10);
   FUN_18062f640(param_3,param_2,&unknown_var_176_ptr,*(int32_t *)(param_4 + 0x14));
   puVar2 = (uint64_t *)FUN_1804c1300(lVar1,0x60);
   *puVar2 = 0;
@@ -100,7 +100,7 @@ void FUN_1801c79a0(uint64_t param_1,int64_t param_2,int64_t param_3,uint64_t *pa
       if ((void *)*puVar12 != (void *)0x0) {
         puVar10 = (void *)*puVar12;
       }
-      FUN_180630b20(param_3,puVar3,&system_flag_3a84,puVar10);
+      SystemAllocationProcessor(param_3,puVar3,&system_flag_3a84,puVar10);
       if (puVar2[6] == 0) {
         puVar3[10] = 0;
         puVar2[6] = puVar3;
@@ -170,7 +170,7 @@ void FUN_1801c79a0(uint64_t param_1,int64_t param_2,int64_t param_3,uint64_t *pa
         if (puVar10 != (void *)0x0) {
           puVar9 = puVar10;
         }
-        FUN_180630b20(param_3,puVar12,&system_flag_3a84,puVar9);
+        SystemAllocationProcessor(param_3,puVar12,&system_flag_3a84,puVar9);
         if (puVar2[6] == 0) {
           puVar12[10] = 0;
           puVar2[6] = puVar12;
@@ -228,7 +228,7 @@ void FUN_1801c79a0(uint64_t param_1,int64_t param_2,int64_t param_3,uint64_t *pa
   if (puStack_58 != (void *)0x0) {
     puVar10 = puStack_58;
   }
-  FUN_180630b20(param_3,puVar2,&system_flag_3a84,puVar10);
+  SystemAllocationProcessor(param_3,puVar2,&system_flag_3a84,puVar10);
   if (*(int64_t *)(param_2 + 0x30) == 0) {
     puVar2[10] = 0;
     *(uint64_t **)(param_2 + 0x30) = puVar2;

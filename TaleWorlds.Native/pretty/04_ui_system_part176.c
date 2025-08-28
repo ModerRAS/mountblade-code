@@ -214,7 +214,7 @@ uint64_t FUN_18076e1c0(int64_t *param_1,int param_2,float *param_3,int64_t param
   }
   if (param_4 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18076b390(param_4,0x20,&unknown_var_2048_ptr,(double)*param_3);
+    SystemValidationProcessor(param_4,0x20,&unknown_var_2048_ptr,(double)*param_3);
   }
   return 0;
 }
@@ -408,7 +408,7 @@ LAB_18076e4a9:
 LAB_18076e4f2:
   if ((lVar1 != 0) && (lVar1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(lVar1,5);
+    SystemMemoryProcessor(lVar1,5);
   }
   return iVar3;
 }
@@ -499,7 +499,7 @@ LAB_18076e4a9:
 LAB_18076e4f2:
   if ((unaff_R14 != 0) && (unaff_R14 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(fVar7,5);
+    SystemMemoryProcessor(fVar7,5);
   }
   return iVar2;
 }
@@ -514,7 +514,7 @@ int32_t FUN_18076e510(void)
   
   if (unaff_R14 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60();
+    SystemMemoryProcessor();
   }
   return unaff_EDI;
 }
@@ -578,7 +578,7 @@ int32_t FUN_18076e620(int64_t param_1,uint *param_2,int64_t param_3,int64_t para
   }
   if ((lVar2 != 0) && (lVar2 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(lVar2,5);
+    SystemMemoryProcessor(lVar2,5);
   }
   return uVar6;
 }
@@ -707,7 +707,7 @@ LAB_18076e8e3:
   *(int32_t *)(param_1 + 0x2a4) = uVar8;
   if ((lVar2 != 0) && (lVar2 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(lVar2,5);
+    SystemMemoryProcessor(lVar2,5);
   }
   return 0;
 }
@@ -1014,7 +1014,7 @@ int FUN_18076f100(int64_t param_1,uint64_t param_2,uint64_t param_3,char param_4
 LAB_18076f24a:
   if ((bVar6) && (lVar2 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(lVar2,5);
+    SystemMemoryProcessor(lVar2,5);
   }
   return iVar7;
 }
@@ -1087,7 +1087,7 @@ int FUN_18076f111(int64_t param_1,uint64_t param_2,uint64_t param_3,char param_4
 LAB_18076f24a:
   if ((bVar5) && (unaff_RBP != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60();
+    SystemMemoryProcessor();
   }
   return iVar6;
 }
@@ -1102,7 +1102,7 @@ int32_t FUN_18076f263(void)
   
   if (unaff_RBP != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60();
+    SystemMemoryProcessor();
   }
   return unaff_EDI;
 }

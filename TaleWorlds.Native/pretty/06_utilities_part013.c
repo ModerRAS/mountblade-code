@@ -28,14 +28,14 @@ void FUN_1808986b0(int64_t param_1,uint64_t param_2)
     if (iVar3 < 0x40) {
       iVar3 = 0x40;
     }
-    iVar3 = FUN_180849030(param_1 + 0x28,iVar3);
+    iVar3 = SystemDeallocationProcessor(param_1 + 0x28,iVar3);
     if (iVar3 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)(param_1 + 0x34) >> 0x1f;
   if (((int)((*(uint *)(param_1 + 0x34) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar3 = FUN_180849030(param_1 + 0x28,iVar6), iVar3 != 0)) {
+     (iVar3 = SystemDeallocationProcessor(param_1 + 0x28,iVar6), iVar3 != 0)) {
     return;
   }
   iVar3 = *(int *)(param_1 + 0x30);
@@ -59,7 +59,7 @@ uint64_t FUN_180898790(int64_t *param_1,int param_2)
   
   uVar3 = (int)*(uint *)((int64_t)param_1 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_1 + 0xc) ^ uVar3) - uVar3) < param_2) &&
-     (uVar2 = FUN_180849030(param_1,param_2), (int)uVar2 != 0)) {
+     (uVar2 = SystemDeallocationProcessor(param_1,param_2), (int)uVar2 != 0)) {
     return uVar2;
   }
   iVar1 = (int)param_1[1];
@@ -101,7 +101,7 @@ uint64_t FUN_1808987e0(int64_t *param_1,char param_2)
         uStack_18 = uVar4;
       }
       puStack_28 = &unknown_var_7904_ptr;
-      uVar2 = FUN_180897520(param_1,&puStack_28);
+      uVar2 = SystemNetworkProcessor(param_1,&puStack_28);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -885,15 +885,15 @@ void FUN_180898fc0(uint64_t param_1,int64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_1808aed00(param_1,param_2,4);
+  iVar1 = SystemThreadProcessor(param_1,param_2,4);
   if (iVar1 == 0) {
-    iVar1 = FUN_1808aed00(param_1,param_2 + 4,2);
+    iVar1 = SystemThreadProcessor(param_1,param_2 + 4,2);
     if (iVar1 == 0) {
-      iVar1 = FUN_1808aed00(param_1,param_2 + 6,2);
+      iVar1 = SystemThreadProcessor(param_1,param_2 + 6,2);
       if (iVar1 == 0) {
-        iVar1 = FUN_1808aed00(param_1,param_2 + 8,8);
+        iVar1 = SystemThreadProcessor(param_1,param_2 + 8,8);
         if (iVar1 == 0) {
-          FUN_1808aed00(param_1,param_2 + 0x10,4);
+          SystemThreadProcessor(param_1,param_2 + 0x10,4);
         }
       }
     }
@@ -934,13 +934,13 @@ void FUN_180899090(uint64_t param_1,int64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_1808aed00(param_1,param_2,4);
+  iVar1 = SystemThreadProcessor(param_1,param_2,4);
   if (iVar1 == 0) {
-    iVar1 = FUN_1808aed00(param_1,param_2 + 4,2);
+    iVar1 = SystemThreadProcessor(param_1,param_2 + 4,2);
     if (iVar1 == 0) {
-      iVar1 = FUN_1808aed00(param_1,param_2 + 6,2);
+      iVar1 = SystemThreadProcessor(param_1,param_2 + 6,2);
       if (iVar1 == 0) {
-        FUN_1808aed00(param_1,param_2 + 8,8);
+        SystemThreadProcessor(param_1,param_2 + 8,8);
       }
     }
   }
@@ -986,13 +986,13 @@ uint64_t FUN_180899180(uint64_t *param_1,int64_t param_2)
     return 0x1c;
   }
   uVar1 = *param_1;
-  uVar2 = FUN_1808aed00(uVar1,param_2,4);
+  uVar2 = SystemThreadProcessor(uVar1,param_2,4);
   if ((int)uVar2 == 0) {
-    uVar2 = FUN_1808aed00(uVar1,param_2 + 4,2);
+    uVar2 = SystemThreadProcessor(uVar1,param_2 + 4,2);
     if ((int)uVar2 == 0) {
-      uVar2 = FUN_1808aed00(uVar1,param_2 + 6,2);
+      uVar2 = SystemThreadProcessor(uVar1,param_2 + 6,2);
       if ((int)uVar2 == 0) {
-        uVar2 = FUN_1808aed00(uVar1,param_2 + 8,8);
+        uVar2 = SystemThreadProcessor(uVar1,param_2 + 8,8);
         if ((int)uVar2 == 0) {
           uVar2 = FUN_1808995c0(uVar1,param_2 + 0x10);
           if ((int)uVar2 == 0) {
@@ -1041,7 +1041,7 @@ LAB_1808992a5:
     if (2 < auStackX_18[0]) {
       return 0xd;
     }
-    uVar1 = FUN_1808aed00(param_1,param_2 + 1,4);
+    uVar1 = SystemThreadProcessor(param_1,param_2 + 1,4);
   }
   return uVar1;
 }
@@ -1080,7 +1080,7 @@ LAB_1808992a5:
     if (2 < in_stack_00000050) {
       return 0xd;
     }
-    uVar1 = FUN_1808aed00(param_1,unaff_RDI + 1,4);
+    uVar1 = SystemThreadProcessor(param_1,unaff_RDI + 1,4);
   }
   return uVar1;
 }
@@ -1093,7 +1093,7 @@ LAB_1808992a5:
 void FUN_1808992c4(void)
 
 {
-  FUN_1808aed00();
+  SystemThreadProcessor();
   return;
 }
 
@@ -1135,13 +1135,13 @@ uint64_t FUN_180899360(uint64_t *param_1,int64_t param_2)
     return 0x1c;
   }
   uVar1 = *param_1;
-  uVar2 = FUN_1808aed00(uVar1,param_2,4);
+  uVar2 = SystemThreadProcessor(uVar1,param_2,4);
   if ((int)uVar2 == 0) {
-    uVar2 = FUN_1808aed00(uVar1,param_2 + 4,2);
+    uVar2 = SystemThreadProcessor(uVar1,param_2 + 4,2);
     if ((int)uVar2 == 0) {
-      uVar2 = FUN_1808aed00(uVar1,param_2 + 6,2);
+      uVar2 = SystemThreadProcessor(uVar1,param_2 + 6,2);
       if ((int)uVar2 == 0) {
-        uVar2 = FUN_1808aed00(uVar1,param_2 + 8,8);
+        uVar2 = SystemThreadProcessor(uVar1,param_2 + 8,8);
       }
     }
   }
@@ -1182,7 +1182,7 @@ LAB_180899456:
     FUN_1808b0fb0(param_1,aiStackX_8[0]);
     puVar3 = (uint *)*param_1;
     while (0 < aiStackX_8[0]) {
-      uVar1 = FUN_1808aed00(param_2,puVar3,4);
+      uVar1 = SystemThreadProcessor(param_2,puVar3,4);
       if ((int)uVar1 != 0) {
         return uVar1;
       }

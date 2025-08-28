@@ -172,13 +172,13 @@ void FUN_180760d50(int64_t param_1,uint param_2,int param_3)
     if (iVar3 != 0) {
       if ((bVar24) && (lVar12 != 0)) {
                     // WARNING: Subroutine does not return
-        FUN_180743d60(lVar12,7);
+        SystemMemoryProcessor(lVar12,7);
       }
       goto FUN_18076203a;
     }
     if ((bVar24) && (lVar12 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180743d60(lVar12,7);
+      SystemMemoryProcessor(lVar12,7);
     }
   }
   cVar19 = cStack_528;
@@ -224,13 +224,13 @@ LAB_180761b18:
       if (iVar3 != 0) {
         if ((bVar23) && (lVar9 != 0)) {
                     // WARNING: Subroutine does not return
-          FUN_180743d60(lVar9,7);
+          SystemMemoryProcessor(lVar9,7);
         }
         goto FUN_18076203a;
       }
       if ((bVar23) && (lVar9 != 0)) {
                     // WARNING: Subroutine does not return
-        FUN_180743d60(lVar9,7);
+        SystemMemoryProcessor(lVar9,7);
       }
     }
     if (*(int64_t *)(param_1 + 0x138) == 0) {

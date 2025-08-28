@@ -778,10 +778,10 @@ LAB_180203d77:
   uVar10 = 0;
 LAB_180203dc0:
   lVar7 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x80,(char)param_1[5]);
-  FUN_1800b8300(lVar7 + 0x20,param_5);
+  SystemCommunicationProcessor(lVar7 + 0x20,param_5);
   *(int32_t *)(lVar7 + 0x78) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar7,plVar8,param_1,uVar10);
+  SystemConfigProcessor(lVar7,plVar8,param_1,uVar10);
 }
 
 
@@ -823,10 +823,10 @@ LAB_180203e9b:
 LAB_180203ea4:
   lVar5 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x80,*(int8_t *)(param_1 + 0x28),param_4,
                         0xfffffffffffffffe);
-  FUN_1800b8300(lVar5 + 0x20,param_5);
+  SystemCommunicationProcessor(lVar5 + 0x20,param_5);
   *(int32_t *)(lVar5 + 0x78) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar5,param_3,param_1,uVar4);
+  SystemConfigProcessor(lVar5,param_3,param_1,uVar4);
 }
 
 

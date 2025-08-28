@@ -183,7 +183,7 @@ LAB_1808b27f7:
 LAB_1808b2880:
   lVar3 = param_1[6];
   if (lVar3 == 0) {
-    puVar7 = (int32_t *)FUN_180847820();
+    puVar7 = (int32_t *)SystemCoreProcessor();
     uVar15 = *puVar7;
     uVar16 = puVar7[1];
     uVar17 = puVar7[2];

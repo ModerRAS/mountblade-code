@@ -280,7 +280,7 @@ void FUN_18088dd60(int64_t param_1,int64_t *param_2)
       (cVar1 = (**(code **)(*param_2 + 0x60))(param_2), cVar1 != '\0')) &&
      (uVar9 = uVar11, uVar10 = uVar11, 0 < *(int *)(param_1 + 0x200))) {
     do {
-      iVar2 = FUN_180897520(*(uint64_t *)(uVar10 + *(int64_t *)(param_1 + 0x1f8)),param_2);
+      iVar2 = SystemNetworkProcessor(*(uint64_t *)(uVar10 + *(int64_t *)(param_1 + 0x1f8)),param_2);
       if (iVar2 != 0) goto LAB_18088de99;
       uVar7 = (int)uVar9 + 1;
       uVar9 = (uint64_t)uVar7;
@@ -558,7 +558,7 @@ void FUN_18088e220(int64_t param_1)
   uStack_20 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_b8;
   SystemMemoryAllocator(*(uint64_t *)(param_1 + 0x168));
   auStack_98[0] = 0;
-  iVar1 = FUN_18088c740(auStack_98,*(uint64_t *)(param_1 + 0x158));
+  iVar1 = SystemSecurityProcessor(auStack_98,*(uint64_t *)(param_1 + 0x158));
   if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
     AdvancedSystemProcessor(auStack_98);
@@ -773,7 +773,7 @@ uint64_t FUN_18088e700(int64_t param_1,int64_t *param_2)
      (iVar3 = 0, 0 < *(int *)(param_1 + 0x200))) {
     lVar4 = 0;
     do {
-      uVar2 = FUN_180897520(*(uint64_t *)(lVar4 + *(int64_t *)(param_1 + 0x1f8)),param_2);
+      uVar2 = SystemNetworkProcessor(*(uint64_t *)(lVar4 + *(int64_t *)(param_1 + 0x1f8)),param_2);
       if ((int)uVar2 != 0) {
         return uVar2;
       }

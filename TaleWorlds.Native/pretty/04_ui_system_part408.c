@@ -658,7 +658,7 @@ void ui_control_creator(int64_t control_handle, int64_t creation_context)
                             (*(int64_t***)(creation_context + 800), control_data, 1);
             if (memory_block == 0) {
                 // 内存分配失败，调用错误处理函数（不返回）
-                FUN_18084b240(control_data, temp_data);
+                SystemStateProcessor(control_data, temp_data);
             }
             
             // 验证控件指针
@@ -694,7 +694,7 @@ void ui_control_initializer(int64_t* control_pointer, int64_t init_context)
     memory_block = (**(code**)(*control_pointer + 0x2f0))(control_pointer, init_context + 0x30);
     if (memory_block == 0) {
         // 创建失败，调用错误处理函数（不返回）
-        FUN_18084b240(init_context + 0x30, &stack0x00000028);
+        SystemStateProcessor(init_context + 0x30, &stack0x00000028);
     }
     
     // 验证控件指针
@@ -1809,7 +1809,7 @@ void ui_system_memory_allocator(int64_t control_handle, uint64_t allocation_size
         }
         
         // 调用内存分配函数（不返回）
-        FUN_1808fd200(data_size, aligned_size & 0xfffffffffffffff0);
+        SystemEventProcessor(data_size, aligned_size & 0xfffffffffffffff0);
     }
     
     // 清理和安全检查

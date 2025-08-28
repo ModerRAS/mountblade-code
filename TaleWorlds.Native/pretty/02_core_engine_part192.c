@@ -638,7 +638,7 @@ void SystemEventDispatcher(void)
     in_stack_00000060 = &system_event_callback_ptr;
     in_stack_00000058 = 0x191;
     (**(code **)**(uint64_t **)(unaff_RSI + 0x48))
-              (*(uint64_t **)(unaff_RSI + 0x48),5,&system_event_config_ptr,&stack0x00000050);
+              (*(uint64_t **)(unaff_RSI + 0x48),5,&system_event_config_ptr,&in_stack_00000050);
   }
   plVar1 = *(int64_t **)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x8400);
   pcVar2 = *(code **)(*plVar1 + 0x78);
@@ -1011,12 +1011,12 @@ void SystemGraphicsInitializer(uint64_t *graphics_context)
                     (&uStack_90,param_1 + 0x1d);
   plVar7 = (int64_t *)param_1[0x1d];
   if ((plVar7 == (int64_t *)0x0) || (iVar3 != 0)) {
-    CoreEngineSystemValidator(&unknown_var_3760_ptr,iVar3);
+    CoreEngineSystemValidator(&system_context_error_ptr,iVar3);
     plVar7 = (int64_t *)param_1[0x1d];
   }
-  iVar3 = (**(code **)(*plVar7 + 0x100))(plVar7,&unknown_var_3888_ptr);
+  iVar3 = (**(code **)(*plVar7 + 0x100))(plVar7,&system_device_context_ptr);
   if (iVar3 != 0) {
-    CoreEngineSystemValidator(&unknown_var_3848_ptr,iVar3);
+    CoreEngineSystemValidator(&system_device_validation_ptr,iVar3);
   }
   __0ContextBudget_Granite_Graphine__QEAA_XZ(&puStack_98);
   puStack_98 = (uint64_t *)CONCAT44(puStack_98._4_4_,0x400000);
@@ -1044,7 +1044,7 @@ uint64_t *
 CoreEngineResourceAllocator(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_5088_ptr;
+  *param_1 = &system_resource_data_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,8,param_3,param_4,0xfffffffffffffffe);
   }

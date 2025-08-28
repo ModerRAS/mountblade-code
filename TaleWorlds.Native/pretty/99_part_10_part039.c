@@ -91,9 +91,9 @@ void FUN_1806c0b60(int64_t *param_1,uint64_t *param_2)
                       ((int64_t *)param_1[5],puVar10,&pcStackX_10);
     if (((cVar7 != '\0') && (pcStackX_10 != (char *)0x0)) && (*pcStackX_10 != '\0')) {
       pcStackX_8 = pcStackX_10;
-      uVar12 = FUN_1806d80c0(pcStackX_10,&pcStackX_8);
-      uVar13 = FUN_1806d80c0(pcStackX_8,&pcStackX_8);
-      uStack_60 = FUN_1806d80c0(pcStackX_8,&pcStackX_8);
+      uVar12 = SystemMonitoringProcessor(pcStackX_10,&pcStackX_8);
+      uVar13 = SystemMonitoringProcessor(pcStackX_8,&pcStackX_8);
+      uStack_60 = SystemMonitoringProcessor(pcStackX_8,&pcStackX_8);
       uStack_68 = CONCAT44(uVar13,uVar12);
       (*(code *)CONCAT44(uStack_2c,uStack_30))(param_1[6],&uStack_68);
     }
@@ -143,9 +143,9 @@ void FUN_1806c0ca4(uint64_t param_1)
   uint64_t uStack0000000000000090;
   
   uStack0000000000000090 = param_1;
-  uVar4 = FUN_1806d80c0(param_1,&stack0x00000090);
-  uVar5 = FUN_1806d80c0(uStack0000000000000090,&stack0x00000090);
-  FUN_1806d80c0(uStack0000000000000090,&stack0x00000090);
+  uVar4 = SystemMonitoringProcessor(param_1,&stack0x00000090);
+  uVar5 = SystemMonitoringProcessor(uStack0000000000000090,&stack0x00000090);
+  SystemMonitoringProcessor(uStack0000000000000090,&stack0x00000090);
   uStackX_20 = uVar4;
   uStackX_24 = uVar5;
   (*in_stack_00000058)(unaff_RBX[6],&uStackX_20);
@@ -397,7 +397,7 @@ void FUN_1806c0f20(int64_t *param_1,uint64_t *param_2)
     cVar7 = (**(code **)(*(int64_t *)param_1[5] + 0x10))
                       ((int64_t *)param_1[5],puVar10,&pcStackX_8);
     if (((cVar7 != '\0') && (pcStackX_8 != (char *)0x0)) && (*pcStackX_8 != '\0')) {
-      uVar12 = FUN_1806d80c0(pcStackX_8,auStackX_10);
+      uVar12 = SystemMonitoringProcessor(pcStackX_8,auStackX_10);
       (*(code *)CONCAT44(uStack_c,uStack_10))(param_1[6],uVar12);
     }
   }
@@ -900,7 +900,7 @@ void FUN_1806c1590(int64_t *param_1,uint64_t param_2,int64_t param_3)
     cVar3 = (**(code **)(*(int64_t *)param_1[5] + 0x10))((int64_t *)param_1[5],puVar4,&pcStackX_8)
     ;
     if (((cVar3 != '\0') && (pcStackX_8 != (char *)0x0)) && (*pcStackX_8 != '\0')) {
-      uVar5 = FUN_1806d80c0(pcStackX_8,auStackX_20);
+      uVar5 = SystemMonitoringProcessor(pcStackX_8,auStackX_20);
       lVar2 = param_1[6];
       (**(code **)(*(int64_t *)(param_3 + 0x10) + 0x28))(lVar2,auStackX_20,&pcStackX_8);
       if (*(char *)(param_3 + 8) != '\0') {
@@ -929,7 +929,7 @@ void FUN_1806c15fb(void)
   int32_t in_stack_00000040;
   int32_t in_stack_00000058;
   
-  uVar2 = FUN_1806d80c0();
+  uVar2 = SystemMonitoringProcessor();
   uVar1 = *(uint64_t *)(unaff_RBX + 0x30);
   (**(code **)(*(int64_t *)(unaff_RDI + 0x10) + 0x28))(uVar1,&stack0x00000058,&stack0x00000040);
   if (*(char *)(unaff_RDI + 8) != '\0') {

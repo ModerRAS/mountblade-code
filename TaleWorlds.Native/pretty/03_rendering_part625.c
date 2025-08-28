@@ -901,7 +901,7 @@ void FUN_180616b10(int32_t param_1,char param_2)
         render_system_config = FUN_1805b5ad0();
       }
       render_system_config = param_1;
-      FUN_180645c10(render_system_config,1,&unknown_var_6264_ptr);
+      SystemBufferProcessor(render_system_config,1,&unknown_var_6264_ptr);
     }
   }
   return;

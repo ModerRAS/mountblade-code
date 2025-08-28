@@ -378,7 +378,7 @@ void FUN_180059000(int64_t *param_1)
                 *(uint64_t *)(lVar10 + 0x48) = 0;
                 *(int32_t *)(lVar10 + 0x50) = 0;
                     // WARNING: Subroutine does not return
-                FUN_18066bdc0(lVar10,pppppppuVar14,&ppppppuStack_360,uVar7);
+                SystemConfigProcessor(lVar10,pppppppuVar14,&ppppppuStack_360,uVar7);
               }
               pppppppuVar14 = (uint64_t *******)func_0x00018066b9a0(pppppppuVar14);
               lVar12 = lStack_2c8;

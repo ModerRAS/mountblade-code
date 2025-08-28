@@ -188,7 +188,7 @@ void FUN_1806c7795(void)
   in_stack_00000058 = unaff_RBP[-0xf];
   in_stack_00000060 = *(int32_t *)(unaff_RBP + -0xe);
   (*(code *)unaff_RBP[-8])(unaff_R12[6],&stack0x00000040);
-  FUN_1806d6f60();
+  SystemResourceProcessor();
                     // WARNING: Subroutine does not return
   memset(unaff_RBP + -7,0,0x80);
 }

@@ -907,7 +907,7 @@ void FUN_1802923e0(int64_t param_1,int64_t param_2,int param_3,uint param_4,char
       }
       FUN_1802921e0(param_1,iVar7 * iVar9,iStack_d0);
                     // WARNING: Subroutine does not return
-      FUN_1808fd200();
+      SystemEventProcessor();
     }
     FUN_1802921e0(param_1,iVar9 * 6,iVar9 * 4);
     if (0 < lVar10) {

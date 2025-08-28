@@ -453,7 +453,7 @@ LAB_1802a0010:
   *(uint64_t *)(lVar7 + 0x148) = 0;
   *(uint64_t *)(lVar7 + 0x150) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar7,plVar8,param_1,uVar10);
+  SystemConfigProcessor(lVar7,plVar8,param_1,uVar10);
 }
 
 
@@ -917,7 +917,7 @@ void FUN_1803005b0(int64_t param_1)
     lVar1 = *(int64_t *)(param_1 + 0x10);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fd200(param_1,lVar1 + 0x70,0xbf800000);
+  SystemEventProcessor(param_1,lVar1 + 0x70,0xbf800000);
 }
 
 

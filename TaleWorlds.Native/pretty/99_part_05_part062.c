@@ -581,10 +581,10 @@ void FUN_1802fef20(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
     if (puVar1 != (void *)0x0) {
       puVar9 = puVar1;
     }
-    FUN_180630b20(param_2,puVar2,&unknown_var_2344_ptr,puVar9);
+    SystemAllocationProcessor(param_2,puVar2,&unknown_var_2344_ptr,puVar9);
   }
   if ((ushort)(*(short *)(param_1 + 0x40) - 2U) < 3) {
-    FUN_180630b20(param_2,puVar2,&unknown_var_2328_ptr,&unknown_var_2328_ptr);
+    SystemAllocationProcessor(param_2,puVar2,&unknown_var_2328_ptr,&unknown_var_2328_ptr);
   }
   if (param_4 == 0) {
     uStack_50 = 0;
@@ -742,7 +742,7 @@ LAB_1802ff2f4:
           if (puStack_48 != (void *)0x0) {
             puVar6 = puStack_48;
           }
-          FUN_180626f80(&unknown_var_2480_ptr,puVar6,puVar8);
+          SystemOptimizationProcessor(&unknown_var_2480_ptr,puVar6,puVar8);
         }
         break;
       }

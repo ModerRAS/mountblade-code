@@ -180,7 +180,7 @@ uint64_t FUN_1808997f0(uint64_t param_1,int64_t *param_2)
     iVar5 = aiStackX_18[0] + 1;
     uVar3 = (int)*(uint *)((int64_t)param_2 + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)param_2 + 0xc) ^ uVar3) - uVar3) < iVar5) &&
-       (uVar2 = FUN_180849030(param_2,iVar5), (int)uVar2 != 0)) {
+       (uVar2 = SystemDeallocationProcessor(param_2,iVar5), (int)uVar2 != 0)) {
       return uVar2;
     }
     iVar1 = (int)param_2[1];
@@ -217,7 +217,7 @@ uint64_t FUN_180899816(void)
     iVar4 = in_stack_00000040 + 1;
     uVar3 = (int)*(uint *)((int64_t)unaff_RBX + 0xc) >> 0x1f;
     if (((int)((*(uint *)((int64_t)unaff_RBX + 0xc) ^ uVar3) - uVar3) < iVar4) &&
-       (uVar2 = FUN_180849030(), (int)uVar2 != 0)) {
+       (uVar2 = SystemDeallocationProcessor(), (int)uVar2 != 0)) {
       return uVar2;
     }
     iVar1 = (int)unaff_RBX[1];
@@ -267,7 +267,7 @@ uint64_t FUN_1808998a0(int64_t param_1,int64_t *param_2)
       lVar5 = lVar4;
       do {
         lVar2 = *param_2;
-        uVar3 = FUN_180899ef0(param_1,lVar2 + lVar5);
+        uVar3 = SystemCleanupProcessor(param_1,lVar2 + lVar5);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -335,7 +335,7 @@ void FUN_180899950(int64_t param_1,int32_t *param_2)
           uVar4 = uVar6;
           if (0 < iVar1) {
             do {
-              iVar2 = FUN_180899ef0(param_1,(int64_t)(int)uVar4 * 0x10 +
+              iVar2 = SystemCleanupProcessor(param_1,(int64_t)(int)uVar4 * 0x10 +
                                             *(int64_t *)(param_2 + 0xc));
               if (iVar2 != 0) {
                 return;
@@ -372,7 +372,7 @@ void FUN_180899950(int64_t param_1,int32_t *param_2)
               if (0 < iVar1) {
                 do {
                   lVar5 = *(int64_t *)(param_2 + 0x14) + uVar4;
-                  iVar2 = FUN_180899ef0(param_1,lVar5);
+                  iVar2 = SystemCleanupProcessor(param_1,lVar5);
                   if (iVar2 != 0) {
                     return;
                   }
@@ -493,7 +493,7 @@ void FUN_1808999c1(uint64_t *param_1,uint64_t param_2)
       uVar9 = extraout_XMM0_Da_01;
       if (0 < iVar3) {
         do {
-          iVar2 = FUN_180899ef0(uVar9,(int64_t)(int)uVar5 * 0x10 + *(int64_t *)(unaff_R14 + 0x30))
+          iVar2 = SystemCleanupProcessor(uVar9,(int64_t)(int)uVar5 * 0x10 + *(int64_t *)(unaff_R14 + 0x30))
           ;
           if (iVar2 != 0) {
             return;
@@ -532,7 +532,7 @@ void FUN_1808999c1(uint64_t *param_1,uint64_t param_2)
           if (0 < iVar3) {
             do {
               lVar6 = *(int64_t *)(unaff_R14 + 0x50) + uVar5;
-              iVar2 = FUN_180899ef0(uVar9,lVar6);
+              iVar2 = SystemCleanupProcessor(uVar9,lVar6);
               if (iVar2 != 0) {
                 return;
               }
@@ -629,7 +629,7 @@ void FUN_180899ae6(uint64_t *param_1)
     if (0 < (int)unaff_RSI) {
       do {
         lVar5 = *(int64_t *)(unaff_R14 + 0x50) + lVar6;
-        iVar3 = FUN_180899ef0(uVar8,lVar5);
+        iVar3 = SystemCleanupProcessor(uVar8,lVar5);
         if (iVar3 != 0) {
           return;
         }
@@ -739,7 +739,7 @@ void FUN_180899c60(int64_t param_1,int32_t *param_2)
       if (iVar1 != 0) {
         return;
       }
-      iVar1 = FUN_180899ef0(param_1,param_2 + 0x13);
+      iVar1 = SystemCleanupProcessor(param_1,param_2 + 0x13);
       if (iVar1 != 0) {
         return;
       }
@@ -781,7 +781,7 @@ void FUN_180899c96(void)
         if (iVar1 != 0) {
           return;
         }
-        iVar1 = FUN_180899ef0();
+        iVar1 = SystemCleanupProcessor();
         if (iVar1 != 0) {
           return;
         }
@@ -939,8 +939,8 @@ void FUN_180899ed5(void)
 
 
 
-// 函数: void FUN_180899ef0(int64_t param_1,int32_t *param_2)
-void FUN_180899ef0(int64_t param_1,int32_t *param_2)
+// 函数: void SystemCleanupProcessor(int64_t param_1,int32_t *param_2)
+void SystemCleanupProcessor(int64_t param_1,int32_t *param_2)
 
 {
   int iVar1;

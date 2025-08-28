@@ -128,7 +128,7 @@ LAB_1801807e7:
   uVar8 = 0;
 LAB_1801807f2:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar4,lVar5,param_1,uVar8);
+  SystemConfigProcessor(lVar4,lVar5,param_1,uVar8);
 }
 
 
@@ -343,7 +343,7 @@ void FUN_180180ad0(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 
@@ -744,7 +744,7 @@ void FUN_180182280(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 

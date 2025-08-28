@@ -845,7 +845,7 @@ uint64_t * SystemMemoryAllocator(uint64_t *param_1, uint64_t param_2, uint64_t p
 void SystemErrorHandler(void)
 {
     /* 系统错误处理 - 此函数不返回 */
-    FUN_1808fd200();
+    SystemEventProcessor();
 }
 
 /**
@@ -1572,7 +1572,7 @@ void SystemStringResetter(int8_t *param_1)
 void SystemTerminationHandler(void)
 {
     /* 系统终止处理 - 此函数不返回 */
-    FUN_1808fd200();
+    SystemEventProcessor();
 }
 
 /**

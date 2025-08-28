@@ -320,7 +320,7 @@ code_r0x0001800630e9:
     }
   }
   else {
-    FUN_180626f80(&unknown_var_56_ptr);
+    SystemOptimizationProcessor(&unknown_var_56_ptr);
   }
   return;
 }
@@ -869,7 +869,7 @@ void FUN_180064400(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 

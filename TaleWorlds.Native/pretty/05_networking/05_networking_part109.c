@@ -748,7 +748,7 @@ uint64_t networking_connection_manager(int64_t param_1, int64_t *param_2) {
     int32_t stack_44;
     int8_t stack_buffer_40[40];
     
-    data_ptr = (int32_t *)FUN_180847820();
+    data_ptr = (int32_t *)SystemCoreProcessor();
     stack_50 = *data_ptr;
     stack_4c = data_ptr[1];
     stack_48 = data_ptr[2];

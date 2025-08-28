@@ -423,7 +423,7 @@ void rendering_system_parameter_processor(int64_t param_1, int64_t param_2, int6
                 if (lVar17 == 0) goto LAB_180326da7;
                 cVar11 = FUN_1801ef300(uVar26,param_3,lVar17);
                 if (cVar11 == '\0') {
-                    FUN_180626f80(&unknown_var_1920_ptr);
+                    SystemOptimizationProcessor(&unknown_var_1920_ptr);
                     goto LAB_180326e7a;
                 }
                 lVar19 = FUN_1801ef620(extraout_XMM0_Da_02,param_3,lVar17);

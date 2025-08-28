@@ -70,7 +70,7 @@ void FUN_18073e95d(uint64_t param_1,int32_t param_2,int32_t param_3,uint64_t par
 FUN_18073eb6d:
   if (lStack0000000000000048 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(lStack0000000000000048,0xc);
+    SystemMemoryProcessor(lStack0000000000000048,0xc);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(in_stack_00000160 ^ (uint64_t)&stack0x00000000);
@@ -127,7 +127,7 @@ void FUN_18073eb6d(void)
   
   if (in_stack_00000048 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(in_stack_00000048,0xc);
+    SystemMemoryProcessor(in_stack_00000048,0xc);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(in_stack_00000160 ^ (uint64_t)&stack0x00000000);
@@ -142,7 +142,7 @@ void FUN_18073eba7(uint64_t param_1)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180743d60(param_1,0xc);
+  SystemMemoryProcessor(param_1,0xc);
 }
 
 
@@ -233,7 +233,7 @@ void FUN_18073ecb0(uint64_t param_1,int32_t param_2,int32_t param_3)
 FUN_18073eddb:
   if (lStack_150 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(lStack_150,0xc);
+    SystemMemoryProcessor(lStack_150,0xc);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_188);
@@ -290,7 +290,7 @@ void FUN_18073eccd(uint64_t param_1,int32_t param_2,int32_t param_3,uint64_t par
 FUN_18073eddb:
   if (lStack0000000000000038 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(lStack0000000000000038,0xc);
+    SystemMemoryProcessor(lStack0000000000000038,0xc);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(in_stack_00000140 ^ (uint64_t)&stack0x00000000);
@@ -329,7 +329,7 @@ void FUN_18073eddb(void)
   
   if (in_stack_00000038 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(in_stack_00000038,0xc);
+    SystemMemoryProcessor(in_stack_00000038,0xc);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(in_stack_00000140 ^ (uint64_t)&stack0x00000000);
@@ -344,7 +344,7 @@ void FUN_18073edfd(uint64_t param_1)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180743d60(param_1,0xc);
+  SystemMemoryProcessor(param_1,0xc);
 }
 
 
@@ -386,7 +386,7 @@ void FUN_18073ee30(uint64_t param_1,int32_t param_2)
 LAB_18073eef2:
   if (lStack_120 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(lStack_120,0xc);
+    SystemMemoryProcessor(lStack_120,0xc);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_158);
@@ -445,7 +445,7 @@ void FUN_18073ef30(uint64_t param_1,uint64_t param_2,uint64_t param_3,int32_t pa
 FUN_18073f0d1:
   if (lStack_150 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(lStack_150,0xc);
+    SystemMemoryProcessor(lStack_150,0xc);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_188);
@@ -514,7 +514,7 @@ void FUN_18073ef4d(uint64_t param_1,uint64_t param_2,uint64_t param_3,int32_t pa
 FUN_18073f0d1:
   if (lStack0000000000000038 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(lStack0000000000000038,0xc);
+    SystemMemoryProcessor(lStack0000000000000038,0xc);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(in_stack_00000140 ^ (uint64_t)&stack0x00000000);
@@ -562,7 +562,7 @@ void FUN_18073f0d1(void)
   
   if (in_stack_00000038 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(in_stack_00000038,0xc);
+    SystemMemoryProcessor(in_stack_00000038,0xc);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(in_stack_00000140 ^ (uint64_t)&stack0x00000000);
@@ -577,7 +577,7 @@ void FUN_18073f103(uint64_t param_1)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180743d60(param_1,0xc);
+  SystemMemoryProcessor(param_1,0xc);
 }
 
 

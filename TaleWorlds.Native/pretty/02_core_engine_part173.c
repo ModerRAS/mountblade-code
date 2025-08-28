@@ -796,7 +796,7 @@ void FUN_1801598f0(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 

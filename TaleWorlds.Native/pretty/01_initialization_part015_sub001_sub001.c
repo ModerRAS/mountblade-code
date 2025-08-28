@@ -735,7 +735,7 @@ LAB_180048f62:
   *(uint64_t *)(lVar5 + 0x48) = 0;
   *(int32_t *)(lVar5 + 0x50) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar5,param_3,param_1,uVar6,uVar7,puVar4);
+  SystemConfigProcessor(lVar5,param_3,param_1,uVar6,uVar7,puVar4);
 }
 
 

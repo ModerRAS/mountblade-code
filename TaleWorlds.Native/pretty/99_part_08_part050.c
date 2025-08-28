@@ -479,27 +479,27 @@ void FUN_1805ab940(int64_t param_1,int8_t *param_2,int64_t param_3,char param_4,
       iVar2 = *param_6;
       uVar3 = *(int32_t *)(param_3 + 0x10);
       uVar4 = *(int32_t *)(param_2 + 0x10);
-      cVar7 = FUN_180645c10(0x180c95578,0,&system_param1_ptr);
+      cVar7 = SystemBufferProcessor(0x180c95578,0,&system_param1_ptr);
       if (cVar7 != '\0') {
-        cVar7 = FUN_180645c10(0x180c95578,10,&unknown_var_3472_ptr);
+        cVar7 = SystemBufferProcessor(0x180c95578,10,&unknown_var_3472_ptr);
         if (cVar7 != '\0') {
-          cVar7 = FUN_180645c10(0x180c95578,uVar4,&unknown_var_3424_ptr);
+          cVar7 = SystemBufferProcessor(0x180c95578,uVar4,&unknown_var_3424_ptr);
           if (cVar7 != '\0') {
-            cVar7 = FUN_180645c10(0x180c95578,uVar3,&unknown_var_3424_ptr);
+            cVar7 = SystemBufferProcessor(0x180c95578,uVar3,&unknown_var_3424_ptr);
             if (cVar7 != '\0') {
-              cVar7 = FUN_180645c10(0x180c95578,(int)cStack_136,&unknown_var_3248_ptr);
+              cVar7 = SystemBufferProcessor(0x180c95578,(int)cStack_136,&unknown_var_3248_ptr);
               if (cVar7 != '\0') {
                 cVar7 = FUN_18056eb00(0x180c95578,uStack_130,&unknown_var_3360_ptr);
                 if (cVar7 != '\0') {
-                  cVar7 = FUN_180645c10(0x180c95578,iVar2,&system_data_bca0);
+                  cVar7 = SystemBufferProcessor(0x180c95578,iVar2,&system_data_bca0);
                   if (cVar7 != '\0') {
-                    cVar7 = FUN_180645c10(0x180c95578,iVar1,&system_data_bca0);
+                    cVar7 = SystemBufferProcessor(0x180c95578,iVar1,&system_data_bca0);
                     if (cVar7 != '\0') {
-                      cVar7 = FUN_180645c10(0x180c95578,iVar8,&system_data_bca0);
+                      cVar7 = SystemBufferProcessor(0x180c95578,iVar8,&system_data_bca0);
                       if (cVar7 != '\0') {
-                        cVar7 = FUN_180645c10(0x180c95578,uStack_137,&system_param1_ptr);
+                        cVar7 = SystemBufferProcessor(0x180c95578,uStack_137,&system_param1_ptr);
                         if (cVar7 != '\0') {
-                          FUN_180645c10(0x180c95578,uStack_138,&system_param1_ptr);
+                          SystemBufferProcessor(0x180c95578,uStack_138,&system_param1_ptr);
                         }
                       }
                     }

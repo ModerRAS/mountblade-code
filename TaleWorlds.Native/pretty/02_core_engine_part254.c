@@ -147,7 +147,7 @@ void FUN_18021dc50(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 
@@ -668,7 +668,7 @@ void FUN_18021e9c0(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 
@@ -680,7 +680,7 @@ void FUN_18021f200(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 

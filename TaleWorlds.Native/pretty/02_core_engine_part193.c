@@ -217,7 +217,7 @@ void FUN_1801762b0(int64_t param_1,void **param_2,int64_t param_3,void **param_4
       if (*(void **)(param_3 + 8) != (void *)0x0) {
         puVar13 = *(void **)(param_3 + 8);
       }
-      FUN_180626f80(&unknown_var_4064_ptr,puVar13,puVar8);
+      SystemOptimizationProcessor(&unknown_var_4064_ptr,puVar13,puVar8);
     }
     puStack_6f8 = &system_data_buffer_ptr;
     if (puStack_6f0 != (int8_t *)0x0) {

@@ -814,7 +814,7 @@ uint64_t ui_system_data_processor_5(int64_t data_object, int64_t *context_ptr)
     int8_t auStack_40 [40];
     
     // 获取数据验证参数
-    puVar3 = (int32_t *)FUN_180847820();
+    puVar3 = (int32_t *)SystemCoreProcessor();
     uStack_50 = *puVar3;
     uStack_4c = puVar3[1];
     uStack_48 = puVar3[2];

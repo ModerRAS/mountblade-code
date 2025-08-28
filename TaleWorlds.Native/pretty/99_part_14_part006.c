@@ -358,7 +358,7 @@ uint64_t * FUN_1808ebeb0(uint64_t *param_1)
   int32_t uStack_10;
   int32_t uStack_c;
   
-  puVar1 = (int32_t *)FUN_180847820();
+  puVar1 = (int32_t *)SystemCoreProcessor();
   uStack_18 = *puVar1;
   uStack_14 = puVar1[1];
   uStack_10 = puVar1[2];
@@ -404,7 +404,7 @@ int64_t FUN_1808ebf80(int64_t param_1)
   *(int64_t *)param_1 = param_1;
   *(int64_t *)(param_1 + 8) = param_1;
   *(uint64_t *)(param_1 + 0x10) = 0;
-  puVar2 = (uint64_t *)FUN_180847820();
+  puVar2 = (uint64_t *)SystemCoreProcessor();
   uVar1 = puVar2[1];
   *(uint64_t *)(param_1 + 0x18) = *puVar2;
   *(uint64_t *)(param_1 + 0x20) = uVar1;
@@ -720,7 +720,7 @@ uint64_t * FUN_1808ec450(uint64_t *param_1,uint64_t param_2,uint64_t param_3)
   
   *param_1 = &unknown_var_952_ptr;
   param_1[1] = param_2;
-  puVar5 = (int32_t *)FUN_180847820();
+  puVar5 = (int32_t *)SystemCoreProcessor();
   uVar2 = puVar5[1];
   uVar3 = puVar5[2];
   uVar4 = puVar5[3];
@@ -760,7 +760,7 @@ uint64_t * FUN_1808ec4e0(uint64_t *param_1,uint64_t param_2,uint64_t param_3)
   
   *param_1 = &unknown_var_952_ptr;
   param_1[1] = param_2;
-  puVar5 = (int32_t *)FUN_180847820();
+  puVar5 = (int32_t *)SystemCoreProcessor();
   uVar2 = puVar5[1];
   uVar3 = puVar5[2];
   uVar4 = puVar5[3];

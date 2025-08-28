@@ -32,7 +32,7 @@ void FUN_180874760(int64_t *param_1)
     if (lVar7 != 0) {
       SystemStateManager(lVar7);
     }
-    iVar4 = FUN_180744cc0(param_1);
+    iVar4 = SystemLockProcessor(param_1);
     if ((iVar4 == 0) && (iVar4 = FUN_1808744f0(param_1 + 2), iVar4 == 0)) {
       *(int32_t *)(param_1 + 4) = 0xffffffff;
       *(int32_t *)((int64_t)param_1 + 0x24) = 0;
@@ -119,7 +119,7 @@ uint64_t FUN_180874940(int64_t *param_1)
     if (lVar4 != 0) {
       SystemStateManager(lVar4);
     }
-    uVar5 = FUN_180744cc0(param_1);
+    uVar5 = SystemLockProcessor(param_1);
     if (((int)uVar5 == 0) && (uVar5 = FUN_1808744f0(param_1 + 2), (int)uVar5 == 0)) {
       *(int32_t *)(param_1 + 4) = 0xffffffff;
       *(int32_t *)((int64_t)param_1 + 0x24) = 0;
@@ -209,7 +209,7 @@ uint64_t FUN_18087494c(int64_t *param_1)
     if (lVar6 != 0) {
       SystemStateManager(lVar6);
     }
-    uVar5 = FUN_180744cc0(param_1);
+    uVar5 = SystemLockProcessor(param_1);
     if (((int)uVar5 == 0) && (uVar5 = FUN_1808744f0(param_1 + 2), (int)uVar5 == 0)) {
       *(int32_t *)(param_1 + 4) = 0xffffffff;
       *(int32_t *)((int64_t)param_1 + 0x24) = 0;
@@ -337,7 +337,7 @@ uint64_t FUN_180874aba(void)
   if (lVar1 != 0) {
     SystemStateManager(lVar1);
   }
-  uVar2 = FUN_180744cc0();
+  uVar2 = SystemLockProcessor();
   if ((int)uVar2 == 0) {
     uVar2 = FUN_1808744f0(unaff_RBX + 0x10);
     if ((int)uVar2 == 0) {

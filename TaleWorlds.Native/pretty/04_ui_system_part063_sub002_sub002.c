@@ -148,7 +148,7 @@ typedef struct {
 
 // 函数别名定义
 #define UISystem_DataProcessor FUN_18069a490
-#define UISystem_ErrorHandler FUN_18066d370
+#define UISystem_ErrorHandler SystemInitializationProcessor
 #define UISystem_CallbackHandler FUN_18066e860
 #define UISystem_DataValidator FUN_18069ed90
 #define UISystem_MemoryManager FUN_18069bbd0

@@ -283,7 +283,7 @@ void FUN_180176de0(void)
                 *(uint64_t *)(lVar20 + 0x48) = 0;
                 *(int32_t *)(lVar20 + 0x50) = 0;
                     // WARNING: Subroutine does not return
-                FUN_18066bdc0(lVar20,pppppppuVar12,&ppppppuStack_360,uVar7);
+                SystemConfigProcessor(lVar20,pppppppuVar12,&ppppppuStack_360,uVar7);
               }
               pppppppuVar12 = (uint64_t *******)func_0x00018066b9a0(pppppppuVar12);
               lVar10 = lStack_2c8;
@@ -785,7 +785,7 @@ LAB_1801780ed:
     uVar15 = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar7,puVar4,puVar1,uVar15);
+  SystemConfigProcessor(lVar7,puVar4,puVar1,uVar15);
 }
 
 

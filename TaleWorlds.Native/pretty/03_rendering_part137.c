@@ -745,7 +745,7 @@ void FUN_18034e5f0(uint64_t param_1)
   auStack_c0[0] = 0;
   uStack_c8 = 0xf;
   strcpy_s(auStack_c0,0x40,&system_data_dd30);
-  FUN_1800b8300(apuStack_78,&puStack_d8);
+  SystemCommunicationProcessor(apuStack_78,&puStack_d8);
   uStack_20 = 3;
   uStack_f8 = 1;
   FUN_180180730(param_1,appuStack_e8,apuStack_78);

@@ -654,10 +654,10 @@ void FUN_180508510(int64_t param_1,short param_2,int param_3,uint64_t param_4)
     fVar14 = *(float *)(*render_system_config + 4 + (int64_t)iVar8 * 0x14);
     uVar9 = FUN_18055caa0(&system_data_25a0);
     uVar1 = *(int32_t *)(param_1 + 0x10);
-    cVar7 = FUN_180645c10(uVar9,0,&system_param1_ptr);
-    if ((((cVar7 != '\0') && (cVar7 = FUN_180645c10(uVar9,0x15,&unknown_var_3472_ptr), cVar7 != '\0')) &&
-        (cVar7 = FUN_180645c10(uVar9,uVar1,&unknown_var_3424_ptr), cVar7 != '\0')) &&
-       (cVar7 = FUN_180645c10(uVar9,(int)param_2,&system_data_bcd0), cVar7 != '\0')) {
+    cVar7 = SystemBufferProcessor(uVar9,0,&system_param1_ptr);
+    if ((((cVar7 != '\0') && (cVar7 = SystemBufferProcessor(uVar9,0x15,&unknown_var_3472_ptr), cVar7 != '\0')) &&
+        (cVar7 = SystemBufferProcessor(uVar9,uVar1,&unknown_var_3424_ptr), cVar7 != '\0')) &&
+       (cVar7 = SystemBufferProcessor(uVar9,(int)param_2,&system_data_bcd0), cVar7 != '\0')) {
       FUN_1805aea10(uVar9,param_4);
     }
     render_system_config = render_system_config & 0xffffffff00000000;

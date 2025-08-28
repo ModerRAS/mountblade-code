@@ -192,7 +192,7 @@ LAB_1803c1cdd:
       if (*(void **)(lVar8 + 0x28) != (void *)0x0) {
         puVar16 = *(void **)(lVar8 + 0x28);
       }
-      FUN_180630b20(param_2,puVar5,&system_data_3a84,puVar16);
+      SystemAllocationProcessor(param_2,puVar5,&system_data_3a84,puVar16);
       if ((puVar5[6] != 0) || (puVar5[8] != 0)) {
         if (puVar4[6] == 0) {
           puVar5[10] = 0;
@@ -369,7 +369,7 @@ LAB_1803c20bf:
           if (*(void **)(plVar4[2] + 0x10) != (void *)0x0) {
             puVar16 = *(void **)(plVar4[2] + 0x10);
           }
-          FUN_180630b20(param_2,puVar7,&system_data_3a84,puVar16);
+          SystemAllocationProcessor(param_2,puVar7,&system_data_3a84,puVar16);
         }
         if ((puVar7[6] != 0) || (puVar7[8] != 0)) {
           if (puVar6[6] == 0) {
@@ -473,7 +473,7 @@ LAB_1803c2297:
   } while (*pcVar4 != '\0');
   *puVar5 = &unknown_var_2912_ptr;
   puVar5[2] = pcVar6 + -0x180a23b1f;
-  FUN_180630b20(param_2,puVar5,&system_data_3a84,&unknown_var_2872_ptr);
+  SystemAllocationProcessor(param_2,puVar5,&system_data_3a84,&unknown_var_2872_ptr);
   FUN_18062f7c0(param_2,puVar5,&unknown_var_3692_ptr,*(byte *)(*(int64_t *)(param_1 + 8) + 0x2e8) >> 6 & 1
                );
   if (puVar3[6] == 0) {
@@ -559,7 +559,7 @@ void FUN_1803c229c(void)
   } while (*pcVar2 != (char)unaff_R12);
   *plVar1 = (int64_t)&unknown_var_2912_ptr;
   plVar1[2] = (int64_t)(pcVar3 + -0x180a23b1f);
-  FUN_180630b20();
+  SystemAllocationProcessor();
   FUN_18062f7c0();
   if (*(int64_t *)(unaff_RBX + 0x30) == unaff_R12) {
     plVar1[10] = unaff_R12;
@@ -654,7 +654,7 @@ int64_t * FUN_1803c2430(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64
   lVar4 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x78,*(int8_t *)(param_1 + 0x28),param_4,
                         0xfffffffffffffffe);
   puVar1 = (uint64_t *)(lVar4 + 0x20);
-  FUN_1800b8300(puVar1,param_3);
+  SystemCommunicationProcessor(puVar1,param_3);
   lStackX_10 = lVar4;
   lVar5 = FUN_1800590b0(param_1,&puStackX_8,puVar1);
   if ((char)puStackX_8 == '\0') {
@@ -689,7 +689,7 @@ LAB_1803c24d7:
   uVar8 = 0;
 LAB_1803c24e2:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar4,lVar5,param_1,uVar8);
+  SystemConfigProcessor(lVar4,lVar5,param_1,uVar8);
 }
 
 

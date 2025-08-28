@@ -266,7 +266,7 @@ LAB_1808c003c:
           iVar3 = iStack_c0;
           plVar12 = (int64_t *)0x0;
           if (iStack_bc == -1) {
-            puVar10 = (uint64_t *)FUN_180847820();
+            puVar10 = (uint64_t *)SystemCoreProcessor();
             puVar8 = (uint *)&uStack_90;
             uStack_90 = (int64_t *)*puVar10;
             uStack_88 = puVar10[1];

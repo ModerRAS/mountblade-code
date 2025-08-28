@@ -9,7 +9,7 @@ void FUN_180879cb0(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879ccf. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x1c0))(param_1,uVar1,1);
@@ -26,7 +26,7 @@ void FUN_180879ce0(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879cff. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x178))(param_1,uVar1,1);
@@ -43,7 +43,7 @@ void FUN_180879d10(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879d2f. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x240))(param_1,uVar1,1);
@@ -60,7 +60,7 @@ void FUN_180879d40(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879d5f. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x170))(param_1,uVar1,1);
@@ -77,7 +77,7 @@ void FUN_180879d70(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879d8f. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x1f8))(param_1,uVar1,1);
@@ -94,7 +94,7 @@ void FUN_180879da0(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879dbf. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x230))(param_1,uVar1,1);
@@ -111,7 +111,7 @@ void FUN_180879dd0(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879def. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 400))(param_1,uVar1,1);
@@ -128,7 +128,7 @@ void FUN_180879e00(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879e1f. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x188))(param_1,uVar1,1);
@@ -145,7 +145,7 @@ void FUN_180879e30(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879e4f. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x220))(param_1,uVar1,1);
@@ -162,7 +162,7 @@ void FUN_180879e60(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879e7f. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x200))(param_1,uVar1,1);
@@ -179,7 +179,7 @@ void FUN_180879e90(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879eaf. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x238))(param_1,uVar1,1);
@@ -196,7 +196,7 @@ void FUN_180879ec0(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879edf. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x168))(param_1,uVar1,1);
@@ -213,7 +213,7 @@ void FUN_180879ef0(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879f0f. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x1f0))(param_1,uVar1,1);
@@ -230,7 +230,7 @@ void FUN_180879f20(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879f3f. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x218))(param_1,uVar1,1);
@@ -247,7 +247,7 @@ void FUN_180879f50(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879f6f. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x210))(param_1,uVar1,1);
@@ -264,7 +264,7 @@ void FUN_180879f80(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879f9f. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x1d0))(param_1,uVar1,1);
@@ -281,7 +281,7 @@ void FUN_180879fb0(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879fcf. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x1a0))(param_1,uVar1,1);
@@ -298,7 +298,7 @@ void FUN_180879fe0(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879fff. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x198))(param_1,uVar1,1);
@@ -315,7 +315,7 @@ void FUN_18087a010(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x00018087a02f. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x208))(param_1,uVar1,1);
@@ -332,7 +332,7 @@ void FUN_18087a040(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x00018087a05f. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x1c8))(param_1,uVar1,1);

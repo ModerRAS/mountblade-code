@@ -87,7 +87,7 @@ int32_t FUN_180751fc5(void)
   
   if (unaff_R12 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60();
+    SystemMemoryProcessor();
   }
   return unaff_EDI;
 }

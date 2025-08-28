@@ -41,18 +41,18 @@ void FUN_1804f4a40(int64_t param_1,uint64_t param_2,uint64_t param_3)
   
   uStackX_10._0_1_ = (char)param_2;
   _uStackX_10 = CONCAT44((int)((uint64_t)param_2 >> 0x20),(uint)((char)uStackX_10 != '\0'));
-  cVar2 = FUN_18055f260(param_3,&uStackX_10,&system_param1_ptr);
+  cVar2 = SystemSynchronizationProcessor(param_3,&uStackX_10,&system_param1_ptr);
   bVar4 = uStackX_10 != 0;
   _uStackX_10 = CONCAT71(stack0x00000011,bVar4);
   uVar5 = extraout_XMM0_Da;
   if (cVar2 != '\0') {
-    cVar2 = FUN_18055f260(param_3,&iStack_68,&unknown_var_3424_ptr);
+    cVar2 = SystemSynchronizationProcessor(param_3,&iStack_68,&unknown_var_3424_ptr);
     uVar5 = extraout_XMM0_Da_00;
     if (cVar2 != '\0') {
-      cVar2 = FUN_18055f260(param_3,aiStackX_20,&unknown_var_3424_ptr);
+      cVar2 = SystemSynchronizationProcessor(param_3,aiStackX_20,&unknown_var_3424_ptr);
       uVar5 = extraout_XMM0_Da_01;
       if (cVar2 != '\0') {
-        cVar2 = FUN_18055f260(param_3,&uStack_64,&system_data_bc90);
+        cVar2 = SystemSynchronizationProcessor(param_3,&uStack_64,&system_data_bc90);
         uVar5 = extraout_XMM0_Da_02;
         if (cVar2 != '\0') {
           cVar2 = FUN_180646700(param_3,afStack_60,&unknown_var_3232_ptr);
@@ -237,24 +237,24 @@ void FUN_1804f4ce0(int64_t param_1,uint64_t param_2,uint64_t param_3)
   uStack_40 = 0xffffffffffffffff;
   auStack_38[0] = 0xffffffff;
   uStackX_10 = param_2;
-  cVar1 = FUN_18055f260(param_3,&iStack_48,&unknown_var_3424_ptr);
-  if ((cVar1 != '\0') && (cVar1 = FUN_18055f260(param_3,&iStack_44,&unknown_var_3424_ptr), cVar1 != '\0'))
+  cVar1 = SystemSynchronizationProcessor(param_3,&iStack_48,&unknown_var_3424_ptr);
+  if ((cVar1 != '\0') && (cVar1 = SystemSynchronizationProcessor(param_3,&iStack_44,&unknown_var_3424_ptr), cVar1 != '\0'))
   {
     aiStackX_20[0] = (int)(char)uStackX_10;
-    cVar1 = FUN_18055f260(param_3,aiStackX_20,&unknown_var_3248_ptr);
+    cVar1 = SystemSynchronizationProcessor(param_3,aiStackX_20,&unknown_var_3248_ptr);
     if (((cVar1 != '\0') &&
         (((cVar1 = FUN_180646700(param_3,auStack_30,&unknown_var_3360_ptr), cVar1 != '\0' &&
           (cVar1 = FUN_180646700(param_3,auStack_2c,&unknown_var_3360_ptr), cVar1 != '\0')) &&
          (cVar1 = FUN_180646700(param_3,auStack_28,&unknown_var_3376_ptr), cVar1 != '\0')))) &&
-       (((cVar1 = FUN_18055f260(param_3,&uStack_40,&system_data_bca0), cVar1 != '\0' &&
-         (cVar1 = FUN_18055f260(param_3,(int64_t)&uStack_40 + 4,&system_data_bca0), cVar1 != '\0')) &&
-        (cVar1 = FUN_18055f260(param_3,auStack_38,&system_data_bca0), cVar1 != '\0')))) {
+       (((cVar1 = SystemSynchronizationProcessor(param_3,&uStack_40,&system_data_bca0), cVar1 != '\0' &&
+         (cVar1 = SystemSynchronizationProcessor(param_3,(int64_t)&uStack_40 + 4,&system_data_bca0), cVar1 != '\0')) &&
+        (cVar1 = SystemSynchronizationProcessor(param_3,auStack_38,&system_data_bca0), cVar1 != '\0')))) {
       uStackX_10 = CONCAT44(uStackX_10._4_4_,(uint)((char)uStackX_10 != '\0'));
-      cVar1 = FUN_18055f260(param_3,&uStackX_10,&system_param1_ptr);
+      cVar1 = SystemSynchronizationProcessor(param_3,&uStackX_10,&system_param1_ptr);
       bVar2 = (int)uStackX_10 != 0;
       if (cVar1 != '\0') {
         uStackX_10 = CONCAT44(uStackX_10._4_4_,(uint)((char)uStackX_10 != '\0'));
-        cVar1 = FUN_18055f260(param_3,&uStackX_10,&system_param1_ptr);
+        cVar1 = SystemSynchronizationProcessor(param_3,&uStackX_10,&system_param1_ptr);
         if (((cVar1 != '\0') && (-1 < iStack_48)) &&
            (((iStack_48 < *(int *)(param_1 + 0x52ed94) &&
              (((-1 < *(short *)(param_1 + 0x52dda0 + (int64_t)iStack_48 * 2) && (-1 < iStack_44))
@@ -287,10 +287,10 @@ void FUN_1804f4dfe(void)
   int64_t unaff_RSI;
   
   *(uint *)(unaff_RBP + 0x28) = (uint)(*(char *)(unaff_RBP + 0x28) != '\0');
-  cVar3 = FUN_18055f260();
+  cVar3 = SystemSynchronizationProcessor();
   if (cVar3 != '\0') {
     *(uint *)(unaff_RBP + 0x28) = (uint)(*(char *)(unaff_RBP + 0x28) != '\0');
-    cVar3 = FUN_18055f260();
+    cVar3 = SystemSynchronizationProcessor();
     if (cVar3 != '\0') {
       iVar1 = *(int *)(unaff_RBP + -0x30);
       if (((-1 < iVar1) && (iVar1 < *(int *)(unaff_RSI + 0x52ed94))) &&

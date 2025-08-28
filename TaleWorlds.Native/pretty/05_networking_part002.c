@@ -135,7 +135,7 @@ void NetworkInitializePacket(uint64_t packet_context)
             if (*(int *)(*(int64_t *)(network_handles[0] + 0x98) + 0x200) != 0) {
                 // 初始化数据包处理器
                 network_handles[1] = 0;
-                status_code = FUN_18088c740(network_handles + 1);
+                status_code = SystemSecurityProcessor(network_handles + 1);
                 
                 if ((status_code == 0) &&
                     (status_code = FUN_18088dec0(*(uint64_t *)(network_handles[0] + 0x98), 

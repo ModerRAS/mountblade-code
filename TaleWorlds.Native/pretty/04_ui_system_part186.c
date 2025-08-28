@@ -544,7 +544,7 @@ uint64_t FUN_180776b00(int64_t *param_1,uint param_2,int32_t *param_3,int64_t pa
       fVar2 = *(float *)(lVar1 + 0x21c);
 LAB_180776b4b:
                     // WARNING: Subroutine does not return
-      FUN_18076b390(param_4,0x20,&unknown_var_2048_ptr,(double)fVar2);
+      SystemValidationProcessor(param_4,0x20,&unknown_var_2048_ptr,(double)fVar2);
     }
   }
   else if (param_2 < 0x10) {

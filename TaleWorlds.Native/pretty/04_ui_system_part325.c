@@ -168,7 +168,7 @@ void FUN_1808477f4(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void * FUN_180847820(void)
+void * SystemDataFlowProcessor(void)
 
 {
   if (*(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +
@@ -221,7 +221,7 @@ void FUN_180847890(uint64_t param_1,int8_t *param_2)
   uStack_138 = 0;
   lStack_130 = 0;
   iVar1 = func_0x00018088c590(0,&lStack_130);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,lStack_130), iVar1 == 0)) &&
+  if (((iVar1 == 0) && (iVar1 = SystemSecurityProcessor(&uStack_138,lStack_130), iVar1 == 0)) &&
      (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_120), iVar1 == 0)) {
     uStack_128 = *(uint64_t *)(lStack_120 + 8);
   }
@@ -265,7 +265,7 @@ void FUN_1808479d0(int64_t param_1,int64_t *param_2,byte *param_3)
     lVar4 = (**(code **)(*param_2 + 0x330))(param_2,param_1 + 0x50,1);
     if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18084b240(param_1 + 0x50,&puStack_58);
+      SystemStateProcessor(param_1 + 0x50,&puStack_58);
     }
     cStack_60 = '\0';
     puStack_68 = &unknown_var_240_ptr;
@@ -280,7 +280,7 @@ void FUN_1808479d0(int64_t param_1,int64_t *param_2,byte *param_3)
         lVar4 = (**(code **)(*param_2 + 0x150))(param_2,uVar5,1);
         if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(uVar5,&puStack_58);
+          SystemStateProcessor(uVar5,&puStack_58);
         }
         iVar3 = FUN_18084b5a0(&puStack_68,lVar4 + 0x80,param_2);
         if ((iVar3 != 0) || (iVar3 = FUN_18084b5a0(&puStack_68,lVar4 + 0x90,param_2), iVar3 != 0))
@@ -294,7 +294,7 @@ void FUN_1808479d0(int64_t param_1,int64_t *param_2,byte *param_3)
         lVar4 = (**(code **)(*param_2 + 0x270))(param_2,uVar5,1);
         if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(uVar5,&puStack_58);
+          SystemStateProcessor(uVar5,&puStack_58);
         }
         lVar4 = FUN_18083fb90(param_2,lVar4 + 0x38);
         if (lVar4 == 0) goto LAB_180847c35;
@@ -365,7 +365,7 @@ void FUN_180847c60(int64_t param_1,int64_t *param_2,byte *param_3)
         lVar4 = (**(code **)(*param_2 + 0x2f0))(param_2,param_1 + 0x30);
         if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(param_1 + 0x30,auStack_60);
+          SystemStateProcessor(param_1 + 0x30,auStack_60);
         }
         plVar5 = (int64_t *)(lVar4 + 0x58);
         if (((int64_t *)*plVar5 == plVar5) && (*(int64_t **)(lVar4 + 0x60) == plVar5)) {
@@ -438,7 +438,7 @@ void FUN_180847df0(uint64_t param_1,int8_t *param_2)
   uStack_138 = 0;
   lStack_130 = 0;
   iVar1 = func_0x00018088c590(0,&lStack_130);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,lStack_130), iVar1 == 0)) &&
+  if (((iVar1 == 0) && (iVar1 = SystemSecurityProcessor(&uStack_138,lStack_130), iVar1 == 0)) &&
      (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_120), iVar1 == 0)) {
     uStack_128 = *(uint64_t *)(lStack_120 + 8);
   }
@@ -486,7 +486,7 @@ void FUN_180847f60(uint64_t param_1)
   iVar1 = func_0x00018088c590(param_1,alStack_138);
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_138[0] + 0x24) >> 1 & 1) == 0) goto LAB_180848016;
-    iVar2 = FUN_18088c740(alStack_138 + 1);
+    iVar2 = SystemSecurityProcessor(alStack_138 + 1);
     if (iVar2 == 0) goto LAB_180847fc4;
   }
   else {
@@ -553,7 +553,7 @@ void FUN_180848090(uint64_t param_1,int64_t param_2,int32_t param_3,uint64_t *pa
   iVar3 = func_0x00018088c590(param_1 & 0xffffffff,&lStack_168);
   if (iVar3 == 0) {
     if ((*(uint *)(lStack_168 + 0x24) >> 1 & 1) == 0) goto LAB_180848132;
-    iVar4 = FUN_18088c740(&uStack_170);
+    iVar4 = SystemSecurityProcessor(&uStack_170);
     if (iVar4 == 0) goto LAB_18084820e;
   }
   else {
@@ -597,7 +597,7 @@ void FUN_1808482f0(uint64_t param_1)
   iVar1 = func_0x00018088c590(param_1,alStack_138);
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_138[0] + 0x24) >> 1 & 1) == 0) goto LAB_1808483a6;
-    iVar2 = FUN_18088c740(alStack_138 + 1);
+    iVar2 = SystemSecurityProcessor(alStack_138 + 1);
     if (iVar2 == 0) goto LAB_180848354;
   }
   else {

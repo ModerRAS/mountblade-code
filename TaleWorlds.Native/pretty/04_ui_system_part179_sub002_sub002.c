@@ -636,7 +636,7 @@ LAB_180770cd4:
 LAB_180770c67:
   if ((bVar16) && (lStack_88 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(lStack_88,4);
+    SystemMemoryProcessor(lStack_88,4);
   }
   if (((bVar5) && (plVar12 != (int64_t *)0x0)) && (0 < (int)uStack_a8)) {
     uVar11 = (uint64_t)uStack_a8;
@@ -940,7 +940,7 @@ LAB_180770cd4:
 LAB_180770c67:
   if ((*(char *)(unaff_RBP + -0x71) != '\0') && (*(int64_t *)(unaff_RBP + -0x31) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(*(int64_t *)(unaff_RBP + -0x31),4);
+    SystemMemoryProcessor(*(int64_t *)(unaff_RBP + -0x31),4);
   }
   if (((bVar7) && (unaff_R14 != (int64_t *)0x0)) && (0 < (int)*(uint *)(unaff_RBP + -0x51))) {
     uVar15 = (uint64_t)*(uint *)(unaff_RBP + -0x51);
@@ -966,7 +966,7 @@ uint64_t FUN_180770ccf(void)
   
   if ((*(char *)(unaff_RBP + -0x71) != '\0') && (*(int64_t *)(unaff_RBP + -0x31) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(*(int64_t *)(unaff_RBP + -0x31),4);
+    SystemMemoryProcessor(*(int64_t *)(unaff_RBP + -0x31),4);
   }
   if ((unaff_R14 != (int64_t *)0x0) && (0 < (int)*(uint *)(unaff_RBP + -0x51))) {
     uVar1 = (uint64_t)*(uint *)(unaff_RBP + -0x51);
@@ -1043,7 +1043,7 @@ int32_t FUN_180770df0(int64_t *param_1,int param_2,int32_t *param_3,int64_t para
     *param_3 = *(int32_t *)(lVar1 + 0x220);
     if (param_4 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18076b390(param_4,0x20,&unknown_var_2048_ptr,(double)*(float *)(lVar1 + 0x220));
+      SystemValidationProcessor(param_4,0x20,&unknown_var_2048_ptr,(double)*(float *)(lVar1 + 0x220));
     }
   }
   return 0;
@@ -1091,7 +1091,7 @@ int32_t FUN_180770ed0(int64_t *param_1,int param_2,int32_t *param_3,int64_t para
     *param_3 = *(int32_t *)(lVar1 + 0x228);
     if (param_4 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18076b390(param_4,0x20,&unknown_var_4576_ptr,*(int32_t *)(lVar1 + 0x228));
+      SystemValidationProcessor(param_4,0x20,&unknown_var_4576_ptr,*(int32_t *)(lVar1 + 0x228));
     }
   }
   return 0;

@@ -25,7 +25,7 @@ void FUN_1802f76c2(int32_t param_1)
   FUN_18062fb40();
   FUN_18062fb40();
   if (*(int64_t *)(unaff_RDI + 0x158) != 0) {
-    FUN_180630b20();
+    SystemAllocationProcessor();
   }
   if (((*(float *)(unaff_RDI + 0x50) != 0.0) || (*(float *)(unaff_RDI + 0x54) != 0.0)) ||
      (*(float *)(unaff_RDI + 0x58) != 0.0)) {
@@ -178,7 +178,7 @@ void FUN_1802f7aa9(void)
   FUN_18062fb40();
   FUN_18062fb40();
   if (unaff_RDI[0x2b] != 0) {
-    FUN_180630b20();
+    SystemAllocationProcessor();
   }
   if (((*(float *)(unaff_RDI + 10) != 0.0) || (*(float *)((int64_t)unaff_RDI + 0x54) != 0.0)) ||
      (*(float *)(unaff_RDI + 0xb) != 0.0)) {
@@ -284,7 +284,7 @@ void FUN_1802f7acb(void)
   FUN_18062fb40();
   FUN_18062fb40();
   if (*(int64_t *)(unaff_RDI + 0x158) != 0) {
-    FUN_180630b20();
+    SystemAllocationProcessor();
   }
   if (((*(float *)(unaff_RDI + 0x50) != 0.0) || (*(float *)(unaff_RDI + 0x54) != 0.0)) ||
      (*(float *)(unaff_RDI + 0x58) != 0.0)) {

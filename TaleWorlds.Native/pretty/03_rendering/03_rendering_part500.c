@@ -1003,7 +1003,7 @@ void rendering_system_process_render_state(int64_t *state_ptr, uint64_t param_1,
   state_data = *state_ptr;
   if (state_data != 0) {
     // 获取状态信息
-    system_status = FUN_18055f260(param_2, &stack_pointer, &unknown_var_3296_ptr);
+    system_status = SystemSynchronizationProcessor(param_2, &stack_pointer, &unknown_var_3296_ptr);
     FUN_1804fe350(&unknown_var_3952_ptr, system_status, &unknown_var_4016_ptr, &stack_pointer);
     
     // 检查状态有效性
@@ -1025,12 +1025,12 @@ void rendering_system_process_render_state(int64_t *state_ptr, uint64_t param_1,
         
         // 获取状态值
         state_flag = *(int32_t *)(state_data + 0xc);
-        system_status = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
+        system_status = SystemBufferProcessor(0x180c95578, 0, &system_param1_ptr);
         
         // 处理状态清理
         if ((system_status != '\0') &&
-           (system_status = FUN_180645c10(0x180c95578, 0x13, &unknown_var_3472_ptr), system_status != '\0')) {
-          FUN_180645c10(0x180c95578, state_flag, &unknown_var_3296_ptr);
+           (system_status = SystemBufferProcessor(0x180c95578, 0x13, &unknown_var_3472_ptr), system_status != '\0')) {
+          SystemBufferProcessor(0x180c95578, state_flag, &unknown_var_3296_ptr);
         }
         
         // 清理全局状态
@@ -1106,7 +1106,7 @@ void rendering_system_cleanup_render_resources(void)
   uint stack_param;
   
   // 执行状态检查函数
-  system_status = FUN_18055f260();
+  system_status = SystemSynchronizationProcessor();
   FUN_1804fe350(&unknown_var_3952_ptr, system_status, &unknown_var_4016_ptr, &stack_param);
   
   // 验证系统状态
@@ -1132,12 +1132,12 @@ void rendering_system_cleanup_render_resources(void)
         
         // 处理状态标志
         status_flag = *(int32_t *)(state_data + 0xc);
-        system_status = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
+        system_status = SystemBufferProcessor(0x180c95578, 0, &system_param1_ptr);
         
         // 验证系统状态
         if ((system_status != '\0') && 
-            (system_status = FUN_180645c10(0x180c95578, 0x13, &unknown_var_3472_ptr), system_status != '\0')) {
-          FUN_180645c10(0x180c95578, status_flag, &unknown_var_3296_ptr);
+            (system_status = SystemBufferProcessor(0x180c95578, 0x13, &unknown_var_3472_ptr), system_status != '\0')) {
+          SystemBufferProcessor(0x180c95578, status_flag, &unknown_var_3296_ptr);
         }
         
         // 清理状态数据
@@ -1230,12 +1230,12 @@ void rendering_system_reset_render_state(uint context_param)
       
       // 处理状态标志
       status_flag = *(int32_t *)(state_data + 0xc);
-      system_status = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
+      system_status = SystemBufferProcessor(0x180c95578, 0, &system_param1_ptr);
       
       // 验证系统状态
       if ((system_status != '\0') && 
-          (system_status = FUN_180645c10(0x180c95578, 0x13, &unknown_var_3472_ptr), system_status != '\0')) {
-        FUN_180645c10(0x180c95578, status_flag, &unknown_var_3296_ptr);
+          (system_status = SystemBufferProcessor(0x180c95578, 0x13, &unknown_var_3472_ptr), system_status != '\0')) {
+        SystemBufferProcessor(0x180c95578, status_flag, &unknown_var_3296_ptr);
       }
       
       // 清理状态数据

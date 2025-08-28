@@ -578,19 +578,19 @@ void FUN_1806c4d50(char *param_1,int32_t *param_2)
   
   if ((param_1 != (char *)0x0) && (*param_1 != '\0')) {
     apcStackX_8[0] = param_1;
-    uVar1 = FUN_1806d80c0(param_1,apcStackX_8);
+    uVar1 = SystemMonitoringProcessor(param_1,apcStackX_8);
     *param_2 = uVar1;
-    uVar1 = FUN_1806d80c0(apcStackX_8[0],apcStackX_8);
+    uVar1 = SystemMonitoringProcessor(apcStackX_8[0],apcStackX_8);
     param_2[1] = uVar1;
-    uVar1 = FUN_1806d80c0(apcStackX_8[0],apcStackX_8);
+    uVar1 = SystemMonitoringProcessor(apcStackX_8[0],apcStackX_8);
     param_2[2] = uVar1;
-    uVar1 = FUN_1806d80c0(apcStackX_8[0],apcStackX_8);
+    uVar1 = SystemMonitoringProcessor(apcStackX_8[0],apcStackX_8);
     param_2[3] = uVar1;
-    uVar1 = FUN_1806d80c0(apcStackX_8[0],apcStackX_8);
+    uVar1 = SystemMonitoringProcessor(apcStackX_8[0],apcStackX_8);
     param_2[4] = uVar1;
-    uVar1 = FUN_1806d80c0(apcStackX_8[0],apcStackX_8);
+    uVar1 = SystemMonitoringProcessor(apcStackX_8[0],apcStackX_8);
     param_2[5] = uVar1;
-    uVar1 = FUN_1806d80c0(apcStackX_8[0],apcStackX_8);
+    uVar1 = SystemMonitoringProcessor(apcStackX_8[0],apcStackX_8);
     param_2[6] = uVar1;
   }
   return;

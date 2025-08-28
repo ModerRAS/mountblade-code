@@ -616,7 +616,7 @@ void FUN_1808674e0(int64_t *param_1,int64_t param_2)
   
   uStack_20 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_58;
   uStack_38 = 0;
-  iVar3 = FUN_18088c740(&uStack_38,param_1[2]);
+  iVar3 = SystemSecurityProcessor(&uStack_38,param_1[2]);
   if (iVar3 == 0) {
     lVar8 = (int64_t)(int)param_1[1];
     uVar6 = (int)*(uint *)((int64_t)param_1 + 0xc) >> 0x1f;
@@ -836,7 +836,7 @@ void FUN_180867810(int64_t *param_1,int64_t param_2)
   
   uVar5 = 0;
   uStackX_8 = 0;
-  iVar1 = FUN_18088c740(&uStackX_8,param_1[2]);
+  iVar1 = SystemSecurityProcessor(&uStackX_8,param_1[2]);
   if (iVar1 == 0) {
     iVar1 = (int)param_1[1];
     uVar4 = 0;

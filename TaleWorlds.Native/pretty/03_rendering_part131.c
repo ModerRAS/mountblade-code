@@ -776,7 +776,7 @@ void FUN_180346f40(uint64_t param_1)
   auStack_130[0] = 0;
   uStack_138 = 0xb;
   strcpy_s(auStack_130,0x40,&system_data_cf50);
-  FUN_1800b8300(apuStack_88,&puStack_148);
+  SystemCommunicationProcessor(apuStack_88,&puStack_148);
   uStack_30 = 1;
   uStack_168 = 1;
   FUN_180180730(param_1,appuStack_160,apuStack_88);
@@ -789,7 +789,7 @@ void FUN_180346f40(uint64_t param_1)
   uStack_d8 = 0x11;
   appuStack_160[0] = apuStack_88;
   strcpy_s(auStack_d0,0x40,&system_data_cf38);
-  FUN_1800b8300(apuStack_88,&puStack_e8);
+  SystemCommunicationProcessor(apuStack_88,&puStack_e8);
   uStack_30 = 1;
   uStack_168 = 2;
   FUN_180180730(param_1,appuStack_160,apuStack_88);

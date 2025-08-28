@@ -381,7 +381,7 @@ uint64_t FUN_1808553b0(int64_t *param_1)
     if (iVar1 < 0) {
       puVar8 = (int32_t *)((int64_t)iVar1 * 0x1c + 0x10 + *param_1);
       do {
-        puVar5 = (int32_t *)FUN_180847820();
+        puVar5 = (int32_t *)SystemCoreProcessor();
         uVar2 = puVar5[1];
         uVar3 = puVar5[2];
         uVar4 = puVar5[3];
@@ -426,7 +426,7 @@ uint64_t FUN_180855415(uint param_1,int64_t param_2)
   if ((int)param_2 < 0) {
     puVar6 = (int32_t *)(param_2 * 0x1c + 0x10 + *unaff_RDI);
     do {
-      puVar4 = (int32_t *)FUN_180847820();
+      puVar4 = (int32_t *)SystemCoreProcessor();
       in_XMM0_Da = *puVar4;
       uVar1 = puVar4[1];
       uVar2 = puVar4[2];
@@ -504,7 +504,7 @@ uint64_t FUN_1808554a0(int64_t *param_1)
     if (iVar1 < 0) {
       puVar7 = (int32_t *)(*param_1 + 0x14 + (int64_t)iVar1 * 0x18);
       do {
-        puVar5 = (int32_t *)FUN_180847820();
+        puVar5 = (int32_t *)SystemCoreProcessor();
         uVar2 = puVar5[1];
         uVar3 = puVar5[2];
         uVar4 = puVar5[3];
@@ -549,7 +549,7 @@ uint64_t FUN_180855512(int32_t param_1,int param_2,uint param_3)
   if (0 < param_2) {
     puVar6 = (int32_t *)(in_RAX + 0x14 + in_RCX * 8);
     do {
-      puVar4 = (int32_t *)FUN_180847820();
+      puVar4 = (int32_t *)SystemCoreProcessor();
       param_1 = *puVar4;
       uVar1 = puVar4[1];
       uVar2 = puVar4[2];
@@ -593,7 +593,7 @@ uint64_t FUN_18085551e(int64_t param_1)
   
   puVar8 = (int32_t *)(in_RAX + 0x14 + param_1 * 8);
   do {
-    puVar5 = (int32_t *)FUN_180847820();
+    puVar5 = (int32_t *)SystemCoreProcessor();
     uVar1 = *puVar5;
     uVar2 = puVar5[1];
     uVar3 = puVar5[2];
@@ -686,7 +686,7 @@ uint64_t FUN_1808555a0(int64_t *param_1)
     if (iVar1 < 0) {
       puVar7 = (int8_t *)(*param_1 + 0x14 + (int64_t)iVar1 * 0x18);
       do {
-        puVar5 = (int32_t *)FUN_180847820();
+        puVar5 = (int32_t *)SystemCoreProcessor();
         uVar2 = puVar5[1];
         uVar3 = puVar5[2];
         uVar4 = puVar5[3];
@@ -730,7 +730,7 @@ uint64_t FUN_180855615(int32_t param_1,int param_2,uint param_3)
   if (0 < param_2) {
     puVar6 = (int8_t *)(in_RAX + 0x14 + in_RCX * 8);
     do {
-      puVar4 = (int32_t *)FUN_180847820();
+      puVar4 = (int32_t *)SystemCoreProcessor();
       param_1 = *puVar4;
       uVar1 = puVar4[1];
       uVar2 = puVar4[2];
@@ -773,7 +773,7 @@ uint64_t FUN_180855621(int64_t param_1)
   
   puVar8 = (int8_t *)(in_RAX + 0x14 + param_1 * 8);
   do {
-    puVar5 = (int32_t *)FUN_180847820();
+    puVar5 = (int32_t *)SystemCoreProcessor();
     uVar1 = *puVar5;
     uVar2 = puVar5[1];
     uVar3 = puVar5[2];

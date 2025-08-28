@@ -115,7 +115,7 @@ int32_t FUN_1808cb2c0(int64_t *param_1,uint64_t *param_2)
   if (param_2 == (uint64_t *)0x0) {
     return 0x1c;
   }
-  puVar9 = (int32_t *)FUN_180847820();
+  puVar9 = (int32_t *)SystemCoreProcessor();
   uVar5 = puVar9[1];
   uVar6 = puVar9[2];
   uVar7 = puVar9[3];

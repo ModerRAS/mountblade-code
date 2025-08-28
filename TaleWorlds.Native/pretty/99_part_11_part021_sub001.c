@@ -327,9 +327,9 @@ void FUN_1806f02d0(int64_t *param_1,uint64_t param_2,uint64_t *param_3,int32_t *
           pcVar7 = pcVar7 + 1;
         }
         if (*pcVar10 != '\0') {
-          uStack_48 = FUN_1806d80c0(pcVar10,&pcStackX_8);
-          uStack_44 = FUN_1806d80c0(pcStackX_8,&pcStackX_8);
-          uStack_40 = FUN_1806d80c0(pcStackX_8,&pcStackX_8);
+          uStack_48 = SystemMonitoringProcessor(pcVar10,&pcStackX_8);
+          uStack_44 = SystemMonitoringProcessor(pcStackX_8,&pcStackX_8);
+          uStack_40 = SystemMonitoringProcessor(pcStackX_8,&pcStackX_8);
           pcVar10 = pcStackX_8;
         }
         uVar6 = (int)uVar8 + 0xc;
@@ -417,9 +417,9 @@ void FUN_1806f030f(int64_t *param_1)
         if (cVar1 == '\0') goto LAB_1806f03c8;
       }
       if (*pcVar8 != '\0') {
-        uStackX_20 = FUN_1806d80c0(pcVar8,&stack0x00000070);
-        uStackX_24 = FUN_1806d80c0(in_stack_00000070,&stack0x00000070);
-        in_stack_00000028 = FUN_1806d80c0(in_stack_00000070,&stack0x00000070);
+        uStackX_20 = SystemMonitoringProcessor(pcVar8,&stack0x00000070);
+        uStackX_24 = SystemMonitoringProcessor(in_stack_00000070,&stack0x00000070);
+        in_stack_00000028 = SystemMonitoringProcessor(in_stack_00000070,&stack0x00000070);
         pcVar8 = in_stack_00000070;
       }
       uVar6 = uVar5 + 0xc;
@@ -500,9 +500,9 @@ void FUN_1806f0342(int64_t *param_1)
       if (cVar1 == '\0') goto LAB_1806f03c8;
     }
     if (*pcVar7 != '\0') {
-      uStackX_20 = FUN_1806d80c0(pcVar7,&stack0x00000070);
-      uStackX_24 = FUN_1806d80c0(in_stack_00000070,&stack0x00000070);
-      in_stack_00000028 = FUN_1806d80c0(in_stack_00000070,&stack0x00000070);
+      uStackX_20 = SystemMonitoringProcessor(pcVar7,&stack0x00000070);
+      uStackX_24 = SystemMonitoringProcessor(in_stack_00000070,&stack0x00000070);
+      in_stack_00000028 = SystemMonitoringProcessor(in_stack_00000070,&stack0x00000070);
       pcVar7 = in_stack_00000070;
     }
     uVar5 = unaff_EBP + 0xc;
@@ -592,9 +592,9 @@ void FUN_1806f0430(void)
   
   do {
     if (*unaff_R14 != '\0') {
-      uStackX_20 = FUN_1806d80c0(unaff_R14,&stack0x00000070);
-      uStackX_24 = FUN_1806d80c0(in_stack_00000070,&stack0x00000070);
-      in_stack_00000028 = FUN_1806d80c0(in_stack_00000070,&stack0x00000070);
+      uStackX_20 = SystemMonitoringProcessor(unaff_R14,&stack0x00000070);
+      uStackX_24 = SystemMonitoringProcessor(in_stack_00000070,&stack0x00000070);
+      in_stack_00000028 = SystemMonitoringProcessor(in_stack_00000070,&stack0x00000070);
       unaff_R14 = in_stack_00000070;
     }
     uVar4 = unaff_EBP + 0xc;
@@ -675,7 +675,7 @@ int FUN_1806f04f0(uint64_t *param_1,int64_t *param_2,int param_3)
       (*pcVar3)(param_2[6],uVar5);
     }
   }
-  FUN_1806d6f60(param_2);
+  SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[7];
   FUN_1806d7080(param_2,param_1[4]);
   piVar2 = (int *)param_2[0xb];
@@ -699,7 +699,7 @@ int FUN_1806f04f0(uint64_t *param_1,int64_t *param_2,int param_3)
       (*pcVar3)(param_2[6],uVar5);
     }
   }
-  FUN_1806d6f60(param_2);
+  SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0xb];
   FUN_1806d7080(param_2,param_1[8]);
   piVar2 = (int *)param_2[0xb];
@@ -722,7 +722,7 @@ int FUN_1806f04f0(uint64_t *param_1,int64_t *param_2,int param_3)
       (*pcVar3)(param_2[6],uVar5);
     }
   }
-  FUN_1806d6f60(param_2);
+  SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0x13];
   FUN_1806d7080(param_2,param_1[0x10]);
   piVar2 = (int *)param_2[0xb];
@@ -741,11 +741,11 @@ int FUN_1806f04f0(uint64_t *param_1,int64_t *param_2,int param_3)
     cVar4 = (**(code **)(*(int64_t *)param_2[5] + 0x10))((int64_t *)param_2[5],puVar6,&pcStackX_8)
     ;
     if (((cVar4 != '\0') && (pcStackX_8 != (char *)0x0)) && (*pcStackX_8 != '\0')) {
-      uVar5 = FUN_1806d80c0(pcStackX_8,&pcStackX_10);
+      uVar5 = SystemMonitoringProcessor(pcStackX_8,&pcStackX_10);
       (*pcVar3)(param_2[6],uVar5);
     }
   }
-  FUN_1806d6f60(param_2);
+  SystemResourceProcessor(param_2);
   pcVar3 = (code *)param_1[0x17];
   FUN_1806d7080(param_2,param_1[0x14]);
   piVar2 = (int *)param_2[0xb];
@@ -766,7 +766,7 @@ int FUN_1806f04f0(uint64_t *param_1,int64_t *param_2,int param_3)
       (*pcVar3)(param_2[6],auStackX_18);
     }
   }
-  FUN_1806d6f60(param_2);
+  SystemResourceProcessor(param_2);
   return param_3 + 6;
 }
 

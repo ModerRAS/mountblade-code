@@ -822,7 +822,7 @@ uint64_t * FUN_18084c050(uint64_t *param_1,uint64_t param_2,byte param_3)
   param_1[9] = &unknown_var_1456_ptr;
   *(int32_t *)(param_1 + 10) = 0;
   *(int32_t *)((int64_t)param_1 + 0x54) = 0xffffffff;
-  puVar2 = (uint64_t *)FUN_180847820();
+  puVar2 = (uint64_t *)SystemCoreProcessor();
   uVar1 = puVar2[1];
   param_1[0xb] = *puVar2;
   param_1[0xc] = uVar1;

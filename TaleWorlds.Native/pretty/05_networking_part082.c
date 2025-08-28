@@ -438,7 +438,7 @@ void FUN_18088bf80(int64_t param_1,uint64_t param_2,uint64_t param_3)
       if (iVar5 < 0x40) {
         iVar5 = 0x40;
       }
-      iVar5 = FUN_180849030(lVar1,iVar5);
+      iVar5 = SystemDeallocationProcessor(lVar1,iVar5);
       if (iVar5 != 0) {
         return;
       }

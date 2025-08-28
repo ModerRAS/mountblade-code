@@ -28,14 +28,14 @@ void FUN_1808986b0(int64_t param_1,uint64_t param_2)
     if (iVar3 < 0x40) {
       iVar3 = 0x40;
     }
-    iVar3 = FUN_180849030(param_1 + 0x28,iVar3);
+    iVar3 = SystemDeallocationProcessor(param_1 + 0x28,iVar3);
     if (iVar3 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)(param_1 + 0x34) >> 0x1f;
   if (((int)((*(uint *)(param_1 + 0x34) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar3 = FUN_180849030(param_1 + 0x28,iVar6), iVar3 != 0)) {
+     (iVar3 = SystemDeallocationProcessor(param_1 + 0x28,iVar6), iVar3 != 0)) {
     return;
   }
   iVar3 = *(int *)(param_1 + 0x30);
@@ -59,7 +59,7 @@ uint64_t FUN_180898790(int64_t *param_1,int param_2)
   
   uVar3 = (int)*(uint *)((int64_t)param_1 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((int64_t)param_1 + 0xc) ^ uVar3) - uVar3) < param_2) &&
-     (uVar2 = FUN_180849030(param_1,param_2), (int)uVar2 != 0)) {
+     (uVar2 = SystemDeallocationProcessor(param_1,param_2), (int)uVar2 != 0)) {
     return uVar2;
   }
   iVar1 = (int)param_1[1];
@@ -101,7 +101,7 @@ uint64_t FUN_1808987e0(int64_t *param_1,char param_2)
         uStack_18 = uVar4;
       }
       puStack_28 = &unknown_var_7904_ptr;
-      uVar2 = FUN_180897520(param_1,&puStack_28);
+      uVar2 = SystemNetworkProcessor(param_1,&puStack_28);
       if ((int)uVar2 != 0) {
         return uVar2;
       }

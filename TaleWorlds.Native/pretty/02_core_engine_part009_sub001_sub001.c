@@ -632,7 +632,7 @@ void FUN_180043f90(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 
@@ -1209,7 +1209,7 @@ void FUN_180045b20(int64_t param_1,int64_t param_2)
     strcpy_s(*(uint64_t *)(param_1 + 8),0x1000);
     return;
   }
-  FUN_180626f80(&unknown_var_616_ptr,0x1000,param_2);
+  SystemOptimizationProcessor(&unknown_var_616_ptr,0x1000,param_2);
   *(int32_t *)(param_1 + 0x10) = 0;
   **(int8_t **)(param_1 + 8) = 0;
   return;
@@ -1276,7 +1276,7 @@ void FUN_180045c00(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 
@@ -1362,7 +1362,7 @@ void FUN_180045ee0(int64_t param_1,int64_t param_2)
     strcpy_s(*(uint64_t *)(param_1 + 8),0x400);
     return;
   }
-  FUN_180626f80(&unknown_var_616_ptr,0x400,param_2);
+  SystemOptimizationProcessor(&unknown_var_616_ptr,0x400,param_2);
   *(int32_t *)(param_1 + 0x10) = 0;
   **(int8_t **)(param_1 + 8) = 0;
   return;

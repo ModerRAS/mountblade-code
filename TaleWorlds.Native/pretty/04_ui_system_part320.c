@@ -43,7 +43,7 @@ int32_t FUN_180840790(int32_t param_1,int64_t param_2,uint64_t *param_3)
   uStack_38 = 0;
   uStack_30 = 0;
   iVar3 = func_0x00018088c590(0,&uStack_30);
-  if (((iVar3 == 0) && (iVar3 = FUN_18088c740(&uStack_38,uStack_30), iVar3 == 0)) &&
+  if (((iVar3 == 0) && (iVar3 = SystemSecurityProcessor(&uStack_38,uStack_30), iVar3 == 0)) &&
      (iVar3 = func_0x00018088c530(param_1,alStackX_18), iVar3 == 0)) {
     lStack_28 = *(int64_t *)(alStackX_18[0] + 8);
   }
@@ -124,7 +124,7 @@ void FUN_1808407ce(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   lStack0000000000000030 = 0;
   uStack0000000000000028 = in_XMM0_Qb;
   iVar3 = func_0x00018088c590(in_RCX,&stack0x00000028,param_3,param_4,param_1);
-  if (((iVar3 == 0) && (iVar3 = FUN_18088c740(&stack0x00000020,uStack0000000000000028), iVar3 == 0))
+  if (((iVar3 == 0) && (iVar3 = SystemSecurityProcessor(&stack0x00000020,uStack0000000000000028), iVar3 == 0))
      && (iVar3 = func_0x00018088c530(unaff_ESI,&stack0x00000070), iVar3 == 0)) {
     lStack0000000000000030 = *(int64_t *)(in_stack_00000070 + 8);
   }
@@ -424,7 +424,7 @@ LAB_180840d1b:
     if (iVar1 == 0) {
       if (*(int *)(*(int64_t *)(alStack_138[0] + 0x98) + 0x200) != 0) {
         alStack_138[1] = 0;
-        iVar1 = FUN_18088c740(alStack_138 + 1);
+        iVar1 = SystemSecurityProcessor(alStack_138 + 1);
         if ((iVar1 == 0) &&
            (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_138[0] + 0x98),apuStack_128,0x10),
            iVar1 == 0)) {

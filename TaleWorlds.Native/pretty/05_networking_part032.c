@@ -576,7 +576,7 @@ void FUN_18085c230(int64_t param_1,uint64_t param_2)
   *(uint64_t *)(param_1 + 0x18) = uVar7;
   FUN_1808556a0(param_1 + 0x70);
   FUN_180855780(param_1 + 0x80);
-  iVar5 = FUN_180744cc0(param_1 + 0x90);
+  iVar5 = SystemLockProcessor(param_1 + 0x90);
   iVar6 = 0;
   if ((iVar5 == 0) && (iVar5 = FUN_1808554a0(param_1 + 0xa0), iVar5 == 0)) {
     *(int32_t *)(param_1 + 0xb0) = 0xffffffff;

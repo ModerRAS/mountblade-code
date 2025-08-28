@@ -621,7 +621,7 @@ void FUN_180882400(int64_t param_1)
         }
         if ((lStack_68 != 0) && (lVar1 = *(int64_t *)(lStack_68 + 0x2e8), lVar1 != 0)) {
           uStack_78 = 0;
-          iVar4 = FUN_18088c740(&uStack_78,param_1);
+          iVar4 = SystemSecurityProcessor(&uStack_78,param_1);
           if (iVar4 == 0) {
             if (*(int *)(*(int64_t *)(param_1 + 0x98) + 0x200) != 0) {
               lVar2 = *(int64_t *)(lVar1 + 0x18);
@@ -713,7 +713,7 @@ void FUN_180882440(void)
       if ((*(int64_t *)(unaff_RBP + -9) != 0) &&
          (lVar1 = *(int64_t *)(*(int64_t *)(unaff_RBP + -9) + 0x2e8), lVar1 != 0)) {
         *(uint64_t *)(unaff_RBP + -0x19) = 0;
-        iVar5 = FUN_18088c740(unaff_RBP + -0x19);
+        iVar5 = SystemSecurityProcessor(unaff_RBP + -0x19);
         if (iVar5 != 0) goto LAB_18088254f;
         if (*(int *)(*(int64_t *)(unaff_R14 + 0x98) + 0x200) != 0) {
           lVar2 = *(int64_t *)(lVar1 + 0x18);

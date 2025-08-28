@@ -536,7 +536,7 @@ void FUN_1803530c0(int64_t *param_1, int64_t param_2, uint64_t param_3)
         }
         
         // 调用变量设置函数
-        FUN_180630b20(param_2, puVar2, &system_memory_3a84, puVar5);
+        SystemAllocationProcessor(param_2, puVar2, &system_memory_3a84, puVar5);
         
         // 调用数据处理回调函数
         (**(code **)(*param_1 + 0x140))(param_1, &puStack_7b8);

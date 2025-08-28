@@ -2073,7 +2073,7 @@ void* SystemStructure_Initialize(void* param_1)
   *(uint32_t *)((uint64_t)param_1 + 0xc) = 0x1b;  /* 版本 */
   
   /* 获取系统数据并设置 */
-  sys_data = (uint32_t*)FUN_180847820();
+  sys_data = (uint32_t*)SystemCoreProcessor();
   magic1 = sys_data[1];
   magic2 = sys_data[2];
   magic3 = sys_data[3];
@@ -2105,7 +2105,7 @@ void* SystemStructure_Initialize(void* param_1)
   
   /* 第二阶段：设置第二个虚函数表 */
   *(uint64_t*)param_1 = &unknown_var_8000_ptr;     /* 第二个虚函数表 */
-  self_ptr = (uint64_t*)FUN_180847820();
+  self_ptr = (uint64_t*)SystemCoreProcessor();
   vtable_ptr = self_ptr[1];
   
   *(uint64_t*)(param_1 + 0x40) = *self_ptr;

@@ -717,7 +717,7 @@ LAB_180227e59:
           if (*(char *)(param_3 + 9) != '\x01') {
             FUN_1806279c0(&uStack_168,lVar23 + 0xa0 + uVar38);
             if (fStack_158 == 0.0) {
-              FUN_180626f80(&unknown_var_8296_ptr);
+              SystemOptimizationProcessor(&unknown_var_8296_ptr);
               cVar24 = -1;
             }
             else {

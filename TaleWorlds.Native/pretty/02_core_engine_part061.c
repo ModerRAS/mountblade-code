@@ -146,7 +146,7 @@ typedef struct {
 /** 系统初始化函数 */
 #define SystemInitializer                   System_Initializer2
 #define SystemShutdown                      FUN_1808fc050
-#define SystemGetState                      FUN_1808fd200
+#define SystemGetState                      SystemEventProcessor
 
 /** 系统数据处理器 */
 #define CoreSystemDataProcessor             FUN_180099430
@@ -1054,7 +1054,7 @@ void SystemShutdown(void)
 {
   // 调用系统终止函数，执行完整的系统关闭流程
   // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 
@@ -1224,7 +1224,7 @@ void DataProcessingAndSortingFunction(uint64_t param_1, uint64_t param_2, int64_
   }
   
   // 调用数据处理函数
-  FUN_180630b20(param_3, puVar8, &unknown_var_2332_ptr, puVar19);
+  SystemAllocationProcessor(param_3, puVar8, &unknown_var_2332_ptr, puVar19);
   FUN_180630e10(param_3, puVar8, &unknown_var_2352_ptr, *(double *)(param_5 + 0x40) * 1000.0);
   
   // 递归处理数据

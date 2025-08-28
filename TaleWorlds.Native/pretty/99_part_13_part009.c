@@ -64,7 +64,7 @@ uint64_t FUN_1808aa630(uint64_t param_1,int64_t param_2,int32_t param_3)
               FUN_1808adcf0(puVar7,0xb);
               *puVar7 = &unknown_var_232_ptr;
               puVar7[6] = &unknown_var_9792_ptr;
-              puVar8 = (int32_t *)FUN_180847820();
+              puVar8 = (int32_t *)SystemCoreProcessor();
               uVar1 = puVar8[1];
               uVar2 = puVar8[2];
               uVar3 = puVar8[3];
@@ -154,7 +154,7 @@ uint64_t FUN_1808aa65f(int32_t param_1)
             FUN_1808adcf0(puVar7,0xb);
             *puVar7 = &unknown_var_232_ptr;
             puVar7[6] = &unknown_var_9792_ptr;
-            puVar8 = (int32_t *)FUN_180847820();
+            puVar8 = (int32_t *)SystemCoreProcessor();
             uVar11 = *puVar8;
             uVar1 = puVar8[1];
             uVar2 = puVar8[2];
@@ -232,7 +232,7 @@ int FUN_1808aa6bb(int32_t param_1)
         FUN_1808adcf0(puVar5,0xb);
         *puVar5 = &unknown_var_232_ptr;
         puVar5[6] = &unknown_var_9792_ptr;
-        puVar6 = (int32_t *)FUN_180847820();
+        puVar6 = (int32_t *)SystemCoreProcessor();
         uVar7 = *puVar6;
         uVar1 = puVar6[1];
         uVar2 = puVar6[2];
@@ -359,7 +359,7 @@ uint64_t FUN_1808aa8c0(uint64_t param_1,int64_t param_2,int32_t param_3)
               FUN_1808adcf0(puVar8,0xe);
               *puVar8 = &unknown_var_9808_ptr;
               puVar8[6] = &unknown_var_9792_ptr;
-              puVar9 = (int32_t *)FUN_180847820();
+              puVar9 = (int32_t *)SystemCoreProcessor();
               uVar2 = puVar9[1];
               uVar3 = puVar9[2];
               uVar4 = puVar9[3];
@@ -444,7 +444,7 @@ uint64_t FUN_1808aa8ec(int32_t param_1)
             FUN_1808adcf0(puVar7,0xe);
             *puVar7 = &unknown_var_9808_ptr;
             puVar7[6] = &unknown_var_9792_ptr;
-            puVar8 = (int32_t *)FUN_180847820();
+            puVar8 = (int32_t *)SystemCoreProcessor();
             uVar11 = puVar8[1];
             uVar2 = puVar8[2];
             uVar3 = puVar8[3];
@@ -516,7 +516,7 @@ int FUN_1808aa943(int param_1)
         FUN_1808adcf0(puVar6,0xe);
         *puVar6 = &unknown_var_9808_ptr;
         puVar6[6] = &unknown_var_9792_ptr;
-        puVar7 = (int32_t *)FUN_180847820();
+        puVar7 = (int32_t *)SystemCoreProcessor();
         uVar2 = puVar7[1];
         uVar3 = puVar7[2];
         uVar4 = puVar7[3];

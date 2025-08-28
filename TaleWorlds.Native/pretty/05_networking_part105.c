@@ -1146,7 +1146,7 @@ uint64_t NetworkingConfigProcessor(int64_t param_1, uint64_t *param_2) {
             if (*(int *)(param_2[1] + 0x18) != 0) {
                 return NETWORK_ERROR_DATA_CORRUPTED;
             }
-            uVar1 = FUN_1808aed00(*param_2, param_1 + 0xc, 4);
+            uVar1 = SystemThreadProcessor(*param_2, param_1 + 0xc, 4);
             if ((int)uVar1 == 0) {
                 uVar1 = FUN_1808de0e0(param_2, 0);
             }
@@ -1181,7 +1181,7 @@ void NetworkingConfigManager(int64_t param_1, uint64_t *param_2) {
             iVar1 = 0;
         }
         else if (*(int *)(param_2[1] + 0x18) == 0) {
-            iVar1 = FUN_1808aed00(*param_2, param_1 + 0x210, 8);
+            iVar1 = SystemThreadProcessor(*param_2, param_1 + 0x210, 8);
         }
         else {
             iVar1 = NETWORK_ERROR_DATA_CORRUPTED;
@@ -1192,7 +1192,7 @@ void NetworkingConfigManager(int64_t param_1, uint64_t *param_2) {
                 iVar1 = 0;
             }
             else if (*(int *)(param_2[1] + 0x18) == 0) {
-                iVar1 = FUN_1808aed00(*param_2, param_1 + 0x2f4, 4);
+                iVar1 = SystemThreadProcessor(*param_2, param_1 + 0x2f4, 4);
             }
             else {
                 iVar1 = NETWORK_ERROR_DATA_CORRUPTED;
@@ -1202,7 +1202,7 @@ void NetworkingConfigManager(int64_t param_1, uint64_t *param_2) {
                     iVar1 = 0;
                 }
                 else if (*(int *)(param_2[1] + 0x18) == 0) {
-                    iVar1 = FUN_1808aed00(*param_2, param_1 + 0x21c, 4);
+                    iVar1 = SystemThreadProcessor(*param_2, param_1 + 0x21c, 4);
                 }
                 else {
                     iVar1 = NETWORK_ERROR_DATA_CORRUPTED;
@@ -1248,7 +1248,7 @@ void NetworkingConfigFinalizer(int32_t param_1) {
                 iVar1 = 0;
             }
             else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-                iVar1 = FUN_1808aed00(*unaff_RBX, unaff_RDI + 0x210, 8);
+                iVar1 = SystemThreadProcessor(*unaff_RBX, unaff_RDI + 0x210, 8);
             }
             else {
                 iVar1 = NETWORK_ERROR_DATA_CORRUPTED;
@@ -1259,7 +1259,7 @@ void NetworkingConfigFinalizer(int32_t param_1) {
                     iVar1 = 0;
                 }
                 else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-                    iVar1 = FUN_1808aed00(*unaff_RBX, unaff_RDI + 0x2f4, 4);
+                    iVar1 = SystemThreadProcessor(*unaff_RBX, unaff_RDI + 0x2f4, 4);
                 }
                 else {
                     iVar1 = NETWORK_ERROR_DATA_CORRUPTED;
@@ -1269,7 +1269,7 @@ void NetworkingConfigFinalizer(int32_t param_1) {
                         iVar1 = 0;
                     }
                     else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-                        iVar1 = FUN_1808aed00(*unaff_RBX, unaff_RDI + 0x21c, 4);
+                        iVar1 = SystemThreadProcessor(*unaff_RBX, unaff_RDI + 0x21c, 4);
                     }
                     else {
                         iVar1 = NETWORK_ERROR_DATA_CORRUPTED;

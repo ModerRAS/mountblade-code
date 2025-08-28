@@ -630,7 +630,7 @@ uint64_t FUN_1808a00c0(int64_t param_1,int64_t *param_2)
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar3 = FUN_180899ef0(*param_2,param_1 + 0x60);
+    uVar3 = SystemCleanupProcessor(*param_2,param_1 + 0x60);
     if ((int)uVar3 == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
@@ -670,7 +670,7 @@ uint64_t FUN_1808a00c0(int64_t param_1,int64_t *param_2)
               if (*(int *)(param_2[1] + 0x18) != 0) {
                 return 0x1c;
               }
-              uVar3 = FUN_180899ef0(*param_2,param_1 + 0x70);
+              uVar3 = SystemCleanupProcessor(*param_2,param_1 + 0x70);
               if (((((((int)uVar3 == 0) &&
                      (uVar3 = FUN_180898eb0(param_2,param_1 + 0xa8), (int)uVar3 == 0)) &&
                     (uVar3 = FUN_180898eb0(param_2,param_1 + 0x9c), (int)uVar3 == 0)) &&
@@ -738,7 +738,7 @@ uint64_t FUN_1808a021e(void)
     if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar3 = FUN_180899ef0(*unaff_RBX,unaff_RDI + 0x70);
+    uVar3 = SystemCleanupProcessor(*unaff_RBX,unaff_RDI + 0x70);
     if (((((((int)uVar3 == 0) &&
            (uVar3 = FUN_180898eb0(extraout_XMM0_Da_01,unaff_RDI + 0xa8), (int)uVar3 == 0)) &&
           (uVar3 = FUN_180898eb0(extraout_XMM0_Da_02,unaff_RDI + 0x9c), (int)uVar3 == 0)) &&
@@ -780,7 +780,7 @@ uint64_t FUN_1808a0262(void)
     if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = FUN_180899ef0(*unaff_RBX,unaff_RDI + 0x70);
+    uVar1 = SystemCleanupProcessor(*unaff_RBX,unaff_RDI + 0x70);
     if (((((((int)uVar1 == 0) && (uVar1 = FUN_180898eb0(), (int)uVar1 == 0)) &&
           (uVar1 = FUN_180898eb0(), (int)uVar1 == 0)) &&
          ((uVar1 = FUN_180898e70(), (int)uVar1 == 0 &&
@@ -818,7 +818,7 @@ uint64_t FUN_1808a03b0(int64_t param_1,int64_t *param_2)
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = FUN_180899ef0(*param_2,param_1 + 0x10);
+    uVar1 = SystemCleanupProcessor(*param_2,param_1 + 0x10);
     if ((int)uVar1 == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
@@ -870,7 +870,7 @@ uint64_t FUN_1808a04a0(int64_t param_1,int64_t *param_2)
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar4 = FUN_180899ef0(*param_2,param_1 + 0x10);
+    uVar4 = SystemCleanupProcessor(*param_2,param_1 + 0x10);
     if ((int)uVar4 == 0) {
       uVar3 = *(int *)(param_1 + 0x28) * 2;
       if ((uVar3 | 1) < 0x8000) {

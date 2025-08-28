@@ -720,7 +720,7 @@ void FUN_180208720(int64_t *param_1,uint64_t param_2,float *param_3,int param_4)
                   else {
                     cVar5 = FUN_1801ef300(lVar16,lVar10,lVar8);
                     if (cVar5 == '\0') {
-                      FUN_180626f80(&unknown_var_1920_ptr);
+                      SystemOptimizationProcessor(&unknown_var_1920_ptr);
                       iVar14 = *(int *)(lVar20 + lStack_48);
                       uVar19 = uStack_68;
                       goto LAB_180208aa2;

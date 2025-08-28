@@ -973,7 +973,7 @@ LAB_1800967cd:
     uVar22 = uVar17;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar11,puVar8,puVar9,uVar22);
+  SystemConfigProcessor(lVar11,puVar8,puVar9,uVar22);
 LAB_180096a34:
   *plVar5 = lVar11;
   plVar25 = plVar25 + 1;

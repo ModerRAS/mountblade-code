@@ -1021,7 +1021,7 @@ void ObjectDestructor(int64_t param_1, int64_t *param_2, uint64_t param_3, uint6
         }
     }
     else {
-        FUN_180626f80(&system_param2_ptr);
+        SystemOptimizationProcessor(&system_param2_ptr);
     }
     
     /* 最终清理 */
@@ -1100,7 +1100,7 @@ uint64_t ObjectRegistrar(int64_t param_1, int64_t *param_2, int8_t param_3, int8
                     if (*(void **)(lVar6 + 0x290) != (void *)0x0) {
                         puVar9 = *(void **)(lVar6 + 0x290);
                     }
-                    plVar7 = (int64_t *)FUN_180626f80(&unknown_var_2304_ptr, puVar9);
+                    plVar7 = (int64_t *)SystemOptimizationProcessor(&unknown_var_2304_ptr, puVar9);
                 }
                 if ((int64_t *)*param_2 != (int64_t *)0x0) {
                     plVar7 = (int64_t *)(**(code **)(*(int64_t *)*param_2 + 0x38))();
@@ -1168,7 +1168,7 @@ LAB_180198da7:
     else {
         uVar12 = 1;
     }
-    FUN_18066bdc0(lVar6, puVar10, puVar1, uVar12);
+    SystemConfigProcessor(lVar6, puVar10, puVar1, uVar12);
 }
 
 /*=============================================================================

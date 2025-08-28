@@ -399,11 +399,11 @@ LAB_1808a53f9:
                 if (*(int *)(param_1[1] + 0x18) == 0) {
                     uVar3 = *param_1;
                     lVar6 = *param_2 + (int64_t)(int)puVar4 * 8;
-                    puVar5 = (uint64_t *)FUN_1808aed00(uVar3, lVar6, 4);
+                    puVar5 = (uint64_t *)SystemThreadProcessor(uVar3, lVar6, 4);
                     if ((int)puVar5 != 0) {
                         return puVar5;
                     }
-                    puVar5 = (uint64_t *)FUN_1808aed00(uVar3, lVar6 + 4, 4);
+                    puVar5 = (uint64_t *)SystemThreadProcessor(uVar3, lVar6 + 4, 4);
                 }
                 else {
                     puVar5 = (uint64_t *)0x1c;
@@ -510,11 +510,11 @@ LAB_1808a53f9:
                 if (*(int *)(unaff_RSI[1] + 0x18) == 0) {
                     uVar3 = *unaff_RSI;
                     lVar7 = *unaff_R14 + (int64_t)(int)uVar6 * 8;
-                    uVar5 = FUN_1808aed00(uVar3, lVar7, 4);
+                    uVar5 = SystemThreadProcessor(uVar3, lVar7, 4);
                     if ((int)uVar5 != 0) {
                         return uVar5;
                     }
-                    uVar5 = FUN_1808aed00(uVar3, lVar7 + 4, 4);
+                    uVar5 = SystemThreadProcessor(uVar3, lVar7 + 4, 4);
                 }
                 else {
                     uVar5 = 0x1c;
@@ -569,11 +569,11 @@ uint64_t DataValidationFunction_001(void)
             if (*(int *)(unaff_RSI[1] + 0x18) == 0) {
                 uVar2 = *unaff_RSI;
                 lVar1 = *unaff_R14 + (int64_t)(int)unaff_EBX * 8;
-                uVar3 = FUN_1808aed00(uVar2, lVar1, 4);
+                uVar3 = SystemThreadProcessor(uVar2, lVar1, 4);
                 if ((int)uVar3 != 0) {
                     return uVar3;
                 }
-                uVar2 = FUN_1808aed00(uVar2, lVar1 + 4, 4);
+                uVar2 = SystemThreadProcessor(uVar2, lVar1 + 4, 4);
             }
             else {
                 uVar2 = 0x1c;
@@ -634,11 +634,11 @@ uint64_t DataValidationFunction_002(void)
     do {
         uVar3 = *unaff_RSI;
         lVar1 = *unaff_R14 + (int64_t)unaff_EDI * 8;
-        uVar2 = FUN_1808aed00(uVar3, lVar1, 4);
+        uVar2 = SystemThreadProcessor(uVar3, lVar1, 4);
         if ((int)uVar2 != 0) {
             return uVar2;
         }
-        uVar3 = FUN_1808aed00(uVar3, lVar1 + 4, 4);
+        uVar3 = SystemThreadProcessor(uVar3, lVar1 + 4, 4);
         while( true ) {
             if ((int)uVar3 != 0) {
                 return uVar3;
@@ -718,19 +718,19 @@ uint64_t DataProcessingFunction_001(uint64_t *param_1, int64_t *param_2)
                     if (*(int *)(param_1[1] + 0x18) == 0) {
                         uVar3 = *param_1;
                         lVar1 = *param_2 + (int64_t)iVar6 * 0x18;
-                        uVar4 = FUN_1808aed00(uVar3, lVar1, 4);
+                        uVar4 = SystemThreadProcessor(uVar3, lVar1, 4);
                         if ((int)uVar4 != 0) {
                             return uVar4;
                         }
-                        uVar4 = FUN_1808aed00(uVar3, lVar1 + 4, 2);
+                        uVar4 = SystemThreadProcessor(uVar3, lVar1 + 4, 2);
                         if ((int)uVar4 != 0) {
                             return uVar4;
                         }
-                        uVar4 = FUN_1808aed00(uVar3, lVar1 + 6, 2);
+                        uVar4 = SystemThreadProcessor(uVar3, lVar1 + 6, 2);
                         if ((int)uVar4 != 0) {
                             return uVar4;
                         }
-                        uVar4 = FUN_1808aed00(uVar3, lVar1 + 8, 8);
+                        uVar4 = SystemThreadProcessor(uVar3, lVar1 + 8, 8);
                         if ((int)uVar4 != 0) {
                             return uVar4;
                         }
@@ -787,19 +787,19 @@ uint64_t DataProcessingFunction_002(void)
                 if (*(int *)(unaff_R14[1] + 0x18) == 0) {
                     uVar2 = *unaff_R14;
                     lVar1 = *unaff_R12 + (int64_t)unaff_EBX * 0x18;
-                    uVar3 = FUN_1808aed00(uVar2, lVar1, 4);
+                    uVar3 = SystemThreadProcessor(uVar2, lVar1, 4);
                     if ((int)uVar3 != 0) {
                         return uVar3;
                     }
-                    uVar3 = FUN_1808aed00(uVar2, lVar1 + 4, 2);
+                    uVar3 = SystemThreadProcessor(uVar2, lVar1 + 4, 2);
                     if ((int)uVar3 != 0) {
                         return uVar3;
                     }
-                    uVar3 = FUN_1808aed00(uVar2, lVar1 + 6, 2);
+                    uVar3 = SystemThreadProcessor(uVar2, lVar1 + 6, 2);
                     if ((int)uVar3 != 0) {
                         return uVar3;
                     }
-                    uVar3 = FUN_1808aed00(uVar2, lVar1 + 8, 8);
+                    uVar3 = SystemThreadProcessor(uVar2, lVar1 + 8, 8);
                     if ((int)uVar3 != 0) {
                         return uVar3;
                     }
@@ -855,19 +855,19 @@ uint64_t DataProcessingFunction_003(void)
             if (*(int *)(unaff_R14[1] + 0x18) == 0) {
                 uVar2 = *unaff_R14;
                 lVar1 = *unaff_R12 + (int64_t)(int)unaff_EBX * 0x18;
-                uVar3 = FUN_1808aed00(uVar2, lVar1, 4);
+                uVar3 = SystemThreadProcessor(uVar2, lVar1, 4);
                 if ((int)uVar3 != 0) {
                     return uVar3;
                 }
-                uVar3 = FUN_1808aed00(uVar2, lVar1 + 4, 2);
+                uVar3 = SystemThreadProcessor(uVar2, lVar1 + 4, 2);
                 if ((int)uVar3 != 0) {
                     return uVar3;
                 }
-                uVar3 = FUN_1808aed00(uVar2, lVar1 + 6, 2);
+                uVar3 = SystemThreadProcessor(uVar2, lVar1 + 6, 2);
                 if ((int)uVar3 != 0) {
                     return uVar3;
                 }
-                uVar3 = FUN_1808aed00(uVar2, lVar1 + 8, 8);
+                uVar3 = SystemThreadProcessor(uVar2, lVar1 + 8, 8);
                 if ((int)uVar3 != 0) {
                     return uVar3;
                 }
@@ -961,11 +961,11 @@ uint64_t SystemControlFunction_001(uint64_t *param_1, int64_t *param_2)
                     if (*(int *)(param_1[1] + 0x18) == 0) {
                         uVar3 = *param_1;
                         lVar1 = *param_2 + (int64_t)iVar7 * 8;
-                        uVar4 = FUN_1808aed00(uVar3, lVar1, 4);
+                        uVar4 = SystemThreadProcessor(uVar3, lVar1, 4);
                         if ((int)uVar4 != 0) {
                             return uVar4;
                         }
-                        uVar3 = FUN_1808aed00(uVar3, lVar1 + 4, 4);
+                        uVar3 = SystemThreadProcessor(uVar3, lVar1 + 4, 4);
                     }
                     else {
                         uVar3 = 0x1c;
@@ -1029,11 +1029,11 @@ uint64_t SystemControlFunction_002(void)
                     if (*(int *)(unaff_RSI[1] + 0x18) == 0) {
                         uVar2 = *unaff_RSI;
                         lVar1 = *unaff_R12 + (int64_t)iVar5 * 8;
-                        uVar3 = FUN_1808aed00(uVar2, lVar1, 4);
+                        uVar3 = SystemThreadProcessor(uVar2, lVar1, 4);
                         if ((int)uVar3 != 0) {
                             return uVar3;
                         }
-                        uVar3 = FUN_1808aed00(uVar2, lVar1 + 4, 4);
+                        uVar3 = SystemThreadProcessor(uVar2, lVar1 + 4, 4);
                     }
                     else {
                         uVar3 = 0x1c;
@@ -1082,11 +1082,11 @@ uint64_t SystemControlFunction_003(void)
             if (*(int *)(unaff_RSI[1] + 0x18) == 0) {
                 uVar2 = *unaff_RSI;
                 lVar1 = *unaff_R12 + (int64_t)(int)unaff_EBX * 8;
-                uVar3 = FUN_1808aed00(uVar2, lVar1, 4);
+                uVar3 = SystemThreadProcessor(uVar2, lVar1, 4);
                 if ((int)uVar3 != 0) {
                     return uVar3;
                 }
-                uVar2 = FUN_1808aed00(uVar2, lVar1 + 4, 4);
+                uVar2 = SystemThreadProcessor(uVar2, lVar1 + 4, 4);
             }
             else {
                 uVar2 = 0x1c;
@@ -1162,19 +1162,19 @@ uint64_t AdvancedDataProcessingFunction_001(uint64_t *param_1, int64_t *param_2)
                     if (*(int *)(param_1[1] + 0x18) == 0) {
                         uVar2 = *param_1;
                         lVar4 = (int64_t)iVar6 * 0x1c + *param_2;
-                        uVar3 = FUN_1808aed00(uVar2, lVar4, 4);
+                        uVar3 = SystemThreadProcessor(uVar2, lVar4, 4);
                         if ((int)uVar3 != 0) {
                             return uVar3;
                         }
-                        uVar3 = FUN_1808aed00(uVar2, lVar4 + 4, 2);
+                        uVar3 = SystemThreadProcessor(uVar2, lVar4 + 4, 2);
                         if ((int)uVar3 != 0) {
                             return uVar3;
                         }
-                        uVar3 = FUN_1808aed00(uVar2, lVar4 + 6, 2);
+                        uVar3 = SystemThreadProcessor(uVar2, lVar4 + 6, 2);
                         if ((int)uVar3 != 0) {
                             return uVar3;
                         }
-                        uVar3 = FUN_1808aed00(uVar2, lVar4 + 8, 8);
+                        uVar3 = SystemThreadProcessor(uVar2, lVar4 + 8, 8);
                         if ((int)uVar3 != 0) {
                             return uVar3;
                         }
@@ -1235,19 +1235,19 @@ uint64_t AdvancedDataProcessingFunction_002(void)
                 if (*(int *)(unaff_R14[1] + 0x18) == 0) {
                     uVar1 = *unaff_R14;
                     lVar3 = (int64_t)unaff_EBX * 0x1c + *unaff_R12;
-                    uVar2 = FUN_1808aed00(uVar1, lVar3, 4);
+                    uVar2 = SystemThreadProcessor(uVar1, lVar3, 4);
                     if ((int)uVar2 != 0) {
                         return uVar2;
                     }
-                    uVar2 = FUN_1808aed00(uVar1, lVar3 + 4, 2);
+                    uVar2 = SystemThreadProcessor(uVar1, lVar3 + 4, 2);
                     if ((int)uVar2 != 0) {
                         return uVar2;
                     }
-                    uVar2 = FUN_1808aed00(uVar1, lVar3 + 6, 2);
+                    uVar2 = SystemThreadProcessor(uVar1, lVar3 + 6, 2);
                     if ((int)uVar2 != 0) {
                         return uVar2;
                     }
-                    uVar2 = FUN_1808aed00(uVar1, lVar3 + 8, 8);
+                    uVar2 = SystemThreadProcessor(uVar1, lVar3 + 8, 8);
                     if ((int)uVar2 != 0) {
                         return uVar2;
                     }
@@ -1307,19 +1307,19 @@ uint64_t AdvancedDataProcessingFunction_003(void)
             if (*(int *)(unaff_R14[1] + 0x18) == 0) {
                 uVar1 = *unaff_R14;
                 lVar3 = (int64_t)(int)unaff_EBX * 0x1c + *unaff_R12;
-                uVar2 = FUN_1808aed00(uVar1, lVar3, 4);
+                uVar2 = SystemThreadProcessor(uVar1, lVar3, 4);
                 if ((int)uVar2 != 0) {
                     return uVar2;
                 }
-                uVar2 = FUN_1808aed00(uVar1, lVar3 + 4, 2);
+                uVar2 = SystemThreadProcessor(uVar1, lVar3 + 4, 2);
                 if ((int)uVar2 != 0) {
                     return uVar2;
                 }
-                uVar2 = FUN_1808aed00(uVar1, lVar3 + 6, 2);
+                uVar2 = SystemThreadProcessor(uVar1, lVar3 + 6, 2);
                 if ((int)uVar2 != 0) {
                     return uVar2;
                 }
-                uVar2 = FUN_1808aed00(uVar1, lVar3 + 8, 8);
+                uVar2 = SystemThreadProcessor(uVar1, lVar3 + 8, 8);
                 if ((int)uVar2 != 0) {
                     return uVar2;
                 }
@@ -1414,7 +1414,7 @@ uint64_t AdvancedDataSerializationFunction_001(int64_t *param_1, uint64_t *param
                 return 0x1c;
             }
             lVar1 = *param_1;
-            uVar4 = FUN_180899ef0(lVar1, uVar3);
+            uVar4 = SystemCleanupProcessor(lVar1, uVar3);
             if ((int)uVar4 != 0) {
                 return uVar4;
             }
@@ -1478,7 +1478,7 @@ uint64_t AdvancedDataSerializationFunction_002(void)
             return 0x1c;
         }
         lVar1 = *unaff_RSI;
-        uVar2 = FUN_180899ef0(lVar1, uVar3);
+        uVar2 = SystemCleanupProcessor(lVar1, uVar3);
         if ((int)uVar2 != 0) {
             return uVar2;
         }

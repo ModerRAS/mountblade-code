@@ -140,7 +140,7 @@ void NetworkClient_GetConnectionInfo(uint64_t client_id, uint64_t *connection_in
         }
         
         // 验证连接句柄
-        status = FUN_18088c740(connection_data + 1);
+        status = SystemSecurityProcessor(connection_data + 1);
         if (status == 0) {
             goto cleanup_and_exit;
         }
@@ -364,7 +364,7 @@ void NetworkClient_GetPropertyList(uint64_t client_id, int32_t *property_array, 
         }
         
         // 验证连接句柄
-        status = FUN_18088c740(connection_data + 1);
+        status = SystemSecurityProcessor(connection_data + 1);
         if (status == 0) {
             goto cleanup_and_exit;
         }
@@ -471,7 +471,7 @@ void NetworkClient_GetConnectionCount(uint64_t server_id, uint *connection_count
     // 查询服务器信息
     result = func_0x00018088c590(0, &server_data);
     
-    if (((result == 0) && (result = FUN_18088c740(&connection_handle, server_data), result == 0)) &&
+    if (((result == 0) && (result = SystemSecurityProcessor(&connection_handle, server_data), result == 0)) &&
         (result = func_0x00018088c530(server_id & 0xffffffff, &lookup_result), result == 0)) {
         
         // 获取连接表指针
@@ -548,7 +548,7 @@ void NetworkClient_GetClientInfo(int32_t client_id, int32_t *client_version, int
     // 查询服务器数据
     result = func_0x00018088c590(0, &server_data);
     
-    if (((result == 0) && (result = FUN_18088c740(&connection_handle, server_data), result == 0)) &&
+    if (((result == 0) && (result = SystemSecurityProcessor(&connection_handle, server_data), result == 0)) &&
         (result = func_0x00018088c530(client_id, lookup_result), result == 0)) {
         
         // 获取客户端信息指针
@@ -639,7 +639,7 @@ void NetworkClient_SetClientProperty(uint64_t client_id, int64_t property_id, in
                     // WARNING: Subroutine does not return
       AdvancedSystemProcessor(&uStack_160);
     }
-    iVar2 = FUN_18088c740(&uStack_160);
+    iVar2 = SystemSecurityProcessor(&uStack_160);
     if (iVar2 != 0) goto LAB_1808462b2;
   }
   iVar2 = iVar1;
@@ -801,7 +801,7 @@ void NetworkClient_GetClientAddress(uint64_t client_id, int32_t *client_address)
   uStack_130 = 0;
   lStack_128 = 0;
   iVar1 = func_0x00018088c590(0,&uStack_130);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,uStack_130), iVar1 == 0)) &&
+  if (((iVar1 == 0) && (iVar1 = SystemSecurityProcessor(&uStack_138,uStack_130), iVar1 == 0)) &&
      (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_120), iVar1 == 0)) {
     lStack_128 = *(int64_t *)(lStack_120 + 8);
   }
@@ -864,7 +864,7 @@ void NetworkClient_GetClientData(uint64_t client_id, int8_t *data_buffer, int da
     uStack_178 = 0;
     uStack_170 = 0;
     iVar1 = func_0x00018088c590(0,&uStack_170);
-    if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_178,uStack_170), iVar1 == 0)) &&
+    if (((iVar1 == 0) && (iVar1 = SystemSecurityProcessor(&uStack_178,uStack_170), iVar1 == 0)) &&
        (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_160), iVar1 == 0)) {
       lStack_168 = *(int64_t *)(lStack_160 + 8);
     }
@@ -1000,7 +1000,7 @@ void NetworkClient_GetClientState(uint64_t client_id, int8_t *client_state)
   uStack_140 = 0;
   lStack_138 = 0;
   iVar1 = func_0x00018088c590(0,&uStack_140);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_148,uStack_140), iVar1 == 0)) &&
+  if (((iVar1 == 0) && (iVar1 = SystemSecurityProcessor(&uStack_148,uStack_140), iVar1 == 0)) &&
      (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_130), iVar1 == 0)) {
     lStack_138 = 0;
     if (lStack_130 != 0) {
@@ -1057,7 +1057,7 @@ void NetworkClient_GetClientVersion(int32_t client_id, int32_t *major_version, i
   uStack_158 = 0;
   uStack_150 = 0;
   iVar1 = func_0x00018088c590(0,&uStack_150);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_158,uStack_150), iVar1 == 0)) &&
+  if (((iVar1 == 0) && (iVar1 = SystemSecurityProcessor(&uStack_158,uStack_150), iVar1 == 0)) &&
      (iVar1 = func_0x00018088c530(param_1,alStack_140), iVar1 == 0)) {
     lStack_148 = 0;
     if (alStack_140[0] != 0) {
@@ -1119,7 +1119,7 @@ void NetworkClient_GetClientPing(uint64_t client_id, int32_t *ping_time)
   uStack_140 = 0;
   lStack_138 = 0;
   iVar1 = func_0x00018088c590(0,&uStack_140);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_148,uStack_140), iVar1 == 0)) &&
+  if (((iVar1 == 0) && (iVar1 = SystemSecurityProcessor(&uStack_148,uStack_140), iVar1 == 0)) &&
      (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_130), iVar1 == 0)) {
     lStack_138 = 0;
     if (lStack_130 != 0) {
@@ -1177,7 +1177,7 @@ void NetworkClient_GetClientProperty(uint64_t client_id, uint property_index, in
       uStack_158 = 0;
       uStack_150 = 0;
       iVar1 = func_0x00018088c590(0,&uStack_150);
-      if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_158,uStack_150), iVar1 == 0)) &&
+      if (((iVar1 == 0) && (iVar1 = SystemSecurityProcessor(&uStack_158,uStack_150), iVar1 == 0)) &&
          (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_140), iVar1 == 0)) {
         lStack_148 = 0;
         if (lStack_140 != 0) {
@@ -1252,7 +1252,7 @@ void NetworkClient_IsClientConnected(uint64_t client_id, int32_t *connection_sta
   iVar1 = func_0x00018088c590(param_1,alStack_148);
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0) goto LAB_180846d91;
-    iVar2 = FUN_18088c740(alStack_148 + 1);
+    iVar2 = SystemSecurityProcessor(alStack_148 + 1);
     if (iVar2 == 0) goto LAB_180846df9;
   }
   else {
@@ -1326,7 +1326,7 @@ void NetworkClient_GetActiveConnections(uint64_t server_id, uint *active_count)
   uStack_140 = 0;
   lStack_138 = 0;
   iVar1 = func_0x00018088c590(0,&uStack_140);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_148,uStack_140), iVar1 == 0)) &&
+  if (((iVar1 == 0) && (iVar1 = SystemSecurityProcessor(&uStack_148,uStack_140), iVar1 == 0)) &&
      (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_130), iVar1 == 0)) {
     if (lStack_130 == 0) {
       lStack_138 = 0;
@@ -1395,7 +1395,7 @@ void NetworkClient_GetConnectionHandle(uint64_t client_id, uint64_t *connection_
   uStack_130 = 0;
   lStack_128 = 0;
   iVar1 = func_0x00018088c590(0,&uStack_130);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_138,uStack_130), iVar1 == 0)) &&
+  if (((iVar1 == 0) && (iVar1 = SystemSecurityProcessor(&uStack_138,uStack_130), iVar1 == 0)) &&
      (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_120), iVar1 == 0)) {
     lStack_128 = *(int64_t *)(lStack_120 + 8);
   }

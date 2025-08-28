@@ -61,7 +61,7 @@ uint64_t FUN_1808e5f55(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
   param_6 = 0;
   uVar13 = *(uint *)(in_stack_00000080 + 4);
   if (0 < iVar18) {
-    uVar9 = FUN_180849030(&param_5,iVar18);
+    uVar9 = SystemDeallocationProcessor(&param_5,iVar18);
     uVar10 = (uint64_t)uVar9;
     if (uVar9 != 0) goto LAB_1808e6366;
     if ((int)param_6 < iVar18) {
@@ -298,7 +298,7 @@ uint64_t FUN_1808e5f84(void)
   uVar8 = *(uint *)(in_RAX + 0x20);
   uVar12 = (uint)unaff_R13;
   if (0 < iVar17) {
-    uVar9 = FUN_180849030(&stack0x00000028,iVar17);
+    uVar9 = SystemDeallocationProcessor(&stack0x00000028,iVar17);
     uVar15 = uVar9 & 0xffffffff;
     if ((int)uVar9 != 0) goto LAB_1808e6366;
     if ((int)uVar12 < iVar17) {

@@ -598,7 +598,7 @@ void FUN_180170ba0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t pa
       }
       else {
         uStack_108 = (void **)uVar2;
-        FUN_1800b8300(uVar2,&puStack_e8);
+        SystemCommunicationProcessor(uVar2,&puStack_e8);
         *(int32_t *)(uVar2 + 0x58) = uStack_90;
         *(int32_t *)(uVar2 + 0x5c) = uStack_8c;
         *(int32_t *)(uVar2 + 0x60) = uStack_88;
@@ -610,7 +610,7 @@ void FUN_180170ba0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t pa
     else if (uVar2 < *(uint64_t *)(param_4 + 0x28)) {
       *(uint64_t *)(param_4 + 0x20) = uVar2 + 0x70;
       uStack_108 = (void **)uVar2;
-      FUN_1800b8300(uVar2);
+      SystemCommunicationProcessor(uVar2);
       *(int32_t *)(uVar2 + 0x58) = uStack_90;
       *(int32_t *)(uVar2 + 0x5c) = uStack_8c;
       *(int32_t *)(uVar2 + 0x60) = uStack_88;

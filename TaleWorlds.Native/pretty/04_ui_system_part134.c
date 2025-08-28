@@ -138,7 +138,7 @@ struct UIMemoryBlock {
 // 组件注册管理相关函数别名
 #define UISystem_ComponentRegistrar(param1, param2) FUN_1807889e0(param1, param2)
 #define UISystem_ComponentUnregistrar(param1, param2) FUN_180788d20(param1, param2)
-#define UISystem_ComponentCleaner(param1, param2) FUN_180743d60(param1, param2)
+#define UISystem_ComponentCleaner(param1, param2) SystemMemoryProcessor(param1, param2)
 #define UISystem_ComponentStateChecker(param1, param2) func_0x000180743c20(param1, param2)
 
 // 组件操作相关函数别名

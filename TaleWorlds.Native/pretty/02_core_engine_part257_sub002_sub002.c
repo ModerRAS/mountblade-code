@@ -54,7 +54,7 @@
 #define CoreEngine_MemoryAllocator FUN_180049bf0
 
 // 数据初始化器
-#define CoreEngine_DataInitializer FUN_1800b8300
+#define CoreEngine_DataInitializer SystemCommunicationProcessor
 
 // 配置处理器
 #define CoreEngine_ConfigProcessor CoreEngineDataTransformer
@@ -66,7 +66,7 @@
 #define CoreEngine_StateSynchronizer FUN_180049bf0
 
 // 消息处理器
-#define CoreEngine_MessageProcessor FUN_1800b8300
+#define CoreEngine_MessageProcessor SystemCommunicationProcessor
 
 // 安全验证器
 #define CoreEngine_SecurityValidator CoreEngineDataTransformer

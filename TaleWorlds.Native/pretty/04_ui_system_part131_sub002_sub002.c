@@ -32,7 +32,7 @@ void FUN_180744bb0(int64_t param_1,int64_t param_2)
   }
   if (param_1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(param_1,0x11);
+    SystemMemoryProcessor(param_1,0x11);
   }
   iVar2 = FUN_18078a340(0x720,*(uint64_t *)(param_2 + 0x10),
                         CONCAT71((int7)(int3)((uint)iVar2 >> 8),1));
@@ -47,7 +47,7 @@ void FUN_180744bb0(int64_t param_1,int64_t param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180744cc0(int64_t *param_1)
+uint64_t SystemLockProcessor(int64_t *param_1)
 
 {
   uint uVar1;
@@ -255,7 +255,7 @@ uint64_t FUN_180744ee0(uint64_t param_1,char param_2)
       *(int *)(param_1 + 0x127e8) = iVar4 + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180743d60(param_1,0x11);
+    SystemMemoryProcessor(param_1,0x11);
   }
   FUN_180744d60(param_1 + 0x127e0);
   if (*(int64_t *)(param_1 + 0x12770) != 0) {

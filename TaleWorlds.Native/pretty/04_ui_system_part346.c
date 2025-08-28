@@ -52,7 +52,7 @@ void FUN_180856ec0(int64_t param_1,uint64_t *param_2)
     lVar7 = (**(code **)(*(int64_t *)*param_2 + 0x2f0))((int64_t *)*param_2,lVar11 + 0x10,1);
     if (lVar7 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18084b240(lVar11 + 0x10,&plStack_78);
+      SystemStateProcessor(lVar11 + 0x10,&plStack_78);
     }
     *(int64_t *)(param_1 + 0x110) = lVar7;
   }

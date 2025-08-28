@@ -51,7 +51,7 @@ uint64_t FUN_18089b7d0(int64_t param_1,int64_t *param_2)
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808aed00(*param_2,param_1 + 0xb0,4);
+  uVar3 = SystemThreadProcessor(*param_2,param_1 + 0xb0,4);
   if (uVar3 != 0) {
     return (uint64_t)uVar3;
   }
@@ -93,7 +93,7 @@ LAB_18089b91c:
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar6 = FUN_1808aed00(*param_2,param_1 + 0xb8,4);
+    uVar6 = SystemThreadProcessor(*param_2,param_1 + 0xb8,4);
     if ((int)uVar6 != 0) {
       return uVar6;
     }
@@ -116,12 +116,12 @@ LAB_18089b91c:
         (((uVar6 = uVar8, *(int *)(param_2[1] + 0x18) == 0 &&
           (uVar6 = FUN_1808995c0(*param_2,param_1 + 0x9c), (int)uVar6 == 0)) &&
          ((uVar6 = uVar8, *(int *)(param_2[1] + 0x18) == 0 &&
-          ((uVar6 = FUN_1808aed00(*param_2,param_1 + 0xb4,4), (int)uVar6 == 0 &&
+          ((uVar6 = SystemThreadProcessor(*param_2,param_1 + 0xb4,4), (int)uVar6 == 0 &&
            (uVar6 = FUN_18089d490(param_1 + 0x30,param_2), (int)uVar6 == 0)))))))))) {
       uVar6 = uVar5;
       if (0x34 < *(uint *)(param_2 + 8)) {
         if (*(int *)(param_2[1] + 0x18) == 0) {
-          uVar6 = FUN_1808aed00(*param_2,param_1 + 0xbc,4);
+          uVar6 = SystemThreadProcessor(*param_2,param_1 + 0xbc,4);
         }
         else {
           uVar6 = 0x1c;
@@ -131,7 +131,7 @@ LAB_18089b91c:
         uVar6 = uVar5;
         if (0x46 < *(uint *)(param_2 + 8)) {
           if (*(int *)(param_2[1] + 0x18) == 0) {
-            uVar6 = FUN_1808aed00(*param_2,param_1 + 0xc0,4);
+            uVar6 = SystemThreadProcessor(*param_2,param_1 + 0xc0,4);
           }
           else {
             uVar6 = 0x1c;
@@ -215,7 +215,7 @@ uint64_t FUN_18089b813(void)
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xb0,4);
+  uVar3 = SystemThreadProcessor(*unaff_RBX,unaff_RSI + 0xb0,4);
   if (uVar3 != 0) {
     return (uint64_t)uVar3;
   }
@@ -257,7 +257,7 @@ LAB_18089b91c:
     if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xb8,4);
+    uVar5 = SystemThreadProcessor(*unaff_RBX,unaff_RSI + 0xb8,4);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
@@ -280,12 +280,12 @@ LAB_18089b91c:
         (((uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0 &&
           (uVar5 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x9c), (int)uVar5 == 0)) &&
          ((uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0 &&
-          ((uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xb4,4), (int)uVar5 == 0 &&
+          ((uVar5 = SystemThreadProcessor(*unaff_RBX,unaff_RSI + 0xb4,4), (int)uVar5 == 0 &&
            (uVar5 = FUN_18089d490(unaff_RSI + 0x30), (int)uVar5 == 0)))))))))) {
       uVar5 = uVar7;
       if (0x34 < *(uint *)(unaff_RBX + 8)) {
         if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-          uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xbc,4);
+          uVar5 = SystemThreadProcessor(*unaff_RBX,unaff_RSI + 0xbc,4);
         }
         else {
           uVar5 = 0x1c;
@@ -295,7 +295,7 @@ LAB_18089b91c:
         uVar5 = uVar7;
         if (0x46 < *(uint *)(unaff_RBX + 8)) {
           if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-            uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xc0,4);
+            uVar5 = SystemThreadProcessor(*unaff_RBX,unaff_RSI + 0xc0,4);
           }
           else {
             uVar5 = 0x1c;
@@ -361,7 +361,7 @@ uint64_t FUN_18089b86d(void)
   char in_stack_00000090;
   uint in_stack_00000098;
   
-  uVar3 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xb0,4);
+  uVar3 = SystemThreadProcessor(*unaff_RBX,unaff_RSI + 0xb0,4);
   if (uVar3 != 0) {
     return (uint64_t)uVar3;
   }
@@ -403,7 +403,7 @@ LAB_18089b91c:
     if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xb8,4);
+    uVar5 = SystemThreadProcessor(*unaff_RBX,unaff_RSI + 0xb8,4);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
@@ -426,12 +426,12 @@ LAB_18089b91c:
         (((uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0 &&
           (uVar5 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x9c), (int)uVar5 == 0)) &&
          ((uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0 &&
-          ((uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xb4,4), (int)uVar5 == 0 &&
+          ((uVar5 = SystemThreadProcessor(*unaff_RBX,unaff_RSI + 0xb4,4), (int)uVar5 == 0 &&
            (uVar5 = FUN_18089d490(unaff_RSI + 0x30), (int)uVar5 == 0)))))))))) {
       uVar5 = uVar7;
       if (0x34 < *(uint *)(unaff_RBX + 8)) {
         if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-          uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xbc,4);
+          uVar5 = SystemThreadProcessor(*unaff_RBX,unaff_RSI + 0xbc,4);
         }
         else {
           uVar5 = 0x1c;
@@ -441,7 +441,7 @@ LAB_18089b91c:
         uVar5 = uVar7;
         if (0x46 < *(uint *)(unaff_RBX + 8)) {
           if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-            uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xc0,4);
+            uVar5 = SystemThreadProcessor(*unaff_RBX,unaff_RSI + 0xc0,4);
           }
           else {
             uVar5 = 0x1c;
@@ -545,7 +545,7 @@ LAB_18089b91c:
     if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xb8,4);
+    uVar5 = SystemThreadProcessor(*unaff_RBX,unaff_RSI + 0xb8,4);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
@@ -568,12 +568,12 @@ LAB_18089b91c:
         (((uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0 &&
           (uVar5 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x9c), (int)uVar5 == 0)) &&
          ((uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0 &&
-          ((uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xb4,4), (int)uVar5 == 0 &&
+          ((uVar5 = SystemThreadProcessor(*unaff_RBX,unaff_RSI + 0xb4,4), (int)uVar5 == 0 &&
            (uVar5 = FUN_18089d490(unaff_RSI + 0x30), (int)uVar5 == 0)))))))))) {
       uVar5 = uVar7;
       if (0x34 < *(uint *)(unaff_RBX + 8)) {
         if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-          uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xbc,4);
+          uVar5 = SystemThreadProcessor(*unaff_RBX,unaff_RSI + 0xbc,4);
         }
         else {
           uVar5 = 0x1c;
@@ -583,7 +583,7 @@ LAB_18089b91c:
         uVar5 = uVar7;
         if (0x46 < *(uint *)(unaff_RBX + 8)) {
           if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-            uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xc0,4);
+            uVar5 = SystemThreadProcessor(*unaff_RBX,unaff_RSI + 0xc0,4);
           }
           else {
             uVar5 = 0x1c;
@@ -887,7 +887,7 @@ void FUN_18089be10(int64_t param_1,uint64_t *param_2,int param_3)
   lVar6 = (int64_t)(int)auStackX_8[0];
   uVar4 = (int)*(uint *)(param_1 + 0x2c) >> 0x1f;
   if (((int)((*(uint *)(param_1 + 0x2c) ^ uVar4) - uVar4) < (int)auStackX_8[0]) &&
-     (iVar2 = FUN_180849030(param_1 + 0x20,auStackX_8[0]), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_1 + 0x20,auStackX_8[0]), iVar2 != 0)) {
     return;
   }
   iVar2 = *(int *)(param_1 + 0x28);
@@ -898,7 +898,7 @@ void FUN_18089be10(int64_t param_1,uint64_t *param_2,int param_3)
   *(uint *)(param_1 + 0x28) = uVar1;
   if (uVar1 != 0) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      iVar2 = FUN_1808aed00(*param_2,*(uint64_t *)(param_1 + 0x20),lVar6);
+      iVar2 = SystemThreadProcessor(*param_2,*(uint64_t *)(param_1 + 0x20),lVar6);
       if (iVar2 == 0) goto LAB_18089bfc7;
     }
     else {
@@ -997,7 +997,7 @@ void FUN_18089be41(void)
   lVar5 = (int64_t)(int)in_stack_00000050;
   uVar3 = (int)*(uint *)(unaff_R15 + 0x2c) >> 0x1f;
   if (((int)((*(uint *)(unaff_R15 + 0x2c) ^ uVar3) - uVar3) < (int)in_stack_00000050) &&
-     (iVar2 = FUN_180849030(unaff_R15 + 0x20,in_stack_00000050), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(unaff_R15 + 0x20,in_stack_00000050), iVar2 != 0)) {
     return;
   }
   iVar2 = *(int *)(unaff_R15 + 0x28);
@@ -1008,7 +1008,7 @@ void FUN_18089be41(void)
   *(int *)(unaff_R15 + 0x28) = iVar1;
   if (iVar1 != 0) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      iVar1 = FUN_1808aed00(*unaff_RBX,*(uint64_t *)(unaff_R15 + 0x20),lVar5);
+      iVar1 = SystemThreadProcessor(*unaff_RBX,*(uint64_t *)(unaff_R15 + 0x20),lVar5);
       if (iVar1 == 0) goto LAB_18089bfc7;
     }
     else {

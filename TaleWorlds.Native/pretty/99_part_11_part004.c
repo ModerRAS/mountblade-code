@@ -102,8 +102,8 @@ void FUN_1806d7fe0(int64_t param_1,uint param_2,uint64_t *param_3)
 
 
 
-// 函数: void FUN_1806d80c0(char *param_1)
-void FUN_1806d80c0(char *param_1)
+// 函数: void SystemMonitoringProcessor(char *param_1)
+void SystemMonitoringProcessor(char *param_1)
 
 {
   char cVar1;

@@ -11,6 +11,36 @@
 ===================================================================================*/
 
 // 渲染系统偏移量常量
+#define RenderingStateManager FUN_1800b8f50  // RenderingStateManager
+#define RenderingObjectListManager FUN_1800b8630  // RenderingObjectListManager
+#define RenderingConfigValidator FUN_1800b9340  // RenderingConfigValidator
+#define RenderingOptimizer FUN_1800b9570  // RenderingOptimizer
+#define RenderingMemoryAllocator FUN_1800b9030  // RenderingMemoryAllocator
+#define RenderingObjectProcessor FUN_1804439b0  // RenderingObjectProcessor
+#define RenderingEventNotifier FUN_1800b91f0  // RenderingEventNotifier
+#define RenderingMemoryCleaner FUN_1800b90a0  // RenderingMemoryCleaner
+#define RenderingDataProcessor FUN_1802f4040  // RenderingDataProcessor
+#define RenderingPerformanceMonitor FUN_1800b95e0  // RenderingPerformanceMonitor
+#define RenderingObjectRemover FUN_180443820  // RenderingObjectRemover
+#define RenderingThreadSynchronizer FUN_1800b9490  // RenderingThreadSynchronizer
+#define RenderingDataTransformer FUN_180443930  // RenderingDataTransformer
+#define RenderingEventManager FUN_1800b9260  // RenderingEventManager
+#define RenderingResourceFinalizer FUN_180398640  // RenderingResourceFinalizer
+#define RenderingTransformProcessor FUN_18063a7b0  // RenderingTransformProcessor
+#define RenderingConfigProcessor FUN_1800b93b0  // RenderingConfigProcessor
+#define RenderingMemoryManager FUN_1800b9110  // RenderingMemoryManager
+#define RenderingThreadManager FUN_1800b9420  // RenderingThreadManager
+#define RenderingParameterValidator FUN_18063a870  // RenderingParameterValidator
+#define RenderingResourceManager FUN_180080810  // RenderingResourceManager
+#define RenderingStateValidator FUN_1800b8fc0  // RenderingStateValidator
+#define RenderingResourceCleaner FUN_1803982f0  // RenderingResourceCleaner
+#define RenderingConfigManager FUN_1800b92d0  // RenderingConfigManager
+#define RenderingParameterManager FUN_18063a8e0  // RenderingParameterManager
+#define RenderingParameterProcessor FUN_18063a800  // RenderingParameterProcessor
+#define RenderingEventHandler FUN_1800b9180  // RenderingEventHandler
+#define RenderingQualityController FUN_1800b9650  // RenderingQualityController
+#define RenderingThreadProcessor FUN_1800b9500  // RenderingThreadProcessor
+#define RenderingStatusUpdater FUN_18063a9c0  // RenderingStatusUpdater
 #define RENDERING_SYSTEM_OFFSET_60D10    0x60D10      // 渲染系统数据结构偏移量
 #define RENDERING_SYSTEM_OFFSET_60D18    0x60D18      // 渲染系统数据结构偏移量
 #define RENDERING_SYSTEM_OFFSET_607E0    0x607E0      // 渲染系统资源偏移量
@@ -121,7 +151,7 @@ void RenderingSystem_CopyRenderBuffers(uint64_t *param_1, uint64_t *param_2);
  * 5. 更新渲染状态标志
  * 6. 从列表中移除对象引用
  */
-void FUN_180443820(int64_t *render_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void RenderingObjectRemover(int64_t *render_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     int64_t *object_list;
     int64_t context_data;
@@ -166,18 +196,18 @@ LAB_18044388e:
             
             // 检查是否需要额外清理
             if ((int)render_context[0x57] == -1) {
-                FUN_1803982f0(context_data + RENDERING_SYSTEM_OFFSET_607E0, render_context);
+                RenderingResourceCleaner(context_data + RENDERING_SYSTEM_OFFSET_607E0, render_context);
                 if (render_context[0x2d] == 0) {
-                    FUN_180398640(context_data + RENDERING_SYSTEM_OFFSET_607E0, render_context);
+                    RenderingResourceFinalizer(context_data + RENDERING_SYSTEM_OFFSET_607E0, render_context);
                 }
             }
             
             // 从对象列表中移除引用
             resource_manager = *object_list;
-            FUN_180080810(resource_manager + (int64_t)object_index * 8,
+            RenderingResourceManager(resource_manager + (int64_t)object_index * 8,
                           resource_manager + ((*(int64_t *)(context_data + RENDERING_SYSTEM_OFFSET_60D18) - resource_manager >> 3) + -1) * 8,
                           resource_manager, param_4, removal_flag);
-            FUN_1800b8630(object_list, (*(int64_t *)(context_data + RENDERING_SYSTEM_OFFSET_60D18) - *object_list >> 3) + -1);
+            RenderingObjectListManager(object_list, (*(int64_t *)(context_data + RENDERING_SYSTEM_OFFSET_60D18) - *object_list >> 3) + -1);
         }
     }
     return;
@@ -193,7 +223,7 @@ LAB_18044388e:
  * @param param_4 输出数据指针2
  * @param param_5 变换模式标志
  */
-void FUN_180443930(int64_t param_1, int8_t param_2, uint64_t *param_3, uint64_t *param_4, char param_5)
+void RenderingDataTransformer(int64_t param_1, int8_t param_2, uint64_t *param_3, uint64_t *param_4, char param_5)
 {
     uint64_t transform_data_1;
     uint64_t transform_data_2;
@@ -202,7 +232,7 @@ void FUN_180443930(int64_t param_1, int8_t param_2, uint64_t *param_3, uint64_t 
     
     if (param_1 != 0) {
         // 执行基础变换操作
-        FUN_1802f4040(param_1, &transform_data_1, param_2, 0);
+        RenderingDataProcessor(param_1, &transform_data_1, param_2, 0);
         
         if (param_5 != '\0') {
             // 直接输出变换结果
@@ -214,7 +244,7 @@ void FUN_180443930(int64_t param_1, int8_t param_2, uint64_t *param_3, uint64_t 
         }
         
         // 应用高级变换处理
-        FUN_18063a7b0(&transform_data_1, param_1 + 0x70, param_3, param_4);
+        RenderingTransformProcessor(&transform_data_1, param_1 + 0x70, param_3, param_4);
     }
     return;
 }
@@ -226,7 +256,7 @@ void FUN_180443930(int64_t param_1, int8_t param_2, uint64_t *param_3, uint64_t 
  * @param param_1 渲染对象指针
  * @param param_2 新的状态值
  */
-void FUN_1804439b0(int64_t param_1, int32_t param_2)
+void RenderingObjectProcessor(int64_t param_1, int32_t param_2)
 {
     uint64_t child_index;
     uint child_count;
@@ -239,7 +269,7 @@ void FUN_1804439b0(int64_t param_1, int32_t param_2)
     // 递归处理所有子对象
     if (*(int64_t *)(param_1 + RENDERING_SYSTEM_OFFSET_1C8) - *(int64_t *)(param_1 + RENDERING_SYSTEM_OFFSET_1C0) >> 3 != 0) {
         do {
-            FUN_1804439b0(*(uint64_t *)(*(int64_t *)(param_1 + RENDERING_SYSTEM_OFFSET_1C0) + child_index), param_2);
+            RenderingObjectProcessor(*(uint64_t *)(*(int64_t *)(param_1 + RENDERING_SYSTEM_OFFSET_1C0) + child_index), param_2);
             child_index = child_index + 8;
             child_count = (int)total_children + 1;
             total_children = (uint64_t)child_count;
@@ -264,7 +294,7 @@ void FUN_1804439e4(void)
     object_index = (uint64_t)object_count;
     
     do {
-        FUN_1804439b0(*(uint64_t *)(*(int64_t *)(render_context + RENDERING_SYSTEM_OFFSET_1C0) + object_index), render_state);
+        RenderingObjectProcessor(*(uint64_t *)(*(int64_t *)(render_context + RENDERING_SYSTEM_OFFSET_1C0) + object_index), render_state);
         object_index = object_index + 8;
         object_count = object_count + 1;
     } while ((uint64_t)(int64_t)(int)object_count <

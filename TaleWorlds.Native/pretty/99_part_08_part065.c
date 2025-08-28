@@ -59,7 +59,7 @@ LAB_1805b52d7:
     if (param_3 == '\0') goto LAB_1805b50ac;
 LAB_1805b52e7:
     aiStackX_20[0] = 0;
-    cVar5 = FUN_18055f260(unaff_R12,aiStackX_20,&unknown_var_5344_ptr);
+    cVar5 = SystemSynchronizationProcessor(unaff_R12,aiStackX_20,&unknown_var_5344_ptr);
     bVar11 = aiStackX_20[0] != 0;
     param_1 = extraout_XMM0_Da_16;
     if (cVar5 == '\0') goto LAB_1805b50ac;
@@ -74,7 +74,7 @@ LAB_1805b52e7:
     }
     iVar8 = (int)unaff_RDI;
     aiStackX_20[0] = iVar8;
-    cVar5 = FUN_18055f260(param_1,aiStackX_20);
+    cVar5 = SystemSynchronizationProcessor(param_1,aiStackX_20);
     param_1 = extraout_XMM0_Da;
     if (aiStackX_20[0] == iVar8) {
       if (((((cVar5 == '\0') ||
@@ -155,18 +155,18 @@ LAB_1805b52e7:
         if (9 < iVar8) {
           if (bVar9) {
             aiStackX_20[0] = 0;
-            cVar5 = FUN_18055f260(param_1,aiStackX_20,&unknown_var_5344_ptr);
+            cVar5 = SystemSynchronizationProcessor(param_1,aiStackX_20,&unknown_var_5344_ptr);
             unaff_R12 = param_8;
             bVar9 = aiStackX_20[0] != 0;
             param_1 = extraout_XMM0_Da_07;
             if (cVar5 != '\0') {
               aiStackX_20[0] = 0;
-              cVar5 = FUN_18055f260(param_8,aiStackX_20,&unknown_var_5344_ptr);
+              cVar5 = SystemSynchronizationProcessor(param_8,aiStackX_20,&unknown_var_5344_ptr);
               bVar10 = aiStackX_20[0] != 0;
               param_1 = extraout_XMM0_Da_08;
               if (cVar5 != '\0') {
                 aiStackX_20[0] = -1;
-                if ((bVar10) && (cVar5 = FUN_18055f260(unaff_R12,aiStackX_20), cVar5 == '\0')) {
+                if ((bVar10) && (cVar5 = SystemSynchronizationProcessor(unaff_R12,aiStackX_20), cVar5 == '\0')) {
                   param_3 = '\0';
                   param_1 = extraout_XMM0_Da_09;
                   goto LAB_1805b52d7;
@@ -670,7 +670,7 @@ LAB_1805b51f7:
   bVar3 = false;
   if (bVar1) {
     aiStackX_20[0] = 0;
-    cVar2 = FUN_18055f260(param_1,aiStackX_20,&unknown_var_5344_ptr);
+    cVar2 = SystemSynchronizationProcessor(param_1,aiStackX_20,&unknown_var_5344_ptr);
     bVar3 = aiStackX_20[0] != 0;
     if (cVar2 == '\0') goto LAB_1805b50ac;
     bVar1 = true;

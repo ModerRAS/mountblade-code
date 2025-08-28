@@ -56,12 +56,12 @@ uint64_t * FUN_1808a33c0(int64_t *param_1,int32_t param_2,int64_t *param_3)
   }
   uVar7 = *(uint *)(param_1 + 8);
   uStack_74 = uVar7;
-  puVar10 = (int32_t *)FUN_180847820();
+  puVar10 = (int32_t *)SystemCoreProcessor();
   uStack_90 = *puVar10;
   uStack_8c = puVar10[1];
   uStack_88 = puVar10[2];
   uStack_84 = puVar10[3];
-  puVar10 = (int32_t *)FUN_180847820();
+  puVar10 = (int32_t *)SystemCoreProcessor();
   puVar9 = (uint64_t *)0x0;
   uStack_70 = *puVar10;
   uStack_6c = puVar10[1];
@@ -305,7 +305,7 @@ LAB_1808a3a53:
       *puVar12 = &unknown_var_512_ptr;
       puVar12[10] = 0;
       puVar12[0xb] = 0;
-      puVar10 = (int32_t *)FUN_180847820();
+      puVar10 = (int32_t *)SystemCoreProcessor();
       uVar3 = puVar10[1];
       uVar4 = puVar10[2];
       uVar5 = puVar10[3];
@@ -477,7 +477,7 @@ uint64_t * FUN_1808a340d(void)
   uVar17 = (uint)((uint64_t)in_stack_00000020 >> 0x20);
   uVar9 = *(uint *)(unaff_R14 + 8);
   *(uint *)(unaff_RBP + -0x15) = uVar9;
-  puVar10 = (int32_t *)FUN_180847820();
+  puVar10 = (int32_t *)SystemCoreProcessor();
   uVar16 = puVar10[1];
   uVar2 = puVar10[2];
   uVar5 = puVar10[3];
@@ -485,7 +485,7 @@ uint64_t * FUN_1808a340d(void)
   *(int32_t *)(unaff_RBP + -0x2d) = uVar16;
   *(int32_t *)(unaff_RBP + -0x29) = uVar2;
   *(int32_t *)(unaff_RBP + -0x25) = uVar5;
-  puVar10 = (int32_t *)FUN_180847820();
+  puVar10 = (int32_t *)SystemCoreProcessor();
   puVar13 = (uint64_t *)0x0;
   uVar15 = 0;
   uVar16 = *puVar10;
@@ -767,7 +767,7 @@ LAB_1808a3a53:
       *puVar12 = &unknown_var_512_ptr;
       puVar12[10] = 0;
       puVar12[0xb] = 0;
-      puVar10 = (int32_t *)FUN_180847820();
+      puVar10 = (int32_t *)SystemCoreProcessor();
       uVar16 = puVar10[1];
       uVar2 = puVar10[2];
       uVar5 = puVar10[3];
@@ -1210,7 +1210,7 @@ LAB_1808a3a53:
       *puVar10 = &unknown_var_512_ptr;
       puVar10[10] = unaff_R13;
       puVar10[0xb] = unaff_R13;
-      puVar11 = (int32_t *)FUN_180847820();
+      puVar11 = (int32_t *)SystemCoreProcessor();
       uVar14 = puVar11[1];
       uVar2 = puVar11[2];
       uVar5 = puVar11[3];

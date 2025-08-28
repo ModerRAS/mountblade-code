@@ -770,7 +770,7 @@ LAB_180852302:
         
         // 协议初始化和配置
         if ((uint64_t *)param_1[0xc] == (uint64_t *)0x0) {
-            puVar8 = (uint64_t *)FUN_180847820();
+            puVar8 = (uint64_t *)SystemCoreProcessor();
             uStack_2c8 = (uint64_t *)*puVar8;
             uStack_2c0 = puVar8[1];
         }
@@ -873,7 +873,7 @@ LAB_18085243e:
             if ((puVar9 == puVar8) || (puVar9 = (uint64_t *)*puVar9, puVar9 == puVar8))
                 goto LAB_1808524b7;
         }
-        puVar9 = (uint64_t *)FUN_180847820();
+        puVar9 = (uint64_t *)SystemCoreProcessor();
         uStack_2c8 = (uint64_t *)*puVar9;
         uStack_2c0 = puVar9[1];
     }

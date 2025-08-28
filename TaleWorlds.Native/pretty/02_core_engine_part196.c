@@ -444,7 +444,7 @@ LAB_18017a58d:
     uVar10 = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar8,puVar4,param_1,uVar10,ppiVar13,ppiVar14,uVar11);
+  SystemConfigProcessor(lVar8,puVar4,param_1,uVar10,ppiVar13,ppiVar14,uVar11);
 }
 
 
@@ -594,7 +594,7 @@ LAB_18017a85e:
     lVar10 = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(plVar4,puVar6,puVar1,lVar10);
+  SystemConfigProcessor(plVar4,puVar6,puVar1,lVar10);
 }
 
 

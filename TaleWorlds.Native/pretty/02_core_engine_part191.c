@@ -257,7 +257,7 @@ void FUN_180173950(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 
@@ -269,7 +269,7 @@ void FUN_180173ab0(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 
@@ -616,7 +616,7 @@ LAB_1801741dc:
       puVar8 = puVar8 + 0xe;
     } while (puVar1 != puVar11);
   }
-  FUN_1800b8300(puVar9,param_2);
+  SystemCommunicationProcessor(puVar9,param_2);
   uVar3 = *(int32_t *)(param_2 + 0x5c);
   uVar4 = *(int32_t *)(param_2 + 0x60);
   uVar5 = *(int32_t *)(param_2 + 100);
@@ -689,7 +689,7 @@ void FUN_180174340(void **param_1,void **param_2,int64_t param_3)
   ppuStack_e8 = param_1;
   if (((int64_t *)param_1)[1] != ((int64_t *)param_1)[2]) {
     ppuStack_e0 = param_2;
-    FUN_1800b8300(apuStack_b8,param_3);
+    SystemCommunicationProcessor(apuStack_b8,param_3);
     uStack_60 = *(int32_t *)(param_3 + 0x58);
     uStack_5c = *(int32_t *)(param_3 + 0x5c);
     uStack_58 = *(int32_t *)(param_3 + 0x60);
@@ -697,7 +697,7 @@ void FUN_180174340(void **param_1,void **param_2,int64_t param_3)
     puStack_50 = *(void **)(param_3 + 0x68);
     lVar11 = ((int64_t *)param_1)[1];
     ppuStack_e8 = (void **)lVar11;
-    FUN_1800b8300(lVar11,lVar11 + -0x70);
+    SystemCommunicationProcessor(lVar11,lVar11 + -0x70);
     *(int32_t *)(lVar11 + 0x58) = *(int32_t *)(lVar11 + -0x18);
     *(int32_t *)(lVar11 + 0x5c) = *(int32_t *)(lVar11 + -0x14);
     *(int32_t *)(lVar11 + 0x60) = *(int32_t *)(lVar11 + -0x10);
@@ -731,7 +731,7 @@ void FUN_180174340(void **param_1,void **param_2,int64_t param_3)
     }
     *param_2 = &system_state_ptr;
     ppuStack_e8 = param_2;
-    FUN_1800b8300(param_2,apuStack_b8);
+    SystemCommunicationProcessor(param_2,apuStack_b8);
     *(int32_t *)(param_2 + 0xb) = uStack_60;
     *(int32_t *)((int64_t)param_2 + 0x5c) = uStack_5c;
     *(int32_t *)(param_2 + 0xc) = uStack_58;
@@ -760,7 +760,7 @@ LAB_180174517:
   }
   ppuVar12 = ppuVar5 + (((int64_t)param_2 - lVar11) / 0x70) * 0xe;
   ppuStack_d8 = ppuVar12;
-  FUN_1800b8300(ppuVar12,param_3);
+  SystemCommunicationProcessor(ppuVar12,param_3);
   uVar2 = *(int32_t *)(param_3 + 0x5c);
   uVar3 = *(int32_t *)(param_3 + 0x60);
   uVar4 = *(int32_t *)(param_3 + 100);

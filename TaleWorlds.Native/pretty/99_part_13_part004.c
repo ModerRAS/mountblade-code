@@ -115,7 +115,7 @@ int32_t FUN_1808a7f40(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_
   }
   *plVar4 = (int64_t)plVar4;
   plVar4[1] = (int64_t)plVar4;
-  puVar5 = (int32_t *)FUN_180847820();
+  puVar5 = (int32_t *)SystemCoreProcessor();
   uVar1 = puVar5[1];
   uVar2 = puVar5[2];
   uVar3 = puVar5[3];
@@ -271,7 +271,7 @@ uint64_t FUN_1808a8310(uint64_t param_1,int64_t param_2)
   }
   *plVar7 = (int64_t)plVar7;
   plVar7[1] = (int64_t)plVar7;
-  puVar8 = (int32_t *)FUN_180847820();
+  puVar8 = (int32_t *)SystemCoreProcessor();
   uVar2 = puVar8[1];
   uVar3 = puVar8[2];
   uVar4 = puVar8[3];
@@ -279,7 +279,7 @@ uint64_t FUN_1808a8310(uint64_t param_1,int64_t param_2)
   *(int32_t *)((int64_t)plVar7 + 0x14) = uVar2;
   *(int32_t *)(plVar7 + 3) = uVar3;
   *(int32_t *)((int64_t)plVar7 + 0x1c) = uVar4;
-  plVar9 = (int64_t *)FUN_180847820();
+  plVar9 = (int64_t *)SystemCoreProcessor();
   plVar1 = plVar7 + 0xc;
   lVar5 = plVar9[1];
   plVar10 = plVar7 + 0xe;
@@ -307,7 +307,7 @@ uint64_t FUN_1808a8310(uint64_t param_1,int64_t param_2)
   plVar10 = plVar7 + 0x18;
   *plVar10 = (int64_t)plVar10;
   plVar7[0x19] = (int64_t)plVar10;
-  puVar8 = (int32_t *)FUN_180847820();
+  puVar8 = (int32_t *)SystemCoreProcessor();
   uVar2 = puVar8[1];
   uVar3 = puVar8[2];
   uVar4 = puVar8[3];

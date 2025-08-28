@@ -84,7 +84,7 @@ void FUN_1808782c0(int64_t param_1,uint64_t param_2,int64_t *param_3)
       *(uint64_t *)(unaff_RBP + -1) = uVar5;
       iVar16 = FUN_18087dd70(unaff_RBP + -0x41,unaff_RBP + -9,lVar2 + 0x10);
       if (iVar16 != 0) goto LAB_180878734;
-      puVar8 = (uint64_t *)FUN_180847820();
+      puVar8 = (uint64_t *)SystemCoreProcessor();
       uVar5 = puVar8[1];
       *puVar1 = *puVar8;
       *(uint64_t *)(lVar2 + 0x68) = uVar5;

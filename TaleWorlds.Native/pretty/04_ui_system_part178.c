@@ -121,7 +121,7 @@ uint64_t FUN_18076fb80(int64_t *param_1,int param_2,int32_t *param_3,int64_t par
     uVar1 = *(int32_t *)(lVar2 + 0x250);
   }
                     // WARNING: Subroutine does not return
-  FUN_18076b390(param_4,0x20,&unknown_var_4576_ptr,uVar1);
+  SystemValidationProcessor(param_4,0x20,&unknown_var_4576_ptr,uVar1);
 }
 
 

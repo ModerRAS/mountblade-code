@@ -537,7 +537,7 @@ void FUN_1802f75e0(uint64_t *param_1,int64_t param_2,int64_t param_3,uint64_t pa
     if (puVar5 != (void *)0x0) {
       puVar12 = puVar5;
     }
-    FUN_180630b20(param_2,puVar2,&unknown_var_6864_ptr,puVar12);
+    SystemAllocationProcessor(param_2,puVar2,&unknown_var_6864_ptr,puVar12);
   }
   if (((*(float *)(param_1 + 10) != 0.0) || (*(float *)((int64_t)param_1 + 0x54) != 0.0)) ||
      (*(float *)(param_1 + 0xb) != 0.0)) {
@@ -694,7 +694,7 @@ void FUN_1802f75f0(uint64_t *param_1,int64_t param_2,int64_t param_3,uint64_t pa
     if (puVar5 != (void *)0x0) {
       puVar12 = puVar5;
     }
-    FUN_180630b20(param_2,puVar2,&unknown_var_6864_ptr,puVar12);
+    SystemAllocationProcessor(param_2,puVar2,&unknown_var_6864_ptr,puVar12);
   }
   if (((*(float *)(param_1 + 10) != 0.0) || (*(float *)((int64_t)param_1 + 0x54) != 0.0)) ||
      (*(float *)(param_1 + 0xb) != 0.0)) {
@@ -817,7 +817,7 @@ void FUN_1802f7671(void)
   FUN_18062fb40();
   FUN_18062fb40();
   if (unaff_RDI[0x2b] != 0) {
-    FUN_180630b20();
+    SystemAllocationProcessor();
   }
   if (((*(float *)(unaff_RDI + 10) != 0.0) || (*(float *)((int64_t)unaff_RDI + 0x54) != 0.0)) ||
      (*(float *)(unaff_RDI + 0xb) != 0.0)) {

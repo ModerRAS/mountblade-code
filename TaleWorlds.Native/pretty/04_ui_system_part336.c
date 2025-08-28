@@ -66,7 +66,7 @@ void FUN_180850b70(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint64_t *
   lStack_e8 = lVar8;
   if (lVar8 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(param_2,auStack_78);
+    SystemStateProcessor(param_2,auStack_78);
   }
   if ((*(byte *)(lVar8 + 0xc4) & 1) == 0) {
     if (param_3 == 0) goto LAB_180851437;

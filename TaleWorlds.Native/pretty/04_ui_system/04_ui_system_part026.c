@@ -1282,7 +1282,7 @@ int32_t ui_system_parameter_validator(int64_t context, int param_type, int *para
     
     error_handler = &unknown_var_7744_ptr;
 validation_failed:
-    FUN_18066d370(ui_data, 1, error_handler);
+    SystemInitializationProcessor(ui_data, 1, error_handler);
     return *ui_data;
 }
 
@@ -1430,6 +1430,6 @@ int32_t ui_system_texture_switcher_advanced(int64_t context, int param_type, int
     
     error_handler = &unknown_var_7744_ptr;
 texture_switch_failed:
-    FUN_18066d370(ui_data, 1, error_handler);
+    SystemInitializationProcessor(ui_data, 1, error_handler);
     return *ui_data;
 }

@@ -199,7 +199,7 @@ int64_t FUN_18022dd60(int64_t param_1)
         uVar11 = *(uint64_t *)(param_1 + 0x370);
         if (uVar11 < *(uint64_t *)(param_1 + 0x378)) {
           *(uint64_t *)(param_1 + 0x370) = uVar11 + 0x58;
-          FUN_1800b8300(uVar11,lVar5);
+          SystemCommunicationProcessor(uVar11,lVar5);
         }
         else {
           uVar14 = *puVar1;
@@ -238,7 +238,7 @@ LAB_18022de69:
               puVar8 = puVar8 + 0xb;
             } while (lVar15 + (int64_t)puVar8 != uVar11);
           }
-          FUN_1800b8300(puVar8,lVar5);
+          SystemCommunicationProcessor(puVar8,lVar5);
           puVar3 = *(uint64_t **)(param_1 + 0x370);
           puVar9 = (uint64_t *)*puVar1;
           if (puVar9 != puVar3) {

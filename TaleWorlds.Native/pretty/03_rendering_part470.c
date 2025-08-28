@@ -268,10 +268,10 @@ void RenderingSystem_AdvancedParameterProcessor(RenderingContextHandle context, 
             
             // 处理渲染队列
             uint_value2 = *(uint *)(*data_pointer + 0x10);
-            status_flag = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
+            status_flag = SystemBufferProcessor(0x180c95578, 0, &system_param1_ptr);
             if ((status_flag != '\0') && 
-                (status_flag = FUN_180645c10(0x180c95578, 4, &unknown_var_3472_ptr), status_flag != '\0')) {
-                FUN_180645c10(0x180c95578, uint_value2, &unknown_var_3424_ptr);
+                (status_flag = SystemBufferProcessor(0x180c95578, 4, &unknown_var_3472_ptr), status_flag != '\0')) {
+                SystemBufferProcessor(0x180c95578, uint_value2, &unknown_var_3424_ptr);
             }
             
             long_var2 = *(int64_t *)(*data_pointer + 0x8e8);

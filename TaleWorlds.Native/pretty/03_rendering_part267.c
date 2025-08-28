@@ -720,7 +720,7 @@ void FUN_180416900(int64_t param_1,uint64_t param_2,int64_t param_3,int64_t para
     } while (*pcVar8 != '\0');
     *puVar7 = &unknown_var_5252_ptr;
     puVar7[2] = pcVar10 + -0x180a180f3;
-    FUN_180630b20(param_3,puVar7,&system_data_3a84,param_2);
+    SystemAllocationProcessor(param_3,puVar7,&system_data_3a84,param_2);
     FUN_180630c80(param_3,puVar7,&unknown_var_2256_ptr,1);
     FUN_18062f990(param_3,puVar7,&system_data_b1c0);
     FUN_18062f990(param_3,puVar7,&unknown_var_5184_ptr);

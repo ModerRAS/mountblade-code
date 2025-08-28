@@ -466,7 +466,7 @@ LAB_180790dde:
   *param_3 = fVar1;
   if (param_4 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18076b390(param_4,0x20,&unknown_var_4372_ptr,(double)fVar1);
+    SystemValidationProcessor(param_4,0x20,&unknown_var_4372_ptr,(double)fVar1);
   }
   return 0;
 }

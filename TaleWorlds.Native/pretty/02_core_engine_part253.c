@@ -1013,7 +1013,7 @@ void FUN_18021b070(void)
 {
   FUN_1800f0e70();
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 
@@ -1025,7 +1025,7 @@ void FUN_18021b090(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 
@@ -1037,7 +1037,7 @@ void FUN_18021b4f0(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 
@@ -1049,7 +1049,7 @@ void FUN_18021b9c0(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 
@@ -1061,7 +1061,7 @@ void FUN_18021bc50(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 
@@ -1141,7 +1141,7 @@ void FUN_18021cb50(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 
@@ -1153,7 +1153,7 @@ void FUN_18021cf80(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 

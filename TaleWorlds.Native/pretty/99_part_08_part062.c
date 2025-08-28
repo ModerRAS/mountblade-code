@@ -112,7 +112,7 @@ LAB_1805b4350:
       if (*(int *)(lVar10 + 0x5c8) <= *(int *)(lVar10 + 0x5c4)) goto LAB_1805b4445;
       if (bVar13) {
         auStack_108[0] = 0;
-        cVar7 = FUN_18055f260(lVar10);
+        cVar7 = SystemSynchronizationProcessor(lVar10);
         if (cVar7 == '\0') goto LAB_1805b4442;
         if (auStack_108[0] != 0) {
           system_system_memory = lVar10;
@@ -125,7 +125,7 @@ LAB_1805b441a:
           goto LAB_1805b4350;
         }
         auStack_108[0] = 0xffff;
-        cVar7 = FUN_18055f260(lVar10);
+        cVar7 = SystemSynchronizationProcessor(lVar10);
         bVar13 = cVar7 != '\0';
         if (3 < (ushort)auStack_108[0]) goto LAB_1805b4442;
         lVar8 = (uint64_t)(auStack_108[0] & 0xffff) * 0x10;
@@ -163,10 +163,10 @@ LAB_1805b4465:
   if ((bVar13) && (cVar7 = FUN_180646610(), cVar7 != '\0')) {
     uStack_e0 = 0;
     auStack_108[0] = 0;
-    cVar7 = FUN_18055f260();
+    cVar7 = SystemSynchronizationProcessor();
     if (auStack_108[0] == 0) {
       auStack_108[0] = 0;
-      if ((cVar7 == '\0') || (cVar7 = FUN_18055f260(param_2), cVar7 == '\0')) {
+      if ((cVar7 == '\0') || (cVar7 = SystemSynchronizationProcessor(param_2), cVar7 == '\0')) {
         bVar13 = false;
       }
       else {
@@ -190,7 +190,7 @@ LAB_1805b453b:
   bVar14 = false;
   if (bVar13) {
     auStack_108[0] = 0;
-    cVar7 = FUN_18055f260(param_2,auStack_108);
+    cVar7 = SystemSynchronizationProcessor(param_2,auStack_108);
     bVar14 = auStack_108[0] != 0;
     if (cVar7 == '\0') goto LAB_1805b456b;
     bVar13 = true;
@@ -208,7 +208,7 @@ LAB_1805b456b:
       bVar14 = true;
     }
     auStack_108[0] = 0;
-    cVar7 = FUN_18055f260(param_2,auStack_108);
+    cVar7 = SystemSynchronizationProcessor(param_2,auStack_108);
     if (auStack_108[0] == 0) {
       if (((((cVar7 == '\0') || (cVar7 = FUN_180646700(param_2,&fStack_f8), cVar7 == '\0')) ||
            (cVar7 = FUN_180646700(param_2,&fStack_f4), cVar7 == '\0')) ||
@@ -275,16 +275,16 @@ LAB_1805b456b:
           if (9 < iVar12) {
             if (bVar13) {
               auStack_108[0] = 0;
-              cVar7 = FUN_18055f260(param_2,auStack_108,&unknown_var_5344_ptr);
+              cVar7 = SystemSynchronizationProcessor(param_2,auStack_108,&unknown_var_5344_ptr);
               param_2 = lStack_e8;
               bVar15 = auStack_108[0] != 0;
               if (cVar7 != '\0') {
                 auStack_108[0] = 0;
-                cVar7 = FUN_18055f260(lStack_e8,auStack_108,&unknown_var_5344_ptr);
+                cVar7 = SystemSynchronizationProcessor(lStack_e8,auStack_108,&unknown_var_5344_ptr);
                 bVar13 = auStack_108[0] != 0;
                 if (cVar7 != '\0') {
                   auStack_108[0] = 0xffffffff;
-                  if ((bVar13) && (cVar7 = FUN_18055f260(param_2,auStack_108), cVar7 == '\0')) {
+                  if ((bVar13) && (cVar7 = SystemSynchronizationProcessor(param_2,auStack_108), cVar7 == '\0')) {
                     bVar13 = false;
                     goto LAB_1805b52d7;
                   }
@@ -582,7 +582,7 @@ LAB_1805b52d7:
     if (!bVar13) goto LAB_1805b50ac;
 LAB_1805b52e7:
     auStack_108[0] = 0;
-    cVar7 = FUN_18055f260(param_2,auStack_108,&unknown_var_5344_ptr);
+    cVar7 = SystemSynchronizationProcessor(param_2,auStack_108,&unknown_var_5344_ptr);
     bVar14 = auStack_108[0] != 0;
     if (cVar7 == '\0') goto LAB_1805b50ac;
     bVar13 = true;

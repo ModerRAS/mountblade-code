@@ -42,7 +42,7 @@ code_r0x000180889efd:
                     // WARNING: Subroutine does not return
         SystemMemoryManager(*(int64_t *)(unaff_RBP + 0x30));
       }
-      puVar8 = (uint64_t *)FUN_180847820();
+      puVar8 = (uint64_t *)SystemCoreProcessor();
       uVar3 = *(uint64_t *)(lVar7 + 0x80);
       uVar4 = puVar8[1];
       *(uint64_t *)(unaff_RBP + -0x48) = *puVar8;
@@ -219,7 +219,7 @@ void FUN_18088a0c0(int64_t param_1,int64_t param_2)
   
   *(int64_t *)(param_1 + 0xad0) = param_2;
   if (*(int64_t *)(param_1 + 0x80) != 0) {
-    puVar1 = (int32_t *)FUN_180847820();
+    puVar1 = (int32_t *)SystemCoreProcessor();
     uStack_18 = *puVar1;
     uStack_14 = puVar1[1];
     uStack_10 = puVar1[2];
@@ -916,7 +916,7 @@ uint64_t FUN_18088ad30(int64_t param_1,int64_t param_2)
   }
   uStackX_10 = 0;
   if ((((*(int64_t *)(param_1 + 0x98) == 0) ||
-       (iVar2 = FUN_18088c740(&uStackX_10,param_1), iVar2 == 0)) &&
+       (iVar2 = SystemSecurityProcessor(&uStackX_10,param_1), iVar2 == 0)) &&
       (iVar2 = FUN_1808dea20(lVar1), iVar2 == 0)) &&
      ((*(int *)(lVar1 + 0x2c) < 1 || (iVar2 = FUN_1808de9b0(lVar1), iVar2 == 0)))) {
     *(int32_t *)(lVar1 + 0x34) = 0x2e;

@@ -49,7 +49,7 @@ uint64_t FUN_18089c630(int64_t param_1,int64_t *param_2)
   uVar3 = uVar6;
   if (0x6f < *(uint *)(param_2 + 8)) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      uVar3 = FUN_1808aed00(*param_2,param_1 + 0x34,4);
+      uVar3 = SystemThreadProcessor(*param_2,param_1 + 0x34,4);
     }
     else {
       uVar3 = 0x1c;
@@ -399,7 +399,7 @@ uint64_t FUN_18089c69d(void)
   uVar4 = uVar7;
   if (0x6f < *(uint *)(unaff_RBX + 8)) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      uVar4 = FUN_1808aed00(*unaff_RBX,unaff_R13 + 0x34,(uint64_t)uVar5);
+      uVar4 = SystemThreadProcessor(*unaff_RBX,unaff_R13 + 0x34,(uint64_t)uVar5);
     }
     else {
       uVar4 = 0x1c;

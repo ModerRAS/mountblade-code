@@ -744,7 +744,7 @@ void FUN_180216860(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
       puVar5 = *(void **)(lVar2 + 8);
     }
     uStack_78 = uVar6;
-    FUN_180626f80(&unknown_var_5040_ptr,puVar5);
+    SystemOptimizationProcessor(&unknown_var_5040_ptr,puVar5);
     puStack_88 = &system_data_buffer_ptr;
     if (lStack_80 != 0) {
                     // WARNING: Subroutine does not return

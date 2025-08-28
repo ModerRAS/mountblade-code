@@ -221,7 +221,7 @@ int FUN_18087e0b0(int64_t param_1,int64_t param_2,int64_t param_3,int64_t *param
   uStack_68 = 0;
   lStack_60 = 0;
   uStack_58 = 0;
-  iVar3 = FUN_180849030(&lStack_70,0x200);
+  iVar3 = SystemDeallocationProcessor(&lStack_70,0x200);
   if (iVar3 == 0) {
     if ((int)uStack_68 < 0x200) {
                     // WARNING: Subroutine does not return
@@ -232,7 +232,7 @@ int FUN_18087e0b0(int64_t param_1,int64_t param_2,int64_t param_3,int64_t *param
     if (uStack_58 < 0) {
       iVar3 = -uStack_58._4_4_;
     }
-    if ((iVar3 < 0x200) && (iVar3 = FUN_180849030(&lStack_60,0x200), iVar3 != 0))
+    if ((iVar3 < 0x200) && (iVar3 = SystemDeallocationProcessor(&lStack_60,0x200), iVar3 != 0))
     goto LAB_18087e17a;
     if ((int)uStack_58 < 0x200) {
                     // WARNING: Subroutine does not return

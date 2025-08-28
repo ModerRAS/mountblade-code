@@ -409,7 +409,7 @@ uint64_t FUN_180890450(int64_t param_1,int64_t param_2)
   if (*(int *)(alStackX_8[0] + 0x58) + *(int *)(alStackX_8[0] + 0x54) +
       *(int *)(alStackX_8[0] + 0x4c) == 1) {
     alStackX_8[0] = 0;
-    iVar2 = FUN_18088c740(alStackX_8);
+    iVar2 = SystemSecurityProcessor(alStackX_8);
     if (iVar2 == 0) {
       iVar2 = FUN_1808c7b30(lVar1,*(uint64_t *)(lVar1 + 8),*(uint64_t *)(param_2 + 0x90),
                             *(uint64_t *)(param_2 + 800));
@@ -477,7 +477,7 @@ uint64_t FUN_180890500(int64_t param_1,uint64_t param_2)
     return 0;
   }
   alStackX_8[0] = 0;
-  iVar3 = FUN_18088c740(alStackX_8);
+  iVar3 = SystemSecurityProcessor(alStackX_8);
   if (iVar3 == 0) {
     iVar3 = FUN_1808c7dc0(lVar1,0);
     if (iVar3 == 0) {

@@ -225,7 +225,7 @@ void ui_system_event_handler_type1(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x000180879ccf处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -245,7 +245,7 @@ void ui_system_event_handler_type2(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x000180879cff处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -265,7 +265,7 @@ void ui_system_event_handler_type3(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x000180879d2f处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -285,7 +285,7 @@ void ui_system_event_handler_type4(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x000180879d5f处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -305,7 +305,7 @@ void ui_system_event_handler_type5(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x000180879d8f处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -325,7 +325,7 @@ void ui_system_event_handler_type6(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x000180879dbf处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -345,7 +345,7 @@ void ui_system_event_handler_type7(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x000180879def处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -365,7 +365,7 @@ void ui_system_event_handler_type8(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x000180879e1f处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -385,7 +385,7 @@ void ui_system_event_handler_type9(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x000180879e4f处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -405,7 +405,7 @@ void ui_system_event_handler_type10(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x000180879e7f处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -425,7 +425,7 @@ void ui_system_event_handler_type11(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x000180879eaf处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -445,7 +445,7 @@ void ui_system_event_handler_type12(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x000180879edf处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -465,7 +465,7 @@ void ui_system_event_handler_type13(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x000180879f0f处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -485,7 +485,7 @@ void ui_system_event_handler_type14(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x000180879f3f处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -505,7 +505,7 @@ void ui_system_event_handler_type15(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x000180879f6f处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -525,7 +525,7 @@ void ui_system_event_handler_type16(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x000180879f9f处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -545,7 +545,7 @@ void ui_system_event_handler_type17(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x000180879fcf处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -565,7 +565,7 @@ void ui_system_event_handler_type18(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x000180879fff处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -585,7 +585,7 @@ void ui_system_event_handler_type19(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x00018087a02f处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理
@@ -605,7 +605,7 @@ void ui_system_event_handler_type20(int64_t *ui_context)
     uint64_t event_data;
     
     // 获取事件数据
-    event_data = FUN_180847820();
+    event_data = SystemCoreProcessor();
     
     // 警告：无法恢复0x00018087a05f处的跳转表，分支过多
     // 警告：将间接跳转作为调用处理

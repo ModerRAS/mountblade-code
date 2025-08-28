@@ -456,7 +456,7 @@ joined_r0x000180876529:
           }
           if (cVar5 != '\0') {
             auStack_958[0] = 0;
-            iVar7 = FUN_18088c740(auStack_958,param_1);
+            iVar7 = SystemSecurityProcessor(auStack_958,param_1);
             if (iVar7 != 0) goto LAB_180876b83;
             pplStack_9a8 = &plStack_948;
             iVar7 = FUN_18087e0b0(puVar2,*(uint64_t *)(param_1 + 0xc0),auStack_3e8,

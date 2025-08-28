@@ -36,7 +36,7 @@ uint64_t FUN_18089e4f0(int64_t param_1,uint64_t *param_2)
   if ((((int)uVar4 == 0) &&
       (uVar4 = FUN_1808ddc20(param_2,auStack_58,0,0x424e4c54), (int)uVar4 == 0)) &&
      (uVar4 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar4 == 0)) {
-    puVar5 = (int32_t *)FUN_180847820();
+    puVar5 = (int32_t *)SystemDataFlowProcessor();
     uVar4 = 0;
     uStack_78 = *puVar5;
     uStack_74 = puVar5[1];
@@ -45,19 +45,19 @@ uint64_t FUN_18089e4f0(int64_t param_1,uint64_t *param_2)
     if (*(uint *)(param_2 + 8) < 0x6d) {
       if (*(int *)(param_2[1] + 0x18) == 0) {
         uVar2 = *param_2;
-        uVar4 = FUN_1808aed00(uVar2,&uStack_78,4);
+        uVar4 = SystemThreadProcessor(uVar2,&uStack_78,4);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
-        uVar4 = FUN_1808aed00(uVar2,&uStack_74,2);
+        uVar4 = SystemThreadProcessor(uVar2,&uStack_74,2);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
-        uVar4 = FUN_1808aed00(uVar2,(int64_t)&uStack_74 + 2,2);
+        uVar4 = SystemThreadProcessor(uVar2,(int64_t)&uStack_74 + 2,2);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
-        uVar4 = FUN_1808aed00(uVar2,&uStack_70,8);
+        uVar4 = SystemThreadProcessor(uVar2,&uStack_70,8);
       }
       else {
         uVar4 = 0x1c;
@@ -142,7 +142,7 @@ uint64_t FUN_18089e558(void)
   int32_t extraout_XMM0_Da_03;
   int32_t extraout_XMM0_Da_04;
   
-  puVar7 = (int32_t *)FUN_180847820();
+  puVar7 = (int32_t *)SystemDataFlowProcessor();
   uVar8 = 0;
   uVar5 = *(uint *)(unaff_RDI + 8);
   uVar11 = *puVar7;
@@ -156,19 +156,19 @@ uint64_t FUN_18089e558(void)
   if (uVar5 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
       uVar1 = *unaff_RDI;
-      uVar8 = FUN_1808aed00(uVar1,unaff_RBP + -0x19,4);
+      uVar8 = SystemThreadProcessor(uVar1,unaff_RBP + -0x19,4);
       if ((int)uVar8 != 0) {
         return uVar8;
       }
-      uVar8 = FUN_1808aed00(uVar1,unaff_RBP + -0x15,2);
+      uVar8 = SystemThreadProcessor(uVar1,unaff_RBP + -0x15,2);
       if ((int)uVar8 != 0) {
         return uVar8;
       }
-      uVar8 = FUN_1808aed00(uVar1,unaff_RBP + -0x13,2);
+      uVar8 = SystemThreadProcessor(uVar1,unaff_RBP + -0x13,2);
       if ((int)uVar8 != 0) {
         return uVar8;
       }
-      uVar8 = FUN_1808aed00(uVar1,unaff_RBP + -0x11,8);
+      uVar8 = SystemThreadProcessor(uVar1,unaff_RBP + -0x11,8);
       uVar11 = extraout_XMM0_Da;
     }
     else {

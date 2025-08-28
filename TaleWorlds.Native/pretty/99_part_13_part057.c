@@ -725,7 +725,7 @@ void FUN_1808ce6a0(int64_t param_1,uint64_t param_2,uint64_t param_3,int32_t par
   uint64_t uStack_38;
   
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_e8;
-  puVar2 = (int32_t *)FUN_180847820();
+  puVar2 = (int32_t *)SystemCoreProcessor();
   uStack_78 = *puVar2;
   uStack_74 = puVar2[1];
   uStack_70 = puVar2[2];

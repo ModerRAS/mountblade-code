@@ -837,10 +837,10 @@ void FUN_1805828f0(int64_t param_1)
       __Throw_C_error_std__YAXH_Z(iVar5);
     }
     uVar1 = *(int32_t *)(param_1 + 0xc);
-    cVar4 = FUN_180645c10(0x180c95578,0,&system_param1_ptr);
-    if ((cVar4 != '\0') && (cVar4 = FUN_180645c10(0x180c95578,0x13,&unknown_var_3472_ptr), cVar4 != '\0'))
+    cVar4 = SystemBufferProcessor(0x180c95578,0,&system_param1_ptr);
+    if ((cVar4 != '\0') && (cVar4 = SystemBufferProcessor(0x180c95578,0x13,&unknown_var_3472_ptr), cVar4 != '\0'))
     {
-      FUN_180645c10(0x180c95578,uVar1,&unknown_var_3296_ptr);
+      SystemBufferProcessor(0x180c95578,uVar1,&unknown_var_3296_ptr);
     }
     render_system_config = render_system_config & 0xffffffff00000000;
     iVar5 = (int)(render_system_config - render_system_config >> 3);

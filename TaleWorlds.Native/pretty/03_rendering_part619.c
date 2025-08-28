@@ -38,15 +38,15 @@
 #define RenderingSystem_ReleaseResourceReference        FUN_18060ef16  /* 渲染系统资源引用释放器 */
 #define RenderingSystem_EmptyFunction2                  FUN_18060ef6e  /* 渲染系统空函数2 */
 #define RenderingSystem_EmptyFunction3                  FUN_18060ef9a  /* 渲染系统空函数3 */
-#define RenderingSystem_CleanupResourcePointer          FUN_18060efa0  /* 渲染系统资源指针清理器 */
-#define RenderingSystem_GetResourceProperty             FUN_18060efd0  /* 渲染系统资源属性获取器 */
-#define RenderingSystem_CheckResourceCapability          FUN_18060f040  /* 渲染系统资源能力检查器 */
-#define RenderingSystem_GetResourceExtendedProperty     FUN_18060f0d0  /* 渲染系统资源扩展属性获取器 */
-#define RenderingSystem_ExtractResourceData             FUN_18060f140  /* 渲染系统资源数据提取器 */
-#define RenderingSystem_GetResourceIdentifier           FUN_18060f1b0  /* 渲染系统资源标识符获取器 */
-#define RenderingSystem_GetResourceParameter            FUN_18060f240  /* 渲染系统资源参数获取器 */
-#define RenderingSystem_GetResourceIndex                FUN_18060f2b0  /* 渲染系统资源索引获取器 */
-#define RenderingSystem_ProcessResourceCommand          FUN_18060f370  /* 渲染系统资源命令处理器 */
+#define RenderingSystem_CleanupResourcePointer          RenderingSystemValidator  /* 渲染系统资源指针清理器 */
+#define RenderingSystem_GetResourceProperty             RenderingSystemInitializer  /* 渲染系统资源属性获取器 */
+#define RenderingSystem_CheckResourceCapability          RenderingSystemProcessor  /* 渲染系统资源能力检查器 */
+#define RenderingSystem_GetResourceExtendedProperty     RenderingSystemManager  /* 渲染系统资源扩展属性获取器 */
+#define RenderingSystem_ExtractResourceData             RenderingSystemController  /* 渲染系统资源数据提取器 */
+#define RenderingSystem_GetResourceIdentifier           RenderingSystemOptimizer  /* 渲染系统资源标识符获取器 */
+#define RenderingSystem_GetResourceParameter            RenderingSystemCleaner  /* 渲染系统资源参数获取器 */
+#define RenderingSystem_GetResourceIndex                RenderingSystemUpdater  /* 渲染系统资源索引获取器 */
+#define RenderingSystem_ProcessResourceCommand          RenderingSystemRenderer  /* 渲染系统资源命令处理器 */
 
 /* 渲染系统内存和数据处理函数别名定义 */
 #define RenderingSystem_DataBufferProcessor              FUN_1804c0610  /* 渲染系统数据缓冲区处理器 */

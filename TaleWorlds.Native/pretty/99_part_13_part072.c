@@ -712,7 +712,7 @@ uint64_t * FUN_1808d9af0(uint64_t *param_1)
   *param_1 = &unknown_var_7472_ptr;
   *(int8_t *)(param_1 + 8) = 0;
   *(uint64_t *)((int64_t)param_1 + 0x44) = 0;
-  puVar2 = (uint64_t *)FUN_180847820();
+  puVar2 = (uint64_t *)SystemCoreProcessor();
   uVar1 = puVar2[1];
   *(uint64_t *)((int64_t)param_1 + 0x4c) = *puVar2;
   *(uint64_t *)((int64_t)param_1 + 0x54) = uVar1;

@@ -1006,7 +1006,7 @@ void FUN_18013ea70(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 
@@ -1236,7 +1236,7 @@ LAB_18013f440:
   CoreEngineDataTransformer(lVar7 + 0x20,param_5);
   *(uint64_t *)(lVar7 + 0x40) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar7,plVar8,param_1,uVar10);
+  SystemConfigProcessor(lVar7,plVar8,param_1,uVar10);
 }
 
 

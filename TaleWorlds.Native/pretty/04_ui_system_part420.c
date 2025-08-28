@@ -887,7 +887,7 @@ void FUN_18089be10(int64_t param_1,uint64_t *param_2,int param_3)
   lVar6 = (int64_t)(int)auStackX_8[0];
   uVar4 = (int)*(uint *)(param_1 + 0x2c) >> 0x1f;
   if (((int)((*(uint *)(param_1 + 0x2c) ^ uVar4) - uVar4) < (int)auStackX_8[0]) &&
-     (iVar2 = FUN_180849030(param_1 + 0x20,auStackX_8[0]), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(param_1 + 0x20,auStackX_8[0]), iVar2 != 0)) {
     return;
   }
   iVar2 = *(int *)(param_1 + 0x28);
@@ -997,7 +997,7 @@ void FUN_18089be41(void)
   lVar5 = (int64_t)(int)in_stack_00000050;
   uVar3 = (int)*(uint *)(unaff_R15 + 0x2c) >> 0x1f;
   if (((int)((*(uint *)(unaff_R15 + 0x2c) ^ uVar3) - uVar3) < (int)in_stack_00000050) &&
-     (iVar2 = FUN_180849030(unaff_R15 + 0x20,in_stack_00000050), iVar2 != 0)) {
+     (iVar2 = SystemDeallocationProcessor(unaff_R15 + 0x20,in_stack_00000050), iVar2 != 0)) {
     return;
   }
   iVar2 = *(int *)(unaff_R15 + 0x28);

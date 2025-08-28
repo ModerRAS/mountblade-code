@@ -36,7 +36,7 @@ uint64_t FUN_18089e4f0(int64_t param_1,uint64_t *param_2)
   if ((((int)uVar4 == 0) &&
       (uVar4 = FUN_1808ddc20(param_2,auStack_58,0,0x424e4c54), (int)uVar4 == 0)) &&
      (uVar4 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar4 == 0)) {
-    puVar5 = (int32_t *)FUN_180847820();
+    puVar5 = (int32_t *)SystemCoreProcessor();
     uVar4 = 0;
     uStack_78 = *puVar5;
     uStack_74 = puVar5[1];
@@ -142,7 +142,7 @@ uint64_t FUN_18089e558(void)
   int32_t extraout_XMM0_Da_03;
   int32_t extraout_XMM0_Da_04;
   
-  puVar7 = (int32_t *)FUN_180847820();
+  puVar7 = (int32_t *)SystemCoreProcessor();
   uVar8 = 0;
   uVar5 = *(uint *)(unaff_RDI + 8);
   uVar11 = *puVar7;

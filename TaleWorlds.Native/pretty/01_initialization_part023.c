@@ -797,7 +797,7 @@ LAB_180057b97:
   uVar7 = 0;
 LAB_180057ba2:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar3,lVar4,param_1,uVar7);
+  SystemConfigProcessor(lVar3,lVar4,param_1,uVar7);
 }
 
 

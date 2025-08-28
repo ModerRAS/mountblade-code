@@ -372,7 +372,7 @@ LAB_180089891:
         if (puStack_300 != (void *)0x0) {
           puVar15 = puStack_300;
         }
-        FUN_180626f80(&unknown_var_8376_ptr,puVar15,puVar14);
+        SystemOptimizationProcessor(&unknown_var_8376_ptr,puVar15,puVar14);
       }
       else {
         *(int32_t *)(lStack_1f8 + 4) =
@@ -595,7 +595,7 @@ LAB_18008a32f:
     uVar25 = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar28,lVar9,lVar11,uVar25);
+  SystemConfigProcessor(lVar28,lVar9,lVar11,uVar25);
 }
 
 
@@ -647,7 +647,7 @@ void FUN_18008a480(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
     }
   }
   else {
-    FUN_180626f80(&unknown_var_8416_ptr);
+    SystemOptimizationProcessor(&unknown_var_8416_ptr);
   }
   return;
 }

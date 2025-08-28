@@ -104,7 +104,7 @@ LAB_180852302:
     iVar3 = FUN_18084ec10();
     if (iVar3 != 0) goto LAB_180852a9a;
     if ((uint64_t *)unaff_R15[0xc] == (uint64_t *)0x0) {
-      puVar5 = (uint64_t *)FUN_180847820();
+      puVar5 = (uint64_t *)SystemCoreProcessor();
       in_stack_00000070 = (uint64_t *)*puVar5;
       _iStack0000000000000078 = puVar5[1];
     }
@@ -174,7 +174,7 @@ LAB_18085243e:
       if ((puVar7 == puVar5) || (puVar7 = (uint64_t *)*puVar7, puVar7 == puVar5))
       goto LAB_1808524b7;
     }
-    puVar7 = (uint64_t *)FUN_180847820();
+    puVar7 = (uint64_t *)SystemCoreProcessor();
     in_stack_00000070 = (uint64_t *)*puVar7;
     _iStack0000000000000078 = puVar7[1];
   }

@@ -455,13 +455,13 @@ uint64_t FUN_1804ebb80(int64_t param_1,int32_t param_2,int64_t param_3,char para
       if (iVar6 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar6);
       }
-      cVar5 = FUN_180645c10(0x180c95578,0,&system_param1_ptr);
+      cVar5 = SystemBufferProcessor(0x180c95578,0,&system_param1_ptr);
       fVar3 = fStack_94;
       fVar2 = fStack_98;
       fVar4 = (float)uStack_90;
       if ((((cVar5 != '\0') &&
-           (cVar5 = FUN_180645c10(0x180c95578,0x10,&unknown_var_3472_ptr), cVar5 != '\0')) &&
-          ((cVar5 = FUN_180645c10(0x180c95578,param_2,&system_data_bca0), cVar5 != '\0' &&
+           (cVar5 = SystemBufferProcessor(0x180c95578,0x10,&unknown_var_3472_ptr), cVar5 != '\0')) &&
+          ((cVar5 = SystemBufferProcessor(0x180c95578,param_2,&system_data_bca0), cVar5 != '\0' &&
            ((cVar5 = FUN_180645fa0(0x180c95578,fVar2,&unknown_var_3312_ptr), cVar5 != '\0' &&
             (cVar5 = FUN_180645fa0(0x180c95578,fVar3,&unknown_var_3312_ptr), cVar5 != '\0')))))) &&
          (cVar5 = FUN_180645fa0(0x180c95578,fVar4,&unknown_var_3328_ptr), cVar5 != '\0')) {
@@ -652,16 +652,16 @@ void FUN_1804ebef0(int64_t param_1,int32_t param_2,int64_t *param_3,int param_4,
       if (iVar7 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar7);
       }
-      cVar6 = FUN_180645c10(0x180c95578,0,&system_param1_ptr);
+      cVar6 = SystemBufferProcessor(0x180c95578,0,&system_param1_ptr);
       if ((((cVar6 != '\0') &&
-           (cVar6 = FUN_180645c10(0x180c95578,0x11,&unknown_var_3472_ptr), cVar6 != '\0')) &&
-          ((cVar6 = FUN_180645c10(0x180c95578,param_2,&system_data_bca0), cVar6 != '\0' &&
+           (cVar6 = SystemBufferProcessor(0x180c95578,0x11,&unknown_var_3472_ptr), cVar6 != '\0')) &&
+          ((cVar6 = SystemBufferProcessor(0x180c95578,param_2,&system_data_bca0), cVar6 != '\0' &&
            ((cVar6 = FUN_180645fa0(0x180c95578,uStack_108,&unknown_var_3360_ptr), cVar6 != '\0' &&
             (cVar6 = FUN_180645fa0(0x180c95578,uStack_104,&unknown_var_3360_ptr), cVar6 != '\0')))))) &&
          ((cVar6 = FUN_180645fa0(0x180c95578,uStack_100,&unknown_var_3376_ptr), cVar6 != '\0' &&
           ((cVar6 = FUN_1805aed50(0x180c95578,&uStack_118), cVar6 != '\0' &&
-           (cVar6 = FUN_180645c10(0x180c95578,param_4,&unknown_var_3424_ptr), cVar6 != '\0')))))) {
-        FUN_180645c10(0x180c95578,(int)param_5,&unknown_var_3248_ptr);
+           (cVar6 = SystemBufferProcessor(0x180c95578,param_4,&unknown_var_3424_ptr), cVar6 != '\0')))))) {
+        SystemBufferProcessor(0x180c95578,(int)param_5,&unknown_var_3248_ptr);
       }
       system_system_memory = system_system_memory & 0xffffffff00000000;
       iVar7 = (int)(system_system_memory - system_system_memory >> 3);

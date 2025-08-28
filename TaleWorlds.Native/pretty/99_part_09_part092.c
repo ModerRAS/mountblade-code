@@ -442,13 +442,13 @@ uint64_t FUN_1805fdc90(uint64_t param_1,int64_t *param_2)
   uStack_40 = 0x300000000;
   uStack_28 = 0x100000000;
   uStack_20 = 1;
-  cVar1 = FUN_18055f260(param_1,&uStack_58,&unknown_var_7224_ptr);
+  cVar1 = SystemSynchronizationProcessor(param_1,&uStack_58,&unknown_var_7224_ptr);
   if (((((cVar1 != '\0') &&
-        (cVar1 = FUN_18055f260(param_1,(int64_t)&uStack_58 + 4,&unknown_var_7272_ptr), cVar1 != '\0')) &&
-       (cVar1 = FUN_18055f260(param_1,&uStack_50,&unknown_var_7224_ptr), cVar1 != '\0')) &&
-      ((cVar1 = FUN_18055f260(param_1,(int64_t)&uStack_50 + 4,&unknown_var_7272_ptr), cVar1 != '\0' &&
-       (cVar1 = FUN_18055f260(param_1,&uStack_48,&unknown_var_7256_ptr), cVar1 != '\0')))) &&
-     (cVar1 = FUN_18055f260(param_1,(int64_t)&uStack_48 + 4,&unknown_var_7240_ptr), cVar1 != '\0')) {
+        (cVar1 = SystemSynchronizationProcessor(param_1,(int64_t)&uStack_58 + 4,&unknown_var_7272_ptr), cVar1 != '\0')) &&
+       (cVar1 = SystemSynchronizationProcessor(param_1,&uStack_50,&unknown_var_7224_ptr), cVar1 != '\0')) &&
+      ((cVar1 = SystemSynchronizationProcessor(param_1,(int64_t)&uStack_50 + 4,&unknown_var_7272_ptr), cVar1 != '\0' &&
+       (cVar1 = SystemSynchronizationProcessor(param_1,&uStack_48,&unknown_var_7256_ptr), cVar1 != '\0')))) &&
+     (cVar1 = SystemSynchronizationProcessor(param_1,(int64_t)&uStack_48 + 4,&unknown_var_7240_ptr), cVar1 != '\0')) {
     uStack_38 = uStack_58._4_4_;
     uStack_40 = CONCAT44((1 << ((byte)((uint64_t)uStack_58 >> 0x20) & 0x1f)) + (int)uStack_58 + -1,
                          (int)uStack_58);
@@ -458,10 +458,10 @@ uint64_t FUN_1805fdc90(uint64_t param_1,int64_t *param_2)
     uStack_28 = CONCAT44((int)uStack_48 + -1 + (1 << ((byte)((uint64_t)uStack_48 >> 0x20) & 0x1f)),
                          (int)uStack_48);
     uStack_20 = uStack_48._4_4_;
-    cVar1 = FUN_18055f260(param_1,auStack_1c,&unknown_var_7224_ptr);
+    cVar1 = SystemSynchronizationProcessor(param_1,auStack_1c,&unknown_var_7224_ptr);
     if (((cVar1 != '\0') &&
-        (cVar1 = FUN_18055f260(param_1,auStack_18,&unknown_var_7224_ptr), cVar1 != '\0')) &&
-       ((cVar1 = FUN_18055f260(param_1,auStack_14,&unknown_var_7256_ptr), cVar1 != '\0' &&
+        (cVar1 = SystemSynchronizationProcessor(param_1,auStack_18,&unknown_var_7224_ptr), cVar1 != '\0')) &&
+       ((cVar1 = SystemSynchronizationProcessor(param_1,auStack_14,&unknown_var_7256_ptr), cVar1 != '\0' &&
         ((cVar1 = FUN_1805fded0(param_1,param_2,&uStack_58), cVar1 != '\0' &&
          (cVar1 = FUN_1805fded0(param_1,param_2,&uStack_58), cVar1 != '\0')))))) {
       return 1;

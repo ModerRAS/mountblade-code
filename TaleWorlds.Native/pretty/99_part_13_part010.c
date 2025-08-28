@@ -76,7 +76,7 @@ uint64_t FUN_1808aad80(uint64_t *param_1,int64_t param_2,int32_t param_3)
             *puVar7 = &unknown_var_1544_ptr;
             *(int32_t *)(puVar7 + 1) = 0xb1e55ed1;
             *(int32_t *)((int64_t)puVar7 + 0xc) = 0x10;
-            puVar8 = (int32_t *)FUN_180847820();
+            puVar8 = (int32_t *)SystemCoreProcessor();
             uVar1 = puVar8[1];
             uVar2 = puVar8[2];
             uVar3 = puVar8[3];
@@ -103,7 +103,7 @@ uint64_t FUN_1808aad80(uint64_t *param_1,int64_t param_2,int32_t param_3)
                     iVar10 = 0;
                   }
                   else if (*(int *)(param_1[1] + 0x18) == 0) {
-                    iVar10 = FUN_1808aed00(*param_1,puVar7 + 9,4);
+                    iVar10 = SystemThreadProcessor(*param_1,puVar7 + 9,4);
                   }
                   else {
                     iVar10 = 0x1c;
@@ -195,7 +195,7 @@ uint64_t FUN_1808aadb1(int32_t param_1)
         *puVar7 = &unknown_var_1544_ptr;
         *(int32_t *)(puVar7 + 1) = 0xb1e55ed1;
         *(int32_t *)((int64_t)puVar7 + 0xc) = 0x10;
-        puVar8 = (int32_t *)FUN_180847820();
+        puVar8 = (int32_t *)SystemCoreProcessor();
         uVar11 = *puVar8;
         uVar1 = puVar8[1];
         uVar2 = puVar8[2];
@@ -224,7 +224,7 @@ uint64_t FUN_1808aadb1(int32_t param_1)
                 iVar10 = 0;
               }
               else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-                iVar10 = FUN_1808aed00(*unaff_RDI,puVar7 + 9,4);
+                iVar10 = SystemThreadProcessor(*unaff_RDI,puVar7 + 9,4);
                 uVar11 = extraout_XMM0_Da_04;
               }
               else {
@@ -309,7 +309,7 @@ uint64_t FUN_1808aadeb(int32_t param_1)
         *puVar6 = &unknown_var_1544_ptr;
         *(int32_t *)(puVar6 + 1) = 0xb1e55ed1;
         *(int32_t *)((int64_t)puVar6 + 0xc) = 0x10;
-        puVar7 = (int32_t *)FUN_180847820();
+        puVar7 = (int32_t *)SystemCoreProcessor();
         uVar10 = *puVar7;
         uVar1 = puVar7[1];
         uVar2 = puVar7[2];
@@ -338,7 +338,7 @@ uint64_t FUN_1808aadeb(int32_t param_1)
                 iVar9 = 0;
               }
               else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-                iVar9 = FUN_1808aed00(*unaff_RDI,puVar6 + 9,4);
+                iVar9 = SystemThreadProcessor(*unaff_RDI,puVar6 + 9,4);
                 uVar10 = extraout_XMM0_Da_03;
               }
               else {
@@ -413,7 +413,7 @@ int FUN_1808aae0d(int32_t param_1)
         *puVar5 = &unknown_var_1544_ptr;
         *(int32_t *)(puVar5 + 1) = 0xb1e55ed1;
         *(int32_t *)((int64_t)puVar5 + 0xc) = 0x10;
-        puVar6 = (int32_t *)FUN_180847820();
+        puVar6 = (int32_t *)SystemCoreProcessor();
         uVar8 = *puVar6;
         uVar1 = puVar6[1];
         uVar2 = puVar6[2];
@@ -442,7 +442,7 @@ int FUN_1808aae0d(int32_t param_1)
                 iVar7 = 0;
               }
               else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-                iVar7 = FUN_1808aed00(*unaff_RDI,puVar5 + 9,4);
+                iVar7 = SystemThreadProcessor(*unaff_RDI,puVar5 + 9,4);
                 uVar8 = extraout_XMM0_Da_02;
               }
               else {
@@ -565,7 +565,7 @@ uint64_t FUN_1808ab060(uint64_t param_1,int64_t param_2,int32_t param_3)
               *puVar7 = &unknown_var_1544_ptr;
               *(int32_t *)(puVar7 + 1) = 0xb1e55ed1;
               *(int32_t *)((int64_t)puVar7 + 0xc) = 0x19;
-              puVar8 = (int32_t *)FUN_180847820();
+              puVar8 = (int32_t *)SystemCoreProcessor();
               uVar1 = puVar8[1];
               uVar2 = puVar8[2];
               uVar3 = puVar8[3];
@@ -647,7 +647,7 @@ uint64_t FUN_1808ab08c(int32_t param_1)
             *puVar6 = &unknown_var_1544_ptr;
             *(int32_t *)(puVar6 + 1) = 0xb1e55ed1;
             *(int32_t *)((int64_t)puVar6 + 0xc) = 0x19;
-            puVar7 = (int32_t *)FUN_180847820();
+            puVar7 = (int32_t *)SystemCoreProcessor();
             uVar10 = puVar7[1];
             uVar1 = puVar7[2];
             uVar2 = puVar7[3];
@@ -716,7 +716,7 @@ int FUN_1808ab0e3(int param_1)
         *puVar5 = &unknown_var_1544_ptr;
         *(int32_t *)(puVar5 + 1) = 0xb1e55ed1;
         *(int32_t *)((int64_t)puVar5 + 0xc) = 0x19;
-        puVar6 = (int32_t *)FUN_180847820();
+        puVar6 = (int32_t *)SystemCoreProcessor();
         uVar1 = puVar6[1];
         uVar2 = puVar6[2];
         uVar3 = puVar6[3];

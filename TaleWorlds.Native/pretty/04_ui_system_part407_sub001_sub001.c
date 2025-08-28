@@ -591,7 +591,7 @@ void FUN_1808916f0(int64_t param_1,int64_t param_2)
   
   plVar5 = (int64_t *)0x0;
   auStackX_18[0] = 0;
-  iVar2 = FUN_18088c740(auStackX_18);
+  iVar2 = SystemSecurityProcessor(auStackX_18);
   if ((iVar2 == 0) && (iVar2 = FUN_1808bdd90(*(uint64_t *)(param_2 + 0x90)), iVar2 == 0)) {
     plVar4 = (int64_t *)(*(int64_t *)(param_2 + 0x50) + -8);
     if (*(int64_t *)(param_2 + 0x50) == 0) {

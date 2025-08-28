@@ -314,7 +314,7 @@ LAB_180852302:
         // 验证网络连接配置的有效性和兼容性
         if ((uint64_t *)param_1[0xc] == (uint64_t *)0x0) {
             // 创建新的网络连接配置
-            puVar8 = (uint64_t *)FUN_180847820();      // 创建配置对象
+            puVar8 = (uint64_t *)SystemCoreProcessor();      // 创建配置对象
             uStack_2c8 = (uint64_t *)*puVar8;          // 获取配置数据
             uStack_2c0 = puVar8[1];                       // 获取配置大小
         }
@@ -451,7 +451,7 @@ LAB_18085243e:
         }
         
         // 创建新的连接配置
-        puVar9 = (uint64_t *)FUN_180847820();          // 创建配置对象
+        puVar9 = (uint64_t *)SystemCoreProcessor();          // 创建配置对象
         uStack_2c8 = (uint64_t *)*puVar9;              // 获取配置数据
         uStack_2c0 = puVar9[1];                           // 获取配置大小
     }

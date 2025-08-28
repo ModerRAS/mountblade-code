@@ -281,7 +281,7 @@ LAB_18020adb5:
       uVar27 = 1;
 LAB_18020ada0:
                     // WARNING: Subroutine does not return
-      FUN_18066bdc0(plVar10,pppppppuVar31,&pppppppuStack_488,uVar27);
+      SystemConfigProcessor(plVar10,pppppppuVar31,&pppppppuStack_488,uVar27);
     }
     plStack_490 = alStack_360;
     *(void **)((int64_t)apuStack_418 + (int64_t)*(int *)(apuStack_418[0] + 4)) =
@@ -743,7 +743,7 @@ void FUN_18020b790(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 

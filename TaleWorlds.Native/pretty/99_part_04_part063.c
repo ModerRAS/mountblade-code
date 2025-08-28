@@ -34,7 +34,7 @@ void FUN_1802bf590(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
     } while (*pcVar4 != '\0');
     *puVar3 = &unknown_var_5252_ptr;
     puVar3[2] = pcVar6 + -0x180a180f3;
-    FUN_180630b20(param_4,puVar3,&system_data_3a84,&unknown_var_6808_ptr);
+    SystemAllocationProcessor(param_4,puVar3,&system_data_3a84,&unknown_var_6808_ptr);
     FUN_180630c80(param_4,puVar3,&unknown_var_2256_ptr,1);
     FUN_18062f990(param_4,puVar3,&system_data_b1c0);
     FUN_18062f990(param_4,puVar3,&unknown_var_5184_ptr);

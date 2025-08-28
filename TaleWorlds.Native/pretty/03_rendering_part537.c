@@ -22,7 +22,7 @@ void FUN_18055f1d0(int64_t param_1)
 
 
 
-uint64_t FUN_18055f260(int64_t param_1,uint *param_2,int *param_3)
+uint64_t SystemSynchronizationProcessor(int64_t param_1,uint *param_2,int *param_3)
 
 {
   int iVar1;

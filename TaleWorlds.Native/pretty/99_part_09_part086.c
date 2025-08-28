@@ -65,7 +65,7 @@ LAB_1805f6bae:
     }
     uStack_254 = (uint)bVar6;
     *(int32_t *)(lVar5 + 0x5c4) = 0;
-    FUN_18055f260(lVar5,&uStack_254,&unknown_var_5512_ptr);
+    SystemSynchronizationProcessor(lVar5,&uStack_254,&unknown_var_5512_ptr);
     bVar6 = (byte)uStack_254;
     if ((byte)uStack_254 == 2) {
       cVar1 = FUN_180646890(lVar5,auStack_218,0x28,auStack_248);
@@ -78,9 +78,9 @@ LAB_1805f6bae:
             if (cVar1 != '\0') {
               cVar1 = FUN_180646890(lVar5,auStack_1e8,100,auStack_238);
               if (cVar1 != '\0') {
-                cVar1 = FUN_18055f260(lVar5,&uStack_24c,&unknown_var_5528_ptr);
+                cVar1 = SystemSynchronizationProcessor(lVar5,&uStack_24c,&unknown_var_5528_ptr);
                 if (cVar1 != '\0') {
-                  cVar1 = FUN_18055f260(lVar5,&uStack_250,&unknown_var_5528_ptr);
+                  cVar1 = SystemSynchronizationProcessor(lVar5,&uStack_250,&unknown_var_5528_ptr);
                   if (cVar1 != '\0') {
                     lVar3 = inet_ntoa(*(int32_t *)(lVar5 + 0x5e4));
                     if (lVar3 == 0) {
@@ -138,7 +138,7 @@ uint64_t FUN_1805f6f50(uint64_t param_1,int64_t param_2,uint64_t param_3)
   float fStack_40;
   int32_t uStack_3c;
   
-  cVar2 = FUN_18055f260(param_3,auStackX_20,&unknown_var_6384_ptr);
+  cVar2 = SystemSynchronizationProcessor(param_3,auStackX_20,&unknown_var_6384_ptr);
   if (cVar2 != '\0') {
     cVar2 = FUN_180646700(param_3,&fStack_48,&unknown_var_6400_ptr);
     if (cVar2 != '\0') {
@@ -601,9 +601,9 @@ void FUN_1805f7890(int64_t param_1,uint64_t param_2,float *param_3)
   if (0x7b19 < iVar1) {
     SystemDataInitializer(&unknown_var_7168_ptr,iVar2,iVar3,iVar1);
   }
-  FUN_180645c10(param_2,iVar2,param_1 + 0x18);
-  FUN_180645c10(param_2,iVar3,param_1 + 0x24);
-  FUN_180645c10(param_2,iVar1,param_1 + 0x30);
+  SystemBufferProcessor(param_2,iVar2,param_1 + 0x18);
+  SystemBufferProcessor(param_2,iVar3,param_1 + 0x24);
+  SystemBufferProcessor(param_2,iVar1,param_1 + 0x30);
   FUN_1805f7a10(param_1,param_2,&fStack_18,&iStack_28);
   return;
 }

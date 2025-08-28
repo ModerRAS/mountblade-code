@@ -349,8 +349,8 @@ void FUN_1806d6f53(void)
 
 
 
-// 函数: void FUN_1806d6f60(int64_t *param_1)
-void FUN_1806d6f60(int64_t *param_1)
+// 函数: void SystemResourceProcessor(int64_t *param_1)
+void SystemResourceProcessor(int64_t *param_1)
 
 {
   uint64_t uVar1;

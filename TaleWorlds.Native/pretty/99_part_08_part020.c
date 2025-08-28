@@ -660,10 +660,10 @@ void FUN_1804f4250(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4
       if (iVar5 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar5);
       }
-      cVar4 = FUN_180645c10(0x180c95578,0,&system_param1_ptr);
-      if ((cVar4 != '\0') && (cVar4 = FUN_180645c10(0x180c95578,0xd,&unknown_var_3472_ptr), cVar4 != '\0'))
+      cVar4 = SystemBufferProcessor(0x180c95578,0,&system_param1_ptr);
+      if ((cVar4 != '\0') && (cVar4 = SystemBufferProcessor(0x180c95578,0xd,&unknown_var_3472_ptr), cVar4 != '\0'))
       {
-        FUN_180645c10(0x180c95578,param_2,&unknown_var_3424_ptr);
+        SystemBufferProcessor(0x180c95578,param_2,&unknown_var_3424_ptr);
       }
       system_system_config = system_system_config & 0xffffffff00000000;
       iVar5 = (int)(system_system_config - system_system_config >> 3);

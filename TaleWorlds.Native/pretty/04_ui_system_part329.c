@@ -165,7 +165,7 @@ LAB_18084c923:
       if (iVar1 < 0) {
         puVar8 = (int32_t *)((int64_t)iVar1 * 0x20 + 0x10 + *plVar3);
         do {
-          puVar7 = (int32_t *)FUN_180847820();
+          puVar7 = (int32_t *)SystemDataFlowProcessor();
           uVar4 = puVar7[1];
           uVar5 = puVar7[2];
           uVar6 = puVar7[3];
@@ -206,7 +206,7 @@ LAB_18084c923:
     if ((int)uVar10 < 0) {
       lVar12 = param_1[0xf] + 0x1c + (int64_t)(int)uVar10 * 0x28;
       do {
-        puVar8 = (int32_t *)FUN_180847820();
+        puVar8 = (int32_t *)SystemDataFlowProcessor();
         uVar4 = puVar8[1];
         uVar5 = puVar8[2];
         uVar6 = puVar8[3];
@@ -373,7 +373,7 @@ LAB_18084c923:
       if (iVar1 < 0) {
         puVar8 = (int32_t *)((int64_t)iVar1 * 0x20 + 0x10 + *plVar3);
         do {
-          puVar7 = (int32_t *)FUN_180847820();
+          puVar7 = (int32_t *)SystemDataFlowProcessor();
           uVar4 = puVar7[1];
           uVar5 = puVar7[2];
           uVar6 = puVar7[3];
@@ -414,7 +414,7 @@ LAB_18084c923:
     if ((int)uVar10 < 0) {
       lVar12 = param_1[0xf] + 0x1c + (int64_t)(int)uVar10 * 0x28;
       do {
-        puVar8 = (int32_t *)FUN_180847820();
+        puVar8 = (int32_t *)SystemDataFlowProcessor();
         uVar4 = puVar8[1];
         uVar5 = puVar8[2];
         uVar6 = puVar8[3];
@@ -582,7 +582,7 @@ LAB_18084c923:
       if (iVar1 < 0) {
         puVar8 = (int32_t *)((int64_t)iVar1 * 0x20 + 0x10 + *plVar3);
         do {
-          puVar7 = (int32_t *)FUN_180847820();
+          puVar7 = (int32_t *)SystemDataFlowProcessor();
           uVar4 = puVar7[1];
           uVar5 = puVar7[2];
           uVar6 = puVar7[3];
@@ -623,7 +623,7 @@ LAB_18084c923:
     if ((int)uVar10 < 0) {
       lVar12 = param_1[0xf] + 0x1c + (int64_t)(int)uVar10 * 0x28;
       do {
-        puVar8 = (int32_t *)FUN_180847820();
+        puVar8 = (int32_t *)SystemDataFlowProcessor();
         uVar4 = puVar8[1];
         uVar5 = puVar8[2];
         uVar6 = puVar8[3];
@@ -747,7 +747,7 @@ LAB_18084c923:
       if (iVar1 < 0) {
         puVar7 = (int32_t *)((int64_t)iVar1 * 0x20 + 0x10 + *unaff_R14);
         do {
-          puVar6 = (int32_t *)FUN_180847820();
+          puVar6 = (int32_t *)SystemDataFlowProcessor();
           uVar3 = puVar6[1];
           uVar4 = puVar6[2];
           uVar5 = puVar6[3];
@@ -789,7 +789,7 @@ LAB_18084c923:
     if ((int)uVar8 < 0) {
       lVar9 = unaff_R15[0xf] + 0x1c + (int64_t)(int)uVar8 * 0x28;
       do {
-        puVar7 = (int32_t *)FUN_180847820();
+        puVar7 = (int32_t *)SystemDataFlowProcessor();
         uVar3 = puVar7[1];
         uVar4 = puVar7[2];
         uVar5 = puVar7[3];

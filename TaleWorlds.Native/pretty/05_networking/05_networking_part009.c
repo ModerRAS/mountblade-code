@@ -1286,7 +1286,7 @@ uint64_t * network_config_initializer(uint64_t *param_1, uint64_t param_2, byte 
     *(int32_t *)((int64_t)param_1 + 0x54) = 0xffffffff;
     
     // 获取配置数据
-    config_pointer = (uint64_t *)FUN_180847820();
+    config_pointer = (uint64_t *)SystemCoreProcessor();
     config_result = config_pointer[1];
     param_1[0xb] = *config_pointer;
     param_1[0xc] = config_result;

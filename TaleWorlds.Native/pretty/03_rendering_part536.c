@@ -527,10 +527,10 @@ uint64_t FUN_18055e5e0(int64_t param_1,uint64_t param_2)
   iStack_18 = -1;
   auStack_14[0] = 0xffffffff;
   auStackX_20[0] = 0xff;
-  plVar2 = (int64_t *)FUN_18055f260(param_2,auStackX_20,&unknown_var_7456_ptr);
+  plVar2 = (int64_t *)SystemSynchronizationProcessor(param_2,auStackX_20,&unknown_var_7456_ptr);
   if ((((((char)plVar2 != '\0') && (cVar5 = (char)auStackX_20[0], (auStackX_20[0] & 0xfc) == 0)) &&
        (cVar5 != '\x02')) &&
-      ((plVar2 = (int64_t *)FUN_18055f260(param_2,&iStack_18,&unknown_var_7472_ptr), (char)plVar2 != '\0'
+      ((plVar2 = (int64_t *)SystemSynchronizationProcessor(param_2,&iStack_18,&unknown_var_7472_ptr), (char)plVar2 != '\0'
        && (plVar3 = (int64_t *)(int64_t)iStack_18, plVar2 = plVar3, -1 < iStack_18)))) &&
      ((plVar2 = *(int64_t **)(param_1 + 0x790 + (int64_t)plVar3 * 8), plVar2 != (int64_t *)0x0 &&
       (((int)plVar2[2] == 1 && (*plVar2 != 0)))))) {
@@ -541,7 +541,7 @@ uint64_t FUN_18055e5e0(int64_t param_1,uint64_t param_2)
       ;
     }
     else {
-      plVar2 = (int64_t *)FUN_18055f260(param_2,auStack_14,&unknown_var_7488_ptr);
+      plVar2 = (int64_t *)SystemSynchronizationProcessor(param_2,auStack_14,&unknown_var_7488_ptr);
       if (((char)plVar2 == '\0') || ((cVar5 != '\0' && (cVar5 != '\x03')))) goto LAB_18055e6d5;
       sVar1 = *(short *)(param_1 + 0x2788 + (int64_t)plVar3 * 2);
       uVar4 = (uint7)(byte)((ushort)sVar1 >> 8);

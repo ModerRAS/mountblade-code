@@ -149,7 +149,7 @@ void FUN_180535970(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   
   // 步骤2：设置渲染状态地址并初始化渲染索引
   renderStackAddress1 = 0x18053599e;
-  renderStatusFlag = FUN_18055f260(param_3,renderIndexArray,&unknown_var_3424_ptr);
+  renderStatusFlag = SystemSynchronizationProcessor(param_3,renderIndexArray,&unknown_var_3424_ptr);
   renderStackAddress1 = 0x1805359bc;
   FUN_1804fe350(&unknown_var_3768_ptr,renderStatusFlag,&unknown_var_3816_ptr,renderIndexArray);
   
@@ -380,7 +380,7 @@ void FUN_18053598c(int32_t param_1)
   
   // 步骤1：初始化渲染状态地址和参数验证
   render_stack_address = 0x18053599e;
-  render_status_valid = FUN_18055f260(param_1, &render_stack_index);
+  render_status_valid = SystemSynchronizationProcessor(param_1, &render_stack_index);
   render_stack_address = 0x1805359bc;
   FUN_1804fe350(&unknown_var_3768_ptr, render_status_valid, &unknown_var_3816_ptr, &render_stack_index);
   
@@ -863,7 +863,7 @@ void FUN_180535a30(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   }
   
   // 步骤2：执行渲染状态初始化和验证
-  render_status_flag = FUN_18055f260(param_3, render_index_array, &unknown_var_3424_ptr);
+  render_status_flag = SystemSynchronizationProcessor(param_3, render_index_array, &unknown_var_3424_ptr);
   FUN_1804fe350(&unknown_var_3872_ptr, render_status_flag, &unknown_var_3816_ptr, render_index_array);
   
   // 步骤3：根据状态标志执行条件更新
@@ -913,7 +913,7 @@ void FUN_180535a48(void)
   int render_stack_parameter;                       // 渲染堆栈参数
   
   // 步骤1：执行渲染状态初始化
-  render_init_status = FUN_18055f260();
+  render_init_status = SystemSynchronizationProcessor();
   FUN_1804fe350(&unknown_var_3872_ptr, render_init_status, &unknown_var_3816_ptr, &render_stack_parameter);
   
   // 步骤2：根据初始化状态执行标志设置
@@ -1214,13 +1214,13 @@ void FUN_180535ba0(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   }
   
   // 步骤2：执行第一轮状态验证
-  validation_status = FUN_18055f260(param_3, render_index_array, &unknown_var_3424_ptr);
+  validation_status = SystemSynchronizationProcessor(param_3, render_index_array, &unknown_var_3424_ptr);
   if (validation_status != '\0') {
     // 步骤2.1：设置第一轮条件验证结果
     condition_array[0] = (uint)((char)condition_array[0] != '\0');
     
     // 步骤2.2：执行第二轮状态验证
-    validation_status = FUN_18055f260(param_3, condition_array, &system_param1_ptr);
+    validation_status = SystemSynchronizationProcessor(param_3, condition_array, &system_param1_ptr);
     condition_array[0] = CONCAT31(condition_array[0]._1_3_, condition_array[0] != 0);
     
     // 步骤2.3：检查第二轮验证结果
@@ -1331,7 +1331,7 @@ LAB_180535c06:
  * 
  * 主要函数的调用关系：
  * 1. FUN_180535970 - 主渲染处理器
- *    ├── FUN_18055f260 - 状态初始化
+ *    ├── SystemSynchronizationProcessor - 状态初始化
  *    ├── FUN_1804fe350 - 参数验证
  *    ├── FUN_180557b40 - 数据处理
  *    ├── FUN_1805ed8d0 - 系统调用
@@ -1339,17 +1339,17 @@ LAB_180535c06:
  *    └── FUN_18051ec50 - 渲染执行
  * 
  * 2. FUN_18053598c - 状态验证器
- *    ├── FUN_18055f260 - 状态检查
+ *    ├── SystemSynchronizationProcessor - 状态检查
  *    ├── FUN_1804fe350 - 验证处理
  *    └── FUN_18051ec50 - 结果处理
  * 
  * 3. FUN_1805359c5 - 标志检查器
- *    ├── FUN_18055f260 - 标志初始化
+ *    ├── SystemSynchronizationProcessor - 标志初始化
  *    ├── FUN_1804fe350 - 标志验证
  *    └── FUN_18051ec50 - 标志更新
  * 
  * 4. FUN_180535a30 - 条件处理器
- *    ├── FUN_18055f260 - 条件检查
+ *    ├── SystemSynchronizationProcessor - 条件检查
  *    ├── FUN_1804fe350 - 条件验证
  *    └── FUN_18051ac20 - 条件执行
  * 

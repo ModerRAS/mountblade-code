@@ -904,8 +904,8 @@ void FUN_18051c010(int64_t param_1,int64_t param_2)
           else {
             uVar9 = 0;
           }
-          cVar5 = FUN_180645c10(uVar9,0,&system_param1_ptr);
-          if (((cVar5 != '\0') && (cVar5 = FUN_180645c10(uVar9,5,&unknown_var_3472_ptr), cVar5 != '\0')) &&
+          cVar5 = SystemBufferProcessor(uVar9,0,&system_param1_ptr);
+          if (((cVar5 != '\0') && (cVar5 = SystemBufferProcessor(uVar9,5,&unknown_var_3472_ptr), cVar5 != '\0')) &&
              ((cVar5 = FUN_180645fa0(uVar9), cVar5 != '\0' &&
               (cVar5 = FUN_180645fa0(uVar9), cVar5 != '\0')))) {
             FUN_180645fa0(uVar9);

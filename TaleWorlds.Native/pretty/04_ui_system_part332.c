@@ -456,7 +456,7 @@ uint64_t FUN_18084e110(int64_t *param_1,char *param_2)
   }
   uVar3 = (int)*(uint *)((int64_t)param_1 + 0xc) >> 0x1f;
   if ((int)((*(uint *)((int64_t)param_1 + 0xc) ^ uVar3) - uVar3) < iVar4) {
-    uVar2 = FUN_180849030(param_1,iVar4);
+    uVar2 = SystemDeallocationProcessor(param_1,iVar4);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -1131,7 +1131,7 @@ void FUN_18084edf0(int64_t param_1)
       uStack_a0 = (uint)auVar1._6_2_;
       uStack_a8 = auVar1._4_4_ & 0xffff;
                     // WARNING: Subroutine does not return
-      FUN_18076b390(&uStack_50,0x27,&unknown_var_8960_ptr);
+      SystemValidationProcessor(&uStack_50,0x27,&unknown_var_8960_ptr);
     }
     *(uint *)(param_1 + 0xc0) = *(uint *)(param_1 + 0xc0) | 8;
   }

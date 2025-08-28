@@ -51,7 +51,7 @@ LAB_18084c923:
       if (iVar1 < 0) {
         puVar7 = (int32_t *)((int64_t)iVar1 * 0x20 + 0x10 + *unaff_R14);
         do {
-          puVar6 = (int32_t *)FUN_180847820();
+          puVar6 = (int32_t *)SystemCoreProcessor();
           uVar3 = puVar6[1];
           uVar4 = puVar6[2];
           uVar5 = puVar6[3];
@@ -93,7 +93,7 @@ LAB_18084c923:
     if ((int)uVar8 < 0) {
       lVar9 = unaff_R15[0xf] + 0x1c + (int64_t)(int)uVar8 * 0x28;
       do {
-        puVar7 = (int32_t *)FUN_180847820();
+        puVar7 = (int32_t *)SystemCoreProcessor();
         uVar3 = puVar7[1];
         uVar4 = puVar7[2];
         uVar5 = puVar7[3];
@@ -299,7 +299,7 @@ int32_t FUN_18084cbf0(int64_t param_1,uint param_2,double param_3,int *param_4)
   
   if (param_4 != (int *)0x0) {
     puVar3 = (int32_t *)FUN_18084da10();
-    FUN_180847820();
+    SystemCoreProcessor();
     iVar10 = 0;
     puVar1 = *(int8_t **)(param_1 + 0x88);
     uStack_48 = 0x400000004;
@@ -381,7 +381,7 @@ uint64_t FUN_18084cc23(void)
   uStack0000000000000098 = 4;
   uStack000000000000009c = 4;
   FUN_18084da10();
-  FUN_180847820();
+  SystemCoreProcessor();
   iVar9 = 0;
   puVar1 = *(int8_t **)(unaff_RBP + 0x88);
   uStack000000000000003c = 0x42f00000;

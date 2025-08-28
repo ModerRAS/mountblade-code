@@ -56,7 +56,7 @@ uint64_t FUN_180760540(int64_t param_1)
   }
   if ((lVar1 != 0) && (lVar1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60(lVar1,7);
+    SystemMemoryProcessor(lVar1,7);
   }
   lVar1 = *(int64_t *)(param_1 + 0xe8);
   if ((lVar1 == 0) || (*(int64_t *)(lVar1 + 0x40) == 0)) {

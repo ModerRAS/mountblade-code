@@ -184,13 +184,13 @@ void FUN_18076161b(float param_1)
     if (iVar4 != 0) {
       if ((bVar21) && (lVar3 != 0)) {
                     // WARNING: Subroutine does not return
-        FUN_180743d60(lVar3,7);
+        SystemMemoryProcessor(lVar3,7);
       }
       goto LAB_180762032;
     }
     if ((bVar21) && (lVar3 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180743d60(lVar3,7);
+      SystemMemoryProcessor(lVar3,7);
     }
   }
   if (*(int64_t *)(unaff_RBX + 0x138) == 0) {
@@ -501,13 +501,13 @@ void FUN_1807617cf(void)
     if (iVar2 != 0) {
       if ((bVar16) && (lVar1 != 0)) {
                     // WARNING: Subroutine does not return
-        FUN_180743d60(lVar1,7);
+        SystemMemoryProcessor(lVar1,7);
       }
       goto LAB_180762032;
     }
     if ((bVar16) && (lVar1 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180743d60(lVar1,7);
+      SystemMemoryProcessor(lVar1,7);
     }
   }
   if (*(int64_t *)(unaff_RBX + 0x138) == 0) {

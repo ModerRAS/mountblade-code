@@ -21,7 +21,7 @@
 #define ui_system_validate_and_queue_parameters FUN_18066d130
 #define ui_system_process_parameter_data FUN_18066d210
 #define ui_system_cleanup_resource_handler FUN_18066d310
-#define ui_system_set_error_with_format FUN_18066d370
+#define ui_system_set_error_with_format SystemInitializationProcessor
 #define ui_system_set_error_simple FUN_18066d37f
 #define ui_system_trigger_error_jump FUN_18066d398
 #define ui_system_execute_error_jump FUN_18066d3e9
@@ -138,16 +138,16 @@ void FUN_18066c7e0(int64_t *param_1,int64_t param_2,uint64_t param_3,int64_t par
         *(int32_t *)(lStack_90 + 0x1318) = 1;
         if (*(int *)(lStack_88 + 0x760) < 1) {
           *(int *)(lStack_88 + 0x760) = iStack_a0;
-          FUN_18066d370(lStack_88,7,&unknown_var_7632_ptr);
+          SystemInitializationProcessor(lStack_88,7,&unknown_var_7632_ptr);
         }
         if (*(int *)(lVar14 + 0x764) < 1) {
           *(int *)(lVar14 + 0x764) = iStack_9c;
-          FUN_18066d370(lVar14,7,&unknown_var_7656_ptr);
+          SystemInitializationProcessor(lVar14,7,&unknown_var_7656_ptr);
         }
         iVar11 = FUN_18066e500(lVar14,*(int32_t *)(lVar14 + 0x760),
                                *(int32_t *)(lVar14 + 0x764));
         if (iVar11 != 0) {
-          FUN_18066d370(lVar14,2,&unknown_var_7680_ptr);
+          SystemInitializationProcessor(lVar14,2,&unknown_var_7680_ptr);
         }
         lVar12 = (int64_t)*(int *)(lVar14 + 0x9d4);
         iVar11 = 0;
@@ -630,7 +630,7 @@ uint64_t FUN_18066d310(uint64_t *param_1)
 // 函数: UI系统带格式错误设置器
 // 设置UI系统错误状态并支持格式化错误消息
 // 参数: param_1 - 错误结构指针, param_2 - 错误代码, param_3 - 格式化字符串, param_4 - 可变参数
-void FUN_18066d370(int32_t *param_1,int32_t param_2,int64_t param_3,uint64_t param_4)
+void SystemInitializationProcessor(int32_t *param_1,int32_t param_2,int64_t param_3,uint64_t param_4)
 
 {
   uint64_t *puVar1;

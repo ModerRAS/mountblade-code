@@ -158,13 +158,13 @@ LAB_1808c116b:
       }
     } while (iVar3 != -1);
   }
-  iVar3 = FUN_180744cc0(plVar4);
+  iVar3 = SystemLockProcessor(plVar4);
   if ((iVar3 == 0) && (iVar3 = FUN_180744e20(plVar4 + 2), iVar3 == 0)) {
     *(int32_t *)(plVar4 + 4) = 0xffffffff;
     *(int32_t *)((int64_t)plVar4 + 0x24) = 0;
   }
   FUN_180744e20(plVar4 + 2);
-  FUN_180744cc0(plVar4);
+  SystemLockProcessor(plVar4);
                     // WARNING: Subroutine does not return
   SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar4,&unknown_var_2688_ptr,0x5f2,1);
 }

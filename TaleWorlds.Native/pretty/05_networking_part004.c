@@ -973,7 +973,7 @@ void FUN_180844f40(uint64_t param_1, uint64_t *param_2)
     uStack_140 = 0;
     lStack_138 = 0;
     iVar5 = func_0x00018088c590(0,&uStack_140);
-    if (((iVar5 == 0) && (iVar5 = FUN_18088c740(&uStack_148,uStack_140), iVar5 == 0)) &&
+    if (((iVar5 == 0) && (iVar5 = SystemSecurityProcessor(&uStack_148,uStack_140), iVar5 == 0)) &&
        (iVar5 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_130), iVar5 == 0)) {
         lStack_138 = 0;
         if (lStack_130 != 0) {
@@ -1029,7 +1029,7 @@ void FUN_180845090(uint64_t param_1, int64_t param_2)
         if ((*(uint *)(lStack_130 + 0x24) >> 1 & 1) == 0) {
             AdvancedSystemProcessor(&uStack_138);
         }
-        iVar2 = FUN_18088c740(&uStack_138);
+        iVar2 = SystemSecurityProcessor(&uStack_138);
         if (iVar2 != 0) goto LAB_18084510c;
     }
     iVar2 = iVar1;
@@ -1158,7 +1158,7 @@ void FUN_1808453c0(uint64_t param_1, uint64_t *param_2)
     iVar1 = func_0x00018088c590(param_1,alStack_148);
     if (iVar1 == 0) {
         if ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0) goto LAB_18084541c;
-        iVar2 = FUN_18088c740(alStack_148 + 1);
+        iVar2 = SystemSecurityProcessor(alStack_148 + 1);
         if (iVar2 == 0) goto LAB_180845484;
     }
     else {

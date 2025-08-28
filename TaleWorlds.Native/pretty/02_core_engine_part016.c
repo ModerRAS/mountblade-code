@@ -147,7 +147,7 @@
 #define CoreEngineSystemConfigurator2 FUN_180627ae0        // 核心引擎系统配置器2
 #define CoreEngineResourceAllocator FUN_1800590b0         // 核心引擎资源分配器
 #define CoreEngineSystemInitializer2 FUN_18005d1f0        // 核心引擎系统初始化器2
-#define CoreEngineDataProcessor2 FUN_18066bdc0             // 核心引擎数据处理器2
+#define CoreEngineDataProcessor2 SystemConfigProcessor             // 核心引擎数据处理器2
 #define CoreEngineSystemCleaner2 FUN_180174950            // 核心引擎系统清理器2
 #define CoreEngineParameterHandler FUN_180059820          // 核心引擎参数处理器
 #define CoreEngineErrorHandler2 FUN_18005d580             // 核心引擎错误处理器2
@@ -1165,7 +1165,7 @@ LAB_180057b97:
   uVar7 = 0;
 LAB_180057ba2:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar3,lVar4,param_1,uVar7);
+  SystemConfigProcessor(lVar3,lVar4,param_1,uVar7);
 }
 
 

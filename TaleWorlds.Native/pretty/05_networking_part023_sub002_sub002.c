@@ -1068,7 +1068,7 @@ LAB_180854d65:
       else {
         dStackX_10 = 0.0;
         FUN_18084d840(lVar8,*puVar10,param_4 - *puVar10,&dStackX_10);
-        FUN_180847820();
+        SystemCoreProcessor();
         FUN_18084da10();
         if (0 < *(int *)(lVar8 + 0x90)) {
           lVar7 = 0;
@@ -1188,7 +1188,7 @@ uint64_t FUN_180854d7d(void)
   else {
     dStack0000000000000068 = 0.0;
     FUN_18084d840(lVar8,*unaff_RDI,unaff_EBX - *unaff_RDI,&stack0x00000068);
-    FUN_180847820();
+    SystemCoreProcessor();
     FUN_18084da10();
     if (0 < *(int *)(lVar8 + 0x90)) {
       lVar7 = 0;
@@ -1259,7 +1259,7 @@ uint64_t FUN_180854df5(uint64_t param_1,uint64_t param_2,int param_3)
   
   dStack0000000000000068 = 0.0;
   FUN_18084d840(param_1,*unaff_RDI,param_3 - *unaff_RDI,&stack0x00000068);
-  FUN_180847820();
+  SystemCoreProcessor();
   FUN_18084da10();
   if (0 < *(int *)(unaff_RSI + 0x90)) {
     lVar8 = 0;

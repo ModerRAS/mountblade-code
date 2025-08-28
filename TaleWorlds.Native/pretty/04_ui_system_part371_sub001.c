@@ -68,7 +68,7 @@ LAB_18086a67a:
           lVar4 = (**(code **)(*(int64_t *)*param_2 + 0x2e0))((int64_t *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            SystemStateProcessor(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x108);
           if (lVar4 == 0) goto LAB_18086a67a;
@@ -148,7 +148,7 @@ LAB_18086a67a:
         lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x2e0))((int64_t *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          SystemStateProcessor(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x108);
         if (lVar3 == 0) goto LAB_18086a67a;
@@ -217,7 +217,7 @@ LAB_18086a67a:
       lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x2e0))((int64_t *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        SystemStateProcessor(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x108);
       if (lVar3 == 0) goto LAB_18086a67a;
@@ -333,7 +333,7 @@ LAB_18086a87a:
           lVar4 = (**(code **)(*(int64_t *)*param_2 + 0x2e8))((int64_t *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            SystemStateProcessor(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0xe8);
           if (lVar4 == 0) goto LAB_18086a87a;
@@ -413,7 +413,7 @@ LAB_18086a87a:
         lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x2e8))((int64_t *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          SystemStateProcessor(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0xe8);
         if (lVar3 == 0) goto LAB_18086a87a;
@@ -482,7 +482,7 @@ LAB_18086a87a:
       lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x2e8))((int64_t *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        SystemStateProcessor(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0xe8);
       if (lVar3 == 0) goto LAB_18086a87a;
@@ -598,7 +598,7 @@ LAB_18086aa7a:
           lVar4 = (**(code **)(*(int64_t *)*param_2 + 0x288))((int64_t *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            SystemStateProcessor(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x1a8);
           if (lVar4 == 0) goto LAB_18086aa7a;
@@ -678,7 +678,7 @@ LAB_18086aa7a:
         lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x288))((int64_t *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          SystemStateProcessor(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x1a8);
         if (lVar3 == 0) goto LAB_18086aa7a;
@@ -747,7 +747,7 @@ LAB_18086aa7a:
       lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x288))((int64_t *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        SystemStateProcessor(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x1a8);
       if (lVar3 == 0) goto LAB_18086aa7a;
@@ -863,7 +863,7 @@ LAB_18086ac60:
           lVar4 = (**(code **)(*(int64_t *)*param_2 + 0x338))((int64_t *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            SystemStateProcessor(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x48);
           if (lVar4 == 0) goto LAB_18086ac60;
@@ -943,7 +943,7 @@ LAB_18086ac60:
         lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x338))((int64_t *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          SystemStateProcessor(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x48);
         if (lVar3 == 0) goto LAB_18086ac60;
@@ -1012,7 +1012,7 @@ LAB_18086ac60:
       lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x338))((int64_t *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        SystemStateProcessor(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x48);
       if (lVar3 == 0) goto LAB_18086ac60;

@@ -1136,7 +1136,7 @@ int32_t FUN_18066efd0(int64_t param_1,int param_2,int *param_3)
   }
   puVar4 = &unknown_var_7744_ptr;
 LAB_18066f069:
-  FUN_18066d370(puVar1,1,puVar4);
+  SystemInitializationProcessor(puVar1,1,puVar4);
   return *puVar1;
 }
 
@@ -1258,7 +1258,7 @@ int32_t FUN_18066f2e0(int64_t param_1,int param_2,int *param_3)
   }
   puVar5 = &unknown_var_7744_ptr;
 LAB_18066f3c7:
-  FUN_18066d370(puVar1,1,puVar5);
+  SystemInitializationProcessor(puVar1,1,puVar5);
   return *puVar1;
 }
 

@@ -382,7 +382,7 @@ void FUN_1806111b0(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 
@@ -961,17 +961,17 @@ void FUN_180611ff0(uint64_t param_1,float param_2)
       }
       auStackX_18[0] = 0;
       *(int32_t *)(lVar3 + 0x5c4) = 0;
-      FUN_18055f260(lVar3,auStackX_18,&unknown_var_8192_ptr);
+      SystemSynchronizationProcessor(lVar3,auStackX_18,&unknown_var_8192_ptr);
       FUN_180569670(lVar3);
       if (0 < (int)auStackX_18[0]) {
         uVar5 = (uint64_t)auStackX_18[0];
         do {
           auStackX_18[0] = (uint)(cVar7 != '\0');
-          FUN_18055f260(lVar3,auStackX_18,&unknown_var_8176_ptr);
+          SystemSynchronizationProcessor(lVar3,auStackX_18,&unknown_var_8176_ptr);
           cVar7 = auStackX_18[0] != 0;
           if (auStackX_18[0] == 0) {
             auStackX_18[0] = uVar6;
-            FUN_18055f260(lVar3,auStackX_18,&unknown_var_3472_ptr);
+            SystemSynchronizationProcessor(lVar3,auStackX_18,&unknown_var_3472_ptr);
             uVar6 = auStackX_18[0] & 0xffff;
             uVar4 = (uint64_t)uVar6;
             lVar1 = *(int64_t *)(uVar4 * 0x10 + 0x180c95bf8);
@@ -1028,17 +1028,17 @@ void FUN_180612015(void)
     }
     _cStack0000000000000070 = 0;
     *(int32_t *)(lVar1 + 0x5c4) = 0;
-    FUN_18055f260(lVar1,&stack0x00000070,&unknown_var_8192_ptr);
+    SystemSynchronizationProcessor(lVar1,&stack0x00000070,&unknown_var_8192_ptr);
     FUN_180569670(lVar1);
     if (0 < (int)_cStack0000000000000070) {
       uVar4 = (uint64_t)_cStack0000000000000070;
       do {
         _cStack0000000000000070 = (uint)(cVar6 != '\0');
-        FUN_18055f260(lVar1,&stack0x00000070,&unknown_var_8176_ptr);
+        SystemSynchronizationProcessor(lVar1,&stack0x00000070,&unknown_var_8176_ptr);
         cVar6 = _cStack0000000000000070 != 0;
         if (_cStack0000000000000070 == 0) {
           _cStack0000000000000070 = uVar5;
-          FUN_18055f260(lVar1,&stack0x00000070,&unknown_var_3472_ptr);
+          SystemSynchronizationProcessor(lVar1,&stack0x00000070,&unknown_var_3472_ptr);
           uVar5 = _cStack0000000000000070 & 0xffff;
           uVar3 = (uint64_t)uVar5;
           lVar2 = *(int64_t *)(uVar3 * 0x10 + 0x180c95bf8);

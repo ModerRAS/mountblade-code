@@ -384,7 +384,7 @@ LAB_18014b52a:
           uVar9 = 1;
         }
                     // WARNING: Subroutine does not return
-        FUN_18066bdc0(lVar5,puVar3,param_2,uVar9);
+        SystemConfigProcessor(lVar5,puVar3,param_2,uVar9);
       }
       lVar5 = *param_1;
       iVar10 = iVar10 + 1;
@@ -426,7 +426,7 @@ LAB_18014b61a:
           uVar9 = 1;
         }
                     // WARNING: Subroutine does not return
-        FUN_18066bdc0(lVar5,puVar3,param_2,uVar9);
+        SystemConfigProcessor(lVar5,puVar3,param_2,uVar9);
       }
       lVar5 = param_1[4];
       iVar10 = iVar10 + 1;
@@ -475,7 +475,7 @@ LAB_18014b72a:
               uVar9 = 1;
             }
                     // WARNING: Subroutine does not return
-            FUN_18066bdc0(lVar5,puVar3,param_2,uVar9);
+            SystemConfigProcessor(lVar5,puVar3,param_2,uVar9);
           }
           lVar6 = *plVar1;
           iVar7 = iVar7 + 1;

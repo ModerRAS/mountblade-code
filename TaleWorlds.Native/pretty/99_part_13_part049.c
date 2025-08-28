@@ -212,7 +212,7 @@ uint64_t * FUN_1808c75c0(uint64_t *param_1)
   
   FUN_1808b0200(param_1,0x14);
   *param_1 = &unknown_var_3192_ptr;
-  puVar6 = (int32_t *)FUN_180847820();
+  puVar6 = (int32_t *)SystemCoreProcessor();
   uVar2 = puVar6[1];
   uVar3 = puVar6[2];
   uVar4 = puVar6[3];
@@ -220,7 +220,7 @@ uint64_t * FUN_1808c75c0(uint64_t *param_1)
   *(int32_t *)((int64_t)param_1 + 0x34) = uVar2;
   *(int32_t *)(param_1 + 7) = uVar3;
   *(int32_t *)((int64_t)param_1 + 0x3c) = uVar4;
-  puVar6 = (int32_t *)FUN_180847820();
+  puVar6 = (int32_t *)SystemCoreProcessor();
   uVar2 = puVar6[1];
   uVar3 = puVar6[2];
   uVar4 = puVar6[3];
@@ -228,7 +228,7 @@ uint64_t * FUN_1808c75c0(uint64_t *param_1)
   *(int32_t *)((int64_t)param_1 + 0x44) = uVar2;
   *(int32_t *)(param_1 + 9) = uVar3;
   *(int32_t *)((int64_t)param_1 + 0x4c) = uVar4;
-  puVar6 = (int32_t *)FUN_180847820();
+  puVar6 = (int32_t *)SystemCoreProcessor();
   uVar2 = puVar6[1];
   uVar3 = puVar6[2];
   uVar4 = puVar6[3];
@@ -236,7 +236,7 @@ uint64_t * FUN_1808c75c0(uint64_t *param_1)
   *(int32_t *)((int64_t)param_1 + 0x54) = uVar2;
   *(int32_t *)(param_1 + 0xb) = uVar3;
   *(int32_t *)((int64_t)param_1 + 0x5c) = uVar4;
-  puVar7 = (uint64_t *)FUN_180847820();
+  puVar7 = (uint64_t *)SystemCoreProcessor();
   uVar5 = puVar7[1];
   puVar1 = param_1 + 0x16;
   param_1[0xc] = *puVar7;

@@ -83,7 +83,7 @@ int32_t FUN_18084cbf0(int64_t param_1,uint param_2,double param_3,int *param_4)
   
   if (param_4 != (int *)0x0) {
     puVar3 = (int32_t *)FUN_18084da10();
-    FUN_180847820();
+    SystemDataFlowProcessor();
     iVar10 = 0;
     puVar1 = *(int8_t **)(param_1 + 0x88);
     uStack_48 = 0x400000004;
@@ -165,7 +165,7 @@ uint64_t FUN_18084cc23(void)
   uStack0000000000000098 = 4;
   uStack000000000000009c = 4;
   FUN_18084da10();
-  FUN_180847820();
+  SystemDataFlowProcessor();
   iVar9 = 0;
   puVar1 = *(int8_t **)(unaff_RBP + 0x88);
   uStack000000000000003c = 0x42f00000;

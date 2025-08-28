@@ -78,7 +78,7 @@ uint64_t FUN_18077edf0(int64_t *param_1,int param_2,int32_t *param_3,int64_t par
     fVar2 = *(float *)(lVar1 + 0x36c);
   }
                     // WARNING: Subroutine does not return
-  FUN_18076b390(param_4,0x20,&unknown_var_2048_ptr,(double)fVar2);
+  SystemValidationProcessor(param_4,0x20,&unknown_var_2048_ptr,(double)fVar2);
 }
 
 
@@ -100,7 +100,7 @@ uint64_t FUN_18077eef0(int64_t *param_1,int param_2,int32_t *param_3,int64_t par
       puVar2 = &unknown_var_8200_ptr;
     }
                     // WARNING: Subroutine does not return
-    FUN_18076b390(param_4,0x20,&unknown_var_552_ptr,puVar2);
+    SystemValidationProcessor(param_4,0x20,&unknown_var_552_ptr,puVar2);
   }
   return 0;
 }
@@ -125,7 +125,7 @@ FUN_18077ef70(int64_t *param_1,int param_2,uint64_t *param_3,int32_t *param_4,in
         puVar2 = &unknown_var_2328_ptr;
       }
                     // WARNING: Subroutine does not return
-      FUN_18076b390(param_5,0x20,&unknown_var_552_ptr,puVar2);
+      SystemValidationProcessor(param_5,0x20,&unknown_var_552_ptr,puVar2);
     }
   }
   return 0;

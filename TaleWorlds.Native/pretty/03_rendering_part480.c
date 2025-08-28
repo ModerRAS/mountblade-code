@@ -838,10 +838,10 @@ void FUN_180525ac0(int64_t param_1,char param_2)
     if (iVar4 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar4);
     }
-    cVar3 = FUN_180645c10(0x180c95578,0,&system_param1_ptr);
-    if (((cVar3 != '\0') && (cVar3 = FUN_180645c10(0x180c95578,9,&unknown_var_3472_ptr), cVar3 != '\0')) &&
-       (cVar3 = FUN_180645c10(0x180c95578,uVar1,&unknown_var_3424_ptr), cVar3 != '\0')) {
-      FUN_180645c10(0x180c95578,(int)param_2,&unknown_var_3040_ptr);
+    cVar3 = SystemBufferProcessor(0x180c95578,0,&system_param1_ptr);
+    if (((cVar3 != '\0') && (cVar3 = SystemBufferProcessor(0x180c95578,9,&unknown_var_3472_ptr), cVar3 != '\0')) &&
+       (cVar3 = SystemBufferProcessor(0x180c95578,uVar1,&unknown_var_3424_ptr), cVar3 != '\0')) {
+      SystemBufferProcessor(0x180c95578,(int)param_2,&unknown_var_3040_ptr);
     }
     render_system_memory = render_system_memory & 0xffffffff00000000;
     iVar4 = (int)(render_system_memory - render_system_memory >> 3);

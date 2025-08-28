@@ -550,7 +550,7 @@ LAB_18039a3d2:
           FUN_18039d3d0(param_1,pcVar7,param_3);
         }
         else {
-          FUN_180626f80(&unknown_var_6704_ptr);
+          SystemOptimizationProcessor(&unknown_var_6704_ptr);
         }
         return;
       }

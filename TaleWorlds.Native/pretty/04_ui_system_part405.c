@@ -888,7 +888,7 @@ uint64_t FUN_18088fdb0(int64_t param_1,uint64_t param_2)
     return 0x2e;
   }
   lStackX_8 = 0;
-  iVar2 = FUN_18088c740(&lStackX_8,param_2);
+  iVar2 = SystemSecurityProcessor(&lStackX_8,param_2);
   if (iVar2 == 0) {
     iVar2 = FUN_1808dec80(lVar1,param_2);
     if (iVar2 == 0) {
@@ -915,7 +915,7 @@ uint64_t FUN_18088fdce(void)
     return 0x2e;
   }
   in_stack_00000030 = 0;
-  iVar2 = FUN_18088c740(&stack0x00000030);
+  iVar2 = SystemSecurityProcessor(&stack0x00000030);
   if (iVar2 == 0) {
     iVar2 = FUN_1808dec80(lVar1);
     if (iVar2 == 0) {
@@ -939,7 +939,7 @@ void FUN_18088fded(void)
   uint64_t uStack0000000000000030;
   
   uStack0000000000000030 = 0;
-  iVar1 = FUN_18088c740(&stack0x00000030);
+  iVar1 = SystemSecurityProcessor(&stack0x00000030);
   if (iVar1 == 0) {
     iVar1 = FUN_1808dec80();
     if (iVar1 == 0) {
@@ -1038,7 +1038,7 @@ uint64_t FUN_18088fea0(int64_t param_1,uint64_t param_2)
     return 0x2e;
   }
   lStackX_8 = 0;
-  iVar2 = FUN_18088c740(&lStackX_8,param_2);
+  iVar2 = SystemSecurityProcessor(&lStackX_8,param_2);
   if (iVar2 == 0) {
     iVar2 = FUN_1808de9b0(lVar1);
     if (iVar2 == 0) {
@@ -1068,7 +1068,7 @@ uint64_t FUN_18088febe(void)
     return 0x2e;
   }
   in_stack_00000030 = 0;
-  iVar2 = FUN_18088c740(&stack0x00000030);
+  iVar2 = SystemSecurityProcessor(&stack0x00000030);
   if (iVar2 == 0) {
     iVar2 = FUN_1808de9b0(lVar1);
     if (iVar2 == 0) {
@@ -1095,7 +1095,7 @@ void FUN_18088fedd(void)
   uint64_t uStack0000000000000030;
   
   uStack0000000000000030 = 0;
-  iVar1 = FUN_18088c740(&stack0x00000030);
+  iVar1 = SystemSecurityProcessor(&stack0x00000030);
   if (iVar1 == 0) {
     iVar1 = FUN_1808de9b0();
     if (iVar1 == 0) {

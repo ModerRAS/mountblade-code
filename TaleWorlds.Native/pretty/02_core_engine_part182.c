@@ -8,7 +8,7 @@ void FUN_180167a50(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 

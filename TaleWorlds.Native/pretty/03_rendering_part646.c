@@ -194,8 +194,8 @@ void FUN_180630980(int64_t param_1,int64_t param_2,uint64_t param_3,int32_t *par
 
 
 
-// 函数: void FUN_180630b20(int64_t param_1,int64_t param_2,char *param_3,char *param_4)
-void FUN_180630b20(int64_t param_1,int64_t param_2,char *param_3,char *param_4)
+// 函数: void SystemAllocationProcessor(int64_t param_1,int64_t param_2,char *param_3,char *param_4)
+void SystemAllocationProcessor(int64_t param_1,int64_t param_2,char *param_3,char *param_4)
 
 {
   char cVar1;

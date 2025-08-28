@@ -38,7 +38,7 @@ uint64_t FUN_18074c0f3(void)
   
   if ((unaff_BPL != '\0') && (unaff_RDI != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180743d60();
+    SystemMemoryProcessor();
   }
   plVar1 = unaff_RBX + 0x22;
   for (plVar10 = (int64_t *)*plVar1; plVar10 != plVar1; plVar10 = (int64_t *)*plVar10) {
@@ -517,7 +517,7 @@ LAB_18074cd03:
                 return uVar2;
               }
                     // WARNING: Subroutine does not return
-              FUN_180743d60(lVar1,1);
+              SystemMemoryProcessor(lVar1,1);
             }
             uVar7 = FUN_18075fce0(param_2,param_2,0);
             uVar2 = (uint64_t)uVar7;
@@ -529,7 +529,7 @@ LAB_18074cd03:
             }
             if ((bVar11) && (lVar1 != 0)) {
                     // WARNING: Subroutine does not return
-              FUN_180743d60(lVar1,1);
+              SystemMemoryProcessor(lVar1,1);
             }
             plVar9 = (int64_t *)(param_2 + 0x90);
             **(int64_t **)(param_2 + 0x98) = *plVar9;

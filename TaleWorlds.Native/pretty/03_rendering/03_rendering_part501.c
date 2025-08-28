@@ -214,7 +214,7 @@ void FUN_180535970(int64_t *param_1, uint64_t param_2, uint64_t param_3)
     stack_param1 = 0x18053599e;  /* 渲染管线初始化参数 */
     
     /* 执行渲染系统验证 */
-    validation_result = FUN_18055f260(config_param, data_array, &unknown_var_3424_ptr);
+    validation_result = SystemSynchronizationProcessor(config_param, data_array, &unknown_var_3424_ptr);
     stack_param1 = 0x1805359bc;  /* 渲染管线配置参数 */
     
     /* 处理验证结果 */
@@ -478,7 +478,7 @@ void FUN_18053598c(int32_t param_1)
     
     /* 初始化渲染系统状态参数 */
     stack_param = 0x18053599e;
-    validation_result = FUN_18055f260(state_param, &stack0x00000030);
+    validation_result = SystemSynchronizationProcessor(state_param, &stack0x00000030);
     stack_param = 0x1805359bc;
     
     /* 执行渲染系统验证 */
@@ -936,7 +936,7 @@ void FUN_180535a30(int64_t *param_1, uint64_t param_2, uint64_t param_3)
     /* 验证渲染系统上下文有效性 */
     if (context_value != 0) {
         /* 执行渲染系统验证 */
-        validation_result = FUN_18055f260(config_param, data_array, &unknown_var_3424_ptr);
+        validation_result = SystemSynchronizationProcessor(config_param, data_array, &unknown_var_3424_ptr);
         
         /* 处理验证结果 */
         FUN_1804fe350(&unknown_var_3872_ptr, validation_result, &unknown_var_3816_ptr, data_array);
@@ -975,7 +975,7 @@ void FUN_180535a48(void)
     RenderingSystemInt stack_value;                    /* 栈值 */
     
     /* 执行渲染系统验证 */
-    validation_result = FUN_18055f260();
+    validation_result = SystemSynchronizationProcessor();
     
     /* 处理验证结果 */
     FUN_1804fe350(&unknown_var_3872_ptr, validation_result, &unknown_var_3816_ptr, &stack0x00000030);
@@ -1207,12 +1207,12 @@ void FUN_180535ba0(int64_t *param_1, uint64_t param_2, uint64_t param_3)
     }
     
     /* 执行渲染系统验证 */
-    validation_result = FUN_18055f260(config_param, data_array, &unknown_var_3424_ptr);
+    validation_result = SystemSynchronizationProcessor(config_param, data_array, &unknown_var_3424_ptr);
     
     /* 处理标志数组 */
     if (validation_result != '\0') {
         flag_array[0] = (uint)((char)flag_array[0] != '\0');
-        validation_result = FUN_18055f260(config_param, flag_array, &system_param1_ptr);
+        validation_result = SystemSynchronizationProcessor(config_param, flag_array, &system_param1_ptr);
         flag_array[0] = CONCAT31(flag_array[0]._1_3_, flag_array[0] != 0);
         
         if (validation_result != '\0') {
@@ -1252,7 +1252,7 @@ LAB_180535c06:
 #define RenderingSystemDataProcessor                FUN_180535ba0  /* 渲染系统数据处理器 */
 
 /* 渲染系统辅助函数别名 */
-#define RenderingSystemValidationFunc               FUN_18055f260  /* 渲染系统验证函数 */
+#define RenderingSystemValidationFunc               SystemSynchronizationProcessor  /* 渲染系统验证函数 */
 #define RenderingSystemProcessingFunc               FUN_1804fe350  /* 渲染系统处理函数 */
 #define RenderingSystemCalculatorFunc               FUN_180557b40  /* 渲染系统计算函数 */
 #define RenderingSystemCleanupFunc                  FUN_18051ec50  /* 渲染系统清理函数 */

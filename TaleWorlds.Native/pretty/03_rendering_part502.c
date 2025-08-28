@@ -145,7 +145,7 @@ void FUN_180535c60(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   }
   
   // 步骤2：执行资源状态初始化和验证
-  resource_status_flag = FUN_18055f260(param_3, &stack_resource_id, &unknown_var_3424_ptr);
+  resource_status_flag = SystemSynchronizationProcessor(param_3, &stack_resource_id, &unknown_var_3424_ptr);
   FUN_1804fe350(&unknown_var_4280_ptr, resource_status_flag, &unknown_var_3816_ptr, &stack_resource_id);
   
   // 步骤3：检查资源状态，无效则返回
@@ -222,10 +222,10 @@ void FUN_180535c60(int64_t *param_1,uint64_t param_2,uint64_t param_3)
       if (resource_id != 0) {
         __Throw_C_error_std__YAXH_Z(resource_id);
       }
-      resource_status_flag = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
+      resource_status_flag = SystemBufferProcessor(0x180c95578, 0, &system_param1_ptr);
       if ((resource_status_flag != '\0') &&
-         (resource_status_flag = FUN_180645c10(0x180c95578, 0xd, &unknown_var_3472_ptr), resource_status_flag != '\0')) {
-        FUN_180645c10(0x180c95578, resource_handle, &unknown_var_3424_ptr);
+         (resource_status_flag = SystemBufferProcessor(0x180c95578, 0xd, &unknown_var_3472_ptr), resource_status_flag != '\0')) {
+        SystemBufferProcessor(0x180c95578, resource_handle, &unknown_var_3424_ptr);
       }
       render_system_resource = render_system_resource & 0xffffffff00000000;
       resource_id = (int)(render_system_resource - render_system_resource >> 3);
@@ -497,7 +497,7 @@ void FUN_180535c78(int32_t param_1)
   int32_t resource_param;                         // 资源参数
   
   // 步骤1：执行资源状态初始化和验证
-  resource_status_flag = FUN_18055f260(param_1, &stack_resource_id);
+  resource_status_flag = SystemSynchronizationProcessor(param_1, &stack_resource_id);
   FUN_1804fe350(&unknown_var_4280_ptr, resource_status_flag, &unknown_var_3816_ptr, &stack_resource_id);
   
   // 步骤2：检查资源状态，无效则返回
@@ -572,10 +572,10 @@ void FUN_180535c78(int32_t param_1)
       if (resource_id != 0) {
         __Throw_C_error_std__YAXH_Z(resource_id);
       }
-      resource_status_flag = FUN_180645c10(0x180c95578, 0, &system_param1_ptr);
+      resource_status_flag = SystemBufferProcessor(0x180c95578, 0, &system_param1_ptr);
       if ((resource_status_flag != '\0') && 
-          (resource_status_flag = FUN_180645c10(0x180c95578, 0xd, &unknown_var_3472_ptr), resource_status_flag != '\0')) {
-        FUN_180645c10(0x180c95578, resource_handle, &unknown_var_3424_ptr);
+          (resource_status_flag = SystemBufferProcessor(0x180c95578, 0xd, &unknown_var_3472_ptr), resource_status_flag != '\0')) {
+        SystemBufferProcessor(0x180c95578, resource_handle, &unknown_var_3424_ptr);
       }
       render_system_resource = render_system_resource & 0xffffffff00000000;
       resource_id = (int)(render_system_resource - render_system_resource >> 3);
@@ -884,10 +884,10 @@ void FUN_180535c78(int32_t param_1)
  * 
  * 主要函数的调用关系：
  * 1. FUN_180535c60 - 高级资源管理器
- *    ├── FUN_18055f260 - 资源状态初始化
+ *    ├── SystemSynchronizationProcessor - 资源状态初始化
  *    ├── FUN_1804fe350 - 资源参数验证
  *    ├── FUN_1804fc920 - 资源池操作
- *    ├── FUN_180645c10 - 资源同步控制
+ *    ├── SystemBufferProcessor - 资源同步控制
  *    ├── FUN_1805b59d0 - 资源清理操作
  *    ├── FUN_1805b32b0 - 资源批处理
  *    ├── FUN_180506ae0 - 资源数据操作
@@ -895,10 +895,10 @@ void FUN_180535c78(int32_t param_1)
  *    └── FUN_1804fc230 - 资源管理完成
  * 
  * 2. FUN_180535c78 - 资源状态管理器
- *    ├── FUN_18055f260 - 状态检查和初始化
+ *    ├── SystemSynchronizationProcessor - 状态检查和初始化
  *    ├── FUN_1804fe350 - 状态验证处理
  *    ├── FUN_1804fc920 - 状态管理操作
- *    ├── FUN_180645c10 - 状态同步控制
+ *    ├── SystemBufferProcessor - 状态同步控制
  *    ├── FUN_1805b59d0 - 状态清理操作
  *    ├── FUN_1805b32b0 - 状态批处理
  *    ├── FUN_180506ae0 - 状态数据操作

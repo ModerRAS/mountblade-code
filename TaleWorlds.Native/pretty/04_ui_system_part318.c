@@ -760,7 +760,7 @@ uint64_t * FUN_18083ef10(uint64_t param_1,uint64_t *param_2)
   *(int8_t *)(param_2 + 9) = 0;
   param_2[10] = 0;
   param_2[0xb] = 0;
-  puVar6 = (int32_t *)FUN_180847820();
+  puVar6 = (int32_t *)SystemDataFlowProcessor();
   uVar1 = puVar6[1];
   uVar2 = puVar6[2];
   uVar3 = puVar6[3];

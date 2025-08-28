@@ -6062,7 +6062,7 @@ LAB_180889e8c:
     } while (iVar10 != -1);
   }
   if (lVar2 == 0) {
-    puVar11 = (uint64_t *)FUN_180847820();
+    puVar11 = (uint64_t *)SystemCoreProcessor();
     plStack_68 = (int64_t *)*puVar11;
     uStack_60 = puVar11[1];
     uVar5 = FUN_180866f50(*(uint64_t *)(param_1 + 0x80),&plStack_68,&lStack_78);
@@ -6191,7 +6191,7 @@ LAB_180889e8c:
                     // WARNING: Subroutine does not return
     SystemConfigManager(unaff_RDI);
   }
-  puVar14 = (uint64_t *)FUN_180847820();
+  puVar14 = (uint64_t *)SystemCoreProcessor();
   uVar3 = *(uint64_t *)(param_1 + 0x80);
   uVar4 = puVar14[1];
   *(uint64_t *)(unaff_RBP + -0x48) = *puVar14;
@@ -6297,7 +6297,7 @@ LAB_180889e8c:
                     // WARNING: Subroutine does not return
         SystemConfigManager(*(int64_t *)(unaff_RBP + 0x30));
       }
-      puVar10 = (uint64_t *)FUN_180847820();
+      puVar10 = (uint64_t *)SystemCoreProcessor();
       uVar3 = *(uint64_t *)(lVar7 + 0x80);
       uVar4 = puVar10[1];
       *(uint64_t *)(unaff_RBP + -0x48) = *puVar10;
@@ -6327,7 +6327,7 @@ int32_t FUN_180889eb2(void)
                     // WARNING: Subroutine does not return
     SystemConfigManager();
   }
-  puVar5 = (int32_t *)FUN_180847820();
+  puVar5 = (int32_t *)SystemCoreProcessor();
   uVar1 = *(uint64_t *)(unaff_RSI + 0x80);
   uVar4 = puVar5[1];
   uVar2 = puVar5[2];

@@ -437,7 +437,7 @@ void FUN_18084900b(void)
 // 参数：param_1 - 内存管理器指针，param_2 - 大小参数
 // 返回值：操作结果状态码
 // =============================================================================
-uint64_t FUN_180849030(int64_t *param_1, uint64_t param_2)
+uint64_t SystemDeallocationProcessor(int64_t *param_1, uint64_t param_2)
 
 {
     int64_t lVar1;
@@ -695,7 +695,7 @@ void FUN_180849230(uint64_t param_1)
     iVar1 = func_0x00018088c590(param_1, alStack_138);
     if (iVar1 == 0) {
         if ((*(uint *)(alStack_138[0] + 0x24) >> 1 & 1) == 0) goto LAB_1808492e6;
-        iVar2 = FUN_18088c740(alStack_138 + 1);
+        iVar2 = SystemSecurityProcessor(alStack_138 + 1);
         if (iVar2 == 0) goto LAB_180849294;
     }
     else {
@@ -743,7 +743,7 @@ void FUN_180849360(uint64_t param_1)
             iVar1 = func_0x00018088c590(param_1 & 0xffffffff, alStack_138);
             if (((iVar1 != 0) ||
                 (((*(uint *)(alStack_138[0] + 0x24) >> 1 & 1) != 0 &&
-                 (iVar2 = FUN_18088c740(alStack_138 + 1), iVar2 == 0)))) && (iVar1 == 0)) {
+                 (iVar2 = SystemSecurityProcessor(alStack_138 + 1), iVar2 == 0)))) && (iVar1 == 0)) {
                 FUN_18088da50(*(uint64_t *)(alStack_138[0] + 0x98));
             }
             // WARNING: Subroutine does not return
@@ -802,7 +802,7 @@ void FUN_180849490(uint64_t param_1, uint64_t *param_2)
     iVar5 = func_0x00018088c590(param_1, &lStack_140);
     if (iVar5 == 0) {
         if ((*(uint *)(lStack_140 + 0x24) >> 1 & 1) == 0) goto LAB_1808494eb;
-        iVar6 = FUN_18088c740(&uStack_148);
+        iVar6 = SystemSecurityProcessor(&uStack_148);
         if (iVar6 == 0) goto LAB_180849553;
     }
     else {
@@ -896,7 +896,7 @@ void FUN_1808496c0(int32_t param_1, int64_t param_2, int32_t param_3)
     uStack_158 = 0;
     uStack_150 = 0;
     iVar2 = func_0x00018088c590(0, &uStack_150);
-    if (((iVar2 == 0) && (iVar2 = FUN_18088c740(&uStack_158, uStack_150), iVar2 == 0)) &&
+    if (((iVar2 == 0) && (iVar2 = SystemSecurityProcessor(&uStack_158, uStack_150), iVar2 == 0)) &&
        (iVar2 = func_0x00018088c530(param_1, alStack_140), iVar2 == 0)) {
         lStack_148 = *(int64_t *)(alStack_140[0] + 8);
     }
@@ -974,7 +974,7 @@ void FUN_180849820(int32_t param_1, int64_t param_2, int32_t param_3)
     uStack_158 = 0;
     uStack_150 = 0;
     iVar1 = func_0x00018088c590(0, &uStack_150);
-    if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_158, uStack_150), iVar1 == 0)) &&
+    if (((iVar1 == 0) && (iVar1 = SystemSecurityProcessor(&uStack_158, uStack_150), iVar1 == 0)) &&
        (iVar1 = func_0x00018088c530(param_1, alStack_140), iVar1 == 0)) {
         if (alStack_140[0] == 0) {
             lStack_148 = alStack_140[0];
@@ -1077,7 +1077,7 @@ void FUN_180849990(uint64_t param_1, int32_t param_2, uint64_t *param_3, uint64_
     iVar5 = func_0x00018088c590(param_1, &lStack_160);
     if (iVar5 == 0) {
         if ((*(uint *)(lStack_160 + 0x24) >> 1 & 1) == 0) goto LAB_1808499fb;
-        iVar6 = FUN_18088c740(&uStack_168);
+        iVar6 = SystemSecurityProcessor(&uStack_168);
         if (iVar6 == 0) goto LAB_180849ad3;
     }
     else {
@@ -1148,7 +1148,7 @@ void FUN_180849bb0(uint64_t param_1, uint64_t param_2, int32_t param_3, int8_t p
     iVar1 = func_0x00018088c590(param_1, &lStack_168);
     if (iVar1 == 0) {
         if ((*(uint *)(lStack_168 + 0x24) >> 1 & 1) == 0) goto LAB_180849c81;
-        iVar2 = FUN_18088c740(auStack_158);
+        iVar2 = SystemSecurityProcessor(auStack_158);
         if (iVar2 == 0) goto LAB_180849c22;
     }
     else {
@@ -1187,7 +1187,7 @@ LAB_180849c81:
 #define UISystemResetState FUN_18084900b
 
 // 内存管理相关
-#define UISystemManageMemory FUN_180849030
+#define UISystemManageMemory SystemDeallocationProcessor
 #define UISystemCleanResources FUN_180849054
 #define UISystemGenerateErrorCode FUN_180849104
 #define UISystemManageArrays FUN_180849120

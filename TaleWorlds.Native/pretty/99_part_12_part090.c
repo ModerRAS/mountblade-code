@@ -277,7 +277,7 @@ uint64_t FUN_1808a5c00(int64_t *param_1,uint64_t *param_2,uint param_3)
         return 0x1c;
       }
       lVar1 = *param_1;
-      uVar4 = FUN_180899ef0(lVar1,uVar3);
+      uVar4 = SystemCleanupProcessor(lVar1,uVar3);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -331,7 +331,7 @@ uint64_t FUN_1808a5c74(void)
       return 0x1c;
     }
     lVar1 = *unaff_RDI;
-    uVar2 = FUN_180899ef0(lVar1,uVar3);
+    uVar2 = SystemCleanupProcessor(lVar1,uVar3);
     if ((int)uVar2 != 0) {
       return uVar2;
     }

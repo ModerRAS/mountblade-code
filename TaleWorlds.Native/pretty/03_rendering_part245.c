@@ -594,7 +594,7 @@ void FUN_180407710(int64_t param_1,uint64_t param_2,int32_t param_3)
   iVar3 = func_0x00018088c590(uVar1,&lStack_168);
   if (iVar3 == 0) {
     if ((*(uint *)(lStack_168 + 0x24) >> 1 & 1) == 0) goto LAB_180849c81;
-    iVar4 = FUN_18088c740(auStack_158);
+    iVar4 = SystemSecurityProcessor(auStack_158);
     if (iVar4 == 0) goto LAB_180849c22;
   }
   else {

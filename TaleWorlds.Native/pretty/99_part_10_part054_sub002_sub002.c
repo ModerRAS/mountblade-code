@@ -128,7 +128,7 @@ int FUN_1806cbbd0(uint64_t *param_1,int64_t *param_2,int param_3)
     uStack_114 = uStack_134;
     (*(code *)CONCAT44(uStack_e4,uStack_e8))(param_2[6],&uStack_128);
   }
-  FUN_1806d6f60(param_2);
+  SystemResourceProcessor(param_2);
   uStack_f0 = *(int32_t *)(param_1 + 6);
   uStack_ec = *(int32_t *)((int64_t)param_1 + 0x34);
   uStack_e8 = *(int32_t *)(param_1 + 7);
@@ -157,7 +157,7 @@ int FUN_1806cbbd0(uint64_t *param_1,int64_t *param_2,int param_3)
       (*(code *)CONCAT44(uStack_e4,uStack_e8))(param_2[6],auStackX_18);
     }
   }
-  FUN_1806d6f60(param_2);
+  SystemResourceProcessor(param_2);
   uStack_f0 = *(int32_t *)(param_1 + 10);
   uStack_ec = *(int32_t *)((int64_t)param_1 + 0x54);
   uStack_e8 = *(int32_t *)(param_1 + 0xb);
@@ -184,7 +184,7 @@ int FUN_1806cbbd0(uint64_t *param_1,int64_t *param_2,int param_3)
     _error_Foundation_shdfnd_physx__QEAAXW4Enum_PxErrorCode_3_PEBDH1ZZ
               (uVar8,4,&unknown_var_1776_ptr,0x6c,&unknown_var_1584_ptr,lVar6);
   }
-  FUN_1806d6f60(param_2);
+  SystemResourceProcessor(param_2);
   return param_3 + 3;
 }
 

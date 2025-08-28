@@ -8,7 +8,7 @@ void FUN_180879c80(int64_t *param_1)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_180847820();
+  uVar1 = SystemCoreProcessor();
                     // WARNING: Could not recover jumptable at 0x000180879c9f. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x250))(param_1,uVar1,1);

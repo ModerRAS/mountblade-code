@@ -521,7 +521,7 @@ LAB_18089638e:
       uVar10 = (uint64_t)uVar8;
     } while ((int)uVar8 < *(int *)(param_1 + 0x20));
   }
-  iVar4 = FUN_180744cc0(param_1 + 0x70);
+  iVar4 = SystemLockProcessor(param_1 + 0x70);
   if ((iVar4 == 0) && (iVar4 = FUN_180895130(param_1 + 0x80), iVar4 == 0)) {
     *(int32_t *)(param_1 + 0x90) = 0xffffffff;
     *(int32_t *)(param_1 + 0x94) = 0;

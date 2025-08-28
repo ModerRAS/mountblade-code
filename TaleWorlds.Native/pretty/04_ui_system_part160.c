@@ -91,13 +91,13 @@ LAB_180761b18:
       if (iVar7 != 0) {
         if ((bVar23) && (lVar11 != 0)) {
                     // WARNING: Subroutine does not return
-          FUN_180743d60(lVar11,7);
+          SystemMemoryProcessor(lVar11,7);
         }
         goto LAB_180762032;
       }
       if ((bVar23) && (lVar11 != 0)) {
                     // WARNING: Subroutine does not return
-        FUN_180743d60(lVar11,7);
+        SystemMemoryProcessor(lVar11,7);
       }
     }
     if (*(int64_t *)(unaff_RBX + 0x138) == 0) {

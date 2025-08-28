@@ -9,7 +9,7 @@ void FUN_1807584e5(void)
   int64_t unaff_RBX;
   
                     // WARNING: Subroutine does not return
-  FUN_180743d60(*(uint64_t *)(unaff_RBX + 8),8);
+  SystemMemoryProcessor(*(uint64_t *)(unaff_RBX + 8),8);
 }
 
 

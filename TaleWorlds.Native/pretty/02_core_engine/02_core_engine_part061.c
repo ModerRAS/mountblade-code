@@ -583,7 +583,7 @@ void emergency_cleanup(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  SystemEventProcessor();
 }
 
 
@@ -718,7 +718,7 @@ void process_scene_rendering(uint64_t render_target, uint64_t camera_data, int64
   if (*(void **)(param_5 + 8) != (void *)0x0) {
     puVar19 = *(void **)(param_5 + 8);
   }
-  FUN_180630b20(param_3,puVar8,&unknown_var_2332_ptr,puVar19);
+  SystemAllocationProcessor(param_3,puVar8,&unknown_var_2332_ptr,puVar19);
   FUN_180630e10(param_3,puVar8,&unknown_var_2352_ptr,*(double *)(param_5 + 0x40) * 1000.0);
   uVar17 = uVar15;
   if (*(int64_t *)(param_5 + 0x50) - *(int64_t *)(param_5 + 0x48) >> 3 != 0) {

@@ -501,7 +501,7 @@ LAB_180097ca1:
 void SystemUtilityFunction(void)
 {
     // 调用深层系统功能
-    FUN_1808fd200();
+    SystemEventProcessor();
 }
 
 

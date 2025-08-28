@@ -662,7 +662,7 @@ void FUN_18084900b(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180849030(int64_t *param_1,uint64_t param_2)
+uint64_t SystemDeallocationProcessor(int64_t *param_1,uint64_t param_2)
 
 {
   int64_t lVar1;
@@ -890,7 +890,7 @@ void FUN_180849230(uint64_t param_1)
   iVar1 = func_0x00018088c590(param_1,alStack_138);
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_138[0] + 0x24) >> 1 & 1) == 0) goto LAB_1808492e6;
-    iVar2 = FUN_18088c740(alStack_138 + 1);
+    iVar2 = SystemSecurityProcessor(alStack_138 + 1);
     if (iVar2 == 0) goto LAB_180849294;
   }
   else {
@@ -938,7 +938,7 @@ void FUN_180849360(uint64_t param_1)
       iVar1 = func_0x00018088c590(param_1 & 0xffffffff,alStack_138);
       if (((iVar1 != 0) ||
           (((*(uint *)(alStack_138[0] + 0x24) >> 1 & 1) != 0 &&
-           (iVar2 = FUN_18088c740(alStack_138 + 1), iVar2 == 0)))) && (iVar1 == 0)) {
+           (iVar2 = SystemSecurityProcessor(alStack_138 + 1), iVar2 == 0)))) && (iVar1 == 0)) {
         FUN_18088da50(*(uint64_t *)(alStack_138[0] + 0x98));
       }
                     // WARNING: Subroutine does not return
@@ -997,7 +997,7 @@ void FUN_180849490(uint64_t param_1,uint64_t *param_2)
   iVar5 = func_0x00018088c590(param_1,&lStack_140);
   if (iVar5 == 0) {
     if ((*(uint *)(lStack_140 + 0x24) >> 1 & 1) == 0) goto LAB_1808494eb;
-    iVar6 = FUN_18088c740(&uStack_148);
+    iVar6 = SystemSecurityProcessor(&uStack_148);
     if (iVar6 == 0) goto LAB_180849553;
   }
   else {
@@ -1090,7 +1090,7 @@ void FUN_1808496c0(int32_t param_1,int64_t param_2,int32_t param_3)
   uStack_158 = 0;
   uStack_150 = 0;
   iVar2 = func_0x00018088c590(0,&uStack_150);
-  if (((iVar2 == 0) && (iVar2 = FUN_18088c740(&uStack_158,uStack_150), iVar2 == 0)) &&
+  if (((iVar2 == 0) && (iVar2 = SystemSecurityProcessor(&uStack_158,uStack_150), iVar2 == 0)) &&
      (iVar2 = func_0x00018088c530(param_1,alStack_140), iVar2 == 0)) {
     lStack_148 = *(int64_t *)(alStack_140[0] + 8);
   }

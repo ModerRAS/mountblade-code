@@ -234,7 +234,7 @@ LAB_1808c003c:
     do {
       lVar9 = 0;
       if (iVar7 == -1) {
-        puVar10 = (uint64_t *)FUN_180847820();
+        puVar10 = (uint64_t *)SystemCoreProcessor();
         uVar4 = puVar10[1];
         puVar11 = (int32_t *)(unaff_RBP + -0x48);
         *(uint64_t *)(unaff_RBP + -0x48) = *puVar10;

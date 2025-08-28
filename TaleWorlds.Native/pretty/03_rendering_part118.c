@@ -777,7 +777,7 @@ int64_t Rendering_ObjectCopy_18033b460(int64_t param_1,int64_t param_2,uint64_t 
   uint64_t uVar9;
   
   uVar9 = 0xfffffffffffffffe;
-  FUN_1800b8300();
+  SystemCommunicationProcessor();
   *(int32_t *)(param_1 + 0x58) = *(int32_t *)(param_2 + 0x58);
   *(int32_t *)(param_1 + 0x5c) = *(int32_t *)(param_2 + 0x5c);
   *(int32_t *)(param_1 + 0x60) = *(int32_t *)(param_2 + 0x60);

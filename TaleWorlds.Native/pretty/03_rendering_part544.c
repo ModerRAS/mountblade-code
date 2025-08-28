@@ -820,7 +820,7 @@ void FUN_180567bb0(int64_t param_1)
        (double)((float)(*(int64_t *)
                          (&system_error_code + (int64_t)*(int *)(render_system_memory + 0x87b790) * 8) -
                        *(int64_t *)(render_system_memory + 0x87b788)) * 1e-05);
-  FUN_180645c10(lVar1,*(int32_t *)(param_1 + 0x5f0),&unknown_var_8192_ptr);
+  SystemBufferProcessor(lVar1,*(int32_t *)(param_1 + 0x5f0),&unknown_var_8192_ptr);
   FUN_180569670(lVar1);
   FUN_18055f4e0(lVar1,*(int *)(lVar1 + 0x5c8) + *(int *)(param_1 + 0x5e8) + 8);
   FUN_18055f4e0(param_1 + 0x20,*(int *)(param_1 + 0x5e8) + 8);

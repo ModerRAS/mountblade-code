@@ -430,7 +430,7 @@ LAB_18008c531:
     uVar4 = 1;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar6,puVar2,puVar1,uVar4);
+  SystemConfigProcessor(lVar6,puVar2,puVar1,uVar4);
 }
 
 
@@ -707,7 +707,7 @@ LAB_18008cb7e:
     uVar7 = 1;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar8,pppppuVar10,&ppppuStack_70,uVar7);
+  SystemConfigProcessor(lVar8,pppppuVar10,&ppppuStack_70,uVar7);
 LAB_18008cdfe:
   *plVar21 = lVar8;
   *(int *)(plVar21 + 1) = iVar14;

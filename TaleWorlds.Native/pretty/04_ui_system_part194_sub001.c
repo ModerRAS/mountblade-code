@@ -135,7 +135,7 @@ uint64_t FUN_18077e0e0(int64_t *param_1,int param_2,float *param_3,int64_t param
               puVar3 = &unknown_var_7668_ptr;
             }
                     // WARNING: Subroutine does not return
-            FUN_18076b390(param_4,0x20,&unknown_var_552_ptr,puVar3);
+            SystemValidationProcessor(param_4,0x20,&unknown_var_552_ptr,puVar3);
           }
         }
         return 0;
@@ -158,7 +158,7 @@ uint64_t FUN_18077e0e0(int64_t *param_1,int param_2,float *param_3,int64_t param
   dVar2 = (double)(fVar4 * 100.0);
 LAB_18077e21f:
                     // WARNING: Subroutine does not return
-  FUN_18076b390(param_4,0x20,puVar3,dVar2);
+  SystemValidationProcessor(param_4,0x20,puVar3,dVar2);
 }
 
 

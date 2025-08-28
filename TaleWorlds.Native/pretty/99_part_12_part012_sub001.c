@@ -35,7 +35,7 @@ uint64_t * FUN_1807d1590(uint64_t *param_1,uint64_t param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_180744cc0(param_1 + 0xf);
+  iVar1 = SystemLockProcessor(param_1 + 0xf);
   if (iVar1 == 0) {
     iVar1 = FUN_180744e20(param_1 + 0x11);
     if (iVar1 == 0) {
@@ -44,8 +44,8 @@ uint64_t * FUN_1807d1590(uint64_t *param_1,uint64_t param_2)
     }
   }
   FUN_180744e20(param_1 + 0x11);
-  FUN_180744cc0(param_1 + 0xf);
-  iVar1 = FUN_180744cc0(param_1 + 10);
+  SystemLockProcessor(param_1 + 0xf);
+  iVar1 = SystemLockProcessor(param_1 + 10);
   if (iVar1 == 0) {
     iVar1 = FUN_180744e20(param_1 + 0xc);
     if (iVar1 == 0) {
@@ -54,7 +54,7 @@ uint64_t * FUN_1807d1590(uint64_t *param_1,uint64_t param_2)
     }
   }
   FUN_180744e20(param_1 + 0xc);
-  FUN_180744cc0(param_1 + 10);
+  SystemLockProcessor(param_1 + 10);
   *param_1 = &unknown_var_9984_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0xb0);
@@ -201,7 +201,7 @@ LAB_1807d181b:
     aiStack_38[0] = -1;
     FUN_1807d1650(param_1 + 0x78,&uStack_40,aiStack_38);
     if (aiStack_38[0] == -1) {
-      iVar4 = FUN_180744cc0(param_1 + 0x78);
+      iVar4 = SystemLockProcessor(param_1 + 0x78);
       if ((iVar4 == 0) && (iVar4 = FUN_180744e20(param_1 + 0x88), iVar4 == 0)) {
         *(int32_t *)(param_1 + 0x98) = 0xffffffff;
         *(int32_t *)(param_1 + 0x9c) = 0;

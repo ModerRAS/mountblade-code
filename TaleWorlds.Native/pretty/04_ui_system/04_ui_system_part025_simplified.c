@@ -76,7 +76,7 @@
 #define ui_system_resource_cleaner FUN_18066d310
 
 // UI系统异常处理器
-#define ui_system_exception_handler FUN_18066d370
+#define ui_system_exception_handler SystemInitializationProcessor
 
 // UI系统错误管理器
 #define ui_system_error_manager FUN_18066d37f
