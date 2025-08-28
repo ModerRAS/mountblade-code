@@ -310,137 +310,167 @@ void RenderingSystem_AdvancedParameterProcessor(RenderingContextHandle context, 
     }
     
 SHADOW_PROCESSING_BRANCH:
-  if (*(int *)(param_1 + 0x570) == 2) {
-    *(undefined8 *)(*(longlong *)(param_1 + 0x8d8) + 0x8fd220) = 0;
-    *(undefined8 *)(*(longlong *)(param_1 + 0x8d8) + 0x98d228) = 0;
-  }
-  if (iVar7 < 0) {
-    uStack_264 = 0;
-    puVar9 = &uStack_264;
-    uVar23 = 2;
-    uStack_260 = 2;
-    uStack_208 = 0;
-  }
-  else {
-    puVar9 = (uint *)FUN_180507810((longlong)iVar7 * 0xa60 + *(longlong *)(param_1 + 0x8d8) + 0x30a0
-                                   ,&uStack_228);
-    uVar23 = 1;
-    uStack_260 = 1;
-    uStack_208 = *puVar9;
-  }
-  uStack_204 = uStack_208;
-  *puVar9 = 0;
-  if ((((uVar23 & 2) != 0) && (uVar23 = uVar23 & 0xfffffffd, uStack_260 = uVar23, uStack_264 != 0))
-     && (_DAT_180c8f008 != 0)) {
-    (**(code **)(_DAT_180c8f008 + 0x18))();
-  }
-  if ((((uVar23 & 1) != 0) &&
-      (uVar23 = uVar23 & 0xfffffffe, uStack_260 = uVar23, (int)uStack_228 != 0)) &&
-     (_DAT_180c8f008 != 0)) {
-    (**(code **)(_DAT_180c8f008 + 0x18))();
-  }
-  if (bVar20 == 0) {
-    uStack_264 = FUN_18051cdd0(param_1,param_2);
-  }
-  else {
-    uStack_264 = *(uint *)(param_3 + 4);
-  }
-  puVar5 = *(undefined8 **)(*(longlong *)(param_1 + 0x598) + 0x120);
-  piVar17 = (int *)*puVar5;
-  puVar10 = puVar5;
-  if (piVar17 == (int *)0x0) {
-    puVar10 = puVar5 + 1;
-    piVar17 = (int *)*puVar10;
-    while (piVar17 == (int *)0x0) {
-      puVar10 = puVar10 + 1;
-      piVar17 = (int *)*puVar10;
+    
+    // 处理调试模式下的渲染管线重置
+    if (*(int *)(context + 0x570) == RENDERING_SYSTEM_MODE_DEBUG) {
+        *(RenderingBufferHandle *)(*(longlong *)(context + 0x8d8) + 0x8fd220) = 0;
+        *(RenderingBufferHandle *)(*(longlong *)(context + 0x8d8) + 0x98d228) = 0;
     }
-  }
-  if (piVar17 != (int *)puVar5[*(longlong *)(*(longlong *)(param_1 + 0x598) + 0x128)]) {
-    do {
-      uVar21 = piVar17[1];
-      if ((uStack_264 == uVar21) ||
-         ((((longlong)(int)uStack_264 != -1 && (uVar21 != 0xffffffff)) &&
-          ((lVar15 = *(longlong *)
-                      ((longlong)*(int *)(*(longlong *)(param_1 + 0x590) + 0xac) * 0xe0 +
-                       _DAT_180c95fb0 + 0x78),
-           iVar7 = *(int *)(lVar15 + 4 + (longlong)(int)uStack_264 * 8),
-           iVar7 == *(int *)(lVar15 + 4 + (longlong)(int)uVar21 * 8) && (iVar7 != -1)))))) {
-        iStackX_8 = (*piVar17 >> 10 & 7U) - 1;
-        break;
-      }
-      piVar17 = *(int **)(piVar17 + 2);
-      while (piVar17 == (int *)0x0) {
-        puVar10 = puVar10 + 1;
-        piVar17 = (int *)*puVar10;
-      }
-    } while (piVar17 != (int *)puVar5[*(longlong *)(*(longlong *)(param_1 + 0x598) + 0x128)]);
-  }
-  if ((bVar20 == 0) && (iStackX_8 == 4)) {
-    cVar6 = '\0';
-    if (-1 < *(char *)(param_2 + 0xb4)) {
-      cVar6 = *(char *)(param_2 + 0xb4);
-    }
-    FUN_180525ac0(param_1,cVar6);
-  }
-  uVar24 = *(undefined4 *)(*(longlong *)(param_1 + 0x590) + 0xac);
-  iVar7 = FUN_18053a410(&DAT_180c95f30,uVar24,uStack_264);
-  iVar7 = *(int *)(_DAT_180c95f68 + (longlong)iVar7 * 4);
-  if (iVar7 == -1) {
-    lVar15 = 0;
-  }
-  else {
-    lVar15 = *(longlong *)(_DAT_180c95f88 + (longlong)iVar7 * 8);
-  }
-  fVar29 = 0.0;
-  fVar30 = 0.0;
-  fVar25 = *(float *)(lVar15 + 0x1d8);
-  fVar28 = *(float *)(lVar15 + 0x188);
-  iVar7 = *(int *)(lVar15 + 0x1f0);
-  while ((fVar25 == 0.0 && (iVar7 != -1))) {
-    fVar29 = fVar29 + fVar28;
-    iVar7 = FUN_18053a410(&DAT_180c95f30,uVar24,*(undefined4 *)(lVar15 + 0x1f0));
-    iVar7 = *(int *)(_DAT_180c95f68 + (longlong)iVar7 * 4);
-    if (iVar7 == -1) {
-      lVar16 = 0;
+    
+    // 处理索引参数和栈变量初始化
+    if (index_var1 < 0) {
+        stack_uint1 = 0;
+        uint_pointer = &stack_uint1;
+        uint_value2 = 2;
+        stack_uint2 = 2;
+        stack_param11 = 0;
     }
     else {
-      lVar16 = *(longlong *)(_DAT_180c95f88 + (longlong)iVar7 * 8);
+        uint_pointer = (uint *)FUN_180507810((longlong)index_var1 * 0xa60 + *(longlong *)(context + 0x8d8) + 0x30a0, &stack_pipeline1);
+        uint_value2 = 1;
+        stack_uint2 = 1;
+        stack_param11 = *uint_pointer;
     }
-    fVar25 = *(float *)(lVar16 + 0x1d8);
-    fVar28 = *(float *)(lVar16 + 0x188);
-    iVar7 = *(int *)(lVar16 + 0x1f0);
-  }
-  fVar29 = fVar29 + fVar28 * fVar25;
-  if ((*(uint *)(param_1 + 0x56c) >> 0xe & 1) != 0) {
-    fVar25 = *(float *)(lVar15 + 0x1e0);
-    fVar28 = *(float *)(lVar15 + 0x188);
-    iVar7 = *(int *)(lVar15 + 0x1f0);
-    while ((fVar25 == 0.0 && (iVar7 != -1))) {
-      fVar30 = fVar30 + fVar28;
-      iVar7 = FUN_18053a410(&DAT_180c95f30,uVar24,*(undefined4 *)(lVar15 + 0x1f0));
-      iVar7 = *(int *)(_DAT_180c95f68 + (longlong)iVar7 * 4);
-      if (iVar7 == -1) {
-        lVar16 = 0;
-      }
-      else {
-        lVar16 = *(longlong *)(_DAT_180c95f88 + (longlong)iVar7 * 8);
-      }
-      fVar25 = *(float *)(lVar16 + 0x1e0);
-      fVar28 = *(float *)(lVar16 + 0x188);
-      iVar7 = *(int *)(lVar16 + 0x1f0);
+    
+    stack_param12 = stack_param11;
+    *uint_pointer = 0;
+    
+    // 处理渲染回调函数
+    if ((((uint_value2 & 2) != 0) && (uint_value2 = uint_value2 & 0xfffffffd, stack_uint2 = uint_value2, stack_uint1 != 0)) && (_DAT_180c8f008 != 0)) {
+        (**(code **)(_DAT_180c8f008 + 0x18))();
     }
-    fVar30 = fVar30 + fVar28 * fVar25;
-  }
-  if (fVar29 < 0.01) {
-    fVar29 = 0.5;
-  }
-  if (fVar29 <= fVar30) {
-    fVar30 = fVar29;
-  }
-  uStack_228 = (ulonglong)bVar20 << 0x1f;
-  *(float *)(param_1 + 0xa08) = fVar29;
-  *(float *)(param_1 + 0xa0c) = fVar30;
+    
+    if ((((uint_value2 & 1) != 0) && (uint_value2 = uint_value2 & 0xfffffffe, stack_uint2 = uint_value2, (int)stack_pipeline1 != 0)) && (_DAT_180c8f008 != 0)) {
+        (**(code **)(_DAT_180c8f008 + 0x18))();
+    }
+    
+    // 根据模式获取渲染参数
+    if (mode_flag == 0) {
+        stack_uint1 = FUN_18051cdd0(context, data);
+    }
+    else {
+        stack_uint1 = *(uint *)(params + 4);
+    }
+    
+    // 处理渲染管线指针和参数查找
+    data_handle = *(RenderingDataHandle *)(*(longlong *)(context + 0x598) + 0x120);
+    int_pointer = (int *)*data_handle;
+    data_handle = data_handle;
+    
+    if (int_pointer == (int *)0x0) {
+        data_handle = data_handle + 1;
+        int_pointer = (int *)*data_handle;
+        while (int_pointer == (int *)0x0) {
+            data_handle = data_handle + 1;
+            int_pointer = (int *)*data_handle;
+        }
+    }
+    
+    // 查找匹配的渲染参数
+    if (int_pointer != (int *)data_handle[*(longlong *)(*(longlong *)(context + 0x598) + 0x128)]) {
+        do {
+            uint_value1 = int_pointer[1];
+            if ((stack_uint1 == uint_value1) ||
+                ((((longlong)(int)stack_uint1 != -1 && (uint_value1 != 0xffffffff)) &&
+                 ((long_var2 = *(longlong *)((longlong)*(int *)(*(longlong *)(context + 0x590) + 0xac) * 0xe0 + _DAT_180c95fb0 + 0x78),
+                   index_var1 = *(int *)(long_var2 + 4 + (longlong)(int)stack_uint1 * 8),
+                   index_var1 == *(int *)(long_var2 + 4 + (longlong)(int)uint_value1 * 8) && (index_var1 != -1)))))) {
+                pipeline_mode = (*int_pointer >> 10 & 7U) - 1;
+                break;
+            }
+            int_pointer = *(int **)(int_pointer + 2);
+            while (int_pointer == (int *)0x0) {
+                data_handle = data_handle + 1;
+                int_pointer = (int *)*data_handle;
+            }
+        } while (int_pointer != (int *)data_handle[*(longlong *)(*(longlong *)(context + 0x598) + 0x128)]);
+    }
+    
+    // 处理特殊渲染模式
+    if ((mode_flag == 0) && (pipeline_mode == 4)) {
+        status_flag = '\0';
+        if (-1 < *(char *)(data + 0xb4)) {
+            status_flag = *(char *)(data + 0xb4);
+        }
+        FUN_180525ac0(context, status_flag);
+    }
+    
+    // 计算渲染质量参数
+    uint_value2 = *(uint *)(*(longlong *)(context + 0x590) + 0xac);
+    index_var1 = FUN_18053a410(&DAT_180c95f30, uint_value2, stack_uint1);
+    index_var1 = *(int *)(_DAT_180c95f68 + (longlong)index_var1 * 4);
+    
+    if (index_var1 == -1) {
+        long_var2 = 0;
+    }
+    else {
+        long_var2 = *(longlong *)(_DAT_180c95f88 + (longlong)index_var1 * 8);
+    }
+    
+    // 计算渲染质量权重
+    float_var3 = 0.0f;
+    float_var4 = 0.0f;
+    float_var1 = *(float *)(long_var2 + 0x1d8);
+    float_var2 = *(float *)(long_var2 + 0x188);
+    index_var1 = *(int *)(long_var2 + 0x1f0);
+    
+    while ((float_var1 == 0.0f && (index_var1 != -1))) {
+        float_var3 = float_var3 + float_var2;
+        index_var1 = FUN_18053a410(&DAT_180c95f30, uint_value2, *(uint *)(long_var2 + 0x1f0));
+        index_var1 = *(int *)(_DAT_180c95f68 + (longlong)index_var1 * 4);
+        
+        if (index_var1 == -1) {
+            long_var3 = 0;
+        }
+        else {
+            long_var3 = *(longlong *)(_DAT_180c95f88 + (longlong)index_var1 * 8);
+        }
+        
+        float_var1 = *(float *)(long_var3 + 0x1d8);
+        float_var2 = *(float *)(long_var3 + 0x188);
+        index_var1 = *(int *)(long_var3 + 0x1f0);
+    }
+    
+    float_var3 = float_var3 + float_var2 * float_var1;
+    
+    // 处理高质量渲染模式
+    if ((*(uint *)(context + 0x56c) >> 0xe & 1) != 0) {
+        float_var1 = *(float *)(long_var2 + 0x1e0);
+        float_var2 = *(float *)(long_var2 + 0x188);
+        index_var1 = *(int *)(long_var2 + 0x1f0);
+        
+        while ((float_var1 == 0.0f && (index_var1 != -1))) {
+            float_var4 = float_var4 + float_var2;
+            index_var1 = FUN_18053a410(&DAT_180c95f30, uint_value2, *(uint *)(long_var2 + 0x1f0));
+            index_var1 = *(int *)(_DAT_180c95f68 + (longlong)index_var1 * 4);
+            
+            if (index_var1 == -1) {
+                long_var3 = 0;
+            }
+            else {
+                long_var3 = *(longlong *)(_DAT_180c95f88 + (longlong)index_var1 * 8);
+            }
+            
+            float_var1 = *(float *)(long_var3 + 0x1e0);
+            float_var2 = *(float *)(long_var3 + 0x188);
+            index_var1 = *(int *)(long_var3 + 0x1f0);
+        }
+        
+        float_var4 = float_var4 + float_var2 * float_var1;
+    }
+    
+    // 应用渲染质量阈值
+    if (float_var3 < RENDERING_MIN_FLOAT_THRESHOLD) {
+        float_var3 = RENDERING_DEFAULT_FLOAT_VALUE;
+    }
+    
+    if (float_var3 <= float_var4) {
+        float_var4 = float_var3;
+    }
+    
+    stack_pipeline1 = (ulonglong)mode_flag << 0x1f;
+    *(float *)(context + 0xa08) = float_var3;
+    *(float *)(context + 0xa0c) = float_var4;
   if ((*(uint *)(param_1 + 0x56c) & 0x800) == 0) {
     FUN_18051fa40(param_1,4);
     if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
