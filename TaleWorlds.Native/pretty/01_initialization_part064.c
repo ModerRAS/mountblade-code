@@ -825,7 +825,7 @@ int32_t InitializationSystem_ResourceManager(void)
  * 
  * 该函数负责验证系统配置的有效性和完整性。
  * 
- * @return undefined 验证结果状态
+ * @return int32_t 验证结果状态 (0=成功, 非0=错误代码)
  */
 int32_t InitializationSystem_ValidateConfig(void)
 {
@@ -861,7 +861,7 @@ int32_t InitializationSystem_ValidateConfig(void)
  * 
  * 该函数负责分配系统所需的资源。
  * 
- * @return undefined 分配结果状态
+ * @return int32_t 分配结果状态 (0=成功, 非0=错误代码)
  */
 int32_t InitializationSystem_AllocateResource(void)
 {
@@ -1177,7 +1177,7 @@ int32_t InitializationSystem_Cleanup(void)
  * 
  * 该函数负责验证系统状态的有效性。
  * 
- * @return undefined 验证结果状态
+ * @return int32_t 验证结果状态 (0=成功, 非0=错误代码)
  */
 int32_t InitializationSystem_ValidateState(void)
 {
