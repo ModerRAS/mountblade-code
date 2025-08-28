@@ -53,51 +53,41 @@ typedef struct {
 } DataBlockManager;
 
 /**
- * 核心引擎初始化器函数
+ * 核心引擎数据初始化器
  * 
- * 本函数实现核心引擎的初始化，主要用于：
- * - 初始化引擎内部数据结构
- * - 设置默认参数和配置
- * - 准备引擎运行环境
- * - 建立内存管理基础
+ * 功能：
+ * - 初始化核心引擎数据结构
+ * - 设置数据指针和引用
+ * - 准备数据处理环境
  * 
- * @param param_1 引擎上下文参数
+ * @param data_ptr 数据指针数组
  * @return void
- * 
- * @note 本函数是引擎初始化的核心组件
- * @note 设置基础的内存管理结构
- * @note 为后续操作准备环境
  */
-void CoreEngineInitializer(undefined8 *param_1) {
+void CoreEngineInitializer(undefined8 *data_ptr) {
     // 函数别名：核心引擎初始化器
     // 技术说明：本函数实现引擎基础结构的初始化和配置
     
     // 初始化引擎核心数据结构
-    param_1[0x16] = &UNK_18098bcb0;    // 设置内存管理器指针
-    param_1[0xb] = &UNK_18098bcb0;     // 设置数据处理器指针
-    *param_1 = &UNK_18098bcb0;         // 设置主控制块指针
+    data_ptr[0x16] = &UNK_18098bcb0;    // 设置内存管理器指针
+    data_ptr[0xb] = &UNK_18098bcb0;     // 设置数据处理器指针
+    *data_ptr = &UNK_18098bcb0;         // 设置主控制块指针
     
     return;
 }
 
 /**
- * 核心引擎数据复制和初始化函数
+ * 核心引擎数据处理器
  * 
- * 本函数实现引擎数据的高级复制和初始化，主要用于：
- * - 复制和初始化引擎数据结构
- * - 管理多个数据块的分配
- * - 处理字符串数据的复制
- * - 优化内存使用和布局
+ * 功能：
+ * - 处理核心引擎数据块的复制和转换
+ * - 管理数据缓冲区的分配和释放
+ * - 执行数据验证和清理操作
  * 
- * @param param_1 目标数据结构指针
- * @param param_2 源数据结构指针
- * @return longlong 操作结果
- * 
- * @note 本函数是数据管理的核心组件
- * @note 支持大规模数据复制
- * @note 实现动态内存分配策略
+ * @param dest_ptr 目标数据指针
+ * @param src_ptr 源数据指针
+ * @return 处理结果：成功返回目标指针，失败返回错误码
  */
-longlong CoreEngineDataCopier(longlong param_1, longlong param_2) {
+longlong CoreEngineDataCopier(longlong dest_ptr, longlong src_ptr) {
     // 函数别名：核心引擎数据复制器
     // 技术说明：本函数实现高效的数据复制和内存管理机制
     
@@ -327,25 +317,20 @@ longlong CoreEngineDataCopier(longlong param_1, longlong param_2) {
 }
 
 /**
- * 核心引擎数据管理器函数
+ * 核心引擎资源管理器
  * 
- * 本函数实现引擎数据的综合管理，主要用于：
- * - 管理数据结构和内存分配
- * - 处理数据的动态扩展
- * - 维护数据完整性和一致性
- * - 优化数据访问性能
+ * 功能：
+ * - 管理核心引擎系统资源的分配和释放
+ * - 处理资源注册和注销操作
+ * - 执行资源状态验证和更新
  * 
- * @param param_1 系统上下文参数
- * @param param_2 数据管理器指针
- * @param param_3 数据处理参数
- * @param param_4 配置选项
- * @return longlong* 数据管理器指针
- * 
- * @note 本函数是数据管理的核心组件
- * @note 支持动态数据扩展
- * @note 实现高效的数据管理算法
+ * @param resource_type 资源类型
+ * @param resource_ptr 资源指针
+ * @param config_data 配置数据
+ * @param resource_flags 资源标志
+ * @return 处理结果：成功返回资源指针，失败返回错误码
  */
-longlong *CoreEngineDataManager(undefined8 param_1, longlong *param_2, longlong param_3, undefined8 param_4) {
+longlong *CoreEngineDataManager(undefined8 resource_type, longlong *resource_ptr, longlong config_data, undefined8 resource_flags) {
     // 函数别名：核心引擎数据管理器
     // 技术说明：本函数实现综合的数据管理和内存分配机制
     
@@ -468,23 +453,18 @@ longlong *CoreEngineDataManager(undefined8 param_1, longlong *param_2, longlong 
 }
 
 /**
- * 核心引擎数据验证器函数
+ * 核心引擎字符串处理器
  * 
- * 本函数实现引擎数据的验证和检查，主要用于：
- * - 验证数据完整性和有效性
- * - 检查数据格式和结构
- * - 处理数据验证错误
- * - 提供验证状态反馈
+ * 功能：
+ * - 处理字符串的解析和分割
+ * - 执行字符串格式转换和验证
+ * - 管理字符串缓冲区和内存
  * 
- * @param param_1 验证器上下文参数
- * @param param_2 待验证的数据
- * @return longlong 验证结果
- * 
- * @note 本函数是数据验证的核心组件
- * @note 支持多种数据格式验证
- * @note 实现详细的错误检查机制
+ * @param context_ptr 上下文指针
+ * @param string_data 字符串数据
+ * @return 处理结果：成功返回处理后的字符串指针，失败返回错误码
  */
-longlong CoreEngineDataValidator(longlong *param_1, longlong param_2) {
+longlong CoreEngineDataValidator(longlong *context_ptr, longlong string_data) {
     // 函数别名：核心引擎数据验证器
     // 技术说明：本函数实现数据的完整性验证和格式检查
     
@@ -588,23 +568,18 @@ longlong CoreEngineDataValidator(longlong *param_1, longlong param_2) {
 }
 
 /**
- * 核心引擎字符串处理器函数
+ * 核心引擎配置解析器
  * 
- * 本函数实现引擎字符串的高级处理，主要用于：
- * - 解析和处理字符串数据
- * - 处理字符串中的特殊字符
- * - 管理字符串缓冲区
- * - 优化字符串操作性能
+ * 功能：
+ * - 解析配置文件和参数
+ * - 处理配置数据的格式转换
+ * - 管理配置状态和验证
  * 
- * @param param_1 字符串处理器指针
- * @param param_2 源字符串数据
- * @return longlong* 处理后的字符串指针
- * 
- * @note 本函数是字符串处理的核心组件
- * @note 支持复杂的字符串解析
- * @note 实现高效的缓冲区管理
+ * @param config_ptr 配置指针
+ * @param input_data 输入数据
+ * @return 处理结果：成功返回配置指针，失败返回错误码
  */
-longlong *CoreEngineStringProcessor(longlong *param_1, longlong param_2) {
+longlong *CoreEngineStringProcessor(longlong *config_ptr, longlong input_data) {
     // 函数别名：核心引擎字符串处理器
     // 技术说明：本函数实现高级字符串解析和处理机制
     
@@ -773,24 +748,19 @@ longlong *CoreEngineStringProcessor(longlong *param_1, longlong param_2) {
 }
 
 /**
- * 核心引擎路径解析器函数
+ * 核心引擎数据管理器
  * 
- * 本函数实现引擎路径的解析和处理，主要用于：
- * - 解析文件路径和目录结构
- * - 处理路径中的特殊字符
- * - 验证路径格式和有效性
- * - 生成标准化的路径表示
+ * 功能：
+ * - 管理核心引擎数据的生命周期
+ * - 处理数据的复制和转换
+ * - 执行数据验证和清理
  * 
- * @param param_1 系统上下文参数
- * @param param_2 路径处理器指针
- * @param param_3 路径数据参数
- * @return longlong* 处理后的路径指针
- * 
- * @note 本函数是路径解析的核心组件
- * @note 支持复杂的路径格式
- * @note 实现路径验证和标准化
+ * @param manager_type 管理器类型
+ * @param data_ptr 数据指针
+ * @param config_data 配置数据
+ * @return 处理结果：成功返回数据指针，失败返回错误码
  */
-longlong *CoreEnginePathParser(undefined8 param_1, longlong *param_2, undefined8 param_3) {
+longlong *CoreEnginePathParser(undefined8 manager_type, longlong *data_ptr, undefined8 config_data) {
     // 函数别名：核心引擎路径解析器
     // 技术说明：本函数实现高级路径解析和处理机制
     
@@ -1108,25 +1078,20 @@ LAB_18016a086:
 }
 
 /**
- * 核心引擎配置管理器函数
+ * 核心引擎接口初始化器
  * 
- * 本函数实现引擎配置的管理，主要用于：
- * - 管理引擎配置数据
- * - 处理配置项的加载和保存
- * - 验证配置的有效性
- * - 优化配置访问性能
+ * 功能：
+ * - 初始化核心引擎系统接口
+ * - 设置接口参数和配置
+ * - 准备接口操作环境
  * 
- * @param param_1 配置管理器指针
- * @param param_2 配置数据指针
- * @param param_3 配置参数
- * @param param_4 配置选项
- * @return undefined8* 配置结果指针
- * 
- * @note 本函数是配置管理的核心组件
- * @note 支持动态配置更新
- * @note 实现配置验证机制
+ * @param interface_ptr 接口指针
+ * @param config_ptr 配置指针
+ * @param init_data 初始化数据
+ * @param init_flags 初始化标志
+ * @return 处理结果：成功返回接口指针，失败返回错误码
  */
-undefined8 *CoreEngineConfigManager(undefined8 *param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4) {
+undefined8 *CoreEngineConfigManager(undefined8 *interface_ptr, undefined8 *config_ptr, undefined8 init_data, undefined8 init_flags) {
     // 函数别名：核心引擎配置管理器
     // 技术说明：本函数实现引擎配置的综合管理机制
     
@@ -1152,25 +1117,20 @@ undefined8 *CoreEngineConfigManager(undefined8 *param_1, undefined8 *param_2, un
 }
 
 /**
- * 核心引擎数据加载器函数
+ * 核心引擎参数处理器
  * 
- * 本函数实现引擎数据的加载，主要用于：
- * - 加载各种类型的数据
- * - 处理数据加载错误
- * - 优化数据加载性能
- * - 管理数据加载状态
+ * 功能：
+ * - 处理核心引擎系统参数
+ * - 执行参数验证和转换
+ * - 管理参数状态和配置
  * 
- * @param param_1 数据加载器指针
- * @param param_2 数据目标指针
- * @param param_3 数据源参数
- * @param param_4 加载选项
- * @return undefined8* 加载结果指针
- * 
- * @note 本函数是数据加载的核心组件
- * @note 支持多种数据格式
- * @note 实现错误处理机制
+ * @param param_array 参数数组
+ * @param config_ptr 配置指针
+ * @param config_data 配置数据
+ * @param process_flags 处理标志
+ * @return 处理结果：成功返回配置指针，失败返回错误码
  */
-undefined8 *CoreEngineDataLoader(longlong *param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4) {
+undefined8 *CoreEngineDataLoader(longlong *param_array, undefined8 *config_ptr, undefined8 config_data, undefined8 process_flags) {
     // 函数别名：核心引擎数据加载器
     // 技术说明：本函数实现高效的数据加载和处理机制
     
