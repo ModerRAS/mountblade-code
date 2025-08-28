@@ -66,7 +66,7 @@ typedef float UISystemFloatValue;
 #define UISystem_ParameterExtractor            FUN_180799590
 
 /** UI系统数据处理函数 */
-#define UISystem_DataProcessor                 FUN_18076b390
+#define UISystem_DataProcessor                 SystemDataValidator
 
 // ================================
 // 全局变量声明
