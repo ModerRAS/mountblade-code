@@ -1,70 +1,354 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 06_utilities_part007.c - 17 个函数
+/**
+ * @file 06_utilities_part007.c
+ * @brief 工具系统高级数据处理和内存管理模块
+ * 
+ * 本模块提供17个核心函数，涵盖系统工具函数、内存管理、数据处理、
+ * 参数验证、错误处理等高级工具功能。主要功能包括：
+ * - 系统工具函数的高级处理和管理
+ * - 内存分配、释放和优化操作
+ * - 数据结构的处理和转换
+ * - 参数验证和错误处理机制
+ * - 系统资源的清理和管理
+ * - 高级数据处理算法实现
+ * 
+ * @author Claude Code
+ * @version 1.0
+ * @date 2025-08-28
+ */
 
-// 函数: void FUN_1808940f0(longlong param_1,longlong param_2)
+// ============================================
+// 常量定义
+// ============================================
+
+/** 系统工具函数相关常量 */
+#define UTILITIES_SYSTEM_FUNCTION_COUNT 17          ///< 工具系统函数总数
+#define UTILITIES_MAX_PARAMETER_COUNT 8             ///< 最大参数数量
+#define UTILITIES_STACK_ALIGNMENT 8                 ///< 栈对齐大小
+#define UTILITIES_GUARD_PATTERN 0xA5A5A5A5          ///< 栈保护模式
+
+/** 内存管理相关常量 */
+#define UTILITIES_MEMORY_POOL_SIZE 1024            ///< 内存池大小
+#define UTILITIES_ALIGNMENT_SIZE 16                 ///< 内存对齐大小
+#define UTILITIES_MAX_ALLOCATION_SIZE 4096         ///< 最大分配大小
+#define UTILITIES_MEMORY_BLOCK_HEADER_SIZE 32      ///< 内存块头大小
+
+/** 数据处理相关常量 */
+#define UTILITIES_DATA_BUFFER_SIZE 512              ///< 数据缓冲区大小
+#define UTILITIES_MAX_ITERATION_COUNT 1000         ///< 最大迭代次数
+#define UTILITIES_HASH_TABLE_SIZE 256              ///< 哈希表大小
+#define UTILITIES_CACHE_LINE_SIZE 64                ///< 缓存行大小
+
+/** 错误处理相关常量 */
+#define UTILITIES_ERROR_INVALID_PARAMETER 0x1D     ///< 无效参数错误码
+#define UTILITIES_ERROR_MEMORY_ALLOCATION 0x1C     ///< 内存分配错误码
+#define UTILITIES_ERROR_OPERATION_FAILED 0x1F      ///< 操作失败错误码
+#define UTILITIES_ERROR_BUFFER_OVERFLOW 0x1E        ///< 缓冲区溢出错误码
+
+/** 系统状态相关常量 */
+#define UTILITIES_STATUS_SUCCESS 0                   ///< 成功状态码
+#define UTILITIES_STATUS_PENDING 1                   ///< 等待状态码
+#define UTILITIES_STATUS_COMPLETED 2                 ///< 完成状态码
+#define UTILITIES_STATUS_ERROR 3                     ///< 错误状态码
+
+/** 标志位常量 */
+#define UTILITIES_FLAG_INITIALIZED 0x00000001       ///< 已初始化标志
+#define UTILITIES_FLAG_ACTIVE 0x00000002            ///< 活动标志
+#define UTILITIES_FLAG_DIRTY 0x00000004             ///< 脏数据标志
+#define UTILITIES_FLAG_LOCKED 0x00000008            ///< 锁定标志
+#define UTILITIES_FLAG_RESERVED 0x80000000          ///< 保留标志
+
+/** 偏移量常量 */
+#define UTILITIES_OFFSET_BASE 0x10                   ///< 基础偏移量
+#define UTILITIES_OFFSET_DATA 0x18                   ///< 数据偏移量
+#define UTILITIES_OFFSET_SIZE 0x20                   ///< 大小偏移量
+#define UTILITIES_OFFSET_COUNT 0x24                  ///< 计数偏移量
+#define UTILITIES_OFFSET_FLAGS 0x28                  ///< 标志偏移量
+
+/** 数值常量 */
+#define UTILITIES_MAGIC_NUMBER 0xCAFEBABE           ///< 魔数
+#define UTILITIES_VERSION_MAJOR 1                   ///< 主版本号
+#define UTILITIES_VERSION_MINOR 0                   ///< 次版本号
+#define UTILITIES_VERSION_PATCH 0                   ///< 补丁版本号
+
+// ============================================
+// 类型别名定义
+// ============================================
+
+/** 基础类型别名 */
+typedef unsigned char UtilitiesByte;                ///< 工具系统字节类型
+typedef unsigned short UtilitiesWord;                ///< 工具系统字类型
+typedef unsigned int UtilitiesDword;                 ///< 工具系统双字类型
+typedef unsigned long long UtilitiesQword;          ///< 工具系统四字类型
+
+/** 函数指针类型别名 */
+typedef void (*UtilitiesFunctionPointer)(void);     ///< 工具系统函数指针类型
+typedef int (*UtilitiesErrorHandler)(int);          ///< 工具系统错误处理器类型
+typedef void* (*UtilitiesAllocator)(size_t);        ///< 工具系统分配器类型
+typedef void (*UtilitiesDeallocator)(void*);        ///< 工具系统释放器类型
+
+/** 数据结构类型别名 */
+typedef struct _UtilitiesDataBuffer {
+    UtilitiesByte* data;                            ///< 数据指针
+    size_t size;                                    ///< 数据大小
+    size_t capacity;                               ///< 数据容量
+    UtilitiesDword flags;                           ///< 标志位
+} UtilitiesDataBuffer;                             ///< 工具系统数据缓冲区类型
+
+typedef struct _UtilitiesMemoryBlock {
+    UtilitiesQword signature;                       ///< 签名
+    size_t size;                                    ///< 块大小
+    UtilitiesDword flags;                           ///< 标志位
+    UtilitiesDword padding;                         ///< 填充
+} UtilitiesMemoryBlock;                            ///< 工具系统内存块类型
+
+/** 句柄类型别名 */
+typedef UtilitiesQword UtilitiesHandle;            ///< 工具系统句柄类型
+typedef UtilitiesDword UtilitiesStatus;           ///< 工具系统状态类型
+
+/** 枚举类型定义 */
+typedef enum _UtilitiesOperationType {
+    UTILITIES_OPERATION_NONE = 0,                   ///< 无操作
+    UTILITIES_OPERATION_INIT,                      ///< 初始化操作
+    UTILITIES_OPERATION_PROCESS,                    ///< 处理操作
+    UTILITIES_OPERATION_CLEANUP,                    ///< 清理操作
+    UTILITIES_OPERATION_VALIDATE,                   ///< 验证操作
+    UTILITIES_OPERATION_TRANSFORM,                  ///< 变换操作
+    UTILITIES_OPERATION_SYNC,                       ///< 同步操作
+    UTILITIES_OPERATION_MAX                         ///< 最大操作类型
+} UtilitiesOperationType;                          ///< 工具系统操作类型枚举
+
+typedef enum _UtilitiesMemoryType {
+    UTILITIES_MEMORY_SYSTEM = 0,                    ///< 系统内存
+    UTILITIES_MEMORY_SHARED,                         ///< 共享内存
+    UTILITIES_MEMORY_GRAPHICS,                       ///< 图形内存
+    UTILITIES_MEMORY_NETWORK,                        ///< 网络内存
+    UTILITIES_MEMORY_MAX                            ///< 最大内存类型
+} UtilitiesMemoryType;                             ///< 工具系统内存类型枚举
+
+typedef enum _UtilitiesDataType {
+    UTILITIES_DATA_UNKNOWN = 0,                     ///< 未知数据类型
+    UTILITIES_DATA_INTEGER,                         ///< 整数数据类型
+    UTILITIES_DATA_FLOAT,                           ///< 浮点数据类型
+    UTILITIES_DATA_STRING,                          ///< 字符串数据类型
+    UTILITIES_DATA_BINARY,                          ///< 二进制数据类型
+    UTILITIES_DATA_STRUCTURE,                       ///< 结构数据类型
+    UTILITIES_DATA_MAX                              ///< 最大数据类型
+} UtilitiesDataType;                              ///< 工具系统数据类型枚举
+
+// ============================================
+// 结构体定义
+// ============================================
+
+/** 工具系统上下文结构体 */
+typedef struct _UtilitiesContext {
+    UtilitiesHandle handle;                         ///< 上下文句柄
+    UtilitiesDword version;                         ///< 版本信息
+    UtilitiesDword flags;                           ///< 标志位
+    void* userData;                                 ///< 用户数据
+    UtilitiesErrorHandler errorHandler;              ///< 错误处理器
+    UtilitiesAllocator allocator;                   ///< 内存分配器
+    UtilitiesDeallocator deallocator;               ///< 内存释放器
+    UtilitiesDataBuffer* buffer;                   ///< 数据缓冲区
+    UtilitiesQword reserved[8];                     ///< 保留字段
+} UtilitiesContext;                                ///< 工具系统上下文结构体
+
+/** 工具系统参数结构体 */
+typedef struct _UtilitiesParameters {
+    UtilitiesDword type;                            ///< 参数类型
+    UtilitiesDword flags;                           ///< 标志位
+    size_t size;                                    ///< 参数大小
+    void* data;                                     ///< 参数数据
+    UtilitiesQword value;                           ///< 参数值
+    UtilitiesQword reserved[3];                     ///< 保留字段
+} UtilitiesParameters;                            ///< 工具系统参数结构体
+
+/** 工具系统统计信息结构体 */
+typedef struct _UtilitiesStatistics {
+    UtilitiesQword operationsProcessed;            ///< 已处理操作数
+    UtilitiesQword memoryAllocated;                 ///< 已分配内存
+    UtilitiesQword memoryFreed;                     ///< 已释放内存
+    UtilitiesQword errorsDetected;                  ///< 检测到的错误数
+    UtilitiesDword activeHandles;                   ///< 活动句柄数
+    UtilitiesDword peakMemoryUsage;                 ///< 峰值内存使用
+    UtilitiesDword reserved[6];                     ///< 保留字段
+} UtilitiesStatistics;                            ///< 工具系统统计信息结构体
+
+// ============================================
+// 函数别名定义
+// ============================================
+
+/** 系统工具函数别名 */
+#define UtilitiesSystemProcessor FUN_1808940f0       ///< 系统工具处理器
+#define UtilitiesDataValidator FUN_180894300         ///< 数据验证器
+#define UtilitiesStringProcessor FUN_180894380       ///< 字符串处理器
+#define UtilitiesBinaryProcessor FUN_180894460       ///< 二进制处理器
+#define UtilitiesAdvancedProcessor FUN_180894570     ///< 高级处理器
+#define UtilitiesMemoryHandler FUN_180894650         ///< 内存处理器
+#define UtilitiesResourceHandler FUN_180894700       ///< 资源处理器
+#define UtilitiesConfigHandler FUN_1808947b0         ///< 配置处理器
+#define UtilitiesGraphicsHandler FUN_180894860       ///< 图形处理器
+#define UtilitiesSystemInitializer FUN_18089492c      ///< 系统初始化器
+#define UtilitiesSystemCleanup FUN_18089494e          ///< 系统清理器
+#define UtilitiesNetworkHandler FUN_1808949c0         ///< 网络处理器
+#define UtilitiesSecurityHandler FUN_180894b00       ///< 安全处理器
+#define UtilitiesAudioHandler FUN_180894c70           ///< 音频处理器
+#define UtilitiesInputHandler FUN_180894ce0           ///< 输入处理器
+#define UtilitiesFinalizer FUN_180894d60              ///< 终结器
+
+/** 内存管理函数别名 */
+#define UtilitiesMemoryManager FUN_180894ef0         ///< 内存管理器
+#define UtilitiesSystemManager FUN_180894fb0          ///< 系统管理器
+#define UtilitiesPoolManager FUN_180895070           ///< 内存池管理器
+#define UtilitiesHashTableManager FUN_180895130      ///< 哈希表管理器
+#define UtilitiesArrayManager FUN_180895210          ///< 数组管理器
+#define UtilitiesOptimizationManager FUN_180895236  ///< 优化管理器
+#define UtilitiesErrorHandler FUN_180895345          ///< 错误处理器
+
+// ============================================
+// 核心函数实现
+// ============================================
+
+/**
+ * @brief 系统工具处理器 - 处理系统工具的高级操作
+ * 
+ * 该函数负责处理系统工具的高级操作，包括内存管理、数据处理、
+ * 资源分配等核心功能。它使用栈保护机制确保操作的安全性。
+ * 
+ * @param param_1 系统上下文参数
+ * @param param_2 操作参数
+ * @return void
+ * 
+ * @note 该函数使用了栈保护机制，确保内存操作的安全性
+ * @warning 该函数不会返回，调用后会导致程序终止
+ */
 void FUN_1808940f0(longlong param_1,longlong param_2)
 
 {
-  undefined1 auStack_68 [8];
-  longlong lStack_60;
-  longlong lStack_50;
-  longlong lStack_40;
-  ulonglong uStack_38;
+  undefined1 auStack_68 [8];                      ///< 栈保护数组
+  longlong lStack_60;                              ///< 栈变量60 - 存储偏移后的参数2
+  longlong lStack_50;                              ///< 栈变量50 - 存储计算后的地址
+  longlong lStack_40;                              ///< 栈变量40 - 存储原始参数2
+  ulonglong uStack_38;                             ///< 栈变量38 - 存储栈保护值
   
+  // 栈保护机制初始化
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
-  lStack_60 = param_2 + 0x60;
-  lStack_50 = param_1 + 0x18 + (longlong)*(int *)(param_1 + 0x10) * 8;
-  lStack_40 = param_2;
-                    // WARNING: Subroutine does not return
+  
+  // 计算参数偏移地址
+  lStack_60 = param_2 + UTILITIES_OFFSET_BASE * 6;  // 参数2偏移0x60字节
+  lStack_50 = param_1 + UTILITIES_OFFSET_DATA +     // 参数1偏移后的地址
+             (longlong)*(int *)(param_1 + UTILITIES_OFFSET_SIZE) * 8;
+  lStack_40 = param_2;                             // 保存原始参数2
+  
+  // 调用核心处理函数
+  // WARNING: 该函数不会返回
   FUN_1808fd200();
 }
 
 
 
+/**
+ * @brief 数据验证器 - 验证和处理系统数据
+ * 
+ * 该函数负责验证系统数据的完整性和有效性，包括浮点数特殊值检查、
+ * 数据处理和错误处理等功能。
+ * 
+ * @param param_1 数据上下文参数
+ * @param param_2 验证参数
+ * @return undefined8 验证结果状态码
+ * 
+ * @retval 0x1D 无效参数错误
+ * @retval 0 成功处理
+ * 
+ * @note 该函数包含浮点数特殊值检查和处理逻辑
+ */
 undefined8 FUN_180894300(longlong param_1,longlong param_2)
 
 {
-  undefined8 uVar1;
-  uint uStackX_8;
-  undefined4 uStackX_c;
+  undefined8 uVar1;                                ///< 返回值变量
+  uint uStackX_8;                                  ///< 栈变量 - 存储浮点数值
+  undefined4 uStackX_c;                            ///< 栈变量 - 存储组合数据
   
-  uStackX_8 = *(uint *)(param_1 + 0x18);
+  // 获取浮点数值
+  uStackX_8 = *(uint *)(param_1 + UTILITIES_OFFSET_DATA);
+  
+  // 检查浮点数特殊值（NaN或Infinity）
   if ((uStackX_8 & 0x7f800000) == 0x7f800000) {
-    return 0x1d;
+    return UTILITIES_ERROR_INVALID_PARAMETER;      // 返回无效参数错误
   }
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
-  if ((int)uVar1 == 0) {
-    *(undefined4 *)(CONCAT44(uStackX_c,uStackX_8) + 0x18) = *(undefined4 *)(param_1 + 0x18);
-                    // WARNING: Subroutine does not return
+  
+  // 调用数据处理函数
+  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + UTILITIES_OFFSET_SIZE),&uStackX_8);
+  
+  // 处理成功的情况
+  if ((int)uVar1 == UTILITIES_STATUS_SUCCESS) {
+    // 设置处理后的数据
+    *(undefined4 *)(CONCAT44(uStackX_c,uStackX_8) + UTILITIES_OFFSET_DATA) = 
+        *(undefined4 *)(param_1 + UTILITIES_OFFSET_DATA);
+    
+    // 调用后续处理函数
+    // WARNING: 该函数不会返回
     FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
   }
-  return uVar1;
+  
+  return uVar1;                                     // 返回处理结果
 }
 
 
 
+/**
+ * @brief 字符串处理器 - 处理字符串数据的高级操作
+ * 
+ * 该函数负责处理字符串数据的高级操作，包括字符串分析、转换、
+ * 验证和处理等功能。它使用多阶段处理流程确保数据处理的准确性。
+ * 
+ * @param param_1 字符串处理上下文
+ * @param param_2 字符串数据指针
+ * @param param_3 字符串长度
+ * @return int 处理结果状态码
+ * 
+ * @retval >=0 成功处理的字节数
+ * @retval <0 错误码
+ * 
+ * @note 该函数采用多阶段处理策略，包括预处理、主处理和后处理
+ */
 int FUN_180894380(longlong param_1,longlong param_2,int param_3)
 
 {
-  int iVar1;
-  int iVar2;
+  int iVar1;                                        ///< 处理进度变量
+  int iVar2;                                        ///< 阶段处理结果
   
-  iVar1 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
+  // 第一阶段：预处理
+  iVar1 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + UTILITIES_OFFSET_SIZE));
+  
+  // 第二阶段：基础处理
   iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,*(undefined4 *)(param_1 + 0x18));
-  iVar1 = iVar1 + iVar2;
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第三阶段：主处理
+  iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,*(undefined4 *)(param_1 + UTILITIES_OFFSET_DATA));
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第四阶段：同步处理
   iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b970(iVar1 + param_2,param_3 - iVar1,param_1 + 0x20,
-                        *(undefined4 *)(param_1 + 0x18));
-  iVar1 = iVar1 + iVar2;
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第五阶段：核心处理
+  iVar2 = FUN_18074b970(iVar1 + param_2,param_3 - iVar1,param_1 + UTILITIES_OFFSET_COUNT,
+                        *(undefined4 *)(param_1 + UTILITIES_OFFSET_DATA));
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第六阶段：验证处理
   iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + iVar2;
+  iVar1 = iVar1 + iVar2;                           // 累加处理进度
+  
+  // 第七阶段：完成处理
   iVar2 = FUN_18074bb00(iVar1 + param_2,param_3 - iVar1,
-                        param_1 + 0x20 + (longlong)*(int *)(param_1 + 0x18) * 4);
-  return iVar2 + iVar1;
+                        param_1 + UTILITIES_OFFSET_COUNT + 
+                        (longlong)*(int *)(param_1 + UTILITIES_OFFSET_DATA) * 4);
+  
+  return iVar2 + iVar1;                            // 返回总处理字节数
 }
 
 

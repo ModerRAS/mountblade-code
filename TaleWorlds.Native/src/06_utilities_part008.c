@@ -408,177 +408,235 @@ cleanup_stack:
 
 
 
-// 函数: void FUN_1808953bf(longlong param_1,undefined8 param_2,int *param_3)
-void FUN_1808953bf(longlong param_1,undefined8 param_2,int *param_3)
-
+/**
+ * @brief 工具系统索引数据处理器
+ * @param systemHandle 系统句柄
+ * @param indexParam 索引参数
+ * @param resultPtr 结果指针
+ * @return 无返回值
+ * 
+ * 功能说明：
+ * 1. 处理索引数据访问
+ * 2. 执行浮点数计算
+ * 3. 管理状态标志
+ * 4. 执行回调操作
+ * 5. 处理内存操作
+ */
+void UtilitiesProcessIndexedData(UtilitiesHandle systemHandle, undefined8 indexParam, UtilitiesIntPtr resultPtr)
 {
-  longlong lVar1;
-  char cVar2;
-  int iVar3;
-  int iVar4;
-  longlong in_RAX;
-  longlong lVar5;
-  undefined8 uVar6;
-  longlong lVar7;
-  int unaff_EBX;
-  undefined4 unaff_0000001c;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
-  char in_R11B;
-  undefined1 *unaff_R13;
-  longlong lVar8;
-  float fVar9;
-  float fVar10;
-  undefined8 in_stack_00000040;
-  int *in_stack_00000048;
-  
-  lVar5 = CONCAT44(unaff_0000001c,unaff_EBX) + CONCAT44(unaff_0000001c,unaff_EBX) * 2;
-  lVar8 = (longlong)*(int *)(in_RAX + lVar5 * 4) + *(longlong *)(param_1 + 8);
-  cVar2 = *(char *)(in_RAX + 8 + lVar5 * 4);
-  *(longlong *)(unaff_RBP + -0x80) = lVar5;
-  if (cVar2 == in_R11B) {
-    iVar4 = *(int *)(param_1 + 0xb0);
-    if (unaff_EBX < iVar4) {
-      *(int *)(param_1 + 0xac) = unaff_EBX + 1;
-      goto LAB_180895b69;
-    }
-    fVar9 = *(float *)(lVar8 + 0x18);
-    fVar10 = fVar9;
-    if (iVar4 != -1) {
-      fVar10 = *(float *)(param_1 + 0xb4);
-      iVar4 = -1;
-      *(undefined4 *)(param_1 + 0xb0) = 0xffffffff;
-      *(undefined4 *)(param_1 + 0xb4) = 0xbf800000;
-    }
-    *(float *)(param_1 + 0xa8) = fVar9;
-    lVar5 = 0;
-    fVar9 = (float)*(uint *)(param_1 + 0x68) * fVar9;
-    if ((9.223372e+18 <= fVar9) && (fVar9 = fVar9 - 9.223372e+18, fVar9 < 9.223372e+18)) {
-      lVar5 = -0x8000000000000000;
-    }
-    lVar1 = *(longlong *)(param_1 + 0xa0);
-    lVar7 = *(longlong *)(param_1 + 0x98);
-    if (lVar7 == 0) {
-      fVar10 = (float)*(uint *)(param_1 + 0x68) * fVar10;
-      lVar7 = 0;
-      if ((9.223372e+18 <= fVar10) && (fVar10 = fVar10 - 9.223372e+18, fVar10 < 9.223372e+18)) {
-        lVar7 = -0x8000000000000000;
-      }
-      lVar7 = lVar1 - ((longlong)fVar10 + lVar7);
-      *(longlong *)(unaff_RDI + 0x98) = lVar7;
-    }
-    cVar2 = (longlong)fVar9 + lVar5 < lVar1 - lVar7;
-    if ((*(byte *)(unaff_RDI + 0x6c) & 2) != 0) {
-      cVar2 = in_R11B;
-    }
-    if (*(longlong *)(unaff_RDI + 0xc0) != 0) {
-      uVar6 = FUN_180895ef0();
-      iVar3 = (**(code **)(unaff_RDI + 0xc0))
-                        (uVar6,unaff_EBX,*(undefined4 *)(lVar8 + 0x18),
-                         *(undefined8 *)(unaff_RDI + 0xb8));
-      param_3 = in_stack_00000048;
-      if (iVar3 != 0) goto LAB_180895b69;
-    }
-    if ((((cVar2 != '\0') && (iVar3 = *param_3, *param_3 = iVar3 + 1, iVar3 < 10)) &&
-        ((*(uint *)(unaff_RDI + 0x6c) >> 0x18 & 1) == 0)) &&
-       (((*(uint *)(unaff_RDI + 0x6c) >> 0x19 & 1) != 0 && (iVar4 == *(int *)(unaff_RDI + 0xb0)))))
-    {
-LAB_18089555d:
-                    // WARNING: Subroutine does not return
-      memcpy(unaff_RBP + -0x10,lVar8,(longlong)*(int *)(lVar8 + 8));
-    }
-  }
-  else {
-    if (cVar2 == '\x06') {
-      cVar2 = func_0x000180881f80(*(undefined8 *)(param_1 + 0x58));
-      if (cVar2 == '\0') goto LAB_18089555d;
-      *unaff_R13 = 0;
-      goto LAB_180895b69;
-    }
-    if (cVar2 == '\a') {
-      cVar2 = func_0x000180881f80(*(undefined8 *)(param_1 + 0x58));
-      if (cVar2 == '\0') {
-        if (*(int *)(*(longlong *)(*(longlong *)(*(longlong *)(unaff_RDI + 0x58) + 0x90) + 0x790) +
-                    0x1c8) != 0) {
-          *unaff_R13 = 0;
-          goto LAB_180895b69;
+    // 局部变量声明
+    longlong tempValue1;               // 临时值1
+    char operationType;                 // 操作类型
+    int tempIndex1;                     // 临时索引1
+    int tempIndex2;                     // 临时索引2
+    longlong registerValue;             // 寄存器值
+    longlong indexOffset;               // 索引偏移
+    undefined8 callbackResult;          // 回调结果
+    longlong referenceValue;            // 引用值
+    
+    // 计算索引偏移
+    indexOffset = CONCAT44(unaff_0000001c, unaff_EBX) + CONCAT44(unaff_0000001c, unaff_EBX) * 2;
+    registerValue = (longlong)*(int *)(in_RAX + indexOffset * 4) + *(longlong *)(systemHandle + UTILITIES_POINTER_OFFSET);
+    operationType = *(char *)(in_RAX + 8 + indexOffset * 4);
+    *(longlong *)(unaff_RBP + -0x80) = indexOffset;
+    
+    // 检查操作类型
+    if (operationType == in_R11B) {
+        tempIndex2 = *(int *)(systemHandle + UTILITIES_PARAM_OFFSET);
+        if (unaff_EBX < tempIndex2) {
+            *(int *)(systemHandle + UTILITIES_LIMIT_OFFSET) = unaff_EBX + 1;
+            goto cleanup_stack;
         }
-        goto LAB_18089555d;
-      }
+        
+        // 处理浮点数计算
+        tempValue1 = *(longlong *)(registerValue + 0x18);
+        referenceValue = tempValue1;
+        if (tempIndex2 != -1) {
+            referenceValue = *(float *)(systemHandle + UTILITIES_FLOAT_OFFSET);
+            tempIndex2 = -1;
+            *(undefined4 *)(systemHandle + UTILITIES_PARAM_OFFSET) = 0xffffffff;
+            *(undefined4 *)(systemHandle + UTILITIES_FLOAT_OFFSET) = 0xbf800000;
+        }
+        
+        // 保存浮点数值
+        *(float *)(systemHandle + UTILITIES_TEMP_OFFSET) = tempValue1;
+        indexOffset = 0;
+        tempValue1 = (float)*(uint *)(systemHandle + UTILITIES_VALUE_OFFSET) * tempValue1;
+        
+        // 处理浮点数阈值
+        if ((UTILITIES_FLOAT_THRESHOLD <= tempValue1) && 
+            (tempValue1 = tempValue1 - UTILITIES_FLOAT_THRESHOLD, tempValue1 < UTILITIES_FLOAT_THRESHOLD)) {
+            indexOffset = UTILITIES_NEGATIVE_INFINITY;
+        }
+        
+        // 获取引用值
+        tempValue1 = *(longlong *)(systemHandle + UTILITIES_HANDLE_OFFSET);
+        referenceValue = *(longlong *)(systemHandle + UTILITIES_REFERENCE_OFFSET);
+        if (referenceValue == 0) {
+            referenceValue = (float)*(uint *)(systemHandle + UTILITIES_VALUE_OFFSET) * referenceValue;
+            referenceValue = 0;
+            if ((UTILITIES_FLOAT_THRESHOLD <= referenceValue) && 
+                (referenceValue = referenceValue - UTILITIES_FLOAT_THRESHOLD, referenceValue < UTILITIES_FLOAT_THRESHOLD)) {
+                referenceValue = UTILITIES_NEGATIVE_INFINITY;
+            }
+            referenceValue = tempValue1 - ((longlong)referenceValue + referenceValue);
+            *(longlong *)(unaff_RDI + UTILITIES_REFERENCE_OFFSET) = referenceValue;
+        }
+        
+        // 检查处理条件
+        operationType = (longlong)tempValue1 + indexOffset < tempValue1 - referenceValue;
+        if ((*(byte *)(unaff_RDI + UTILITIES_STATE_OFFSET) & UTILITIES_FLAG_PROCESSED) != 0) {
+            operationType = in_R11B;
+        }
+        
+        // 执行回调函数
+        if (*(longlong *)(unaff_RDI + UTILITIES_CALLBACK_OFFSET) != 0) {
+            callbackResult = FUN_180895ef0();
+            tempIndex1 = (**(code **)(unaff_RDI + UTILITIES_CALLBACK_OFFSET))
+                            (callbackResult, unaff_EBX, *(undefined4 *)(registerValue + 0x18),
+                             *(undefined8 *)(unaff_RDI + UTILITIES_EXTRA_OFFSET));
+            resultPtr = in_stack_00000048;
+            if (tempIndex1 != 0) goto cleanup_stack;
+        }
+        
+        // 检查最终条件
+        if ((((operationType != '\0') && (tempIndex1 = *resultPtr, *resultPtr = tempIndex1 + 1, tempIndex1 < UTILITIES_MAX_ITERATIONS)) &&
+            ((*(uint *)(unaff_RDI + UTILITIES_STATE_OFFSET) >> 0x18 & 1) == 0)) &&
+           (((*(uint *)(unaff_RDI + UTILITIES_STATE_OFFSET) >> 0x19 & 1) != 0 && 
+             (tempIndex2 == *(int *)(unaff_RDI + UTILITIES_PARAM_OFFSET))))) {
+            
+            // 执行内存复制操作
+            memcpy(unaff_RBP + -0x10, registerValue, (longlong)*(int *)(registerValue + 8));
+        }
     }
     else {
-      if ((cVar2 != '\x02') || ((*(byte *)(param_1 + 0x6c) & 4) != 0)) goto LAB_18089555d;
-      in_stack_00000040._4_4_ = *(undefined4 *)(lVar8 + 0x20);
-      iVar4 = FUN_180895c60(param_1,unaff_EBX,(longlong)&stack0x00000040 + 4);
-      if (iVar4 != 0) goto LAB_180895b69;
-      iVar4 = func_0x00018088c530(in_stack_00000040._4_4_,unaff_RBP + -0x78);
-      if ((iVar4 != 0) || (*(int *)(*(longlong *)(unaff_RBP + -0x78) + 0x30) != 2))
-      goto LAB_18089555d;
+        // 处理其他操作类型
+        if (operationType == '\x06') {
+            operationType = func_0x000180881f80(*(undefined8 *)(systemHandle + 0x58));
+            if (operationType == '\0') {
+                memcpy(unaff_RBP + -0x10, registerValue, (longlong)*(int *)(registerValue + 8));
+            }
+            *unaff_R13 = 0;
+            goto cleanup_stack;
+        }
+        
+        if (operationType == '\a') {
+            operationType = func_0x000180881f80(*(undefined8 *)(systemHandle + 0x58));
+            if (operationType == '\0') {
+                if (*(int *)(*(longlong *)(*(longlong *)(*(longlong *)(unaff_RDI + 0x58) + 0x90) + 0x790) + 0x1c8) != 0) {
+                    *unaff_R13 = 0;
+                    goto cleanup_stack;
+                }
+                memcpy(unaff_RBP + -0x10, registerValue, (longlong)*(int *)(registerValue + 8));
+            }
+        }
+        else {
+            // 处理类型2操作
+            if ((operationType != '\x02') || ((*(byte *)(systemHandle + UTILITIES_STATE_OFFSET) & UTILITIES_FLAG_VALID) != 0)) {
+                memcpy(unaff_RBP + -0x10, registerValue, (longlong)*(int *)(registerValue + 8));
+            }
+            in_stack_00000040._4_4_ = *(undefined4 *)(registerValue + 0x20);
+            tempIndex2 = FUN_180895c60(systemHandle, unaff_EBX, (longlong)&stack0x00000040 + 4);
+            if (tempIndex2 != 0) goto cleanup_stack;
+            tempIndex2 = func_0x00018088c530(in_stack_00000040._4_4_, unaff_RBP + -0x78);
+            if ((tempIndex2 != 0) || (*(int *)(*(longlong *)(unaff_RBP + -0x78) + UTILITIES_INDEX_OFFSET) != 2)) {
+                memcpy(unaff_RBP + -0x10, registerValue, (longlong)*(int *)(registerValue + 8));
+            }
+        }
     }
-  }
-  *unaff_R13 = 0;
-LAB_180895b69:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
+    *unaff_R13 = 0;
+    
+cleanup_stack:
+    // 清理栈并返回
+    FUN_1808fc050(*(ulonglong *)(unaff_RBP + UTILITIES_STACK_OFFSET) ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
 
-// 函数: void FUN_180895b89(void)
-void FUN_180895b89(void)
-
+/**
+ * @brief 工具系统栈清理函数
+ * @return 无返回值
+ * 
+ * 功能说明：
+ * 1. 清理栈空间
+ * 2. 执行内存保护
+ * 3. 安全返回
+ */
+void UtilitiesCleanupStack(void)
 {
-  longlong unaff_RBP;
-  
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
+    longlong stackPointer;
+    
+    // 清理栈并返回
+    FUN_1808fc050(*(ulonglong *)(stackPointer + UTILITIES_STACK_OFFSET) ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
 
-// 函数: void FUN_180895bb0(longlong param_1,int param_2,undefined8 *param_3)
-void FUN_180895bb0(longlong param_1,int param_2,undefined8 *param_3)
-
+/**
+ * @brief 工具系统下一个数据查找器
+ * @param systemHandle 系统句柄
+ * @param startIndex 开始索引
+ * @param resultArray 结果数组
+ * @return 无返回值
+ * 
+ * 功能说明：
+ * 1. 查找下一个匹配的数据
+ * 2. 执行回调函数
+ * 3. 验证数据匹配
+ * 4. 返回结果
+ */
+void UtilitiesFindNextData(UtilitiesHandle systemHandle, int startIndex, undefined8 *resultArray)
 {
-  undefined8 uVar1;
-  int *piVar2;
-  longlong lVar3;
-  longlong lVar4;
-  int iVar5;
-  
-  *param_3 = 0;
-  param_3[1] = 0;
-  piVar2 = (int *)(**(code **)(*(longlong *)
-                                ((longlong)
-                                 *(int *)(*(longlong *)(param_1 + 0x18) + (longlong)param_2 * 0xc) +
-                                *(longlong *)(param_1 + 8)) + 0x50))();
-  if (piVar2 == (int *)0x0) {
-    iVar5 = 0;
-  }
-  else {
-    iVar5 = *piVar2;
-  }
-  if (param_2 + 1 < *(int *)(param_1 + 0x20)) {
-    lVar4 = (longlong)(param_2 + 1);
-    piVar2 = (int *)(*(longlong *)(param_1 + 0x18) + lVar4 * 0xc);
-    while (((char)piVar2[2] != '\x02' ||
-           (lVar3 = (longlong)*piVar2 + *(longlong *)(param_1 + 8), *(int *)(lVar3 + 0x20) != iVar5)
-           )) {
-      lVar4 = lVar4 + 1;
-      piVar2 = piVar2 + 3;
-      if (*(int *)(param_1 + 0x20) <= lVar4) {
-        return;
-      }
+    undefined8 tempValue1;               // 临时值1
+    int *callbackResult;                // 回调结果
+    longlong dataPointer;               // 数据指针
+    longlong searchIndex;                // 搜索索引
+    int matchValue;                     // 匹配值
+    
+    // 初始化结果数组
+    *resultArray = 0;
+    resultArray[1] = 0;
+    
+    // 执行回调函数
+    callbackResult = (int *)(**(code **)(*(longlong *)
+                                   ((longlong)
+                                    *(int *)(*(longlong *)(systemHandle + UTILITIES_DATA_OFFSET) + (longlong)startIndex * 0xc) +
+                                   *(longlong *)(systemHandle + UTILITIES_POINTER_OFFSET)) + UTILITIES_CONTROL_OFFSET))();
+    
+    // 获取匹配值
+    if (callbackResult == (int *)0x0) {
+        matchValue = 0;
     }
-    uVar1 = *(undefined8 *)(lVar3 + 0x18);
-    *param_3 = *(undefined8 *)(lVar3 + 0x10);
-    param_3[1] = uVar1;
-  }
-  return;
+    else {
+        matchValue = *callbackResult;
+    }
+    
+    // 检查搜索范围
+    if (startIndex + 1 < *(int *)(systemHandle + UTILITIES_SIZE_OFFSET)) {
+        searchIndex = (longlong)(startIndex + 1);
+        callbackResult = (int *)(*(longlong *)(systemHandle + UTILITIES_DATA_OFFSET) + searchIndex * 0xc);
+        
+        // 循环搜索匹配项
+        while (((char)callbackResult[2] != '\x02' ||
+               (dataPointer = (longlong)*callbackResult + *(longlong *)(systemHandle + UTILITIES_POINTER_OFFSET), 
+                *(int *)(dataPointer + 0x20) != matchValue))) {
+            searchIndex = searchIndex + 1;
+            callbackResult = callbackResult + 3;
+            if (*(int *)(systemHandle + UTILITIES_SIZE_OFFSET) <= searchIndex) {
+                return;
+            }
+        }
+        
+        // 找到匹配项，返回结果
+        tempValue1 = *(undefined8 *)(dataPointer + 0x18);
+        *resultArray = *(undefined8 *)(dataPointer + 0x10);
+        resultArray[1] = tempValue1;
+    }
+    return;
 }
 
 
