@@ -1,4 +1,82 @@
-# 数据定义文件转译报告
+# 代码转译报告
+
+## 最新转译：01_initialization_part010.c
+
+### 转译概述
+成功转译了 `/root/WorkSpace/CSharp/mountblade-code/TaleWorlds.Native/pretty/01_initialization/01_initialization_part010.c` 文件，该文件包含28个函数，主要负责系统组件的注册和初始化。
+
+### 转译内容统计
+- **函数名转译**: 28个 `FUN_18003*` 函数全部转译为语义化名称
+- **变量名转译**: 30个 `DAT_180*` 变量转译为描述性名称
+- **常量名转译**: 26个 `UNK_180*` 常量转译为有意义名称
+- **添加注释**: 为每个函数添加详细的中文功能说明
+- **代码格式**: 统一了代码格式和缩进
+
+### 函数分类
+1. **系统组件注册函数** (8个): 注册基础系统、输入、渲染、音频、网络、物理、内存管理、文件系统
+2. **系统初始化函数** (6个): 初始化系统字符串、核心模块、配置模块、资源模块、调试模块、性能模块
+3. **游戏引擎组件注册函数** (8个): 注册引擎核心、场景管理、实体管理、动画、UI、脚本、网络同步、资源管理等
+4. **系统字符串初始化函数** (4个): 初始化输入、渲染、音频、网络系统的字符串常量
+5. **游戏核心初始化函数** (2个): 初始化游戏核心模块，注册游戏状态和逻辑组件
+
+### 转译规则 (针对本文件)
+
+#### 函数名转译规则
+- `FUN_18003e5*` → `register_*_system_component` (注册系统组件)
+- `FUN_18003ed*` → `initialize_*_system_*` (初始化系统模块)
+- `FUN_18003ee*` → `initialize_*_module` (初始化模块)
+- `FUN_18003f*` → `register_*_component` (注册组件)
+
+#### 变量名转译规则
+- `DAT_180a00*` → `*_system_identifier_*` (系统标识符)
+- `DAT_18098c*` → `*_management_identifier_*` (管理组件标识符)
+- `DAT_180c924*` → `*_string_table_*` (字符串表)
+- `DAT_180bf60*` → `game_core_*` (游戏核心数据)
+
+#### 常量名转译规则
+- `UNK_180a00*` → `*_constant_*` (系统常量)
+- `UNK_18098c*` → `*_constant_*` (组件常量)
+- `UNK_180a2c*` → `*_system_string_*` (系统字符串)
+- `UNK_1809fc*` → `string_table_*` (字符串表)
+
+### 主要改进
+1. **可读性大幅提升**: 所有函数名都有明确的功能含义
+2. **中文注释**: 每个函数都有详细的功能说明和参数描述
+3. **分类清晰**: 不同类型的组件和函数有明确的命名模式
+4. **维护性**: 便于后续开发和维护
+5. **完整性**: 涵盖了游戏引擎初始化的各个方面
+
+### 示例对比
+
+#### 原始代码
+```c
+void FUN_18003e510(void)
+{
+  char cVar1;
+  undefined8 *puVar2;
+  int iVar3;
+  longlong *plVar4;
+  // ... 复杂的初始化逻辑
+}
+```
+
+#### 转译后代码
+```c
+/**
+ * 注册基础系统组件
+ * 在系统注册表中注册一个基础系统组件，包含特定的标识符和参数
+ */
+void register_base_system_component(void)
+{
+    char component_flag;
+    uint64_t *registry_root;
+    int compare_result;
+    int64_t *system_manager;
+    // ... 清晰的初始化逻辑
+}
+```
+
+## 数据定义文件转译报告
 
 ## 任务概述
 成功转译了 `/root/WorkSpace/CSharp/mountblade-code/TaleWorlds.Native/src/00_data_definitions.h` 文件，将原始的 `FUN_`、`DAT_`、`UNK_` 开头的标识符转译为语义化名称。

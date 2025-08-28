@@ -42,12 +42,12 @@
 - [x] `01_initialization_part012.c` - 已完成 - 负责人: Claude Code - 完成时间: 2025-08-28
 - [x] `01_initialization_part013.c` - 已完成 - 负责人: Claude - 完成时间: 2025-08-28
 - [x] `01_initialization_part014.c` - 已完成 - 负责人: Claude Code - 完成时间: 2025-08-28
-- [-] `01_initialization_part015_sub001_sub001.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
+- [x] `01_initialization_part015_sub001_sub001.c` - 已完成 - 负责人: Claude - 完成时间: 2025-08-28
 - [-] `01_initialization_part015_sub001_sub002.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
 - [-] `01_initialization_part015_sub002.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
 - [-] `01_initialization_part016.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
-- [ ] `01_initialization_part017.c` - 未开始 - 负责人: - 预计完成时间: -
-- [ ] `01_initialization_part018.c` - 未开始 - 负责人: - 预计完成时间: -
+- [-] `01_initialization_part017.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
+- [-] `01_initialization_part018.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
 - [ ] `01_initialization_part019.c` - 未开始 - 负责人: - 预计完成时间: -
 - [ ] `01_initialization_part020.c` - 未开始 - 负责人: - 预计完成时间: -
 - [ ] `01_initialization_part021.c` - 未开始 - 负责人: - 预计完成时间: -
