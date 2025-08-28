@@ -95,31 +95,31 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
     index_counter = (ulonglong)((int)index_counter + 1);
     char_ptr = char_ptr + 0x10;
   } while ((longlong)char_ptr < 0x180bf90b8);
-  puVar11 = (undefined4 *)param_2[1];
-  if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 0x11) {
-    FUN_180639bf0(param_2,(longlong)puVar11 + (0x10 - *param_2));
-    puVar11 = (undefined4 *)param_2[1];
+  write_ptr = (uint *)buffer[1];
+  if ((ulonglong)((*buffer - (longlong)write_ptr) + buffer[2]) < 0x11) {
+    expand_buffer_if_needed(buffer,(longlong)write_ptr + (0x10 - *buffer));
+    write_ptr = (uint *)buffer[1];
   }
-  uVar2 = *(undefined4 *)(param_1 + 0x24);
-  uVar3 = *(undefined4 *)(param_1 + 0x28);
-  uVar4 = *(undefined4 *)(param_1 + 0x2c);
-  plVar15 = (longlong *)(param_1 + 0x30);
-  *puVar11 = *(undefined4 *)(param_1 + 0x20);
-  puVar11[1] = uVar2;
-  puVar11[2] = uVar3;
-  puVar11[3] = uVar4;
-  param_2[1] = param_2[1] + 0x10;
-  lVar9 = 0x10;
-  puVar11 = (undefined4 *)param_2[1];
-  plVar6 = plVar15;
-  uVar8 = uVar16;
+  temp_value1 = *(uint *)(render_object + 0x24);
+  temp_value2 = *(uint *)(render_object + 0x28);
+  flag_value = *(uint *)(render_object + 0x2c);
+  data_array = (longlong *)(render_object + 0x30);
+  *write_ptr = *(uint *)(render_object + 0x20);
+  write_ptr[1] = temp_value1;
+  write_ptr[2] = temp_value2;
+  write_ptr[3] = flag_value;
+  buffer[1] = buffer[1] + 0x10;
+  offset_value = 0x10;
+  write_ptr = (uint *)buffer[1];
+  long_ptr = data_array;
+  index_counter = zero_counter;
   do {
-    if ((*plVar6 != 0) || (plVar6[1] != 0)) {
-      uVar8 = (ulonglong)((int)uVar8 + 1);
+    if ((*long_ptr != 0) || (long_ptr[1] != 0)) {
+      index_counter = (ulonglong)((int)index_counter + 1);
     }
-    plVar6 = plVar6 + 2;
-    lVar9 = lVar9 + -1;
-  } while (lVar9 != 0);
+    long_ptr = long_ptr + 2;
+    offset_value = offset_value + -1;
+  } while (offset_value != 0);
   if ((ulonglong)((*param_2 - (longlong)puVar11) + param_2[2]) < 5) {
     FUN_180639bf0(param_2,(longlong)puVar11 + (4 - *param_2));
     puVar11 = (undefined4 *)param_2[1];
