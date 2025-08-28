@@ -946,37 +946,43 @@ void initialize_system_parameters(void)
     }
   }
   else {
-    fVar10 = 0.2;
+    scale_factor = 0.2;
   }
-  *(float *)(lVar3 + 0x234) = fVar10;
-  fVar10 = 0.2;
-  if ((0.2 <= fVar12) && (fVar10 = fVar12, 1.0 <= fVar12)) {
-    fVar10 = 1.0;
+  *(float *)(main_engine + 0x234) = scale_factor;
+  scale_factor = 0.2;
+  if ((0.2 <= quality_factor) && (scale_factor = quality_factor, 1.0 <= quality_factor)) {
+    scale_factor = 1.0;
   }
-  *(float *)(lVar3 + 0x238) = fVar10;
-  *(undefined1 *)(lVar3 + 0x22d) = 0;
-  uVar11 = log2f();
-  *(undefined4 *)(lVar3 + 0x230) = uVar11;
-  uVar11 = log2f();
-  *(undefined4 *)(lVar3 + 0x240) = uVar11;
-  uVar11 = log2f();
-  *(undefined4 *)(lVar3 + 0x244) = uVar11;
-  uVar11 = log2f();
-  *(undefined4 *)(lVar3 + 0x248) = uVar11;
-  uVar11 = log2f();
-  *(undefined4 *)(lVar3 + 0x24c) = uVar11;
-  uVar11 = log2f(*(float *)(_DAT_180c86920 + 0x2220) * 0.01);
-  *(undefined4 *)(lVar3 + 0x23c) = uVar11;
-  *(undefined8 *)(lVar3 + 0x254) = 0x3f8000003f800000;
-  lStack_1d8 = 0x3f8000003f800000;
-  *(undefined8 *)(lVar3 + 0x25c) = 0x3f8000003f800000;
-  lVar4 = _DAT_180c86890;
-  lVar2 = _DAT_180c82868;
-  puStack_168 = &UNK_1809fdc18;
-  puStack_160 = auStack_150;
-  auStack_150[0] = 0;
-  uStack_158 = 0xd;
-  strcpy_s(auStack_150,0x10,&UNK_180a04130);
+  *(float *)(main_engine + 0x238) = scale_factor;
+  *(undefined1 *)(main_engine + 0x22d) = 0;
+  
+  // 计算对数参数
+  log_result = log2f();
+  *(undefined4 *)(main_engine + 0x230) = log_result;
+  log_result = log2f();
+  *(undefined4 *)(main_engine + 0x240) = log_result;
+  log_result = log2f();
+  *(undefined4 *)(main_engine + 0x244) = log_result;
+  log_result = log2f();
+  *(undefined4 *)(main_engine + 0x248) = log_result;
+  log_result = log2f();
+  *(undefined4 *)(main_engine + 0x24c) = log_result;
+  log_result = log2f(*(float *)(_DAT_180c86920 + 0x2220) * 0.01);
+  *(undefined4 *)(main_engine + 0x23c) = log_result;
+  
+  // 设置双精度浮点参数
+  *(undefined8 *)(main_engine + 0x254) = 0x3f8000003f800000;
+  temp_ptr2 = 0x3f8000003f800000;
+  *(undefined8 *)(main_engine + 0x25c) = 0x3f8000003f800000;
+  
+  // 初始化子系统配置
+  subsystem_config = _DAT_180c86890;
+  engine_config = _DAT_180c82868;
+  cleanup_ptr = &UNK_1809fdc18;
+  data_ptr = temp_buffer3;
+  temp_buffer3[0] = 0;
+  data_size = 0xd;
+  strcpy_s(temp_buffer3, 0x10, &UNK_180a04130);
   puVar6 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x208,8,3);
   lStack_1e8 = lVar2 + 0x70;
   apuStack_1c8[0] = puVar6;

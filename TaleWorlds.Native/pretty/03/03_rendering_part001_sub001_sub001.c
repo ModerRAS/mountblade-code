@@ -1,6 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part001_sub001_sub001.c - 251 个函数
+// 03_rendering_part001_sub001_sub001.c - 渲染系统基础函数 (251 个函数)
+// 本文件包含渲染系统的核心基础函数，主要负责渲染管线的基础设置和管理
 
 #include "TaleWorlds.Native.Split.h"
 
@@ -17,9 +18,10 @@
 
 
 
-// 函数: undefined FUN_180627850;
-undefined FUN_180627850;
-undefined UNK_180a01310;
+// 函数: 初始化渲染设备
+// 负责设置和初始化渲染设备，为后续渲染操作做准备
+undefined initialize_render_device;
+undefined UNK_180a01310;  // 渲染设备配置参数
 
 
 
