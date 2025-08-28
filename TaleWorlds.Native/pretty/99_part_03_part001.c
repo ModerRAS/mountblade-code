@@ -92,8 +92,8 @@
 #define system_allocation_flags DAT_180bf65bc     // 系统分配标志
 
 // 系统配置字符串
-#define system_config_string_1 UNK_180a0ce90      // 系统配置字符串1
-#define system_config_string_2 UNK_180a0ce64      // 系统配置字符串2
+#define system_config_string_1 system_config_dash_string      // 系统配置字符串1
+#define system_config_string_2 system_config_shares_string      // 系统配置字符串2
 #define system_config_string_3 UNK_180a0ce70      // 系统配置字符串3
 #define system_config_string_4 UNK_180a0cf50      // 系统配置字符串4
 
