@@ -1,136 +1,183 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part045.c - 13 个函数
+// 03_rendering_part045.c - 渲染系统高级数据解析和内存管理模块
+// 包含13个核心函数，涵盖渲染数据解析和处理、内存管理、参数处理和初始化、系统工具函数等高级渲染功能
 
-// 函数: void FUN_18028fc51(void)
-void FUN_18028fc51(void)
+// 全局变量定义
+static void* g_rendering_memory_manager = NULL;    // 渲染内存管理器指针
+static void* g_rendering_allocator = NULL;          // 渲染内存分配器
+static int g_rendering_counter = 0;                  // 渲染计数器
 
+/**
+ * 初始化渲染数据解析器
+ * 这是一个空函数，作为系统初始化的占位符
+ */
+void initialize_rendering_data_parser(void)
 {
-  return;
+    return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-ulonglong FUN_18028fca0(longlong param_1,int param_2,undefined8 param_3,longlong *param_4,
-                       int *param_5)
-
+/**
+ * 解析渲染数据块并返回处理结果
+ * @param data_block 数据块指针
+ * @param block_size 数据块大小
+ * @param config 配置参数
+ * @param output_data 输出数据指针
+ * @param data_count 数据计数
+ * @return 处理结果状态码
+ */
+ulonglong parse_rendering_data_block(longlong data_block, int block_size, undefined8 config, 
+                                    longlong *output_data, int *data_count)
 {
-  char cVar1;
-  short sVar2;
-  ulonglong uVar3;
-  longlong lVar4;
-  char *pcVar5;
-  ulonglong uVar6;
-  longlong lVar7;
-  ulonglong uVar8;
-  int iVar9;
-  longlong lVar10;
-  longlong lVar11;
-  uint uVar12;
-  ulonglong uVar13;
-  uint auStackX_10 [2];
-  
-  uVar6 = 0;
-  lVar11 = (longlong)param_2;
-  uVar8 = uVar6;
-  if (0 < param_2) {
-    pcVar5 = (char *)(param_1 + 0xc);
-    lVar4 = lVar11;
-    uVar3 = uVar6;
-    do {
-      cVar1 = *pcVar5;
-      pcVar5 = pcVar5 + 0xe;
-      uVar8 = (ulonglong)((int)uVar3 + 1);
-      if (cVar1 != '\x01') {
-        uVar8 = uVar3;
-      }
-      lVar4 = lVar4 + -1;
-      uVar3 = uVar8;
-    } while (lVar4 != 0);
-  }
-  iVar9 = (int)uVar8;
-  *param_5 = iVar9;
-  if (iVar9 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
+    char data_type;
+    short data_value;
+    ulonglong result;
+    longlong remaining_size;
+    char *data_ptr;
+    ulonglong valid_count;
+    longlong iteration_count;
+    ulonglong data_index;
+    int processed_count;
+    longlong current_offset;
+    longlong max_offset;
+    uint temp_value;
+    ulonglong loop_counter;
+    uint stack_buffer[2];
+    
+    result = 0;
+    max_offset = (longlong)block_size;
+    valid_count = result;
+    
+    // 第一阶段：计算有效数据数量
+    if (0 < block_size) {
+        data_ptr = (char *)(data_block + 0xc);
+        remaining_size = max_offset;
+        loop_counter = result;
+        
+        do {
+            data_type = *data_ptr;
+            data_ptr = data_ptr + 0xe;
+            valid_count = (ulonglong)((int)loop_counter + 1);
+            
+            // 检查数据类型是否为有效类型
+            if (data_type != '\x01') {
+                valid_count = loop_counter;
+            }
+            
+            remaining_size = remaining_size - 1;
+            loop_counter = valid_count;
+        } while (remaining_size != 0);
     }
-    lVar4 = func_0x000180120ce0((longlong)iVar9 << 2,_DAT_180c8a9a8);
-    *param_4 = lVar4;
-    uVar8 = uVar6;
-    uVar3 = uVar6;
-    uVar13 = uVar6;
-    if (lVar4 != 0) {
-      do {
-        if ((int)uVar13 == 1) {
-          if (_DAT_180c8a9b0 != 0) {
-            *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
-          }
-          uVar3 = func_0x000180120ce0((longlong)(int)uVar6 << 3,_DAT_180c8a9a8);
-          if (uVar3 == 0) {
-                    // WARNING: Subroutine does not return
-            FUN_180059ba0(0,_DAT_180c8a9a8);
-          }
+    
+    processed_count = (int)valid_count;
+    *data_count = processed_count;
+    
+    // 第二阶段：处理有效数据
+    if (processed_count != 0) {
+        if (g_rendering_memory_manager != 0) {
+            // 更新内存管理器计数
+            *(int *)(g_rendering_memory_manager + 0x3a8) = *(int *)(g_rendering_memory_manager + 0x3a8) + 1;
         }
-        uVar6 = 0;
-        auStackX_10[0] = 0;
-        lVar4 = -1;
-        if (0 < lVar11) {
-          lVar10 = param_1 + 10;
-          lVar7 = lVar11;
-          do {
-            cVar1 = *(char *)(lVar10 + 2);
-            iVar9 = (int)uVar6;
-            if (cVar1 == '\x01') {
-              if (-1 < lVar4) {
-                *(int *)(*param_4 + lVar4 * 4) = iVar9 - (int)uVar8;
-              }
-              lVar4 = lVar4 + 1;
-              uVar8 = (ulonglong)iVar9;
-              sVar2 = *(short *)(lVar10 + -8);
-              auStackX_10[0] = iVar9 + 1;
-              uVar6 = (ulonglong)auStackX_10[0];
-              if (uVar3 != 0) {
-                *(float *)(uVar3 + uVar8 * 8) = (float)(int)*(short *)(lVar10 + -10);
-                *(float *)(uVar3 + 4 + uVar8 * 8) = (float)(int)sVar2;
-              }
-            }
-            else if (cVar1 == '\x02') {
-              sVar2 = *(short *)(lVar10 + -8);
-              auStackX_10[0] = iVar9 + 1;
-              uVar6 = (ulonglong)auStackX_10[0];
-              if (uVar3 != 0) {
-                *(float *)(uVar3 + (longlong)iVar9 * 8) = (float)(int)*(short *)(lVar10 + -10);
-                *(float *)(uVar3 + 4 + (longlong)iVar9 * 8) = (float)(int)sVar2;
-              }
-            }
-            else {
-              if (cVar1 == '\x03') {
-                FUN_18028f6d0(uVar3,auStackX_10);
-              }
-              else {
-                if (cVar1 != '\x04') goto LAB_18028ffb2;
-                FUN_18028f8f0(uVar3,auStackX_10);
-              }
-              uVar6 = (ulonglong)auStackX_10[0];
-            }
-LAB_18028ffb2:
-            lVar10 = lVar10 + 0xe;
-            lVar7 = lVar7 + -1;
-          } while (lVar7 != 0);
+        
+        // 分配输出缓冲区
+        remaining_size = allocate_rendering_memory((longlong)processed_count << 2, g_rendering_allocator);
+        *output_data = remaining_size;
+        
+        valid_count = result;
+        loop_counter = result;
+        data_index = result;
+        
+        if (remaining_size != 0) {
+            do {
+                if ((int)data_index == 1) {
+                    if (g_rendering_memory_manager != 0) {
+                        *(int *)(g_rendering_memory_manager + 0x3a8) = *(int *)(g_rendering_memory_manager + 0x3a8) + 1;
+                    }
+                    
+                    // 分配数据存储空间
+                    loop_counter = allocate_rendering_memory((longlong)(int)result << 3, g_rendering_allocator);
+                    if (loop_counter == 0) {
+                        // 内存分配失败，调用错误处理
+                        handle_rendering_error(0, g_rendering_allocator);
+                    }
+                }
+                
+                result = 0;
+                stack_buffer[0] = 0;
+                remaining_size = -1;
+                
+                if (0 < max_offset) {
+                    current_offset = data_block + 10;
+                    iteration_count = max_offset;
+                    
+                    do {
+                        data_type = *(char *)(current_offset + 2);
+                        processed_count = (int)result;
+                        
+                        if (data_type == '\x01') {
+                            // 类型1数据处理
+                            if (-1 < remaining_size) {
+                                *(int *)(*output_data + remaining_size * 4) = processed_count - (int)valid_count;
+                            }
+                            
+                            remaining_size = remaining_size + 1;
+                            valid_count = (ulonglong)processed_count;
+                            data_value = *(short *)(current_offset + -8);
+                            stack_buffer[0] = processed_count + 1;
+                            result = (ulonglong)stack_buffer[0];
+                            
+                            if (loop_counter != 0) {
+                                // 存储浮点数据
+                                *(float *)(loop_counter + valid_count * 8) = (float)(int)*(short *)(current_offset + -10);
+                                *(float *)(loop_counter + 4 + valid_count * 8) = (float)(int)data_value;
+                            }
+                        }
+                        else if (data_type == '\x02') {
+                            // 类型2数据处理
+                            data_value = *(short *)(current_offset + -8);
+                            stack_buffer[0] = processed_count + 1;
+                            result = (ulonglong)stack_buffer[0];
+                            
+                            if (loop_counter != 0) {
+                                *(float *)(loop_counter + (longlong)processed_count * 8) = (float)(int)*(short *)(current_offset + -10);
+                                *(float *)(loop_counter + 4 + (longlong)processed_count * 8) = (float)(int)data_value;
+                            }
+                        }
+                        else {
+                            if (data_type == '\x03') {
+                                // 类型3数据处理
+                                process_rendering_data_type3(loop_counter, stack_buffer);
+                            }
+                            else {
+                                if (data_type != '\x04') goto continue_processing;
+                                // 类型4数据处理
+                                process_rendering_data_type4(loop_counter, stack_buffer);
+                            }
+                            result = (ulonglong)stack_buffer[0];
+                        }
+                        
+                    continue_processing:
+                        current_offset = current_offset + 0xe;
+                        iteration_count = iteration_count - 1;
+                    } while (iteration_count != 0);
+                }
+                
+                temp_value = (int)data_index + 1;
+                *(int *)(*output_data + remaining_size * 4) = (int)result - (int)valid_count;
+                data_index = (ulonglong)temp_value;
+                
+                if (1 < (int)temp_value) {
+                    return loop_counter;
+                }
+            } while( true );
         }
-        uVar12 = (int)uVar13 + 1;
-        *(int *)(*param_4 + lVar4 * 4) = (int)uVar6 - (int)uVar8;
-        uVar13 = (ulonglong)uVar12;
-        if (1 < (int)uVar12) {
-          return uVar3;
-        }
-      } while( true );
+        
+        *data_count = 0;
     }
-    *param_5 = 0;
-  }
-  return 0;
+    
+    return 0;
 }
 
 
