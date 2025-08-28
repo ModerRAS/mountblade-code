@@ -243,52 +243,81 @@ undefined4 rendering_system_get_render_status(undefined8 render_object, longlong
 
 
 
-longlong * FUN_180534540(longlong *param_1)
+/**
+ * 渲染上下文初始化函数
+ * 初始化渲染上下文并设置初始状态
+ * 
+ * @param context_ptr 上下文指针指针
+ * @return 初始化后的上下文指针
+ */
+longlong * rendering_system_initialize_render_context(longlong *context_ptr)
 
 {
-  longlong *plVar1;
+  longlong *resource_ptr;
   
-  *param_1 = 0;
-  plVar1 = (longlong *)*param_1;
-  *param_1 = 0;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))();
+  // 初始化上下文指针
+  *context_ptr = 0;
+  resource_ptr = (longlong *)*context_ptr;
+  *context_ptr = 0;
+  
+  // 如果资源指针有效，调用资源初始化函数
+  if (resource_ptr != (longlong *)0x0) {
+    (**(code **)(*resource_ptr + 0x38))();
   }
-  *(undefined4 *)(param_1 + 1) = 0;
-  return param_1;
+  
+  // 初始化上下文状态
+  *(undefined4 *)(context_ptr + 1) = 0;
+  return context_ptr;
 }
 
 
 
 
 
-// 函数: void FUN_180534590(longlong *param_1)
-void FUN_180534590(longlong *param_1)
+/**
+ * 渲染上下文清理函数
+ * 清理渲染上下文并释放相关资源
+ * 
+ * @param context_ptr 上下文指针指针
+ */
+void rendering_system_cleanup_render_context(longlong *context_ptr)
 
 {
-  longlong *plVar1;
+  longlong *resource_ptr;
   
-  plVar1 = (longlong *)*param_1;
-  *param_1 = 0;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))();
+  // 获取资源指针并清理上下文
+  resource_ptr = (longlong *)*context_ptr;
+  *context_ptr = 0;
+  
+  // 释放主要资源
+  if (resource_ptr != (longlong *)0x0) {
+    (**(code **)(*resource_ptr + 0x38))();
   }
-  if ((longlong *)*param_1 != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*param_1 + 0x38))();
+  
+  // 释放次要资源
+  if ((longlong *)*context_ptr != (longlong *)0x0) {
+    (**(code **)(*(longlong *)*context_ptr + 0x38))();
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 FUN_1805346e0(void)
+/**
+ * 全局渲染数据获取函数
+ * 获取全局渲染数据指针，如果需要则初始化数据
+ * 
+ * @return 全局渲染数据指针
+ */
+undefined8 rendering_system_get_global_render_data(void)
 
 {
+  // 检查线程本地存储中的数据是否需要初始化
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < _DAT_180d49128) {
     FUN_1808fcb90(&DAT_180d49128);
+    
+    // 如果数据初始化失败，执行清理和重新初始化
     if (_DAT_180d49128 == -1) {
       FUN_18058f390(0x180d48f30);
       FUN_1808fc820(&UNK_180943060);
