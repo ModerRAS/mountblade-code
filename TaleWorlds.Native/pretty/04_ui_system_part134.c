@@ -796,18 +796,18 @@ ulonglong UISystem_ComponentSearchThunk_SearchJump(void)
   uint64_t unaff_R14;
   longlong in_stack_00000030;
   
-  uVar2 = FUN_18078cf50();
+  uVar2 = UISystem_SearchPreprocessor();
   if ((int)uVar2 == 0) {
-    uVar1 = FUN_180756aa0(in_stack_00000030);
+    uVar1 = UISystem_ComponentFilter(in_stack_00000030);
     if (uVar1 != 0) {
       if (unaff_RBX != (uint64_t *)0x0) {
         *unaff_RBX = unaff_R14;
       }
-      FUN_180758220(in_stack_00000030,0x52);
+      UISystem_ComponentStateSetter(in_stack_00000030,0x52);
       return (ulonglong)uVar1;
     }
-    uVar2 = FUN_180758960(in_stack_00000030);
-    if (((int)uVar2 == 0) && (uVar2 = func_0x000180756db0(in_stack_00000030,1), (int)uVar2 == 0)) {
+    uVar2 = UISystem_ComponentValidator(in_stack_00000030);
+    if (((int)uVar2 == 0) && (uVar2 = UISystem_ComponentVerifier(in_stack_00000030,1), (int)uVar2 == 0)) {
       if (unaff_RBX != (uint64_t *)0x0) {
         *unaff_RBX = *(uint64_t *)(in_stack_00000030 + 0x50);
       }
@@ -831,18 +831,18 @@ ulonglong UISystem_SimpleComponentSearch_SimpleSearch(void)
   uint64_t *unaff_RBX;
   longlong in_stack_00000030;
   
-  uVar2 = FUN_18078cf50();
+  uVar2 = UISystem_SearchPreprocessor();
   if ((int)uVar2 == 0) {
-    uVar1 = FUN_180756aa0(in_stack_00000030);
+    uVar1 = UISystem_ComponentFilter(in_stack_00000030);
     if (uVar1 != 0) {
       if (unaff_RBX != (uint64_t *)0x0) {
         *unaff_RBX = 0;
       }
-      FUN_180758220(in_stack_00000030,0x52);
+      UISystem_ComponentStateSetter(in_stack_00000030,0x52);
       return (ulonglong)uVar1;
     }
-    uVar2 = FUN_180758960(in_stack_00000030);
-    if (((int)uVar2 == 0) && (uVar2 = func_0x000180756db0(in_stack_00000030,1), (int)uVar2 == 0)) {
+    uVar2 = UISystem_ComponentValidator(in_stack_00000030);
+    if (((int)uVar2 == 0) && (uVar2 = UISystem_ComponentVerifier(in_stack_00000030,1), (int)uVar2 == 0)) {
       if (unaff_RBX != (uint64_t *)0x0) {
         *unaff_RBX = *(uint64_t *)(in_stack_00000030 + 0x50);
       }
@@ -867,18 +867,18 @@ ulonglong UISystem_GeneralComponentSearch_GeneralSearch(void)
   uint64_t unaff_R14;
   longlong in_stack_00000030;
   
-  uVar2 = FUN_18078cf50();
+  uVar2 = UISystem_SearchPreprocessor();
   if ((int)uVar2 == 0) {
-    uVar1 = FUN_180756aa0(in_stack_00000030);
+    uVar1 = UISystem_ComponentFilter(in_stack_00000030);
     if (uVar1 != 0) {
       if (unaff_RBX != (uint64_t *)0x0) {
         *unaff_RBX = unaff_R14;
       }
-      FUN_180758220(in_stack_00000030,0x52);
+      UISystem_ComponentStateSetter(in_stack_00000030,0x52);
       return (ulonglong)uVar1;
     }
-    uVar2 = FUN_180758960(in_stack_00000030);
-    if (((int)uVar2 == 0) && (uVar2 = func_0x000180756db0(in_stack_00000030,1), (int)uVar2 == 0)) {
+    uVar2 = UISystem_ComponentValidator(in_stack_00000030);
+    if (((int)uVar2 == 0) && (uVar2 = UISystem_ComponentVerifier(in_stack_00000030,1), (int)uVar2 == 0)) {
       if (unaff_RBX != (uint64_t *)0x0) {
         *unaff_RBX = *(uint64_t *)(in_stack_00000030 + 0x50);
       }

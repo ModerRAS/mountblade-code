@@ -294,7 +294,7 @@ uint64_t UI_System_Data_Copy(longlong param_1,int *param_2)
 void UI_System_Memory_Operation(void)
 {
                     // WARNING: Subroutine does not return
-  memcpy();
+  UI_Memory_Copy();
 }
 
 
@@ -499,6 +499,7 @@ uint64_t UI_System_Data_Batch_Copy(void)
 #define FUN_180769ed0(param1,param2,param3,param4,param5) UI_Event_Queue_Add(param1,param2,param3,param4,param5)
 #define FUN_180753170(param)              UI_State_Validate_Handle(param)
 #define func_0x00018076a7d0(param)        UI_Callback_Execute_Resource(param)
+#define memcpy(dest,src,size)             UI_Memory_Copy(dest,src,size)
 
 //==============================================================================
 
