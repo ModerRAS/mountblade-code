@@ -120,10 +120,10 @@ int setup_thread_2d060(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64
 }
 
 // 设置线程函数 - 设置线程2d0b0
-int setup_thread_2d0b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int setup_thread_2d0b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   uVar2 = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c911e8,2,param_3,param_4,uVar2);
@@ -133,10 +133,10 @@ int setup_thread_2d0b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,
 }
 
 // 设置线程函数 - 设置线程2d100
-int setup_thread_2d100(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int setup_thread_2d100(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   uVar2 = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c91288,2,param_3,param_4,uVar2);
@@ -149,7 +149,7 @@ int setup_thread_2d100(undefined8 param_1,undefined8 param_2,undefined8 param_3,
 int register_string_64e8(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   control_flag_64e8 = 0;
   control_flag_64e0 = 6;
   strcpy_s(&control_flag_64e8,0x10,&string_data_04dc,in_R9,0xfffffffffffffffe);
@@ -161,7 +161,7 @@ int register_string_64e8(void)
 int register_string_6548(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   data_pointer_6530 = &table_reference_dc18;
   data_pointer_6538 = &control_flag_6548;
   control_flag_6548 = 0;
@@ -175,7 +175,7 @@ int register_string_6548(void)
 int register_string_65a8(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   data_pointer_6590 = &table_reference_dc18;
   data_pointer_6598 = &control_flag_65a8;
   control_flag_65a8 = 0;
@@ -189,7 +189,7 @@ int register_string_65a8(void)
 int register_string_65d8(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   data_pointer_65c0 = &table_reference_dc18;
   data_pointer_65c8 = &control_flag_65d8;
   control_flag_65d8 = 0;
@@ -203,7 +203,7 @@ int register_string_65d8(void)
 int register_string_6608(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   data_pointer_65f0 = &table_reference_dc18;
   data_pointer_65f8 = &control_flag_6608;
   control_flag_6608 = 0;
@@ -217,7 +217,7 @@ int register_string_6608(void)
 int register_string_6638(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   data_pointer_6620 = &table_reference_dc18;
   data_pointer_6628 = &control_flag_6638;
   control_flag_6638 = 0;
@@ -231,7 +231,7 @@ int register_string_6638(void)
 int register_string_6668(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   data_pointer_6650 = &table_reference_dc18;
   data_pointer_6658 = &control_flag_6668;
   control_flag_6668 = 0;
@@ -245,7 +245,7 @@ int register_string_6668(void)
 int register_string_6698(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   data_pointer_6680 = &table_reference_dc18;
   data_pointer_6688 = &control_flag_6698;
   control_flag_6698 = 0;
@@ -259,7 +259,7 @@ int register_string_6698(void)
 int register_string_66c8(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   data_pointer_66b0 = &table_reference_dc18;
   data_pointer_66b8 = &control_flag_66c8;
   control_flag_66c8 = 0;
@@ -273,7 +273,7 @@ int register_string_66c8(void)
 int register_string_52e8(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   data_pointer_52e8 = &system_buffer_bc80;
   data_pointer_52f0 = &control_flag_5300;
   control_flag_5300 = 0;
@@ -287,7 +287,7 @@ int register_string_52e8(void)
 int register_string_5750(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   data_pointer_5738 = &system_buffer_bc80;
   data_pointer_5740 = &control_flag_5750;
   control_flag_5750 = 0;
@@ -298,7 +298,7 @@ int register_string_5750(void)
 }
 
 // 初始化互斥锁函数 - 初始化互斥锁2e8b0
-int initialize_mutex_2e8b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int initialize_mutex_2e8b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   longlong lVar1;
   _Mtx_init_in_situ(0x180c91970,0x102,param_3,param_4,0xfffffffffffffffe);
