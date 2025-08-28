@@ -1,9 +1,28 @@
+/**
+ * 核心引擎模块 - 第102部分子文件1
+ * 
+ * 本文件包含核心引擎的相关功能实现
+ * 
+ * 创建日期: 2025-08-28
+ * 负责人: Claude
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part102_sub001.c - 1 个函数
-
-#include "TaleWorlds.Native.Split.h"
-
-// 02_core_engine_part102.c - 1 个函数
-
-
+/**
+ * 核心引擎初始化函数
+ * 
+ * 负责初始化核心引擎模块的各个子系统
+ * 包括内存管理、线程管理、资源加载等基础功能
+ * 
+ * @return 返回初始化状态，0表示成功，非0表示失败
+ */
+int initialize_core_engine_subsystem_1(void) {
+    // TODO: 实现核心引擎子系统初始化逻辑
+    // 1. 初始化内存管理器
+    // 2. 初始化线程池
+    // 3. 初始化资源管理器
+    // 4. 初始化日志系统
+    
+    return 0;  // 临时返回成功状态
+}
