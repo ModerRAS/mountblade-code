@@ -36,6 +36,19 @@
 #include "TaleWorlds.Native.Split.h"
 
 /* ============================================================================
+ * 编译器相关宏定义
+ * ============================================================================ */
+
+// 代码指针类型定义
+typedef void (*code)(void);
+
+// 数据合并宏 - 用于合并高低位数据
+#define CONCAT44(high, low) (((uint64_t)(high) << 32) | ((uint32_t)(low)))
+
+// 数据减法宏 - 用于指针运算
+#define SUB84(ptr, offset) ((uint8_t*)(ptr) - (offset))
+
+/* ============================================================================
  * 核心引擎常量定义
  * ============================================================================ */
 
@@ -2444,6 +2457,15 @@ longlong core_engine_initialization_completer(void* system_ptr, void* config_ptr
 
 // 核心引擎全局数据
 extern uint64_t core_engine_resource_handle;     /**< 核心引擎资源句柄 */
+extern void* core_engine_vtable_default;         /**< 默认虚表指针 */
+extern void* core_engine_vtable_active;          /**< 活动虚表指针 */
+extern void* core_engine_vtable_idle;             /**< 空闲虚表指针 */
+extern char* core_engine_string_data;             /**< 字符串数据指针 */
+extern void* core_engine_memory_pool;             /**< 内存池指针 */
+extern void* core_engine_resource_registry;       /**< 资源注册表指针 */
+extern void* core_engine_resource_handler;        /**< 资源处理器指针 */
+extern void* core_engine_cleaner_registry;        /**< 清理注册表指针 */
+extern void* core_engine_float_processor;         /**< 浮点处理器指针 */
 
 /*==============================================================================
  * 技术架构说明

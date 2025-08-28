@@ -282,13 +282,13 @@ UI_SYSTEM_RESULT UIControlStateCleaner(UI_SYSTEM_CONTEXT* context, CONTROL_STATE
         // 如果有挂起的操作，清理相关资源
         if (control->user_data != NULL) {
             // 调用系统清理函数
-            SystemCleanupFunction();
+            UISystem_ResourceCleanup();
         }
         
         // 如果有绑定的上下文数据，进行清理
         if (context != NULL) {
             // 使用上下文进行清理
-            SystemCleanupFunction(context);
+            UISystem_ResourceCleanup(context);
         }
         
         // 重置控件状态
@@ -332,13 +332,13 @@ UI_SYSTEM_RESULT UIControlStateResetter(UI_SYSTEM_CONTEXT* context, CONTROL_STAT
     // 清理挂起的操作
     if (control->user_data != NULL) {
         // 调用系统清理函数
-        SystemCleanupFunction();
+        UISystem_ResourceCleanup();
     }
     
     // 清理绑定的上下文数据
     if (context != NULL) {
         // 使用上下文进行清理
-        SystemCleanupFunction(context);
+        UISystem_ResourceCleanup(context);
     }
     
     // 重置控件数据
@@ -351,7 +351,7 @@ UI_SYSTEM_RESULT UIControlStateResetter(UI_SYSTEM_CONTEXT* context, CONTROL_STAT
     control->user_data = NULL;
     
     // 调用系统重置回调
-    SystemCleanupFunction(context, control);
+    UISystem_ResourceCleanup(context, control);
     
     return UI_SYSTEM_SUCCESS;
 }
@@ -477,7 +477,7 @@ longlong UIAdvancedDataProcessor(UI_SYSTEM_CONTEXT* context, uint32_t* input_dat
     transform_y = (double)ldexp(input_data[6], ((int)input_data[6] >> 0x15 & 0x3ffU) - 0x314);
     
     // 分配处理结果句柄
-    result_handle = SystemDataProcessor(context, *input_data * data_size);
+    result_handle = UISystem_DataProcess(context, *input_data * data_size);
     if (result_handle != 0) {
         
         // 处理一维数据
@@ -760,14 +760,14 @@ void UIMemoryInitializer(UI_SYSTEM_CONTEXT* context, uint32_t memory_size, int i
     }
     
     // 分配内存
-    memory_handle = SystemMemoryAllocator(context, init_flag << 2);
+    memory_handle = UISystem_MemoryAllocate(context, init_flag << 2);
     if (memory_handle != 0) {
         // 初始化内存区域
         memset(security_buffer, 0, 0x84);
     }
     
     // 调用系统初始化函数
-    SystemSecurityChecker(security_key ^ (ulonglong)stack_buffer);
+    UISystem_SecurityValidate(security_key ^ (ulonglong)stack_buffer);
 }
 
 /**
@@ -807,7 +807,7 @@ void UIResourceReleaser(void)
     ulonglong resource_handle;
     
     // 释放系统资源
-    SystemSecurityChecker(resource_handle ^ (ulonglong)&stack0x00000000);
+    UISystem_SecurityValidate(resource_handle ^ (ulonglong)&stack0x00000000);
 }
 
 /**
@@ -824,7 +824,7 @@ void UIResourceReleaser(void)
 void UIErrorHandler(void)
 {
     // 调用系统错误处理函数
-    SystemCleanupFunction();
+    UISystem_ResourceCleanup();
 }
 
 /**
@@ -845,7 +845,7 @@ uint32_t UIControlValueGetter(longlong control_handle)
     
     // 验证控件句柄
     if (0 < *(int *)(control_handle + 8)) {
-        index = SystemIndexFinder();
+        index = UISystem_FindIndex();
         if (-1 < index) {
             return *(uint32_t *)(*(longlong *)(control_handle + 0x28) + (longlong)index * 4);
         }
