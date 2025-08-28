@@ -1,335 +1,365 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part038.c - 4 个函数
+// 01_initialization_part038.c - 初始化模块核心功能
+// 包含任务调度、内存管理、线程同步等功能
 
-// 函数: void FUN_18006c070(longlong param_1)
-void FUN_18006c070(longlong param_1)
+/**
+ * 初始化模块主循环函数
+ * 负责处理任务调度、内存分配、线程同步等核心功能
+ * @param context 上下文指针，包含初始化所需的各种状态信息
+ */
+void Initialization_MainLoop(longlong context)
 
 {
-  longlong *plVar1;
-  int *piVar2;
-  byte *pbVar3;
-  undefined8 uVar4;
-  undefined8 *puVar5;
-  undefined8 *puVar6;
-  bool bVar7;
-  longlong lVar8;
-  char cVar9;
-  longlong lVar10;
-  longlong *plVar11;
-  byte *pbVar12;
-  longlong lVar13;
-  longlong lVar14;
-  longlong *plVar15;
-  uint uVar16;
-  int iVar17;
-  longlong *plVar18;
-  undefined8 *puVar20;
-  longlong lVar21;
-  code *pcVar22;
-  longlong *plVar23;
-  undefined *puVar24;
-  ulonglong uVar25;
-  undefined1 auStack_278 [32];
-  ulonglong uStack_258;
-  undefined **ppuStack_248;
-  longlong *plStack_240;
-  longlong lStack_238;
-  longlong lStack_230;
-  undefined1 uStack_228;
-  undefined8 uStack_218;
-  int iStack_210;
-  undefined4 uStack_20c;
-  undefined8 uStack_208;
-  undefined *puStack_1f8;
-  byte *pbStack_1f0;
-  int iStack_1e8;
-  byte abStack_1e0 [256];
-  undefined8 uStack_e0;
-  ulonglong uStack_d8;
-  longlong lStack_d0;
-  longlong lStack_c8;
-  longlong lStack_c0;
-  undefined1 uStack_b8;
-  undefined1 auStack_b0 [16];
-  code *pcStack_a0;
-  code *pcStack_98;
-  undefined1 auStack_90 [16];
-  code *pcStack_80;
-  code *pcStack_78;
-  undefined8 uStack_70;
-  undefined8 uStack_68;
-  undefined8 uStack_60;
-  undefined8 uStack_58;
-  int iStack_48;
-  undefined4 uStack_44;
-  int iStack_40;
-  undefined4 uStack_3c;
-  ulonglong uStack_38;
-  ulonglong uVar19;
+  longlong *buffer_ptr;
+  int *counter_ptr;
+  byte *byte_ptr;
+  undefined8 temp_value;
+  undefined8 *ptr_array;
+  undefined8 *ptr_array2;
+  bool has_work;
+  longlong temp_long;
+  char status_flag;
+  longlong offset;
+  longlong capacity;
+  longlong *link_ptr;
+  byte *string_buffer;
+  longlong time_value;
+  longlong time_limit;
+  longlong *sync_ptr;
+  uint hash_value;
+  int loop_counter;
+  longlong *resource_ptr;
+  undefined8 *manager_ptr;
+  longlong alloc_size;
+  code *callback_func;
+  longlong *data_ptr;
+  undefined *temp_ptr;
+  ulonglong checksum;
+  undefined1 stack_buffer[32];
+  ulonglong security_cookie;
+  undefined **callback_ptr;
+  longlong *lock_ptr;
+  longlong lock_timeout;
+  longlong wait_duration;
+  undefined1 cleanup_flag;
+  undefined8 timespec_data;
+  int wait_seconds;
+  undefined4 temp_data;
+  undefined8 thread_id;
+  undefined *cleanup_ptr;
+  byte *name_buffer;
+  int name_length;
+  byte name_storage[256];
+  undefined8 resource_data;
+  ulonglong resource_size;
+  longlong resource_offset;
+  longlong resource_count;
+  longlong resource_capacity;
+  undefined1 resource_flag;
+  undefined1 cleanup_buffer[16];
+  code *destructor1;
+  code *guard_check1;
+  undefined1 callback_buffer[16];
+  code *destructor2;
+  code *guard_check2;
+  undefined8 metadata1;
+  undefined8 metadata2;
+  undefined8 metadata3;
+  undefined8 metadata4;
+  int active_count;
+  undefined4 status_word;
+  int allocation_limit;
+  undefined4 memory_flag;
+  ulonglong allocated_size;
+  ulonglong total_processed;
   
-  uStack_208 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_278;
-  cVar9 = *(char *)(*(longlong *)(param_1 + 1000) + 0x58);
+  // 初始化安全cookie和线程ID
+  thread_id = 0xfffffffffffffffe;
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  status_flag = *(char *)(*(longlong *)(context + 1000) + 0x58);
   do {
-    if ((cVar9 == '\0') || (uVar19 = 0, *(char *)(param_1 + 0x400) != '\0')) {
+    // 检查初始化状态
+    if ((status_flag == '\0') || (total_processed = 0, *(char *)(context + 0x400) != '\0')) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_278);
+      FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer);
     }
-    puStack_1f8 = &UNK_1809feda8;
-    pbStack_1f0 = abStack_1e0;
-    iStack_1e8 = 0;
-    abStack_1e0[0] = 0;
-    pcStack_a0 = (code *)0x0;
-    pcStack_98 = _guard_check_icall;
-    ppuStack_248 = (undefined **)auStack_90;
-    pcStack_80 = (code *)0x0;
-    pcStack_78 = _guard_check_icall;
-    lStack_c0 = -1;
-    uStack_d8 = 0xffffffffffffffff;
-    uStack_e0 = 0xffffffffffffffff;
-    lStack_d0 = 0;
-    lStack_c8 = 0;
-    uStack_b8 = 0;
-    lVar13 = *(longlong *)(param_1 + 0x3c8);
-    lVar14 = *(longlong *)(param_1 + 0x3d0) - lVar13;
-    lVar10 = lVar14 >> 0x3f;
-    if (lVar14 / 0x1a8 + lVar10 == lVar10) {
-      cVar9 = FUN_18006d4e0(param_1 + 200,&puStack_1f8);
-      if (cVar9 == '\0') {
-        lVar13 = param_1 + 0x378;
-        uStack_228 = 0;
-        lStack_230 = lVar13;
-        iVar17 = _Mtx_lock(lVar13);
-        if (iVar17 != 0) {
-          __Throw_C_error_std__YAXH_Z(iVar17);
+    
+    // 初始化任务管理器指针
+    cleanup_ptr = &UNK_1809feda8;
+    name_buffer = name_storage;
+    name_length = 0;
+    name_storage[0] = 0;
+    destructor1 = (code *)0x0;
+    guard_check1 = _guard_check_icall;
+    callback_ptr = (undefined **)callback_buffer;
+    destructor2 = (code *)0x0;
+    guard_check2 = _guard_check_icall;
+    resource_capacity = -1;
+    resource_size = 0xffffffffffffffff;
+    resource_data = 0xffffffffffffffff;
+    resource_offset = 0;
+    resource_count = 0;
+    resource_flag = 0;
+    
+    // 获取资源队列信息
+    offset = *(longlong *)(context + 0x3c8);
+    capacity = *(longlong *)(context + 0x3d0) - offset;
+    time_value = capacity >> 0x3f;
+    if (capacity / 0x1a8 + time_value == time_value) {
+      // 尝试获取资源
+      status_flag = FUN_18006d4e0(context + 200,&cleanup_ptr);
+      if (status_flag == '\0') {
+        // 等待资源可用
+        offset = context + 0x378;
+        cleanup_flag = 0;
+        lock_timeout = offset;
+        loop_counter = _Mtx_lock(offset);
+        if (loop_counter != 0) {
+          __Throw_C_error_std__YAXH_Z(loop_counter);
         }
-        uStack_228 = 1;
-        lVar10 = _Xtime_get_ticks();
-        lVar14 = (lVar10 + 50000) * 100;
-        lVar10 = lVar14 / 1000000000;
-        iStack_48 = (int)lVar10;
-        iStack_210 = (int)lVar14 + iStack_48 * -1000000000;
-        uStack_218._4_4_ = (undefined4)((ulonglong)lVar10 >> 0x20);
-        uStack_44 = uStack_218._4_4_;
-        uStack_3c = uStack_20c;
-        uStack_218 = lVar10;
-        iStack_40 = iStack_210;
-        iVar17 = _Mtx_current_owns(lVar13);
-        if (iVar17 == 0) {
+        cleanup_flag = 1;
+        time_value = _Xtime_get_ticks();
+        time_limit = (time_value + 50000) * 100;
+        time_value = time_limit / 1000000000;
+        active_count = (int)time_value;
+        wait_seconds = (int)time_limit + active_count * -1000000000;
+        timespec_data._4_4_ = (undefined4)((ulonglong)time_value >> 0x20);
+        status_word = timespec_data._4_4_;
+        memory_flag = temp_data;
+        timespec_data = time_value;
+        allocation_limit = wait_seconds;
+        loop_counter = _Mtx_current_owns(offset);
+        if (loop_counter == 0) {
           __Throw_Cpp_error_std__YAXH_Z(4);
         }
-        uVar16 = _Cnd_timedwait(param_1 + 0x330,lVar13,&iStack_48);
-        if ((uVar16 & 0xfffffffd) != 0) {
-          __Throw_C_error_std__YAXH_Z(uVar16);
+        hash_value = _Cnd_timedwait(context + 0x330,offset,&active_count);
+        if ((hash_value & 0xfffffffd) != 0) {
+          __Throw_C_error_std__YAXH_Z(hash_value);
         }
-        cVar9 = FUN_18006d4e0(param_1 + 200,&puStack_1f8);
-        if (cVar9 == '\0') {
-          iVar17 = _Mtx_unlock(lVar13);
-          if (iVar17 != 0) {
-            __Throw_C_error_std__YAXH_Z(iVar17);
+        status_flag = FUN_18006d4e0(context + 200,&cleanup_ptr);
+        if (status_flag == '\0') {
+          loop_counter = _Mtx_unlock(offset);
+          if (loop_counter != 0) {
+            __Throw_C_error_std__YAXH_Z(loop_counter);
           }
-          bVar7 = false;
+          has_work = false;
         }
         else {
-          iVar17 = _Mtx_unlock();
-          if (iVar17 != 0) {
-            __Throw_C_error_std__YAXH_Z(iVar17);
+          loop_counter = _Mtx_unlock();
+          if (loop_counter != 0) {
+            __Throw_C_error_std__YAXH_Z(loop_counter);
           }
-          bVar7 = true;
+          has_work = true;
         }
       }
       else {
-        bVar7 = true;
+        has_work = true;
       }
     }
     else {
-      iStack_1e8 = *(int *)(lVar13 + 0x10);
-      puVar24 = &DAT_18098bc73;
-      if (*(undefined **)(lVar13 + 8) != (undefined *)0x0) {
-        puVar24 = *(undefined **)(lVar13 + 8);
+      // 处理队列中的资源
+      name_length = *(int *)(offset + 0x10);
+      temp_ptr = &DAT_18098bc73;
+      if (*(undefined **)(offset + 8) != (undefined *)0x0) {
+        temp_ptr = *(undefined **)(offset + 8);
       }
-      strcpy_s(pbStack_1f0,0x100,puVar24);
-      uStack_e0 = *(undefined8 *)(lVar13 + 0x118);
-      uStack_d8 = *(ulonglong *)(lVar13 + 0x120);
-      lStack_d0 = *(longlong *)(lVar13 + 0x128);
-      lStack_c8 = *(longlong *)(lVar13 + 0x130);
-      lStack_c0 = *(longlong *)(lVar13 + 0x138);
-      uStack_b8 = *(undefined1 *)(lVar13 + 0x140);
-      if (auStack_b0 != (undefined1 *)(lVar13 + 0x148)) {
-        if (pcStack_a0 != (code *)0x0) {
-          (*pcStack_a0)(auStack_b0,0,0);
+      strcpy_s(name_buffer,0x100,temp_ptr);
+      resource_data = *(undefined8 *)(offset + 0x118);
+      resource_size = *(ulonglong *)(offset + 0x120);
+      resource_offset = *(longlong *)(offset + 0x128);
+      resource_count = *(longlong *)(offset + 0x130);
+      resource_capacity = *(longlong *)(offset + 0x138);
+      resource_flag = *(undefined1 *)(offset + 0x140);
+      if (cleanup_buffer != (undefined1 *)(offset + 0x148)) {
+        if (destructor1 != (code *)0x0) {
+          (*destructor1)(cleanup_buffer,0,0);
         }
-        pcVar22 = *(code **)(lVar13 + 0x158);
-        if (pcVar22 != (code *)0x0) {
-          (*pcVar22)(auStack_b0,(undefined1 *)(lVar13 + 0x148),1);
-          pcVar22 = *(code **)(lVar13 + 0x158);
+        callback_func = *(code **)(offset + 0x158);
+        if (callback_func != (code *)0x0) {
+          (*callback_func)(cleanup_buffer,(undefined1 *)(offset + 0x148),1);
+          callback_func = *(code **)(offset + 0x158);
         }
-        pcStack_98 = *(code **)(lVar13 + 0x160);
-        pcStack_a0 = pcVar22;
+        guard_check1 = *(code **)(offset + 0x160);
+        destructor1 = callback_func;
       }
-      if (auStack_90 != (undefined1 *)(lVar13 + 0x168)) {
-        if (pcStack_80 != (code *)0x0) {
-          (*pcStack_80)(auStack_90,0,0);
+      if (callback_buffer != (undefined1 *)(offset + 0x168)) {
+        if (destructor2 != (code *)0x0) {
+          (*destructor2)(callback_buffer,0,0);
         }
-        pcVar22 = *(code **)(lVar13 + 0x178);
-        if (pcVar22 != (code *)0x0) {
-          (*pcVar22)(auStack_90,(undefined1 *)(lVar13 + 0x168),1);
-          pcVar22 = *(code **)(lVar13 + 0x178);
+        callback_func = *(code **)(offset + 0x178);
+        if (callback_func != (code *)0x0) {
+          (*callback_func)(callback_buffer,(undefined1 *)(offset + 0x168),1);
+          callback_func = *(code **)(offset + 0x178);
         }
-        pcStack_78 = *(code **)(lVar13 + 0x180);
-        pcStack_80 = pcVar22;
+        guard_check2 = *(code **)(offset + 0x180);
+        destructor2 = callback_func;
       }
-      uStack_70 = *(undefined8 *)(lVar13 + 0x188);
-      uStack_68 = *(undefined8 *)(lVar13 + 400);
-      uStack_60 = *(undefined8 *)(lVar13 + 0x198);
-      uStack_58 = *(undefined8 *)(lVar13 + 0x1a0);
-      *(longlong *)(param_1 + 0x3d0) = *(longlong *)(param_1 + 0x3d0) + -0x1a8;
+      metadata1 = *(undefined8 *)(offset + 0x188);
+      metadata2 = *(undefined8 *)(offset + 400);
+      metadata3 = *(undefined8 *)(offset + 0x198);
+      metadata4 = *(undefined8 *)(offset + 0x1a0);
+      *(longlong *)(context + 0x3d0) = *(longlong *)(context + 0x3d0) + -0x1a8;
       FUN_180069530();
-      bVar7 = true;
+      has_work = true;
     }
-    puVar20 = *(undefined8 **)(param_1 + 0xc0);
-    if ((undefined *)*puVar20 == &UNK_1809fee70) {
-      cVar9 = FUN_180068a90(puVar20 + 2,&plStack_240);
-      while (cVar9 != '\0') {
-        plVar23 = (longlong *)puVar20[99];
-        if (plStack_240 != (longlong *)0x0) {
-          *(undefined1 *)(plStack_240 + 4) = 0;
-          *plVar23 = *plVar23 - plStack_240[1];
-          plVar23[2] = plVar23[2] + plStack_240[1];
-          plVar18 = (longlong *)plStack_240[3];
-          plVar15 = (longlong *)plVar23[3];
-          plVar11 = plStack_240;
-          if (plVar18 != plVar15) {
+    // 处理内存管理器任务
+    manager_ptr = *(undefined8 **)(context + 0xc0);
+    if ((undefined *)*manager_ptr == &UNK_1809fee70) {
+      status_flag = FUN_180068a90(manager_ptr + 2,&lock_ptr);
+      while (status_flag != '\0') {
+        data_ptr = (longlong *)manager_ptr[99];
+        if (lock_ptr != (longlong *)0x0) {
+          *(undefined1 *)(lock_ptr + 4) = 0;
+          *data_ptr = *data_ptr - lock_ptr[1];
+          data_ptr[2] = data_ptr[2] + lock_ptr[1];
+          resource_ptr = (longlong *)lock_ptr[3];
+          sync_ptr = (longlong *)data_ptr[3];
+          capacity = lock_ptr;
+          if (resource_ptr != sync_ptr) {
             do {
-              if ((plVar18 == (longlong *)0x0) || ((char)plVar18[4] != '\0')) break;
-              lVar13 = plVar11[2];
-              plVar18[2] = lVar13;
-              if (lVar13 != 0) {
-                *(longlong **)(lVar13 + 0x18) = plVar18;
+              if ((resource_ptr == (longlong *)0x0) || ((char)resource_ptr[4] != '\0')) break;
+              offset = capacity[2];
+              resource_ptr[2] = offset;
+              if (offset != 0) {
+                *(longlong **)(offset + 0x18) = resource_ptr;
               }
-              plVar18[1] = plVar18[1] + plVar11[1];
-              *plVar11 = plVar23[0x28005];
-              plVar23[0x28005] = (longlong)plVar11;
-              plVar1 = plVar18 + 3;
-              plVar15 = (longlong *)plVar23[3];
-              plVar11 = plVar18;
-              plVar18 = (longlong *)*plVar1;
-            } while ((longlong *)*plVar1 != plVar15);
+              resource_ptr[1] = resource_ptr[1] + capacity[1];
+              *capacity = data_ptr[0x28005];
+              data_ptr[0x28005] = (longlong)capacity;
+              buffer_ptr = resource_ptr + 3;
+              sync_ptr = (longlong *)data_ptr[3];
+              capacity = resource_ptr;
+              resource_ptr = (longlong *)*buffer_ptr;
+            } while ((longlong *)*buffer_ptr != sync_ptr);
           }
-          plVar18 = (longlong *)plVar11[2];
-          while (((plVar11 != plVar15 && (plVar18 != (longlong *)0x0)) && ((char)plVar18[4] == '\0')
+          resource_ptr = (longlong *)capacity[2];
+          while (((capacity != sync_ptr && (resource_ptr != (longlong *)0x0)) && ((char)resource_ptr[4] == '\0')
                  )) {
-            lVar13 = plVar18[2];
-            plVar11[2] = lVar13;
-            if (lVar13 != 0) {
-              *(longlong **)(lVar13 + 0x18) = plVar11;
+            offset = resource_ptr[2];
+            capacity[2] = offset;
+            if (offset != 0) {
+              *(longlong **)(offset + 0x18) = capacity;
             }
-            plVar11[1] = plVar11[1] + plVar18[1];
-            *plVar18 = plVar23[0x28005];
-            plVar23[0x28005] = (longlong)plVar18;
-            plVar15 = (longlong *)plVar23[3];
-            plVar18 = (longlong *)plVar11[2];
+            capacity[1] = capacity[1] + resource_ptr[1];
+            *resource_ptr = data_ptr[0x28005];
+            data_ptr[0x28005] = (longlong)resource_ptr;
+            sync_ptr = (longlong *)data_ptr[3];
+            resource_ptr = (longlong *)capacity[2];
           }
         }
-        cVar9 = FUN_180068a90(puVar20 + 2,&plStack_240);
+        status_flag = FUN_180068a90(manager_ptr + 2,&lock_ptr);
       }
     }
     else {
-      (**(code **)((undefined *)*puVar20 + 0x18))(puVar20);
+      (**(code **)((undefined *)*manager_ptr + 0x18))(manager_ptr);
     }
-    if (bVar7) {
-      plVar23 = *(longlong **)(param_1 + 0xc0);
-      uVar25 = uVar19;
-      if (0 < iStack_1e8) {
+    if (has_work) {
+      // 计算资源名称的哈希值
+      data_ptr = *(longlong **)(context + 0xc0);
+      checksum = total_processed;
+      if (0 < name_length) {
         do {
-          uVar25 = uVar25 * 0x1f + (longlong)(char)pbStack_1f0[uVar19];
-          uVar16 = (int)uVar19 + 1;
-          uVar19 = (ulonglong)uVar16;
-        } while ((int)uVar16 < iStack_1e8);
+          checksum = checksum * 0x1f + (longlong)(char)name_buffer[total_processed];
+          hash_value = (int)total_processed + 1;
+          total_processed = (ulonglong)hash_value;
+        } while ((int)hash_value < name_length);
       }
-      plVar18 = (longlong *)plVar23[0x67];
-      for (lVar13 = plVar18[uVar25 % (ulonglong)*(uint *)(plVar23 + 0x68)]; lVar13 != 0;
-          lVar13 = *(longlong *)(lVar13 + 0x120)) {
-        iVar17 = *(int *)(lVar13 + 0x10);
-        if (iStack_1e8 == iVar17) {
-          if (iStack_1e8 != 0) {
-            pbVar12 = pbStack_1f0;
+      
+      // 在哈希表中查找资源
+      resource_ptr = (longlong *)data_ptr[0x67];
+      for (offset = resource_ptr[checksum % (ulonglong)*(uint *)(data_ptr + 0x68)]; offset != 0;
+          offset = *(longlong *)(offset + 0x120)) {
+        loop_counter = *(int *)(offset + 0x10);
+        if (name_length == loop_counter) {
+          if (name_length != 0) {
+            string_buffer = name_buffer;
             do {
-              pbVar3 = pbVar12 + (*(longlong *)(lVar13 + 8) - (longlong)pbStack_1f0);
-              iVar17 = (uint)*pbVar12 - (uint)*pbVar3;
-              if (iVar17 != 0) break;
-              pbVar12 = pbVar12 + 1;
-            } while (*pbVar3 != 0);
+              byte_ptr = string_buffer + (*(longlong *)(offset + 8) - (longlong)name_buffer);
+              loop_counter = (uint)*string_buffer - (uint)*byte_ptr;
+              if (loop_counter != 0) break;
+              string_buffer = string_buffer + 1;
+            } while (*byte_ptr != 0);
           }
 LAB_18006c61e:
-          if (iVar17 == 0) {
-            if (lVar13 != 0) {
-              lVar10 = plVar23[0x68];
+          if (loop_counter == 0) {
+            if (offset != 0) {
+              time_value = data_ptr[0x68];
               goto LAB_18006c642;
             }
             break;
           }
         }
-        else if (iStack_1e8 == 0) goto LAB_18006c61e;
+        else if (name_length == 0) goto LAB_18006c61e;
       }
-      lVar10 = plVar23[0x68];
-      lVar13 = plVar18[lVar10];
+      time_value = data_ptr[0x68];
+      offset = resource_ptr[time_value];
 LAB_18006c642:
-      if ((lVar13 != plVar18[lVar10]) && (lVar13 = *(longlong *)(lVar13 + 0x118), lVar13 != 0)) {
+      if ((offset != resource_ptr[time_value]) && (offset = *(longlong *)(offset + 0x118), offset != 0)) {
 LAB_18006c852:
-        if (lStack_c8 == 0) {
-          uVar19 = 0;
-          if (lStack_d0 == 0) {
-            uVar19 = uStack_d8;
+        // 计算所需资源大小
+        if (resource_count == 0) {
+          total_processed = 0;
+          if (resource_offset == 0) {
+            total_processed = resource_size;
           }
         }
         else {
-          uVar19 = uStack_d8;
-          if (lStack_d0 == 0) {
-            uVar19 = uStack_d8 + lStack_c0;
+          total_processed = resource_size;
+          if (resource_offset == 0) {
+            total_processed = resource_size + resource_capacity;
           }
         }
+        
+        // 原子操作更新计数器
         LOCK();
-        plVar23 = (longlong *)(param_1 + 0x3f0);
-        lVar10 = *plVar23;
-        *plVar23 = *plVar23 + uVar19;
+        data_ptr = (longlong *)(context + 0x3f0);
+        time_value = *data_ptr;
+        *data_ptr = *data_ptr + total_processed;
         UNLOCK();
         LOCK();
-        piVar2 = (int *)(param_1 + 0x3f8);
-        iVar17 = *piVar2;
-        *piVar2 = *piVar2 + 1;
+        counter_ptr = (int *)(context + 0x3f8);
+        loop_counter = *counter_ptr;
+        *counter_ptr = *counter_ptr + 1;
         UNLOCK();
-        puVar20 = *(undefined8 **)(param_1 + 0xc0);
-        uStack_258 = puVar20[0x6c];
-        if (uStack_258 < uVar19) {
-          pbVar12 = &DAT_18098bc73;
-          if (pbStack_1f0 != (byte *)0x0) {
-            pbVar12 = pbStack_1f0;
+        
+        // 检查内存限制
+        manager_ptr = *(undefined8 **)(context + 0xc0);
+        security_cookie = manager_ptr[0x6c];
+        if (security_cookie < total_processed) {
+          string_buffer = &DAT_18098bc73;
+          if (name_buffer != (byte *)0x0) {
+            string_buffer = name_buffer;
           }
                     // WARNING: Subroutine does not return
-          FUN_180062300(_DAT_180c86928,&UNK_1809ff390,uVar19,pbVar12);
+          FUN_180062300(_DAT_180c86928,&UNK_1809ff390,total_processed,string_buffer);
         }
-        if (((uStack_258 < lVar10 + uVar19) ||
-            ((ulonglong)(longlong)*(int *)(param_1 + 0x3fc) < (longlong)iVar17 + 1U)) ||
-           (cVar9 = (**(code **)*puVar20)(puVar20,lVar13,&puStack_1f8), cVar9 == '\0')) {
+        
+        // 执行资源分配
+        if (((security_cookie < time_value + total_processed) ||
+            ((ulonglong)(longlong)*(int *)(context + 0x3fc) < (longlong)loop_counter + 1U)) ||
+           (status_flag = (**(code **)*manager_ptr)(manager_ptr,offset,&cleanup_ptr), status_flag == '\0')) {
+          // 回滚计数器
           LOCK();
-          *(longlong *)(param_1 + 0x3f0) = *(longlong *)(param_1 + 0x3f0) - uVar19;
+          *(longlong *)(context + 0x3f0) = *(longlong *)(context + 0x3f0) - total_processed;
           UNLOCK();
           LOCK();
-          *(int *)(param_1 + 0x3f8) = *(int *)(param_1 + 0x3f8) + -1;
+          *(int *)(context + 0x3f8) = *(int *)(context + 0x3f8) + -1;
           UNLOCK();
-          FUN_18006cc50(param_1 + 0x3c8,&puStack_1f8);
+          FUN_18006cc50(context + 0x3c8,&cleanup_ptr);
 LAB_18006ca44:
-          pcVar22 = *(code **)(**(longlong **)(param_1 + 0xc0) + 0x28);
-          if (pcVar22 != _guard_check_icall) {
-            (*pcVar22)();
+          // 调用回调函数
+          callback_func = *(code **)(**(longlong **)(context + 0xc0) + 0x28);
+          if (callback_func != _guard_check_icall) {
+            (*callback_func)();
           }
           Sleep(1);
         }
-        pcVar22 = *(code **)(**(longlong **)(param_1 + 0xc0) + 0x20);
-        if (pcVar22 != _guard_check_icall) {
-          (*pcVar22)();
+        
+        // 执行后处理回调
+        callback_func = *(code **)(**(longlong **)(context + 0xc0) + 0x20);
+        if (callback_func != _guard_check_icall) {
+          (*callback_func)();
         }
         goto LAB_18006ca95;
       }

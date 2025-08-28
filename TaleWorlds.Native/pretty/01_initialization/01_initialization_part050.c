@@ -49,769 +49,778 @@ void initialize_render_state_and_transform_matrix(void)
   undefined4 *texture_ptr;
   longlong engine_base;
   float *matrix_ptr;
-  undefined4 in_stack_00000030;
-  longlong in_stack_00000040;
-  undefined8 in_stack_00000060;
-  undefined8 in_stack_00000068;
-  undefined8 in_stack_00000070;
-  undefined8 in_stack_00000078;
-  undefined8 in_stack_00000080;
-  undefined8 in_stack_00000088;
-  undefined8 in_stack_00000090;
-  undefined8 in_stack_00000098;
-  float fStack00000000000000a0;
-  float fStack00000000000000a4;
-  float fStack00000000000000a8;
-  float fStack00000000000000ac;
-  float fStack00000000000000b0;
-  float fStack00000000000000b4;
-  float fStack00000000000000b8;
-  float fStack00000000000000bc;
-  float fStack00000000000000c0;
-  float fStack00000000000000c4;
-  float fStack00000000000000c8;
-  float fStack00000000000000cc;
-  float fStack00000000000000d0;
-  float fStack00000000000000d4;
-  float fStack00000000000000d8;
-  float fStack00000000000000dc;
-  undefined4 in_stack_000000e0;
-  undefined4 in_stack_000000e8;
-  undefined4 in_stack_000000f0;
-  undefined4 in_stack_000000f8;
-  undefined4 in_stack_00000100;
-  undefined4 in_stack_00000108;
-  undefined4 in_stack_00000110;
-  undefined4 in_stack_00000118;
-  undefined4 in_stack_00000170;
-  longlong in_stack_00000178;
-  float *in_stack_00000180;
-  undefined8 in_stack_00000188;
-  longlong in_stack_00000190;
+  undefined4 render_param_1;
+  longlong render_param_2;
+  undefined8 render_param_3;
+  undefined8 render_param_4;
+  undefined8 render_param_5;
+  undefined8 render_param_6;
+  undefined8 render_param_7;
+  undefined8 render_param_8;
+  undefined8 render_param_9;
+  float stack_matrix_1;
+  float stack_matrix_2;
+  float stack_matrix_3;
+  float stack_matrix_4;
+  float stack_matrix_5;
+  float stack_matrix_6;
+  float stack_matrix_7;
+  float stack_matrix_8;
+  float stack_matrix_9;
+  float stack_matrix_10;
+  float stack_matrix_11;
+  float stack_matrix_12;
+  float stack_matrix_13;
+  float stack_matrix_14;
+  float stack_matrix_15;
+  float stack_matrix_16;
+  undefined4 stack_param_1;
+  undefined4 stack_param_2;
+  undefined4 stack_param_3;
+  undefined4 stack_param_4;
+  undefined4 stack_param_5;
+  undefined4 stack_param_6;
+  undefined4 stack_param_7;
+  undefined4 stack_param_8;
+  undefined4 stack_param_9;
+  longlong stack_param_10;
+  float *stack_param_11;
+  undefined8 stack_param_12;
+  longlong stack_param_13;
   
-  lVar33 = *(longlong *)(unaff_RBX + 0x1b8);
-  bVar30 = *(byte *)(lVar33 + 0x38c);
-  lVar35 = unaff_RBX;
-  if (bVar30 == 9) {
-    bVar30 = func_0x00018022d300();
-    *(byte *)(lVar33 + 0x38c) = bVar30;
+  render_context = *(longlong *)(engine_base + 0x1b8);
+  status_byte = *(byte *)(render_context + 0x38c);
+  context_ptr = engine_base;
+  if (status_byte == 9) {
+    status_byte = get_next_render_mode();
+    *(byte *)(render_context + 0x38c) = status_byte;
   }
-  lVar29 = in_stack_00000178;
-  lVar33 = *(longlong *)(lVar35 + 0x1e0);
-  *unaff_RDI = *(undefined8 *)(lVar33 + (ulonglong)bVar30 * 0x18);
-  unaff_RDI[1] = *(undefined8 *)(lVar33 + 8 + (ulonglong)bVar30 * 0x18);
-  *(undefined4 *)(in_stack_00000040 + 0x10) = *(undefined4 *)(*(longlong *)(unaff_RBX + 600) + 0x2c)
-  ;
-  *(undefined4 *)(in_stack_00000040 + 0x14) = *(undefined4 *)(*(longlong *)(unaff_RBX + 600) + 0x4c)
-  ;
-  *(int *)(in_stack_00000040 + 0x48) = (int)*(char *)(*(longlong *)(unaff_RBX + 600) + 0x44);
-  if ((*(longlong *)(unaff_RBX + 0x2d0) == 0) ||
-     (*(int *)(*(longlong *)(unaff_RBX + 0x2d0) + 0x14) == 0)) {
-    uVar32 = 0xffffffff;
+  render_context = stack_param_10;
+  context_ptr = *(longlong *)(context_ptr + 0x1e0);
+  *render_param_3_ptr = *(undefined8 *)(context_ptr + (ulonglong)status_byte * 0x18);
+  render_param_3_ptr[1] = *(undefined8 *)(context_ptr + 8 + (ulonglong)status_byte * 0x18);
+  *(undefined4 *)(render_param_2 + 0x10) = *(undefined4 *)(*(longlong *)(engine_base + 600) + 0x2c);
+  *(undefined4 *)(render_param_2 + 0x14) = *(undefined4 *)(*(longlong *)(engine_base + 600) + 0x4c);
+  *(int *)(render_param_2 + 0x48) = (int)*(char *)(*(longlong *)(engine_base + 600) + 0x44);
+  if ((*(longlong *)(engine_base + 0x2d0) == 0) ||
+     (*(int *)(*(longlong *)(engine_base + 0x2d0) + 0x14) == 0)) {
+    render_flag = 0xffffffff;
   }
   else {
-    uVar32 = *(undefined4 *)(unaff_RBX + 0x108);
+    render_flag = *(undefined4 *)(engine_base + 0x108);
   }
-  *(undefined4 *)(in_stack_00000040 + 0x18) = uVar32;
-  if ((*(longlong *)(unaff_RBX + 0x2d0) == 0) ||
-     (*(int *)(*(longlong *)(unaff_RBX + 0x2d0) + 0x14) == 0)) {
-    uVar32 = 0xffffffff;
-  }
-  else {
-    uVar32 = *(undefined4 *)(unaff_RBX + 0x10c);
-  }
-  *(undefined4 *)(in_stack_00000040 + 0x1c) = uVar32;
-  if ((*(longlong *)(unaff_RBX + 0x2d0) == 0) ||
-     (*(int *)(*(longlong *)(unaff_RBX + 0x2d0) + 0x14) == 0)) {
-    uVar32 = 0xffffffff;
+  *(undefined4 *)(render_param_2 + 0x18) = render_flag;
+  if ((*(longlong *)(engine_base + 0x2d0) == 0) ||
+     (*(int *)(*(longlong *)(engine_base + 0x2d0) + 0x14) == 0)) {
+    render_flag = 0xffffffff;
   }
   else {
-    uVar32 = *(undefined4 *)(unaff_RBX + 0x110);
+    render_flag = *(undefined4 *)(engine_base + 0x10c);
   }
-  *(undefined4 *)(in_stack_00000040 + 0x20) = uVar32;
-  *(byte *)(in_stack_00000040 + 0x4e) = *(byte *)(unaff_RBX + 0xfe) >> 3 & 1;
-  if (*(int *)(unaff_RBX + 0x108) != -1) {
-    puVar34 = *(undefined4 **)(unaff_RBX + 0x2d0);
-    uVar32 = puVar34[1];
-    uVar7 = puVar34[2];
-    uVar8 = puVar34[3];
-    *(undefined4 *)(in_stack_00000040 + 0x28) = *puVar34;
-    *(undefined4 *)(in_stack_00000040 + 0x2c) = uVar32;
-    *(undefined4 *)(in_stack_00000040 + 0x30) = uVar7;
-    *(undefined4 *)(in_stack_00000040 + 0x34) = uVar8;
-    uVar21 = *(undefined8 *)(puVar34 + 6);
-    *(undefined8 *)(in_stack_00000040 + 0x38) = *(undefined8 *)(puVar34 + 4);
-    *(undefined8 *)(in_stack_00000040 + 0x40) = uVar21;
-  }
-  *(undefined1 *)(in_stack_00000040 + 0x4f) = *(undefined1 *)(*(longlong *)(unaff_RBX + 600) + 0x24)
-  ;
-  lVar33 = *(longlong *)(unaff_RBX + 600);
-  if (*(char *)(lVar33 + 0x24) != '\0') {
-    uVar32 = *(undefined4 *)(unaff_RBX + 0x2ac);
-    uVar7 = *(undefined4 *)(unaff_RBX + 0x2b0);
-    uVar8 = *(undefined4 *)(unaff_RBX + 0x2b4);
-    *(undefined4 *)(in_stack_00000040 + 0x50) = *(undefined4 *)(unaff_RBX + 0x2a8);
-    *(undefined4 *)(in_stack_00000040 + 0x54) = uVar32;
-    *(undefined4 *)(in_stack_00000040 + 0x58) = uVar7;
-    *(undefined4 *)(in_stack_00000040 + 0x5c) = uVar8;
-    lVar33 = *(longlong *)(unaff_RBX + 600);
-  }
-  *(bool *)(in_stack_00000040 + 0x4c) = *(longlong *)(lVar33 + 0x10) != 0;
-  *(undefined1 *)(in_stack_00000040 + 0x4d) = 1;
-  if ((*(char *)(in_stack_00000190 + 0xc) != '\0') ||
-     (0 < *(int *)(*(longlong *)(unaff_RBX + 600) + 0x1c))) {
-    *(undefined1 *)(in_stack_00000040 + 0x4d) = 0;
-  }
-  if (*(longlong *)(in_stack_00000178 + 0x28) == 0) {
-    in_stack_00000030 = 0xffffffff;
-    puVar34 = &stack0x00000030;
-    lVar33 = in_stack_00000178;
+  *(undefined4 *)(render_param_2 + 0x1c) = render_flag;
+  if ((*(longlong *)(engine_base + 0x2d0) == 0) ||
+     (*(int *)(*(longlong *)(engine_base + 0x2d0) + 0x14) == 0)) {
+    render_flag = 0xffffffff;
   }
   else {
-    in_stack_00000170 = 0xffffffff;
-    puVar34 = &stack0x00000170;
-    lVar33 = *(longlong *)(in_stack_00000178 + 0x28);
+    render_flag = *(undefined4 *)(engine_base + 0x110);
   }
-  FUN_180080e90(lVar33 + 0x3388,puVar34,&stack0x00000040);
-  pfVar36 = in_stack_00000180;
-  if ((*(uint *)(unaff_RBX + 0x100) & 0x4000000) != 0) {
-    fVar9 = *in_stack_00000180;
-    fVar10 = in_stack_00000180[1];
-    fVar11 = in_stack_00000180[2];
-    fVar12 = in_stack_00000180[3];
-    fVar13 = in_stack_00000180[4];
-    fVar14 = in_stack_00000180[5];
-    fVar15 = in_stack_00000180[6];
-    fVar16 = in_stack_00000180[7];
-    fVar17 = in_stack_00000180[8];
-    fVar18 = in_stack_00000180[9];
-    fVar19 = in_stack_00000180[10];
-    fVar20 = in_stack_00000180[0xb];
-    fVar1 = *(float *)(unaff_RBX + 0x124);
-    fVar2 = *(float *)(unaff_RBX + 0x120);
-    fVar3 = *(float *)(unaff_RBX + 0x128);
-    fVar4 = *(float *)(unaff_RBX + 0x134);
-    fVar5 = *(float *)(unaff_RBX + 0x130);
-    fStack00000000000000a0 = fVar1 * fVar13 + fVar2 * fVar9 + fVar3 * fVar17;
-    fStack00000000000000a4 = fVar1 * fVar14 + fVar2 * fVar10 + fVar3 * fVar18;
-    fStack00000000000000a8 = fVar1 * fVar15 + fVar2 * fVar11 + fVar3 * fVar19;
-    fStack00000000000000ac = fVar1 * fVar16 + fVar2 * fVar12 + fVar3 * fVar20;
-    fVar1 = *(float *)(unaff_RBX + 0x138);
-    fVar2 = *(float *)(unaff_RBX + 0x140);
-    fVar3 = *(float *)(unaff_RBX + 0x144);
-    fStack00000000000000b0 = fVar4 * fVar13 + fVar5 * fVar9 + fVar1 * fVar17;
-    fStack00000000000000b4 = fVar4 * fVar14 + fVar5 * fVar10 + fVar1 * fVar18;
-    fStack00000000000000b8 = fVar4 * fVar15 + fVar5 * fVar11 + fVar1 * fVar19;
-    fStack00000000000000bc = fVar4 * fVar16 + fVar5 * fVar12 + fVar1 * fVar20;
-    fVar1 = *(float *)(unaff_RBX + 0x148);
-    fVar4 = *(float *)(unaff_RBX + 0x154);
-    fVar5 = *(float *)(unaff_RBX + 0x150);
-    fStack00000000000000c0 = fVar3 * fVar13 + fVar2 * fVar9 + fVar1 * fVar17;
-    fStack00000000000000c4 = fVar3 * fVar14 + fVar2 * fVar10 + fVar1 * fVar18;
-    fStack00000000000000c8 = fVar3 * fVar15 + fVar2 * fVar11 + fVar1 * fVar19;
-    fStack00000000000000cc = fVar3 * fVar16 + fVar2 * fVar12 + fVar1 * fVar20;
-    fVar1 = *(float *)(unaff_RBX + 0x158);
-    fStack00000000000000d0 =
-         fVar4 * fVar13 + fVar5 * fVar9 + fVar1 * fVar17 + in_stack_00000180[0xc];
-    fStack00000000000000d4 =
-         fVar4 * fVar14 + fVar5 * fVar10 + fVar1 * fVar18 + in_stack_00000180[0xd];
-    fStack00000000000000d8 =
-         fVar4 * fVar15 + fVar5 * fVar11 + fVar1 * fVar19 + in_stack_00000180[0xe];
-    fStack00000000000000dc =
-         fVar4 * fVar16 + fVar5 * fVar12 + fVar1 * fVar20 + in_stack_00000180[0xf];
-    pfVar36 = &stack0x000000a0;
+  *(undefined4 *)(render_param_2 + 0x20) = render_flag;
+  *(byte *)(render_param_2 + 0x4e) = *(byte *)(engine_base + 0xfe) >> 3 & 1;
+  if (*(int *)(engine_base + 0x108) != -1) {
+    texture_ptr = *(undefined4 **)(engine_base + 0x2d0);
+    render_flag = texture_ptr[1];
+    texture_id_1 = texture_ptr[2];
+    texture_id_2 = texture_ptr[3];
+    *(undefined4 *)(render_param_2 + 0x28) = *texture_ptr;
+    *(undefined4 *)(render_param_2 + 0x2c) = render_flag;
+    *(undefined4 *)(render_param_2 + 0x30) = texture_id_1;
+    *(undefined4 *)(render_param_2 + 0x34) = texture_id_2;
+    transform_matrix_1 = *(undefined8 *)(texture_ptr + 6);
+    *(undefined8 *)(render_param_2 + 0x38) = *(undefined8 *)(texture_ptr + 4);
+    *(undefined8 *)(render_param_2 + 0x40) = transform_matrix_1;
   }
-  FUN_180085190(&stack0x00000060,lVar29 + 0x30,*(undefined1 *)(unaff_RBX + 0xf7),pfVar36);
-  uVar28 = in_stack_00000098;
-  uVar27 = in_stack_00000090;
-  uVar26 = in_stack_00000088;
-  uVar25 = in_stack_00000080;
-  uVar24 = in_stack_00000078;
-  uVar23 = in_stack_00000070;
-  uVar22 = in_stack_00000068;
-  uVar21 = in_stack_00000060;
-  bVar30 = *(byte *)(lVar29 + 0x1bd8);
-  iVar6 = *(int *)(_DAT_180c86870 + 0x224);
-  if (((*(byte *)(unaff_RBX + 0xfd) & 1) == 0) &&
-     ((*(int *)(unaff_RBX + 0x1d0) == iVar6 || (*(int *)(unaff_RBX + 0x1d0) == iVar6 + -1)))) {
-    bVar31 = 0;
+  *(undefined1 *)(render_param_2 + 0x4f) = *(undefined1 *)(*(longlong *)(engine_base + 600) + 0x24);
+  context_ptr = *(longlong *)(engine_base + 600);
+  if (*(char *)(context_ptr + 0x24) != '\0') {
+    render_flag = *(undefined4 *)(engine_base + 0x2ac);
+    texture_id_1 = *(undefined4 *)(engine_base + 0x2b0);
+    texture_id_2 = *(undefined4 *)(engine_base + 0x2b4);
+    *(undefined4 *)(render_param_2 + 0x50) = *(undefined4 *)(engine_base + 0x2a8);
+    *(undefined4 *)(render_param_2 + 0x54) = render_flag;
+    *(undefined4 *)(render_param_2 + 0x58) = texture_id_1;
+    *(undefined4 *)(render_param_2 + 0x5c) = texture_id_2;
+    context_ptr = *(longlong *)(engine_base + 600);
+  }
+  *(bool *)(render_param_2 + 0x4c) = *(longlong *)(context_ptr + 0x10) != 0;
+  *(undefined1 *)(render_param_2 + 0x4d) = 1;
+  if ((*(char *)(stack_param_13 + 0xc) != '\0') ||
+     (0 < *(int *)(*(longlong *)(engine_base + 600) + 0x1c))) {
+    *(undefined1 *)(render_param_2 + 0x4d) = 0;
+  }
+  if (*(longlong *)(stack_param_10 + 0x28) == 0) {
+    render_param_1 = 0xffffffff;
+    texture_ptr = &stack_param_1;
+    context_ptr = stack_param_10;
   }
   else {
-    bVar31 = 1;
+    stack_param_9 = 0xffffffff;
+    texture_ptr = &stack_param_9;
+    context_ptr = *(longlong *)(stack_param_10 + 0x28);
   }
-  *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe | bVar31;
-  bVar30 = bVar30 & 0x20;
-  if ((bVar30 != 0) && (bVar31 != 0)) {
-    *(undefined8 *)(unaff_RBX + 0x160) = in_stack_00000060;
-    *(undefined8 *)(unaff_RBX + 0x168) = in_stack_00000068;
-    *(undefined8 *)(unaff_RBX + 0x170) = in_stack_00000070;
-    *(undefined8 *)(unaff_RBX + 0x178) = in_stack_00000078;
-    *(undefined8 *)(unaff_RBX + 0x180) = in_stack_00000080;
-    *(undefined8 *)(unaff_RBX + 0x188) = in_stack_00000088;
-    *(undefined8 *)(unaff_RBX + 400) = in_stack_00000090;
-    *(undefined8 *)(unaff_RBX + 0x198) = in_stack_00000098;
+  setup_render_parameters(context_ptr + 0x3388, texture_ptr, &stack_param_2);
+  matrix_ptr = stack_param_11;
+  if ((*(uint *)(engine_base + 0x100) & 0x4000000) != 0) {
+    matrix_element_1 = *stack_param_11;
+    matrix_element_2 = stack_param_11[1];
+    matrix_element_3 = stack_param_11[2];
+    matrix_element_4 = stack_param_11[3];
+    matrix_element_5 = stack_param_11[4];
+    matrix_element_6 = stack_param_11[5];
+    matrix_element_7 = stack_param_11[6];
+    matrix_element_8 = stack_param_11[7];
+    matrix_element_9 = stack_param_11[8];
+    matrix_element_10 = stack_param_11[9];
+    matrix_element_11 = stack_param_11[10];
+    matrix_element_12 = stack_param_11[0xb];
+    transform_x1 = *(float *)(engine_base + 0x124);
+    transform_y1 = *(float *)(engine_base + 0x120);
+    transform_z1 = *(float *)(engine_base + 0x128);
+    transform_x2 = *(float *)(engine_base + 0x134);
+    transform_y2 = *(float *)(engine_base + 0x130);
+    stack_matrix_1 = transform_x1 * matrix_element_5 + transform_y1 * matrix_element_1 + transform_z1 * matrix_element_9;
+    stack_matrix_2 = transform_x1 * matrix_element_6 + transform_y1 * matrix_element_2 + transform_z1 * matrix_element_10;
+    stack_matrix_3 = transform_x1 * matrix_element_7 + transform_y1 * matrix_element_3 + transform_z1 * matrix_element_11;
+    stack_matrix_4 = transform_x1 * matrix_element_8 + transform_y1 * matrix_element_4 + transform_z1 * matrix_element_12;
+    transform_x1 = *(float *)(engine_base + 0x138);
+    transform_y1 = *(float *)(engine_base + 0x140);
+    transform_z1 = *(float *)(engine_base + 0x144);
+    stack_matrix_5 = transform_x2 * matrix_element_5 + transform_y2 * matrix_element_1 + transform_x1 * matrix_element_9;
+    stack_matrix_6 = transform_x2 * matrix_element_6 + transform_y2 * matrix_element_2 + transform_x1 * matrix_element_10;
+    stack_matrix_7 = transform_x2 * matrix_element_7 + transform_y2 * matrix_element_3 + transform_x1 * matrix_element_11;
+    stack_matrix_8 = transform_x2 * matrix_element_8 + transform_y2 * matrix_element_4 + transform_x1 * matrix_element_12;
+    transform_x1 = *(float *)(engine_base + 0x148);
+    transform_x2 = *(float *)(engine_base + 0x154);
+    transform_y2 = *(float *)(engine_base + 0x150);
+    stack_matrix_9 = transform_z1 * matrix_element_5 + transform_y1 * matrix_element_1 + transform_x1 * matrix_element_9;
+    stack_matrix_10 = transform_z1 * matrix_element_6 + transform_y1 * matrix_element_2 + transform_x1 * matrix_element_10;
+    stack_matrix_11 = transform_z1 * matrix_element_7 + transform_y1 * matrix_element_3 + transform_x1 * matrix_element_11;
+    stack_matrix_12 = transform_z1 * matrix_element_8 + transform_y1 * matrix_element_4 + transform_x1 * matrix_element_12;
+    transform_x1 = *(float *)(engine_base + 0x158);
+    stack_matrix_13 =
+         transform_x2 * matrix_element_5 + transform_y2 * matrix_element_1 + transform_x1 * matrix_element_9 + stack_param_11[0xc];
+    stack_matrix_14 =
+         transform_x2 * matrix_element_6 + transform_y2 * matrix_element_2 + transform_x1 * matrix_element_10 + stack_param_11[0xd];
+    stack_matrix_15 =
+         transform_x2 * matrix_element_7 + transform_y2 * matrix_element_3 + transform_x1 * matrix_element_11 + stack_param_11[0xe];
+    stack_matrix_16 =
+         transform_x2 * matrix_element_8 + transform_y2 * matrix_element_4 + transform_x1 * matrix_element_12 + stack_param_11[0xf];
+    matrix_ptr = &stack_matrix_1;
   }
-  FUN_18024a290(lVar29);
-  *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe;
-  *(int *)(unaff_RBX + 0x1d0) = iVar6;
-  if (bVar30 != 0) {
-    *(undefined8 *)(unaff_RBX + 0x160) = uVar21;
-    *(undefined8 *)(unaff_RBX + 0x168) = uVar22;
-    *(undefined8 *)(unaff_RBX + 0x170) = uVar23;
-    *(undefined8 *)(unaff_RBX + 0x178) = uVar24;
-    *(undefined8 *)(unaff_RBX + 0x180) = uVar25;
-    *(undefined8 *)(unaff_RBX + 0x188) = uVar26;
-    *(undefined8 *)(unaff_RBX + 400) = uVar27;
-    *(undefined8 *)(unaff_RBX + 0x198) = uVar28;
+  apply_render_transform(&stack_param_3, render_context + 0x30, *(undefined1 *)(engine_base + 0xf7), matrix_ptr);
+  transform_matrix_8 = render_param_9;
+  transform_matrix_7 = render_param_8;
+  transform_matrix_6 = render_param_7;
+  transform_matrix_5 = render_param_6;
+  transform_matrix_4 = render_param_5;
+  transform_matrix_3 = render_param_4;
+  transform_matrix_2 = render_param_3;
+  transform_matrix_1 = render_param_2;
+  mode_byte = *(byte *)(render_context + 0x1bd8);
+  state_flag = *(int *)(GLOBAL_RENDER_STATE + 0x224);
+  if (((*(byte *)(engine_base + 0xfd) & 1) == 0) &&
+     ((*(int *)(engine_base + 0x1d0) == state_flag || (*(int *)(engine_base + 0x1d0) == state_flag + -1)))) {
+    status_byte = 0;
+  }
+  else {
+    status_byte = 1;
+  }
+  *(byte *)(engine_base + 0xfd) = *(byte *)(engine_base + 0xfd) & 0xfe | status_byte;
+  mode_byte = mode_byte & 0x20;
+  if ((mode_byte != 0) && (status_byte != 0)) {
+    *(undefined8 *)(engine_base + 0x160) = render_param_2;
+    *(undefined8 *)(engine_base + 0x168) = render_param_3;
+    *(undefined8 *)(engine_base + 0x170) = render_param_4;
+    *(undefined8 *)(engine_base + 0x178) = render_param_5;
+    *(undefined8 *)(engine_base + 0x180) = render_param_6;
+    *(undefined8 *)(engine_base + 0x188) = render_param_7;
+    *(undefined8 *)(engine_base + 400) = render_param_8;
+    *(undefined8 *)(engine_base + 0x198) = render_param_9;
+  }
+  finalize_render_operation(render_context);
+  *(byte *)(engine_base + 0xfd) = *(byte *)(engine_base + 0xfd) & 0xfe;
+  *(int *)(engine_base + 0x1d0) = state_flag;
+  if (mode_byte != 0) {
+    *(undefined8 *)(engine_base + 0x160) = transform_matrix_1;
+    *(undefined8 *)(engine_base + 0x168) = transform_matrix_2;
+    *(undefined8 *)(engine_base + 0x170) = transform_matrix_3;
+    *(undefined8 *)(engine_base + 0x178) = transform_matrix_4;
+    *(undefined8 *)(engine_base + 0x180) = transform_matrix_5;
+    *(undefined8 *)(engine_base + 0x188) = transform_matrix_6;
+    *(undefined8 *)(engine_base + 400) = transform_matrix_7;
+    *(undefined8 *)(engine_base + 0x198) = transform_matrix_8;
   }
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180077c96(void)
-void FUN_180077c96(void)
+// 函数: 处理条件渲染状态和变换矩阵
+// 参数: 通过寄存器和堆栈传递多个参数
+// 功能: 根据条件标志处理渲染状态，计算变换矩阵
+void process_conditional_render_state(void)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  int iVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  undefined8 uVar19;
-  undefined8 uVar20;
-  undefined8 uVar21;
-  undefined8 uVar22;
-  undefined8 uVar23;
-  undefined8 uVar24;
-  undefined8 uVar25;
-  undefined8 uVar26;
-  byte bVar27;
-  longlong unaff_RBX;
-  byte bVar28;
-  float *unaff_RSI;
-  longlong unaff_R13;
-  bool in_ZF;
-  undefined8 in_stack_00000060;
-  undefined8 in_stack_00000068;
-  undefined8 in_stack_00000070;
-  undefined8 in_stack_00000078;
-  undefined8 in_stack_00000080;
-  undefined8 in_stack_00000088;
-  undefined8 in_stack_00000090;
-  undefined8 in_stack_00000098;
-  float fStack00000000000000a0;
-  float fStack00000000000000a4;
-  float fStack00000000000000a8;
-  float fStack00000000000000ac;
-  float fStack00000000000000b0;
-  float fStack00000000000000b4;
-  float fStack00000000000000b8;
-  float fStack00000000000000bc;
-  float fStack00000000000000c0;
-  float fStack00000000000000c4;
-  float fStack00000000000000c8;
-  float fStack00000000000000cc;
-  float fStack00000000000000d0;
-  float fStack00000000000000d4;
-  float fStack00000000000000d8;
-  float fStack00000000000000dc;
+  float transform_x1;
+  float transform_y1;
+  float transform_z1;
+  float transform_x2;
+  float transform_y2;
+  int state_flag;
+  float matrix_element_1;
+  float matrix_element_2;
+  float matrix_element_3;
+  float matrix_element_4;
+  float matrix_element_5;
+  float matrix_element_6;
+  float matrix_element_7;
+  float matrix_element_8;
+  float matrix_element_9;
+  float matrix_element_10;
+  float matrix_element_11;
+  float matrix_element_12;
+  float matrix_element_13;
+  float matrix_element_14;
+  float matrix_element_15;
+  float matrix_element_16;
+  float matrix_element_17;
+  float matrix_element_18;
+  undefined8 transform_matrix_1;
+  undefined8 transform_matrix_2;
+  undefined8 transform_matrix_3;
+  undefined8 transform_matrix_4;
+  undefined8 transform_matrix_5;
+  undefined8 transform_matrix_6;
+  undefined8 transform_matrix_7;
+  undefined8 transform_matrix_8;
+  byte status_byte;
+  longlong engine_base;
+  byte mode_byte;
+  float *matrix_ptr;
+  longlong render_context;
+  bool condition_flag;
+  undefined8 render_param_1;
+  undefined8 render_param_2;
+  undefined8 render_param_3;
+  undefined8 render_param_4;
+  undefined8 render_param_5;
+  undefined8 render_param_6;
+  undefined8 render_param_7;
+  undefined8 render_param_8;
+  undefined8 render_param_9;
+  float stack_matrix_1;
+  float stack_matrix_2;
+  float stack_matrix_3;
+  float stack_matrix_4;
+  float stack_matrix_5;
+  float stack_matrix_6;
+  float stack_matrix_7;
+  float stack_matrix_8;
+  float stack_matrix_9;
+  float stack_matrix_10;
+  float stack_matrix_11;
+  float stack_matrix_12;
+  float stack_matrix_13;
+  float stack_matrix_14;
+  float stack_matrix_15;
+  float stack_matrix_16;
   
-  if (!in_ZF) {
-    fVar7 = *unaff_RSI;
-    fVar8 = unaff_RSI[1];
-    fVar9 = unaff_RSI[2];
-    fVar10 = unaff_RSI[3];
-    fVar11 = unaff_RSI[4];
-    fVar12 = unaff_RSI[5];
-    fVar13 = unaff_RSI[6];
-    fVar14 = unaff_RSI[7];
-    fVar15 = unaff_RSI[8];
-    fVar16 = unaff_RSI[9];
-    fVar17 = unaff_RSI[10];
-    fVar18 = unaff_RSI[0xb];
-    fVar1 = *(float *)(unaff_RBX + 0x124);
-    fVar2 = *(float *)(unaff_RBX + 0x120);
-    fVar3 = *(float *)(unaff_RBX + 0x128);
-    fVar4 = *(float *)(unaff_RBX + 0x134);
-    fVar5 = *(float *)(unaff_RBX + 0x130);
-    fStack00000000000000a0 = fVar1 * fVar11 + fVar2 * fVar7 + fVar3 * fVar15;
-    fStack00000000000000a4 = fVar1 * fVar12 + fVar2 * fVar8 + fVar3 * fVar16;
-    fStack00000000000000a8 = fVar1 * fVar13 + fVar2 * fVar9 + fVar3 * fVar17;
-    fStack00000000000000ac = fVar1 * fVar14 + fVar2 * fVar10 + fVar3 * fVar18;
-    fVar1 = *(float *)(unaff_RBX + 0x138);
-    fVar2 = *(float *)(unaff_RBX + 0x140);
-    fVar3 = *(float *)(unaff_RBX + 0x144);
-    fStack00000000000000b0 = fVar4 * fVar11 + fVar5 * fVar7 + fVar1 * fVar15;
-    fStack00000000000000b4 = fVar4 * fVar12 + fVar5 * fVar8 + fVar1 * fVar16;
-    fStack00000000000000b8 = fVar4 * fVar13 + fVar5 * fVar9 + fVar1 * fVar17;
-    fStack00000000000000bc = fVar4 * fVar14 + fVar5 * fVar10 + fVar1 * fVar18;
-    fVar1 = *(float *)(unaff_RBX + 0x148);
-    fVar4 = *(float *)(unaff_RBX + 0x154);
-    fVar5 = *(float *)(unaff_RBX + 0x150);
-    fStack00000000000000c0 = fVar3 * fVar11 + fVar2 * fVar7 + fVar1 * fVar15;
-    fStack00000000000000c4 = fVar3 * fVar12 + fVar2 * fVar8 + fVar1 * fVar16;
-    fStack00000000000000c8 = fVar3 * fVar13 + fVar2 * fVar9 + fVar1 * fVar17;
-    fStack00000000000000cc = fVar3 * fVar14 + fVar2 * fVar10 + fVar1 * fVar18;
-    fVar1 = *(float *)(unaff_RBX + 0x158);
-    fStack00000000000000d0 = fVar4 * fVar11 + fVar5 * fVar7 + fVar1 * fVar15 + unaff_RSI[0xc];
-    fStack00000000000000d4 = fVar4 * fVar12 + fVar5 * fVar8 + fVar1 * fVar16 + unaff_RSI[0xd];
-    fStack00000000000000d8 = fVar4 * fVar13 + fVar5 * fVar9 + fVar1 * fVar17 + unaff_RSI[0xe];
-    fStack00000000000000dc = fVar4 * fVar14 + fVar5 * fVar10 + fVar1 * fVar18 + unaff_RSI[0xf];
+  if (!condition_flag) {
+    matrix_element_1 = *matrix_ptr;
+    matrix_element_2 = matrix_ptr[1];
+    matrix_element_3 = matrix_ptr[2];
+    matrix_element_4 = matrix_ptr[3];
+    matrix_element_5 = matrix_ptr[4];
+    matrix_element_6 = matrix_ptr[5];
+    matrix_element_7 = matrix_ptr[6];
+    matrix_element_8 = matrix_ptr[7];
+    matrix_element_9 = matrix_ptr[8];
+    matrix_element_10 = matrix_ptr[9];
+    matrix_element_11 = matrix_ptr[10];
+    matrix_element_12 = matrix_ptr[0xb];
+    transform_x1 = *(float *)(engine_base + 0x124);
+    transform_y1 = *(float *)(engine_base + 0x120);
+    transform_z1 = *(float *)(engine_base + 0x128);
+    transform_x2 = *(float *)(engine_base + 0x134);
+    transform_y2 = *(float *)(engine_base + 0x130);
+    stack_matrix_1 = transform_x1 * matrix_element_5 + transform_y1 * matrix_element_1 + transform_z1 * matrix_element_9;
+    stack_matrix_2 = transform_x1 * matrix_element_6 + transform_y1 * matrix_element_2 + transform_z1 * matrix_element_10;
+    stack_matrix_3 = transform_x1 * matrix_element_7 + transform_y1 * matrix_element_3 + transform_z1 * matrix_element_11;
+    stack_matrix_4 = transform_x1 * matrix_element_8 + transform_y1 * matrix_element_4 + transform_z1 * matrix_element_12;
+    transform_x1 = *(float *)(engine_base + 0x138);
+    transform_y1 = *(float *)(engine_base + 0x140);
+    transform_z1 = *(float *)(engine_base + 0x144);
+    stack_matrix_5 = transform_x2 * matrix_element_5 + transform_y2 * matrix_element_1 + transform_x1 * matrix_element_9;
+    stack_matrix_6 = transform_x2 * matrix_element_6 + transform_y2 * matrix_element_2 + transform_x1 * matrix_element_10;
+    stack_matrix_7 = transform_x2 * matrix_element_7 + transform_y2 * matrix_element_3 + transform_x1 * matrix_element_11;
+    stack_matrix_8 = transform_x2 * matrix_element_8 + transform_y2 * matrix_element_4 + transform_x1 * matrix_element_12;
+    transform_x1 = *(float *)(engine_base + 0x148);
+    transform_x2 = *(float *)(engine_base + 0x154);
+    transform_y2 = *(float *)(engine_base + 0x150);
+    stack_matrix_9 = transform_z1 * matrix_element_5 + transform_y1 * matrix_element_1 + transform_x1 * matrix_element_9;
+    stack_matrix_10 = transform_z1 * matrix_element_6 + transform_y1 * matrix_element_2 + transform_x1 * matrix_element_10;
+    stack_matrix_11 = transform_z1 * matrix_element_7 + transform_y1 * matrix_element_3 + transform_x1 * matrix_element_11;
+    stack_matrix_12 = transform_z1 * matrix_element_8 + transform_y1 * matrix_element_4 + transform_x1 * matrix_element_12;
+    transform_x1 = *(float *)(engine_base + 0x158);
+    stack_matrix_13 = transform_x2 * matrix_element_5 + transform_y2 * matrix_element_1 + transform_x1 * matrix_element_9 + matrix_ptr[0xc];
+    stack_matrix_14 = transform_x2 * matrix_element_6 + transform_y2 * matrix_element_2 + transform_x1 * matrix_element_10 + matrix_ptr[0xd];
+    stack_matrix_15 = transform_x2 * matrix_element_7 + transform_y2 * matrix_element_3 + transform_x1 * matrix_element_11 + matrix_ptr[0xe];
+    stack_matrix_16 = transform_x2 * matrix_element_8 + transform_y2 * matrix_element_4 + transform_x1 * matrix_element_12 + matrix_ptr[0xf];
   }
-  FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(undefined1 *)(unaff_RBX + 0xf7));
-  uVar26 = in_stack_00000098;
-  uVar25 = in_stack_00000090;
-  uVar24 = in_stack_00000088;
-  uVar23 = in_stack_00000080;
-  uVar22 = in_stack_00000078;
-  uVar21 = in_stack_00000070;
-  uVar20 = in_stack_00000068;
-  uVar19 = in_stack_00000060;
-  bVar28 = *(byte *)(unaff_R13 + 0x1bd8);
-  iVar6 = *(int *)(_DAT_180c86870 + 0x224);
-  if (((*(byte *)(unaff_RBX + 0xfd) & 1) == 0) &&
-     ((*(int *)(unaff_RBX + 0x1d0) == iVar6 || (*(int *)(unaff_RBX + 0x1d0) == iVar6 + -1)))) {
-    bVar27 = 0;
+  apply_render_transform(&stack_param_1, render_context + 0x30, *(undefined1 *)(engine_base + 0xf7));
+  transform_matrix_8 = render_param_9;
+  transform_matrix_7 = render_param_8;
+  transform_matrix_6 = render_param_7;
+  transform_matrix_5 = render_param_6;
+  transform_matrix_4 = render_param_5;
+  transform_matrix_3 = render_param_4;
+  transform_matrix_2 = render_param_3;
+  transform_matrix_1 = render_param_2;
+  mode_byte = *(byte *)(render_context + 0x1bd8);
+  state_flag = *(int *)(GLOBAL_RENDER_STATE + 0x224);
+  if (((*(byte *)(engine_base + 0xfd) & 1) == 0) &&
+     ((*(int *)(engine_base + 0x1d0) == state_flag || (*(int *)(engine_base + 0x1d0) == state_flag + -1)))) {
+    status_byte = 0;
   }
   else {
-    bVar27 = 1;
+    status_byte = 1;
   }
-  *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe | bVar27;
-  bVar28 = bVar28 & 0x20;
-  if ((bVar28 != 0) && (bVar27 != 0)) {
-    *(undefined8 *)(unaff_RBX + 0x160) = in_stack_00000060;
-    *(undefined8 *)(unaff_RBX + 0x168) = in_stack_00000068;
-    *(undefined8 *)(unaff_RBX + 0x170) = in_stack_00000070;
-    *(undefined8 *)(unaff_RBX + 0x178) = in_stack_00000078;
-    *(undefined8 *)(unaff_RBX + 0x180) = in_stack_00000080;
-    *(undefined8 *)(unaff_RBX + 0x188) = in_stack_00000088;
-    *(undefined8 *)(unaff_RBX + 400) = in_stack_00000090;
-    *(undefined8 *)(unaff_RBX + 0x198) = in_stack_00000098;
+  *(byte *)(engine_base + 0xfd) = *(byte *)(engine_base + 0xfd) & 0xfe | status_byte;
+  mode_byte = mode_byte & 0x20;
+  if ((mode_byte != 0) && (status_byte != 0)) {
+    *(undefined8 *)(engine_base + 0x160) = render_param_2;
+    *(undefined8 *)(engine_base + 0x168) = render_param_3;
+    *(undefined8 *)(engine_base + 0x170) = render_param_4;
+    *(undefined8 *)(engine_base + 0x178) = render_param_5;
+    *(undefined8 *)(engine_base + 0x180) = render_param_6;
+    *(undefined8 *)(engine_base + 0x188) = render_param_7;
+    *(undefined8 *)(engine_base + 400) = render_param_8;
+    *(undefined8 *)(engine_base + 0x198) = render_param_9;
   }
-  FUN_18024a290();
-  *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe;
-  *(int *)(unaff_RBX + 0x1d0) = iVar6;
-  if (bVar28 != 0) {
-    *(undefined8 *)(unaff_RBX + 0x160) = uVar19;
-    *(undefined8 *)(unaff_RBX + 0x168) = uVar20;
-    *(undefined8 *)(unaff_RBX + 0x170) = uVar21;
-    *(undefined8 *)(unaff_RBX + 0x178) = uVar22;
-    *(undefined8 *)(unaff_RBX + 0x180) = uVar23;
-    *(undefined8 *)(unaff_RBX + 0x188) = uVar24;
-    *(undefined8 *)(unaff_RBX + 400) = uVar25;
-    *(undefined8 *)(unaff_RBX + 0x198) = uVar26;
+  finalize_render_operation();
+  *(byte *)(engine_base + 0xfd) = *(byte *)(engine_base + 0xfd) & 0xfe;
+  *(int *)(engine_base + 0x1d0) = state_flag;
+  if (mode_byte != 0) {
+    *(undefined8 *)(engine_base + 0x160) = transform_matrix_1;
+    *(undefined8 *)(engine_base + 0x168) = transform_matrix_2;
+    *(undefined8 *)(engine_base + 0x170) = transform_matrix_3;
+    *(undefined8 *)(engine_base + 0x178) = transform_matrix_4;
+    *(undefined8 *)(engine_base + 0x180) = transform_matrix_5;
+    *(undefined8 *)(engine_base + 0x188) = transform_matrix_6;
+    *(undefined8 *)(engine_base + 400) = transform_matrix_7;
+    *(undefined8 *)(engine_base + 0x198) = transform_matrix_8;
   }
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180077dc6(void)
-void FUN_180077dc6(void)
+// 函数: 简化版渲染状态处理
+// 参数: 通过寄存器和堆栈传递多个参数
+// 功能: 处理简化的渲染状态，包含矩阵计算和状态更新
+void simplified_render_state_handler(void)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  int iVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  undefined8 uVar19;
-  undefined8 uVar20;
-  undefined8 uVar21;
-  undefined8 uVar22;
-  undefined8 uVar23;
-  undefined8 uVar24;
-  undefined8 uVar25;
-  undefined8 uVar26;
-  byte bVar27;
-  longlong unaff_RBX;
-  byte bVar28;
-  float *pfVar29;
-  longlong unaff_R13;
-  undefined4 uStack0000000000000030;
-  undefined8 in_stack_00000060;
-  undefined8 in_stack_00000068;
-  undefined8 in_stack_00000070;
-  undefined8 in_stack_00000078;
-  undefined8 in_stack_00000080;
-  undefined8 in_stack_00000088;
-  undefined8 in_stack_00000090;
-  undefined8 in_stack_00000098;
-  float fStack00000000000000a0;
-  float fStack00000000000000a4;
-  float fStack00000000000000a8;
-  float fStack00000000000000ac;
-  float fStack00000000000000b0;
-  float fStack00000000000000b4;
-  float fStack00000000000000b8;
-  float fStack00000000000000bc;
-  float fStack00000000000000c0;
-  float fStack00000000000000c4;
-  float fStack00000000000000c8;
-  float fStack00000000000000cc;
-  float fStack00000000000000d0;
-  float fStack00000000000000d4;
-  float fStack00000000000000d8;
-  float fStack00000000000000dc;
-  undefined4 in_stack_000000e0;
-  undefined4 in_stack_000000e8;
-  undefined4 in_stack_000000f0;
-  undefined4 in_stack_000000f8;
-  undefined4 in_stack_00000100;
-  undefined4 in_stack_00000108;
-  undefined4 in_stack_00000110;
-  undefined4 in_stack_00000118;
-  float *in_stack_00000180;
-  undefined8 in_stack_00000188;
+  float transform_x1;
+  float transform_y1;
+  float transform_z1;
+  float transform_x2;
+  float transform_y2;
+  int state_flag;
+  float matrix_element_1;
+  float matrix_element_2;
+  float matrix_element_3;
+  float matrix_element_4;
+  float matrix_element_5;
+  float matrix_element_6;
+  float matrix_element_7;
+  float matrix_element_8;
+  float matrix_element_9;
+  float matrix_element_10;
+  float matrix_element_11;
+  float matrix_element_12;
+  float matrix_element_13;
+  float matrix_element_14;
+  float matrix_element_15;
+  float matrix_element_16;
+  float matrix_element_17;
+  float matrix_element_18;
+  undefined8 transform_matrix_1;
+  undefined8 transform_matrix_2;
+  undefined8 transform_matrix_3;
+  undefined8 transform_matrix_4;
+  undefined8 transform_matrix_5;
+  undefined8 transform_matrix_6;
+  undefined8 transform_matrix_7;
+  undefined8 transform_matrix_8;
+  byte status_byte;
+  longlong engine_base;
+  byte mode_byte;
+  float *matrix_ptr;
+  longlong render_context;
+  undefined4 stack_param_1;
+  undefined8 render_param_1;
+  undefined8 render_param_2;
+  undefined8 render_param_3;
+  undefined8 render_param_4;
+  undefined8 render_param_5;
+  undefined8 render_param_6;
+  undefined8 render_param_7;
+  undefined8 render_param_8;
+  undefined8 render_param_9;
+  float stack_matrix_1;
+  float stack_matrix_2;
+  float stack_matrix_3;
+  float stack_matrix_4;
+  float stack_matrix_5;
+  float stack_matrix_6;
+  float stack_matrix_7;
+  float stack_matrix_8;
+  float stack_matrix_9;
+  float stack_matrix_10;
+  float stack_matrix_11;
+  float stack_matrix_12;
+  float stack_matrix_13;
+  float stack_matrix_14;
+  float stack_matrix_15;
+  float stack_matrix_16;
+  undefined4 render_param_10;
+  undefined4 render_param_11;
+  undefined4 render_param_12;
+  undefined4 render_param_13;
+  undefined4 render_param_14;
+  undefined4 render_param_15;
+  undefined4 render_param_16;
+  undefined4 render_param_17;
+  float *matrix_param;
+  undefined8 transform_param;
   
-  uStack0000000000000030 = 0xffffffff;
-  FUN_180080e90(unaff_R13 + 0x3388,&stack0x00000030);
-  pfVar29 = in_stack_00000180;
-  if ((*(uint *)(unaff_RBX + 0x100) & 0x4000000) != 0) {
-    fVar7 = *in_stack_00000180;
-    fVar8 = in_stack_00000180[1];
-    fVar9 = in_stack_00000180[2];
-    fVar10 = in_stack_00000180[3];
-    fVar11 = in_stack_00000180[4];
-    fVar12 = in_stack_00000180[5];
-    fVar13 = in_stack_00000180[6];
-    fVar14 = in_stack_00000180[7];
-    fVar15 = in_stack_00000180[8];
-    fVar16 = in_stack_00000180[9];
-    fVar17 = in_stack_00000180[10];
-    fVar18 = in_stack_00000180[0xb];
-    fVar1 = *(float *)(unaff_RBX + 0x124);
-    fVar2 = *(float *)(unaff_RBX + 0x120);
-    fVar3 = *(float *)(unaff_RBX + 0x128);
-    fVar4 = *(float *)(unaff_RBX + 0x134);
-    fVar5 = *(float *)(unaff_RBX + 0x130);
-    fStack00000000000000a0 = fVar1 * fVar11 + fVar2 * fVar7 + fVar3 * fVar15;
-    fStack00000000000000a4 = fVar1 * fVar12 + fVar2 * fVar8 + fVar3 * fVar16;
-    fStack00000000000000a8 = fVar1 * fVar13 + fVar2 * fVar9 + fVar3 * fVar17;
-    fStack00000000000000ac = fVar1 * fVar14 + fVar2 * fVar10 + fVar3 * fVar18;
-    fVar1 = *(float *)(unaff_RBX + 0x138);
-    fVar2 = *(float *)(unaff_RBX + 0x140);
-    fVar3 = *(float *)(unaff_RBX + 0x144);
-    fStack00000000000000b0 = fVar4 * fVar11 + fVar5 * fVar7 + fVar1 * fVar15;
-    fStack00000000000000b4 = fVar4 * fVar12 + fVar5 * fVar8 + fVar1 * fVar16;
-    fStack00000000000000b8 = fVar4 * fVar13 + fVar5 * fVar9 + fVar1 * fVar17;
-    fStack00000000000000bc = fVar4 * fVar14 + fVar5 * fVar10 + fVar1 * fVar18;
-    fVar1 = *(float *)(unaff_RBX + 0x148);
-    fVar4 = *(float *)(unaff_RBX + 0x154);
-    fVar5 = *(float *)(unaff_RBX + 0x150);
-    fStack00000000000000c0 = fVar3 * fVar11 + fVar2 * fVar7 + fVar1 * fVar15;
-    fStack00000000000000c4 = fVar3 * fVar12 + fVar2 * fVar8 + fVar1 * fVar16;
-    fStack00000000000000c8 = fVar3 * fVar13 + fVar2 * fVar9 + fVar1 * fVar17;
-    fStack00000000000000cc = fVar3 * fVar14 + fVar2 * fVar10 + fVar1 * fVar18;
-    fVar1 = *(float *)(unaff_RBX + 0x158);
-    fStack00000000000000d0 =
-         fVar4 * fVar11 + fVar5 * fVar7 + fVar1 * fVar15 + in_stack_00000180[0xc];
-    fStack00000000000000d4 =
-         fVar4 * fVar12 + fVar5 * fVar8 + fVar1 * fVar16 + in_stack_00000180[0xd];
-    fStack00000000000000d8 =
-         fVar4 * fVar13 + fVar5 * fVar9 + fVar1 * fVar17 + in_stack_00000180[0xe];
-    fStack00000000000000dc =
-         fVar4 * fVar14 + fVar5 * fVar10 + fVar1 * fVar18 + in_stack_00000180[0xf];
-    pfVar29 = &stack0x000000a0;
+  stack_param_1 = 0xffffffff;
+  setup_render_parameters(render_context + 0x3388, &stack_param_1);
+  matrix_ptr = matrix_param;
+  if ((*(uint *)(engine_base + 0x100) & 0x4000000) != 0) {
+    matrix_element_1 = *matrix_param;
+    matrix_element_2 = matrix_param[1];
+    matrix_element_3 = matrix_param[2];
+    matrix_element_4 = matrix_param[3];
+    matrix_element_5 = matrix_param[4];
+    matrix_element_6 = matrix_param[5];
+    matrix_element_7 = matrix_param[6];
+    matrix_element_8 = matrix_param[7];
+    matrix_element_9 = matrix_param[8];
+    matrix_element_10 = matrix_param[9];
+    matrix_element_11 = matrix_param[10];
+    matrix_element_12 = matrix_param[0xb];
+    transform_x1 = *(float *)(engine_base + 0x124);
+    transform_y1 = *(float *)(engine_base + 0x120);
+    transform_z1 = *(float *)(engine_base + 0x128);
+    transform_x2 = *(float *)(engine_base + 0x134);
+    transform_y2 = *(float *)(engine_base + 0x130);
+    stack_matrix_1 = transform_x1 * matrix_element_5 + transform_y1 * matrix_element_1 + transform_z1 * matrix_element_9;
+    stack_matrix_2 = transform_x1 * matrix_element_6 + transform_y1 * matrix_element_2 + transform_z1 * matrix_element_10;
+    stack_matrix_3 = transform_x1 * matrix_element_7 + transform_y1 * matrix_element_3 + transform_z1 * matrix_element_11;
+    stack_matrix_4 = transform_x1 * matrix_element_8 + transform_y1 * matrix_element_4 + transform_z1 * matrix_element_12;
+    transform_x1 = *(float *)(engine_base + 0x138);
+    transform_y1 = *(float *)(engine_base + 0x140);
+    transform_z1 = *(float *)(engine_base + 0x144);
+    stack_matrix_5 = transform_x2 * matrix_element_5 + transform_y2 * matrix_element_1 + transform_x1 * matrix_element_9;
+    stack_matrix_6 = transform_x2 * matrix_element_6 + transform_y2 * matrix_element_2 + transform_x1 * matrix_element_10;
+    stack_matrix_7 = transform_x2 * matrix_element_7 + transform_y2 * matrix_element_3 + transform_x1 * matrix_element_11;
+    stack_matrix_8 = transform_x2 * matrix_element_8 + transform_y2 * matrix_element_4 + transform_x1 * matrix_element_12;
+    transform_x1 = *(float *)(engine_base + 0x148);
+    transform_x2 = *(float *)(engine_base + 0x154);
+    transform_y2 = *(float *)(engine_base + 0x150);
+    stack_matrix_9 = transform_z1 * matrix_element_5 + transform_y1 * matrix_element_1 + transform_x1 * matrix_element_9;
+    stack_matrix_10 = transform_z1 * matrix_element_6 + transform_y1 * matrix_element_2 + transform_x1 * matrix_element_10;
+    stack_matrix_11 = transform_z1 * matrix_element_7 + transform_y1 * matrix_element_3 + transform_x1 * matrix_element_11;
+    stack_matrix_12 = transform_z1 * matrix_element_8 + transform_y1 * matrix_element_4 + transform_x1 * matrix_element_12;
+    transform_x1 = *(float *)(engine_base + 0x158);
+    stack_matrix_13 =
+         transform_x2 * matrix_element_5 + transform_y2 * matrix_element_1 + transform_x1 * matrix_element_9 + matrix_param[0xc];
+    stack_matrix_14 =
+         transform_x2 * matrix_element_6 + transform_y2 * matrix_element_2 + transform_x1 * matrix_element_10 + matrix_param[0xd];
+    stack_matrix_15 =
+         transform_x2 * matrix_element_7 + transform_y2 * matrix_element_3 + transform_x1 * matrix_element_11 + matrix_param[0xe];
+    stack_matrix_16 =
+         transform_x2 * matrix_element_8 + transform_y2 * matrix_element_4 + transform_x1 * matrix_element_12 + matrix_param[0xf];
+    matrix_ptr = &stack_matrix_1;
   }
-  FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(undefined1 *)(unaff_RBX + 0xf7),pfVar29);
-  uVar26 = in_stack_00000098;
-  uVar25 = in_stack_00000090;
-  uVar24 = in_stack_00000088;
-  uVar23 = in_stack_00000080;
-  uVar22 = in_stack_00000078;
-  uVar21 = in_stack_00000070;
-  uVar20 = in_stack_00000068;
-  uVar19 = in_stack_00000060;
-  bVar28 = *(byte *)(unaff_R13 + 0x1bd8);
-  iVar6 = *(int *)(_DAT_180c86870 + 0x224);
-  if (((*(byte *)(unaff_RBX + 0xfd) & 1) == 0) &&
-     ((*(int *)(unaff_RBX + 0x1d0) == iVar6 || (*(int *)(unaff_RBX + 0x1d0) == iVar6 + -1)))) {
-    bVar27 = 0;
+  apply_render_transform(&stack_param_1, render_context + 0x30, *(undefined1 *)(engine_base + 0xf7), matrix_ptr);
+  transform_matrix_8 = render_param_9;
+  transform_matrix_7 = render_param_8;
+  transform_matrix_6 = render_param_7;
+  transform_matrix_5 = render_param_6;
+  transform_matrix_4 = render_param_5;
+  transform_matrix_3 = render_param_4;
+  transform_matrix_2 = render_param_3;
+  transform_matrix_1 = render_param_2;
+  mode_byte = *(byte *)(render_context + 0x1bd8);
+  state_flag = *(int *)(GLOBAL_RENDER_STATE + 0x224);
+  if (((*(byte *)(engine_base + 0xfd) & 1) == 0) &&
+     ((*(int *)(engine_base + 0x1d0) == state_flag || (*(int *)(engine_base + 0x1d0) == state_flag + -1)))) {
+    status_byte = 0;
   }
   else {
-    bVar27 = 1;
+    status_byte = 1;
   }
-  *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe | bVar27;
-  bVar28 = bVar28 & 0x20;
-  if ((bVar28 != 0) && (bVar27 != 0)) {
-    *(undefined8 *)(unaff_RBX + 0x160) = in_stack_00000060;
-    *(undefined8 *)(unaff_RBX + 0x168) = in_stack_00000068;
-    *(undefined8 *)(unaff_RBX + 0x170) = in_stack_00000070;
-    *(undefined8 *)(unaff_RBX + 0x178) = in_stack_00000078;
-    *(undefined8 *)(unaff_RBX + 0x180) = in_stack_00000080;
-    *(undefined8 *)(unaff_RBX + 0x188) = in_stack_00000088;
-    *(undefined8 *)(unaff_RBX + 400) = in_stack_00000090;
-    *(undefined8 *)(unaff_RBX + 0x198) = in_stack_00000098;
+  *(byte *)(engine_base + 0xfd) = *(byte *)(engine_base + 0xfd) & 0xfe | status_byte;
+  mode_byte = mode_byte & 0x20;
+  if ((mode_byte != 0) && (status_byte != 0)) {
+    *(undefined8 *)(engine_base + 0x160) = render_param_2;
+    *(undefined8 *)(engine_base + 0x168) = render_param_3;
+    *(undefined8 *)(engine_base + 0x170) = render_param_4;
+    *(undefined8 *)(engine_base + 0x178) = render_param_5;
+    *(undefined8 *)(engine_base + 0x180) = render_param_6;
+    *(undefined8 *)(engine_base + 0x188) = render_param_7;
+    *(undefined8 *)(engine_base + 400) = render_param_8;
+    *(undefined8 *)(engine_base + 0x198) = render_param_9;
   }
-  FUN_18024a290();
-  *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe;
-  *(int *)(unaff_RBX + 0x1d0) = iVar6;
-  if (bVar28 != 0) {
-    *(undefined8 *)(unaff_RBX + 0x160) = uVar19;
-    *(undefined8 *)(unaff_RBX + 0x168) = uVar20;
-    *(undefined8 *)(unaff_RBX + 0x170) = uVar21;
-    *(undefined8 *)(unaff_RBX + 0x178) = uVar22;
-    *(undefined8 *)(unaff_RBX + 0x180) = uVar23;
-    *(undefined8 *)(unaff_RBX + 0x188) = uVar24;
-    *(undefined8 *)(unaff_RBX + 400) = uVar25;
-    *(undefined8 *)(unaff_RBX + 0x198) = uVar26;
+  finalize_render_operation();
+  *(byte *)(engine_base + 0xfd) = *(byte *)(engine_base + 0xfd) & 0xfe;
+  *(int *)(engine_base + 0x1d0) = state_flag;
+  if (mode_byte != 0) {
+    *(undefined8 *)(engine_base + 0x160) = transform_matrix_1;
+    *(undefined8 *)(engine_base + 0x168) = transform_matrix_2;
+    *(undefined8 *)(engine_base + 0x170) = transform_matrix_3;
+    *(undefined8 *)(engine_base + 0x178) = transform_matrix_4;
+    *(undefined8 *)(engine_base + 0x180) = transform_matrix_5;
+    *(undefined8 *)(engine_base + 0x188) = transform_matrix_6;
+    *(undefined8 *)(engine_base + 400) = transform_matrix_7;
+    *(undefined8 *)(engine_base + 0x198) = transform_matrix_8;
   }
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180077dec(void)
-void FUN_180077dec(void)
+// 函数: 最简渲染状态处理
+// 参数: 通过寄存器和堆栈传递多个参数
+// 功能: 处理最简化的渲染状态更新，不包含矩阵计算
+void minimal_render_state_handler(void)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  undefined8 uVar3;
-  undefined8 uVar4;
-  undefined8 uVar5;
-  undefined8 uVar6;
-  undefined8 uVar7;
-  undefined8 uVar8;
-  undefined8 uVar9;
-  byte bVar10;
-  longlong unaff_RBX;
-  byte bVar11;
-  longlong unaff_R13;
-  undefined8 in_stack_00000060;
-  undefined8 in_stack_00000068;
-  undefined8 in_stack_00000070;
-  undefined8 in_stack_00000078;
-  undefined8 in_stack_00000080;
-  undefined8 in_stack_00000088;
-  undefined8 in_stack_00000090;
-  undefined8 in_stack_00000098;
+  int state_flag;
+  undefined8 transform_matrix_1;
+  undefined8 transform_matrix_2;
+  undefined8 transform_matrix_3;
+  undefined8 transform_matrix_4;
+  undefined8 transform_matrix_5;
+  undefined8 transform_matrix_6;
+  undefined8 transform_matrix_7;
+  undefined8 transform_matrix_8;
+  undefined8 transform_matrix_9;
+  byte status_byte;
+  longlong engine_base;
+  byte mode_byte;
+  longlong render_context;
+  undefined8 render_param_1;
+  undefined8 render_param_2;
+  undefined8 render_param_3;
+  undefined8 render_param_4;
+  undefined8 render_param_5;
+  undefined8 render_param_6;
+  undefined8 render_param_7;
+  undefined8 render_param_8;
+  undefined8 render_param_9;
   
-  FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(undefined1 *)(unaff_RBX + 0xf7));
-  uVar9 = in_stack_00000098;
-  uVar8 = in_stack_00000090;
-  uVar7 = in_stack_00000088;
-  uVar6 = in_stack_00000080;
-  uVar5 = in_stack_00000078;
-  uVar4 = in_stack_00000070;
-  uVar3 = in_stack_00000068;
-  uVar2 = in_stack_00000060;
-  bVar11 = *(byte *)(unaff_R13 + 0x1bd8);
-  iVar1 = *(int *)(_DAT_180c86870 + 0x224);
-  if (((*(byte *)(unaff_RBX + 0xfd) & 1) == 0) &&
-     ((*(int *)(unaff_RBX + 0x1d0) == iVar1 || (*(int *)(unaff_RBX + 0x1d0) == iVar1 + -1)))) {
-    bVar10 = 0;
+  apply_render_transform(&stack_param_1, render_context + 0x30, *(undefined1 *)(engine_base + 0xf7));
+  transform_matrix_9 = render_param_9;
+  transform_matrix_8 = render_param_8;
+  transform_matrix_7 = render_param_7;
+  transform_matrix_6 = render_param_6;
+  transform_matrix_5 = render_param_5;
+  transform_matrix_4 = render_param_4;
+  transform_matrix_3 = render_param_3;
+  transform_matrix_2 = render_param_2;
+  transform_matrix_1 = render_param_1;
+  mode_byte = *(byte *)(render_context + 0x1bd8);
+  state_flag = *(int *)(GLOBAL_RENDER_STATE + 0x224);
+  if (((*(byte *)(engine_base + 0xfd) & 1) == 0) &&
+     ((*(int *)(engine_base + 0x1d0) == state_flag || (*(int *)(engine_base + 0x1d0) == state_flag + -1)))) {
+    status_byte = 0;
   }
   else {
-    bVar10 = 1;
+    status_byte = 1;
   }
-  *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe | bVar10;
-  bVar11 = bVar11 & 0x20;
-  if ((bVar11 != 0) && (bVar10 != 0)) {
-    *(undefined8 *)(unaff_RBX + 0x160) = in_stack_00000060;
-    *(undefined8 *)(unaff_RBX + 0x168) = in_stack_00000068;
-    *(undefined8 *)(unaff_RBX + 0x170) = in_stack_00000070;
-    *(undefined8 *)(unaff_RBX + 0x178) = in_stack_00000078;
-    *(undefined8 *)(unaff_RBX + 0x180) = in_stack_00000080;
-    *(undefined8 *)(unaff_RBX + 0x188) = in_stack_00000088;
-    *(undefined8 *)(unaff_RBX + 400) = in_stack_00000090;
-    *(undefined8 *)(unaff_RBX + 0x198) = in_stack_00000098;
+  *(byte *)(engine_base + 0xfd) = *(byte *)(engine_base + 0xfd) & 0xfe | status_byte;
+  mode_byte = mode_byte & 0x20;
+  if ((mode_byte != 0) && (status_byte != 0)) {
+    *(undefined8 *)(engine_base + 0x160) = render_param_1;
+    *(undefined8 *)(engine_base + 0x168) = render_param_2;
+    *(undefined8 *)(engine_base + 0x170) = render_param_3;
+    *(undefined8 *)(engine_base + 0x178) = render_param_4;
+    *(undefined8 *)(engine_base + 0x180) = render_param_5;
+    *(undefined8 *)(engine_base + 0x188) = render_param_6;
+    *(undefined8 *)(engine_base + 400) = render_param_7;
+    *(undefined8 *)(engine_base + 0x198) = render_param_8;
   }
-  FUN_18024a290();
-  *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe;
-  *(int *)(unaff_RBX + 0x1d0) = iVar1;
-  if (bVar11 != 0) {
-    *(undefined8 *)(unaff_RBX + 0x160) = uVar2;
-    *(undefined8 *)(unaff_RBX + 0x168) = uVar3;
-    *(undefined8 *)(unaff_RBX + 0x170) = uVar4;
-    *(undefined8 *)(unaff_RBX + 0x178) = uVar5;
-    *(undefined8 *)(unaff_RBX + 0x180) = uVar6;
-    *(undefined8 *)(unaff_RBX + 0x188) = uVar7;
-    *(undefined8 *)(unaff_RBX + 400) = uVar8;
-    *(undefined8 *)(unaff_RBX + 0x198) = uVar9;
+  finalize_render_operation();
+  *(byte *)(engine_base + 0xfd) = *(byte *)(engine_base + 0xfd) & 0xfe;
+  *(int *)(engine_base + 0x1d0) = state_flag;
+  if (mode_byte != 0) {
+    *(undefined8 *)(engine_base + 0x160) = transform_matrix_1;
+    *(undefined8 *)(engine_base + 0x168) = transform_matrix_2;
+    *(undefined8 *)(engine_base + 0x170) = transform_matrix_3;
+    *(undefined8 *)(engine_base + 0x178) = transform_matrix_4;
+    *(undefined8 *)(engine_base + 0x180) = transform_matrix_5;
+    *(undefined8 *)(engine_base + 0x188) = transform_matrix_6;
+    *(undefined8 *)(engine_base + 400) = transform_matrix_7;
+    *(undefined8 *)(engine_base + 0x198) = transform_matrix_8;
   }
   return;
 }
 
-
-
-undefined1 FUN_180077ef9(void)
+// 函数: 渲染状态标志获取
+// 返回值: 状态标志 (总是返回0)
+// 功能: 获取渲染状态的标志位，简化实现
+undefined1 get_render_state_flag(void)
 
 {
   return 0;
 }
 
-
-
-ulonglong FUN_180077f20(longlong param_1,undefined8 param_2,undefined4 param_3,float *param_4,
-                       undefined4 param_5,undefined4 param_6)
+// 函数: 高级渲染处理
+// 参数: engine_base - 引擎基础指针
+//        render_params - 渲染参数
+//        texture_id - 纹理ID
+//        matrix_ptr - 矩阵指针
+//        render_flags - 渲染标志
+//        transform_params - 变换参数
+// 返回值: 处理结果
+// 功能: 执行高级渲染处理，包括状态检查、矩阵计算和渲染调用
+ulonglong advanced_render_processing(longlong engine_base, undefined8 render_params, undefined4 texture_id, float *matrix_ptr,
+                                     undefined4 render_flags, undefined4 transform_params)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  char cVar19;
-  ulonglong in_RAX;
-  longlong lVar20;
-  ulonglong uVar21;
-  longlong lVar22;
-  byte bVar23;
-  undefined8 uStack_88;
-  ulonglong uStack_80;
-  undefined8 uStack_78;
-  ulonglong uStack_70;
-  undefined8 uStack_68;
-  ulonglong uStack_60;
-  float fStack_58;
-  float fStack_54;
-  float fStack_50;
-  undefined4 uStack_4c;
+  float transform_x1;
+  float transform_y1;
+  float transform_z1;
+  float transform_x2;
+  float transform_y2;
+  float transform_element_1;
+  float transform_element_2;
+  float transform_element_3;
+  float transform_element_4;
+  float transform_element_5;
+  float transform_element_6;
+  float transform_element_7;
+  float transform_element_8;
+  float transform_element_9;
+  float transform_element_10;
+  float transform_element_11;
+  float transform_element_12;
+  float transform_element_13;
+  float transform_element_14;
+  float transform_element_15;
+  float transform_element_16;
+  float transform_element_17;
+  float transform_element_18;
+  char render_mode;
+  ulonglong result;
+  longlong context_ptr;
+  ulonglong render_result;
+  longlong render_context;
+  byte mode_flag;
+  undefined8 transform_param_1;
+  ulonglong transform_param_2;
+  undefined8 transform_param_3;
+  ulonglong transform_param_4;
+  undefined8 transform_param_5;
+  ulonglong transform_param_6;
+  float matrix_stack_1;
+  float matrix_stack_2;
+  float matrix_stack_3;
+  undefined4 render_param_stack;
   
-  lVar22 = *(longlong *)(param_1 + 0x1b8);
-  if (lVar22 != 0) {
-    bVar23 = *(byte *)(param_1 + 0xfd) & 0x20;
-    lVar20 = param_1;
-    if (bVar23 == 0) {
-      lVar20 = func_0x000180085de0(*(undefined8 *)(param_1 + 0x1b0));
+  render_context = *(longlong *)(engine_base + 0x1b8);
+  if (render_context != 0) {
+    mode_flag = *(byte *)(engine_base + 0xfd) & 0x20;
+    context_ptr = engine_base;
+    if (mode_flag == 0) {
+      context_ptr = get_render_context_from_handle(*(undefined8 *)(engine_base + 0x1b0));
     }
-    if (*(int *)(lVar20 + 0x200) != 0) {
-      lVar20 = param_1;
-      if (bVar23 == 0) {
-        lVar20 = func_0x000180085de0(*(undefined8 *)(param_1 + 0x1b0));
+    if (*(int *)(context_ptr + 0x200) != 0) {
+      context_ptr = engine_base;
+      if (mode_flag == 0) {
+        context_ptr = get_render_context_from_handle(*(undefined8 *)(engine_base + 0x1b0));
       }
-      if (*(int *)(lVar20 + 0x1fc) * 3 != 0) goto LAB_180077fcf;
+      if (*(int *)(context_ptr + 0x1fc) * 3 != 0) goto PROCESS_RENDER;
     }
-    if ((*(byte *)(param_1 + 0x100) & 4) != 0) {
-LAB_180077fcf:
-      lVar22 = *(longlong *)(param_1 + 0x1b8);
-      cVar19 = *(char *)(lVar22 + 0x38c);
-      if (cVar19 == '\t') {
-        cVar19 = func_0x00018022d300();
-        *(char *)(lVar22 + 0x38c) = cVar19;
+    if ((*(byte *)(engine_base + 0x100) & 4) != 0) {
+PROCESS_RENDER:
+      render_context = *(longlong *)(engine_base + 0x1b8);
+      render_mode = *(char *)(render_context + 0x38c);
+      if (render_mode == '\t') {
+        render_mode = get_next_render_mode();
+        *(char *)(render_context + 0x38c) = render_mode;
       }
-      cVar19 = FUN_18007b240(param_1,param_1 + 0x1e8,cVar19,1);
-      if (cVar19 == '\0') {
-        *(byte *)(param_1 + 0xfe) = *(byte *)(param_1 + 0xfe) & 0xfb;
+      render_mode = process_render_batch(engine_base, engine_base + 0x1e8, render_mode, 1);
+      if (render_mode == '\0') {
+        *(byte *)(engine_base + 0xfe) = *(byte *)(engine_base + 0xfe) & 0xfb;
       }
-      if ((*(uint *)(param_1 + 0x100) & 0x4000000) == 0) {
-        uStack_88 = *(undefined8 *)param_4;
-        uStack_80._0_4_ = (float)*(undefined8 *)(param_4 + 2);
-        uStack_78 = *(undefined8 *)(param_4 + 4);
-        uStack_70._0_4_ = (float)*(undefined8 *)(param_4 + 6);
-        uStack_68 = *(undefined8 *)(param_4 + 8);
-        uStack_60._0_4_ = (float)*(undefined8 *)(param_4 + 10);
-        fStack_58 = param_4[0xc];
-        fStack_54 = param_4[0xd];
-        fStack_50 = param_4[0xe];
+      if ((*(uint *)(engine_base + 0x100) & 0x4000000) == 0) {
+        transform_param_1 = *(undefined8 *)matrix_ptr;
+        transform_param_2._0_4_ = (float)*(undefined8 *)(matrix_ptr + 2);
+        transform_param_3 = *(undefined8 *)(matrix_ptr + 4);
+        transform_param_4._0_4_ = (float)*(undefined8 *)(matrix_ptr + 6);
+        transform_param_5 = *(undefined8 *)(matrix_ptr + 8);
+        transform_param_6._0_4_ = (float)*(undefined8 *)(matrix_ptr + 10);
+        matrix_stack_1 = matrix_ptr[0xc];
+        matrix_stack_2 = matrix_ptr[0xd];
+        matrix_stack_3 = matrix_ptr[0xe];
       }
       else {
-        fVar10 = param_4[4];
-        fVar11 = param_4[5];
-        fVar12 = param_4[6];
-        fVar1 = *(float *)(param_1 + 0x120);
-        fVar2 = *(float *)(param_1 + 0x128);
-        fVar3 = *(float *)(param_1 + 0x134);
-        fVar4 = *(float *)(param_1 + 0x144);
-        fVar5 = *(float *)(param_1 + 0x154);
-        fVar13 = *param_4;
-        fVar14 = param_4[1];
-        fVar15 = param_4[2];
-        fVar16 = param_4[8];
-        fVar17 = param_4[9];
-        fVar18 = param_4[10];
-        fVar6 = *(float *)(param_1 + 0x124);
-        fVar7 = *(float *)(param_1 + 0x130);
-        uStack_80._0_4_ = fVar6 * fVar12 + fVar1 * fVar15 + fVar2 * fVar18;
-        fVar8 = *(float *)(param_1 + 0x138);
-        fVar9 = *(float *)(param_1 + 0x140);
-        uStack_70._0_4_ = fVar3 * fVar12 + fVar7 * fVar15 + fVar8 * fVar18;
-        uStack_88 = CONCAT44(fVar6 * fVar11 + fVar1 * fVar14 + fVar2 * fVar17,
-                             fVar6 * fVar10 + fVar1 * fVar13 + fVar2 * fVar16);
-        fVar1 = *(float *)(param_1 + 0x148);
-        fVar2 = *(float *)(param_1 + 0x150);
-        uStack_60._0_4_ = fVar4 * fVar12 + fVar9 * fVar15 + fVar1 * fVar18;
-        fVar6 = *(float *)(param_1 + 0x158);
-        uStack_78 = CONCAT44(fVar3 * fVar11 + fVar7 * fVar14 + fVar8 * fVar17,
-                             fVar3 * fVar10 + fVar7 * fVar13 + fVar8 * fVar16);
-        uStack_68 = CONCAT44(fVar4 * fVar11 + fVar9 * fVar14 + fVar1 * fVar17,
-                             fVar4 * fVar10 + fVar9 * fVar13 + fVar1 * fVar16);
-        fStack_58 = fVar5 * fVar10 + fVar2 * fVar13 + fVar6 * fVar16 + param_4[0xc];
-        fStack_54 = fVar5 * fVar11 + fVar2 * fVar14 + fVar6 * fVar17 + param_4[0xd];
-        fStack_50 = fVar5 * fVar12 + fVar2 * fVar15 + fVar6 * fVar18 + param_4[0xe];
+        transform_element_10 = matrix_ptr[4];
+        transform_element_11 = matrix_ptr[5];
+        transform_element_12 = matrix_ptr[6];
+        transform_x1 = *(float *)(engine_base + 0x120);
+        transform_y1 = *(float *)(engine_base + 0x128);
+        transform_z1 = *(float *)(engine_base + 0x134);
+        transform_x2 = *(float *)(engine_base + 0x144);
+        transform_y2 = *(float *)(engine_base + 0x154);
+        transform_element_13 = *matrix_ptr;
+        transform_element_14 = matrix_ptr[1];
+        transform_element_15 = matrix_ptr[2];
+        transform_element_16 = matrix_ptr[8];
+        transform_element_17 = matrix_ptr[9];
+        transform_element_18 = matrix_ptr[10];
+        transform_element_1 = *(float *)(engine_base + 0x124);
+        transform_element_2 = *(float *)(engine_base + 0x130);
+        transform_param_2._0_4_ = transform_element_1 * transform_element_12 + transform_x1 * transform_element_15 + transform_y1 * transform_element_18;
+        transform_element_3 = *(float *)(engine_base + 0x138);
+        transform_element_4 = *(float *)(engine_base + 0x140);
+        transform_param_4._0_4_ = transform_z1 * transform_element_12 + transform_element_2 * transform_element_15 + transform_element_3 * transform_element_18;
+        transform_param_1 = CONCAT44(transform_element_1 * transform_element_11 + transform_x1 * transform_element_14 + transform_y1 * transform_element_17,
+                                    transform_element_1 * transform_element_10 + transform_x1 * transform_element_13 + transform_y1 * transform_element_16);
+        transform_element_5 = *(float *)(engine_base + 0x148);
+        transform_element_6 = *(float *)(engine_base + 0x150);
+        transform_param_6._0_4_ = transform_x2 * transform_element_12 + transform_element_4 * transform_element_15 + transform_element_5 * transform_element_18;
+        transform_element_7 = *(float *)(engine_base + 0x158);
+        transform_param_3 = CONCAT44(transform_z1 * transform_element_11 + transform_element_2 * transform_element_14 + transform_element_3 * transform_element_17,
+                                      transform_z1 * transform_element_10 + transform_element_2 * transform_element_13 + transform_element_3 * transform_element_16);
+        transform_param_5 = CONCAT44(transform_x2 * transform_element_11 + transform_element_4 * transform_element_14 + transform_element_5 * transform_element_17,
+                                      transform_x2 * transform_element_10 + transform_element_4 * transform_element_13 + transform_element_5 * transform_element_16);
+        matrix_stack_1 = transform_y2 * transform_element_10 + transform_element_6 * transform_element_13 + transform_element_7 * transform_element_16 + matrix_ptr[0xc];
+        matrix_stack_2 = transform_y2 * transform_element_11 + transform_element_6 * transform_element_14 + transform_element_7 * transform_element_17 + matrix_ptr[0xd];
+        matrix_stack_3 = transform_y2 * transform_element_12 + transform_element_6 * transform_element_15 + transform_element_7 * transform_element_18 + matrix_ptr[0xe];
       }
-      uStack_4c = 0x3f800000;
-      uStack_60 = (ulonglong)(uint)(float)uStack_60;
-      uStack_70 = (ulonglong)(uint)(float)uStack_70;
-      uStack_80 = (ulonglong)(uint)(float)uStack_80;
-      uVar21 = FUN_180252ca0(param_2,param_1,param_3,&uStack_88,param_5,param_6);
-      return uVar21;
+      render_param_stack = 0x3f800000;
+      transform_param_6 = (ulonglong)(uint)(float)transform_param_6;
+      transform_param_4 = (ulonglong)(uint)(float)transform_param_4;
+      transform_param_2 = (ulonglong)(uint)(float)transform_param_2;
+      render_result = execute_render_operation(render_params, engine_base, texture_id, &transform_param_1, render_flags, transform_params);
+      return render_result;
     }
-    in_RAX = 0;
-    if (*(char *)(lVar22 + 0x38c) == '\t') {
-      in_RAX = func_0x00018022d300(lVar22);
-      *(char *)(lVar22 + 0x38c) = (char)in_RAX;
-      if ((char)in_RAX == '\t') goto LAB_180077fcf;
+    result = 0;
+    if (*(char *)(render_context + 0x38c) == '\t') {
+      result = get_next_render_mode(render_context);
+      *(char *)(render_context + 0x38c) = (char)result;
+      if ((char)result == '\t') goto PROCESS_RENDER;
     }
   }
-  return in_RAX & 0xffffffffffffff00;
+  return result & 0xffffffffffffff00;
 }
-
-
-
-
-

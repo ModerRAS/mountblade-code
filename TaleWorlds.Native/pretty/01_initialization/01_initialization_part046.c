@@ -1,85 +1,86 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part046.c - 7 个函数
+// 01_initialization_part046.c - 14 个函数
 
-// 函数: void FUN_1800748d0(longlong param_1,longlong *param_2)
-void FUN_1800748d0(longlong param_1,longlong *param_2)
+// 函数: void SerializeTransformData - 序列化变换数据
+// 将变换数据序列化到缓冲区中，包括位置、旋转、缩放等信息
+void SerializeTransformData(longlong source_buffer, longlong *target_buffer)
 
-{
-  undefined1 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined4 *puVar5;
-  undefined1 *puVar6;
+  undefined1 *byte_data_ptr;
+  undefined4 *word_data_ptr;
+  undefined4 temp_word1;
+  undefined4 temp_word2;
+  undefined4 temp_word3;
+  undefined4 temp_word4;
+  undefined4 *buffer_ptr;
   
-  puVar5 = (undefined4 *)param_2[1];
-  if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar5 + (4 - *param_2));
-    puVar5 = (undefined4 *)param_2[1];
+  buffer_ptr = (undefined4 *)target_buffer[1];
+  if ((ulonglong)((*target_buffer - (longlong)buffer_ptr) + target_buffer[2]) < 5) {
+    FUN_180639bf0(target_buffer,(longlong)buffer_ptr + (4 - *target_buffer));
+    buffer_ptr = (undefined4 *)target_buffer[1];
   }
-  *puVar5 = 1;
-  puVar5 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar5;
-  if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < 0x11) {
-    FUN_180639bf0(param_2,(longlong)puVar5 + (0x10 - *param_2));
-    puVar5 = (undefined4 *)param_2[1];
+  *buffer_ptr = 1;
+  buffer_ptr = (undefined4 *)(target_buffer[1] + 4);
+  target_buffer[1] = (longlong)buffer_ptr;
+  if ((ulonglong)((*target_buffer - (longlong)buffer_ptr) + target_buffer[2]) < 0x11) {
+    FUN_180639bf0(target_buffer,(longlong)buffer_ptr + (0x10 - *target_buffer));
+    buffer_ptr = (undefined4 *)target_buffer[1];
   }
-  uVar2 = *(undefined4 *)(param_1 + 0x1c);
-  uVar3 = *(undefined4 *)(param_1 + 0x20);
-  uVar4 = *(undefined4 *)(param_1 + 0x24);
-  *puVar5 = *(undefined4 *)(param_1 + 0x18);
-  puVar5[1] = uVar2;
-  puVar5[2] = uVar3;
-  puVar5[3] = uVar4;
-  puVar6 = (undefined1 *)(param_2[1] + 0x10);
-  param_2[1] = (longlong)puVar6;
-  uVar1 = *(undefined1 *)(param_1 + 0x28);
-  if ((ulonglong)((*param_2 - (longlong)puVar6) + param_2[2]) < 2) {
-    FUN_180639bf0(param_2,puVar6 + (1 - *param_2));
-    puVar6 = (undefined1 *)param_2[1];
+  temp_word1 = *(undefined4 *)(source_buffer + 0x1c);
+  temp_word2 = *(undefined4 *)(source_buffer + 0x20);
+  temp_word3 = *(undefined4 *)(source_buffer + 0x24);
+  *buffer_ptr = *(undefined4 *)(source_buffer + 0x18);
+  buffer_ptr[1] = temp_word1;
+  buffer_ptr[2] = temp_word2;
+  buffer_ptr[3] = temp_word3;
+  byte_data_ptr = (undefined1 *)(target_buffer[1] + 0x10);
+  target_buffer[1] = (longlong)byte_data_ptr;
+  temp_word1 = *(undefined1 *)(source_buffer + 0x28);
+  if ((ulonglong)((*target_buffer - (longlong)byte_data_ptr) + target_buffer[2]) < 2) {
+    FUN_180639bf0(target_buffer,byte_data_ptr + (1 - *target_buffer));
+    byte_data_ptr = (undefined1 *)target_buffer[1];
   }
-  *puVar6 = uVar1;
-  puVar5 = (undefined4 *)(param_2[1] + 1);
-  param_2[1] = (longlong)puVar5;
-  if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < 0x11) {
-    FUN_180639bf0(param_2,(longlong)puVar5 + (0x10 - *param_2));
-    puVar5 = (undefined4 *)param_2[1];
+  *byte_data_ptr = temp_word1;
+  buffer_ptr = (undefined4 *)(target_buffer[1] + 1);
+  target_buffer[1] = (longlong)buffer_ptr;
+  if ((ulonglong)((*target_buffer - (longlong)buffer_ptr) + target_buffer[2]) < 0x11) {
+    FUN_180639bf0(target_buffer,(longlong)buffer_ptr + (0x10 - *target_buffer));
+    buffer_ptr = (undefined4 *)target_buffer[1];
   }
-  uVar2 = *(undefined4 *)(param_1 + 0xc);
-  uVar3 = *(undefined4 *)(param_1 + 0x10);
-  uVar4 = *(undefined4 *)(param_1 + 0x14);
-  *puVar5 = *(undefined4 *)(param_1 + 8);
-  puVar5[1] = uVar2;
-  puVar5[2] = uVar3;
-  puVar5[3] = uVar4;
-  puVar5 = (undefined4 *)(param_2[1] + 0x10);
-  param_2[1] = (longlong)puVar5;
-  uVar2 = *(undefined4 *)(param_1 + 0x2c);
-  if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar5 + (4 - *param_2));
-    puVar5 = (undefined4 *)param_2[1];
+  temp_word1 = *(undefined4 *)(source_buffer + 0xc);
+  temp_word2 = *(undefined4 *)(source_buffer + 0x10);
+  temp_word3 = *(undefined4 *)(source_buffer + 0x14);
+  *buffer_ptr = *(undefined4 *)(source_buffer + 8);
+  buffer_ptr[1] = temp_word1;
+  buffer_ptr[2] = temp_word2;
+  buffer_ptr[3] = temp_word3;
+  buffer_ptr = (undefined4 *)(target_buffer[1] + 0x10);
+  target_buffer[1] = (longlong)buffer_ptr;
+  temp_word1 = *(undefined4 *)(source_buffer + 0x2c);
+  if ((ulonglong)((*target_buffer - (longlong)buffer_ptr) + target_buffer[2]) < 5) {
+    FUN_180639bf0(target_buffer,(longlong)buffer_ptr + (4 - *target_buffer));
+    buffer_ptr = (undefined4 *)target_buffer[1];
   }
-  *puVar5 = uVar2;
-  puVar5 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar5;
-  uVar2 = *(undefined4 *)(param_1 + 0x30);
-  if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar5 + (4 - *param_2));
-    puVar5 = (undefined4 *)param_2[1];
+  *buffer_ptr = temp_word1;
+  buffer_ptr = (undefined4 *)(target_buffer[1] + 4);
+  target_buffer[1] = (longlong)buffer_ptr;
+  temp_word1 = *(undefined4 *)(source_buffer + 0x30);
+  if ((ulonglong)((*target_buffer - (longlong)buffer_ptr) + target_buffer[2]) < 5) {
+    FUN_180639bf0(target_buffer,(longlong)buffer_ptr + (4 - *target_buffer));
+    buffer_ptr = (undefined4 *)target_buffer[1];
   }
-  *puVar5 = uVar2;
-  puVar5 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar5;
-  uVar2 = *(undefined4 *)(param_1 + 0x34);
-  if ((ulonglong)((*param_2 - (longlong)puVar5) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar5 + (4 - *param_2));
-    *(undefined4 *)param_2[1] = uVar2;
+  *buffer_ptr = temp_word1;
+  buffer_ptr = (undefined4 *)(target_buffer[1] + 4);
+  target_buffer[1] = (longlong)buffer_ptr;
+  temp_word1 = *(undefined4 *)(source_buffer + 0x34);
+  if ((ulonglong)((*target_buffer - (longlong)buffer_ptr) + target_buffer[2]) < 5) {
+    FUN_180639bf0(target_buffer,(longlong)buffer_ptr + (4 - *target_buffer));
+    *(undefined4 *)target_buffer[1] = temp_word1;
   }
   else {
-    *puVar5 = uVar2;
+    *buffer_ptr = temp_word1;
   }
-  param_2[1] = param_2[1] + 4;
+  target_buffer[1] = target_buffer[1] + 4;
   return;
 }
 
@@ -87,41 +88,42 @@ void FUN_1800748d0(longlong param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_180074a80(longlong *param_1)
-void FUN_180074a80(longlong *param_1)
+// 函数: void ClearTransformArray - 清理变换数组
+// 清理变换数组中的所有元素，重置指针和数据
+void ClearTransformArray(longlong *array_container)
 
 {
-  longlong *plVar1;
-  longlong *plVar2;
+  longlong *current_element;
+  longlong *array_end;
   
-  plVar1 = (longlong *)param_1[1];
-  plVar2 = (longlong *)*param_1;
+  current_element = (longlong *)array_container[1];
+  array_end = (longlong *)*array_container;
   while( true ) {
-    if (plVar2 == plVar1) {
-      if (*param_1 != 0) {
+    if (current_element == array_end) {
+      if (*array_container != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
       return;
     }
-    if (*(longlong *)((longlong)plVar2 + 0x12) != 0) {
+    if (*(longlong *)((longlong)current_element + 0x12) != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    *(undefined8 *)((longlong)plVar2 + 0x12) = 0;
-    if (*(longlong *)((longlong)plVar2 + 0x1a) != 0) break;
-    *(undefined8 *)((longlong)plVar2 + 0x1a) = 0;
-    if (*plVar2 != 0) {
+    *(undefined8 *)((longlong)current_element + 0x12) = 0;
+    if (*(longlong *)((longlong)current_element + 0x1a) != 0) break;
+    *(undefined8 *)((longlong)current_element + 0x1a) = 0;
+    if (*current_element != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    *plVar2 = 0;
-    if (plVar2[1] != 0) {
+    *current_element = 0;
+    if (current_element[1] != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    plVar2[1] = 0;
-    plVar2 = (longlong *)((longlong)plVar2 + 0x24);
+    current_element[1] = 0;
+    current_element = (longlong *)((longlong)current_element + 0x24);
   }
                     // WARNING: Subroutine does not return
   FUN_18064e900();
@@ -131,52 +133,53 @@ void FUN_180074a80(longlong *param_1)
 
 
 
-// 函数: void FUN_180074b30(longlong *param_1,ulonglong param_2)
-void FUN_180074b30(longlong *param_1,ulonglong param_2)
+// 函数: void ResizeTransformArray - 调整变换数组大小
+// 调整变换数组的大小到指定的元素数量
+void ResizeTransformArray(longlong *array_container, ulonglong new_size)
 
 {
-  longlong *plVar1;
-  ulonglong uVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  longlong lVar5;
+  longlong *current_end;
+  ulonglong current_size;
+  longlong *new_end;
+  longlong array_start;
+  longlong size_difference;
   
-  plVar1 = (longlong *)param_1[1];
-  lVar5 = *param_1;
-  uVar2 = ((longlong)plVar1 - lVar5) / 0x24;
-  if (uVar2 < param_2) {
-    lVar4 = param_2 - uVar2;
-    FUN_180074c20(param_1,lVar4,(longlong)plVar1 - lVar5,lVar4,0xfffffffffffffffe);
+  current_end = (longlong *)array_container[1];
+  array_start = *array_container;
+  current_size = ((longlong)current_end - array_start) / 0x24;
+  if (current_size < new_size) {
+    size_difference = new_size - current_size;
+    FUN_180074c20(array_container,size_difference,(longlong)current_end - array_start,size_difference,0xfffffffffffffffe);
   }
   else {
-    plVar3 = (longlong *)(param_2 * 0x24 + lVar5);
-    if (plVar3 != plVar1) {
+    new_end = (longlong *)(new_size * 0x24 + array_start);
+    if (new_end != current_end) {
       do {
-        if (*(longlong *)((longlong)plVar3 + 0x12) != 0) {
+        if (*(longlong *)((longlong)new_end + 0x12) != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        *(undefined8 *)((longlong)plVar3 + 0x12) = 0;
-        if (*(longlong *)((longlong)plVar3 + 0x1a) != 0) {
+        *(undefined8 *)((longlong)new_end + 0x12) = 0;
+        if (*(longlong *)((longlong)new_end + 0x1a) != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        *(undefined8 *)((longlong)plVar3 + 0x1a) = 0;
-        if (*plVar3 != 0) {
+        *(undefined8 *)((longlong)new_end + 0x1a) = 0;
+        if (*new_end != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        *plVar3 = 0;
-        if (plVar3[1] != 0) {
+        *new_end = 0;
+        if (new_end[1] != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        plVar3[1] = 0;
-        plVar3 = (longlong *)((longlong)plVar3 + 0x24);
-      } while (plVar3 != plVar1);
-      lVar5 = *param_1;
+        new_end[1] = 0;
+        new_end = (longlong *)((longlong)new_end + 0x24);
+      } while (new_end != current_end);
+      array_start = *array_container;
     }
-    param_1[1] = param_2 * 0x24 + lVar5;
+    array_container[1] = new_size * 0x24 + array_start;
   }
   return;
 }

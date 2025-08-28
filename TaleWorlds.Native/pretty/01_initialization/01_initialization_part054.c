@@ -321,8 +321,15 @@ void process_render_data(void)
 
 
 
-// 函数: void FUN_180079309(longlong param_1,uint param_2,undefined8 param_3,float *param_4)
-void FUN_180079309(longlong param_1,uint param_2,undefined8 param_3,float *param_4)
+/**
+ * 更新渲染矩阵
+ * 根据指定的参数更新渲染矩阵数据
+ * @param param_1 渲染数据基础指针
+ * @param param_2 渲染索引
+ * @param param_3 未定义参数
+ * @param param_4 渲染矩阵输出指针
+ */
+void update_render_matrix(longlong param_1, uint param_2, undefined8 param_3, float *param_4)
 
 {
   longlong *plVar1;
@@ -611,8 +618,11 @@ void FUN_180079309(longlong param_1,uint param_2,undefined8 param_3,float *param
 
 
 
-// 函数: void FUN_18007940e(void)
-void FUN_18007940e(void)
+/**
+ * 初始化渲染缓冲区
+ * 初始化和配置渲染系统的缓冲区
+ */
+void initialize_render_buffers(void)
 
 {
   longlong *plVar1;
@@ -821,79 +831,113 @@ void FUN_18007940e(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined * FUN_180079430(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 获取渲染上下文
+ * 从线程本地存储中获取渲染上下文指针
+ * @param param_1 上下文参数
+ * @param param_2 未定义参数
+ * @param param_3 未定义参数
+ * @param param_4 未定义参数
+ * @return 渲染上下文指针
+ */
+undefined *get_render_context(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined8 uVar1;
+  undefined8 context_result;
   
-  uVar1 = 0xfffffffffffffffe;
+  context_result = 0xfffffffffffffffe;
   if (*(longlong *)(param_1 + 0x1b8) != 0) {
     return (undefined *)(*(longlong *)(param_1 + 0x1b8) + 0x10);
   }
-  if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _DAT_180d49158) {
+  
+  // 检查线程本地存储中的渲染值
+  if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) < render_tls_value) {
     FUN_1808fcb90(&DAT_180d49158);
-    if (_DAT_180d49158 == -1) {
-      _DAT_180d49160 = &UNK_1809fcc28;
+    if (render_tls_value == -1) {
+      _DAT_180d49160 = &default_render_context;
       _DAT_180d49168 = &DAT_180d49178;
+    }
+  }
 
 
-// 函数: void FUN_180079520(longlong param_1)
-void FUN_180079520(longlong param_1)
+/**
+ * 清理渲染线程
+ * 清理和重置渲染线程的状态
+ * @param param_1 渲染上下文指针
+ */
+void cleanup_render_threads(longlong param_1)
 
 {
   longlong lVar1;
   int iVar2;
   longlong lVar3;
   
+  // 检查是否启用多线程渲染
   if (((*(byte *)(param_1 + 0xfd) & 0x20) != 0) && (*(longlong *)(param_1 + 0x1e0) != 0)) {
-    iVar2 = 0;
-    lVar3 = 0;
+    int thread_index = 0;
+    longlong thread_offset = 0;
+    
+    // 遍历所有渲染线程
     do {
-      while ((*(char *)(*(longlong *)(param_1 + 0x1e0) + 0x15 + lVar3) == '\x02' ||
-             (*(char *)(*(longlong *)(param_1 + 0x1e0) + 0x15 + lVar3) == '\x01'))) {
+      // 等待线程就绪状态
+      while ((*(char *)(*(longlong *)(param_1 + 0x1e0) + 0x15 + thread_offset) == '\x02' ||
+             (*(char *)(*(longlong *)(param_1 + 0x1e0) + 0x15 + thread_offset) == '\x01'))) {
         Sleep(0);
       }
-      lVar1 = (longlong)iVar2;
-      lVar3 = lVar3 + 0x18;
-      iVar2 = iVar2 + 1;
+      
+      // 重置线程状态
+      longlong current_thread = (longlong)thread_index;
+      thread_offset = thread_offset + 0x18;
+      thread_index = thread_index + 1;
+      
+      // 加锁并重置线程标志
       LOCK();
-      *(undefined1 *)(*(longlong *)(param_1 + 0x1e0) + lVar1 * 0x18 + 0x15) = 0;
+      *(undefined1 *)(*(longlong *)(param_1 + 0x1e0) + current_thread * 0x18 + 0x15) = 0;
       UNLOCK();
-    } while (iVar2 < 0x10);
+    } while (thread_index < 0x10);  // 最多16个线程
   }
   return;
 }
 
 
 
-undefined1 FUN_18007953e(void)
-
+/**
+ * 重置线程标志
+ * 重置所有渲染线程的状态标志
+ * @return 最后一个线程的原始状态
+ */
+undefined1 reset_thread_flags(void)
 {
-  undefined1 *puVar1;
-  undefined1 uVar2;
-  longlong lVar3;
-  longlong unaff_RBX;
-  int iVar4;
-  longlong lVar5;
+  undefined1 *thread_flag_ptr;
+  undefined1 original_flag;
+  longlong thread_index;
+  longlong render_context;
+  int loop_counter;
+  longlong thread_offset;
   
-  iVar4 = 0;
-  lVar5 = 0;
+  loop_counter = 0;
+  thread_offset = 0;
+  
+  // 遍历所有线程进行重置
   do {
-    while ((*(char *)(*(longlong *)(unaff_RBX + 0x1e0) + 0x15 + lVar5) == '\x02' ||
-           (*(char *)(*(longlong *)(unaff_RBX + 0x1e0) + 0x15 + lVar5) == '\x01'))) {
+    // 等待线程就绪
+    while ((*(char *)(*(longlong *)(render_context + 0x1e0) + 0x15 + thread_offset) == '\x02' ||
+           (*(char *)(*(longlong *)(render_context + 0x1e0) + 0x15 + thread_offset) == '\x01'))) {
       Sleep(0);
     }
-    lVar3 = (longlong)iVar4;
-    lVar5 = lVar5 + 0x18;
-    iVar4 = iVar4 + 1;
+    
+    // 保存并重置线程标志
+    thread_index = (longlong)loop_counter;
+    thread_offset = thread_offset + 0x18;
+    loop_counter = loop_counter + 1;
+    
     LOCK();
-    puVar1 = (undefined1 *)(*(longlong *)(unaff_RBX + 0x1e0) + lVar3 * 0x18 + 0x15);
-    uVar2 = *puVar1;
-    *puVar1 = 0;
+    thread_flag_ptr = (undefined1 *)(*(longlong *)(render_context + 0x1e0) + thread_index * 0x18 + 0x15);
+    original_flag = *thread_flag_ptr;
+    *thread_flag_ptr = 0;
     UNLOCK();
-  } while (iVar4 < 0x10);
-  return uVar2;
+  } while (loop_counter < 0x10);  // 最多16个线程
+  
+  return original_flag;
 }
 
 

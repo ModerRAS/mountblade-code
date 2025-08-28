@@ -1068,49 +1068,80 @@ void ReleaseMemoryBlockAndUpdateCounters(longlong *block_info)
 
 
 
-longlong FUN_18006dcb0(longlong param_1,longlong param_2)
+/**
+ * 复制内存块描述符数据
+ * 将源内存块描述符的数据复制到目标描述符
+ * 原函数名：FUN_18006dcb0
+ * 
+ * @param dest_desc 目标描述符指针
+ * @param src_desc 源描述符指针
+ * @return 返回目标描述符指针
+ */
+longlong CopyMemoryBlockDescriptorData(longlong dest_desc, longlong src_desc)
 
 {
   longlong lVar1;
   undefined *puVar2;
   
-  *(undefined4 *)(param_1 + 0x10) = *(undefined4 *)(param_2 + 0x10);
+  // 复制基本属性
+  *(undefined4 *)(dest_desc + 0x10) = *(undefined4 *)(src_desc + 0x10);
+  
+  // 复制名称字符串
   puVar2 = &DAT_18098bc73;
-  if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
-    puVar2 = *(undefined **)(param_2 + 8);
+  if (*(undefined **)(src_desc + 8) != (undefined *)0x0) {
+    puVar2 = *(undefined **)(src_desc + 8);
   }
-  strcpy_s(*(undefined8 *)(param_1 + 8),0x100,puVar2);
-  *(undefined8 *)(param_1 + 0x118) = *(undefined8 *)(param_2 + 0x118);
-  lVar1 = param_1 + 0x148;
-  *(undefined8 *)(param_1 + 0x120) = *(undefined8 *)(param_2 + 0x120);
-  *(undefined8 *)(param_1 + 0x128) = *(undefined8 *)(param_2 + 0x128);
-  *(undefined8 *)(param_1 + 0x130) = *(undefined8 *)(param_2 + 0x130);
-  *(undefined8 *)(param_1 + 0x138) = *(undefined8 *)(param_2 + 0x138);
-  *(undefined1 *)(param_1 + 0x140) = *(undefined1 *)(param_2 + 0x140);
-  if (lVar1 != param_2 + 0x148) {
-    if (*(code **)(param_1 + 0x158) != (code *)0x0) {
-      (**(code **)(param_1 + 0x158))(lVar1,0,0);
+  strcpy_s(*(undefined8 *)(dest_desc + 8), 0x100, puVar2);
+  
+  // 复制各种属性字段
+  *(undefined8 *)(dest_desc + 0x118) = *(undefined8 *)(src_desc + 0x118);
+  lVar1 = dest_desc + 0x148;
+  *(undefined8 *)(dest_desc + 0x120) = *(undefined8 *)(src_desc + 0x120);
+  *(undefined8 *)(dest_desc + 0x128) = *(undefined8 *)(src_desc + 0x128);
+  *(undefined8 *)(dest_desc + 0x130) = *(undefined8 *)(src_desc + 0x130);
+  *(undefined8 *)(dest_desc + 0x138) = *(undefined8 *)(src_desc + 0x138);
+  *(undefined1 *)(dest_desc + 0x140) = *(undefined1 *)(src_desc + 0x140);
+  
+  // 复制第一个扩展数据区域
+  if (lVar1 != src_desc + 0x148) {
+    if (*(code **)(dest_desc + 0x158) != (code *)0x0) {
+      (**(code **)(dest_desc + 0x158))(lVar1, 0, 0);
     }
-    FUN_180069130(lVar1,param_2 + 0x148);
+    FUN_180069130(lVar1, src_desc + 0x148);
   }
-  lVar1 = param_1 + 0x168;
-  if (lVar1 != param_2 + 0x168) {
-    if (*(code **)(param_1 + 0x178) != (code *)0x0) {
-      (**(code **)(param_1 + 0x178))(lVar1,0,0);
+  
+  // 复制第二个扩展数据区域
+  lVar1 = dest_desc + 0x168;
+  if (lVar1 != src_desc + 0x168) {
+    if (*(code **)(dest_desc + 0x178) != (code *)0x0) {
+      (**(code **)(dest_desc + 0x178))(lVar1, 0, 0);
     }
-    FUN_180069130(lVar1,param_2 + 0x168);
+    FUN_180069130(lVar1, src_desc + 0x168);
   }
-  *(undefined8 *)(param_1 + 0x188) = *(undefined8 *)(param_2 + 0x188);
-  *(undefined8 *)(param_1 + 400) = *(undefined8 *)(param_2 + 400);
-  *(undefined8 *)(param_1 + 0x198) = *(undefined8 *)(param_2 + 0x198);
-  *(undefined8 *)(param_1 + 0x1a0) = *(undefined8 *)(param_2 + 0x1a0);
-  return param_1;
+  
+  // 复制剩余的属性字段
+  *(undefined8 *)(dest_desc + 0x188) = *(undefined8 *)(src_desc + 0x188);
+  *(undefined8 *)(dest_desc + 400) = *(undefined8 *)(src_desc + 400);
+  *(undefined8 *)(dest_desc + 0x198) = *(undefined8 *)(src_desc + 0x198);
+  *(undefined8 *)(dest_desc + 0x1a0) = *(undefined8 *)(src_desc + 0x1a0);
+  
+  return dest_desc;
 }
 
 
 
-longlong *
-FUN_18006de00(longlong *param_1,undefined8 *param_2,undefined8 *param_3,undefined8 *param_4)
+/**
+ * 处理内存块数据转换
+ * 将源内存块数据转换为目标格式并进行处理
+ * 原函数名：FUN_18006de00
+ * 
+ * @param result_ptr 结果指针
+ * @param src_start 源数据起始地址
+ * @param src_end 源数据结束地址
+ * @param dest_start 目标数据起始地址
+ * @return 返回结果指针
+ */
+longlong * ProcessMemoryBlockDataConversion(longlong *result_ptr, undefined8 *src_start, undefined8 *src_end, undefined8 *dest_start)
 
 {
   undefined8 *puVar1;
@@ -1118,71 +1149,93 @@ FUN_18006de00(longlong *param_1,undefined8 *param_2,undefined8 *param_3,undefine
   undefined8 *puVar3;
   undefined *puVar4;
   
-  *param_1 = (longlong)param_4;
-  if (param_2 != param_3) {
-    puVar3 = param_2 + 0x2b;
+  *result_ptr = (longlong)dest_start;
+  if (src_start != src_end) {
+    puVar3 = src_start + 0x2b;
     do {
-      *param_4 = &UNK_18098bcb0;
-      param_4[1] = 0;
-      *(undefined4 *)(param_4 + 2) = 0;
-      *param_4 = &UNK_1809feda8;
-      param_4[1] = param_4 + 3;
-      *(undefined4 *)(param_4 + 2) = 0;
-      *(undefined1 *)(param_4 + 3) = 0;
-      *(undefined4 *)(param_4 + 2) = *(undefined4 *)(puVar3 + -0x29);
+      // 初始化目标数据结构
+      *dest_start = &UNK_18098bcb0;
+      dest_start[1] = 0;
+      *(undefined4 *)(dest_start + 2) = 0;
+      *dest_start = &UNK_1809feda8;
+      dest_start[1] = dest_start + 3;
+      *(undefined4 *)(dest_start + 2) = 0;
+      *(undefined1 *)(dest_start + 3) = 0;
+      
+      // 复制属性数据
+      *(undefined4 *)(dest_start + 2) = *(undefined4 *)(puVar3 + -0x29);
       puVar4 = &DAT_18098bc73;
       if ((undefined *)puVar3[-0x2a] != (undefined *)0x0) {
         puVar4 = (undefined *)puVar3[-0x2a];
       }
-      strcpy_s(param_4[1],0x100,puVar4);
-      param_4[0x23] = puVar3[-8];
-      param_4[0x24] = puVar3[-7];
-      param_4[0x25] = puVar3[-6];
-      param_4[0x26] = puVar3[-5];
-      param_4[0x27] = puVar3[-4];
-      *(undefined1 *)(param_4 + 0x28) = *(undefined1 *)(puVar3 + -3);
-      param_4[0x2b] = 0;
-      param_4[0x2c] = _guard_check_icall;
-      if (param_4 + 0x29 != puVar3 + -2) {
+      strcpy_s(dest_start[1], 0x100, puVar4);
+      
+      // 复制数据字段
+      dest_start[0x23] = puVar3[-8];
+      dest_start[0x24] = puVar3[-7];
+      dest_start[0x25] = puVar3[-6];
+      dest_start[0x26] = puVar3[-5];
+      dest_start[0x27] = puVar3[-4];
+      *(undefined1 *)(dest_start + 0x28) = *(undefined1 *)(puVar3 + -3);
+      
+      // 处理回调函数1
+      dest_start[0x2b] = 0;
+      dest_start[0x2c] = _guard_check_icall;
+      if (dest_start + 0x29 != puVar3 + -2) {
         pcVar2 = (code *)*puVar3;
         if (pcVar2 != (code *)0x0) {
-          (*pcVar2)(param_4 + 0x29,puVar3 + -2,2);
+          (*pcVar2)(dest_start + 0x29, puVar3 + -2, 2);
           pcVar2 = (code *)*puVar3;
         }
-        param_4[0x2b] = pcVar2;
-        param_4[0x2c] = puVar3[1];
+        dest_start[0x2b] = pcVar2;
+        dest_start[0x2c] = puVar3[1];
         *puVar3 = 0;
         puVar3[1] = _guard_check_icall;
       }
-      param_4[0x2f] = 0;
-      param_4[0x30] = _guard_check_icall;
-      if (param_4 + 0x2d != puVar3 + 2) {
+      
+      // 处理回调函数2
+      dest_start[0x2f] = 0;
+      dest_start[0x30] = _guard_check_icall;
+      if (dest_start + 0x2d != puVar3 + 2) {
         pcVar2 = (code *)puVar3[4];
         if (pcVar2 != (code *)0x0) {
-          (*pcVar2)(param_4 + 0x2d,puVar3 + 2,2);
+          (*pcVar2)(dest_start + 0x2d, puVar3 + 2, 2);
           pcVar2 = (code *)puVar3[4];
         }
-        param_4[0x2f] = pcVar2;
-        param_4[0x30] = puVar3[5];
+        dest_start[0x2f] = pcVar2;
+        dest_start[0x30] = puVar3[5];
         puVar3[4] = 0;
         puVar3[5] = _guard_check_icall;
       }
-      param_4[0x31] = puVar3[6];
-      param_4[0x32] = puVar3[7];
-      param_4[0x33] = puVar3[8];
-      param_4[0x34] = puVar3[9];
-      *param_1 = *param_1 + 0x1a8;
-      param_4 = (undefined8 *)*param_1;
+      
+      // 复制剩余数据
+      dest_start[0x31] = puVar3[6];
+      dest_start[0x32] = puVar3[7];
+      dest_start[0x33] = puVar3[8];
+      dest_start[0x34] = puVar3[9];
+      
+      // 移动到下一个数据块
+      *result_ptr = *result_ptr + 0x1a8;
+      dest_start = (undefined8 *)*result_ptr;
       puVar1 = puVar3 + 10;
       puVar3 = puVar3 + 0x35;
-    } while (puVar1 != param_3);
+    } while (puVar1 != src_end);
   }
-  return param_1;
+  return result_ptr;
 }
 
 
 
-longlong * FUN_18006e000(longlong param_1,longlong param_2)
+/**
+ * 分配指定大小的内存块
+ * 从内存池中分配指定大小的内存块，如果需要则分割现有块
+ * 原函数名：FUN_18006e000
+ * 
+ * @param pool_info 内存池信息指针
+ * @param size 需要分配的内存大小
+ * @return 成功返回分配的内存块指针，失败返回NULL
+ */
+longlong * AllocateMemoryBlockOfSize(longlong pool_info, longlong size)
 
 {
   longlong lVar1;
@@ -1191,20 +1244,26 @@ longlong * FUN_18006e000(longlong param_1,longlong param_2)
   ulonglong uVar4;
   longlong *plVar5;
   
-  plVar5 = *(longlong **)(param_1 + 0x318);
-  uVar4 = param_2 + 0xfU & 0xfffffffffffffff0;
+  // 获取内存池管理器
+  plVar5 = *(longlong **)(pool_info + 0x318);
+  uVar4 = size + 0xfU & 0xfffffffffffffff0;  // 对齐到16字节边界
   plVar3 = (longlong *)0x0;
   plVar2 = (longlong *)plVar5[3];
+  
+  // 查找合适的空闲内存块
   if (plVar2 != (longlong *)0x0) {
     do {
       if ((((char)plVar2[4] == '\0') && (uVar4 <= (ulonglong)plVar2[1])) &&
          ((plVar3 == (longlong *)0x0 || ((ulonglong)plVar2[1] < (ulonglong)plVar3[1])))) {
-        plVar3 = plVar2;
+        plVar3 = plVar2;  // 记录最佳匹配的内存块
       }
       plVar2 = (longlong *)plVar2[2];
     } while (plVar2 != (longlong *)0x0);
+    
     if (plVar3 != (longlong *)0x0) {
+      // 检查是否需要分割内存块
       if (uVar4 < (ulonglong)plVar3[1]) {
+        // 分割内存块
         plVar2 = (longlong *)func_0x00018006e810(plVar5 + 4);
         *(undefined1 *)(plVar2 + 4) = 0;
         *plVar2 = *plVar3 + uVar4;
@@ -1218,6 +1277,8 @@ longlong * FUN_18006e000(longlong param_1,longlong param_2)
         plVar2[3] = (longlong)plVar3;
         plVar3[1] = uVar4;
       }
+      
+      // 标记内存块为已使用
       *(undefined1 *)(plVar3 + 4) = 1;
       *plVar5 = *plVar5 + uVar4;
       plVar5[2] = plVar5[2] - uVar4;
