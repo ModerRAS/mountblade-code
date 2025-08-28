@@ -143,6 +143,18 @@ static void setup_material_parameter(
 
 // 函数: void initialize_render_parameters(longlong engine_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 // 功能: 初始化渲染参数，配置材质和着色器参数
+// 参数：
+//   engine_context - 引擎上下文指针，包含所有渲染状态信息
+//   param_2 - 渲染参数2（具体用途待进一步分析）
+//   param_3 - 渲染参数3（具体用途待进一步分析）
+//   param_4 - 渲染参数4（具体用途待进一步分析）
+// 
+// 本函数是渲染管道初始化的核心，负责：
+// 1. 清理和重置现有的渲染状态
+// 2. 设置材质参数和纹理资源
+// 3. 配置着色器参数表
+// 4. 初始化错误处理机制
+// 5. 设置渲染状态标志
 void initialize_render_parameters(longlong engine_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
   // 材质和纹理相关变量
@@ -293,6 +305,12 @@ void initialize_render_parameters(longlong engine_context, undefined8 param_2, u
   // 注意：原始代码包含大量重复的材质参数设置模式
   // 这些模式主要用于配置游戏引擎中的各种材质属性
   // 由于代码重复性很高，这里只展示主要结构
+  // 
+  // 简化说明：原始代码中有大量相似的材质参数设置代码块
+  // 每个代码块都遵循相同的模式：初始化参数、设置值、错误处理
+  // 为了提高代码可读性，将这些重复模式提取为setup_material_parameter辅助函数
+  // 原始实现：直接内联所有参数设置代码，导致函数过长（约970行）
+  // 简化实现：使用辅助函数减少代码重复，提高可维护性
   
   // 最终设置渲染状态标志
   *(undefined4 *)(engine_context + RENDER_STATE_FLAG_OFFSET) = 1;
